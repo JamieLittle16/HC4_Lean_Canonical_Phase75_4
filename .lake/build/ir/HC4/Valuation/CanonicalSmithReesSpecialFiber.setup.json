@@ -5755,6 +5755,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ZeroSlopeSmithDispatcher.olean"],
   "HC4.Valuation.SymmetricSmithImprovementRestart":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SymmetricSmithImprovementRestart.olean"],
+  "HC4.Valuation.SmithFamilyHomogeneity":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithFamilyHomogeneity.olean"],
   "HC4.Valuation.SmithConformalCovariance":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithConformalCovariance.olean"],
   "HC4.Valuation.SeparatedSmithBoundaryClosure":

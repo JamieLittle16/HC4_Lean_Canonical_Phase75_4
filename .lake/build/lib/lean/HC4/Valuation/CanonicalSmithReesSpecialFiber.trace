@@ -21,9 +21,9 @@
         ["HC4.Valuation.SymmetricSmithImprovementRestart:importAllArts",
          "12197472459005912090"],
         ["HC4.Valuation.DefectRetainingDepartureFrontier transitive imports (legacy)",
-         "15815451292338903622"],
+         "16267386377400134801"],
         ["HC4.Valuation.DefectRetainingDepartureFrontier:importAllArts",
-         "15351025158047634303"],
+         "17207882539221723459"],
         ["HC4.Newton.SmithRefinedFacePolynomial transitive imports (legacy)",
          "7816611312834943049"],
         ["HC4.Newton.SmithRefinedFacePolynomial:importAllArts",
@@ -41,4 +41,4 @@
    "11963406300261731823"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "2241961447979761339"}
+ "depHash": "11494633916854769187"}

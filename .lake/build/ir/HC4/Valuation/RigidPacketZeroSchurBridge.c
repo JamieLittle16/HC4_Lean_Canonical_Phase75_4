@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: HC4.Valuation.RigidPacketZeroSchurBridge
-// Imports: Init HC4.Valuation.CanonicalSmithDefectExposure HC4.Valuation.SmithFrontierFourBlockExtraction HC4.Newton.RigidPacketEvaluatedHessianChart HC4.Newton.ZeroSchurFirstEntryClock Mathlib.Tactic
+// Imports: Init HC4.Valuation.CanonicalSmithDefectExposure HC4.Valuation.SmithFrontierFourBlockExtraction HC4.Valuation.QuadraticFamilyCollision HC4.Newton.RigidPacketEvaluatedHessianChart HC4.Newton.ZeroSchurFirstEntryClock Mathlib.Tactic
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -127,6 +127,7 @@ return x_4;
 lean_object* initialize_Init(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_CanonicalSmithDefectExposure(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_SmithFrontierFourBlockExtraction(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_QuadraticFamilyCollision(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Newton_RigidPacketEvaluatedHessianChart(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Newton_ZeroSchurFirstEntryClock(uint8_t builtin, lean_object*);
 lean_object* initialize_Mathlib_Tactic(uint8_t builtin, lean_object*);
@@ -142,6 +143,9 @@ res = initialize_HC4_Valuation_CanonicalSmithDefectExposure(builtin, lean_io_mk_
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Valuation_SmithFrontierFourBlockExtraction(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_QuadraticFamilyCollision(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Newton_RigidPacketEvaluatedHessianChart(builtin, lean_io_mk_world());

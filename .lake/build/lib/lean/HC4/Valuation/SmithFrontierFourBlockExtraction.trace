@@ -19,7 +19,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.FirstSchurDepartureBridge transitive imports (legacy)",
-         "11192868284466183615"],
+         "5499731382489272030"],
         ["HC4.Valuation.FirstSchurDepartureBridge:importAllArts",
          "12253925501031088570"],
         ["Mathlib.Algebra.MvPolynomial.Equiv transitive imports (legacy)",
@@ -43,4 +43,4 @@
    "16975227584345842310"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "8499375052990092862"}
+ "depHash": "12271831003192428135"}

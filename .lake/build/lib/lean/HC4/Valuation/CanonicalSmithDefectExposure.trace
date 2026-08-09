@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.CanonicalSmithReesSpecialFiber transitive imports (legacy)",
-         "11600698625867497258"],
+         "15986971944831846249"],
         ["HC4.Valuation.CanonicalSmithReesSpecialFiber:importAllArts",
          "14310617224581708329"],
         ["HC4.Valuation.PrimitiveSmithEndpoint transitive imports (legacy)",
@@ -21,9 +21,9 @@
         ["HC4.Valuation.PrimitiveSmithEndpoint:importAllArts",
          "10959379975673109541"],
         ["HC4.Valuation.DefectRetainingDepartureFrontier transitive imports (legacy)",
-         "15815451292338903622"],
+         "16267386377400134801"],
         ["HC4.Valuation.DefectRetainingDepartureFrontier:importAllArts",
-         "15351025158047634303"],
+         "17207882539221723459"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -37,4 +37,4 @@
    "8138353452867060172"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "14913542691756700189"}
+ "depHash": "6817091735489545993"}

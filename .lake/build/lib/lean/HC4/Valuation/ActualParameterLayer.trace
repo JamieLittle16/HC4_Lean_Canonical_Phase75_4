@@ -22,9 +22,9 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.DefectRetainingDepartureFrontier transitive imports (legacy)",
-         "15815451292338903622"],
+         "16267386377400134801"],
         ["HC4.Valuation.DefectRetainingDepartureFrontier:importAllArts",
-         "15351025158047634303"],
+         "17207882539221723459"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -38,4 +38,4 @@
    "2460089066771400756"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "9327164654422368926"}
+ "depHash": "3777837959832559481"}

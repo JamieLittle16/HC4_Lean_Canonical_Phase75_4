@@ -1,6 +1,6 @@
 {"plugins": [],
  "options": {},
- "name": "HC4.Valuation.ActualParameterLayer",
+ "name": "HC4.Valuation.SmithFamilyHomogeneity",
  "isModule": false,
  "importArts":
  {"Qq.Typ":
@@ -5755,26 +5755,16 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ZeroSlopeSmithDispatcher.olean"],
   "HC4.Valuation.SymmetricSmithImprovementRestart":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SymmetricSmithImprovementRestart.olean"],
-  "HC4.Valuation.SmithFamilyHomogeneity":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithFamilyHomogeneity.olean"],
   "HC4.Valuation.SmithConformalCovariance":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithConformalCovariance.olean"],
-  "HC4.Valuation.SeparatedSmithBoundaryClosure":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedSmithBoundaryClosure.olean"],
-  "HC4.Valuation.SeparatedRightWallScaleDescent":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedRightWallScaleDescent.olean"],
   "HC4.Valuation.PrimitiveSmithEndpoint":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PrimitiveSmithEndpoint.olean"],
   "HC4.Valuation.PolynomialFamilyKernelRestart":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PolynomialFamilyKernelRestart.olean"],
   "HC4.Valuation.PolynomialFamilyCollisionSpecialFiber":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PolynomialFamilyCollisionSpecialFiber.olean"],
-  "HC4.Valuation.PointedShearContinuation":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PointedShearContinuation.olean"],
   "HC4.Valuation.ParameterRamification":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ParameterRamification.olean"],
-  "HC4.Valuation.LosslessSmithFrontier":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/LosslessSmithFrontier.olean"],
   "HC4.Valuation.LinearCovariance":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/LinearCovariance.olean"],
   "HC4.Valuation.KernelInflationHessianDefect":
@@ -5785,16 +5775,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/IntegralKernelSlopeExtraction.olean"],
   "HC4.Valuation.IntegralKernelBlowup":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/IntegralKernelBlowup.olean"],
-  "HC4.Valuation.GeometricAssemblyEntry":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/GeometricAssemblyEntry.olean"],
-  "HC4.Valuation.FinalRestartAssembly":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/FinalRestartAssembly.olean"],
   "HC4.Valuation.ExactKernelDefectDrop":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ExactKernelDefectDrop.olean"],
-  "HC4.Valuation.DefectRetainingDepartureFrontier":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/DefectRetainingDepartureFrontier.olean"],
-  "HC4.Valuation.CoupledSmithWallClosure":
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CoupledSmithWallClosure.olean"],
   "HC4.Valuation.ConcreteIntegralKernelRestart":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ConcreteIntegralKernelRestart.olean"],
   "HC4.Valuation.CommonParameterFactorRestart":

@@ -14083,6 +14083,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SymmetricSmithImprovementRestart.olean"],
   "HC4.Valuation.SmithFrontierFourBlockExtraction":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithFrontierFourBlockExtraction.olean"],
+  "HC4.Valuation.SmithFamilyHomogeneity":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithFamilyHomogeneity.olean"],
   "HC4.Valuation.SmithConformalCovariance":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SmithConformalCovariance.olean"],
   "HC4.Valuation.SeparatedSmithBoundaryClosure":
@@ -14091,6 +14093,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedRightWallScaleDescent.olean"],
   "HC4.Valuation.RigidPacketZeroSchurBridge":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean"],
+  "HC4.Valuation.QuadraticFamilyCollision":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/QuadraticFamilyCollision.olean"],
   "HC4.Valuation.PrimitiveSmithEndpoint":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PrimitiveSmithEndpoint.olean"],
   "HC4.Valuation.PolynomialFamilyKernelRestart":

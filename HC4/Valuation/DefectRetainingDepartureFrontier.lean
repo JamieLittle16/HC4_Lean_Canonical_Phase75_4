@@ -1,5 +1,6 @@
 import HC4.Valuation.LosslessSmithFrontier
 import HC4.Valuation.AlignedSmithFirstStop
+import HC4.Valuation.SmithFamilyHomogeneity
 import Mathlib.Tactic
 
 /-!
@@ -13,7 +14,10 @@ That number is required by the first-departure argument: it is the finite
 clock against which a later Rees/parameter layer is judged preterminal or
 determinant-closing.
 
-This file adds exactly that information without changing any green theorem.
+This file retains that exact defect together with the full source homogeneity of
+the actual polynomial family.  The latter is already present in the global
+restart state and is needed to close the quadratic boundary without weakening
+the collision to the special fibre.
 
 It also extracts, from the finite family support, the least strictly
 positive parameter order.  Thus a departure-ready frontier comes with:
@@ -47,6 +51,8 @@ structure CanonicalSmithDepartureFrontier
     (D complexity : ℕ) where
   defect : ℕ
   lossless : CanonicalSmithLosslessFrontier (K := K) D complexity
+  /-- Full source homogeneity of the retained polynomial family. -/
+  homogeneous : lossless.family.IsHomogeneous D
   hessianDefect :
     HasPolynomialFamilyHessianDefect
       (K := K) lossless.family defect
@@ -95,6 +101,7 @@ theorem canonicalSymmetricMinimal_departureFrontier
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (a b : Fin 4 → Polynomial K)
     {D Delta : ℕ}
+    (hfull : P.IsHomogeneous D)
     (hhom :
       (polynomialFamilySpecialFiber P).IsHomogeneous D)
     (hD : 2 ≤ D)
@@ -177,6 +184,8 @@ theorem canonicalSymmetricMinimal_departureFrontier
   exact
     ⟨{ defect := Delta
        lossless := lossless
+       homogeneous := by
+         simpa [lossless] using hfull
        hessianDefect := by
          simpa [lossless] using hdef }⟩
 
@@ -223,7 +232,7 @@ theorem primitiveZeroSmithSource_departureFrontier
     canonicalSymmetricMinimal_departureFrontier
       P
       (zeroPolynomialSection (K := K))
-      b hhom hD hdef hcoll
+      b hP hhom hD hdef hcoll
       ha hb hminimal complexity
 
 /-- Pure coefficient first wall: the actual retained family is the
@@ -269,6 +278,11 @@ theorem pureCoefficientWall_departureFrontier
   let b' :=
     alignedSmithGenuineFirstWallSectionRight
       (K := K) P a b hwall
+  have hQhom : Q.IsHomogeneous D := by
+    dsimp [Q]
+    exact
+      alignedSmithGenuineFirstWallFamily_isHomogeneous
+        P hP a b hwall
   have hhom :
       (polynomialFamilySpecialFiber Q).IsHomogeneous D := by
     dsimp [Q]
@@ -306,7 +320,7 @@ theorem pureCoefficientWall_departureFrontier
         P a b hwall hcoeff
   exact
     canonicalSymmetricMinimal_departureFrontier
-      Q a' b' hhom hD hQdef hQcoll
+      Q a' b' hQhom hhom hD hQdef hQcoll
       (by simpa [a'] using hpoints.1)
       (by simpa [b'] using hpoints.2)
       hminimal complexity
@@ -383,7 +397,7 @@ theorem noWallPrimitiveSmithFamily_departureFrontier
         P a b Delta hdef hnone
   exact
     canonicalSymmetricMinimal_departureFrontier
-      Q a' b' hhom hD hQdef hcoll'
+      Q a' b' hhomFull hhom hD hQdef hcoll'
       ha' hb' hminimal complexity
 
 /-! -----------------------------------------------------------------------

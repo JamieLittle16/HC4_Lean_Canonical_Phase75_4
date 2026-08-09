@@ -1,20 +1,20 @@
 {"synthetic": false,
  "outputs":
- {"o": ["2932102029633711530"],
-  "i": "11969363719356618221",
-  "c": "7383275426738196094"},
+ {"o": ["575548052331925221"],
+  "i": "5590258700561466660",
+  "c": "14200757908425387316"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/RigidPacketZeroSchurBridge.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/RigidPacketZeroSchurBridge.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/RigidPacketZeroSchurBridge.setup.json --json",
    "level": "trace"},
   {"message":
-   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:124:37: This simp argument is unused:\n  polynomialConstantSection\n\nHint: Omit it from the simp argument list.\n  simp [constantSpatialEval,̵ ̵p̵o̵l̵y̵n̵o̵m̵i̵a̵l̵C̵o̵n̵s̵t̵a̵n̵t̵S̵e̵c̵t̵i̵o̵n̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:125:37: This simp argument is unused:\n  polynomialConstantSection\n\nHint: Omit it from the simp argument list.\n  simp [constantSpatialEval,̵ ̵p̵o̵l̵y̵n̵o̵m̵i̵a̵l̵C̵o̵n̵s̵t̵a̵n̵t̵S̵e̵c̵t̵i̵o̵n̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
    "level": "warning"},
   {"message":
-   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:479:5: unused variable `hrigid`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:480:5: unused variable `hrigid`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
   {"message":
-   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:517:5: unused variable `complexity`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "HC4/Valuation/RigidPacketZeroSchurBridge.lean:518:5: unused variable `complexity`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"}],
  "inputs":
  [["HC4.Valuation.RigidPacketZeroSchurBridge:deps",
@@ -22,13 +22,17 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.CanonicalSmithDefectExposure transitive imports (legacy)",
-         "4424480564926106779"],
+         "16902642959472892471"],
         ["HC4.Valuation.CanonicalSmithDefectExposure:importAllArts",
          "14295487187187877446"],
         ["HC4.Valuation.SmithFrontierFourBlockExtraction transitive imports (legacy)",
-         "7371007316633062889"],
+         "9838448950069251666"],
         ["HC4.Valuation.SmithFrontierFourBlockExtraction:importAllArts",
          "10710612864190616195"],
+        ["HC4.Valuation.QuadraticFamilyCollision transitive imports (legacy)",
+         "5963007200384598639"],
+        ["HC4.Valuation.QuadraticFamilyCollision:importAllArts",
+         "692209064743138154"],
         ["HC4.Newton.RigidPacketEvaluatedHessianChart transitive imports (legacy)",
          "12018415328803243700"],
         ["HC4.Newton.RigidPacketEvaluatedHessianChart:importAllArts",
@@ -47,7 +51,7 @@
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/RigidPacketZeroSchurBridge.lean",
-   "2103140678379539194"],
+   "13017847985161155529"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "18411327039959227990"}
+ "depHash": "17302252823551158255"}

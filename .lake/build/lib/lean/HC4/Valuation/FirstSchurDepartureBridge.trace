@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.ActualParameterLayer transitive imports (legacy)",
-         "10838901823525466280"],
+         "18352295376742012459"],
         ["HC4.Valuation.ActualParameterLayer:importAllArts",
          "17490220273340642501"],
         ["HC4.Valuation.CanonicalSmithReesSpecialFiber transitive imports (legacy)",
-         "11600698625867497258"],
+         "15986971944831846249"],
         ["HC4.Valuation.CanonicalSmithReesSpecialFiber:importAllArts",
          "14310617224581708329"],
         ["HC4.Newton.MixedDepartureAdapter transitive imports (legacy)",
@@ -45,4 +45,4 @@
    "12841702786092922656"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "3582373038075195744"}
+ "depHash": "7559519729197694488"}

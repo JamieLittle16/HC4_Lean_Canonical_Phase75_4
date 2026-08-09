@@ -1,5 +1,6 @@
 import HC4.Valuation.CanonicalSmithDefectExposure
 import HC4.Valuation.SmithFrontierFourBlockExtraction
+import HC4.Valuation.QuadraticFamilyCollision
 import HC4.Newton.RigidPacketEvaluatedHessianChart
 import HC4.Newton.ZeroSchurFirstEntryClock
 import Mathlib.Tactic
@@ -577,6 +578,55 @@ theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_degreeTwo_or_rigidClo
       hprogress | hclosing
     · exact Or.inl hprogress
     · exact Or.inr (Or.inr hclosing)
+
+/-- **The quadratic departure frontier is impossible.**
+The full family homogeneity retained by the departure frontier turns the
+`D = 2` boundary into a linear-gradient problem over the coefficient domain
+`K[X]`.  The exact Hessian clock is a nonzero polynomial, so the quadratic
+gradient is injective and the two moving collision sections must coincide.
+Their specialisations are the distinct canonical points `0` and `e₀`, a
+contradiction. -/
+theorem CanonicalSmithDepartureFrontier.degree_two_impossible
+    [CharZero K]
+    {complexity : ℕ}
+    (f : CanonicalSmithDepartureFrontier (K := K) 2 complexity) :
+    False := by
+  have hsections :
+      f.lossless.leftSection = f.lossless.rightSection :=
+    quadraticPolynomialFamily_exactCollision_sections_eq
+      f.lossless.family
+      f.homogeneous
+      f.lossless.leftSection
+      f.lossless.rightSection
+      f.hessianDefect
+      f.lossless.exactCollision
+  have hspecial :=
+    congrArg polynomialSectionSpecialPoint hsections
+  rw [f.lossless.leftSpecial, f.lossless.rightSpecial] at hspecial
+  exact
+    coordinateAxisPoint_zero_ne_zeroPoint (K := K) hspecial.symm
+
+/-- **Rigid Smith branch with no degree boundary.**
+For every retained degree `D ≥ 2`, the canonical Smith frontier now yields
+either strict rank-two repair progress or the precise two-stage
+determinant-closing data.  The previously isolated `D = 2` branch is ruled
+out intrinsically by quadratic gradient injectivity. -/
+theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_rigidClosing
+    [CharZero K]
+    {D complexity : ℕ}
+    (f : CanonicalSmithDepartureFrontier (K := K) D complexity)
+    (hD : 2 ≤ D) :
+    RepairProgress
+        (rankOneRepairState complexity)
+        (rankTwoRepairState complexity) ∨
+      HasRigidTwoStageClosingOutcome (K := K) complexity := by
+  rcases
+      f.rankTwoProgress_or_degreeTwo_or_rigidClosing hD with
+    hprogress | h2 | hclosing
+  · exact Or.inl hprogress
+  · subst D
+    exact (f.degree_two_impossible).elim
+  · exact Or.inr hclosing
 
 end
 

@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: HC4.Valuation.DefectRetainingDepartureFrontier
-// Imports: Init HC4.Valuation.LosslessSmithFrontier HC4.Valuation.AlignedSmithFirstStop Mathlib.Tactic
+// Imports: Init HC4.Valuation.LosslessSmithFrontier HC4.Valuation.AlignedSmithFirstStop HC4.Valuation.SmithFamilyHomogeneity Mathlib.Tactic
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -38,6 +38,7 @@ return x_6;
 lean_object* initialize_Init(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_LosslessSmithFrontier(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_AlignedSmithFirstStop(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_SmithFamilyHomogeneity(uint8_t builtin, lean_object*);
 lean_object* initialize_Mathlib_Tactic(uint8_t builtin, lean_object*);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_HC4_Valuation_DefectRetainingDepartureFrontier(uint8_t builtin, lean_object* w) {
@@ -51,6 +52,9 @@ res = initialize_HC4_Valuation_LosslessSmithFrontier(builtin, lean_io_mk_world()
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Valuation_AlignedSmithFirstStop(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_SmithFamilyHomogeneity(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Mathlib_Tactic(builtin, lean_io_mk_world());

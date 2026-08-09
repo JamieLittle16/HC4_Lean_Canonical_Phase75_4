@@ -1,17 +1,17 @@
 {"synthetic": false,
  "outputs":
- {"o": ["7368961992153934330"],
-  "i": "10832590110158367445",
-  "c": "6833383965971527689"},
+ {"o": ["11761749911958040836"],
+  "i": "11159766299154811060",
+  "c": "5205773111395409627"},
  "log":
  [{"message":
-   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/HC4/Valuation/DefectRetainingDepartureFrontier.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/build/lib/lean/HC4/Valuation/DefectRetainingDepartureFrontier.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/build/lib/lean/HC4/Valuation/DefectRetainingDepartureFrontier.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/build/ir/HC4/Valuation/DefectRetainingDepartureFrontier.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/.lake/build/ir/HC4/Valuation/DefectRetainingDepartureFrontier.setup.json --json",
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/DefectRetainingDepartureFrontier.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/DefectRetainingDepartureFrontier.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/DefectRetainingDepartureFrontier.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/DefectRetainingDepartureFrontier.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/DefectRetainingDepartureFrontier.setup.json --json",
    "level": "trace"},
   {"message":
-   "HC4/Valuation/DefectRetainingDepartureFrontier.lean:770:4: unused variable `hJC2`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "HC4/Valuation/DefectRetainingDepartureFrontier.lean:784:4: unused variable `hJC2`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
   {"message":
-   "HC4/Valuation/DefectRetainingDepartureFrontier.lean:773:8: unused variable `f`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "HC4/Valuation/DefectRetainingDepartureFrontier.lean:787:8: unused variable `f`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"}],
  "inputs":
  [["HC4.Valuation.DefectRetainingDepartureFrontier:deps",
@@ -26,6 +26,10 @@
          "11314740169370598366"],
         ["HC4.Valuation.AlignedSmithFirstStop:importAllArts",
          "4975467725894761719"],
+        ["HC4.Valuation.SmithFamilyHomogeneity transitive imports (legacy)",
+         "719092207704809630"],
+        ["HC4.Valuation.SmithFamilyHomogeneity:importAllArts",
+         "10989323077808466347"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -35,8 +39,8 @@
       ["module plugins", "1723"]]]]],
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
-  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_3/HC4/Valuation/DefectRetainingDepartureFrontier.lean",
-   "13566813260095094206"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/DefectRetainingDepartureFrontier.lean",
+   "14011389485570092574"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "2107656114751568645"}
+ "depHash": "16156181272748572098"}
