@@ -1,0 +1,29 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["6526437532019657618"],
+  "i": "12604382956040499295",
+  "c": "73545567258272447"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/Newton/FacetCycleClassification.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/Newton/FacetCycleClassification.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/Newton/FacetCycleClassification.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/Newton/FacetCycleClassification.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/Newton/FacetCycleClassification.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["HC4.Newton.FacetCycleClassification:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Newton.BoundaryCycle transitive imports (legacy)",
+         "15406293519730396955"],
+        ["HC4.Newton.BoundaryCycle:importAllArts", "1136852465269628076"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/Newton/FacetCycleClassification.lean",
+   "5872749696348907817"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "9384953756833177799"}

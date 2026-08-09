@@ -1,0 +1,274 @@
+import HC4.RationalRigidity.LogarithmicInfinityCertificate
+import Mathlib.FieldTheory.RatFunc.IntermediateField
+import Mathlib.Algebra.Polynomial.BigOperators
+import Mathlib.Tactic
+
+/-!
+# Cleared polynomial evaluation at the infinity chart
+
+For a reduced rational source `rho = N / D` whose numerator and denominator
+have the same degree, polynomial evaluation in `rho` has a particularly simple
+homogenised numerator.  For `m >= natDegree P` set
+
+    H_m(P;N,D) = sum_j p_j N^j D^(m-j).
+
+If `deg N = deg D = d` and `D` is monic, then the coefficient of `X^(m*d)`
+in this cleared numerator is exactly `P.eval N.leadingCoeff`.  Since the
+canonical denominator is monic, this is evaluation at the exceptional
+infinity value `lc(N)/lc(D)`.
+
+This file uses that coefficient identity to package the algebraic infinity
+step in the autonomous rational ODE argument.  No pointwise cancellation of a
+raw numerator/denominator pair is used.
+-/
+
+namespace HC4.RationalRigidity
+
+open Polynomial
+
+noncomputable section
+
+variable {K : Type*} [Field K]
+
+/-- Denominator-cleared homogeneous substitution for `P(N/D)`, using a common
+homogenising degree `m`.  The intended use has `P.natDegree <= m`. -/
+def clearedPolynomialSubstitution
+    (m : ℕ) (P N D : Polynomial K) : Polynomial K :=
+  P.sum fun j a => Polynomial.C a * N ^ j * D ^ (m - j)
+
+/-- Every summand of the cleared substitution has degree at most `m*d` when
+`N` and `D` both have degree `d`. -/
+theorem clearedPolynomialSubstitution_natDegree_le
+    {m d : ℕ} {P N D : Polynomial K}
+    (hPdeg : P.natDegree ≤ m)
+    (hNdeg : N.natDegree = d)
+    (hDdeg : D.natDegree = d) :
+    (clearedPolynomialSubstitution m P N D).natDegree ≤ m * d := by
+  rw [clearedPolynomialSubstitution, Polynomial.sum_def]
+  apply Polynomial.natDegree_sum_le_of_forall_le P.support
+  intro j hj
+  have hjP : j ≤ P.natDegree := Polynomial.le_natDegree_of_mem_supp j hj
+  have hjm : j ≤ m := le_trans hjP hPdeg
+  have hleft :
+      (Polynomial.C (P.coeff j) * N ^ j).natDegree ≤ j * d := by
+    calc
+      (Polynomial.C (P.coeff j) * N ^ j).natDegree ≤
+          (N ^ j).natDegree := Polynomial.natDegree_C_mul_le _ _
+      _ = j * N.natDegree := by rw [Polynomial.natDegree_pow]
+      _ = j * d := by rw [hNdeg]
+  have hright : (D ^ (m - j)).natDegree ≤ (m - j) * d := by
+    rw [Polynomial.natDegree_pow, hDdeg]
+  calc
+    (Polynomial.C (P.coeff j) * N ^ j * D ^ (m - j)).natDegree ≤
+        (Polynomial.C (P.coeff j) * N ^ j).natDegree +
+          (D ^ (m - j)).natDegree := Polynomial.natDegree_mul_le
+    _ ≤ j * d + (m - j) * d := Nat.add_le_add hleft hright
+    _ = m * d := by
+      have hsum : j + (m - j) = m := Nat.add_sub_of_le hjm
+      calc
+        j * d + (m - j) * d = (j + (m - j)) * d := by ring
+        _ = m * d := by rw [hsum]
+
+/-- Top coefficient of the cleared homogeneous substitution.  For equal-degree
+`N,D` and monic `D`, it is evaluation of `P` at `lc(N)`, i.e. at the infinity
+value of `N/D`. -/
+theorem coeff_clearedPolynomialSubstitution_top
+    {m d : ℕ} {P N D : Polynomial K}
+    (hPdeg : P.natDegree ≤ m)
+    (hNdeg : N.natDegree = d)
+    (hDdeg : D.natDegree = d)
+    (hDmonic : D.Monic) :
+    (clearedPolynomialSubstitution m P N D).coeff (m * d) =
+      P.eval N.leadingCoeff := by
+  classical
+  rw [clearedPolynomialSubstitution, Polynomial.sum_def,
+    Polynomial.finset_sum_coeff]
+  rw [Polynomial.eval_eq_sum, Polynomial.sum_def]
+  apply Finset.sum_congr rfl
+  intro j hj
+  have hjP : j ≤ P.natDegree := Polynomial.le_natDegree_of_mem_supp j hj
+  have hjm : j ≤ m := le_trans hjP hPdeg
+  have hidx : j * d + (m - j) * d = m * d := by
+    have hsum : j + (m - j) = m := Nat.add_sub_of_le hjm
+    calc
+      j * d + (m - j) * d = (j + (m - j)) * d := by ring
+      _ = m * d := by rw [hsum]
+  have hleft :
+      (Polynomial.C (P.coeff j) * N ^ j).natDegree ≤ j * d := by
+    calc
+      (Polynomial.C (P.coeff j) * N ^ j).natDegree ≤
+          (N ^ j).natDegree := Polynomial.natDegree_C_mul_le _ _
+      _ = j * N.natDegree := by rw [Polynomial.natDegree_pow]
+      _ = j * d := by rw [hNdeg]
+  have hright : (D ^ (m - j)).natDegree ≤ (m - j) * d := by
+    rw [Polynomial.natDegree_pow, hDdeg]
+  rw [← hidx]
+  rw [Polynomial.coeff_mul_add_eq_of_natDegree_le hleft hright]
+  rw [Polynomial.coeff_C_mul]
+  have hNcoeff : (N ^ j).coeff (j * d) = N.leadingCoeff ^ j := by
+    rw [← hNdeg]
+    exact Polynomial.coeff_pow_mul_natDegree N j
+  have hDcoeff :
+      (D ^ (m - j)).coeff ((m - j) * d) = D.leadingCoeff ^ (m - j) := by
+    rw [← hDdeg]
+    exact Polynomial.coeff_pow_mul_natDegree D (m - j)
+  rw [hNcoeff, hDcoeff, hDmonic.leadingCoeff, one_pow, mul_one]
+
+/-- In the rational-function field, a cleared homogeneous substitution is
+exactly the common-denominator presentation of polynomial evaluation. -/
+theorem clearedPolynomialSubstitution_map_eq
+    {m : ℕ} {P N D : Polynomial K}
+    (hPdeg : P.natDegree ≤ m) (hD : D ≠ 0) :
+    algebraMap (Polynomial K) (RatFunc K)
+        (clearedPolynomialSubstitution m P N D) =
+      (algebraMap (Polynomial K) (RatFunc K) D) ^ m *
+        Polynomial.aeval
+          (algebraMap (Polynomial K) (RatFunc K) N /
+            algebraMap (Polynomial K) (RatFunc K) D) P := by
+  classical
+  rw [clearedPolynomialSubstitution, Polynomial.sum_def, map_sum]
+  rw [Polynomial.aeval_def, Polynomial.eval₂_eq_sum, Polynomial.sum_def]
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro j hj
+  have hjP : j ≤ P.natDegree := Polynomial.le_natDegree_of_mem_supp j hj
+  have hjm : j ≤ m := le_trans hjP hPdeg
+  have hmapD : algebraMap (Polynomial K) (RatFunc K) D ≠ 0 :=
+    (algebraMap (Polynomial K) (RatFunc K)).injective.ne hD
+  simp only [map_mul, map_pow, map_C, RatFunc.algebraMap_C]
+  rw [div_pow]
+  have hpow :
+      (algebraMap (Polynomial K) (RatFunc K) D) ^ m =
+        (algebraMap (Polynomial K) (RatFunc K) D) ^ j *
+          (algebraMap (Polynomial K) (RatFunc K) D) ^ (m - j) := by
+    rw [← pow_add, Nat.add_sub_of_le hjm]
+  rw [hpow]
+  field_simp [hmapD]
+  ring
+
+/-- Polynomial form of a rational autonomous identity after clearing a common
+homogenising denominator. -/
+theorem clearedPolynomialSubstitution_identity_of_ratFunc
+    {rho eta : RatFunc K}
+    {A B N D H : Polynomial K} {m : ℕ}
+    (hD : D ≠ 0)
+    (hRho : rho =
+      algebraMap (Polynomial K) (RatFunc K) N /
+        algebraMap (Polynomial K) (RatFunc K) D)
+    (hEta : eta =
+      algebraMap (Polynomial K) (RatFunc K) H /
+        (algebraMap (Polynomial K) (RatFunc K) D) ^ 2)
+    (hAdeg : A.natDegree ≤ m) (hBdeg : B.natDegree ≤ m)
+    (hCross : Polynomial.aeval rho A = eta * Polynomial.aeval rho B) :
+    clearedPolynomialSubstitution m A N D * D ^ 2 =
+      H * clearedPolynomialSubstitution m B N D := by
+  let ι : Polynomial K →+* RatFunc K := algebraMap (Polynomial K) (RatFunc K)
+  have hDAraw := clearedPolynomialSubstitution_map_eq
+    (K := K) hAdeg hD
+  have hDBraw := clearedPolynomialSubstitution_map_eq
+    (K := K) hBdeg hD
+  have hDA :
+      ι (clearedPolynomialSubstitution m A N D) =
+        ι D ^ m * Polynomial.aeval rho A := by
+    simpa [ι, hRho] using hDAraw
+  have hDB :
+      ι (clearedPolynomialSubstitution m B N D) =
+        ι D ^ m * Polynomial.aeval rho B := by
+    simpa [ι, hRho] using hDBraw
+  have hmapD : ι D ≠ 0 := by
+    exact (algebraMap (Polynomial K) (RatFunc K)).injective.ne hD
+  apply (algebraMap (Polynomial K) (RatFunc K)).injective
+  change
+    ι (clearedPolynomialSubstitution m A N D * D ^ 2) =
+      ι (H * clearedPolynomialSubstitution m B N D)
+  simp only [map_mul, map_pow]
+  rw [hDA, hDB, hCross, hEta]
+  field_simp [hmapD]
+  ring
+
+/-- Algebraic infinity evaluation for an autonomous rational identity.
+
+If `rho=N/D` has equal numerator/denominator degree and monic denominator,
+while `eta=H/D^2` has `deg H < 2 deg D`, then every polynomial identity
+`A(rho)=eta*B(rho)` forces `A` to vanish at the infinity value of `rho`.
+-/
+theorem eval_at_infinity_eq_zero_of_autonomous_ratFunc_identity
+    {rho eta : RatFunc K}
+    {A B N D H : Polynomial K}
+    (hD : D ≠ 0)
+    (hDmonic : D.Monic)
+    (hDegEq : N.natDegree = D.natDegree)
+    (hHdeg : H.natDegree < D.natDegree + D.natDegree)
+    (hRho : rho =
+      algebraMap (Polynomial K) (RatFunc K) N /
+        algebraMap (Polynomial K) (RatFunc K) D)
+    (hEta : eta =
+      algebraMap (Polynomial K) (RatFunc K) H /
+        (algebraMap (Polynomial K) (RatFunc K) D) ^ 2)
+    (hCross : Polynomial.aeval rho A = eta * Polynomial.aeval rho B) :
+    A.eval N.leadingCoeff = 0 := by
+  let m := max A.natDegree B.natDegree
+  let d := D.natDegree
+  have hAdeg : A.natDegree ≤ m := le_max_left _ _
+  have hBdeg : B.natDegree ≤ m := le_max_right _ _
+  have hNdeg : N.natDegree = d := by simpa [d] using hDegEq
+  have hDdeg : D.natDegree = d := rfl
+  have hPoly := clearedPolynomialSubstitution_identity_of_ratFunc
+    (K := K) hD hRho hEta hAdeg hBdeg hCross
+
+  have hLeftCoeff := congrArg
+    (fun p : Polynomial K => p.coeff ((m + 2) * d)) hPoly
+
+  have hHAdeg := clearedPolynomialSubstitution_natDegree_le
+    (K := K) hAdeg hNdeg hDdeg
+  have hHBdeg := clearedPolynomialSubstitution_natDegree_le
+    (K := K) hBdeg hNdeg hDdeg
+  have hD2deg : (D ^ 2).natDegree = 2 * d := by
+    rw [Polynomial.natDegree_pow, hDdeg]
+
+  have hLeftTop :
+      (clearedPolynomialSubstitution m A N D * D ^ 2).coeff
+          ((m + 2) * d) = A.eval N.leadingCoeff := by
+    have hidx : m * d + 2 * d = (m + 2) * d := by ring
+    rw [← hidx]
+    rw [Polynomial.coeff_mul_add_eq_of_natDegree_le hHAdeg
+      (le_of_eq hD2deg)]
+    rw [coeff_clearedPolynomialSubstitution_top
+      (K := K) hAdeg hNdeg hDdeg hDmonic]
+    have hDtop : (D ^ 2).coeff (2 * d) = 1 := by
+      rw [← hDdeg, Polynomial.coeff_pow_mul_natDegree]
+      rw [hDmonic.leadingCoeff, one_pow]
+    rw [hDtop, mul_one]
+
+  have hRightDeg :
+      (H * clearedPolynomialSubstitution m B N D).natDegree <
+        (m + 2) * d := by
+    have hHlt : H.natDegree < 2 * d := by
+      simpa [d, two_mul] using hHdeg
+    calc
+      (H * clearedPolynomialSubstitution m B N D).natDegree ≤
+          H.natDegree +
+            (clearedPolynomialSubstitution m B N D).natDegree :=
+        Polynomial.natDegree_mul_le
+      _ ≤ H.natDegree + m * d := Nat.add_le_add_left hHBdeg _
+      _ < 2 * d + m * d := Nat.add_lt_add_right hHlt _
+      _ = (m + 2) * d := by ring
+  have hRightZero :
+      (H * clearedPolynomialSubstitution m B N D).coeff
+          ((m + 2) * d) = 0 :=
+    Polynomial.coeff_eq_zero_of_natDegree_lt hRightDeg
+  rw [hLeftTop, hRightZero] at hLeftCoeff
+  exact hLeftCoeff
+
+/-- Positive canonical denominator degree is enough to manufacture the
+transcendence hypothesis used by the rank-three reduced-target assembly. -/
+theorem ratFunc_transcendental_of_denom_natDegree_pos
+    (rho : RatFunc K) (hdeg : 0 < rho.denom.natDegree) :
+    Transcendental K rho := by
+  apply RatFunc.transcendental_of_ne_C rho
+  rintro ⟨c, rfl⟩
+  simp at hdeg
+
+end
+
+end HC4.RationalRigidity

@@ -1,0 +1,6 @@
+Lean files: 83
+HC4 Lean source files: 81
+Lean source lines: 10108
+Local HC4 imports: 158
+Unresolved local imports: 0
+Forbidden-token hits in HC4 sources: 0

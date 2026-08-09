@@ -1,0 +1,570 @@
+import HC4
+
+#print axioms HC4.RationalRigidity.clear_denominator
+#print axioms HC4.RationalRigidity.div_eq_div_iff_cross
+#print axioms HC4.RationalRigidity.clear_polynomial_rational_identity
+#print axioms HC4.RationalRigidity.clear_power_rational_identity
+#print axioms HC4.RationalRigidity.clear_power_rational_identity_pointwise
+#print axioms HC4.RationalRigidity.cleared_identity_of_rational_identity
+#print axioms HC4.RationalRigidity.rational_identity_of_cleared_identity
+#print axioms HC4.RationalRigidity.clear_constant_polynomial_denominator
+#print axioms HC4.RationalRigidity.eliminate_unit_polynomial_denominator
+
+#print axioms HC4.RationalRigidity.polynomial_eq_of_surjective_eval
+#print axioms HC4.RationalRigidity.polynomial_identity_of_constant_denominator
+#print axioms HC4.RationalRigidity.polynomial_identity_of_unit_denominator
+#print axioms HC4.RationalRigidity.power_polynomial_identity_of_constant_denominator
+#print axioms HC4.RationalRigidity.power_polynomial_identity_of_unit_denominator
+#print axioms HC4.RationalRigidity.rational_power_pair_of_constant_denominator
+#print axioms HC4.RationalRigidity.rational_power_pair_of_unit_denominator
+
+#print axioms HC4.RationalRigidity.constant_polynomial_of_eval_ne_zero
+#print axioms HC4.RationalRigidity.constant_polynomial_of_surjective_eval_ne_zero
+#print axioms HC4.RationalRigidity.monic_polynomial_eq_one_of_eval_ne_zero
+#print axioms HC4.RationalRigidity.rational_identity_of_nonvanishing_denominator
+#print axioms HC4.RationalRigidity.rational_power_pair_of_nonvanishing_denominator
+#print axioms HC4.RationalRigidity.rational_identity_of_monic_nonvanishing_denominator
+#print axioms HC4.RationalRigidity.rational_power_pair_of_monic_nonvanishing_denominator
+
+#print axioms HC4.RationalRigidity.unit_denominator_of_coprime_dvd
+#print axioms HC4.RationalRigidity.constant_polynomial_of_isUnit
+#print axioms HC4.RationalRigidity.constant_denominator_of_coprime_dvd
+#print axioms HC4.RationalRigidity.monic_denominator_eq_one_of_coprime_dvd
+#print axioms HC4.RationalRigidity.polynomial_identity_of_surjective_cleared_chart
+#print axioms HC4.RationalRigidity.denominator_dvd_of_surjective_cleared_chart
+#print axioms HC4.RationalRigidity.unit_denominator_of_reduced_cleared_chart
+#print axioms HC4.RationalRigidity.reduced_polynomial_pair_of_cleared_chart
+#print axioms HC4.RationalRigidity.reduced_polynomial_pair_of_monic_cleared_chart
+#print axioms HC4.RationalRigidity.reduced_power_pair_of_cleared_chart
+#print axioms HC4.RationalRigidity.reduced_power_pair_of_monic_cleared_chart
+
+#print axioms HC4.RationalRigidity.eval_ne_zero_of_left_unit_certificate
+#print axioms HC4.RationalRigidity.eval_ne_zero_of_right_unit_certificate
+#print axioms HC4.RationalRigidity.eval_ne_zero_of_bezout_and_cleared_chart
+#print axioms HC4.RationalRigidity.eval_ne_zero_of_two_chart_cover
+#print axioms HC4.RationalRigidity.identity_of_two_chart_cover
+#print axioms HC4.RationalRigidity.constant_denominator_of_two_chart_unit_certificates
+#print axioms HC4.RationalRigidity.rational_identity_of_two_chart_unit_certificates
+#print axioms HC4.RationalRigidity.rational_power_pair_of_two_chart_unit_certificates
+#print axioms HC4.RationalRigidity.rational_identity_of_monic_two_chart_unit_certificates
+#print axioms HC4.RationalRigidity.rational_power_pair_of_monic_two_chart_unit_certificates
+#print axioms HC4.RationalRigidity.reduced_polynomial_pair_of_two_chart_cleared_identity
+#print axioms HC4.RationalRigidity.reduced_polynomial_pair_of_monic_two_chart_cleared_identity
+#print axioms HC4.RationalRigidity.reduced_power_pair_of_two_chart_cleared_identity
+#print axioms HC4.RationalRigidity.reduced_power_pair_of_monic_two_chart_cleared_identity
+
+#print axioms HC4.Toric.balanced_rBranch
+#print axioms HC4.Toric.balanced_sBranch
+#print axioms HC4.Toric.toric_exponent_relation
+#print axioms HC4.Toric.rBranch_as_generators
+#print axioms HC4.Toric.sBranch_as_generators
+#print axioms HC4.Toric.balanced_rBranch_of_x4_le_x1
+#print axioms HC4.Toric.balanced_sBranch_of_x1_lt_x4
+#print axioms HC4.Toric.balanced_iff_normal_form
+#print axioms HC4.Toric.rBranch_parameters_unique
+#print axioms HC4.Toric.sBranch_parameters_unique
+#print axioms HC4.Toric.rBranch_ne_positive_sBranch
+
+#print axioms HC4.ClassifiedFamilies.rValue_rGradientMap
+#print axioms HC4.ClassifiedFamilies.rGradientInverse_comp_map
+#print axioms HC4.ClassifiedFamilies.rGradientMap_comp_inverse
+#print axioms HC4.ClassifiedFamilies.rGradientMap_bijective
+#print axioms HC4.ClassifiedFamilies.sValue_sGradientMap
+#print axioms HC4.ClassifiedFamilies.sGradientInverse_comp_map
+#print axioms HC4.ClassifiedFamilies.sGradientMap_comp_inverse
+#print axioms HC4.ClassifiedFamilies.sGradientMap_bijective
+
+#print axioms HC4.Toric.branchCharacter_pExponent
+#print axioms HC4.Toric.branchCharacter_qExponent
+#print axioms HC4.Toric.branchCharacter_rExponent
+#print axioms HC4.Toric.branchCharacter_sExponent
+#print axioms HC4.Toric.branchCharacter_rBranch
+#print axioms HC4.Toric.branchCharacter_sBranch
+#print axioms HC4.Toric.rBranch_parameter_zero_of_character_zero
+#print axioms HC4.Toric.sBranch_parameter_zero_of_character_zero
+#print axioms HC4.Toric.positive_rBranch_character_ne_positive_sBranch_character
+#print axioms HC4.Toric.balanced_zero_character_normal_form
+#print axioms HC4.Toric.balanced_zero_character_as_generators
+
+#print axioms HC4.QuasiTranslation.ell_displacement
+#print axioms HC4.QuasiTranslation.ell_shearMap
+#print axioms HC4.QuasiTranslation.ell_shearInverse
+#print axioms HC4.QuasiTranslation.displacement_shearMap
+#print axioms HC4.QuasiTranslation.displacement_shearInverse
+#print axioms HC4.QuasiTranslation.quasi_translation_identity
+#print axioms HC4.QuasiTranslation.shearInverse_comp_map
+#print axioms HC4.QuasiTranslation.shearMap_comp_inverse
+#print axioms HC4.QuasiTranslation.shearMap_bijective
+#print axioms HC4.QuasiTranslation.ell_shearFlow
+#print axioms HC4.QuasiTranslation.shearFlow_zero
+#print axioms HC4.QuasiTranslation.shearFlow_add
+#print axioms HC4.QuasiTranslation.shearFlow_neg_comp
+#print axioms HC4.QuasiTranslation.shearMap_injective
+#print axioms HC4.QuasiTranslation.shearMap_surjective
+
+#print axioms HC4.Newton.IsExposedFace.subset
+#print axioms HC4.Newton.IsExposedFace.mem_iff
+#print axioms HC4.Newton.IsExposedFace.weight_le
+#print axioms HC4.Newton.IsExposedFace.weight_eq
+#print axioms HC4.Newton.exposedFace_self
+#print axioms HC4.Newton.intersection_exposed
+#print axioms HC4.Newton.scale_exposed
+#print axioms HC4.Newton.refine_exposed_face
+#print axioms HC4.Newton.refine_exposed_face_membership
+
+#print axioms HC4.LinearAlgebra.det_congruence
+#print axioms HC4.LinearAlgebra.det_congruence_of_det_sq_eq_one
+#print axioms HC4.LinearAlgebra.det_congruence_of_det_eq_one
+#print axioms HC4.LinearAlgebra.det_congruence_of_det_eq_neg_one
+#print axioms HC4.LinearAlgebra.hasConstantDet_pullback
+#print axioms HC4.LinearAlgebra.hasConstantDet_pullback_of_det_sq_eq_one
+#print axioms HC4.LinearAlgebra.isMongeAmpere_pullback
+
+#print axioms HC4.MongeAmpere.det_fromBlocks_schur₁₁
+#print axioms HC4.MongeAmpere.det_fromBlocks_schur₂₂
+#print axioms HC4.MongeAmpere.det_fromBlocks_one₁₁
+#print axioms HC4.MongeAmpere.det_fromBlocks_one₂₂
+#print axioms HC4.MongeAmpere.det_eq_iff_schur₁₁
+#print axioms HC4.MongeAmpere.det_eq_iff_schur₂₂
+#print axioms HC4.MongeAmpere.isUnit_fromBlocks_iff_schur₁₁
+#print axioms HC4.MongeAmpere.isUnit_fromBlocks_iff_schur₂₂
+
+#print axioms HC4.MongeAmpere.det_hyperbolicPlane
+#print axioms HC4.MongeAmpere.det_hyperbolicFour
+#print axioms HC4.MongeAmpere.det_hyperbolicFour_one
+
+#print axioms HC4.Toric.rBranch_level_eq_of_character_eq
+#print axioms HC4.Toric.sBranch_level_eq_of_character_eq
+#print axioms HC4.Toric.positive_character_normal_form
+#print axioms HC4.Toric.negative_character_normal_form
+#print axioms HC4.Toric.positive_constant_character_support
+#print axioms HC4.Toric.negative_constant_character_support
+#print axioms HC4.Toric.zero_character_support
+
+#print axioms HC4.Toric.sparse_positive_character_support
+#print axioms HC4.Toric.sparse_negative_character_support
+#print axioms HC4.Toric.sparse_zero_character_support
+#print axioms HC4.Toric.sparse_character_support_trichotomy
+
+#print axioms HC4.Toric.no_common_positive_r_s_support
+#print axioms HC4.Toric.common_r_s_levels_eq_zero
+#print axioms HC4.Toric.common_r_s_support_on_pq_cone
+#print axioms HC4.Toric.sparse_common_r_s_levels_eq_zero
+#print axioms HC4.Toric.sparse_common_r_s_support_on_pq_cone
+
+#print axioms HC4.Toric.reverseExponent_involutive
+#print axioms HC4.Toric.reverseExponent_injective
+#print axioms HC4.Toric.reverseExponent_surjective
+#print axioms HC4.Toric.balanced_reverseExponent
+#print axioms HC4.Toric.balanced_reverseExponent_iff
+#print axioms HC4.Toric.branchCharacter_reverseExponent
+#print axioms HC4.Toric.reverseSet_involutive
+#print axioms HC4.Toric.onRLevel_reverseSet
+#print axioms HC4.Toric.onSLevel_reverseSet
+
+#print axioms HC4.Toric.reconstruct_of_onRLevel
+#print axioms HC4.Toric.reconstruct_of_onSLevel
+#print axioms HC4.Toric.rCoordinates_injective_on_level
+#print axioms HC4.Toric.sCoordinates_injective_on_level
+#print axioms HC4.Toric.mem_rProjectedSupport_iff
+#print axioms HC4.Toric.mem_sProjectedSupport_iff
+#print axioms HC4.Toric.rProjectedSupport_unique_preimage
+#print axioms HC4.Toric.sProjectedSupport_unique_preimage
+
+#print axioms HC4.Toric.character_eq_zero_of_reverseClosed
+#print axioms HC4.Toric.reverseClosed_character_support_onPQCone
+#print axioms HC4.Toric.sparse_character_eq_zero_of_reverseClosed
+#print axioms HC4.Toric.sparse_reverseClosed_character_support_onPQCone
+#print axioms HC4.Toric.not_nonempty_sparse_reverseClosed_positive_character
+#print axioms HC4.Toric.not_nonempty_sparse_reverseClosed_negative_character
+
+#print axioms HC4.ClassifiedFamilies.reversePoint_involutive
+#print axioms HC4.ClassifiedFamilies.rValue_reversePoint
+#print axioms HC4.ClassifiedFamilies.sValue_reversePoint
+#print axioms HC4.ClassifiedFamilies.reverse_rGradientMap_reverse
+#print axioms HC4.ClassifiedFamilies.reverse_sGradientMap_reverse
+#print axioms HC4.ClassifiedFamilies.reverse_rGradientInverse_reverse
+#print axioms HC4.ClassifiedFamilies.reverse_sGradientInverse_reverse
+#print axioms HC4.ClassifiedFamilies.sGradientMap_eq_reverse_conjugate
+
+#print axioms HC4.ClassifiedFamilies.classifiedInverse_comp_gradient
+#print axioms HC4.ClassifiedFamilies.classifiedGradient_comp_inverse
+#print axioms HC4.ClassifiedFamilies.classifiedGradient_bijective
+
+#print axioms HC4.Newton.map_exposedFace_equiv
+#print axioms HC4.Newton.reverse_exposedFace
+
+#print axioms HC4.Toric.dvd_two_of_coprime_dvd_two_mul
+#print axioms HC4.Toric.exceptional_pair_of_dvd_two_mul
+#print axioms HC4.Toric.not_dvd_two_mul_of_nonexceptional
+
+#print axioms HC4.Toric.reverseFacet_involutive
+#print axioms HC4.Toric.onFacet_reverseExponent_iff
+#print axioms HC4.Toric.balanced_on_pr_normal_form
+#print axioms HC4.Toric.balanced_on_rq_normal_form
+#print axioms HC4.Toric.balanced_on_qs_normal_form
+#print axioms HC4.Toric.balanced_on_sp_normal_form
+
+#print axioms HC4.FacetRigidity.coeff_eulerLinear_zero
+#print axioms HC4.FacetRigidity.coeff_eulerLinear_succ
+#print axioms HC4.FacetRigidity.eulerLinear_eq_one
+#print axioms HC4.FacetRigidity.eq_one_of_sq_eq_one_of_coeff_zero_eq_one
+#print axioms HC4.FacetRigidity.eulerLinear_eq_one_of_sq_eq_one
+
+#print axioms HC4.FacetRigidity.facetLeadingFactor_pos
+#print axioms HC4.FacetRigidity.facetLeadingFactor_ne_zero
+#print axioms HC4.FacetRigidity.facetLeadingFactor_cast_ne_zero
+#print axioms HC4.FacetRigidity.facetLeadingCoefficient_ne_zero
+
+#print axioms HC4.Newton.quadratic_weight_below_contact
+#print axioms HC4.Newton.first_contact_determinant_weight_pos
+#print axioms HC4.Newton.first_contact_determinant_weight_lower_bound
+#print axioms HC4.Newton.first_contact_positive_via_lower_bound
+
+#print axioms HC4.ClassifiedFamilies.facetInverse_comp_gradient
+#print axioms HC4.ClassifiedFamilies.facetGradient_comp_inverse
+#print axioms HC4.ClassifiedFamilies.facetGradient_bijective
+
+#print axioms HC4.Toric.support_mapCoeffs_eq
+#print axioms HC4.Toric.hasBalancedSupport_mapCoeffs_iff
+#print axioms HC4.Toric.hasSupportCharacter_mapCoeffs_iff
+#print axioms HC4.Toric.sparseOnRLevel_mapCoeffs_iff
+#print axioms HC4.Toric.sparseOnSLevel_mapCoeffs_iff
+#print axioms HC4.Toric.sparseOnPQCone_mapCoeffs_iff
+
+#print axioms HC4.Toric.pure_r_s_correction_eq_zero
+#print axioms HC4.Toric.normalised_classified_overlap
+#print axioms HC4.Toric.isPureRCorrection_mapCoeffs_iff
+#print axioms HC4.Toric.isPureSCorrection_mapCoeffs_iff
+
+#print axioms HC4.ClassifiedFamilies.rPolynomialGradientInverse_comp
+#print axioms HC4.ClassifiedFamilies.rPolynomialGradient_comp_inverse
+#print axioms HC4.ClassifiedFamilies.rPolynomialGradient_bijective
+#print axioms HC4.ClassifiedFamilies.sPolynomialGradientInverse_comp
+#print axioms HC4.ClassifiedFamilies.sPolynomialGradient_comp_inverse
+#print axioms HC4.ClassifiedFamilies.sPolynomialGradient_bijective
+#print axioms HC4.ClassifiedFamilies.polynomialBranchInverse_comp_gradient
+#print axioms HC4.ClassifiedFamilies.polynomialBranchGradient_comp_inverse
+#print axioms HC4.ClassifiedFamilies.polynomialBranchGradient_bijective
+
+#print axioms HC4.LinearAlgebra.det_lowerBlockUnitriangular
+#print axioms HC4.LinearAlgebra.det_upperBlockUnitriangular
+#print axioms HC4.LinearAlgebra.det_lower_mul_upper
+#print axioms HC4.LinearAlgebra.lowerBlockUnitriangular_det_one
+#print axioms HC4.LinearAlgebra.upperBlockUnitriangular_det_one
+
+#print axioms HC4.Toric.support_extendCoeffs_eq
+#print axioms HC4.Toric.normalisedRClassified_extendCoeffs_iff
+#print axioms HC4.Toric.normalisedSClassified_extendCoeffs_iff
+#print axioms HC4.Toric.normalisedClassified_extendCoeffs_iff
+
+#print axioms HC4.gradient_bijective_of_classified_polynomial
+#print axioms HC4.exists_two_sided_inverse_of_classified_polynomial
+
+#print axioms HC4.Polynomial.coeff_initialForm
+#print axioms HC4.Polynomial.initialForm_isWeightedHomogeneous
+#print axioms HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous
+#print axioms HC4.Polynomial.initialForm_eq_zero_of_isWeightedHomogeneous
+#print axioms HC4.Polynomial.initialForm_idempotent
+
+#print axioms HC4.Polynomial.pderiv_isWeightedHomogeneous
+#print axioms HC4.Polynomial.pderiv_initialForm
+#print axioms HC4.Polynomial.hessian_entry_isWeightedHomogeneous
+#print axioms HC4.Polynomial.hessian_initialForm_entry
+
+#print axioms HC4.Polynomial.determinant_isWeightedHomogeneous
+#print axioms HC4.Polynomial.initialForm_determinant_eq_self
+#print axioms HC4.Polynomial.hessianTerm_isWeightedHomogeneous
+#print axioms HC4.Polynomial.hessianTermWeight_eq
+#print axioms HC4.Polynomial.hessianDeterminant_isWeightedHomogeneous
+
+#print axioms HC4.MongeAmpere.initialForm_hessianDeterminant_eq_zero
+#print axioms HC4.MongeAmpere.hessianDeterminant_weight_eq_zero
+#print axioms HC4.MongeAmpere.not_isPolynomialMongeAmpere_of_positive_hessian_weight
+#print axioms HC4.MongeAmpere.initial_hessianDeterminant_eq_zero
+#print axioms HC4.MongeAmpere.first_contact_hessianDeterminant_eq_zero
+#print axioms HC4.Polynomial.initialForm_zero
+#print axioms HC4.Polynomial.initialForm_add
+#print axioms HC4.Polynomial.initialForm_smul
+#print axioms HC4.Polynomial.hessian_apply
+
+#print axioms HC4.Polynomial.initialForm_eq_zero_of_isWeightLE
+#print axioms HC4.Polynomial.initialForm_eq_zero_of_isWeightLT
+#print axioms HC4.Polynomial.sub_initialForm_isWeightLT
+#print axioms HC4.Polynomial.IsWeightLE.pderiv
+#print axioms HC4.Polynomial.IsWeightLT.pderiv
+#print axioms HC4.Polynomial.initialForm_prod_eq_prod
+#print axioms HC4.Polynomial.initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
+#print axioms HC4.Polynomial.hessianDeterminant_initialForm_eq_zero_of_eq_zero
+#print axioms HC4.MongeAmpere.hasInitialHessianDeterminant_of_isWeightLE
+#print axioms HC4.MongeAmpere.maximal_initial_hessianDeterminant_eq_zero
+#print axioms HC4.MongeAmpere.maximal_initial_hessianDeterminant_eq_zero_of_zero
+#print axioms HC4.MongeAmpere.first_contact_scaled_hessianDeterminant_eq_zero_of_isWeightLE
+#print axioms HC4.MongeAmpere.first_contact_hessianDeterminant_eq_zero_of_isWeightLE
+
+#print axioms HC4.Polynomial.isBalancedExponent_iff_balanced
+#print axioms HC4.Polynomial.support_initialForm_subset
+#print axioms HC4.Polynomial.HasBalancedMvSupport.initialForm
+#print axioms HC4.Polynomial.MvSupportOnFacet.initialForm
+
+#print axioms HC4.Newton.sum_scaledContactWeight
+#print axioms HC4.Newton.scaledContact_hessianDeterminant_eq_zero_of_isWeightLE
+#print axioms HC4.Newton.scaledContact_top_facet
+#print axioms HC4.Newton.contact_equation
+#print axioms HC4.Newton.contact_degree_lt
+#print axioms HC4.Newton.bump_le_scale_mul_m_sub_three
+#print axioms HC4.Newton.quadratic_below_scaled_contact
+
+#print axioms HC4.Toric.opposite_facets_intersection_origin
+#print axioms HC4.Toric.on_p_ray_of_pr_sp
+#print axioms HC4.Toric.on_r_ray_of_pr_rq
+#print axioms HC4.Toric.on_q_ray_of_rq_qs
+#print axioms HC4.Toric.on_s_ray_of_qs_sp
+
+#print axioms HC4.Newton.facets_adjacent_of_common_nonzero
+#print axioms HC4.Newton.adjacent_transition_on_extreme_ray
+
+#print axioms HC4.Polynomial.onFacet_toToricExponent_iff
+#print axioms HC4.Polynomial.mvExponentOnBoundary_iff_coordinate_zero
+#print axioms HC4.Polynomial.coordinate_pos_of_not_mvExponentOnBoundary
+
+#print axioms HC4.Newton.weight_scaledContactWeight
+#print axioms HC4.Newton.isWeightLE_scaledContactWeight_iff
+#print axioms HC4.Newton.lowDegree_below_scaled_contact
+#print axioms HC4.Newton.exists_minimal_contactExponent
+#print axioms HC4.Newton.contactSlope_le_iff_cross
+#print axioms HC4.Newton.selected_contact_degree_lt
+#print axioms HC4.Newton.selected_contact_level
+#print axioms HC4.Newton.selected_contact_outside_le
+#print axioms HC4.Newton.selected_contact_isWeightLE
+#print axioms HC4.Newton.exists_selected_contact_isWeightLE
+#print axioms HC4.Newton.nonlinearOutsideSupport_nonempty_of_hasNonlinearOutsideFacet
+#print axioms HC4.Newton.topDegree_omittedCoordinate_zero
+#print axioms HC4.Newton.exists_singular_first_nonfacet_contact
+
+#print axioms HC4.Polynomial.exponentHessianCore_factor
+#print axioms HC4.Polynomial.det_exponentHessianCore
+#print axioms HC4.Polynomial.eval_one_hessian_monomial
+#print axioms HC4.Polynomial.eval_one_hessianDeterminant_monomial
+#print axioms HC4.Polynomial.det_exponentHessianCore_ne_zero
+#print axioms HC4.Polynomial.hessianDeterminant_monomial_ne_zero
+#print axioms HC4.Newton.exposed_monomial_on_boundary_of_zero_hessian
+
+#print axioms HC4.Newton.adjacentFacets_comm
+#print axioms HC4.Newton.no_three_facet_cycle
+#print axioms HC4.Newton.four_facet_cycle_normal_form
+#print axioms HC4.Newton.canonical_four_facet_cycle_pairwise_distinct
+#print axioms HC4.Newton.FourBoundaryCycle.facet_normal_form
+#print axioms HC4.Newton.FourBoundaryCycle.vertices_on_transition_rays
+#print axioms HC4.Newton.FourBoundaryCycle.forward_vertices_are_p_r_q_s
+#print axioms HC4.Toric.dvd_two_mul_of_laurent_weight_relation
+#print axioms HC4.Toric.exceptional_pair_of_laurent_weight_relation
+#print axioms HC4.Toric.no_laurent_weight_relation_of_nonexceptional
+#print axioms HC4.Newton.exists_singular_first_nonfacet_contact_with_boundary_vertices
+
+#print axioms HC4.Newton.rankThree_or_transitionRay_of_onFacet
+#print axioms HC4.Newton.boundary_rankThree_or_extremeRay
+#print axioms HC4.Polynomial.sparseRankThreePencil_eq_core
+#print axioms HC4.Polynomial.det_sparseRankThreePencil
+#print axioms HC4.Polynomial.oneZeroRankThreePencil_eq_core
+#print axioms HC4.Polynomial.det_oneZeroRankThreePencil
+#print axioms HC4.Polynomial.cross_relation_of_oneZero_pencil_singular
+#print axioms HC4.Polynomial.sparseRankThreePencil_det_one_ne_zero
+#print axioms HC4.Newton.complementary_limit_arithmetic_impossible
+#print axioms HC4.Newton.complementary_endpoint_contradiction
+#print axioms HC4.Polynomial.weight_cross_relation_of_invariant_endpoints
+#print axioms HC4.Polynomial.same_sign_of_positive_weight_cross_relation
+
+#print axioms HC4.Polynomial.rankThreePencilPolynomial_eq_core
+#print axioms HC4.Polynomial.derivative_det_rankThreePencilPolynomial_eval_zero
+#print axioms HC4.Polynomial.coeff_one_det_rankThreePencilPolynomial
+#print axioms HC4.Polynomial.introduced_exponent_eq_one_of_rankThree_pencil_singular
+
+#print axioms HC4.Polynomial.coeff_eulerDerivative
+#print axioms HC4.Polynomial.eulerDerivative_sub
+#print axioms HC4.Polynomial.separatedBinomialODE_iff_expanded
+#print axioms HC4.Polynomial.SeparatedBinomialODE.sub
+#print axioms HC4.Polynomial.eq_zero_of_separatedBinomialODE_of_coeff_zero
+#print axioms HC4.Polynomial.coeff_zero_binomialODEModel
+#print axioms HC4.Polynomial.binomialODEModel_satisfies
+#print axioms HC4.Polynomial.eq_binomialODEModel_of_separatedBinomialODE
+
+#print axioms HC4.Polynomial.det_complementaryLogHessianCore
+#print axioms HC4.Polynomial.coeff_one_complementaryEtaNumerator
+#print axioms HC4.Polynomial.coeff_zero_complementaryEtaDenominator
+#print axioms HC4.Polynomial.complementaryEta_initial_ratio
+
+#print axioms HC4.Polynomial.eulerDerivative_X_pow_mul
+#print axioms HC4.Polynomial.eulerDerivative_local_form
+#print axioms HC4.Polynomial.coeff_lt_local_correction_zero
+#print axioms HC4.Polynomial.coeff_local_correction_at_m
+#print axioms HC4.Polynomial.coeff_m_eulerDerivative_local_form
+#print axioms HC4.Polynomial.logarithmicEtaNumerator_local_factor
+#print axioms HC4.Polynomial.coeff_m_logarithmicEtaNumerator_local_form
+#print axioms HC4.Polynomial.coeff_m_logarithmicEtaOverRhoDenominator_local_form
+#print axioms HC4.Polynomial.logarithmic_eta_rho_initial_ratio_local_form
+
+#print axioms HC4.Polynomial.complementary_eta_equation_of_det_zero
+#print axioms HC4.Polynomial.complementary_cleared_equation_forces_initial_ratio
+#print axioms HC4.Polynomial.complementary_cleared_equation_impossible
+
+#print axioms HC4.Polynomial.complementary_eta_equation_repackaged
+#print axioms HC4.Polynomial.complementary_scalar_fraction_equation_clears
+#print axioms HC4.Polynomial.complementary_cleared_equation_of_fraction_equation
+#print axioms HC4.Polynomial.complementary_fraction_equation_of_core_det_zero
+#print axioms HC4.Polynomial.complementary_fraction_equation_local_impossible
+#print axioms HC4.Polynomial.complementary_fraction_core_local_impossible
+
+#print axioms HC4.Polynomial.lineMomentHessian_eq_scaled_logarithmicCore
+#print axioms HC4.Polynomial.complementaryLogExponent_eq_base_add_direction
+#print axioms HC4.Polynomial.det_lineMomentHessian
+#print axioms HC4.Polynomial.complementary_logarithmicCoreFromMoments_eq
+#print axioms HC4.Polynomial.complementary_core_det_zero_of_lineMoment_det_zero
+#print axioms HC4.Polynomial.complementary_fraction_core_det_zero_of_moment_det_zero
+#print axioms HC4.Polynomial.complementary_fraction_moment_local_impossible
+
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_term
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_polynomial
+#print axioms HC4.Polynomial.comp_X_pow_eq_zero_of_pos
+#print axioms HC4.Polynomial.comp_X_pow_injective
+#print axioms HC4.Polynomial.eulerScaledHessian_apply
+#print axioms HC4.Polynomial.eulerScaledHessian_eq
+
+#print axioms HC4.Polynomial.complementaryLineExponentValue_eq_affine
+#print axioms HC4.Polynomial.mvEuler_complementaryLineTerm
+#print axioms HC4.Polynomial.eulerScaledHessian_complementaryLineTerm
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_eulerScaledHessian_term
+#print axioms HC4.Polynomial.eulerScaledHessian_sum
+#print axioms HC4.Polynomial.support_le_of_natDegree_le
+#print axioms HC4.Polynomial.coeff_complementaryPolynomialMomentHessian
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_eulerScaledHessian
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_det_eulerScaledHessian
+#print axioms HC4.Polynomial.det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant
+#print axioms HC4.Polynomial.complementaryLineSpecialisation_euler_det_zero_of_hessianDeterminant_zero
+#print axioms HC4.Polynomial.complementaryPolynomialMoment_det_zero_of_hessianDeterminant_zero
+#print axioms HC4.Polynomial.complementaryFractionMomentDetZero_of_polynomialMoment_det_zero
+#print axioms HC4.Polynomial.complementary_line_hessian_local_impossible
+
+#print axioms HC4.Polynomial.exists_positive_tail_factorisation
+#print axioms HC4.Polynomial.nonconstant_of_positive_coeff_ne_zero
+#print axioms HC4.Polynomial.complementary_line_hessian_impossible_of_nonconstant
+#print axioms HC4.Polynomial.complementary_line_hessian_impossible
+
+#print axioms HC4.Polynomial.det_rankThreeLogHessianCore
+#print axioms HC4.Polynomial.rankThree_eta_eq_of_core_det_zero
+#print axioms HC4.Polynomial.rankThreeLogExponent_eq_base_add_direction
+#print axioms HC4.Polynomial.rankThree_logarithmicCoreFromMoments_eq
+#print axioms HC4.Polynomial.rankThree_core_det_zero_of_lineMoment_det_zero
+
+#print axioms HC4.Polynomial.natDegree_eulerDerivative_le
+#print axioms HC4.Polynomial.natDegree_eulerDerivative_eulerDerivative_le
+#print axioms HC4.Polynomial.coeff_m_sq_eulerDerivative_local_form
+#print axioms HC4.Polynomial.quadraticAutonomous_linearCoefficient_eq
+#print axioms HC4.Polynomial.quadraticAutonomous_top_relation
+#print axioms HC4.Polynomial.quadraticAutonomous_local_top_relation
+#print axioms HC4.Polynomial.eq_two_term_of_quadraticAutonomous_leading_neg_one
+#print axioms HC4.Polynomial.no_quadraticAutonomous_positive_reciprocal
+
+#print axioms HC4.Polynomial.X_pow_mul_mul_X_pow_mul
+#print axioms HC4.Polynomial.shiftedEuler_X_pow_succ_mul
+#print axioms HC4.Polynomial.coeff_zero_shiftedEulerCore
+#print axioms HC4.Polynomial.coeff_n_shiftedEuler_X_pow_succ_mul
+#print axioms HC4.Polynomial.coeff_two_n_shiftedEtaNumerator_X_pow_succ_mul
+#print axioms HC4.Polynomial.coeff_n_shiftedEuler_ne_zero
+#print axioms HC4.Polynomial.coeff_two_n_shiftedEtaNumerator_ne_zero
+
+#print axioms HC4.Polynomial.X_pow_mul_pow
+#print axioms HC4.Polynomial.C_mul_X_pow_mul_mul_X_pow_mul
+#print axioms HC4.Polynomial.coeff_zero_pow
+#print axioms HC4.Polynomial.exists_shiftedEtaNumerator_factor
+#print axioms HC4.Polynomial.exists_shiftedEta_mul_phi_pow_factor
+#print axioms HC4.Polynomial.coeff_n_mul_e_add_two_shiftedEta_mul_phi_pow_zero
+#print axioms HC4.Polynomial.coeff_n_mul_d_shiftedEuler_pow
+#print axioms HC4.Polynomial.coeff_n_mul_j_add_e_shiftedEuler_pow_mul_phi_pow_zero
+#print axioms HC4.Polynomial.coeff_n_mul_natDegree_shiftedAutonomousClearedRHS
+#print axioms HC4.Polynomial.no_shiftedPolynomialAutonomousLogODE_degree_ge_three
+#print axioms HC4.Polynomial.natDegree_le_two_of_shiftedPolynomialAutonomousLogODE
+
+#print axioms HC4.Polynomial.derivative_translatePolynomial
+#print axioms HC4.Polynomial.shiftedEuler_translatePolynomial
+#print axioms HC4.Polynomial.shiftedEuler_zero
+#print axioms HC4.Polynomial.shiftedEtaNumerator_translatePolynomial
+#print axioms HC4.Polynomial.shiftedEtaNumerator_zero
+#print axioms HC4.Polynomial.shiftedAutonomousClearedRHS_translatePolynomial
+#print axioms HC4.Polynomial.shiftedPolynomialAutonomousLogODE_translate
+#print axioms HC4.Polynomial.natDegree_le_two_of_polynomialAutonomousLogODE_after_translation
+
+#print axioms HC4.RationalRigidity.eval_denominator_ne_zero_of_isCoprime_sub_eval_zero
+#print axioms HC4.RationalRigidity.exists_finite_preimage_of_isCoprime
+#print axioms HC4.RationalRigidity.exists_finite_preimage_away_from_rationalInfinityValue
+#print axioms HC4.RationalRigidity.finite_infinity_target_cover
+
+#print axioms HC4.RationalRigidity.eval_left_ne_zero_of_isCoprime_right_eval_zero
+#print axioms HC4.RationalRigidity.constant_target_denominator_of_reduced_source_cover
+
+#print axioms HC4.Polynomial.eval_rankThreeEtaNumeratorPolynomial
+#print axioms HC4.Polynomial.eval_rankThreeEtaDenominatorPolynomial
+#print axioms HC4.Polynomial.rankThree_fraction_equation_of_core_det_zero
+
+#print axioms HC4.RationalRigidity.canonicalReduced_isCoprime
+#print axioms HC4.RationalRigidity.canonicalReduced_denominator_ne_zero
+#print axioms HC4.RationalRigidity.canonicalReduced_fraction_eq
+#print axioms HC4.RationalRigidity.logarithmicSource_isCoprime
+#print axioms HC4.RationalRigidity.logarithmicSource_fraction_eq
+#print axioms HC4.RationalRigidity.rankThreeTarget_isCoprime
+#print axioms HC4.RationalRigidity.rankThreeTarget_fraction_eq
+
+#print axioms HC4.RationalRigidity.eulerDerivative_mul
+#print axioms HC4.RationalRigidity.logarithmicSource_cross_identity
+#print axioms HC4.RationalRigidity.reducedLogarithmicEta_cross_of_source_cross
+#print axioms HC4.RationalRigidity.logarithmicSource_eta_cross_identity
+#print axioms HC4.RationalRigidity.logarithmicSource_eta_eval_cross_identity
+#print axioms HC4.RationalRigidity.logarithmicSourceValue_eq_raw
+#print axioms HC4.RationalRigidity.logarithmicSourceEtaValue_eq_raw
+
+-- Phase 86: finite RatFunc assembly for rank-three pole removal
+#print axioms HC4.RationalRigidity.eval_ne_zero_of_dvd
+#print axioms HC4.RationalRigidity.ratFuncRegularAt_add
+#print axioms HC4.RationalRigidity.ratFuncRegularAt_mul
+#print axioms HC4.RationalRigidity.ratFuncRegularAt_aeval_and_eval
+#print axioms HC4.RationalRigidity.ratFunc_eval_aeval
+#print axioms HC4.RationalRigidity.finite_cleared_identity_of_ratFunc_identity
+#print axioms HC4.RationalRigidity.constant_target_denominator_of_ratFunc_identity
+#print axioms HC4.RationalRigidity.logarithmicSourceEtaRatFunc_regularAt
+#print axioms HC4.RationalRigidity.logarithmicSourceEtaRatFunc_eq_raw
+#print axioms HC4.RationalRigidity.aeval_rankThreeEtaNumeratorPolynomial
+#print axioms HC4.RationalRigidity.aeval_rankThreeEtaDenominatorPolynomial
+#print axioms HC4.RationalRigidity.rankThree_ratFunc_equation_of_fraction_equation
+#print axioms HC4.RationalRigidity.rankThreeTarget_cross_identity
+#print axioms HC4.RationalRigidity.rankThree_reduced_target_equation
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_of_ratFunc_equation
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_of_fraction_equation
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_of_core_det_zero
+
+-- Phase 87: exact infinity certificate for the logarithmic source
+#print axioms HC4.RationalRigidity.natDegree_eulerDerivative_eq_of_pos
+#print axioms HC4.RationalRigidity.leadingCoeff_eulerDerivative_eq_of_pos
+#print axioms HC4.RationalRigidity.logarithmicSource_num_natDegree_eq_denom
+#print axioms HC4.RationalRigidity.logarithmicSource_numerator_leadingCoeff_eq_natDegree
+#print axioms HC4.RationalRigidity.logarithmicSource_rationalInfinityValue_eq_natDegree
+#print axioms HC4.RationalRigidity.coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero
+#print axioms HC4.RationalRigidity.logarithmicSourceEtaNumerator_natDegree_lt_two_denom
+#print axioms HC4.RationalRigidity.rankThreeEtaNumerator_eq_zero_of_endpoint_core_det_zero
+#print axioms HC4.RationalRigidity.rankThreeEtaNumeratorPolynomial_eval_eq_zero_of_endpoint_core_det_zero
+
+-- Phase 88: automatic infinity assembly and rank-three rational-to-polynomial bridge
+#print axioms HC4.RationalRigidity.clearedPolynomialSubstitution_natDegree_le
+#print axioms HC4.RationalRigidity.coeff_clearedPolynomialSubstitution_top
+#print axioms HC4.RationalRigidity.clearedPolynomialSubstitution_map_eq
+#print axioms HC4.RationalRigidity.clearedPolynomialSubstitution_identity_of_ratFunc
+#print axioms HC4.RationalRigidity.eval_at_infinity_eq_zero_of_autonomous_ratFunc_identity
+#print axioms HC4.RationalRigidity.ratFunc_transcendental_of_denom_natDegree_pos
+#print axioms HC4.RationalRigidity.phi_natDegree_pos_of_logarithmicSourceDenominator_pos
+#print axioms HC4.RationalRigidity.rankThreeTargetNumerator_eval_infinity_eq_zero
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_auto
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_of_fraction_equation_auto
+#print axioms HC4.RationalRigidity.rankThreeTargetDenominator_constant_of_core_det_zero_auto
+#print axioms HC4.RationalRigidity.rankThree_polynomial_autonomous_equation_of_constant_denominator
+#print axioms HC4.RationalRigidity.exists_rankThree_polynomial_autonomous_equation
+#print axioms HC4.RationalRigidity.exists_rankThree_polynomial_autonomous_equation_of_fraction_equation
+#print axioms HC4.RationalRigidity.exists_rankThree_polynomial_autonomous_equation_of_core_det_zero

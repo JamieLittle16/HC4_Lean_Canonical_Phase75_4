@@ -1,0 +1,15 @@
+import HC4.Newton.ExposedFaces
+import HC4.Newton.Equivariance
+import HC4.Newton.FirstContactArithmetic
+import HC4.Newton.ScaledContact
+import HC4.Newton.BoundaryCycle
+import HC4.Newton.FirstContactSelection
+import HC4.Newton.FirstNonfacetContact
+import HC4.Newton.InteriorVertex
+import HC4.Newton.FacetCycleClassification
+import HC4.Newton.FourBoundaryCycle
+import HC4.Newton.FirstNonfacetBoundary
+import HC4.Newton.BoundaryStrata
+import HC4.Newton.ComplementaryEdgeArithmetic
+import HC4.Newton.RestartClassification
+import HC4.Newton.GlobalRestartClassification

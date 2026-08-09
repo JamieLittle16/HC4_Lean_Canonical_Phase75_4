@@ -1,0 +1,37 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["17827389825001562037"],
+  "i": "5591568009336267413",
+  "c": "10543200301578506094"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/MongeAmpere/FirstContactMaximal.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/MongeAmpere/FirstContactMaximal.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/MongeAmpere/FirstContactMaximal.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/MongeAmpere/FirstContactMaximal.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/MongeAmpere/FirstContactMaximal.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/MongeAmpere/FirstContactMaximal.lean:51:2: 'push_cast' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.MongeAmpere.FirstContactMaximal:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.MongeAmpere.MaximalInitial transitive imports (legacy)",
+         "14915056330777324055"],
+        ["HC4.MongeAmpere.MaximalInitial:importAllArts",
+         "13147981932998532503"],
+        ["HC4.Newton.FirstContactArithmetic transitive imports (legacy)",
+         "7720979456661443851"],
+        ["HC4.Newton.FirstContactArithmetic:importAllArts",
+         "120203274322902223"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/MongeAmpere/FirstContactMaximal.lean",
+   "10953335765420338407"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "16479710611153496889"}

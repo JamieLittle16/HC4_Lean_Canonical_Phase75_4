@@ -1,0 +1,48 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["5170485460365460682"],
+  "i": "1649433697036920372",
+  "c": "14625941952439301738"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/Newton/CharZeroHessianKernelRigidity.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/Newton/CharZeroHessianKernelRigidity.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/lib/lean/HC4/Newton/CharZeroHessianKernelRigidity.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/Newton/CharZeroHessianKernelRigidity.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/.lake/build/ir/HC4/Newton/CharZeroHessianKernelRigidity.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Newton/CharZeroHessianKernelRigidity.lean:91:10: This simp argument is unused:\n  Finsupp.single_apply\n\nHint: Omit it from the simp argument list.\n  simp [̵F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵h̵i̵j̵,̵[̲h̲i̲j̲,̲ hji, add_comm, add_left_comm, add_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Newton/CharZeroHessianKernelRigidity.lean:92:31: This simp argument is unused:\n  add_assoc\n\nHint: Omit it from the simp argument list.\n  simp [Finsupp.single_apply, hij, hji, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]̵a̲d̲d̲_̲l̲e̲f̲t̲_̲c̲o̲m̲m̲]̲\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Newton/CharZeroHessianKernelRigidity.lean:208:5: unused variable `hleft`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Newton.CharZeroHessianKernelRigidity:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Newton.TransverseSupportRigidity transitive imports (legacy)",
+         "14764942985664078634"],
+        ["HC4.Newton.TransverseSupportRigidity:importAllArts",
+         "3784230691783046674"],
+        ["Mathlib.Algebra.MvPolynomial.PDeriv transitive imports (legacy)",
+         "16855639717156541390"],
+        ["Mathlib.Algebra.MvPolynomial.PDeriv:importAllArts",
+         "8543782796777695165"],
+        ["Mathlib.Algebra.Ring.CharZero transitive imports (legacy)",
+         "582509339657661472"],
+        ["Mathlib.Algebra.Ring.CharZero:importAllArts", "4409648037180136495"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_2/HC4/Newton/CharZeroHessianKernelRigidity.lean",
+   "1762095330187211317"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "15072683947941122837"}
