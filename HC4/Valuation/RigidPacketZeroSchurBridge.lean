@@ -512,22 +512,75 @@ noncomputable def CanonicalSmithDepartureFrontier.rigidRightZeroSchurData
     rw [f.specialFiber_defectSmithExposure_eq_packet]
     exact hchart.2.2.2
 
-/-- Closing data produced by the green two-stage zero-Schur clock.  The
-existential retains the exact evaluated four-block that produced it. -/
+/-- The closing predicate carried by one exact zero-Schur four-block. -/
+def ExactZeroSchurClosingOutcome
+    (B : ExactZeroSchurFourBlockData K) : Prop :=
+  (B.toClock.residualDefect = 0 ∧
+    B.toClock.tailSeries.active.coeff 0 *
+        B.toClock.tailSeries.kernel.coeff 0 -
+      B.toClock.tailSeries.offDiag.coeff 0 *
+        B.toClock.tailSeries.offDiag.coeff 0 ≠ 0) ∨
+  (∃ S : ExactRankOneSchurClockAt K,
+    0 < B.toClock.residualDefect ∧
+    S.defect = B.toClock.residualDefect ∧
+    S.firstOrder = S.defect ∧
+    (S.series.offDiag.coeff S.defect ≠ 0 ∨
+     S.series.kernel.coeff S.defect ≠ 0))
+
+/-- Closing data produced by the green two-stage zero-Schur clock.
+This legacy/existential view is retained for compatibility. -/
 def HasRigidTwoStageClosingOutcome
     (complexity : ℕ) : Prop :=
-  ∃ B : ExactZeroSchurFourBlockData K,
-    ((B.toClock.residualDefect = 0 ∧
-      B.toClock.tailSeries.active.coeff 0 *
-          B.toClock.tailSeries.kernel.coeff 0 -
-        B.toClock.tailSeries.offDiag.coeff 0 *
-          B.toClock.tailSeries.offDiag.coeff 0 ≠ 0) ∨
-     (∃ S : ExactRankOneSchurClockAt K,
-       0 < B.toClock.residualDefect ∧
-       S.defect = B.toClock.residualDefect ∧
-       S.firstOrder = S.defect ∧
-       (S.series.offDiag.coeff S.defect ≠ 0 ∨
-        S.series.kernel.coeff S.defect ≠ 0)))
+  ∃ B : ExactZeroSchurFourBlockData K, ExactZeroSchurClosingOutcome B
+
+/-- **Frontier-relative rigid closing certificate.**
+
+Unlike `HasRigidTwoStageClosingOutcome`, this certificate does not erase the
+geometric origin of the matrix clock.  It remembers the actual canonical
+Smith frontier, rigid packet, pivot chart, the exact zero-Schur four-block
+constructed from the defect-preserving family, and the closing proof for
+that very block.
+
+This is the correct input for the remaining associated-graded terminal
+extraction: no later theorem has to guess which family/chart generated an
+existential matrix certificate. -/
+inductive CanonicalSmithDepartureFrontier.RigidClosingCertificate
+    [CharZero K]
+    {D complexity : ℕ}
+    (f : CanonicalSmithDepartureFrontier (K := K) D complexity) : Prop
+  | left
+      (hD : 3 ≤ D)
+      (hrigid : HasRigidRankOnePacket
+        (0 : Fin 4) 1 2 D f.lossless.packet)
+      (hpivot :
+        (rankOnePacketQuadraticBlock
+          (0 : Fin 4) 1 2 D f.lossless.packet).LeftPivot)
+      (hclosing :
+        ExactZeroSchurClosingOutcome (f.rigidLeftZeroSchurData hrigid hpivot hD)) :
+      f.RigidClosingCertificate
+  | right
+      (hD : 3 ≤ D)
+      (hrigid : HasRigidRankOnePacket
+        (0 : Fin 4) 1 2 D f.lossless.packet)
+      (hpivot :
+        (rankOnePacketQuadraticBlock
+          (0 : Fin 4) 1 2 D f.lossless.packet).RightAxisPivot)
+      (hclosing :
+        ExactZeroSchurClosingOutcome (f.rigidRightZeroSchurData hrigid hpivot hD)) :
+      f.RigidClosingCertificate
+
+/-- Forget the geometric origin of a frontier-relative closing certificate. -/
+theorem CanonicalSmithDepartureFrontier.RigidClosingCertificate.toLegacy
+    [CharZero K]
+    {D complexity : ℕ}
+    {f : CanonicalSmithDepartureFrontier (K := K) D complexity}
+    (hclose : f.RigidClosingCertificate) :
+    HasRigidTwoStageClosingOutcome (K := K) complexity := by
+  cases hclose with
+  | left hD hrigid hpivot hclosing =>
+      exact ⟨f.rigidLeftZeroSchurData hrigid hpivot hD, hclosing⟩
+  | right hD hrigid hpivot hclosing =>
+      exact ⟨f.rigidRightZeroSchurData hrigid hpivot hD, hclosing⟩
 
 /-- **Rigid branch exhausted above the quadratic boundary.**
 For every retained frontier of ordinary degree at least three, the canonical
@@ -554,6 +607,30 @@ theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_rigidClosing_of_three
       rcases B.rankTwoProgress_or_closing complexity with hprogress | hclosing
       · exact Or.inl hprogress
       · exact Or.inr ⟨B, hclosing⟩
+
+/-- **Rigid branch exhausted above the quadratic boundary without losing
+geometric provenance.**  This is the restart-facing form to use from now on. -/
+theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_rigidClosingCertificate_of_three_le
+    [CharZero K]
+    {D complexity : ℕ}
+    (f : CanonicalSmithDepartureFrontier (K := K) D complexity)
+    (hD : 3 ≤ D) :
+    RepairProgress
+        (rankOneRepairState complexity)
+        (rankTwoRepairState complexity) ∨
+      f.RigidClosingCertificate := by
+  rcases f.rankTwoProgress_or_rigidDefectExposure with hrepair | hrigid
+  · exact Or.inl hrepair.2.1
+  · rcases hrigid with ⟨hrigid, _hdef, _hspecial⟩
+    rcases f.rigidPacket_pivot hrigid with hleft | hright
+    · let B := f.rigidLeftZeroSchurData hrigid hleft hD
+      rcases B.rankTwoProgress_or_closing complexity with hprogress | hclosing
+      · exact Or.inl hprogress
+      · exact Or.inr (.left hD hrigid hleft hclosing)
+    · let B := f.rigidRightZeroSchurData hrigid hright hD
+      rcases B.rankTwoProgress_or_closing complexity with hprogress | hclosing
+      · exact Or.inl hprogress
+      · exact Or.inr (.right hD hrigid hright hclosing)
 
 /-- **Exact remaining degree split.**
 The current frontier retains `2 ≤ D`, while the handwritten first-wall
@@ -627,6 +704,26 @@ theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_rigidClosing
   · subst D
     exact (f.degree_two_impossible).elim
   · exact Or.inr hclosing
+
+/-- **All-degree rigid closing theorem with retained provenance.**
+For every canonical departure frontier of degree at least two, either strict
+rank-two repair progress occurs or the closing certificate remembers the
+actual frontier/family/chart that generated it.  The quadratic boundary is
+eliminated by `degree_two_impossible`. -/
+theorem CanonicalSmithDepartureFrontier.rankTwoProgress_or_rigidClosingCertificate
+    [CharZero K]
+    {D complexity : ℕ}
+    (f : CanonicalSmithDepartureFrontier (K := K) D complexity)
+    (hD : 2 ≤ D) :
+    RepairProgress
+        (rankOneRepairState complexity)
+        (rankTwoRepairState complexity) ∨
+      f.RigidClosingCertificate := by
+  by_cases h2 : D = 2
+  · subst D
+    exact (f.degree_two_impossible).elim
+  · have h3 : 3 ≤ D := by omega
+    exact f.rankTwoProgress_or_rigidClosingCertificate_of_three_le h3
 
 end
 

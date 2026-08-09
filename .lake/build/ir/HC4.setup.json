@@ -14093,6 +14093,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedRightWallScaleDescent.olean"],
   "HC4.Valuation.RigidPacketZeroSchurBridge":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean"],
+  "HC4.Valuation.RigidClosingTerminalInterface":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingTerminalInterface.olean"],
   "HC4.Valuation.QuadraticFamilyCollision":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/QuadraticFamilyCollision.olean"],
   "HC4.Valuation.PrimitiveSmithEndpoint":
@@ -14351,6 +14353,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Newton/TerminalCollision.olean"],
   "HC4.Newton.TerminalCenteredWeights":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Newton/TerminalCenteredWeights.olean"],
+  "HC4.Newton.TerminalAssociatedGradedEndpoint":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Newton/TerminalAssociatedGradedEndpoint.olean"],
   "HC4.Newton.TerminalActualHessian":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Newton/TerminalActualHessian.olean"],
   "HC4.Newton.SymmetricSmithMinimality":

@@ -38,6 +38,8 @@ import HC4.Valuation.SmithFrontierFourBlockExtraction
 import HC4.Newton.ZeroSchurFirstEntryClock
 import HC4.Newton.RigidPacketEvaluatedHessianChart
 import HC4.Valuation.RigidPacketZeroSchurBridge
+import HC4.Newton.TerminalAssociatedGradedEndpoint
+import HC4.Valuation.RigidClosingTerminalInterface
 import HC4.LinearAlgebra
 import HC4.MongeAmpere
 import HC4.Polynomial
