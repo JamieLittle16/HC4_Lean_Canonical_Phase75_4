@@ -14095,8 +14095,14 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean"],
   "HC4.Valuation.RigidClosingTerminalInterface":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingTerminalInterface.olean"],
+  "HC4.Valuation.RigidClosingResidualOrientation":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingResidualOrientation.olean"],
   "HC4.Valuation.RigidClosingRecenteredSource":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingRecenteredSource.olean"],
+  "HC4.Valuation.RigidClosingRecenteredSchurClock":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingRecenteredSchurClock.olean"],
+  "HC4.Valuation.RigidClosingRecenteredFirstKernelAssembly":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingRecenteredFirstKernelAssembly.olean"],
   "HC4.Valuation.RigidClosingFirstKernelStage":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingFirstKernelStage.olean"],
   "HC4.Valuation.RigidClosingFirstKernelAssembly":

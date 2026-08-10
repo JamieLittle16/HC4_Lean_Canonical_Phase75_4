@@ -276,6 +276,39 @@ theorem recenteredPolynomialFamily_specialFiber_exactCollision
       hrec
   simpa [polynomialSectionSpecialPoint] using hspecial
 
+
+/-- Translation by a moving section whose special point is the origin does
+not change the parameter special fibre.  This is the exact compatibility
+needed to rebuild the rigid Schur clock *after* affine recentering. -/
+theorem polynomialFamilySpecialFiber_translation_eq_of_specialPoint_zero
+    (a : Fin 4 -> Polynomial K)
+    (ha :
+      polynomialSectionSpecialPoint a =
+        (fun _ : Fin 4 => (0 : K)))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    polynomialFamilySpecialFiber
+        (polynomialFamilyTranslationHom (K := K) a P) =
+      polynomialFamilySpecialFiber P := by
+  apply MvPolynomial.induction_on P
+  · intro c
+    simp [polynomialFamilySpecialFiber]
+  · intro p q hp hq
+    have hadd :=
+      congrArg₂
+        (fun x y : MvPolynomial (Fin 4) K => x + y)
+        hp hq
+    simpa [polynomialFamilySpecialFiber] using hadd
+  · intro p n hp
+    have han : Polynomial.constantCoeff (a n) = 0 := by
+      exact congrFun ha n
+    have hmul :=
+      congrArg
+        (fun x : MvPolynomial (Fin 4) K =>
+          x * MvPolynomial.X n)
+        hp
+    simpa [polynomialFamilySpecialFiber,
+      polynomialFamilyTranslationVariable, han] using hmul
+
 end
 
 end HC4.Valuation

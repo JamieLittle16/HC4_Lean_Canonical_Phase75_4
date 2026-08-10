@@ -409,6 +409,52 @@ def HasRigidClosingStrictKernelRestart
         (kernelBlowupSection
           rigidClosingCommonKernel q S.rightSection)
 
+/-- **Phase 75.19 restart collapse.**
+
+Any successful first global kernel stage is already a genuine strict restart.
+The first zero-Schur order is positive, the integral blow-up preserves the
+exact moving collision and the canonical distinct specialisations, and the
+exact Hessian defect drops by `2 * firstOrder`.  Therefore there is no need
+to retain separate zero-residual and positive-residual integral branches in
+the rigid-closing endgame. -/
+theorem integralFirstKernelStage_to_strictRestart
+    (S : f.RigidClosingRecenteredSourceData)
+    (B : ExactZeroSchurFourBlockData K)
+    (hint : HasIntegralRigidClosingFirstKernelStage S B) :
+    HasRigidClosingStrictKernelRestart S := by
+  unfold HasIntegralRigidClosingFirstKernelStage at hint
+  dsimp only at hint
+  rcases hint with ⟨hdiv, _hdef, _hcoll, _hspecial⟩
+  unfold HasRigidClosingStrictKernelRestart
+  refine ⟨B.toClock.firstOrder, hdiv, B.toClock.firstOrder_pos, ?_⟩
+  let s0 : GlobalRestartState :=
+    { defect := alignedSmithRamificationIndex * f.defect
+      repair := rankOneRepairState complexity }
+  let t : GlobalRestartState :=
+    { defect := alignedSmithRamificationIndex * f.defect -
+          2 * B.toClock.firstOrder
+      repair := rankOneRepairState complexity }
+  have hspecial :
+      polynomialSectionSpecialPoint
+          (kernelBlowupSection
+            rigidClosingCommonKernel B.toClock.firstOrder
+            (zeroPolynomialSection (K := K))) ≠
+        polynomialSectionSpecialPoint
+          (kernelBlowupSection
+            rigidClosingCommonKernel B.toClock.firstOrder S.rightSection) := by
+    exact S.firstKernelBlowup_specialPoints_ne B.toClock.firstOrder_pos
+  have hdrop :
+      HasPositiveKernelDefectDrop B.toClock.firstOrder s0 t := by
+    exact
+      integralKernelBlowup_positiveKernelDefectDrop
+        rigidClosingCommonKernel B.toClock.firstOrder_pos
+        S.family hdiv S.hessianDefect rfl rfl
+  exact
+    integralKernelBlowup_toPolynomialFamilyKernelRestartCertificate
+      rigidClosingCommonKernel B.toClock.firstOrder S.family hdiv
+      (zeroPolynomialSection (K := K)) S.rightSection
+      S.exactCollision hspecial hdrop
+
 /-- Every explicit first-stage offender either has no positive integral
 coordinate-3 slope at all, or the already-green maximal-slope machinery
 produces an immediate strict global restart. -/
@@ -505,6 +551,31 @@ theorem firstClosingKernelStage_forBlock
     refine ⟨d, hd, ?_⟩
     exact supportOffender_parameterOrder_lt_required
       rigidClosingCommonKernel B.toClock.firstOrder S.family d hd hfail
+
+/-- Closing-aware three-way split for an explicitly supplied zero-Schur
+four-block.  This version is deliberately independent of
+`S.original.closing`; it is the entry point used after the Schur clock has
+been rebuilt on the recentered family itself. -/
+theorem firstClosingKernelStage_terminal_or_residual_or_offender_forBlock
+    (S : f.RigidClosingRecenteredSourceData)
+    (B : ExactZeroSchurFourBlockData K)
+    (hBdef :
+      B.defect = alignedSmithRamificationIndex * f.defect)
+    (hclosing : ExactZeroSchurClosingOutcome B) :
+    (B.toClock.residualDefect = 0 ∧
+        HasIntegralRigidClosingFirstKernelStage S B) ∨
+      (0 < B.toClock.residualDefect ∧
+        HasIntegralRigidClosingFirstKernelStage S B) ∨
+      HasRigidClosingFirstKernelOffender S B := by
+  have hstage := S.firstClosingKernelStage_forBlock B hBdef
+  dsimp only at hstage
+  rcases hstage.2.2 with hintegral | hoffender
+  · unfold ExactZeroSchurClosingOutcome at hclosing
+    rcases hclosing with hdirect | hsecond
+    · exact Or.inl ⟨hdirect.1, hintegral⟩
+    · rcases hsecond with ⟨_R, hres, _hRdef, _hRclose, _hRnonzero⟩
+      exact Or.inr (Or.inl ⟨hres, hintegral⟩)
+  · exact Or.inr (Or.inr hoffender)
 
 /-- **Phase 75.17 first-stage global dichotomy with closing provenance.**
 

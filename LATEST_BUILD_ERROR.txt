@@ -1,0 +1,1587 @@
+⚠ [7353/7586] Replayed HC4.Polynomial.HessianDeterminant
+warning: HC4/Polynomial/HessianDeterminant.lean:35:0: automatically included section variable(s) unused in theorem `HC4.Polynomial.hessianTerm_isWeightedHomogeneous`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Polynomial/HessianDeterminant.lean:49:0: automatically included section variable(s) unused in theorem `HC4.Polynomial.hessianTermWeight_eq`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7354/7586] Replayed HC4.Newton.LexicographicRefinement
+warning: HC4/Newton/LexicographicRefinement.lean:52:0: automatically included section variable(s) unused in theorem `HC4.Newton.scaledWeight_lt_of_primary_lt`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7363/7586] Replayed HC4.Newton.FixedKernelHessian
+warning: HC4/Newton/FixedKernelHessian.lean:111:5: unused variable `hleft`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7365/7586] Replayed HC4.Newton.CharZeroHessianKernelRigidity
+warning: HC4/Newton/CharZeroHessianKernelRigidity.lean:91:10: This simp argument is unused:
+  Finsupp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵h̵i̵j̵,̵[̲h̲i̲j̲,̲ hji, add_comm, add_left_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/CharZeroHessianKernelRigidity.lean:92:31: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [Finsupp.single_apply, hij, hji, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]̵a̲d̲d̲_̲l̲e̲f̲t̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/CharZeroHessianKernelRigidity.lean:208:5: unused variable `hleft`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7371/7586] Replayed HC4.Newton.TransverseSliceClassification
+warning: HC4/Newton/TransverseSliceClassification.lean:76:40: This simp argument is unused:
+  Ne.symm hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hri, hij,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵i̵j̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:86:35: This simp argument is unused:
+  hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hrj, h̵i̵j̵,̵ ̵Ne.symm hij]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:104:42: This simp argument is unused:
+  Ne.symm hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hri, hij,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵i̵j̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:107:39: This simp argument is unused:
+  hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hrj, h̵i̵j̵,̵ ̵Ne.symm hij]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:109:34: This simp argument is unused:
+  Finsupp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵hxi, hxj]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:127:42: This simp argument is unused:
+  Ne.symm hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hri, hij,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵i̵j̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:130:39: This simp argument is unused:
+  hij
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, hrj, h̵i̵j̵,̵ ̵Ne.symm hij]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TransverseSliceClassification.lean:132:34: This simp argument is unused:
+  Finsupp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [transverseSliceIndex, F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵hxi, hxj]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7372/7586] Replayed HC4.Newton.LinearPowerPacketNormalForm
+warning: HC4/Newton/LinearPowerPacketNormalForm.lean:150:5: unused variable `hleft`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7373/7586] Replayed HC4.Newton.RankTwoHomogeneousPacketClassification
+warning: HC4/Newton/RankTwoHomogeneousPacketClassification.lean:99:5: unused variable `hright`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7388/7586] Replayed HC4.Newton.SmithFirstWallTransverse
+warning: HC4/Newton/SmithFirstWallTransverse.lean:274:5: unused variable `hD`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7392/7586] Replayed HC4.Newton.SmithRefinedFaceRankOnePacket
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:125:25: This simp argument is unused:
+  Ne.symm hxy
+
+Hint: Omit it from the simp argument list.
+  simp [hxy, hxz, hxw, Ne.symm hxy̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵x̵z, Ne.symm hxw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:125:38: This simp argument is unused:
+  Ne.symm hxz
+
+Hint: Omit it from the simp argument list.
+  simp [hxy, hxz, hxw, Ne.symm hxy, Ne.symm hxz̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵x̵w]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:125:51: This simp argument is unused:
+  Ne.symm hxw
+
+Hint: Omit it from the simp argument list.
+  simp [hxy, hxz, hxw, Ne.symm hxy, Ne.symm hxz,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵x̵w̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:127:10: This simp argument is unused:
+  hxy
+
+Hint: Omit it from the simp argument list.
+  simp [hx̵y,̵ ̵h̵y̵z, hyw, Ne.symm hxy, Ne.symm hyz, Ne.symm hyw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:127:38: This simp argument is unused:
+  Ne.symm hyz
+
+Hint: Omit it from the simp argument list.
+  simp [hxy, hyz, hyw, Ne.symm hxy, Ne.symm hyz̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵y̵w]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:127:51: This simp argument is unused:
+  Ne.symm hyw
+
+Hint: Omit it from the simp argument list.
+  simp [hxy, hyz, hyw, Ne.symm hxy, Ne.symm hyz,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵y̵w̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:129:10: This simp argument is unused:
+  hxz
+
+Hint: Omit it from the simp argument list.
+  simp [hx̵z̵,̵ ̵h̵yz, hzw, Ne.symm hxz, Ne.symm hyz, Ne.symm hzw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:129:15: This simp argument is unused:
+  hyz
+
+Hint: Omit it from the simp argument list.
+  simp [hxz, hy̵z,̵ ̵h̵z̵w, Ne.symm hxz, Ne.symm hyz, Ne.symm hzw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:129:51: This simp argument is unused:
+  Ne.symm hzw
+
+Hint: Omit it from the simp argument list.
+  simp [hxz, hyz, hzw, Ne.symm hxz, Ne.symm hyz,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵z̵w̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:131:10: This simp argument is unused:
+  hxw
+
+Hint: Omit it from the simp argument list.
+  simp [hx̵w̵,̵ ̵h̵yw, hzw, Ne.symm hxw, Ne.symm hyw, Ne.symm hzw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:131:15: This simp argument is unused:
+  hyw
+
+Hint: Omit it from the simp argument list.
+  simp [hxw, hy̵w̵,̵ ̵h̵zw, Ne.symm hxw, Ne.symm hyw, Ne.symm hzw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFaceRankOnePacket.lean:131:20: This simp argument is unused:
+  hzw
+
+Hint: Omit it from the simp argument list.
+  simp [hxw, hyw, h̵z̵w̵,̵ ̵Ne.symm hxw, Ne.symm hyw, Ne.symm hzw]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7395/7586] Replayed HC4.Newton.SmithRefinedFacePolynomial
+warning: HC4/Newton/SmithRefinedFacePolynomial.lean:455:62: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [hy, hz, hw, hdx, transverseAxisBlockerExponent,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFacePolynomial.lean:513:62: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [hy, hz, hw, hdx, transverseAxisBlockerExponent,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/SmithRefinedFacePolynomial.lean:571:62: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [hy, hz, hw, hdx, transverseAxisBlockerExponent,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7396/7586] Replayed HC4.Newton.RankOnePacketExactCollision
+warning: HC4/Newton/RankOnePacketExactCollision.lean:68:38: This simp argument is unused:
+  hxy
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint, h̵x̵y̵,̵ ̵Ne.symm hxy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:77:4: This simp argument is unused:
+  hxz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint,
+  ̵  ̵ ̵ ̵hx̵z̵,̵ ̵h̵yz, Ne.symm hxz, Ne.symm hyz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:77:9: This simp argument is unused:
+  hyz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint,
+  ̵  ̵ ̵ ̵hxz, h̵y̵z̵,̵ ̵Ne.symm hxz, Ne.symm hyz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:91:4: This simp argument is unused:
+  hxz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYY, rankOnePacketYZ,
+  ̵  ̵ ̵ ̵hx̵z̵,̵ ̵h̵yz, Ne.symm hxz, Ne.symm hyz] at hz
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:91:9: This simp argument is unused:
+  hyz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYY, rankOnePacketYZ,
+  ̵  ̵ ̵ ̵hxz, h̵y̵z̵,̵ ̵Ne.symm hxz, Ne.symm hyz] at hz
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:105:4: This simp argument is unused:
+  hxy
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYY, rankOnePacketZZ,
+  ̵  ̵ ̵ ̵hx̵y,̵ ̵h̵y̵z, Ne.symm hxy, Ne.symm hyz] at hy
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:105:27: This simp argument is unused:
+  Ne.symm hyz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYY, rankOnePacketZZ, hxy, hyz, Ne.symm h̵x̵y̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵y̵z̵]̵h̲x̲y̲]̲ at hy
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:119:4: This simp argument is unused:
+  hxy
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYZ, rankOnePacketZZ,
+  ̵  ̵ ̵ ̵hx̵y,̵ ̵h̵y̵z, Ne.symm hxy, Ne.symm hyz] at hy
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:119:27: This simp argument is unused:
+  Ne.symm hyz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketYZ, rankOnePacketZZ, hxy, hyz, Ne.symm h̵x̵y̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵y̵z̵]̵h̲x̲y̲]̲ at hy
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:172:6: This simp argument is unused:
+  hYY_YZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+        rankOnePacketCoeffZZ, h̵Y̵Y̵_̵Y̵Z̵,̵ ̵hYY_ZZ, Ne.symm hYY_YZ, Ne.symm hYY_ZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:172:14: This simp argument is unused:
+  hYY_ZZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+        rankOnePacketCoeffZZ, hYY_YZ, h̵Y̵Y̵_̵Z̵Z̵,̵Ne.symm hYY_YZ, Ne.symm hYY_ZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:181:16: This simp argument is unused:
+  hYZ_ZZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+          rankOnePacketCoeffZZ, hYY_YZ, h̵Y̵Z̵_̵Z̵Z̵,̵Ne.symm hYY_YZ, Ne.symm hYZ_ZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:182:8: This simp argument is unused:
+  Ne.symm hYY_YZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+          rankOnePacketCoeffZZ, hYY_YZ, hYZ_ZZ, Ne.symm h̵Y̵Y̵_̵Y̵Z̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hYZ_ZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:191:10: This simp argument is unused:
+  Ne.symm hYY_ZZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+            rankOnePacketCoeffZZ, hYY_ZZ, hYZ_ZZ, Ne.symm h̵Y̵Y̵_̵Z̵Z̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hYZ_ZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:191:26: This simp argument is unused:
+  Ne.symm hYZ_ZZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, rankOnePacketCoeffYY, rankOnePacketCoeffYZ,
+            rankOnePacketCoeffZZ, hYY_ZZ, hYZ_ZZ, Ne.symm h̵Y̵Y̵_̵Z̵Z̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵Y̵Z̵_̵Z̵Z̵]̵h̲Y̲Y̲_̲Z̲Z̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:198:17: This simp argument is unused:
+  hYY
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, hzero, h̵Y̵Y̵,̵ ̵hYZ, hZZ, Ne.symm hYY, Ne.symm hYZ, Ne.symm hZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:198:22: This simp argument is unused:
+  hYZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, hzero, hYY, h̵Y̵Z̵,̵ ̵hZZ, Ne.symm hYY, Ne.symm hYZ, Ne.symm hZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:198:27: This simp argument is unused:
+  hZZ
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketMonomialModel, hzero, hYY, hYZ, h̵Z̵Z̵,̵Ne.symm hYY, Ne.symm hYZ, Ne.symm hZZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:289:17: This simp argument is unused:
+  hxz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint, hxy, h̵x̵z̵,̵ ̵hyz, Ne.symm hxy, Ne.symm hxz, Ne.symm hyz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:289:22: This simp argument is unused:
+  hyz
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint, hxy, hxz, h̵y̵z̵,̵Ne.symm hxy, Ne.symm hxz, Ne.symm hyz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/RankOnePacketExactCollision.lean:330:12: This simp argument is unused:
+  hxy
+
+Hint: Omit it from the simp argument list.
+  simp [rankOnePacketTransversePoint, h̵x̵y̵,̵ ̵hxz, hyz, Ne.symm hxy, Ne.symm hxz, Ne.symm hyz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7398/7586] Replayed HC4.Newton.TerminalConformalWeight
+warning: HC4/Newton/TerminalConformalWeight.lean:103:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/Newton/TerminalConformalWeight.lean:111:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7399/7586] Replayed HC4.Newton.TerminalQuadraticHessian
+warning: HC4/Newton/TerminalQuadraticHessian.lean:161:2: Try `simp at hcoeff` instead of `simpa using hcoeff`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7400/7586] Replayed HC4.Newton.TerminalActualHessian
+warning: HC4/Newton/TerminalActualHessian.lean:202:13: This simp argument is unused:
+  Ne.symm hki
+
+Hint: Omit it from the simp argument list.
+  simp [dAfterJ, quadraticExponent, h̵k̵i̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hki] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TerminalActualHessian.lean:219:13: This simp argument is unused:
+  Ne.symm hij
+
+Hint: Omit it from the simp argument list.
+  simp [dAfterJ, quadraticExponent, h̵i̵j̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hij] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TerminalActualHessian.lean:224:10: This simp argument is unused:
+  hij
+
+Hint: Omit it from the simp argument list.
+  simp [dAfterJ, quadraticExponent, h̵i̵j̵,̵ ̵Ne.symm hij] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TerminalActualHessian.lean:228:10: This simp argument is unused:
+  Ne.symm hki
+
+Hint: Omit it from the simp argument list.
+  simp [dAfterJ, quadraticExponent, hki, hkj, Ne.symm h̵k̵i̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hkj] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TerminalActualHessian.lean:228:23: This simp argument is unused:
+  Ne.symm hkj
+
+Hint: Omit it from the simp argument list.
+  simp [dAfterJ, quadraticExponent, hki, hkj, Ne.symm h̵k̵i̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵k̵j̵]̵h̲k̲i̲]̲ at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/TerminalActualHessian.lean:320:2: Try `simp at hcoeff` instead of `simpa using hcoeff`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7403/7586] Replayed HC4.Newton.TerminalScalarGradient
+warning: HC4/Newton/TerminalScalarGradient.lean:78:18: This simp argument is unused:
+  hd
+
+Hint: Omit it from the simp argument list.
+  simp [hcoeff, h̵d̵,̵ ̵Ne.symm hd]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7407/7586] Replayed HC4.Newton.TerminalNonnegativeWeights
+warning: HC4/Newton/TerminalNonnegativeWeights.lean:152:5: unused variable `hres`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7410/7586] Replayed HC4.Newton.TerminalTwoZeroPattern
+warning: HC4/Newton/TerminalTwoZeroPattern.lean:97:6: Try `simp at hab'` instead of `simpa using hab'`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7411/7586] Replayed HC4.Newton.TerminalTwoZeroSupport
+warning: HC4/Newton/TerminalTwoZeroSupport.lean:246:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7417/7586] Replayed HC4.MongeAmpere.PolynomialInitial
+warning: HC4/MongeAmpere/PolynomialInitial.lean:27:0: automatically included section variable(s) unused in theorem `HC4.MongeAmpere.initialForm_hessianDeterminant_eq_zero`:
+  [Nontrivial K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nontrivial K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7420/7586] Replayed HC4.Newton.TerminalTwoZeroGradientConjugacy
+warning: HC4/Newton/TerminalTwoZeroGradientConjugacy.lean:67:0: automatically included section variable(s) unused in theorem `HC4.Newton.standardJoinPoint_split`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/TerminalTwoZeroGradientConjugacy.lean:74:0: automatically included section variable(s) unused in theorem `HC4.Newton.standardSplitPoint_join`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7423/7586] Replayed HC4.Newton.PositiveWeightTriangularSupport
+warning: HC4/Newton/PositiveWeightTriangularSupport.lean:104:5: unused variable `hmi`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7427/7586] Replayed HC4.Newton.PositiveWeightTriangularEvaluation
+warning: HC4/Newton/PositiveWeightTriangularEvaluation.lean:55:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7432/7586] Replayed HC4.Newton.TerminalOneZeroHessianFactor
+warning: HC4/Newton/TerminalOneZeroHessianFactor.lean:127:10: This simp argument is unused:
+  hz.1
+
+Hint: Omit it from the simp argument list.
+  simp [hz.1̵,̵ ̵h̵z̵.̵2.1, hz.2.2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7437/7586] Replayed HC4.Newton.TerminalOneZeroEndpoint
+warning: HC4/Newton/TerminalOneZeroEndpoint.lean:53:8: automatically included section variable(s) unused in theorem `HC4.Newton.standardOneZeroPlanarPoint_zero`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/TerminalOneZeroEndpoint.lean:57:8: automatically included section variable(s) unused in theorem `HC4.Newton.standardOneZeroPlanarPoint_one`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7438/7586] Replayed HC4.Newton.TerminalCoordinatePermutation
+warning: HC4/Newton/TerminalCoordinatePermutation.lean:49:8: automatically included section variable(s) unused in theorem `HC4.Newton.terminalPermutePoint_apply`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/TerminalCoordinatePermutation.lean:57:0: automatically included section variable(s) unused in theorem `HC4.Newton.terminalPermutePoint_injective`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/TerminalCoordinatePermutation.lean:68:8: automatically included section variable(s) unused in theorem `HC4.Newton.terminalPermutePoint_symm_apply`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7439/7586] Replayed HC4.Newton.RestartClassification
+warning: HC4/Newton/RestartClassification.lean:57:0: automatically included section variable(s) unused in theorem `HC4.Newton.smithFirstWall_hasRepairOrTerminal`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/RestartClassification.lean:109:0: automatically included section variable(s) unused in theorem `HC4.Newton.mixedDeparture_hasRepairOrTerminal`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/RestartClassification.lean:131:0: automatically included section variable(s) unused in theorem `HC4.Newton.rankTwoSchurEntry_hasRepairOrTerminal`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7444/7586] Replayed HC4.Valuation.IntegralKernelBlowup
+warning: HC4/Valuation/IntegralKernelBlowup.lean:464:10: This simp argument is unused:
+  hi
+
+Hint: Omit it from the simp argument list.
+  simp [h̵i̵,̵ ̵Ne.symm hi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/IntegralKernelBlowup.lean:661:22: This simp argument is unused:
+  MvPolynomial.eval_sum
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sum,̵ ̵M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵e̵v̵a̵l̵_̵s̵u̵m̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/IntegralKernelBlowup.lean:696:22: This simp argument is unused:
+  MvPolynomial.eval_sum
+
+Hint: Omit it from the simp argument list.
+  simp only [map_sum,̵ ̵M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵e̵v̵a̵l̵_̵s̵u̵m̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7446/7586] Replayed HC4.Valuation.KernelInflationHessianDefect
+warning: HC4/Valuation/KernelInflationHessianDefect.lean:201:18: This simp argument is unused:
+  hin
+
+Hint: Omit it from the simp argument list.
+  simp [kernelInflateHom, kernelInflateVariable, hp', h̵n̵i̵,̵ ̵h̵i̵n̵]̵h̲n̲i̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7447/7586] Replayed HC4.Valuation.ExactKernelDefectDrop
+warning: HC4/Valuation/ExactKernelDefectDrop.lean:113:46: This simp argument is unused:
+  hdu
+
+Hint: Omit it from the simp argument list.
+  simp [MvPolynomial.coeff_monomial, hud,̵ ̵h̵d̵u̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7449/7586] Replayed HC4.Valuation.SmithConformalCovariance
+warning: HC4/Valuation/SmithConformalCovariance.lean:423:18: This simp argument is unused:
+  hin
+
+Hint: Omit it from the simp argument list.
+  simp [smithConformalInflateHom, smithConformalInflateVariable, hp', h̵n̵i̵,̵ ̵h̵i̵n̵]̵h̲n̲i̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SmithConformalCovariance.lean:576:6: This simp argument is unused:
+  MvPolynomial.pderiv_C_mul
+
+Hint: Omit it from the simp argument list.
+  simp [HC4.Polynomial.hessian_apply, M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵p̵d̵e̵r̵i̵v̵_̵C̵_̵m̵u̵l̵,̵ ̵v, A]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SmithConformalCovariance.lean:581:13: This simp argument is unused:
+  Fin.prod_univ_four
+
+Hint: Omit it from the simp argument list.
+  simp [v, F̵i̵n̵.̵p̵r̵o̵d̵_̵u̵n̵i̵v̵_̵f̵o̵u̵r̵,̵ ̵pow_succ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7450/7586] Replayed HC4.Valuation.ParameterRamification
+warning: HC4/Valuation/ParameterRamification.lean:68:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/Valuation/ParameterRamification.lean:145:6: This simp argument is unused:
+  parameterRamificationSection
+
+Hint: Omit it from the simp argument list.
+  simp [parameterRamificationFamily,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵p̵a̵r̵a̵m̵e̵t̵e̵r̵R̵a̵m̵i̵f̵i̵c̵a̵t̵i̵o̵n̵S̵e̵c̵t̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/ParameterRamification.lean:207:0: automatically included section variable(s) unused in theorem `HC4.Valuation.hessian_parameterRamificationFamily_entry`:
+  [Fintype σ]
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype σ] [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7452/7586] Replayed HC4.Newton.SymmetricSmithMinimality
+warning: HC4/Newton/SymmetricSmithMinimality.lean:239:0: automatically included section variable(s) unused in theorem `HC4.Newton.homogeneous_exactAxisCollision_symmetricMinimal_canonicalRepair`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7456/7586] Replayed HC4.Valuation.AlignedSmithWallArithmetic
+warning: HC4/Valuation/AlignedSmithWallArithmetic.lean:82:5: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7457/7586] Replayed HC4.Valuation.AlignedSmithFirstStop
+warning: HC4/Valuation/AlignedSmithFirstStop.lean:151:5: unused variable `hd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/AlignedSmithFirstStop.lean:442:20: This simp argument is unused:
+  if_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [hi3,̵ ̵i̵f̵_̵n̵e̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/AlignedSmithFirstStop.lean:733:17: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵ ̵at hnonneg
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7458/7586] Replayed HC4.Valuation.AlignedSmithEndpoint
+warning: HC4/Valuation/AlignedSmithEndpoint.lean:227:15: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵ ̵at hstep
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/AlignedSmithEndpoint.lean:338:15: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7459/7586] Replayed HC4.Valuation.PrimitiveSmithEndpoint
+warning: HC4/Valuation/PrimitiveSmithEndpoint.lean:585:8: unused variable `N`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/PrimitiveSmithEndpoint.lean:1005:5: unused variable `hdef`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/PrimitiveSmithEndpoint.lean:1218:10: unused variable `d`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/PrimitiveSmithEndpoint.lean:1259:5: unused variable `hdef`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/PrimitiveSmithEndpoint.lean:1281:14: unused variable `e`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7461/7586] Replayed HC4.Valuation.CoupledSmithWallClosure
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:533:41: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [h0, h1, h2, h3, t̵r̵a̵n̵s̵v̵e̵r̵s̵e̵A̵x̵i̵s̵B̵l̵o̵c̵k̵e̵r̵E̵x̵p̵o̵n̵e̵n̵t̵,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]̵t̲r̲a̲n̲s̲v̲e̲r̲s̲e̲A̲x̲i̲s̲B̲l̲o̲c̲k̲e̲r̲E̲x̲p̲o̲n̲e̲n̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:554:41: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [h0, h1, h2, h3, t̵r̵a̵n̵s̵v̵e̵r̵s̵e̵A̵x̵i̵s̵B̵l̵o̵c̵k̵e̵r̵E̵x̵p̵o̵n̵e̵n̵t̵,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]̵t̲r̲a̲n̲s̲v̲e̲r̲s̲e̲A̲x̲i̲s̲B̲l̲o̲c̲k̲e̲r̲E̲x̲p̲o̲n̲e̲n̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:605:4: This simp argument is unused:
+  finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [longitudinalAxisBlockerExponent, transverseAxisBlockerExponent,
+      f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵Ne.symm finFour_zero_ne_one] at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:621:4: This simp argument is unused:
+  finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [longitudinalAxisBlockerExponent, transverseAxisBlockerExponent,
+      f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵Ne.symm finFour_zero_ne_two] at h2
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:636:4: This simp argument is unused:
+  finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [transverseAxisBlockerExponent, f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵finFour_zero_ne_two, finFour_one_ne_two,
+      Ne.symm finFour_zero_ne_one, Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two] at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:637:4: This simp argument is unused:
+  finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [transverseAxisBlockerExponent, finFour_zero_ne_one, f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵finFour_one_ne_two,
+      Ne.symm finFour_zero_ne_one, Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two] at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:640:4: This simp argument is unused:
+  Ne.symm finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [transverseAxisBlockerExponent, finFour_zero_ne_one, finFour_zero_ne_two, finFour_one_ne_two,
+      Ne.symm finFour_zero_ne_one, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵
+  ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵finFour_one_ne_two] at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:641:4: This simp argument is unused:
+  Ne.symm finFour_one_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [transverseAxisBlockerExponent, finFour_zero_ne_one, finFour_zero_ne_two, finFour_one_ne_two,
+      Ne.symm finFour_zero_ne_one, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵
+  ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵f̵i̵n̵F̵o̵u̵r̵_̵o̵n̵e̵_̵n̵e̵_̵t̵w̵o̵]̵f̲i̲n̲F̲o̲u̲r̲_̲z̲e̲r̲o̲_̲n̲e̲_̲t̲w̲o̲]̲ at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:686:6: This simp argument is unused:
+  hXY
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel,
+  ̵  ̵ ̵ ̵ ̵ ̵coupledLowBlockerCoeffX,
+  ̵  ̵ ̵ ̵ ̵ ̵coupledLowBlockerCoeffY,
+        coupledLowBlockerCoeffZ,
+  ̵  ̵ ̵ ̵ ̵ ̵hXY̵,̵ ̵h̵X̵Z, Ne.symm hXY, Ne.symm hXZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:686:11: This simp argument is unused:
+  hXZ
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel,
+  ̵  ̵ ̵ ̵ ̵ ̵coupledLowBlockerCoeffX,
+  ̵  ̵ ̵ ̵ ̵ ̵coupledLowBlockerCoeffY,
+        coupledLowBlockerCoeffZ,
+  ̵  ̵ ̵ ̵ ̵ ̵hXY̵Y̲, h̵X̵Z̵,̵ ̵Ne.symm hXY, Ne.symm hXZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:696:13: This simp argument is unused:
+  hYZ
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, coupledLowBlockerCoeffX, coupledLowBlockerCoeffY,
+          coupledLowBlockerCoeffZ, hXY, h̵Y̵Z̵,̵ ̵Ne.symm hXY, Ne.symm hYZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:696:18: This simp argument is unused:
+  Ne.symm hXY
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, coupledLowBlockerCoeffX, coupledLowBlockerCoeffY,
+          coupledLowBlockerCoeffZ, hXY, hYZ, Ne.symm h̵X̵Y̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hYZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:706:20: This simp argument is unused:
+  Ne.symm hXZ
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, coupledLowBlockerCoeffX, coupledLowBlockerCoeffY,
+            coupledLowBlockerCoeffZ, hXZ, hYZ, Ne.symm h̵X̵Z̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵hYZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:706:33: This simp argument is unused:
+  Ne.symm hYZ
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, coupledLowBlockerCoeffX, coupledLowBlockerCoeffY,
+            coupledLowBlockerCoeffZ, hXZ, hYZ, Ne.symm h̵X̵Z̵,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵Y̵Z̵]̵h̲X̲Z̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:715:17: This simp argument is unused:
+  hX
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, hzero, h̵X̵,̵ ̵hY, hZ, Ne.symm hX, Ne.symm hY, Ne.symm hZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:715:21: This simp argument is unused:
+  hY
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, hzero, hX, h̵Y̵,̵ ̵hZ, Ne.symm hX, Ne.symm hY, Ne.symm hZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:715:25: This simp argument is unused:
+  hZ
+
+Hint: Omit it from the simp argument list.
+  simp [coupledLowBlockerMonomialModel, hzero, hX, hY, h̵Z̵,̵Ne.symm hX, Ne.symm hY, Ne.symm hZ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:785:16: This simp argument is unused:
+  finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [̵f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵[̲f̲i̲n̲F̲o̲u̲r̲_̲z̲e̲r̲o̲_̲n̲e̲_̲t̲w̲o̲,̲ finFour_one_ne_two, Ne.symm finFour_zero_ne_one,
+              Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:786:12: This simp argument is unused:
+  finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [finFour_zero_ne_one, f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵finFour_one_ne_two, Ne.symm finFour_zero_ne_one,
+  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:787:12: This simp argument is unused:
+  finFour_one_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [finFour_zero_ne_one, finFour_zero_ne_two, f̵i̵n̵F̵o̵u̵r̵_̵o̵n̵e̵_̵n̵e̵_̵t̵w̵o̵,̵Ne.symm finFour_zero_ne_one,
+  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:788:12: This simp argument is unused:
+  Ne.symm finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [finFour_zero_ne_one, finFour_zero_ne_two, finFour_one_ne_two,
+              Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:789:12: This simp argument is unused:
+  Ne.symm finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [finFour_zero_ne_one, finFour_zero_ne_two, finFour_one_ne_two,
+              Ne.symm finFour_zero_ne_one, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:817:12: This simp argument is unused:
+  finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [-standardTwoZero_pderiv_two_eq_A, f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵finFour_zero_ne_two, finFour_one_ne_two,
+              Ne.symm finFour_zero_ne_one, Ne.symm finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:820:12: This simp argument is unused:
+  Ne.symm finFour_zero_ne_one
+
+Hint: Omit it from the simp argument list.
+  simp [-standardTwoZero_pderiv_two_eq_A, finFour_zero_ne_one, finFour_zero_ne_two,
+              finFour_one_ne_two, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵o̵n̵e̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵finFour_zero_ne_two, Ne.symm finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:821:12: This simp argument is unused:
+  Ne.symm finFour_zero_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [-standardTwoZero_pderiv_two_eq_A, finFour_zero_ne_one, finFour_zero_ne_two,
+              finFour_one_ne_two, Ne.symm finFour_zero_ne_one, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵finFour_one_ne_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:822:12: This simp argument is unused:
+  Ne.symm finFour_one_ne_two
+
+Hint: Omit it from the simp argument list.
+  simp [-standardTwoZero_pderiv_two_eq_A, finFour_zero_ne_one, finFour_zero_ne_two,
+              finFour_one_ne_two, Ne.symm finFour_zero_ne_one, Ne.symm f̵i̵n̵F̵o̵u̵r̵_̵z̵e̵r̵o̵_̵n̵e̵_̵t̵w̵o̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵f̵i̵n̵F̵o̵u̵r̵_̵o̵n̵e̵_̵n̵e̵_̵t̵w̵o̵]̵f̲i̲n̲F̲o̲u̲r̲_̲z̲e̲r̲o̲_̲n̲e̲_̲t̲w̲o̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/CoupledSmithWallClosure.lean:1092:2: Try `simp at hdF` instead of `simpa using hdF`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7462/7586] Replayed HC4.Valuation.GeometricAssemblyEntry
+warning: HC4/Valuation/GeometricAssemblyEntry.lean:1193:4: unused variable `hsep`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/GeometricAssemblyEntry.lean:1195:8: unused variable `repair'`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7463/7586] Replayed HC4.Valuation.PointedShearContinuation
+warning: HC4/Valuation/PointedShearContinuation.lean:180:15: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:264:39: This simp argument is unused:
+  hk0
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hk0̵,̵ ̵h̵k̵j, hjk, hj0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:264:49: This simp argument is unused:
+  hjk
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hk0, hkj, hjk̵,̵ ̵h̵j̵0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:270:44: This simp argument is unused:
+  hjk
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hnk, hjk̵,̵ ̵h̵j̵0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:270:49: This simp argument is unused:
+  hj0
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hnk, hjk,̵ ̵h̵j̵0̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:272:49: This simp argument is unused:
+  hjn
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hnk, hnj, hjn̵,̵ ̵h̵j̵0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:272:54: This simp argument is unused:
+  hj0
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hnk, hnj, hjn,̵ ̵h̵j̵0̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:262:48: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:264:63: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:270:58: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:272:63: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:262:48: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:264:63: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:270:58: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:272:63: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Valuation/PointedShearContinuation.lean:292:27: This simp argument is unused:
+  add_mul
+
+Hint: Omit it from the simp argument list.
+  simp [hp, hq, mul_add,̵ ̵a̵d̵d̵_̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:299:37: This simp argument is unused:
+  hk0
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hk0,̵ ̵h̵k̵0̵']
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:304:44: This simp argument is unused:
+  hk0'
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hk0,̵ ̵h̵k̵0̵'̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:307:44: This simp argument is unused:
+  h0n
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hn0, h0̵n,̵ ̵h̵n̵k, hk0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:307:54: This simp argument is unused:
+  hk0
+
+Hint: Omit it from the simp argument list.
+  simp [elementaryShearVariable, hn0, h0n, hnk,̵ ̵h̵k̵0̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/PointedShearContinuation.lean:292:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Valuation/PointedShearContinuation.lean:395:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Valuation/PointedShearContinuation.lean:625:5: unused variable `hk0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7464/7586] Replayed HC4.Valuation.SeparatedRightWallScaleDescent
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:439:17: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵ ̵at hnonneg
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:657:7: unused variable `hi`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:674:15: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵,̵ ̵p̵o̵w̵_̵o̵n̵e̵]̵[̲p̲o̲w̲_̲o̲n̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:676:15: This simp argument is unused:
+  dif_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵d̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:722:4: This simp argument is unused:
+  kernelInflateDerivativeCoefficient
+
+Hint: Omit it from the simp argument list.
+  simp [kernelInflateHom,̵
+  ̵ ̵ ̵ ̵ ̵k̵e̵r̵n̵e̵l̵I̵n̵f̵l̵a̵t̵e̵D̵e̵r̵i̵v̵a̵t̵i̵v̵e̵C̵o̵e̵f̵f̵i̵c̵i̵e̵n̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:766:5: unused variable `hnotCoeff`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:770:5: unused variable `hnoPrimitive`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:772:5: unused variable `hsection`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:776:5: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:923:17: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵ ̵at hnonneg
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:1219:25: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:1219:25: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:1244:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:1236:15: This simp argument is unused:
+  dif_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵d̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SeparatedRightWallScaleDescent.lean:1442:4: 'repeat' rw [← pow_add]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [7465/7586] Replayed HC4.Valuation.FinalRestartAssembly
+warning: HC4/Valuation/FinalRestartAssembly.lean:396:8: unused variable `e`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/FinalRestartAssembly.lean:408:4: unused variable `hJC2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/FinalRestartAssembly.lean:411:8: unused variable `s`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7466/7586] Replayed HC4.Valuation.LosslessSmithFrontier
+warning: HC4/Valuation/LosslessSmithFrontier.lean:641:4: unused variable `hJC2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/LosslessSmithFrontier.lean:644:8: unused variable `f`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7468/7586] Replayed HC4.Valuation.DefectRetainingDepartureFrontier
+warning: HC4/Valuation/DefectRetainingDepartureFrontier.lean:784:4: unused variable `hJC2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/DefectRetainingDepartureFrontier.lean:787:8: unused variable `f`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7469/7586] Replayed HC4.Valuation.ActualParameterLayer
+warning: HC4/Valuation/ActualParameterLayer.lean:58:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/Valuation/ActualParameterLayer.lean:61:10: 'simp' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Valuation/ActualParameterLayer.lean:61:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [7472/7586] Replayed HC4.Newton.GeneralFourBlockSchur
+warning: HC4/Newton/GeneralFourBlockSchur.lean:62:0: automatically included section variable(s) unused in theorem `HC4.Newton.GeneralFourBlock.ext`:
+  [CommRing R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CommRing R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/GeneralFourBlockSchur.lean:100:0: automatically included section variable(s) unused in theorem `HC4.Newton.GeneralFourBlock.matrix_ofSymmetricMatrix`:
+  [CommRing R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CommRing R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7477/7586] Replayed HC4.Valuation.SmithFrontierFourBlockExtraction
+warning: HC4/Valuation/SmithFrontierFourBlockExtraction.lean:93:10: This simp argument is unused:
+  Finsupp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵h̵i̵j̵,̵[̲h̲i̲j̲,̲ hji, add_comm, add_left_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/SmithFrontierFourBlockExtraction.lean:94:31: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [Finsupp.single_apply, hij, hji, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]̵a̲d̲d̲_̲l̲e̲f̲t̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7478/7586] Replayed HC4.Newton.ZeroSchurFirstEntryClock
+warning: HC4/Newton/ZeroSchurFirstEntryClock.lean:487:0: automatically included section variable(s) unused in theorem `HC4.Newton.ExactZeroSchurClock.hasPositiveEntryLayer`:
+  [IsDomain R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsDomain R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/ZeroSchurFirstEntryClock.lean:617:10: This simp argument is unused:
+  BinarySchurPolynomialSeries.determinant
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵B̵i̵n̵a̵r̵y̵S̵c̵h̵u̵r̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵S̵e̵r̵i̵e̵s̵.̵d̵e̵t̵e̵r̵m̵i̵n̵a̵n̵t̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/ZeroSchurFirstEntryClock.lean:643:1: automatically included section variable(s) unused in theorem `HC4.Newton.ExactRankOneSchurClockAt.hasTransverse`:
+  [IsDomain R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsDomain R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Newton/ZeroSchurFirstEntryClock.lean:727:5: unused variable `hres`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Newton/ZeroSchurFirstEntryClock.lean:761:5: unused variable `hres`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7479/7586] Replayed HC4.Newton.RigidPacketEvaluatedHessianChart
+warning: HC4/Newton/RigidPacketEvaluatedHessianChart.lean:47:5: unused variable `D`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Newton/RigidPacketEvaluatedHessianChart.lean:69:5: unused variable `D`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7480/7586] Replayed HC4.Valuation.QuadraticFamilyCollision
+warning: HC4/Valuation/QuadraticFamilyCollision.lean:39:0: automatically included section variable(s) unused in theorem `HC4.Valuation.homogeneous_zero_eq_C_constantCoeff_domain`:
+  [IsDomain R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsDomain R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Valuation/QuadraticFamilyCollision.lean:59:18: This simp argument is unused:
+  hd
+
+Hint: Omit it from the simp argument list.
+  simp [hcoeff, h̵d̵,̵ ̵Ne.symm hd]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/QuadraticFamilyCollision.lean:124:0: automatically included section variable(s) unused in theorem `HC4.Valuation.quadraticFamilyHessianMatrix_det`:
+  [IsDomain R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsDomain R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7481/7586] Replayed HC4.Valuation.RigidPacketZeroSchurBridge
+warning: HC4/Valuation/RigidPacketZeroSchurBridge.lean:125:37: This simp argument is unused:
+  polynomialConstantSection
+
+Hint: Omit it from the simp argument list.
+  simp [constantSpatialEval,̵ ̵p̵o̵l̵y̵n̵o̵m̵i̵a̵l̵C̵o̵n̵s̵t̵a̵n̵t̵S̵e̵c̵t̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Valuation/RigidPacketZeroSchurBridge.lean:480:5: unused variable `hrigid`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/RigidPacketZeroSchurBridge.lean:533:5: unused variable `complexity`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7484/7586] Replayed HC4.Valuation.RigidClosingRecenteredSource
+warning: HC4/Valuation/RigidClosingRecenteredSource.lean:46:5: unused variable `S`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Valuation/RigidClosingRecenteredSource.lean:55:5: unused variable `S`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7487/7586] Replayed HC4.Valuation.RigidClosingRecenteredSchurClock
+warning: HC4/Valuation/RigidClosingRecenteredSchurClock.lean:91:5: unused variable `hrigid`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7492/7586] Replayed HC4.MongeAmpere.SchurReduction
+warning: HC4/MongeAmpere/SchurReduction.lean:53:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/MongeAmpere/SchurReduction.lean:59:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7502/7586] Replayed HC4.RationalRigidity.ChartCertificates
+warning: HC4/RationalRigidity/ChartCertificates.lean:80:34: Try `simp at h` instead of `simpa using h`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/RationalRigidity/ChartCertificates.lean:98:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.identity_of_two_chart_cover`:
+  [Field K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Field K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7503/7586] Replayed HC4.RationalRigidity.FinitePreimage
+warning: HC4/RationalRigidity/FinitePreimage.lean:102:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.natDegree_ne_zero_of_coeff_ne_zero`:
+  [IsAlgClosed K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsAlgClosed K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/RationalRigidity/FinitePreimage.lean:174:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.finite_infinity_target_cover`:
+  [IsAlgClosed K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsAlgClosed K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7511/7586] Replayed HC4.Polynomial.MonomialHessian
+warning: HC4/Polynomial/MonomialHessian.lean:39:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/MonomialHessian.lean:60:10: This simp argument is unused:
+  Matrix.diagonal_apply
+
+Hint: Omit it from the simp argument list.
+  simp [M̵a̵t̵r̵i̵x̵.̵d̵i̵a̵g̵o̵n̵a̵l̵_̵a̵p̵p̵l̵y̵,̵ ̵hik]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Polynomial/MonomialHessian.lean:57:58: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/MonomialHessian.lean:57:58: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Polynomial/MonomialHessian.lean:56:51: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/MonomialHessian.lean:71:34: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/MonomialHessian.lean:71:34: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Polynomial/MonomialHessian.lean:73:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/MonomialHessian.lean:89:10: This simp argument is unused:
+  MvPolynomial.eval_monomial
+
+Hint: Omit it from the simp argument list.
+  simp [hessian_apply, exponentHessianCore, MvPolynomial.pderiv_monomial, M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵e̵v̵a̵l̵_̵m̵o̵n̵o̵m̵i̵a̵l̵,̵ ̵hdi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Polynomial/MonomialHessian.lean:92:57: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/MonomialHessian.lean:94:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/MonomialHessian.lean:105:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7513/7586] Replayed HC4.Polynomial.ComplementaryLogHessian
+warning: HC4/Polynomial/ComplementaryLogHessian.lean:133:23: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/ComplementaryLogHessian.lean:133:23: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [7515/7586] Replayed HC4.Polynomial.AutonomousODEReconstruction
+warning: HC4/Polynomial/AutonomousODEReconstruction.lean:202:6: This simp argument is unused:
+  Polynomial.derivative_X_pow_succ
+
+Hint: Omit it from the simp argument list.
+  simp [SeparatedBinomialODE, binomialODEModel, eulerDerivative, Polynomial.derivative_mul,
+  ̲  ̲ ̲ ̲P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵_̵p̵o̵w̵_̵s̵u̵c̵c̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵d̵e̵r̵i̵v̵a̵t̵i̵v̵e̵_̵X̵_̵p̵o̵w̵_̵s̵u̵c̵c̵]̵P̲o̲l̲y̲n̲o̲m̲i̲a̲l̲.̲d̲e̲r̲i̲v̲a̲t̲i̲v̲e̲_̲p̲o̲w̲_̲s̲u̲c̲c̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7516/7586] Replayed HC4.Polynomial.LogarithmicInitialSlope
+warning: HC4/Polynomial/LogarithmicInitialSlope.lean:57:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/LogarithmicInitialSlope.lean:147:67: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/LogarithmicInitialSlope.lean:173:67: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/LogarithmicInitialSlope.lean:193:32: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/LogarithmicInitialSlope.lean:193:32: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [7519/7586] Replayed HC4.Polynomial.LogHessianMoments
+warning: HC4/Polynomial/LogHessianMoments.lean:77:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/LogHessianMoments.lean:79:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [7520/7586] Replayed HC4.Polynomial.RankThreeLogHessian
+warning: HC4/Polynomial/RankThreeLogHessian.lean:176:32: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/RankThreeLogHessian.lean:176:32: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [7521/7586] Replayed HC4.Polynomial.RankThreeFractionBridge
+warning: HC4/Polynomial/RankThreeFractionBridge.lean:69:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/RankThreeFractionBridge.lean:80:30: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [7522/7586] Replayed HC4.RationalRigidity.CanonicalReducedFraction
+warning: HC4/RationalRigidity/CanonicalReducedFraction.lean:82:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7525/7586] Replayed HC4.RationalRigidity.AutonomousRatFuncAssembly
+warning: HC4/RationalRigidity/AutonomousRatFuncAssembly.lean:32:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.finite_cleared_identity_of_ratFunc_identity`:
+  [IsAlgClosed K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsAlgClosed K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7527/7586] Replayed HC4.RationalRigidity.RankThreeReducedTarget
+warning: HC4/RationalRigidity/RankThreeReducedTarget.lean:44:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/RationalRigidity/RankThreeReducedTarget.lean:65:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [7529/7586] Replayed HC4.RationalRigidity.LogarithmicInfinityCertificate
+warning: HC4/RationalRigidity/LogarithmicInfinityCertificate.lean:164:5: unused variable `hN`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/RationalRigidity/LogarithmicInfinityCertificate.lean:164:18: unused variable `hD`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/RationalRigidity/LogarithmicInfinityCertificate.lean:214:12: This simp argument is unused:
+  D
+
+Hint: Omit it from the simp argument list.
+  simp [D̵,̵ ̵logarithmicSourceDenominator, canonicalReducedDenominator,
+  ̵  ̵ ̵ ̵ ̵ ̵ ̵ ̵polynomialPairRatFunc,
+  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲HC4.Polynomial.eulerDerivative] at hSourceDegree
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/RationalRigidity/LogarithmicInfinityCertificate.lean:311:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.rankThreeEtaNumerator_eq_zero_of_endpoint_core_det_zero`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7530/7586] Replayed HC4.RationalRigidity.ClearedInfinityEvaluation
+warning: HC4/RationalRigidity/ClearedInfinityEvaluation.lean:147:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/RationalRigidity/ClearedInfinityEvaluation.lean:310:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HC4/RationalRigidity/ClearedInfinityEvaluation.lean:369:2: Try `simp at hdeg` instead of `simpa using hdeg`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7531/7586] Replayed HC4.RationalRigidity.RankThreeInfinityAssembly
+warning: HC4/RationalRigidity/RankThreeInfinityAssembly.lean:117:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.phi_natDegree_pos_of_logarithmicSourceDenominator_pos`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/RationalRigidity/RankThreeInfinityAssembly.lean:280:0: automatically included section variable(s) unused in theorem `HC4.RationalRigidity.rankThree_polynomial_autonomous_equation_of_constant_denominator`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7541/7586] Replayed HC4.Toric.BoundaryGeometry
+warning: HC4/Toric/BoundaryGeometry.lean:119:28: unused variable `hb`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HC4/Toric/BoundaryGeometry.lean:147:15: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [7552/7586] Replayed HC4.Newton.ExposedFaces
+warning: HC4/Newton/ExposedFaces.lean:40:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [7556/7586] Replayed HC4.Polynomial.DerivativeBounds
+warning: HC4/Polynomial/DerivativeBounds.lean:21:0: automatically included section variable(s) unused in theorem `HC4.Polynomial.IsWeightLE.pderiv`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/Polynomial/DerivativeBounds.lean:51:0: automatically included section variable(s) unused in theorem `HC4.Polynomial.IsWeightLT.pderiv`:
+  [DecidableEq σ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7557/7586] Replayed HC4.Polynomial.TopProduct
+warning: HC4/Polynomial/TopProduct.lean:93:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [7560/7586] Replayed HC4.MongeAmpere.MaximalInitial
+warning: HC4/MongeAmpere/MaximalInitial.lean:26:0: automatically included section variable(s) unused in theorem `HC4.MongeAmpere.hasInitialHessianDeterminant_of_isWeightLE`:
+  [Nontrivial K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nontrivial K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HC4/MongeAmpere/MaximalInitial.lean:48:0: automatically included section variable(s) unused in theorem `HC4.MongeAmpere.maximal_initial_hessianDeterminant_eq_zero_of_zero`:
+  [Nontrivial K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nontrivial K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [7561/7586] Replayed HC4.MongeAmpere.FirstContactMaximal
+warning: HC4/MongeAmpere/FirstContactMaximal.lean:51:2: 'push_cast' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [7562/7586] Replayed HC4.Newton.ScaledContact
+warning: HC4/Newton/ScaledContact.lean:25:68: 'push_cast' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [7563/7586] Replayed HC4.Newton.BoundaryCycle
+warning: HC4/Newton/BoundaryCycle.lean:41:10: This simp argument is unused:
+  AdjacentFacets
+
+Hint: Omit it from the simp argument list.
+  simp [A̵d̵j̵a̵c̵e̵n̵t̵F̵a̵c̵e̵t̵s̵,̵ ̵OppositeFacets, OnRay] at hne hnopp ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7564/7586] Replayed HC4.Newton.FirstContactSelection
+warning: HC4/Newton/FirstContactSelection.lean:38:33: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [nonlinearOutsideSupport,̵ ̵a̵n̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7570/7586] Replayed HC4.Newton.BoundaryStrata
+warning: HC4/Newton/BoundaryStrata.lean:45:37: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ rExponent, rBranch, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:52:39: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ pExponent, rBranch]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:67:37: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ rExponent, rBranch, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:74:39: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ qExponent, rBranch]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:89:37: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ sExponent, sBranch, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:96:39: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ qExponent, sBranch]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:111:37: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ sExponent, sBranch, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Newton/BoundaryStrata.lean:118:39: This simp argument is unused:
+  OnRay
+
+Hint: Omit it from the simp argument list.
+  simp [̵O̵n̵R̵a̵y̵,̵ ̵E̵x̵p̵o̵n̵e̵n̵t̵.̵s̵c̵a̵l̵e̵,̵[̲E̲x̲p̲o̲n̲e̲n̲t̲.̲s̲c̲a̲l̲e̲,̲ pExponent, sBranch]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7574/7586] Replayed HC4.Polynomial.ComplementaryMvSubstitution
+warning: HC4/Polynomial/ComplementaryMvSubstitution.lean:158:39: This simp argument is unused:
+  MvPolynomial.pderiv_mul
+
+Hint: Omit it from the simp argument list.
+  simp [eulerScaledHessian, mvEuler,̵ ̵M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵p̵d̵e̵r̵i̵v̵_̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Polynomial/ComplementaryMvSubstitution.lean:161:39: This simp argument is unused:
+  MvPolynomial.pderiv_mul
+
+Hint: Omit it from the simp argument list.
+  simp [eulerScaledHessian, mvEuler, M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵p̵d̵e̵r̵i̵v̵_̵m̵u̵l̵,̵ ̵hij, hji]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [7575/7586] Replayed HC4.Polynomial.ComplementaryMvMomentRealisation
+warning: HC4/Polynomial/ComplementaryMvMomentRealisation.lean:126:17: This simp argument is unused:
+  MvPolynomial.pderiv_C_mul
+
+Hint: Omit it from the simp argument list.
+  simp [mvEuler,̵ ̵M̵v̵P̵o̵l̵y̵n̵o̵m̵i̵a̵l̵.̵p̵d̵e̵r̵i̵v̵_̵C̵_̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HC4/Polynomial/ComplementaryMvMomentRealisation.lean:586:52: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/ComplementaryMvMomentRealisation.lean:597:49: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HC4/Polynomial/ComplementaryMvMomentRealisation.lean:586:52: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HC4/Polynomial/ComplementaryMvMomentRealisation.lean:597:49: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [7577/7586] Replayed HC4.Polynomial.AutonomousODEPoleOrder
+warning: HC4/Polynomial/AutonomousODEPoleOrder.lean:96:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HC4/Polynomial/AutonomousODEPoleOrder.lean:128:17: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

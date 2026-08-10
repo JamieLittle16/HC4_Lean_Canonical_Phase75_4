@@ -44,6 +44,9 @@ import HC4.Valuation.MovingCollisionRecentering
 import HC4.Valuation.RigidClosingRecenteredSource
 import HC4.Valuation.RigidClosingFirstKernelStage
 import HC4.Valuation.RigidClosingFirstKernelAssembly
+import HC4.Valuation.RigidClosingRecenteredSchurClock
+import HC4.Valuation.RigidClosingRecenteredFirstKernelAssembly
+import HC4.Valuation.RigidClosingResidualOrientation
 import HC4.Newton.TerminalAssociatedGradedEndpoint
 import HC4.Valuation.RigidClosingTerminalInterface
 import HC4.LinearAlgebra

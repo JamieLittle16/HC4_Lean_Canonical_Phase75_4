@@ -13,9 +13,9 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.RigidClosingFirstKernelStage transitive imports (legacy)",
-         "5139293759417308116"],
+         "6668776619178281923"],
         ["HC4.Valuation.RigidClosingFirstKernelStage:importAllArts",
-         "8899625984396532970"]]]]],
+         "13492594215245143731"]]]]],
     ["libs",
      [["import dynlibs", "1723"],
       ["package external libraries", "1723"],
@@ -27,4 +27,4 @@
    "8964607982914585990"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "14006959722933425840"}
+ "depHash": "11350015264475741880"}

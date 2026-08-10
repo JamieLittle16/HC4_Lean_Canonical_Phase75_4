@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: HC4
-// Imports: Init HC4.RationalRigidity HC4.Toric HC4.ClassifiedFamilies HC4.QuasiTranslation HC4.Newton HC4.Valuation.LinearCovariance HC4.Valuation.KernelBlowupCertificate HC4.Valuation.PolynomialFamilyKernelRestart HC4.Valuation.IntegralKernelBlowup HC4.Valuation.ConcreteIntegralKernelRestart HC4.Valuation.KernelInflationHessianDefect HC4.Valuation.ExactKernelDefectDrop HC4.Valuation.IntegralKernelSlopeExtraction HC4.Valuation.SmithConformalCovariance HC4.Valuation.ParameterRamification HC4.Valuation.CommonParameterFactorRestart HC4.Newton.SymmetricSmithMinimality HC4.Valuation.SymmetricSmithImprovementRestart HC4.Valuation.BinarySmithOrderExtraction HC4.Valuation.ZeroSlopeSmithDispatcher HC4.Valuation.AlignedSmithWallArithmetic HC4.Valuation.AlignedSmithFirstStop HC4.Valuation.AlignedSmithEndpoint HC4.Valuation.PrimitiveSmithEndpoint HC4.Valuation.SeparatedSmithBoundaryClosure HC4.Valuation.CoupledSmithWallClosure HC4.Valuation.GeometricAssemblyEntry HC4.Valuation.PointedShearContinuation HC4.Valuation.SeparatedRightWallScaleDescent HC4.Valuation.FinalRestartAssembly HC4.Valuation.LosslessSmithFrontier HC4.Valuation.DefectRetainingDepartureFrontier HC4.Valuation.ActualParameterLayer HC4.Valuation.FirstSchurDepartureBridge HC4.Valuation.CanonicalSmithReesSpecialFiber HC4.Valuation.CanonicalSmithDefectExposure HC4.Valuation.CanonicalSmithDefectExposureCollision HC4.Valuation.SmithFrontierFourBlockExtraction HC4.Newton.ZeroSchurFirstEntryClock HC4.Newton.RigidPacketEvaluatedHessianChart HC4.Valuation.RigidPacketZeroSchurBridge HC4.Valuation.RigidClosingExactCollisionSource HC4.Valuation.MovingCollisionRecentering HC4.Valuation.RigidClosingRecenteredSource HC4.Valuation.RigidClosingFirstKernelStage HC4.Valuation.RigidClosingFirstKernelAssembly HC4.Newton.TerminalAssociatedGradedEndpoint HC4.Valuation.RigidClosingTerminalInterface HC4.LinearAlgebra HC4.MongeAmpere HC4.Polynomial HC4.FacetRigidity HC4.MainAssembly
+// Imports: Init HC4.RationalRigidity HC4.Toric HC4.ClassifiedFamilies HC4.QuasiTranslation HC4.Newton HC4.Valuation.LinearCovariance HC4.Valuation.KernelBlowupCertificate HC4.Valuation.PolynomialFamilyKernelRestart HC4.Valuation.IntegralKernelBlowup HC4.Valuation.ConcreteIntegralKernelRestart HC4.Valuation.KernelInflationHessianDefect HC4.Valuation.ExactKernelDefectDrop HC4.Valuation.IntegralKernelSlopeExtraction HC4.Valuation.SmithConformalCovariance HC4.Valuation.ParameterRamification HC4.Valuation.CommonParameterFactorRestart HC4.Newton.SymmetricSmithMinimality HC4.Valuation.SymmetricSmithImprovementRestart HC4.Valuation.BinarySmithOrderExtraction HC4.Valuation.ZeroSlopeSmithDispatcher HC4.Valuation.AlignedSmithWallArithmetic HC4.Valuation.AlignedSmithFirstStop HC4.Valuation.AlignedSmithEndpoint HC4.Valuation.PrimitiveSmithEndpoint HC4.Valuation.SeparatedSmithBoundaryClosure HC4.Valuation.CoupledSmithWallClosure HC4.Valuation.GeometricAssemblyEntry HC4.Valuation.PointedShearContinuation HC4.Valuation.SeparatedRightWallScaleDescent HC4.Valuation.FinalRestartAssembly HC4.Valuation.LosslessSmithFrontier HC4.Valuation.DefectRetainingDepartureFrontier HC4.Valuation.ActualParameterLayer HC4.Valuation.FirstSchurDepartureBridge HC4.Valuation.CanonicalSmithReesSpecialFiber HC4.Valuation.CanonicalSmithDefectExposure HC4.Valuation.CanonicalSmithDefectExposureCollision HC4.Valuation.SmithFrontierFourBlockExtraction HC4.Newton.ZeroSchurFirstEntryClock HC4.Newton.RigidPacketEvaluatedHessianChart HC4.Valuation.RigidPacketZeroSchurBridge HC4.Valuation.RigidClosingExactCollisionSource HC4.Valuation.MovingCollisionRecentering HC4.Valuation.RigidClosingRecenteredSource HC4.Valuation.RigidClosingFirstKernelStage HC4.Valuation.RigidClosingFirstKernelAssembly HC4.Valuation.RigidClosingRecenteredSchurClock HC4.Valuation.RigidClosingRecenteredFirstKernelAssembly HC4.Valuation.RigidClosingResidualOrientation HC4.Newton.TerminalAssociatedGradedEndpoint HC4.Valuation.RigidClosingTerminalInterface HC4.LinearAlgebra HC4.MongeAmpere HC4.Polynomial HC4.FacetRigidity HC4.MainAssembly
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -60,6 +60,9 @@ lean_object* initialize_HC4_Valuation_MovingCollisionRecentering(uint8_t builtin
 lean_object* initialize_HC4_Valuation_RigidClosingRecenteredSource(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_RigidClosingFirstKernelStage(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_RigidClosingFirstKernelAssembly(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_RigidClosingRecenteredSchurClock(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_RigidClosingRecenteredFirstKernelAssembly(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_RigidClosingResidualOrientation(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Newton_TerminalAssociatedGradedEndpoint(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_RigidClosingTerminalInterface(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_LinearAlgebra(uint8_t builtin, lean_object*);
@@ -211,6 +214,15 @@ res = initialize_HC4_Valuation_RigidClosingFirstKernelStage(builtin, lean_io_mk_
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Valuation_RigidClosingFirstKernelAssembly(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_RigidClosingRecenteredSchurClock(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_RigidClosingRecenteredFirstKernelAssembly(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_RigidClosingResidualOrientation(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Newton_TerminalAssociatedGradedEndpoint(builtin, lean_io_mk_world());

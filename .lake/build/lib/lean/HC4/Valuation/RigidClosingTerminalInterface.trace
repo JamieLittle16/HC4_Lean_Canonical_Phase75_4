@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.RigidClosingRecenteredSource transitive imports (legacy)",
-         "8005751336804765622"],
+         "11384903562212567699"],
         ["HC4.Valuation.RigidClosingRecenteredSource:importAllArts",
          "975548703147854931"],
         ["HC4.Newton.TerminalAssociatedGradedEndpoint transitive imports (legacy)",
@@ -31,4 +31,4 @@
    "4845917036311193528"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "10762787594961778516"}
+ "depHash": "11556369020798991643"}
