@@ -147,6 +147,10 @@ structure CanonicalSmithDepartureFrontier.RigidClosingRecenteredSourceData
   original : f.RigidClosingExactCollisionSourceData
   family : MvPolynomial (Fin 4) (Polynomial K)
   rightSection : Fin 4 -> Polynomial K
+  /-- Provenance: the retained family is the canonical affine recentering
+  of the actual defect-preserving Smith exposure family. -/
+  family_eq_recentered :
+    family = original.recenteredFamily
   hessianDefect :
     HasPolynomialFamilyHessianDefect
       (K := K) family
@@ -172,6 +176,7 @@ noncomputable def
   original := S
   family := S.recenteredFamily
   rightSection := S.recenteredRightSection
+  family_eq_recentered := rfl
   hessianDefect := S.recenteredHessianDefect
   exactCollision := S.recenteredExactCollision
   rightSpecial := S.recenteredRightSpecial

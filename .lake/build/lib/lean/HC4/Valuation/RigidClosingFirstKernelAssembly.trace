@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.RigidClosingFirstKernelStage transitive imports (legacy)",
-         "6668776619178281923"],
+         "16327760535417118831"],
         ["HC4.Valuation.RigidClosingFirstKernelStage:importAllArts",
          "13492594215245143731"]]]]],
     ["libs",
@@ -27,4 +27,4 @@
    "8964607982914585990"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "11350015264475741880"}
+ "depHash": "17316004933536596273"}
