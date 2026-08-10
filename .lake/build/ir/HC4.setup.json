@@ -14095,6 +14095,10 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean"],
   "HC4.Valuation.RigidClosingTerminalInterface":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingTerminalInterface.olean"],
+  "HC4.Valuation.RigidClosingRecenteredSource":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingRecenteredSource.olean"],
+  "HC4.Valuation.RigidClosingExactCollisionSource":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingExactCollisionSource.olean"],
   "HC4.Valuation.QuadraticFamilyCollision":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/QuadraticFamilyCollision.olean"],
   "HC4.Valuation.PrimitiveSmithEndpoint":
@@ -14107,6 +14111,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/PointedShearContinuation.olean"],
   "HC4.Valuation.ParameterRamification":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ParameterRamification.olean"],
+  "HC4.Valuation.MovingCollisionRecentering":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/MovingCollisionRecentering.olean"],
   "HC4.Valuation.LosslessSmithFrontier":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/LosslessSmithFrontier.olean"],
   "HC4.Valuation.LinearCovariance":
@@ -14137,6 +14143,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CommonParameterFactorRestart.olean"],
   "HC4.Valuation.CanonicalSmithReesSpecialFiber":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalSmithReesSpecialFiber.olean"],
+  "HC4.Valuation.CanonicalSmithDefectExposureCollision":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalSmithDefectExposureCollision.olean"],
   "HC4.Valuation.CanonicalSmithDefectExposure":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalSmithDefectExposure.olean"],
   "HC4.Valuation.BinarySmithOrderExtraction":

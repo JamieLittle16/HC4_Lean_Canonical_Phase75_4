@@ -1,4 +1,4 @@
-import HC4.Valuation.RigidPacketZeroSchurBridge
+import HC4.Valuation.RigidClosingRecenteredSource
 import HC4.Newton.TerminalAssociatedGradedEndpoint
 
 /-!
@@ -26,14 +26,19 @@ open HC4.Newton
 variable {K : Type*} [Field K]
 
 /-- The exact remaining terminal extraction interface for one canonical
-Smith departure frontier.  The source is now provenance-preserving, so an
-implementation has access to the actual defect-preserving family and its
-left/right rigid chart. -/
+Smith departure frontier.
+
+The input is no longer a bare evaluated matrix clock.  It is the canonically
+recentered source-level record: the left moving section is literally zero,
+the right section reduces to `e0`, the exact family collision is retained,
+and the pure Hessian defect is unchanged.  A future implementation must
+construct the terminal associated-graded fibre from this affine source data;
+it may not silently identify the evaluated Schur block with that fibre. -/
 def HasRigidClosingTerminalExtraction
     [CharZero K]
     {D complexity : ℕ}
     (f : CanonicalSmithDepartureFrontier (K := K) D complexity) : Prop :=
-  ∀ _hclosing : f.RigidClosingCertificate,
+  ∀ _source : f.RigidClosingRecenteredSourceData,
     Nonempty (TerminalAssociatedGradedCollisionData K)
 
 /-- Under `JC₂`, a completed closing-to-terminal extraction eliminates the
@@ -51,7 +56,9 @@ theorem CanonicalSmithDepartureFrontier.rankTwoProgress_of_JC2_of_closingExtract
   rcases f.rankTwoProgress_or_rigidClosingCertificate hD with
     hprogress | hclosing
   · exact hprogress
-  · rcases hextract hclosing with ⟨T⟩
+  · let source0 := f.rigidClosingExactCollisionSourceData hclosing
+    let source := source0.recenteredSourceData
+    rcases hextract source with ⟨T⟩
     exact False.elim (T.impossible_of_JC2 hJC2)
 
 end

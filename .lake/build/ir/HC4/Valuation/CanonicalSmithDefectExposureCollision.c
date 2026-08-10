@@ -1,6 +1,6 @@
 // Lean compiler output
-// Module: HC4.Valuation.RigidClosingTerminalInterface
-// Imports: Init HC4.Valuation.RigidClosingRecenteredSource HC4.Newton.TerminalAssociatedGradedEndpoint
+// Module: HC4.Valuation.CanonicalSmithDefectExposureCollision
+// Imports: Init HC4.Valuation.CanonicalSmithDefectExposure HC4.Valuation.SeparatedSmithBoundaryClosure Mathlib.Tactic
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -14,20 +14,24 @@
 extern "C" {
 #endif
 lean_object* initialize_Init(uint8_t builtin, lean_object*);
-lean_object* initialize_HC4_Valuation_RigidClosingRecenteredSource(uint8_t builtin, lean_object*);
-lean_object* initialize_HC4_Newton_TerminalAssociatedGradedEndpoint(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_CanonicalSmithDefectExposure(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_SeparatedSmithBoundaryClosure(uint8_t builtin, lean_object*);
+lean_object* initialize_Mathlib_Tactic(uint8_t builtin, lean_object*);
 static bool _G_initialized = false;
-LEAN_EXPORT lean_object* initialize_HC4_Valuation_RigidClosingTerminalInterface(uint8_t builtin, lean_object* w) {
+LEAN_EXPORT lean_object* initialize_HC4_Valuation_CanonicalSmithDefectExposureCollision(uint8_t builtin, lean_object* w) {
 lean_object * res;
 if (_G_initialized) return lean_io_result_mk_ok(lean_box(0));
 _G_initialized = true;
 res = initialize_Init(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_HC4_Valuation_RigidClosingRecenteredSource(builtin, lean_io_mk_world());
+res = initialize_HC4_Valuation_CanonicalSmithDefectExposure(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
-res = initialize_HC4_Newton_TerminalAssociatedGradedEndpoint(builtin, lean_io_mk_world());
+res = initialize_HC4_Valuation_SeparatedSmithBoundaryClosure(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_Mathlib_Tactic(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));
