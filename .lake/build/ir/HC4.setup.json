@@ -14079,6 +14079,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean/ImportGraph/Imports.olean"],
   "HC4.Valuation.ZeroSlopeSmithDispatcher":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ZeroSlopeSmithDispatcher.olean"],
+  "HC4.Valuation.ZeroLeftDepartureFrontier":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ZeroLeftDepartureFrontier.olean"],
   "HC4.Valuation.SymmetricSmithImprovementRestart":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SymmetricSmithImprovementRestart.olean"],
   "HC4.Valuation.SmithFrontierFourBlockExtraction":
@@ -14159,6 +14161,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalSmithDefectExposureCollision.olean"],
   "HC4.Valuation.CanonicalSmithDefectExposure":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalSmithDefectExposure.olean"],
+  "HC4.Valuation.CanonicalEntrySanity":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/CanonicalEntrySanity.olean"],
   "HC4.Valuation.BinarySmithOrderExtraction":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/BinarySmithOrderExtraction.olean"],
   "HC4.Valuation.AlignedSmithWallArithmetic":
