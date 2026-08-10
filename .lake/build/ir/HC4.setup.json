@@ -14097,6 +14097,10 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingTerminalInterface.olean"],
   "HC4.Valuation.RigidClosingRecenteredSource":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingRecenteredSource.olean"],
+  "HC4.Valuation.RigidClosingFirstKernelStage":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingFirstKernelStage.olean"],
+  "HC4.Valuation.RigidClosingFirstKernelAssembly":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingFirstKernelAssembly.olean"],
   "HC4.Valuation.RigidClosingExactCollisionSource":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidClosingExactCollisionSource.olean"],
   "HC4.Valuation.QuadraticFamilyCollision":
