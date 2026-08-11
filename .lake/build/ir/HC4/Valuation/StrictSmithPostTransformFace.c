@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: HC4.Valuation.StrictSmithPostTransformFace
-// Imports: Init HC4.Valuation.ActualParameterLayer HC4.Valuation.BinarySmithOrderExtraction
+// Imports: Init HC4.Valuation.ActualParameterLayer HC4.Valuation.BinarySmithOrderExtraction HC4.Valuation.AdaptiveCoefficientOrder HC4.Valuation.AdaptiveDegreeTwoSaturatedFace
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -16,6 +16,8 @@ extern "C" {
 lean_object* initialize_Init(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_ActualParameterLayer(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Valuation_BinarySmithOrderExtraction(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_AdaptiveCoefficientOrder(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Valuation_AdaptiveDegreeTwoSaturatedFace(uint8_t builtin, lean_object*);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_HC4_Valuation_StrictSmithPostTransformFace(uint8_t builtin, lean_object* w) {
 lean_object * res;
@@ -28,6 +30,12 @@ res = initialize_HC4_Valuation_ActualParameterLayer(builtin, lean_io_mk_world())
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Valuation_BinarySmithOrderExtraction(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_AdaptiveCoefficientOrder(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Valuation_AdaptiveDegreeTwoSaturatedFace(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 return lean_io_result_mk_ok(lean_box(0));

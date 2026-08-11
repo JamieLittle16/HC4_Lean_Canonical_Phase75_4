@@ -43,6 +43,7 @@ import HC4.Valuation.LosslessSmithFrontier
 import HC4.Valuation.DefectRetainingDepartureFrontier
 import HC4.Valuation.ActualParameterLayer
 import HC4.Valuation.StrictSmithPostTransformFace
+import HC4.Valuation.StrictSmithMaximalNormalization
 import HC4.Valuation.FirstSchurDepartureBridge
 import HC4.Valuation.CanonicalSmithReesSpecialFiber
 import HC4.Valuation.CanonicalSmithDefectExposure
