@@ -7,6 +7,17 @@ import HC4.Valuation.LinearCovariance
 import HC4.Valuation.KernelBlowupCertificate
 import HC4.Valuation.PolynomialFamilyKernelRestart
 import HC4.Valuation.IntegralKernelBlowup
+import HC4.Valuation.NonlinearDegreeBoundPreservation
+import HC4.Valuation.ZeroGradientNormalization
+import HC4.Valuation.AdaptiveGeometricRestartState
+import HC4.Valuation.ScaledDefect
+import HC4.Valuation.AdaptiveDiagonalExposure
+import HC4.Valuation.AdaptiveRigidMatrixExposure
+import HC4.Valuation.AdaptiveRankTwoMatrixExposure
+import HC4.Valuation.AdaptiveSmithWallExposure
+import HC4.Valuation.AdaptiveDegreeTwoKernelRestart
+import HC4.Valuation.AdaptiveDegreeTwoKernelActivity
+import HC4.Valuation.AdaptiveDegreeTwoSaturatedFace
 import HC4.Valuation.ConcreteIntegralKernelRestart
 import HC4.Valuation.KernelInflationHessianDefect
 import HC4.Valuation.ExactKernelDefectDrop
@@ -31,6 +42,7 @@ import HC4.Valuation.FinalRestartAssembly
 import HC4.Valuation.LosslessSmithFrontier
 import HC4.Valuation.DefectRetainingDepartureFrontier
 import HC4.Valuation.ActualParameterLayer
+import HC4.Valuation.StrictSmithPostTransformFace
 import HC4.Valuation.FirstSchurDepartureBridge
 import HC4.Valuation.CanonicalSmithReesSpecialFiber
 import HC4.Valuation.CanonicalSmithDefectExposure
@@ -58,3 +70,4 @@ import HC4.FacetRigidity
 import HC4.MainAssembly
 
 import HC4.Valuation.CanonicalEntrySanity
+import HC4.Valuation.CanonicalAdaptiveSmithWall

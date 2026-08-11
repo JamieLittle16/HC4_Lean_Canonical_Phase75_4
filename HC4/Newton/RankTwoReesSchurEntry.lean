@@ -1,5 +1,6 @@
 import HC4.Newton.RankTwoFourBlockSchur
 import HC4.Newton.FirstSchurDeterminantOrder
+import HC4.Newton.ZeroSchurFirstEntryClock
 import Mathlib.Tactic
 
 /-!
@@ -126,6 +127,54 @@ structure RankTwoReesSchurEntry (K : Type*) [Field K] where
     (BinarySchurTail.mk tailA tailB tailC).entryBlock.Nonzero
 
 namespace RankTwoReesSchurEntry
+
+/-- The three cleared Schur numerators of an adapted rank-two polynomial
+block, viewed through the generic zero-Schur clock. -/
+noncomputable def zeroSchurSeries
+    (H : PolynomialRankTwoFourBlock K)
+    (hA : H.schurA.coeff 0 = 0)
+    (hB : H.schurB.coeff 0 = 0)
+    (hC : H.schurC.coeff 0 = 0) : ZeroSchurSeries K where
+  series :=
+    { active := H.schurA
+      offDiag := H.schurB
+      kernel := H.schurC }
+  active_coeff_zero := hA
+  offDiag_coeff_zero := hB
+  kernel_coeff_zero := hC
+
+/-- Generic first-common-order extraction for an adapted rank-two Rees
+block.  Once the constant Schur block is zero and some positive Schur layer
+exists, all factorisation and nonzero-tail fields of `RankTwoReesSchurEntry`
+are automatic. -/
+noncomputable def ofZeroConstantSchur
+    (H : PolynomialRankTwoFourBlock K)
+    (hA : H.schurA.coeff 0 = 0)
+    (hB : H.schurB.coeff 0 = 0)
+    (hC : H.schurC.coeff 0 = 0)
+    (hpos : (zeroSchurSeries H hA hB hC).HasPositiveEntryLayer) :
+    RankTwoReesSchurEntry K := by
+  let S := zeroSchurSeries H hA hB hC
+  exact
+    { block := H
+      order := S.firstPositiveEntryOrder hpos
+      tailA := S.tailActive hpos
+      tailB := S.tailOffDiag hpos
+      tailC := S.tailKernel hpos
+      schurA_factor := by
+        simpa [S, zeroSchurSeries, BinarySchurTail.firstFactor] using
+          S.active_eq_firstFactor_mul_tail hpos
+      schurB_factor := by
+        simpa [S, zeroSchurSeries, BinarySchurTail.firstFactor] using
+          S.offDiag_eq_firstFactor_mul_tail hpos
+      schurC_factor := by
+        simpa [S, zeroSchurSeries, BinarySchurTail.firstFactor] using
+          S.kernel_eq_firstFactor_mul_tail hpos
+      entry_nonzero := by
+        have hnz := S.tailSeries_constantBlock_nonzero hpos
+        simpa [S, zeroSchurSeries, ZeroSchurSeries.tailSeries,
+          BinarySchurPolynomialSeries.ConstantBlockNonzero,
+          BinarySchurTail.entryBlock, Polynomial.coeff_zero_eq_eval_zero] using hnz }
 
 /-- The normalised binary Schur tail after removing the common first
 parameter factor. -/

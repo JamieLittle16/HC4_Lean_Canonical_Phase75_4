@@ -2,6 +2,7 @@ import HC4.Valuation.RigidClosingRecenteredSource
 import HC4.Valuation.ExactKernelDefectDrop
 import HC4.Valuation.GeometricAssemblyEntry
 import HC4.Valuation.AlignedSmithWallArithmetic
+import HC4.Valuation.ScaledDefect
 import Mathlib.Tactic
 
 /-!
@@ -408,6 +409,25 @@ def HasRigidClosingStrictKernelRestart
           (zeroPolynomialSection (K := K)))
         (kernelBlowupSection
           rigidClosingCommonKernel q S.rightSection)
+
+/-- The concrete factor-`20` kernel restart carries a strict decrease of the
+discrete normalized defect.  This attaches the `Nat.div` arithmetic to the
+actual polynomial-family restart certificate; it does not yet change the
+legacy raw-defect `GlobalRestartState` stored by that certificate. -/
+theorem HasRigidClosingStrictKernelRestart.normalizedDefect_lt
+    (S : f.RigidClosingRecenteredSourceData)
+    (h : S.HasRigidClosingStrictKernelRestart) :
+    ∃ q : ℕ,
+      0 < q ∧
+      (alignedSmithRamificationIndex * f.defect - 2 * q) /
+          alignedSmithRamificationIndex < f.defect := by
+  rcases h with ⟨q, _hdiv, hq, hcert⟩
+  have hdrop := hcert.positiveDefectDrop
+  rcases hdrop with ⟨_hq, hle, _hdefect⟩
+  refine ⟨q, hq, ?_⟩
+  simpa [alignedSmithRamificationIndex] using
+    ScaledDefect.rigidClosing_normalizedNat_lt f.defect q hq
+      (by simpa [alignedSmithRamificationIndex] using hle)
 
 /-- **Phase 75.19 restart collapse.**
 

@@ -5765,6 +5765,8 @@
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedSmithBoundaryClosure.olean"],
   "HC4.Valuation.SeparatedRightWallScaleDescent":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/SeparatedRightWallScaleDescent.olean"],
+  "HC4.Valuation.ScaledDefect":
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/ScaledDefect.olean"],
   "HC4.Valuation.RigidPacketZeroSchurBridge":
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/RigidPacketZeroSchurBridge.olean"],
   "HC4.Valuation.RigidClosingRecenteredSource":

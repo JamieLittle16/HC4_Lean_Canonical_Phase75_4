@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: HC4.Newton.RankTwoReesSchurEntry
-// Imports: Init HC4.Newton.RankTwoFourBlockSchur HC4.Newton.FirstSchurDeterminantOrder Mathlib.Tactic
+// Imports: Init HC4.Newton.RankTwoFourBlockSchur HC4.Newton.FirstSchurDeterminantOrder HC4.Newton.ZeroSchurFirstEntryClock Mathlib.Tactic
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -104,6 +104,7 @@ return x_4;
 lean_object* initialize_Init(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Newton_RankTwoFourBlockSchur(uint8_t builtin, lean_object*);
 lean_object* initialize_HC4_Newton_FirstSchurDeterminantOrder(uint8_t builtin, lean_object*);
+lean_object* initialize_HC4_Newton_ZeroSchurFirstEntryClock(uint8_t builtin, lean_object*);
 lean_object* initialize_Mathlib_Tactic(uint8_t builtin, lean_object*);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_HC4_Newton_RankTwoReesSchurEntry(uint8_t builtin, lean_object* w) {
@@ -117,6 +118,9 @@ res = initialize_HC4_Newton_RankTwoFourBlockSchur(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_HC4_Newton_FirstSchurDeterminantOrder(builtin, lean_io_mk_world());
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_HC4_Newton_ZeroSchurFirstEntryClock(builtin, lean_io_mk_world());
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_Mathlib_Tactic(builtin, lean_io_mk_world());

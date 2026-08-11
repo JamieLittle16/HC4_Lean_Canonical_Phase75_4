@@ -1,0 +1,42 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["8492839631298198407"],
+  "i": "16253925556405948367",
+  "c": "2000519157825133994"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveSmithWallExposure.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveSmithWallExposure.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveSmithWallExposure.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveSmithWallExposure.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveSmithWallExposure.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/AdaptiveSmithWallExposure.lean:597:10: This simp argument is unused:\n  nsmul_eq_mul\n\nHint: Omit it from the simp argument list.\n  simp [n̵s̵m̵u̵l̵_̵e̵q̵_̵m̵u̵l̵,̵ ̵Nat.add_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveSmithWallExposure.lean:695:18: This simp argument is unused:\n  hin\n\nHint: Omit it from the simp argument list.\n  simp [adaptiveSmithInflateHom, adaptiveSmithInflateVariable,\n  ̵  ̵ ̵ ̵ ̵ ̵ ̵ ̵hp', hni,̵ ̵h̵i̵n̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Valuation.AdaptiveSmithWallExposure:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Newton.MixedDegreeFirstWallCompetition transitive imports (legacy)",
+         "12511091349663115517"],
+        ["HC4.Newton.MixedDegreeFirstWallCompetition:importAllArts",
+         "16069524900784939826"],
+        ["HC4.Valuation.CanonicalSmithDefectExposure transitive imports (legacy)",
+         "16902642959472892471"],
+        ["HC4.Valuation.CanonicalSmithDefectExposure:importAllArts",
+         "14295487187187877446"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveSmithWallExposure.lean",
+   "11708764039560299685"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "15852745134685738627"}

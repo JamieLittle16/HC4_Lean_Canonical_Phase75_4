@@ -13,3 +13,8 @@ import HC4.Newton.BoundaryStrata
 import HC4.Newton.ComplementaryEdgeArithmetic
 import HC4.Newton.RestartClassification
 import HC4.Newton.GlobalRestartClassification
+import HC4.Newton.AdaptiveRestartClassification
+import HC4.Newton.MixedDegreeAxisCollision
+import HC4.Newton.MixedDegreeFirstWallCompetition
+import HC4.Newton.MixedDegreeWallRefinement
+import HC4.Newton.AdaptivePacketExposure
