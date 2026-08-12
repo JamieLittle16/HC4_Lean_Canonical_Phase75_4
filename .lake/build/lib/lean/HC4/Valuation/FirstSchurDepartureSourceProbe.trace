@@ -1,0 +1,3147 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["10030284186263014757"],
+  "i": "1496723174677121600",
+  "c": "11251663272064228288"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/FirstSchurDepartureSourceProbe.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/FirstSchurDepartureSourceProbe.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/FirstSchurDepartureSourceProbe.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/FirstSchurDepartureSourceProbe.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/FirstSchurDepartureSourceProbe.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: ===== HC4/Valuation/FirstSchurDepartureBridge.lean =====",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1: import HC4.Valuation.ActualParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 2: import HC4.Valuation.CanonicalSmithReesSpecialFiber",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 3: import HC4.Newton.MixedDepartureAdapter",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 4: import HC4.Newton.FirstSchurLayerLinearization",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 5: import HC4.Newton.RankOneSchurSeriesAlignment",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 6: import Mathlib.Tactic",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 7:",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 8: /-!",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 9: # First Schur departure bridge",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 10:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 11: This module isolates the last determinant-coefficient calculation from the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 12: already-green preterminal repair algebra.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 13:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 14: For a departure-ready family with",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 15:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 16:     det Hess(P) = X^Delta,",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 17:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 18: every exact parameter layer of the Hessian determinant below `Delta` is",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 19: zero.  Therefore, once the geometric Schur calculation identifies the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 20: first transverse determinant layer with",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 21:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 22:     b * (P_j)_{VV},",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 23:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 24: that source vanishes automatically and the existing mixed-departure adapter",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 25: immediately gives strict rank promotion or the affine/separated channel.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 26:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 27: The definition `IsPreterminalSchurLayerModel` deliberately records only the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 28: single geometric identity still to be established from the Smith packet.",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 29: Everything after that identity is proved here.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 30: -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 31:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 32: namespace HC4.Valuation",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 33:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 34: noncomputable section",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 35:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 36: open HC4.Newton",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 37:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 38: variable {K : Type*} [Field K]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 39:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 40: /-- Below the exact determinant-closing exponent, the corresponding actual",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 41: parameter layer of the Hessian determinant is zero. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 42: theorem hessianDefect_parameterLayer_eq_zero_of_lt",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 43:     (P : MvPolynomial (Fin 4) (Polynomial K))",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 44:     {Delta j : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 45:     (hdef :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 46:       HasPolynomialFamilyHessianDefect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 47:         (K := K) P Delta)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 48:     (hj : j < Delta) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 49:     familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 50:         (HC4.Polynomial.hessianDeterminant P) j = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 51:   ext d",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 52:   rw [familyParameterLayer_coeff]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 53:   rw [hdef]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 54:   have hne : j ≠ Delta := Nat.ne_of_lt hj",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 55:   by_cases hd : d = 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 56:   · subst d",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 57:     rw [MvPolynomial.coeff_C]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 58:     simp only [if_pos]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 59:     rw [Polynomial.coeff_X_pow]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 60:     simp [hne]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 61:   · rw [MvPolynomial.coeff_C]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 62:     simp [Ne.symm hd]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 63:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 64: /-- The exact local identity expected at a first preterminal Schur",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 65: departure.  The left side is the *actual* `j`th determinant layer; the right",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 66: side is the already formalised rank-one Schur linear source of the actual",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 67: coefficient potential `P_j`.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 68:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 69: Keeping this as a named predicate prevents the final exhaustion proof from",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 70: silently assuming the crucial layer-identification calculation. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 71: def IsPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 72:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 73:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 74:       (K := K) D complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 75:     (j : ℕ)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 76:     (b : K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 77:     (V : Fin 4) : Prop :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 78:   familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 79:       (HC4.Polynomial.hessianDeterminant f.lossless.family) j =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 80:     preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 81:       b V (familyParameterLayer f.lossless.family j)",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 82:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 83: /-- Once the first Schur layer has been identified with the local rank-one",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 84: model, exact Hessian defect forces its linear source to vanish below",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 85: closure. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 86: theorem preterminalSchurLayer_source_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 87:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 88:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 89:       (K := K) D complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 90:     {j : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 91:     {b : K}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 92:     {V : Fin 4}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 93:     (hj : j < f.defect)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 94:     (hmodel :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 95:       IsPreterminalSchurLayerModel f j b V) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 96:     preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 97:         b V (familyParameterLayer f.lossless.family j) = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 98:   rw [IsPreterminalSchurLayerModel] at hmodel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 99:   rw [← hmodel]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 100:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 101:     hessianDefect_parameterLayer_eq_zero_of_lt",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 102:       f.lossless.family f.hessianDefect hj",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 103:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 104: /-- Full handoff from the first-layer geometric identity to the existing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 105: canonical repair-state API.  No determinant bookkeeping remains after",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 106: `hmodel`. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 107: theorem preterminalSchurLayer_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 108:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 109:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 110:       (K := K) D complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 111:     {j : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 112:     {b : K}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 113:     (hb : b ≠ 0)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 114:     (U V : Fin 4)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 115:     (hj : j < f.defect)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 116:     (hmodel :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 117:       IsPreterminalSchurLayerModel f j b V) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 118:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 119:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 120:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 121:       binaryDirectionalHessianDet U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 122:           (familyParameterLayer f.lossless.family j) =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 123:         -(directionalMixedDerivative U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 124:           (familyParameterLayer f.lossless.family j))^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 125:       binaryDirectionalHessianDet U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 126:           (familyParameterLayer f.lossless.family j) ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 127:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 128:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 129:       IsPreterminalAffineSeparatedChannel U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 130:         (familyParameterLayer f.lossless.family j) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 131:   apply",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 132:     preterminal_departure_canonicalStrictRepair_with_source_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 133:       b hb U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 134:       (familyParameterLayer f.lossless.family j)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 135:       complexity",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 136:   exact preterminalSchurLayer_source_zero f hj hmodel",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 137:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 138: /-- Specialisation to the exact first positive actual family layer. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 139: theorem firstActualLayer_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 140:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 141:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 142:       (K := K) D complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 143:     (h : HasPositiveActualParameterLayer f.lossless.family)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 144:     {b : K}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 145:     (hb : b ≠ 0)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 146:     (U V : Fin 4)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 147:     (hpre :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 148:       firstPositiveActualParameterOrder f.lossless.family h <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 149:         f.defect)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 150:     (hmodel :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 151:       IsPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 152:         f",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 153:         (firstPositiveActualParameterOrder f.lossless.family h)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 154:         b V) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 155:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 156:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 157:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 158:       binaryDirectionalHessianDet U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 159:           (familyParameterLayer f.lossless.family",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 160:             (firstPositiveActualParameterOrder f.lossless.family h)) =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 161:         -(directionalMixedDerivative U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 162:           (familyParameterLayer f.lossless.family",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 163:             (firstPositiveActualParameterOrder f.lossless.family h)))^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 164:       binaryDirectionalHessianDet U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 165:           (familyParameterLayer f.lossless.family",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 166:             (firstPositiveActualParameterOrder f.lossless.family h)) ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 167:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 168:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 169:       IsPreterminalAffineSeparatedChannel U V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 170:         (familyParameterLayer f.lossless.family",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 171:           (firstPositiveActualParameterOrder f.lossless.family h)) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 172:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 173:     preterminalSchurLayer_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 174:       f hb U V hpre hmodel",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 175:",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 176:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 177: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 178:   Geometric certificate -> proved Schur model",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 179: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 180:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 181: /-- Concrete data sufficient to prove the formerly abstract",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 182: `IsPreterminalSchurLayerModel` identity.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 183:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 184: The only frontier-specific field is `determinantLayer`: it says that the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 185: chosen binary Schur determinant really computes the relevant layer of the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 186: full Hessian determinant.  The delicate first-order cancellation inside the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 187: Schur determinant is no longer assumed; it is supplied unconditionally by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 188: `PreterminalSchurDepartureData.determinant_coeff_order_eq_linearSource`. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 189: structure FrontierPreterminalSchurCertificate",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 190:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 191:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 192:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 193:   schur : PreterminalSchurDepartureData (Fin 4) K",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 194:   order_lt_defect : schur.order < f.defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 195:   potential_eq_layer :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 196:     schur.potential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 197:       familyParameterLayer f.lossless.family schur.order",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 198:   determinantLayer :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 199:     familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 200:         (HC4.Polynomial.hessianDeterminant f.lossless.family)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 201:         schur.order =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 202:       schur.determinant.coeff schur.order",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 203:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 204: namespace FrontierPreterminalSchurCertificate",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 205:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 206: /-- A concrete first-Schur certificate proves the exact local model identity",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 207: that was previously an external hypothesis. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 208: theorem isPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 209:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 210:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 211:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 212:     (c : FrontierPreterminalSchurCertificate f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 213:     IsPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 214:       f c.schur.order c.schur.leadingScalar c.schur.V := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 215:   unfold IsPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 216:   calc",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 217:     familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 218:         (HC4.Polynomial.hessianDeterminant f.lossless.family)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 219:         c.schur.order =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 220:       c.schur.determinant.coeff c.schur.order :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 221:         c.determinantLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 222:     _ =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 223:       preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 224:         c.schur.leadingScalar c.schur.V c.schur.potential :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 225:         c.schur.determinant_coeff_order_eq_linearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 226:     _ =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 227:       preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 228:         c.schur.leadingScalar c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 229:         (familyParameterLayer f.lossless.family c.schur.order) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 230:         rw [c.potential_eq_layer]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 231:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 232: /-- **Concrete preterminal handoff.**",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 233:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 234: Once the geometric Smith analysis constructs a first-Schur certificate, the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 235: whole preterminal branch is already closed: exact determinant defect kills",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 236: the linear source and the existing mixed-departure theorem gives strict rank",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 237: promotion or the affine/separated channel. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 238: theorem canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 239:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 240:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 241:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 242:     (c : FrontierPreterminalSchurCertificate f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 243:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 244:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 245:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 246:       binaryDirectionalHessianDet c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 247:           (familyParameterLayer f.lossless.family c.schur.order) =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 248:         -(directionalMixedDerivative c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 249:           (familyParameterLayer f.lossless.family c.schur.order))^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 250:       binaryDirectionalHessianDet c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 251:           (familyParameterLayer f.lossless.family c.schur.order) ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 252:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 253:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 254:       IsPreterminalAffineSeparatedChannel c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 255:         (familyParameterLayer f.lossless.family c.schur.order) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 256:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 257:     preterminalSchurLayer_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 258:       f",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 259:       c.schur.leadingScalar_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 260:       c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 261:       c.order_lt_defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 262:       c.isPreterminalSchurLayerModel",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 263:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 264: end FrontierPreterminalSchurCertificate",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 265:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 266: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 267:   Denominator-cleared frontier certificate",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 268: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 269:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 270: /-- A preterminal Schur certificate in the form actually supplied by a",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 271: cleared Schur complement.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 272:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 273: Instead of asking the Schur determinant layer to *equal* the full Hessian",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 274: determinant layer, we retain a full determinant parameter series and the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 275: exact cleared identity",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 276:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 277:     det(Schur) = factor * fullDet.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 278:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 279: This is the natural polynomial identity produced by denominator-cleared",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 280: Schur complements.  Since the Hessian defect makes every coefficient of",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 281: `fullDet` below closure vanish, multiplication by an arbitrary factor cannot",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 282: create a preterminal coefficient. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 283: structure FrontierClearedPreterminalSchurCertificate",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 284:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 285:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 286:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 287:   schur : PreterminalSchurDepartureData (Fin 4) K",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 288:   fullDetSeries : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 289:   clearedFactor : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 290:   order_lt_defect : schur.order < f.defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 291:   potential_eq_layer :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 292:     schur.potential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 293:       familyParameterLayer f.lossless.family schur.order",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 294:   fullDet_coeff :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 295:     ∀ n : ℕ,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 296:       fullDetSeries.coeff n =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 297:         familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 298:           (HC4.Polynomial.hessianDeterminant f.lossless.family) n",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 299:   schurFactor :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 300:     schur.determinant = clearedFactor * fullDetSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 301:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 302: namespace FrontierClearedPreterminalSchurCertificate",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 303:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 304: /-- Every full determinant coefficient up through the preterminal Schur",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 305: order vanishes. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 306: theorem fullDet_zero_through_order",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 307:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 308:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 309:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 310:     (c : FrontierClearedPreterminalSchurCertificate f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 311:     ∀ n : ℕ, n ≤ c.schur.order → c.fullDetSeries.coeff n = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 312:   intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 313:   rw [c.fullDet_coeff n]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 314:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 315:     hessianDefect_parameterLayer_eq_zero_of_lt",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 316:       f.lossless.family f.hessianDefect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 317:       (lt_of_le_of_lt hn c.order_lt_defect)",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 318:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 319: /-- **Cleared first-Schur source vanishing.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 320: The true denominator-cleared Schur identity is enough to force the same",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 321: preterminal linear source to vanish; the old layer-equality hypothesis is",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 322: unnecessary. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 323: theorem source_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 324:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 325:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 326:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 327:     (c : FrontierClearedPreterminalSchurCertificate f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 328:     preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 329:       c.schur.leadingScalar c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 330:       (familyParameterLayer f.lossless.family c.schur.order) = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 331:   rw [← c.potential_eq_layer]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 332:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 333:     c.schur.linearSource_eq_zero_of_clearedFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 334:       c.clearedFactor c.fullDetSeries",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 335:       c.schurFactor c.fullDet_zero_through_order",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 336:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 337: /-- **Denominator-cleared preterminal handoff.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 338: Once the Smith geometry supplies the genuine cleared Schur series, the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 339: preterminal branch closes immediately through the already-green mixed",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 340: departure adapter. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 341: theorem canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 342:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 343:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 344:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 345:     (c : FrontierClearedPreterminalSchurCertificate f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 346:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 347:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 348:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 349:       binaryDirectionalHessianDet c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 350:           (familyParameterLayer f.lossless.family c.schur.order) =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 351:         -(directionalMixedDerivative c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 352:           (familyParameterLayer f.lossless.family c.schur.order))^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 353:       binaryDirectionalHessianDet c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 354:           (familyParameterLayer f.lossless.family c.schur.order) ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 355:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 356:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 357:       IsPreterminalAffineSeparatedChannel c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 358:         (familyParameterLayer f.lossless.family c.schur.order) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 359:   apply",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 360:     preterminal_departure_canonicalStrictRepair_with_source_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 361:       c.schur.leadingScalar",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 362:       c.schur.leadingScalar_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 363:       c.schur.U c.schur.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 364:       (familyParameterLayer f.lossless.family c.schur.order)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 365:       complexity",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 366:   exact c.source_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 367:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 368: end FrontierClearedPreterminalSchurCertificate",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 369:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 370: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 371:   Automatic first-transverse extraction from a cleared Schur series",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 372: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 373:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 374: /-- The remaining geometric data in its most economical form.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 375:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 376: The Smith/frontier analysis supplies one polynomial binary Schur series with",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 377: a rank-one constant term, the denominator-cleared determinant identity, and",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 378: the compatibility of the kernel entry with the actual coefficient",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 379: potentials.  Finiteness then chooses the first transverse order",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 380: automatically. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 381: structure FrontierClearedRankOneSchurSeries",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 382:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 383:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 384:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 385:   series : RankOneSchurSeries (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 386:   leadingScalar : K",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 387:   leadingScalar_ne_zero : leadingScalar ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 388:   U : Fin 4",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 389:   V : Fin 4",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 390:   leading_eq : series.leading = MvPolynomial.C leadingScalar",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 391:   hasTransverse : series.HasPositiveTransverseLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 392:   fullDetSeries : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 393:   clearedFactor : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 394:   kernel_coeff :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 395:     ∀ n : ℕ,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 396:       series.kernel.coeff n =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 397:         directionalSecondDerivative V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 398:           (familyParameterLayer f.lossless.family n)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 399:   fullDet_coeff :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 400:     ∀ n : ℕ,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 401:       fullDetSeries.coeff n =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 402:         familyParameterLayer",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 403:           (HC4.Polynomial.hessianDeterminant f.lossless.family) n",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 404:   schurFactor :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 405:     series.determinant = clearedFactor * fullDetSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 406:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 407: namespace FrontierClearedRankOneSchurSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 408:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 409: /-- Canonical first transverse order of the retained Schur series. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 410: noncomputable def firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 411:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 412:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 413:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 414:     (S : FrontierClearedRankOneSchurSeries f) : ℕ :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 415:   S.series.firstPositiveTransverseOrder S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 416:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 417: theorem firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 418:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 419:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 420:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 421:     (S : FrontierClearedRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 422:     0 < S.firstOrder := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 423:   exact S.series.firstPositiveTransverseOrder_pos S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 424:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 425: /-- The actual coefficient potential at the first transverse order. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 426: noncomputable def firstPotential",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 427:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 428:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 429:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 430:     (S : FrontierClearedRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 431:     MvPolynomial (Fin 4) K :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 432:   familyParameterLayer f.lossless.family S.firstOrder",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 433:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 434: /-- The automatically selected first transverse order gives precisely the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 435: `PreterminalSchurDepartureData` expected by the linearisation theorem. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 436: noncomputable def firstSchurData",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 437:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 438:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 439:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 440:     (S : FrontierClearedRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 441:     PreterminalSchurDepartureData (Fin 4) K where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 442:   order := S.firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 443:   leadingScalar := S.leadingScalar",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 444:   U := S.U",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 445:   V := S.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 446:   potential := S.firstPotential",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 447:   active := S.series.active",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 448:   offDiag := S.series.offDiag",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 449:   kernel := S.series.kernel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 450:   order_pos := S.firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 451:   leadingScalar_ne_zero := S.leadingScalar_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 452:   active_coeff_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 453:     rw [S.series.active_coeff_zero, S.leading_eq]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 454:   offDiag_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 455:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 456:     exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 457:       S.series.offDiag_coeff_eq_zero_of_lt_first",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 458:         S.hasTransverse hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 459:   kernel_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 460:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 461:     exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 462:       S.series.kernel_coeff_eq_zero_of_lt_first",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 463:         S.hasTransverse hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 464:   kernel_coeff_order := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 465:     exact S.kernel_coeff S.firstOrder",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 466:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 467: /-- If the automatically selected first transverse order is preterminal,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 468: all fields of the cleared preterminal certificate are forced. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 469: noncomputable def preterminalCertificate",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 470:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 471:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 472:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 473:     (S : FrontierClearedRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 474:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 475:     FrontierClearedPreterminalSchurCertificate f where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 476:   schur := S.firstSchurData",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 477:   fullDetSeries := S.fullDetSeries",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 478:   clearedFactor := S.clearedFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 479:   order_lt_defect := hpre",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 480:   potential_eq_layer := rfl",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 481:   fullDet_coeff := S.fullDet_coeff",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 482:   schurFactor := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 483:     simpa [PreterminalSchurDepartureData.determinant,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 484:       RankOneSchurSeries.determinant, firstSchurData] using",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 485:       S.schurFactor",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 486:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 487: /-- **Automatic preterminal exhaustion from the genuine Schur series.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 488: No manual choice of departure order and no lower-layer bookkeeping remain. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 489: theorem preterminal_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 490:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 491:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 492:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 493:     (S : FrontierClearedRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 494:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 495:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 496:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 497:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 498:       binaryDirectionalHessianDet S.U S.V S.firstPotential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 499:         -(directionalMixedDerivative S.U S.V S.firstPotential)^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 500:       binaryDirectionalHessianDet S.U S.V S.firstPotential ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 501:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 502:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 503:       IsPreterminalAffineSeparatedChannel S.U S.V S.firstPotential := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 504:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 505:     (S.preterminalCertificate hpre).canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 506:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 507: end FrontierClearedRankOneSchurSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 508:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 509: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 510:   Exact closing-clock Schur frontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 511: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 512:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 513: /-- A stronger and more economical rank-one Schur frontier.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 514:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 515: The exact Hessian defect has already identified the full determinant with",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 516: `X^defect`.  Hence the genuinely useful cleared identity is simply",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 517:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 518:     det(Schur) = clearedFactor * X^defect.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 519:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 520: A nonzero constant coefficient of `clearedFactor` is the algebraic",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 521: expression of the fact that the already-active block remains invertible at",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 522: the special fibre.  From these two facts the first positive transverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 523: Schur order exists automatically and can occur no later than `defect`.",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 524: Thus the local rank-one branch has only the intended alternatives:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 525: preterminal departure or determinant-closing departure. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 526: structure FrontierExactRankOneSchurSeries",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 527:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 528:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 529:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 530:   series : RankOneSchurSeries (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 531:   leadingScalar : K",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 532:   leadingScalar_ne_zero : leadingScalar ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 533:   U : Fin 4",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 534:   V : Fin 4",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 535:   leading_eq : series.leading = MvPolynomial.C leadingScalar",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 536:   clearedFactor : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 537:   clearedFactor_coeff_zero_ne_zero :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 538:     clearedFactor.coeff 0 ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 539:   kernel_coeff :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 540:     ∀ n : ℕ,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 541:       series.kernel.coeff n =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 542:         directionalSecondDerivative V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 543:           (familyParameterLayer f.lossless.family n)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 544:   schurFactor :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 545:     series.determinant =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 546:       clearedFactor * Polynomial.X ^ f.defect",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 547:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 548: namespace FrontierExactRankOneSchurSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 549:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 550: /-- The exact cleared identity forces the existence of a later transverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 551: Schur layer; no separate existence hypothesis is needed. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 552: theorem hasTransverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 553:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 554:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 555:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 556:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 557:     S.series.HasPositiveTransverseLayer := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 558:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 559:     S.series.hasPositiveTransverseLayer_of_determinant_eq_factor_mul_X_pow",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 560:       S.clearedFactor f.defect S.schurFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 561:       S.clearedFactor_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 562:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 563: /-- Canonical first transverse order of the exact Schur frontier. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 564: noncomputable def firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 565:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 566:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 567:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 568:     (S : FrontierExactRankOneSchurSeries f) : ℕ :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 569:   S.series.firstPositiveTransverseOrder S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 570:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 571: /-- The first transverse order is strictly positive. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 572: theorem firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 573:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 574:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 575:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 576:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 577:     0 < S.firstOrder := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 578:   exact S.series.firstPositiveTransverseOrder_pos S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 579:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 580: /-- **No post-closing first departure.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 581: The nonzero constant clearing factor forces the first transverse Schur",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 582: order to occur at or before the exact Hessian defect. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 583: theorem firstOrder_le_defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 584:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 585:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 586:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 587:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 588:     S.firstOrder ≤ f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 589:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 590:     S.series.firstPositiveTransverseOrder_le_of_determinant_eq_factor_mul_X_pow",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 591:       S.hasTransverse S.clearedFactor S.schurFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 592:       S.clearedFactor_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 593:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 594: /-- Consequently the first transverse order has the exact two-way split",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 595: used by the handwritten proof: preterminal or closing, with no third case. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 596: theorem firstOrder_preterminal_or_closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 597:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 598:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 599:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 600:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 601:     S.firstOrder < f.defect ∨ S.firstOrder = f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 602:   exact lt_or_eq_of_le S.firstOrder_le_defect",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 603:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 604: /-- The actual coefficient potential at the first exact transverse order. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 605: noncomputable def firstPotential",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 606:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 607:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 608:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 609:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 610:     MvPolynomial (Fin 4) K :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 611:   familyParameterLayer f.lossless.family S.firstOrder",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 612:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 613: /-- Package the automatically selected order into the green preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 614: linearisation API. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 615: noncomputable def firstSchurData",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 616:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 617:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 618:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 619:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 620:     PreterminalSchurDepartureData (Fin 4) K where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 621:   order := S.firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 622:   leadingScalar := S.leadingScalar",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 623:   U := S.U",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 624:   V := S.V",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 625:   potential := S.firstPotential",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 626:   active := S.series.active",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 627:   offDiag := S.series.offDiag",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 628:   kernel := S.series.kernel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 629:   order_pos := S.firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 630:   leadingScalar_ne_zero := S.leadingScalar_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 631:   active_coeff_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 632:     rw [S.series.active_coeff_zero, S.leading_eq]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 633:   offDiag_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 634:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 635:     exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 636:       S.series.offDiag_coeff_eq_zero_of_lt_first",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 637:         S.hasTransverse hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 638:   kernel_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 639:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 640:     exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 641:       S.series.kernel_coeff_eq_zero_of_lt_first",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 642:         S.hasTransverse hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 643:   kernel_coeff_order := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 644:     exact S.kernel_coeff S.firstOrder",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 645:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 646: /-- Below determinant closure, the exact factorisation itself kills the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 647: first Schur determinant coefficient. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 648: theorem determinant_coeff_firstOrder_eq_zero_of_preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 649:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 650:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 651:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 652:     (S : FrontierExactRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 653:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 654:     S.series.determinant.coeff S.firstOrder = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 655:   rw [S.schurFactor]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 656:   rw [Polynomial.coeff_mul_X_pow']",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 657:   simp [Nat.not_le_of_lt hpre]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 658:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 659: /-- **Exact preterminal source vanishing.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 660: The full first-departure identity is now automatic from the exact cleared",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 661: Schur frontier. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 662: theorem preterminal_source_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 663:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 664:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 665:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 666:     (S : FrontierExactRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 667:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 668:     preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 669:       S.leadingScalar S.V S.firstPotential = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 670:   have hlin :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 671:       S.series.determinant.coeff S.firstOrder =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 672:         preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 673:           S.leadingScalar S.V S.firstPotential := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 674:     simpa [PreterminalSchurDepartureData.determinant,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 675:       RankOneSchurSeries.determinant, firstSchurData, firstPotential] using",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 676:       (S.firstSchurData).determinant_coeff_order_eq_linearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 677:   calc",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 678:     preterminalSchurLinearSource",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 679:         S.leadingScalar S.V S.firstPotential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 680:       S.series.determinant.coeff S.firstOrder := hlin.symm",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 681:     _ = 0 :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 682:       S.determinant_coeff_firstOrder_eq_zero_of_preterminal hpre",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 683:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 684: /-- The complete preterminal branch therefore dispatches immediately to the",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 685: already-green strict-repair/affine-separated dichotomy. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 686: theorem preterminal_canonicalStrictRepair_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 687:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 688:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 689:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 690:     (S : FrontierExactRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 691:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 692:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 693:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 694:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 695:       binaryDirectionalHessianDet S.U S.V S.firstPotential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 696:         -(directionalMixedDerivative S.U S.V S.firstPotential)^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 697:       binaryDirectionalHessianDet S.U S.V S.firstPotential ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 698:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 699:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 700:       IsPreterminalAffineSeparatedChannel S.U S.V S.firstPotential := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 701:   apply",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 702:     preterminal_departure_canonicalStrictRepair_with_source_or_affineSeparated",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 703:       S.leadingScalar S.leadingScalar_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 704:       S.U S.V S.firstPotential complexity",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 705:   exact S.preterminal_source_zero hpre",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 706:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 707: /-- At determinant closure the selected coefficient is genuinely",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 708: transverse, giving concrete nonzero data to the terminal adapter. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 709: theorem closing_transverse_nonzero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 710:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 711:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 712:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 713:     (S : FrontierExactRankOneSchurSeries f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 714:     (hclose : S.firstOrder = f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 715:     S.series.offDiag.coeff f.defect ≠ 0 ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 716:       S.series.kernel.coeff f.defect ≠ 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 717:   have h :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 718:       S.series.offDiag.coeff S.firstOrder ≠ 0 ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 719:         S.series.kernel.coeff S.firstOrder ≠ 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 720:     simpa [firstOrder] using",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 721:       S.series.transverse_nonzero_at_first S.hasTransverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 722:   simpa [hclose] using h",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 723:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 724: /-- **Rank-one frontier exhaustion up to the terminal closing adapter.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 725: Once the genuine exact cleared Schur series has been constructed, there are",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 726: only two outcomes: the whole preterminal branch is discharged, or a",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 727: nonzero transverse coefficient occurs exactly at determinant closure. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 728: theorem preterminalRepair_or_closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 729:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 730:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 731:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 732:     (S : FrontierExactRankOneSchurSeries f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 733:     ((RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 734:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 735:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 736:       binaryDirectionalHessianDet S.U S.V S.firstPotential =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 737:         -(directionalMixedDerivative S.U S.V S.firstPotential)^2 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 738:       binaryDirectionalHessianDet S.U S.V S.firstPotential ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 739:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 740:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 741:       IsPreterminalAffineSeparatedChannel S.U S.V S.firstPotential) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 742:     (S.firstOrder = f.defect ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 743:       (S.series.offDiag.coeff f.defect ≠ 0 ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 744:        S.series.kernel.coeff f.defect ≠ 0)) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 745:   rcases S.firstOrder_preterminal_or_closing with hpre | hclose",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 746:   · left",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 747:     exact S.preterminal_canonicalStrictRepair_or_affineSeparated hpre",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 748:   · right",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 749:     exact ⟨hclose, S.closing_transverse_nonzero hclose⟩",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 750:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 751: end FrontierExactRankOneSchurSeries",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 752:",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 753:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 754: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 755:   Matrix-level exact Schur clock",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 756:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 757: The potential-valued frontier above is convenient when one wants the exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 758: mixed-Hessian source.  For global exhaustion, however, the first transverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 759: Schur *matrix* already carries enough information to force rank promotion.",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 760: At the first positive transverse order `j < defect`, the linearisation gives",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 761:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 762:     coeff_j(det S) = leading * kernel_j.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 763:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 764: The exact determinant clock kills the left side, so `kernel_j = 0`.  Since",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 765: `j` was selected as the first order where `offDiag_j` or `kernel_j` is",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 766: nonzero, necessarily `offDiag_j != 0`.  Thus the preterminal branch is a",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 767: genuine rank promotion before any partial-Legendre potential is reconstructed.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 768:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 769: This is strictly weaker data than `FrontierExactRankOneSchurSeries` and is",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 770: therefore the preferred target of the actual four-block Smith construction.",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 771: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 772:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 773: /-- Exact denominator-cleared rank-one Schur clock with no potential-level",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 774: integrability hypothesis. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 775: structure FrontierExactRankOneSchurClock",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 776:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 777:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 778:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 779:   series : RankOneSchurSeries (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 780:   leading_ne_zero : series.leading ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 781:   clearedFactor : Polynomial (MvPolynomial (Fin 4) K)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 782:   clearedFactor_coeff_zero_ne_zero :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 783:     clearedFactor.coeff 0 ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 784:   schurFactor :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 785:     series.determinant =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 786:       clearedFactor * Polynomial.X ^ f.defect",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 787:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 788: namespace FrontierExactRankOneSchurClock",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 789:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 790: /-- The exact determinant clock forces a genuine positive transverse layer. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 791: theorem hasTransverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 792:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 793:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 794:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 795:     (S : FrontierExactRankOneSchurClock f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 796:     S.series.HasPositiveTransverseLayer := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 797:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 798:     S.series.hasPositiveTransverseLayer_of_determinant_eq_factor_mul_X_pow",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 799:       S.clearedFactor f.defect S.schurFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 800:       S.clearedFactor_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 801:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 802: /-- First positive transverse Schur order. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 803: noncomputable def firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 804:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 805:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 806:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 807:     (S : FrontierExactRankOneSchurClock f) : ℕ :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 808:   S.series.firstPositiveTransverseOrder S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 809:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 810: /-- The first transverse order is positive. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 811: theorem firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 812:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 813:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 814:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 815:     (S : FrontierExactRankOneSchurClock f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 816:     0 < S.firstOrder := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 817:   exact S.series.firstPositiveTransverseOrder_pos S.hasTransverse",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 818:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 819: /-- The first transverse order occurs no later than determinant closure. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 820: theorem firstOrder_le_defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 821:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 822:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 823:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 824:     (S : FrontierExactRankOneSchurClock f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 825:     S.firstOrder ≤ f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 826:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 827:     S.series.firstPositiveTransverseOrder_le_of_determinant_eq_factor_mul_X_pow",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 828:       S.hasTransverse S.clearedFactor S.schurFactor",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 829:       S.clearedFactor_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 830:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 831: /-- Package the selected order into the purely matrix-valued first-departure",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 832: linearisation theorem. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 833: noncomputable def firstDeparture",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 834:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 835:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 836:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 837:     (S : FrontierExactRankOneSchurClock f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 838:     FirstRankOneSchurDeparture (MvPolynomial (Fin 4) K) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 839:   order := S.firstOrder",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 840:   leading := S.series.leading",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 841:   active := S.series.active",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 842:   offDiag := S.series.offDiag",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 843:   kernel := S.series.kernel",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 844:   order_pos := S.firstOrder_pos",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 845:   active_coeff_zero := S.series.active_coeff_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 846:   offDiag_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 847:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 848:     exact S.series.offDiag_coeff_eq_zero_of_lt_first S.hasTransverse hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 849:   kernel_lower_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 850:     intro n hn",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 851:     exact S.series.kernel_coeff_eq_zero_of_lt_first S.hasTransverse hn",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 852:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 853: /-- Below determinant closure the exact factorisation kills the selected",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 854: Schur determinant coefficient. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 855: theorem determinant_coeff_firstOrder_eq_zero_of_preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 856:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 857:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 858:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 859:     (S : FrontierExactRankOneSchurClock f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 860:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 861:     S.series.determinant.coeff S.firstOrder = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 862:   rw [S.schurFactor]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 863:   rw [Polynomial.coeff_mul_X_pow']",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 864:   simp [Nat.not_le_of_lt hpre]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 865:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 866: /-- At a preterminal first transverse order the kernel entry itself must",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 867: vanish.  This uses only the matrix linearisation and the nonzero leading",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 868: rank-one coefficient. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 869: theorem kernel_coeff_firstOrder_eq_zero_of_preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 870:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 871:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 872:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 873:     (S : FrontierExactRankOneSchurClock f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 874:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 875:     S.series.kernel.coeff S.firstOrder = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 876:   have hlin :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 877:       S.series.determinant.coeff S.firstOrder =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 878:         S.series.leading * S.series.kernel.coeff S.firstOrder := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 879:     simpa [FirstRankOneSchurDeparture.determinant,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 880:       RankOneSchurSeries.determinant, firstDeparture] using",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 881:       S.firstDeparture.coeff_order_determinant",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 882:   have hprod :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 883:       S.series.leading * S.series.kernel.coeff S.firstOrder = 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 884:     rw [← hlin]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 885:     exact S.determinant_coeff_firstOrder_eq_zero_of_preterminal hpre",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 886:   exact (mul_eq_zero.mp hprod).resolve_left S.leading_ne_zero",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 887:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 888: /-- **Direct preterminal mixed pivot.**",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 889: Because the selected order is genuinely transverse and its kernel entry has",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 890: just been forced to zero, its off-diagonal entry is necessarily nonzero. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 891: theorem offDiag_coeff_firstOrder_ne_zero_of_preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 892:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 893:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 894:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 895:     (S : FrontierExactRankOneSchurClock f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 896:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 897:     S.series.offDiag.coeff S.firstOrder ≠ 0 := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 898:   rcases S.series.transverse_nonzero_at_first S.hasTransverse with hB | hC",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 899:   · exact hB",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 900:   · exact False.elim (hC (S.kernel_coeff_firstOrder_eq_zero_of_preterminal hpre))",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 901:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 902: /-- The matrix-level preterminal departure is already a strict rank-one to",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 903: rank-two repair step in the existing well-founded repair relation. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 904: theorem preterminal_rankTwoProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 905:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 906:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 907:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 908:     (S : FrontierExactRankOneSchurClock f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 909:     (hpre : S.firstOrder < f.defect) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 910:     RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 911:       (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 912:       (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 913:     S.series.offDiag.coeff S.firstOrder ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 914:     (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 915:       (rankOneRepairState complexity).measure := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 916:   have hprogress := rankOne_to_rankTwo_repairProgress complexity",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 917:   exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 918:     ⟨hprogress,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 919:       S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 920:       repairState_measure_lt_of_progress hprogress⟩",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 921:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 922: /-- The exact clock has only the two intended outcomes: direct preterminal",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 923: rank promotion, or a genuinely transverse coefficient exactly at determinant",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 924: closure. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 925: theorem rankTwoProgress_or_closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 926:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 927:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 928:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 929:     (S : FrontierExactRankOneSchurClock f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 930:     (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 931:         (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 932:         (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 933:       S.series.offDiag.coeff S.firstOrder ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 934:       (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 935:         (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 936:     (S.firstOrder = f.defect ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 937:       (S.series.offDiag.coeff f.defect ≠ 0 ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 938:        S.series.kernel.coeff f.defect ≠ 0)) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 939:   rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 940:   · exact Or.inl (S.preterminal_rankTwoProgress hpre)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 941:   · right",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 942:     refine ⟨hclose, ?_⟩",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 943:     have h := S.series.transverse_nonzero_at_first S.hasTransverse",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 944:     have hfirst :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 945:         S.series.firstPositiveTransverseOrder S.hasTransverse = f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 946:       simpa only [firstOrder] using hclose",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 947:     rw [hfirst] at h",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 948:     exact h",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 949:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 950: end FrontierExactRankOneSchurClock",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 951:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 952: /-! -----------------------------------------------------------------------",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 953:   General four-block constructor for the matrix-level clock",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 954: ------------------------------------------------------------------------ -/",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 955:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 956: /-- Exact four-block data at a rigid Smith frontier.",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 957:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 958: This is now a thin, concrete extraction target: supply the actual symmetric",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 959: `2+2` Hessian parameter series, prove its full determinant is the exact",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 960: closing monomial, prove the active minor remains a unit at the special",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 961: fibre, and identify the constant cleared binary Schur block as rank one.",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 962: Everything from that point onward is automatic. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 963: structure FrontierExactFourBlockSchurData",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 964:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 965:     (f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 966:       (K := K) D complexity) where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 967:   block : GeneralFourBlock",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 968:     (Polynomial (MvPolynomial (Fin 4) K))",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 969:   fullDet : block.determinantCore = Polynomial.X ^ f.defect",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 970:   activeDet_coeff_zero_ne_zero : block.activeDet.coeff 0 ≠ 0",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 971:   rigid :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 972:     block.polynomialSchurSeries.LeftPivot ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 973:       block.polynomialSchurSeries.RightAxisPivot",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 974:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 975: namespace FrontierExactFourBlockSchurData",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 976:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 977: /-- Left-pivot four-block data produces the exact matrix Schur clock. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 978: noncomputable def toClockLeft",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 979:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 980:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 981:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 982:     (B : FrontierExactFourBlockSchurData f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 983:     (hleft : B.block.polynomialSchurSeries.LeftPivot) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 984:     FrontierExactRankOneSchurClock f where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 985:   series := B.block.polynomialSchurSeries.alignLeft hleft",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 986:   leading_ne_zero :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 987:     B.block.polynomialSchurSeries.alignLeft_leading_ne_zero hleft",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 988:   clearedFactor :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 989:     (Polynomial.C (B.block.polynomialSchurSeries.active.coeff 0))^2 *",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 990:       B.block.activeDet",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 991:   clearedFactor_coeff_zero_ne_zero := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 992:     have ha :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 993:         B.block.polynomialSchurSeries.active.coeff 0 ≠ 0 := hleft.1",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 994:     have hprod :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 995:         (B.block.polynomialSchurSeries.active.coeff 0) ^ 2 *",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 996:             B.block.activeDet.coeff 0 ≠ 0 :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 997:       mul_ne_zero (pow_ne_zero 2 ha) B.activeDet_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 998:     rw [Polynomial.coeff_zero_eq_eval_zero]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 999:     simp only [Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_C]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1000:     rw [← Polynomial.coeff_zero_eq_eval_zero]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1001:     exact hprod",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1002:   schurFactor := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1003:     calc",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1004:       (B.block.polynomialSchurSeries.alignLeft hleft).determinant =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1005:           (Polynomial.C (B.block.polynomialSchurSeries.active.coeff 0))^2 *",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1006:             B.block.polynomialSchurSeries.determinant :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1007:         B.block.polynomialSchurSeries.alignLeft_determinant hleft",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1008:       _ =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1009:           (Polynomial.C (B.block.polynomialSchurSeries.active.coeff 0))^2 *",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1010:             (B.block.activeDet * B.block.determinantCore) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1011:         rw [B.block.polynomialSchurSeries_determinant]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1012:       _ =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1013:           ((Polynomial.C (B.block.polynomialSchurSeries.active.coeff 0))^2 *",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1014:             B.block.activeDet) * Polynomial.X ^ f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1015:         rw [B.fullDet]",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1016:         ring",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1017:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1018: /-- Right-axis four-block data produces the exact matrix Schur clock. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1019: noncomputable def toClockRight",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1020:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1021:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1022:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1023:     (B : FrontierExactFourBlockSchurData f)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1024:     (hright : B.block.polynomialSchurSeries.RightAxisPivot) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1025:     FrontierExactRankOneSchurClock f where",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1026:   series := B.block.polynomialSchurSeries.alignRight hright",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1027:   leading_ne_zero :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1028:     B.block.polynomialSchurSeries.alignRight_leading_ne_zero hright",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1029:   clearedFactor := B.block.activeDet",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1030:   clearedFactor_coeff_zero_ne_zero := B.activeDet_coeff_zero_ne_zero",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1031:   schurFactor := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1032:     calc",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1033:       (B.block.polynomialSchurSeries.alignRight hright).determinant =",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1034:           B.block.polynomialSchurSeries.determinant :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1035:         B.block.polynomialSchurSeries.alignRight_determinant hright",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1036:       _ = B.block.activeDet * B.block.determinantCore :=",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1037:         B.block.polynomialSchurSeries_determinant",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1038:       _ = B.block.activeDet * Polynomial.X ^ f.defect := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1039:         rw [B.fullDet]",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1040:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1041: /-- Every rigid general four-block frontier therefore has the exact two-way",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1042: local outcome: strict rank promotion before closure, or transverse closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1043: data exactly at the determinant clock. -/",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1044: theorem rankTwoProgress_or_closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1045:     {D complexity : ℕ}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1046:     {f : CanonicalSmithDepartureFrontier",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1047:       (K := K) D complexity}",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1048:     (B : FrontierExactFourBlockSchurData f) :",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1049:     (∃ S : FrontierExactRankOneSchurClock f,",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1050:       (RepairProgress",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1051:           (rankOneRepairState complexity)",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1052:           (rankTwoRepairState complexity) ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1053:         S.series.offDiag.coeff S.firstOrder ≠ 0 ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1054:         (rankTwoRepairState complexity).measure <",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1055:           (rankOneRepairState complexity).measure) ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1056:       (S.firstOrder = f.defect ∧",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1057:         (S.series.offDiag.coeff f.defect ≠ 0 ∨",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1058:          S.series.kernel.coeff f.defect ≠ 0))) := by",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1059:   rcases B.rigid with hleft | hright",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1060:   · refine ⟨B.toClockLeft hleft, ?_⟩",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1061:     exact (B.toClockLeft hleft).rankTwoProgress_or_closing",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1062:   · refine ⟨B.toClockRight hright, ?_⟩",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1063:     exact (B.toClockRight hright).rankTwoProgress_or_closing",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1064:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1065: end FrontierExactFourBlockSchurData",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1066:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1067: end",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1068:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1069: end HC4.Valuation",
+   "level": "info"},
+  {"message": "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: 1070:",
+   "level": "info"},
+  {"message":
+   "HC4/Valuation/FirstSchurDepartureSourceProbe.lean:17:0: ===== end source =====",
+   "level": "info"}],
+ "inputs":
+ [["HC4.Valuation.FirstSchurDepartureSourceProbe:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Valuation.FirstSchurDepartureBridge transitive imports (legacy)",
+         "5499731382489272030"],
+        ["HC4.Valuation.FirstSchurDepartureBridge:importAllArts",
+         "12253925501031088570"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/FirstSchurDepartureSourceProbe.lean",
+   "14469040457675614609"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "17162757692868667824"}

@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveDegreeTwoKernelRestart transitive imports (legacy)",
-         "13352185097677351608"],
+         "13141524513615783504"],
         ["HC4.Valuation.AdaptiveDegreeTwoKernelRestart:importAllArts",
          "6506225628683976666"]]]]],
     ["libs",
@@ -27,4 +27,4 @@
    "7508727616808980988"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "6984398578426731394"}
+ "depHash": "12102065491911309482"}

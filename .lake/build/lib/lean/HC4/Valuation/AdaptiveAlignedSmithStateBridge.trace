@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithClassifierDispatcher transitive imports (legacy)",
-         "13100021685407066072"],
+         "7404048389897865460"],
         ["HC4.Valuation.AdaptiveAlignedSmithClassifierDispatcher:importAllArts",
          "17283686533679281806"],
         ["HC4.Valuation.AdaptiveGeometricRestartState transitive imports (legacy)",
-         "5421748269443194398"],
+         "2618733450092767825"],
         ["HC4.Valuation.AdaptiveGeometricRestartState:importAllArts",
          "9683327294591626418"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -33,4 +33,4 @@
    "940370332452384918"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "5248678432612993374"}
+ "depHash": "12889166409320171282"}

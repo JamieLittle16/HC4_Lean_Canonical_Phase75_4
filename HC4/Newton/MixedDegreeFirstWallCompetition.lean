@@ -293,6 +293,9 @@ structure IntegralAdaptiveSurvivingSmithWall
   survivingShape :
     HasGeneralSurvivingSmithFaceShape
       (smithProjectedSupport (1 : Fin 4) 2 3 F) level base
+  noWLinear :
+    ∀ e ∈ smithProjectedSupport (1 : Fin 4) 2 3 F,
+      base e = level → ¬ IsWLinearSmithPattern e
 
 /-- Explicit transverse source weight for the combined primary/symmetric
 exposure.  Coordinate `0` is left unweighted, while the three transverse
@@ -409,7 +412,7 @@ theorem adaptiveWall_blocker_or_integralSurvivingWall
         MixedDegreeSmithExponentOutcome F e) ∨
       Nonempty (IntegralAdaptiveSurvivingSmithWall F) := by
   rcases minimalSmithLevel_blockerOutcome_or_survivingFace
-      F base level hcoll hzero hvalue with hblocker | ⟨hshape, _hnoW⟩
+      F base level hcoll hzero hvalue with hblocker | ⟨hshape, hnoW⟩
   · exact Or.inl hblocker
   · exact Or.inr ⟨
       { base := base
@@ -418,7 +421,8 @@ theorem adaptiveWall_blocker_or_integralSurvivingWall
         symmetricMinimal := hpole
         minimal := hmin
         attained := hattain
-        survivingShape := hshape }⟩
+        survivingShape := hshape
+        noWLinear := hnoW }⟩
 
 /-- On the non-blocker surviving branch, the combined adaptive weight is
 nonnegative on every projected support exponent.  At the primary minimum

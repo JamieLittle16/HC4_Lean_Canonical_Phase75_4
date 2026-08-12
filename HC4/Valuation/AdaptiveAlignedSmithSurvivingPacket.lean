@@ -117,6 +117,90 @@ theorem AdaptiveAlignedSmithSurvivingStateEndpoint.balancedSubface_subset
       (by simpa [AdaptiveAlignedSmithSurvivingStateEndpoint.balancedSubface]
         using he)).1
 
+/-- **Surviving wall -> persistent packet, without rediscovering a blocker.**
+
+The original wall classifier already proved and now retains that no
+`w`-linear blocker occurs on its minimal face.  Together with the retained
+surviving-shape and symmetric-minimality certificates, the existing
+quadratic-refinement theorem applies directly.  Hence the later
+`refinedBlocker` alternative was only an artefact of dropping `noWLinear`
+from `IntegralAdaptiveSurvivingSmithWall`. -/
+theorem AdaptiveAlignedSmithSurvivingStateEndpoint.persistentPacket
+    [CharZero K]
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
+    (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s) :
+    Nonempty
+      (AdaptiveAlignedSmithPersistentPacketEndpoint
+        (K := K) s W) := by
+  let a := W.original.aligned.toAdaptiveState s
+
+  rcases
+      symmetricSmithPoleMinimal_symmetricRefinement_quadratic
+        (smithProjectedSupport
+          (1 : Fin 4) 2 3 a.normalizedSpecialFiber)
+        W.wall.level
+        W.wall.base
+        W.wall.symmetricMinimal
+        W.wall.minimal
+        W.wall.attained
+        W.wall.survivingShape
+        W.wall.noWLinear with
+    ⟨hne, hquadratic⟩
+
+  let T : Finset SmithSupportExponent :=
+    smithSymmetricBalancedSubface
+      (smithProjectedSupport
+        (1 : Fin 4) 2 3 a.normalizedSpecialFiber)
+      W.wall.level W.wall.base
+
+  have hTnonempty : T.Nonempty := by
+    simpa [T] using hne
+
+  have hTsubset :
+      T ⊆
+        smithProjectedSupport
+          (1 : Fin 4) 2 3 a.normalizedSpecialFiber := by
+    intro e he
+    exact (mem_smithSymmetricBalancedSubface.mp he).1
+
+  have hTquad :
+      ∀ e ∈ T,
+        (e.b = 0 ∧ e.c = 2 ∧ e.d = 0) ∨
+        (e.b = 1 ∧ e.c = 1 ∧ e.d = 0) ∨
+        (e.b = 2 ∧ e.c = 0 ∧ e.d = 0) := by
+    intro e he
+    exact hquadratic e (by simpa [T] using he)
+
+  rcases
+      nonemptyQuadraticProjectedSubface_exists_minimalLongitudinalPacket
+        T
+        a.normalizedSpecialFiber
+        hTnonempty
+        hTsubset
+        hTquad with
+    ⟨D, Q, hprov, hD, hQcoll, hQhess, hpersistent⟩
+
+  exact
+    ⟨{
+      degree := D
+      packet := Q
+      quadratic := by
+        intro e he
+        exact hTquad e
+          (by
+            simpa [T,
+              AdaptiveAlignedSmithSurvivingStateEndpoint.balancedSubface,
+              a] using he)
+      provenance := by
+        simpa [T,
+          AdaptiveAlignedSmithSurvivingStateEndpoint.balancedSubface,
+          a] using hprov
+      degree_ge_two := hD
+      exactCollision := hQcoll
+      hessian_zero := hQhess
+      persistent := hpersistent
+    }⟩
+
 /-! ## Reuse of the existing mixed-degree refinement -/
 
 /-- **Surviving wall -> refined blocker or persistent homogeneous packet.**

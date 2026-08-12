@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithRankTwoZeroSchur transitive imports (legacy)",
-         "10635811512455298465"],
+         "1091082800168880258"],
         ["HC4.Valuation.AdaptiveAlignedSmithRankTwoZeroSchur:importAllArts",
          "16829691752448243541"],
         ["HC4.Valuation.AdaptiveRigidMatrixExposure transitive imports (legacy)",
-         "3241024713241254571"],
+         "12368478554810471610"],
         ["HC4.Valuation.AdaptiveRigidMatrixExposure:importAllArts",
          "6796785237901014235"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -33,4 +33,4 @@
    "13987639021032304400"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "654477105375862136"}
+ "depHash": "9970550863495178122"}

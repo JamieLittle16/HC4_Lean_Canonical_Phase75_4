@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.ScaleAwareAdaptiveAlignedSmithEndpoint transitive imports (legacy)",
-         "14331543930148118191"],
+         "13307883071431483938"],
         ["HC4.Valuation.ScaleAwareAdaptiveAlignedSmithEndpoint:importAllArts",
          "16478664138082640405"],
         ["HC4.Valuation.CanonicalAdaptiveSmithWall transitive imports (legacy)",
-         "13806644417495299675"],
+         "5486799884041603576"],
         ["HC4.Valuation.CanonicalAdaptiveSmithWall:importAllArts",
          "15496369516810626800"]]]]],
     ["libs",
@@ -31,4 +31,4 @@
    "4496211076025353657"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "10385607608634454613"}
+ "depHash": "2970647158534002245"}

@@ -166,6 +166,20 @@ theorem AdaptiveAlignedSmithConcreteBlockerResidualNormalForm.firstWallCompetiti
   · exact hwall
 
 
+/-- Strong canonical first-wall handoff.  The blocker pattern itself
+reconstructs a concrete residual, so there is no genuine surviving-shape
+escape before entering the recentered scalar competition. -/
+theorem AdaptiveAlignedSmithBlockerEndpoint.firstWallCompetition
+    [CharZero K]
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint
+      (K := K) degreeCap)
+    (base : SmithSupportExponent → ℤ) :
+    HasAlignedRecenteredFirstWallCompetition
+      B.aligned.endpoint.rawSpecialFiber B.exponent base := by
+  rcases B.concreteResidualNormalForm with ⟨R⟩
+  exact R.firstWallCompetition base
+
 /-- **Aligned blocker dispatcher closure at the first-wall interface.**
 
 The blocker endpoint has only two honest outputs left:

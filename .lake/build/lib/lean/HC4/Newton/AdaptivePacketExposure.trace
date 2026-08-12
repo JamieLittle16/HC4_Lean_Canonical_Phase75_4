@@ -19,7 +19,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Newton.MixedDegreeWallRefinement transitive imports (legacy)",
-         "10845334076392684821"],
+         "17777881722319522740"],
         ["HC4.Newton.MixedDegreeWallRefinement:importAllArts",
          "17342575350410817801"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -35,4 +35,4 @@
    "11278522905780063509"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "16195304703716783265"}
+ "depHash": "8929822160447223458"}

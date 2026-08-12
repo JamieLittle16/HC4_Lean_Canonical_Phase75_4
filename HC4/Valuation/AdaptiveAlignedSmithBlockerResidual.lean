@@ -158,6 +158,73 @@ theorem AdaptiveAlignedSmithBlockerEndpoint.concreteResidualNormalForm_or_surviv
   | surviving hshape =>
       exact Or.inr hshape
 
+/-- The stored blocker `pattern` is already strong enough to recover one of
+its four concrete residual normal forms directly.  In particular, the
+`surviving` constructor of the coarser `MixedDegreeSmithExponentOutcome`
+does not represent a genuine extra blocker branch: for an exponent that is
+known to be one of the four blocker patterns, the normalized axis data
+reconstructs the corresponding residual again.
+
+This theorem deliberately leaves the older
+`concreteResidualNormalForm_or_survivingShape` API in place for downstream
+compatibility, while providing the stronger canonical fact for the final
+dispatcher. -/
+theorem AdaptiveAlignedSmithBlockerEndpoint.concreteResidualNormalForm
+    [CharZero K]
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint
+      (K := K) degreeCap) :
+    Nonempty
+      (AdaptiveAlignedSmithConcreteBlockerResidualNormalForm
+        (K := K) B) := by
+  rcases B.aligned.rawSpecialFiber_axisData with
+    ⟨hcoll, hzero, hvalue⟩
+  rcases B.pattern with hpure | hrest
+  · rcases
+        projectedSupport_pureLongitudinal_twoEndpointResidualData
+          B.aligned.endpoint.rawSpecialFiber B.exponent B.mem hpure
+          hcoll hzero hvalue with
+      ⟨A, C, hA, hAeq, hC, hfactor, hdegree⟩
+    rcases exists_endpointResidualNormalForm C hC with ⟨hnormal⟩
+    exact
+      ⟨.pureLongitudinal
+        A C hpure hA hAeq hC hfactor hdegree hnormal⟩
+  · rcases hrest with hfirst | hrest
+    · rcases
+          projectedSupport_transverseLinear_twoEndpointResidualData
+            B.aligned.endpoint.rawSpecialFiber B.exponent B.mem 1
+            (smithTransverseExponent_eq_single_one_of_lowNegativeFirst
+              B.exponent hfirst)
+            hcoll hzero with
+        ⟨A, R, hA, hAeq, hR, hfactor, hdegree⟩
+      rcases exists_endpointResidualNormalForm R hR with ⟨hnormal⟩
+      exact
+        ⟨.lowNegativeFirst
+          A R hfirst hA hAeq hR hfactor hdegree hnormal⟩
+    · rcases hrest with hsecond | hw
+      · rcases
+            projectedSupport_transverseLinear_twoEndpointResidualData
+              B.aligned.endpoint.rawSpecialFiber B.exponent B.mem 0
+              (smithTransverseExponent_eq_single_zero_of_lowNegativeSecond
+                B.exponent hsecond)
+              hcoll hzero with
+          ⟨A, R, hA, hAeq, hR, hfactor, hdegree⟩
+        rcases exists_endpointResidualNormalForm R hR with ⟨hnormal⟩
+        exact
+          ⟨.lowNegativeSecond
+            A R hsecond hA hAeq hR hfactor hdegree hnormal⟩
+      · rcases
+            projectedSupport_transverseLinear_twoEndpointResidualData
+              B.aligned.endpoint.rawSpecialFiber B.exponent B.mem 2
+              (smithTransverseExponent_eq_single_two_of_wLinear
+                B.exponent hw)
+              hcoll hzero with
+          ⟨A, R, hA, hAeq, hR, hfactor, hdegree⟩
+        rcases exists_endpointResidualNormalForm R hR with ⟨hnormal⟩
+        exact
+          ⟨.wLinear
+            A R hw hA hAeq hR hfactor hdegree hnormal⟩
+
 /-- Every concrete blocker normalization exposes a terminal polynomial that
 is nonzero and, crucially, nonzero at the right endpoint `X = 1`.
 

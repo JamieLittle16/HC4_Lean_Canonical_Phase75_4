@@ -28,7 +28,7 @@
          "14613653263538193601"],
         ["HC4.Valuation.ScaledDefect:importAllArts", "17652275347623775692"],
         ["HC4.Valuation.AdaptiveGeometricRestartState transitive imports (legacy)",
-         "5421748269443194398"],
+         "2618733450092767825"],
         ["HC4.Valuation.AdaptiveGeometricRestartState:importAllArts",
          "9683327294591626418"],
         ["HC4.Valuation.IntegralKernelSlopeExtraction transitive imports (legacy)",
@@ -50,4 +50,4 @@
    "11035063209321201500"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "9118175442925382205"}
+ "depHash": "13877587383308296856"}

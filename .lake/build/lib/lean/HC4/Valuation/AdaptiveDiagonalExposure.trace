@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Newton.AdaptivePacketExposure transitive imports (legacy)",
-         "14989190509151538800"],
+         "11253094879960212271"],
         ["HC4.Newton.AdaptivePacketExposure:importAllArts",
          "10669647047934099444"],
         ["HC4.Valuation.PrimitiveSmithEndpoint transitive imports (legacy)",
@@ -33,4 +33,4 @@
    "5456655017975740821"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "17880484416427819253"}
+ "depHash": "9535656274172025397"}
