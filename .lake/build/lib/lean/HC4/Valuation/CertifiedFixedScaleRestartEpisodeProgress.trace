@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.FixedScaleRestartEpisodeOrder transitive imports (legacy)",
-         "13636032869950902383"],
+         "10851839671900921194"],
         ["HC4.Valuation.FixedScaleRestartEpisodeOrder:importAllArts",
          "4362854863871785359"],
         ["HC4.Valuation.AdaptiveGeometricRestartState transitive imports (legacy)",
-         "5421748269443194398"],
+         "2618733450092767825"],
         ["HC4.Valuation.AdaptiveGeometricRestartState:importAllArts",
          "9683327294591626418"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -33,4 +33,4 @@
    "1188128276926093465"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "18256134044544748174"}
+ "depHash": "17437392834912809535"}

@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.StrictSmithMaximalNormalization transitive imports (legacy)",
-         "16169991848894048818"],
+         "3319034620508444528"],
         ["HC4.Valuation.StrictSmithMaximalNormalization:importAllArts",
          "16696412053380351814"],
         ["HC4.Valuation.PrimitiveSmithEndpoint transitive imports (legacy)",
@@ -33,4 +33,4 @@
    "12439490498859547493"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "7096711966734550338"}
+ "depHash": "4822317980255194083"}

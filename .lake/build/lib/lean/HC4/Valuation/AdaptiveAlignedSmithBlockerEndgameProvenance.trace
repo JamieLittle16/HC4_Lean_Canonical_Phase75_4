@@ -1,0 +1,52 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["1643883574605903361"],
+  "i": "8950321819158334042",
+  "c": "17940647293089966205"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean:47:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithMinimalEndpoint.rightRecenteredFamily_exactCollision`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean:66:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithMinimalEndpoint.rightRecenteredRightSection_specialPoint`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean:86:2: Try `simp at h0` instead of `simpa using h0`\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean:272:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithBlockerEndgameWithProvenance.toEndgame`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Valuation.AdaptiveAlignedSmithBlockerEndgameProvenance:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Valuation.AdaptiveAlignedSmithBlockerEndgame transitive imports (legacy)",
+         "11652150857836009956"],
+        ["HC4.Valuation.AdaptiveAlignedSmithBlockerEndgame:importAllArts",
+         "734236747117442012"],
+        ["HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors transitive imports (legacy)",
+         "13338165820784992287"],
+        ["HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors:importAllArts",
+         "10764729366263246324"],
+        ["HC4.Valuation.MovingCollisionRecentering transitive imports (legacy)",
+         "15085111742043889239"],
+        ["HC4.Valuation.MovingCollisionRecentering:importAllArts",
+         "4117868163650216230"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithBlockerEndgameProvenance.lean",
+   "11787910205402226142"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "17414174385899512923"}

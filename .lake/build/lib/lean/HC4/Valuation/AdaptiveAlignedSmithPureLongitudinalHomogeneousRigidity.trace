@@ -1,7 +1,7 @@
 {"synthetic": false,
  "outputs":
- {"o": ["13328200925540509506"],
-  "i": "7990663949825099839",
+ {"o": ["14205285431848627357"],
+  "i": "15958196321620422171",
   "c": "7000225675198009096"},
  "log":
  [{"message":
@@ -19,7 +19,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity transitive imports (legacy)",
-         "15945913895371773503"],
+         "11717829622282362111"],
         ["HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity:importAllArts",
          "14065928546366051602"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -32,7 +32,7 @@
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity.lean",
-   "10355134544980563686"],
+   "8831243246188645593"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "7137443945197953714"}
+ "depHash": "4843003608875281470"}

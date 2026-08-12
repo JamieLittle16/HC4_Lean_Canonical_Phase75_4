@@ -1,0 +1,66 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["9314378606687541098"],
+  "i": "11996708809791117756",
+  "c": "12433568056080861698"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:103:0: automatically included section variable(s) unused in theorem `HC4.Valuation.exists_source_firstPositiveTransverseSourceDegree`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:121:0: automatically included section variable(s) unused in theorem `HC4.Valuation.firstPositiveTransverseSourceDegree_le`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:136:0: automatically included section variable(s) unused in theorem `HC4.Valuation.projectedSupport_linear_of_source_transverseDegree_one`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:166:0: automatically included section variable(s) unused in theorem `HC4.Valuation.isWeightLE_zero_pureLongitudinalTransverseWeight`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:237:0: automatically included section variable(s) unused in theorem `HC4.Valuation.pderiv_transverse_initialForm_zero_eq_zero`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:260:0: automatically included section variable(s) unused in theorem `HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:380:0: automatically included section variable(s) unused in theorem `HC4.Valuation.hessian_zero_zero_initialForm_zero_ne_zero_of_axisRestriction_ne_zero`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:539:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean:633:0: automatically included section variable(s) unused in theorem `HC4.Valuation.rightRecentered_hessian_allMinors_raw`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalLinearEscape transitive imports (legacy)",
+         "13475004241967480253"],
+        ["HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalLinearEscape:importAllArts",
+         "7200784116604406514"],
+        ["HC4.Polynomial.TopProduct transitive imports (legacy)",
+         "11575654455085798475"],
+        ["HC4.Polynomial.TopProduct:importAllArts", "10267194883425179289"],
+        ["HC4.Newton.CharZeroHessianKernelRigidity transitive imports (legacy)",
+         "2244707596575463209"],
+        ["HC4.Newton.CharZeroHessianKernelRigidity:importAllArts",
+         "3116426795189905663"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalHigherEscape.lean",
+   "11646138637317981797"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "3337834771233421045"}

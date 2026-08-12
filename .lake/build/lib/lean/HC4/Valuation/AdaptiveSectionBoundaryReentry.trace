@@ -16,7 +16,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveSectionBoundaryCollisionCovariance transitive imports (legacy)",
-         "7113839843694260750"],
+         "13508222540701808495"],
         ["HC4.Valuation.AdaptiveSectionBoundaryCollisionCovariance:importAllArts",
          "9264842527841343629"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -32,4 +32,4 @@
    "6086079855646216325"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "6297392059871001827"}
+ "depHash": "7049109782904835793"}

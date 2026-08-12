@@ -25,11 +25,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress transitive imports (legacy)",
-         "883149033654341462"],
+         "13175745956679730045"],
         ["HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress:importAllArts",
          "10212823635034972129"],
         ["HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated transitive imports (legacy)",
-         "2936847330363241293"],
+         "12793617134869949156"],
         ["HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated:importAllArts",
          "3031297219183224931"],
         ["HC4.Valuation.NonlinearDegreeBoundPreservation transitive imports (legacy)",
@@ -49,4 +49,4 @@
    "11525373501036339421"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "15151731823560436702"}
+ "depHash": "10271974406475575525"}

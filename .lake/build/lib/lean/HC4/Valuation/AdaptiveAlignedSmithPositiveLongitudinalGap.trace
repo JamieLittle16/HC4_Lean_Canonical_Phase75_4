@@ -1,7 +1,7 @@
 {"synthetic": false,
  "outputs":
- {"o": ["418393169595214737"],
-  "i": "3472975703655857394",
+ {"o": ["4922938016002715925"],
+  "i": "17621335593128295928",
   "c": "1851047936717410349"},
  "log":
  [{"message":
@@ -13,9 +13,9 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker transitive imports (legacy)",
-         "9239374008367882639"],
+         "13977901135780909089"],
         ["HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker:importAllArts",
-         "6047410153134217283"],
+         "3503569233312251166"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -26,7 +26,7 @@
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithPositiveLongitudinalGap.lean",
-   "14357246317687220216"],
+   "12187237624966312787"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "8836142999914315813"}
+ "depHash": "4417831074039035480"}

@@ -1,7 +1,7 @@
 {"synthetic": false,
  "outputs":
- {"o": ["17733187472887712627"],
-  "i": "1958389619890387413",
+ {"o": ["13560485634241027926"],
+  "i": "983662852922543634",
   "c": "10409282906981666046"},
  "log":
  [{"message":
@@ -13,13 +13,13 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition transitive imports (legacy)",
-         "16698042412148925547"],
+         "11648851497498237028"],
         ["HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition:importAllArts",
          "12309021075654395907"],
         ["HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity transitive imports (legacy)",
-         "179749804263614813"],
+         "17099001211206643162"],
         ["HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity:importAllArts",
-         "2766022550495227822"],
+         "13492563323961471683"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -30,7 +30,7 @@
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithExactExponentMixedBlocker.lean",
-   "16603096751067190464"],
+   "13797676438894410734"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "8243812499432506164"}
+ "depHash": "2975756256564991338"}

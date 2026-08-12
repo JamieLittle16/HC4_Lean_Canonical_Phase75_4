@@ -19,7 +19,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.StrictSmithPostTransformFace transitive imports (legacy)",
-         "15574131289794994431"],
+         "8082659486103781572"],
         ["HC4.Valuation.StrictSmithPostTransformFace:importAllArts",
          "11572242374374641098"],
         ["HC4.Valuation.AdaptiveCoefficientOrder transitive imports (legacy)",
@@ -39,4 +39,4 @@
    "3321189120467202860"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "18205164888947590938"}
+ "depHash": "6723014375086956115"}

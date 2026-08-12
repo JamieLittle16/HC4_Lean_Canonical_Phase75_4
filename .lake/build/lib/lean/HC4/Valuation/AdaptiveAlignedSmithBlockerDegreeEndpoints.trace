@@ -13,11 +13,11 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithCanonicalBlockerCompetition transitive imports (legacy)",
-         "4766911313439975424"],
+         "14854944221444507871"],
         ["HC4.Valuation.AdaptiveAlignedSmithCanonicalBlockerCompetition:importAllArts",
-         "1014067839786295641"],
+         "3207518394187011862"],
         ["HC4.Newton.MixedDegreeWallRefinement transitive imports (legacy)",
-         "10845334076392684821"],
+         "17777881722319522740"],
         ["HC4.Newton.MixedDegreeWallRefinement:importAllArts",
          "17342575350410817801"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -33,4 +33,4 @@
    "12797911134051520701"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "1671866688384099620"}
+ "depHash": "3014301840089245447"}

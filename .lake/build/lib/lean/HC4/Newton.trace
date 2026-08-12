@@ -76,13 +76,13 @@
         ["HC4.Newton.MixedDegreeFirstWallCompetition transitive imports (legacy)",
          "12511091349663115517"],
         ["HC4.Newton.MixedDegreeFirstWallCompetition:importAllArts",
-         "16069524900784939826"],
+         "13294174283438207783"],
         ["HC4.Newton.MixedDegreeWallRefinement transitive imports (legacy)",
-         "10845334076392684821"],
+         "17777881722319522740"],
         ["HC4.Newton.MixedDegreeWallRefinement:importAllArts",
          "17342575350410817801"],
         ["HC4.Newton.AdaptivePacketExposure transitive imports (legacy)",
-         "14989190509151538800"],
+         "11253094879960212271"],
         ["HC4.Newton.AdaptivePacketExposure:importAllArts",
          "10669647047934099444"]]]]],
     ["libs",
@@ -96,4 +96,4 @@
    "12733321178322277347"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "13422276855624460125"}
+ "depHash": "5740082158856477681"}

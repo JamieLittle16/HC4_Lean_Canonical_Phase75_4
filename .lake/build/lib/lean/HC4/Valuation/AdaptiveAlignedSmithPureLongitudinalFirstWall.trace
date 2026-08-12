@@ -1,7 +1,7 @@
 {"synthetic": false,
  "outputs":
- {"o": ["370972580545728248"],
-  "i": "11382576231238094637",
+ {"o": ["2370771833280757681"],
+  "i": "9660462167258582539",
   "c": "10818760383507810138"},
  "log":
  [{"message":
@@ -16,7 +16,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall transitive imports (legacy)",
-         "8509261073179791351"],
+         "18433357125607399349"],
         ["HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall:importAllArts",
          "11026618795562570973"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -29,7 +29,7 @@
   ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
    "1165570713881806064"],
   ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithPureLongitudinalFirstWall.lean",
-   "82619868846470705"],
+   "1885902728836158547"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "10891878884360367832"}
+ "depHash": "13595634827842022675"}

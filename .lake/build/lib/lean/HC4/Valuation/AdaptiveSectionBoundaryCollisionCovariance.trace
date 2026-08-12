@@ -13,7 +13,7 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveSectionBoundaryShearFamily transitive imports (legacy)",
-         "6618666911392840828"],
+         "17157416260408384060"],
         ["HC4.Valuation.AdaptiveSectionBoundaryShearFamily:importAllArts",
          "12693257140150202153"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
@@ -29,4 +29,4 @@
    "4716564416394529736"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "11844443101300352307"}
+ "depHash": "1246490219224678417"}

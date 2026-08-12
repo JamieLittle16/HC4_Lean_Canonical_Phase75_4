@@ -16,13 +16,13 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithExposureGeometry transitive imports (legacy)",
-         "4979199334904352772"],
+         "4391746839678190894"],
         ["HC4.Valuation.AdaptiveAlignedSmithExposureGeometry:importAllArts",
          "6520310204181015634"],
         ["HC4.Valuation.AdaptiveAlignedSmithSurvivingPacket transitive imports (legacy)",
-         "10995883102127582045"],
+         "13182043286569492125"],
         ["HC4.Valuation.AdaptiveAlignedSmithSurvivingPacket:importAllArts",
-         "1277144241871170408"],
+         "41739082256112518"],
         ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
         ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
     ["libs",
@@ -36,4 +36,4 @@
    "17506650740137416157"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "16034173481846912390"}
+ "depHash": "5963163925057753106"}

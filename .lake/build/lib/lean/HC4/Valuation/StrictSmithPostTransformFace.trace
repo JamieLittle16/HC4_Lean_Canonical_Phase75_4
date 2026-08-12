@@ -28,7 +28,7 @@
         ["HC4.Valuation.AdaptiveCoefficientOrder:importAllArts",
          "14401988852465651380"],
         ["HC4.Valuation.AdaptiveDegreeTwoSaturatedFace transitive imports (legacy)",
-         "12525529704858324692"],
+         "842677288509301322"],
         ["HC4.Valuation.AdaptiveDegreeTwoSaturatedFace:importAllArts",
          "5880693575523387893"]]]]],
     ["libs",
@@ -42,4 +42,4 @@
    "12687431032842797863"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "8601698996853585156"}
+ "depHash": "14535111309103517793"}

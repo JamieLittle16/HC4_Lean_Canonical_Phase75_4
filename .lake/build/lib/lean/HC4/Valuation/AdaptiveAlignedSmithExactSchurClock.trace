@@ -13,9 +13,9 @@
      [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
       ["imports",
        [["HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture transitive imports (legacy)",
-         "11485008291672472621"],
+         "10568208302955289317"],
         ["HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture:importAllArts",
-         "12935805559016556253"],
+         "5257010868921459683"],
         ["HC4.Valuation.FirstSchurDepartureBridge transitive imports (legacy)",
          "5499731382489272030"],
         ["HC4.Valuation.FirstSchurDepartureBridge:importAllArts",
@@ -33,4 +33,4 @@
    "16405142469244925937"],
   ["options", "1723"],
   ["Module.leanArgs: #[]", "1723"]],
- "depHash": "9301748551297630259"}
+ "depHash": "17336609982859710622"}
