@@ -1,0 +1,38 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["16203481019932192536"],
+  "i": "9433287413376101333",
+  "c": "10384884020788236336"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.lean:117:5: unused variable `hi0`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.lean:118:5: unused variable `hk0`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination transitive imports (legacy)",
+         "8217197006642947044"],
+        ["HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination:importAllArts",
+         "16558020695682690407"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit.lean",
+   "2104582665990539295"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "8315997336140896133"}

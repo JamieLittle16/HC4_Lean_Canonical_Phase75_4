@@ -1,0 +1,53 @@
+{"synthetic": false,
+ "outputs":
+ {"o": ["167439020258844272"],
+  "i": "12576543285002051902",
+  "c": "9438735455358863759"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Cli/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/batteries/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/Qq/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/aesop/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/importGraph/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/plausible/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/packages/mathlib/.lake/build/lib/lean:/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean /home/Jamie/.elan/toolchains/leanprover--lean4---v4.24.0/bin/lean /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean -o /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.olean -i /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/lib/lean/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.ilean -c /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.c --setup /home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/.lake/build/ir/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:96:0: automatically included section variable(s) unused in theorem `HC4.Valuation.quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:108:18: This simp argument is unused:\n  add_left_comm\n\nHint: Omit it from the simp argument list.\n  simp [add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵add_assoc]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:108:33: This simp argument is unused:\n  add_assoc\n\nHint: Omit it from the simp argument list.\n  simp [add_comm, add_left_comm,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:178:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingSourceCarrier.firstActualLayer_originHessian_ne_zero_of_eq_defect`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:189:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingSourceCarrier.firstActualLayer_hasQuadraticSourceCoefficient_of_eq_defect`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:216:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingSourceCarrier.firstActualLayer_directClosing_fresh_or_overlapQuadratic`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"},
+  {"message":
+   "HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean:245:0: automatically included section variable(s) unused in theorem `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingSourceCarrier.firstActualLayer_preclosing_or_directQuadratic`:\n  [CharZero K]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CharZero K] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`",
+   "level": "warning"}],
+ "inputs":
+ [["HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest:deps",
+   [["deps",
+     [["HC4Lean/HC4:extraDep", [["@HC4Lean:extraDep", "1723"]]],
+      ["imports",
+       [["HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerKernelClock transitive imports (legacy)",
+         "3374481852721886442"],
+        ["HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerKernelClock:importAllArts",
+         "11128254366070731400"],
+        ["Mathlib.Tactic transitive imports (legacy)", "9494613600595343154"],
+        ["Mathlib.Tactic:importAllArts", "16845572214284678408"]]]]],
+    ["libs",
+     [["import dynlibs", "1723"],
+      ["package external libraries", "1723"],
+      ["module dynlibs", "1723"],
+      ["module plugins", "1723"]]]]],
+  ["Lean 4.24.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+   "1165570713881806064"],
+  ["/home/Jamie/HC4/lean/HC4_Lean_Canonical_Phase75_4/HC4/Valuation/AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest.lean",
+   "3586067880259359328"],
+  ["options", "1723"],
+  ["Module.leanArgs: #[]", "1723"]],
+ "depHash": "5888025392478302745"}
