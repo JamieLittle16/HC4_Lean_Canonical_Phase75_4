@@ -32,26 +32,6 @@ open HC4.Polynomial
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- The finite integral rank-three segment is an instance of the general
-affine-line interface. -/
-noncomputable def integralRankThreeAffineLineData
-    {v2 v3 v4 u1 u2 u3 u4 M : ℕ}
-    (phi : Polynomial K) :
-    RankThreeAffineLineData
-      (M * v2) (M * v3) (M * v4) u1
-      ((u2 : K) - (v2 : K))
-      ((u3 : K) - (v3 : K))
-      ((u4 : K) - (v4 : K)) phi where
-  exponent := fun j =>
-    rankThreeLineExponentFinsupp v2 v3 v4 u1 u2 u3 u4 M j
-  affine := by
-    intro j hj
-    have hjle : j ≤ phi.natDegree := Polynomial.le_natDegree_of_mem_supp j hj
-    -- The caller-facing finite segment always extracts a polynomial of degree
-    -- at most `M`; for this standalone adapter we only use supported indices
-    -- once the equality `natDegree phi = M` is supplied below.
-    sorry
-
 /-- **Actual supported endpoint boundary theorem.**
 
 A singular genuine rank-three Newton edge with both endpoints present has
