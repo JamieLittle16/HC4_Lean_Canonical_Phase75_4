@@ -56,7 +56,7 @@ theorem rankThreeAffineTerminal_topStratum
   have hboundary : MvExponentOnBoundary (L.exponent phi.natDegree) :=
     rankThreeAffineLine_topExponent_on_boundary_of_certificate
       L hA hB hC hP hphiDeg hphi0 hcert
-  rcases mv_boundary_rankThree_or_extremeRay
+  rcases mvBoundary_rankThree_or_extremeRay
       ha hb hcop hbal hboundary with hthree | hray
   · rcases hthree with ⟨facet, hfacet⟩
     exact .rankThree facet hfacet
