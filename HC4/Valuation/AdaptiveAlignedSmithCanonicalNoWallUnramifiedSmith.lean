@@ -291,13 +291,12 @@ theorem ScaleAwareAdaptiveGeometricRestartState.exists_sameScaleNoWallSmithSucce
     simp [a, zeroPolynomialSection]
   have hbdiv : HasIntegralSmithConformalSectionDivisibility m m b := by
     intro i
-    fin_cases i
-    · simp [smithConformalDerivativeCoefficient, smithConformalSourceExponent]
-    · rw [rightTransverse_zero_of_noGenuineWall P a b hnone 1 (by decide)]
-      exact dvd_zero _
-    · rw [rightTransverse_zero_of_noGenuineWall P a b hnone 2 (by decide)]
-      exact dvd_zero _
-    · rw [rightTransverse_zero_of_noGenuineWall P a b hnone 3 (by decide)]
+    by_cases hi0 : i = (0 : Fin 4)
+    · subst i
+      simp [smithConformalDerivativeCoefficient, smithConformalSourceExponent]
+    · have hz : b i = 0 :=
+        rightTransverse_zero_of_noGenuineWall P a b hnone i hi0
+      rw [hz]
       exact dvd_zero _
   have haeq : integralSmithConformalSection m m a hadiv = a :=
     integralSmithConformalSection_eq_of_noWall P a b a hnone (Or.inl rfl) m hadiv
