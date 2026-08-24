@@ -4,19 +4,21 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneGlobalSuccessor
 import Mathlib.Tactic
 
 /-!
-# A18.4.107: one complete aligned episode is progress or rank three
+# A18.4.107/108: one complete aligned episode is strict rank-one restart or rank three
 
 The provenance-sharp aligned endpoint has only three origins.
 
 * Exact aligned clock: classify the retained endpoint as a blocker or
-  surviving wall, then use A18.4.105 to obtain complete rank-three geometry.
-* Positive no-wall primitive order: A18.4.58/A18.4.75 give a literal strict
-  same-scale raw-defect drop.
-* Genuine section boundary: A18.4.106 gives either the same discrete progress
-  or complete rank-three geometry.
+  surviving wall, then obtain complete rank-three geometry.
+* Positive no-wall primitive order: the honest unramified quotient has a
+  strict natural raw-defect drop with repair metadata unchanged.
+* Genuine section boundary: the only recursive branch is a separated right
+  wall, again with a strict natural raw-defect drop and unchanged repair.
 
-This is the final nonrecursive local statement needed by the well-founded
-rank-one induction.  No repair-only finite-rank exit remains.
+The recursive constructor deliberately stores these two extra facts instead
+of exposing only an abstract global-macro comparison.  This makes the final
+well-founded induction a plain induction on `rawDefect : ℕ` and prevents a
+repair-only relabelling from ever being used recursively.
 -/
 
 namespace HC4.Valuation
@@ -46,8 +48,8 @@ inductive AdaptiveAlignedSmithCanonicalAlignedRankThreeGeometry
       (geometry : AdaptiveAlignedSmithCanonicalBoundaryRankThreeGeometry
         RR source complexity)
 
-/-- Complete local aligned outcome: recurse only on a strict discrete global
-key, otherwise retain complete rank-three geometry. -/
+/-- Complete local aligned outcome.  A recursive target is still canonical
+rank one whenever the source is, and has strictly smaller natural raw defect. -/
 inductive AdaptiveAlignedSmithCanonicalAlignedRankThreeOrProgressOutcome
     (RR : RepairRanking)
     (source : ScaleAwareAdaptiveGeometricRestartState (K := K))
@@ -55,11 +57,14 @@ inductive AdaptiveAlignedSmithCanonicalAlignedRankThreeOrProgressOutcome
   | globalProgress
       (target : ScaleAwareAdaptiveGeometricRestartState (K := K))
       (progress : AdaptiveAlignedSmithCanonicalGlobalMacroProgress target source)
+      (rawDefect_lt : target.rawDefect < source.rawDefect)
+      (repair_eq : target.repair = source.repair)
   | rankThree
       (geometry : AdaptiveAlignedSmithCanonicalAlignedRankThreeGeometry
         RR source complexity)
 
-/-- **A18.4.107 complete provenance-sharp aligned episode.** -/
+/-- **Complete provenance-sharp aligned episode with a genuinely recursive
+rank-one edge.** -/
 noncomputable def
     ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalRankThreeOrProgress
     (RR : RepairRanking)
@@ -70,13 +75,27 @@ noncomputable def
       RR source complexity := by
   cases source.alignedSmithCanonicalEndpointOrigin RR with
   | noWallDefectDrop D =>
-      exact .globalProgress D.target
+      let target := source.noWallUnramifiedPrimitiveTarget D.primitive
+      have hle : 4 * D.primitive.m ≤ source.rawDefect :=
+        four_mul_le_defect_of_commonParameterFactor
+          D.primitive.m
+          D.primitive.smithData.smithFamily
+          D.primitive.commonFactor
+          source.rawDefect
+          D.primitive.smithData.smithFamily_hessianDefect
+      have hraw : target.rawDefect < source.rawDefect := by
+        change source.rawDefect - 4 * D.primitive.m < source.rawDefect
+        omega
+      exact .globalProgress target
         (source.noWallPrimitive_globalProgress D.primitive D.m_pos)
+        hraw rfl
 
   | sectionBoundary B =>
       cases B.rankThreeAbsorption RR complexity hsrepair with
-      | globalProgress target h => exact .globalProgress target h
-      | rankThree G => exact .rankThree (.boundary G)
+      | globalProgress target h hraw hrepair =>
+          exact .globalProgress target h hraw hrepair
+      | rankThree G =>
+          exact .rankThree (.boundary G)
 
   | exactEndpoint E =>
       let Z := E.endpoint
