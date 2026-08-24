@@ -117,12 +117,18 @@ theorem rigid_of_axisSquare
     (haxis : IsPlanarAxisSquareCompetitor P.competitor) :
     HasRigidRankOnePacket
       (0 : Fin 4) 1 2 P.degree P.packet := by
-  exact rankOnePersistentPacket_rigid_of_discriminant_eq_zero
-    (by decide : (0 : Fin 4) ≠ 1)
-    (by decide : (0 : Fin 4) ≠ 2)
-    (by decide : (1 : Fin 4) ≠ 2)
-    P.persistent P.provenance.packet_ne_zero
-    (P.discriminant_eq_zero_of_axisSquare haxis)
+  have hnz :
+      RankOnePacketQuadraticNonzero
+        (0 : Fin 4) 1 2 P.degree P.packet :=
+    rankOnePacketQuadraticNonzero_of_polynomial_ne_zero
+      (by decide : (0 : Fin 4) ≠ 1)
+      (by decide : (0 : Fin 4) ≠ 2)
+      (by decide : (1 : Fin 4) ≠ 2)
+      P.persistent P.provenance.packet_ne_zero
+  have hdisc := P.discriminant_eq_zero_of_axisSquare haxis
+  exact ⟨hdisc,
+    rankOnePacket_squareGeometry_of_discriminant_eq_zero
+      (0 : Fin 4) 1 2 P.degree P.packet hnz hdisc⟩
 
 end AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
 
@@ -149,7 +155,7 @@ theorem discriminant_eq_zero
     intro h
     have hw := congrArg (fun d : Fin 4 →₀ ℕ => d 3) h
     simp [rankOnePacketZZ, P.source_w_two] at hw
-  simp [MvPolynomial.coeff_monomial, hYZ, hZZ]
+  simp [hYZ, hZZ]
 
 /-- Therefore the actual one-monomial `w^2` packet is rigid. -/
 theorem rigid
@@ -158,11 +164,18 @@ theorem rigid
     (P : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B) :
     HasRigidRankOnePacket
       (0 : Fin 4) 3 2 P.degree P.packet := by
-  exact rankOnePersistentPacket_rigid_of_discriminant_eq_zero
-    (by decide : (0 : Fin 4) ≠ 3)
-    (by decide : (0 : Fin 4) ≠ 2)
-    (by decide : (3 : Fin 4) ≠ 2)
-    P.persistent P.packet_ne_zero P.discriminant_eq_zero
+  have hnz :
+      RankOnePacketQuadraticNonzero
+        (0 : Fin 4) 3 2 P.degree P.packet :=
+    rankOnePacketQuadraticNonzero_of_polynomial_ne_zero
+      (by decide : (0 : Fin 4) ≠ 3)
+      (by decide : (0 : Fin 4) ≠ 2)
+      (by decide : (3 : Fin 4) ≠ 2)
+      P.persistent P.packet_ne_zero
+  have hdisc := P.discriminant_eq_zero
+  exact ⟨hdisc,
+    rankOnePacket_squareGeometry_of_discriminant_eq_zero
+      (0 : Fin 4) 3 2 P.degree P.packet hnz hdisc⟩
 
 end AdaptiveAlignedSmithWSquarePacketEndpoint
 
