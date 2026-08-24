@@ -73,3 +73,4 @@ import HC4.MainAssembly
 import HC4.Valuation.CanonicalEntrySanity
 import HC4.Valuation.CanonicalAdaptiveSmithWall
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalNoWallUnramifiedSmith
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalNoWallReducedExactClock
