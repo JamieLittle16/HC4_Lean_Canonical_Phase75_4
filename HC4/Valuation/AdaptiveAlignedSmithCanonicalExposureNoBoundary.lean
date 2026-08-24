@@ -76,7 +76,8 @@ theorem integralAdaptiveSmithSection_constantCoeff_zero_of_weight_lt_ramificatio
         (parameterRamificationSection (K := K) R a) hdiv i).coeff (W i) =
       (parameterRamificationSection (K := K) R a i).coeff (W i) at hcoeff
   rw [Polynomial.coeff_X_pow_mul'] at hcoeff
-  simpa [hRAM := hramCoeff] using hcoeff
+  rw [hramCoeff] at hcoeff
+  simpa using hcoeff
 
 /-- Each canonical surviving-wall source weight is at most the common level
 `4`. -/
