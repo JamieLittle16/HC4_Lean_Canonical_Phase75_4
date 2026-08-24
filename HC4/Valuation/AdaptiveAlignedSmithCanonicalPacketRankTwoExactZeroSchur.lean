@@ -38,11 +38,11 @@ inductive AdaptiveAlignedSmithCanonicalPacketRankTwoExactZeroSchurOutcome
   | zeroDefect
       (hzero : (P.rankOneAnalysisState s W complexity).defect = 0)
   | exactZeroSchur
+      (hD : 3 ≤ P.degree)
       (M : AdaptiveAlignedSmithRankTwoMatrixEndpoint
         (K := K) s W P complexity R2)
       (Z : ExactZeroSchurFourBlockData K)
-      (Z_eq : Z = M.toExactZeroSchurAutomatic s W P complexity R2
-        (by exact P.degree_eq_two_or_three_le s W |>.resolve_left (by omega)))
+      (Z_eq : Z = M.toExactZeroSchurAutomatic s W P complexity R2 hD)
 
 /-- **Packet-family rank two -> zero defect or exact zero-Schur geometry.** -/
 noncomputable def
@@ -61,7 +61,7 @@ noncomputable def
   · exact .zeroDefect hzero
   · rcases hM with ⟨M⟩
     let Z := M.toExactZeroSchurAutomatic s W P complexity R2 hD
-    exact .exactZeroSchur M Z (by rfl)
+    exact .exactZeroSchur hD M Z (by rfl)
 
 end
 
