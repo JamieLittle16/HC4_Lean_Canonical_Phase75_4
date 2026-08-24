@@ -16,18 +16,15 @@ homogeneity hypothesis.  What prevents immediate canonical classification is
 only that the simultaneous right-section wall moves the marked special point
 away from `e0`.
 
-This file records exactly that source-honest intermediate object.  A coupled
-boundary remembers
-
-* the actual aligned boundary endpoint;
-* the simultaneous coefficient-wall witness;
-* the genuine right-section-wall witness;
-* symmetric minimality of the actual first-wall special fibre; and
-* zero-source-jet provenance of that same first-wall family.
+For the later pointed-normalisation argument we also retain the logically
+important fact that this branch is nonprimitive.  That datum was known in the
+A18.4.16 case split but its first output type intentionally did not store it.
+Here we re-run the source-honest primitive split at the head: a primitive
+source is immediately consumed by the A18.4.17 classifier, while the coupled
+constructor is formed only in the complementary nonprimitive branch.
 
 No global homogeneity is assumed and the obsolete homogeneous coupled-wall
-impossibility theorem is not used.  The next geometric step may therefore
-focus solely on pointed normalisation of the marked right section.
+impossibility theorem is not used.
 -/
 
 namespace HC4.Valuation
@@ -39,16 +36,20 @@ open HC4.Newton
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
-/-- The exact mixed-degree data carried by a coupled aligned boundary.
+/-- The exact mixed-degree data carried by a genuinely residual coupled
+aligned boundary.
 
-The transformed family is already symmetric-Smith minimal.  Its remaining
-noncanonical feature is the simultaneous right-section wall. -/
+The transformed family is already symmetric-Smith minimal, and the source is
+known to be nonprimitive.  Its remaining noncanonical feature is the
+simultaneous right-section wall. -/
 structure AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) : Prop where
   boundary :
     AdaptiveAlignedSmithSectionBoundaryEndpoint
       (K := K) s.degreeCap s.rawDefect
       (zeroJetNormalizedFamily s.family) s.movingSection
+  noPrimitive :
+    ¬ HasPrimitiveZeroSmithSource (zeroJetNormalizedFamily s.family)
   coefficientWall :
     alignedSmithGenuineFirstWall
         (zeroJetNormalizedFamily s.family)
@@ -82,7 +83,7 @@ structure AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation
         (zeroPolynomialSection (K := K))
         s.movingSection boundary.hwall)
 
-/-- A literal coupled boundary on a normalized scale-aware state already
+/-- A nonprimitive coupled boundary on a normalized scale-aware state already
 supplies a mixed-degree minimal presentation.  The left-section alternative
 inside the generic coupled-wall predicate is impossible because that section
 is identically zero, so the simultaneous section wall is genuinely on the
@@ -92,6 +93,8 @@ theorem ScaleAwareAdaptiveGeometricRestartState.coupledMinimalPresentation
     (B : AdaptiveAlignedSmithSectionBoundaryEndpoint
       (K := K) s.degreeCap s.rawDefect
       (zeroJetNormalizedFamily s.family) s.movingSection)
+    (hnoPrimitive :
+      ¬ HasPrimitiveZeroSmithSource (zeroJetNormalizedFamily s.family))
     (hcoupled :
       HasCoupledAlignedSmithWall
         (zeroJetNormalizedFamily s.family)
@@ -145,6 +148,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.coupledMinimalPresentation
         s.movingSection B.hwall
   exact
     { boundary := B
+      noPrimitive := hnoPrimitive
       coefficientWall := hcoeff
       rightSectionWall := hright
       symmetricMinimal := hminimal
@@ -154,8 +158,8 @@ theorem ScaleAwareAdaptiveGeometricRestartState.coupledMinimalPresentation
 
 /-- After A18.4.18 every aligned-boundary head is either already recursive
 strict progress, a primitive canonical blocker/surviving endpoint, or a
-coupled *minimal* first-wall presentation whose only outstanding issue is
-point normalisation. -/
+nonprimitive coupled *minimal* first-wall presentation whose only outstanding
+issue is point normalisation. -/
 inductive AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadMinimalOutcome
     (RR : RepairRanking)
     (source target : ScaleAwareAdaptiveGeometricRestartState (K := K)) : Prop
@@ -195,8 +199,9 @@ inductive AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadMinimalOutcome
         (K := K) source)
       (boundary_eq : P.boundary = B₀)
 
-/-- Consume the bare coupled constructor of A18.4.17 by exposing the actual
-minimal first-wall geometry it already contains. -/
+/-- Re-run the primitive/nonprimitive split at the literal boundary head.
+This both consumes primitive sources through A18.4.17 and restores the
+nonprimitive provenance needed by the mixed-degree coupled geometry. -/
 theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.minimalReduction
     {RR : RepairRanking}
     {source target : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -204,16 +209,22 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.minimalReduction
       RR source target) :
     AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadMinimalOutcome
       RR source target := by
-  cases trace.canonicalReduction with
-  | strictMacro D =>
-      exact .strictMacro D
-  | primitiveBlocker B₀ htail P B hEq =>
-      exact .primitiveBlocker B₀ htail P B hEq
-  | primitiveSurviving B₀ htail P W hEq =>
-      exact .primitiveSurviving B₀ htail P W hEq
-  | coupled B₀ htail hcoupled =>
-      let P := source.coupledMinimalPresentation B₀ hcoupled
-      exact .coupledMinimal B₀ htail P rfl
+  by_cases hprimitive :
+      HasPrimitiveZeroSmithSource (zeroJetNormalizedFamily source.family)
+  · rcases trace.exists_head_boundary with ⟨B₀, htail⟩
+    cases source.primitiveCanonicalClassifier hprimitive with
+    | blocker P B hEq =>
+        exact .primitiveBlocker B₀ htail P B hEq
+    | surviving P W hEq =>
+        exact .primitiveSurviving B₀ htail P W hEq
+  · cases trace.geometricReduction with
+    | strictMacro D =>
+        exact .strictMacro D
+    | primitive B₀ htail hprimitive' =>
+        exact False.elim (hprimitive hprimitive')
+    | coupled B₀ htail hcoupled =>
+        let P := source.coupledMinimalPresentation B₀ hprimitive hcoupled
+        exact .coupledMinimal B₀ htail P rfl
 
 end
 
