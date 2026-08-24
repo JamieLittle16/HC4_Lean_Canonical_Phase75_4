@@ -36,6 +36,148 @@ namespace AdaptiveAlignedSmithRankOneClosingSourceCarrier
 variable {degreeCap : ℕ}
 variable {B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
 
+/-! ## Retained zero-jet provenance on aligned square sources -/
+
+/-- The honest right-recentered closing family has zero source gradient at
+its literal source origin.  This is the zero source jet transported across
+the retained exact collision and the actual right recentering. -/
+theorem alignedSquareSource_originalFamily_gradientAtZero
+    (C : AdaptiveAlignedSmithRankOneClosingSourceCarrier B)
+    (i : Fin 4) :
+    MvPolynomial.eval
+        (fun _ : Fin 4 => (0 : Polynomial K))
+        (MvPolynomial.pderiv i C.family) = 0 := by
+  let E := B.aligned.endpoint
+  have horigin :
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i E.family) = 0 := by
+    simpa [E] using B.aligned.zeroSourceJet.gradientAtZero i
+  have hright :
+      MvPolynomial.eval E.movingSection
+          (MvPolynomial.pderiv i E.family) = 0 := by
+    calc
+      MvPolynomial.eval E.movingSection
+          (MvPolynomial.pderiv i E.family) =
+          MvPolynomial.eval
+            (fun _ : Fin 4 => (0 : Polynomial K))
+            (MvPolynomial.pderiv i E.family) := by
+              exact (E.exactCollision i).symm
+      _ = 0 := horigin
+  change
+    MvPolynomial.eval
+        (fun _ : Fin 4 => (0 : Polynomial K))
+        (MvPolynomial.pderiv i E.rightRecenteredFamily) = 0
+  unfold AdaptiveAlignedSmithMinimalEndpoint.rightRecenteredFamily
+  rw [pderiv_polynomialFamilyTranslationHom]
+  calc
+    MvPolynomial.eval
+        (fun _ : Fin 4 => (0 : Polynomial K))
+        (polynomialFamilyTranslationHom (K := K) E.movingSection
+          (MvPolynomial.pderiv i E.family)) =
+        MvPolynomial.eval E.movingSection
+          (MvPolynomial.pderiv i E.family) := by
+            simpa using
+              (eval_polynomialFamilyTranslationHom_difference
+                (K := K) E.movingSection E.movingSection
+                (MvPolynomial.pderiv i E.family))
+    _ = 0 := hright
+
+/-- A source transvection fixing the source origin preserves vanishing of
+the whole source gradient there. -/
+theorem gradientAtZero_transverseSourceShear
+    (k ell : Fin 4)
+    (hkl : k ≠ ell)
+    (c : Polynomial K)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hgrad : ∀ i : Fin 4,
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i P) = 0) :
+    ∀ i : Fin 4,
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i
+            (transverseSourceShearHom (K := K) k ell c P)) = 0 := by
+  intro i
+  have hgradConst : ∀ j : Fin 4,
+      MvPolynomial.constantCoeff (MvPolynomial.pderiv j P) = 0 := by
+    intro j
+    simpa only [MvPolynomial.eval_zero', MvPolynomial.constantCoeff_eq]
+      using hgrad j
+  have hconst :
+      MvPolynomial.constantCoeff
+        (MvPolynomial.pderiv i
+          (transverseSourceShearHom (K := K) k ell c P)) = 0 := by
+    by_cases hil : i = ell
+    · subst i
+      rw [pderiv_source_transverseSourceShearHom k ell hkl c P]
+      simp only [map_add, map_mul]
+      rw [constantCoeff_transverseSourceShearHom
+        k ell hkl c (MvPolynomial.pderiv ell P)]
+      rw [constantCoeff_transverseSourceShearHom
+        k ell hkl c (MvPolynomial.pderiv k P)]
+      simp [hgradConst]
+    · rw [pderiv_transverseSourceShearHom_of_ne_source
+        k ell hkl c i hil P]
+      rw [constantCoeff_transverseSourceShearHom
+        k ell hkl c (MvPolynomial.pderiv i P)]
+      exact hgradConst i
+  simpa only [MvPolynomial.eval_zero', MvPolynomial.constantCoeff_eq]
+    using hconst
+
+/-- Hence the marked-axis-preserving three-transvection alignment also
+preserves the zero source gradient. -/
+theorem gradientAtZero_tripleTransverseSourceShear
+    (k₁ k₂ k₃ ell : Fin 4)
+    (hk₁ : k₁ ≠ ell)
+    (hk₂ : k₂ ≠ ell)
+    (hk₃ : k₃ ≠ ell)
+    (a₁ a₂ a₃ : K)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hgrad : ∀ i : Fin 4,
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i P) = 0) :
+    ∀ i : Fin 4,
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i
+            (tripleTransverseSourceShearFamily
+              k₁ k₂ k₃ ell a₁ a₂ a₃ P)) = 0 := by
+  have h1 := gradientAtZero_transverseSourceShear
+    k₁ ell hk₁ (Polynomial.C a₁) P hgrad
+  have h2 := gradientAtZero_transverseSourceShear
+    k₂ ell hk₂ (Polynomial.C a₂)
+      (transverseSourceShearHom (K := K) k₁ ell (Polynomial.C a₁) P) h1
+  have h3 := gradientAtZero_transverseSourceShear
+    k₃ ell hk₃ (Polynomial.C a₃)
+      (transverseSourceShearHom (K := K) k₂ ell (Polynomial.C a₂)
+        (transverseSourceShearHom (K := K) k₁ ell (Polynomial.C a₁) P)) h2
+  simpa [tripleTransverseSourceShearFamily] using h3
+
+/-- Vanishing of the source gradient as a polynomial in the family
+parameter forces every source-linear coefficient of the special fibre to
+vanish. -/
+theorem specialFiber_linearCoeff_zero_of_gradientAtZero
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hgrad : ∀ i : Fin 4,
+      MvPolynomial.eval
+          (fun _ : Fin 4 => (0 : Polynomial K))
+          (MvPolynomial.pderiv i P) = 0)
+    (i : Fin 4) :
+    MvPolynomial.coeff (Finsupp.single i 1)
+        (polynomialFamilySpecialFiber P) = 0 := by
+  rw [coeff_polynomialFamilySpecialFiber]
+  have hi := hgrad i
+  rw [MvPolynomial.eval_zero', MvPolynomial.constantCoeff_eq] at hi
+  rw [coeff_pderiv_mixedDegree
+    (K := Polynomial K) i P (0 : Fin 4 →₀ ℕ)] at hi
+  have hfamily : MvPolynomial.coeff (Finsupp.single i 1) P = 0 := by
+    simpa using hi
+  rw [hfamily]
+  simp
+
 /-- A single source-level carrier covering both direct-closing square cases.
 The family may be the original right-recentered family or its honest
 marked-axis-preserving three-transvection copy. -/
@@ -53,6 +195,10 @@ structure DirectClosingAlignedSquareSourceData
   rightSpecialPoint :
     polynomialSectionSpecialPoint rightSection =
       (fun i => - coordinateAxisPoint (K := K) (0 : Fin 4) i)
+  specialFiber_linearCoeff_zero :
+    ∀ i : Fin 4,
+      MvPolynomial.coeff (Finsupp.single i 1)
+        (polynomialFamilySpecialFiber family) = 0
   squareSupport :
     directClosingQuadraticExponent index index ∈ family.support
   squareOrder :
@@ -127,6 +273,10 @@ noncomputable def directClosingLongitudinalSquareSource
     exactCollision := C.family_exactCollision
     rightSpecialPoint :=
       B.aligned.endpoint.rightRecenteredRightSection_specialPoint
+    specialFiber_linearCoeff_zero := by
+      intro i
+      exact specialFiber_linearCoeff_zero_of_gradientAtZero
+        C.family (alignedSquareSource_originalFamily_gradientAtZero C) i
     squareSupport := by simpa [d] using hsupp
     squareOrder := by simpa [d] using hparam
     squareOrderPositive := C.firstActualLayerOrder_pos
@@ -164,6 +314,17 @@ noncomputable def DirectClosingTransverseAlignedSquareData.toAlignedSquareSource
         DirectClosingTransverseAlignedSquareData.rightSection, Q] using D.exactCollision
     rightSpecialPoint := by
       simpa [DirectClosingTransverseAlignedSquareData.rightSection] using D.rightSpecialPoint
+    specialFiber_linearCoeff_zero := by
+      intro i
+      have hgrad := gradientAtZero_tripleTransverseSourceShear
+        D.k₁ D.k₂ D.k₃ D.ell
+        D.k₁_ne_ell D.k₂_ne_ell D.k₃_ne_ell
+        D.a₁ D.a₂ D.a₃ C.family
+        (alignedSquareSource_originalFamily_gradientAtZero C)
+      simpa [Q, DirectClosingTransverseAlignedSquareData.family] using
+        (specialFiber_linearCoeff_zero_of_gradientAtZero
+          (tripleTransverseSourceShearFamily
+            D.k₁ D.k₂ D.k₃ D.ell D.a₁ D.a₂ D.a₃ C.family) hgrad i)
     squareSupport := by simpa [d] using hsupp
     squareOrder := by simpa [d] using hparam
     squareOrderPositive := C.firstActualLayerOrder_pos

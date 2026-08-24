@@ -139,8 +139,45 @@ noncomputable def AdaptiveAlignedSmithSurvivingWallEndpoint.toAdaptiveWall
     (W : AdaptiveAlignedSmithSurvivingWallEndpoint
       (K := K) s.degreeCap) :
     IntegralAdaptiveSurvivingSmithWall
-      (W.aligned.toAdaptiveState s).normalizedSpecialFiber := by
-  simpa using W.wall
+      (W.aligned.toAdaptiveState s).normalizedSpecialFiber where
+  base := W.wall.base
+  level := W.wall.level
+  realization := {
+    transverseWeight := W.wall.realization.transverseWeight
+    offset := W.wall.realization.offset
+    realizes := by
+      intro e he
+      exact W.wall.realization.realizes e (by
+        simpa only [
+          AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+        ] using he)
+  }
+  symmetricMinimal := by
+    simpa only [
+      AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+    ] using W.wall.symmetricMinimal
+  minimal := by
+    intro e he
+    exact W.wall.minimal e (by
+      simpa only [
+        AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+      ] using he)
+  attained := by
+    rcases W.wall.attained with ⟨e, he, hlevel⟩
+    refine ⟨e, ?_, hlevel⟩
+    simpa only [
+      AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+    ] using he
+  survivingShape := by
+    simpa only [
+      AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+    ] using W.wall.survivingShape
+  noWLinear := by
+    intro e he hlevel
+    exact W.wall.noWLinear e (by
+      simpa only [
+        AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState_normalizedSpecialFiber
+      ] using he) hlevel
 
 /-- Dispatcher-facing surviving output with the legacy-compatible wall
 certificate attached. -/
@@ -152,6 +189,33 @@ structure AdaptiveAlignedSmithSurvivingStateEndpoint
   wall :
     IntegralAdaptiveSurvivingSmithWall
       (original.aligned.toAdaptiveState s).normalizedSpecialFiber
+  /-- The legacy-compatible wall is exactly the transported canonical wall,
+  not an independently chosen realised wall. -/
+  wall_eq : wall = original.toAdaptiveWall s
+
+/-- Transporting the canonical wall to the legacy adaptive-state type does
+not change its numerical source-weight sum. -/
+@[simp]
+theorem AdaptiveAlignedSmithSurvivingStateEndpoint.combinedSourceWeight_sum
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
+    (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s) :
+    (∑ i : Fin 4, W.wall.realization.combinedSourceWeight i) = 8 := by
+  rw [W.wall_eq]
+  change
+    (∑ i : Fin 4,
+      W.original.wall.realization.combinedSourceWeight i) = 8
+  exact W.original.combinedSourceWeight_sum
+
+/-- The transported wall likewise retains canonical combined level `4`. -/
+@[simp]
+theorem AdaptiveAlignedSmithSurvivingStateEndpoint.combinedSourceLevel_eq_four
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
+    (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s) :
+    W.wall.realization.combinedSourceLevel W.wall.level = 4 := by
+  rw [W.wall_eq]
+  change
+    W.original.wall.realization.combinedSourceLevel W.original.wall.level = 4
+  exact W.original.combinedSourceLevel_eq_four
 
 /-- Upgrade the already-green three-way Smith dispatcher so that its
 surviving branch lands directly in the input interface of the existing
@@ -182,6 +246,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithLegacyClassifierDisp
       ⟨{
         original := W
         wall := W.toAdaptiveWall s
+        wall_eq := rfl
       }⟩
   · exact Or.inr (Or.inr hboundary)
 

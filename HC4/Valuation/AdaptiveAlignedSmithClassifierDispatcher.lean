@@ -93,6 +93,35 @@ structure AdaptiveAlignedSmithSurvivingWallEndpoint
   wall :
     IntegralAdaptiveSurvivingSmithWall
       aligned.endpoint.rawSpecialFiber
+  /-- The surviving wall comes from the canonical zero Smith base. -/
+  wall_level_eq_zero : wall.level = 0
+  /-- Its underlying transverse realisation is the zero weight. -/
+  wall_transverseWeight_eq_zero :
+    wall.realization.transverseWeight = fun _ => 0
+  /-- The affine realisation has zero offset. -/
+  wall_offset_eq_zero : wall.realization.offset = 0
+
+/-- The canonical surviving wall therefore has the fixed combined source
+weight sum `0 + 2 + 2 + 4 = 8`. -/
+@[simp]
+theorem AdaptiveAlignedSmithSurvivingWallEndpoint.combinedSourceWeight_sum
+    {degreeCap : ℕ}
+    (W : AdaptiveAlignedSmithSurvivingWallEndpoint
+      (K := K) degreeCap) :
+    (∑ i : Fin 4, W.wall.realization.combinedSourceWeight i) = 8 := by
+  rw [Fin.sum_univ_four]
+  simp [HasIntegralAdaptiveSmithWallWeight.combinedSourceWeight,
+    W.wall_transverseWeight_eq_zero]
+
+/-- Its affine combined source level is the fixed integer `4`. -/
+@[simp]
+theorem AdaptiveAlignedSmithSurvivingWallEndpoint.combinedSourceLevel_eq_four
+    {degreeCap : ℕ}
+    (W : AdaptiveAlignedSmithSurvivingWallEndpoint
+      (K := K) degreeCap) :
+    W.wall.realization.combinedSourceLevel W.wall.level = 4 := by
+  simp [HasIntegralAdaptiveSmithWallWeight.combinedSourceLevel,
+    W.wall_level_eq_zero, W.wall_offset_eq_zero]
 
 /-- A zero-jet aligned minimal endpoint enters the canonical integral Smith
 wall classifier immediately, with no second family normalization. -/
@@ -101,14 +130,12 @@ theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.classifyCanonicalWall
     {degreeCap : ℕ}
     (E : AdaptiveAlignedSmithMinimalZeroJetEndpoint
       (K := K) degreeCap) :
-    Nonempty
-        (AdaptiveAlignedSmithBlockerEndpoint
-          (K := K) degreeCap) ∨
-      Nonempty
-        (AdaptiveAlignedSmithSurvivingWallEndpoint
-          (K := K) degreeCap) := by
+    (∃ B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap,
+        B.aligned = E) ∨
+      (∃ W : AdaptiveAlignedSmithSurvivingWallEndpoint (K := K) degreeCap,
+        W.aligned = E) := by
   rcases
-      classifyCanonicalIntegralWallOfSpecialFiber
+      classifyCanonicalIntegralWallOfSpecialFiber_withProvenance
         E.endpoint.rawSpecialFiber
         E.rawSpecialFiber_axisData
         E.endpoint.canonicalWallData with
@@ -116,22 +143,25 @@ theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.classifyCanonicalWall
   · left
     rcases hblock with
       ⟨e, he, hlevel, hpattern, houtcome⟩
-    exact
-      ⟨{
-        aligned := E
-        exponent := e
-        mem := he
-        level := hlevel
-        pattern := hpattern
-        outcome := houtcome
-      }⟩
+    refine ⟨{
+      aligned := E
+      exponent := e
+      mem := he
+      level := hlevel
+      pattern := hpattern
+      outcome := houtcome
+    }, ?_⟩
+    rfl
   · right
     rcases hsurvive with ⟨W⟩
-    exact
-      ⟨{
-        aligned := E
-        wall := W
-      }⟩
+    refine ⟨{
+      aligned := E
+      wall := W.wall
+      wall_level_eq_zero := W.level_eq_zero
+      wall_transverseWeight_eq_zero := W.transverseWeight_eq_zero
+      wall_offset_eq_zero := W.offset_eq_zero
+    }, ?_⟩
+    rfl
 
 /-! ## Zero-jet-preserving aligned macro -/
 
@@ -158,9 +188,8 @@ theorem adaptiveAlignedSmithEndpoint_zeroLeft_withZeroSourceJet
     (hb :
       polynomialSectionSpecialPoint b =
         coordinateAxisPoint (K := K) (0 : Fin 4)) :
-    Nonempty
-        (AdaptiveAlignedSmithMinimalZeroJetEndpoint
-          (K := K) degreeCap) ∨
+    (∃ E : AdaptiveAlignedSmithMinimalZeroJetEndpoint (K := K) degreeCap,
+        E.endpoint.defect ≤ alignedSmithRamificationIndex * Delta) ∨
       Nonempty
         (AdaptiveAlignedSmithSectionBoundaryEndpoint
           (K := K) degreeCap Delta P b) := by
@@ -335,11 +364,14 @@ theorem adaptiveAlignedSmithEndpoint_zeroLeft_withZeroSourceJet
         exact
           hzero.alignedSmithGenuineFirstWallFamily
             (zeroPolynomialSection (K := K)) b hwall
-      exact
-        ⟨{
-          endpoint := E
-          zeroSourceJet := hEzero
-        }⟩
+      refine ⟨{
+        endpoint := E
+        zeroSourceJet := hEzero
+      }, ?_⟩
+      change
+        alignedSmithRamificationIndex * Delta ≤
+          alignedSmithRamificationIndex * Delta
+      exact le_rfl
   · left
     rcases
         noWallPrimitiveSmithFamily_zeroLeft_canonicalCollision
@@ -405,22 +437,24 @@ theorem adaptiveAlignedSmithEndpoint_zeroLeft_withZeroSourceJet
         hzero.noWallPrimitiveSmithFamily
           (zeroPolynomialSection (K := K)) b
           Delta hdef hwall
-    exact
-      ⟨{
-        endpoint := E
-        zeroSourceJet := hEzero
-      }⟩
+    refine ⟨{
+      endpoint := E
+      zeroSourceJet := hEzero
+    }, ?_⟩
+    change Delta' ≤ alignedSmithRamificationIndex * Delta
+    dsimp [Delta']
+    exact Nat.sub_le _ _
 
 /-! ## Scale-aware dispatcher -/
 
 /-- Apply the zero-jet-preserving aligned macro to the actual normalized
-family of a scale-aware adaptive state. -/
-theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithEndpoint_withZeroSourceJet
+family of a scale-aware adaptive state, retaining the absolute aligned-clock
+bound needed by scale-sound outer progress. -/
+theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithEndpoint_withZeroSourceJet_withClockBound
     [CharZero K]
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
-    Nonempty
-        (AdaptiveAlignedSmithMinimalZeroJetEndpoint
-          (K := K) s.degreeCap) ∨
+    (∃ E : AdaptiveAlignedSmithMinimalZeroJetEndpoint (K := K) s.degreeCap,
+        E.endpoint.defect ≤ alignedSmithRamificationIndex * s.rawDefect) ∨
       Nonempty
         (AdaptiveAlignedSmithSectionBoundaryEndpoint
           (K := K)
@@ -440,6 +474,59 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithEndpoint_withZeroSou
       (zeroJetNormalizedFamily_hasZeroSourceJet s.family)
       s.normalized_exactCollision
       s.sectionSpecial
+
+/-- Compatibility projection: forget the aligned-clock bound and recover the
+original endpoint API used by the already-green downstream stack. -/
+theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithEndpoint_withZeroSourceJet
+    [CharZero K]
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    Nonempty
+        (AdaptiveAlignedSmithMinimalZeroJetEndpoint
+          (K := K) s.degreeCap) ∨
+      Nonempty
+        (AdaptiveAlignedSmithSectionBoundaryEndpoint
+          (K := K)
+          s.degreeCap
+          s.rawDefect
+          (zeroJetNormalizedFamily s.family)
+          s.movingSection) := by
+  rcases s.alignedSmithEndpoint_withZeroSourceJet_withClockBound with
+    ⟨E, _hclock⟩ | hboundary
+  · exact Or.inl ⟨E⟩
+  · exact Or.inr hboundary
+
+/-- Provenance-preserving first Smith classifier.  On either non-boundary
+branch the exact aligned endpoint still carries the universal outer-clock
+bound `endpoint.defect ≤ 20 * s.rawDefect`. -/
+theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithClassifierDispatcher_withClockBound
+    [CharZero K]
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (∃ B : AdaptiveAlignedSmithBlockerEndpoint (K := K) s.degreeCap,
+        B.aligned.endpoint.defect ≤
+          alignedSmithRamificationIndex * s.rawDefect) ∨
+      (∃ W : AdaptiveAlignedSmithSurvivingWallEndpoint (K := K) s.degreeCap,
+        W.aligned.endpoint.defect ≤
+          alignedSmithRamificationIndex * s.rawDefect) ∨
+      Nonempty
+        (AdaptiveAlignedSmithSectionBoundaryEndpoint
+          (K := K)
+          s.degreeCap
+          s.rawDefect
+          (zeroJetNormalizedFamily s.family)
+          s.movingSection) := by
+  rcases s.alignedSmithEndpoint_withZeroSourceJet_withClockBound with
+    ⟨E, hclock⟩ | hboundary
+  · rcases E.classifyCanonicalWall with ⟨B, hB⟩ | ⟨W, hW⟩
+    · left
+      refine ⟨B, ?_⟩
+      rw [hB]
+      exact hclock
+    · right
+      left
+      refine ⟨W, ?_⟩
+      rw [hW]
+      exact hclock
+  · exact Or.inr (Or.inr hboundary)
 
 /-- **First assembled adaptive Smith dispatcher.**
 
@@ -469,12 +556,10 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithClassifierDispatcher
           s.rawDefect
           (zeroJetNormalizedFamily s.family)
           s.movingSection) := by
-  rcases s.alignedSmithEndpoint_withZeroSourceJet with
-    hminimal | hboundary
-  · rcases hminimal with ⟨E⟩
-    rcases E.classifyCanonicalWall with hblock | hsurvive
-    · exact Or.inl hblock
-    · exact Or.inr (Or.inl hsurvive)
+  rcases s.alignedSmithClassifierDispatcher_withClockBound with
+    ⟨B, _hclock⟩ | ⟨W, _hclock⟩ | hboundary
+  · exact Or.inl ⟨B⟩
+  · exact Or.inr (Or.inl ⟨W⟩)
   · exact Or.inr (Or.inr hboundary)
 
 end

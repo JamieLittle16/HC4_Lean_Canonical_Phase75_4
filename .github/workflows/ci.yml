@@ -1,0 +1,46 @@
+name: Lean CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build and verify Lean project
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Installs the version pinned in lean-toolchain, restores the Lake cache,
+      # fetches Mathlib's compiled cache, and runs `lake build`.
+      - name: Build HC4
+        uses: leanprover/lean-action@v1
+        with:
+          build: true
+          test: false
+          lint: false
+
+      - name: Audit theorem axioms
+        run: lake env lean HC4/Audit.lean
+
+      - name: Check that the negative control is rejected
+        run: |
+          if lake env lean NegativeControl.lean; then
+            echo "Lean accepted the deliberately false negative control." >&2
+            exit 1
+          fi
+
+      - name: Reject proof escape hatches
+        run: |
+          if rg -n '\\b(sorry|admit|axiom|unsafe)\\b' -g '*.lean' HC4; then
+            echo "Forbidden proof escape found in HC4 sources." >&2
+            exit 1
+          fi

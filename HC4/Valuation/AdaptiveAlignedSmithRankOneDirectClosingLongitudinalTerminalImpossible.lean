@@ -466,6 +466,23 @@ theorem firstActualLayer_strict_or_canonicalEarlierWall
   · exact Or.inl hlt
   · exact Or.inr (C.directClosing_equality_forces_earlierWall heq)
 
+/-- Provenance-preserving form of the JC2-free local closing frontier.
+
+The older public theorem intentionally forgot the equality witness after
+turning the terminal `j = Delta` case into an earlier wall.  The global
+scale-sound restart needs that witness: it identifies the canonical square
+level with the actual first-layer clock, so every numerical earlier wall is
+a genuinely lower source/section clock. -/
+theorem firstActualLayer_strict_or_eq_and_canonicalEarlierWall
+    (C : AdaptiveAlignedSmithRankOneClosingSourceCarrier B) :
+    C.firstActualLayerOrder < B.aligned.endpoint.defect ∨
+      (C.firstActualLayerOrder = B.aligned.endpoint.defect ∧
+        ∃ D : DirectClosingAlignedSquareSourceData C,
+          DirectClosingCanonicalSquareEarlierWall D) := by
+  rcases Nat.lt_or_eq_of_le C.firstActualLayerOrder_le_defect with hlt | heq
+  · exact Or.inl hlt
+  · exact Or.inr ⟨heq, C.directClosing_equality_forces_earlierWall heq⟩
+
 end AdaptiveAlignedSmithRankOneClosingSourceCarrier
 
 end

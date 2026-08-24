@@ -47,6 +47,23 @@ def CanonicalAdaptiveSmithWallData.realization
     HasIntegralAdaptiveSmithWallWeight F (fun _ => (0 : ℤ)) :=
   constantZeroIntegralAdaptiveSmithWallWeight F
 
+/-- A surviving wall produced specifically by the canonical `base = 0`,
+`level = 0` classifier, with the numerical source-weight provenance retained.
+
+The generic `IntegralAdaptiveSurvivingSmithWall` intentionally permits
+arbitrary realised integral walls.  The canonical global pipeline is much
+more rigid: its realisation has zero transverse weight and zero offset.
+Retaining these equalities prevents later coefficientwise exposure code from
+forgetting that its combined source weights are the fixed vector
+`[0, 2, 2, 4]`. -/
+structure CanonicalIntegralAdaptiveSurvivingSmithWall
+    (F : MvPolynomial (Fin 4) K) where
+  wall : IntegralAdaptiveSurvivingSmithWall F
+  level_eq_zero : wall.level = 0
+  transverseWeight_eq_zero :
+    wall.realization.transverseWeight = fun _ => 0
+  offset_eq_zero : wall.realization.offset = 0
+
 theorem CanonicalAdaptiveSmithWallData.lowerBound
     {F : MvPolynomial (Fin 4) K}
     (_h : CanonicalAdaptiveSmithWallData F) :
@@ -84,6 +101,47 @@ def HasNormalizedSmithAxisData
         (MvPolynomial.pderiv i F) = 0) ∧
     MvPolynomial.eval
       (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) F = 0
+
+/-- Provenance-preserving canonical wall classifier.
+
+This is the same mathematical split as
+`classifyCanonicalIntegralWallOfSpecialFiber`, but the surviving witness
+remembers that the classifier was run at the canonical zero base and zero
+level.  The stronger witness is used only by the scale-sound global assembly;
+the legacy theorem below remains unchanged. -/
+theorem classifyCanonicalIntegralWallOfSpecialFiber_withProvenance
+    [CharZero K]
+    (F : MvPolynomial (Fin 4) K)
+    (haxis : HasNormalizedSmithAxisData F)
+    (hwall : CanonicalAdaptiveSmithWallData F) :
+    (∃ e ∈ smithProjectedSupport (1 : Fin 4) 2 3 F,
+        (fun _ => (0 : ℤ)) e = 0 ∧
+        (IsPureLongitudinalSmithPattern e ∨
+         IsLowNegativeFirstSmithPattern e ∨
+         IsLowNegativeSecondSmithPattern e ∨
+         IsWLinearSmithPattern e) ∧
+        MixedDegreeSmithExponentOutcome F e) ∨
+      Nonempty (CanonicalIntegralAdaptiveSurvivingSmithWall F) := by
+  rcases haxis with ⟨hcoll, hzero, hvalue⟩
+  rcases minimalSmithLevel_blockerOutcome_or_survivingFace
+      F (fun _ => (0 : ℤ)) 0 hcoll hzero hvalue with
+    hblocker | ⟨hshape, hnoW⟩
+  · exact Or.inl hblocker
+  · let hreal := constantZeroIntegralAdaptiveSmithWallWeight F
+    let wall : IntegralAdaptiveSurvivingSmithWall F :=
+      { base := fun _ => (0 : ℤ)
+        level := 0
+        realization := hreal
+        symmetricMinimal := hwall.minimal
+        minimal := hwall.lowerBound
+        attained := hwall.attained
+        survivingShape := hshape
+        noWLinear := hnoW }
+    exact Or.inr ⟨
+      { wall := wall
+        level_eq_zero := rfl
+        transverseWeight_eq_zero := rfl
+        offset_eq_zero := rfl }⟩
 
 /-- Canonical integral wall classification depends only on a normalized
 special-fibre polynomial and its axis data, not on the representation of the
