@@ -3,20 +3,19 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalBoundaryCompleteGlobalClosure
 import Mathlib.Tactic
 
 /-!
-# A18.4.106: complete aligned section boundary is progress or rank three
+# A18.4.106/108: complete aligned section boundary is strict rank-one progress or rank three
 
-A18.4.74 already proves that a separated right wall is a literal strict drop
-in the discrete global key.  Its other boundary heads are canonical blocker or
-surviving presentations.  A18.4.105 now consumes either presented endpoint
-completely into retained rank-three geometry.
+A genuine aligned section boundary has exactly two sound behaviours:
 
-Thus a genuine aligned section boundary has exactly two sound behaviours:
+* a separated right wall gives a literal strict raw-defect drop on the same
+  repair state;
+* a coupled/primitive endpoint carries complete retained rank-three geometry.
 
-* separated wall: strict global progress;
-* coupled/primitive endpoint: complete rank-three geometry.
-
-There is no zero-defect exception, presentation-only branch, rational spend,
-or repair-only promotion.
+For the final well-founded induction it is important not to erase the first
+fact into a generic global-macro comparison.  The `globalProgress` constructor
+therefore retains both the strict natural raw-defect inequality and equality
+of the repair state.  Consequently recursive use of this interface can never
+silently recurse through a repair-only rank promotion.
 -/
 
 namespace HC4.Valuation
@@ -42,7 +41,9 @@ inductive AdaptiveAlignedSmithCanonicalBoundaryRankThreeGeometry
       (geometry : AdaptiveAlignedSmithCanonicalPresentedSurvivingAllRankThreeGeometry
         RR D complexity)
 
-/-- Final geometry-preserving boundary outcome. -/
+/-- Final geometry-preserving boundary outcome.  The recursive constructor is
+an honest rank-one restart: its raw determinant clock strictly decreases and
+its repair metadata is unchanged. -/
 inductive AdaptiveAlignedSmithCanonicalBoundaryRankThreeOutcome
     (RR : RepairRanking)
     (source : ScaleAwareAdaptiveGeometricRestartState (K := K))
@@ -50,11 +51,13 @@ inductive AdaptiveAlignedSmithCanonicalBoundaryRankThreeOutcome
   | globalProgress
       (target : ScaleAwareAdaptiveGeometricRestartState (K := K))
       (progress : AdaptiveAlignedSmithCanonicalGlobalMacroProgress target source)
+      (rawDefect_lt : target.rawDefect < source.rawDefect)
+      (repair_eq : target.repair = source.repair)
   | rankThree
       (geometry : AdaptiveAlignedSmithCanonicalBoundaryRankThreeGeometry
         RR source complexity)
 
-/-- **A18.4.106 complete aligned-boundary geometry.** -/
+/-- **Complete aligned-boundary geometry with lossless recursive provenance.** -/
 noncomputable def
     AdaptiveAlignedSmithSectionBoundaryEndpoint.rankThreeAbsorption
     (RR : RepairRanking)
@@ -177,9 +180,37 @@ noncomputable def
 
     · have hsep : HasSeparatedRightSmithSectionWall F source.movingSection :=
         ⟨B.hwall, hprimitive, hcoeff, hright⟩
-      rcases source.globalProgress_of_separatedRightWall
-          (by simpa [F] using hsep) with ⟨target, hprogress⟩
+      rcases separatedRightSmithWall_strictAdaptiveGeometricRestart
+          source.degreeCap
+          (zeroJetNormalizedFamily source.family)
+          source.normalized_nonlinearDegreeBound
+          source.movingSection
+          (by simpa [F] using hsep)
+          source.normalized_hessianDefect
+          source.normalized_exactCollision
+          source.sectionSpecial with
+        ⟨Delta', hlt, P', b', hP'def, hP'degree, hP'coll, hb'⟩
+      let target : ScaleAwareAdaptiveGeometricRestartState (K := K) :=
+        { rawDefect := Delta'
+          scale := source.scale
+          scale_pos := source.scale_pos
+          degreeCap := source.degreeCap
+          sourceComplexity := source.sourceComplexity
+          repair := source.repair
+          family := P'
+          movingSection := b'
+          hessianDefect := hP'def
+          nonlinearDegreeBound := hP'degree
+          exactCollision := by
+            simpa [zeroPolynomialSection] using hP'coll
+          sectionSpecial := hb' }
+      have hprogress :
+          AdaptiveAlignedSmithCanonicalGlobalMacroProgress target source :=
+        (certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt
+          (K := K) (t := target) (s := source) rfl rfl
+          (by simpa [target] using hlt)).progress
       exact .globalProgress target hprogress
+        (by simpa [target] using hlt) rfl
 
 end
 
