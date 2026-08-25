@@ -32,7 +32,7 @@ variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 rank-three terminal certificate. -/
 structure RankThreeAffineTerminalNormalForm
     {A B C P : ℕ} {Q R S : K} {phi : Polynomial K}
-    (L : RankThreeAffineLineData A B C P Q R S phi) : Type where
+    (L : RankThreeAffineLineData A B C P Q R S phi) where
   unitLongitudinalStep : P = 1
   firstLayer_ne : phi.coeff 1 ≠ 0
   root : K
