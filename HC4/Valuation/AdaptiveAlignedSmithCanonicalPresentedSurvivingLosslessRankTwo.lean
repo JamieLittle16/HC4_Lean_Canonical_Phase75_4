@@ -38,6 +38,7 @@ inductive AdaptiveAlignedSmithCanonicalPresentedSurvivingLosslessRankTwoOutcome
           RR source complexity))
   | rigidExposure
       (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) D.presented)
+      (W_eq : W = D.toStateEndpoint)
       (P : AdaptiveAlignedSmithPersistentPacketEndpoint (K := K) D.presented W)
       (R : AdaptiveAlignedSmithRigidPacketEndpoint (K := K) D.presented W P)
       (hD : 3 ≤ P.degree)
@@ -46,6 +47,7 @@ inductive AdaptiveAlignedSmithCanonicalPresentedSurvivingLosslessRankTwoOutcome
           RR D.presented W P R hD complexity))
   | packetFamily
       (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) D.presented)
+      (W_eq : W = D.toStateEndpoint)
       (P : AdaptiveAlignedSmithPersistentPacketEndpoint (K := K) D.presented W)
       (hD : 3 ≤ P.degree)
       (R2 : AdaptiveAlignedSmithRankTwoPacketEndpoint
@@ -156,7 +158,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.losslessRankTwoReduction
             simpa [s, W,
               AdaptiveAlignedSmithCanonicalPresentedSurviving.toStateEndpoint]
               using D.defect_eq
-          exact .rigidExposure W P R hD3 ⟨
+          exact .rigidExposure W rfl P R hD3 ⟨
             AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofPresentedGeometry
               RR W P R hD3 complexity hsrepairPresented hclock G
           ⟩
@@ -178,7 +180,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.losslessRankTwoReduction
               RR D hclock complexity hsrepair)
 
     · rcases hrankTwo with ⟨R2⟩
-      exact .packetFamily W P hD3 R2
+      exact .packetFamily W rfl P hD3 R2
 
 end
 
