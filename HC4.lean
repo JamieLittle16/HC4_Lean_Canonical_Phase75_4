@@ -91,3 +91,4 @@ import HC4.Newton.FirstContactCrossFacetAffineRRFiniteSplit
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
 import HC4.Newton.FirstContactCrossFacetEndpointTransition
 import HC4.Newton.FirstContactCrossFacetCarrier
+import HC4.Newton.FirstContactCrossFacetExit
