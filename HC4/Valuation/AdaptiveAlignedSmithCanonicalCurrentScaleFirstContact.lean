@@ -178,12 +178,14 @@ theorem currentScaleFirstContact_of_rightRecentered_tripleShear_pderiv_zero
     sourceComplexity_eq := rfl
     repair_eq := rfl
   }
+  have hfactor : hmove.ramification = 1 := by
+    rfl
   have hactive : IsActiveKernelCoordinate ell presented.family :=
     exists_kernelDependentSupport_of_hessianDefect
       (K := K) ell presented.family presented.rawDefect presented.hessianDefect
 
   exact s.factorOneKernelFreePresentation_sameScale_or_rankTwoProgress
-    RR presented complexity hsrepair hmove rfl ell hell0 hactive
+    RR presented complexity hsrepair hmove hfactor ell hell0 hactive
     (by simpa [presented] using hfree)
 
 end
