@@ -89,6 +89,7 @@ theorem CrossFacetInitialData.qsAffineLineData_polynomial_eq_face
         intro heq
         have h0 := congrArg
           (fun e : Fin 4 →₀ ℕ => e (0 : Fin 4)) heq
+        change L.exponent n (0 : Fin 4) = d (0 : Fin 4) at h0
         have hn0 : L.exponent n (0 : Fin 4) = n := by
           have hz := L.exponent_zero_eq hn
           simpa using hz
