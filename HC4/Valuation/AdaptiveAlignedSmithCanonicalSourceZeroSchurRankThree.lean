@@ -116,8 +116,11 @@ noncomputable def sourceRankThreeExit_of_residualZero
   have hdetPoly : detPoly ≠ 0 := by
     simpa [detPoly] using
       Z.toClock.tail_constant_det_ne_zero_of_residual_zero hzero
-  rcases exists_source_eval_ne_zero_of_ne_zero detPoly hdetPoly with
-    ⟨point, hpoint⟩
+  have hex : ∃ point, MvPolynomial.eval point detPoly ≠ 0 :=
+    exists_source_eval_ne_zero_of_ne_zero detPoly hdetPoly
+  let point : Fin 4 → K := Classical.choose hex
+  have hpoint : MvPolynomial.eval point detPoly ≠ 0 :=
+    Classical.choose_spec hex
   let q : BinarySchurBlock K := zeroSchurClosingTailBlockAt Z point
   have hdet : q.detCore ≠ 0 := by
     simpa [q, zeroSchurClosingTailBlockAt, BinarySchurBlock.detCore,
@@ -146,7 +149,11 @@ noncomputable def sourceRankThreeExit_of_preterminal
   let B : MvPolynomial (Fin 4) K :=
     T.residualClock.series.offDiag.coeff T.residualClock.firstOrder
   have hB : B ≠ 0 := by simpa [B] using T.offDiag_ne
-  rcases exists_source_eval_ne_zero_of_ne_zero B hB with ⟨point, hpoint⟩
+  have hex : ∃ point, MvPolynomial.eval point B ≠ 0 :=
+    exists_source_eval_ne_zero_of_ne_zero B hB
+  let point : Fin 4 → K := Classical.choose hex
+  have hpoint : MvPolynomial.eval point B ≠ 0 :=
+    Classical.choose_spec hex
   have hkernelPoly :
       T.residualClock.series.kernel.coeff T.residualClock.firstOrder = 0 :=
     T.residualClock.kernel_coeff_firstOrder_eq_zero_of_preterminal
@@ -184,19 +191,20 @@ noncomputable def exactSourceZeroSchur_completeRankThreeGeometry
   by_cases hres0 : E.residualDefect = 0
   · exact .nondegenerate
       (sourceRankThreeExit_of_residualZero Z complexity hres0)
-  · have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
+  · refine Classical.choice ?_
+    have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
     cases exactZeroSchurFourBlock_canonicalPositiveResidual_rankTwo_or_projectiveClosing
         Z complexity hres with
     | preterminalRankTwo T =>
-        exact .nondegenerate
-          (sourceRankThreeExit_of_preterminal complexity T)
+        exact ⟨.nondegenerate
+          (sourceRankThreeExit_of_preterminal complexity T)⟩
     | projectiveClosing D =>
         have hrepair := rankTwo_to_rankThree_repairProgress complexity
-        exact .projective {
+        exact ⟨.projective {
           departure := D.toSourceIntegrated complexity
           rankTwoToRankThree := hrepair
           measure_lt := repairState_measure_lt_of_progress hrepair
-        }
+        }⟩
 
 end
 
