@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedSurvivingLosslessRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPacketRankThreeClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalExposureNoBoundary
 import Mathlib.Tactic
 
 /-!
@@ -94,22 +95,25 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.rankThreeClosure
   | completeKernel P =>
       exact .completeKernel P
 
-  | rigidExposure W P R hD hQ =>
+  | rigidExposure W hW P R hD hQ =>
+      subst W
       rcases hQ with ⟨Q⟩
       let G := exactScalarZeroSchur_completeRankThreeGeometry
         Q.geometry.zeroSchur complexity
-      exact .rankThree ⟨.rigidExposure W P R hD Q G⟩
+      exact .rankThree ⟨.rigidExposure D.toStateEndpoint P R hD Q G⟩
 
-  | packetFamily W P hD R2 =>
-      cases R2.rankThreeClosure D.presented W P complexity hD with
+  | packetFamily W hW P hD R2 =>
+      subst W
+      cases R2.rankThreeClosure D.presented D.toStateEndpoint P complexity hD with
       | zeroDefect hzero =>
           have hpresentedZero : D.presented.rawDefect = 0 := by
-            have hzero' : W.original.aligned.endpoint.defect = 0 := by
+            have hzero' : D.toStateEndpoint.original.aligned.endpoint.defect = 0 := by
               simpa [
                 AdaptiveAlignedSmithPersistentPacketEndpoint.rankOneAnalysisState]
                 using hzero
             have hclock :
-                W.original.aligned.endpoint.defect = D.presented.rawDefect := by
+                D.toStateEndpoint.original.aligned.endpoint.defect =
+                  D.presented.rawDefect := by
               simpa [
                 AdaptiveAlignedSmithCanonicalPresentedSurviving.toStateEndpoint]
                 using D.defect_eq
@@ -119,7 +123,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.rankThreeClosure
             (D.sourcePresentation.source_rawDefect_eq_zero_of_target
               hpresentedZero)
       | rankThree G =>
-          exact .rankThree ⟨.packetFamily W P hD R2 G⟩
+          exact .rankThree ⟨.packetFamily D.toStateEndpoint P hD R2 G⟩
 
   | exposureBoundaryPresentation E target target_eq hmove =>
       exact ((E.exposure.noCanonicalSectionBoundary E.W) E.boundary).elim
