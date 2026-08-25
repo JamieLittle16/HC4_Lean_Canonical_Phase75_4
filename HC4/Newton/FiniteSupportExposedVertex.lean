@@ -99,7 +99,7 @@ noncomputable def coordinateMaxInitialData
     intro q hq
     have hhom := initialForm_isWeightedHomogeneous
       (coordinateMaxWeight i) (m : ℤ) F
-    have hw := hhom hq
+    have hw := hhom (MvPolynomial.mem_support_iff.mp hq)
     rw [weight_coordinateMaxWeight] at hw
     exact_mod_cast hw
   exact {
