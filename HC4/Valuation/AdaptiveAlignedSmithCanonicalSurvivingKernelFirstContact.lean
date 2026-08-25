@@ -35,10 +35,10 @@ structure AdaptiveAlignedSmithCanonicalGlobalPresentedKernelExposureRankTwoProgr
     (complexity : ℕ) : Type (u + 1) where
   presented : ScaleAwareAdaptiveGeometricRestartState (K := K)
   sourcePresentation : HasCertifiedRamifiedEpisodeInternalMove presented source
-  local : AdaptiveAlignedSmithCanonicalGlobalKernelOpeningRankTwoProgress
+  localProgress : AdaptiveAlignedSmithCanonicalGlobalKernelOpeningRankTwoProgress
     RR presented complexity
   globalProgress : AdaptiveAlignedSmithCanonicalGlobalMacroProgress
-    local.target source
+    localProgress.target source
 
 /-- Finite repair promotion remains globally strict when prefixed by any pure
 presentation, because the recursive comparison uses only the retained repair
@@ -67,7 +67,7 @@ noncomputable def
   exact {
     presented := presented
     sourcePresentation := hsource
-    local := P
+    localProgress := P
     globalProgress := hglobal
   }
 
