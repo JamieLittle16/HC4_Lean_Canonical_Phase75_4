@@ -46,7 +46,7 @@ cycle with `standardTwoZero_pderiv_two_eq_A`. -/
     MvPolynomial.pderiv i (standardTwoZeroA F) =
       standardTwoZeroA (MvPolynomial.pderiv i F) := by
   simp only [standardTwoZeroA]
-  rw [pderiv_comm_commRing]
+  rw [pderiv_comm_backport]
 
 /-- Formal differentiation commutes with extracting the second two-zero base
 coefficient. -/
@@ -56,7 +56,7 @@ coefficient. -/
     MvPolynomial.pderiv i (standardTwoZeroC F) =
       standardTwoZeroC (MvPolynomial.pderiv i F) := by
   simp only [standardTwoZeroC]
-  rw [pderiv_comm_commRing]
+  rw [pderiv_comm_backport]
 
 /-- Exact support-level doubling certificate in the ambient four-variable
 ring. -/
