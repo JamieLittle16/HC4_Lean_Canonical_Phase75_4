@@ -162,10 +162,10 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeRankThreeOutcome
 
       | planarRigid hall P hrigid =>
           let PH :
-              Σ P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-                  (K := K) S.blocker,
+              { P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
+                    (K := K) S.blocker //
                 HasRigidRankOnePacket
-                  (0 : Fin 4) 1 2 P'.degree P'.packet := by
+                  (0 : Fin 4) 1 2 P'.degree P'.packet } := by
             rw [hblock]
             exact ⟨P, hrigid⟩
           let P' := PH.1
@@ -188,9 +188,9 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeRankThreeOutcome
 
       | wSquareRigid hall P hrigid =>
           let PH :
-              Σ P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker,
+              { P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker //
                 HasRigidRankOnePacket
-                  (0 : Fin 4) 3 2 P'.degree P'.packet := by
+                  (0 : Fin 4) 3 2 P'.degree P'.packet } := by
             rw [hblock]
             exact ⟨P, hrigid⟩
           let P' := PH.1
