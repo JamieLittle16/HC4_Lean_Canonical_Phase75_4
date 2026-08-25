@@ -50,7 +50,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
   cases D.completeRationalNormalizationOutcome RR complexity hsrepair with
   | rankTwo hP =>
       rcases hP with ⟨P⟩
-      exact .globalProgress P.local.target P.globalProgress
+      exact .globalProgress P.localProgress.target P.globalProgress
 
   | stationary Z S hblock =>
       have hclock : S.blocker.aligned.endpoint.defect = D.presented.rawDefect := by
@@ -90,8 +90,10 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
               rcases hP with ⟨P⟩
               let Q :=
                 AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-                  RR complexity hsrepair D.sourcePresentation P
-              exact .globalProgress Q.local.target Q.globalProgress
+                  RR complexity hsrepair
+                  (D.sourcePresentation.trans P.sourcePresentation)
+                  P.localProgress
+              exact .globalProgress Q.localProgress.target Q.globalProgress
           | residualRankTwo hgeometry =>
               rcases hgeometry with ⟨G⟩
               let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
@@ -106,10 +108,6 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
       | zeroSchurClosing chart closing =>
           let G0 : AdaptiveAlignedSmithCanonicalPresentedZeroSchurRankTwoGeometry D := {
             chart := chart
-            activeDet_coeff_zero_ne_zero := chart.zeroData.activeDet_coeff_zero_ne_zero
-            schurA_coeff_zero := chart.zeroData.schurA_coeff_zero
-            schurB_coeff_zero := chart.zeroData.schurB_coeff_zero
-            schurC_coeff_zero := chart.zeroData.schurC_coeff_zero
           }
           let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
               D S complexity := {
@@ -128,18 +126,13 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
           exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
       | planarRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-              (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportPlanarRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 1 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -149,21 +142,19 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
               RR hclock complexity hpresentedRepair with ⟨P0⟩
           let Q :=
             AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-              RR complexity hsrepair D.sourcePresentation P0
-          exact .globalProgress Q.local.target Q.globalProgress
+              RR complexity hsrepair
+              (D.sourcePresentation.trans P0.sourcePresentation)
+              P0.localProgress
+          exact .globalProgress Q.localProgress.target Q.globalProgress
 
       | wSquareRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportWSquareRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 3 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -173,8 +164,10 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeSoundClosure
               RR hclock complexity hpresentedRepair with ⟨P0⟩
           let Q :=
             AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-              RR complexity hsrepair D.sourcePresentation P0
-          exact .globalProgress Q.local.target Q.globalProgress
+              RR complexity hsrepair
+              (D.sourcePresentation.trans P0.sourcePresentation)
+              P0.localProgress
+          exact .globalProgress Q.localProgress.target Q.globalProgress
 
 end
 
