@@ -77,8 +77,8 @@ theorem exists_nonzero_root_multiplicity_factorisation
   have hp : p ≠ 0 := by
     intro hp0
     apply hphi
-    have hback := congrArg (translatePolynomial (-alpha)) hp0
-    simpa [p, translatePolynomial_neg_comp] using hback
+    apply translatePolynomial_injective alpha
+    simpa [p, translatePolynomial] using hp0
   have hp0 : p.coeff 0 = 0 := by
     rw [Polynomial.coeff_zero_eq_eval_zero]
     dsimp [p, translatePolynomial]
