@@ -43,9 +43,10 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 6000000
+
 /-- Highest coefficient of the raw rank-three numerator for primitive
 longitudinal direction. -/
-set_option maxHeartbeats 2000000 in
 theorem coeff_five_rankThreeEtaNumeratorPolynomial_unit
     (A B C Q R S : K) :
     (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
@@ -56,11 +57,11 @@ theorem coeff_five_rankThreeEtaNumeratorPolynomial_unit
     HC4.Polynomial.rankThreeLogProduct,
     HC4.Polynomial.rankThreeLogSum,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
 /-- Cubic coefficient of the raw denominator. -/
-set_option maxHeartbeats 4000000 in
 theorem coeff_three_rankThreeEtaDenominatorPolynomial_unit
     (A B C Q R S : K) :
     (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
@@ -73,11 +74,11 @@ theorem coeff_three_rankThreeEtaDenominatorPolynomial_unit
     HC4.Polynomial.rankThreeWeightedCofactorSum,
     HC4.Polynomial.rankThreeDirectionDefect,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
 /-- The raw denominator has no quartic coefficient. -/
-set_option maxHeartbeats 4000000 in
 theorem coeff_four_rankThreeEtaDenominatorPolynomial_unit
     (A B C Q R S : K) :
     (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
@@ -89,7 +90,8 @@ theorem coeff_four_rankThreeEtaDenominatorPolynomial_unit
     HC4.Polynomial.rankThreeWeightedCofactorSum,
     HC4.Polynomial.rankThreeDirectionDefect,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
 /-- **Highest-direction terminal relation.** -/
@@ -141,12 +143,18 @@ theorem rankThree_terminal_highest_direction_relation
       coeff_five_rankThreeEtaNumeratorPolynomial_unit
         (A : K) (B : K) (C : K) Q R S
 
-  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 5) hraw
-  rw [hshape] at hcoeff
-  simp only [Polynomial.add_mul, Polynomial.coeff_add,
-    Polynomial.coeff_mul_X, Polynomial.coeff_C_mul,
-    Polynomial.coeff_X_pow_mul] at hcoeff
-  rw [hD3, hD4, hN5, hT1'] at hcoeff
+  have hshape' := hshape
+  rw [hT1'] at hshape'
+  have hrawShape :
+      (Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw = Nraw := by
+    exact (congrArg (fun U : Polynomial K => U * Draw) hshape'.symm).trans hraw
+  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 5) hrawShape
+  rw [add_mul, Polynomial.coeff_add] at hcoeff
+  simp only [mul_assoc, Polynomial.coeff_C_mul,
+    Polynomial.coeff_X_mul, Polynomial.coeff_X_pow_mul'] at hcoeff
+  norm_num at hcoeff
+  rw [hD3, hD4, hN5] at hcoeff
 
   dsimp [H] at hcoeff ⊢
   linear_combination
