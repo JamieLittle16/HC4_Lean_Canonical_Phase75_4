@@ -91,7 +91,9 @@ theorem AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry.scalarSchurClo
   have hall0 : H0.AllTwoByTwoMinorsZero := by
     simpa [H, H0, s] using G.allTwoByTwo_permuted P.permutation
   have hschur0 : H0.scalarSchurThreeMatrix = 0 :=
-    H0.scalarSchurThreeMatrix_eq_zero_of_allTwoByTwoMinorsZero hall0
+    H0.scalarSchurThreeMatrix_eq_zero_of_allTwoByTwoMinorsZero
+      (by
+        simpa [GeneralFourBlock.AllTwoByTwoMinorsZero] using hall0)
   let Z : ZeroScalarSchurThreeSeries (MvPolynomial (Fin 4) K) := {
     series := H.scalarSchurThreeMatrix
     constant_zero := by
