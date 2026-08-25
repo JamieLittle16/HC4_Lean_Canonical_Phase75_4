@@ -81,3 +81,4 @@ import HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRigidityData
 import HC4.Newton.FirstContactAffinePlane
 import HC4.Newton.FirstContactHonestSlice
+import HC4.Newton.FiniteSupportCrossFacetExposure
