@@ -28,6 +28,8 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 6000000
+
 /-- The exact rank-three cross-facet terminal has the mature five-way affine
 direction split. -/
 theorem CrossFacetInitialData.qs_rankThree_terminalDirectionSplit
