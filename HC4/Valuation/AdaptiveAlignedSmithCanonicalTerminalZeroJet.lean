@@ -65,10 +65,10 @@ theorem specialFiber_axisData
       T.presentedState.sectionSpecial
   simpa [specialFiber] using h
 
-/-- The terminal fibre has nonempty Smith-projected support.  This follows
-from the exact marked collision and is exposed here so the next terminal
-consumer can choose a genuine canonical Smith support exponent without
-reconstructing the axis argument. -/
+/-- The terminal fibre has nonempty Smith-projected support.  This is retained
+from the actual symmetric-minimal aligned endpoint carried by either terminal
+constructor; normalized axis data alone would not exclude the zero
+polynomial. -/
 theorem specialFiber_projectedSupport_nonempty
     {RR : RepairRanking}
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -76,8 +76,17 @@ theorem specialFiber_projectedSupport_nonempty
     (T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
       RR source complexity) :
     (smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber).Nonempty := by
-  exact normalizedSmithAxis_projectedSupport_nonempty T.specialFiber
-    T.specialFiber_axisData
+  cases T with
+  | blocker D geometry =>
+      dsimp [specialFiber, presentedState]
+      rw [← D.family_eq]
+      simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber] using
+        D.blocker.aligned.endpoint.rawProjectedSupport_nonempty
+  | surviving D geometry =>
+      dsimp [specialFiber, presentedState]
+      rw [← D.family_eq]
+      simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber] using
+        D.wall.aligned.endpoint.rawProjectedSupport_nonempty
 
 end AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
 
