@@ -36,6 +36,28 @@ def standardTwoZeroC
     MvPolynomial (Fin 4) K :=
   MvPolynomial.pderiv 3 F
 
+/-- Formal differentiation commutes with extracting the first two-zero base
+coefficient.  This is the directed normalization used by finite Hessian
+arguments; unlike unfolding `standardTwoZeroA`, it does not create a simp
+cycle with `standardTwoZero_pderiv_two_eq_A`. -/
+@[simp] theorem pderiv_standardTwoZeroA
+    (i : Fin 4)
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv i (standardTwoZeroA F) =
+      standardTwoZeroA (MvPolynomial.pderiv i F) := by
+  simp only [standardTwoZeroA]
+  rw [pderiv_comm_commRing]
+
+/-- Formal differentiation commutes with extracting the second two-zero base
+coefficient. -/
+@[simp] theorem pderiv_standardTwoZeroC
+    (i : Fin 4)
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv i (standardTwoZeroC F) =
+      standardTwoZeroC (MvPolynomial.pderiv i F) := by
+  simp only [standardTwoZeroC]
+  rw [pderiv_comm_commRing]
+
 /-- Exact support-level doubling certificate in the ambient four-variable
 ring. -/
 def HasStandardTwoZeroDoublingForm
