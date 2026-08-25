@@ -130,8 +130,7 @@ theorem noWall_unramifiedSmith_commonFactor
       refine ⟨r, ?_⟩
       rw [smithConformalCoefficientFactor_diag_eq, hdeg, hr]
       have hexp : m * 2 = 2 * m := by omega
-      rw [hexp, ← pow_add]
-      rfl
+      rw [hexp, ← mul_assoc, ← pow_add]
     · have hdeg : 3 ≤ noWallSmithSourceDegree d :=
         three_le_noWallSmithSourceDegree_of_delta_pos d hnonneg hz
       have hexp : 2 * m + m ≤ m * noWallSmithSourceDegree d := by
@@ -152,7 +151,6 @@ theorem noWall_unramifiedSmith_commonFactor
   have hq : (Polynomial.X ^ m : Polynomial K) ∣ q :=
     polynomial_X_pow_dvd_of_add_pow_dvd_pow_mul
       (K := K) (2 * m) m q hquotRaw
-  dsimp [Q]
   rw [coeff_integralSmithConformalFamily_of_mem m m P hsmith hdP]
   simpa [q] using hq
 
