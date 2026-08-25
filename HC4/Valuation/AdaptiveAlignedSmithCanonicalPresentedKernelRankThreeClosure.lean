@@ -81,7 +81,7 @@ noncomputable def
       source complexity where
   presented := P.presented
   sourcePresentation := P.sourcePresentation
-  geometry := P.local.completeRankThreeGeometry
+  geometry := P.localProgress.completeRankThreeGeometry
 
 /-- Blocker rank-three geometry after adding the now-complete saturated-kernel
 branch to A18.4.87's already-consumed Schur branches. -/
