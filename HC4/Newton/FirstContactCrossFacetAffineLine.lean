@@ -360,6 +360,7 @@ theorem CrossFacetInitialData.support_eq_of_contactCoordinate_eq
     simp only [D.facet_coordinate_zero, Nat.cast_zero, sub_zero]
     exact_mod_cast D.outside_coordinate_pos
   have hpqjZ : (p j : ℤ) = (q j : ℤ) := by exact_mod_cast hpqj
+  rw [hpqjZ] at hpLine
   have hmul :
       ((D.outsideExponent j : ℤ) - (D.facetExponent j : ℤ)) *
         ((p k : ℤ) - (q k : ℤ)) = 0 := by
