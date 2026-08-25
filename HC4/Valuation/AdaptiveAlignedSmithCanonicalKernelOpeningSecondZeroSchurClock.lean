@@ -235,7 +235,7 @@ noncomputable def toZeroSchurClock
       P.pivotIndex = (0 : Fin 3) ∨
         P.pivotIndex = (1 : Fin 3) ∨
         P.pivotIndex = (2 : Fin 3) := by
-    fin_cases P.pivotIndex <;> simp
+    omega
   rcases hidx with h0 | h1 | h2
   · exact ⟨P.toZeroSchurClockWithPermutation (Equiv.refl (Fin 3)) (by simpa [h0])⟩
   · exact ⟨P.toZeroSchurClockWithPermutation secondPivotSwap01 (by simpa [h1])⟩
