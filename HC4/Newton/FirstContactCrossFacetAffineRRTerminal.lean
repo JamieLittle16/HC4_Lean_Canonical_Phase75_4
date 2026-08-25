@@ -174,7 +174,7 @@ theorem CrossFacetInitialData.qs_rankThree_terminalTopStratum
 
 /-- The full affine terminal normal form is available on the rank-three
 cross-facet branch. -/
-theorem CrossFacetInitialData.qs_rankThree_binomialNormalForm
+noncomputable def CrossFacetInitialData.qs_rankThree_binomialNormalForm
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
     (ha : 0 < a) (hb : 0 < b)
