@@ -1,7 +1,5 @@
 import HC4.RationalRigidity.RankThreeAffineLineTerminal
-import HC4.RationalRigidity.RankThreeAffineTopBoundary
-import HC4.RationalRigidity.RankThreeTranslatedPurePower
-import HC4.RationalRigidity.RankThreeUnitLongitudinalStep
+import HC4.RationalRigidity.RankThreeAffineTerminalNormalForm
 import Mathlib.Tactic
 
 /-!
@@ -64,22 +62,20 @@ theorem rankThreeTerminal_binomialNormalForm
     RankThreeTerminalBinomialNormalForm L := by
   have hcert := hasRankThreePolynomialTerminalCertificate_of_affine_line
     L hA hB hC hu1 hphiDeg hphi0 hdet
-  have hstep := rankThree_unit_longitudinal_step_of_certificate
-    hA hB hC hu1 hphiDeg hphi0 hcert
-  have hboundary := rankThreeAffineLine_topExponent_on_boundary_of_certificate
-    L hA hB hC hu1 hphiDeg hphi0 hcert
-  rcases exists_rankThree_translated_pure_power
-      hA hB hC hu1 hphiDeg hphi0 hcert with
-    ⟨alpha, c, halpha, hc, hpure⟩
+  have hnormalNonempty : Nonempty (RankThreeAffineTerminalNormalForm L) :=
+    rankThreeAffineTerminal_normalForm
+      L hA hB hC hu1 hphiDeg hphi0 hcert
+  let N : RankThreeAffineTerminalNormalForm L :=
+    Classical.choice hnormalNonempty
   exact {
-    omitted_step_eq_one := hstep.1
-    first_coefficient_ne_zero := hstep.2
-    top_exponent_on_boundary := hboundary
-    root := alpha
-    scalar := c
-    root_ne_zero := halpha
-    scalar_ne_zero := hc
-    translated_eq_pure_power := hpure
+    omitted_step_eq_one := N.unitLongitudinalStep
+    first_coefficient_ne_zero := N.firstLayer_ne
+    top_exponent_on_boundary := N.topBoundary
+    root := N.root
+    scalar := N.scalar
+    root_ne_zero := N.root_ne
+    scalar_ne_zero := N.scalar_ne
+    translated_eq_pure_power := N.translatedPurePower
   }
 
 end
