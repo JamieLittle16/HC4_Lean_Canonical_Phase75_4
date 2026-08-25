@@ -183,7 +183,7 @@ theorem currentScaleFirstContact_of_rightRecentered_tripleShear_pderiv_zero
       (K := K) ell presented.family presented.rawDefect presented.hessianDefect
 
   exact s.factorOneKernelFreePresentation_sameScale_or_rankTwoProgress
-    RR s presented complexity hsrepair hmove rfl ell hell0 hactive
+    RR presented complexity hsrepair hmove rfl ell hell0 hactive
     (by simpa [presented] using hfree)
 
 end
