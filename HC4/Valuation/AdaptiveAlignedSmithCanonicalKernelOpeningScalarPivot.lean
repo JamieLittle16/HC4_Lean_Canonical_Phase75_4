@@ -123,7 +123,8 @@ theorem AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry.scalarPivot
     apply G.specialHessian_ne_zero
     rw [← scaleAwareSpecialHessianFourBlock_matrix s]
     exact hzero
-  rcases H.exists_diagonal_ne_zero_of_allTwoByTwoMinorsZero G.allTwoByTwo hmat with
+  rcases HC4.Valuation.GeneralFourBlock.exists_diagonal_ne_zero_of_allTwoByTwoMinorsZero
+      H G.allTwoByTwo hmat with
     ha | hd | hx | hz
   · exact ⟨{
       permutation := Equiv.refl (Fin 4)
