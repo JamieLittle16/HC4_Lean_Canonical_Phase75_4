@@ -250,6 +250,27 @@ theorem rankThreeAffineFractionMomentDetZero_of_polynomialMoment_det_zero
         (rankThreeAffinePolynomialMomentHessian A B C u1 q r s phi)).det = 0 := by
     rw [← RingHom.map_det ι]
     simpa using congrArg ι hdet
+  have hbase :
+      (fun i => ι (Polynomial.C
+        (rankThreeLogBaseExponent (A : K) (B : K) (C : K) i))) =
+        rankThreeLogBaseExponent
+          (ι (Polynomial.C (A : K)))
+          (ι (Polynomial.C (B : K)))
+          (ι (Polynomial.C (C : K))) := by
+    funext i
+    fin_cases i <;>
+      simp [rankThreeLogBaseExponent, F, ι] <;> ring
+  have hdir :
+      (fun i => ι (Polynomial.C
+        (rankThreeLogDirection (u1 : K) q r s i))) =
+        rankThreeLogDirection
+          (ι (Polynomial.C (u1 : K)))
+          (ι (Polynomial.C q))
+          (ι (Polynomial.C r))
+          (ι (Polynomial.C s)) := by
+    funext i
+    fin_cases i <;>
+      simp [rankThreeLogDirection, F, ι] <;> ring
   have hmat :
       ι.mapMatrix (rankThreeAffinePolynomialMomentHessian A B C u1 q r s phi) =
         lineMomentHessian
@@ -266,10 +287,7 @@ theorem rankThreeAffineFractionMomentDetZero_of_polynomialMoment_det_zero
           (ι (eulerDerivative (eulerDerivative phi))) := by
     unfold rankThreeAffinePolynomialMomentHessian
     rw [mapMatrix_lineMomentHessian]
-    apply Matrix.ext
-    intro i l
-    fin_cases i <;> fin_cases l <;>
-      simp [rankThreeLogBaseExponent, rankThreeLogDirection, F, ι]
+    rw [hbase, hdir]
   unfold RankThreeFractionMomentDetZero
   dsimp
   rw [← hmat]
