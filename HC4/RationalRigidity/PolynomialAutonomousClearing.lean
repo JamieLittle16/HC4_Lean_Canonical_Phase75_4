@@ -61,7 +61,12 @@ theorem clearedPolynomialSubstitution_one
     (m : ℕ) (N D : Polynomial K) :
     clearedPolynomialSubstitution m (1 : Polynomial K) N D = D ^ m := by
   classical
-  rw [clearedPolynomialSubstitution, Polynomial.sum_def]
+  unfold clearedPolynomialSubstitution
+  rw [show (1 : Polynomial K) = Polynomial.C 1 by simp]
+  have hf :
+      Polynomial.C (0 : K) * N ^ 0 * D ^ (m - 0) = 0 := by
+    simp
+  rw [Polynomial.sum_C_index hf]
   simp
 
 /-- **RatFunc polynomial autonomous identity -> Phase-79 cleared ODE.**
