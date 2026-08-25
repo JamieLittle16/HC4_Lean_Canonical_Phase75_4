@@ -38,7 +38,7 @@ presentation is retained explicitly rather than collapsing the target to a
 cross-scale comparison with the original source. -/
 structure AdaptiveAlignedSmithCanonicalPresentedSameScaleProgress
     (RR : RepairRanking)
-    (source : ScaleAwareAdaptiveGeometricRestartState (K := K)) : Prop where
+    (source : ScaleAwareAdaptiveGeometricRestartState (K := K)) : Type (u + 1) where
   presented : ScaleAwareAdaptiveGeometricRestartState (K := K)
   sourcePresentation : HasCertifiedRamifiedEpisodeInternalMove presented source
   target : ScaleAwareAdaptiveGeometricRestartState (K := K)
@@ -53,11 +53,12 @@ structure AdaptiveAlignedSmithCanonicalGlobalPresentedFactorOneKernelRankTwoProg
     (complexity : ℕ) : Type (u + 1) where
   presented : ScaleAwareAdaptiveGeometricRestartState (K := K)
   sourcePresentation : HasCertifiedRamifiedEpisodeInternalMove presented source
-  local :
+  localProgress :
     AdaptiveAlignedSmithCanonicalGlobalFactorOneKernelOpeningRankTwoProgress
       RR presented complexity
   globalProgress :
-    AdaptiveAlignedSmithCanonicalGlobalMacroProgress local.openingProgress.target source
+    AdaptiveAlignedSmithCanonicalGlobalMacroProgress
+      localProgress.openingProgress.target source
 
 /-- Any local geometry-backed rank promotion remains globally strict from an
 older pure presentation source, because only the finite repair coordinate is
@@ -87,7 +88,7 @@ noncomputable def
   exact {
     presented := presented
     sourcePresentation := hsource
-    local := P
+    localProgress := P
     globalProgress := hglobal
   }
 
@@ -306,10 +307,6 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.firstContactSoundClosure
       | zeroSchurClosing chart closing =>
           let G0 : AdaptiveAlignedSmithCanonicalPresentedZeroSchurRankTwoGeometry D := {
             chart := chart
-            activeDet_coeff_zero_ne_zero := chart.zeroData.activeDet_coeff_zero_ne_zero
-            schurA_coeff_zero := chart.zeroData.schurA_coeff_zero
-            schurB_coeff_zero := chart.zeroData.schurB_coeff_zero
-            schurC_coeff_zero := chart.zeroData.schurC_coeff_zero
           }
           let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
               D S complexity := {
@@ -328,18 +325,13 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.firstContactSoundClosure
           exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
       | planarRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-              (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportPlanarRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 1 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -361,17 +353,13 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.firstContactSoundClosure
             ⟩
 
       | wSquareRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportWSquareRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 3 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
