@@ -73,6 +73,8 @@ import HC4.MainAssembly
 import HC4.Valuation.CanonicalEntrySanity
 import HC4.Valuation.CanonicalAdaptiveSmithWall
 
--- A18.5 supported rank-three homogeneous terminal closure.  Keep this on the
--- root graph independently while the larger A18.4 trace cone is repaired.
+-- Current final-assembly theorem fronts.  These stay on the root graph so CI
+-- checks both the well-founded A18.4 trace and the A18.5 rank-three closure.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSupportFrontier
 import HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible
