@@ -36,7 +36,7 @@ variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 the chosen facet exponent to the chosen outside exponent. -/
 theorem CrossFacetInitialData.qs_outside_ordinaryDegree_lt_facet
     {F : MvPolynomial (Fin 4) K}
-    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {contactScale contactBump : ℕ} {contactLevel : ℤ}
     (hcontactScale : 0 < contactScale)
     (hcontactBump : 0 < contactBump)
     (D : CrossFacetInitialData F
@@ -55,7 +55,7 @@ theorem CrossFacetInitialData.qs_outside_ordinaryDegree_lt_facet
     hout.trans hfacet.symm
   unfold scaledContactExponentWeight at heq
   rw [D.facet_coordinate_zero] at heq
-  simp only [Nat.cast_zero, Int.ofNat_eq_coe, mul_zero, add_zero] at heq
+  simp only [Nat.cast_zero, mul_zero, add_zero] at heq
   have hs : (0 : ℤ) < (contactScale : ℤ) := by exact_mod_cast hcontactScale
   have hb : (0 : ℤ) < (contactBump : ℤ) := by exact_mod_cast hcontactBump
   have ho : (0 : ℤ) < (D.outsideExponent (0 : Fin 4) : ℤ) := by
@@ -83,21 +83,18 @@ theorem CrossFacetInitialData.qs_support_coordinate_eq_facet_of_slope_zero
     (hslope : D.qsSlope k = 0)
     {d : Fin 4 →₀ ℕ} (hd : d ∈ D.face.support) :
     d k = D.facetExponent k := by
-  have hdenK : (((D.outsideExponent (0 : Fin 4) : ℕ) : K)) ≠ 0 := by
+  have hdenK : ((D.outsideExponent (0 : Fin 4) : ℕ) : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt D.outside_coordinate_pos)
   have hnumK :
-      ((((D.outsideExponent k : ℤ) - (D.facetExponent k : ℤ) : ℤ)) : K) = 0 := by
+      (D.outsideExponent k : K) - (D.facetExponent k : K) = 0 := by
     have hs := hslope
     simp [CrossFacetInitialData.qsSlope, hdenK] at hs
     exact hs
-  have hnumZ :
-      (D.outsideExponent k : ℤ) - (D.facetExponent k : ℤ) = 0 := by
-    exact_mod_cast hnumK
-  have houtEqZ :
-      (D.outsideExponent k : ℤ) = (D.facetExponent k : ℤ) :=
-    sub_eq_zero.mp hnumZ
+  have houtEqK :
+      (D.outsideExponent k : K) = (D.facetExponent k : K) :=
+    sub_eq_zero.mp hnumK
   have houtEq : D.outsideExponent k = D.facetExponent k := by
-    exact_mod_cast houtEqZ
+    exact_mod_cast houtEqK
   have hline := D.support_crossFacet_affine_proportional
     ha hb hcontactScale hBal hcontact d hd k
   have hfacet0Z : (D.facetExponent (0 : Fin 4) : ℤ) = 0 := by
