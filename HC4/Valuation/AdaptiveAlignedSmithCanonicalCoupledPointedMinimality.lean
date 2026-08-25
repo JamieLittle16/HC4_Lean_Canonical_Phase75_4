@@ -265,18 +265,21 @@ theorem scalarElementaryShearHom_neg_comp
     (k : Fin 4) (hk0 : k ≠ (0 : Fin 4))
     (c : K) (P : MvPolynomial (Fin 4) K) :
     scalarElementaryShearHom k (-c) (scalarElementaryShearHom k c P) = P := by
-  apply MvPolynomial.induction_on P
-  · intro r
-    simp
-  · intro p q hp hq
-    simpa using congrArg₂ (fun x y => x + y) hp hq
-  · intro p i hp
-    simp only [map_mul, hp]
-    by_cases hik : i = k
-    · subst i
-      simp [scalarElementaryShearVariable, hk0]
-      ring
-    · simp [scalarElementaryShearVariable, hik]
+  let f : MvPolynomial (Fin 4) K →+* MvPolynomial (Fin 4) K :=
+    (scalarElementaryShearHom k (-c)).comp (scalarElementaryShearHom k c)
+  let g : MvPolynomial (Fin 4) K →+* MvPolynomial (Fin 4) K :=
+    RingHom.id _
+  have hfg : f = g := by
+    apply MvPolynomial.ringHom_ext
+    · intro r
+      simp [f, g]
+    · intro i
+      by_cases hik : i = k
+      · subst i
+        simp [f, g, scalarElementaryShearVariable, hk0, Ne.symm hk0] <;> ring
+      · simp [f, g, scalarElementaryShearVariable, hik]
+  change f P = g P
+  exact RingHom.congr_fun hfg P
 
 /-- In particular a transverse scalar elementary shear cannot kill a
 nonzero polynomial. -/
