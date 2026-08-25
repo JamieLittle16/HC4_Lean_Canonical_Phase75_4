@@ -66,14 +66,15 @@ theorem eq_rankThreeLineRangePolynomial_of_supported
             v2 v3 v4 u1 u2 u3 u4 M hu1 heq
         exact hkj hindex
       rw [rankThreeLineTerm_eq_monomial]
-      simp [hExp, Ne.symm hExp]
+      simp [hExp]
     · intro hjnot
-      exact hjnot (Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hj))
+      exact (hjnot (Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hj))).elim
   · have hd0 : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     unfold rankThreeLineRangePolynomial
     rw [MvPolynomial.coeff_sum]
     apply Eq.symm
+    rw [hd0]
     apply Finset.sum_eq_zero
     intro j hj
     by_cases heq :
