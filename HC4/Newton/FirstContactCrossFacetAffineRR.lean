@@ -21,7 +21,6 @@ namespace HC4.Newton
 
 open HC4.Polynomial
 open MvPolynomial
-open scoped BigOperators
 
 noncomputable section
 
@@ -32,7 +31,7 @@ its omitted-coordinate exponent. -/
 noncomputable def CrossFacetInitialData.qsCoefficientPolynomial
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
     (D : CrossFacetInitialData F i (0 : Fin 4)) : Polynomial K :=
-  ∑ d in D.face.support,
+  D.face.support.sum fun d =>
     Polynomial.monomial (d (0 : Fin 4)) (MvPolynomial.coeff d D.face)
 
 /-- Equal omitted coordinates force equal actual support exponents. -/
