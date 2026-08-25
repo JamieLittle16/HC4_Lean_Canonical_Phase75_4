@@ -23,6 +23,8 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
+set_option maxHeartbeats 4000000
+
 /-- Any polynomial of natural degree at most one is determined by its first
 two coefficients in the expected form. -/
 theorem eq_C_add_C_mul_X_of_natDegree_le_one
@@ -41,7 +43,6 @@ theorem eq_C_add_C_mul_X_of_natDegree_le_one
 
 /-- For `M=1`, the finite integral moment matrix is exactly the weighted
 pencil of the two honest endpoint exponent vectors. -/
-set_option maxHeartbeats 4000000 in
 theorem rankThreePolynomialMomentHessian_one_linear_eq_endpointPencil
     (v2 v3 v4 u1 u2 u3 u4 : ℕ) (c0 c1 : K) :
     rankThreePolynomialMomentHessian
@@ -55,8 +56,8 @@ theorem rankThreePolynomialMomentHessian_one_linear_eq_endpointPencil
     rankThreeIntegralLineDirection] using
     (rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil
       (K := K)
-      (v2 : K) (v3 : K) (v4 : K)
-      (u1 : K) (u2 : K) (u3 : K) (u4 : K) c0 c1)
+      v2 v3 v4 u1
+      (u2 : K) (u3 : K) (u4 : K) c0 c1)
 
 /-- **Actual degree-one supported edge -> zero weighted endpoint pencil.** -/
 theorem supported_rankThree_degreeOne_endpointPencil_det_zero
