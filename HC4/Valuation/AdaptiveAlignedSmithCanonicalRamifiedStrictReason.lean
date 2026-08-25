@@ -61,16 +61,13 @@ theorem FixedScaleEpisodeKey.lt_cases
     d₁ < d₂ ∨
       (d₁ = d₂ ∧
         (r₁ < r₂ ∨ (r₁ = r₂ ∧ c₁ < c₂))) := by
-  cases h with
-  | left hraw =>
-      exact Or.inl hraw
-  | right htail =>
-      refine Or.inr ⟨rfl, ?_⟩
-      cases htail with
-      | left hrepair =>
-          exact Or.inl hrepair
-      | right hsource =>
-          exact Or.inr ⟨rfl, hsource⟩
+  unfold FixedScaleEpisodeKey.Lt at h
+  rw [Prod.lex_def] at h
+  rcases h with hraw | ⟨hdefEq, htail⟩
+  · exact Or.inl hraw
+  · refine Or.inr ⟨hdefEq, ?_⟩
+    rw [Prod.lex_def] at htail
+    exact htail
 
 /-- A ramified strict macro either gives scale-insensitive outer progress or
 is genuinely a ramified raw-defect spend.  The latter is intentionally kept
