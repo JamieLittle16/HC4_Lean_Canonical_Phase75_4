@@ -88,6 +88,7 @@ theorem eq_rankThreeLineRangePolynomial_of_supported
         exact hd0
       rw [rankThreeLineTerm_eq_monomial]
       simp [heq, hline0]
+      exact hd0
     · rw [rankThreeLineTerm_eq_monomial]
       simp [heq]
 
