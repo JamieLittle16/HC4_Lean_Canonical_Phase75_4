@@ -26,10 +26,11 @@ open scoped Matrix
 
 noncomputable section
 
+set_option maxHeartbeats 6000000
+
 /-- Weighted determinant for the primitive `p`-ray endpoint. -/
-set_option maxHeartbeats 4000000 in
 theorem det_weightedPTransitionRankThreeEndpointPencil
-    {K : Type*} [CommRing K]
+    {K : Type*} [Field K]
     (A B C c0 c1 : K) :
     (weightedRankThreeEndpointPencil
       A B C 1 0 0 1 c0 c1).det =
@@ -42,9 +43,8 @@ theorem det_weightedPTransitionRankThreeEndpointPencil
   ring
 
 /-- Weighted determinant when the far endpoint omits the third coordinate. -/
-set_option maxHeartbeats 6000000 in
 theorem det_weightedThirdZeroRankThreeEndpointPencil
-    {K : Type*} [CommRing K]
+    {K : Type*} [Field K]
     (A B C Q S c0 c1 : K) :
     (weightedRankThreeEndpointPencil
       A B C 1 Q 0 S c0 c1).det =
@@ -62,9 +62,8 @@ theorem det_weightedThirdZeroRankThreeEndpointPencil
   ring
 
 /-- Weighted determinant when the far endpoint omits the fourth coordinate. -/
-set_option maxHeartbeats 6000000 in
 theorem det_weightedFourthZeroRankThreeEndpointPencil
-    {K : Type*} [CommRing K]
+    {K : Type*} [Field K]
     (A B C Q R c0 c1 : K) :
     (weightedRankThreeEndpointPencil
       A B C 1 Q R 0 c0 c1).det =
