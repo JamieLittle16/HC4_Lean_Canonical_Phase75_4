@@ -133,7 +133,8 @@ theorem supported_balanced_rankThree_homogeneous_sp_forces_v3_one
     have hRp1 : ((u3 : K) - (v3 : K)) + 1 = 0 :=
       (mul_eq_zero.mp h3).resolve_left (mul_ne_zero hAne hRne)
     rw [hsp.2.1] at hRp1
-    have hv3K : (v3 : K) = 1 := by linear_combination hRp1
+    have hv3K : (v3 : K) = 1 := by
+      linear_combination -hRp1
     exact_mod_cast hv3K
   · rw [hsp.2.1] at hu3eq
     omega
@@ -141,8 +142,10 @@ theorem supported_balanced_rankThree_homogeneous_sp_forces_v3_one
     have hRform : ((u3 : K) - (v3 : K)) = -(v3 : K) := by
       rw [hsp.2.1]
       ring
+    have hsum' := hsum
+    rw [hS, hRform] at hsum'
     have hQp1 : ((u2 : K) - (v2 : K)) + 1 = (v3 : K) := by
-      linear_combination hsum
+      linear_combination hsum'
     have hQp1ne : ((u2 : K) - (v2 : K)) + 1 ≠ 0 := by
       rw [hQp1]
       exact_mod_cast Nat.ne_of_gt hv3
@@ -154,9 +157,10 @@ theorem supported_balanced_rankThree_homogeneous_sp_forces_v3_one
     have hCQ := (mul_eq_zero.mp h3).resolve_right hQp1ne
     have hQ : ((u2 : K) - (v2 : K)) = 0 :=
       (mul_eq_zero.mp hCQ).resolve_left hCne
-    rw [hQ] at hsum
-    rw [hS, hRform] at hsum
-    have hv3K : (v3 : K) = 1 := by linear_combination hsum
+    have hsum'' := hsum
+    rw [hQ, hS, hRform] at hsum''
+    have hv3K : (v3 : K) = 1 := by
+      linear_combination -hsum''
     exact_mod_cast hv3K
 
 /-- `rq` homogeneous endpoint forces the starting fourth coordinate to be one. -/
@@ -258,8 +262,10 @@ theorem supported_balanced_rankThree_homogeneous_rq_forces_v4_one
     have hSform : ((u4 : K) - (v4 : K)) = -(v4 : K) := by
       rw [hrq.2.2]
       ring
+    have hsum' := hsum
+    rw [hQ, hSform] at hsum'
     have hRp1 : ((u3 : K) - (v3 : K)) + 1 = (v4 : K) := by
-      linear_combination hsum
+      linear_combination hsum'
     have hRp1ne : ((u3 : K) - (v3 : K)) + 1 ≠ 0 := by
       rw [hRp1]
       exact_mod_cast Nat.ne_of_gt hv4
@@ -272,15 +278,19 @@ theorem supported_balanced_rankThree_homogeneous_rq_forces_v4_one
     have hR : ((u3 : K) - (v3 : K)) = 0 :=
       (mul_eq_zero.mp hAR).resolve_left (by
         exact_mod_cast Nat.ne_of_gt hApos)
-    rw [hQ, hR, hSform] at hsum
-    have hv4K : (v4 : K) = 1 := by linear_combination hsum
+    have hsum'' := hsum
+    rw [hQ, hR, hSform] at hsum''
+    have hv4K : (v4 : K) = 1 := by
+      linear_combination -hsum''
     exact_mod_cast hv4K
   · have hR : ((u3 : K) - (v3 : K)) = 0 := by rw [hu3eq]; ring
     have hSform : ((u4 : K) - (v4 : K)) = -(v4 : K) := by
       rw [hrq.2.2]
       ring
+    have hsum' := hsum
+    rw [hR, hSform] at hsum'
     have hQp1 : ((u2 : K) - (v2 : K)) + 1 = (v4 : K) := by
-      linear_combination hsum
+      linear_combination hsum'
     have hQp1ne : ((u2 : K) - (v2 : K)) + 1 ≠ 0 := by
       rw [hQp1]
       exact_mod_cast Nat.ne_of_gt hv4
@@ -292,8 +302,10 @@ theorem supported_balanced_rankThree_homogeneous_rq_forces_v4_one
     have hBQ := (mul_eq_zero.mp h3).resolve_right hQp1ne
     have hQ : ((u2 : K) - (v2 : K)) = 0 :=
       (mul_eq_zero.mp hBQ).resolve_left hBne
-    rw [hQ, hR, hSform] at hsum
-    have hv4K : (v4 : K) = 1 := by linear_combination hsum
+    have hsum'' := hsum
+    rw [hQ, hR, hSform] at hsum''
+    have hv4K : (v4 : K) = 1 := by
+      linear_combination -hsum''
     exact_mod_cast hv4K
   · rw [hrq.2.2] at hu4eq
     omega
