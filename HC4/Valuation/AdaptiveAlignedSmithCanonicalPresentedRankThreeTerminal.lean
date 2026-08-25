@@ -122,7 +122,7 @@ noncomputable def
     (hsrepair : source.repair = rankOneRepairState complexity) :
     AdaptiveAlignedSmithCanonicalReachedPresentedRankThree
       (K := K) RR complexity :=
-  (source.rankOneTerminationTrace RR source complexity hsrepair).reachedPresentedRankThree
+  (source.rankOneTerminationTrace RR complexity hsrepair).reachedPresentedRankThree
 
 end
 
