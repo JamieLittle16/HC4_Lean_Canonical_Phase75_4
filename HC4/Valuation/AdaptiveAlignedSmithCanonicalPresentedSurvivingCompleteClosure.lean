@@ -141,9 +141,13 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.completeSoundReduction
 
       | rankTwoGeometry hgeometry =>
           rcases hgeometry with ⟨G⟩
+          have hclock : W.original.aligned.endpoint.defect = s.rawDefect := by
+            simpa [s, W,
+              AdaptiveAlignedSmithCanonicalPresentedSurviving.toStateEndpoint]
+              using D.defect_eq
           let Q :=
-            AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometry
-              RR W P R hD3 complexity hsrepairPresented G
+            AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofPresentedGeometry
+              RR W P R hD3 complexity hsrepairPresented hclock G
           have htarget : Q.target.repair = rankTwoRepairState complexity := by
             rw [Q.target_eq]
             rfl
