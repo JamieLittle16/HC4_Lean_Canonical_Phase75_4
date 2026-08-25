@@ -83,7 +83,26 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reached_blocker_or_
     {complexity : ℕ}
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (trace : AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
-      RR complexity source) :=
+      RR complexity source) :
+    (∃ e ∈ smithProjectedSupport (1 : Fin 4) 2 3
+          trace.reachedPresentedRankThree.terminal.specialFiber,
+        (IsPureLongitudinalSmithPattern e ∨
+         IsLowNegativeFirstSmithPattern e ∨
+         IsLowNegativeSecondSmithPattern e ∨
+         IsWLinearSmithPattern e) ∧
+        MixedDegreeSmithExponentOutcome
+          trace.reachedPresentedRankThree.terminal.specialFiber e) ∨
+      ((smithSymmetricBalancedSubface
+          (smithProjectedSupport (1 : Fin 4) 2 3
+            trace.reachedPresentedRankThree.terminal.specialFiber)
+          0 (fun _ : SmithSupportExponent => (0 : ℤ))).Nonempty ∧
+       ∀ e ∈ smithSymmetricBalancedSubface
+          (smithProjectedSupport (1 : Fin 4) 2 3
+            trace.reachedPresentedRankThree.terminal.specialFiber)
+          0 (fun _ : SmithSupportExponent => (0 : ℤ)),
+         (e.b = 0 ∧ e.c = 2 ∧ e.d = 0) ∨
+         (e.b = 1 ∧ e.c = 1 ∧ e.d = 0) ∨
+         (e.b = 2 ∧ e.c = 0 ∧ e.d = 0)) :=
   trace.reachedPresentedRankThree.terminal.specialFiber_blocker_or_quadraticRefinement
 
 end
