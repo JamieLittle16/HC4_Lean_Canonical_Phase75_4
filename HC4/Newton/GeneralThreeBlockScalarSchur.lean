@@ -65,7 +65,7 @@ theorem matrix_det (T : GeneralThreeBlock R) :
 /-- Package an arbitrary symmetric `3 x 3` matrix. -/
 noncomputable def ofSymmetricMatrix
     (M : Matrix (Fin 3) (Fin 3) R)
-    (hsymm : M.IsSymm) : GeneralThreeBlock R where
+    (hsymm : ∀ i j, M i j = M j i) : GeneralThreeBlock R where
   a := M 0 0
   b := M 0 1
   c := M 0 2
@@ -76,12 +76,13 @@ noncomputable def ofSymmetricMatrix
 /-- Repacking a symmetric matrix recovers it literally. -/
 theorem matrix_ofSymmetricMatrix
     (M : Matrix (Fin 3) (Fin 3) R)
-    (hsymm : M.IsSymm) :
+    (hsymm : ∀ i j, M i j = M j i) :
     (ofSymmetricMatrix M hsymm).matrix = M := by
   apply Matrix.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [ofSymmetricMatrix, matrix, hsymm]
+    simp [ofSymmetricMatrix, matrix]
+  all_goals exact hsymm _ _
 
 /-- Every displayed `2 x 2` minor vanishes. -/
 def AllTwoByTwoMinorsZero (T : GeneralThreeBlock R) : Prop :=
@@ -172,8 +173,11 @@ theorem scalarSchur_eq_zero_of_allTwoByTwoMinorsZero
   have hA := hall (0 : Fin 3) 0 1 1
   have hB := hall (0 : Fin 3) 0 1 2
   have hC := hall (0 : Fin 3) 0 2 2
-  simpa [matrix, scalarSchurA, scalarSchurB, scalarSchurC] using
-    And.intro hA (And.intro hB hC)
+  constructor
+  · simpa [matrix, scalarSchurA] using hA
+  constructor
+  · simpa [matrix, scalarSchurB, mul_comm] using hB
+  · simpa [matrix, scalarSchurC] using hC
 
 end GeneralThreeBlock
 
