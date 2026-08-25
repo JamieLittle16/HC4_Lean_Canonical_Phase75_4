@@ -101,10 +101,10 @@ noncomputable def
             simpa [presented] using P.defect_eq
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
         exact ⟨.rankThree (.blocker D (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
@@ -121,10 +121,10 @@ noncomputable def
             simpa [presented] using P.defect_eq
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
         exact ⟨.rankThree (.surviving D (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
