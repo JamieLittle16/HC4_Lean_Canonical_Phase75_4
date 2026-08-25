@@ -130,27 +130,13 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.globalRamifiedSt
     exact nonlinearDegreeBound_commonParameterFactor
       s.degreeCap 1 S hSDegree hcommon
 
-  have haSpecial :
-      polynomialSectionSpecialPoint
-          (zeroPolynomialSection (K := K)) =
-        (fun _ : Fin 4 => (0 : K)) := by
-    exact polynomialSectionSpecialPoint_zeroPolynomialSection
-  have haaxis :
-      HasSmithTransverseParameterFactor
-        (zeroPolynomialSection (K := K)) :=
-    smithTransverseParameterFactor_of_specialPoint_zero
-      (zeroPolynomialSection (K := K)) haSpecial
   have hbaxis : HasSmithTransverseParameterFactor b := by
     exact smithTransverseParameterFactor_of_specialPoint_axisZero
       b (by simpa [b] using P.sectionSpecial)
 
-  let aram :=
-    parameterRamificationSection
-      (K := K) 10 (zeroPolynomialSection (K := K))
+  let aram : Fin 4 → Polynomial K := zeroPolynomialSection (K := K)
   let bram := parameterRamificationSection (K := K) 10 b
-  let hadiv :=
-    smithTransverseParameterFactor_ramified_integralSection
-      (K := K) (zeroPolynomialSection (K := K)) haaxis
+  let hadiv := zeroPolynomialSection_smithDivisibility (K := K) 2
   let hbdiv :=
     smithTransverseParameterFactor_ramified_integralSection
       (K := K) b hbaxis
@@ -160,10 +146,11 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.globalRamifiedSt
   have hramColl :
       HasPolynomialFamilyExactGradientCollision Pram aram bram := by
     dsimp [Pram, aram, bram, F, b]
-    exact polynomialFamilyExactGradientCollision_parameterRamification
-      10 P.source.pointedFamily
-      (zeroPolynomialSection (K := K)) P.source.pointedSection
-      P.exactCollision
+    simpa [parameterRamificationSection, zeroPolynomialSection] using
+      (polynomialFamilyExactGradientCollision_parameterRamification
+        (K := K) 10 P.source.pointedFamily
+        (zeroPolynomialSection (K := K)) P.source.pointedSection
+        P.exactCollision)
   have hsmithColl :
       HasPolynomialFamilyExactGradientCollision S asmith bsmith := by
     dsimp [S, asmith, bsmith]
@@ -175,12 +162,8 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.globalRamifiedSt
     exact polynomialFamilyExactGradientCollision_commonParameterFactor
       1 S hcommon asmith bsmith hsmithColl
 
-  have haramZero : aram = zeroPolynomialSection (K := K) := by
-    funext i
-    simp [aram, parameterRamificationSection, zeroPolynomialSection]
   have hasmithZero : asmith = zeroPolynomialSection (K := K) := by
-    dsimp [asmith]
-    cases haramZero
+    dsimp [asmith, aram]
     exact integralSmithConformalSection_zeroPolynomialSection 2 hadiv
   have hQColl :
       HasPolynomialFamilyExactGradientCollision
