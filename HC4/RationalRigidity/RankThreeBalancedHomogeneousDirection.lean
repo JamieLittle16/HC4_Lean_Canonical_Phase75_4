@@ -59,12 +59,15 @@ theorem supported_balanced_rankThree_two_fixed_impossible
   have heMmem : eM ∈ F.support := MvPolynomial.mem_support_iff.mpr hend
   have hBal0raw : IsBalancedExponent a b e0 := hbalanced e0 he0mem
   have hBalMraw : IsBalancedExponent a b eM := hbalanced eM heMmem
+  have hBaseLine :
+      b * (M * v2) = b * (M * v3) + a * (M * v4) := by
+    simpa [e0, IsBalancedExponent,
+      rankThreeLineExponentFinsupp_apply] using hBal0raw
   have hBase : b * v2 = b * v3 + a * v4 := by
-    change b * (M * v2) = b * (M * v3) + a * (M * v4) at hBal0raw
     have hfac : M * (b * v2) = M * (b * v3 + a * v4) := by
       calc
         M * (b * v2) = b * (M * v2) := by ring
-        _ = b * (M * v3) + a * (M * v4) := hBal0raw
+        _ = b * (M * v3) + a * (M * v4) := hBaseLine
         _ = M * (b * v3 + a * v4) := by ring
     exact Nat.mul_left_cancel hM hfac
 
@@ -72,14 +75,17 @@ theorem supported_balanced_rankThree_two_fixed_impossible
     (K := K) ha hb hv2 hv3 hv4 hM hu1 hbalanced
     hsupp hstart hend hdet
   have hu1one : u1 = 1 := hshape.1
+  have hEndLine :
+      a * (M * u1) + b * (M * u2) =
+        b * (M * u3) + a * (M * u4) := by
+    simpa [eM, IsBalancedExponent,
+      rankThreeLineExponentFinsupp_apply] using hBalMraw
   have hEnd : a + b * u2 = b * u3 + a * u4 := by
-    change a * (M * u1) + b * (M * u2) =
-      b * (M * u3) + a * (M * u4) at hBalMraw
-    rw [hu1one] at hBalMraw
+    rw [hu1one] at hEndLine
     have hfac : M * (a + b * u2) = M * (b * u3 + a * u4) := by
       calc
         M * (a + b * u2) = a * (M * 1) + b * (M * u2) := by ring
-        _ = b * (M * u3) + a * (M * u4) := hBalMraw
+        _ = b * (M * u3) + a * (M * u4) := hEndLine
         _ = M * (b * u3 + a * u4) := by ring
     exact Nat.mul_left_cancel hM hfac
 
