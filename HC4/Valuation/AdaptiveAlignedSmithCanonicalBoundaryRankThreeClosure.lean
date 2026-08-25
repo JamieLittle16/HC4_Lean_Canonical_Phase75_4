@@ -69,6 +69,7 @@ noncomputable def
     (hsrepair : source.repair = rankOneRepairState complexity) :
     AdaptiveAlignedSmithCanonicalBoundaryRankThreeOutcome
       RR source complexity := by
+  refine Classical.choice ?_
   let F := zeroJetNormalizedFamily source.family
   have hright :
       alignedSmithGenuineFirstWall
@@ -105,7 +106,7 @@ noncomputable def
             rw [hEq]
             simpa [presented] using P.movingSection_eq
         }
-        exact .rankThree (.blocker D (D.allRankThreeGeometry RR complexity hsrepair))
+        exact ⟨.rankThree (.blocker D (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
     | surviving P W hEq =>
         let presented := P.toScaleOneState
@@ -125,7 +126,7 @@ noncomputable def
             rw [hEq]
             simpa [presented] using P.movingSection_eq
         }
-        exact .rankThree (.surviving D (D.allRankThreeGeometry RR complexity hsrepair))
+        exact ⟨.rankThree (.surviving D (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
   · by_cases hcoeff :
         alignedSmithGenuineFirstWall
@@ -165,7 +166,7 @@ noncomputable def
             family_eq := by rw [hEq]; rfl
             movingSection_eq := by rw [hEq]; rfl
           }
-          exact .rankThree (.blocker D (D.allRankThreeGeometry RR complexity hsrepair))
+          exact ⟨.rankThree (.blocker D (D.allRankThreeGeometry RR complexity hsrepair))⟩
       | inr hW =>
           rcases hW with ⟨W, hEq⟩
           let D : AdaptiveAlignedSmithCanonicalPresentedSurviving (K := K) source := {
@@ -176,7 +177,7 @@ noncomputable def
             family_eq := by rw [hEq]; rfl
             movingSection_eq := by rw [hEq]; rfl
           }
-          exact .rankThree (.surviving D (D.allRankThreeGeometry RR complexity hsrepair))
+          exact ⟨.rankThree (.surviving D (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
     · have hsep : HasSeparatedRightSmithSectionWall F source.movingSection :=
         ⟨B.hwall, hprimitive, hcoeff, hright⟩
@@ -209,8 +210,8 @@ noncomputable def
         (certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt
           (K := K) (t := target) (s := source) rfl rfl
           (by simpa [target] using hlt)).progress
-      exact .globalProgress target hprogress
-        (by simpa [target] using hlt) rfl
+      exact ⟨.globalProgress target hprogress
+        (by simpa [target] using hlt) rfl⟩
 
 end
 
