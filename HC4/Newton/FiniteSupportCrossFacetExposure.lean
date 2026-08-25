@@ -136,8 +136,18 @@ noncomputable def crossFacetInitialData
     (hout : (positiveCoordinateSupport j F).Nonempty) :
     CrossFacetInitialData F i j := by
   classical
-  rcases exists_zeroCoordinate_coordinateMax (i := i) hfacet with
-    ⟨v, hvZero, hvMax⟩
+  have hvExists :
+      ∃ v ∈ zeroCoordinateSupport j F,
+        ∀ q ∈ zeroCoordinateSupport j F, q i ≤ v i :=
+    exists_zeroCoordinate_coordinateMax (i := i) hfacet
+  let v := Classical.choose hvExists
+  have hvSpec :
+      v ∈ zeroCoordinateSupport j F ∧
+        ∀ q ∈ zeroCoordinateSupport j F, q i ≤ v i := by
+    dsimp [v]
+    exact Classical.choose_spec hvExists
+  have hvZero : v ∈ zeroCoordinateSupport j F := hvSpec.1
+  have hvMax : ∀ q ∈ zeroCoordinateSupport j F, q i ≤ v i := hvSpec.2
   have hvF : v ∈ F.support := (mem_zeroCoordinateSupport.mp hvZero).1
   have hvj : v j = 0 := (mem_zeroCoordinateSupport.mp hvZero).2
 
@@ -148,7 +158,16 @@ noncomputable def crossFacetInitialData
     Finset.exists_min_image
       (positiveCoordinateSupport j F)
       (fun d => crossFacetSlope i j v d) hout
-  rcases hminExists with ⟨d₀, hd₀Pos, hmin⟩
+  let d₀ := Classical.choose hminExists
+  have hd₀Spec :
+      d₀ ∈ positiveCoordinateSupport j F ∧
+        ∀ d ∈ positiveCoordinateSupport j F,
+          crossFacetSlope i j v d₀ ≤ crossFacetSlope i j v d := by
+    dsimp [d₀]
+    exact Classical.choose_spec hminExists
+  have hd₀Pos : d₀ ∈ positiveCoordinateSupport j F := hd₀Spec.1
+  have hmin : ∀ d ∈ positiveCoordinateSupport j F,
+      crossFacetSlope i j v d₀ ≤ crossFacetSlope i j v d := hd₀Spec.2
   have hd₀F : d₀ ∈ F.support := (mem_positiveCoordinateSupport.mp hd₀Pos).1
   have hd₀j : 0 < d₀ j := (mem_positiveCoordinateSupport.mp hd₀Pos).2
 
@@ -229,6 +248,7 @@ theorem CrossFacetInitialData.facetExponent_ne_outsideExponent
     D.facetExponent ≠ D.outsideExponent := by
   intro h
   have hj := congrArg (fun d : Fin 4 →₀ ℕ => d j) h
+  change D.facetExponent j = D.outsideExponent j at hj
   rw [D.facet_coordinate_zero] at hj
   have : 0 < D.outsideExponent j := D.outside_coordinate_pos
   omega
