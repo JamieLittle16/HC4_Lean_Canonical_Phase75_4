@@ -1,3 +1,4 @@
+import HC4.RationalRigidity.RankThreeAffineLineTerminal
 import HC4.RationalRigidity.RankThreeAffineTopBoundary
 import HC4.RationalRigidity.RankThreeTranslatedPurePower
 import HC4.RationalRigidity.RankThreeUnitLongitudinalStep
