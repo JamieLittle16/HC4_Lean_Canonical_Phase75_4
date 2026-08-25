@@ -91,19 +91,24 @@ theorem scalarSchurThreeMatrix_eq_zero_of_allTwoByTwoMinorsZero
     (hall : ∀ i j k l : Fin 4,
       H.matrix i j * H.matrix k l - H.matrix i l * H.matrix k j = 0) :
     H.scalarSchurThreeMatrix = 0 := by
-  have h11 := hall (0 : Fin 4) 0 1 1
-  have h12 := hall (0 : Fin 4) 0 1 2
-  have h13 := hall (0 : Fin 4) 0 1 3
-  have h22 := hall (0 : Fin 4) 0 2 2
-  have h23 := hall (0 : Fin 4) 0 2 3
-  have h33 := hall (0 : Fin 4) 0 3 3
+  have h11 : H.a * H.d - H.b * H.b = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 1 1
+  have h12 : H.a * H.r - H.b * H.p = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 1 2
+  have h13 : H.a * H.s - H.b * H.q = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 1 3
+  have h22 : H.a * H.x - H.p * H.p = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 2 2
+  have h23 : H.a * H.y - H.p * H.q = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 2 3
+  have h33 : H.a * H.z - H.q * H.q = 0 := by
+    simpa [GeneralFourBlock.matrix, mul_comm] using hall (0 : Fin 4) 0 3 3
   apply Matrix.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
     simp [scalarSchurThreeMatrix, scalarSchur11, scalarSchur12, scalarSchur13,
       scalarSchur22, scalarSchur23, scalarSchur33,
-      GeneralFourBlock.matrix] at h11 h12 h13 h22 h23 h33 ⊢ <;>
-    assumption
+      h11, h12, h13, h22, h23, h33]
 
 end GeneralFourBlock
 
