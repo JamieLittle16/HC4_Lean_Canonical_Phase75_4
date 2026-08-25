@@ -5,26 +5,9 @@ import Mathlib.Tactic
 /-!
 # A18.4.89: exact active chart or genuine rank-one special Hessian
 
-For an arbitrary scale-aware restart state, inspect the honest special-fibre
-Hessian itself.  The identity four-block already contains the full symmetric
-`4 x 4` matrix, so `AllTwoByTwoMinorsZero` is the exact division-free
-rank-at-most-one condition.
-
-If that condition fails, one of the ten finite core relations used in the
-A18 blocker rank-one proof must fail.  The six principal relations are exposed
-by simultaneous coordinate permutations.  Once all six principal relations
-vanish, each of the four possible cross relations is exposed by the existing
-determinant-one `e_0 -> e_0 + e_2` shear after a suitable permutation.
-
-Hence every state has exactly the geometric split needed by the kernel-opening
-audit:
-
-* an honest exact active `2 x 2` Hessian chart, immediately consumable by
-  A18.4.88; or
-* every `2 x 2` minor of the actual special-fibre Hessian vanishes.
-
-No repair state, ramified order, or homogeneity assumption occurs in this
-lemma.
+The expensive parameter-series specialization is collapsed once to a finite
+special-fibre four-block. The subsequent ten-relation rank split works only
+with those ten finite entries; no branch unfolds the polynomial-series Hessian.
 -/
 
 namespace HC4.Valuation
@@ -63,60 +46,69 @@ theorem scaleAwareHessianSeriesMatrix_coeff_zero
   simp [HC4.Polynomial.hessian_apply,
     polynomialFamilySpecialFiber, MvPolynomial.pderiv_map]
 
-attribute [local simp] scaleAwareHessianSeriesMatrix_coeff_zero
-attribute [local simp] GeneralFourBlock.activeDet
-attribute [local simp] HC4.Polynomial.hessian_apply
+/-- Genuine finite Hessian block in an arbitrary simultaneous permutation. -/
+private noncomputable def scaleAwarePermutedFiniteHessianBlock
+    (rho : Equiv.Perm (Fin 4))
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    GeneralFourBlock (MvPolynomial (Fin 4) K) :=
+  GeneralFourBlock.ofSymmetricMatrix
+    (fun i j =>
+      HC4.Polynomial.hessian
+        (polynomialFamilySpecialFiber s.family) (rho i) (rho j))
 
-/-- Differentiating the first two-zero base coefficient in source coordinate
-`0` commutes with extracting that coefficient. -/
-@[simp] private theorem pderiv_zero_standardTwoZeroA
-    (F : MvPolynomial (Fin 4) K) :
-    MvPolynomial.pderiv 0 (standardTwoZeroA F) =
-      standardTwoZeroA (MvPolynomial.pderiv 0 F) := by
-  simp only [standardTwoZeroA]
-  rw [pderiv_comm_backport]
+/-- Identity-coordinate version of the finite block. -/
+private noncomputable def scaleAwareFiniteHessianBlock
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    GeneralFourBlock (MvPolynomial (Fin 4) K) :=
+  scaleAwarePermutedFiniteHessianBlock (Equiv.refl (Fin 4)) s
 
-/-- The same commutation in source coordinate `1`. -/
-@[simp] private theorem pderiv_one_standardTwoZeroA
-    (F : MvPolynomial (Fin 4) K) :
-    MvPolynomial.pderiv 1 (standardTwoZeroA F) =
-      standardTwoZeroA (MvPolynomial.pderiv 1 F) := by
-  simp only [standardTwoZeroA]
-  rw [pderiv_comm_backport]
+/-- Hessian symmetry on the finite special fibre. -/
+private theorem scaleAwareFiniteHessian_symmetric
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
+    (i j : Fin 4) :
+    HC4.Polynomial.hessian
+        (polynomialFamilySpecialFiber s.family) i j =
+      HC4.Polynomial.hessian
+        (polynomialFamilySpecialFiber s.family) j i := by
+  change
+    MvPolynomial.pderiv j
+        (MvPolynomial.pderiv i (polynomialFamilySpecialFiber s.family)) =
+      MvPolynomial.pderiv i
+        (MvPolynomial.pderiv j (polynomialFamilySpecialFiber s.family))
+  exact (pderiv_comm_backport i j _).symm
 
-/-- Differentiating the second two-zero base coefficient in source coordinate
-`0` commutes with extracting that coefficient. -/
-@[simp] private theorem pderiv_zero_standardTwoZeroC
-    (F : MvPolynomial (Fin 4) K) :
-    MvPolynomial.pderiv 0 (standardTwoZeroC F) =
-      standardTwoZeroC (MvPolynomial.pderiv 0 F) := by
-  simp only [standardTwoZeroC]
-  rw [pderiv_comm_backport]
+/-- Specializing the honest series block once gives exactly the finite
+permuted Hessian block. -/
+private theorem parameterConstantCoeff_scaleAwareHessianFourBlock
+    (rho : Equiv.Perm (Fin 4))
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    parameterConstantCoeffFourBlock (scaleAwareHessianFourBlock rho s) =
+      scaleAwarePermutedFiniteHessianBlock rho s := by
+  ext <;>
+    simp [parameterConstantCoeffFourBlock,
+      scaleAwareHessianFourBlock,
+      scaleAwarePermutedFiniteHessianBlock,
+      GeneralFourBlock.ofSymmetricMatrix,
+      scaleAwareHessianSeriesMatrix_coeff_zero]
 
-/-- The same commutation in source coordinate `1`. -/
-@[simp] private theorem pderiv_one_standardTwoZeroC
-    (F : MvPolynomial (Fin 4) K) :
-    MvPolynomial.pderiv 1 (standardTwoZeroC F) =
-      standardTwoZeroC (MvPolynomial.pderiv 1 F) := by
-  simp only [standardTwoZeroC]
-  rw [pderiv_comm_backport]
+private theorem scaleAwareSpecialHessianFourBlock_eq_finite
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    scaleAwareSpecialHessianFourBlock s = scaleAwareFiniteHessianBlock s := by
+  unfold scaleAwareSpecialHessianFourBlock scaleAwareFiniteHessianBlock
+  exact parameterConstantCoeff_scaleAwareHessianFourBlock
+    (Equiv.refl (Fin 4)) s
 
 /-- The finite block is exactly the genuine special-fibre Hessian matrix. -/
 theorem scaleAwareSpecialHessianFourBlock_matrix
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
     (scaleAwareSpecialHessianFourBlock s).matrix =
       HC4.Polynomial.hessian (polynomialFamilySpecialFiber s.family) := by
-  funext i j
-  fin_cases i <;> fin_cases j <;>
-    simp [scaleAwareSpecialHessianFourBlock,
-      parameterConstantCoeffFourBlock,
-      scaleAwareHessianFourBlock,
-      GeneralFourBlock.ofSymmetricMatrix,
-      GeneralFourBlock.matrix,
-      scaleAwareHessianSeriesMatrix_coeff_zero]
-  all_goals
-    simp only [standardTwoZeroA, standardTwoZeroC]
-    rw [pderiv_comm_backport]
+  rw [scaleAwareSpecialHessianFourBlock_eq_finite]
+  unfold scaleAwareFiniteHessianBlock scaleAwarePermutedFiniteHessianBlock
+  simpa using
+    (GeneralFourBlock.matrix_ofSymmetricMatrix
+      (HC4.Polynomial.hessian (polynomialFamilySpecialFiber s.family))
+      (scaleAwareFiniteHessian_symmetric s))
 
 /-! ## The finite permutations used by the ten core relations -/
 
@@ -132,19 +124,15 @@ private noncomputable def scaleRankSwap02 : Equiv.Perm (Fin 4) :=
 private noncomputable def scaleRankSwap03 : Equiv.Perm (Fin 4) :=
   Equiv.swap 0 3
 
-/-- Local order `(2,3,0,1)`. -/
 private noncomputable def scaleRankOrder2301 : Equiv.Perm (Fin 4) :=
   (Equiv.swap 0 2).trans (Equiv.swap 1 3)
 
-/-- Local order `(0,1,3,2)`. -/
 private noncomputable def scaleRankSwap23 : Equiv.Perm (Fin 4) :=
   Equiv.swap 2 3
 
-/-- Local order `(2,1,3,0)`. -/
 private noncomputable def scaleRankOrder2130 : Equiv.Perm (Fin 4) :=
   (Equiv.swap 0 2).trans (Equiv.swap 0 3)
 
-/-- Local order `(2,0,3,1)`. -/
 private noncomputable def scaleRankOrder2031 : Equiv.Perm (Fin 4) :=
   ((Equiv.swap 0 1).trans (Equiv.swap 1 2)).trans (Equiv.swap 1 3)
 
@@ -198,13 +186,104 @@ theorem scaleAwareHessianFourBlock_activeDet_coeff_zero
         (scaleAwareHessianFourBlock rho s)).activeDet :=
   parameterConstantCoeffFourBlock_activeDet _
 
+/-- Finite version of the same statement, used by the rank split so the
+parameter-series machinery is never reopened in a branch. -/
+private theorem scaleAwareHessianFourBlock_activeDet_coeff_zero_finite
+    (rho : Equiv.Perm (Fin 4))
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwareHessianFourBlock rho s).activeDet.coeff 0 =
+      (scaleAwarePermutedFiniteHessianBlock rho s).activeDet := by
+  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero,
+    parameterConstantCoeff_scaleAwareHessianFourBlock]
+
+/-! ## Tiny finite permutation identities -/
+
+private theorem active_swap12_eq
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwarePermutedFiniteHessianBlock scaleRankSwap12 s).activeDet =
+      let H := scaleAwareFiniteHessianBlock s
+      H.a * H.x - H.p * H.p := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem active_swap13_eq
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwarePermutedFiniteHessianBlock scaleRankSwap13 s).activeDet =
+      let H := scaleAwareFiniteHessianBlock s
+      H.a * H.z - H.q * H.q := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem active_swap02_eq
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwarePermutedFiniteHessianBlock scaleRankSwap02 s).activeDet =
+      let H := scaleAwareFiniteHessianBlock s
+      H.x * H.d - H.r * H.r := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem active_swap03_eq
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwarePermutedFiniteHessianBlock scaleRankSwap03 s).activeDet =
+      let H := scaleAwareFiniteHessianBlock s
+      H.z * H.d - H.s * H.s := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem active_order2301_eq
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2301 s).activeDet =
+      let H := scaleAwareFiniteHessianBlock s
+      H.x * H.z - H.y * H.y := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem relations_order2031
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    let H := scaleAwareFiniteHessianBlock s
+    let T := scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s
+    T.activeDet = H.a * H.x - H.p * H.p ∧
+      T.x * T.d - T.r * T.r = H.a * H.z - H.q * H.q ∧
+      T.p * T.d - T.b * T.r = H.y * H.a - H.p * H.q := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem relations_order2130
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    let H := scaleAwareFiniteHessianBlock s
+    let T := scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s
+    T.activeDet = H.x * H.d - H.r * H.r ∧
+      T.x * T.d - T.r * T.r = H.z * H.d - H.s * H.s ∧
+      T.p * T.d - T.b * T.r = H.y * H.d - H.r * H.s := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
+private theorem relations_swap23
+    (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
+    let H := scaleAwareFiniteHessianBlock s
+    let T := scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s
+    T.activeDet = H.a * H.d - H.b * H.b ∧
+      T.x * T.d - T.r * T.r = H.z * H.d - H.s * H.s ∧
+      T.p * T.d - T.b * T.r = H.q * H.d - H.b * H.s := by
+  simp [scaleAwarePermutedFiniteHessianBlock, scaleAwareFiniteHessianBlock,
+    GeneralFourBlock.activeDet, GeneralFourBlock.ofSymmetricMatrix,
+    scaleAwareFiniteHessian_symmetric, mul_comm]
+
 /-- **Finite Hessian rank split on an arbitrary scale-aware state.** -/
-set_option maxHeartbeats 4000000 in
 theorem scaleAwareHessian_exactActive_or_rankOne
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
     Nonempty (AdaptiveAlignedSmithCanonicalExactActiveFourBlock s) ∨
       (scaleAwareSpecialHessianFourBlock s).AllTwoByTwoMinorsZero := by
-  let H := scaleAwareSpecialHessianFourBlock s
+  let H := scaleAwareFiniteHessianBlock s
+  have hH : scaleAwareSpecialHessianFourBlock s = H :=
+    scaleAwareSpecialHessianFourBlock_eq_finite s
 
   by_cases hp01 : H.a * H.d - H.b * H.b = 0
   · by_cases hp02 : H.a * H.x - H.p * H.p = 0
@@ -217,6 +296,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                 · by_cases hc213 : H.y * H.d - H.r * H.s = 0
                   · by_cases hc203 : H.y * H.a - H.p * H.q = 0
                     · right
+                      rw [hH]
                       exact GeneralFourBlock.allTwoByTwoMinorsZero_of_rankOneCoreRelations
                         H {
                           principal01 := hp01
@@ -232,35 +312,41 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                         }
                     · left
                       let rho := scaleRankOrder2031
+                      have hrel := relations_order2031 s
+                      dsimp only at hrel
                       have h01 :
                           (scaleAwareHessianFourBlock rho s).activeDet.coeff 0 = 0 := by
-                        rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-                        simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                          scaleAwareHessianFourBlock,
-                          parameterConstantCoeffFourBlock,
-                          GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply, mul_comm] using hp02
+                        rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+                        change
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).activeDet = 0
+                        rw [hrel.1]
+                        exact hp02
                       have h21 :
                           let T := parameterConstantCoeffFourBlock
                             (scaleAwareHessianFourBlock rho s)
                           T.x * T.d - T.r * T.r = 0 := by
-                        dsimp
-                        simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                          scaleAwareHessianFourBlock,
-                          parameterConstantCoeffFourBlock,
-                          GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply, mul_comm] using hp03
+                        dsimp only
+                        rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                        change
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).x *
+                              (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).d -
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).r *
+                              (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).r = 0
+                        rw [hrel.2.1]
+                        exact hp03
                       have hcross :
                           let T := parameterConstantCoeffFourBlock
                             (scaleAwareHessianFourBlock rho s)
                           T.p * T.d - T.b * T.r ≠ 0 := by
-                        dsimp
-                        simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                          scaleAwareHessianFourBlock,
-                          parameterConstantCoeffFourBlock,
-                          GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply, HC4.Polynomial.hessian_apply,
-                          pderiv_comm_commRing, mul_comm] using hc203
+                        dsimp only
+                        rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                        change
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).p *
+                              (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).d -
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).b *
+                              (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2031 s).r ≠ 0
+                        rw [hrel.2.2]
+                        exact hc203
                       have hactive :
                           ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                         apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -271,35 +357,41 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                         rho hactive⟩
                   · left
                     let rho := scaleRankOrder2130
+                    have hrel := relations_order2130 s
+                    dsimp only at hrel
                     have h01 :
                         (scaleAwareHessianFourBlock rho s).activeDet.coeff 0 = 0 := by
-                      rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-                      simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                        scaleAwareHessianFourBlock,
-                        parameterConstantCoeffFourBlock,
-                        GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply, mul_comm] using hp12
+                      rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+                      change
+                        (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).activeDet = 0
+                      rw [hrel.1]
+                      exact hp12
                     have h21 :
                         let T := parameterConstantCoeffFourBlock
                           (scaleAwareHessianFourBlock rho s)
                         T.x * T.d - T.r * T.r = 0 := by
-                      dsimp
-                      simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                        scaleAwareHessianFourBlock,
-                        parameterConstantCoeffFourBlock,
-                        GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply, mul_comm] using hp13
+                      dsimp only
+                      rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                      change
+                        (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).x *
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).d -
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).r *
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).r = 0
+                      rw [hrel.2.1]
+                      exact hp13
                     have hcross :
                         let T := parameterConstantCoeffFourBlock
                           (scaleAwareHessianFourBlock rho s)
                         T.p * T.d - T.b * T.r ≠ 0 := by
-                      dsimp
-                      simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                        scaleAwareHessianFourBlock,
-                        parameterConstantCoeffFourBlock,
-                        GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply, HC4.Polynomial.hessian_apply,
-                        pderiv_comm_commRing, mul_comm] using hc213
+                      dsimp only
+                      rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                      change
+                        (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).p *
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).d -
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).b *
+                            (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2130 s).r ≠ 0
+                      rw [hrel.2.2]
+                      exact hc213
                     have hactive :
                         ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                       apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -310,35 +402,41 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                       rho hactive⟩
                 · left
                   let rho := scaleRankSwap23
+                  have hrel := relations_swap23 s
+                  dsimp only at hrel
                   have h01 :
                       (scaleAwareHessianFourBlock rho s).activeDet.coeff 0 = 0 := by
-                    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-                    simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                      scaleAwareHessianFourBlock,
-                      parameterConstantCoeffFourBlock,
-                      GeneralFourBlock.ofSymmetricMatrix,
-                      Equiv.trans_apply] using hp01
+                    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+                    change
+                      (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).activeDet = 0
+                    rw [hrel.1]
+                    exact hp01
                   have h21 :
                       let T := parameterConstantCoeffFourBlock
                         (scaleAwareHessianFourBlock rho s)
                       T.x * T.d - T.r * T.r = 0 := by
-                    dsimp
-                    simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                      scaleAwareHessianFourBlock,
-                      parameterConstantCoeffFourBlock,
-                      GeneralFourBlock.ofSymmetricMatrix,
-                      Equiv.trans_apply, mul_comm] using hp13
+                    dsimp only
+                    rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                    change
+                      (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).x *
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).d -
+                        (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).r *
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).r = 0
+                    rw [hrel.2.1]
+                    exact hp13
                   have hcross :
                       let T := parameterConstantCoeffFourBlock
                         (scaleAwareHessianFourBlock rho s)
                       T.p * T.d - T.b * T.r ≠ 0 := by
-                    dsimp
-                    simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                      scaleAwareHessianFourBlock,
-                      parameterConstantCoeffFourBlock,
-                      GeneralFourBlock.ofSymmetricMatrix,
-                      Equiv.trans_apply, HC4.Polynomial.hessian_apply,
-                      pderiv_comm_commRing, mul_comm] using hc013
+                    dsimp only
+                    rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                    change
+                      (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).p *
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).d -
+                        (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).b *
+                          (scaleAwarePermutedFiniteHessianBlock scaleRankSwap23 s).r ≠ 0
+                    rw [hrel.2.2]
+                    exact hc013
                   have hactive :
                       ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                     apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -352,74 +450,89 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                 have hactive :
                     ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                   apply shear02_activeDet_coeff_zero_ne_zero_of_cross
-                  · rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-                    simpa [H, scaleAwareSpecialHessianFourBlock, rho] using hp01
-                  · simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                      parameterConstantCoeffFourBlock,
-                      scaleAwareHessianFourBlock,
-                      GeneralFourBlock.ofSymmetricMatrix] using hp12
-                  · simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                      parameterConstantCoeffFourBlock,
-                      scaleAwareHessianFourBlock,
-                      GeneralFourBlock.ofSymmetricMatrix] using hc012
+                  · rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+                    change (scaleAwareFiniteHessianBlock s).activeDet = 0
+                    simpa [H, GeneralFourBlock.activeDet] using hp01
+                  · have h21 :
+                        let T := parameterConstantCoeffFourBlock
+                          (scaleAwareHessianFourBlock rho s)
+                        T.x * T.d - T.r * T.r = 0 := by
+                      dsimp only
+                      rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                      change
+                        (scaleAwareFiniteHessianBlock s).x *
+                            (scaleAwareFiniteHessianBlock s).d -
+                          (scaleAwareFiniteHessianBlock s).r *
+                            (scaleAwareFiniteHessianBlock s).r = 0
+                      exact hp12
+                    simpa [parameterConstantCoeffFourBlock] using h21
+                  · have hcross :
+                        let T := parameterConstantCoeffFourBlock
+                          (scaleAwareHessianFourBlock rho s)
+                        T.p * T.d - T.b * T.r ≠ 0 := by
+                      dsimp only
+                      rw [parameterConstantCoeff_scaleAwareHessianFourBlock]
+                      change
+                        (scaleAwareFiniteHessianBlock s).p *
+                            (scaleAwareFiniteHessianBlock s).d -
+                          (scaleAwareFiniteHessianBlock s).b *
+                            (scaleAwareFiniteHessianBlock s).r ≠ 0
+                      exact hc012
+                    simpa [parameterConstantCoeffFourBlock] using hcross
                 exact ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofShear02
                   rho hactive⟩
             · left
               let rho := scaleRankOrder2301
               refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
                 { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-              rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-              simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-                scaleAwareHessianFourBlock,
-                parameterConstantCoeffFourBlock,
-                GeneralFourBlock.ofSymmetricMatrix,
-                Equiv.trans_apply] using hp23
+              rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+              change
+                (scaleAwarePermutedFiniteHessianBlock scaleRankOrder2301 s).activeDet ≠ 0
+              rw [active_order2301_eq]
+              exact hp23
           · left
             let rho := scaleRankSwap03
             refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
               { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-            rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-            simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-              scaleAwareHessianFourBlock,
-              parameterConstantCoeffFourBlock,
-              GeneralFourBlock.ofSymmetricMatrix,
-              Equiv.trans_apply, mul_comm] using hp13
+            rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+            change
+              (scaleAwarePermutedFiniteHessianBlock scaleRankSwap03 s).activeDet ≠ 0
+            rw [active_swap03_eq]
+            exact hp13
         · left
           let rho := scaleRankSwap02
           refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
             { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-          rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-          simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-            scaleAwareHessianFourBlock,
-            parameterConstantCoeffFourBlock,
-            GeneralFourBlock.ofSymmetricMatrix,
-            Equiv.trans_apply, mul_comm] using hp12
+          rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+          change
+            (scaleAwarePermutedFiniteHessianBlock scaleRankSwap02 s).activeDet ≠ 0
+          rw [active_swap02_eq]
+          exact hp12
       · left
         let rho := scaleRankSwap13
         refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
           { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-        rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-        simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-          scaleAwareHessianFourBlock,
-          parameterConstantCoeffFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix,
-          Equiv.trans_apply] using hp03
+        rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+        change
+          (scaleAwarePermutedFiniteHessianBlock scaleRankSwap13 s).activeDet ≠ 0
+        rw [active_swap13_eq]
+        exact hp03
     · left
       let rho := scaleRankSwap12
       refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
         { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-      rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-      simpa [H, scaleAwareSpecialHessianFourBlock, rho,
-        scaleAwareHessianFourBlock,
-        parameterConstantCoeffFourBlock,
-        GeneralFourBlock.ofSymmetricMatrix,
-        Equiv.trans_apply] using hp02
+      rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+      change
+        (scaleAwarePermutedFiniteHessianBlock scaleRankSwap12 s).activeDet ≠ 0
+      rw [active_swap12_eq]
+      exact hp02
   · left
     let rho := Equiv.refl (Fin 4)
     refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
       { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }⟩
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero]
-    simpa [H, scaleAwareSpecialHessianFourBlock, rho] using hp01
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_finite]
+    change (scaleAwareFiniteHessianBlock s).activeDet ≠ 0
+    simpa [H, GeneralFourBlock.activeDet] using hp01
 
 end
 
