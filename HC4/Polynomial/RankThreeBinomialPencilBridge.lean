@@ -50,9 +50,9 @@ theorem rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil
       weightedRankThreeEndpointPencil
         (A : K) (B : K) (C : K) (P : K) Q R S c0 c1 := by
   ext i j
+  rw [rankThreeAffinePolynomialMomentHessian_apply]
   fin_cases i <;> fin_cases j <;>
-    simp [rankThreeAffinePolynomialMomentHessian,
-      lineMomentHessian, eulerDerivative,
+    simp [eulerDerivative,
       rankThreeLogBaseExponent, rankThreeLogDirection,
       weightedRankThreeEndpointPencil, vectorHessianCore] <;>
     ring
