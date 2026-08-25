@@ -26,7 +26,8 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-set_option maxHeartbeats 5000000 in
+set_option maxHeartbeats 8000000
+
 /-- Raw fourth-coefficient identity when `Q=0`. -/
 theorem coeff_four_rankThree_raw_Q_zero
     (A B C R S t : K) :
@@ -46,10 +47,10 @@ theorem coeff_four_rankThree_raw_Q_zero
     HC4.Polynomial.rankThreeWeightedCofactorSum,
     HC4.Polynomial.rankThreeDirectionDefect,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
-set_option maxHeartbeats 5000000 in
 /-- Raw fourth-coefficient identity when `R=0`. -/
 theorem coeff_four_rankThree_raw_R_zero
     (A B C Q S t : K) :
@@ -69,10 +70,10 @@ theorem coeff_four_rankThree_raw_R_zero
     HC4.Polynomial.rankThreeWeightedCofactorSum,
     HC4.Polynomial.rankThreeDirectionDefect,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
-set_option maxHeartbeats 5000000 in
 /-- Raw fourth-coefficient identity when `S=0`. -/
 theorem coeff_four_rankThree_raw_S_zero
     (A B C Q R t : K) :
@@ -92,7 +93,8 @@ theorem coeff_four_rankThree_raw_S_zero
     HC4.Polynomial.rankThreeWeightedCofactorSum,
     HC4.Polynomial.rankThreeDirectionDefect,
     Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+    Finset.sum_range_succ]
   ring
 
 /-- The factor `N*T₂-T₂-1` is nonzero under the terminal top relation. -/
@@ -143,17 +145,26 @@ theorem rankThree_terminal_Q_zero_refines
   have hT1' : T.coeff 1 = 1 := by simpa [T] using hT1
   have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
     simpa [T] using htop
+  have hshape' := hshape
+  rw [hT1'] at hshape'
+  have hrawShape :
+      (Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw = Nraw :=
+    (congrArg (fun U : Polynomial K => U * Draw) hshape'.symm).trans hraw
   have hzero :
       (Polynomial.C 1 * Polynomial.X +
-          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 := by
-    rw [sub_eq_zero]
-    rw [← hraw]
-    rw [hshape, hT1']
-  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 4) hzero
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 :=
+    sub_eq_zero.mpr hrawShape
+  have hcoeff :
+      ((Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw).coeff 4 = 0 := by
+    rw [hzero]
+    simp
+  dsimp [Draw, Nraw] at hcoeff
   have hformula := coeff_four_rankThree_raw_Q_zero
     (A : K) (B : K) (C : K) R S (T.coeff 2)
   rw [hformula] at hcoeff
-  simp only [Polynomial.coeff_zero, neg_eq_zero] at hcoeff
+  simp only [neg_eq_zero] at hcoeff
   have hA0 : (A : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hA)
   have haux : (A : K) * T.coeff 2 - T.coeff 2 - 1 ≠ 0 :=
     terminal_quadratic_aux_factor_ne_zero hA hphiDeg htop'
@@ -200,15 +211,26 @@ theorem rankThree_terminal_R_zero_refines
   have hT1' : T.coeff 1 = 1 := by simpa [T] using hT1
   have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
     simpa [T] using htop
+  have hshape' := hshape
+  rw [hT1'] at hshape'
+  have hrawShape :
+      (Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw = Nraw :=
+    (congrArg (fun U : Polynomial K => U * Draw) hshape'.symm).trans hraw
   have hzero :
       (Polynomial.C 1 * Polynomial.X +
-          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 := by
-    rw [sub_eq_zero, ← hraw, hshape, hT1']
-  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 4) hzero
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 :=
+    sub_eq_zero.mpr hrawShape
+  have hcoeff :
+      ((Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw).coeff 4 = 0 := by
+    rw [hzero]
+    simp
+  dsimp [Draw, Nraw] at hcoeff
   have hformula := coeff_four_rankThree_raw_R_zero
     (A : K) (B : K) (C : K) Q S (T.coeff 2)
   rw [hformula] at hcoeff
-  simp only [Polynomial.coeff_zero, neg_eq_zero] at hcoeff
+  simp only [neg_eq_zero] at hcoeff
   have hB0 : (B : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hB)
   have haux : (B : K) * T.coeff 2 - T.coeff 2 - 1 ≠ 0 :=
     terminal_quadratic_aux_factor_ne_zero hB hphiDeg htop'
@@ -255,15 +277,26 @@ theorem rankThree_terminal_S_zero_refines
   have hT1' : T.coeff 1 = 1 := by simpa [T] using hT1
   have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
     simpa [T] using htop
+  have hshape' := hshape
+  rw [hT1'] at hshape'
+  have hrawShape :
+      (Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw = Nraw :=
+    (congrArg (fun U : Polynomial K => U * Draw) hshape'.symm).trans hraw
   have hzero :
       (Polynomial.C 1 * Polynomial.X +
-          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 := by
-    rw [sub_eq_zero, ← hraw, hshape, hT1']
-  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 4) hzero
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw = 0 :=
+    sub_eq_zero.mpr hrawShape
+  have hcoeff :
+      ((Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw - Nraw).coeff 4 = 0 := by
+    rw [hzero]
+    simp
+  dsimp [Draw, Nraw] at hcoeff
   have hformula := coeff_four_rankThree_raw_S_zero
     (A : K) (B : K) (C : K) Q R (T.coeff 2)
   rw [hformula] at hcoeff
-  simp only [Polynomial.coeff_zero, neg_eq_zero] at hcoeff
+  simp only [neg_eq_zero] at hcoeff
   have hC0 : (C : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hC)
   have haux : (C : K) * T.coeff 2 - T.coeff 2 - 1 ≠ 0 :=
     terminal_quadratic_aux_factor_ne_zero hC hphiDeg htop'
