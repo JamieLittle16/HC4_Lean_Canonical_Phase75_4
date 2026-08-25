@@ -245,7 +245,8 @@ noncomputable def ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalE
         P (zeroPolynomialSection (K := K)) b Delta hdef hwall
     let m := minimalZeroSmithParameterOrder P hne
     by_cases hm0 : m = 0
-    · rcases
+    · refine Classical.choice ?_
+      rcases
         noWallPrimitiveSmithFamily_zeroLeft_canonicalCollision
           P b Delta hdef hwall hcoll hb with
         ⟨b', hcoll', hb'⟩
@@ -298,10 +299,10 @@ noncomputable def ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalE
         dsimp [E, endpoint, Delta']
         rw [hm0]
         simp [Delta]
-      exact .exactEndpoint {
+      exact ⟨.exactEndpoint {
         endpoint := E
         defect_eq := heq
-      }
+      }⟩
 
     · have hm : 0 < m := Nat.pos_of_ne_zero hm0
       have hm' :
