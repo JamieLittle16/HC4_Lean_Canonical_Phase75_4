@@ -154,7 +154,7 @@ theorem thirdZero_weightedPencil_base_eq_one_and_cross
     if_neg (by omega : (2 : ℕ) ≠ 3), mul_one, mul_zero,
     add_zero, Polynomial.coeff_zero] at h2
   rw [hBcast] at h2
-  simp only [one_sub_one, zero_mul, add_zero, mul_one] at h2
+  simp only [sub_self, zero_mul, add_zero, mul_one] at h2
   have hpref2 : c0^2 * c1^2 ≠ 0 :=
     mul_ne_zero (pow_ne_zero 2 hc0) (pow_ne_zero 2 hc1)
   have hsq : ((A : K) * (S : K) - (C : K) * (Q : K))^2 = 0 :=
@@ -212,7 +212,7 @@ theorem fourthZero_weightedPencil_base_eq_one_and_cross
     if_neg (by omega : (2 : ℕ) ≠ 3), mul_one, mul_zero,
     add_zero, Polynomial.coeff_zero] at h2
   rw [hCcast] at h2
-  simp only [one_sub_one, zero_mul, add_zero, mul_one] at h2
+  simp only [sub_self, zero_mul, add_zero, mul_one] at h2
   have hpref2 : c0^2 * c1^2 ≠ 0 :=
     mul_ne_zero (pow_ne_zero 2 hc0) (pow_ne_zero 2 hc1)
   have hsq : ((A : K) * (R : K) - (B : K) * (Q : K))^2 = 0 :=
