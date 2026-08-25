@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedBlockerCompleteClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedSurvivingCompleteClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalBoundaryNoSpendClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalExposureNoBoundary
 import Mathlib.Tactic
 
 /-!
@@ -115,13 +116,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.completeGlobalAbso
           blocker := Bcan
           defect_eq := by
             rw [hEq]
-            simpa [presented] using P.defect_eq
+            rfl
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
         cases D.completeSoundClosure RR complexity hsrepair with
         | zeroDefect hzero => exact .zeroDefect hzero
@@ -137,13 +138,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.completeGlobalAbso
           wall := W.original
           defect_eq := by
             rw [hEq]
-            simpa [presented] using P.defect_eq
+            rfl
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
         cases D.completeSoundReduction RR complexity hsrepair with
         | zeroDefect hzero => exact .zeroDefect hzero
