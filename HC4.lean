@@ -79,3 +79,4 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSupportFrontier
 import HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRigidityData
+import HC4.Newton.FirstContactAffinePlane
