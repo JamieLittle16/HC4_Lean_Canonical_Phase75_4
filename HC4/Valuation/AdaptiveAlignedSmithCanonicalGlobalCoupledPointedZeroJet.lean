@@ -43,13 +43,13 @@ theorem HasZeroSourceJet.elementaryShearHom
     (k : Fin 4)
     (hk0 : k ≠ (0 : Fin 4))
     (c : Polynomial K) :
-    HasZeroSourceJet (elementaryShearHom (K := K) k c P) := by
+    HasZeroSourceJet (HC4.Valuation.elementaryShearHom (K := K) k c P) := by
   let z : Fin 4 → Polynomial K := zeroPolynomialSection (K := K)
   have hshearEvalZero :
       ∀ Q : MvPolynomial (Fin 4) (Polynomial K),
         MvPolynomial.eval z Q = 0 →
           MvPolynomial.eval z
-            (elementaryShearHom (K := K) k c Q) = 0 := by
+            (HC4.Valuation.elementaryShearHom (K := K) k c Q) = 0 := by
     intro Q hQ
     have hcov :=
       eval_elementaryShearHom_unshear
@@ -61,12 +61,12 @@ theorem HasZeroSourceJet.elementaryShearHom
     exact hQ
   refine ⟨?_, ?_⟩
   · have hP0 : MvPolynomial.eval z P = 0 := by
-      simpa [z, zeroPolynomialSection] using hP.valueAtZero
+      simpa only [z, zeroPolynomialSection] using hP.valueAtZero
     have hout := hshearEvalZero P hP0
     change
       MvPolynomial.eval
           (fun _ : Fin 4 => (0 : Polynomial K))
-          (elementaryShearHom (K := K) k c P) = 0 at hout
+          (HC4.Valuation.elementaryShearHom (K := K) k c P) = 0 at hout
     rw [MvPolynomial.eval_zero', MvPolynomial.constantCoeff_eq] at hout
     exact hout
   · intro i
@@ -74,11 +74,11 @@ theorem HasZeroSourceJet.elementaryShearHom
         ∀ j : Fin 4,
           MvPolynomial.eval z (MvPolynomial.pderiv j P) = 0 := by
       intro j
-      simpa [z, zeroPolynomialSection] using hP.gradientAtZero j
+      simpa only [z, zeroPolynomialSection] using hP.gradientAtZero j
     have hgrad :
         MvPolynomial.eval z
           (MvPolynomial.pderiv i
-            (elementaryShearHom (K := K) k c P)) = 0 := by
+            (HC4.Valuation.elementaryShearHom (K := K) k c P)) = 0 := by
       by_cases hi0 : i = (0 : Fin 4)
       · subst i
         rw [pderiv_zero_elementaryShearHom
@@ -102,11 +102,11 @@ theorem HasZeroSourceJet.elementaryShearHom
       MvPolynomial.eval
           (fun _ : Fin 4 => (0 : Polynomial K))
           (MvPolynomial.pderiv i
-            (elementaryShearHom (K := K) k c P)) = 0 at hgrad
+            (HC4.Valuation.elementaryShearHom (K := K) k c P)) = 0 at hgrad
     rw [MvPolynomial.eval_zero', MvPolynomial.constantCoeff_eq] at hgrad
     rw [coeff_pderiv_mixedDegree
       (K := Polynomial K) i
-      (elementaryShearHom (K := K) k c P)
+      (HC4.Valuation.elementaryShearHom (K := K) k c P)
       (0 : Fin 4 →₀ ℕ)] at hgrad
     simpa using hgrad
 
@@ -118,16 +118,15 @@ theorem HasZeroSourceJet.pointedBoundaryShearFamily
     (b : Fin 4 → Polynomial K) :
     HasZeroSourceJet (pointedBoundaryShearFamily b P) := by
   unfold pointedBoundaryShearFamily
-  exact
-    (((hP.elementaryShearHom
-        (1 : Fin 4) (by decide)
-        (pointedBoundaryShearPolynomialCoefficient b (1 : Fin 4))).
-      elementaryShearHom
-        (2 : Fin 4) (by decide)
-        (pointedBoundaryShearPolynomialCoefficient b (2 : Fin 4))).
-      elementaryShearHom
-        (3 : Fin 4) (by decide)
-        (pointedBoundaryShearPolynomialCoefficient b (3 : Fin 4))
+  have h1 := hP.elementaryShearHom
+    (1 : Fin 4) (by decide)
+    (pointedBoundaryShearPolynomialCoefficient b (1 : Fin 4))
+  have h2 := h1.elementaryShearHom
+    (2 : Fin 4) (by decide)
+    (pointedBoundaryShearPolynomialCoefficient b (2 : Fin 4))
+  exact h2.elementaryShearHom
+    (3 : Fin 4) (by decide)
+    (pointedBoundaryShearPolynomialCoefficient b (3 : Fin 4))
 
 /-! ## Coupled pointed data -/
 
