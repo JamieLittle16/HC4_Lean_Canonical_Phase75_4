@@ -1,5 +1,4 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
-import HC4.RationalRigidity.RankThreeTerminalDirectionSplit
 import HC4.RationalRigidity.RankThreeTerminalFacetTransition
 import Mathlib.Tactic
 
@@ -7,15 +6,11 @@ import Mathlib.Tactic
 # A18.5.68b: finite terminal split for the exact cross-facet face
 
 Once the exact `qs` cross-facet face has entered the mature affine
-RationalRigidity terminal, no further scalar analysis is required.  The
-existing terminal theorems give two finite pieces of geometry:
-
-* the far supported exponent leaves the `qs` facet through one of the three
-  transverse coordinate hyperplanes; and
-* either the coefficient polynomial has degree one, one transverse affine
-  slope vanishes, or the affine direction preserves ordinary degree.
-
-This file merely exposes those two conclusions on the exact Newton face.
+RationalRigidity terminal, no further scalar analysis is required.  A18.5.68a
+already removes the degree-one branch and refines every single vanishing slope
+to either two vanishing transverse slopes or ordinary-degree preservation.
+This file only projects that stronger result to the legacy five-way interface
+and records the far boundary coordinate supplied by the terminal facet theorem.
 -/
 
 namespace HC4.Newton
@@ -28,10 +23,10 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-set_option maxHeartbeats 6000000
-
 /-- The exact rank-three cross-facet terminal has the mature five-way affine
-direction split. -/
+direction split.  This is now a cheap projection of the stronger refined split
+proved in A18.5.68a; in particular no terminal certificate is reconstructed
+here. -/
 theorem CrossFacetInitialData.qs_rankThree_terminalDirectionSplit
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -51,18 +46,13 @@ theorem CrossFacetInitialData.qs_rankThree_terminalDirectionSplit
       D.qsSlope (3 : Fin 4) = 0 ∨
       1 + D.qsSlope (1 : Fin 4) + D.qsSlope (2 : Fin 4) +
         D.qsSlope (3 : Fin 4) = 0 := by
-  rcases D.qs_rankThree_endpoint_coordinates hthree with
-    ⟨_hzero0, hA, hB, hC⟩
-  have hdeg : 0 < D.qsCoefficientPolynomial.natDegree :=
-    D.qsCoefficientPolynomial_natDegree_pos
-      ha hb hcontactScale hBal hcontact
-  have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
-    D.qsCoefficientPolynomial_coeff_zero_ne
-      ha hb hcontactScale hBal hcontact
-  have hcert := D.qs_rankThree_terminalCertificate
-    ha hb hcontactScale hBal hcontact hzero hthree
-  exact HC4.RationalRigidity.rankThree_terminal_degreeOne_or_directionDegenerate
-    hA hB hC (by decide) hdeg hphi0 hcert
+  rcases D.qs_rankThree_refinedTerminalSplit
+      ha hb hcontactScale hBal hcontact hzero hthree with
+    h12 | h13 | h23 | hhom
+  · exact Or.inr (Or.inl h12.1)
+  · exact Or.inr (Or.inl h13.1)
+  · exact Or.inr (Or.inr (Or.inl h23.1))
+  · exact Or.inr (Or.inr (Or.inr (Or.inr hhom)))
 
 /-- The far exponent of the exact rank-three cross-facet terminal has positive
 omitted coordinate and vanishes in one transverse coordinate. -/
