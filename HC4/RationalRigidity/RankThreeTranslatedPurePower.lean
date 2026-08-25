@@ -83,8 +83,13 @@ theorem exists_rankThree_translated_pure_power
     Polynomial.eq_C_of_natDegree_eq_zero hdegq
 
   refine ⟨alpha, q.coeff 0, halpha, hq0, ?_⟩
-  rw [hfactorD, hqC]
-  ring
+  calc
+    HC4.Polynomial.translatePolynomial alpha phi =
+        Polynomial.X ^ phi.natDegree * q := hfactorD
+    _ = Polynomial.X ^ phi.natDegree * Polynomial.C (q.coeff 0) :=
+      congrArg (fun r : Polynomial K => Polynomial.X ^ phi.natDegree * r) hqC
+    _ = Polynomial.C (q.coeff 0) * Polynomial.X ^ phi.natDegree := by
+      rw [mul_comm]
 
 end
 
