@@ -116,8 +116,8 @@ theorem HasZeroSourceJet.pointedBoundaryShearFamily
     {P : MvPolynomial (Fin 4) (Polynomial K)}
     (hP : HasZeroSourceJet P)
     (b : Fin 4 → Polynomial K) :
-    HasZeroSourceJet (pointedBoundaryShearFamily b P) := by
-  unfold pointedBoundaryShearFamily
+    HasZeroSourceJet (HC4.Valuation.pointedBoundaryShearFamily b P) := by
+  unfold HC4.Valuation.pointedBoundaryShearFamily
   have h1 := hP.elementaryShearHom
     (1 : Fin 4) (by decide)
     (pointedBoundaryShearPolynomialCoefficient b (1 : Fin 4))
