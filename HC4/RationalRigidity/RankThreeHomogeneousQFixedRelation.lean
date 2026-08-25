@@ -33,7 +33,7 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- Linear denominator coefficient in the homogeneous `Q=0` branch. -/
+/- Linear denominator coefficient in the homogeneous `Q=0` branch. -/
 set_option maxHeartbeats 6000000 in
 theorem coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_Q_zero
     (A B C Q R S : K)
@@ -46,17 +46,20 @@ theorem coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_Q_zero
     rw [hQ] at hsum
     linear_combination hsum
   rw [hQ, hS]
-  simp [HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
-    HC4.Polynomial.rankThreeEtaDenominator,
-    HC4.Polynomial.rankThreeLogProduct,
-    HC4.Polynomial.rankThreeLogSum,
-    HC4.Polynomial.rankThreeWeightedCofactorSum,
-    HC4.Polynomial.rankThreeDirectionDefect,
-    Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+  simp (config := { maxSteps := 1000000 })
+    [HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
+      HC4.Polynomial.rankThreeEtaDenominator,
+      HC4.Polynomial.rankThreeLogProduct,
+      HC4.Polynomial.rankThreeLogSum,
+      HC4.Polynomial.rankThreeWeightedCofactorSum,
+      HC4.Polynomial.rankThreeDirectionDefect,
+      Polynomial.coeff_add, Polynomial.coeff_sub,
+      Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+      Finset.sum_range_succ, Polynomial.coeff_X,
+      Polynomial.coeff_C, Polynomial.coeff_one, pow_two]
   ring
 
-/-- Cubic numerator coefficient in the homogeneous `Q=0` branch. -/
+/- Cubic numerator coefficient in the homogeneous `Q=0` branch. -/
 set_option maxHeartbeats 4000000 in
 theorem coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero
     (A B C Q R S : K)
@@ -69,12 +72,15 @@ theorem coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero
     rw [hQ] at hsum
     linear_combination hsum
   rw [hQ, hS]
-  simp [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
-    HC4.Polynomial.rankThreeEtaNumerator,
-    HC4.Polynomial.rankThreeLogProduct,
-    HC4.Polynomial.rankThreeLogSum,
-    Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul]
+  simp (config := { maxSteps := 1000000 })
+    [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
+      HC4.Polynomial.rankThreeEtaNumerator,
+      HC4.Polynomial.rankThreeLogProduct,
+      HC4.Polynomial.rankThreeLogSum,
+      Polynomial.coeff_add, Polynomial.coeff_sub,
+      Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+      Finset.sum_range_succ, Polynomial.coeff_X,
+      Polynomial.coeff_C, Polynomial.coeff_one, pow_two]
   ring
 
 /-- **Homogeneous `Q=0` next-coefficient relation.** -/
@@ -118,8 +124,7 @@ theorem rankThree_terminal_homogeneous_Q_zero_relation
     have h :=
       coeff_two_rankThreeEtaDenominatorPolynomial_unit_of_direction_sum_zero
         (A : K) (B : K) (C : K) Q R S hsum
-    rw [hQ] at h
-    simpa [Draw] using h
+    simpa [Draw, hQ] using h
   have hD1 :
       Draw.coeff 1 =
         -((A : K) * R * (R + 1) *
@@ -136,12 +141,22 @@ theorem rankThree_terminal_homogeneous_Q_zero_relation
       coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero
         (A : K) (B : K) (C : K) Q R S hsum hQ
 
-  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 3) hraw
-  rw [hshape] at hcoeff
-  simp only [Polynomial.add_mul, Polynomial.coeff_add,
-    Polynomial.coeff_mul_X, Polynomial.coeff_C_mul,
-    Polynomial.coeff_X_pow_mul] at hcoeff
-  rw [hD2, hD1, hN3, hT1'] at hcoeff
+  have hshape' := hshape
+  rw [hT1'] at hshape'
+  have hrawShape :
+      (Polynomial.C 1 * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw = Nraw := by
+    exact (congrArg (fun U : Polynomial K => U * Draw) hshape'.symm).trans hraw
+  have hcoeff := congrArg (fun p : Polynomial K => p.coeff 3) hrawShape
+  change
+    ((Polynomial.C 1 * Polynomial.X +
+        Polynomial.C (T.coeff 2) * Polynomial.X ^ 2) * Draw).coeff 3 =
+      Nraw.coeff 3 at hcoeff
+  rw [add_mul, Polynomial.coeff_add] at hcoeff
+  simp only [mul_assoc, Polynomial.coeff_C_mul,
+    Polynomial.coeff_X_mul, Polynomial.coeff_X_pow_mul'] at hcoeff
+  norm_num at hcoeff
+  rw [hD2, hD1, hN3] at hcoeff
 
   linear_combination
     (((B : K) + (C : K)) *
