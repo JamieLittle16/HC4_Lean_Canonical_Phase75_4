@@ -68,7 +68,7 @@ noncomputable def scalarSchurThreeMatrix
 /-- The scalar-pivot Schur block is symmetric. -/
 theorem scalarSchurThreeMatrix_symmetric
     (H : GeneralFourBlock R) :
-    H.scalarSchurThreeMatrix.IsSymm := by
+    ∀ i j, H.scalarSchurThreeMatrix i j = H.scalarSchurThreeMatrix j i := by
   intro i j
   fin_cases i <;> fin_cases j <;>
     rfl
@@ -83,10 +83,13 @@ theorem scalarSchurThreeMatrix_det
   ring
 
 /-- If all `2 x 2` minors of the four-block vanish, every entry of the
-scalar-pivot Schur block vanishes. -/
+scalar-pivot Schur block vanishes.  The rank-one certificate is stated
+extensionally here so this low-level Newton lemma does not depend on the
+higher valuation module that packages the same predicate. -/
 theorem scalarSchurThreeMatrix_eq_zero_of_allTwoByTwoMinorsZero
     (H : GeneralFourBlock R)
-    (hall : H.AllTwoByTwoMinorsZero) :
+    (hall : ∀ i j k l : Fin 4,
+      H.matrix i j * H.matrix k l - H.matrix i l * H.matrix k j = 0) :
     H.scalarSchurThreeMatrix = 0 := by
   have h11 := hall (0 : Fin 4) 0 1 1
   have h12 := hall (0 : Fin 4) 0 1 2
