@@ -50,7 +50,7 @@ theorem coeffYZ_eq_zero_of_axisSquare
       smithSupportExponentOf (1 : Fin 4) 2 3
           (rankOnePacketYZ (0 : Fin 4) 1 2 P.degree) =
         ({ b := 1, c := 1, d := 0 } : SmithSupportExponent) := by
-    ext <;> simp [smithSupportExponentOf, rankOnePacketYZ]
+    simp [smithSupportExponentOf, rankOnePacketYZ]
   rw [hproj]
   rcases haxis with haxis | haxis <;> rw [haxis] <;> simp
 
@@ -70,7 +70,7 @@ theorem coeffZZ_eq_zero_of_ySquare
       smithSupportExponentOf (1 : Fin 4) 2 3
           (rankOnePacketZZ (0 : Fin 4) 2 P.degree) =
         ({ b := 0, c := 2, d := 0 } : SmithSupportExponent) := by
-    ext <;> simp [smithSupportExponentOf, rankOnePacketZZ]
+    simp [smithSupportExponentOf, rankOnePacketZZ]
   rw [hproj, haxis]
   simp
 
@@ -90,7 +90,7 @@ theorem coeffYY_eq_zero_of_zSquare
       smithSupportExponentOf (1 : Fin 4) 2 3
           (rankOnePacketYY (0 : Fin 4) 1 P.degree) =
         ({ b := 2, c := 0, d := 0 } : SmithSupportExponent) := by
-    ext <;> simp [smithSupportExponentOf, rankOnePacketYY]
+    simp [smithSupportExponentOf, rankOnePacketYY]
   rw [hproj, haxis]
   simp
 
@@ -155,7 +155,7 @@ theorem discriminant_eq_zero
     intro h
     have hw := congrArg (fun d : Fin 4 →₀ ℕ => d 3) h
     simp [rankOnePacketZZ, P.source_w_two] at hw
-  simp [hYZ, hZZ]
+  simp [Ne.symm hYZ, Ne.symm hZZ]
 
 /-- Therefore the actual one-monomial `w^2` packet is rigid. -/
 theorem rigid
