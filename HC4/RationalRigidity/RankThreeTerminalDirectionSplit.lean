@@ -42,13 +42,13 @@ theorem rankThree_terminal_degreeOne_or_directionDegenerate
     have hcast : (phi.natDegree : K) = 1 := sub_eq_zero.mp hD
     exact_mod_cast hcast
   · right
-    rcases mul_eq_zero.mp hrest with hQ | hrest
-    · exact Or.inl hQ
-    · rcases mul_eq_zero.mp hrest with hR | hrest
-      · exact Or.inr (Or.inl hR)
-      · rcases mul_eq_zero.mp hrest with hS | hsum
-        · exact Or.inr (Or.inr (Or.inl hS))
-        · exact Or.inr (Or.inr (Or.inr hsum))
+    rcases mul_eq_zero.mp hrest with hQRS | hsum
+    · rcases mul_eq_zero.mp hQRS with hQR | hS
+      · rcases mul_eq_zero.mp hQR with hQ | hR
+        · exact Or.inl hQ
+        · exact Or.inr (Or.inl hR)
+      · exact Or.inr (Or.inr (Or.inl hS))
+    · exact Or.inr (Or.inr (Or.inr hsum))
 
 end
 
