@@ -85,7 +85,8 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.firstContactSoundA
             P.openingProgress.openingProgress.target P.globalProgress
       | factorOneKernelRankTwo hP =>
           rcases hP with ⟨P⟩
-          exact .globalProgress P.local.openingProgress.target P.globalProgress
+          exact .globalProgress
+            P.localProgress.openingProgress.target P.globalProgress
       | blockerRankTwo hP =>
           rcases hP with ⟨P⟩
           exact .globalProgress P.target P.globalProgress
