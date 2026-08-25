@@ -42,7 +42,7 @@ theorem rankThreeLineExponentFinsupp_injective_of_u1_pos
     j = k := by
   have h0 := congrArg (fun d : Fin 4 →₀ ℕ => d (0 : Fin 4)) hjk
   simp [rankThreeLineExponentFinsupp] at h0
-  nlinarith
+  exact h0.resolve_right (Nat.ne_of_gt hu1)
 
 /-- The univariate coefficient polynomial canonically extracted from an actual
 multivariate rank-three line. -/
@@ -105,8 +105,10 @@ theorem rankThreeLineCoefficientPolynomial_ne_zero_of_supported
           v2 v3 v4 u1 u2 u3 u4 M j) F ≠ 0 :=
     MvPolynomial.mem_support_iff.mp hd
   intro hzero
-  have hz := congrArg
-    (fun p : Polynomial K => p.coeff j) hzero
+  have hz :
+      (rankThreeLineCoefficientPolynomial
+        v2 v3 v4 u1 u2 u3 u4 M F).coeff j = 0 := by
+    simpa using congrArg (fun p : Polynomial K => p.coeff j) hzero
   rw [coeff_rankThreeLineCoefficientPolynomial] at hz
   simp [hj] at hz
   exact hcoeff hz
