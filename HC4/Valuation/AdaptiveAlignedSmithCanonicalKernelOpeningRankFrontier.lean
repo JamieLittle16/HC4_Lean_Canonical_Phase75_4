@@ -80,14 +80,15 @@ noncomputable def rankFrontier
     (G : AdaptiveAlignedSmithCanonicalCompleteKernelOpeningRankTwoGeometry source)
     (complexity : ℕ) :
     AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier source complexity := by
+  refine Classical.choice ?_
   rcases scaleAwareHessian_exactActive_or_rankOne G.opening with hactive | hrankOne
   · rcases hactive with ⟨C⟩
-    exact .rankThree G C (C.rankThreeGeometry complexity)
-  · exact .rankOne {
+    exact ⟨.rankThree G C (C.rankThreeGeometry complexity)⟩
+  · exact ⟨.rankOne {
       firstContact := G
       allTwoByTwo := hrankOne
       specialHessian_ne_zero := G.specialHessian_ne_zero
-    }
+    }⟩
 
 end AdaptiveAlignedSmithCanonicalCompleteKernelOpeningRankTwoGeometry
 
