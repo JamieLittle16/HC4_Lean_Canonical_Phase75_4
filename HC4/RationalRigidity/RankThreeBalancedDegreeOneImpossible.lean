@@ -30,7 +30,7 @@ open HC4.Toric
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-set_option maxHeartbeats 4000000
+set_option maxHeartbeats 1000000
 
 /-- **Balanced degree-one rank-three terminal impossibility.** -/
 theorem supported_balanced_rankThree_degreeOne_impossible
@@ -70,7 +70,9 @@ theorem supported_balanced_rankThree_degreeOne_impossible
         (phi.coeff 0) (phi.coeff 1)).det = 0 := by
     simpa [phi] using
       (supported_rankThree_degreeOne_endpointPencil_det_zero
-        (K := K) hu1 hsupp hdet)
+        (K := K) (v2 := v2) (v3 := v3) (v4 := v4)
+        (u1 := u1) (u2 := u2) (u3 := u3) (u4 := u4)
+        (F := F) hu1 hsupp hdet)
 
   let e0 := rankThreeLineExponentFinsupp
     v2 v3 v4 u1 u2 u3 u4 1 0
@@ -85,11 +87,21 @@ theorem supported_balanced_rankThree_degreeOne_impossible
   have hBal1 : a * u1 + b * u2 = b * u3 + a * u4 := by
     simpa [e1, IsBalancedExponent, rankThreeLineExponentFinsupp_apply] using hBal1raw
 
-  have hshape := supported_rankThree_edge_primitive_endpoint_shape
-    (K := K) ha hb hv2 hv3 hv4 (by omega : 0 < (1 : ℕ)) hu1
-    hbalanced hsupp hstart hend hdet
-  have hu1one : u1 = 1 := hshape.1
-  rcases hshape.2 with hp | hr | hsp | hrq
+  have hendpoint : u1 = 1 ∧ (u2 = 0 ∨ u3 = 0 ∨ u4 = 0) :=
+    supported_rankThree_edge_endpoint_zero
+      (K := K)
+      (v2 := v2) (v3 := v3) (v4 := v4)
+      (u1 := u1) (u2 := u2) (u3 := u3) (u4 := u4)
+      (M := 1) (F := F)
+      hv2 hv3 hv4 (by decide) hu1 hsupp hstart hend hdet
+  have hu1one : u1 = 1 := hendpoint.1
+  have hBalPrimitive : Balanced a b ⟨1, u2, u3, u4⟩ := by
+    change a * 1 + b * u2 = b * u3 + a * u4
+    simpa [hu1one] using hBal1
+  have hshape :=
+    balanced_unit_transverseBoundary_shape ha hb hBalPrimitive hendpoint.2
+
+  rcases hshape with hp | hr | hsp | hrq
   · rcases hp with ⟨hu2, hu3, hu4⟩
     subst u1
     subst u2
