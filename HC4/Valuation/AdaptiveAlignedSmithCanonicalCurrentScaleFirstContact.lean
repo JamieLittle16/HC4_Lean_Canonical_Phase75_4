@@ -178,8 +178,15 @@ theorem currentScaleFirstContact_of_rightRecentered_tripleShear_pderiv_zero
     sourceComplexity_eq := rfl
     repair_eq := rfl
   }
+  have hscale : s.scale = hmove.ramification * s.scale := by
+    simpa [presented] using hmove.scale_eq
   have hfactor : hmove.ramification = 1 := by
-    rfl
+    have hfac : s.scale * hmove.ramification = s.scale * 1 := by
+      calc
+        s.scale * hmove.ramification = hmove.ramification * s.scale := by ac_rfl
+        _ = s.scale := hscale.symm
+        _ = s.scale * 1 := by simp
+    exact Nat.mul_left_cancel s.scale_pos hfac
   have hactive : IsActiveKernelCoordinate ell presented.family :=
     exists_kernelDependentSupport_of_hessianDefect
       (K := K) ell presented.family presented.rawDefect presented.hessianDefect
