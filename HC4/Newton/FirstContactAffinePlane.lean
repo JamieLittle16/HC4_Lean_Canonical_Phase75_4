@@ -47,7 +47,7 @@ theorem firstContact_initialForm_support_constraints
       (initialForm_isWeightedHomogeneous
         (scaledContactWeight j scale bump) (scale * m : ℤ) ψ) hd
     rw [weight_scaledContactWeight] at hw
-    exact hw
+    exact_mod_cast hw
 
 /-- A coordinate-maximal subface of a balanced contact carrier retains the two
 contact-plane equations and adds the attained coordinate equation.  Thus its
