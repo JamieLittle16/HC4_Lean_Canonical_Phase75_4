@@ -59,7 +59,7 @@ def secondThreeMinorMatrix (H : GeneralFourBlock R) : Matrix (Fin 3) (Fin 3) R :
 /-- The first cleared Schur numerator is literally the first principal
 `3 x 3` determinant. -/
 theorem firstThreeMinorMatrix_det (H : GeneralFourBlock R) :
-    H.firstThreeMinorMatrix.det = H.schurA := by
+    (HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix H).det = H.schurA := by
   simp [firstThreeMinorMatrix, GeneralFourBlock.schurA,
     GeneralFourBlock.activeDet, Matrix.det_fin_three]
   ring
@@ -67,7 +67,7 @@ theorem firstThreeMinorMatrix_det (H : GeneralFourBlock R) :
 /-- The off-diagonal cleared Schur numerator is literally a mixed `3 x 3`
 minor. -/
 theorem mixedThreeMinorMatrix_det (H : GeneralFourBlock R) :
-    H.mixedThreeMinorMatrix.det = H.schurB := by
+    (HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix H).det = H.schurB := by
   simp [mixedThreeMinorMatrix, GeneralFourBlock.schurB,
     GeneralFourBlock.activeDet, Matrix.det_fin_three]
   ring
@@ -75,7 +75,7 @@ theorem mixedThreeMinorMatrix_det (H : GeneralFourBlock R) :
 /-- The second cleared Schur numerator is the second principal `3 x 3`
 determinant. -/
 theorem secondThreeMinorMatrix_det (H : GeneralFourBlock R) :
-    H.secondThreeMinorMatrix.det = H.schurC := by
+    (HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix H).det = H.schurC := by
   simp [secondThreeMinorMatrix, GeneralFourBlock.schurC,
     GeneralFourBlock.activeDet, Matrix.det_fin_three]
   ring
@@ -106,29 +106,32 @@ theorem actualMinor
     {C : AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s}
     (G : AdaptiveAlignedSmithCanonicalThreeByThreeMinorGeometry C) :
     (∃ hne :
-        (scaleAwareHessianFourBlock C.permutation s).firstThreeMinorMatrix.det.coeff 0 ≠ 0,
+        (HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix
+          (scaleAwareHessianFourBlock C.permutation s)).det.coeff 0 ≠ 0,
       True) ∨
     (∃ hne :
-        (scaleAwareHessianFourBlock C.permutation s).mixedThreeMinorMatrix.det.coeff 0 ≠ 0,
+        (HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix
+          (scaleAwareHessianFourBlock C.permutation s)).det.coeff 0 ≠ 0,
       True) ∨
     (∃ hne :
-        (scaleAwareHessianFourBlock C.permutation s).secondThreeMinorMatrix.det.coeff 0 ≠ 0,
+        (HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix
+          (scaleAwareHessianFourBlock C.permutation s)).det.coeff 0 ≠ 0,
       True) := by
   cases G with
   | first hne =>
       left
       refine ⟨?_, trivial⟩
-      simpa [GeneralFourBlock.firstThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix_det] using hne
   | mixed hne =>
       right
       left
       refine ⟨?_, trivial⟩
-      simpa [GeneralFourBlock.mixedThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix_det] using hne
   | second hne =>
       right
       right
       refine ⟨?_, trivial⟩
-      simpa [GeneralFourBlock.secondThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix_det] using hne
 
 end AdaptiveAlignedSmithCanonicalThreeByThreeMinorGeometry
 
@@ -201,10 +204,11 @@ noncomputable def
           H.schurC.coeff 0 ≠ 0 := by
       tauto
     have hrepair := rankTwo_to_rankThree_repairProgress complexity
+    refine Classical.choice ?_
     rcases hsome with hA | hB | hC
-    · exact .constantMinor (.first hA) hrepair
-    · exact .constantMinor (.mixed hB) hrepair
-    · exact .constantMinor (.second hC) hrepair
+    · exact ⟨.constantMinor (.first hA) hrepair⟩
+    · exact ⟨.constantMinor (.mixed hB) hrepair⟩
+    · exact ⟨.constantMinor (.second hC) hrepair⟩
 
 end
 
