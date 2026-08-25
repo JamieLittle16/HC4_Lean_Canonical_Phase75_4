@@ -186,7 +186,7 @@ theorem CrossFacetInitialData.qs_rankThree_terminal_transition_pr
       have hfacetBal := hBal D.facetExponent D.facet_mem
       have houtBal := hBal D.outsideExponent D.outside_mem
       simp only [IsBalancedExponent] at hfacetBal houtBal
-      rw [D.facet_coordinate_zero, zero_mul, zero_add] at hfacetBal
+      simp [D.facet_coordinate_zero] at hfacetBal
       rw [h1fix, h2fix] at houtBal
       have hprod :
           (a * D.facetExponent (3 : Fin 4)) +
@@ -230,7 +230,7 @@ theorem CrossFacetInitialData.qs_rankThree_terminal_transition_pr
       have hfacetBal := hBal D.facetExponent D.facet_mem
       have houtBal := hBal D.outsideExponent D.outside_mem
       simp only [IsBalancedExponent] at hfacetBal houtBal
-      rw [D.facet_coordinate_zero, zero_mul, zero_add] at hfacetBal
+      simp [D.facet_coordinate_zero] at hfacetBal
       rw [h1fix, h3fix] at houtBal
       have hprod :
           b * D.facetExponent (2 : Fin 4) +
