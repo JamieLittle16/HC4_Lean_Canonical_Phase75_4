@@ -87,11 +87,11 @@ structure AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankT
     (complexity : ℕ) : Type (u + 1) where
   presented : ScaleAwareAdaptiveGeometricRestartState (K := K)
   sourcePresentation : HasCertifiedRamifiedEpisodeInternalMove presented source
-  local :
+  localProgress :
     AdaptiveAlignedSmithCanonicalGlobalCompleteKernelOpeningRankTwoProgress
       RR presented complexity
   globalProgress :
-    AdaptiveAlignedSmithCanonicalGlobalMacroProgress local.target source
+    AdaptiveAlignedSmithCanonicalGlobalMacroProgress localProgress.target source
 
 /-- Any complete first-contact rank promotion remains globally strict from an
 older pure-presentation source, because the actual geometric target has rank
@@ -120,7 +120,7 @@ noncomputable def
   exact {
     presented := presented
     sourcePresentation := hsource
-    local := P
+    localProgress := P
     globalProgress := hglobal
   }
 
