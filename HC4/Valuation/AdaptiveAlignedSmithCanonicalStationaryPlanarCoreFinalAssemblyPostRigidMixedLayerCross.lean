@@ -12,6 +12,13 @@ bookkeeping to perform: it only has to classify/iterate these tangent layers
 until the top constant kernel locks through the whole special fibre.
 -/
 
+-- The generic two-zero derivative commutation rules are useful for the late
+-- finite Hessian rank split, but enabling them here changes the normal form of
+-- the already-stable A17 rigid-elimination proofs.  Keep A17 on its original
+-- simp basis; the rules are re-enabled at the exact-active A18 boundary.
+attribute [-simp] HC4.Newton.pderiv_standardTwoZeroA
+attribute [-simp] HC4.Newton.pderiv_standardTwoZeroC
+
 namespace HC4.Valuation
 
 noncomputable section
