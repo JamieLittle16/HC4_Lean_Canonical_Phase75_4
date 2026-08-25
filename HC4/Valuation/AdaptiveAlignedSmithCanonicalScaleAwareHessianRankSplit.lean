@@ -66,7 +66,6 @@ theorem scaleAwareHessianSeriesMatrix_coeff_zero
 attribute [local simp] scaleAwareHessianSeriesMatrix_coeff_zero
 attribute [local simp] GeneralFourBlock.activeDet
 attribute [local simp] HC4.Polynomial.hessian_apply
-attribute [local simp] pderiv_comm_commRing mul_comm
 
 /-- The finite block is exactly the genuine special-fibre Hessian matrix. -/
 theorem scaleAwareSpecialHessianFourBlock_matrix
@@ -81,6 +80,8 @@ theorem scaleAwareSpecialHessianFourBlock_matrix
       GeneralFourBlock.ofSymmetricMatrix,
       GeneralFourBlock.matrix,
       scaleAwareHessianSeriesMatrix_coeff_zero]
+  all_goals
+    simp [standardTwoZeroA, standardTwoZeroC, pderiv_comm_commRing]
 
 /-! ## The finite permutations used by the ten core relations -/
 
@@ -202,7 +203,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                           scaleAwareHessianFourBlock,
                           parameterConstantCoeffFourBlock,
                           GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply] using hp02
+                          Equiv.trans_apply, mul_comm] using hp02
                       have h21 :
                           let T := parameterConstantCoeffFourBlock
                             (scaleAwareHessianFourBlock rho s)
@@ -212,7 +213,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                           scaleAwareHessianFourBlock,
                           parameterConstantCoeffFourBlock,
                           GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply] using hp03
+                          Equiv.trans_apply, mul_comm] using hp03
                       have hcross :
                           let T := parameterConstantCoeffFourBlock
                             (scaleAwareHessianFourBlock rho s)
@@ -222,7 +223,8 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                           scaleAwareHessianFourBlock,
                           parameterConstantCoeffFourBlock,
                           GeneralFourBlock.ofSymmetricMatrix,
-                          Equiv.trans_apply, mul_comm] using hc203
+                          Equiv.trans_apply, HC4.Polynomial.hessian_apply,
+                          pderiv_comm_commRing, mul_comm] using hc203
                       have hactive :
                           ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                         apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -240,7 +242,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                         scaleAwareHessianFourBlock,
                         parameterConstantCoeffFourBlock,
                         GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply] using hp12
+                        Equiv.trans_apply, mul_comm] using hp12
                     have h21 :
                         let T := parameterConstantCoeffFourBlock
                           (scaleAwareHessianFourBlock rho s)
@@ -250,7 +252,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                         scaleAwareHessianFourBlock,
                         parameterConstantCoeffFourBlock,
                         GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply] using hp13
+                        Equiv.trans_apply, mul_comm] using hp13
                     have hcross :
                         let T := parameterConstantCoeffFourBlock
                           (scaleAwareHessianFourBlock rho s)
@@ -260,7 +262,8 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                         scaleAwareHessianFourBlock,
                         parameterConstantCoeffFourBlock,
                         GeneralFourBlock.ofSymmetricMatrix,
-                        Equiv.trans_apply, mul_comm] using hc213
+                        Equiv.trans_apply, HC4.Polynomial.hessian_apply,
+                        pderiv_comm_commRing, mul_comm] using hc213
                     have hactive :
                         ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                       apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -288,7 +291,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                       scaleAwareHessianFourBlock,
                       parameterConstantCoeffFourBlock,
                       GeneralFourBlock.ofSymmetricMatrix,
-                      Equiv.trans_apply] using hp13
+                      Equiv.trans_apply, mul_comm] using hp13
                   have hcross :
                       let T := parameterConstantCoeffFourBlock
                         (scaleAwareHessianFourBlock rho s)
@@ -298,7 +301,8 @@ theorem scaleAwareHessian_exactActive_or_rankOne
                       scaleAwareHessianFourBlock,
                       parameterConstantCoeffFourBlock,
                       GeneralFourBlock.ofSymmetricMatrix,
-                      Equiv.trans_apply] using hc013
+                      Equiv.trans_apply, HC4.Polynomial.hessian_apply,
+                      pderiv_comm_commRing, mul_comm] using hc013
                   have hactive :
                       ((scaleAwareHessianFourBlock rho s).shear02).activeDet.coeff 0 ≠ 0 := by
                     apply shear02_activeDet_coeff_zero_ne_zero_of_cross
@@ -343,7 +347,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
               scaleAwareHessianFourBlock,
               parameterConstantCoeffFourBlock,
               GeneralFourBlock.ofSymmetricMatrix,
-              Equiv.trans_apply] using hp13
+              Equiv.trans_apply, mul_comm] using hp13
         · left
           let rho := scaleRankSwap02
           refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
@@ -353,7 +357,7 @@ theorem scaleAwareHessian_exactActive_or_rankOne
             scaleAwareHessianFourBlock,
             parameterConstantCoeffFourBlock,
             GeneralFourBlock.ofSymmetricMatrix,
-            Equiv.trans_apply] using hp12
+            Equiv.trans_apply, mul_comm] using hp12
       · left
         let rho := scaleRankSwap13
         refine ⟨AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect
