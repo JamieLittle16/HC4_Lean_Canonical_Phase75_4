@@ -124,7 +124,7 @@ theorem HC4.Polynomial.IsWeightLE.pow_nsmul
         (isWeightLE_of_isWeightedHomogeneous
           (MvPolynomial.isWeightedHomogeneous_one R w))
   | succ n ih =>
-      simpa [pow_succ, succ_nsmul] using ih.mul hP
+      simpa [pow_succ, succ_nsmul, add_mul] using ih.mul hP
 
 /-- A finite product inherits the sum of the individual weak bounds. -/
 theorem isWeightLE_finset_prod
@@ -176,7 +176,7 @@ theorem scalarElementaryShearVariable_isWeightLE
               canonicalSmithTransverseWeight c).mul
             (MvPolynomial.isWeightedHomogeneous_X K
               canonicalSmithTransverseWeight (0 : Fin 4)))
-      exact hcx0.mono (by
+      exact HC4.Polynomial.IsWeightLE.mono hcx0 (by
         simpa [canonicalSmithTransverseWeight] using
           canonicalSmithTransverseWeight_nonnegative k)
   · unfold scalarElementaryShearVariable
@@ -210,8 +210,8 @@ theorem scalarElementaryShearHom_monomial_isWeightLE
         (fun i => (scalarElementaryShearVariable k c i) ^ n i)
         (fun i => n i • canonicalSmithTransverseWeight i)
         (fun i hi =>
-          (scalarElementaryShearVariable_isWeightLE (K := K) k c i).pow_nsmul
-            (n i))
+          HC4.Polynomial.IsWeightLE.pow_nsmul
+            (scalarElementaryShearVariable_isWeightLE (K := K) k c i) (n i))
   have hmul := hC.mul hprod
   rw [zero_add] at hmul
   simpa [Finsupp.weight_apply, Finsupp.prod] using hmul
@@ -271,7 +271,7 @@ theorem scalarElementaryShearHom_neg_comp
   · intro p q hp hq
     simpa using congrArg₂ (fun x y => x + y) hp hq
   · intro p i hp
-    rw [map_mul, hp]
+    simp only [map_mul, hp]
     by_cases hik : i = k
     · subst i
       simp [scalarElementaryShearVariable, hk0]
@@ -362,6 +362,7 @@ theorem AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.pointedSpecialFi
     (P : AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation (K := K) s) :
     IsWeightLT canonicalSmithTransverseWeight 2
       (polynomialFamilySpecialFiber P.pointedFamily) := by
+  unfold AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.pointedFamily
   rw [polynomialFamilySpecialFiber_pointedBoundaryShearFamily]
   unfold scalarPointedBoundaryShear
   apply scalarElementaryShearHom_isWeightLT
@@ -379,6 +380,7 @@ theorem AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.firstWallSpecial
   unfold smithProjectedSupport at he
   rcases Finset.mem_image.mp he with ⟨d, hd, _⟩
   intro hzero
+  unfold AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.firstWallFamily at hzero
   rw [hzero] at hd
   simp at hd
 
@@ -387,6 +389,7 @@ theorem AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.pointedSpecialFi
     {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (P : AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation (K := K) s) :
     polynomialFamilySpecialFiber P.pointedFamily ≠ 0 := by
+  unfold AdaptiveAlignedSmithCanonicalCoupledMinimalPresentation.pointedFamily
   rw [polynomialFamilySpecialFiber_pointedBoundaryShearFamily]
   unfold scalarPointedBoundaryShear
   apply scalarElementaryShearHom_ne_zero (K := K) (3 : Fin 4) (by decide)
@@ -407,8 +410,7 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.pointedSpecialFi
   have hne := P.source.pointedSpecialFiber_ne_zero
   have hsupp :
       (polynomialFamilySpecialFiber P.source.pointedFamily).support.Nonempty := by
-    simpa [Finset.nonempty_iff_ne_empty] using
-      MvPolynomial.support_nonempty_iff.mpr hne
+    exact MvPolynomial.support_nonempty.mpr hne
   rcases hsupp with ⟨d, hd⟩
   let e := smithAxisProjection d
   refine ⟨e, ?_, ?_⟩
