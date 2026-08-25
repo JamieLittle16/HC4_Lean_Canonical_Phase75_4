@@ -80,33 +80,34 @@ inductive AdaptiveAlignedSmithCanonicalKernelOpeningBinaryDeparture
 noncomputable def kernelOpeningBinaryDeparture
     (E : ExactZeroSchurClock (MvPolynomial (Fin 4) K)) :
     AdaptiveAlignedSmithCanonicalKernelOpeningBinaryDeparture E := by
+  refine Classical.choice ?_
   by_cases hres0 : E.residualDefect = 0
-  · exact .nondegenerate hres0
-      (E.tail_constant_det_ne_zero_of_residual_zero hres0)
+  · exact ⟨.nondegenerate hres0
+      (E.tail_constant_det_ne_zero_of_residual_zero hres0)⟩
   · have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
     rcases E.tail_pivot_of_residual_pos hres with hleft | hright
     · let S := E.toRankOneClockLeft hres hleft
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .preterminalLeft hres hleft S rfl hpre
+      · exact ⟨.preterminalLeft hres hleft S rfl hpre
           (S.kernel_coeff_firstOrder_eq_zero_of_preterminal hpre)
-          (S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)
+          (S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)⟩
       · have htrans := S.series.transverse_nonzero_at_first S.hasTransverse
         have hfirst :
             S.series.firstPositiveTransverseOrder S.hasTransverse = S.defect := by
           simpa [ExactRankOneSchurClockAt.firstOrder] using hclose
         rw [hfirst] at htrans
-        exact .closingLeft hres hleft S rfl hclose htrans
+        exact ⟨.closingLeft hres hleft S rfl hclose htrans⟩
     · let S := E.toRankOneClockRight hres hright
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .preterminalRight hres hright S rfl hpre
+      · exact ⟨.preterminalRight hres hright S rfl hpre
           (S.kernel_coeff_firstOrder_eq_zero_of_preterminal hpre)
-          (S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)
+          (S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)⟩
       · have htrans := S.series.transverse_nonzero_at_first S.hasTransverse
         have hfirst :
             S.series.firstPositiveTransverseOrder S.hasTransverse = S.defect := by
           simpa [ExactRankOneSchurClockAt.firstOrder] using hclose
         rw [hfirst] at htrans
-        exact .closingRight hres hright S rfl hclose htrans
+        exact ⟨.closingRight hres hright S rfl hclose htrans⟩
 
 /-- Complete filtered rank-three geometry for the genuine rank-one opening.
 The first constructor is the already-closed first-tail event; the second
@@ -128,13 +129,14 @@ noncomputable def
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source) :
     AdaptiveAlignedSmithCanonicalKernelOpeningCompleteFilteredRankThreeGeometry G := by
+  refine Classical.choice ?_
   rcases G.threeTailFrontier with ⟨F⟩
   cases F with
   | rankThree geometry =>
-      exact .firstTail geometry
+      exact ⟨.firstTail geometry⟩
   | secondPivot pivot =>
       let Z := pivot.toZeroSchurClock
-      exact .secondTail pivot Z (kernelOpeningBinaryDeparture Z.zeroClock)
+      exact ⟨.secondTail pivot Z (kernelOpeningBinaryDeparture Z.zeroClock)⟩
 
 /-- Unified complete rank-three geometry for one zero-linear-jet saturated
 kernel opening: either rank three is already visible on the post-opening
