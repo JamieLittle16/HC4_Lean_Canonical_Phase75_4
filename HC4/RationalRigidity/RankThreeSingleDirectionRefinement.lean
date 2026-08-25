@@ -38,17 +38,19 @@ theorem coeff_four_rankThree_raw_Q_zero
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
           A B C 1 0 R S).coeff 4) =
       -(A * R * S * (1 + R + S) * (A * t - t - 1)) := by
-  simp [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
-    HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
-    HC4.Polynomial.rankThreeEtaNumerator,
-    HC4.Polynomial.rankThreeEtaDenominator,
-    HC4.Polynomial.rankThreeLogProduct,
-    HC4.Polynomial.rankThreeLogSum,
-    HC4.Polynomial.rankThreeWeightedCofactorSum,
-    HC4.Polynomial.rankThreeDirectionDefect,
-    Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
-    Finset.sum_range_succ]
+  simp (config := { maxSteps := 1000000 })
+    [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
+      HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
+      HC4.Polynomial.rankThreeEtaNumerator,
+      HC4.Polynomial.rankThreeEtaDenominator,
+      HC4.Polynomial.rankThreeLogProduct,
+      HC4.Polynomial.rankThreeLogSum,
+      HC4.Polynomial.rankThreeWeightedCofactorSum,
+      HC4.Polynomial.rankThreeDirectionDefect,
+      Polynomial.coeff_add, Polynomial.coeff_sub,
+      Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+      Finset.sum_range_succ, Polynomial.coeff_X,
+      Polynomial.coeff_C, Polynomial.coeff_one, pow_two]
   ring
 
 /-- Raw fourth-coefficient identity when `R=0`. -/
@@ -61,17 +63,19 @@ theorem coeff_four_rankThree_raw_R_zero
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
           A B C 1 Q 0 S).coeff 4) =
       -(B * Q * S * (1 + Q + S) * (B * t - t - 1)) := by
-  simp [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
-    HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
-    HC4.Polynomial.rankThreeEtaNumerator,
-    HC4.Polynomial.rankThreeEtaDenominator,
-    HC4.Polynomial.rankThreeLogProduct,
-    HC4.Polynomial.rankThreeLogSum,
-    HC4.Polynomial.rankThreeWeightedCofactorSum,
-    HC4.Polynomial.rankThreeDirectionDefect,
-    Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
-    Finset.sum_range_succ]
+  simp (config := { maxSteps := 1000000 })
+    [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
+      HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
+      HC4.Polynomial.rankThreeEtaNumerator,
+      HC4.Polynomial.rankThreeEtaDenominator,
+      HC4.Polynomial.rankThreeLogProduct,
+      HC4.Polynomial.rankThreeLogSum,
+      HC4.Polynomial.rankThreeWeightedCofactorSum,
+      HC4.Polynomial.rankThreeDirectionDefect,
+      Polynomial.coeff_add, Polynomial.coeff_sub,
+      Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+      Finset.sum_range_succ, Polynomial.coeff_X,
+      Polynomial.coeff_C, Polynomial.coeff_one, pow_two]
   ring
 
 /-- Raw fourth-coefficient identity when `S=0`. -/
@@ -84,17 +88,19 @@ theorem coeff_four_rankThree_raw_S_zero
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
           A B C 1 Q R 0).coeff 4) =
       -(C * Q * R * (1 + Q + R) * (C * t - t - 1)) := by
-  simp [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
-    HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
-    HC4.Polynomial.rankThreeEtaNumerator,
-    HC4.Polynomial.rankThreeEtaDenominator,
-    HC4.Polynomial.rankThreeLogProduct,
-    HC4.Polynomial.rankThreeLogSum,
-    HC4.Polynomial.rankThreeWeightedCofactorSum,
-    HC4.Polynomial.rankThreeDirectionDefect,
-    Polynomial.coeff_add, Polynomial.coeff_sub,
-    Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
-    Finset.sum_range_succ]
+  simp (config := { maxSteps := 1000000 })
+    [HC4.Polynomial.rankThreeEtaNumeratorPolynomial,
+      HC4.Polynomial.rankThreeEtaDenominatorPolynomial,
+      HC4.Polynomial.rankThreeEtaNumerator,
+      HC4.Polynomial.rankThreeEtaDenominator,
+      HC4.Polynomial.rankThreeLogProduct,
+      HC4.Polynomial.rankThreeLogSum,
+      HC4.Polynomial.rankThreeWeightedCofactorSum,
+      HC4.Polynomial.rankThreeDirectionDefect,
+      Polynomial.coeff_add, Polynomial.coeff_sub,
+      Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map,
+      Finset.sum_range_succ, Polynomial.coeff_X,
+      Polynomial.coeff_C, Polynomial.coeff_one, pow_two]
   ring
 
 /-- The factor `N*T₂-T₂-1` is nonzero under the terminal top relation. -/
