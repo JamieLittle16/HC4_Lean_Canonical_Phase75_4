@@ -128,7 +128,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.firstContactSoundReducti
           exact .presentedSameScale P0
       | rankTwo hP =>
           rcases hP with ⟨Q⟩
-          exact .globalProgress Q.local.target Q.globalProgress
+          exact .globalProgress Q.localProgress.target Q.globalProgress
 
   · rcases P.rigid_or_rankTwoFamilyContinuation s W complexity with
       hrigid | hrankTwo
@@ -199,7 +199,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.firstContactSoundReducti
               exact .presentedSameScale P0
           | rankTwo hP =>
               rcases hP with ⟨Q⟩
-              exact .globalProgress Q.local.target Q.globalProgress
+              exact .globalProgress Q.localProgress.target Q.globalProgress
 
     · rcases hrankTwo with ⟨R2⟩
       let target :=
