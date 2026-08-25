@@ -65,14 +65,14 @@ noncomputable def
     AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
       RR complexity source := by
   cases source.alignedSmithCanonicalRankThreeOrProgress
-      RR source complexity hsrepair with
+      RR complexity hsrepair with
   | rankThree geometry =>
       exact .terminal geometry
   | globalProgress target progress rawDefect_lt repair_eq =>
       have htargetRepair : target.repair = rankOneRepairState complexity :=
         repair_eq.trans hsrepair
       exact .restart progress rawDefect_lt repair_eq
-        (target.rankOneTerminationTrace RR target complexity htargetRepair)
+        (target.rankOneTerminationTrace RR complexity htargetRepair)
 termination_by source.rawDefect
 
 decreasing_by
@@ -100,7 +100,7 @@ noncomputable def
       (K := K) RR complexity := by
   induction T with
   | terminal geometry =>
-      exact { state := source, geometry := geometry }
+      exact ⟨_, geometry⟩
   | restart progress rawDefect_lt repair_eq tail ih =>
       exact ih
 
@@ -112,7 +112,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.exists_reachedRankThree
     (hsrepair : source.repair = rankOneRepairState complexity) :
     Nonempty (AdaptiveAlignedSmithCanonicalReachedRankThree
       (K := K) RR complexity) := by
-  exact ⟨(source.rankOneTerminationTrace RR source complexity hsrepair).reachedRankThree⟩
+  exact ⟨(source.rankOneTerminationTrace RR complexity hsrepair).reachedRankThree⟩
 
 end
 
