@@ -117,7 +117,7 @@ theorem series_eq_zero_of_not_hasPositiveEntryLayer
   intro i j
   apply Polynomial.ext
   intro n
-  rw [Polynomial.coeff_zero]
+  change (S.series i j).coeff n = 0
   by_cases hn0 : n = 0
   · subst n
     exact S.constant_zero i j
@@ -341,7 +341,7 @@ theorem tailConstantMatrix_det
     E.tailConstantMatrix.det = E.tailMatrix.det.coeff 0 := by
   let f : Polynomial R →+* R := Polynomial.constantCoeff
   change (f.mapMatrix E.tailMatrix).det = f E.tailMatrix.det
-  exact f.map_det E.tailMatrix
+  exact (f.map_det E.tailMatrix).symm
 
 /-- Positive residual order forces determinant zero on the first tail
 constant matrix. -/
