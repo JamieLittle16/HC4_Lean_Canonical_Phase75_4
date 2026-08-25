@@ -204,15 +204,16 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
   | localProblem P =>
       cases P.geometry with
       | earlySchurTangential C hlt htangential =>
-          cases P.earlySchur_geometricPreassembly
-              RR complexity hsrepair C hlt with
-          | rankTwoProgress D =>
-              exact .earlySchurRankTwoProgress D
-          | constantLineRS2 _P _C _hlt R =>
-              exact .residual
-                (.earlySchurConstantRS2
-                  P.stationary P.clock_eq P.clock_pos
-                  C hlt htangential R)
+          rcases C.earlySchur_rankTwoGeometry_or_constantLineRS2Preassembly
+              P complexity hlt with hG | hR
+          · rcases hG with ⟨G⟩
+            exact .earlySchurRankTwoProgress
+              ⟨AdaptiveAlignedSmithCanonicalGlobalEarlySchurRankTwoProgress.ofGeometry
+                RR P complexity hsrepair C hlt G⟩
+          · exact .residual
+              (.earlySchurConstantRS2
+                P.stationary P.clock_eq P.clock_pos
+                C hlt htangential hR)
 
       | canonicalEarlierWall C heq wall =>
           exact .residual
