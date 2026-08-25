@@ -179,14 +179,15 @@ noncomputable def exactScalarZeroSchur_completeRankThreeGeometry
   by_cases hres0 : E.residualDefect = 0
   · exact .nondegenerate
       (scalarRankThreeExit_of_residualZero Z complexity hres0)
-  · have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
+  · refine Classical.choice ?_
+    have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
     have hphysical : E.firstOrder + E.residualDefect < E.defect :=
-      E.scalar_firstOrder_add_residualDefect_lt_defect
+      HC4.Valuation.ExactZeroSchurClock.scalar_firstOrder_add_residualDefect_lt_defect E
     rcases E.tail_pivot_of_residual_pos hres with hleft | hright
     · let S := E.toRankOneClockLeft hres hleft
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .nondegenerate
-          (scalarRankThreeExit_of_preterminal S complexity hpre)
+      · exact ⟨.nondegenerate
+          (scalarRankThreeExit_of_preterminal S complexity hpre)⟩
       · have hkernelS : S.series.kernel.coeff S.defect ≠ 0 :=
           exactScalarRankOneSchurClock_kernel_coeff_defect_ne_zero_of_closing
             S hclose
@@ -211,33 +212,41 @@ noncomputable def exactScalarZeroSchur_completeRankThreeGeometry
             E.tailSeries.active.coeff 0 =
               E.zeroSeries.series.active.coeff E.firstOrder := by
           symm
-          simpa using E.scalar_active_coeff_firstOrder_add_eq_tail 0
+          simpa using
+            HC4.Valuation.ExactZeroSchurClock.scalar_active_coeff_firstOrder_add_eq_tail E 0
         have hB0 :
             E.tailSeries.offDiag.coeff 0 =
               E.zeroSeries.series.offDiag.coeff E.firstOrder := by
           symm
-          simpa using E.scalar_offDiag_coeff_firstOrder_add_eq_tail 0
+          simpa using
+            HC4.Valuation.ExactZeroSchurClock.scalar_offDiag_coeff_firstOrder_add_eq_tail E 0
         have hAr :
             E.tailSeries.active.coeff E.residualDefect =
               E.zeroSeries.series.active.coeff
                 (E.firstOrder + E.residualDefect) := by
           symm
-          exact E.scalar_active_coeff_firstOrder_add_eq_tail E.residualDefect
+          exact
+            HC4.Valuation.ExactZeroSchurClock.scalar_active_coeff_firstOrder_add_eq_tail
+              E E.residualDefect
         have hBr :
             E.tailSeries.offDiag.coeff E.residualDefect =
               E.zeroSeries.series.offDiag.coeff
                 (E.firstOrder + E.residualDefect) := by
           symm
-          exact E.scalar_offDiag_coeff_firstOrder_add_eq_tail E.residualDefect
+          exact
+            HC4.Valuation.ExactZeroSchurClock.scalar_offDiag_coeff_firstOrder_add_eq_tail
+              E E.residualDefect
         have hCr :
             E.tailSeries.kernel.coeff E.residualDefect =
               E.zeroSeries.series.kernel.coeff
                 (E.firstOrder + E.residualDefect) := by
           symm
-          exact E.scalar_kernel_coeff_firstOrder_add_eq_tail E.residualDefect
+          exact
+            HC4.Valuation.ExactZeroSchurClock.scalar_kernel_coeff_firstOrder_add_eq_tail
+              E E.residualDefect
         rw [hA0, hB0, hAr, hBr, hCr] at hraw
         have hrepair := rankTwo_to_rankThree_repairProgress complexity
-        exact .projective <| .left
+        exact ⟨.projective <| .left
           (by simpa [E] using hres)
           (by simpa [E] using hleft)
           (by
@@ -245,11 +254,11 @@ noncomputable def exactScalarZeroSchur_completeRankThreeGeometry
               scalarZeroSchurResidualPhysicalOrder, E] using hraw)
           (by
             simpa [scalarZeroSchurResidualPhysicalOrder, E] using hphysical)
-          hrepair (repairState_measure_lt_of_progress hrepair)
+          hrepair (repairState_measure_lt_of_progress hrepair)⟩
     · let S := E.toRankOneClockRight hres hright
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .nondegenerate
-          (scalarRankThreeExit_of_preterminal S complexity hpre)
+      · exact ⟨.nondegenerate
+          (scalarRankThreeExit_of_preterminal S complexity hpre)⟩
       · have hkernelS : S.series.kernel.coeff S.defect ≠ 0 :=
           exactScalarRankOneSchurClock_kernel_coeff_defect_ne_zero_of_closing
             S hclose
@@ -267,10 +276,12 @@ noncomputable def exactScalarZeroSchur_completeRankThreeGeometry
               E.zeroSeries.series.active.coeff
                 (E.firstOrder + E.residualDefect) := by
           symm
-          exact E.scalar_active_coeff_firstOrder_add_eq_tail E.residualDefect
+          exact
+            HC4.Valuation.ExactZeroSchurClock.scalar_active_coeff_firstOrder_add_eq_tail
+              E E.residualDefect
         rw [hAr] at hraw
         have hrepair := rankTwo_to_rankThree_repairProgress complexity
-        exact .projective <| .right
+        exact ⟨.projective <| .right
           (by simpa [E] using hres)
           (by simpa [E] using hright)
           (by
@@ -278,7 +289,7 @@ noncomputable def exactScalarZeroSchur_completeRankThreeGeometry
               scalarZeroSchurResidualPhysicalOrder, E] using hraw)
           (by
             simpa [scalarZeroSchurResidualPhysicalOrder, E] using hphysical)
-          hrepair (repairState_measure_lt_of_progress hrepair)
+          hrepair (repairState_measure_lt_of_progress hrepair)⟩
 
 end
 
