@@ -50,8 +50,10 @@ theorem eq_linear_add_quadratic_of_natDegree_le_two
   have hn : 2 < n := by omega
   have hcoeff : T.coeff n = 0 :=
     Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt hdeg hn)
+  have hX1 : (Polynomial.X ^ 1 : Polynomial K).coeff n = 0 := by
+    simp [Polynomial.coeff_X_pow, hn1]
   have hX : Polynomial.X.coeff n = (0 : K) := by
-    simp [hn1]
+    simpa only [pow_one] using hX1
   have hX2 : (Polynomial.X ^ 2 : Polynomial K).coeff n = 0 := by
     simp [Polynomial.coeff_X_pow, hn2]
   calc
