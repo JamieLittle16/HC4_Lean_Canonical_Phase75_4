@@ -102,10 +102,12 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.losslessRankTwoClosure
               RR hclock complexity hpresentedRepair C with
           | kernelRankTwo hP =>
               rcases hP with ⟨P⟩
-              exact .completeKernel ⟨
+              let Q :=
                 AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-                  RR complexity hsrepair D.sourcePresentation P
-              ⟩
+                  RR complexity hsrepair
+                  (D.sourcePresentation.trans P.sourcePresentation)
+                  P.localProgress
+              exact .completeKernel ⟨Q⟩
           | residualRankTwo hgeometry =>
               rcases hgeometry with ⟨G⟩
               let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
@@ -121,10 +123,6 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.losslessRankTwoClosure
       | zeroSchurClosing chart closing =>
           let G0 : AdaptiveAlignedSmithCanonicalPresentedZeroSchurRankTwoGeometry D := {
             chart := chart
-            activeDet_coeff_zero_ne_zero := chart.zeroData.activeDet_coeff_zero_ne_zero
-            schurA_coeff_zero := chart.zeroData.schurA_coeff_zero
-            schurB_coeff_zero := chart.zeroData.schurB_coeff_zero
-            schurC_coeff_zero := chart.zeroData.schurC_coeff_zero
           }
           let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
               D S complexity := {
@@ -144,18 +142,13 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.losslessRankTwoClosure
           exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
       | planarRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-              (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportPlanarRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 1 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -163,23 +156,21 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.losslessRankTwoClosure
           }
           rcases R.completeRankTwoOutcome_currentScale
               RR hclock complexity hpresentedRepair with ⟨P0⟩
-          exact .completeKernel ⟨
+          let Q :=
             AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-              RR complexity hsrepair D.sourcePresentation P0
-          ⟩
+              RR complexity hsrepair
+              (D.sourcePresentation.trans P0.sourcePresentation)
+              P0.localProgress
+          exact .completeKernel ⟨Q⟩
 
       | wSquareRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker := by
-            rw [hblock]
-            exact P
+          rcases transportWSquareRigidPacket (K := K) hblock P hrigid with
+            ⟨P', hrigid'⟩
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
-          have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 3 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -187,10 +178,12 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.losslessRankTwoClosure
           }
           rcases R.completeRankTwoOutcome_currentScale
               RR hclock complexity hpresentedRepair with ⟨P0⟩
-          exact .completeKernel ⟨
+          let Q :=
             AdaptiveAlignedSmithCanonicalGlobalPresentedCompleteKernelOpeningRankTwoProgress.ofLocal
-              RR complexity hsrepair D.sourcePresentation P0
-          ⟩
+              RR complexity hsrepair
+              (D.sourcePresentation.trans P0.sourcePresentation)
+              P0.localProgress
+          exact .completeKernel ⟨Q⟩
 
 end
 
