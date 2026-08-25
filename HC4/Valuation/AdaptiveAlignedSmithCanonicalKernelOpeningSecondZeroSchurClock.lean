@@ -176,8 +176,8 @@ noncomputable def toZeroSchurClockWithPermutation
 
   have hpivot0 : T.a.coeff 0 ≠ 0 := by
     have hp : P.clock.clock.tailConstantMatrix P.pivotIndex P.pivotIndex ≠ 0 := by
-      simpa [P.clock.tailThreeBlock_matrix, GeneralThreeBlock.matrix] using
-        P.pivot_ne_zero
+      rw [← P.clock.tailThreeBlock_matrix]
+      exact P.pivot_ne_zero
     have hlocal : P.clock.clock.tailConstantMatrix (rho 0) (rho 0) ≠ 0 := by
       simpa [hrho] using hp
     have hentry : T.a.coeff 0 =
@@ -230,10 +230,11 @@ noncomputable def toZeroSchurClock
     {G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source}
     (P : AdaptiveAlignedSmithCanonicalKernelOpeningSecondScalarPivot G) :
     AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock P := by
-  fin_cases h : P.pivotIndex
-  · exact P.toZeroSchurClockWithPermutation (Equiv.refl (Fin 3)) (by simpa [h])
-  · exact P.toZeroSchurClockWithPermutation secondPivotSwap01 (by simpa [h])
-  · exact P.toZeroSchurClockWithPermutation secondPivotSwap02 (by simpa [h])
+  generalize hidx : P.pivotIndex = i
+  fin_cases i
+  · exact P.toZeroSchurClockWithPermutation (Equiv.refl (Fin 3)) (by simpa using hidx.symm)
+  · exact P.toZeroSchurClockWithPermutation secondPivotSwap01 (by simpa using hidx.symm)
+  · exact P.toZeroSchurClockWithPermutation secondPivotSwap02 (by simpa using hidx.symm)
 
 end AdaptiveAlignedSmithCanonicalKernelOpeningSecondScalarPivot
 
