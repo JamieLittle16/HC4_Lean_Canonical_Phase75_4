@@ -5,39 +5,37 @@ import Mathlib.Tactic
 /-!
 # A18.5.67a: canonical cross-facet support as affine RR data
 
-A18.5.65d proves that the exact cross-facet face is an honest affine line, and
-A18.5.66 identifies the rank-three endpoint stratum.  The mature
-RationalRigidity stack uses `RankThreeAffineLineData` in the canonical `qs`
-chart, so this file performs the remaining support reindexing without imposing
-the old finite-segment divisibility condition.
+The exact cross-facet face from A18.5.65d is an honest affine line.  In the
+canonical `qs` chart the omitted coordinate itself is a primitive parameter:
+we index a supported exponent `d` by the literal natural number `d 0` and take
+the RationalRigidity omitted-coordinate step to be `1`.
 
-The key observation is that the omitted coordinate itself is already a
-primitive parameter: index a supported exponent `d` by the literal natural
-number `d 0` and take the RR omitted-coordinate step to be `1`.  A18.5.65d
-proves that this coordinate is injective on support, so the coefficient
-polynomial obtained by sending the monomial at `d` to degree `d 0` loses no
-coefficient information.
+A18.5.65d proves that coordinate `0` is injective on this support.  Hence the
+univariate coefficient polynomial obtained by sending the monomial at `d` to
+degree `d 0` retains every coefficient without collision.  The transverse
+slopes may be negative and therefore live in the coefficient field, exactly as
+allowed by `RankThreeAffineLineData`.
 -/
 
 namespace HC4.Newton
 
 open HC4.Polynomial
 open MvPolynomial
+open scoped BigOperators
 
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- The univariate coefficient polynomial obtained by indexing the canonical
-`qs` cross-facet face by its omitted coordinate. -/
+/-- Coefficient polynomial obtained by indexing the `qs` cross-facet face by
+its omitted-coordinate exponent. -/
 noncomputable def CrossFacetInitialData.qsCoefficientPolynomial
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
     (D : CrossFacetInitialData F i (0 : Fin 4)) : Polynomial K :=
   ∑ d in D.face.support,
     Polynomial.monomial (d (0 : Fin 4)) (MvPolynomial.coeff d D.face)
 
-/-- On the recognised cross-facet line, equal omitted coordinates force equal
-actual support exponents. -/
+/-- Equal omitted coordinates force equal actual support exponents. -/
 theorem CrossFacetInitialData.qs_support_eq_of_zeroCoordinate_eq
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -56,8 +54,8 @@ theorem CrossFacetInitialData.qs_support_eq_of_zeroCoordinate_eq
   exact D.support_eq_of_contactCoordinate_eq
     ha hb hcontactScale hBal hcontact hp hq hpq
 
-/-- A genuine multivariate support coefficient is retained literally at the
-corresponding omitted-coordinate degree of the coefficient polynomial. -/
+/-- A genuine face coefficient is retained literally at its omitted-coordinate
+index in the coefficient polynomial. -/
 theorem CrossFacetInitialData.coeff_qsCoefficientPolynomial_of_mem
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -107,10 +105,8 @@ theorem CrossFacetInitialData.qsCoefficientPolynomial_mem_of_face_mem
     ha hb hcontactScale hBal hcontact hd]
   exact MvPolynomial.mem_support_iff.mp hd
 
-/-- Conversely, every supported coefficient index is realised by an actual
-face exponent with that omitted coordinate.  No injectivity is needed for this
-direction; nonzero coefficient already forces at least one contributing
-monomial. -/
+/-- Conversely, a supported coefficient index comes from an actual face
+exponent with that omitted coordinate. -/
 theorem CrossFacetInitialData.exists_faceExponent_of_qsCoefficientPolynomial_mem
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
     (D : CrossFacetInitialData F i (0 : Fin 4))
@@ -128,9 +124,8 @@ theorem CrossFacetInitialData.exists_faceExponent_of_qsCoefficientPolynomial_mem
   have hdn : d (0 : Fin 4) ≠ n := hnone d hd
   simp [Polynomial.coeff_monomial, hdn, Ne.symm hdn]
 
-/-- Canonical actual exponent attached to one univariate index.  Only indices
-in the coefficient-polynomial support are used downstream; the fallback value
-outside that support is irrelevant. -/
+/-- Canonical actual exponent attached to a univariate index.  Only indices in
+coefficient support are used by the affine-line structure. -/
 noncomputable def CrossFacetInitialData.qsExponentAt
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
     (D : CrossFacetInitialData F i (0 : Fin 4))
@@ -140,7 +135,7 @@ noncomputable def CrossFacetInitialData.qsExponentAt
   else
     D.facetExponent
 
-/-- The chosen exponent really is a face exponent with the requested omitted
+/-- The chosen exponent is a face exponent with the requested omitted
 coordinate whenever such an exponent exists. -/
 theorem CrossFacetInitialData.qsExponentAt_spec
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
@@ -149,14 +144,14 @@ theorem CrossFacetInitialData.qsExponentAt_spec
     (h : ∃ d ∈ D.face.support, d (0 : Fin 4) = n) :
     D.qsExponentAt n ∈ D.face.support ∧
       D.qsExponentAt n (0 : Fin 4) = n := by
-  rw [CrossFacetInitialData.qsExponentAt]
+  unfold CrossFacetInitialData.qsExponentAt
   split
-  · exact Classical.choose_spec h
-  · rename_i hnone
-    exact (hnone h).elim
+  · rename_i h'
+    exact Classical.choose_spec h'
+  · rename_i h'
+    exact (h' h).elim
 
-/-- On a genuine support exponent, the canonical reindexing returns that very
-exponent. -/
+/-- Reindexing a genuine support exponent returns that exponent itself. -/
 theorem CrossFacetInitialData.qsExponentAt_eq_of_face_mem
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -176,8 +171,7 @@ theorem CrossFacetInitialData.qsExponentAt_eq_of_face_mem
   exact D.qs_support_eq_of_zeroCoordinate_eq
     ha hb hcontactScale hBal hcontact hs.1 hd hs.2
 
-/-- Transverse affine slope of the recognised line in the canonical RR chart.
-It is allowed to be negative in the coefficient field. -/
+/-- Transverse affine slope in the canonical RR chart. -/
 noncomputable def CrossFacetInitialData.qsSlope
     {F : MvPolynomial (Fin 4) K} {i : Fin 4}
     (D : CrossFacetInitialData F i (0 : Fin 4))
@@ -185,8 +179,8 @@ noncomputable def CrossFacetInitialData.qsSlope
   (((D.outsideExponent k : ℤ) - (D.facetExponent k : ℤ) : ℤ) : K) /
     ((D.outsideExponent (0 : Fin 4) : ℕ) : K)
 
-/-- Every supported face exponent has exactly the affine RR exponent formula
-when indexed by its literal omitted coordinate. -/
+/-- Every supported face exponent has the affine RR exponent formula when
+indexed by its literal omitted coordinate. -/
 theorem CrossFacetInitialData.qs_support_affine
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -234,12 +228,8 @@ theorem CrossFacetInitialData.qs_support_affine
     field_simp [hden]
     linear_combination hlineK
 
-/-- **Canonical affine RR realisation of the exact cross-facet support.**
-
-The omitted-coordinate step is literally one.  The endpoint exponents provide
-the three positive base coordinates in the rank-three branch, while the
-transverse direction is allowed to live in the coefficient field exactly as
-required by `RankThreeAffineLineData`. -/
+/-- Canonical affine RR realisation.  The omitted-coordinate step is exactly
+one; transverse directions are allowed to be arbitrary field elements. -/
 noncomputable def CrossFacetInitialData.qsAffineLineData
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -265,10 +255,10 @@ noncomputable def CrossFacetInitialData.qsAffineLineData
     subst n
     rw [D.qsExponentAt_eq_of_face_mem
       ha hb hcontactScale hBal hcontact hd]
-    exact D.qs_support_affine
-      ha hb hcontactScale hBal hcontact hd
+    simpa only [Nat.cast_one] using
+      (D.qs_support_affine ha hb hcontactScale hBal hcontact hd)
 
-/-- The facet coefficient becomes the literal constant coefficient of the RR
+/-- The facet coefficient becomes the constant coefficient of the RR
 coefficient polynomial. -/
 theorem CrossFacetInitialData.qsCoefficientPolynomial_coeff_zero_ne
     {F : MvPolynomial (Fin 4) K}
