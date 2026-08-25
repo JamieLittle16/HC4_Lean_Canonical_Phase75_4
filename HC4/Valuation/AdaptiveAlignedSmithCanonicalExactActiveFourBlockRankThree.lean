@@ -24,6 +24,13 @@ the genuine Hessian or the explicit determinant-one `e_0 -> e_0 + e_2`
 shear of such a permutation.
 -/
 
+-- Re-enable the directed two-zero derivative normalization only at the late
+-- exact-active boundary.  Earlier A17 rigid assembly deliberately keeps the
+-- old simp normal form; the finite Hessian rank split immediately downstream
+-- benefits from these rules.
+attribute [simp] HC4.Newton.pderiv_standardTwoZeroA
+attribute [simp] HC4.Newton.pderiv_standardTwoZeroC
+
 namespace HC4.Valuation
 
 noncomputable section
