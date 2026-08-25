@@ -180,7 +180,7 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.globalRamifiedSt
     simp [aram, parameterRamificationSection, zeroPolynomialSection]
   have hasmithZero : asmith = zeroPolynomialSection (K := K) := by
     dsimp [asmith]
-    rw [haramZero]
+    cases haramZero
     exact integralSmithConformalSection_zeroPolynomialSection 2 hadiv
   have hQColl :
       HasPolynomialFamilyExactGradientCollision
@@ -201,7 +201,8 @@ theorem AdaptiveAlignedSmithCanonicalCoupledPointedPresentation.globalRamifiedSt
       integralSmithConformalSection_zeroCoordinate
         (K := K) 2 bram hbdiv
     have hbram0 := congrFun hbramSpecial (0 : Fin 4)
-    change Polynomial.constantCoeff (bsmith 0) = 1
+    change Polynomial.constantCoeff
+      (integralSmithConformalSection 2 2 bram hbdiv 0) = 1
     rw [hzero]
     simpa [polynomialSectionSpecialPoint, coordinateAxisPoint] using hbram0
 
