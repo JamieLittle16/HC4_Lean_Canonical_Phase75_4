@@ -1,5 +1,6 @@
 import HC4.Valuation.KernelInflationHessianDefect
 import HC4.Valuation.PolynomialFamilyCollisionSpecialFiber
+import HC4.Valuation.AdaptiveDegreeTwoKernelRestart
 import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 import Mathlib.Tactic
 
