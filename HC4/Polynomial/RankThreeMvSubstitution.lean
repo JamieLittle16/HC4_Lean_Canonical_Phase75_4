@@ -177,7 +177,8 @@ theorem rankThreeLineSpecialisation_polynomial
   apply Finset.sum_congr rfl
   intro j hj
   rw [rankThreeLineSpecialisation_term]
-  simp [pow_mul]
+  rw [← pow_mul]
+  simp [Nat.mul_comm]
 
 /-- If the second endpoint genuinely leaves the omitted coordinate, the
 specialisation of the rank-three line is injective in its coefficient
