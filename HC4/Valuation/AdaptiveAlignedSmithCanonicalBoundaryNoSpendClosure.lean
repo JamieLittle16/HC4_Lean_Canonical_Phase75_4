@@ -127,13 +127,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.toPresentedNoSpend
           blocker := Bcan
           defect_eq := by
             rw [hEq]
-            simpa [presented] using P.defect_eq
+            rfl
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
     | surviving P W hEq =>
         let presented := P.toScaleOneState
@@ -145,13 +145,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.toPresentedNoSpend
           wall := W.original
           defect_eq := by
             rw [hEq]
-            simpa [presented] using P.defect_eq
+            rfl
           family_eq := by
             rw [hEq]
-            simpa [presented] using P.family_eq
+            rfl
           movingSection_eq := by
             rw [hEq]
-            simpa [presented] using P.movingSection_eq
+            rfl
         }
 
   · by_cases hcoeff :
