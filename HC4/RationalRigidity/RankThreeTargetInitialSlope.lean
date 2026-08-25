@@ -53,7 +53,8 @@ theorem eval_zero_derivative_rankThreeEtaNumeratorPolynomial
     HC4.Polynomial.rankThreeLogProduct,
     HC4.Polynomial.rankThreeLogSum,
     Polynomial.derivative_mul, Polynomial.derivative_add,
-    Polynomial.derivative_sub] <;> try simp <;> ring_nf
+    Polynomial.derivative_sub] <;>
+    try { left; ring } <;> ring
 
 /-- Constant value of the raw denominator at the rank-three endpoint. -/
 theorem eval_zero_rankThreeEtaDenominatorPolynomial
@@ -241,8 +242,7 @@ theorem rankThreeAutonomousPolynomial_coeff_zero_one
       _ = (P : K)⁻¹ *
           ((1 - (A : K) - (B : K) - (C : K)) *
             (P : K)^2 * (A : K) * (B : K) * (C : K)) := by
-        field_simp [hP0]
-        ring
+        field_simp [hP0] <;> ring
   have hT1 : T.coeff 1 = (P : K)⁻¹ := by
     rw [← Polynomial.coeff_zero_eq_eval_zero] at hderT
     simpa [Polynomial.coeff_derivative] using hderT
