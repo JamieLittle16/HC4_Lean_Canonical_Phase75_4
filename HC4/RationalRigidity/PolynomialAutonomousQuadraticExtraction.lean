@@ -50,8 +50,9 @@ theorem eq_linear_add_quadratic_of_natDegree_le_two
   have hn : 2 < n := by omega
   have hcoeff : T.coeff n = 0 :=
     Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt hdeg hn)
-  simpa [Polynomial.coeff_add, Polynomial.coeff_C_mul_X,
-    Polynomial.coeff_C_mul_X_pow, hn1, hn2] using hcoeff
+  rw [Polynomial.coeff_add, Polynomial.coeff_C_mul_X,
+    Polynomial.coeff_C_mul_X_pow]
+  simpa [hn1, hn2] using hcoeff
 
 /-- Degree-two cleared substitution of a zero-constant polynomial is the
 ordinary homogenised quadratic expression. -/
