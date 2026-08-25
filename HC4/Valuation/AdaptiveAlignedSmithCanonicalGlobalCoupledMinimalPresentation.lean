@@ -169,10 +169,10 @@ theorem ScaleAwareAdaptiveGeometricRestartState.coupledMinimalPresentation
           (zeroJetNormalizedFamily s.family)
           (zeroPolynomialSection (K := K))
           s.movingSection B.hwall) :=
-    (zeroJetNormalizedFamily_hasZeroSourceJet s.family).
-      alignedSmithGenuineFirstWallFamily
-        (zeroPolynomialSection (K := K))
-        s.movingSection B.hwall
+    HasZeroSourceJet.alignedSmithGenuineFirstWallFamily
+      (zeroJetNormalizedFamily_hasZeroSourceJet s.family)
+      (zeroPolynomialSection (K := K))
+      s.movingSection B.hwall
   have hnegative :
       ∀ {d : Fin 4 →₀ ℕ},
         d ∈
