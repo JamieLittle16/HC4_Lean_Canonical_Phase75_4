@@ -127,20 +127,20 @@ theorem supported_rankThree_edge_primitive_endpoint_shape
   have heMmem : eM ∈ F.support :=
     MvPolynomial.mem_support_iff.mpr hend
   have hBalMv : IsBalancedExponent a b eM := hbalanced eM heMmem
-  have hBalE : Balanced a b (toToricExponent eM) :=
-    (isBalancedExponent_iff_balanced a b eM).1 hBalMv
-  have hBalPrimitive : Balanced a b ⟨1, u2, u3, u4⟩ := by
-    change
+  have hBalLine :
       a * (M * u1) + b * (M * u2) =
-        b * (M * u3) + a * (M * u4) at hBalE
-    rw [hendpoint.1] at hBalE
+        b * (M * u3) + a * (M * u4) := by
+    simpa [IsBalancedExponent, eM,
+      rankThreeLineExponentFinsupp_apply] using hBalMv
+  have hBalPrimitive : Balanced a b ⟨1, u2, u3, u4⟩ := by
+    rw [hendpoint.1] at hBalLine
     have hfac :
         M * (a * 1 + b * u2) =
           M * (b * u3 + a * u4) := by
       calc
         M * (a * 1 + b * u2) =
             a * (M * 1) + b * (M * u2) := by ring
-        _ = b * (M * u3) + a * (M * u4) := hBalE
+        _ = b * (M * u3) + a * (M * u4) := hBalLine
         _ = M * (b * u3 + a * u4) := by ring
     have hcancel : a * 1 + b * u2 = b * u3 + a * u4 :=
       Nat.mul_left_cancel hM hfac
