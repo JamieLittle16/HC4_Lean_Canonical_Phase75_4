@@ -42,7 +42,16 @@ theorem rankThreeLineExponent_degree_of_ordinaryDegreePreserving
   rw [Finsupp.weight_apply]
   rw [Finsupp.sum_fintype]
   · simp [rankThreeLineExponentFinsupp, Fin.sum_univ_four, hu1]
-    omega
+    calc
+      j + ((M - j) * v2 + j * u2) +
+          ((M - j) * v3 + j * u3) +
+          ((M - j) * v4 + j * u4) =
+          (M - j) * (v2 + v3 + v4) +
+            j * (1 + u2 + u3 + u4) := by ring
+      _ = (M - j) * (v2 + v3 + v4) +
+            j * (v2 + v3 + v4) := by rw [hdeg]
+      _ = (M - j + j) * (v2 + v3 + v4) := by ring
+      _ = M * (v2 + v3 + v4) := by rw [Nat.sub_add_cancel hj]
   · intro i
     simp
 
@@ -80,8 +89,10 @@ theorem supported_balanced_rankThree_edge_isHomogeneous
   intro d hd
   have hdmem : d ∈ F.support := MvPolynomial.mem_support_iff.mpr hd
   rcases hsupp d hdmem with ⟨j, hj, rfl⟩
-  exact rankThreeLineExponent_degree_of_ordinaryDegreePreserving
+  have hdegj := rankThreeLineExponent_degree_of_ordinaryDegreePreserving
     hj hu1one hdegree
+  rw [Finsupp.degree_eq_weight_one] at hdegj
+  exact hdegj
 
 end
 
