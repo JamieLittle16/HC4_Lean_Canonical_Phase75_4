@@ -99,21 +99,21 @@ theorem actualMinor
     {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     {C : AdaptiveAlignedSmithCanonicalExactActiveFourBlock s}
     (G : AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry C) :
-    C.block.firstThreeMinorMatrix.det.coeff 0 ≠ 0 ∨
-      C.block.mixedThreeMinorMatrix.det.coeff 0 ≠ 0 ∨
-      C.block.secondThreeMinorMatrix.det.coeff 0 ≠ 0 := by
+    (HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix C.block).det.coeff 0 ≠ 0 ∨
+      (HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix C.block).det.coeff 0 ≠ 0 ∨
+      (HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix C.block).det.coeff 0 ≠ 0 := by
   cases G with
   | first hne =>
       left
-      simpa [GeneralFourBlock.firstThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix_det] using hne
   | mixed hne =>
       right
       left
-      simpa [GeneralFourBlock.mixedThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix_det] using hne
   | second hne =>
       right
       right
-      simpa [GeneralFourBlock.secondThreeMinorMatrix_det] using hne
+      simpa [HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix_det] using hne
 
 end AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry
 
@@ -185,10 +185,11 @@ noncomputable def
           H.schurC.coeff 0 ≠ 0 := by
       tauto
     have hrepair := rankTwo_to_rankThree_repairProgress complexity
+    refine Classical.choice ?_
     rcases hsome with hA | hB | hC
-    · exact .constantMinor (.first hA) hrepair
-    · exact .constantMinor (.mixed hB) hrepair
-    · exact .constantMinor (.second hC) hrepair
+    · exact ⟨.constantMinor (.first hA) hrepair⟩
+    · exact ⟨.constantMinor (.mixed hB) hrepair⟩
+    · exact ⟨.constantMinor (.second hC) hrepair⟩
 
 end
 
