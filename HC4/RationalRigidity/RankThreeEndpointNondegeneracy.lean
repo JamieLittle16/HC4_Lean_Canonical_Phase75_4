@@ -140,7 +140,7 @@ theorem logarithmicSourceDenominator_natDegree_pos_of_coeff_zero_ne_zero
   have hNconst : N.coeff 0 = 0 := by
     rw [hNC] at hcoeff
     simp [HC4.Polynomial.coeff_eulerDerivative] at hcoeff
-    exact (mul_eq_zero.mp hcoeff).resolve_right hconst
+    exact hcoeff.resolve_right hconst
   apply hN
   rw [hNC, hNconst]
   simp
