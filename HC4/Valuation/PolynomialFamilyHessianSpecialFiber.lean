@@ -48,9 +48,9 @@ theorem hessianDeterminant_polynomialFamilySpecialFiber
         (HC4.Polynomial.hessianDeterminant P) := by
   unfold HC4.Polynomial.hessianDeterminant
   rw [hessian_polynomialFamilySpecialFiber]
-  exact
-    (MvPolynomial.map Polynomial.constantCoeff).map_det
-      (HC4.Polynomial.hessian P)
+  let f : MvPolynomial (Fin 4) (Polynomial K) →+* MvPolynomial (Fin 4) K :=
+    MvPolynomial.map Polynomial.constantCoeff
+  exact (RingHom.map_det f (HC4.Polynomial.hessian P)).symm
 
 /-- **Positive pure family defect gives a Hessian-degenerate special fibre.** -/
 theorem polynomialFamilySpecialFiber_hessianDeterminant_eq_zero_of_posDefect
