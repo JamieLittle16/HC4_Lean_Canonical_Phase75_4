@@ -178,7 +178,7 @@ structure AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankTwoProgress
 
 /-- Attach the finite rank promotion only after the unit-determinant source has
 supplied an actual nonzero transverse Hessian minor. -/
-theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankTwoProgress
+noncomputable def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankTwoProgress
     (RR : RepairRanking)
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
     (complexity : ℕ)
