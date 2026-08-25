@@ -155,44 +155,45 @@ noncomputable def exactScalarZeroSchur_rankThree_or_closing
     (complexity : ℕ) :
     AdaptiveAlignedSmithCanonicalScalarZeroSchurRankThreeOutcome
       Z complexity := by
+  refine Classical.choice ?_
   let E := Z.toClock
   by_cases hres0 : E.residualDefect = 0
-  · exact .rankThree
-      (scalarRankThreeExit_of_residualZero Z complexity hres0)
+  · exact ⟨.rankThree
+      (scalarRankThreeExit_of_residualZero Z complexity hres0)⟩
   · have hres : 0 < E.residualDefect := Nat.pos_of_ne_zero hres0
     rcases E.tail_pivot_of_residual_pos hres with hleft | hright
     · let S := E.toRankOneClockLeft hres hleft
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .rankThree
-          (scalarRankThreeExit_of_preterminal S complexity hpre)
+      · exact ⟨.rankThree
+          (scalarRankThreeExit_of_preterminal S complexity hpre)⟩
       · have htrans := S.series.transverse_nonzero_at_first S.hasTransverse
         have hfirst :
             S.series.firstPositiveTransverseOrder S.hasTransverse = S.defect := by
           simpa [ExactRankOneSchurClockAt.firstOrder] using hclose
         rw [hfirst] at htrans
-        exact .residualRankOneClosing {
+        exact ⟨.residualRankOneClosing {
           residualClock := S
           residualDefect_pos := by simpa [E] using hres
           residualClock_defect_eq := rfl
           firstOrder_eq_defect := hclose
           closingCoefficient_ne := htrans
-        }
+        }⟩
     · let S := E.toRankOneClockRight hres hright
       rcases lt_or_eq_of_le S.firstOrder_le_defect with hpre | hclose
-      · exact .rankThree
-          (scalarRankThreeExit_of_preterminal S complexity hpre)
+      · exact ⟨.rankThree
+          (scalarRankThreeExit_of_preterminal S complexity hpre)⟩
       · have htrans := S.series.transverse_nonzero_at_first S.hasTransverse
         have hfirst :
             S.series.firstPositiveTransverseOrder S.hasTransverse = S.defect := by
           simpa [ExactRankOneSchurClockAt.firstOrder] using hclose
         rw [hfirst] at htrans
-        exact .residualRankOneClosing {
+        exact ⟨.residualRankOneClosing {
           residualClock := S
           residualDefect_pos := by simpa [E] using hres
           residualClock_defect_eq := rfl
           firstOrder_eq_defect := hclose
           closingCoefficient_ne := htrans
-        }
+        }⟩
 
 end
 
