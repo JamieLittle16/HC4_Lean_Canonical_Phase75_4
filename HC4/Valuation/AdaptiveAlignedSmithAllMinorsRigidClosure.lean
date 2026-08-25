@@ -141,7 +141,7 @@ theorem AdaptiveAlignedSmithBlockerEndpoint.actualQuadraticRigidOutcome
 /-- Exact all-minors outcome after removing the spurious packet escalation. -/
 inductive AdaptiveAlignedSmithAllMinorsRigidOutcome
     {degreeCap : ℕ}
-    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Type (u + 1)
+    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Prop
   | transverseFree
       (free :
         ∀ d ∈ B.aligned.endpoint.rawSpecialFiber.support,
