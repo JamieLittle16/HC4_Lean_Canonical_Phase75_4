@@ -56,12 +56,13 @@ noncomputable def
     (hD : 3 ≤ P.degree) :
     AdaptiveAlignedSmithCanonicalPacketRankTwoExactZeroSchurOutcome
       s W P complexity R2 := by
+  refine Classical.choice ?_
   rcases R2.zeroDefect_or_matrixExposure s W P complexity with
     hzero | hM
-  · exact .zeroDefect hzero
+  · exact ⟨.zeroDefect hzero⟩
   · rcases hM with ⟨M⟩
     let Z := M.toExactZeroSchurAutomatic s W P complexity R2 hD
-    exact .exactZeroSchur hD M Z (by rfl)
+    exact ⟨.exactZeroSchur hD M Z (by rfl)⟩
 
 end
 
