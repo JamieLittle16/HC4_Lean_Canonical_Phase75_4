@@ -30,6 +30,8 @@ open HC4.Toric
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 4000000
+
 /-- **Balanced degree-one rank-three terminal impossibility.** -/
 theorem supported_balanced_rankThree_degreeOne_impossible
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
