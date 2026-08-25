@@ -54,8 +54,12 @@ theorem eq_linear_add_quadratic_of_natDegree_le_two
     simp [hn1]
   have hX2 : (Polynomial.X ^ 2 : Polynomial K).coeff n = 0 := by
     simp [Polynomial.coeff_X_pow, hn2]
-  rw [hcoeff]
-  simp [hX, hX2]
+  calc
+    T.coeff n = 0 := hcoeff
+    _ = (Polynomial.C (T.coeff 1) * Polynomial.X +
+          Polynomial.C (T.coeff 2) * Polynomial.X ^ 2).coeff n := by
+      simp only [Polynomial.coeff_add, Polynomial.coeff_C_mul,
+        hX, hX2, mul_zero, add_zero]
 
 /-- Degree-two cleared substitution of a zero-constant polynomial is the
 ordinary homogenised quadratic expression. -/
@@ -91,7 +95,6 @@ theorem clearedPolynomialSubstitution_two_of_coeff_zero
     simp [hcoeff]
   rw [hsum]
   simp [s]
-  ring
 
 /-- **RatFunc polynomial identity -> Phase-77 quadratic ODE**, uniformly for
 linear or quadratic targets. -/
