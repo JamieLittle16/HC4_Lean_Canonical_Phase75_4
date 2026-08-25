@@ -68,7 +68,8 @@ theorem quadraticAutonomous_root_multiplicity_relation
             Polynomial.C B *
               (translatePolynomial alpha phi *
                 shiftedEuler alpha (translatePolynomial alpha phi)) := by
-        simp [translatePolynomial, ← shiftedEuler_translatePolynomial]
+        rw [shiftedEuler_translatePolynomial alpha phi]
+        simp [translatePolynomial]
 
   rw [hfactor] at htrans
 
@@ -87,6 +88,14 @@ theorem quadraticAutonomous_root_multiplicity_relation
     simpa [pow_one, Nat.mul_two, mul_comm] using h
 
   have hcoeff := congrArg (fun p : Polynomial K => p.coeff (n + n)) htrans
+  change
+    (shiftedEtaNumerator alpha (Polynomial.X ^ (n + 1) * q)).coeff (n + n) =
+      (Polynomial.C A *
+          (shiftedEuler alpha (Polynomial.X ^ (n + 1) * q)) ^ 2 +
+        Polynomial.C B *
+          ((Polynomial.X ^ (n + 1) * q) *
+            shiftedEuler alpha (Polynomial.X ^ (n + 1) * q))).coeff (n + n)
+    at hcoeff
   rw [hEta, Polynomial.coeff_add,
     Polynomial.coeff_C_mul, Polynomial.coeff_C_mul,
     hphiE] at hcoeff
