@@ -177,6 +177,9 @@ theorem positiveRecenteredSaturatedKernelSlope_sameScale_or_rankTwoProgress
           RR D complexity) := by
   let signed := D.signedRightRecenteredState
   let hmove := D.signedRightRecenteredPresentation
+  have hfactor : hmove.ramification = 1 := by
+    change D.signedRightRecenteredPresentation.ramification = 1
+    rfl
   have hfree0 :
       ∀ d ∈
           (polynomialFamilySpecialFiber
@@ -196,7 +199,7 @@ theorem positiveRecenteredSaturatedKernelSlope_sameScale_or_rankTwoProgress
     rw [hpresent.repair_eq]
     exact hsrepair
   rcases D.presented.factorOneKernelFreePresentation_sameScale_or_rankTwoProgress
-      RR D.presented signed complexity hpresentedRepair hmove rfl
+      RR signed complexity hpresentedRepair hmove hfactor
       kernel hkernel hactiveSigned hfree with hstrict | hRankTwo
   · exact Or.inl hstrict
   · rcases hRankTwo with ⟨P⟩
@@ -215,7 +218,7 @@ theorem positiveRecenteredSaturatedKernelSlope_sameScale_or_rankTwoProgress
     exact Or.inr ⟨{
       signed := signed
       signedPresentation := hmove
-      signedFactorOne := rfl
+      signedFactorOne := hfactor
       openingProgress := P
       globalProgress := hglobal
     }⟩
