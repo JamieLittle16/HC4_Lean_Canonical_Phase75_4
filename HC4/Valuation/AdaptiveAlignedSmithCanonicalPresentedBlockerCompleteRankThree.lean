@@ -161,18 +161,21 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeRankThreeOutcome
           exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
       | planarRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-              (K := K) S.blocker := by
+          let PH :
+              Σ P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
+                  (K := K) S.blocker,
+                HasRigidRankOnePacket
+                  (0 : Fin 4) 1 2 P'.degree P'.packet := by
             rw [hblock]
-            exact P
+            exact ⟨P, hrigid⟩
+          let P' := PH.1
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
           have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 1 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
+              (0 : Fin 4) 1 2 P'.degree P'.packet := PH.2
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
@@ -184,17 +187,20 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.completeRankThreeOutcome
             P0.completeRankThreeGeometry.liftAcrossBlocker⟩
 
       | wSquareRigid hall P hrigid =>
-          let P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker := by
+          let PH :
+              Σ P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker,
+                HasRigidRankOnePacket
+                  (0 : Fin 4) 3 2 P'.degree P'.packet := by
             rw [hblock]
-            exact P
+            exact ⟨P, hrigid⟩
+          let P' := PH.1
           have hall' :
               ∀ rho : Equiv.Perm (Fin 4),
                 (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
                   rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
             simpa [hblock] using hall
           have hrigid' : HasRigidRankOnePacket
-              (0 : Fin 4) 3 2 P'.degree P'.packet := by
-            simpa [P'] using hrigid
+              (0 : Fin 4) 3 2 P'.degree P'.packet := PH.2
           let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
             source := S.toTerminalSourcePacket
             hall := hall'
