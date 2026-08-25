@@ -79,17 +79,22 @@ theorem weightedSparseRankThreeEndpointPencil_det_ne_zero
     have hFactor : (C : K) + (E : K) - 1 = ((C + E - 1 : ℕ) : K) :=
       (sub_eq_iff_eq_add).2 hCast
     rw [hFactor]
-    exact mul_ne_zero
-      (mul_ne_zero
+    have hc01 : c0^2 * c1^2 ≠ 0 :=
+      mul_ne_zero (pow_ne_zero 2 hc0) (pow_ne_zero 2 hc1)
+    have hrest :
+        (C : K) * (E : K) * (F : K)^2 * ((C + E - 1 : ℕ) : K) ≠ 0 :=
+      mul_ne_zero
         (mul_ne_zero
-          (mul_ne_zero (pow_ne_zero 2 hc0) (pow_ne_zero 2 hc1)) hC0) hE0)
-      (mul_ne_zero (pow_ne_zero 2 hF0) hCE0)
+          (mul_ne_zero hC0 hE0)
+          (pow_ne_zero 2 hF0))
+        hCE0
+    simpa [mul_assoc] using mul_ne_zero hc01 hrest
   · exact pow_ne_zero 2 Polynomial.X_ne_zero
 
 /-- Singular weighted one-zero pencil forces the same endpoint cross relation
 as the normalised pencil, provided both endpoint coefficients are nonzero. -/
 theorem cross_relation_of_weightedOneZero_pencil_singular
-    {K : Type*} [Field K]
+    {K : Type*} [Field K] [CharZero K]
     {C D E F c0 c1 : K}
     (hc0 : c0 ≠ 0) (hc1 : c1 ≠ 0)
     (hzero :
