@@ -38,6 +38,7 @@ variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- The canonical `qs` rank-three cross-facet line reaches the existing affine
 RationalRigidity polynomial terminal certificate. -/
+set_option maxHeartbeats 800000 in
 theorem CrossFacetInitialData.qs_rankThree_terminalCertificate
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -62,19 +63,21 @@ theorem CrossFacetInitialData.qs_rankThree_terminalCertificate
       (D.qsSlope (3 : Fin 4)) := by
   rcases D.qs_rankThree_endpoint_coordinates hthree with
     ⟨_hzero0, hA, hB, hC⟩
-  let L := D.qsAffineLineData ha hb hcontactScale hBal hcontact
   have hdeg : 0 < D.qsCoefficientPolynomial.natDegree :=
     D.qsCoefficientPolynomial_natDegree_pos
       ha hb hcontactScale hBal hcontact
   have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
     D.qsCoefficientPolynomial_coeff_zero_ne
       ha hb hcontactScale hBal hcontact
-  have hdet : hessianDeterminant L.polynomial = 0 := by
-    simpa [L] using
-      (D.qsAffineLineData_hessian_zero
-        ha hb hcontactScale hBal hcontact hzero)
-  exact HC4.RationalRigidity.hasRankThreePolynomialTerminalCertificate_of_affine_line
-    L hA hB hC (by decide) hdeg hphi0 hdet
+  have hdet :
+      hessianDeterminant
+        (D.qsAffineLineData ha hb hcontactScale hBal hcontact).polynomial = 0 :=
+    D.qsAffineLineData_hessian_zero
+      ha hb hcontactScale hBal hcontact hzero
+  simpa only [Nat.cast_one] using
+    (HC4.RationalRigidity.hasRankThreePolynomialTerminalCertificate_of_affine_line
+      (D.qsAffineLineData ha hb hcontactScale hBal hcontact)
+      hA hB hC (by decide) hdeg hphi0 hdet)
 
 /-- The far coefficient index of the canonical affine line is represented by
 an actual support exponent of the exposed face. -/
@@ -99,8 +102,9 @@ theorem CrossFacetInitialData.qsAffineLineData_top_mem_face_support
       ha hb hcontactScale hBal hcontact
   have hphi : phi ≠ 0 := by
     intro hz
-    subst phi
-    simp at hphi0
+    apply hphi0
+    rw [hz]
+    simp
   have htop : phi.natDegree ∈ phi.support := by
     rw [Polynomial.mem_support_iff]
     change phi.leadingCoeff ≠ 0
@@ -164,13 +168,24 @@ theorem CrossFacetInitialData.qs_rankThree_terminalTopStratum
       ha hb hcontactScale hBal hcontact
   have hcert := D.qs_rankThree_terminalCertificate
     ha hb hcontactScale hBal hcontact hzero hthree
+  have hcert' :
+      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+        (phi := D.qsCoefficientPolynomial)
+        ((D.facetExponent 1 : ℕ) : K)
+        ((D.facetExponent 2 : ℕ) : K)
+        ((D.facetExponent 3 : ℕ) : K)
+        (((1 : ℕ) : K))
+        (D.qsSlope (1 : Fin 4))
+        (D.qsSlope (2 : Fin 4))
+        (D.qsSlope (3 : Fin 4)) := by
+    simpa only [Nat.cast_one] using hcert
   have htopBal : IsBalancedExponent a b
       (L.exponent D.qsCoefficientPolynomial.natDegree) := by
     simpa [L] using
       (D.qsAffineLineData_top_balanced
         ha hb hcontactScale hBal hcontact)
   exact HC4.RationalRigidity.rankThreeAffineTerminal_topStratum
-    ha hb hcop L hA hB hC (by decide) hdeg hphi0 hcert htopBal
+    ha hb hcop L hA hB hC (by decide) hdeg hphi0 hcert' htopBal
 
 /-- The full affine terminal normal form is available on the rank-three
 cross-facet branch. -/
@@ -224,10 +239,26 @@ theorem CrossFacetInitialData.qs_rankThree_degreeOne_impossible
   let u4 : ℕ := L.exponent 1 (3 : Fin 4)
   rcases D.qs_rankThree_endpoint_coordinates hthree with
     ⟨_hzero0, hA, hB, hC⟩
-  have hnormal := D.qs_rankThree_binomialNormalForm
+  have hphiDeg : 0 < D.qsCoefficientPolynomial.natDegree := by omega
+  have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
+    D.qsCoefficientPolynomial_coeff_zero_ne
+      ha hb hcontactScale hBal hcontact
+  have hcert := D.qs_rankThree_terminalCertificate
     ha hb hcontactScale hBal hcontact hzero hthree
-  have hphi1 : D.qsCoefficientPolynomial.coeff 1 ≠ 0 :=
-    hnormal.first_coefficient_ne_zero
+  have hcert' :
+      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+        (phi := D.qsCoefficientPolynomial)
+        ((D.facetExponent 1 : ℕ) : K)
+        ((D.facetExponent 2 : ℕ) : K)
+        ((D.facetExponent 3 : ℕ) : K)
+        (((1 : ℕ) : K))
+        (D.qsSlope (1 : Fin 4))
+        (D.qsSlope (2 : Fin 4))
+        (D.qsSlope (3 : Fin 4)) := by
+    simpa only [Nat.cast_one] using hcert
+  have hstep := HC4.RationalRigidity.rankThree_unit_longitudinal_step_of_certificate
+    hA hB hC (by decide) hphiDeg hphi0 hcert'
+  have hphi1 : D.qsCoefficientPolynomial.coeff 1 ≠ 0 := hstep.2
   have h1mem : 1 ∈ D.qsCoefficientPolynomial.support :=
     Polynomial.mem_support_iff.mpr hphi1
   have h1exists := D.exists_faceExponent_of_qsCoefficientPolynomial_mem h1mem
@@ -332,26 +363,37 @@ theorem CrossFacetInitialData.qs_rankThree_refinedTerminalSplit
     ha hb hcontactScale hBal hcontact
   have hcert := D.qs_rankThree_terminalCertificate
     ha hb hcontactScale hBal hcontact hzero hthree
+  have hcert' :
+      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+        (phi := D.qsCoefficientPolynomial)
+        ((D.facetExponent 1 : ℕ) : K)
+        ((D.facetExponent 2 : ℕ) : K)
+        ((D.facetExponent 3 : ℕ) : K)
+        (((1 : ℕ) : K))
+        (D.qsSlope (1 : Fin 4))
+        (D.qsSlope (2 : Fin 4))
+        (D.qsSlope (3 : Fin 4)) := by
+    simpa only [Nat.cast_one] using hcert
   have hsplit := HC4.RationalRigidity.rankThree_terminal_degreeOne_or_directionDegenerate
-    (K := K) hA hB hC (by decide) hdeg hphi0 hcert
+    (K := K) hA hB hC (by decide) hdeg hphi0 hcert'
   rcases hsplit with hD | hQ | hR | hS | hhom
   · exact False.elim
       (D.qs_rankThree_degreeOne_impossible
         ha hb hcontactScale hBal hcontact hzero hthree hD)
   · rcases HC4.RationalRigidity.rankThree_terminal_Q_zero_refines
-      (K := K) hA hB hC (by decide) hdeg hphi0 hcert hQ with
+      (K := K) hA hB hC (by decide) hdeg hphi0 hcert' hQ with
       hR | hS | hsum
     · exact Or.inl ⟨hQ, hR⟩
     · exact Or.inr (Or.inl ⟨hQ, hS⟩)
     · exact Or.inr (Or.inr (Or.inr (by simpa [hQ] using hsum)))
   · rcases HC4.RationalRigidity.rankThree_terminal_R_zero_refines
-      (K := K) hA hB hC (by decide) hdeg hphi0 hcert hR with
+      (K := K) hA hB hC (by decide) hdeg hphi0 hcert' hR with
       hQ | hS | hsum
     · exact Or.inl ⟨hQ, hR⟩
     · exact Or.inr (Or.inr (Or.inl ⟨hR, hS⟩))
     · exact Or.inr (Or.inr (Or.inr (by simpa [hR] using hsum)))
   · rcases HC4.RationalRigidity.rankThree_terminal_S_zero_refines
-      (K := K) hA hB hC (by decide) hdeg hphi0 hcert hS with
+      (K := K) hA hB hC (by decide) hdeg hphi0 hcert' hS with
       hQ | hR | hsum
     · exact Or.inr (Or.inl ⟨hQ, hS⟩)
     · exact Or.inr (Or.inr (Or.inl ⟨hR, hS⟩))
