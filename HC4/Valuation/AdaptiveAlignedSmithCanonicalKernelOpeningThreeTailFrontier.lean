@@ -47,11 +47,14 @@ theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailConstantM
       D.clock.zeroSeries.series j i = D.block.scalarSchurThreeMatrix j i := by
     rw [D.clock_series_eq]
   have hcoeff := congrArg
-    (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff D.clock.firstOrder)
+    (fun p : Polynomial (MvPolynomial (Fin 4) K) =>
+      p.coeff
+        (D.clock.zeroSeries.firstPositiveEntryOrder
+          D.clock.hasPositiveEntryLayer))
     hij
   change
-    (D.clock.tailMatrix i j).coeff 0 =
-      (D.clock.tailMatrix j i).coeff 0
+    (D.clock.zeroSeries.tailMatrix D.clock.hasPositiveEntryLayer i j).coeff 0 =
+      (D.clock.zeroSeries.tailMatrix D.clock.hasPositiveEntryLayer j i).coeff 0
   rw [← D.clock.zeroSeries.entry_coeff_first_eq_tail_zero
       D.clock.hasPositiveEntryLayer i j,
     ← D.clock.zeroSeries.entry_coeff_first_eq_tail_zero
@@ -139,35 +142,36 @@ noncomputable def
   · have hrespos : 0 < D.clock.residualDefect := Nat.pos_of_ne_zero hres
     have hdetMatrix : D.clock.tailConstantMatrix.det = 0 :=
       D.clock.tailConstantMatrix_det_zero_of_residual_pos hrespos
+    refine Classical.choice ?_
     rcases D.tailThreeBlock.twoByTwoWitness_or_allZero with hwit | hall
-    · exact .rankThree (.twoByTwoDeparture D hrespos hwit)
+    · exact ⟨.rankThree (.twoByTwoDeparture D hrespos hwit)⟩
     · have hne := D.tailThreeBlock_matrix_ne_zero
       rcases D.tailThreeBlock.exists_diagonal_ne_zero_of_allTwoByTwoMinorsZero
           hall hne with ha | hd | hf
-      · exact .secondPivot {
+      · exact ⟨.secondPivot {
           clock := D
           residual_pos := hrespos
           allTwoByTwo := hall
           pivotIndex := 0
           pivot_ne_zero := by
             simpa [GeneralThreeBlock.matrix] using ha
-        }
-      · exact .secondPivot {
+        }⟩
+      · exact ⟨.secondPivot {
           clock := D
           residual_pos := hrespos
           allTwoByTwo := hall
           pivotIndex := 1
           pivot_ne_zero := by
             simpa [GeneralThreeBlock.matrix] using hd
-        }
-      · exact .secondPivot {
+        }⟩
+      · exact ⟨.secondPivot {
           clock := D
           residual_pos := hrespos
           allTwoByTwo := hall
           pivotIndex := 2
           pivot_ne_zero := by
             simpa [GeneralThreeBlock.matrix] using hf
-        }
+        }⟩
 
 /-- Every genuine rank-one kernel opening reaches either filtered rank-three
 geometry or the unique second scalar-pivot stage. -/
