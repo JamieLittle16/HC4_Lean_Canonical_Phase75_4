@@ -5,9 +5,9 @@ import Mathlib.Tactic
 # A18.4.97: second scalar pivot produces an exact binary zero-Schur clock
 
 The only residual branch of A18.4.96 has a nonzero rank-one constant `3 x 3`
-first-tail matrix.  Choose one of its nonzero diagonal entries and permute it
-to position zero.  The *entire polynomial first-tail matrix* is permuted in
-the same way and packed as a `GeneralThreeBlock`.
+first-tail matrix.  Choose one of its nonzero diagonal entries and permute it to
+position zero.  The *entire polynomial first-tail matrix* is permuted in the
+same way and packed as a `GeneralThreeBlock`.
 
 Because every `2 x 2` minor of the constant tail vanishes, the cleared binary
 Schur complement of that second scalar pivot has zero constant block.  The
@@ -52,11 +52,11 @@ private noncomputable def secondPivotSwap02 : Equiv.Perm (Fin 3) :=
 /-- The full polynomial first-tail matrix is symmetric, not only its constant
 coefficient.  Symmetry is inherited from the original scalar-Schur matrix by
 cancelling the common nonzero first power of `X`. -/
-theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailMatrix_symmetric
+theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailMatrix_symmetric_secondZero
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     {G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source}
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
-    D.clock.tailMatrix.IsSymm := by
+    ∀ i j, D.clock.tailMatrix i j = D.clock.tailMatrix j i := by
   intro i j
   have hsymm :
       D.clock.zeroSeries.series i j = D.clock.zeroSeries.series j i := by
@@ -136,9 +136,9 @@ noncomputable def toZeroSchurClockWithPermutation
     (hrho : rho 0 = P.pivotIndex) :
     AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock P := by
   let M := P.clock.clock.tailMatrix.submatrix rho rho
-  have hsymmM : M.IsSymm := by
+  have hsymmM : ∀ i j, M i j = M j i := by
     intro i j
-    exact P.clock.tailMatrix_symmetric (rho i) (rho j)
+    exact P.clock.tailMatrix_symmetric_secondZero (rho i) (rho j)
   let T := GeneralThreeBlock.ofSymmetricMatrix M hsymmM
   have hTmatrix : T.matrix = M :=
     GeneralThreeBlock.matrix_ofSymmetricMatrix M hsymmM
