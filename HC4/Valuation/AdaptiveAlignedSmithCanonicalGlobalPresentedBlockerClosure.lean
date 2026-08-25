@@ -120,8 +120,17 @@ theorem AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction.exists_direc
 
 /-! ## Equality-safe packet transport -/
 
-/-- Transport a planar rigid packet and its dependent rigidity certificate
-across literal blocker equality in one equality elimination. -/
+/-- A planar packet bundled with the dependent rigidity certificate attached to
+its actual `degree` and `packet` fields. -/
+structure TransportedPlanarRigidPacket
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Type (u + 1) where
+  packet : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint (K := K) B
+  rigid : HasRigidRankOnePacket
+    (0 : Fin 4) 1 2 packet.degree packet.packet
+
+/-- Transport a planar rigid packet across literal blocker equality in one
+equality elimination, so no residual cast appears in the rigidity proof. -/
 noncomputable def transportPlanarRigidPacket
     {degreeCap : ℕ}
     {B₁ B₂ : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
@@ -129,13 +138,20 @@ noncomputable def transportPlanarRigidPacket
     (P : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint (K := K) B₂)
     (hrigid : HasRigidRankOnePacket
       (0 : Fin 4) 1 2 P.degree P.packet) :
-    Σ P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint (K := K) B₁,
-      HasRigidRankOnePacket (0 : Fin 4) 1 2 P'.degree P'.packet := by
+    TransportedPlanarRigidPacket (K := K) B₁ := by
   cases h
-  exact ⟨P, hrigid⟩
+  exact { packet := P, rigid := hrigid }
 
-/-- Transport a `w²` rigid packet and its dependent rigidity certificate
-across literal blocker equality in one equality elimination. -/
+/-- A `w²` packet bundled with its dependent rigidity certificate. -/
+structure TransportedWSquareRigidPacket
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Type (u + 1) where
+  packet : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B
+  rigid : HasRigidRankOnePacket
+    (0 : Fin 4) 3 2 packet.degree packet.packet
+
+/-- Transport a `w²` rigid packet across literal blocker equality in one
+equality elimination. -/
 noncomputable def transportWSquareRigidPacket
     {degreeCap : ℕ}
     {B₁ B₂ : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
@@ -143,10 +159,9 @@ noncomputable def transportWSquareRigidPacket
     (P : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B₂)
     (hrigid : HasRigidRankOnePacket
       (0 : Fin 4) 3 2 P.degree P.packet) :
-    Σ P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B₁,
-      HasRigidRankOnePacket (0 : Fin 4) 3 2 P'.degree P'.packet := by
+    TransportedWSquareRigidPacket (K := K) B₁ := by
   cases h
-  exact ⟨P, hrigid⟩
+  exact { packet := P, rigid := hrigid }
 
 /-! ## Geometry retained by current-scale rank promotion -/
 
@@ -321,8 +336,10 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.soundClosure
       exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
   | planarRigid hall P hrigid =>
-      rcases transportPlanarRigidPacket (K := K) hblock P hrigid with
-        ⟨P', hrigid'⟩
+      let T := transportPlanarRigidPacket (K := K) hblock P hrigid
+      let P' := T.packet
+      have hrigid' : HasRigidRankOnePacket
+          (0 : Fin 4) 1 2 P'.degree P'.packet := T.rigid
       have hall' :
           ∀ rho : Equiv.Perm (Fin 4),
             (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
@@ -338,8 +355,10 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.soundClosure
         ((h.toGlobalStrictMacro RR).prepend_internal RR D.sourcePresentation)
 
   | wSquareRigid hall P hrigid =>
-      rcases transportWSquareRigidPacket (K := K) hblock P hrigid with
-        ⟨P', hrigid'⟩
+      let T := transportWSquareRigidPacket (K := K) hblock P hrigid
+      let P' := T.packet
+      have hrigid' : HasRigidRankOnePacket
+          (0 : Fin 4) 3 2 P'.degree P'.packet := T.rigid
       have hall' :
           ∀ rho : Equiv.Perm (Fin 4),
             (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
