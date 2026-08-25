@@ -102,7 +102,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.completeSoundReduction
           using D.defect_eq
       rcases E.completeRankTwoProgress_from_presented
           RR D hclock complexity hsrepair with ⟨Q⟩
-      exact .globalProgress Q.local.target Q.globalProgress
+      exact .globalProgress Q.localProgress.target Q.globalProgress
 
   · rcases P.rigid_or_rankTwoFamilyContinuation s W complexity with
       hrigid | hrankTwo
@@ -169,7 +169,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.completeSoundReduction
               using D.defect_eq
           rcases E.completeRankTwoProgress_from_presented
               RR D hclock complexity hsrepair with ⟨Q⟩
-          exact .globalProgress Q.local.target Q.globalProgress
+          exact .globalProgress Q.localProgress.target Q.globalProgress
 
     · rcases hrankTwo with ⟨R2⟩
       let target :=
