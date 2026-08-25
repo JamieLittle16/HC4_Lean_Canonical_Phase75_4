@@ -81,7 +81,7 @@ theorem AdaptiveSurvivingWallExposureData.certifiedCanonicalInternalMove_from_ou
   }⟩
 
 /-- The A18.4.26 rank-two target is therefore a standard honest ramified
-strict macro: source -> aligned outer -> canonical exposure -> rank-two target. -/
+strict macro on the exact exposure family. -/
 theorem AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.toRamifiedStrictMacro
     (RR : RepairRanking)
     {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -93,15 +93,7 @@ theorem AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
     (D : AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
       RR s W P R hD complexity) :
     AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro RR s := by
-  have hexposure0 :=
-    D.geometry.exposure.certifiedCanonicalInternalMove_from_outer
-      W D.geometry.canonicalSpecial
-  have hexposure : HasCertifiedRamifiedEpisodeInternalMove D.exposed D.outer := by
-    rw [D.exposed_eq, D.outer_eq]
-    simpa using hexposure0
-  have hsource : HasCertifiedRamifiedEpisodeInternalMove D.exposed s :=
-    D.alignedPresentation.trans hexposure
-  exact .mk D.exposed D.target hsource D.exposedProgress
+  exact .mk D.exposed D.target D.sourcePresentation D.exposedProgress
 
 /-! ## One surviving exact-clock leaf -/
 
@@ -193,7 +185,7 @@ theorem AdaptiveAlignedSmithSurvivingStateEndpoint.soundGlobalExactClockReductio
           rcases hgeometry with ⟨G⟩
           let D :=
             AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometry
-              RR W' P R hD complexity hsrepair G
+              RR W' P R hD complexity hsrepair hclock G
           exact .ramifiedStrictMacro D.toRamifiedStrictMacro
 
       | canonicalClosing C hspecial =>
