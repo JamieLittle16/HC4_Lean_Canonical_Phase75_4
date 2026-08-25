@@ -67,7 +67,8 @@ theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_exactActiveFourBlock
       have h := hall (1 : Fin 4) 1 2 3
       simpa [H, GeneralFourBlock.matrix, mul_comm] using h
     have hdet0 : H.determinantCore = 0 :=
-      H.determinantCore_eq_zero_of_transverse_rankOne hdx hdz hxz hdy
+      HC4.Valuation.determinantCore_eq_zero_of_transverse_rankOne
+        H hdx hdz hxz hdy
     have hdet1 : H.determinantCore = 1 := by
       simpa [H] using s.zeroDefect_specialHessianDet_one hzero
     rw [hdet1] at hdet0
