@@ -42,6 +42,7 @@ def weightedRankThreeEndpointPencil
         Polynomial.C (vectorHessianCore ![P, Q, R, S] i j)
 
 /-- **Linear coefficient polynomial gives the literal endpoint pencil.** -/
+set_option maxHeartbeats 4000000 in
 theorem rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil
     (A B C P : ℕ) (Q R S c0 c1 : K) :
     rankThreeAffinePolynomialMomentHessian
@@ -55,7 +56,7 @@ theorem rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil
     simp [eulerDerivative,
       rankThreeLogBaseExponent, rankThreeLogDirection,
       weightedRankThreeEndpointPencil, vectorHessianCore] <;>
-    ring
+    ring_nf
 
 /-- The unweighted endpoint pencil is the existing generic rank-three pencil. -/
 theorem weightedRankThreeEndpointPencil_one_one
