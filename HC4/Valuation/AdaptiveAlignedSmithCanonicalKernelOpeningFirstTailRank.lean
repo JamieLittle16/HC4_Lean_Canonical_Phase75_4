@@ -42,7 +42,7 @@ theorem tailMatrix_symmetric
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     {G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source}
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
-    D.clock.tailMatrix.IsSymm := by
+    ∀ i j, D.clock.tailMatrix i j = D.clock.tailMatrix j i := by
   intro i j
   have hseries :
       D.clock.zeroSeries.series i j = D.clock.zeroSeries.series j i := by
@@ -103,7 +103,7 @@ theorem tailConstantMatrix_symmetric
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     {G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source}
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
-    D.clock.tailConstantMatrix.IsSymm := by
+    ∀ i j, D.clock.tailConstantMatrix i j = D.clock.tailConstantMatrix j i := by
   intro i j
   exact congrArg
     (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
