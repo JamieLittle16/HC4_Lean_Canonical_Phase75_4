@@ -86,7 +86,8 @@ theorem rankThree_unit_longitudinal_step_of_certificate
       HC4.Polynomial.QuadraticAutonomousLogODE
         (T.coeff 2) (T.coeff 1)
         (Polynomial.C (phi.coeff 0) + Polynomial.X ^ m * q) := by
-    simpa [hphiForm] using hquad
+    rw [← hphiForm]
+    exact hquad
 
   have hlinear : T.coeff 1 = (m : K) :=
     HC4.Polynomial.quadraticAutonomous_linearCoefficient_eq
@@ -103,8 +104,9 @@ theorem rankThree_unit_longitudinal_step_of_certificate
       _ = 1 := mul_inv_cancel₀ hP0
   have hmulNat : P * m = 1 := by
     exact_mod_cast hmulK
-  have hPone : P = 1 := by omega
-  have hmone : m = 1 := by omega
+  have hones : P = 1 ∧ m = 1 := Nat.mul_eq_one.mp hmulNat
+  have hPone : P = 1 := hones.1
+  have hmone : m = 1 := hones.2
 
   have hphi1 : phi.coeff 1 ≠ 0 := by
     rw [hphiForm, hmone]
