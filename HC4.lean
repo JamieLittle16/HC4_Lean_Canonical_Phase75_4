@@ -82,3 +82,4 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRigidityData
 import HC4.Newton.FirstContactAffinePlane
 import HC4.Newton.FirstContactHonestSlice
 import HC4.Newton.FiniteSupportCrossFacetExposure
+import HC4.Newton.FirstContactCrossFacetAffineLine
