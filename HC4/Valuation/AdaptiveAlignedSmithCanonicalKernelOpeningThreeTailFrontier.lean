@@ -32,11 +32,11 @@ universe u
 variable {K : Type u} [Field K] [CharZero K]
 
 /-- The constant matrix of the first normalised scalar-Schur tail is symmetric. -/
-theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailConstantMatrix_symmetric
+theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailConstantMatrix_symmetric_threeTail
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     {G : AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry source}
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
-    D.clock.tailConstantMatrix.IsSymm := by
+    ∀ i j, D.clock.tailConstantMatrix i j = D.clock.tailConstantMatrix j i := by
   intro i j
   have hij :=
     (D.block.scalarSchurThreeMatrix_symmetric i j)
@@ -67,7 +67,7 @@ noncomputable def
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
     GeneralThreeBlock (MvPolynomial (Fin 4) K) :=
   GeneralThreeBlock.ofSymmetricMatrix
-    D.clock.tailConstantMatrix D.tailConstantMatrix_symmetric
+    D.clock.tailConstantMatrix D.tailConstantMatrix_symmetric_threeTail
 
 /-- Its displayed matrix is literally the clock's first-tail constant matrix. -/
 theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailThreeBlock_matrix
@@ -76,7 +76,7 @@ theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailThreeBloc
     (D : AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock G) :
     D.tailThreeBlock.matrix = D.clock.tailConstantMatrix :=
   GeneralThreeBlock.matrix_ofSymmetricMatrix
-    D.clock.tailConstantMatrix D.tailConstantMatrix_symmetric
+    D.clock.tailConstantMatrix D.tailConstantMatrix_symmetric_threeTail
 
 /-- The first tail three-block is nonzero. -/
 theorem AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock.tailThreeBlock_matrix_ne_zero
