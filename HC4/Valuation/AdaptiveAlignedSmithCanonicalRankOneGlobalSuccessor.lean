@@ -84,7 +84,7 @@ theorem AdaptiveAlignedSmithCanonicalExactAlignedEndpoint.completeGlobalSuccesso
       | globalProgress target h => exact ⟨target, h⟩
       | zeroDefect hzero =>
           let P := source.zeroDefect_globalRankTwoProgress
-            RR source complexity hsrepair hzero
+            RR complexity hsrepair hzero
           exact ⟨P.target, P.globalProgress⟩
   | inr hW =>
       rcases hW with ⟨W, hEq⟩
@@ -100,7 +100,7 @@ theorem AdaptiveAlignedSmithCanonicalExactAlignedEndpoint.completeGlobalSuccesso
       | globalProgress target h => exact ⟨target, h⟩
       | zeroDefect hzero =>
           let P := source.zeroDefect_globalRankTwoProgress
-            RR source complexity hsrepair hzero
+            RR complexity hsrepair hzero
           exact ⟨P.target, P.globalProgress⟩
       | exposureBoundaryPresentation presented E target target_eq hmove =>
           exact ((E.exposure.noCanonicalSectionBoundary E.W) E.boundary).elim
@@ -127,7 +127,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalRankOneGlob
       | globalProgress target h => exact ⟨target, h⟩
       | zeroDefect hzero =>
           let P := source.zeroDefect_globalRankTwoProgress
-            RR source complexity hsrepair hzero
+            RR complexity hsrepair hzero
           exact ⟨P.target, P.globalProgress⟩
 
 end
