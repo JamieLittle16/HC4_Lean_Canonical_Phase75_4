@@ -678,7 +678,7 @@ theorem hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero
   rw [Fin.sum_univ_four]
   fin_cases p <;> fin_cases q <;> fin_cases r <;>
     simp [rigidPairDirection, cp, cq] at hpq hrow ⊢ <;>
-    simpa [add_comm, mul_comm, mul_left_comm, mul_assoc, sub_eq_add_neg] using hrow
+    linear_combination hrow
 
 /-- The pivot Hessian entry of the complete rigid special fibre is nonzero,
 because its maximal homogeneous component has nonzero `pp` Hessian entry. -/
