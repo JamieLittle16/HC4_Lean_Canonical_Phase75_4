@@ -73,6 +73,7 @@ noncomputable def
     (hsrepair : source.repair = rankOneRepairState complexity) :
     AdaptiveAlignedSmithCanonicalAlignedRankThreeOrProgressOutcome
       RR source complexity := by
+  refine Classical.choice ?_
   cases source.alignedSmithCanonicalEndpointOrigin RR with
   | noWallDefectDrop D =>
       let target := source.noWallUnramifiedPrimitiveTarget D.primitive
@@ -83,19 +84,20 @@ noncomputable def
           D.primitive.commonFactor
           source.rawDefect
           D.primitive.smithData.smithFamily_hessianDefect
+      have hm : 0 < D.primitive.m := D.m_pos
       have hraw : target.rawDefect < source.rawDefect := by
         change source.rawDefect - 4 * D.primitive.m < source.rawDefect
         omega
-      exact .globalProgress target
+      exact ⟨.globalProgress target
         (source.noWallPrimitive_globalProgress D.primitive D.m_pos)
-        hraw rfl
+        hraw rfl⟩
 
   | sectionBoundary B =>
       cases B.rankThreeAbsorption RR complexity hsrepair with
       | globalProgress target h hraw hrepair =>
-          exact .globalProgress target h hraw hrepair
+          exact ⟨.globalProgress target h hraw hrepair⟩
       | rankThree G =>
-          exact .rankThree (.boundary G)
+          exact ⟨.rankThree (.boundary G)⟩
 
   | exactEndpoint E =>
       let Z := E.endpoint
@@ -114,8 +116,8 @@ noncomputable def
             family_eq := by rw [hEq]; rfl
             movingSection_eq := by rw [hEq]; rfl
           }
-          exact .rankThree (.exactBlocker D
-            (D.allRankThreeGeometry RR complexity hsrepair))
+          exact ⟨.rankThree (.exactBlocker D
+            (D.allRankThreeGeometry RR complexity hsrepair))⟩
       | inr hW =>
           rcases hW with ⟨W, hEq⟩
           let D : AdaptiveAlignedSmithCanonicalPresentedSurviving (K := K) source := {
@@ -126,8 +128,8 @@ noncomputable def
             family_eq := by rw [hEq]; rfl
             movingSection_eq := by rw [hEq]; rfl
           }
-          exact .rankThree (.exactSurviving D
-            (D.allRankThreeGeometry RR complexity hsrepair))
+          exact ⟨.rankThree (.exactSurviving D
+            (D.allRankThreeGeometry RR complexity hsrepair))⟩
 
 end
 
