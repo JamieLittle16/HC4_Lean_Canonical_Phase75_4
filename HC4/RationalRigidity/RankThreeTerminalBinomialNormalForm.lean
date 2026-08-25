@@ -51,7 +51,7 @@ structure RankThreeTerminalBinomialNormalForm
 A singular honest affine rank-three line satisfying the genuine positive
 endpoint hypotheses canonically reaches the primitive boundary-to-boundary
 pure-power package consumed by the final rank-three pencil cases. -/
-theorem rankThreeTerminal_binomialNormalForm
+noncomputable def rankThreeTerminal_binomialNormalForm
     {A B C u1 : ℕ} {q r s : K} {phi : Polynomial K}
     (L : RankThreeAffineLineData A B C u1 q r s phi)
     (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
