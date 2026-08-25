@@ -61,7 +61,7 @@ theorem clearedPolynomialSubstitution_one
     (m : ℕ) (N D : Polynomial K) :
     clearedPolynomialSubstitution m (1 : Polynomial K) N D = D ^ m := by
   classical
-  unfold clearedPolynomialSubstitution
+  rw [clearedPolynomialSubstitution, Polynomial.sum_def]
   simp
 
 /-- **RatFunc polynomial autonomous identity -> Phase-79 cleared ODE.**
@@ -135,6 +135,7 @@ theorem shiftedPolynomialAutonomousLogODE_zero_of_ratFunc_identity
     rw [shiftedAutonomousClearedRHS_zero_eq_clearedPolynomialSubstitution]
     exact hcancel
   dsimp [H, m] at hrhs ⊢
+  rw [HC4.Polynomial.shiftedEtaNumerator_zero]
   exact hrhs.symm
 
 end
