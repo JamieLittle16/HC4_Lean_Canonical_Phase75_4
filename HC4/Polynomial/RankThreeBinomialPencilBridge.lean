@@ -42,13 +42,13 @@ def weightedRankThreeEndpointPencil
         Polynomial.C (vectorHessianCore ![P, Q, R, S] i j)
 
 /-- **Linear coefficient polynomial gives the literal endpoint pencil.** -/
-set_option maxHeartbeats 4000000 in
 theorem rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil
-    (A B C P Q R S c0 c1 : K) :
+    (A B C P : ℕ) (Q R S c0 c1 : K) :
     rankThreeAffinePolynomialMomentHessian
-        A B C P (Q - A) (R - B) (S - C)
+        A B C P (Q - (A : K)) (R - (B : K)) (S - (C : K))
         (Polynomial.C c0 + Polynomial.C c1 * Polynomial.X) =
-      weightedRankThreeEndpointPencil A B C P Q R S c0 c1 := by
+      weightedRankThreeEndpointPencil
+        (A : K) (B : K) (C : K) (P : K) Q R S c0 c1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [rankThreeAffinePolynomialMomentHessian,
