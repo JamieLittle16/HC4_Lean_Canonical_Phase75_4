@@ -53,8 +53,7 @@ theorem eval_zero_derivative_rankThreeEtaNumeratorPolynomial
     HC4.Polynomial.rankThreeLogProduct,
     HC4.Polynomial.rankThreeLogSum,
     Polynomial.derivative_mul, Polynomial.derivative_add,
-    Polynomial.derivative_sub]
-  ring
+    Polynomial.derivative_sub] <;> try simp <;> ring_nf
 
 /-- Constant value of the raw denominator at the rank-three endpoint. -/
 theorem eval_zero_rankThreeEtaDenominatorPolynomial
@@ -135,7 +134,20 @@ theorem rankThreeAutonomousPolynomial_mul_rawDenominator
     _ = HC4.Polynomial.rankThreeEtaNumeratorPolynomial
           (A : K) (B : K) (C : K) (P : K) Q R S := by
       rw [hden]
-      simp [hb]
+      have hbC :
+          Polynomial.C (b⁻¹) * Polynomial.C b = (1 : Polynomial K) := by
+        rw [← Polynomial.C_mul]
+        simp [hb]
+      calc
+        Polynomial.C (b⁻¹) *
+            (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+                (A : K) (B : K) (C : K) (P : K) Q R S * Polynomial.C b) =
+          (Polynomial.C (b⁻¹) * Polynomial.C b) *
+            HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+              (A : K) (B : K) (C : K) (P : K) Q R S := by ring
+        _ = HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+              (A : K) (B : K) (C : K) (P : K) Q R S := by
+          rw [hbC, one_mul]
 
 /-- **Initial coefficients of the polynomial rank-three target.** -/
 theorem rankThreeAutonomousPolynomial_coeff_zero_one
@@ -166,8 +178,10 @@ theorem rankThreeAutonomousPolynomial_coeff_zero_one
       eval_zero_rankThreeEtaNumeratorPolynomial
         (A : K) (B : K) (C : K) (P : K) Q R S
   have hT0eval : Polynomial.eval 0 T = 0 := by
-    have h := congrArg (Polynomial.eval 0) hraw
-    simp only [map_mul] at h
+    have h :
+        Polynomial.eval 0 T * Polynomial.eval 0 D = Polynomial.eval 0 N := by
+      simpa only [Polynomial.eval_mul] using
+        congrArg (Polynomial.eval 0) hraw
     rw [hN0] at h
     exact (mul_eq_zero.mp h).resolve_right hD0
   have hT0 : T.coeff 0 = 0 := by
@@ -187,11 +201,18 @@ theorem rankThreeAutonomousPolynomial_coeff_zero_one
     simpa [D] using
       eval_zero_rankThreeEtaDenominatorPolynomial
         (A : K) (B : K) (C : K) (P : K) Q R S
-  have hder := congrArg Polynomial.derivative hraw
-  have hev := congrArg (Polynomial.eval 0) hder
-  rw [Polynomial.derivative_mul] at hev
-  simp only [map_add, map_mul] at hev
-  rw [hT0eval, zero_mul, zero_add, hNder, hD0formula] at hev
+  have hder :
+      Polynomial.derivative T * D + T * Polynomial.derivative D =
+        Polynomial.derivative N := by
+    simpa only [Polynomial.derivative_mul] using
+      congrArg Polynomial.derivative hraw
+  have hev :
+      Polynomial.eval 0 (Polynomial.derivative T) * Polynomial.eval 0 D +
+          Polynomial.eval 0 T * Polynomial.eval 0 (Polynomial.derivative D) =
+        Polynomial.eval 0 (Polynomial.derivative N) := by
+    simpa only [Polynomial.eval_add, Polynomial.eval_mul] using
+      congrArg (Polynomial.eval 0) hder
+  rw [hT0eval, zero_mul, add_zero, hNder, hD0formula] at hev
   have hP0 : (P : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hP)
   have hA0 : (A : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hA)
   have hB0 : (B : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hB)
@@ -223,8 +244,6 @@ theorem rankThreeAutonomousPolynomial_coeff_zero_one
         field_simp [hP0]
         ring
   have hT1 : T.coeff 1 = (P : K)⁻¹ := by
-    have hcoeff := congrArg (fun p : Polynomial K => p.coeff 0)
-      (show Polynomial.derivative T = Polynomial.derivative T from rfl)
     rw [← Polynomial.coeff_zero_eq_eval_zero] at hderT
     simpa [Polynomial.coeff_derivative] using hderT
   exact ⟨hT0, hT1⟩
