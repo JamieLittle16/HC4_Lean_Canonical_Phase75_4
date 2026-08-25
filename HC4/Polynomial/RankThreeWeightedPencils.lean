@@ -23,10 +23,11 @@ open scoped Matrix
 
 noncomputable section
 
+set_option maxHeartbeats 4000000
+
 /-- Weighted sparse two-zero terminal pencil. -/
-set_option maxHeartbeats 4000000 in
 theorem det_weightedSparseRankThreeEndpointPencil
-    {K : Type*} [CommRing K]
+    {K : Type*} [Field K] [CharZero K]
     (C D E F c0 c1 : K) :
     (weightedRankThreeEndpointPencil
       C D E 1 0 F 0 c0 c1).det =
@@ -40,9 +41,8 @@ theorem det_weightedSparseRankThreeEndpointPencil
   ring
 
 /-- Weighted one-zero terminal pencil. -/
-set_option maxHeartbeats 4000000 in
 theorem det_weightedOneZeroRankThreeEndpointPencil
-    {K : Type*} [CommRing K]
+    {K : Type*} [Field K] [CharZero K]
     (C D E F c0 c1 : K) :
     (weightedRankThreeEndpointPencil
       1 C D 1 0 E F c0 c1).det =
