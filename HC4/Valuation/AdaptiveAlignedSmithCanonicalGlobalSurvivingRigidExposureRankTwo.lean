@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithRigidPacketExposureClosing
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingRankTwoAbsoluteScale
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCanonicalExposureNeutrality
 import Mathlib.Tactic
 
 /-!
