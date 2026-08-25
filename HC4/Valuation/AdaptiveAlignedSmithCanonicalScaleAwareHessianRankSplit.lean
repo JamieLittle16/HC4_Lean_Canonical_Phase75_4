@@ -67,6 +67,40 @@ attribute [local simp] scaleAwareHessianSeriesMatrix_coeff_zero
 attribute [local simp] GeneralFourBlock.activeDet
 attribute [local simp] HC4.Polynomial.hessian_apply
 
+/-- Differentiating the first two-zero base coefficient in source coordinate
+`0` commutes with extracting that coefficient. -/
+@[simp] private theorem pderiv_zero_standardTwoZeroA
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv 0 (standardTwoZeroA F) =
+      standardTwoZeroA (MvPolynomial.pderiv 0 F) := by
+  simp only [standardTwoZeroA]
+  rw [pderiv_comm_backport]
+
+/-- The same commutation in source coordinate `1`. -/
+@[simp] private theorem pderiv_one_standardTwoZeroA
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv 1 (standardTwoZeroA F) =
+      standardTwoZeroA (MvPolynomial.pderiv 1 F) := by
+  simp only [standardTwoZeroA]
+  rw [pderiv_comm_backport]
+
+/-- Differentiating the second two-zero base coefficient in source coordinate
+`0` commutes with extracting that coefficient. -/
+@[simp] private theorem pderiv_zero_standardTwoZeroC
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv 0 (standardTwoZeroC F) =
+      standardTwoZeroC (MvPolynomial.pderiv 0 F) := by
+  simp only [standardTwoZeroC]
+  rw [pderiv_comm_backport]
+
+/-- The same commutation in source coordinate `1`. -/
+@[simp] private theorem pderiv_one_standardTwoZeroC
+    (F : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv 1 (standardTwoZeroC F) =
+      standardTwoZeroC (MvPolynomial.pderiv 1 F) := by
+  simp only [standardTwoZeroC]
+  rw [pderiv_comm_backport]
+
 /-- The finite block is exactly the genuine special-fibre Hessian matrix. -/
 theorem scaleAwareSpecialHessianFourBlock_matrix
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
@@ -81,7 +115,8 @@ theorem scaleAwareSpecialHessianFourBlock_matrix
       GeneralFourBlock.matrix,
       scaleAwareHessianSeriesMatrix_coeff_zero]
   all_goals
-    simp [standardTwoZeroA, standardTwoZeroC, pderiv_comm_commRing]
+    simp only [standardTwoZeroA, standardTwoZeroC]
+    rw [pderiv_comm_backport]
 
 /-! ## The finite permutations used by the ten core relations -/
 
@@ -164,6 +199,7 @@ theorem scaleAwareHessianFourBlock_activeDet_coeff_zero
   parameterConstantCoeffFourBlock_activeDet _
 
 /-- **Finite Hessian rank split on an arbitrary scale-aware state.** -/
+set_option maxHeartbeats 4000000 in
 theorem scaleAwareHessian_exactActive_or_rankOne
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
     Nonempty (AdaptiveAlignedSmithCanonicalExactActiveFourBlock s) ∨
