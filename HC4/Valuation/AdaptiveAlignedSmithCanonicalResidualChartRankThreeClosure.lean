@@ -65,6 +65,7 @@ noncomputable def AdaptiveAlignedRightRecenteredExactHessianChart.rankThreeGeome
     (complexity : ℕ) :
     AdaptiveAlignedSmithCanonicalRightRecenteredChartRankThreeGeometry
       C complexity := by
+  refine Classical.choice ?_
   by_cases hzero :
       C.block.schurA.coeff 0 = 0 ∧
         C.block.schurB.coeff 0 = 0 ∧
@@ -78,17 +79,17 @@ noncomputable def AdaptiveAlignedRightRecenteredExactHessianChart.rankThreeGeome
       schurB_coeff_zero := hzero.2.1
       schurC_coeff_zero := hzero.2.2
     }
-    exact .zeroSchur Z rfl
-      (exactSourceZeroSchur_completeRankThreeGeometry Z complexity)
+    exact ⟨.zeroSchur Z rfl
+      (exactSourceZeroSchur_completeRankThreeGeometry Z complexity)⟩
   · have hsome :
         C.block.schurA.coeff 0 ≠ 0 ∨
           C.block.schurB.coeff 0 ≠ 0 ∨
           C.block.schurC.coeff 0 ≠ 0 := by
       tauto
     rcases hsome with hA | hB | hC
-    · exact .constantMinor (.first hA)
-    · exact .constantMinor (.mixed hB)
-    · exact .constantMinor (.second hC)
+    · exact ⟨.constantMinor (.first hA)⟩
+    · exact ⟨.constantMinor (.mixed hB)⟩
+    · exact ⟨.constantMinor (.second hC)⟩
 
 /-- Recover the common exact closing chart from any of the five residual
 rank-two geometry constructors. -/
