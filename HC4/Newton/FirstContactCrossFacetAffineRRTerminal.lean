@@ -36,9 +36,10 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 800000
+
 /-- The canonical `qs` rank-three cross-facet line reaches the existing affine
 RationalRigidity polynomial terminal certificate. -/
-set_option maxHeartbeats 800000 in
 theorem CrossFacetInitialData.qs_rankThree_terminalCertificate
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -78,6 +79,8 @@ theorem CrossFacetInitialData.qs_rankThree_terminalCertificate
     (HC4.RationalRigidity.hasRankThreePolynomialTerminalCertificate_of_affine_line
       (D.qsAffineLineData ha hb hcontactScale hBal hcontact)
       hA hB hC (by decide) hdeg hphi0 hdet)
+
+set_option maxHeartbeats 200000
 
 /-- The far coefficient index of the canonical affine line is represented by
 an actual support exponent of the exposed face. -/
