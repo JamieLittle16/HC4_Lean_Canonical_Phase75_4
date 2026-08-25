@@ -54,16 +54,37 @@ theorem AdaptiveAlignedSmithCanonicalKernelOpeningRankOneGeometry.allTwoByTwo_pe
     (rho : Equiv.Perm (Fin 4)) :
     (parameterConstantCoeffFourBlock
       (scaleAwareHessianFourBlock rho G.firstContact.opening)).AllTwoByTwoMinorsZero := by
-  let s := G.firstContact.opening
-  let H0 := scaleAwareSpecialHessianFourBlock s
-  have hall := G.allTwoByTwo
-  unfold GeneralFourBlock.AllTwoByTwoMinorsZero at hall ⊢
+  let F := polynomialFamilySpecialFiber G.firstContact.opening.family
+  let T := parameterConstantCoeffFourBlock
+    (scaleAwareHessianFourBlock rho G.firstContact.opening)
+  have hT :
+      T = GeneralFourBlock.ofSymmetricMatrix
+        (fun i j => HC4.Polynomial.hessian F (rho i) (rho j)) := by
+    ext <;>
+      simp [T, F, parameterConstantCoeffFourBlock,
+        scaleAwareHessianFourBlock, GeneralFourBlock.ofSymmetricMatrix,
+        scaleAwareHessianSeriesMatrix_coeff_zero]
+  have hsym :
+      ∀ i j : Fin 4,
+        HC4.Polynomial.hessian F (rho i) (rho j) =
+          HC4.Polynomial.hessian F (rho j) (rho i) := by
+    intro i j
+    change
+      MvPolynomial.pderiv (rho j) (MvPolynomial.pderiv (rho i) F) =
+        MvPolynomial.pderiv (rho i) (MvPolynomial.pderiv (rho j) F)
+    exact (pderiv_comm_backport (rho i) (rho j) F).symm
+  have hmatrix :
+      T.matrix =
+        fun i j => HC4.Polynomial.hessian F (rho i) (rho j) := by
+    rw [hT]
+    exact GeneralFourBlock.matrix_ofSymmetricMatrix _ hsym
+  unfold GeneralFourBlock.AllTwoByTwoMinorsZero
   intro i j k l
-  have h := hall (rho i) (rho j) (rho k) (rho l)
-  simpa [H0, scaleAwareSpecialHessianFourBlock,
-    parameterConstantCoeffFourBlock,
-    scaleAwareHessianFourBlock, GeneralFourBlock.ofSymmetricMatrix,
-    Equiv.trans_apply] using h
+  have h := G.allTwoByTwo (rho i) (rho j) (rho k) (rho l)
+  rw [scaleAwareSpecialHessianFourBlock_matrix G.firstContact.opening] at h
+  change T.matrix i j * T.matrix k l - T.matrix i l * T.matrix k j = 0
+  rw [hmatrix]
+  exact h
 
 /-- Exact scalar-Schur clock attached to one chosen pivot. -/
 structure AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock
