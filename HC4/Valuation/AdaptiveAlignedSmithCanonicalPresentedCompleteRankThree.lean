@@ -50,11 +50,12 @@ noncomputable def
     (hsrepair : source.repair = rankOneRepairState complexity) :
     AdaptiveAlignedSmithCanonicalPresentedBlockerAllRankThreeGeometry
       RR D complexity := by
+  refine Classical.choice ?_
   cases D.completeRankThreeOutcome RR complexity hsrepair with
   | zeroDefect hzero =>
-      exact .zero (source.zeroDefect_completeRankThreeGeometry complexity hzero)
+      exact ⟨.zero (source.zeroDefect_completeRankThreeGeometry complexity hzero)⟩
   | rankThree hG =>
-      exact .positive (Classical.choice hG)
+      exact ⟨.positive (Classical.choice hG)⟩
 
 /-- Complete rank-three geometry for a presented surviving wall. -/
 inductive AdaptiveAlignedSmithCanonicalPresentedSurvivingAllRankThreeGeometry
@@ -83,13 +84,14 @@ noncomputable def
     (hsrepair : source.repair = rankOneRepairState complexity) :
     AdaptiveAlignedSmithCanonicalPresentedSurvivingAllRankThreeGeometry
       RR D complexity := by
+  refine Classical.choice ?_
   cases D.rankThreeClosure RR complexity hsrepair with
   | zeroDefect hzero =>
-      exact .zero (source.zeroDefect_completeRankThreeGeometry complexity hzero)
+      exact ⟨.zero (source.zeroDefect_completeRankThreeGeometry complexity hzero)⟩
   | completeKernel hP =>
-      exact .kernel (Classical.choice hP).completeRankThreeGeometry
+      exact ⟨.kernel (Classical.choice hP).completeRankThreeGeometry⟩
   | rankThree hG =>
-      exact .existing (Classical.choice hG)
+      exact ⟨.existing (Classical.choice hG)⟩
 
 end
 
