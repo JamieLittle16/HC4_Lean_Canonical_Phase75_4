@@ -50,7 +50,12 @@ theorem eq_linear_add_quadratic_of_natDegree_le_two
   have hn : 2 < n := by omega
   have hcoeff : T.coeff n = 0 :=
     Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt hdeg hn)
-  simp [hcoeff, hn0, hn1, hn2]
+  have hX : Polynomial.X.coeff n = (0 : K) := by
+    simp [hn1]
+  have hX2 : (Polynomial.X ^ 2 : Polynomial K).coeff n = 0 := by
+    simp [Polynomial.coeff_X_pow, hn2]
+  rw [hcoeff]
+  simp [hX, hX2]
 
 /-- Degree-two cleared substitution of a zero-constant polynomial is the
 ordinary homogenised quadratic expression. -/
@@ -61,11 +66,31 @@ theorem clearedPolynomialSubstitution_two_of_coeff_zero
     clearedPolynomialSubstitution 2 T N D =
       Polynomial.C (T.coeff 1) * N * D +
         Polynomial.C (T.coeff 2) * N ^ 2 := by
-  have hshape := eq_linear_add_quadratic_of_natDegree_le_two hdeg hzero
-  rw [hshape]
   classical
   unfold clearedPolynomialSubstitution
-  simp [Polynomial.sum_def]
+  rw [Polynomial.sum_def]
+  let s : Finset ℕ := {1, 2}
+  have hsubset : T.support ⊆ s := by
+    intro j hj
+    have hjle : j ≤ 2 :=
+      le_trans (Polynomial.le_natDegree_of_mem_supp j hj) hdeg
+    have hj0 : j ≠ 0 := by
+      intro hjz
+      subst j
+      exact (Polynomial.mem_support_iff.mp hj) hzero
+    have hj12 : j = 1 ∨ j = 2 := by omega
+    simpa [s] using hj12
+  have hsum :
+      (∑ j ∈ T.support,
+          Polynomial.C (T.coeff j) * N ^ j * D ^ (2 - j)) =
+        ∑ j ∈ s,
+          Polynomial.C (T.coeff j) * N ^ j * D ^ (2 - j) := by
+    apply Finset.sum_subset hsubset
+    intro j hjs hjnot
+    have hcoeff : T.coeff j = 0 := Polynomial.notMem_support_iff.mp hjnot
+    simp [hcoeff]
+  rw [hsum]
+  simp [s]
   ring
 
 /-- **RatFunc polynomial identity -> Phase-77 quadratic ODE**, uniformly for
