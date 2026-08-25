@@ -104,9 +104,10 @@ theorem rankThree_unit_longitudinal_step_of_certificate
       _ = 1 := mul_inv_cancel₀ hP0
   have hmulNat : P * m = 1 := by
     exact_mod_cast hmulK
-  have hones : P = 1 ∧ m = 1 := Nat.mul_eq_one.mp hmulNat
-  have hPone : P = 1 := hones.1
-  have hmone : m = 1 := hones.2
+  have hPone : P = 1 :=
+    Nat.eq_one_of_dvd_one ⟨m, hmulNat.symm⟩
+  have hmone : m = 1 :=
+    Nat.eq_one_of_dvd_one ⟨P, by simpa [Nat.mul_comm] using hmulNat.symm⟩
 
   have hphi1 : phi.coeff 1 ≠ 0 := by
     rw [hphiForm, hmone]
