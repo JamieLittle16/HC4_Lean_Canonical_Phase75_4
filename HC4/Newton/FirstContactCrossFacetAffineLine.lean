@@ -38,6 +38,107 @@ noncomputable section
 def crossFacetOppositeCoordinate (j : Fin 4) : Fin 4 :=
   ⟨(j.1 + 2) % 4, Nat.mod_lt _ (by decide)⟩
 
+/-- Once a vector and its opposite coordinate vanish, the balance and
+zero-sum equations force the remaining two coordinates to vanish as well.
+Keeping this finite case split separate prevents the main kernel theorem from
+being duplicated by `fin_cases`. -/
+theorem crossFacetOpposite_zero_of_balance_sum
+    {a b : ℕ}
+    (ha : 0 < a) (hb : 0 < b)
+    (z : Fin 4 → ℤ) (j : Fin 4)
+    (hzBal :
+      (a : ℤ) * z 0 + (b : ℤ) * z 1 =
+        (b : ℤ) * z 2 + (a : ℤ) * z 3)
+    (hzsum : z 0 + z 1 + z 2 + z 3 = 0)
+    (hzj : z j = 0)
+    (hzopp : z (crossFacetOppositeCoordinate j) = 0) :
+    ∀ k : Fin 4, z k = 0 := by
+  have haZ : (0 : ℤ) < (a : ℤ) := by exact_mod_cast ha
+  have hbZ : (0 : ℤ) < (b : ℤ) := by exact_mod_cast hb
+  have hab_ne : (a : ℤ) + (b : ℤ) ≠ 0 :=
+    ne_of_gt (add_pos haZ hbZ)
+  fin_cases j
+  · have hz0 : z 0 = 0 := hzj
+    have hz2 : z 2 = 0 := by
+      simpa [crossFacetOppositeCoordinate] using hzopp
+    have hz3neg : z 3 = -z 1 := by
+      rw [hz0, hz2] at hzsum
+      linarith
+    have hprod : ((a : ℤ) + (b : ℤ)) * z 1 = 0 := by
+      calc
+        ((a : ℤ) + (b : ℤ)) * z 1 =
+            (b : ℤ) * z 1 - (a : ℤ) * z 3 := by
+              rw [hz3neg]
+              ring
+        _ = 0 := by
+          rw [hz0, hz2] at hzBal
+          linarith
+    have hz1 : z 1 = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left hab_ne
+    have hz3 : z 3 = 0 := by simpa [hz1] using hz3neg
+    intro k
+    fin_cases k <;> assumption
+  · have hz1 : z 1 = 0 := hzj
+    have hz3 : z 3 = 0 := by
+      simpa [crossFacetOppositeCoordinate] using hzopp
+    have hz2neg : z 2 = -z 0 := by
+      rw [hz1, hz3] at hzsum
+      linarith
+    have hprod : ((a : ℤ) + (b : ℤ)) * z 0 = 0 := by
+      calc
+        ((a : ℤ) + (b : ℤ)) * z 0 =
+            (a : ℤ) * z 0 - (b : ℤ) * z 2 := by
+              rw [hz2neg]
+              ring
+        _ = 0 := by
+          rw [hz1, hz3] at hzBal
+          linarith
+    have hz0 : z 0 = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left hab_ne
+    have hz2 : z 2 = 0 := by simpa [hz0] using hz2neg
+    intro k
+    fin_cases k <;> assumption
+  · have hz2 : z 2 = 0 := hzj
+    have hz0 : z 0 = 0 := by
+      simpa [crossFacetOppositeCoordinate] using hzopp
+    have hz3neg : z 3 = -z 1 := by
+      rw [hz0, hz2] at hzsum
+      linarith
+    have hprod : ((a : ℤ) + (b : ℤ)) * z 1 = 0 := by
+      calc
+        ((a : ℤ) + (b : ℤ)) * z 1 =
+            (b : ℤ) * z 1 - (a : ℤ) * z 3 := by
+              rw [hz3neg]
+              ring
+        _ = 0 := by
+          rw [hz0, hz2] at hzBal
+          linarith
+    have hz1 : z 1 = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left hab_ne
+    have hz3 : z 3 = 0 := by simpa [hz1] using hz3neg
+    intro k
+    fin_cases k <;> assumption
+  · have hz3 : z 3 = 0 := hzj
+    have hz1 : z 1 = 0 := by
+      simpa [crossFacetOppositeCoordinate] using hzopp
+    have hz2neg : z 2 = -z 0 := by
+      rw [hz1, hz3] at hzsum
+      linarith
+    have hprod : ((a : ℤ) + (b : ℤ)) * z 0 = 0 := by
+      calc
+        ((a : ℤ) + (b : ℤ)) * z 0 =
+            (a : ℤ) * z 0 - (b : ℤ) * z 2 := by
+              rw [hz2neg]
+              ring
+        _ = 0 := by
+          rw [hz1, hz3] at hzBal
+          linarith
+    have hz0 : z 0 = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left hab_ne
+    have hz2 : z 2 = 0 := by simpa [hz0] using hz2neg
+    intro k
+    fin_cases k <;> assumption
+
 /-- Pure integer kernel lemma behind the cross-facet line recognition.
 
 The balance row is `(a,b,-b,-a)`.  The contact row has one common positive
@@ -80,120 +181,36 @@ theorem crossFacetOpposite_rankOne_kernel
   have hzBal :
       (a : ℤ) * z 0 + (b : ℤ) * z 1 =
         (b : ℤ) * z 2 + (a : ℤ) * z 3 := by
-    calc
-      (a : ℤ) * z 0 + (b : ℤ) * z 1 =
-          y j * ((a : ℤ) * x 0 + (b : ℤ) * x 1) -
-            x j * ((a : ℤ) * y 0 + (b : ℤ) * y 1) := by
-              dsimp [z]
-              ring
-      _ = y j * ((b : ℤ) * x 2 + (a : ℤ) * x 3) -
-            x j * ((b : ℤ) * y 2 + (a : ℤ) * y 3) := by
-              rw [hxBal, hyBal]
-      _ = (b : ℤ) * z 2 + (a : ℤ) * z 3 := by
-              dsimp [z]
-              ring
+    dsimp [z]
+    linear_combination (y j) * hxBal - (x j) * hyBal
 
   have hzContact :
       (contactScale : ℤ) * (z 0 + z 1 + z 2 + z 3) +
         contactBump * z j = 0 := by
-    calc
-      (contactScale : ℤ) * (z 0 + z 1 + z 2 + z 3) +
-          contactBump * z j =
-        y j *
-            ((contactScale : ℤ) * (x 0 + x 1 + x 2 + x 3) +
-              contactBump * x j) -
-          x j *
-            ((contactScale : ℤ) * (y 0 + y 1 + y 2 + y 3) +
-              contactBump * y j) := by
-                dsimp [z]
-                ring
-      _ = 0 := by rw [hxContact, hyContact]; ring
+    dsimp [z]
+    linear_combination (y j) * hxContact - (x j) * hyContact
 
   have hzSecondary :
       (secondaryScale : ℤ) * z (crossFacetOppositeCoordinate j) +
         secondaryBump * z j = 0 := by
-    calc
-      (secondaryScale : ℤ) * z (crossFacetOppositeCoordinate j) +
-          secondaryBump * z j =
-        y j *
-            ((secondaryScale : ℤ) * x (crossFacetOppositeCoordinate j) +
-              secondaryBump * x j) -
-          x j *
-            ((secondaryScale : ℤ) * y (crossFacetOppositeCoordinate j) +
-              secondaryBump * y j) := by
-                dsimp [z]
-                ring
-      _ = 0 := by rw [hxSecondary, hySecondary]; ring
+    dsimp [z]
+    linear_combination (y j) * hxSecondary - (x j) * hySecondary
 
-  have hcontactScaleZ : (0 : ℤ) < (contactScale : ℤ) := by
-    exact_mod_cast hcontactScale
-  have hsecondaryScaleZ : (0 : ℤ) < (secondaryScale : ℤ) := by
-    exact_mod_cast hsecondaryScale
-  have haZ : (0 : ℤ) < (a : ℤ) := by exact_mod_cast ha
-  have hbZ : (0 : ℤ) < (b : ℤ) := by exact_mod_cast hb
-  have hab_ne : (a : ℤ) + (b : ℤ) ≠ 0 := by
-    nlinarith
+  have hcontactScaleZ : (contactScale : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hcontactScale)
+  have hsecondaryScaleZ : (secondaryScale : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hsecondaryScale)
 
   have hzi : z (crossFacetOppositeCoordinate j) = 0 := by
-    have hmul :
-        (secondaryScale : ℤ) * z (crossFacetOppositeCoordinate j) = 0 := by
-      rw [hzj] at hzSecondary
-      simpa using hzSecondary
-    rcases mul_eq_zero.mp hmul with hscale | hz
-    · exact (ne_of_gt hsecondaryScaleZ hscale).elim
-    · exact hz
+    rw [hzj, mul_zero, add_zero] at hzSecondary
+    exact (mul_eq_zero.mp hzSecondary).resolve_left hsecondaryScaleZ
 
   have hzsum : z 0 + z 1 + z 2 + z 3 = 0 := by
-    have hmul :
-        (contactScale : ℤ) * (z 0 + z 1 + z 2 + z 3) = 0 := by
-      rw [hzj] at hzContact
-      simpa using hzContact
-    rcases mul_eq_zero.mp hmul with hscale | hsum
-    · exact (ne_of_gt hcontactScaleZ hscale).elim
-    · exact hsum
+    rw [hzj, mul_zero, add_zero] at hzContact
+    exact (mul_eq_zero.mp hzContact).resolve_left hcontactScaleZ
 
-  have hzall : ∀ k : Fin 4, z k = 0 := by
-    fin_cases j
-    · have hz0 : z 0 = 0 := hzj
-      have hz2 : z 2 = 0 := by
-        simpa [crossFacetOppositeCoordinate] using hzi
-      have hprod : ((a : ℤ) + (b : ℤ)) * z 1 = 0 := by
-        nlinarith [hzBal, hzsum]
-      have hz1 : z 1 = 0 :=
-        (mul_eq_zero.mp hprod).resolve_left hab_ne
-      have hz3 : z 3 = 0 := by nlinarith [hzsum]
-      intro k
-      fin_cases k <;> assumption
-    · have hz1 : z 1 = 0 := hzj
-      have hz3 : z 3 = 0 := by
-        simpa [crossFacetOppositeCoordinate] using hzi
-      have hprod : ((a : ℤ) + (b : ℤ)) * z 0 = 0 := by
-        nlinarith [hzBal, hzsum]
-      have hz0 : z 0 = 0 :=
-        (mul_eq_zero.mp hprod).resolve_left hab_ne
-      have hz2 : z 2 = 0 := by nlinarith [hzsum]
-      intro k
-      fin_cases k <;> assumption
-    · have hz2 : z 2 = 0 := hzj
-      have hz0 : z 0 = 0 := by
-        simpa [crossFacetOppositeCoordinate] using hzi
-      have hprod : ((a : ℤ) + (b : ℤ)) * z 1 = 0 := by
-        nlinarith [hzBal, hzsum]
-      have hz1 : z 1 = 0 :=
-        (mul_eq_zero.mp hprod).resolve_left hab_ne
-      have hz3 : z 3 = 0 := by nlinarith [hzsum]
-      intro k
-      fin_cases k <;> assumption
-    · have hz3 : z 3 = 0 := hzj
-      have hz1 : z 1 = 0 := by
-        simpa [crossFacetOppositeCoordinate] using hzi
-      have hprod : ((a : ℤ) + (b : ℤ)) * z 0 = 0 := by
-        nlinarith [hzBal, hzsum]
-      have hz0 : z 0 = 0 :=
-        (mul_eq_zero.mp hprod).resolve_left hab_ne
-      have hz2 : z 2 = 0 := by nlinarith [hzsum]
-      intro k
-      fin_cases k <;> assumption
+  have hzall :=
+    crossFacetOpposite_zero_of_balance_sum ha hb z j hzBal hzsum hzj hzi
 
   intro k
   exact sub_eq_zero.mp (by simpa [z] using hzall k)
@@ -229,12 +246,10 @@ theorem CrossFacetInitialData.support_crossFacet_affine_proportional
     (hcontact : ∀ d ∈ F.support,
       scaledContactExponentWeight j contactScale contactBump d = contactLevel) :
     ∀ d ∈ D.face.support, ∀ k : Fin 4,
-      (((D.outsideExponent j : ℕ) : ℤ) -
-          ((D.facetExponent j : ℕ) : ℤ)) *
-          (((d k : ℕ) : ℤ) - ((D.facetExponent k : ℕ) : ℤ)) =
-        (((d j : ℕ) : ℤ) - ((D.facetExponent j : ℕ) : ℤ)) *
-          (((D.outsideExponent k : ℕ) : ℤ) -
-            ((D.facetExponent k : ℕ) : ℤ)) := by
+      ((D.outsideExponent j : ℤ) - (D.facetExponent j : ℤ)) *
+          ((d k : ℤ) - (D.facetExponent k : ℤ)) =
+        ((d j : ℤ) - (D.facetExponent j : ℤ)) *
+          ((D.outsideExponent k : ℤ) - (D.facetExponent k : ℤ)) := by
   intro d hd
 
   let v := D.facetExponent
@@ -266,30 +281,29 @@ theorem CrossFacetInitialData.support_crossFacet_affine_proportional
       (a : ℤ) * x 0 + (b : ℤ) * x 1 =
         (b : ℤ) * x 2 + (a : ℤ) * x 3 := by
     dsimp [x, v]
-    nlinarith [hdBalZ, hvBalZ]
+    linear_combination hdBalZ - hvBalZ
   have hyBal :
       (a : ℤ) * y 0 + (b : ℤ) * y 1 =
         (b : ℤ) * y 2 + (a : ℤ) * y 3 := by
     dsimp [y, o, v]
-    nlinarith [hoBalZ, hvBalZ]
+    linear_combination hoBalZ - hvBalZ
 
   have hdContact := hcontact d hdF
   have hvContact := hcontact v D.facet_mem
   have hoContact := hcontact o D.outside_mem
-  unfold scaledContactExponentWeight ordinaryDegree4 at
-    hdContact hvContact hoContact
+  unfold scaledContactExponentWeight ordinaryDegree4 at hdContact hvContact hoContact
   push_cast at hdContact hvContact hoContact
 
   have hxContact :
       (contactScale : ℤ) * (x 0 + x 1 + x 2 + x 3) +
         (contactBump : ℤ) * x j = 0 := by
     dsimp [x, v]
-    nlinarith [hdContact, hvContact]
+    linear_combination hdContact - hvContact
   have hyContact :
       (contactScale : ℤ) * (y 0 + y 1 + y 2 + y 3) +
         (contactBump : ℤ) * y j = 0 := by
     dsimp [y, o, v]
-    nlinarith [hoContact, hvContact]
+    linear_combination hoContact - hvContact
 
   have hdSecondary := D.face_weight_eq hd
   have hvSecondary := D.face_weight_eq D.facet_mem_face
@@ -300,12 +314,12 @@ theorem CrossFacetInitialData.support_crossFacet_affine_proportional
       (D.scale : ℤ) * x (crossFacetOppositeCoordinate j) +
         D.bump * x j = 0 := by
     dsimp [x, v]
-    nlinarith [hdSecondary, hvSecondary]
+    linear_combination hdSecondary - hvSecondary
   have hySecondary :
       (D.scale : ℤ) * y (crossFacetOppositeCoordinate j) +
         D.bump * y j = 0 := by
     dsimp [y, o, v]
-    nlinarith [hoSecondary, hvSecondary]
+    linear_combination hoSecondary - hvSecondary
 
   have hkernel := crossFacetOpposite_rankOne_kernel
     (a := a) (b := b)
@@ -342,19 +356,18 @@ theorem CrossFacetInitialData.support_eq_of_contactCoordinate_eq
     ha hb hcontactScale hBal hcontact q hq k
   have hdenPos :
       (0 : ℤ) <
-        ((D.outsideExponent j : ℕ) : ℤ) -
-          ((D.facetExponent j : ℕ) : ℤ) := by
-    rw [D.facet_coordinate_zero]
+        (D.outsideExponent j : ℤ) - (D.facetExponent j : ℤ) := by
+    simp only [D.facet_coordinate_zero, Nat.cast_zero, sub_zero]
     exact_mod_cast D.outside_coordinate_pos
   have hpqjZ : (p j : ℤ) = (q j : ℤ) := by exact_mod_cast hpqj
   have hmul :
-      (((D.outsideExponent j : ℕ) : ℤ) -
-          ((D.facetExponent j : ℕ) : ℤ)) *
-        (((p k : ℕ) : ℤ) - ((q k : ℕ) : ℤ)) = 0 := by
-    nlinarith [hpLine, hqLine]
+      ((D.outsideExponent j : ℤ) - (D.facetExponent j : ℤ)) *
+        ((p k : ℤ) - (q k : ℤ)) = 0 := by
+    linear_combination hpLine - hqLine
   rcases mul_eq_zero.mp hmul with hden | hk
   · exact (ne_of_gt hdenPos hden).elim
-  · exact_mod_cast (show (p k : ℤ) = (q k : ℤ) by linarith)
+  · have hkZ : (p k : ℤ) = (q k : ℤ) := sub_eq_zero.mp hk
+    exact_mod_cast hkZ
 
 end
 
