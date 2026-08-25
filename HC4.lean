@@ -72,3 +72,7 @@ import HC4.MainAssembly
 
 import HC4.Valuation.CanonicalEntrySanity
 import HC4.Valuation.CanonicalAdaptiveSmithWall
+
+-- A18.5 terminal rank-three closure.  Keeping this on the root import graph
+-- ensures CI kernel-checks the complete supported-edge impossibility stack.
+import HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible
