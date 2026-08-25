@@ -88,3 +88,5 @@ import HC4.Newton.FirstContactCrossFacetAffineRR
 import HC4.Newton.FirstContactCrossFacetAffineRRReconstruction
 import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
 import HC4.Newton.FirstContactCrossFacetAffineRRFiniteSplit
+import HC4.Newton.FirstContactCrossFacetAffineRRTransition
+import HC4.Newton.FirstContactCrossFacetEndpointTransition
