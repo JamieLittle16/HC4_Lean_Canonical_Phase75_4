@@ -30,10 +30,9 @@ open HC4.Toric
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- A small specialised wrapper around the generic supported-endpoint theorem.
-Keeping this geometric elaboration in its own declaration prevents the large
-balanced/pencil context of the final contradiction from participating in
-unification. -/
+/- A specialised `M = 1` wrapper around the generic supported-endpoint
+boundary theorem.  Keeping this geometric elaboration in its own declaration
+prevents later balance and pencil data from entering its unification context. -/
 set_option maxHeartbeats 1000000 in
 theorem supported_rankThree_degreeOne_endpoint_zero_compact
     {v2 v3 v4 u1 u2 u3 u4 : ℕ}
@@ -59,11 +58,125 @@ theorem supported_rankThree_degreeOne_endpoint_zero_compact
     (M := 1) (F := F)
     hv2 hv3 hv4 (by decide) hu1 hsupp hstart hend hdet
 
-/-- The final contradiction after all geometric data have been compressed to
-ordinary natural-number balance equations, one of four primitive shapes, and
-the singular weighted endpoint pencil.  In particular this theorem contains
-no `MvPolynomial`, supported-line, or terminal-certificate data. -/
-set_option maxHeartbeats 400000 in
+/- A primitive `u₁ = 1` wrapper around the degree-one endpoint-pencil
+realisation.  The final theorem therefore never directly instantiates the
+large generic reconstruction theorem. -/
+set_option maxHeartbeats 1000000 in
+theorem supported_rankThree_primitive_degreeOne_pencil_det_zero_compact
+    {v2 v3 v4 u2 u3 u4 : ℕ}
+    {F : MvPolynomial (Fin 4) K}
+    (hsupp : IsSupportedOnRankThreeLine
+      v2 v3 v4 1 u2 u3 u4 1 F)
+    (hdet : hessianDeterminant F = 0) :
+    let phi := rankThreeLineCoefficientPolynomial
+      v2 v3 v4 1 u2 u3 u4 1 F
+    (weightedRankThreeEndpointPencil
+      (K := K)
+      (v2 : K) (v3 : K) (v4 : K)
+      (1 : K) (u2 : K) (u3 : K) (u4 : K)
+      (phi.coeff 0) (phi.coeff 1)).det = 0 := by
+  exact supported_rankThree_degreeOne_endpointPencil_det_zero
+    (K := K)
+    (v2 := v2) (v3 := v3) (v4 := v4)
+    (u1 := 1) (u2 := u2) (u3 := u3) (u4 := u4)
+    (F := F) (by decide) hsupp hdet
+
+/- The third-coordinate-zero one-zero branch is pure finite arithmetic once
+A18.5.49 has supplied the base equality and cross product. -/
+set_option maxHeartbeats 600000 in
+theorem balanced_primitive_rankThree_thirdZero_pencil_impossible
+    {a b v2 v3 v4 u2 u4 : ℕ}
+    {c0 c1 : K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hv3 : 0 < v3) (hv4 : 0 < v4)
+    (hu2 : 0 < u2) (hu4 : 0 < u4)
+    (hc0 : c0 ≠ 0) (hc1 : c1 ≠ 0)
+    (hBal0 : b * v2 = b * v3 + a * v4)
+    (hBal1 : a + b * u2 = a * u4)
+    (hpencil :
+      (weightedRankThreeEndpointPencil
+        (K := K)
+        (v2 : K) (v3 : K) (v4 : K)
+        (1 : K) (u2 : K) 0 (u4 : K) c0 c1).det = 0) :
+    False := by
+  have hrigid := thirdZero_weightedPencil_base_eq_one_and_cross
+    (K := K)
+    (A := v2) (B := v3) (C := v4)
+    (Q := u2) (S := u4) (c0 := c0) (c1 := c1)
+    hv3 hu2 hu4 hc0 hc1 hpencil
+  have hv3one : v3 = 1 := hrigid.1
+  have hcross : v2 * u4 = v4 * u2 := hrigid.2
+  have hsNat : b * v2 = b + a * v4 := by
+    simpa [hv3one] using hBal0
+  have hsZ :
+      (b : ℤ) * (v2 : ℤ) = (b : ℤ) + (a : ℤ) * (v4 : ℤ) := by
+    exact_mod_cast hsNat
+  have heZ :
+      (a : ℤ) + (b : ℤ) * (u2 : ℤ) = (a : ℤ) * (u4 : ℤ) := by
+    exact_mod_cast hBal1
+  have hcrossZ :
+      (v2 : ℤ) * (u4 : ℤ) = (v4 : ℤ) * (u2 : ℤ) := by
+    exact_mod_cast hcross
+  have hzeroZ :
+      (a : ℤ) * (v4 : ℤ) + (b : ℤ) * (u4 : ℤ) = 0 := by
+    linear_combination
+      (v4 : ℤ) * heZ + (b : ℤ) * hcrossZ - (u4 : ℤ) * hsZ
+  have hav4 : (0 : ℤ) < (a : ℤ) * (v4 : ℤ) := by
+    exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hv4)
+  have hbu4 : (0 : ℤ) < (b : ℤ) * (u4 : ℤ) := by
+    exact mul_pos (by exact_mod_cast hb) (by exact_mod_cast hu4)
+  linarith
+
+/- The fourth-coordinate-zero one-zero branch is the cyclic arithmetic
+counterpart of the preceding helper. -/
+set_option maxHeartbeats 600000 in
+theorem balanced_primitive_rankThree_fourthZero_pencil_impossible
+    {a b v2 v3 v4 u2 u3 : ℕ}
+    {c0 c1 : K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hv2 : 0 < v2) (hv4 : 0 < v4)
+    (hu2 : 0 < u2) (hu3 : 0 < u3)
+    (hc0 : c0 ≠ 0) (hc1 : c1 ≠ 0)
+    (hBal0 : b * v2 = b * v3 + a * v4)
+    (hBal1 : a + b * u2 = b * u3)
+    (hpencil :
+      (weightedRankThreeEndpointPencil
+        (K := K)
+        (v2 : K) (v3 : K) (v4 : K)
+        (1 : K) (u2 : K) (u3 : K) 0 c0 c1).det = 0) :
+    False := by
+  have hrigid := fourthZero_weightedPencil_base_eq_one_and_cross
+    (K := K)
+    (A := v2) (B := v3) (C := v4)
+    (Q := u2) (R := u3) (c0 := c0) (c1 := c1)
+    hv4 hu2 hu3 hc0 hc1 hpencil
+  have hv4one : v4 = 1 := hrigid.1
+  have hcross : v2 * u3 = v3 * u2 := hrigid.2
+  have hsNat : b * v2 = b * v3 + a := by
+    simpa [hv4one] using hBal0
+  have hsZ :
+      (b : ℤ) * (v2 : ℤ) = (b : ℤ) * (v3 : ℤ) + (a : ℤ) := by
+    exact_mod_cast hsNat
+  have heZ :
+      (a : ℤ) + (b : ℤ) * (u2 : ℤ) = (b : ℤ) * (u3 : ℤ) := by
+    exact_mod_cast hBal1
+  have hcrossZ :
+      (v2 : ℤ) * (u3 : ℤ) = (v3 : ℤ) * (u2 : ℤ) := by
+    exact_mod_cast hcross
+  have hzeroZ :
+      (a : ℤ) * (v2 : ℤ) + (a : ℤ) * (u2 : ℤ) = 0 := by
+    linear_combination
+      (v2 : ℤ) * heZ - (u2 : ℤ) * hsZ + (b : ℤ) * hcrossZ
+  have hav2 : (0 : ℤ) < (a : ℤ) * (v2 : ℤ) := by
+    exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hv2)
+  have hau2 : (0 : ℤ) < (a : ℤ) * (u2 : ℤ) := by
+    exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hu2)
+  linarith
+
+/- Dispatch the four primitive support shapes.  The two one-zero branches now
+call separately compiled arithmetic helpers, so this declaration performs no
+large field-valued coefficient calculation. -/
+set_option maxHeartbeats 250000 in
 theorem balanced_primitive_rankThree_degreeOne_pencil_impossible
     {a b v2 v3 v4 u2 u3 u4 : ℕ}
     {c0 c1 : K}
@@ -99,68 +212,20 @@ theorem balanced_primitive_rankThree_degreeOne_pencil_impossible
         (K := K) hv2 hv4 hu3pos hc0 hc1) hpencil
   · rcases hsp with ⟨hu2pos, hu3, hu4pos⟩
     subst u3
-    have hrigid := thirdZero_weightedPencil_base_eq_one_and_cross
-      (K := K)
-      (A := v2) (B := v3) (C := v4)
-      (Q := u2) (S := u4)
-      hv3 hu2pos hu4pos hc0 hc1 hpencil
-    have hv3one : v3 = 1 := hrigid.1
-    have hcross : v2 * u4 = v4 * u2 := hrigid.2
-    have hsNat : b * v2 = b + a * v4 := by
-      simpa [hv3one] using hBal0
-    have heNat : a + b * u2 = a * u4 := by
+    have hBal1' : a + b * u2 = a * u4 := by
       simpa using hBal1
-    have hsZ :
-        (b : ℤ) * (v2 : ℤ) = (b : ℤ) + (a : ℤ) * (v4 : ℤ) := by
-      exact_mod_cast hsNat
-    have heZ :
-        (a : ℤ) + (b : ℤ) * (u2 : ℤ) = (a : ℤ) * (u4 : ℤ) := by
-      exact_mod_cast heNat
-    have hcrossZ :
-        (v2 : ℤ) * (u4 : ℤ) = (v4 : ℤ) * (u2 : ℤ) := by
-      exact_mod_cast hcross
-    have hzeroZ :
-        (a : ℤ) * (v4 : ℤ) + (b : ℤ) * (u4 : ℤ) = 0 := by
-      linear_combination
-        (v4 : ℤ) * heZ + (b : ℤ) * hcrossZ - (u4 : ℤ) * hsZ
-    have hav4 : (0 : ℤ) < (a : ℤ) * (v4 : ℤ) := by
-      exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hv4)
-    have hbu4 : (0 : ℤ) < (b : ℤ) * (u4 : ℤ) := by
-      exact mul_pos (by exact_mod_cast hb) (by exact_mod_cast hu4pos)
-    linarith
+    exact balanced_primitive_rankThree_thirdZero_pencil_impossible
+      (K := K) ha hb hv3 hv4 hu2pos hu4pos hc0 hc1 hBal0 hBal1' hpencil
   · rcases hrq with ⟨hu2pos, hu3pos, hu4⟩
     subst u4
-    have hrigid := fourthZero_weightedPencil_base_eq_one_and_cross
-      (K := K)
-      (A := v2) (B := v3) (C := v4)
-      (Q := u2) (R := u3)
-      hv4 hu2pos hu3pos hc0 hc1 hpencil
-    have hv4one : v4 = 1 := hrigid.1
-    have hcross : v2 * u3 = v3 * u2 := hrigid.2
-    have hsNat : b * v2 = b * v3 + a := by
-      simpa [hv4one] using hBal0
-    have heNat : a + b * u2 = b * u3 := by
+    have hBal1' : a + b * u2 = b * u3 := by
       simpa using hBal1
-    have hsZ :
-        (b : ℤ) * (v2 : ℤ) = (b : ℤ) * (v3 : ℤ) + (a : ℤ) := by
-      exact_mod_cast hsNat
-    have heZ :
-        (a : ℤ) + (b : ℤ) * (u2 : ℤ) = (b : ℤ) * (u3 : ℤ) := by
-      exact_mod_cast heNat
-    have hcrossZ :
-        (v2 : ℤ) * (u3 : ℤ) = (v3 : ℤ) * (u2 : ℤ) := by
-      exact_mod_cast hcross
-    have hzeroZ :
-        (a : ℤ) * (v2 : ℤ) + (a : ℤ) * (u2 : ℤ) = 0 := by
-      linear_combination
-        (v2 : ℤ) * heZ - (u2 : ℤ) * hsZ + (b : ℤ) * hcrossZ
-    have hav2 : (0 : ℤ) < (a : ℤ) * (v2 : ℤ) := by
-      exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hv2)
-    have hau2 : (0 : ℤ) < (a : ℤ) * (u2 : ℤ) := by
-      exact mul_pos (by exact_mod_cast ha) (by exact_mod_cast hu2pos)
-    linarith
+    exact balanced_primitive_rankThree_fourthZero_pencil_impossible
+      (K := K) ha hb hv2 hv4 hu2pos hu3pos hc0 hc1 hBal0 hBal1' hpencil
 
-/-- **Balanced degree-one rank-three terminal impossibility.** -/
+/- **Balanced degree-one rank-three terminal impossibility.**  The final
+assembly consumes only the two compact geometric wrappers and then hands the
+finite data to the small primitive dispatcher above. -/
 set_option maxHeartbeats 600000 in
 theorem supported_balanced_rankThree_degreeOne_impossible
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b)
@@ -208,10 +273,11 @@ theorem supported_balanced_rankThree_degreeOne_impossible
         (1 : K) (u2 : K) (u3 : K) (u4 : K)
         (phi.coeff 0) (phi.coeff 1)).det = 0 := by
     simpa [phi] using
-      (supported_rankThree_degreeOne_endpointPencil_det_zero
-        (K := K) (v2 := v2) (v3 := v3) (v4 := v4)
-        (u1 := 1) (u2 := u2) (u3 := u3) (u4 := u4)
-        (F := F) (by decide) hsupp hdet)
+      (supported_rankThree_primitive_degreeOne_pencil_det_zero_compact
+        (K := K)
+        (v2 := v2) (v3 := v3) (v4 := v4)
+        (u2 := u2) (u3 := u3) (u4 := u4)
+        (F := F) hsupp hdet)
 
   let e0 := rankThreeLineExponentFinsupp
     v2 v3 v4 1 u2 u3 u4 1 0
