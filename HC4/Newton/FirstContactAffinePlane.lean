@@ -43,10 +43,10 @@ theorem firstContact_initialForm_support_constraints
   · exact
       (hBal.initialForm
         (scaledContactWeight j scale bump) (scale * m : ℤ)) d hd
-  · have hhom :=
-      initialForm_isWeightedHomogeneous
-        (scaledContactWeight j scale bump) (scale * m : ℤ) ψ
-    have hw := hhom hd
+  · have hw :=
+      (initialForm_isWeightedHomogeneous
+        (scaledContactWeight j scale bump) (scale * m : ℤ) ψ)
+        (MvPolynomial.mem_support_iff.mp hd)
     rw [weight_scaledContactWeight] at hw
     exact hw
 
