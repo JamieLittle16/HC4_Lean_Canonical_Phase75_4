@@ -63,6 +63,11 @@ theorem scaleAwareHessianSeriesMatrix_coeff_zero
   simp [HC4.Polynomial.hessian_apply,
     polynomialFamilySpecialFiber, MvPolynomial.pderiv_map]
 
+attribute [local simp] scaleAwareHessianSeriesMatrix_coeff_zero
+attribute [local simp] GeneralFourBlock.activeDet
+attribute [local simp] HC4.Polynomial.hessian_apply
+attribute [local simp] pderiv_comm_commRing mul_comm
+
 /-- The finite block is exactly the genuine special-fibre Hessian matrix. -/
 theorem scaleAwareSpecialHessianFourBlock_matrix
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K)) :
@@ -74,6 +79,7 @@ theorem scaleAwareSpecialHessianFourBlock_matrix
       parameterConstantCoeffFourBlock,
       scaleAwareHessianFourBlock,
       GeneralFourBlock.ofSymmetricMatrix,
+      GeneralFourBlock.matrix,
       scaleAwareHessianSeriesMatrix_coeff_zero]
 
 /-! ## The finite permutations used by the ten core relations -/
