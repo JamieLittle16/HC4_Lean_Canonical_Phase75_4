@@ -69,9 +69,14 @@ noncomputable def coordinateMaxInitialData
     (F : MvPolynomial (Fin 4) K)
     (hF : F ≠ 0)
     (i : Fin 4) : CoordinateMaxInitialData F i := by
+  classical
   have hsupp : F.support.Nonempty := MvPolynomial.support_nonempty.mpr hF
-  rcases Finset.exists_max_image F.support (fun d => d i) hsupp with
-    ⟨d, hd, hmax⟩
+  have hex : ∃ d ∈ F.support, ∀ q ∈ F.support, q i ≤ d i :=
+    Finset.exists_max_image F.support (fun d => d i) hsupp
+  let d := Classical.choose hex
+  have hdspec := Classical.choose_spec hex
+  have hd : d ∈ F.support := hdspec.1
+  have hmax : ∀ q ∈ F.support, q i ≤ d i := hdspec.2
   let m := d i
   let G := initialForm (coordinateMaxWeight i) (m : ℤ) F
   have hbound : IsWeightLE (coordinateMaxWeight i) (m : ℤ) F := by
@@ -177,6 +182,13 @@ theorem exists_exposed_nonlinear_balanced_monomial
 
   have hc : c ≠ 0 := by
     dsimp [c]
+    have hcoeff :
+        MvPolynomial.coeff d D3.face = MvPolynomial.coeff d D2.face := by
+      rw [D3.face_eq, coeff_initialForm, weight_coordinateMaxWeight]
+      have hd3 : d (3 : Fin 4) = D3.level := by
+        simpa [d] using D3.witness_coordinate
+      simp [hd3]
+    rw [hcoeff]
     exact MvPolynomial.mem_support_iff.mp D3.witness_mem
 
   have hunique : ∀ q ∈ D3.face.support, q = d := by
@@ -187,18 +199,15 @@ theorem exists_exposed_nonlinear_balanced_monomial
     apply Finsupp.ext
     intro i
     fin_cases i
-    · have hqv := D0.coordinate_eq q hq0
-      have hdv := D0.coordinate_eq d hd0
-      omega
-    · have hqv := D1.coordinate_eq q hq1
-      have hdv := D1.coordinate_eq d hd1
-      omega
-    · have hqv := D2.coordinate_eq q hq2
-      have hdv := D2.coordinate_eq d hd2
-      omega
-    · have hqv := D3.coordinate_eq q hq
-      have hdv := D3.witness_coordinate
-      omega
+    · simpa using
+        (D0.coordinate_eq q hq0).trans (D0.coordinate_eq d hd0).symm
+    · simpa using
+        (D1.coordinate_eq q hq1).trans (D1.coordinate_eq d hd1).symm
+    · simpa using
+        (D2.coordinate_eq q hq2).trans (D2.coordinate_eq d hd2).symm
+    · have hd3 : d (3 : Fin 4) = D3.level := by
+        simpa [d] using D3.witness_coordinate
+      simpa using (D3.coordinate_eq q hq).trans hd3.symm
 
   have hmono : D3.face = MvPolynomial.monomial d c := by
     apply MvPolynomial.ext
@@ -210,8 +219,11 @@ theorem exists_exposed_nonlinear_balanced_monomial
         by_contra hne
         have hqs : q ∈ D3.face.support := MvPolynomial.mem_support_iff.mpr hne
         exact hqd (hunique q hqs)
+      have hdq : d ≠ q := by
+        intro hdq
+        exact hqd hdq.symm
       rw [hq0]
-      simp [hqd]
+      simp [hdq]
 
   refine ⟨D2.face, coordinateMaxWeight (3 : Fin 4), (D3.level : ℤ),
     d, c, h2zero, h2Bal, D3.weight_bound, ?_, hc, hnonlinear d hdF⟩
