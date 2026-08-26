@@ -44,8 +44,8 @@ theorem complementaryLineExponentFinsupp_injective
     j = r := by
   have h0 := congrArg (fun d : Fin 4 →₀ ℕ => d (0 : Fin 4)) hjr
   simp [complementaryLineExponentFinsupp] at h0
-  rcases h0 with hj | hh0 | ha10
-  · exact hj
+  rcases h0 with hjr | hh0 | ha10
+  · exact hjr
   · exact (Nat.ne_of_gt hh hh0).elim
   · exact (Nat.ne_of_gt ha1 ha10).elim
 
@@ -155,6 +155,7 @@ theorem eq_complementaryLineRangePolynomial_of_supported
     unfold complementaryLineRangePolynomial
     rw [MvPolynomial.coeff_sum]
     rw [hd0]
+    symm
     apply Finset.sum_eq_zero
     intro j hj
     by_cases heq :
