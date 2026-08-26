@@ -324,8 +324,20 @@ theorem conformalDegreeTwoFace_associatedGradedCollisionData_of_source_rawDefect
       (fun i : Fin 4 => terminalQuadraticPositiveWeight (rho.symm i)) =
         standardOneZeroTerminalWeight 2 1 := by
     funext i
-    fin_cases i <;>
-      simp [rho, terminalQuadraticPositiveWeight,
+    fin_cases i
+    · have hswap :
+          (Equiv.swap (1 : Fin 4) 3) (0 : Fin 4) = 0 :=
+        Equiv.swap_apply_of_ne_of_ne (by decide) (by decide)
+      simp [rho, hswap, terminalQuadraticPositiveWeight,
+        standardOneZeroTerminalWeight]
+    · simp [rho, terminalQuadraticPositiveWeight,
+        standardOneZeroTerminalWeight]
+    · have hswap :
+          (Equiv.swap (1 : Fin 4) 3) (2 : Fin 4) = 2 :=
+        Equiv.swap_apply_of_ne_of_ne (by decide) (by decide)
+      simp [rho, hswap, terminalQuadraticPositiveWeight,
+        standardOneZeroTerminalWeight]
+    · simp [rho, terminalQuadraticPositiveWeight,
         standardOneZeroTerminalWeight]
   have hhomRenamed :
       IsIntegralWeightedHomogeneous
