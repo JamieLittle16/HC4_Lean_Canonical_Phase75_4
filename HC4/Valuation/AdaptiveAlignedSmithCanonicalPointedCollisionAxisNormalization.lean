@@ -75,7 +75,13 @@ private theorem longitudinalOneData_nonempty
         P0 (zeroPolynomialSection (K := K)) b0 := by
     have h := zeroDefectConstantParameterFamily_exactCollision
       E.polynomial (fun _ : Fin 4 => (0 : K)) E.endpoint E.exactCollision
-    simpa [P0, b0, polynomialConstantSection, zeroPolynomialSection] using h
+    have hzeroSection :
+        polynomialConstantSection (fun _ : Fin 4 => (0 : K)) =
+          zeroPolynomialSection (K := K) := by
+      funext i
+      simp [polynomialConstantSection, zeroPolynomialSection]
+    rw [hzeroSection] at h
+    simpa [P0, b0] using h
 
   by_cases hzero : E.endpoint (0 : Fin 4) = 0
   · have hex : ∃ i : Fin 4, E.endpoint i ≠ 0 := by
@@ -180,7 +186,7 @@ private theorem longitudinalOneData_nonempty
       simpa [P2, b2] using h
     have hb2zero :
         polynomialSectionSpecialPoint b2 (0 : Fin 4) = 1 := by
-      simp only [b2, transverseSourceUnshearSection, if_pos]
+      change Polynomial.constantCoeff (b1 0 - c2 * b1 1) = 1
       rw [map_sub, map_mul]
       change
         polynomialSectionSpecialPoint b1 0 -
