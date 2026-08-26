@@ -28,6 +28,7 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
+set_option maxHeartbeats 2000000 in
 /-- **The genuine `qs` rank-three first-contact branch is contradictory.** -/
 theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
     {F : MvPolynomial (Fin 4) K}
@@ -59,6 +60,8 @@ theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
       ha hb hcontactScale hBal hcontact hR D.outside_mem_face
     have h3fix := D.qs_support_coordinate_eq_facet_of_slope_zero
       ha hb hcontactScale hBal hcontact hS D.outside_mem_face
+    have hout0 : 0 < D.outsideExponent (0 : Fin 4) :=
+      D.outside_coordinate_pos
     have hdegGt : ordinaryDegree4 D.facetExponent <
         ordinaryDegree4 D.outsideExponent := by
       unfold ordinaryDegree4
