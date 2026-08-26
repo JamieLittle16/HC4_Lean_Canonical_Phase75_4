@@ -1,5 +1,5 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
-import HC4.Newton.FirstContactCrossFacetAffineRRReconstruction
+import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
 import HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible
 import Mathlib.Tactic
 
@@ -15,8 +15,8 @@ Both contradict the strict degree drop forced by the positive first-contact
 bump.
 
 The affine two-fixed contradiction of A18.5.73a then applies directly to the
-exact `RankThreeAffineLineData`.  No integral reparameterisation and no
-endpoint divisibility hypothesis is used.
+exact terminal certificate already constructed in A18.5.68.  No integral
+reparameterisation and no endpoint divisibility hypothesis is used.
 -/
 
 namespace HC4.Newton
@@ -95,10 +95,10 @@ private theorem qs_remainingSlope_add_one_ne_zero_of_two_fixed
       ha hb hcontactScale hBal hcontact hsum
   omega
 
-set_option maxHeartbeats 4000000 in
 /-- The affine RR certificate attached to a two-fixed genuine `qs` first
-contact is contradictory.  This command contains the expensive certificate
-elaboration separately from the elementary first-contact arithmetic above. -/
+contact is contradictory.  The expensive affine-line-to-terminal conversion
+was already proved in A18.5.68; this adapter only specializes its two fixed
+slopes and invokes A18.5.73a. -/
 private theorem qs_two_fixed_affine_terminal_impossible
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -117,25 +117,16 @@ private theorem qs_two_fixed_affine_terminal_impossible
     (hQ : D.qsSlope (1 : Fin 4) ≠ 0)
     (hQone : D.qsSlope (1 : Fin 4) + 1 ≠ 0) :
     False := by
-  have hfacet := mvRankThreeOnFacet_qs hthree
-  have hA : 0 < D.facetExponent (1 : Fin 4) := hfacet.2.1
-  have hB : 0 < D.facetExponent (2 : Fin 4) := hfacet.2.2.1
-  have hC : 0 < D.facetExponent (3 : Fin 4) := hfacet.2.2.2
+  rcases D.qs_rankThree_endpoint_coordinates hthree with
+    ⟨_hzero0, hA, hB, hC⟩
   have hphiDeg : 0 < D.qsCoefficientPolynomial.natDegree :=
     D.qsCoefficientPolynomial_natDegree_pos
       ha hb hcontactScale hBal hcontact
   have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
     D.qsCoefficientPolynomial_coeff_zero_ne
       ha hb hcontactScale hBal hcontact
-
-  let L := D.qsAffineLineData ha hb hcontactScale hBal hcontact
-  have hdetL : hessianDeterminant L.polynomial = 0 := by
-    simpa [L] using
-      D.qsAffineLineData_hessian_zero
-        ha hb hcontactScale hBal hcontact hzero
-  have hcertRaw :=
-    HC4.RationalRigidity.hasRankThreePolynomialTerminalCertificate_of_affine_line
-      L hA hB hC (by decide) hphiDeg hphi0 hdetL
+  have hcertRaw := D.qs_rankThree_terminalCertificate
+    ha hb hcontactScale hBal hcontact hzero hthree
   have hcert :
       HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
         (phi := D.qsCoefficientPolynomial)
@@ -144,8 +135,7 @@ private theorem qs_two_fixed_affine_terminal_impossible
         ((D.facetExponent 3 : ℕ) : K)
         (1 : K)
         (D.qsSlope (1 : Fin 4)) 0 0 := by
-    simpa [L, hR, hS] using hcertRaw
-
+    simpa only [hR, hS] using hcertRaw
   exact HC4.RationalRigidity.rankThree_terminal_two_fixed_impossible
     hA hB hC (by decide) hphiDeg hphi0 hcert hQ hQone
 
