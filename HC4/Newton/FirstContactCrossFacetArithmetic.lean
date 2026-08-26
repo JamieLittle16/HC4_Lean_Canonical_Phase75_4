@@ -95,7 +95,7 @@ theorem CrossFacetInitialData.qs_rankThree_firstContact_forces_b_one
     have hmul :
         b * e (1 : Fin 4) ≤ b * D.facetExponent (1 : Fin 4) := by
       omega
-    exact (Nat.mul_le_mul_left hb).mp hmul
+    exact Nat.le_of_mul_le_mul_left hmul hb
 
   have hb_dvd_a : b ∣ a := by
     refine ⟨D.facetExponent (1 : Fin 4) - e (1 : Fin 4), ?_⟩
