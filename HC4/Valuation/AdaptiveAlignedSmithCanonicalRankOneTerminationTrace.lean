@@ -104,6 +104,31 @@ noncomputable def
   | restart progress rawDefect_lt repair_eq tail ih =>
       exact ih
 
+/-- **The finite raw-defect trace does not spend the repair rank.**
+
+The reached rank-three geometry still lives on a canonical rank-one repair
+state whenever the source did.  This fact was implicit in every `restart`
+constructor but was previously dropped by `reachedRankThree`.  Final assembly
+can therefore continue a source-honest global/provenance argument from the
+actual reached state; rank-three geometry is not treated as a contradiction by
+itself. -/
+theorem
+    AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedRankThree_repair_eq
+    {RR : RepairRanking}
+    {complexity : ℕ}
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+      RR complexity source) :
+    source.repair = rankOneRepairState complexity →
+      T.reachedRankThree.state.repair = rankOneRepairState complexity := by
+  induction T with
+  | terminal geometry =>
+      intro hsrepair
+      exact hsrepair
+  | restart progress rawDefect_lt repair_eq tail ih =>
+      intro hsrepair
+      exact ih (repair_eq.trans hsrepair)
+
 /-- Existential-facing corollary of the lossless trace theorem. -/
 theorem ScaleAwareAdaptiveGeometricRestartState.exists_reachedRankThree
     (RR : RepairRanking)
