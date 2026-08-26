@@ -82,7 +82,7 @@ theorem rankThree_terminal_two_fixed_impossible
     False := by
   rcases exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
       hA hB hC hP hphiDeg hphi0 hcert with
-    ⟨hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
+    ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
   subst P
 
   let T := rankThreeAutonomousPolynomial
@@ -129,10 +129,15 @@ theorem rankThree_terminal_two_fixed_impossible
   have hC0 : (C : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hC)
   have hpref : (B : K) * (C : K) * Q * (Q + 1) ≠ 0 :=
     mul_ne_zero (mul_ne_zero (mul_ne_zero hB0 hC0) hQ) hQone
+  have hcoeff' :
+      ((B : K) * (C : K) * Q * (Q + 1)) *
+        ((B : K) * T.coeff 2 + (C : K) * T.coeff 2 -
+          T.coeff 2 - 1) = 0 := by
+    simpa [mul_assoc] using hcoeff
   have hfactor :
       (B : K) * T.coeff 2 + (C : K) * T.coeff 2 -
           T.coeff 2 - 1 = 0 :=
-    (mul_eq_zero.mp hcoeff).resolve_left hpref
+    (mul_eq_zero.mp hcoeff').resolve_left hpref
 
   have ht : T.coeff 2 ≠ 0 := by
     intro ht0
