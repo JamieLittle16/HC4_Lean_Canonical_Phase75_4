@@ -49,13 +49,33 @@ noncomputable def exposedBoundaryVertex
   have hFaceBal : HasBalancedMvSupport a b D.face :=
     D.face_balanced_of_specialFiber_balanced hBal
 
-  rcases exists_exposed_nonlinear_balanced_monomial
+  have hexposed :=
+    exists_exposed_nonlinear_balanced_monomial
       D.face_ne_zero D.hessian_zero hFaceBal
-      D.face_support_degree_ge_three with
-    ⟨G, w, level, d, c, hGzero, hGBal, hwbound, hexposed, hc, hd3⟩
+      D.face_support_degree_ge_three
+  let G := Classical.choose hexposed
+  have hexposed1 := Classical.choose_spec hexposed
+  let w := Classical.choose hexposed1
+  have hexposed2 := Classical.choose_spec hexposed1
+  let level := Classical.choose hexposed2
+  have hexposed3 := Classical.choose_spec hexposed2
+  let d := Classical.choose hexposed3
+  have hexposed4 := Classical.choose_spec hexposed3
+  let c := Classical.choose hexposed4
+  have hs := Classical.choose_spec hexposed4
+  have hGzero := hs.1
+  have hs := hs.2
+  have hGBal := hs.1
+  have hs := hs.2
+  have hwbound := hs.1
+  have hs := hs.2
+  have hexposedEq := hs.1
+  have hs := hs.2
+  have hc := hs.1
+  have hd3 := hs.2
 
   have hstratum := exposed_balanced_monomial_rankThree_or_extremeRay
-    ha hb hcop hGBal hwbound hGzero hexposed hc hd3
+    ha hb hcop hGBal hwbound hGzero hexposedEq hc hd3
 
   exact {
     carrier := G
@@ -66,7 +86,7 @@ noncomputable def exposedBoundaryVertex
     carrier_hessian_zero := hGzero
     carrier_balanced := hGBal
     weight_bound := hwbound
-    exposed := hexposed
+    exposed := hexposedEq
     coeff_ne_zero := hc
     exponent_nonlinear := hd3
     stratum := hstratum
