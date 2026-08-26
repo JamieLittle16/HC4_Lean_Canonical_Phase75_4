@@ -59,7 +59,7 @@ def HasNoStrictLowSmithPatterns
 noncomputable def conformalDegreeTwoFace
     (T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
       RR state complexity) : MvPolynomial (Fin 4) K :=
-  initialForm terminalQuadraticNegativeWeight (-2) T.specialFiber
+  HC4.Polynomial.initialForm terminalQuadraticNegativeWeight (-2) T.specialFiber
 
 /-- A pure ramified presentation preserves a zero source raw clock. -/
 theorem presentedState_rawDefect_eq_zero_of_source
@@ -98,7 +98,8 @@ theorem conformalNegativeWeightLE_of_noStrictLow
     (T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
       RR state complexity)
     (hno : T.HasNoStrictLowSmithPatterns) :
-    IsWeightLE terminalQuadraticNegativeWeight (-2) T.specialFiber := by
+    HC4.Polynomial.IsWeightLE terminalQuadraticNegativeWeight (-2)
+      T.specialFiber := by
   intro d hd
   let e := smithSupportExponentOf (1 : Fin 4) 2 3 d
   have he : e ∈ smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber := by
@@ -128,7 +129,7 @@ theorem conformalDegreeTwoFace_positiveHomogeneous
       terminalQuadraticPositiveWeight 2 T.conformalDegreeTwoFace := by
   intro d hd
   unfold conformalDegreeTwoFace at hd
-  rw [coeff_initialForm] at hd
+  rw [HC4.Polynomial.coeff_initialForm] at hd
   split at hd
   · rename_i hweight
     have hneg := hweight
@@ -148,10 +149,10 @@ theorem conformalDegreeTwoFace_hessianDeterminant_eq_one
     HC4.Polynomial.hessianDeterminant T.conformalDegreeTwoFace = 1 := by
   have hbound := T.conformalNegativeWeightLE_of_noStrictLow hno
   have htop :=
-    initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
+    HC4.Polynomial.initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
       terminalQuadraticNegativeWeight (-2) T.specialFiber hbound
   have htop' :
-      initialForm terminalQuadraticNegativeWeight 0
+      HC4.Polynomial.initialForm terminalQuadraticNegativeWeight 0
           (HC4.Polynomial.hessianDeterminant T.specialFiber) =
         HC4.Polynomial.hessianDeterminant T.conformalDegreeTwoFace := by
     simpa [terminalQuadraticNegativeWeight_sum,
@@ -161,9 +162,9 @@ theorem conformalDegreeTwoFace_hessianDeterminant_eq_one
     T.specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero hzero
   rw [hdet] at htop'
   have hone :
-      initialForm terminalQuadraticNegativeWeight 0
+      HC4.Polynomial.initialForm terminalQuadraticNegativeWeight 0
           (1 : MvPolynomial (Fin 4) K) = 1 := by
-    exact initialForm_eq_self_of_isWeightedHomogeneous
+    exact HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous
       (MvPolynomial.isWeightedHomogeneous_one K terminalQuadraticNegativeWeight)
   rw [hone] at htop'
   exact htop'.symm
@@ -226,7 +227,7 @@ theorem conformalDegreeTwoFace_wLinearCoefficient
   rw [coeff_longitudinalCoefficientPolynomial,
     coeff_longitudinalCoefficientPolynomial]
   unfold conformalDegreeTwoFace
-  rw [coeff_initialForm]
+  rw [HC4.Polynomial.coeff_initialForm]
   have hw :
       Finsupp.weight terminalQuadraticNegativeWeight
           ((smithTransverseExponent 0 0 1).cons a) = -2 := by
