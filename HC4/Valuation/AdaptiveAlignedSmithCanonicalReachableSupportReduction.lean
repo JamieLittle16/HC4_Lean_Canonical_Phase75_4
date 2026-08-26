@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSupportFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticPacket
 
 /-!
 # A19.8: collapse the reachable terminal to two source-support obligations
@@ -11,15 +12,17 @@ finite-support outcomes.
 
 * A concrete mixed-degree blocker exponent, carrying its full residual
   `MixedDegreeSmithExponentOutcome`.
-* A nonempty canonical quadratic Smith refinement, every exponent of which is
-  one of `(0,2,0)`, `(1,1,0)`, `(2,0,0)`.
+* A nonempty canonical quadratic Smith refinement.
 
-A19.7 allows the two outcomes to terminate differently.  Accordingly this
-file isolates the exact last two geometric producers:
+A19.9 now consumes the whole finite-support construction in the second branch:
+the quadratic refinement canonically yields an actual ordinary-homogeneous
+packet with exact collision, zero Hessian determinant and persistent rank-one
+support.  Thus the last two geometric producers can be stated at the strongest
+honest interfaces already available:
 
-* blocker support must produce one already-closed A18 polynomial obstruction;
-* quadratic support must produce one honest associated-graded collision for
-  the JC2 endpoint library.
+* blocker support -> one already-closed A18 polynomial obstruction;
+* homogeneous quadratic collision packet -> one honest associated-graded JC2
+  endpoint.
 
 Once those two producers are supplied on the reachable clock interval, the
 mixed resolver and hence `JC2 => HC4` are automatic.  No terminal
@@ -35,11 +38,12 @@ open HC4.Newton
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- **The exact two remaining source-support producers.**
+/-- **The exact two remaining source-level producers.**
 
-The fields consume the actual current terminal and the exact witnesses exposed
-by A18.5.21.  In particular the quadratic producer is not allowed to receive a
-Schur matrix in place of a polynomial endpoint. -/
+The blocker field consumes the actual mixed-degree residual witness.  The
+quadratic field receives the honest homogeneous polynomial packet extracted by
+A19.9, so it is not allowed to reinterpret a Schur matrix or a bare support
+pattern as an associated-graded endpoint. -/
 structure AdaptiveAlignedSmithCanonicalReachableSupportProducer where
   blocker :
     ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -62,21 +66,12 @@ structure AdaptiveAlignedSmithCanonicalReachableSupportProducer where
       (_hclock : state.rawDefect ≤ 6)
       (T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
         canonicalAdaptiveAlignedSmithRepairRanking state 0)
-      (_hne :
-        (smithSymmetricBalancedSubface
-          (smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber)
-          0 (fun _ : SmithSupportExponent => (0 : ℤ))).Nonempty)
-      (_hshape :
-        ∀ e ∈ smithSymmetricBalancedSubface
-          (smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber)
-          0 (fun _ : SmithSupportExponent => (0 : ℤ)),
-          (e.b = 0 ∧ e.c = 2 ∧ e.d = 0) ∨
-          (e.b = 1 ∧ e.c = 1 ∧ e.d = 0) ∨
-          (e.b = 2 ∧ e.c = 0 ∧ e.d = 0)),
+      (_Q : AdaptiveAlignedSmithCanonicalTerminalQuadraticPacket T),
       Nonempty (TerminalAssociatedGradedCollisionData K)
 
-/-- The A18.5.21 support split assembles the two local producers into the exact
-mixed reachable-terminal resolver of A19.7. -/
+/-- The A18.5.21 support split, followed by the A19.9 packet extractor in the
+quadratic branch, assembles the two local producers into the exact mixed
+reachable-terminal resolver of A19.7. -/
 noncomputable def
     AdaptiveAlignedSmithCanonicalReachableSupportProducer.toReachableResolution
     (P : AdaptiveAlignedSmithCanonicalReachableSupportProducer (K := K)) :
@@ -88,14 +83,15 @@ noncomputable def
     rcases P.blocker hclock T e he hpattern houtcome with ⟨O⟩
     exact ⟨.polynomialObstruction O⟩
   · rcases hquad with ⟨hne, hshape⟩
-    rcases P.quadratic hclock T hne hshape with ⟨A⟩
+    rcases T.quadraticPacket_nonempty hne hshape with ⟨Q⟩
+    rcases P.quadratic hclock T Q with ⟨A⟩
     exact ⟨.associatedGradedCollision A⟩
 
 /-- **Two-obligation `JC2 => HC4` reduction.**
 
-After A18.5.21 there are no further terminal wrapper cases: proving the
-blocker and quadratic producer fields above suffices for unrestricted HC4
-under planar JC2. -/
+After A18.5.21/A19.9 there are no further terminal wrapper or finite-support
+construction cases: proving the blocker producer and the homogeneous-packet
+JC2 producer above suffices for unrestricted HC4 under planar JC2. -/
 theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_reachableSupportProducer
     (hJC2 : HC4.PlanarJC2Injectivity K)
     (P : AdaptiveAlignedSmithCanonicalReachableSupportProducer (K := K))
