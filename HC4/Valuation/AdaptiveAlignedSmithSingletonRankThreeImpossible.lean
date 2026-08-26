@@ -70,20 +70,25 @@ theorem rankThree_vertical_fraction_equation_clears
   rw [rankThreeEtaNumerator_vertical,
     rankThreeEtaDenominator_vertical] at hEq
   have hBCD : b * c * d ≠ 0 := mul_ne_zero (mul_ne_zero hb hc) hd
-  have hcleared :
-      b * c * d * (E * ((1 - b - c - d) * p - E)) =
-        b * c * d * (A * (1 - b - c - d)) := by
-    have h := hEq
-    field_simp [hp] at h
-    ring_nf at h ⊢
-    exact h
+  have hfactored :
+      (b * c * d) *
+          ((E / p) * (1 - b - c - d - E / p)) =
+        (b * c * d) *
+          ((A / p^2) * (1 - b - c - d)) := by
+    calc
+      (b * c * d) *
+          ((E / p) * (1 - b - c - d - E / p)) =
+        b * c * d * (E / p) * (1 - b - c - d - E / p) := by ring
+      _ = (A / p^2) * (b * c * d * (1 - b - c - d)) := hEq
+      _ = (b * c * d) *
+          ((A / p^2) * (1 - b - c - d)) := by ring
   have hcancel :
-      E * ((1 - b - c - d) * p - E) =
-        A * (1 - b - c - d) :=
-    mul_left_cancel₀ hBCD hcleared
+      (E / p) * (1 - b - c - d - E / p) =
+        (A / p^2) * (1 - b - c - d) :=
+    mul_left_cancel₀ hBCD hfactored
+  field_simp [hp] at hcancel
   field_simp [hJ]
-  ring_nf at hcancel ⊢
-  linear_combination -hcancel
+  linear_combination hcancel
 
 /-- A vertical rank-three fraction equation descends to the exact polynomial
 quadratic autonomous log-ODE. -/
@@ -143,11 +148,10 @@ theorem quadraticAutonomousLogODE_of_rankThreeVerticalFractionEquation
     let κ : K →+* F := ι.comp Polynomial.C
     change κ (1 / (b + c + d - 1)) =
       1 / (κ b + κ c + κ d - 1)
-    rw [map_div]
-    simp only [map_one, map_add, map_sub]
+    simp only [div_eq_mul_inv, one_mul, map_inv₀, map_add, map_sub, map_one]
   rw [map_add, map_mul, map_pow]
   rw [hcoef]
-  simp only [map_one, Polynomial.C_1, map_mul]
+  simp only [map_one, map_mul]
   unfold logarithmicEtaOverRhoDenominator
   simp only [map_mul]
   simpa [mul_comm] using hclear
@@ -182,10 +186,12 @@ theorem rankThreeVertical_hessian_impossible_of_nonconstant
   have hode :
       QuadraticAutonomousLogODE
         (1 / (((b + c + d : ℕ) : K) - 1)) 1 phi := by
-    apply quadraticAutonomousLogODE_of_rankThreeVerticalFractionEquation
-      hphi hbK hcK hdK
-    · simpa [Nat.cast_add] using hJK
-    · simpa [Nat.cast_add] using hEq
+    have hJsep : (b : K) + (c : K) + (d : K) - 1 ≠ 0 := by
+      simpa [Nat.cast_add] using hJK
+    have hodeSep :=
+      quadraticAutonomousLogODE_of_rankThreeVerticalFractionEquation
+        hphi hbK hcK hdK hJsep hEq
+    simpa [Nat.cast_add] using hodeSep
   rcases exists_positive_tail_factorisation
       (K := K) (phi := phi) hnonconstant with
     ⟨m, q, hm, hq0, hphiEq⟩
