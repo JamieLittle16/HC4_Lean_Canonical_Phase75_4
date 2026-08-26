@@ -42,8 +42,8 @@ noncomputable def alignedRankThreeGeometry
   cases T with
   | terminal geometry =>
       exact geometry
-  | @restart target progress rawDefect_lt repair_eq tail =>
-      have hlt : target.rawDefect < 0 := by
+  | restart progress rawDefect_lt repair_eq tail =>
+      have hlt : _ < 0 := by
         simpa using rawDefect_lt
       exact (Nat.not_lt_zero _ hlt).elim
 
