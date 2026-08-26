@@ -103,9 +103,28 @@ theorem zeroDefectConstantParameterFamily_exactCollision
   unfold zeroDefectConstantParameterFamily
   rw [MvPolynomial.pderiv_map]
   rw [MvPolynomial.eval_map, MvPolynomial.eval_map]
-  rw [MvPolynomial.eval₂_comp Polynomial.C p,
-      MvPolynomial.eval₂_comp Polynomial.C q]
-  exact congrArg Polynomial.C hi
+  have hp :
+      Polynomial.C
+          (MvPolynomial.eval p (MvPolynomial.pderiv i F)) =
+        MvPolynomial.eval₂ Polynomial.C
+          (polynomialConstantSection p) (MvPolynomial.pderiv i F) := by
+    simpa [polynomialConstantSection] using
+      (MvPolynomial.eval₂_comp Polynomial.C p (MvPolynomial.pderiv i F))
+  have hq :
+      Polynomial.C
+          (MvPolynomial.eval q (MvPolynomial.pderiv i F)) =
+        MvPolynomial.eval₂ Polynomial.C
+          (polynomialConstantSection q) (MvPolynomial.pderiv i F) := by
+    simpa [polynomialConstantSection] using
+      (MvPolynomial.eval₂_comp Polynomial.C q (MvPolynomial.pderiv i F))
+  calc
+    MvPolynomial.eval₂ Polynomial.C
+        (polynomialConstantSection p) (MvPolynomial.pderiv i F) =
+      Polynomial.C (MvPolynomial.eval p (MvPolynomial.pderiv i F)) := hp.symm
+    _ = Polynomial.C (MvPolynomial.eval q (MvPolynomial.pderiv i F)) :=
+      congrArg Polynomial.C hi
+    _ = MvPolynomial.eval₂ Polynomial.C
+        (polynomialConstantSection q) (MvPolynomial.pderiv i F) := hq
 
 /-- Constant coefficient embedding cannot introduce new source monomials, so
 it preserves every nonlinear degree cap. -/
