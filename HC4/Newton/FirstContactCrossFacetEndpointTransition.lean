@@ -1,5 +1,6 @@
 import HC4.Newton.FirstContactCrossFacetEndpointStratum
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
+import HC4.Newton.FirstContactCrossFacetAffineRRImpossible
 import Mathlib.Tactic
 
 /-!
@@ -7,14 +8,14 @@ import Mathlib.Tactic
 
 A18.5.66 classifies the selected endpoint of the exact honest cross-facet line:
 it is either already on an extreme transition ray adjacent to the contact
-facet, or it is rank three on that facet.  A18.5.68c proves that, in the
-canonical `qs` chart and for the genuine positive-bump first contact, the
-rank-three alternative cannot stall: the far supported exponent is rank three
-on the adjacent `pr` facet.
+facet, or it is rank three on that facet.  A18.5.68c identifies the unique
+possible affine direction in the latter branch, and A18.5.73b now eliminates
+that affine terminal directly.
 
-This file is deliberately only an assembly layer.  It retains the complete
-honest-line certificate and packages the two local geometric exits into a
-single statement.  No new terminal hypothesis or rigidity input is introduced.
+Thus a genuine positive-bump first contact in the canonical `qs` chart exits
+on an actual adjacent extreme ray.  The older two-way dispatcher is retained
+below as a compatibility theorem, but downstream final assembly can use the
+strong extreme-ray-only endpoint.
 -/
 
 namespace HC4.Newton
@@ -64,6 +65,37 @@ theorem CrossFacetInitialData.qs_firstContact_endpoint_transition
       ha hb hcontactScale hcontactBump hBal hcontact hzero hthree
     simpa using htransition.2.2
   · exact ⟨hcert, Or.inl hray⟩
+
+/-- **A18.5.73c: genuine first contact exits on an extreme ray.**
+
+The rank-three endpoint branch of the previous dispatcher is not merely a
+transition: its exact affine carrier is impossible.  Therefore the selected
+endpoint of every genuine positive-bump `qs` first contact lies on one of the
+two adjacent toric extreme rays. -/
+theorem CrossFacetInitialData.qs_firstContact_endpoint_extremeRay
+    {F : MvPolynomial (Fin 4) K}
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (D : CrossFacetInitialData F
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b F)
+    (hcontact : ∀ d ∈ F.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant F = 0) :
+    CrossFacetHonestLineCertificate D hBal hcontact ∧
+      ∃ G : ToricFacet,
+        AdjacentFacets .qs G ∧
+          OnRay a b .qs G (toToricExponent D.facetExponent) := by
+  rcases D.honestLine_qs_rankThree_or_transitionRay
+      ha hb hcop hcontactScale hBal hcontact hzero with
+    ⟨hcert, hthree | hray⟩
+  · exact False.elim
+      (D.qs_rankThree_firstContact_impossible
+        ha hb hcontactScale hcontactBump hBal hcontact hzero hthree)
+  · exact ⟨hcert, hray⟩
 
 end
 
