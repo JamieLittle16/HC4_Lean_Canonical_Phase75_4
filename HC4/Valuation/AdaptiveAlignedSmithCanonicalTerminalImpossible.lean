@@ -28,8 +28,6 @@ namespace HC4.Valuation
 
 noncomputable section
 
-open HC4.Polynomial
-
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
@@ -84,16 +82,16 @@ noncomputable def toSupportedBalancedRankThreeData
     (v2 v3 v4 u1 u2 u3 u4 M : ℕ)
     (hv2 : 0 < v2) (hv3 : 0 < v3) (hv4 : 0 < v4)
     (hM : 0 < M) (hu1 : 0 < u1)
-    (hbalanced : HasBalancedMvSupport a b C.polynomial)
-    (hsupported : IsSupportedOnRankThreeLine
+    (hbalanced : HC4.Polynomial.HasBalancedMvSupport a b C.polynomial)
+    (hsupported : HC4.Polynomial.IsSupportedOnRankThreeLine
       v2 v3 v4 u1 u2 u3 u4 M C.polynomial)
     (hstart :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M 0) C.polynomial ≠ 0)
     (hend :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M M) C.polynomial ≠ 0) :
     AdaptiveAlignedSmithTerminalSupportedBalancedRankThreeData (K := K) where
   a := a
@@ -135,16 +133,16 @@ theorem impossible_of_supportedBalancedRankThree
     (v2 v3 v4 u1 u2 u3 u4 M : ℕ)
     (hv2 : 0 < v2) (hv3 : 0 < v3) (hv4 : 0 < v4)
     (hM : 0 < M) (hu1 : 0 < u1)
-    (hbalanced : HasBalancedMvSupport a b C.polynomial)
-    (hsupported : IsSupportedOnRankThreeLine
+    (hbalanced : HC4.Polynomial.HasBalancedMvSupport a b C.polynomial)
+    (hsupported : HC4.Polynomial.IsSupportedOnRankThreeLine
       v2 v3 v4 u1 u2 u3 u4 M C.polynomial)
     (hstart :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M 0) C.polynomial ≠ 0)
     (hend :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M M) C.polynomial ≠ 0) :
     False := by
   exact (C.toSupportedBalancedRankThreeData
@@ -172,17 +170,18 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_impossible
     (v2 v3 v4 u1 u2 u3 u4 M : ℕ)
     (hv2 : 0 < v2) (hv3 : 0 < v3) (hv4 : 0 < v4)
     (hM : 0 < M) (hu1 : 0 < u1)
-    (hbalanced : HasBalancedMvSupport a b trace.reachedSingularCarrier.polynomial)
-    (hsupported : IsSupportedOnRankThreeLine
+    (hbalanced : HC4.Polynomial.HasBalancedMvSupport
+      a b trace.reachedSingularCarrier.polynomial)
+    (hsupported : HC4.Polynomial.IsSupportedOnRankThreeLine
       v2 v3 v4 u1 u2 u3 u4 M trace.reachedSingularCarrier.polynomial)
     (hstart :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M 0)
         trace.reachedSingularCarrier.polynomial ≠ 0)
     (hend :
       MvPolynomial.coeff
-        (rankThreeLineExponentFinsupp
+        (HC4.Polynomial.rankThreeLineExponentFinsupp
           v2 v3 v4 u1 u2 u3 u4 M M)
         trace.reachedSingularCarrier.polynomial ≠ 0) :
     False := by
