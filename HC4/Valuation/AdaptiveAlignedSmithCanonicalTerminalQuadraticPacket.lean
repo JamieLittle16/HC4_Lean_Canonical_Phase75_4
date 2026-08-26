@@ -86,7 +86,12 @@ theorem AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.quadraticPacket_
   have hSsubset :
       S ⊆ smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber := by
     intro e he
-    exact (mem_smithSymmetricBalancedSubface.mp (by simpa [S] using he)).1
+    have he' :
+        e ∈ smithSymmetricBalancedSubface
+          (smithProjectedSupport (1 : Fin 4) 2 3 T.specialFiber)
+          0 (fun _ : SmithSupportExponent => (0 : ℤ)) := by
+      simpa [S] using he
+    exact (mem_smithSymmetricBalancedSubface.mp he').1
   have hSshape :
       ∀ e ∈ S,
         (e.b = 0 ∧ e.c = 2 ∧ e.d = 0) ∨
