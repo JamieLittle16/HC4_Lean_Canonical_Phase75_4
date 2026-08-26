@@ -17,6 +17,7 @@ import HC4.Newton.FirstContactAffinePlane
 import HC4.Newton.FirstContactHonestSlice
 import HC4.Newton.FiniteSupportCrossFacetExposure
 import HC4.Newton.FiniteSupportSingularBoundaryVertex
+import HC4.Newton.SingularBoundaryRankSplit
 import HC4.Newton.FirstContactCrossFacetAffineLine
 import HC4.Newton.FirstContactCrossFacetEndpointStratum
 import HC4.Newton.FirstContactCrossFacetAffineRR
