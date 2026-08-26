@@ -1,9 +1,10 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry
 import HC4.Valuation.NonlinearDegreeBoundPreservation
 import Mathlib.Tactic
 
 /-!
-# A18.5.76: valid zero-defect entry for a normalized Keller collision
+# A18.5.76/81: valid zero-defect entry for a normalized Keller collision
 
 The legacy `CanonicalExactCollisionEntry` is intentionally unusable for the
 final HC4 theorem: it asks the *whole* source polynomial to be homogeneous,
@@ -21,8 +22,14 @@ enters it directly as the constant parameter family.  Its raw Hessian clock is
 `0`, its parameter scale is `1`, and its repair coordinate is the canonical
 rank-one state expected by A18.4.109.
 
-This is the non-vacuous global front door needed by the proposition-level HC4
-assembly.  No JC2 hypothesis and no full-family homogeneity is introduced.
+For final assembly we do not treat raw defect zero as a contradiction.  The
+already-proved A17.8 transverse Rees bridge canonically converts this state to
+a raw-defect-six state at the same scale, preserving the exact collision,
+degree cap, source complexity and repair coordinate.  A18.4.109 can then run
+from that positive-clock state without putting an increasing edge inside its
+well-founded raw-defect recursion.
+
+No JC2 hypothesis and no full-family homogeneity is introduced.
 -/
 
 namespace HC4.Valuation
@@ -212,10 +219,73 @@ noncomputable def toScaleAwareState
       E.polynomial := by
   simp [toScaleAwareState]
 
-/-- **A18.5.76 entry-to-termination theorem.**
-Every normalized determinant-one exact collision enters A18.4.109 directly
-and therefore has a finite certified rank-one termination trace ending in the
-complete rank-three terminal geometry. -/
+/-- Retained output of the one-time A17.8 zero-defect transverse Rees bridge.
+The target is positive-clock but still carries the same canonical rank-one
+repair coordinate and the same scale-aware collision geometry. -/
+structure PositiveReentry
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ) where
+  state : ScaleAwareAdaptiveGeometricRestartState (K := K)
+  rawDefect_eq_six : state.rawDefect = 6
+  scale_eq : state.scale = (E.toScaleAwareState complexity).scale
+  degreeCap_eq : state.degreeCap = (E.toScaleAwareState complexity).degreeCap
+  sourceComplexity_eq :
+    state.sourceComplexity = (E.toScaleAwareState complexity).sourceComplexity
+  repair_eq : state.repair = (E.toScaleAwareState complexity).repair
+  rawDefect_pos : 0 < state.rawDefect
+
+/-- **A18.5.81 — sound positive-clock front door.**
+
+A normalized determinant-one collision is first embedded as the literal
+raw-zero constant family and then passed through the already-green A17.8
+transverse Rees re-entry.  This is the state from which final assembly should
+invoke the well-founded A18.4.109 rank-one trace. -/
+noncomputable def positiveReentry
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ) : PositiveReentry E complexity := by
+  let s := E.toScaleAwareState complexity
+  rcases s.exists_zeroDefectTransverseReentry (by simp [s]) with
+    ⟨t, hraw, hscale, hdegreeCap, hsourceComplexity, hrepair, hpositive⟩
+  exact {
+    state := t
+    rawDefect_eq_six := hraw
+    scale_eq := hscale
+    degreeCap_eq := hdegreeCap
+    sourceComplexity_eq := hsourceComplexity
+    repair_eq := hrepair
+    rawDefect_pos := hpositive
+  }
+
+@[simp] theorem positiveReentry_rawDefect
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ) :
+    (E.positiveReentry complexity).state.rawDefect = 6 :=
+  (E.positiveReentry complexity).rawDefect_eq_six
+
+@[simp] theorem positiveReentry_repair
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ) :
+    (E.positiveReentry complexity).state.repair =
+      rankOneRepairState complexity := by
+  exact (E.positiveReentry complexity).repair_eq.trans
+    (E.toScaleAwareState_repair complexity)
+
+/-- The final rank-one recursion now starts from the positive Rees re-entry,
+not from the raw-zero presentation.  The only increase of the determinant
+clock has already happened outside the recursion in A17.8. -/
+noncomputable def positiveRankOneTerminationTrace
+    (RR : RepairRanking)
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ) :
+    AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+      RR complexity (E.positiveReentry complexity).state :=
+  (E.positiveReentry complexity).state.rankOneTerminationTrace
+    RR complexity (E.positiveReentry_repair complexity)
+
+/-- Direct raw-zero trace retained for local geometric inspection.  Final HC4
+assembly should prefer `positiveRankOneTerminationTrace`, because A17.8
+explicitly supplies the positive-clock presentation needed by the mature
+first-contact pipeline. -/
 noncomputable def rankOneTerminationTrace
     (RR : RepairRanking)
     (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
