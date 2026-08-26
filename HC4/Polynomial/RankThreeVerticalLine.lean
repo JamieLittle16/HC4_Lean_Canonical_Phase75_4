@@ -80,7 +80,6 @@ theorem rankThreeVerticalTerm_eq_monomial
   rw [MvPolynomial.monomial_mul]
   rw [MvPolynomial.monomial_mul]
   rw [MvPolynomial.monomial_mul]
-  rw [MvPolynomial.monomial_mul]
   simp only [mul_one]
   apply congrArg (fun e => MvPolynomial.monomial e a)
   ext i
@@ -108,11 +107,15 @@ theorem rankThreeLineSpecialisation_verticalPolynomial
     {K : Type*} [CommSemiring K]
     (b c d : ℕ) (phi : Polynomial K) :
     rankThreeLineSpecialisation (rankThreeVerticalPolynomial b c d phi) = phi := by
-  rw [Polynomial.as_sum phi]
-  simp only [rankThreeVerticalPolynomial, Polynomial.sum_def, map_sum]
-  apply Finset.sum_congr rfl
-  intro j hj
-  rw [rankThreeLineSpecialisation_verticalTerm]
+  calc
+    rankThreeLineSpecialisation (rankThreeVerticalPolynomial b c d phi) =
+        phi.comp Polynomial.X := by
+      rw [Polynomial.comp_eq_sum_left]
+      simp only [rankThreeVerticalPolynomial, Polynomial.sum_def, map_sum]
+      apply Finset.sum_congr rfl
+      intro j hj
+      rw [rankThreeLineSpecialisation_verticalTerm]
+    _ = phi := by simp
 
 /-- Consequently the honest vertical-line construction is injective in its
 univariate coefficient polynomial. -/
