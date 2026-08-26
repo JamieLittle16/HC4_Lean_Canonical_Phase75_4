@@ -88,18 +88,6 @@ theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_reachableResoluti
       (fun hclock T =>
         T.impossible_of_JC2_of_reachableResolution hJC2 hresolve hclock)
 
-/-- The older universal associated-graded extraction is strictly stronger than
-the reachable mixed resolver: if it is available, choose its honest JC2
-endpoint branch. -/
-theorem reachableTerminalResolution_of_presentedTerminalExtraction
-    (hextract : AdaptiveAlignedSmithCanonicalPresentedTerminalExtraction
-      (K := K)) :
-    AdaptiveAlignedSmithCanonicalReachableTerminalResolutionProperty
-      (K := K) := by
-  intro state hclock T
-  rcases hextract T with ⟨A⟩
-  exact ⟨.associatedGradedCollision A⟩
-
 end
 
 end HC4.Valuation
