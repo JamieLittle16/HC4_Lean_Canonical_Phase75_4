@@ -42,9 +42,7 @@ theorem presentedRankThreeTerminal_presentedState_rawDefect_zero
     (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
     (complexity : ℕ) :
     (E.presentedRankThreeTerminal RR complexity).presentedState.rawDefect = 0 := by
-  apply
-    (E.presentedRankThreeTerminal RR complexity).
-      presentedState_rawDefect_eq_zero_of_source
+  apply (E.presentedRankThreeTerminal RR complexity).presentedState_rawDefect_eq_zero_of_source
   simp [AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry.toScaleAwareState]
 
 /-- The actual represented zero-clock terminal has its own honest singular
@@ -55,9 +53,8 @@ noncomputable def terminalSingularTopFace
     (complexity : ℕ) :
     AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
       (E.presentedRankThreeTerminal RR complexity).presentedState :=
-  (E.presentedRankThreeTerminal RR complexity).presentedState.
-    zeroDefect_singularTopFace
-      (E.presentedRankThreeTerminal_presentedState_rawDefect_zero RR complexity)
+  (E.presentedRankThreeTerminal RR complexity).presentedState.zeroDefect_singularTopFace
+    (E.presentedRankThreeTerminal_presentedState_rawDefect_zero RR complexity)
 
 /-- The selected terminal top face is genuinely homogeneous at an attained
 nonlinear degree. -/
@@ -87,8 +84,7 @@ noncomputable def terminalSupportFrontier
     (RR : RepairRanking)
     (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
     (complexity : ℕ) :=
-  (E.presentedRankThreeTerminal RR complexity).
-    specialFiber_blocker_or_quadraticRefinement
+  (E.presentedRankThreeTerminal RR complexity).specialFiber_blocker_or_quadraticRefinement
 
 end AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry
 
