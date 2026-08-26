@@ -81,7 +81,6 @@ theorem smithSeparatorDelta_one_one_eq_terminalQuadraticDegree
   norm_num [smithSeparatorDelta, smithExtremeSeparator,
     SmithSupportExponent.grade, smithGrade, smithGradeFirst,
     smithGradeSecond, smithGradeDot]
-  push_cast
   ring
 
 /-- Every general surviving Smith exponent has positive quadratic source
@@ -116,7 +115,8 @@ theorem AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry.negativeWeightLE
     {T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
       RR state complexity}
     (G : AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry T) :
-    IsWeightLE terminalQuadraticNegativeWeight (-2) T.specialFiber := by
+    HC4.Polynomial.IsWeightLE
+      terminalQuadraticNegativeWeight (-2) T.specialFiber := by
   intro d hd
   let e := smithSupportExponentOf (1 : Fin 4) 2 3 d
   have he :
