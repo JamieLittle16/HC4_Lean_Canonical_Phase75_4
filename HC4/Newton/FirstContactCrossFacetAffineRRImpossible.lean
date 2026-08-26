@@ -1,5 +1,6 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
-import HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate
+import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
+import HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible
 import Mathlib.Tactic
 
 /-!
@@ -13,10 +14,10 @@ coordinate.  It also cannot be `-1`: then ordinary degree would be preserved.
 Both contradict the strict degree drop forced by the positive first-contact
 bump.
 
-A18.5.73a.1 packages the expensive affine terminal construction behind the
-small `QsTwoFixedTerminalData` interface.  This file therefore contains only
-first-contact geometry and one final invocation of its `impossible` theorem.
-No integral reparameterisation and no endpoint divisibility hypothesis is used.
+The terminal certificate itself is reused unchanged from A18.5.68.  The two
+fixed-slope equalities are consumed only by the small RationalRigidity adapter
+A18.5.73a.2, so this file performs no dependent certificate rewriting and
+introduces no integral reparameterisation or endpoint divisibility hypothesis.
 -/
 
 namespace HC4.Newton
@@ -116,11 +117,7 @@ private theorem qs_rankThree_firstContact_two_fixed
     ha hb hcontactScale hcontactBump hBal hcontact hzero hthree
   exact ⟨htransition.1, htransition.2.1⟩
 
-/-- **The genuine `qs` rank-three first-contact branch is contradictory.**
-
-All affine RationalRigidity construction is hidden in A18.5.73a.1.  This
-command only composes the two-fixed first-contact transition, the two elementary
-slope exclusions, and the compact terminal payload. -/
+/-- **The genuine `qs` rank-three first-contact branch is contradictory.** -/
 theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -145,11 +142,18 @@ theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
   have hQone : D.qsSlope (1 : Fin 4) + 1 ≠ 0 :=
     qs_remainingSlope_add_one_ne_zero_of_two_fixed
       ha hb hcontactScale hcontactBump D hBal hcontact hR hS
-  have data : QsTwoFixedTerminalData
-      (D.qsSlope (1 : Fin 4)) D.qsCoefficientPolynomial :=
-    D.qs_rankThree_twoFixedTerminalData
-      ha hb hcontactScale hBal hcontact hzero hthree hR hS
-  exact data.impossible hQ hQone
+  rcases D.qs_rankThree_endpoint_coordinates hthree with
+    ⟨_hzero0, hA, hB, hC⟩
+  have hphiDeg : 0 < D.qsCoefficientPolynomial.natDegree :=
+    D.qsCoefficientPolynomial_natDegree_pos
+      ha hb hcontactScale hBal hcontact
+  have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
+    D.qsCoefficientPolynomial_coeff_zero_ne
+      ha hb hcontactScale hBal hcontact
+  have hcert := D.qs_rankThree_terminalCertificate
+    ha hb hcontactScale hBal hcontact hzero hthree
+  exact HC4.RationalRigidity.rankThree_terminal_two_fixed_impossible_of_eq
+    hA hB hC (by decide) hphiDeg hphi0 hcert hR hS hQ hQone
 
 end
 
