@@ -130,16 +130,21 @@ theorem smithSubfacePolynomial_singleton_eq_rankThreeVerticalPolynomial
   · have hproj :
         smithSupportExponentOf (1 : Fin 4) 2 3 q =
           ({ b := b, c := c, d := d } : SmithSupportExponent) := by
-      ext <;> simp [smithSupportExponentOf, htrans.1, htrans.2.1, htrans.2.2]
+      simp [smithSupportExponentOf,
+        htrans.1, htrans.2.1, htrans.2.2]
     rw [if_pos htrans]
     simp [hproj]
     rw [coeff_longitudinalCoefficientPolynomial]
     have hq :
         ((smithTransverseExponent b c d).cons (q (0 : Fin 4))) = q := by
-      ext i
-      fin_cases i <;>
-        simp [smithTransverseExponent,
-          htrans.1, htrans.2.1, htrans.2.2]
+      apply Finsupp.ext
+      intro i
+      refine Fin.cases ?_ (fun j => ?_) i
+      · simp
+      · fin_cases j
+        · simpa [smithTransverseExponent] using htrans.1.symm
+        · simpa [smithTransverseExponent] using htrans.2.1.symm
+        · simpa [smithTransverseExponent] using htrans.2.2.symm
     rw [hq]
   · have hproj :
         smithSupportExponentOf (1 : Fin 4) 2 3 q ≠
