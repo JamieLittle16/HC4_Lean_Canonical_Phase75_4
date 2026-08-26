@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSingularCarrier
 import HC4.Newton.FirstContactCrossFacetArithmetic
+import HC4.Newton.FirstContactCrossFacetAffineRRImpossible
 import Mathlib.Tactic
 
 /-!
@@ -11,9 +12,10 @@ presentation.  At a positive-defect terminal that special fibre is already
 Hessian-singular.  The finite-support cross-facet constructor can therefore be
 applied directly to the certified on-facet and off-facet support slices.
 
-This file is only the trace-facing adapter.  It does not re-prove first
-contact, affine-line rigidity, or RationalRigidity.  Once the surviving `qs`
-endpoint is rank three, A18.5.72 performs the entire arithmetic collapse.
+The original A18.5.72 arithmetic adapter remains available as the useful
+intermediate statement `b = 1`.  The strengthened A18.5.73b affine terminal
+argument now closes the same genuine rank-three first-contact branch outright,
+without an integral reparameterisation or divisibility hypothesis.
 -/
 
 namespace HC4.Valuation
@@ -27,17 +29,9 @@ open MvPolynomial
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- **A18.5.73 — terminal `qs` rank-three first-contact consumption.**
-
-The finite rank-one trace supplies the actual represented terminal special
-fibre.  Given the already-certified two support slices of the genuine first
-contact, construct its exact `CrossFacetInitialData`.  Positive terminal defect
-supplies Hessian singularity from the retained family, and A18.5.72 consumes
-the surviving `qs` rank-three endpoint.
-
-The remaining hypotheses are deliberately geometric certificates rather than
-reconstructed algebra: terminal support/presentation adapters are expected to
-supply them at the final splice. -/
+/-- Original arithmetic form of the terminal `qs` rank-three first-contact
+adapter.  It remains useful independently of the stronger direct
+contradiction below. -/
 theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThree_firstContact_forces_b_one
     {RR : RepairRanking}
     {complexity : ℕ}
@@ -85,6 +79,60 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThr
 
   exact D.qs_rankThree_firstContact_forces_b_one
     ha hb hcop hcontactScale hcontactBump
+    hBal hcontact hzero (by simpa [D] using hthree)
+
+/-- **A18.5.73 — direct terminal first-contact contradiction.**
+
+The same retained terminal data now enters the affine two-fixed endgame and
+closes the rank-three `qs` first-contact branch outright.  Coprimality is not
+needed for this stronger endpoint: the contradiction comes from the positive
+first-contact degree drop and the affine RationalRigidity terminal identity. -/
+theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThree_firstContact_impossible
+    {RR : RepairRanking}
+    {complexity : ℕ}
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (trace : AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+      RR complexity source)
+    {a b contactScale contactBump : ℕ}
+    {contactLevel : ℤ}
+    (ha : 0 < a)
+    (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (hfacet :
+      (zeroCoordinateSupport (0 : Fin 4)
+        trace.reachedPresentedRankThree.terminal.specialFiber).Nonempty)
+    (hout :
+      (positiveCoordinateSupport (0 : Fin 4)
+        trace.reachedPresentedRankThree.terminal.specialFiber).Nonempty)
+    (hBal : HC4.Polynomial.HasBalancedMvSupport a b
+      trace.reachedPresentedRankThree.terminal.specialFiber)
+    (hcontact : ∀ d ∈
+        trace.reachedPresentedRankThree.terminal.specialFiber.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hrawDefect :
+      0 < trace.reachedPresentedRankThree.terminal.presentedState.rawDefect)
+    (hthree :
+      MvRankThreeOnFacet .qs
+        (crossFacetInitialData
+          (i := crossFacetOppositeCoordinate (0 : Fin 4))
+          hfacet hout).facetExponent) :
+    False := by
+  let D : CrossFacetInitialData
+      trace.reachedPresentedRankThree.terminal.specialFiber
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4) :=
+    crossFacetInitialData hfacet hout
+
+  have hzero :
+      HC4.Polynomial.hessianDeterminant
+        trace.reachedPresentedRankThree.terminal.specialFiber = 0 := by
+    simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber]
+      using trace.reachedPresentedRankThree.terminal.presentedState.specialFiber_hessianDeterminant_eq_zero
+        hrawDefect
+
+  exact D.qs_rankThree_firstContact_impossible
+    ha hb hcontactScale hcontactBump
     hBal hcontact hzero (by simpa [D] using hthree)
 
 end
