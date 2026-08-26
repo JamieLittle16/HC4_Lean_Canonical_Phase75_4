@@ -1,6 +1,5 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
-import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
-import HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible
+import HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedElimination
 import Mathlib.Tactic
 
 /-!
@@ -14,10 +13,9 @@ coordinate.  It also cannot be `-1`: then ordinary degree would be preserved.
 Both contradict the strict degree drop forced by the positive first-contact
 bump.
 
-The terminal certificate itself is reused unchanged from A18.5.68.  The two
-fixed-slope equalities are consumed only by the small RationalRigidity adapter
-A18.5.73a.2, so this file performs no dependent certificate rewriting and
-introduces no integral reparameterisation or endpoint divisibility hypothesis.
+All affine-terminal certificate construction and elimination now lives behind
+A18.5.73a.3.  This file contains only first-contact geometry and scalar
+nondegeneracy; it never elaborates `HasRankThreePolynomialTerminalCertificate`.
 -/
 
 namespace HC4.Newton
@@ -142,18 +140,8 @@ theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
   have hQone : D.qsSlope (1 : Fin 4) + 1 ≠ 0 :=
     qs_remainingSlope_add_one_ne_zero_of_two_fixed
       ha hb hcontactScale hcontactBump D hBal hcontact hR hS
-  rcases D.qs_rankThree_endpoint_coordinates hthree with
-    ⟨_hzero0, hA, hB, hC⟩
-  have hphiDeg : 0 < D.qsCoefficientPolynomial.natDegree :=
-    D.qsCoefficientPolynomial_natDegree_pos
-      ha hb hcontactScale hBal hcontact
-  have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
-    D.qsCoefficientPolynomial_coeff_zero_ne
-      ha hb hcontactScale hBal hcontact
-  have hcert := D.qs_rankThree_terminalCertificate
-    ha hb hcontactScale hBal hcontact hzero hthree
-  exact HC4.RationalRigidity.rankThree_terminal_two_fixed_impossible_of_eq
-    hA hB hC (by decide) hphiDeg hphi0 hcert hR hS hQ hQone
+  exact D.qs_rankThree_twoFixed_terminal_impossible
+    ha hb hcontactScale hBal hcontact hzero hthree hR hS hQ hQone
 
 end
 
