@@ -90,14 +90,22 @@ theorem impossible_of_JC2
           standardTwoZeroTerminalWeight (C.degree : ℤ) := by
       funext i
       fin_cases i
-      · rw [hr0]
-        simp [standardTwoZeroTerminalWeight, C.weight_zero]
-      · rw [hr1]
-        simp [standardTwoZeroTerminalWeight, h2]
-      · rw [hr2]
-        simp [standardTwoZeroTerminalWeight, h1d]
-      · rw [hr3]
-        simp [standardTwoZeroTerminalWeight, h3d]
+      · change (C.weight (rho.symm (0 : Fin 4)) : ℤ) = 0
+        rw [hr0]
+        exact_mod_cast C.weight_zero
+      · change (C.weight (rho.symm (1 : Fin 4)) : ℤ) = 0
+        rw [hr1]
+        exact_mod_cast h2
+      · change
+          (C.weight (rho.symm (2 : Fin 4)) : ℤ) =
+            (C.degree : ℤ)
+        rw [hr2]
+        exact_mod_cast h1d
+      · change
+          (C.weight (rho.symm (3 : Fin 4)) : ℤ) =
+            (C.degree : ℤ)
+        rw [hr3]
+        exact_mod_cast h3d
     have hhomRenamed :=
       integralWeightedHomogeneous_rename_perm C.homogeneous rho
     change
@@ -137,14 +145,22 @@ theorem impossible_of_JC2
           standardTwoZeroTerminalWeight (C.degree : ℤ) := by
       funext i
       fin_cases i
-      · rw [hr0]
-        simp [standardTwoZeroTerminalWeight, C.weight_zero]
-      · rw [hr1]
-        simp [standardTwoZeroTerminalWeight, h3]
-      · rw [hr2]
-        simp [standardTwoZeroTerminalWeight, h2d]
-      · rw [hr3]
-        simp [standardTwoZeroTerminalWeight, h1d]
+      · change (C.weight (rho.symm (0 : Fin 4)) : ℤ) = 0
+        rw [hr0]
+        exact_mod_cast C.weight_zero
+      · change (C.weight (rho.symm (1 : Fin 4)) : ℤ) = 0
+        rw [hr1]
+        exact_mod_cast h3
+      · change
+          (C.weight (rho.symm (2 : Fin 4)) : ℤ) =
+            (C.degree : ℤ)
+        rw [hr2]
+        exact_mod_cast h2d
+      · change
+          (C.weight (rho.symm (3 : Fin 4)) : ℤ) =
+            (C.degree : ℤ)
+        rw [hr3]
+        exact_mod_cast h1d
     have hhomRenamed :=
       integralWeightedHomogeneous_rename_perm C.homogeneous rho
     change
