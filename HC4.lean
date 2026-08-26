@@ -93,3 +93,4 @@ import HC4.Newton.FirstContactCrossFacetEndpointTransition
 import HC4.Newton.FirstContactCrossFacetCarrier
 import HC4.Newton.FirstContactCrossFacetExit
 import HC4.Newton.FirstContactCrossFacetArithmetic
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRankThreeFirstContact
