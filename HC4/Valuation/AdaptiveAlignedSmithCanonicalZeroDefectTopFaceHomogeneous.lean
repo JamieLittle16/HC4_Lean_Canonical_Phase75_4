@@ -2,7 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection
 import Mathlib.Tactic
 
 /-!
-# A18.5.78: the zero-defect singular carrier is an honest homogeneous face
+# A18.5.78/80: the zero-defect singular carrier is an honest homogeneous face
 
 A18.5.12 selects the genuine maximal ordinary initial form of a determinant-one
 collision state and proves that it is nonzero, nonlinear and Hessian-singular.
@@ -11,9 +11,11 @@ selected ordinary degree, but that fact was not exposed as a reusable theorem.
 
 This file packages the missing homogeneous-carrier interface.  It introduces
 no new geometric assumption: the equal-degree statement follows directly from
-the coefficient formula for the ordinary initial form.  In particular the
-zero-defect singular carrier is now available to the homogeneous endpoint and
-rank-three line machinery without replacing it by another polynomial.
+the coefficient formula for the ordinary initial form.  It also records the
+support-functorial fact needed by the final toric consumer: whenever the
+source special fibre already carries a certified symmetric torus grading, the
+selected top face retains that grading because it is an exact initial form.
+No grading is manufactured here.
 -/
 
 namespace HC4.Valuation
@@ -73,6 +75,20 @@ theorem face_support_degree_ge_three
   intro d hd
   rw [D.face_support_ordinaryDegree_eq hd]
   exact D.degree_ge_three
+
+/-- Exact initial-form extraction does not lose a toric balance certificate.
+This theorem is deliberately conditional: the final HC4 entry must supply the
+balance from genuine preceding geometry rather than obtaining it from ordinary
+homogeneity. -/
+theorem face_balanced_of_specialFiber_balanced
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    {a b : ℕ}
+    (hBal : HC4.Polynomial.HasBalancedMvSupport a b
+      (polynomialFamilySpecialFiber s.family)) :
+    HC4.Polynomial.HasBalancedMvSupport a b D.face := by
+  rw [D.face_eq]
+  exact hBal.initialForm _ _
 
 end AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
 
