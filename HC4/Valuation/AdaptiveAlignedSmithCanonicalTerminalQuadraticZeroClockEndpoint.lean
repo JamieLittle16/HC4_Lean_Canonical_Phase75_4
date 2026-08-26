@@ -89,21 +89,22 @@ theorem quadraticFace_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero
     (hzero : state.rawDefect = 0) :
     HC4.Polynomial.hessianDeterminant G.quadraticFace = 1 := by
   have htop :=
-    initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
+    HC4.Polynomial.initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
       terminalQuadraticNegativeWeight (-2) T.specialFiber G.negativeWeightLE
   have htop' :
-      initialForm terminalQuadraticNegativeWeight 0
+      HC4.Polynomial.initialForm terminalQuadraticNegativeWeight 0
           (HC4.Polynomial.hessianDeterminant T.specialFiber) =
         HC4.Polynomial.hessianDeterminant
-          (initialForm terminalQuadraticNegativeWeight (-2) T.specialFiber) := by
+          (HC4.Polynomial.initialForm terminalQuadraticNegativeWeight (-2)
+            T.specialFiber) := by
     simpa [terminalQuadraticNegativeWeight_sum] using htop
   have hdet : HC4.Polynomial.hessianDeterminant T.specialFiber = 1 :=
     G.specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero hzero
   rw [hdet] at htop'
   have hone :
-      initialForm terminalQuadraticNegativeWeight 0
+      HC4.Polynomial.initialForm terminalQuadraticNegativeWeight 0
           (1 : MvPolynomial (Fin 4) K) = 1 := by
-    exact initialForm_eq_self_of_isWeightedHomogeneous
+    exact HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous
       (MvPolynomial.isWeightedHomogeneous_one K terminalQuadraticNegativeWeight)
   rw [hone] at htop'
   rw [G.quadraticFace_eq_negativeInitialForm]
