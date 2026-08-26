@@ -79,14 +79,32 @@ noncomputable def
     intro hF
     have hdet0 : HC4.Polynomial.hessianDeterminant F = 0 := by
       rw [hF]
-      simp [HC4.Polynomial.hessianDeterminant, HC4.Polynomial.hessian]
+      unfold HC4.Polynomial.hessianDeterminant HC4.Polynomial.hessian
+      change (0 : Matrix (Fin 4) (Fin 4) (MvPolynomial (Fin 4) K)).det = 0
+      exact Matrix.det_zero
     rw [hdet1] at hdet0
     exact one_ne_zero hdet0
   have hsupport : F.support.Nonempty :=
     MvPolynomial.support_nonempty.mpr hFne
-  rcases Finset.exists_max_image F.support
-      HC4.Polynomial.ordinaryDegree4 hsupport with
-    ⟨d, hd, hmax⟩
+  have hchoice : Nonempty {
+      d : Fin 4 →₀ ℕ //
+        d ∈ F.support ∧
+          ∀ d' ∈ F.support,
+            HC4.Polynomial.ordinaryDegree4 d' ≤
+              HC4.Polynomial.ordinaryDegree4 d } := by
+    rcases Finset.exists_max_image F.support
+        HC4.Polynomial.ordinaryDegree4 hsupport with
+      ⟨d, hd, hmax⟩
+    exact ⟨⟨d, hd, hmax⟩⟩
+  let dData := Classical.choice hchoice
+  let d : Fin 4 →₀ ℕ := dData.1
+  have hd : d ∈ F.support := by
+    exact dData.2.1
+  have hmax :
+      ∀ d' ∈ F.support,
+        HC4.Polynomial.ordinaryDegree4 d' ≤
+          HC4.Polynomial.ordinaryDegree4 d := by
+    exact dData.2.2
   let D := HC4.Polynomial.ordinaryDegree4 d
   let G := HC4.Polynomial.initialForm ordinaryWeight (D : ℤ) F
   have hLE : HC4.Polynomial.IsWeightLE ordinaryWeight (D : ℤ) F := by
