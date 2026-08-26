@@ -143,8 +143,17 @@ theorem HasCanonicalPositiveTransverseReesCoefficientBound.integralExposure
             Finsupp.weight (canonicalPositiveTransverseReesWeight Delta) d -
             2 * Delta) * a) := by
       rw [← mul_assoc, ← pow_add]
+      have hsplit :
+          2 * Delta +
+              (2 * q +
+                Finsupp.weight (canonicalPositiveTransverseReesWeight Delta) d -
+                2 * Delta) =
+            2 * q +
+              Finsupp.weight (canonicalPositiveTransverseReesWeight Delta) d :=
+        Nat.add_sub_of_le hle
+      rw [hsplit]
       congr 1
-      omega
+      exact Nat.add_comm _ _
 
 /-- The actual determinant-closing exposed family. -/
 noncomputable def canonicalPositiveTransverseReesFamily
