@@ -61,6 +61,29 @@ theorem
     AdaptiveAlignedSmithCanonicalReachedRankThree.toPresentedTerminal] using
     T.reachedRankThree_rawDefect_le_source
 
+/-- A terminal contradiction need only be supplied on a raw-defect interval
+containing the trace source.  Strict A18 restart descent propagates that bound
+to every tail automatically. -/
+theorem
+    AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.impossible_of_bounded_presentedTerminal_impossible
+    {RR : RepairRanking}
+    {complexity bound : ℕ}
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
+      RR complexity source)
+    (hsource : source.rawDefect ≤ bound)
+    (hterminal :
+      ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)},
+        state.rawDefect ≤ bound →
+        AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
+          RR state complexity → False) :
+    False := by
+  induction T with
+  | terminal geometry =>
+      exact hterminal hsource geometry.toPresentedTerminal
+  | restart progress rawDefect_lt repair_eq tail ih =>
+      exact ih (le_trans (Nat.le_of_lt rawDefect_lt) hsource) hterminal
+
 namespace AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry
 
 /-- **HC4-reachable terminal clock bound.**
@@ -77,6 +100,23 @@ theorem positiveRankOneTerminationTrace_reachedPresented_rawDefect_le_six
   have h :=
     (E.positiveRankOneTerminationTrace RR complexity).reachedPresentedRankThree_rawDefect_le_source
   simpa using h
+
+/-- Trace-facing closure specialised to the actual determinant-one front door.
+Only terminals whose source clock is at most six need to be eliminated. -/
+theorem positiveRankOneTerminationTrace_impossible_of_bounded_terminal
+    (RR : RepairRanking)
+    (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
+    (complexity : ℕ)
+    (hterminal :
+      ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)},
+        state.rawDefect ≤ 6 →
+        AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
+          RR state complexity → False) :
+    False := by
+  let T := E.positiveRankOneTerminationTrace RR complexity
+  apply T.impossible_of_bounded_presentedTerminal_impossible
+  · simp [T]
+  · exact hterminal
 
 end AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry
 
