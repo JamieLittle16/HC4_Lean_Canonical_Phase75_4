@@ -147,10 +147,18 @@ theorem rankThree_terminal_two_fixed_impossible
   have hsum0 :
       T.coeff 2 *
         ((B : K) + (C : K) + (phi.natDegree : K) - 1) = 0 := by
-    linear_combination hfactor + htop'
+    calc
+      T.coeff 2 *
+          ((B : K) + (C : K) + (phi.natDegree : K) - 1) =
+        ((B : K) * T.coeff 2 + (C : K) * T.coeff 2 -
+            T.coeff 2 - 1) +
+          (T.coeff 2 * (phi.natDegree : K) + 1) := by ring
+      _ = 0 := by rw [hfactor, htop']; simp
   have hsum :
-      (B : K) + (C : K) + (phi.natDegree : K) - 1 = 0 :=
-    (mul_eq_zero.mp hsum0).resolve_left ht
+      (B : K) + (C : K) + (phi.natDegree : K) - 1 = 0 := by
+    rcases mul_eq_zero.mp hsum0 with ht0 | hsum
+    · exact (ht ht0).elim
+    · exact hsum
   have hsumK :
       (B : K) + (C : K) + (phi.natDegree : K) = 1 := by
     linear_combination hsum
