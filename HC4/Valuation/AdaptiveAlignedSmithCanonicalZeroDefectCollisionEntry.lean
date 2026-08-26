@@ -48,7 +48,9 @@ polynomial. -/
     polynomialFamilySpecialFiber (zeroDefectConstantParameterFamily F) = F := by
   apply MvPolynomial.ext
   intro d
-  simp [polynomialFamilySpecialFiber, zeroDefectConstantParameterFamily]
+  unfold polynomialFamilySpecialFiber zeroDefectConstantParameterFamily
+  rw [MvPolynomial.coeff_map, MvPolynomial.coeff_map]
+  simp
 
 /-- Source Hessians commute with the coefficient embedding `K -> K[tau]`. -/
 theorem hessian_zeroDefectConstantParameterFamily
@@ -98,9 +100,12 @@ theorem zeroDefectConstantParameterFamily_exactCollision
       (polynomialConstantSection q) := by
   intro i
   have hi := hcoll i
-  simpa [zeroDefectConstantParameterFamily, polynomialConstantSection,
-    mvGradientComponentAt, MvPolynomial.pderiv_map] using
-      congrArg Polynomial.C hi
+  unfold zeroDefectConstantParameterFamily
+  rw [MvPolynomial.pderiv_map]
+  rw [MvPolynomial.eval_map, MvPolynomial.eval_map]
+  rw [MvPolynomial.eval₂_comp Polynomial.C p,
+      MvPolynomial.eval₂_comp Polynomial.C q]
+  exact congrArg Polynomial.C hi
 
 /-- Constant coefficient embedding cannot introduce new source monomials, so
 it preserves every nonlinear degree cap. -/
@@ -154,7 +159,13 @@ noncomputable def toScaleAwareState
       (fun _ : Fin 4 => (0 : K))
       (coordinateAxisPoint (K := K) (0 : Fin 4))
       E.exactCollision
-    simpa [polynomialConstantSection] using h
+    have hzeroSection :
+        polynomialConstantSection (fun _ : Fin 4 => (0 : K)) =
+          zeroPolynomialSection (K := K) := by
+      funext i
+      simp [polynomialConstantSection, zeroPolynomialSection]
+    rw [hzeroSection] at h
+    exact h
   sectionSpecial := by
     exact polynomialSectionSpecialPoint_constantSection
       (coordinateAxisPoint (K := K) (0 : Fin 4))
