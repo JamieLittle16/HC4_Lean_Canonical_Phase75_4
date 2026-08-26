@@ -38,8 +38,7 @@ the surviving `qs` rank-three endpoint.
 The remaining hypotheses are deliberately geometric certificates rather than
 reconstructed algebra: terminal support/presentation adapters are expected to
 supply them at the final splice. -/
-theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
-    .terminal_qs_rankThree_firstContact_forces_b_one
+theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThree_firstContact_forces_b_one
     {RR : RepairRanking}
     {complexity : ℕ}
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -81,8 +80,8 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace
       hessianDeterminant
         trace.reachedPresentedRankThree.terminal.specialFiber = 0 := by
     simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber]
-      using trace.reachedPresentedRankThree.terminal.presentedState
-        .specialFiber_hessianDeterminant_eq_zero hrawDefect
+      using trace.reachedPresentedRankThree.terminal.presentedState.specialFiber_hessianDeterminant_eq_zero
+        hrawDefect
 
   exact D.qs_rankThree_firstContact_forces_b_one
     ha hb hcop hcontactScale hcontactBump
