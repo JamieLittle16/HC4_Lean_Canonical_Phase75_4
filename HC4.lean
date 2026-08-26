@@ -50,3 +50,4 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectBalanceFreeBoundaryFrontier
 import HC4.Newton.TwoZeroDoublingHessianSquareGeneral
+import HC4.PlanarJC2HessianEmbedding
