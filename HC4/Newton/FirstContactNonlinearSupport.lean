@@ -39,12 +39,17 @@ theorem firstContact_initialForm_support_degree_ge_three
   have hdPsi : d ∈ psi.support :=
     support_initialForm_subset
       (scaledContactWeight j scale bump) (scale * m : ℕ) psi hd
+  have hcoeff :
+      MvPolynomial.coeff d
+        (initialForm (scaledContactWeight j scale bump)
+          (scale * m : ℕ) psi) ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
   have hweight :
       Finsupp.weight (scaledContactWeight j scale bump) d =
         ((scale * m : ℕ) : ℤ) := by
     exact
       (initialForm_isWeightedHomogeneous
-        (scaledContactWeight j scale bump) (scale * m : ℕ) psi) hd
+        (scaledContactWeight j scale bump) (scale * m : ℕ) psi) hcoeff
   by_contra hnot
   have hdeg2 : ordinaryDegree4 d ≤ 2 := by omega
   have hj : d j ≤ 1 := hlow d hdPsi (by omega)
