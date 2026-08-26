@@ -124,7 +124,6 @@ noncomputable def
     have hw :
         Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (D : ℤ) := by
       rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
-      rfl
     have hw' : Finsupp.weight ordinaryWeight d = (D : ℤ) := by
       simpa [ordinaryWeight] using hw
     have hcoeff : MvPolynomial.coeff d G = MvPolynomial.coeff d F := by
