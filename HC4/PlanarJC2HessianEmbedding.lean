@@ -33,6 +33,11 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
+/- The imported reflexive derivative aliases point in the opposite direction
+from the definitions unfolded below.  Keeping both active makes simp cycle. -/
+attribute [-simp] standardTwoZero_pderiv_two_eq_A
+attribute [-simp] standardTwoZero_pderiv_three_eq_C
+
 /-- Renaming an honest planar polynomial into coordinates `0,1` introduces no
 support in coordinates `2,3`. -/
 theorem rename_standardZeroPair_dependsOnly
@@ -95,7 +100,6 @@ def planarDoublingPotential
     standardTwoZeroA (planarDoublingPotential A C) =
       MvPolynomial.rename standardZeroPairEmbedding A := by
   simp [standardTwoZeroA, planarDoublingPotential,
-    MvPolynomial.pderiv_mul,
     pderiv_two_rename_standardZeroPair_eq_zero,
     pderiv_three_rename_standardZeroPair_eq_zero]
 
@@ -104,7 +108,6 @@ def planarDoublingPotential
     standardTwoZeroC (planarDoublingPotential A C) =
       MvPolynomial.rename standardZeroPairEmbedding C := by
   simp [standardTwoZeroC, planarDoublingPotential,
-    MvPolynomial.pderiv_mul,
     pderiv_two_rename_standardZeroPair_eq_zero,
     pderiv_three_rename_standardZeroPair_eq_zero]
 
@@ -176,14 +179,12 @@ theorem planarDoublingPotential_gradient_zeroPair_at_zeroFibre
       MvPolynomial.eval
           (standardJoinPoint (u, fun _ : Fin 2 => (0 : K)))
           (MvPolynomial.pderiv 0 (planarDoublingPotential A C)) = 0
-    simp [planarDoublingPotential, MvPolynomial.pderiv_mul,
-      standardJoinPoint]
+    simp [planarDoublingPotential, standardJoinPoint]
   · change
       MvPolynomial.eval
           (standardJoinPoint (u, fun _ : Fin 2 => (0 : K)))
           (MvPolynomial.pderiv 1 (planarDoublingPotential A C)) = 0
-    simp [planarDoublingPotential, MvPolynomial.pderiv_mul,
-      standardJoinPoint]
+    simp [planarDoublingPotential, standardJoinPoint]
 
 /-- Every planar collision lifts to an exact gradient collision of the
 four-dimensional doubling potential on the zero fibre. -/
@@ -219,18 +220,26 @@ theorem planarDoublingPotential_exactCollision_of_planarCollision
       standardBasePoint (mvGradientMap F q) = z := by
     simpa [F, q, z] using
       planarDoublingPotential_gradient_zeroPair_at_zeroFibre A C v
+  have hbaseP : standardBasePoint p = u := by
+    have hs := congrArg Prod.fst (standardSplitPoint_join u z)
+    simpa [standardSplitPoint, p] using hs
+  have hbaseQ : standardBasePoint q = v := by
+    have hs := congrArg Prod.fst (standardSplitPoint_join v z)
+    simpa [standardSplitPoint, q] using hs
   have hposP :
       standardFibrePoint (mvGradientMap F p) =
         HC4.planarPolynomialMapEval
           (standardPlanarPairMap A C) u := by
     have h := standardTwoZero_gradient_positive_eq_planar hA hC p
-    simpa [p, standardBasePoint, standardJoinPoint] using h
+    rw [hbaseP] at h
+    exact h
   have hposQ :
       standardFibrePoint (mvGradientMap F q) =
         HC4.planarPolynomialMapEval
           (standardPlanarPairMap A C) v := by
     have h := standardTwoZero_gradient_positive_eq_planar hA hC q
-    simpa [q, standardBasePoint, standardJoinPoint] using h
+    rw [hbaseQ] at h
+    exact h
   have hsplit :
       standardSplitPoint (mvGradientMap F p) =
         standardSplitPoint (mvGradientMap F q) := by
@@ -278,7 +287,7 @@ theorem planarJacobianDetPolynomial_normalizePlanarKellerMap
     planarJacobianDetPolynomial (normalizePlanarKellerMap c G) =
       MvPolynomial.C c⁻¹ * planarJacobianDetPolynomial G := by
   unfold planarJacobianDetPolynomial
-  simp [normalizePlanarKellerMap, MvPolynomial.pderiv_C_mul]
+  simp [normalizePlanarKellerMap]
   ring
 
 /-- A nonzero constant-Jacobian certificate becomes literal Jacobian one. -/
@@ -289,7 +298,12 @@ theorem normalizePlanarKellerMap_jacobian_one
     planarJacobianDetPolynomial (normalizePlanarKellerMap c G) =
       MvPolynomial.C (1 : K) := by
   rw [planarJacobianDetPolynomial_normalizePlanarKellerMap, hJ]
-  simp [hc]
+  have hcinv : c⁻¹ * c = (1 : K) := inv_mul_cancel₀ hc
+  calc
+    MvPolynomial.C c⁻¹ * MvPolynomial.C c =
+        MvPolynomial.C (c⁻¹ * c) := by
+          exact (map_mul (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K) c⁻¹ c).symm
+    _ = MvPolynomial.C (1 : K) := by rw [hcinv]
 
 /-- Target scaling preserves every planar collision. -/
 theorem normalizePlanarKellerMap_collision
