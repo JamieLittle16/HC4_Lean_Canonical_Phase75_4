@@ -43,9 +43,9 @@ noncomputable def alignedRankThreeGeometry
   | terminal geometry =>
       exact geometry
   | restart progress rawDefect_lt repair_eq tail =>
-      have hlt : _ < 0 := by
+      have hfalse : False := by
         simpa using rawDefect_lt
-      exact (Nat.not_lt_zero _ hlt).elim
+      exact hfalse.elim
 
 /-- **Zero-defect terminal collapse.**
 The normalized determinant-one collision reaches the presented rank-three
