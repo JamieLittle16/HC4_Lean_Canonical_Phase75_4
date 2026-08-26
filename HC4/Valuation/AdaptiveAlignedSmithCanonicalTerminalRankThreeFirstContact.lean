@@ -57,7 +57,7 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThr
     (hout :
       (positiveCoordinateSupport (0 : Fin 4)
         trace.reachedPresentedRankThree.terminal.specialFiber).Nonempty)
-    (hBal : HasBalancedMvSupport a b
+    (hBal : HC4.Polynomial.HasBalancedMvSupport a b
       trace.reachedPresentedRankThree.terminal.specialFiber)
     (hcontact : ∀ d ∈
         trace.reachedPresentedRankThree.terminal.specialFiber.support,
@@ -77,7 +77,7 @@ theorem AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThr
     crossFacetInitialData hfacet hout
 
   have hzero :
-      hessianDeterminant
+      HC4.Polynomial.hessianDeterminant
         trace.reachedPresentedRankThree.terminal.specialFiber = 0 := by
     simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber]
       using trace.reachedPresentedRankThree.terminal.presentedState.specialFiber_hessianDeterminant_eq_zero
