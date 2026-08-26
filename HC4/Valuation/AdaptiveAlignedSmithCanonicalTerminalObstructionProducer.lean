@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTraceCollapse
 
 /-!
 # A18.5.90: exact producer interface for the final presented terminal
