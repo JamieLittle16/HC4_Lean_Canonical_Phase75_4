@@ -24,14 +24,15 @@ open MvPolynomial
 
 noncomputable section
 
-variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
+universe u
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- The compact algebraic payload of a rank-three affine terminal whose last
 two transverse directions are certified to be fixed.  The certificate itself
 is kept in its original `(Q,R,S)` form so no dependent rewriting occurs in the
 cross-facet layer. -/
 structure QsTwoFixedTerminalData
-    (Q : K) (phi : Polynomial K) : Type where
+    (Q : K) (phi : Polynomial K) : Type u where
   A : ℕ
   B : ℕ
   C : ℕ
