@@ -160,13 +160,8 @@ theorem eq_complementaryLineRangePolynomial_of_supported
     intro j hj
     by_cases heq :
         complementaryLineExponentFinsupp a1 a2 b1 b2 h k M j = d
-    · have hline0 :
-          MvPolynomial.coeff
-            (complementaryLineExponentFinsupp a1 a2 b1 b2 h k M j) F = 0 := by
-        rw [heq]
-        exact hd0
-      rw [complementaryLineTerm_eq_monomial]
-      simp [heq, hline0]
+    · rw [complementaryLineTerm_eq_monomial]
+      simp [heq, hd0]
     · rw [complementaryLineTerm_eq_monomial]
       simp [heq]
 
