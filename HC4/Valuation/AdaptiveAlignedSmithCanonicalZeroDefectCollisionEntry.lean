@@ -244,16 +244,17 @@ noncomputable def positiveReentry
     (E : AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry (K := K))
     (complexity : ℕ) : PositiveReentry E complexity := by
   let s := E.toScaleAwareState complexity
-  rcases s.exists_zeroDefectTransverseReentry (by simp [s]) with
-    ⟨t, hraw, hscale, hdegreeCap, hsourceComplexity, hrepair, hpositive⟩
+  have hex := s.exists_zeroDefectTransverseReentry (by simp [s])
+  let t := Classical.choose hex
+  have ht := Classical.choose_spec hex
   exact {
     state := t
-    rawDefect_eq_six := hraw
-    scale_eq := hscale
-    degreeCap_eq := hdegreeCap
-    sourceComplexity_eq := hsourceComplexity
-    repair_eq := hrepair
-    rawDefect_pos := hpositive
+    rawDefect_eq_six := ht.1
+    scale_eq := ht.2.1
+    degreeCap_eq := ht.2.2.1
+    sourceComplexity_eq := ht.2.2.2.1
+    repair_eq := ht.2.2.2.2.1
+    rawDefect_pos := ht.2.2.2.2.2
   }
 
 @[simp] theorem positiveReentry_rawDefect
