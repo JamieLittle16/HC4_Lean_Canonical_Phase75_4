@@ -111,12 +111,13 @@ is the maximal negative-weight initial form of the actual terminal fibre. -/
 theorem quadraticFace_eq_negativeInitialForm
     (G : AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry T) :
     G.quadraticFace =
-      initialForm terminalQuadraticNegativeWeight (-2) T.specialFiber := by
+      HC4.Polynomial.initialForm terminalQuadraticNegativeWeight (-2)
+        T.specialFiber := by
   classical
   apply MvPolynomial.ext
   intro d
   unfold quadraticFace
-  rw [coeff_smithSubfacePolynomial, coeff_initialForm]
+  rw [coeff_smithSubfacePolynomial, HC4.Polynomial.coeff_initialForm]
   by_cases hcoeff : MvPolynomial.coeff d T.specialFiber = 0
   · simp [hcoeff]
   · have hd : d ∈ T.specialFiber.support :=
