@@ -87,9 +87,10 @@ theorem ScaleAwareAdaptiveGeometricRestartState.rankOne_impossible_of_presentedT
         AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
           RR state complexity → False) :
     False := by
+  let trace := source.rankOneTerminationTrace RR complexity hsrepair
   exact
-    (source.rankOneTerminationTrace RR complexity hsrepair)
-      .impossible_of_presentedTerminal_impossible hterminal
+    AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.impossible_of_presentedTerminal_impossible
+      trace hterminal
 
 /-- Carrier-facing state form, ready for the A18.5.74 terminal rigidity
 constructor. -/
@@ -104,9 +105,10 @@ theorem ScaleAwareAdaptiveGeometricRestartState.rankOne_impossible_of_singularCa
           RR state complexity},
         AdaptiveAlignedSmithCanonicalTerminalSingularCarrier T → False) :
     False := by
+  let trace := source.rankOneTerminationTrace RR complexity hsrepair
   exact
-    (source.rankOneTerminationTrace RR complexity hsrepair)
-      .impossible_of_singularCarrier_impossible hcarrier
+    AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.impossible_of_singularCarrier_impossible
+      trace hcarrier
 
 end
 
