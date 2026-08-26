@@ -31,6 +31,43 @@ variable {K : Type u} [Field K] [CharZero K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
 
+/-- Proposition-valued wrapper for the finite-support exposure theorem.  The
+existential theorem may be destructured here because the target is `Nonempty`;
+the public `Type`-valued constructor then performs only one classical choice. -/
+private theorem exposedBoundaryVertex_nonempty
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    {a b : ℕ}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hBal : HasBalancedMvSupport a b
+      (polynomialFamilySpecialFiber s.family)) :
+    Nonempty (FirstNonfacetExposedBoundaryVertexData (K := K) a b) := by
+  have hFaceBal : HasBalancedMvSupport a b D.face :=
+    D.face_balanced_of_specialFiber_balanced hBal
+
+  rcases exists_exposed_nonlinear_balanced_monomial
+      D.face_ne_zero D.hessian_zero hFaceBal
+      D.face_support_degree_ge_three with
+    ⟨G, w, level, d, c, hGzero, hGBal, hwbound, hexposed, hc, hd3⟩
+
+  have hstratum := exposed_balanced_monomial_rankThree_or_extremeRay
+    ha hb hcop hGBal hwbound hGzero hexposed hc hd3
+
+  exact ⟨{
+    carrier := G
+    weight := w
+    level := level
+    exponent := d
+    coeff := c
+    carrier_hessian_zero := hGzero
+    carrier_balanced := hGBal
+    weight_bound := hwbound
+    exposed := hexposed
+    coeff_ne_zero := hc
+    exponent_nonlinear := hd3
+    stratum := hstratum
+  }⟩
+
 /-- **A18.5.81 — actual classified boundary vertex of the zero-defect carrier.**
 
 Once the source special fibre carries a positive primitive symmetric torus
@@ -45,52 +82,8 @@ noncomputable def exposedBoundaryVertex
     (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
     (hBal : HasBalancedMvSupport a b
       (polynomialFamilySpecialFiber s.family)) :
-    FirstNonfacetExposedBoundaryVertexData (K := K) a b := by
-  have hFaceBal : HasBalancedMvSupport a b D.face :=
-    D.face_balanced_of_specialFiber_balanced hBal
-
-  have hexposed :=
-    exists_exposed_nonlinear_balanced_monomial
-      D.face_ne_zero D.hessian_zero hFaceBal
-      D.face_support_degree_ge_three
-  let G := Classical.choose hexposed
-  have hexposed1 := Classical.choose_spec hexposed
-  let w := Classical.choose hexposed1
-  have hexposed2 := Classical.choose_spec hexposed1
-  let level := Classical.choose hexposed2
-  have hexposed3 := Classical.choose_spec hexposed2
-  let d := Classical.choose hexposed3
-  have hexposed4 := Classical.choose_spec hexposed3
-  let c := Classical.choose hexposed4
-  have hs := Classical.choose_spec hexposed4
-  have hGzero := hs.1
-  have hs := hs.2
-  have hGBal := hs.1
-  have hs := hs.2
-  have hwbound := hs.1
-  have hs := hs.2
-  have hexposedEq := hs.1
-  have hs := hs.2
-  have hc := hs.1
-  have hd3 := hs.2
-
-  have hstratum := exposed_balanced_monomial_rankThree_or_extremeRay
-    ha hb hcop hGBal hwbound hGzero hexposedEq hc hd3
-
-  exact {
-    carrier := G
-    weight := w
-    level := level
-    exponent := d
-    coeff := c
-    carrier_hessian_zero := hGzero
-    carrier_balanced := hGBal
-    weight_bound := hwbound
-    exposed := hexposedEq
-    coeff_ne_zero := hc
-    exponent_nonlinear := hd3
-    stratum := hstratum
-  }
+    FirstNonfacetExposedBoundaryVertexData (K := K) a b :=
+  Classical.choice (exposedBoundaryVertex_nonempty D ha hb hcop hBal)
 
 end AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
 
