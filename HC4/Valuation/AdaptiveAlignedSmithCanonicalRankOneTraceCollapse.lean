@@ -81,7 +81,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.rankOne_impossible_of_presentedT
     (RR : RepairRanking)
     (source : ScaleAwareAdaptiveGeometricRestartState (K := K))
     (complexity : ℕ)
-    (hsrepair : source.repair = rankOneRepairState complexity)
+    (hsrepair : source.repair = HC4.Newton.rankOneRepairState complexity)
     (hterminal :
       ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)},
         AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
@@ -97,7 +97,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.rankOne_impossible_of_singularCa
     (RR : RepairRanking)
     (source : ScaleAwareAdaptiveGeometricRestartState (K := K))
     (complexity : ℕ)
-    (hsrepair : source.repair = rankOneRepairState complexity)
+    (hsrepair : source.repair = HC4.Newton.rankOneRepairState complexity)
     (hcarrier :
       ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
         {T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
