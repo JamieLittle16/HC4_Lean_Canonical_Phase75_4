@@ -54,8 +54,10 @@ theorem CrossFacetInitialData.qs_rankThree_terminalScalarData
       ha hb hcontactScale hBal hcontact
     phi_coeff_zero_ne := D.qsCoefficientPolynomial_coeff_zero_ne
       ha hb hcontactScale hBal hcontact
-    certificate := D.qs_rankThree_terminalCertificate
-      ha hb hcontactScale hBal hcontact hzero hthree
+    certificate := by
+      simpa only [Nat.cast_one] using
+        (D.qs_rankThree_terminalCertificate
+          ha hb hcontactScale hBal hcontact hzero hthree)
   }
 
 end
