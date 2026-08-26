@@ -21,8 +21,10 @@ noncomputable section
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- Cache the exact `qs` rank-three terminal in the small scalar RR interface.
-No two-fixed hypotheses are needed at this stage. -/
-noncomputable def CrossFacetInitialData.qs_rankThree_terminalScalarData
+No two-fixed hypotheses are needed at this stage.  This is a theorem rather
+than a reducible definition, so downstream elaboration treats the expensive
+construction as opaque. -/
+theorem CrossFacetInitialData.qs_rankThree_terminalScalarData
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
     (ha : 0 < a) (hb : 0 < b)
