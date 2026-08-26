@@ -47,6 +47,93 @@ structure FirstNonfacetExposedBoundaryVertexData
         AdjacentFacets facet next ∧
           OnRay a b facet next (toToricExponent exponent))
 
+/-- Compact data extracted from the existential first-contact theorem.
+Packaging the witness behind `Nonempty` keeps the later `Type`-valued
+constructor from repeatedly normalising the long existential conjunction. -/
+private structure FirstNonfacetContactCore
+    (F : ToricFacet) (m : ℕ) (psi : MvPolynomial (Fin 4) K) where
+  d0 : Fin 4 →₀ ℕ
+  scale : ℕ
+  bump : ℕ
+  d0_degree_ge_three : 3 ≤ ordinaryDegree4 d0
+  d0_omitted_pos : 0 < d0 (facetOmittedCoordinate F)
+  scale_pos : 0 < scale
+  hessian_zero :
+    hessianDeterminant
+      (initialForm
+        (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+        (scale * m : ℕ) psi) = 0
+  d0_mem_contact :
+    d0 ∈
+      (initialForm
+        (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+        (scale * m : ℕ) psi).support
+
+private theorem firstNonfacetContactCore_nonempty
+    {F : ToricFacet} {m : ℕ}
+    {psi : MvPolynomial (Fin 4) K}
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet F m psi)
+    (hout : HasNonlinearOutsideFacet F psi)
+    (hlow : LowDegreeTameAtFacet F psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    Nonempty (FirstNonfacetContactCore (K := K) F m psi) := by
+  rcases exists_singular_first_nonfacet_contact
+      hm hdeg htop hout hlow hMA with
+    ⟨d0, scale, bump, _hdPsi, hdDeg, hdPos,
+      _hscaleEq, _hbumpEq, hscale, _hbump, _hbound,
+      hzero, hdG, _hnotFacet⟩
+  exact ⟨{
+    d0 := d0
+    scale := scale
+    bump := bump
+    d0_degree_ge_three := hdDeg
+    d0_omitted_pos := hdPos
+    scale_pos := hscale
+    hessian_zero := hzero
+    d0_mem_contact := hdG
+  }⟩
+
+/-- Compact data extracted from the finite-support exposed-vertex theorem. -/
+private structure ExposedNonlinearBalancedCore (a b : ℕ) where
+  carrier : MvPolynomial (Fin 4) K
+  weight : Fin 4 → ℤ
+  level : ℤ
+  exponent : Fin 4 →₀ ℕ
+  coeff : K
+  hessian_zero : hessianDeterminant carrier = 0
+  balanced : HasBalancedMvSupport a b carrier
+  weight_bound : IsWeightLE weight level carrier
+  exposed : initialForm weight level carrier = MvPolynomial.monomial exponent coeff
+  coeff_ne_zero : coeff ≠ 0
+  exponent_nonlinear : 3 ≤ ordinaryDegree4 exponent
+
+private theorem exposedNonlinearBalancedCore_nonempty
+    {a b : ℕ}
+    {P : MvPolynomial (Fin 4) K}
+    (hP : P ≠ 0)
+    (hzero : hessianDeterminant P = 0)
+    (hBal : HasBalancedMvSupport a b P)
+    (hnonlinear : ∀ d ∈ P.support, 3 ≤ ordinaryDegree4 d) :
+    Nonempty (ExposedNonlinearBalancedCore (K := K) a b) := by
+  rcases exists_exposed_nonlinear_balanced_monomial
+      hP hzero hBal hnonlinear with
+    ⟨G, w, level, d, c, hGzero, hGBal, hwbound, hexposed, hc, hd3⟩
+  exact ⟨{
+    carrier := G
+    weight := w
+    level := level
+    exponent := d
+    coeff := c
+    hessian_zero := hGzero
+    balanced := hGBal
+    weight_bound := hwbound
+    exposed := hexposed
+    coeff_ne_zero := hc
+    exponent_nonlinear := hd3
+  }⟩
+
 /-- **Constructed and classified boundary vertex of the genuine first
 non-facet contact.** -/
 noncomputable def firstNonfacetExposedBoundaryVertex
@@ -61,51 +148,28 @@ noncomputable def firstNonfacetExposedBoundaryVertex
     (hBal : HasBalancedMvSupport a b psi)
     (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
     FirstNonfacetExposedBoundaryVertexData (K := K) a b := by
-  have hcontact :=
-    exists_singular_first_nonfacet_contact hm hdeg htop hout hlow hMA
-  let d0 := Classical.choose hcontact
-  have hcontact1 := Classical.choose_spec hcontact
-  let scale := Classical.choose hcontact1
-  have hcontact2 := Classical.choose_spec hcontact1
-  let bump := Classical.choose hcontact2
-  have hs := Classical.choose_spec hcontact2
-  have hdPsi := hs.1
-  have hs := hs.2
-  have hdDeg := hs.1
-  have hs := hs.2
-  have hdPos := hs.1
-  have hs := hs.2
-  have hscaleEq := hs.1
-  have hs := hs.2
-  have hbumpEq := hs.1
-  have hs := hs.2
-  have hscale := hs.1
-  have hs := hs.2
-  have hbump := hs.1
-  have hs := hs.2
-  have hbound := hs.1
-  have hs := hs.2
-  have hzero := hs.1
-  have hs := hs.2
-  have hdG := hs.1
-  have hnotFacet := hs.2
+  let C : FirstNonfacetContactCore (K := K) F m psi :=
+    Classical.choice
+      (firstNonfacetContactCore_nonempty hm hdeg htop hout hlow hMA)
 
   let j := facetOmittedCoordinate F
-  let G := initialForm (scaledContactWeight j scale bump)
-    (scale * m : ℕ) psi
+  let G := initialForm (scaledContactWeight j C.scale C.bump)
+    (C.scale * m : ℕ) psi
 
   have hdWeight :
-      scaledContactExponentWeight j scale bump d0 = (scale * m : ℕ) := by
+      scaledContactExponentWeight j C.scale C.bump C.d0 =
+        (C.scale * m : ℕ) := by
     have hw :=
       (initialForm_isWeightedHomogeneous
-        (scaledContactWeight j scale bump) (scale * m : ℕ) psi)
-        (MvPolynomial.mem_support_iff.mp hdG)
+        (scaledContactWeight j C.scale C.bump) (C.scale * m : ℕ) psi)
+        (MvPolynomial.mem_support_iff.mp C.d0_mem_contact)
     rw [weight_scaledContactWeight] at hw
     exact hw
 
-  have hbumpBound : bump ≤ scale * (m - 3) :=
-    bump_le_scale_mul_m_sub_three hscale
-      (by simpa [j] using hdPos) hdDeg hdWeight
+  have hbumpBound : C.bump ≤ C.scale * (m - 3) :=
+    bump_le_scale_mul_m_sub_three C.scale_pos
+      (by simpa [j] using C.d0_omitted_pos)
+      C.d0_degree_ge_three hdWeight
 
   have hlow' :
       ∀ d ∈ psi.support, ordinaryDegree4 d < 3 → d j ≤ 1 := by
@@ -114,55 +178,38 @@ noncomputable def firstNonfacetExposedBoundaryVertex
   have hGnonlinear : ∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d := by
     dsimp [G]
     exact firstContact_initialForm_support_degree_ge_three
-      hm hscale hbumpBound hlow'
+      hm C.scale_pos hbumpBound hlow'
 
   have hGzero : hessianDeterminant G = 0 := by
-    simpa [G, j] using hzero
+    simpa [G, j] using C.hessian_zero
   have hGBal : HasBalancedMvSupport a b G := by
     dsimp [G]
-    exact hBal.initialForm (scaledContactWeight j scale bump) (scale * m : ℕ)
+    exact hBal.initialForm
+      (scaledContactWeight j C.scale C.bump) (C.scale * m : ℕ)
   have hGne : G ≠ 0 := by
-    exact MvPolynomial.support_nonempty.mp ⟨d0, by simpa [G, j] using hdG⟩
+    exact MvPolynomial.support_nonempty.mp
+      ⟨C.d0, by simpa [G, j] using C.d0_mem_contact⟩
 
-  have hexposed :=
-    exists_exposed_nonlinear_balanced_monomial
-      hGne hGzero hGBal hGnonlinear
-  let H := Classical.choose hexposed
-  have hexposed1 := Classical.choose_spec hexposed
-  let w := Classical.choose hexposed1
-  have hexposed2 := Classical.choose_spec hexposed1
-  let level := Classical.choose hexposed2
-  have hexposed3 := Classical.choose_spec hexposed2
-  let d := Classical.choose hexposed3
-  have hexposed4 := Classical.choose_spec hexposed3
-  let c := Classical.choose hexposed4
-  have hs := Classical.choose_spec hexposed4
-  have hHzero := hs.1
-  have hs := hs.2
-  have hHBal := hs.1
-  have hs := hs.2
-  have hwbound := hs.1
-  have hs := hs.2
-  have hexposedEq := hs.1
-  have hs := hs.2
-  have hc := hs.1
-  have hd3 := hs.2
+  let V : ExposedNonlinearBalancedCore (K := K) a b :=
+    Classical.choice
+      (exposedNonlinearBalancedCore_nonempty hGne hGzero hGBal hGnonlinear)
 
   have hstratum := exposed_balanced_monomial_rankThree_or_extremeRay
-    ha hb hcop hHBal hwbound hHzero hexposedEq hc hd3
+    ha hb hcop V.balanced V.weight_bound V.hessian_zero
+      V.exposed V.coeff_ne_zero V.exponent_nonlinear
 
   exact {
-    carrier := H
-    weight := w
-    level := level
-    exponent := d
-    coeff := c
-    carrier_hessian_zero := hHzero
-    carrier_balanced := hHBal
-    weight_bound := hwbound
-    exposed := hexposedEq
-    coeff_ne_zero := hc
-    exponent_nonlinear := hd3
+    carrier := V.carrier
+    weight := V.weight
+    level := V.level
+    exponent := V.exponent
+    coeff := V.coeff
+    carrier_hessian_zero := V.hessian_zero
+    carrier_balanced := V.balanced
+    weight_bound := V.weight_bound
+    exposed := V.exposed
+    coeff_ne_zero := V.coeff_ne_zero
+    exponent_nonlinear := V.exponent_nonlinear
     stratum := hstratum
   }
 
