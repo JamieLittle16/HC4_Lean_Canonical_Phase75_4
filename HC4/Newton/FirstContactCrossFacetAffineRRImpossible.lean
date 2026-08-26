@@ -1,5 +1,5 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
-import HC4.Newton.FirstContactCrossFacetAffineRRTerminal
+import HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate
 import HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible
 import Mathlib.Tactic
 
@@ -14,9 +14,11 @@ coordinate.  It also cannot be `-1`: then ordinary degree would be preserved.
 Both contradict the strict degree drop forced by the positive first-contact
 bump.
 
-The affine two-fixed contradiction of A18.5.73a then applies directly to the
-terminal certificate already constructed in A18.5.68.  No integral
-reparameterisation and no endpoint divisibility hypothesis is used.
+The expensive affine-line terminal certificate is constructed in A18.5.68 and
+specialized to literal slopes `(Q,0,0)` in A18.5.73a.1.  This file therefore
+contains no dependent rewriting of the terminal certificate: it only exposes
+the two fixed slopes, proves the two elementary nondegeneracies, and invokes
+the affine two-fixed contradiction A18.5.73a.
 -/
 
 namespace HC4.Newton
@@ -95,11 +97,8 @@ private theorem qs_remainingSlope_add_one_ne_zero_of_two_fixed
       ha hb hcontactScale hBal hcontact hsum
   omega
 
-set_option maxHeartbeats 800000 in
 /-- The genuine positive-bump first-contact transition exposes exactly the two
-fixed transverse slopes needed by the affine terminal contradiction.  Keeping
-this projection in its own theorem makes the large transition proof opaque to
-the final assembly command. -/
+fixed transverse slopes needed by the affine terminal contradiction. -/
 private theorem qs_rankThree_firstContact_two_fixed
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -119,10 +118,9 @@ private theorem qs_rankThree_firstContact_two_fixed
     ha hb hcontactScale hcontactBump hBal hcontact hzero hthree
   exact ⟨htransition.1, htransition.2.1⟩
 
-set_option maxHeartbeats 1000000 in
 /-- Once the two fixed slopes and the two elementary nondegeneracies are known,
-reuse the already-compiled A18.5.68 terminal certificate and invoke A18.5.73a.
-No affine line is reconstructed in this theorem. -/
+consume the pre-specialized `(Q,0,0)` terminal certificate and invoke
+A18.5.73a. -/
 private theorem qs_two_fixed_cached_terminal_impossible
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
@@ -149,16 +147,23 @@ private theorem qs_two_fixed_cached_terminal_impossible
   have hphi0 : D.qsCoefficientPolynomial.coeff 0 ≠ 0 :=
     D.qsCoefficientPolynomial_coeff_zero_ne
       ha hb hcontactScale hBal hcontact
-  have hcert := D.qs_rankThree_terminalCertificate
-    ha hb hcontactScale hBal hcontact hzero hthree
-  rw [hR, hS] at hcert
+  have hcert :
+      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+        (phi := D.qsCoefficientPolynomial)
+        ((D.facetExponent 1 : ℕ) : K)
+        ((D.facetExponent 2 : ℕ) : K)
+        ((D.facetExponent 3 : ℕ) : K)
+        (1 : K)
+        (D.qsSlope (1 : Fin 4)) 0 0 :=
+    D.qs_rankThree_terminalCertificate_two_fixed
+      ha hb hcontactScale hBal hcontact hzero hthree hR hS
   exact HC4.RationalRigidity.rankThree_terminal_two_fixed_impossible
     hA hB hC (by decide) hphiDeg hphi0 hcert hQ hQone
 
 /-- **The genuine `qs` rank-three first-contact branch is contradictory.**
 
-This final command is intentionally tiny: all large dependent constructions
-are hidden behind the opaque transition and cached-terminal helper theorems. -/
+All large dependent constructions are hidden behind opaque theorem boundaries;
+this final command only composes the already-certified pieces. -/
 theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
     {F : MvPolynomial (Fin 4) K}
     {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
