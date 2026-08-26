@@ -1,5 +1,5 @@
 import HC4.Newton.FirstContactCrossFacetAffineRRTransition
-import HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedElimination
+import HC4.Newton.FirstContactCrossFacetAffineRRTerminalScalarData
 import Mathlib.Tactic
 
 /-!
@@ -13,9 +13,10 @@ coordinate.  It also cannot be `-1`: then ordinary degree would be preserved.
 Both contradict the strict degree drop forced by the positive first-contact
 bump.
 
-All affine-terminal certificate construction and elimination now lives behind
-A18.5.73a.3.  This file contains only first-contact geometry and scalar
-nondegeneracy; it never elaborates `HasRankThreePolynomialTerminalCertificate`.
+The expensive affine-terminal construction is cached once in the
+nondependent scalar interface A18.5.73a.5.  This file therefore contains only
+first-contact geometry and four scalar facts; it never elaborates the terminal
+certificate type itself.
 -/
 
 namespace HC4.Newton
@@ -140,8 +141,9 @@ theorem CrossFacetInitialData.qs_rankThree_firstContact_impossible
   have hQone : D.qsSlope (1 : Fin 4) + 1 ≠ 0 :=
     qs_remainingSlope_add_one_ne_zero_of_two_fixed
       ha hb hcontactScale hcontactBump D hBal hcontact hR hS
-  exact D.qs_rankThree_twoFixed_terminal_impossible
-    ha hb hcontactScale hBal hcontact hzero hthree hR hS hQ hQone
+  have data := D.qs_rankThree_terminalScalarData
+    ha hb hcontactScale hBal hcontact hzero hthree
+  exact data.impossible_of_two_fixed hR hS hQ hQone
 
 end
 
