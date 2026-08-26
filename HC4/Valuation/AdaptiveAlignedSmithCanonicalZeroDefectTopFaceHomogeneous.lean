@@ -38,11 +38,15 @@ theorem face_support_ordinaryDegree_eq
     HC4.Polynomial.ordinaryDegree4 d = D.degree := by
   have hcoeff : MvPolynomial.coeff d D.face ≠ 0 :=
     MvPolynomial.mem_support_iff.mp hd
-  rw [D.face_eq, HC4.Polynomial.coeff_initialForm,
-    HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4] at hcoeff
+  rw [D.face_eq, HC4.Polynomial.coeff_initialForm] at hcoeff
   split at hcoeff
-  · exact_mod_cast
-      (show (HC4.Polynomial.ordinaryDegree4 d : ℤ) = (D.degree : ℤ) from ‹_›)
+  · rename_i hweight
+    have hweight' :
+        Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (D.degree : ℤ) := by
+      change Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (D.degree : ℤ) at hweight
+      exact hweight
+    rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4] at hweight'
+    exact_mod_cast hweight'
   · exact (hcoeff rfl).elim
 
 /-- The selected singular top face is genuinely ordinary homogeneous, at its
