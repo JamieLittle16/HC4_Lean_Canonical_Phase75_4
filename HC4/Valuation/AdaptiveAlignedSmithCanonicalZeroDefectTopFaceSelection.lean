@@ -79,9 +79,13 @@ noncomputable def
     intro hF
     have hdet0 : HC4.Polynomial.hessianDeterminant F = 0 := by
       rw [hF]
-      unfold HC4.Polynomial.hessianDeterminant HC4.Polynomial.hessian
-      change (0 : Matrix (Fin 4) (Fin 4) (MvPolynomial (Fin 4) K)).det = 0
-      exact Matrix.det_zero
+      have hhess :
+          HC4.Polynomial.hessian (0 : MvPolynomial (Fin 4) K) = 0 := by
+        ext i j
+        simp [HC4.Polynomial.hessian]
+      unfold HC4.Polynomial.hessianDeterminant
+      rw [hhess]
+      simp
     rw [hdet1] at hdet0
     exact one_ne_zero hdet0
   have hsupport : F.support.Nonempty :=
@@ -121,10 +125,11 @@ noncomputable def
         Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (D : ℤ) := by
       rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
       rfl
+    have hw' : Finsupp.weight ordinaryWeight d = (D : ℤ) := by
+      simpa [ordinaryWeight] using hw
     have hcoeff : MvPolynomial.coeff d G = MvPolynomial.coeff d F := by
       dsimp [G]
-      rw [HC4.Polynomial.coeff_initialForm]
-      simp [ordinaryWeight, hw]
+      simp only [HC4.Polynomial.coeff_initialForm, hw', if_pos]
     rw [hcoeff] at hcoeff0
     exact (MvPolynomial.mem_support_iff.mp hd) hcoeff0
   have hcoll :
