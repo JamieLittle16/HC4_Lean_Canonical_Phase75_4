@@ -95,3 +95,4 @@ import HC4.Newton.FirstContactCrossFacetExit
 import HC4.Newton.FirstContactCrossFacetArithmetic
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRankThreeFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTraceCollapse
