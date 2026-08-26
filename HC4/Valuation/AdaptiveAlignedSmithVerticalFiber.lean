@@ -141,7 +141,8 @@ theorem smithSubfacePolynomial_singleton_eq_rankThreeVerticalPolynomial
       intro i
       refine Fin.cases ?_ (fun j => ?_) i
       · simp
-      · fin_cases j
+      · rw [Finsupp.cons_succ]
+        fin_cases j
         · simpa [smithTransverseExponent] using htrans.1.symm
         · simpa [smithTransverseExponent] using htrans.2.1.symm
         · simpa [smithTransverseExponent] using htrans.2.2.symm
