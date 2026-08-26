@@ -44,7 +44,10 @@ theorem complementaryLineExponentFinsupp_injective
     j = r := by
   have h0 := congrArg (fun d : Fin 4 →₀ ℕ => d (0 : Fin 4)) hjr
   simp [complementaryLineExponentFinsupp] at h0
-  nlinarith
+  rcases h0 with hj | hh0 | ha10
+  · exact hj
+  · exact (Nat.ne_of_gt hh hh0).elim
+  · exact (Nat.ne_of_gt ha1 ha10).elim
 
 /-- Canonical univariate coefficient polynomial extracted from an actual
 complementary edge. -/
@@ -144,14 +147,14 @@ theorem eq_complementaryLineRangePolynomial_of_supported
           a1 a2 b1 b2 h k M ha1 hh heq
         exact hrj hindex
       rw [complementaryLineTerm_eq_monomial]
-      simp [hExp, Ne.symm hExp]
+      simp [hExp]
     · intro hjnot
-      exact hjnot (Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hj))
+      exact (hjnot (Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hj))).elim
   · have hd0 : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     unfold complementaryLineRangePolynomial
     rw [MvPolynomial.coeff_sum]
-    apply Eq.symm
+    rw [hd0]
     apply Finset.sum_eq_zero
     intro j hj
     by_cases heq :
