@@ -43,8 +43,9 @@ theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_specialFiber_hessianD
     HC4.Polynomial.hessianDeterminant
       (polynomialFamilySpecialFiber s.family) = 1 := by
   rw [hessianDeterminant_polynomialFamilySpecialFiber]
-  unfold HasPolynomialFamilyHessianDefect at s.hessianDefect
-  rw [s.hessianDefect, hzero]
+  have hdef := s.hessianDefect
+  unfold HasPolynomialFamilyHessianDefect at hdef
+  rw [hdef, hzero]
   simp
 
 /-- **Determinant-one top-face singularity.**
