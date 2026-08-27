@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalRelativeFirstContactReduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankThreeCompleteClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome
 import HC4.PlanarJC2HessianEmbedding
 
 /-!
