@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesUnramifiedFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionReentry
 import HC4.Valuation.AdaptiveSectionBoundaryReentry
 import Mathlib.Tactic
 
@@ -43,7 +44,8 @@ variable {K : Type u} [Field K] [CharZero K]
     parameterRamificationFamily (K := K) 1 P = P := by
   apply MvPolynomial.ext
   intro d
-  simp [parameterRamificationFamily]
+  simp only [parameterRamificationFamily, MvPolynomial.coeff_map]
+  exact parameterRamificationHom_one_apply (K := K) (MvPolynomial.coeff d P)
 
 @[simp] theorem parameterRamificationSection_one
     (b : Fin 4 → Polynomial K) :
