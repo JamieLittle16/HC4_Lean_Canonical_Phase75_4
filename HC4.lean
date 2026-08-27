@@ -132,3 +132,4 @@ import HC4.Newton.TwoZeroDoublingHessianSquareGeneral
 import HC4.PlanarJC2HessianEmbedding
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly
 import HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ReachableTerminalReduction
