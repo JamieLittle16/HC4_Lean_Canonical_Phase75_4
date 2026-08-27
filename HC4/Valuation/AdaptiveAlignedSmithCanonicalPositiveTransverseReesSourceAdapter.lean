@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionReentry
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockImpossible
 import Mathlib.Tactic
 
 /-!
