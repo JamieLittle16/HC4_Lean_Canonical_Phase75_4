@@ -36,8 +36,33 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalPresentedBlocker
 
+/-- Reconstruct the mixed-degree outcome for an arbitrary represented support
+exponent without putting the axis-data eliminator inside the blocker
+constructor.  Keeping this proof separate makes the constructor's structural
+projections definitionally transparent. -/
+noncomputable def strictLowOutcome
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
+    (e : SmithSupportExponent)
+    (he : e ∈ smithProjectedSupport (1 : Fin 4) 2 3
+      (polynomialFamilySpecialFiber D.presented.family)) :
+    MixedDegreeSmithExponentOutcome
+      D.blocker.aligned.endpoint.rawSpecialFiber e := by
+  have heRaw :
+      e ∈ smithProjectedSupport (1 : Fin 4) 2 3
+        D.blocker.aligned.endpoint.rawSpecialFiber := by
+    simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber, D.family_eq]
+      using he
+  rcases D.blocker.aligned.rawSpecialFiber_axisData with
+    ⟨hcoll, hzero, hvalue⟩
+  exact projectedSmithExponent_mixedDegreeOutcome
+    D.blocker.aligned.endpoint.rawSpecialFiber e heRaw
+    hcoll hzero hvalue
+
 /-- Repackage any represented strict-low support exponent as an actual blocker
-on the very same aligned endpoint. -/
+on the very same aligned endpoint.  The natural degree cap is the represented
+state's degree cap, which is exactly the type already carried by `D.blocker`;
+no dependent transport back to the pre-presentation source is needed. -/
 noncomputable def strictLowBlocker
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
@@ -48,20 +73,12 @@ noncomputable def strictLowBlocker
       IsPureLongitudinalSmithPattern e ∨
       IsLowNegativeFirstSmithPattern e ∨
       IsLowNegativeSecondSmithPattern e) :
-    AdaptiveAlignedSmithBlockerEndpoint (K := K) source.degreeCap := by
+    AdaptiveAlignedSmithBlockerEndpoint (K := K) D.presented.degreeCap := by
   have heRaw :
       e ∈ smithProjectedSupport (1 : Fin 4) 2 3
         D.blocker.aligned.endpoint.rawSpecialFiber := by
     simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber, D.family_eq]
       using he
-  have haxis := D.blocker.aligned.rawSpecialFiber_axisData
-  rcases haxis with ⟨hcoll, hzero, hvalue⟩
-  let houtcome :
-      MixedDegreeSmithExponentOutcome
-        D.blocker.aligned.endpoint.rawSpecialFiber e :=
-    projectedSmithExponent_mixedDegreeOutcome
-      D.blocker.aligned.endpoint.rawSpecialFiber e heRaw
-      hcoll hzero hvalue
   exact {
     aligned := D.blocker.aligned
     exponent := e
@@ -72,8 +89,34 @@ noncomputable def strictLowBlocker
       · exact Or.inl hpure
       · exact Or.inr (Or.inl hfirst)
       · exact Or.inr (Or.inr (Or.inl hsecond))
-    outcome := houtcome
+    outcome := D.strictLowOutcome e he
   }
+
+@[simp]
+theorem strictLowBlocker_aligned
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
+    (e : SmithSupportExponent)
+    (he : e ∈ smithProjectedSupport (1 : Fin 4) 2 3
+      (polynomialFamilySpecialFiber D.presented.family))
+    (hpattern :
+      IsPureLongitudinalSmithPattern e ∨
+      IsLowNegativeFirstSmithPattern e ∨
+      IsLowNegativeSecondSmithPattern e) :
+    (D.strictLowBlocker e he hpattern).aligned = D.blocker.aligned := rfl
+
+@[simp]
+theorem strictLowBlocker_exponent
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
+    (e : SmithSupportExponent)
+    (he : e ∈ smithProjectedSupport (1 : Fin 4) 2 3
+      (polynomialFamilySpecialFiber D.presented.family))
+    (hpattern :
+      IsPureLongitudinalSmithPattern e ∨
+      IsLowNegativeFirstSmithPattern e ∨
+      IsLowNegativeSecondSmithPattern e) :
+    (D.strictLowBlocker e he hpattern).exponent = e := rfl
 
 /-- The strict-low blocker has exactly the same represented raw special fibre
 as the original presented endpoint. -/
@@ -89,8 +132,7 @@ theorem strictLowBlocker_rawSpecialFiber
       IsLowNegativeSecondSmithPattern e) :
     (D.strictLowBlocker e he hpattern).aligned.endpoint.rawSpecialFiber =
       polynomialFamilySpecialFiber D.presented.family := by
-  simp [strictLowBlocker, AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber,
-    D.family_eq]
+  simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber, D.family_eq]
 
 /-- Consequently the first longitudinal departure is available for the
 *actual strict-low exponent* rather than for an unrelated classifier choice. -/
@@ -109,7 +151,7 @@ theorem strictLowBlocker_firstLongitudinalDeparture
         (K := K) (polynomialFamilySpecialFiber D.presented.family)) e := by
   have h := (D.strictLowBlocker e he hpattern).firstLongitudinalDeparture
   rw [D.strictLowBlocker_rawSpecialFiber e he hpattern] at h
-  exact h
+  simpa using h
 
 end AdaptiveAlignedSmithCanonicalPresentedBlocker
 
