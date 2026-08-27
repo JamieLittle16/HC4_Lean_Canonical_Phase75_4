@@ -277,7 +277,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.canonicalPositiveTransverseSecti
 
 /-- The canonical frontier state is an honest ramified raw-defect spend from
 any positive-clock source. -/
-theorem ScaleAwareAdaptiveGeometricRestartState.canonicalPositiveTransverseSectionFrontierState_ramifiedSpend
+noncomputable def ScaleAwareAdaptiveGeometricRestartState.canonicalPositiveTransverseSectionFrontierState_ramifiedSpend
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
     (hpositive : 0 < s.rawDefect)
     (hbound :
