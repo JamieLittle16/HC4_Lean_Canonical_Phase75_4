@@ -44,7 +44,8 @@ variable {K : Type u} [Field K] [CharZero K]
     parameterRamificationFamily (K := K) 1 P = P := by
   apply MvPolynomial.ext
   intro d
-  simp only [parameterRamificationFamily, MvPolynomial.coeff_map]
+  unfold parameterRamificationFamily
+  rw [MvPolynomial.coeff_map]
   exact parameterRamificationHom_one_apply (K := K) (MvPolynomial.coeff d P)
 
 @[simp] theorem parameterRamificationSection_one
@@ -225,7 +226,8 @@ theorem
   }
   have hrpos : 0 < r := by
     simpa [r] using
-      source.canonicalPositiveTransverseSectionFrontierWeight_pos hpositive
+      (ScaleAwareAdaptiveGeometricRestartState.canonicalPositiveTransverseSectionFrontierWeight_pos
+        (K := K) source hpositive)
   refine ⟨target, rfl, rfl, rfl, rfl, rfl, ?_⟩
   dsimp [target]
   omega
