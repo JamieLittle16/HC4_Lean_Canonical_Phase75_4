@@ -17,10 +17,10 @@ we cap its exact ramified parameter order by the target clock; this cap is the
 largest uniform source weight that coordinate can absorb.  The minimum of the
 three transverse caps is therefore the first section-contact weight.
 
-This file begins that adapter with the two arithmetic facts needed by the
-frontier construction: downward closure of family integrality, and exact
-factorisation at a capped section order.  No new geometric or termination
-claim is introduced.
+No new geometric or termination mechanism is introduced here.  The exposed
+family is still the existing adaptive Smith exposure, and any transverse
+special-point boundary is consumed later by the already-green canonical
+three-shear re-entry.
 -/
 
 namespace HC4.Valuation
@@ -132,6 +132,164 @@ theorem canonicalPositiveTransverseSectionOrderCap_exact_of_lt
     · rw [hcap]
       exact polynomialParameterPrimitivePart_spec p hp
     · exact polynomialParameterPrimitivePart_constantCoeff_ne_zero p hp
+
+/-- The largest uniform transverse weight, capped by `Delta`, which all three
+ramified transverse coordinates of the moving section can absorb. -/
+noncomputable def canonicalPositiveTransverseSectionFrontierWeight
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) : ℕ :=
+  min
+    (canonicalPositiveTransverseSectionOrderCap Delta
+      (parameterRamificationSection (K := K) 2 b (1 : Fin 4)))
+    (min
+      (canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (2 : Fin 4)))
+      (canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (3 : Fin 4))))
+
+/-- The section frontier never passes the determinant-closing weight. -/
+theorem canonicalPositiveTransverseSectionFrontierWeight_le
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    canonicalPositiveTransverseSectionFrontierWeight Delta b ≤ Delta := by
+  exact le_trans (min_le_left _ _)
+    (canonicalPositiveTransverseSectionOrderCap_le Delta _)
+
+/-- Frontier weight is below the first transverse coordinate cap. -/
+theorem canonicalPositiveTransverseSectionFrontierWeight_le_one
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    canonicalPositiveTransverseSectionFrontierWeight Delta b ≤
+      canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (1 : Fin 4)) := by
+  exact min_le_left _ _
+
+/-- Frontier weight is below the second transverse coordinate cap. -/
+theorem canonicalPositiveTransverseSectionFrontierWeight_le_two
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    canonicalPositiveTransverseSectionFrontierWeight Delta b ≤
+      canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (2 : Fin 4)) := by
+  exact le_trans (min_le_right _ _) (min_le_left _ _)
+
+/-- Frontier weight is below the third transverse coordinate cap. -/
+theorem canonicalPositiveTransverseSectionFrontierWeight_le_three
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    canonicalPositiveTransverseSectionFrontierWeight Delta b ≤
+      canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (3 : Fin 4)) := by
+  exact le_trans (min_le_right _ _) (min_le_right _ _)
+
+/-- At the maximal common section weight the ramified moving section is
+literally integrally pullable through the uniform transverse source diagonal.
+No ramification-cover inequality is assumed. -/
+theorem canonicalPositiveTransverseSectionFrontier_hasIntegralSection
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    let r := canonicalPositiveTransverseSectionFrontierWeight Delta b
+    HasIntegralAdaptiveSmithSection
+      (canonicalPositiveTransverseReesWeight r)
+      (parameterRamificationSection (K := K) 2 b) := by
+  classical
+  dsimp
+  intro i
+  fin_cases i
+  · simp [canonicalPositiveTransverseReesWeight]
+  · have hle := canonicalPositiveTransverseSectionFrontierWeight_le_one
+      (K := K) Delta b
+    have hpow := polynomial_X_pow_dvd_X_pow_of_le
+      (K := K)
+      (canonicalPositiveTransverseSectionFrontierWeight Delta b)
+      (canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (1 : Fin 4))) hle
+    simpa [canonicalPositiveTransverseReesWeight] using
+      dvd_trans hpow
+        (canonicalPositiveTransverseSectionOrderCap_dvd
+          (K := K) Delta
+          (parameterRamificationSection (K := K) 2 b (1 : Fin 4)))
+  · have hle := canonicalPositiveTransverseSectionFrontierWeight_le_two
+      (K := K) Delta b
+    have hpow := polynomial_X_pow_dvd_X_pow_of_le
+      (K := K)
+      (canonicalPositiveTransverseSectionFrontierWeight Delta b)
+      (canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (2 : Fin 4))) hle
+    simpa [canonicalPositiveTransverseReesWeight] using
+      dvd_trans hpow
+        (canonicalPositiveTransverseSectionOrderCap_dvd
+          (K := K) Delta
+          (parameterRamificationSection (K := K) 2 b (2 : Fin 4)))
+  · have hle := canonicalPositiveTransverseSectionFrontierWeight_le_three
+      (K := K) Delta b
+    have hpow := polynomial_X_pow_dvd_X_pow_of_le
+      (K := K)
+      (canonicalPositiveTransverseSectionFrontierWeight Delta b)
+      (canonicalPositiveTransverseSectionOrderCap Delta
+        (parameterRamificationSection (K := K) 2 b (3 : Fin 4))) hle
+    simpa [canonicalPositiveTransverseReesWeight] using
+      dvd_trans hpow
+        (canonicalPositiveTransverseSectionOrderCap_dvd
+          (K := K) Delta
+          (parameterRamificationSection (K := K) 2 b (3 : Fin 4)))
+
+/-- The ramified zero section is integrally pullable through every frontier
+weight. -/
+theorem canonicalPositiveTransverseSectionFrontier_zero_hasIntegralSection
+    (Delta : ℕ) (b : Fin 4 → Polynomial K) :
+    let r := canonicalPositiveTransverseSectionFrontierWeight Delta b
+    HasIntegralAdaptiveSmithSection
+      (canonicalPositiveTransverseReesWeight r)
+      (parameterRamificationSection
+        (K := K) 2 (zeroPolynomialSection (K := K))) := by
+  dsimp
+  intro i
+  simp [parameterRamificationSection, zeroPolynomialSection]
+
+/-- Actual family at the maximal moving-section transport frontier.  This is
+exactly the existing adaptive Smith exposure; only the chosen weight is new. -/
+noncomputable def canonicalPositiveTransverseSectionFrontierFamily
+    (Delta : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hbound : HasCanonicalPositiveTransverseReesCoefficientBound Delta P)
+    (b : Fin 4 → Polynomial K) :
+    MvPolynomial (Fin 4) (Polynomial K) := by
+  let r := canonicalPositiveTransverseSectionFrontierWeight Delta b
+  let hr : r ≤ Delta :=
+    canonicalPositiveTransverseSectionFrontierWeight_le Delta b
+  exact canonicalPositiveTransverseReesFamily r P (hbound.mono hr)
+
+/-- The maximal section-frontier family has the exact partially spent Hessian
+clock `2 * (Delta - r)`.  In particular `r = Delta` is literal raw defect
+zero, while `r < Delta` is a genuine positive ramified spend. -/
+theorem canonicalPositiveTransverseSectionFrontierFamily_hessianDefect
+    (Delta : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdef : HasPolynomialFamilyHessianDefect (K := K) P Delta)
+    (hbound : HasCanonicalPositiveTransverseReesCoefficientBound Delta P)
+    (b : Fin 4 → Polynomial K) :
+    let r := canonicalPositiveTransverseSectionFrontierWeight Delta b
+    HasPolynomialFamilyHessianDefect (K := K)
+      (canonicalPositiveTransverseSectionFrontierFamily Delta P hbound b)
+      (2 * (Delta - r)) := by
+  dsimp
+  let r := canonicalPositiveTransverseSectionFrontierWeight Delta b
+  have hr : r ≤ Delta :=
+    canonicalPositiveTransverseSectionFrontierWeight_le Delta b
+  let hbnd := hbound.mono hr
+  have hnonneg :
+      4 * (2 * r) ≤
+        2 * Delta +
+          2 * ∑ i : Fin 4, canonicalPositiveTransverseReesWeight r i := by
+    rw [canonicalPositiveTransverseReesWeight_sum]
+    omega
+  have hout :=
+    adaptiveSmithFirstContactExposureFamily_hasHessianDefect
+      2 (canonicalPositiveTransverseReesWeight r) (2 * r) Delta
+      (by norm_num) hnonneg P hbnd.integralExposure hdef
+  change HasPolynomialFamilyHessianDefect (K := K)
+    (adaptiveSmithExposureFamily
+      2 (canonicalPositiveTransverseReesWeight r) (2 * r)
+      P hbnd.integralExposure) (2 * (Delta - r))
+  convert hout using 1
+  · rfl
+  · rw [canonicalPositiveTransverseReesWeight_sum]
+    omega
 
 end
 
