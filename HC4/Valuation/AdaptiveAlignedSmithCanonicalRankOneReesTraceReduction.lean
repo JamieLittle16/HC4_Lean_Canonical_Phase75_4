@@ -71,9 +71,18 @@ noncomputable def
   · by_cases hbound :
       HasCanonicalPositiveTransverseReesCoefficientBound
         source.rawDefect source.family
-    · rcases source.exists_canonicalPositiveTransverseRees_progress
-        hpositive hbound with
-        ⟨target, hprogress, hraw, hrepair⟩
+    · let hstep := source.exists_canonicalPositiveTransverseRees_progress
+        hpositive hbound
+      let target := Classical.choose hstep
+      have hspec :
+          AdaptiveAlignedSmithCanonicalGlobalMacroProgress target source ∧
+            target.rawDefect < source.rawDefect ∧
+            target.repair = source.repair :=
+        Classical.choose_spec hstep
+      have hprogress : AdaptiveAlignedSmithCanonicalGlobalMacroProgress target source :=
+        hspec.1
+      have hraw : target.rawDefect < source.rawDefect := hspec.2.1
+      have hrepair : target.repair = source.repair := hspec.2.2
       have htargetRepair : target.repair = rankOneRepairState complexity :=
         hrepair.trans hsrepair
       let tail := target.rankOneReesReducedTrace
