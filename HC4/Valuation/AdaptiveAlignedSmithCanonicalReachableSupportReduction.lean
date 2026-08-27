@@ -1,19 +1,21 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticPacket
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockEndpoint
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockImpossible
 
 /-!
-# A19.16: only strict-low blockers remain at zero clock
+# A19.16/A19.24: only strict-low blockers remain at zero clock
 
 A19.15 strengthens the zero-clock conformal endpoint.  The complete degree-two
-face for the source weight `(0,1,1,2)` is an honest one-zero JC2 endpoint as
+face for the source weight `(0,1,1,2)` becomes a standard one-zero endpoint as
 soon as the three genuinely earlier Smith patterns
 
     (0,0,0), (0,1,0), (1,0,0)
 
-are absent.  The `w`-linear pattern `(0,0,1)` has conformal degree two, is
-retained exactly in the fourth gradient component, and no longer requires an
-external blocker producer.
+are absent.  A19.23 then uses the retained marked collision and affine one-zero
+recovery to rule this endpoint out unconditionally; no planar JC2 hypothesis is
+needed in this branch.  The `w`-linear pattern `(0,0,1)` has conformal degree
+two, is retained exactly in the fourth gradient component, and therefore also
+requires no external blocker producer.
 
 Consequently the remaining support producers split sharply by clock:
 
@@ -21,8 +23,8 @@ Consequently the remaining support producers split sharply by clock:
   unconditional A18 obstruction;
 * at positive clock, a concrete four-pattern blocker still needs an A18
   obstruction;
-* at positive clock, the surviving quadratic packet still needs the honest
-  associated-graded JC2 bridge.
+* at positive clock, the surviving quadratic packet still needs its terminal
+  consumer.
 
 The zero-clock dispatcher searches for a strict-low exponent *before* invoking
 the generic four-pattern support frontier, so a harmless `w`-linear witness can
@@ -38,7 +40,7 @@ open HC4.Newton
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- **The exact remaining source-level producers after A19.15.** -/
+/-- **The exact remaining source-level producers after A19.24.** -/
 structure AdaptiveAlignedSmithCanonicalReachableSupportProducer where
   blockerZeroStrictLow :
     ∀ {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -82,9 +84,10 @@ structure AdaptiveAlignedSmithCanonicalReachableSupportProducer where
       (_Q : AdaptiveAlignedSmithCanonicalTerminalQuadraticPacket T),
       Nonempty (TerminalAssociatedGradedCollisionData K)
 
-/-- The reachable resolver first consumes zero clock using A19.15 unless an
-actual strict-low exponent exists.  Positive clock then uses the old lossless
-blocker/quadratic split. -/
+/-- The reachable resolver consumes the no-strict-low zero clock outright by
+A19.23.  Thus only an actually supported strict-low exponent can survive the
+zero-clock split.  Positive clock retains the old lossless blocker/quadratic
+split until its A19 Rees/first-contact adapter is spliced in. -/
 noncomputable def
     AdaptiveAlignedSmithCanonicalReachableSupportProducer.toReachableResolution
     (P : AdaptiveAlignedSmithCanonicalReachableSupportProducer (K := K)) :
@@ -114,10 +117,8 @@ noncomputable def
           exact hlow ⟨e, he, Or.inr (Or.inl hfirst)⟩
         · intro hsecond
           exact hlow ⟨e, he, Or.inr (Or.inr hsecond)⟩
-      rcases
-          T.conformalDegreeTwoFace_associatedGradedCollisionData_of_source_rawDefect_eq_zero
-            hzero hno with ⟨A⟩
-      exact ⟨.associatedGradedCollision A⟩
+      exact (T.conformalDegreeTwoFace_impossible_of_source_rawDefect_eq_zero
+        hzero hno).elim
   · have hpositive : 0 < state.rawDefect := Nat.pos_of_ne_zero hzero
     rcases T.specialFiber_blocker_or_quadraticGeometry with hblock | G
     · rcases hblock with ⟨e, he, hpattern, houtcome⟩
@@ -127,11 +128,13 @@ noncomputable def
       rcases P.quadraticPositive hclock hpositive T Q with ⟨A⟩
       exact ⟨.associatedGradedCollision A⟩
 
-/-- **Three-obligation support reduction for `JC2 => HC4`.**
+/-- **Three-obligation support reduction, with the conformal zero-clock branch
+already unconditional.**
 
-Zero clock now needs an external producer only for the three strict-low Smith
-patterns.  The `w`-linear and quadratic degree-two faces are consumed
-internally by the canonical one-zero endpoint. -/
+The residual producer at zero clock is now exactly a strict-low Smith layer.
+The planar-JC2 parameter remains in this legacy theorem only because the
+positive quadratic producer still returns the generic associated-graded
+collision interface. -/
 theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_reachableSupportProducer
     (hJC2 : HC4.PlanarJC2Injectivity K)
     (P : AdaptiveAlignedSmithCanonicalReachableSupportProducer (K := K))
