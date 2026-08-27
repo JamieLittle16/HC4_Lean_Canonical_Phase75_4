@@ -59,16 +59,19 @@ theorem AdaptiveAlignedSmithSurvivingWallEndpoint.noStrictLow_on_rawSpecialFiber
   constructor
   · intro hpure
     rcases hpure with ⟨hb, hc, hd⟩
-    rw [hb, hc, hd] at hformula hnonneg
+    rw [hformula] at hnonneg
+    rw [hb, hc, hd] at hnonneg
     omega
   constructor
   · intro hfirst
     rcases hfirst with ⟨hb, hc, hd⟩
-    rw [hb, hc, hd] at hformula hnonneg
+    rw [hformula] at hnonneg
+    rw [hb, hc, hd] at hnonneg
     omega
   · intro hsecond
     rcases hsecond with ⟨hb, hc, hd⟩
-    rw [hb, hc, hd] at hformula hnonneg
+    rw [hformula] at hnonneg
+    rw [hb, hc, hd] at hnonneg
     omega
 
 /-- A represented surviving terminal has no strict-low exponent on its actual
@@ -149,10 +152,8 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.not_positiveTransverseRees
       canonicalTransverseDegree d = 1 := by omega
   rcases hcases with hzero | hone
   · rw [hzero] at hineq
-    simp at hineq
     omega
   · rw [hone] at hineq
-    simp at hineq
     omega
 
 end
