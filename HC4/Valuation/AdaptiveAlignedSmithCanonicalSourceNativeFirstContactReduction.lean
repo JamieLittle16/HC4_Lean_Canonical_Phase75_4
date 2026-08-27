@@ -116,22 +116,26 @@ theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_sourc
           IsLowNegativeFirstSmithPattern e ∨
           IsLowNegativeSecondSmithPattern e
     · rcases hstrict with ⟨e, he, hpattern⟩
-      cases terminal with
+      cases hterm : terminal with
       | blocker D geometry =>
+          rw [hterm] at he
           have he' :
               e ∈ smithProjectedSupport (1 : Fin 4) 2 3
                 (polynomialFamilySpecialFiber D.presented.family) := by
-            simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber]
+            simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber,
+              AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.presentedState]
               using he
           rcases P.blockerZeroStrictLow
               hrepair D geometry hzero e he' hpattern
               D.firstLongitudinalDeparture_on_presentedSpecialFiber with ⟨E⟩
           exact hendpoint E
       | surviving D geometry =>
+          rw [hterm] at he
           have he' :
               e ∈ smithProjectedSupport (1 : Fin 4) 2 3
                 (polynomialFamilySpecialFiber D.presented.family) := by
-            simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber]
+            simpa [AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber,
+              AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.presentedState]
               using he
           rcases D.noStrictLow_on_specialFiber e he' with
             ⟨hnotPure, hnotFirst, hnotSecond⟩
