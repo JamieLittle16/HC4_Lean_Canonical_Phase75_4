@@ -72,26 +72,26 @@ theorem canonicalPositiveTransverseRees_half_integralExposure
         parameterRamificationHom (K := K) 1 (MvPolynomial.coeff d P) :=
     parameterRamification_pow_dvd 1 q _ hqdiv
   rcases hramdiv with ⟨a, ha⟩
-  refine ⟨Polynomial.X ^
-      (q + Finsupp.weight (canonicalPositiveTransverseReesWeight s) d - r) * a,
-    ?_⟩
   unfold adaptiveSmithExposureCoefficientFactor
   rw [ha]
-  have hexp :
-      r +
-          (q + Finsupp.weight (canonicalPositiveTransverseReesWeight s) d - r) =
-        Finsupp.weight (canonicalPositiveTransverseReesWeight s) d + 1 * q := by
+  let w := Finsupp.weight (canonicalPositiveTransverseReesWeight s) d
+  have hrwq : r ≤ w + q := by
+    dsimp [w, q]
     omega
+  have hpow :
+      Polynomial.X ^ r ∣ Polynomial.X ^ (w + q) :=
+    polynomial_X_pow_dvd_X_pow_of_le (K := K) r (w + q) hrwq
+  rcases hpow with ⟨c, hc⟩
+  refine ⟨c * a, ?_⟩
   calc
     Polynomial.X ^ Finsupp.weight (canonicalPositiveTransverseReesWeight s) d *
           (Polynomial.X ^ (1 * q) * a) =
-        Polynomial.X ^
-            (Finsupp.weight (canonicalPositiveTransverseReesWeight s) d + 1 * q) * a := by
+        Polynomial.X ^ (w + q) * a := by
+          dsimp [w]
+          simp only [one_mul]
           rw [← mul_assoc, ← pow_add]
-    _ = Polynomial.X ^ r *
-          (Polynomial.X ^
-            (q + Finsupp.weight (canonicalPositiveTransverseReesWeight s) d - r) * a) := by
-          rw [← mul_assoc, ← pow_add, hexp]
+    _ = (Polynomial.X ^ r * c) * a := by rw [hc]
+    _ = Polynomial.X ^ r * (c * a) := by ring
 
 /-- If the factor-two frontier has weight `2s`, then the *original* moving
 section is already divisible by `X^s` in every transverse coordinate. -/
