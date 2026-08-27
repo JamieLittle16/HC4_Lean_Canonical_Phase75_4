@@ -61,19 +61,6 @@ noncomputable def conformalDegreeTwoFace
       RR state complexity) : MvPolynomial (Fin 4) K :=
   HC4.Polynomial.initialForm terminalQuadraticNegativeWeight (-2) T.specialFiber
 
-/-- A pure ramified presentation preserves a zero source raw clock. -/
-theorem presentedState_rawDefect_eq_zero_of_source
-    (T : AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
-      RR state complexity)
-    (hzero : state.rawDefect = 0) :
-    T.presentedState.rawDefect = 0 := by
-  have hmove := T.sourcePresentation
-  change Nonempty
-    (CertifiedRamifiedEpisodeInternalMove T.presentedState state) at hmove
-  rcases hmove with ⟨hmove⟩
-  rw [hmove.raw_eq, hzero]
-  simp
-
 /-- At source clock zero the represented special fibre itself has Hessian
  determinant one. -/
 theorem specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero
@@ -134,8 +121,7 @@ theorem conformalDegreeTwoFace_positiveHomogeneous
   · rename_i hweight
     have hneg := hweight
     rw [terminalQuadraticNegativeWeight_finsupp] at hneg
-    rw [AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry.
-      terminalQuadraticPositiveWeight_integralWeightedDegree]
+    rw [AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry.terminalQuadraticPositiveWeight_integralWeightedDegree]
     omega
   · exact (hd rfl).elim
 
@@ -179,11 +165,9 @@ theorem conformalDegreeTwoFace_projected_degree_two
     e.b + e.c + 2 * e.d = 2 := by
   rcases smithProjectedSupport_realised (1 : Fin 4) 2 3
       T.conformalDegreeTwoFace e he with ⟨d, hd, hde⟩
-  have hcoeff : MvPolynomial.coeff d T.conformalDegreeTwoFace ≠ 0 :=
-    MvPolynomial.mem_support_iff.mp hd
+  have hcoeff : MvPolynomial.coeff d T.conformalDegreeTwoFace ≠ 0 := hd
   have hhom := T.conformalDegreeTwoFace_positiveHomogeneous d hcoeff
-  rw [AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry.
-    terminalQuadraticPositiveWeight_integralWeightedDegree] at hhom
+  rw [AdaptiveAlignedSmithCanonicalTerminalQuadraticGeometry.terminalQuadraticPositiveWeight_integralWeightedDegree] at hhom
   have hcoords :
       e.b = d (1 : Fin 4) ∧
       e.c = d (2 : Fin 4) ∧
@@ -232,7 +216,10 @@ theorem conformalDegreeTwoFace_wLinearCoefficient
       Finsupp.weight terminalQuadraticNegativeWeight
           ((smithTransverseExponent 0 0 1).cons a) = -2 := by
     rw [terminalQuadraticNegativeWeight_finsupp]
-    simp [smithTransverseExponent]
+    rw [show (1 : Fin 4) = (0 : Fin 3).succ by decide, Finsupp.cons_succ]
+    rw [show (2 : Fin 4) = (1 : Fin 3).succ by decide, Finsupp.cons_succ]
+    rw [show (3 : Fin 4) = (2 : Fin 3).succ by decide, Finsupp.cons_succ]
+    simp
   simp [hw]
 
 /-- The conformal face retains the marked exact collision `0 ~ e₀`.  The first
@@ -285,7 +272,7 @@ theorem conformalDegreeTwoFace_exactAxisCollision
     refine Fin.cases ?_ (fun k => ?_) j <;>
       simp [coordinateAxisPoint]
   rw [hzeroPoint, haxisPoint]
-  fin_cases i
+  refine Fin.cases ?_ (fun j => ?_) i
   · unfold mvGradientComponentAt
     rw [eval_pderiv_zero_finCons_zero_eq_eval_axisRestriction_derivative,
       eval_pderiv_zero_finCons_zero_eq_eval_axisRestriction_derivative]
@@ -294,21 +281,19 @@ theorem conformalDegreeTwoFace_exactAxisCollision
   · unfold mvGradientComponentAt
     rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
       eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single]
-    simpa [longitudinalCoefficientPolynomial,
-      smithTransverseExponent] using congrArg (Polynomial.eval 0) hsecond
-  · unfold mvGradientComponentAt
-    rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
-      eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single]
-    simpa [longitudinalCoefficientPolynomial,
-      smithTransverseExponent] using congrArg (Polynomial.eval 0) hfirst
-  · have hcoll3 := hcoll (3 : Fin 4)
-    rw [hzeroPoint, haxisPoint] at hcoll3
-    unfold mvGradientComponentAt at hcoll3 ⊢
-    rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
-      eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single]
-    rw [hw]
-    simpa [longitudinalCoefficientPolynomial,
-      smithTransverseExponent] using hcoll3
+    fin_cases j
+    · simpa [longitudinalCoefficientPolynomial,
+        smithTransverseExponent] using congrArg (Polynomial.eval 0) hsecond
+    · simpa [longitudinalCoefficientPolynomial,
+        smithTransverseExponent] using congrArg (Polynomial.eval 0) hfirst
+    · have hcoll3 := hcoll (3 : Fin 4)
+      rw [hzeroPoint, haxisPoint] at hcoll3
+      unfold mvGradientComponentAt at hcoll3
+      rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
+        eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single] at hcoll3
+      rw [hw]
+      simpa [longitudinalCoefficientPolynomial,
+        smithTransverseExponent] using hcoll3
 
 /-- At zero clock, absence of only the three strict low Smith patterns is enough
 to construct an honest one-zero associated-graded collision.  A `w`-linear
