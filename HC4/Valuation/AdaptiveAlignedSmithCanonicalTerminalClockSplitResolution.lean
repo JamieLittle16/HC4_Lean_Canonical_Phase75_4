@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionFrontier
 import HC4.Valuation.PolynomialFamilyHessianSpecialFiber
 import HC4.MongeAmpere
 
