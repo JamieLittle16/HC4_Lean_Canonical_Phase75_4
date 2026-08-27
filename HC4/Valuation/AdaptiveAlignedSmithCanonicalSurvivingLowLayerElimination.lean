@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualConstructorRefinement
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionParity
 import Mathlib.Tactic
 
 /-!
