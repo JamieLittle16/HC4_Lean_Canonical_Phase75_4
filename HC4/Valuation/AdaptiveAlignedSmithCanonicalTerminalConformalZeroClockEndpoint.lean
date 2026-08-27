@@ -283,26 +283,54 @@ theorem conformalDegreeTwoFace_exactAxisCollision
     rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
       eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single]
     fin_cases j
-    · have hsecondAt :
+    · change
+        Polynomial.eval 0
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (0 : Fin 3) 1)
+              T.conformalDegreeTwoFace) =
+          Polynomial.eval 1
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (0 : Fin 3) 1)
+              T.conformalDegreeTwoFace)
+      have hsecondAt :
           longitudinalCoefficientPolynomialAt (Finsupp.single (0 : Fin 3) 1)
               T.conformalDegreeTwoFace = 0 := by
         simpa [longitudinalCoefficientPolynomial,
           smithTransverseExponent] using hsecond
       rw [hsecondAt]
       simp
-    · have hfirstAt :
+    · change
+        Polynomial.eval 0
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (1 : Fin 3) 1)
+              T.conformalDegreeTwoFace) =
+          Polynomial.eval 1
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (1 : Fin 3) 1)
+              T.conformalDegreeTwoFace)
+      have hfirstAt :
           longitudinalCoefficientPolynomialAt (Finsupp.single (1 : Fin 3) 1)
               T.conformalDegreeTwoFace = 0 := by
         simpa [longitudinalCoefficientPolynomial,
           smithTransverseExponent] using hfirst
       rw [hfirstAt]
       simp
-    · have hcollAxis := hcoll
+    · change
+        Polynomial.eval 0
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (2 : Fin 3) 1)
+              T.conformalDegreeTwoFace) =
+          Polynomial.eval 1
+            (longitudinalCoefficientPolynomialAt (Finsupp.single (2 : Fin 3) 1)
+              T.conformalDegreeTwoFace)
+      have hcollAxis := hcoll
       rw [hzeroPoint, haxisPoint] at hcollAxis
       have hcollW :=
         longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision
           (2 : Fin 3) T.specialFiber hcollAxis
-      rw [hw]
+      have hwAt :
+          longitudinalCoefficientPolynomialAt (Finsupp.single (2 : Fin 3) 1)
+              T.conformalDegreeTwoFace =
+            longitudinalCoefficientPolynomialAt (Finsupp.single (2 : Fin 3) 1)
+              T.specialFiber := by
+        simpa [longitudinalCoefficientPolynomial,
+          smithTransverseExponent] using hw
+      rw [hwAt]
       exact hcollW.symm
 
 /-- At zero clock, absence of only the three strict low Smith patterns is enough
