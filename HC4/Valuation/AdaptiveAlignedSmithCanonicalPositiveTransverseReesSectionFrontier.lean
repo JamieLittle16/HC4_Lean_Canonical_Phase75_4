@@ -67,9 +67,10 @@ theorem HasCanonicalPositiveTransverseReesCoefficientBound.mono
 full determinant-closing transverse weight.  A zero coordinate has infinite
 usable order for this finite problem, represented by the cap itself. -/
 noncomputable def canonicalPositiveTransverseSectionOrderCap
-    (Delta : ℕ) (p : Polynomial K) : ℕ :=
-  if hp : p = 0 then Delta
-  else min Delta (polynomialParameterOrder p hp)
+    (Delta : ℕ) (p : Polynomial K) : ℕ := by
+  classical
+  exact if hp : p = 0 then Delta
+    else min Delta (polynomialParameterOrder p hp)
 
 /-- A section-order cap never exceeds the requested determinant-closing
 weight. -/
@@ -77,10 +78,9 @@ theorem canonicalPositiveTransverseSectionOrderCap_le
     (Delta : ℕ) (p : Polynomial K) :
     canonicalPositiveTransverseSectionOrderCap Delta p ≤ Delta := by
   classical
-  unfold canonicalPositiveTransverseSectionOrderCap
-  split
-  · simp
-  · exact min_le_left _ _
+  by_cases hp : p = 0
+  · simp [canonicalPositiveTransverseSectionOrderCap, hp]
+  · simp [canonicalPositiveTransverseSectionOrderCap, hp]
 
 /-- The ramified section coordinate is divisible by the source weight given by
 its capped exact order. -/
@@ -88,13 +88,10 @@ theorem canonicalPositiveTransverseSectionOrderCap_dvd
     (Delta : ℕ) (p : Polynomial K) :
     Polynomial.X ^ canonicalPositiveTransverseSectionOrderCap Delta p ∣ p := by
   classical
-  unfold canonicalPositiveTransverseSectionOrderCap
-  split
-  · rename_i hp
-    subst p
-    simp
-  · rename_i hp
-    let q := polynomialParameterOrder p hp
+  by_cases hp : p = 0
+  · subst p
+    simp [canonicalPositiveTransverseSectionOrderCap]
+  · let q := polynomialParameterOrder p hp
     let u := polynomialParameterPrimitivePart p hp
     have hfactor : p = Polynomial.X ^ q * u := by
       simpa [q, u] using polynomialParameterPrimitivePart_spec p hp
@@ -102,6 +99,10 @@ theorem canonicalPositiveTransverseSectionOrderCap_dvd
         Polynomial.X ^ min Delta q ∣ Polynomial.X ^ q :=
       polynomial_X_pow_dvd_X_pow_of_le
         (K := K) (min Delta q) q (min_le_right _ _)
+    have hcap :
+        canonicalPositiveTransverseSectionOrderCap Delta p = min Delta q := by
+      simp [canonicalPositiveTransverseSectionOrderCap, hp, q]
+    rw [hcap]
     exact dvd_trans hsmall ⟨u, hfactor⟩
 
 /-- If the capped order is strictly below the target weight, then it is an
@@ -125,9 +126,13 @@ theorem canonicalPositiveTransverseSectionOrderCap_exact_of_lt
       have hDq : Delta ≤ q := by omega
       rw [min_eq_left hDq] at hmin
       exact (Nat.lt_irrefl Delta) hmin
-    have hcap : canonicalPositiveTransverseSectionOrderCap Delta p = q := by
-      simp [canonicalPositiveTransverseSectionOrderCap, hp, q,
-        min_eq_right (Nat.le_of_lt hq)]
+    have hcap0 :
+        canonicalPositiveTransverseSectionOrderCap Delta p = min Delta q := by
+      simp [canonicalPositiveTransverseSectionOrderCap, hp, q]
+    have hminEq : min Delta q = q :=
+      min_eq_right (Nat.le_of_lt hq)
+    have hcap : canonicalPositiveTransverseSectionOrderCap Delta p = q :=
+      hcap0.trans hminEq
     refine ⟨hp, ?_, ?_⟩
     · rw [hcap]
       exact polynomialParameterPrimitivePart_spec p hp
@@ -286,10 +291,15 @@ theorem canonicalPositiveTransverseSectionFrontierFamily_hessianDefect
     (adaptiveSmithExposureFamily
       2 (canonicalPositiveTransverseReesWeight r) (2 * r)
       P hbnd.integralExposure) (2 * (Delta - r))
-  convert hout using 1
-  · rfl
-  · rw [canonicalPositiveTransverseReesWeight_sum]
+  have hclock :
+      2 * Delta +
+          2 * ∑ i : Fin 4, canonicalPositiveTransverseReesWeight r i -
+            4 * (2 * r) =
+        2 * (Delta - r) := by
+    rw [canonicalPositiveTransverseReesWeight_sum]
     omega
+  rw [← hclock]
+  exact hout
 
 end
 
