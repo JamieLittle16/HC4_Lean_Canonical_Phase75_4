@@ -58,15 +58,6 @@ theorem exposedBoundary_rankThreeFacet_or_codimensionTwo
         T.exposedSingularBoundaryVertex.exponent :=
   T.exposedSingularBoundaryVertex.rankThreeFacet_or_codimensionTwo
 
-/-- The exposed exponent is supported by the genuine singular top face, not by
-an auxiliary polynomial manufactured for the boundary split. -/
-theorem exposedBoundary_exponent_mem_topFace
-    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
-    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
-      (K := K) state) :
-    T.exposedSingularBoundaryVertex.exponent ∈ T.topFace.face.support :=
-  T.exposedSingularBoundaryVertex.exponent_mem_source
-
 /-- The exposed boundary exponent remains genuinely nonlinear. -/
 theorem exposedBoundary_exponent_degree_ge_three
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
