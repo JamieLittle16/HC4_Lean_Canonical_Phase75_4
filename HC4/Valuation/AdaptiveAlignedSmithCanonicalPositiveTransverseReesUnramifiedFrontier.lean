@@ -59,6 +59,11 @@ theorem canonicalPositiveTransverseRees_half_integralExposure
     rw [canonicalPositiveTransverseReesWeight_finsupp]
     dsimp [q, n] at hineq ⊢
     rw [hrs] at hineq ⊢
+    have hineq' :
+        2 * (2 * s) ≤
+          2 * smithFamilyCoefficientOrder P d +
+            2 * (s * canonicalTransverseDegree d) := by
+      simpa [Nat.mul_assoc] using hineq
     omega
   have hqdiv : Polynomial.X ^ q ∣ MvPolynomial.coeff d P :=
     smithFamilyCoefficientOrder_dvd P hd
