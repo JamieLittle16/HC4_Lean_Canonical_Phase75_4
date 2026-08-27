@@ -58,6 +58,7 @@ theorem canonicalPositiveTransverseRees_half_integralExposure
         (canonicalPositiveTransverseReesWeight s) d := by
     rw [canonicalPositiveTransverseReesWeight_finsupp]
     dsimp [q, n] at hineq ⊢
+    rw [hrs] at hineq ⊢
     omega
   have hqdiv : Polynomial.X ^ q ∣ MvPolynomial.coeff d P :=
     smithFamilyCoefficientOrder_dvd P hd
@@ -96,27 +97,19 @@ theorem canonicalPositiveTransverseRees_half_hasIntegralSection
     HasIntegralAdaptiveSmithSection
       (canonicalPositiveTransverseReesWeight s) b := by
   classical
-  intro i
-  fin_cases i
-  · simp [canonicalPositiveTransverseReesWeight]
-  all_goals
+  have hcoord :
+      ∀ i : Fin 4, i ≠ (0 : Fin 4) →
+        canonicalPositiveTransverseSectionFrontierWeight Delta b ≤
+          canonicalPositiveTransverseSectionOrderCap Delta
+            (parameterRamificationSection (K := K) 2 b i) →
+        Polynomial.X ^ s ∣ b i := by
+    intro i hi hfrontLe
     by_cases hbi : b i = 0
     · simp [hbi]
     · let p := parameterRamificationSection (K := K) 2 b i
       have hp : p ≠ 0 := by
         dsimp [p, parameterRamificationSection]
         exact parameterRamificationHom_ne_zero_of_pos 2 (by norm_num) hbi
-      have hfrontLe :
-          canonicalPositiveTransverseSectionFrontierWeight Delta b ≤
-            canonicalPositiveTransverseSectionOrderCap Delta p := by
-        fin_cases i
-        · contradiction
-        · exact canonicalPositiveTransverseSectionFrontierWeight_le_one
-            (K := K) Delta b
-        · exact canonicalPositiveTransverseSectionFrontierWeight_le_two
-            (K := K) Delta b
-        · exact canonicalPositiveTransverseSectionFrontierWeight_le_three
-            (K := K) Delta b
       have hcapDvd :=
         canonicalPositiveTransverseSectionOrderCap_dvd (K := K) Delta p
       have hfrontPow :
@@ -147,6 +140,21 @@ theorem canonicalPositiveTransverseRees_half_hasIntegralSection
         (polynomial_X_pow_dvd_X_pow_of_le
           (K := K) s (polynomialParameterOrder (b i) hbi) hsLe)
         hqDvd
+  intro i
+  fin_cases i
+  · simp [canonicalPositiveTransverseReesWeight]
+  · simpa [canonicalPositiveTransverseReesWeight] using
+      hcoord (1 : Fin 4) (by decide)
+        (canonicalPositiveTransverseSectionFrontierWeight_le_one
+          (K := K) Delta b)
+  · simpa [canonicalPositiveTransverseReesWeight] using
+      hcoord (2 : Fin 4) (by decide)
+        (canonicalPositiveTransverseSectionFrontierWeight_le_two
+          (K := K) Delta b)
+  · simpa [canonicalPositiveTransverseReesWeight] using
+      hcoord (3 : Fin 4) (by decide)
+        (canonicalPositiveTransverseSectionFrontierWeight_le_three
+          (K := K) Delta b)
 
 /-- The zero section is integrally transportable through the same unramified
 half-frontier weight. -/
@@ -210,32 +218,28 @@ theorem exists_canonicalPositiveTransverseRees_unramifiedFrontier
     (hlt : canonicalPositiveTransverseSectionFrontierWeight Delta b < Delta) :
     ∃ s : ℕ,
       canonicalPositiveTransverseSectionFrontierWeight Delta b = 2 * s ∧
-      HasIntegralAdaptiveSmithExposure
-        1 (canonicalPositiveTransverseReesWeight s)
-        (canonicalPositiveTransverseSectionFrontierWeight Delta b) P ∧
-      HasIntegralAdaptiveSmithSection
-        (canonicalPositiveTransverseReesWeight s) b ∧
-      HasPolynomialFamilyHessianDefect (K := K)
-        (adaptiveSmithExposureFamily
+      ∃ hint : HasIntegralAdaptiveSmithExposure
           1 (canonicalPositiveTransverseReesWeight s)
-          (canonicalPositiveTransverseSectionFrontierWeight Delta b) P
-          (canonicalPositiveTransverseRees_half_integralExposure
-            (K := K) hbound
-            (Nat.le_of_lt hlt)
-            (by assumption)))
-        (Delta - canonicalPositiveTransverseSectionFrontierWeight Delta b) := by
+          (canonicalPositiveTransverseSectionFrontierWeight Delta b) P,
+        HasIntegralAdaptiveSmithSection
+            (canonicalPositiveTransverseReesWeight s) b ∧
+          HasPolynomialFamilyHessianDefect (K := K)
+            (adaptiveSmithExposureFamily
+              1 (canonicalPositiveTransverseReesWeight s)
+              (canonicalPositiveTransverseSectionFrontierWeight Delta b) P hint)
+            (Delta - canonicalPositiveTransverseSectionFrontierWeight Delta b) := by
   rcases canonicalPositiveTransverseSectionFrontierWeight_even_of_lt
       (K := K) Delta b hlt with ⟨s, hs⟩
   have hrs : canonicalPositiveTransverseSectionFrontierWeight Delta b = 2 * s := by
     omega
-  have hint := canonicalPositiveTransverseRees_half_integralExposure
+  let hint := canonicalPositiveTransverseRees_half_integralExposure
     (K := K) hbound (Nat.le_of_lt hlt) hrs
   have hsection := canonicalPositiveTransverseRees_half_hasIntegralSection
     (K := K) Delta s b hrs
   have hdef' := canonicalPositiveTransverseRees_unramifiedFrontier_hessianDefect
     (K := K) P hdef hbound (Nat.le_of_lt hlt) hrs
   refine ⟨s, hrs, hint, hsection, ?_⟩
-  simpa using hdef'
+  simpa [hint] using hdef'
 
 end
 
