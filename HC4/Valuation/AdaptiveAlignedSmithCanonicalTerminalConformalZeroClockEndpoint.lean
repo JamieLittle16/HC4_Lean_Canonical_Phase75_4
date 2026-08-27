@@ -172,7 +172,8 @@ theorem conformalDegreeTwoFace_projected_degree_two
       e.b = d (1 : Fin 4) ∧
       e.c = d (2 : Fin 4) ∧
       e.d = d (3 : Fin 4) := by
-    simpa [smithSupportExponentOf] using congrArg id hde.symm
+    rw [← hde]
+    simp
   rcases hcoords with ⟨hb, hc, hw⟩
   rw [hb, hc, hw]
   exact_mod_cast hhom
@@ -282,18 +283,27 @@ theorem conformalDegreeTwoFace_exactAxisCollision
     rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
       eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single]
     fin_cases j
-    · simpa [longitudinalCoefficientPolynomial,
-        smithTransverseExponent] using congrArg (Polynomial.eval 0) hsecond
-    · simpa [longitudinalCoefficientPolynomial,
-        smithTransverseExponent] using congrArg (Polynomial.eval 0) hfirst
-    · have hcoll3 := hcoll (3 : Fin 4)
-      rw [hzeroPoint, haxisPoint] at hcoll3
-      unfold mvGradientComponentAt at hcoll3
-      rw [eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single,
-        eval_pderiv_finCons_zero_eq_eval_longitudinalCoefficient_single] at hcoll3
+    · have hsecondAt :
+          longitudinalCoefficientPolynomialAt (Finsupp.single (0 : Fin 3) 1)
+              T.conformalDegreeTwoFace = 0 := by
+        simpa [longitudinalCoefficientPolynomial,
+          smithTransverseExponent] using hsecond
+      rw [hsecondAt]
+      simp
+    · have hfirstAt :
+          longitudinalCoefficientPolynomialAt (Finsupp.single (1 : Fin 3) 1)
+              T.conformalDegreeTwoFace = 0 := by
+        simpa [longitudinalCoefficientPolynomial,
+          smithTransverseExponent] using hfirst
+      rw [hfirstAt]
+      simp
+    · have hcollAxis := hcoll
+      rw [hzeroPoint, haxisPoint] at hcollAxis
+      have hcollW :=
+        longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision
+          (2 : Fin 3) T.specialFiber hcollAxis
       rw [hw]
-      simpa [longitudinalCoefficientPolynomial,
-        smithTransverseExponent] using hcoll3
+      exact hcollW.symm
 
 /-- At zero clock, absence of only the three strict low Smith patterns is enough
 to construct an honest one-zero associated-graded collision.  A `w`-linear
