@@ -115,10 +115,13 @@ theorem impossible_of_finalResidualResolver
       (CertifiedRamifiedEpisodeInternalMove T.presentedState state) at hmove
     rcases hmove with ⟨hmove⟩
     have hpositivePresented : 0 < T.presentedState.rawDefect := by
-      rw [hmove.raw_eq]
-      exact Nat.mul_pos hmove.ramification_pos hpositive
-    rcases T.positiveTransverseRees_lowLayer_or_sourceRamifiedSpend
-        hpositivePresented with hlow | hspend
+      rw [CertifiedRamifiedEpisodeInternalMove.raw_eq hmove]
+      exact Nat.mul_pos
+        (CertifiedRamifiedEpisodeInternalMove.ramification_pos hmove)
+        hpositive
+    have hfront :=
+      T.positiveTransverseRees_lowLayer_or_sourceRamifiedSpend hpositivePresented
+    rcases hfront with hlow | hspend
     · rcases hlow with ⟨L⟩
       exact R.positiveLowLayer hrepair T hpositive L
     · rcases hspend with ⟨hbound, hspend⟩
