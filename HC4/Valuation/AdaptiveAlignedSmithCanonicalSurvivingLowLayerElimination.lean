@@ -83,7 +83,8 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.positiveReesLowLayer_fir
         smithSupportExponentOf (1 : Fin 4) 2 3 L.exponent ∈
           smithProjectedSupport (1 : Fin 4) 2 3
             (polynomialFamilySpecialFiber D.presented.family) := by
-      exact ⟨L.exponent, hspecial, rfl⟩
+      unfold smithProjectedSupport
+      exact Finset.mem_image.mpr ⟨L.exponent, hspecial, rfl⟩
     rcases D.noPositiveReesLowPattern_on_specialFiber
         (smithSupportExponentOf (1 : Fin 4) 2 3 L.exponent) heProjected with
       ⟨hnotPure, hnotFirst, hnotSecond, hnotW⟩
