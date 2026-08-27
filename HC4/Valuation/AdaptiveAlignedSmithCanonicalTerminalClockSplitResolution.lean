@@ -1,6 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionReentry
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSourceAdapter
 import HC4.Valuation.PolynomialFamilyHessianSpecialFiber
 import HC4.MongeAmpere
 
@@ -18,7 +18,7 @@ side.
 At represented raw defect zero the *same* presented special fibre already has
 Hessian determinant one.  A18.5.2 also gives its canonical distinct exact
 collision `0 ~ e₀`.  Hence the JC2-facing branch does not need to extract a new
-polynomial or new collision at all: it only has to certify this existing
+polynomial or collision at all: it only has to certify this existing
 Monge--Ampere fibre as one of the terminal direct-jump endpoint types.
 
 This is a strict strengthening of the semantic reduction.  No cocharacter or
