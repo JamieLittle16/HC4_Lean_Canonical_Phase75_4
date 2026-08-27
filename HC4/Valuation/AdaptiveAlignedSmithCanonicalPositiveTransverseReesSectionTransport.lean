@@ -236,11 +236,19 @@ theorem canonicalPositiveTransverseSectionFrontierRightSpecial_ne_zero_of_cap_eq
     Polynomial.X ^ W i *
         integralAdaptiveSmithSection W bram hdiv i = bram i at hreinflate
   rw [hWi] at hreinflate
+  have hcap' :
+      canonicalPositiveTransverseSectionOrderCap Delta (bram i) = r := by
+    simpa [r, bram] using hcap.symm
   have hfactor' :
       bram i = Polynomial.X ^ r *
         polynomialParameterPrimitivePart (bram i) hp := by
-    rw [hfactor]
-    rw [← hcap]
+    calc
+      bram i =
+          Polynomial.X ^ canonicalPositiveTransverseSectionOrderCap Delta (bram i) *
+            polynomialParameterPrimitivePart (bram i) hp := hfactor
+      _ = Polynomial.X ^ r *
+            polynomialParameterPrimitivePart (bram i) hp := by
+          rw [hcap']
   rw [hfactor'] at hreinflate
   have hcancel := polynomial_X_pow_mul_cancel (K := K) r hreinflate
   change Polynomial.constantCoeff
