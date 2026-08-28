@@ -98,7 +98,8 @@ theorem qs_exposed_topFaceCrossFacet_impossible
     have := (HC4.Polynomial.onFacet_toToricExponent_iff .qs
       D.outsideExponent).1 hon
     simpa [HC4.Polynomial.facetOmittedCoordinate] using this
-  omega
+  have hpos : 0 < D.outsideExponent (0 : Fin 4) := D.outside_coordinate_pos
+  exact (Nat.ne_of_gt hpos) hz
 
 /-- **A19.78 `qs` exposed-rank-three reduction.**  Once the direct maximal
 face crossing and impossible `.qs` source confinement are removed, only the
