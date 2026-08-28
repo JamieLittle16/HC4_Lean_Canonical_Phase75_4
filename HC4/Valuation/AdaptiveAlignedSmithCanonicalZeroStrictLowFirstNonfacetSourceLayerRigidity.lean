@@ -66,7 +66,8 @@ theorem qs_ray_source_zeroCoordinate_eq_one_of_degree_eq_outside
         (0 : Fin 4) C.scale C.bump C.ray.outsideExponent =
       ((C.scale * T.topFace.degree : ℕ) : ℤ) at hout
   unfold HC4.Newton.scaledContactExponentWeight at hle hout
-  rw [hout0, hdeg] at hout hle
+  rw [hdeg] at hle
+  rw [hout0] at hout
   push_cast at hle hout
   have hbump : (0 : ℤ) < (C.bump : ℤ) := by
     exact_mod_cast C.bump_pos
