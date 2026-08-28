@@ -242,10 +242,32 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hx1 : x1 = 0 := by exact_mod_cast h1K
     exact ⟨hx1, h23.1, h23.2⟩
 
-/-- State-free A19.90 adapter: consume a degree-one terminal certificate and
-codimension-two affine endpoint data in one precompiled lemma.  This keeps the
-large valuation/restart-state records completely out of the autonomous raw
-identity elaboration. -/
+set_option maxHeartbeats 1000000 in
+/-- State-free A19.90 extraction.  This is the one intrinsically heavy
+elaboration step, so it receives its own command-local budget; every consumer
+then works at the normal heartbeat limit. -/
+theorem degreeOneTerminal_rawIdentity
+    [IsAlgClosed K]
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : phi.natDegree = 1)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    (Polynomial.X - Polynomial.X ^ 2) *
+        HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S =
+      HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+        (A : K) (B : K) (C : K) (1 : K) Q R S := by
+  rcases
+      HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
+        hA hB hC (by norm_num) hphiDeg hphi0 hcert with
+    ⟨_hPone, _hphi1, hraw⟩
+  exact hraw
+
+/-- State-free A19.91 adapter: once the autonomous raw identity has been
+extracted, the codimension-two endpoint conclusion is a cheap composition of
+precompiled algebra lemmas. -/
 theorem degreeOneTerminal_codimensionTwoPair_forcesAll
     [IsAlgClosed K]
     {A B C x1 x2 x3 : ℕ} {Q R S : K} {phi : Polynomial K}
@@ -262,10 +284,8 @@ theorem degreeOneTerminal_codimensionTwoPair_forcesAll
         (x1 = 0 ∧ x3 = 0) ∨
         (x2 = 0 ∧ x3 = 0)) :
     x1 = 0 ∧ x2 = 0 ∧ x3 = 0 := by
-  rcases
-      HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
-        hA hB hC (by norm_num) hphiDeg hphi0 hcert with
-    ⟨_hPone, _hphi1, hraw⟩
+  have hraw := degreeOneTerminal_rawIdentity
+    hA hB hC hphiDeg hphi0 hcert
   exact degreeOneRaw_codimensionTwoPair_forcesAll
     hA hB hC hraw h1aff h2aff h3aff hpairs
 
