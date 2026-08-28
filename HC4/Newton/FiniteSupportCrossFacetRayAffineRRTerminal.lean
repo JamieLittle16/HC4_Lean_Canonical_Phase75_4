@@ -22,7 +22,8 @@ would require coordinate `0` to be strictly positive.
 
 Thus a singular contact-`0` balance-free ray has the exact dichotomy needed by
 final assembly: either it already carries a complete affine RationalRigidity
-terminal certificate, or its facet endpoint lies on a codimension-two
+terminal certificate together with the `.qs` rank-three provenance needed for
+later scalar splits, or its facet endpoint lies on a codimension-two
 coordinate boundary.  No torus balance, integrality of transverse slopes,
 finite-segment divisibility, or new terminal algebra is introduced here.
 -/
@@ -88,12 +89,14 @@ theorem CrossFacetRayData.zero_rankThree_terminalCertificate
     (R.zeroAffineLineData_hessian_zero hzero)
 
 /-- **Contact-zero ray terminal split.**  The only non-RationalRigidity
-alternative left by the ray endpoint is a genuine codimension-two boundary. -/
+alternative left by the ray endpoint is a genuine codimension-two boundary.
+The rank-three provenance is retained beside the certificate. -/
 theorem CrossFacetRayData.zero_terminalCertificate_or_codimensionTwo
     {F : MvPolynomial (Fin 4) K}
     (R : CrossFacetRayData F (0 : Fin 4))
     (hzero : hessianDeterminant F = 0) :
-    HasRankThreePolynomialTerminalCertificate
+    (MvRankThreeOnFacet .qs R.facetExponent ∧
+      HasRankThreePolynomialTerminalCertificate
         (phi := R.zeroCoefficientPolynomial)
         ((R.facetExponent 1 : ℕ) : K)
         ((R.facetExponent 2 : ℕ) : K)
@@ -101,13 +104,13 @@ theorem CrossFacetRayData.zero_terminalCertificate_or_codimensionTwo
         (1 : K)
         (R.zeroSlope (1 : Fin 4))
         (R.zeroSlope (2 : Fin 4))
-        (R.zeroSlope (3 : Fin 4)) ∨
+        (R.zeroSlope (3 : Fin 4))) ∨
       MvExponentOnCodimensionTwoBoundary R.facetExponent := by
   rcases R.rankThreeFacet_or_codimensionTwo with hthree | htwo
   · rcases hthree with ⟨facet, hfacet⟩
     have hfacetEq : facet = .qs := R.zero_rankThreeFacet_eq_qs facet hfacet
     subst facet
-    exact Or.inl (R.zero_rankThree_terminalCertificate hzero hfacet)
+    exact Or.inl ⟨hfacet, R.zero_rankThree_terminalCertificate hzero hfacet⟩
   · exact Or.inr htwo
 
 end
