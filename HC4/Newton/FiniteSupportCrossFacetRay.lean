@@ -59,9 +59,10 @@ theorem CrossFacetInitialData.face_weight_eq
   rw [D.face_eq] at hd
   have hne := MvPolynomial.mem_support_iff.mp hd
   rw [coeff_initialForm] at hne
-  split_ifs at hne with hw
+  by_cases hw :
+      Finsupp.weight (crossFacetWeight i j D.scale D.bump) d = D.level
   · exact hw
-  · exact (hne rfl).elim
+  · simp [hw] at hne
 
 /-- One secondary cross-facet face gives an exact proportionality equation in
 its auxiliary coordinate for any three supported points, provided the chosen
@@ -84,11 +85,11 @@ theorem CrossFacetInitialData.auxiliary_cross_proportional
   simp only [Nat.cast_zero, mul_zero, add_zero] at hvw
   have hdifference :
       (D.scale : ℤ) * ((d i : ℤ) - (v i : ℤ)) +
-        D.bump * (d j : ℤ) = 0 := by
+        (D.bump : ℤ) * (d j : ℤ) = 0 := by
     linear_combination hdw - hvw
   have hodifference :
       (D.scale : ℤ) * ((o i : ℤ) - (v i : ℤ)) +
-        D.bump * (o j : ℤ) = 0 := by
+        (D.bump : ℤ) * (o j : ℤ) = 0 := by
     linear_combination how - hvw
   have hscaled :
       (D.scale : ℤ) *
@@ -195,9 +196,17 @@ noncomputable def crossFacetRayData
   have haux1 := D1.auxiliary_cross_proportional hv1 ho1 hd1 hvj
   have haux2 := D2.auxiliary_cross_proportional hv2 ho2 hd hvj
 
-  fin_cases j <;> fin_cases k <;>
-    simp [crossFacetRayAux0, crossFacetRayAux1, crossFacetRayAux2] at haux0 haux1 haux2 ⊢ <;>
-    first | exact haux0 | exact haux1 | exact haux2 | ring
+  have hk :
+      k = j ∨ k = crossFacetRayAux0 j ∨
+        k = crossFacetRayAux1 j ∨ k = crossFacetRayAux2 j := by
+    fin_cases j <;> fin_cases k <;>
+      simp [crossFacetRayAux0, crossFacetRayAux1, crossFacetRayAux2]
+  rcases hk with rfl | hk0 | hk1 | hk2
+  · rw [hvj]
+    ring
+  · simpa [hk0] using haux0
+  · simpa [hk1] using haux1
+  · simpa [hk2] using haux2
 
 /-- The ray facet endpoint is an actual coordinate-boundary exponent, hence it
 has the same balance-free rank-three/codimension-two split as A18.5.93. -/
