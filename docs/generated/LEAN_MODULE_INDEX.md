@@ -6159,7 +6159,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.75`, `A19.79`, `A19.89`, `A19.90`, `A19.91`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
 - Declarations: `theorem degreeOne_raw_first_two_zero_forces_third`, `theorem degreeOne_raw_first_third_zero_forces_second`, `theorem degreeOne_raw_last_two_zero_forces_first`, `theorem qs_ray_outside_codimensionTwo_impossible`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
@@ -6219,7 +6219,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.80`, `A19.91`, `A19.92`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 - Declarations: `theorem qs_rankThree_not_codimensionTwo`, `theorem qs_ray_boundaryOutcome_otherFacet`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
@@ -6345,9 +6345,9 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier.lean`
-- Purpose: A19.92: compress the exposed `qs` lower boundary frontier
-- A-labels: `A19.76`, `A19.80`, `A19.91`, `A19.92`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
+- Purpose: A19.93: compress the exposed `qs` lower boundary frontier
+- A-labels: `A19.76`, `A19.80`, `A19.91`, `A19.92`, `A19.93`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
 - Declarations: `theorem qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare`
