@@ -36,6 +36,7 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
 -- Keep the public elimination theorem thin so command-local heartbeat budgets reset.
+-- CI anchor: verify the scalar-at-two A19.90/A19.91 seam after inventory refresh.
 
 /-- Cast-normalised rank-three terminal certificate.  Keeping this conversion
 in its own declaration prevents the final proof from repeatedly normalising
