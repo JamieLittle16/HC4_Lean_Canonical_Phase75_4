@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6643**.
+Distinct declaration spellings indexed: **6645**.
 
 ## Repeated declaration spellings
 
@@ -3533,11 +3533,13 @@ Distinct declaration spellings indexed: **6643**.
 - `exists_ramifiedSpend_of_rightRecentered_tripleShear_pderiv_zero_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCurrentScaleConstantKernel`
 - `exists_ramifiedSpend_of_tripleShear_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTransverseKernelRestart`
 - `exists_rankThreeAutonomousPolynomial_degree_le_two` — `theorem` in `HC4.RationalRigidity.RankThreeTargetDegreeBound`
+- `exists_rankThreeAutonomousPolynomial_eq_X_sub_X_sq_of_source_degree_one` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `exists_rankThreeAutonomousPolynomial_unit_linear_top_relation` — `theorem` in `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
 - `exists_rankThree_full_multiplicity_root` — `theorem` in `HC4.RationalRigidity.RankThreeRootMultiplicity`
 - `exists_rankThree_polynomial_autonomous_equation` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
 - `exists_rankThree_polynomial_autonomous_equation_of_core_det_zero` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
 - `exists_rankThree_polynomial_autonomous_equation_of_fraction_equation` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `exists_rankThree_translated_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `exists_ratio_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `exists_scalarMinimalSmithExponent` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`

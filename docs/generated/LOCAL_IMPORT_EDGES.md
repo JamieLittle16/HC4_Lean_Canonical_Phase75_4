@@ -910,6 +910,8 @@ human architecture guide.
   - `HC4.RationalRigidity.RankThreeBalancedHomogeneousEndpoint`
 - `HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible`
   - `HC4.RationalRigidity.RankThreeHomogeneousEndpointUnits`
+- `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
+  - `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
 - `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`
   - `HC4.Polynomial.RankThreeFractionBridge`
   - `HC4.RationalRigidity.LogarithmicInfinityCertificate`
