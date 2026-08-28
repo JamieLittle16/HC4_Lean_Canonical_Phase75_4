@@ -30,7 +30,8 @@ open MvPolynomial
 
 noncomputable section
 
-variable {K : Type*} [Field K] [CharZero K]
+universe u
+variable {K : Type u} [Field K] [CharZero K]
 
 /-- First auxiliary coordinate in the canonical enumeration of the three
 coordinates different from `j`. -/
@@ -44,6 +45,23 @@ def crossFacetRayAux1 (j : Fin 4) : Fin 4 :=
 /-- Third auxiliary coordinate different from `j`. -/
 def crossFacetRayAux2 (j : Fin 4) : Fin 4 :=
   ![(3 : Fin 4), 3, 3, 2] j
+
+/-- Every supported exponent of the exact finite cross-facet face lies on the
+stored secondary exposing level.  This is immediate from `face_eq` and the
+coefficient formula for `initialForm`; it is kept here because A18.5.65c did
+not need to expose it as a structure field. -/
+theorem CrossFacetInitialData.face_weight_eq
+    {F : MvPolynomial (Fin 4) K} {i j : Fin 4}
+    (D : CrossFacetInitialData F i j)
+    {d : Fin 4 →₀ ℕ}
+    (hd : d ∈ D.face.support) :
+    Finsupp.weight (crossFacetWeight i j D.scale D.bump) d = D.level := by
+  rw [D.face_eq] at hd
+  have hne := MvPolynomial.mem_support_iff.mp hd
+  rw [coeff_initialForm] at hne
+  split_ifs at hne with hw
+  · exact hw
+  · exact (hne rfl).elim
 
 /-- One secondary cross-facet face gives an exact proportionality equation in
 its auxiliary coordinate for any three supported points, provided the chosen
@@ -88,7 +106,7 @@ theorem CrossFacetInitialData.auxiliary_cross_proportional
 /-- Complete balance-free affine-ray carrier obtained by three successive
 finite cross-facet exposures. -/
 structure CrossFacetRayData
-    (F : MvPolynomial (Fin 4) K) (j : Fin 4) : Type where
+    (F : MvPolynomial (Fin 4) K) (j : Fin 4) : Type (u + 1) where
   face : MvPolynomial (Fin 4) K
   facetExponent : Fin 4 →₀ ℕ
   outsideExponent : Fin 4 →₀ ℕ
@@ -179,10 +197,7 @@ noncomputable def crossFacetRayData
 
   fin_cases j <;> fin_cases k <;>
     simp [crossFacetRayAux0, crossFacetRayAux1, crossFacetRayAux2] at haux0 haux1 haux2 ⊢ <;>
-    try { exact haux0 } <;>
-    try { exact haux1 } <;>
-    try { exact haux2 } <;>
-    ring
+    first | exact haux0 | exact haux1 | exact haux2 | ring
 
 /-- The ray facet endpoint is an actual coordinate-boundary exponent, hence it
 has the same balance-free rank-three/codimension-two split as A18.5.93. -/
@@ -194,8 +209,7 @@ theorem CrossFacetRayData.rankThreeFacet_or_codimensionTwo
       MvExponentOnCodimensionTwoBoundary R.facetExponent := by
   apply mvBoundary_rankThreeFacet_or_codimensionTwo
   rw [mvExponentOnBoundary_iff_coordinate_zero]
-  fin_cases j <;>
-    simp_all
+  fin_cases j <;> simp_all
 
 end
 
