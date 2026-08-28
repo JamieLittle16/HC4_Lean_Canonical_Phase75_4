@@ -43,6 +43,7 @@ human architecture guide.
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
   - `HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible`
+  - `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
   - `HC4.Toric`
   - `HC4.Valuation.ActualParameterLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
