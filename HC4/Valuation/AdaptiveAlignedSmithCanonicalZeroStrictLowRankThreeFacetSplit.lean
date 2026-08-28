@@ -46,7 +46,7 @@ theorem rankThree_crossFacetInitial_or_topFaceOnFacet
       T.exposedSingularBoundaryVertex.exponent) :
     Nonempty
         (CrossFacetInitialData T.topFace.face
-          (crossFacetOppositeCoordinate
+          (HC4.Newton.crossFacetOppositeCoordinate
             (HC4.Polynomial.facetOmittedCoordinate facet))
           (HC4.Polynomial.facetOmittedCoordinate facet)) ∨
       MvSupportOnFacet facet T.topFace.face := by
@@ -55,7 +55,7 @@ theorem rankThree_crossFacetInitial_or_topFaceOnFacet
     simpa [j] using T.rankThree_zeroCoordinateSupport_nonempty facet hthree
   by_cases hout : (positiveCoordinateSupport j T.topFace.face).Nonempty
   · exact Or.inl ⟨crossFacetInitialData
-      (i := crossFacetOppositeCoordinate j) hfacet hout⟩
+      (i := HC4.Newton.crossFacetOppositeCoordinate j) hfacet hout⟩
   · right
     intro d hd
     apply (onFacet_toToricExponent_iff facet d).2
@@ -74,7 +74,7 @@ theorem rankThree_crossFacetInitial_hessian_zero
       (K := K) state)
     (facet : ToricFacet)
     (D : CrossFacetInitialData T.topFace.face
-      (crossFacetOppositeCoordinate
+      (HC4.Newton.crossFacetOppositeCoordinate
         (HC4.Polynomial.facetOmittedCoordinate facet))
       (HC4.Polynomial.facetOmittedCoordinate facet)) :
     HC4.Polynomial.hessianDeterminant D.face = 0 :=
