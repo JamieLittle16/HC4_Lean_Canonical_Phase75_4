@@ -50,7 +50,7 @@ def crossFacetRayAux2 (j : Fin 4) : Fin 4 :=
 stored secondary exposing level.  This is immediate from `face_eq` and the
 coefficient formula for `initialForm`; it is kept here because A18.5.65c did
 not need to expose it as a structure field. -/
-theorem CrossFacetInitialData.face_weight_eq
+theorem CrossFacetInitialData.ray_face_weight_eq
     {F : MvPolynomial (Fin 4) K} {i j : Fin 4}
     (D : CrossFacetInitialData F i j)
     {d : Fin 4 →₀ ℕ}
@@ -77,9 +77,9 @@ theorem CrossFacetInitialData.auxiliary_cross_proportional
     (hvj : v j = 0) :
     (o j : ℤ) * ((d i : ℤ) - (v i : ℤ)) =
       (d j : ℤ) * ((o i : ℤ) - (v i : ℤ)) := by
-  have hvw := D.face_weight_eq hv
-  have how := D.face_weight_eq ho
-  have hdw := D.face_weight_eq hd
+  have hvw := D.ray_face_weight_eq hv
+  have how := D.ray_face_weight_eq ho
+  have hdw := D.ray_face_weight_eq hd
   rw [weight_crossFacetWeight] at hvw how hdw
   rw [hvj] at hvw
   simp only [Nat.cast_zero, mul_zero, add_zero] at hvw
