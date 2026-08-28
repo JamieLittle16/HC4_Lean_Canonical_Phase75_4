@@ -28,7 +28,8 @@ Thus the homogeneous-direction branch of the mature RationalRigidity terminal
 split is unavailable on a genuine lower first-contact ray.  A rank-three `.qs`
 endpoint leaves only degree one or one fixed transverse direction.  No torus
 balance, integrality of the transverse slopes, or new termination measure is
-used.
+used.  The final theorem below is the kernel-facing finite split consumed by
+the next local assembly layer.
 -/
 
 namespace HC4.Valuation
