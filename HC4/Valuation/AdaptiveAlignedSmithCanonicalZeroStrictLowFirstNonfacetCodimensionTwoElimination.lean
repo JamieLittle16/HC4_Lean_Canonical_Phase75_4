@@ -88,9 +88,10 @@ private theorem qs_ray_outside_affine_data
       HC4.Polynomial.rankThreeLogDirection, hout0] using h
 
 set_option maxHeartbeats 1000000 in
-/-- The expensive A19.90-to-endpoint step has a deliberately tiny result type:
-all three transverse coordinates of a codimension-two lower `qs` endpoint
-vanish.  The polynomial identity exists only locally inside this command. -/
+/-- The valuation layer now performs only geometric extraction.  A19.90 and
+the degree-one codimension-two algebra are consumed together by the state-free
+adapter in the algebra module, so no raw polynomial identity is elaborated
+against the dependent restart-state record here. -/
 private theorem qs_ray_outside_transverse_zero
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
@@ -104,25 +105,19 @@ private theorem qs_ray_outside_transverse_zero
   have hA : 0 < C.ray.facetExponent 1 := hcoords.2.1
   have hB : 0 < C.ray.facetExponent 2 := hcoords.2.2.1
   have hC : 0 < C.ray.facetExponent 3 := hcoords.2.2.2
-
   have hphiDeg : C.ray.zeroCoefficientPolynomial.natDegree = 1 :=
     C.qs_ray_terminal_degreeOne hthree
   have hphi0 : C.ray.zeroCoefficientPolynomial.coeff 0 ≠ 0 :=
     C.ray.zeroCoefficientPolynomial_coeff_zero_ne
   have hcert := qs_ray_degreeOne_terminalCertificate C hthree
-  rcases
-      HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
-        hA hB hC (by norm_num) hphiDeg hphi0 hcert with
-    ⟨_hPone, _hphi1, hraw⟩
-
   rcases qs_ray_outside_affine_data C hthree with
     ⟨hout0, h1aff, h2aff, h3aff⟩
   have hpairs :=
     HC4.Valuation.transversePair_zero_of_codimensionTwoBoundary
       C.ray.outsideExponent hout0 houtTwo
   exact
-    HC4.Valuation.degreeOneRaw_codimensionTwoPair_forcesAll
-      hA hB hC hraw h1aff h2aff h3aff hpairs
+    HC4.Valuation.degreeOneTerminal_codimensionTwoPair_forcesAll
+      hA hB hC hphiDeg hphi0 hcert h1aff h2aff h3aff hpairs
 
 /-- Once transverse vanishing is known, the primitive coordinate-zero step
 makes the outside endpoint have ordinary degree exactly one. -/
