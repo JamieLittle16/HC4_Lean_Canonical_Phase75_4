@@ -6237,7 +6237,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity.lean`
 - Purpose: A19.85: rigidity below the unit lower first-contact endpoint
 - A-labels: `A19.75`, `A19.79`, `A19.82`, `A19.85`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `theorem qs_ray_source_zeroCoordinate_eq_one_of_degree_eq_outside`, `theorem qs_ray_source_degree_lt_outside_of_two_le_zeroCoordinate`
@@ -6299,7 +6299,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.80`, `A19.86`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - Declarations: `theorem qs_quadraticSquare_source_codimensionTwo`, `theorem qs_rankThree_lowerBoundary_or_codimensionTwoSource`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
