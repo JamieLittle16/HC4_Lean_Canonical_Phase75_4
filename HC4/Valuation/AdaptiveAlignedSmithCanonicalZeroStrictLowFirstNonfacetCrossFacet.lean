@@ -24,6 +24,7 @@ The resulting carrier retains only facts proved without torus balance:
 
 * positive first-contact scale and bump;
 * exact first-contact initial-form identity;
+* the global source support bound for that first-contact weight;
 * zero Hessian determinant;
 * every supported monomial is genuinely nonlinear;
 * non-confinement to the starting facet;
@@ -64,6 +65,12 @@ structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
   scale_pos : 0 < scale
   bump_pos : 0 < bump
+  source_weight_le :
+    HC4.Polynomial.IsWeightLE
+      (HC4.Newton.scaledContactWeight
+        (HC4.Polynomial.facetOmittedCoordinate facet) scale bump)
+      ((scale * T.topFace.degree : ℕ) : ℤ)
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
   hessian_zero : HC4.Polynomial.hessianDeterminant face = 0
   support_degree_ge_three :
     ∀ d ∈ face.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d
@@ -84,6 +91,20 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {facet : ToricFacet}
+
+/-- The retained first-contact selector bounds every represented-source
+monomial at the same denominator-cleared contact level.  This is the exact
+minimal-contact inequality proved when the carrier is constructed. -/
+theorem source_contact_le
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet)
+    {d : Fin 4 →₀ ℕ}
+    (hd : d ∈ (polynomialFamilySpecialFiber
+      T.terminal.blocker.presented.family).support) :
+    HC4.Newton.scaledContactExponentWeight
+        (HC4.Polynomial.facetOmittedCoordinate facet) D.scale D.bump d ≤
+      ((D.scale * T.topFace.degree : ℕ) : ℤ) := by
+  simpa [HC4.Newton.weight_scaledContactWeight] using D.source_weight_le hd
 
 /-- The exact first-contact carrier has support on both sides of its contact
 facet, literally witnessed by the already-retained cross-facet data. -/
@@ -229,6 +250,7 @@ noncomputable def firstNonfacetCrossFacetData_of_tame
       face_eq := by simpa [G, psi]
       scale_pos := hscale
       bump_pos := hbump
+      source_weight_le := by simpa [psi] using hbound
       hessian_zero := hzeroG
       support_degree_ge_three := hnonlinear
       not_on_facet := hnotG
