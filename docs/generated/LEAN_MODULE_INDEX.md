@@ -6295,8 +6295,8 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo.lean`
-- Purpose: A19.85: the `qs` quadratic-square residual is already codimension two
-- A-labels: `A19.80`, `A19.85`
+- Purpose: A19.86: the `qs` quadratic-square residual is already codimension two
+- A-labels: `A19.80`, `A19.86`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
