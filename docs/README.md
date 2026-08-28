@@ -10,7 +10,10 @@ The repository has grown through many cumulative phases and now contains a large
 2. [`CANONICAL_OWNERS.md`](CANONICAL_OWNERS.md) — where important concepts, structures, and helper APIs are defined. Check this before introducing a new definition or theorem family.
 3. [`PROOF_CHANGE_CHECKLIST.md`](PROOF_CHANGE_CHECKLIST.md) — required workflow before adding new proof infrastructure.
 4. [`MODULE_CATALOG.md`](MODULE_CATALOG.md) — human-oriented map of module families and the active A18/A19 final-assembly chain.
-5. [`generated/README.md`](generated/README.md) — specification for the exhaustive machine-generated module, declaration, and import-DAG indexes.
+5. [`generated/LEAN_MODULE_INDEX.md`](generated/LEAN_MODULE_INDEX.md) — exhaustive per-file index generated from the current Lean checkout.
+6. [`generated/DECLARATION_INDEX.md`](generated/DECLARATION_INDEX.md) — declaration-to-module lookup with repeated spellings highlighted for duplicate-infrastructure review.
+7. [`generated/LOCAL_IMPORT_EDGES.md`](generated/LOCAL_IMPORT_EDGES.md) — exhaustive direct local import adjacency list for the proof DAG.
+8. [`generated/README.md`](generated/README.md) — generation/maintenance notes.
 
 Generate or refresh the exhaustive indexes with:
 
@@ -18,17 +21,13 @@ Generate or refresh the exhaustive indexes with:
 python3 tools/generate_proof_inventory.py
 ```
 
-This writes:
-
-- `docs/generated/LEAN_MODULE_INDEX.md`
-- `docs/generated/DECLARATION_INDEX.md`
-- `docs/generated/LOCAL_IMPORT_EDGES.md`
-
-If generated indexes are committed in a checkout, check that they are current with:
+Check that committed generated documentation is current with:
 
 ```bash
 python3 tools/generate_proof_inventory.py --check
 ```
+
+The normal GitHub Lean CI runs this check before the build, so a Lean-source change that alters the inventory must regenerate the indexes in the same patch.
 
 The generator uses only the Python standard library and scans the Lean source tree. It records every module's imports, module documentation title, A18/A19 labels, declarations, and reverse importers. This is the reproducible source of truth for **every file**, while the hand-written documents explain how those files fit together mathematically.
 
@@ -37,7 +36,7 @@ The generator uses only the Python standard library and scans the Lean source tr
 When documents disagree, use this order:
 
 1. Lean source and its imports/types.
-2. Generated module/declaration indexes, when freshly generated.
+2. Fresh generated module/declaration indexes.
 3. These `docs/` architecture documents.
 4. Current PR description and commit history.
 5. Historical phase-status files.
