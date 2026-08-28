@@ -16,11 +16,12 @@ rank-three segment
 
     (0,A,B,C)  --  (1,U2,U3,U4).
 
-The generic degree-one moment realisation can then be applied directly to the
-actual ray face.  Its Hessian singularity yields a zero coefficient-weighted
-endpoint-pencil determinant, while both endpoint coefficients remain nonzero.
-This is the small scalar interface used by the remaining balance-free endpoint
-arithmetic; no torus grading is introduced.
+The coordinate-`0` step is therefore primitive before any transverse endpoint
+arithmetic is used.  The generic degree-one moment realisation can then be
+applied directly to the actual ray face.  Its Hessian singularity yields a
+zero coefficient-weighted endpoint-pencil determinant, while both endpoint
+coefficients remain nonzero.  This is the small scalar interface used by the
+remaining balance-free endpoint arithmetic; no torus grading is introduced.
 -/
 
 namespace HC4.Valuation
