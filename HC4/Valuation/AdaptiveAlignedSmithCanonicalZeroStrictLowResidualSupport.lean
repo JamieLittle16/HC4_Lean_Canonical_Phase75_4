@@ -67,13 +67,18 @@ theorem lowNegativeFirst_sourceSupport
       have hd : d ∈ F.support := MvPolynomial.mem_support_iff.mpr hsourceCoeff
       refine ⟨d, hd, ?_, ?_, ?_⟩
       · rcases hp with ⟨hb, hc, hdpat⟩
-        simp [HC4.Polynomial.ordinaryDegree4, d,
-          smithTransverseExponent, hb, hc, hdpat]
+        have hdegD :
+            HC4.Polynomial.ordinaryDegree4 d = n + e.b + e.c + e.d := by
+          simpa [d] using
+            (ordinaryDegree4_cons_smithTransverseExponent_eq e n)
+        rw [hdegD, hb, hc, hdpat]
         omega
-      · simp [d, n]
+      · change 0 < n
         omega
       · rcases hp with ⟨hb, hc, hdpat⟩
-        simp [d, smithTransverseExponent, hb, hc, hdpat]
+        change
+          ((smithTransverseExponent e.b e.c e.d).cons n) (2 : Fin 4) = 1
+        exact (cons_smithTransverseExponent_has_projection e n).2.1.trans hc
   | lowNegativeSecond A B hp hA hAeq hB hfactor hdegree =>
       exfalso
       have hb0 : e.b = 0 := hpat.1
@@ -120,13 +125,18 @@ theorem lowNegativeSecond_sourceSupport
       have hd : d ∈ F.support := MvPolynomial.mem_support_iff.mpr hsourceCoeff
       refine ⟨d, hd, ?_, ?_, ?_⟩
       · rcases hp with ⟨hb, hc, hdpat⟩
-        simp [HC4.Polynomial.ordinaryDegree4, d,
-          smithTransverseExponent, hb, hc, hdpat]
+        have hdegD :
+            HC4.Polynomial.ordinaryDegree4 d = n + e.b + e.c + e.d := by
+          simpa [d] using
+            (ordinaryDegree4_cons_smithTransverseExponent_eq e n)
+        rw [hdegD, hb, hc, hdpat]
         omega
-      · simp [d, n]
+      · change 0 < n
         omega
       · rcases hp with ⟨hb, hc, hdpat⟩
-        simp [d, smithTransverseExponent, hb, hc, hdpat]
+        change
+          ((smithTransverseExponent e.b e.c e.d).cons n) (1 : Fin 4) = 1
+        exact (cons_smithTransverseExponent_has_projection e n).1.trans hb
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm
 
