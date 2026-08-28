@@ -120,3 +120,5 @@ end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 end
 
 end HC4.Valuation
+
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
