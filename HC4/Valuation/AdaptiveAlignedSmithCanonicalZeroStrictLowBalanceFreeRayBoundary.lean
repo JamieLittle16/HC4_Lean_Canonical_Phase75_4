@@ -44,7 +44,7 @@ structure AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundaryData
   nonlinear : 3 ≤ HC4.Polynomial.ordinaryDegree4 exponent
   contact_pos :
     0 < exponent (HC4.Polynomial.facetOmittedCoordinate facet)
-  boundary : HC4.Newton.MvExponentOnBoundary exponent
+  boundary : HC4.Polynomial.MvExponentOnBoundary exponent
   stratum :
     (∃ next : ToricFacet,
         HC4.Newton.MvRankThreeOnFacet next exponent) ∨
