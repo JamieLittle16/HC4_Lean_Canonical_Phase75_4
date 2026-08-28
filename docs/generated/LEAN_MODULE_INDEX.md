@@ -2615,7 +2615,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.75`, `A19.90`
 - Local imports: `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - Declarations: `theorem exists_rankThreeAutonomousPolynomial_eq_X_sub_X_sq_of_source_degree_one`, `theorem exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one`
 
 ### `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`
@@ -6159,18 +6159,18 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.91`
 - Local imports: `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - Declarations: `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination.lean`
 - Purpose: A19.91: the lower degree-one `qs` ray cannot end in codimension two
-- A-labels: `A19.75`, `A19.79`, `A19.89`, `A19.90`, `A19.91`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
+- A-labels: `A19.75`, `A19.79`, `A19.90`, `A19.91`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
-- Declarations: `theorem degreeOne_raw_first_two_zero_forces_third`, `theorem degreeOne_raw_first_third_zero_forces_second`, `theorem degreeOne_raw_last_two_zero_forces_first`, `theorem qs_ray_outside_codimensionTwo_impossible`
+- Declarations: `theorem qs_ray_degreeOne_terminalCertificate`, `theorem qs_ray_degreeOne_raw_identity`, `theorem qs_ray_outside_affine_data`, `theorem qs_ray_outside_codimensionTwo_impossible`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 
