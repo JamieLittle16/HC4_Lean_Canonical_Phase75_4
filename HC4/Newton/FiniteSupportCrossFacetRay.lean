@@ -218,7 +218,11 @@ theorem CrossFacetRayData.rankThreeFacet_or_codimensionTwo
       MvExponentOnCodimensionTwoBoundary R.facetExponent := by
   apply mvBoundary_rankThreeFacet_or_codimensionTwo
   rw [mvExponentOnBoundary_iff_coordinate_zero]
-  fin_cases j <;> simp_all
+  fin_cases j
+  · exact Or.inl R.facet_coordinate_zero
+  · exact Or.inr (Or.inl R.facet_coordinate_zero)
+  · exact Or.inr (Or.inr (Or.inl R.facet_coordinate_zero))
+  · exact Or.inr (Or.inr (Or.inr R.facet_coordinate_zero))
 
 end
 
