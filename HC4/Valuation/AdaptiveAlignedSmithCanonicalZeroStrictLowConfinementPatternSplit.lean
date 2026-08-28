@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
 import Mathlib.Tactic
 
 /-!
@@ -120,5 +121,3 @@ end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 end
 
 end HC4.Valuation
-
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
