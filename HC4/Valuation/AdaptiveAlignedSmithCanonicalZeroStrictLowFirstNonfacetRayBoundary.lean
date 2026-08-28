@@ -63,6 +63,8 @@ theorem qs_ray_outside_boundaryTransition
         C.ray.zeroCoefficientPolynomial.natDegree :=
     Polynomial.le_natDegree_of_mem_supp
       (C.ray.outsideExponent (0 : Fin 4)) houtMem
+  have houtPos : 0 < C.ray.outsideExponent (0 : Fin 4) :=
+    C.ray.outside_coordinate_pos
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 := by
     omega
 
