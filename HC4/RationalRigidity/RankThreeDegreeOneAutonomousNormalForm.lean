@@ -146,6 +146,61 @@ theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
         Polynomial.X - Polynomial.X ^ 2 by simpa [T] using hTexact] at hraw
   exact hraw
 
+set_option maxHeartbeats 1000000 in
+/-- **Unit-step degree-one raw relation at `rho = 2`.**  Final endpoint
+arithmetic only ever evaluates the raw target identity at `2`, so this smaller
+interface avoids materialising a polynomial equality in downstream theorem
+types. -/
+theorem rankThree_raw_target_eval_two_of_source_degree_one_unit_step
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : phi.natDegree = 1)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    (-2 : K) *
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S) =
+      Polynomial.eval (2 : K)
+        (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S) := by
+  have hphiPos : 0 < phi.natDegree := by omega
+  rcases exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiPos hphi0 hcert with
+    ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
+  let T := rankThreeAutonomousPolynomial
+    (A : K) (B : K) (C : K) (1 : K) Q R S b
+  have hT1' : T.coeff 1 = (1 : K) := by simpa [T] using hT1
+  have hT2 : T.coeff 2 = (-1 : K) := by
+    have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
+      simpa [T] using htop
+    rw [hphiDeg] at htop'
+    norm_num at htop' ⊢
+    exact eq_neg_of_add_eq_zero_left htop'
+  have hshape :
+      T = Polynomial.C (T.coeff 1) * Polynomial.X +
+        Polynomial.C (T.coeff 2) * Polynomial.X ^ 2 :=
+    eq_linear_add_quadratic_of_natDegree_le_two
+      (by simpa [T] using hdegT) (by simpa [T] using hT0)
+  have hTeval : Polynomial.eval (2 : K) T = (-2 : K) := by
+    rw [hshape, hT1', hT2]
+    norm_num
+  have hraw := rankThreeAutonomousPolynomial_mul_rawDenominator
+    (K := K) hA hB hC (by norm_num) hb hden
+  have hrawT :
+      T * HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S =
+        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S := by
+    simpa [T] using hraw
+  have h2 := congrArg (Polynomial.eval (2 : K)) hrawT
+  simp only [Polynomial.eval_mul] at h2
+  rw [hTeval] at h2
+  exact h2
+
 end
 
 end HC4.RationalRigidity
