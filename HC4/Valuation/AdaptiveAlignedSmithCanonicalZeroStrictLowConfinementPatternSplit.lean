@@ -3,6 +3,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSuppo
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction
 import Mathlib.Tactic
 
 /-!
