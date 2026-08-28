@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6640**.
+Distinct declaration spellings indexed: **6641**.
 
 ## Repeated declaration spellings
 
@@ -6336,6 +6336,7 @@ Distinct declaration spellings indexed: **6640**.
 - `strictLowBlocker_rawSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLowOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLow_sourceCodimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
+- `strictLow_sourceCodimensionTwo_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `strictRepairChain_measure_bound` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `strictRepairChain_step_bound` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `strictSmithCommonParameterOrder` — `def` in `HC4.Valuation.StrictSmithMaximalNormalization`

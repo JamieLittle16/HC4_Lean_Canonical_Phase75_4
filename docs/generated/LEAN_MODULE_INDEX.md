@@ -6390,7 +6390,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
-- Declarations: `theorem lowNegativeFirst_sourceSupport_sparse`, `theorem lowNegativeSecond_sourceSupport_sparse`, `theorem strictLow_sourceCodimensionTwo`
+- Declarations: `theorem lowNegativeFirst_sourceSupport_sparse`, `theorem lowNegativeSecond_sourceSupport_sparse`, `theorem strictLow_sourceCodimensionTwo`, `theorem strictLow_sourceCodimensionTwo_two_le`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
 
