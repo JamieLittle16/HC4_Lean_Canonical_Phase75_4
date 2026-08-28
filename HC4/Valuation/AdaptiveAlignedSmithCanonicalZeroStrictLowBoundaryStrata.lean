@@ -54,12 +54,14 @@ noncomputable def boundaryStratum
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
-    AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStratum T := by
-  rcases T.exposedBoundary_rankThreeFacet_or_codimensionTwo with
-    ⟨facet, hthree⟩ | htwo
-  · exact .rankThree facet hthree
-  · rcases htwo with ⟨i, j, hij, hi, hj⟩
-    exact .codimensionTwo i j hij hi hj
+    AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStratum T :=
+  Classical.choice (by
+    show Nonempty (AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStratum T)
+    rcases T.exposedBoundary_rankThreeFacet_or_codimensionTwo with
+      ⟨facet, hthree⟩ | htwo
+    · exact ⟨.rankThree facet hthree⟩
+    · rcases htwo with ⟨i, j, hij, hi, hj⟩
+      exact ⟨.codimensionTwo i j hij hi hj⟩)
 
 /-- The exposed exponent used by the stratum is literal support of the actual
 singular top face. -/
@@ -89,10 +91,11 @@ theorem rankThree_zeroCoordinateSupport_nonempty
     (facet : ToricFacet)
     (hthree : MvRankThreeOnFacet facet
       T.exposedSingularBoundaryVertex.exponent) :
-    (zeroCoordinateSupport (facetOmittedCoordinate facet) T.topFace.face).Nonempty := by
+    (zeroCoordinateSupport
+      (HC4.Polynomial.facetOmittedCoordinate facet) T.topFace.face).Nonempty := by
   have hzero :
       T.exposedSingularBoundaryVertex.exponent
-        (facetOmittedCoordinate facet) = 0 := by
+        (HC4.Polynomial.facetOmittedCoordinate facet) = 0 := by
     have hcoords :=
       (mvRankThreeOnFacet_iff facet
         T.exposedSingularBoundaryVertex.exponent).1 hthree
@@ -130,20 +133,21 @@ theorem finiteSupportBoundaryStrata
     (∃ facet : ToricFacet,
         MvRankThreeOnFacet facet T.exposedSingularBoundaryVertex.exponent ∧
           (zeroCoordinateSupport
-            (facetOmittedCoordinate facet) T.topFace.face).Nonempty) ∨
+            (HC4.Polynomial.facetOmittedCoordinate facet)
+            T.topFace.face).Nonempty) ∨
       (∃ i j : Fin 4,
         i ≠ j ∧
           T.exposedSingularBoundaryVertex.exponent i = 0 ∧
           T.exposedSingularBoundaryVertex.exponent j = 0 ∧
           (zeroCoordinateSupport i T.topFace.face).Nonempty ∧
           (zeroCoordinateSupport j T.topFace.face).Nonempty) := by
-  cases hS : T.boundaryStratum with
-  | rankThree facet hthree =>
-      exact Or.inl ⟨facet, hthree,
-        T.rankThree_zeroCoordinateSupport_nonempty facet hthree⟩
-  | codimensionTwo i j hij hi hj =>
-      have hs := T.codimensionTwo_zeroCoordinateSupports_nonempty i j hij hi hj
-      exact Or.inr ⟨i, j, hij, hi, hj, hs.2.1, hs.2.2⟩
+  rcases T.exposedBoundary_rankThreeFacet_or_codimensionTwo with
+    ⟨facet, hthree⟩ | htwo
+  · exact Or.inl ⟨facet, hthree,
+      T.rankThree_zeroCoordinateSupport_nonempty facet hthree⟩
+  · rcases htwo with ⟨i, j, hij, hi, hj⟩
+    have hs := T.codimensionTwo_zeroCoordinateSupports_nonempty i j hij hi hj
+    exact Or.inr ⟨i, j, hij, hi, hj, hs.2.1, hs.2.2⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
