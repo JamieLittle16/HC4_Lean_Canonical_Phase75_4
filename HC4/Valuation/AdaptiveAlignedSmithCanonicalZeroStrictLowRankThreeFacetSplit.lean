@@ -49,7 +49,7 @@ theorem rankThree_crossFacetInitial_or_topFaceOnFacet
           (HC4.Newton.crossFacetOppositeCoordinate
             (HC4.Polynomial.facetOmittedCoordinate facet))
           (HC4.Polynomial.facetOmittedCoordinate facet)) ∨
-      MvSupportOnFacet facet T.topFace.face := by
+      HC4.Polynomial.MvSupportOnFacet facet T.topFace.face := by
   let j : Fin 4 := HC4.Polynomial.facetOmittedCoordinate facet
   have hfacet : (zeroCoordinateSupport j T.topFace.face).Nonempty := by
     simpa [j] using T.rankThree_zeroCoordinateSupport_nonempty facet hthree
@@ -58,7 +58,7 @@ theorem rankThree_crossFacetInitial_or_topFaceOnFacet
       (i := HC4.Newton.crossFacetOppositeCoordinate j) hfacet hout⟩
   · right
     intro d hd
-    apply (onFacet_toToricExponent_iff facet d).2
+    apply (HC4.Polynomial.onFacet_toToricExponent_iff facet d).2
     have hnotpos : ¬ 0 < d j := by
       intro hpos
       exact hout ⟨d, mem_positiveCoordinateSupport.mpr ⟨hd, hpos⟩⟩
