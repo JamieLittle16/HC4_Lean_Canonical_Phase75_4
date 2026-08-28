@@ -46,9 +46,10 @@ theorem lowDegreeTame_or_exists_omittedQuadraticSquare
     push_neg at htame
     rcases htame with ⟨d, hd, hdeg, hj⟩
     have hj2 : 2 ≤ d (facetOmittedCoordinate F) := by omega
-    have hsum : ordinaryDegree4 d = d 0 + d 1 + d 2 + d 3 := rfl
     have hdeg2 : ordinaryDegree4 d = 2 := by
-      cases F <;> simp [facetOmittedCoordinate, ordinaryDegree4] at hj2 ⊢ <;> omega
+      cases F <;>
+        simp [facetOmittedCoordinate, ordinaryDegree4] at hdeg hj2 ⊢ <;>
+        omega
     have hjEq : d (facetOmittedCoordinate F) = 2 := by
       cases F <;> simp [facetOmittedCoordinate, ordinaryDegree4] at hdeg2 hj2 ⊢ <;> omega
     refine ⟨d, hd, hdeg2, hjEq, ?_⟩
