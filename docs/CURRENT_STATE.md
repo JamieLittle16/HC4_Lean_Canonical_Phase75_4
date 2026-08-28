@@ -39,6 +39,8 @@ The important established facts are:
 
 Therefore the remaining proof is **not** an entry-normalization problem.
 
+In particular, `gradient_injective_of_hessianDeterminant_one_of_presentedTerminal_impossible` already provides the unrestricted determinant-one conclusion once final assembly supplies an unconditional contradiction for every canonical presented terminal. The live mathematical task is therefore terminal closure, not construction of another global HC4 entry theorem.
+
 ## 3. The only rank-one recursion is complete
 
 The global rank-one recursive object is:
@@ -145,9 +147,12 @@ A19.67  balance-free finite-support affine ray
 A19.68  prescribed-positive singular boundary exponent
 A19.69  genuine transition away from the starting facet
 A19.70  exact rank-three boundary residual reduction
+A19.71  exhaustive zero-clock terminal residual assembly
+A19.72  contact-zero affine ray to RationalRigidity terminal or codimension two
+A19.73  `.qs` strict-low ray reduction with retained carrier provenance
 ```
 
-The detailed files and inputs/outputs are listed in `PROOF_PATHS.md`.
+The detailed files and inputs/outputs are listed in `PROOF_PATHS.md`. A19.72 and A19.73 are kernel-checked on the live final-assembly branch; their residual types deliberately retain light geometric carriers and reconstruct the large RationalRigidity certificate only when consumed.
 
 ## 8. Exact current boundary frontier
 
@@ -159,16 +164,27 @@ OR
 codimension two on two coordinate boundaries.
 ```
 
-The **rank-three branch** has now been refined through A19.70 to the following provenance-honest alternatives:
+A19.71 combines the rank-three reduction with the original codimension-two half, leaving only five provenance-honest zero-clock alternatives:
 
 1. a genuine boundary transition on the actual maximal top face;
 2. a genuine boundary transition on an explicitly retained lower first-contact carrier;
-3. a literal omitted-coordinate quadratic square in the represented source;
-4. complete nonlinear source confinement to the starting facet, with pattern-sensitive restrictions already proved on which facets can survive.
+3. a genuine codimension-two boundary exponent;
+4. a literal omitted-coordinate quadratic square in the represented source;
+5. complete nonlinear source confinement to the starting facet.
 
-The lower first-contact carrier is intentionally not transported back to the top face.
+For the marked `.qs` rank-three branch, A19.73 strengthens this further. The complete nonlinear-confinement branch is impossible from the actual strict-low source witnesses. Each cross-facet branch retains an exact contact-coordinate-`0` balance-free affine ray. By A19.72 its facet endpoint is either:
 
-The **codimension-two branch** remains a distinct boundary branch and should not be silently identified with the rank-three branch or with the two-zero/JC2 route without a theorem that supplies the required hypotheses.
+```text
+rank three on `.qs`, hence carrying the complete general affine RationalRigidity terminal certificate
+OR
+codimension two.
+```
+
+The RationalRigidity certificate is reconstructed canonically from the retained ray rather than duplicated inside the A19.73 residual type. This avoids expensive dependent normalization while preserving all support, first-contact, endpoint and affine-slope provenance.
+
+The **codimension-two branch** remains a distinct boundary branch and should not be silently identified with the rank-three branch or with the two-zero/JC2 route without a theorem that supplies the required carrier hypotheses.
+
+The next live lower-ray reduction is to use the positive first-contact bump to rule out homogeneous affine direction (`1 + q + r + s = 0`) and feed the remaining RationalRigidity scalar cases into the existing fixed-direction endgame. The direct maximal-top-face ray is genuinely homogeneous and must be consumed by the homogeneous RR route instead; these two cases must not be conflated.
 
 ## 9. What is already closed and should not be reopened
 
@@ -189,8 +205,11 @@ The following are not current missing pieces:
 - generic balance-free boundary rank split;
 - generic finite two-sided cross-facet exposure;
 - generic balance-free finite-support affine ray extraction;
+- contact-zero affine realization as an honest `RankThreeAffineLineData`;
+- affine RationalRigidity terminal certification for a rank-three `.qs` ray endpoint;
 - forcing a singular boundary exponent to retain positivity in a prescribed coordinate;
-- low-degree-tame versus literal quadratic-square exhaustiveness.
+- low-degree-tame versus literal quadratic-square exhaustiveness;
+- unrestricted collision-to-terminal reduction under an unconditional terminal-impossibility theorem.
 
 Before creating infrastructure in one of these categories, find and reuse the existing owner.
 
@@ -226,11 +245,19 @@ Stronger still: a positive reached rank-three state is outer global progress, so
 
 A19.46 isolated one zero-blocker first-contact producer. A19.53 removed the producer and retained the actual strict-low terminal data directly.
 
+### A19.71 → A19.73
+
+A19.71 assembles the exhaustive zero-clock boundary residual. A19.72 supplies the balance-free affine RationalRigidity terminal bridge for a contact-zero `.qs` ray. A19.73 specializes the `.qs` strict-low rank-three branch, removes complete nonlinear confinement, and retains only top/lower affine rays, codimension-two endpoints, or the literal quadratic-square branch.
+
 **Rule:** when deciding what remains, start from A19.45/A19.53 and the newest zero-strict-low modules, not from the older resolver structures.
 
 ## 11. Current proof claim
 
 The repository contains a very large, kernel-checked reduction and local-geometry development, but this status document should not claim unrestricted HC4 until a top-level theorem closes **every** live terminal branch and is included in the audited root build.
+
+The global unrestricted front door itself is already available: once final assembly proves every `AdaptiveAlignedSmithCanonicalTerminalData` impossible without caller-supplied hypotheses, `gradient_injective_of_hessianDeterminant_one_of_presentedTerminal_impossible` yields determinant-one gradient injectivity for an arbitrary four-variable polynomial.
+
+Therefore the remaining proof should be described precisely as **final unconditional terminal closure plus public theorem export**, not as a missing global reduction.
 
 The correct final milestone will be an unconditional theorem of the public determinant-one gradient-injectivity form, with no resolver/producer/terminal-impossibility argument supplied by the caller.
 
