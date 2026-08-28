@@ -57,7 +57,6 @@ theorem lowNegativeFirst_sourceSupport
         omega
       have hlead : A.coeff n ≠ 0 := by
         dsimp [n]
-        rw [Polynomial.coeff_natDegree]
         exact Polynomial.leadingCoeff_ne_zero.mpr hA
       have hsourceCoeff : MvPolynomial.coeff d F ≠ 0 := by
         rw [← coeff_longitudinalCoefficientPolynomial
@@ -115,7 +114,6 @@ theorem lowNegativeSecond_sourceSupport
         omega
       have hlead : A.coeff n ≠ 0 := by
         dsimp [n]
-        rw [Polynomial.coeff_natDegree]
         exact Polynomial.leadingCoeff_ne_zero.mpr hA
       have hsourceCoeff : MvPolynomial.coeff d F ≠ 0 := by
         rw [← coeff_longitudinalCoefficientPolynomial
