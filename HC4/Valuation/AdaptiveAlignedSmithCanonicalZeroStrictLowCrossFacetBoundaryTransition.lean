@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary
 import HC4.Newton.PositiveCoordinateSingularBoundaryVertex
 import HC4.Newton.SingularBoundaryRankSplit
 import Mathlib.Tactic
