@@ -869,6 +869,8 @@ human architecture guide.
   - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
+- `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`
+  - `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
 - `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
   - `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
 - `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
