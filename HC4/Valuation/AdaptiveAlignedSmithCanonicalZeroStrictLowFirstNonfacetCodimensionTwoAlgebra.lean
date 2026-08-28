@@ -245,31 +245,79 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hx1 : x1 = 0 := by exact_mod_cast h1K
     exact ⟨hx1, h23.1, h23.2⟩
 
-/-- State-free A19.90 extraction specialized all the way to the single scalar
-evaluation used by A19.91. -/
-theorem degreeOneTerminal_evalTwo
+/-- Packed state-free data for the degree-one unit-step terminal.  Packing the
+certificate with its scalar parameters prevents downstream theorem application
+from repeatedly normalising the long dependent certificate telescope. -/
+structure DegreeOneTerminalEvalData (K : Type u) [Field K] [CharZero K] where
+  A : ℕ
+  B : ℕ
+  C : ℕ
+  Q : K
+  R : K
+  S : K
+  phi : Polynomial K
+  hA : 0 < A
+  hB : 0 < B
+  hC : 0 < C
+  hphiDeg : phi.natDegree = 1
+  hphi0 : phi.coeff 0 ≠ 0
+  hcert : HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+    (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S
+
+set_option maxHeartbeats 1000000 in
+/-- Replays the already-established A19.90 unit-step derivation directly from
+packed data.  In particular this deliberately does not apply the pathological
+`rankThree_raw_target_eval_two_of_source_degree_one_unit_step` wrapper. -/
+theorem DegreeOneTerminalEvalData.evalTwo
     [IsAlgClosed K]
-    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
-    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
-    (hphiDeg : phi.natDegree = 1)
-    (hphi0 : phi.coeff 0 ≠ 0)
-    (hcert : HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    (D : DegreeOneTerminalEvalData K) :
     (-2 : K) *
         Polynomial.eval (2 : K)
           (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-            (A : K) (B : K) (C : K) (1 : K) Q R S) =
+            (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S) =
       Polynomial.eval (2 : K)
         (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S) := by
-  exact
-    HC4.RationalRigidity.rankThree_raw_target_eval_two_of_source_degree_one_unit_step
-      (K := K) (A := A) (B := B) (C := C)
-      (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC hphiDeg hphi0 hcert
+          (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S) := by
+  have hphiPos : 0 < D.phi.natDegree := by omega
+  rcases
+      HC4.RationalRigidity.exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
+        (K := K) (A := D.A) (B := D.B) (C := D.C) (P := 1)
+        (Q := D.Q) (R := D.R) (S := D.S) (phi := D.phi)
+        D.hA D.hB D.hC (by norm_num) hphiPos D.hphi0 D.hcert with
+    ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
+  let T := HC4.RationalRigidity.rankThreeAutonomousPolynomial
+    (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S b
+  have hT1' : T.coeff 1 = (1 : K) := by simpa [T] using hT1
+  have hT2 : T.coeff 2 = (-1 : K) := by
+    have htop' : T.coeff 2 * (D.phi.natDegree : K) + 1 = 0 := by
+      simpa [T] using htop
+    rw [D.hphiDeg] at htop'
+    norm_num at htop' ⊢
+    exact eq_neg_of_add_eq_zero_left htop'
+  have hshape :
+      T = Polynomial.C (T.coeff 1) * Polynomial.X +
+        Polynomial.C (T.coeff 2) * Polynomial.X ^ 2 :=
+    HC4.RationalRigidity.eq_linear_add_quadratic_of_natDegree_le_two
+      (by simpa [T] using hdegT) (by simpa [T] using hT0)
+  have hTeval : Polynomial.eval (2 : K) T = (-2 : K) := by
+    rw [hshape, hT1', hT2]
+    norm_num
+  have hraw :=
+    HC4.RationalRigidity.rankThreeAutonomousPolynomial_mul_rawDenominator
+      (K := K) D.hA D.hB D.hC (by norm_num) hb hden
+  have hrawT :
+      T * HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+          (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S =
+        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+          (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S := by
+    simpa [T] using hraw
+  have h2 := congrArg (Polynomial.eval (2 : K)) hrawT
+  simp only [Polynomial.eval_mul] at h2
+  rw [hTeval] at h2
+  exact h2
 
-/-- State-free A19.91 adapter: after one scalar autonomous extraction, the
-codimension-two endpoint conclusion is elementary algebra. -/
+/-- State-free A19.91 adapter: construct the packed terminal once, derive the
+single scalar relation, then finish by elementary codimension-two algebra. -/
 theorem degreeOneTerminal_codimensionTwoPair_forcesAll
     [IsAlgClosed K]
     {A B C x1 x2 x3 : ℕ} {Q R S : K} {phi : Polynomial K}
@@ -286,8 +334,22 @@ theorem degreeOneTerminal_codimensionTwoPair_forcesAll
         (x1 = 0 ∧ x3 = 0) ∨
         (x2 = 0 ∧ x3 = 0)) :
     x1 = 0 ∧ x2 = 0 ∧ x3 = 0 := by
-  have h2 := degreeOneTerminal_evalTwo
-    hA hB hC hphiDeg hphi0 hcert
+  let D : DegreeOneTerminalEvalData K := {
+    A := A
+    B := B
+    C := C
+    Q := Q
+    R := R
+    S := S
+    phi := phi
+    hA := hA
+    hB := hB
+    hC := hC
+    hphiDeg := hphiDeg
+    hphi0 := hphi0
+    hcert := hcert
+  }
+  have h2 := D.evalTwo
   exact degreeOneRaw_codimensionTwoPair_forcesAll
     hA hB hC h2 h1aff h2aff h3aff hpairs
 
