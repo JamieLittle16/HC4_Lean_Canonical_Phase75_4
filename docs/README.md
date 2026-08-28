@@ -10,8 +10,7 @@ The repository has grown through many cumulative phases and now contains a large
 2. [`CANONICAL_OWNERS.md`](CANONICAL_OWNERS.md) — where important concepts, structures, and helper APIs are defined. Check this before introducing a new definition or theorem family.
 3. [`PROOF_CHANGE_CHECKLIST.md`](PROOF_CHANGE_CHECKLIST.md) — required workflow before adding new proof infrastructure.
 4. [`MODULE_CATALOG.md`](MODULE_CATALOG.md) — human-oriented map of module families and the active A18/A19 final-assembly chain.
-5. `generated/LEAN_MODULE_INDEX.md` — exhaustive machine-generated per-file index after running the inventory generator.
-6. `generated/DECLARATION_INDEX.md` — machine-generated declaration-to-module index, including possible duplicate declaration names.
+5. [`generated/README.md`](generated/README.md) — specification for the exhaustive machine-generated module, declaration, and import-DAG indexes.
 
 Generate or refresh the exhaustive indexes with:
 
@@ -19,20 +18,26 @@ Generate or refresh the exhaustive indexes with:
 python3 tools/generate_proof_inventory.py
 ```
 
-Check that committed generated documentation is current with:
+This writes:
+
+- `docs/generated/LEAN_MODULE_INDEX.md`
+- `docs/generated/DECLARATION_INDEX.md`
+- `docs/generated/LOCAL_IMPORT_EDGES.md`
+
+If generated indexes are committed in a checkout, check that they are current with:
 
 ```bash
 python3 tools/generate_proof_inventory.py --check
 ```
 
-The generator uses only the Python standard library and scans the Lean source tree. It records each module's imports, module documentation title, A18/A19 labels, declarations, reverse-import count, and suspicious proof-gap tokens. This is the source of truth for **every file**, while the hand-written documents explain how those files fit together mathematically.
+The generator uses only the Python standard library and scans the Lean source tree. It records every module's imports, module documentation title, A18/A19 labels, declarations, and reverse importers. This is the reproducible source of truth for **every file**, while the hand-written documents explain how those files fit together mathematically.
 
 ## Documentation authority
 
 When documents disagree, use this order:
 
 1. Lean source and its imports/types.
-2. Generated module/declaration indexes.
+2. Generated module/declaration indexes, when freshly generated.
 3. These `docs/` architecture documents.
 4. Current PR description and commit history.
 5. Historical phase-status files.
