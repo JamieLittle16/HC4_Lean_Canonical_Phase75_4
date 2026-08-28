@@ -2130,6 +2130,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
   - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`

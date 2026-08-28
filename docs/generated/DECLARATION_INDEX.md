@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6625**.
+Distinct declaration spellings indexed: **6628**.
 
 ## Repeated declaration spellings
 
@@ -1966,6 +1966,7 @@ Distinct declaration spellings indexed: **6625**.
 - `PreterminalBinaryFirstDeparture.layerDet_ne_zero_of_mixed` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalBinaryFirstDeparture.mixed_or_affine` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalSchurDepartureData` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
+- `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QsTwoFixedTerminalData.impossible` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QuadraticAutonomousLogODE` — `def` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
@@ -5164,6 +5165,7 @@ Distinct declaration spellings indexed: **6625**.
 - `qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 - `qs_rankThree_firstContact_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_rankThree_firstNonfacetCrossFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
+- `qs_rankThree_lowerBoundary_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `qs_ray_all_transverse_fixed_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - `qs_ray_degreeOne_endpointCoefficients_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_degreeOne_endpointPencil_det_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
@@ -5179,6 +5181,7 @@ Distinct declaration spellings indexed: **6625**.
 - `qs_ray_terminal_degreeOne_or_fixedDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_remainingSlope_add_one_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_remainingSlope_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
+- `qs_topFace_ray_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `quadratic` — `def` in `HC4.Newton.BinaryPivotGeometry`
 - `quadraticAutonomousLogODE_of_degree_le_two_ratFunc_identity` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousQuadraticExtraction`
 - `quadraticAutonomousLogODE_of_rankThreeVerticalFractionEquation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
