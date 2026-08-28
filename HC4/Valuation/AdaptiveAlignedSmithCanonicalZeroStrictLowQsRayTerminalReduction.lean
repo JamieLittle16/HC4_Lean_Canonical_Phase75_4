@@ -18,9 +18,12 @@ coordinate `0`, so A19.67 gives a contact-`0` balance-free ray.  A19.72 then
 sends that exact ray either to the mature general affine RationalRigidity
 terminal certificate or to a genuine codimension-two facet endpoint.
 
-The ray itself is retained in every such branch.  This is deliberate: later
-steps may use its exact support, first-contact provenance, or affine slopes.
-No torus balance, integral direction, or carrier transport is introduced.
+The ray and its `.qs` rank-three endpoint provenance are retained in every
+terminal-certificate branch.  This is deliberate: later RR direction splits
+need the three positive transverse endpoint coordinates, while later geometric
+steps may still use the exact support, first-contact provenance, or affine
+slopes.  No torus balance, integral direction, or carrier transport is
+introduced.
 -/
 
 namespace HC4.Valuation
@@ -41,9 +44,11 @@ namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 A rank-three exposed boundary point on `.qs` leaves only:
 
-* a retained top-face balance-free ray with a complete affine RR terminal;
+* a retained top-face balance-free ray with a `.qs` endpoint and complete
+  affine RR terminal;
 * the same top-face ray with a codimension-two facet endpoint;
-* a retained lower first-contact ray with a complete affine RR terminal;
+* a retained lower first-contact ray with a `.qs` endpoint and complete affine
+  RR terminal;
 * that lower ray with a codimension-two facet endpoint; or
 * a literal source quadratic square in coordinate `0`.
 
@@ -56,29 +61,31 @@ theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs
       T.exposedSingularBoundaryVertex.exponent) :
     (∃ R : HC4.Newton.CrossFacetRayData T.topFace.face (0 : Fin 4),
-        HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-          (phi := R.zeroCoefficientPolynomial)
-          ((R.facetExponent 1 : ℕ) : K)
-          ((R.facetExponent 2 : ℕ) : K)
-          ((R.facetExponent 3 : ℕ) : K)
-          (1 : K)
-          (R.zeroSlope (1 : Fin 4))
-          (R.zeroSlope (2 : Fin 4))
-          (R.zeroSlope (3 : Fin 4))) ∨
+        HC4.Newton.MvRankThreeOnFacet .qs R.facetExponent ∧
+          HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+            (phi := R.zeroCoefficientPolynomial)
+            ((R.facetExponent 1 : ℕ) : K)
+            ((R.facetExponent 2 : ℕ) : K)
+            ((R.facetExponent 3 : ℕ) : K)
+            (1 : K)
+            (R.zeroSlope (1 : Fin 4))
+            (R.zeroSlope (2 : Fin 4))
+            (R.zeroSlope (3 : Fin 4))) ∨
       (∃ R : HC4.Newton.CrossFacetRayData T.topFace.face (0 : Fin 4),
         HC4.Newton.MvExponentOnCodimensionTwoBoundary R.facetExponent) ∨
       (∃ C :
           AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
             (K := K) T .qs,
-        HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-          (phi := C.ray.zeroCoefficientPolynomial)
-          ((C.ray.facetExponent 1 : ℕ) : K)
-          ((C.ray.facetExponent 2 : ℕ) : K)
-          ((C.ray.facetExponent 3 : ℕ) : K)
-          (1 : K)
-          (C.ray.zeroSlope (1 : Fin 4))
-          (C.ray.zeroSlope (2 : Fin 4))
-          (C.ray.zeroSlope (3 : Fin 4))) ∨
+        HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent ∧
+          HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+            (phi := C.ray.zeroCoefficientPolynomial)
+            ((C.ray.facetExponent 1 : ℕ) : K)
+            ((C.ray.facetExponent 2 : ℕ) : K)
+            ((C.ray.facetExponent 3 : ℕ) : K)
+            (1 : K)
+            (C.ray.zeroSlope (1 : Fin 4))
+            (C.ray.zeroSlope (2 : Fin 4))
+            (C.ray.zeroSlope (3 : Fin 4))) ∨
       (∃ C :
           AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
             (K := K) T .qs,
