@@ -15,9 +15,9 @@ If the affine direction had ordinary-degree sum
 
     1 + Q + R + S = 0,
 
-then the affine support identity would give equal ordinary degrees for the
-retained facet and outside exponents.  Subtracting their two exact first-contact
-equations would then force
+then the explicit balance-free ray slopes would give equal ordinary degrees
+for the retained facet and outside exponents.  Subtracting their two exact
+first-contact equations would then force
 
     bump * outsideExponent₀ = 0,
 
@@ -59,32 +59,27 @@ theorem qs_ray_directionSum_ne_zero
         C.ray.zeroSlope (3 : Fin 4) ≠ 0 := by
   intro hsum
 
-  have haff := C.ray.zero_support_affine C.ray.outside_mem_face
-  have h1 := congrFun haff (1 : Fin 4)
-  have h2 := congrFun haff (2 : Fin 4)
-  have h3 := congrFun haff (3 : Fin 4)
-  simp [rankThreeLogBaseExponent, rankThreeLogDirection] at h1 h2 h3
+  have hden :
+      ((C.ray.outsideExponent (0 : Fin 4) : ℕ) : K) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt C.ray.outside_coordinate_pos)
 
-  have hsumMul :
-      ((C.ray.outsideExponent (0 : Fin 4) : ℕ) : K) *
-          (1 + C.ray.zeroSlope (1 : Fin 4) +
-            C.ray.zeroSlope (2 : Fin 4) +
-            C.ray.zeroSlope (3 : Fin 4)) = 0 := by
-    rw [hsum]
-    simp
+  have hsum' := hsum
+  simp only [HC4.Newton.CrossFacetRayData.zeroSlope] at hsum'
+  field_simp [hden] at hsum'
+  push_cast at hsum'
 
   have hdegK :
-      ((ordinaryDegree4 C.ray.outsideExponent : ℕ) : K) =
-        ((ordinaryDegree4 C.ray.facetExponent : ℕ) : K) := by
-    simp only [ordinaryDegree4]
+      ((HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent : ℕ) : K) =
+        ((HC4.Polynomial.ordinaryDegree4 C.ray.facetExponent : ℕ) : K) := by
+    simp only [HC4.Polynomial.ordinaryDegree4]
     push_cast
     rw [C.ray.facet_coordinate_zero]
-    simp only [Nat.cast_zero]
-    linear_combination h1 + h2 + h3 + hsumMul
+    push_cast
+    linear_combination hsum'
 
   have hdeg :
-      ordinaryDegree4 C.ray.outsideExponent =
-        ordinaryDegree4 C.ray.facetExponent := by
+      HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent =
+        HC4.Polynomial.ordinaryDegree4 C.ray.facetExponent := by
     exact_mod_cast hdegK
 
   have hfacetContact :
@@ -128,6 +123,17 @@ theorem qs_ray_terminal_degreeOne_or_fixedDirection
   have hB : 0 < C.ray.facetExponent 2 := hcoords.2.2.1
   have hC : 0 < C.ray.facetExponent 3 := hcoords.2.2.2
   have hcert := C.ray.zero_rankThree_terminalCertificate C.hessian_zero hthree
+  have hcert' :
+      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+        (phi := C.ray.zeroCoefficientPolynomial)
+        ((C.ray.facetExponent 1 : ℕ) : K)
+        ((C.ray.facetExponent 2 : ℕ) : K)
+        ((C.ray.facetExponent 3 : ℕ) : K)
+        (((1 : ℕ) : K))
+        (C.ray.zeroSlope (1 : Fin 4))
+        (C.ray.zeroSlope (2 : Fin 4))
+        (C.ray.zeroSlope (3 : Fin 4)) := by
+    simpa only [Nat.cast_one] using hcert
   have hsplit :=
     HC4.RationalRigidity.rankThree_terminal_degreeOne_or_directionDegenerate
       (K := K)
@@ -142,7 +148,7 @@ theorem qs_ray_terminal_degreeOne_or_fixedDirection
       hA hB hC (by norm_num)
       C.ray.zeroCoefficientPolynomial_natDegree_pos
       C.ray.zeroCoefficientPolynomial_coeff_zero_ne
-      hcert
+      hcert'
   rcases hsplit with hdeg | hq | hr | hs | hsum
   · exact Or.inl hdeg
   · exact Or.inr (Or.inl hq)
