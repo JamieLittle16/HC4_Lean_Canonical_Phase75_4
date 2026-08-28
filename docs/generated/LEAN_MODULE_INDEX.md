@@ -6156,11 +6156,11 @@ Lean itself remains authoritative for elaborated names and dependencies.
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra.lean`
 - Purpose: A19.91 codimension-two degree-one algebra
-- A-labels: `A19.91`
+- A-labels: `A19.90`, `A19.91`
 - Local imports: `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
-- Declarations: `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`
+- Declarations: `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`, `theorem degreeOneTerminal_codimensionTwoPair_forcesAll`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 

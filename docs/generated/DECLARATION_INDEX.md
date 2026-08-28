@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6662**.
+Distinct declaration spellings indexed: **6663**.
 
 ## Repeated declaration spellings
 
@@ -3154,6 +3154,7 @@ Distinct declaration spellings indexed: **6662**.
 - `degreeOneRaw_firstThirdZero_forcesSecond` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_firstTwoZero_forcesThird` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_lastTwoZero_forcesFirst` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
+- `degreeOneTerminal_codimensionTwoPair_forcesAll` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degree_eq_one_of_mem_support_C_mul_X_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `degree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `denominatorClearedCoefficientSlope` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
