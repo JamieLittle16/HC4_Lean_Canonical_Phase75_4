@@ -6170,7 +6170,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
-- Declarations: `theorem qs_ray_degreeOne_terminalCertificate`, `theorem qs_ray_degreeOne_raw_identity`, `theorem qs_ray_outside_affine_data`, `theorem qs_ray_outside_codimensionTwo_impossible`
+- Declarations: `structure QsRayDegreeOneScalars`, `def qs_ray_degreeOne_scalars`, `def QsRayDegreeOneScalars.RawIdentity`, `theorem qs_ray_degreeOne_terminalCertificate`, `theorem qs_ray_degreeOne_scalars_positive`, `theorem qs_ray_degreeOne_raw_identity`, `theorem qs_ray_outside_affine_data`, `theorem qs_ray_outside_codimensionTwo_impossible`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 
