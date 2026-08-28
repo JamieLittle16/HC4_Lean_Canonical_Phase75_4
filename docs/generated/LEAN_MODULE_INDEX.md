@@ -6150,7 +6150,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FiniteSupportCrossFacetRay`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
-- Declarations: `structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData`, `theorem zero_and_positive_support_nonempty`, `def ray`, `theorem ray_hessian_zero`, `theorem ray_support_degree_ge_three`, `theorem ray_contact_eq`, `def firstNonfacetCrossFacetData_of_tame`, `theorem rankThree_crossFacet_or_firstNonfacetCrossFacet_or_quadraticSquare_or_nonlinearConfined`
+- Declarations: `structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData`, `theorem source_contact_le`, `theorem zero_and_positive_support_nonempty`, `def ray`, `theorem ray_hessian_zero`, `theorem ray_support_degree_ge_three`, `theorem ray_contact_eq`, `def firstNonfacetCrossFacetData_of_tame`, `theorem rankThree_crossFacet_or_firstNonfacetCrossFacet_or_quadraticSquare_or_nonlinearConfined`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 

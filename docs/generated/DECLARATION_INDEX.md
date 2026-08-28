@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6623**.
+Distinct declaration spellings indexed: **6624**.
 
 ## Repeated declaration spellings
 
@@ -6148,6 +6148,7 @@ Distinct declaration spellings indexed: **6623**.
 - `sourceWedgeInitialForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `sourceWeight_balance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
 - `sourceZeroSchurFirstTransverseBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
+- `source_contact_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
