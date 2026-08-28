@@ -199,10 +199,10 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+set_option maxHeartbeats 2000000 in
 /-- **A19.91 lower codimension-two elimination.**  Under the surviving
 rank-three `.qs` hypothesis, the actual degree-one outside endpoint cannot be
 codimension two. -/
-set_option maxHeartbeats 800000 in
 theorem qs_ray_outside_codimensionTwo_impossible
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
