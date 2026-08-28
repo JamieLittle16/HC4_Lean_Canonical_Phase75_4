@@ -22,6 +22,9 @@ applied directly to the actual ray face.  Its Hessian singularity yields a
 zero coefficient-weighted endpoint-pencil determinant.  This is the small
 scalar interface used by the remaining balance-free endpoint arithmetic; no
 torus grading is introduced.
+
+The root build intentionally checks this minimized interface before the cyclic
+endpoint arithmetic layer is wired into final assembly.
 -/
 
 namespace HC4.Valuation
