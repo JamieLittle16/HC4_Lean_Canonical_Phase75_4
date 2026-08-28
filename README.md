@@ -6,49 +6,67 @@ The repository has grown through many historical phases. **Do not use old `FORMA
 
 ## Start here
 
-Current documentation lives in [`docs/README.md`](docs/README.md):
+The authoritative documentation hub is [`docs/README.md`](docs/README.md).
 
-- [`docs/PROOF_ARCHITECTURE.md`](docs/PROOF_ARCHITECTURE.md) — mathematical proof routes and the live A18/A19 assembly chain.
-- [`docs/CANONICAL_OWNERS.md`](docs/CANONICAL_OWNERS.md) — canonical owners for reusable definitions and theorem families; read before adding infrastructure.
-- [`docs/PROOF_CHANGE_CHECKLIST.md`](docs/PROOF_CHANGE_CHECKLIST.md) — duplicate-avoidance, provenance, termination, and compile checklist.
-- [`docs/MODULE_CATALOG.md`](docs/MODULE_CATALOG.md) — human-oriented map of subsystem and final-assembly module families.
+For current work, the key documents are:
 
-For an exhaustive index of **every Lean file**, its imports, module-doc purpose, A18/A19 labels, reverse importers, and declarations, run:
+- [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md) — exact theorem-level current status and live frontier;
+- [`docs/PROOF_PATHS.md`](docs/PROOF_PATHS.md) — branch-by-branch proof routes and exact file chains;
+- [`docs/PROOF_ARCHITECTURE.md`](docs/PROOF_ARCHITECTURE.md) — mathematical architecture and the current global/local split;
+- [`docs/CANONICAL_OWNERS.md`](docs/CANONICAL_OWNERS.md) — canonical owners for reusable definitions and theorem families;
+- [`docs/GLOSSARY_AND_INVARIANTS.md`](docs/GLOSSARY_AND_INVARIANTS.md) — carrier/clock/provenance vocabulary and invariants;
+- [`docs/MODULE_CATALOG.md`](docs/MODULE_CATALOG.md) — human map of subsystem and final-assembly module families;
+- [`docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md`](docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md) — interpretation of older proved routes and superseded reductions;
+- [`docs/PROOF_CHANGE_CHECKLIST.md`](docs/PROOF_CHANGE_CHECKLIST.md) — duplicate-avoidance, provenance, termination and compile checklist.
+
+## Exhaustive per-file documentation
+
+Generate the source-derived proof inventory with:
 
 ```bash
 python3 tools/generate_proof_inventory.py
 ```
 
-This generates `docs/generated/LEAN_MODULE_INDEX.md`, `DECLARATION_INDEX.md`, and `LOCAL_IMPORT_EDGES.md` directly from the checkout.
+It produces:
+
+- [`docs/generated/LEAN_MODULE_INDEX.md`](docs/generated/LEAN_MODULE_INDEX.md) — every Lean file, imports, reverse importers, module purpose, A18/A19 labels and declarations;
+- [`docs/generated/DECLARATION_INDEX.md`](docs/generated/DECLARATION_INDEX.md) — declaration lookup and repeated declaration spellings;
+- [`docs/generated/LOCAL_IMPORT_EDGES.md`](docs/generated/LOCAL_IMPORT_EDGES.md) — local import DAG.
+
+CI checks that these generated files match the Lean checkout before building.
+
+## Current architectural rules
+
+- The global rank-one recursion is already owned by `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace` and is well founded on strict natural `rawDefect` decrease.
+- Successful positive Rees steps are ordinary edges of that existing trace, not a second termination mechanism.
+- A19.45 proves that positive reached rank-three geometry gives outer global macro progress; a globally terminal reached state is therefore at literal raw defect zero.
+- The live local terminal is the producer-free zero strict-low carrier and its singular maximal top face.
+- Older torus-balanced cross-facet affine-line infrastructure remains reusable, but the unrestricted zero-clock route uses the newer balance-free finite-support cross-facet/ray machinery.
+- Source, presented, recentered, top-face, first-contact, lower-carrier and ray support witnesses must not be interchanged without an explicit transport theorem.
+- Generic definitions live with their representation (`HC4.Polynomial`, `HC4.Newton`, `HC4.Valuation`, `HC4.RationalRigidity`) rather than with whichever downstream module consumes them most often.
+
+Read `docs/CANONICAL_OWNERS.md` and search the generated declaration index before introducing a new generic-looking declaration.
 
 ## Build
 
-The normal integration check is:
-
-```bash
-lake build
-```
-
-For a focused module while developing:
+Focused module:
 
 ```bash
 lake env lean HC4/path/to/File.lean
 ```
 
-For certification snapshots, `./verify.sh` remains the stronger repository-level verification entry point where applicable.
+Full project:
 
-## Architectural rules
+```bash
+lake build
+```
 
-The current final assembly has several deliberately distinct routes. In particular:
+Certification snapshot where applicable:
 
-- the global rank-one recursion is already owned by `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace` and is well founded only on strict natural `rawDefect` decrease;
-- successful positive Rees steps are ordinary edges of that existing trace, not a second termination mechanism;
-- older torus-balanced cross-facet affine-line infrastructure remains valid, but the unrestricted zero-clock route uses the newer balance-free finite-support cross-facet/ray machinery;
-- source, presented, recentered, top-face, first-contact, lower-carrier, and ray support witnesses must not be interchanged without an explicit transport theorem;
-- generic definitions live with their representation (`HC4.Polynomial`, `HC4.Newton`, `HC4.Valuation`, `HC4.RationalRigidity`) rather than with whichever downstream module happens to consume them most often.
-
-Read `docs/CANONICAL_OWNERS.md` before introducing a new generic-looking declaration. The recent final-assembly import collisions are exactly the kind of issue this registry and generated declaration index are intended to prevent.
+```bash
+./verify.sh
+```
 
 ## Historical documents
 
-`FORMALISATION_LEDGER.md`, `CERTIFICATION_STATUS.md`, and the numbered `FORMALISATION_STATUS_PHASE*.md` files are historical records from earlier snapshots. Their old “missing” lists are not authoritative for the present branch. Use the current Lean source and `docs/` navigation instead.
+`FORMALISATION_LEDGER.md`, `CERTIFICATION_STATUS.md`, and the numbered `FORMALISATION_STATUS_PHASE*.md` files are historical records. Their old “missing” lists are not authoritative for the current branch.
