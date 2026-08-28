@@ -1,9 +1,9 @@
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination
 import Mathlib.Tactic
 
 /-!
-# A19.92: compress the exposed `qs` lower boundary frontier
+# A19.93: compress the exposed `qs` lower boundary frontier
 
 A19.80 reduces the canonically exposed `qs` rank-three terminal to the genuine
 lower first-contact carrier or the literal omitted-coordinate quadratic square.
@@ -12,9 +12,12 @@ codimension two or rank three on `qs`.  In the latter case A19.76 puts the
 actual unit outside endpoint on a different rank-three facet or in
 codimension two, and A19.91 eliminates the codimension-two far endpoint.
 
-This file keeps the rank-three hypothesis attached to the lower carrier while
-performing that elimination.  The resulting assembly-facing frontier has only
-three honest alternatives:
+A19.92 compresses `QsLowerBoundaryOutcome` once a rank-three `qs` starting
+endpoint is already supplied.  This file keeps the earlier split explicit, so
+that the genuinely different case where the ray *starts* in codimension two
+is not accidentally discarded by assuming rank three.
+
+The resulting assembly-facing frontier has only three honest alternatives:
 
 * the lower ray starts at a codimension-two endpoint;
 * it starts rank three on `qs` and its actual outside endpoint is rank three
@@ -38,7 +41,7 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
-/-- **A19.92 reduced exposed-`qs` frontier.**  The far codimension-two endpoint
+/-- **A19.93 reduced exposed-`qs` frontier.**  The far codimension-two endpoint
 has been eliminated; the two genuinely geometric lower outcomes retain the
 actual first-contact carrier. -/
 theorem qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare
