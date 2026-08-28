@@ -243,9 +243,9 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     exact ⟨hx1, h23.1, h23.2⟩
 
 set_option maxHeartbeats 1000000 in
-/-- State-free A19.90 extraction.  This is the one intrinsically heavy
-elaboration step, so it receives its own command-local budget; every consumer
-then works at the normal heartbeat limit. -/
+/-- State-free A19.90 extraction.  Pin every implicit argument of the generic
+A19.90 theorem so elaboration never searches through the terminal certificate
+to recover `K`, the exponents, slopes, source polynomial, or unit step. -/
 theorem degreeOneTerminal_rawIdentity
     [IsAlgClosed K]
     {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
@@ -259,11 +259,12 @@ theorem degreeOneTerminal_rawIdentity
           (A : K) (B : K) (C : K) (1 : K) Q R S =
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
         (A : K) (B : K) (C : K) (1 : K) Q R S := by
-  rcases
-      HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
-        hA hB hC (by norm_num) hphiDeg hphi0 hcert with
-    ⟨_hPone, _hphi1, hraw⟩
-  exact hraw
+  have hfull :=
+    HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcert
+  exact hfull.2.2
 
 /-- State-free A19.91 adapter: once the autonomous raw identity has been
 extracted, the codimension-two endpoint conclusion is a cheap composition of
