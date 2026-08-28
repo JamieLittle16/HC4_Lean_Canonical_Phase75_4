@@ -92,16 +92,18 @@ theorem qs_ray_degreeOne_supportedLine
     exact Polynomial.le_natDegree_of_mem_supp _ hidx
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := by
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
+      C.ray.facet_coordinate_zero
   rcases Nat.eq_zero_or_pos (d (0 : Fin 4)) with hd0 | hdpos
   · refine ⟨0, by decide, ?_⟩
     have hdfacet : d = C.ray.facetExponent :=
       C.ray.support_eq_of_zeroCoordinate_eq hd C.ray.facet_mem_face
-        (by simpa [hd0, C.ray.facet_coordinate_zero])
+        (hd0.trans hfacet0.symm)
     rw [hdfacet]
     ext k
     fin_cases k <;>
-      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply,
-        C.ray.facet_coordinate_zero]
+      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply, hfacet0]
   · have hd1 : d (0 : Fin 4) = 1 := by omega
     refine ⟨1, by decide, ?_⟩
     have hdout : d = C.ray.outsideExponent :=
