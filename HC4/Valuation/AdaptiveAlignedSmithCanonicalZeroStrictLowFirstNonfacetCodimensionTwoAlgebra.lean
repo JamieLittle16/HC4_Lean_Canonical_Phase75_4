@@ -242,10 +242,9 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hx1 : x1 = 0 := by exact_mod_cast h1K
     exact ⟨hx1, h23.1, h23.2⟩
 
-set_option maxHeartbeats 1000000 in
-/-- State-free A19.90 extraction.  Pin every implicit argument of the generic
-A19.90 theorem so elaboration never searches through the terminal certificate
-to recover `K`, the exponents, slopes, source polynomial, or unit step. -/
+/-- State-free A19.90 extraction specialized to the unit longitudinal step.
+The expensive construction now lives upstream in the dedicated A19.90 theorem;
+this adapter is only a pinned application with the exact interface A19.91 uses. -/
 theorem degreeOneTerminal_rawIdentity
     [IsAlgClosed K]
     {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
@@ -259,12 +258,11 @@ theorem degreeOneTerminal_rawIdentity
           (A : K) (B : K) (C : K) (1 : K) Q R S =
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
         (A : K) (B : K) (C : K) (1 : K) Q R S := by
-  have hfull :=
-    HC4.RationalRigidity.exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
-      (K := K) (A := A) (B := B) (C := C) (P := 1)
+  exact
+    HC4.RationalRigidity.rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
+      (K := K) (A := A) (B := B) (C := C)
       (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC (by norm_num) hphiDeg hphi0 hcert
-  exact hfull.2.2
+      hA hB hC hphiDeg hphi0 hcert
 
 /-- State-free A19.91 adapter: once the autonomous raw identity has been
 extracted, the codimension-two endpoint conclusion is a cheap composition of
