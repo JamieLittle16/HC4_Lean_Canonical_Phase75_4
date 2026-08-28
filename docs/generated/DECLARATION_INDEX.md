@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6593**.
+Distinct declaration spellings indexed: **6598**.
 
 ## Repeated declaration spellings
 
@@ -1348,7 +1348,10 @@ Distinct declaration spellings indexed: **6593**.
 - `CrossFacetRayData.zeroExponentAt_eq_of_face_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroExponentAt_spec` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroSlope` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
+- `CrossFacetRayData.zero_rankThreeFacet_eq_qs` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+- `CrossFacetRayData.zero_rankThree_terminalCertificate` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
 - `CrossFacetRayData.zero_support_affine` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
+- `CrossFacetRayData.zero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
 - `DenominatorClearedSpecialSchurKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `DependsOnlyOnStandardZeroCoordinate` — `def` in `HC4.Newton.TerminalOneZeroSupport`
 - `DependsOnlyOnStandardZeroPair` — `def` in `HC4.Newton.TerminalTwoZeroSupport`
@@ -2645,6 +2648,7 @@ Distinct declaration spellings indexed: **6593**.
 - `blocker` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`
 - `blocker_defect_eq_zero_of_source_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `boundaryStratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
+- `boundaryTransition_or_codimensionTwo_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
 - `boundary_rankThree_or_extremeRay` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `branchCharacter` — `def` in `HC4.Toric.BranchCharacter`
 - `bump_le_scale_mul_m_sub_three` — `theorem` in `HC4.Newton.ScaledContact`
@@ -5149,6 +5153,7 @@ Distinct declaration spellings indexed: **6593**.
 - `pureRightAxis_support_shape` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pure_r_s_correction_eq_zero` — `theorem` in `HC4.Toric.ClassifiedSupport`
 - `qExponent` — `def` in `HC4.Toric.InvariantSemigroup`
+- `qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 - `qs_rankThree_firstContact_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_remainingSlope_add_one_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_remainingSlope_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`

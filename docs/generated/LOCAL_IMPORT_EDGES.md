@@ -300,6 +300,10 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
   - `HC4.Newton.FiniteSupportCrossFacetRay`
   - `HC4.Polynomial.RankThreeAffineLineRealisation`
+- `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+  - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
+  - `HC4.Newton.MvBoundaryStrata`
+  - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Newton.ExposedBalancedBoundaryStratum`
   - `HC4.Polynomial.MaximalHessianInitial`
@@ -2063,7 +2067,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
   - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
   - `HC4.Newton.SingularBoundaryRankSplit`
@@ -2087,6 +2093,11 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
+  - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
@@ -2104,6 +2115,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSingularCarrier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
