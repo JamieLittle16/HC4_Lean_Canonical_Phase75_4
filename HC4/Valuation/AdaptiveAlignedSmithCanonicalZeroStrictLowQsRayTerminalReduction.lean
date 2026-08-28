@@ -18,12 +18,13 @@ coordinate `0`, so A19.67 gives a contact-`0` balance-free ray.  A19.72 then
 sends that exact ray either to the mature general affine RationalRigidity
 terminal certificate or to a genuine codimension-two facet endpoint.
 
-The ray and its `.qs` rank-three endpoint provenance are retained in every
-terminal-certificate branch.  This is deliberate: later RR direction splits
-need the three positive transverse endpoint coordinates, while later geometric
-steps may still use the exact support, first-contact provenance, or affine
-slopes.  No torus balance, integral direction, or carrier transport is
-introduced.
+This module deliberately retains the ray and its endpoint stratum rather than
+embedding the large RationalRigidity certificate a second time in the residual
+type.  In the rank-three branch the complete certificate is recovered
+canonically by `CrossFacetRayData.zero_rankThree_terminalCertificate`; keeping
+the carrier light avoids expensive dependent-type normalization and preserves
+all support, first-contact, and affine-slope provenance needed by later steps.
+No torus balance, integral direction, or carrier transport is introduced.
 -/
 
 namespace HC4.Valuation
@@ -44,16 +45,16 @@ namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 A rank-three exposed boundary point on `.qs` leaves only:
 
-* a retained top-face balance-free ray with a `.qs` endpoint and complete
-  affine RR terminal;
-* the same top-face ray with a codimension-two facet endpoint;
-* a retained lower first-contact ray with a `.qs` endpoint and complete affine
-  RR terminal;
-* that lower ray with a codimension-two facet endpoint; or
+* a retained top-face balance-free ray whose facet endpoint is either rank
+  three on `.qs` or codimension two;
+* a retained lower first-contact balance-free ray with the same endpoint
+  split; or
 * a literal source quadratic square in coordinate `0`.
 
-The complete nonlinear-confinement branch is impossible directly from the
-strict-low source witnesses. -/
+In either rank-three ray branch, A19.72 immediately supplies the complete
+affine RationalRigidity terminal certificate.  The complete nonlinear-
+confinement branch is impossible directly from the strict-low source
+witnesses. -/
 theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
@@ -61,35 +62,13 @@ theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs
       T.exposedSingularBoundaryVertex.exponent) :
     (∃ R : HC4.Newton.CrossFacetRayData T.topFace.face (0 : Fin 4),
-        HC4.Newton.MvRankThreeOnFacet .qs R.facetExponent ∧
-          HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-            (phi := R.zeroCoefficientPolynomial)
-            ((R.facetExponent 1 : ℕ) : K)
-            ((R.facetExponent 2 : ℕ) : K)
-            ((R.facetExponent 3 : ℕ) : K)
-            (1 : K)
-            (R.zeroSlope (1 : Fin 4))
-            (R.zeroSlope (2 : Fin 4))
-            (R.zeroSlope (3 : Fin 4))) ∨
-      (∃ R : HC4.Newton.CrossFacetRayData T.topFace.face (0 : Fin 4),
-        HC4.Newton.MvExponentOnCodimensionTwoBoundary R.facetExponent) ∨
+        HC4.Newton.MvRankThreeOnFacet .qs R.facetExponent ∨
+          HC4.Newton.MvExponentOnCodimensionTwoBoundary R.facetExponent) ∨
       (∃ C :
           AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
             (K := K) T .qs,
-        HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent ∧
-          HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-            (phi := C.ray.zeroCoefficientPolynomial)
-            ((C.ray.facetExponent 1 : ℕ) : K)
-            ((C.ray.facetExponent 2 : ℕ) : K)
-            ((C.ray.facetExponent 3 : ℕ) : K)
-            (1 : K)
-            (C.ray.zeroSlope (1 : Fin 4))
-            (C.ray.zeroSlope (2 : Fin 4))
-            (C.ray.zeroSlope (3 : Fin 4))) ∨
-      (∃ C :
-          AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
-            (K := K) T .qs,
-        HC4.Newton.MvExponentOnCodimensionTwoBoundary C.ray.facetExponent) ∨
+        HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent ∨
+          HC4.Newton.MvExponentOnCodimensionTwoBoundary C.ray.facetExponent) ∨
       (∃ d ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support,
         HC4.Polynomial.ordinaryDegree4 d = 2 ∧
@@ -112,15 +91,15 @@ theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
       HC4.Newton.crossFacetRayData hfacet hout
     rcases R.zero_terminalCertificate_or_codimensionTwo
         T.topFace_hessianDeterminant_eq_zero with hterminal | htwo
-    · exact Or.inl ⟨R, hterminal⟩
-    · exact Or.inr (Or.inl ⟨R, htwo⟩)
+    · exact Or.inl ⟨R, Or.inl hterminal.1⟩
+    · exact Or.inl ⟨R, Or.inr htwo⟩
   · rcases hlower with ⟨C⟩
     rcases C.ray.zero_terminalCertificate_or_codimensionTwo C.hessian_zero with
       hterminal | htwo
-    · exact Or.inr (Or.inr (Or.inl ⟨C, hterminal⟩))
-    · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨C, htwo⟩)))
+    · exact Or.inr (Or.inl ⟨C, Or.inl hterminal.1⟩)
+    · exact Or.inr (Or.inl ⟨C, Or.inr htwo⟩)
   · simpa [HC4.Polynomial.facetOmittedCoordinate] using
-      (Or.inr (Or.inr (Or.inr (Or.inr hsquare))))
+      (Or.inr (Or.inr hsquare))
   · rcases T.terminal.pattern with hpure | hfirst | hsecond
     · rcases T.pureLongitudinal_sourceSupport hpure with
         ⟨d, hd, hdeg, hd0, _hd1, _hd2, _hd3⟩
