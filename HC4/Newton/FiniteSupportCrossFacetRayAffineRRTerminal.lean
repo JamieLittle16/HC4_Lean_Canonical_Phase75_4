@@ -16,11 +16,15 @@ Hessian-singularity transport.
 If the retained facet endpoint is rank three on `.qs`, its three transverse
 coordinates are strictly positive.  These are exactly the remaining endpoint
 hypotheses of the mature general affine RationalRigidity entry theorem.
+Moreover the facet endpoint itself has coordinate `0` equal to zero, so any
+rank-three facet containing it must be `.qs`; all other rank-three facets
+would require coordinate `0` to be strictly positive.
 
-Thus a balance-free `qs` ray already carries a complete
-`HasRankThreePolynomialTerminalCertificate`.  No torus balance, integrality of
-transverse slopes, finite-segment divisibility, or new terminal algebra is
-introduced here.
+Thus a singular contact-`0` balance-free ray has the exact dichotomy needed by
+final assembly: either it already carries a complete affine RationalRigidity
+terminal certificate, or its facet endpoint lies on a codimension-two
+coordinate boundary.  No torus balance, integrality of transverse slopes,
+finite-segment divisibility, or new terminal algebra is introduced here.
 -/
 
 namespace HC4.Newton
@@ -31,6 +35,27 @@ open HC4.RationalRigidity
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
+
+/-- A rank-three facet containing the contact-`0` endpoint of a balance-free
+ray is necessarily `.qs`. -/
+theorem CrossFacetRayData.zero_rankThreeFacet_eq_qs
+    {F : MvPolynomial (Fin 4) K}
+    (R : CrossFacetRayData F (0 : Fin 4))
+    (facet : HC4.Toric.ToricFacet)
+    (hthree : MvRankThreeOnFacet facet R.facetExponent) :
+    facet = .qs := by
+  have hz : R.facetExponent (0 : Fin 4) = 0 := R.facet_coordinate_zero
+  cases facet with
+  | pr =>
+      have hpos : 0 < R.facetExponent (0 : Fin 4) := hthree.2.1
+      omega
+  | rq =>
+      have hpos : 0 < R.facetExponent (0 : Fin 4) := hthree.2.1
+      omega
+  | qs => rfl
+  | sp =>
+      have hpos : 0 < R.facetExponent (0 : Fin 4) := hthree.2.1
+      omega
 
 /-- **Balance-free ray to affine RationalRigidity terminal.**
 
@@ -61,6 +86,29 @@ theorem CrossFacetRayData.zero_rankThree_terminalCertificate
     R.zeroCoefficientPolynomial_natDegree_pos
     R.zeroCoefficientPolynomial_coeff_zero_ne
     (R.zeroAffineLineData_hessian_zero hzero)
+
+/-- **Contact-zero ray terminal split.**  The only non-RationalRigidity
+alternative left by the ray endpoint is a genuine codimension-two boundary. -/
+theorem CrossFacetRayData.zero_terminalCertificate_or_codimensionTwo
+    {F : MvPolynomial (Fin 4) K}
+    (R : CrossFacetRayData F (0 : Fin 4))
+    (hzero : hessianDeterminant F = 0) :
+    HasRankThreePolynomialTerminalCertificate
+        (phi := R.zeroCoefficientPolynomial)
+        ((R.facetExponent 1 : ℕ) : K)
+        ((R.facetExponent 2 : ℕ) : K)
+        ((R.facetExponent 3 : ℕ) : K)
+        (1 : K)
+        (R.zeroSlope (1 : Fin 4))
+        (R.zeroSlope (2 : Fin 4))
+        (R.zeroSlope (3 : Fin 4)) ∨
+      MvExponentOnCodimensionTwoBoundary R.facetExponent := by
+  rcases R.rankThreeFacet_or_codimensionTwo with hthree | htwo
+  · rcases hthree with ⟨facet, hfacet⟩
+    have hfacetEq : facet = .qs := R.zero_rankThreeFacet_eq_qs facet hfacet
+    subst facet
+    exact Or.inl (R.zero_rankThree_terminalCertificate hzero hfacet)
+  · exact Or.inr htwo
 
 end
 
