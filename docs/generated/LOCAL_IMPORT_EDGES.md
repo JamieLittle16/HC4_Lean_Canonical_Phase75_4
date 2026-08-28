@@ -2102,6 +2102,10 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
   - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
+  - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+  - `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.RationalRigidity.RankThreeAffineTopBoundary`
