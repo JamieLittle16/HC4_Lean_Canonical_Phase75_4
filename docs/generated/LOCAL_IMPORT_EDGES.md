@@ -2092,6 +2092,11 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
   - `HC4.RationalRigidity.RankThreeTerminalDirectionSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+  - `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`
+  - `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
+  - `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
   - `HC4.Newton.FirstNonfacetContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
