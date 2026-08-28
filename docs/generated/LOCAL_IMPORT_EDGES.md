@@ -14,6 +14,7 @@ human architecture guide.
   - `HC4.MongeAmpere`
   - `HC4.Newton`
   - `HC4.Newton.FiniteSupportCrossFacetExposure`
+  - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`
   - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.FirstContactAffinePlane`
   - `HC4.Newton.FirstContactCrossFacetAffineLine`
