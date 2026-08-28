@@ -19,9 +19,9 @@ rank-three segment
 The coordinate-`0` step is therefore primitive before any transverse endpoint
 arithmetic is used.  The generic degree-one moment realisation can then be
 applied directly to the actual ray face.  Its Hessian singularity yields a
-zero coefficient-weighted endpoint-pencil determinant, while both endpoint
-coefficients remain nonzero.  This is the small scalar interface used by the
-remaining balance-free endpoint arithmetic; no torus grading is introduced.
+zero coefficient-weighted endpoint-pencil determinant.  This is the small
+scalar interface used by the remaining balance-free endpoint arithmetic; no
+torus grading is introduced.
 -/
 
 namespace HC4.Valuation
@@ -84,9 +84,9 @@ theorem qs_ray_degreeOne_supportedLine
     C.qs_ray_terminal_degreeOne hthree
   have hidx : d (0 : Fin 4) ∈ C.ray.zeroCoefficientPolynomial.support :=
     C.ray.zeroCoefficientPolynomial_mem_of_face_mem hd
-  have hle : d (0 : Fin 4) ≤ C.ray.zeroCoefficientPolynomial.natDegree :=
-    Polynomial.le_natDegree_of_mem_supp _ hidx
-  have hle1 : d (0 : Fin 4) ≤ 1 := by simpa [hdeg] using hle
+  have hle : d (0 : Fin 4) ≤ 1 := by
+    rw [← hdeg]
+    exact Polynomial.le_natDegree_of_mem_supp _ hidx
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
   rcases Nat.eq_zero_or_pos (d (0 : Fin 4)) with hd0 | hdpos
@@ -108,70 +108,6 @@ theorem qs_ray_degreeOne_supportedLine
     ext k
     fin_cases k <;>
       simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply, hout0]
-
-/-- Both literal endpoints of the lower degree-one line occur with nonzero
-coefficients in the actual ray face. -/
-theorem qs_ray_degreeOne_endpoint_coefficients_ne_zero
-    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
-      T .qs)
-    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent) :
-    let phi := HC4.Polynomial.rankThreeLineCoefficientPolynomial
-      (C.ray.facetExponent 1)
-      (C.ray.facetExponent 2)
-      (C.ray.facetExponent 3)
-      1
-      (C.ray.outsideExponent 1)
-      (C.ray.outsideExponent 2)
-      (C.ray.outsideExponent 3)
-      1 C.ray.face
-    phi.coeff 0 ≠ 0 ∧ phi.coeff 1 ≠ 0 := by
-  let phi := HC4.Polynomial.rankThreeLineCoefficientPolynomial
-    (C.ray.facetExponent 1)
-    (C.ray.facetExponent 2)
-    (C.ray.facetExponent 3)
-    1
-    (C.ray.outsideExponent 1)
-    (C.ray.outsideExponent 2)
-    (C.ray.outsideExponent 3)
-    1 C.ray.face
-  have hstartExp :
-      HC4.Polynomial.rankThreeLineExponentFinsupp
-        (C.ray.facetExponent 1)
-        (C.ray.facetExponent 2)
-        (C.ray.facetExponent 3)
-        1
-        (C.ray.outsideExponent 1)
-        (C.ray.outsideExponent 2)
-        (C.ray.outsideExponent 3)
-        1 0 = C.ray.facetExponent := by
-    ext k
-    fin_cases k <;>
-      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply,
-        C.ray.facet_coordinate_zero]
-  have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
-    C.qs_ray_outside_zeroCoordinate_eq_one hthree
-  have hendExp :
-      HC4.Polynomial.rankThreeLineExponentFinsupp
-        (C.ray.facetExponent 1)
-        (C.ray.facetExponent 2)
-        (C.ray.facetExponent 3)
-        1
-        (C.ray.outsideExponent 1)
-        (C.ray.outsideExponent 2)
-        (C.ray.outsideExponent 3)
-        1 1 = C.ray.outsideExponent := by
-    ext k
-    fin_cases k <;>
-      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply, hout0]
-  constructor
-  · dsimp [phi]
-    rw [HC4.Polynomial.coeff_zero_rankThreeLineCoefficientPolynomial,
-      hstartExp]
-    exact MvPolynomial.mem_support_iff.mp C.ray.facet_mem_face
-  · dsimp [phi]
-    rw [HC4.Polynomial.coeff_M_rankThreeLineCoefficientPolynomial,
-      hendExp]
-    exact MvPolynomial.mem_support_iff.mp C.ray.outside_mem_face
 
 /-- **A19.79 weighted-pencil interface.**  The actual two-endpoint lower ray
 has singular coefficient-weighted endpoint pencil. -/
