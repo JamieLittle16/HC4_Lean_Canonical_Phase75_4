@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6609**.
+Distinct declaration spellings indexed: **6610**.
 
 ## Repeated declaration spellings
 
@@ -1350,6 +1350,7 @@ Distinct declaration spellings indexed: **6609**.
 - `CrossFacetRayData.zeroSlope` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zero_rankThreeFacet_eq_qs` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
 - `CrossFacetRayData.zero_rankThree_terminalCertificate` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+- `CrossFacetRayData.zero_rankThree_topSupportedBoundaryTransition` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`
 - `CrossFacetRayData.zero_support_affine` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
 - `DenominatorClearedSpecialSchurKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`

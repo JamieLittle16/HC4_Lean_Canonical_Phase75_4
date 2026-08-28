@@ -301,6 +301,10 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
   - `HC4.Newton.FiniteSupportCrossFacetRay`
   - `HC4.Polynomial.RankThreeAffineLineRealisation`
+- `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`
+  - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+  - `HC4.Newton.SingularBoundaryRankSplit`
+  - `HC4.RationalRigidity.RankThreeAffineTopBoundary`
 - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
   - `HC4.Newton.MvBoundaryStrata`
