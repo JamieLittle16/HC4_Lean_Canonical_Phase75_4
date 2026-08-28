@@ -39,6 +39,7 @@ variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- A rank-three facet containing the contact-`0` endpoint of a balance-free
 ray is necessarily `.qs`. -/
+omit [CharZero K] [IsAlgClosed K] in
 theorem CrossFacetRayData.zero_rankThreeFacet_eq_qs
     {F : MvPolynomial (Fin 4) K}
     (R : CrossFacetRayData F (0 : Fin 4))
@@ -78,11 +79,23 @@ theorem CrossFacetRayData.zero_rankThree_terminalCertificate
       (R.zeroSlope (2 : Fin 4))
       (R.zeroSlope (3 : Fin 4)) := by
   have hcoords := mvRankThreeOnFacet_qs hthree
+  have hA : 0 < R.facetExponent 1 := hcoords.2.1
+  have hB : 0 < R.facetExponent 2 := hcoords.2.2.1
+  have hC : 0 < R.facetExponent 3 := hcoords.2.2.2
   exact hasRankThreePolynomialTerminalCertificate_of_affine_line
+    (K := K)
+    (A := R.facetExponent 1)
+    (B := R.facetExponent 2)
+    (C := R.facetExponent 3)
+    (u1 := 1)
+    (q := R.zeroSlope (1 : Fin 4))
+    (r := R.zeroSlope (2 : Fin 4))
+    (s := R.zeroSlope (3 : Fin 4))
+    (phi := R.zeroCoefficientPolynomial)
     R.zeroAffineLineData
-    hcoords.2.1
-    hcoords.2.2.1
-    hcoords.2.2.2
+    hA
+    hB
+    hC
     (by norm_num)
     R.zeroCoefficientPolynomial_natDegree_pos
     R.zeroCoefficientPolynomial_coeff_zero_ne
