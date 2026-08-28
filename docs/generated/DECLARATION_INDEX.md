@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6618**.
+Distinct declaration spellings indexed: **6620**.
 
 ## Repeated declaration spellings
 
@@ -3202,6 +3202,7 @@ Distinct declaration spellings indexed: **6618**.
 - `det_transverseSourceShearMatrices` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `det_twoZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `det_upperBlockUnitriangular` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `det_weightedFirstZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
 - `det_weightedFourthZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `det_weightedOneZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `det_weightedPTransitionRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
@@ -3799,6 +3800,7 @@ Distinct declaration spellings indexed: **6618**.
 - `firstSchurData` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+- `firstZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
 - `first_contact_determinant_weight_lower_bound` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `first_contact_determinant_weight_pos` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `first_contact_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`

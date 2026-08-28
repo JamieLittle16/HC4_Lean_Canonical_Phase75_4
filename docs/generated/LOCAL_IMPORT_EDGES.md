@@ -798,6 +798,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeVerticalLine`
 - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
   - `HC4.Polynomial.RankThreeWeightedPencils`
+- `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
+  - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `HC4.Polynomial.TopProduct`
