@@ -1,3 +1,5 @@
+> **Historical snapshot — not current proof status.** This ledger describes the old Phase 75.2 state. For the live A18/A19 proof architecture, canonical module owners, and current final-assembly path, start at [`docs/README.md`](docs/README.md). Do not use the “missing” entries below to decide whether infrastructure needs to be rebuilt.
+
 # Manuscript-to-Lean ledger — Phase 75.2
 
 Status labels:
