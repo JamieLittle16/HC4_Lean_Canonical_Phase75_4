@@ -1,4 +1,5 @@
 import HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm
+import HC4.Newton.SingularBoundaryRankSplit
 import Mathlib.Tactic
 
 /-!
@@ -178,7 +179,7 @@ theorem degreeOneRaw_lastTwoZero_forcesFirst
 exponent lies on a codimension-two boundary, two of the three transverse
 coordinates vanish. -/
 theorem transversePair_zero_of_codimensionTwoBoundary
-    (a : Fin 4 → ℕ)
+    (a : Fin 4 →₀ ℕ)
     (h0 : a (0 : Fin 4) = 1)
     (htwo : HC4.Newton.MvExponentOnCodimensionTwoBoundary a) :
     (a (1 : Fin 4) = 0 ∧ a (2 : Fin 4) = 0) ∨
