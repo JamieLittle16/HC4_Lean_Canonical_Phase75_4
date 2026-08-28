@@ -18,6 +18,7 @@ the positive polynomial degree.  Consequently the new boundary point cannot
 lie back on `.qs`; it is rank three on a different coordinate facet or is
 already codimension two.
 
+The returned exponent stays on the exact extracted ray carrier throughout.
 No torus balance or integral transverse direction is used.
 -/
 
