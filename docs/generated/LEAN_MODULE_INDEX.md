@@ -1299,7 +1299,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.92`, `A18.5.93`
 - Local imports: `HC4.Newton.FiniteSupportSingularBoundaryVertex`, `HC4.Newton.MvBoundaryStrata`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRay`, `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectBalanceFreeBoundaryFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
+- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRay`, `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectBalanceFreeBoundaryFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - Declarations: `def MvExponentOnCodimensionTwoBoundary`, `theorem mvBoundary_rankThreeFacet_or_codimensionTwo`, `theorem ExposedSingularNonlinearBoundaryVertexData.rankThreeFacet_or_codimensionTwo`
 
 ### `HC4.Newton.SmithCollisionQuadraticRankOne`
@@ -6157,7 +6157,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra.lean`
 - Purpose: A19.91 codimension-two degree-one algebra
 - A-labels: `A19.91`
-- Local imports: `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
+- Local imports: `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - Declarations: `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`
