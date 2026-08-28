@@ -2,6 +2,8 @@ import HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm
 import HC4.Newton.SingularBoundaryRankSplit
 import Mathlib.Tactic
 
+-- Keep this algebra layer independent of valuation restart-state records.
+
 /-!
 # A19.91 codimension-two degree-one algebra
 
