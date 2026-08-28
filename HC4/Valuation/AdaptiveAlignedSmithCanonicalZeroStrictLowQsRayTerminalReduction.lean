@@ -1,4 +1,6 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport
 import HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal
 import Mathlib.Tactic
 
@@ -6,12 +8,15 @@ import Mathlib.Tactic
 # A19.73: the `qs` zero strict-low rank-three branch reaches affine RR
 
 A19.66 gives four possibilities below a rank-three singular top-face point.
-For the marked `.qs` facet, A19.64 already rules out complete nonlinear source
-confinement.  In either remaining cross-facet branch, the omitted coordinate
-is literally coordinate `0`, so A19.67 gives a contact-`0` balance-free ray.
-A19.72 then sends that exact ray either to the mature general affine
-RationalRigidity terminal certificate or to a genuine codimension-two facet
-endpoint.
+For the marked `.qs` facet, the actual strict-low residual source witnesses
+already rule out complete nonlinear source confinement: every one of the three
+strict-low patterns produces a nonlinear source monomial with positive
+coordinate `0`, whereas `.qs` is exactly the facet `d 0 = 0`.
+
+In either remaining cross-facet branch, the omitted coordinate is literally
+coordinate `0`, so A19.67 gives a contact-`0` balance-free ray.  A19.72 then
+sends that exact ray either to the mature general affine RationalRigidity
+terminal certificate or to a genuine codimension-two facet endpoint.
 
 The ray itself is retained in every such branch.  This is deliberate: later
 steps may use its exact support, first-contact provenance, or affine slopes.
@@ -42,7 +47,8 @@ A rank-three exposed boundary point on `.qs` leaves only:
 * that lower ray with a codimension-two facet endpoint; or
 * a literal source quadratic square in coordinate `0`.
 
-The complete nonlinear-confinement branch is impossible by A19.64. -/
+The complete nonlinear-confinement branch is impossible directly from the
+strict-low source witnesses. -/
 theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
@@ -108,7 +114,25 @@ theorem qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare
     · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨C, htwo⟩)))
   · simpa [HC4.Polynomial.facetOmittedCoordinate] using
       (Or.inr (Or.inr (Or.inr (Or.inr hsquare))))
-  · exact (T.nonlinearConfined_facet_ne_qs .qs hconfined rfl).elim
+  · rcases T.terminal.pattern with hpure | hfirst | hsecond
+    · rcases T.pureLongitudinal_sourceSupport hpure with
+        ⟨d, hd, hdeg, hd0, _hd1, _hd2, _hd3⟩
+      have hfacet := hconfined d hd hdeg
+      have hz : d (0 : Fin 4) = 0 := by
+        simpa [HC4.Toric.OnFacet] using hfacet
+      omega
+    · rcases T.lowNegativeFirst_sourceSupport hfirst with
+        ⟨d, hd, hdeg, hd0, _hd2⟩
+      have hfacet := hconfined d hd hdeg
+      have hz : d (0 : Fin 4) = 0 := by
+        simpa [HC4.Toric.OnFacet] using hfacet
+      omega
+    · rcases T.lowNegativeSecond_sourceSupport hsecond with
+        ⟨d, hd, hdeg, hd0, _hd1⟩
+      have hfacet := hconfined d hd hdeg
+      have hz : d (0 : Fin 4) = 0 := by
+        simpa [HC4.Toric.OnFacet] using hfacet
+      omega
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
