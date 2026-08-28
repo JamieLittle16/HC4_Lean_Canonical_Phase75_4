@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check proof inventory is current
+        run: python3 tools/generate_proof_inventory.py --check
+
       # Installs the version pinned in lean-toolchain, restores the Lake cache,
       # fetches Mathlib's compiled cache, and runs `lake build`.
       - name: Build HC4
