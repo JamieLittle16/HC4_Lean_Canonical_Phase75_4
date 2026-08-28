@@ -41,6 +41,7 @@ CI checks that these generated files match the Lean checkout before building.
 - Successful positive Rees steps are ordinary edges of that existing trace, not a second termination mechanism.
 - A19.45 proves that positive reached rank-three geometry gives outer global macro progress; a globally terminal reached state is therefore at literal raw defect zero.
 - The live local terminal is the producer-free zero strict-low carrier and its singular maximal top face.
+- In the current `.qs` endgame, the canonical exposed rank-three vertex confines the maximal top face to `.qs`; the surviving genuine lower first-contact ray is forced to coefficient degree one and is realised as an honest two-endpoint weighted Hessian pencil.  A different rank-three endpoint therefore carries the corresponding cyclic base-exponent-one and cross-product relation.
 - Older torus-balanced cross-facet affine-line infrastructure remains reusable, but the unrestricted zero-clock route uses the newer balance-free finite-support cross-facet/ray machinery.
 - Source, presented, recentered, top-face, first-contact, lower-carrier and ray support witnesses must not be interchanged without an explicit transport theorem.
 - Generic definitions live with their representation (`HC4.Polynomial`, `HC4.Newton`, `HC4.Valuation`, `HC4.RationalRigidity`) rather than with whichever downstream module consumes them most often.
