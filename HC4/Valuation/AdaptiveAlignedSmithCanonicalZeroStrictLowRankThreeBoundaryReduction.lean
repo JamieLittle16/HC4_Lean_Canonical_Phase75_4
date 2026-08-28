@@ -10,12 +10,9 @@ whether the crossing occurs already on the maximal singular top face or only
 at the lower genuine first-contact carrier, it produces an actual nonlinear
 boundary exponent outside the starting facet.
 
-Thus the rank-three branch now has only three residual themes:
-
-1. a genuine balance-free boundary transition to a different rank-three facet
-   or to a codimension-two coordinate boundary;
-2. a literal supported quadratic square in the omitted coordinate; or
-3. complete confinement of every nonlinear source monomial to the facet.
+The lower first-contact transition deliberately retains its own carrier.  It
+is not transported back to the maximal top face: that would lose geometric
+provenance.
 
 No torus balance, cocharacter, or affine-line conclusion is introduced.
 -/
@@ -45,7 +42,11 @@ def AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryTransition
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
-/-- **A19.70 exact rank-three residual reduction.** -/
+/-- **A19.70 exact rank-three residual reduction.**
+
+The first two alternatives are genuine boundary transitions.  In the second,
+the existentially retained `C` is the actual lower first-contact carrier on
+which the transition was proved. -/
 theorem rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
@@ -55,6 +56,11 @@ theorem rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined
       T.exposedSingularBoundaryVertex.exponent) :
     AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryTransition
         facet T.topFace.face ∨
+      (∃ C :
+          AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+            (K := K) T facet,
+        AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryTransition
+          facet C.face) ∨
       (∃ d ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support,
         HC4.Polynomial.ordinaryDegree4 d = 2 ∧
@@ -70,12 +76,10 @@ theorem rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined
   · rcases htopCross with ⟨D⟩
     exact Or.inl (T.topFaceCrossFacet_boundaryTransition facet D)
   · rcases hfirstCross with ⟨C⟩
-    rcases T.firstNonfacetCrossFacet_boundaryTransition facet C with
-      ⟨d, hd, hdeg, hpos, hstratum⟩
-    left
-    exact ⟨d, C.crossFacet.support_subset hd, hdeg, hpos, hstratum⟩
-  · exact Or.inr (Or.inl hsquare)
-  · exact Or.inr (Or.inr hconfined)
+    exact Or.inr (Or.inl
+      ⟨C, T.firstNonfacetCrossFacet_boundaryTransition facet C⟩)
+  · exact Or.inr (Or.inr (Or.inl hsquare))
+  · exact Or.inr (Or.inr (Or.inr hconfined))
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
