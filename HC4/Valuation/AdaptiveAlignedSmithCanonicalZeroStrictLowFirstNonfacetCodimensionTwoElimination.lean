@@ -88,17 +88,18 @@ private theorem qs_ray_outside_affine_data
       HC4.Polynomial.rankThreeLogDirection, hout0] using h
 
 set_option maxHeartbeats 1000000 in
-/-- **A19.91 lower codimension-two elimination.**  Under the surviving
-rank-three `.qs` hypothesis, the actual degree-one outside endpoint cannot be
-codimension two.  The A19.90 raw identity is deliberately consumed locally:
-materialising it as a separate dependent declaration causes pathological
-weak-head-normalisation of the ray projection tree. -/
-theorem qs_ray_outside_codimensionTwo_impossible
+/-- The expensive A19.90-to-endpoint step has a deliberately tiny result type:
+all three transverse coordinates of a codimension-two lower `qs` endpoint
+vanish.  The polynomial identity exists only locally inside this command. -/
+private theorem qs_ray_outside_transverse_zero
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtTwo : HC4.Newton.MvExponentOnCodimensionTwoBoundary
-      C.ray.outsideExponent) : False := by
+      C.ray.outsideExponent) :
+    C.ray.outsideExponent (1 : Fin 4) = 0 ∧
+      C.ray.outsideExponent (2 : Fin 4) = 0 ∧
+      C.ray.outsideExponent (3 : Fin 4) = 0 := by
   have hcoords := HC4.Newton.mvRankThreeOnFacet_qs hthree
   have hA : 0 < C.ray.facetExponent 1 := hcoords.2.1
   have hB : 0 < C.ray.facetExponent 2 := hcoords.2.2.1
@@ -116,17 +117,37 @@ theorem qs_ray_outside_codimensionTwo_impossible
 
   rcases qs_ray_outside_affine_data C hthree with
     ⟨hout0, h1aff, h2aff, h3aff⟩
-
   have hpairs :=
     HC4.Valuation.transversePair_zero_of_codimensionTwoBoundary
       C.ray.outsideExponent hout0 houtTwo
-  have hall :=
+  exact
     HC4.Valuation.degreeOneRaw_codimensionTwoPair_forcesAll
       hA hB hC hraw h1aff h2aff h3aff hpairs
 
-  have houtDeg : HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent = 1 := by
-    simp [HC4.Polynomial.ordinaryDegree4, hout0, hall.1, hall.2.1, hall.2.2]
+/-- Once transverse vanishing is known, the primitive coordinate-zero step
+makes the outside endpoint have ordinary degree exactly one. -/
+private theorem qs_ray_outside_degree_eq_one
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtTwo : HC4.Newton.MvExponentOnCodimensionTwoBoundary
+      C.ray.outsideExponent) :
+    HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent = 1 := by
+  have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
+    C.qs_ray_outside_zeroCoordinate_eq_one hthree
+  rcases qs_ray_outside_transverse_zero C hthree houtTwo with ⟨h1, h2, h3⟩
+  simp [HC4.Polynomial.ordinaryDegree4, hout0, h1, h2, h3]
 
+/-- **A19.91 lower codimension-two elimination.**  Under the surviving
+rank-three `.qs` hypothesis, the actual degree-one outside endpoint cannot be
+codimension two. -/
+theorem qs_ray_outside_codimensionTwo_impossible
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtTwo : HC4.Newton.MvExponentOnCodimensionTwoBoundary
+      C.ray.outsideExponent) : False := by
+  have houtDeg := qs_ray_outside_degree_eq_one C hthree houtTwo
   rcases C.qs_ray_strictLow_sourceCodimensionTwo_degree_lt_outside hthree with
     ⟨d, _hd, hdeg3, _hd0, _htwo, hlt⟩
   rw [houtDeg] at hlt
