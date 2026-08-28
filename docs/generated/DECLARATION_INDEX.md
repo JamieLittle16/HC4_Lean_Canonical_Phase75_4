@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6638**.
+Distinct declaration spellings indexed: **6641**.
 
 ## Repeated declaration spellings
 
@@ -4370,9 +4370,11 @@ Distinct declaration spellings indexed: **6638**.
 - `lowNegativeFirst_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
 - `lowNegativeFirst_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
 - `lowNegativeFirst_sourceSupport_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualCodimensionTwo`
+- `lowNegativeFirst_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowNegativeSecond_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
 - `lowNegativeSecond_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
 - `lowNegativeSecond_sourceSupport_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualCodimensionTwo`
+- `lowNegativeSecond_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `made` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
@@ -6333,6 +6335,7 @@ Distinct declaration spellings indexed: **6638**.
 - `strictLowBlocker_firstLongitudinalDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLowBlocker_rawSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLowOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
+- `strictLow_sourceCodimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `strictLow_sourceSupport_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualCodimensionTwo`
 - `strictRepairChain_measure_bound` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `strictRepairChain_step_bound` — `theorem` in `HC4.Newton.FiniteRepairTermination`
