@@ -63,6 +63,10 @@ theorem qs_ray_directionSum_ne_zero
       ((C.ray.outsideExponent (0 : Fin 4) : ℕ) : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt C.ray.outside_coordinate_pos)
 
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := by
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
+      C.ray.facet_coordinate_zero
+
   have hsum' := hsum
   simp only [HC4.Newton.CrossFacetRayData.zeroSlope] at hsum'
   field_simp [hden] at hsum'
@@ -73,7 +77,7 @@ theorem qs_ray_directionSum_ne_zero
         ((HC4.Polynomial.ordinaryDegree4 C.ray.facetExponent : ℕ) : K) := by
     simp only [HC4.Polynomial.ordinaryDegree4]
     push_cast
-    rw [C.ray.facet_coordinate_zero]
+    rw [hfacet0]
     push_cast
     linear_combination hsum'
 
@@ -86,17 +90,17 @@ theorem qs_ray_directionSum_ne_zero
       scaledContactExponentWeight (0 : Fin 4) C.scale C.bump
           C.ray.facetExponent =
         ((C.scale * T.topFace.degree : ℕ) : ℤ) := by
-    simpa [facetOmittedCoordinate] using
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
       C.ray_contact_eq C.ray.facetExponent C.ray.facet_mem_face
   have houtContact :
       scaledContactExponentWeight (0 : Fin 4) C.scale C.bump
           C.ray.outsideExponent =
         ((C.scale * T.topFace.degree : ℕ) : ℤ) := by
-    simpa [facetOmittedCoordinate] using
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
       C.ray_contact_eq C.ray.outsideExponent C.ray.outside_mem_face
 
   unfold scaledContactExponentWeight at hfacetContact houtContact
-  rw [C.ray.facet_coordinate_zero] at hfacetContact
+  rw [hfacet0] at hfacetContact
   rw [hdeg] at houtContact
   have hprod :
       (C.bump : ℤ) * (C.ray.outsideExponent (0 : Fin 4) : ℤ) = 0 := by
