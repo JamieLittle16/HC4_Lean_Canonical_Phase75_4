@@ -6160,7 +6160,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`, `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem qs_ray_outside_zeroCoordinate_eq_one`, `theorem qs_ray_degreeOne_supportedLine`, `theorem qs_ray_degreeOne_endpoint_coefficients_ne_zero`, `theorem qs_ray_degreeOne_endpointPencil_det_zero`
+- Declarations: `theorem qs_ray_outside_zeroCoordinate_eq_one`, `theorem qs_ray_degreeOne_supportedLine`, `theorem qs_ray_degreeOne_endpointPencil_det_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
 
