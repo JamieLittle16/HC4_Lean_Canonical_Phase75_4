@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo
 import Mathlib.Tactic
 
 /-!
