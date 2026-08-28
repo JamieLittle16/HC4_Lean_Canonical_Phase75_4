@@ -35,6 +35,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+-- Keep the public elimination theorem thin so command-local heartbeat budgets reset.
+
 /-- Cast-normalised rank-three terminal certificate.  Keeping this conversion
 in its own declaration prevents later proofs from repeatedly normalising the
 full dependent terminal record. -/
