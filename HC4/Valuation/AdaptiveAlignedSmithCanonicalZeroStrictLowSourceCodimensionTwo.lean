@@ -190,6 +190,36 @@ theorem strictLow_sourceCodimensionTwo
     refine ⟨d, hd, hdeg, by omega, ?_⟩
     exact ⟨(2 : Fin 4), (3 : Fin 4), by decide, h2, h3⟩
 
+/-- The same strict-low reconstruction retains the stronger longitudinal
+multiplicity forced by the `X (X - 1)` factor: the codimension-two source
+witness can always be chosen with at least two copies of coordinate `0`. -/
+theorem strictLow_sourceCodimensionTwo_two_le
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    ∃ d ∈ (polynomialFamilySpecialFiber
+        T.terminal.blocker.presented.family).support,
+      3 ≤ HC4.Polynomial.ordinaryDegree4 d ∧
+      2 ≤ d (0 : Fin 4) ∧
+      HC4.Newton.MvExponentOnCodimensionTwoBoundary d := by
+  let R := T.zeroClockFirstContactPacket.2.2.1
+  rcases T.terminal.pattern with hpure | hfirst | hsecond
+  · rcases T.pureLongitudinal_sourceSupport hpure with
+      ⟨d, hd, hdeg, hd0, h1, h2, h3⟩
+    have hd0two : 2 ≤ d (0 : Fin 4) := by
+      simp [HC4.Polynomial.ordinaryDegree4, h1, h2, h3] at hdeg
+      omega
+    refine ⟨d, hd, hdeg, hd0two, ?_⟩
+    exact ⟨(1 : Fin 4), (2 : Fin 4), by decide, h1, h2⟩
+  · rcases R.lowNegativeFirst_sourceSupport_sparse hfirst with
+      ⟨d, hd, hdeg, hd0, h1, h2, h3⟩
+    refine ⟨d, hd, hdeg, hd0, ?_⟩
+    exact ⟨(1 : Fin 4), (3 : Fin 4), by decide, h1, h3⟩
+  · rcases R.lowNegativeSecond_sourceSupport_sparse hsecond with
+      ⟨d, hd, hdeg, hd0, h1, h2, h3⟩
+    refine ⟨d, hd, hdeg, hd0, ?_⟩
+    exact ⟨(2 : Fin 4), (3 : Fin 4), by decide, h2, h3⟩
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
