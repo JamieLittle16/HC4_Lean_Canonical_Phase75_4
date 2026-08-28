@@ -2131,6 +2131,10 @@ human architecture guide.
   - `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
   - `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
   - `HC4.Newton.FirstNonfacetContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
