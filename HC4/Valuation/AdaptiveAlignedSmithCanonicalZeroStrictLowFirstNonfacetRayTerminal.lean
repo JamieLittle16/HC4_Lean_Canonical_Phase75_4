@@ -71,6 +71,8 @@ theorem qs_ray_all_transverse_fixed_impossible
   have hdegGt :
       HC4.Polynomial.ordinaryDegree4 C.ray.facetExponent <
         HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent := by
+    have h0pos : 0 < C.ray.outsideExponent (0 : Fin 4) :=
+      C.ray.outside_coordinate_pos
     simp only [HC4.Polynomial.ordinaryDegree4]
     rw [hfacet0, h1, h2, h3]
     omega
