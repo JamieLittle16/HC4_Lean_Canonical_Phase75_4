@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactCrossFacetCarrier
+import HC4.Newton.FirstContactNonlinearSupport
 import Mathlib.Tactic
 
 /-!
@@ -23,6 +24,7 @@ The resulting carrier retains only facts proved without torus balance:
 * positive first-contact scale and bump;
 * exact first-contact initial-form identity;
 * zero Hessian determinant;
+* every supported monomial is genuinely nonlinear;
 * non-confinement to the starting facet;
 * an honest `CrossFacetInitialData`; and
 * the exact first-contact equation on every supported exponent.
@@ -61,6 +63,8 @@ structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   scale_pos : 0 < scale
   bump_pos : 0 < bump
   hessian_zero : HC4.Polynomial.hessianDeterminant face = 0
+  support_degree_ge_three :
+    ∀ d ∈ face.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d
   not_on_facet : ¬ HC4.Polynomial.MvSupportOnFacet facet face
   crossFacet : HC4.Newton.CrossFacetInitialData face
     (HC4.Newton.crossFacetOppositeCoordinate
@@ -114,6 +118,25 @@ noncomputable def firstNonfacetCrossFacetData_of_tame
       simpa [G, psi] using hnot
     have hzeroG : HC4.Polynomial.hessianDeterminant G = 0 := by
       simpa [G, psi] using hzero
+    have hdcontact :
+        HC4.Newton.scaledContactExponentWeight
+            (HC4.Polynomial.facetOmittedCoordinate facet) scale bump d₀ =
+          ((scale * T.topFace.degree : ℕ) : ℤ) := by
+      exact HC4.Newton.scaledContactInitialForm_support_contact_eq hdG
+    have hbumpBound :
+        bump ≤ scale * (T.topFace.degree - 3) := by
+      exact HC4.Newton.bump_le_scale_mul_m_sub_three
+        hscale hdpos hddeg hdcontact
+    have hlow :
+        ∀ d ∈ psi.support,
+          HC4.Polynomial.ordinaryDegree4 d < 3 →
+            d (HC4.Polynomial.facetOmittedCoordinate facet) ≤ 1 := by
+      simpa [HC4.Newton.LowDegreeTameAtFacet, psi] using htame
+    have hnonlinear :
+        ∀ d ∈ G.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+      dsimp [G]
+      exact HC4.Newton.firstContact_initialForm_support_degree_ge_three
+        T.topFace_degree_ge_three hscale hbumpBound hlow
     have hattained :
         ∃ v ∈ psi.support, HC4.Polynomial.ordinaryDegree4 v = T.topFace.degree := by
       exact ⟨T.topFace.witness, by simpa [psi] using T.topFace.witness_mem,
@@ -142,6 +165,7 @@ noncomputable def firstNonfacetCrossFacetData_of_tame
       scale_pos := hscale
       bump_pos := hbump
       hessian_zero := hzeroG
+      support_degree_ge_three := hnonlinear
       not_on_facet := hnotG
       crossFacet := D
       contact_eq := hsupports.2.2
