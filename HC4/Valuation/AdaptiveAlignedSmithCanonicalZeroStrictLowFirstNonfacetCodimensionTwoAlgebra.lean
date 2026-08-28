@@ -188,8 +188,7 @@ theorem transversePair_zero_of_codimensionTwoBoundary
       (a (1 : Fin 4) = 0 ∧ a (3 : Fin 4) = 0) ∨
       (a (2 : Fin 4) = 0 ∧ a (3 : Fin 4) = 0) := by
   rcases htwo with ⟨i, j, hij, hi, hj⟩
-  fin_cases i <;> fin_cases j <;>
-    simp [h0] at hij hi hj ⊢
+  fin_cases i <;> fin_cases j <;> simp_all
 
 /-- Once geometry has been reduced to three affine endpoint equations, the
 pure algebra above upgrades any vanishing transverse pair to vanishing of all
