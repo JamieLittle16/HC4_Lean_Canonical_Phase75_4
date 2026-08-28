@@ -2134,6 +2134,7 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
