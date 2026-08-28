@@ -2130,6 +2130,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
   - `HC4.Newton.FirstNonfacetContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`

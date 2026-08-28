@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6631**.
+Distinct declaration spellings indexed: **6633**.
 
 ## Repeated declaration spellings
 
@@ -5177,8 +5177,10 @@ Distinct declaration spellings indexed: **6631**.
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_rq_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
+- `qs_ray_source_degree_lt_outside_of_two_le_zeroCoordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - `qs_ray_source_outside_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOneMaximality`
 - `qs_ray_source_positive_zero_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
+- `qs_ray_source_zeroCoordinate_eq_one_of_degree_eq_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - `qs_ray_sp_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_terminal_degreeOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - `qs_ray_terminal_degreeOne_or_fixedDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
