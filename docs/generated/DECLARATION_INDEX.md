@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6645**.
+Distinct declaration spellings indexed: **6649**.
 
 ## Repeated declaration spellings
 
@@ -3150,6 +3150,9 @@ Distinct declaration spellings indexed: **6645**.
 - `defect_le_alignedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`
 - `defect_mem_closingKernel_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelContact`
 - `defect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
+- `degreeOne_raw_first_third_zero_forces_second` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
+- `degreeOne_raw_first_two_zero_forces_third` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
+- `degreeOne_raw_last_two_zero_forces_first` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `degree_eq_one_of_mem_support_C_mul_X_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `degree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `denominatorClearedCoefficientSlope` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -5180,6 +5183,7 @@ Distinct declaration spellings indexed: **6645**.
 - `qs_ray_directionSum_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_ray_facet_degree_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_outside_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
+- `qs_ray_outside_codimensionTwo_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_outside_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
