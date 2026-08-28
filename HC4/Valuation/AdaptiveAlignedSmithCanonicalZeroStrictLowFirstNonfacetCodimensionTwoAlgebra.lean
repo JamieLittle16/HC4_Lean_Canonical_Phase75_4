@@ -11,6 +11,10 @@ This module contains the small algebraic core used by the lower `qs` ray
 codimension-two elimination.  It deliberately has no dependency on the large
 restart-state records: the geometric file extracts plain exponents and slopes,
 then hands them to these lemmas.
+
+The final endpoint arithmetic only uses the autonomous raw relation at
+`rho = 2`.  Accordingly the public algebra seam below is scalar: no downstream
+theorem needs to carry or normalise the full polynomial identity.
 -/
 
 namespace HC4.Valuation
@@ -20,25 +24,24 @@ noncomputable section
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
-/-- If the first two transverse endpoint coordinates vanish, the autonomous
-rank-three degree-one identity forces the third to vanish as well. -/
+/-- If the first two transverse endpoint coordinates vanish, the raw relation
+at `rho = 2` forces the third to vanish as well. -/
 theorem degreeOneRaw_firstTwoZero_forcesThird
     {A B C : ℕ} {Q R S : K}
     (hA : 0 < A) (hB : 0 < B)
-    (hraw :
-      (Polynomial.X - Polynomial.X ^ 2) *
-          HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-            (A : K) (B : K) (C : K) (1 : K) Q R S =
-        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (h2 :
+      (-2 : K) *
+          Polynomial.eval (2 : K)
+            (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+              (A : K) (B : K) (C : K) (1 : K) Q R S) =
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S))
     (hQ0 : (A : K) + Q = 0)
     (hR0 : (B : K) + R = 0) :
     (C : K) + S = 0 := by
   have hQ : Q = -(A : K) := by linear_combination hQ0
   have hR : R = -(B : K) := by linear_combination hR0
-  have h2 := congrArg (Polynomial.eval (2 : K)) hraw
-  simp only [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X,
-    Polynomial.eval_pow] at h2
   rw [HC4.Polynomial.eval_rankThreeEtaDenominatorPolynomial,
     HC4.Polynomial.eval_rankThreeEtaNumeratorPolynomial] at h2
   rw [hQ, hR] at h2
@@ -77,20 +80,19 @@ theorem degreeOneRaw_firstTwoZero_forcesThird
 theorem degreeOneRaw_firstThirdZero_forcesSecond
     {A B C : ℕ} {Q R S : K}
     (hA : 0 < A) (hC : 0 < C)
-    (hraw :
-      (Polynomial.X - Polynomial.X ^ 2) *
-          HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-            (A : K) (B : K) (C : K) (1 : K) Q R S =
-        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (h2 :
+      (-2 : K) *
+          Polynomial.eval (2 : K)
+            (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+              (A : K) (B : K) (C : K) (1 : K) Q R S) =
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S))
     (hQ0 : (A : K) + Q = 0)
     (hS0 : (C : K) + S = 0) :
     (B : K) + R = 0 := by
   have hQ : Q = -(A : K) := by linear_combination hQ0
   have hS : S = -(C : K) := by linear_combination hS0
-  have h2 := congrArg (Polynomial.eval (2 : K)) hraw
-  simp only [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X,
-    Polynomial.eval_pow] at h2
   rw [HC4.Polynomial.eval_rankThreeEtaDenominatorPolynomial,
     HC4.Polynomial.eval_rankThreeEtaNumeratorPolynomial] at h2
   rw [hQ, hS] at h2
@@ -129,20 +131,19 @@ theorem degreeOneRaw_firstThirdZero_forcesSecond
 theorem degreeOneRaw_lastTwoZero_forcesFirst
     {A B C : ℕ} {Q R S : K}
     (hB : 0 < B) (hC : 0 < C)
-    (hraw :
-      (Polynomial.X - Polynomial.X ^ 2) *
-          HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-            (A : K) (B : K) (C : K) (1 : K) Q R S =
-        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (h2 :
+      (-2 : K) *
+          Polynomial.eval (2 : K)
+            (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+              (A : K) (B : K) (C : K) (1 : K) Q R S) =
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S))
     (hR0 : (B : K) + R = 0)
     (hS0 : (C : K) + S = 0) :
     (A : K) + Q = 0 := by
   have hR : R = -(B : K) := by linear_combination hR0
   have hS : S = -(C : K) := by linear_combination hS0
-  have h2 := congrArg (Polynomial.eval (2 : K)) hraw
-  simp only [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X,
-    Polynomial.eval_pow] at h2
   rw [HC4.Polynomial.eval_rankThreeEtaDenominatorPolynomial,
     HC4.Polynomial.eval_rankThreeEtaNumeratorPolynomial] at h2
   rw [hR, hS] at h2
@@ -191,17 +192,19 @@ theorem transversePair_zero_of_codimensionTwoBoundary
   fin_cases i <;> fin_cases j <;> simp_all
 
 /-- Once geometry has been reduced to three affine endpoint equations, the
-pure algebra above upgrades any vanishing transverse pair to vanishing of all
-three transverse coordinates. -/
+raw relation at `rho = 2` upgrades any vanishing transverse pair to vanishing
+of all three transverse coordinates. -/
 theorem degreeOneRaw_codimensionTwoPair_forcesAll
     {A B C x1 x2 x3 : ℕ} {Q R S : K}
     (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
-    (hraw :
-      (Polynomial.X - Polynomial.X ^ 2) *
-          HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-            (A : K) (B : K) (C : K) (1 : K) Q R S =
-        HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (h2 :
+      (-2 : K) *
+          Polynomial.eval (2 : K)
+            (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+              (A : K) (B : K) (C : K) (1 : K) Q R S) =
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S))
     (h1aff : (x1 : K) = (A : K) + Q)
     (h2aff : (x2 : K) = (B : K) + R)
     (h3aff : (x3 : K) = (C : K) + S)
@@ -217,7 +220,7 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hR0 : (B : K) + R = 0 := by
       rw [h12.2] at h2aff
       simpa using h2aff.symm
-    have hS0 := degreeOneRaw_firstTwoZero_forcesThird hA hB hraw hQ0 hR0
+    have hS0 := degreeOneRaw_firstTwoZero_forcesThird hA hB h2 hQ0 hR0
     have h3K : (x3 : K) = 0 := h3aff.trans hS0
     have hx3 : x3 = 0 := by exact_mod_cast h3K
     exact ⟨h12.1, h12.2, hx3⟩
@@ -227,7 +230,7 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hS0 : (C : K) + S = 0 := by
       rw [h13.2] at h3aff
       simpa using h3aff.symm
-    have hR0 := degreeOneRaw_firstThirdZero_forcesSecond hA hC hraw hQ0 hS0
+    have hR0 := degreeOneRaw_firstThirdZero_forcesSecond hA hC h2 hQ0 hS0
     have h2K : (x2 : K) = 0 := h2aff.trans hR0
     have hx2 : x2 = 0 := by exact_mod_cast h2K
     exact ⟨h13.1, hx2, h13.2⟩
@@ -237,15 +240,14 @@ theorem degreeOneRaw_codimensionTwoPair_forcesAll
     have hS0 : (C : K) + S = 0 := by
       rw [h23.2] at h3aff
       simpa using h3aff.symm
-    have hQ0 := degreeOneRaw_lastTwoZero_forcesFirst hB hC hraw hR0 hS0
+    have hQ0 := degreeOneRaw_lastTwoZero_forcesFirst hB hC h2 hR0 hS0
     have h1K : (x1 : K) = 0 := h1aff.trans hQ0
     have hx1 : x1 = 0 := by exact_mod_cast h1K
     exact ⟨hx1, h23.1, h23.2⟩
 
-/-- State-free A19.90 extraction specialized to the unit longitudinal step.
-The expensive construction now lives upstream in the dedicated A19.90 theorem;
-this adapter is only a pinned application with the exact interface A19.91 uses. -/
-theorem degreeOneTerminal_rawIdentity
+/-- State-free A19.90 extraction specialized all the way to the single scalar
+evaluation used by A19.91. -/
+theorem degreeOneTerminal_evalTwo
     [IsAlgClosed K]
     {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
     (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
@@ -253,20 +255,21 @@ theorem degreeOneTerminal_rawIdentity
     (hphi0 : phi.coeff 0 ≠ 0)
     (hcert : HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
       (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
-    (Polynomial.X - Polynomial.X ^ 2) *
-        HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S =
-      HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-        (A : K) (B : K) (C : K) (1 : K) Q R S := by
+    (-2 : K) *
+        Polynomial.eval (2 : K)
+          (HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+            (A : K) (B : K) (C : K) (1 : K) Q R S) =
+      Polynomial.eval (2 : K)
+        (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S) := by
   exact
-    HC4.RationalRigidity.rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
+    HC4.RationalRigidity.rankThree_raw_target_eval_two_of_source_degree_one_unit_step
       (K := K) (A := A) (B := B) (C := C)
       (Q := Q) (R := R) (S := S) (phi := phi)
       hA hB hC hphiDeg hphi0 hcert
 
-/-- State-free A19.91 adapter: once the autonomous raw identity has been
-extracted, the codimension-two endpoint conclusion is a cheap composition of
-precompiled algebra lemmas. -/
+/-- State-free A19.91 adapter: after one scalar autonomous extraction, the
+codimension-two endpoint conclusion is elementary algebra. -/
 theorem degreeOneTerminal_codimensionTwoPair_forcesAll
     [IsAlgClosed K]
     {A B C x1 x2 x3 : ℕ} {Q R S : K} {phi : Polynomial K}
@@ -283,10 +286,10 @@ theorem degreeOneTerminal_codimensionTwoPair_forcesAll
         (x1 = 0 ∧ x3 = 0) ∨
         (x2 = 0 ∧ x3 = 0)) :
     x1 = 0 ∧ x2 = 0 ∧ x3 = 0 := by
-  have hraw := degreeOneTerminal_rawIdentity
+  have h2 := degreeOneTerminal_evalTwo
     hA hB hC hphiDeg hphi0 hcert
   exact degreeOneRaw_codimensionTwoPair_forcesAll
-    hA hB hC hraw h1aff h2aff h3aff hpairs
+    hA hB hC h2 h1aff h2aff h3aff hpairs
 
 end
 
