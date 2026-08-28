@@ -99,6 +99,53 @@ theorem exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one
   rw [hTexact] at hraw
   exact ⟨hPone, hphi1, hraw⟩
 
+set_option maxHeartbeats 1000000 in
+/-- **Unit-step degree-one raw identity.**  This is the direct interface for
+callers that already know the longitudinal step is one.  Unlike the generic
+A19.90 theorem above, it never introduces an arbitrary `P`, never asks the
+elaborator to recover `P` through a terminal certificate, and never builds the
+`P = 1 ∧ ...` result package. -/
+theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : phi.natDegree = 1)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    (Polynomial.X - Polynomial.X ^ 2) *
+        HC4.Polynomial.rankThreeEtaDenominatorPolynomial
+          (A : K) (B : K) (C : K) (1 : K) Q R S =
+      HC4.Polynomial.rankThreeEtaNumeratorPolynomial
+        (A : K) (B : K) (C : K) (1 : K) Q R S := by
+  have hphiPos : 0 < phi.natDegree := by omega
+  rcases exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiPos hphi0 hcert with
+    ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
+  let T := rankThreeAutonomousPolynomial
+    (A : K) (B : K) (C : K) (1 : K) Q R S b
+  have hT2 : T.coeff 2 = (-1 : K) := by
+    have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
+      simpa [T] using htop
+    rw [hphiDeg] at htop'
+    norm_num at htop' ⊢
+    exact eq_neg_of_add_eq_zero_left htop'
+  have hshape :
+      T = Polynomial.C (T.coeff 1) * Polynomial.X +
+        Polynomial.C (T.coeff 2) * Polynomial.X ^ 2 :=
+    eq_linear_add_quadratic_of_natDegree_le_two
+      (by simpa [T] using hdegT) (by simpa [T] using hT0)
+  have hTexact : T = Polynomial.X - Polynomial.X ^ 2 := by
+    rw [show T.coeff 1 = (1 : K) by simpa [T] using hT1, hT2] at hshape
+    simpa [sub_eq_add_neg] using hshape
+  have hraw := rankThreeAutonomousPolynomial_mul_rawDenominator
+    (K := K) hA hB hC (by norm_num) hb hden
+  rw [show rankThreeAutonomousPolynomial
+      (A : K) (B : K) (C : K) (1 : K) Q R S b =
+        Polynomial.X - Polynomial.X ^ 2 by simpa [T] using hTexact] at hraw
+  exact hraw
+
 end
 
 end HC4.RationalRigidity
