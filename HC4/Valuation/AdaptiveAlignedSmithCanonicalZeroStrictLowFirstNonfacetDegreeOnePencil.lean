@@ -210,7 +210,7 @@ theorem qs_ray_degreeOne_endpointPencil_det_zero
       (F := C.ray.face)
       (by decide)
       (C.qs_ray_degreeOne_supportedLine hthree)
-      C.ray_hessian_zero)
+      (C.ray.hessian_zero_of_source C.hessian_zero))
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
