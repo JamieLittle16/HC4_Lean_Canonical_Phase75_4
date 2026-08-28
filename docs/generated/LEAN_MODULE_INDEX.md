@@ -2616,7 +2616,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
-- Declarations: `theorem exists_rankThreeAutonomousPolynomial_eq_X_sub_X_sq_of_source_degree_one`, `theorem exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one`, `theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step`
+- Declarations: `theorem exists_rankThreeAutonomousPolynomial_eq_X_sub_X_sq_of_source_degree_one`, `theorem exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one`, `theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step`, `theorem rankThree_raw_target_eval_two_of_source_degree_one_unit_step`
 
 ### `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`
 
