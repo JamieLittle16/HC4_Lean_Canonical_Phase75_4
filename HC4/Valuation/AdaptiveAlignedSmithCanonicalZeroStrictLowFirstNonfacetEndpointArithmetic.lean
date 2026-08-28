@@ -59,6 +59,9 @@ private theorem qs_ray_degreeOne_endpointCoefficients_ne_zero
     (C.ray.outsideExponent 2)
     (C.ray.outsideExponent 3)
     1 C.ray.face
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := by
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
+      C.ray.facet_coordinate_zero
   have hstartExp :
       HC4.Polynomial.rankThreeLineExponentFinsupp
         (C.ray.facetExponent 1)
@@ -71,8 +74,7 @@ private theorem qs_ray_degreeOne_endpointCoefficients_ne_zero
         1 0 = C.ray.facetExponent := by
     ext k
     fin_cases k <;>
-      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply,
-        C.ray.facet_coordinate_zero]
+      simp [HC4.Polynomial.rankThreeLineExponentFinsupp_apply, hfacet0]
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
   have hendExp :
