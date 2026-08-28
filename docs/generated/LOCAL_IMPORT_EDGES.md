@@ -2164,9 +2164,6 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
-- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualCodimensionTwo`
-  - `HC4.Newton.SingularBoundaryRankSplit`
-  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Newton.MixedDegreeFirstWallCompetition`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
