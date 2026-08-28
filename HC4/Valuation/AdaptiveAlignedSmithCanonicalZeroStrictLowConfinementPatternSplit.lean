@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport
+import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import Mathlib.Tactic
 
 /-!
