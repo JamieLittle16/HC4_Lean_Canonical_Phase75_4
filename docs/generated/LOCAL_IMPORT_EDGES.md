@@ -2085,6 +2085,10 @@ human architecture guide.
   - `HC4.Newton.FirstContactNonlinearSupport`
   - `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
+  - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
+  - `HC4.RationalRigidity.RankThreeTerminalDirectionSplit`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
   - `HC4.Newton.FirstNonfacetContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`

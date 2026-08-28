@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6598**.
+Distinct declaration spellings indexed: **6600**.
 
 ## Repeated declaration spellings
 
@@ -5155,6 +5155,8 @@ Distinct declaration spellings indexed: **6598**.
 - `qExponent` — `def` in `HC4.Toric.InvariantSemigroup`
 - `qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 - `qs_rankThree_firstContact_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
+- `qs_ray_directionSum_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
+- `qs_ray_terminal_degreeOne_or_fixedDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_remainingSlope_add_one_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_remainingSlope_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `quadratic` — `def` in `HC4.Newton.BinaryPivotGeometry`
