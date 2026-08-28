@@ -69,7 +69,7 @@ private theorem degreeOne_raw_first_two_zero_forces_third
   have hfactor4 :
       (4 : K) * (A : K) * (B : K) * ((C : K) + S) ^ 2 *
         ((A : K) + (B : K) - 1) = 0 := by
-    linear_combination h2
+    linear_combination -h2
   have h4 : (4 : K) ≠ 0 := by norm_num
   have hA0 : (A : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hA)
   have hB0 : (B : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hB)
@@ -120,7 +120,7 @@ private theorem degreeOne_raw_first_third_zero_forces_second
   have hfactor4 :
       (4 : K) * (A : K) * (C : K) * ((B : K) + R) ^ 2 *
         ((A : K) + (C : K) - 1) = 0 := by
-    linear_combination h2
+    linear_combination -h2
   have h4 : (4 : K) ≠ 0 := by norm_num
   have hA0 : (A : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hA)
   have hC0 : (C : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hC)
@@ -171,7 +171,7 @@ private theorem degreeOne_raw_last_two_zero_forces_first
   have hfactor4 :
       (4 : K) * (B : K) * (C : K) * ((A : K) + Q) ^ 2 *
         ((B : K) + (C : K) - 1) = 0 := by
-    linear_combination h2
+    linear_combination -h2
   have h4 : (4 : K) ≠ 0 := by norm_num
   have hB0 : (B : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hB)
   have hC0 : (C : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hC)
