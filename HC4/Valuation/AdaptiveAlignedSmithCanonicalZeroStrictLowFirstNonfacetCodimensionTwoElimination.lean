@@ -56,9 +56,9 @@ private theorem qs_ray_degreeOne_terminalCertificate
   have hcert0 := C.ray.zero_rankThree_terminalCertificate C.hessian_zero hthree
   simpa only [Nat.cast_one] using hcert0
 
+set_option maxHeartbeats 1000000 in
 /-- Extract the autonomous degree-one raw identity once, independently of the
 subsequent finite-coordinate case split. -/
-set_option maxHeartbeats 1000000 in
 private theorem qs_ray_degreeOne_raw_identity
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
