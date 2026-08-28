@@ -6087,7 +6087,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit.lean`
 - Purpose: A19.64: every strict-low nonlinear confinement avoids the marked facet
 - A-labels: `A19.60`, `A19.61`, `A19.62`, `A19.63`, `A19.64`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `theorem pureLongitudinal_nonlinearConfined_facet`, `theorem nonlinearConfined_facet_ne_qs`, `theorem nonlinearConfined_facet_classification`
@@ -6129,7 +6129,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.66`, `A19.67`, `A19.74`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`, `HC4.RationalRigidity.RankThreeTerminalDirectionSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
 - Declarations: `theorem qs_ray_directionSum_ne_zero`, `theorem qs_ray_terminal_degreeOne_or_fixedDirection`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
