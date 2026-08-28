@@ -28,6 +28,39 @@ open HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+namespace AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
+
+/-- Every supported monomial of the selected ordinary top face has the selected
+ordinary degree, hence is genuinely nonlinear.  A18.5.12 stores the top-face
+degree and its exact initial-form identity separately; this lemma is the small
+adapter needed by the balance-free A18.5.92 boundary selector. -/
+theorem face_support_degree_ge_three
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    (d : Fin 4 →₀ ℕ)
+    (hd : d ∈ D.face.support) :
+    3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+  have hhom :
+      MvPolynomial.IsWeightedHomogeneous
+        (fun _ : Fin 4 => (1 : ℤ)) D.face (D.degree : ℤ) := by
+    rw [D.face_eq]
+    simpa using
+      (HC4.Polynomial.initialForm_isWeightedHomogeneous
+        (K := K)
+        (fun _ : Fin 4 => (1 : ℤ))
+        (D.degree : ℤ)
+        (polynomialFamilySpecialFiber s.family))
+  have hw :
+      Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (D.degree : ℤ) :=
+    hhom (MvPolynomial.mem_support_iff.mp hd)
+  rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4] at hw
+  have hdegree : HC4.Polynomial.ordinaryDegree4 d = D.degree := by
+    exact_mod_cast hw
+  rw [hdegree]
+  exact D.degree_ge_three
+
+end AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- The actual singular top face of an A19.54 terminal has a balance-free
@@ -63,7 +96,8 @@ theorem exposedBoundary_exponent_degree_ge_three
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
-    3 ≤ ordinaryDegree4 T.exposedSingularBoundaryVertex.exponent :=
+    3 ≤ HC4.Polynomial.ordinaryDegree4
+      T.exposedSingularBoundaryVertex.exponent :=
   T.exposedSingularBoundaryVertex.exponent_nonlinear
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
