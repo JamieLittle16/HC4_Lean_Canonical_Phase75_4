@@ -2,6 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSp
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactCrossFacetCarrier
 import HC4.Newton.FirstContactNonlinearSupport
+import HC4.Newton.FiniteSupportCrossFacetRay
 import Mathlib.Tactic
 
 /-!
@@ -29,7 +30,8 @@ The resulting carrier retains only facts proved without torus balance:
 * an honest `CrossFacetInitialData`; and
 * the exact first-contact equation on every supported exponent.
 
-No affine-line or RationalRigidity conclusion is asserted here.
+A19.67 can then refine that finite carrier through all three non-contact
+coordinates to an honest affine support ray, still without torus balance.
 -/
 
 namespace HC4.Valuation
@@ -75,6 +77,69 @@ structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       HC4.Newton.scaledContactExponentWeight
           (HC4.Polynomial.facetOmittedCoordinate facet) scale bump d =
         ((scale * T.topFace.degree : ℕ) : ℤ)
+
+namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+
+variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+  (K := K) state}
+variable {facet : ToricFacet}
+
+/-- The exact first-contact carrier has support on both sides of its contact
+facet, literally witnessed by the already-retained cross-facet data. -/
+theorem zero_and_positive_support_nonempty
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet) :
+    (HC4.Newton.zeroCoordinateSupport
+        (HC4.Polynomial.facetOmittedCoordinate facet) D.face).Nonempty ∧
+      (HC4.Newton.positiveCoordinateSupport
+        (HC4.Polynomial.facetOmittedCoordinate facet) D.face).Nonempty := by
+  constructor
+  · exact ⟨D.crossFacet.facetExponent,
+      HC4.Newton.mem_zeroCoordinateSupport.mpr
+        ⟨D.crossFacet.facet_mem, D.crossFacet.facet_coordinate_zero⟩⟩
+  · exact ⟨D.crossFacet.outsideExponent,
+      HC4.Newton.mem_positiveCoordinateSupport.mpr
+        ⟨D.crossFacet.outside_mem, D.crossFacet.outside_coordinate_pos⟩⟩
+
+/-- **Balance-free affine ray carried by every tame first-nonfacet contact.** -/
+noncomputable def ray
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet) :
+    HC4.Newton.CrossFacetRayData D.face
+      (HC4.Polynomial.facetOmittedCoordinate facet) :=
+  HC4.Newton.crossFacetRayData
+    D.zero_and_positive_support_nonempty.1
+    D.zero_and_positive_support_nonempty.2
+
+/-- Hessian singularity passes through all three ray-exposure stages. -/
+theorem ray_hessian_zero
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet) :
+    HC4.Polynomial.hessianDeterminant D.ray.face = 0 :=
+  D.ray.hessian_zero_of_source D.hessian_zero
+
+/-- Every ray exponent is still genuinely nonlinear. -/
+theorem ray_support_degree_ge_three
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet) :
+    ∀ d ∈ D.ray.face.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+  intro d hd
+  exact D.support_degree_ge_three d (D.ray.support_subset hd)
+
+/-- The genuine first-contact equation restricts unchanged to the extracted
+balance-free affine ray. -/
+theorem ray_contact_eq
+    (D : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T facet) :
+    ∀ d ∈ D.ray.face.support,
+      HC4.Newton.scaledContactExponentWeight
+          (HC4.Polynomial.facetOmittedCoordinate facet) D.scale D.bump d =
+        ((D.scale * T.topFace.degree : ℕ) : ℤ) := by
+  intro d hd
+  exact D.contact_eq d (D.ray.support_subset hd)
+
+end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
