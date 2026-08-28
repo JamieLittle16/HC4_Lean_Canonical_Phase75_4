@@ -6160,7 +6160,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
-- Declarations: `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`, `theorem degreeOneTerminal_rawIdentity`, `theorem degreeOneTerminal_codimensionTwoPair_forcesAll`
+- Declarations: `theorem needs`, `theorem degreeOneRaw_firstTwoZero_forcesThird`, `theorem degreeOneRaw_firstThirdZero_forcesSecond`, `theorem degreeOneRaw_lastTwoZero_forcesFirst`, `theorem transversePair_zero_of_codimensionTwoBoundary`, `theorem degreeOneRaw_codimensionTwoPair_forcesAll`, `theorem degreeOneTerminal_evalTwo`, `theorem degreeOneTerminal_codimensionTwoPair_forcesAll`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 

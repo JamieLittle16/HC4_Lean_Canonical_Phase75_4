@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6666**.
+Distinct declaration spellings indexed: **6667**.
 
 ## Repeated declaration spellings
 
@@ -3155,7 +3155,7 @@ Distinct declaration spellings indexed: **6666**.
 - `degreeOneRaw_firstTwoZero_forcesThird` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_lastTwoZero_forcesFirst` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneTerminal_codimensionTwoPair_forcesAll` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
-- `degreeOneTerminal_rawIdentity` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
+- `degreeOneTerminal_evalTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degree_eq_one_of_mem_support_C_mul_X_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `degree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `denominatorClearedCoefficientSlope` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -4512,6 +4512,7 @@ Distinct declaration spellings indexed: **6666**.
 - `natDegree_translatePolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `nat_pair_sum_two_cases` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
+- `needs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `negativeLongitudinalAxisPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `negativeSmithDerivative_lowPattern_cases` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `negativeSmithSourceSupport` — `def` in `HC4.Valuation.AlignedSmithFirstStop`
