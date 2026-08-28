@@ -107,7 +107,7 @@ theorem qs_ray_all_transverse_fixed_impossible
   omega
 
 /-- **A19.75 lower affine terminal closure.**  A genuine lower first-contact
-ray with rank-three `.qs` facet endpoint has a two-term coefficient polynomial. -/
+ray with rank-three `.qs` facet endpoint has coefficient degree exactly one. -/
 theorem qs_ray_terminal_degreeOne
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
