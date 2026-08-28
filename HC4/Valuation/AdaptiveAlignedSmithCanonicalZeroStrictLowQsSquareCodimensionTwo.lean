@@ -3,7 +3,7 @@ import HC4.Newton.SingularBoundaryRankSplit
 import Mathlib.Tactic
 
 /-!
-# A19.85: the `qs` quadratic-square residual is already codimension two
+# A19.86: the `qs` quadratic-square residual is already codimension two
 
 A19.80 leaves the exposed `.qs` rank-three branch as either a genuine lower
 first-contact boundary outcome or a literal quadratic square in the omitted
@@ -52,7 +52,7 @@ theorem qs_quadraticSquare_source_codimensionTwo
   · exact hother (1 : Fin 4) (by decide)
   · exact hother (2 : Fin 4) (by decide)
 
-/-- **A19.85 `.qs` residual compression.**  The literal quadratic-square
+/-- **A19.86 `.qs` residual compression.**  The literal quadratic-square
 branch of A19.80 is not a separate geometry: it is already supported
 codimension-two data. -/
 theorem qs_rankThree_lowerBoundary_or_codimensionTwoSource
