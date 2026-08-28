@@ -54,6 +54,7 @@ import HC4.Newton.RigidPacketEvaluatedHessianChart
 import HC4.Valuation.RigidPacketZeroSchurBridge
 import HC4.Valuation.RigidClosingExactCollisionSource
 import HC4.Valuation.MovingCollisionRecentering
+import HC4.Valuation.RigidClosingSource
 import HC4.Valuation.RigidClosingRecenteredSource
 import HC4.Valuation.RigidClosingFirstKernelStage
 import HC4.Valuation.RigidClosingFirstKernelAssembly
@@ -175,3 +176,4 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundar
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary
 import HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil
