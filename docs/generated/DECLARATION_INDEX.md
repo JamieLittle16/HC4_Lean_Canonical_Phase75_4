@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6638**.
+Distinct declaration spellings indexed: **6640**.
 
 ## Repeated declaration spellings
 
@@ -5075,6 +5075,7 @@ Distinct declaration spellings indexed: **6638**.
 - `positiveWeightedHomogeneous_support_weight_le` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `positive_character_normal_form` — `theorem` in `HC4.Toric.CharacterSupport`
 - `positive_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
+- `positive_cross_sum_gap_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
 - `positive_rBranch_character_ne_positive_sBranch_character` — `theorem` in `HC4.Toric.BranchCharacter`
 - `positive_singletonSmithFiber_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `power_polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
@@ -5180,6 +5181,7 @@ Distinct declaration spellings indexed: **6638**.
 - `qs_ray_outside_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
+- `qs_ray_rankThree_otherFacet_degree_add_two_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
 - `qs_ray_rq_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_source_degree_lt_outside_of_two_le_zeroCoordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - `qs_ray_source_outside_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOneMaximality`
