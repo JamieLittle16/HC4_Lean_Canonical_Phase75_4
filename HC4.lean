@@ -54,7 +54,6 @@ import HC4.Newton.RigidPacketEvaluatedHessianChart
 import HC4.Valuation.RigidPacketZeroSchurBridge
 import HC4.Valuation.RigidClosingExactCollisionSource
 import HC4.Valuation.MovingCollisionRecentering
-import HC4.Valuation.RigidClosingSource
 import HC4.Valuation.RigidClosingRecenteredSource
 import HC4.Valuation.RigidClosingFirstKernelStage
 import HC4.Valuation.RigidClosingFirstKernelAssembly
