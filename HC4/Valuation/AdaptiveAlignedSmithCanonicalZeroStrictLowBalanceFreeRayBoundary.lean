@@ -107,10 +107,13 @@ theorem outsideBoundary_rankThree_omitted_ne_contact
   have hz :
       D.outsideBoundary.exponent
         (HC4.Polynomial.facetOmittedCoordinate next) = 0 := by
-    exact (HC4.Polynomial.onFacet_toToricExponent_iff next
-      D.outsideBoundary.exponent).1 hthree.1
-  rw [heq] at hz
-  omega
+    cases next <;> exact hthree.1
+  have hpos :
+      0 < D.outsideBoundary.exponent
+        (HC4.Polynomial.facetOmittedCoordinate next) := by
+    rw [heq]
+    exact D.outsideBoundary.contact_pos
+  exact (Nat.ne_of_gt hpos) hz
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
