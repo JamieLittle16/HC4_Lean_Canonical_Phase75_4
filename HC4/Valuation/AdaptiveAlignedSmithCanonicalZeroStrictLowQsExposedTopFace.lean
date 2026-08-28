@@ -77,8 +77,9 @@ theorem qs_exposed_topFaceOnFacet
   have hmax := T.exposedBoundary_zeroCoordinate_maximal d hd
   have hexp0 : T.exposedSingularBoundaryVertex.exponent (0 : Fin 4) = 0 :=
     (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
-  have hd0 : d (0 : Fin 4) = 0 := by
-    omega
+  have hmax0 : d (0 : Fin 4) ≤ 0 := by
+    simpa [hexp0] using hmax
+  have hd0 : d (0 : Fin 4) = 0 := Nat.le_zero.mp hmax0
   simpa [HC4.Polynomial.facetOmittedCoordinate] using hd0
 
 /-- Hence the direct top-face cross-facet alternative at `.qs` is impossible. -/
