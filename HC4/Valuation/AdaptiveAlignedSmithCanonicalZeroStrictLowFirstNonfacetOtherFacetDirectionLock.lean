@@ -32,7 +32,6 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 private theorem positive_cross_strict_component_drop
     {B C V W : ℕ}
-    (hB : 0 < B) (hC : 0 < C)
     (hV : 0 < V) (hW : 0 < W)
     (hcross : B * W = C * V)
     (hsum : V + W < B + C) :
@@ -81,8 +80,9 @@ theorem qs_ray_pr_outside_strict_directionLock
   have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
   have hout := (HC4.Newton.mvRankThreeOnFacet_iff .pr
     C.ray.outsideExponent).1 houtThree
-  rcases hout with ⟨hout1, hout0, hout2, hout3⟩
+  rcases hout with ⟨hout1, _hout0, hout2, hout3⟩
   have harith := C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree
+  have hfacet1 : C.ray.facetExponent (1 : Fin 4) = 1 := harith.1
   have hcross := harith.2
   have hdeg :
       HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent <
@@ -91,15 +91,14 @@ theorem qs_ray_pr_outside_strict_directionLock
     exact C.qs_ray_outside_degree_lt_topFace
   have hout0eq : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
-  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
-    hbase.1
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := hbase.1
   have hsum :
       C.ray.outsideExponent 2 + C.ray.outsideExponent 3 <
         C.ray.facetExponent 2 + C.ray.facetExponent 3 := by
     simp only [HC4.Polynomial.ordinaryDegree4] at hdeg
     omega
   have hdrop := positive_cross_strict_component_drop
-    hbase.2.2.1 hbase.2.2.2 hout2 hout3 hcross hsum
+    hout2 hout3 hcross hsum
   exact ⟨hcross, hdrop.1, hdrop.2⟩
 
 /-- Cyclic `.sp` form of the strict direction lock. -/
@@ -115,8 +114,9 @@ theorem qs_ray_sp_outside_strict_directionLock
   have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
   have hout := (HC4.Newton.mvRankThreeOnFacet_iff .sp
     C.ray.outsideExponent).1 houtThree
-  rcases hout with ⟨hout2, hout0, hout1, hout3⟩
+  rcases hout with ⟨hout2, _hout0, hout1, hout3⟩
   have harith := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
+  have hfacet2 : C.ray.facetExponent (2 : Fin 4) = 1 := harith.1
   have hcross := harith.2
   have hdeg :
       HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent <
@@ -125,15 +125,14 @@ theorem qs_ray_sp_outside_strict_directionLock
     exact C.qs_ray_outside_degree_lt_topFace
   have hout0eq : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
-  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
-    hbase.1
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := hbase.1
   have hsum :
       C.ray.outsideExponent 1 + C.ray.outsideExponent 3 <
         C.ray.facetExponent 1 + C.ray.facetExponent 3 := by
     simp only [HC4.Polynomial.ordinaryDegree4] at hdeg
     omega
   have hdrop := positive_cross_strict_component_drop
-    hbase.2.1 hbase.2.2.2 hout1 hout3 hcross hsum
+    hout1 hout3 hcross hsum
   exact ⟨hcross, hdrop.1, hdrop.2⟩
 
 /-- Cyclic `.rq` form of the strict direction lock. -/
@@ -149,8 +148,9 @@ theorem qs_ray_rq_outside_strict_directionLock
   have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
   have hout := (HC4.Newton.mvRankThreeOnFacet_iff .rq
     C.ray.outsideExponent).1 houtThree
-  rcases hout with ⟨hout3, hout0, hout1, hout2⟩
+  rcases hout with ⟨hout3, _hout0, hout1, hout2⟩
   have harith := C.qs_ray_rq_outside_base_eq_one_and_cross hthree houtThree
+  have hfacet3 : C.ray.facetExponent (3 : Fin 4) = 1 := harith.1
   have hcross := harith.2
   have hdeg :
       HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent <
@@ -159,15 +159,14 @@ theorem qs_ray_rq_outside_strict_directionLock
     exact C.qs_ray_outside_degree_lt_topFace
   have hout0eq : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
-  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
-    hbase.1
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := hbase.1
   have hsum :
       C.ray.outsideExponent 1 + C.ray.outsideExponent 2 <
         C.ray.facetExponent 1 + C.ray.facetExponent 2 := by
     simp only [HC4.Polynomial.ordinaryDegree4] at hdeg
     omega
   have hdrop := positive_cross_strict_component_drop
-    hbase.2.1 hbase.2.2.1 hout1 hout2 hcross hsum
+    hout1 hout2 hcross hsum
   exact ⟨hcross, hdrop.1, hdrop.2⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
