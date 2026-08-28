@@ -6177,7 +6177,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic.lean`
 - Purpose: A19.81: balance-free arithmetic of the lower degree-one boundary endpoint
 - A-labels: `A19.76`, `A19.79`, `A19.81`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`, `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`, `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`, `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`, `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `theorem qs_ray_degreeOne_endpointCoefficients_ne_zero`, `theorem qs_ray_pr_outside_base_eq_one_and_cross`, `theorem qs_ray_sp_outside_base_eq_one_and_cross`, `theorem qs_ray_rq_outside_base_eq_one_and_cross`
@@ -6249,7 +6249,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.73`, `A19.76`, `A19.78`, `A19.80`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - Declarations: `theorem qs_topFace_ray_impossible`, `def QsLowerBoundaryOutcome`, `theorem qs_rankThree_lowerBoundary_or_quadraticSquare`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
