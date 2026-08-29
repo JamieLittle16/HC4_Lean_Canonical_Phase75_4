@@ -2131,7 +2131,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.TopProduct`, `HC4.Polynomial.HessianDeterminant`
 - External imports: none
-- Imported by local modules: `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Newton.InteriorVertex`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.ComplementarySupportedEdgeImpossible`, `HC4.RationalRigidity.RankThreeExposedEdgeTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`
+- Imported by local modules: `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Newton.InteriorVertex`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.ComplementarySupportedEdgeImpossible`, `HC4.RationalRigidity.RankThreeExposedEdgeTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - Declarations: `theorem initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm`, `theorem hessianDeterminant_initialForm_eq_zero_of_eq_zero`
 
 ### `HC4.Polynomial.MonomialHessian`
@@ -6567,10 +6567,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial.lean`
 - Purpose: A19.122: the first strict ray superface as an exact source polynomial
 - A-labels: `A19.117`, `A19.122`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperface`, `HC4.Newton.FiniteSupportExposedFaceRefinement`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperface`, `HC4.Newton.FiniteSupportExposedFaceRefinement`, `HC4.Polynomial.MaximalHessianInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def QsOtherFacetRayFirstSuperfacePackage.combinedWeight`, `def QsOtherFacetRayFirstSuperfacePackage.combinedLevel`, `theorem QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight`, `theorem QsOtherFacetRayFirstSuperfacePackage.superface_exposed_coordinate`, `theorem QsOtherFacetRayFirstSuperfacePackage.combinedWeight_bound`, `def QsOtherFacetRayFirstSuperfacePackage.polynomial`, `theorem QsOtherFacetRayFirstSuperfacePackage.polynomial_support`, `theorem QsOtherFacetRayFirstSuperfacePackage.ray_support_subset`, `theorem QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray`, `theorem QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem`
+- Declarations: `def QsOtherFacetRayFirstSuperfacePackage.combinedWeight`, `def QsOtherFacetRayFirstSuperfacePackage.combinedLevel`, `theorem QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight`, `theorem QsOtherFacetRayFirstSuperfacePackage.superface_exposed_coordinate`, `theorem QsOtherFacetRayFirstSuperfacePackage.combinedWeight_bound`, `def QsOtherFacetRayFirstSuperfacePackage.polynomial`, `theorem QsOtherFacetRayFirstSuperfacePackage.polynomial_support`, `theorem QsOtherFacetRayFirstSuperfacePackage.ray_support_subset`, `theorem QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray`, `theorem QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem`, `theorem QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 

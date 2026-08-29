@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6822**.
+Distinct declaration spellings indexed: **6823**.
 
 ## Repeated declaration spellings
 
@@ -2003,6 +2003,7 @@ Distinct declaration spellings indexed: **6822**.
 - `QsOtherFacetRayFirstSuperfacePackage.combinedWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.combinedWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.polynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.polynomial_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.ray_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
