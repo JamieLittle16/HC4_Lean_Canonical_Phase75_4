@@ -34,6 +34,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+-- CI anchor: elaborate A19.98 after the generated inventory refresh.
+
 /-- **A19.98 integral locked source-contact interface.**  A genuine lower
 `.qs` ray whose actual outside endpoint lies rank three on a different facet
 has a single integral slope `r >= 2` governing the represented-source contact,
