@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile
 import Mathlib.Tactic
 
 /-!
@@ -9,10 +10,15 @@ exactly the deficit from the contact source weight
 
     ordinaryDegree4 d + contactGap * d₀.
 
+Writing a source exponent as `m.cons n`, with `n` longitudinal and `m`
+transverse, this is exactly
+
+    transverseDegree(m) + (contactGap + 1) * n.
+
 This is the bookkeeping needed before identifying any Schur coefficient with a
 stationary weighted-profile coefficient.  In particular, no source monomial is
 silently promoted to the contact special fibre: its precise Rees order remains
-visible in the statement below.
+visible in the statements below.
 -/
 
 namespace HC4.Valuation
@@ -25,6 +31,20 @@ open HC4.Toric
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+
+/-- Ordinary total degree of a transverse three-variable exponent. -/
+def qsContactTransverseDegree (m : Fin 3 →₀ ℕ) : ℕ :=
+  m 0 + m 1 + m 2
+
+/-- The integral contact weight splits exactly into transverse degree plus the
+binary longitudinal weight `r+1`. -/
+theorem qsIntegralContactWeight_cons
+    (r n : ℕ) (m : Fin 3 →₀ ℕ) :
+    Finsupp.weight (qsIntegralContactWeight r) (m.cons n) =
+      qsContactTransverseDegree m + (r + 1) * n := by
+  rw [qsIntegralContactWeight_finsupp]
+  simp [HC4.Polynomial.ordinaryDegree4, qsContactTransverseDegree]
+  ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -70,6 +90,34 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_de
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
   rw [P.contactFamily_parameterLayer_coeff]
   simp [hd]
+
+/-- Coefficientwise longitudinal/transverse form of the contact grading.  The
+source coefficient on the right is exactly the corresponding coefficient of
+the A19.114 symbolic longitudinal profile. -/
+theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (q n : ℕ) (m : Fin 3 →₀ ℕ) :
+    MvPolynomial.coeff (m.cons n) (familyParameterLayer P.contactFamily q) =
+      if m.cons n ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support ∧
+          T.topFace.degree -
+            (qsContactTransverseDegree m + P.profileWeight * n) = q then
+        MvPolynomial.coeff m
+          ((qsContactRawLongitudinalProfile (K := K) (T := T)).coeff n)
+      else 0 := by
+  rw [P.contactFamily_parameterLayer_coeff]
+  have hweight :
+      HC4.Polynomial.ordinaryDegree4 (m.cons n) +
+          P.contactGap * (m.cons n) (0 : Fin 4) =
+        qsContactTransverseDegree m + P.profileWeight * n := by
+    rw [P.profileWeight_eq]
+    have h := qsIntegralContactWeight_cons P.contactGap n m
+    rw [qsIntegralContactWeight_finsupp] at h
+    exact h
+  rw [hweight]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
