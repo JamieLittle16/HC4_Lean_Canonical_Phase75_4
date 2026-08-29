@@ -2193,6 +2193,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
   - `HC4.Valuation.FirstSchurDepartureBridge`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
+  - `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
