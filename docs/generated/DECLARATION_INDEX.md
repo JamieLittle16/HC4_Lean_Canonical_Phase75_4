@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6707**.
+Distinct declaration spellings indexed: **6711**.
 
 ## Repeated declaration spellings
 
@@ -3098,6 +3098,7 @@ Distinct declaration spellings indexed: **6707**.
 - `contactExponent_weightedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`
 - `contactOrder_eq_parameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `contactSlope` — `def` in `HC4.Newton.FirstContactSelection`
+- `contactSlope_eq_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `contactSlope_le_iff_cross` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `contactSourceWeight_lt_commonLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`
 - `contact_degree_lt` — `theorem` in `HC4.Newton.ScaledContact`
@@ -5228,6 +5229,7 @@ Distinct declaration spellings indexed: **6707**.
 - `qs_ray_pr_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_pr_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
+- `qs_ray_pr_primitiveDirection_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `qs_ray_rankThree_otherFacet_degree_add_two_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
 - `qs_ray_rankThree_otherFacet_strictLow_source_degree_add_three_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
 - `qs_ray_rq_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
@@ -5235,6 +5237,7 @@ Distinct declaration spellings indexed: **6707**.
 - `qs_ray_rq_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
 - `qs_ray_rq_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_rq_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
+- `qs_ray_rq_primitiveDirection_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `qs_ray_scale_dvd_bump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralContactRatio`
 - `qs_ray_source_degree_lt_outside_of_two_le_zeroCoordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - `qs_ray_source_outside_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOneMaximality`
@@ -5245,6 +5248,7 @@ Distinct declaration spellings indexed: **6707**.
 - `qs_ray_sp_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
 - `qs_ray_sp_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_sp_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
+- `qs_ray_sp_primitiveDirection_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `qs_ray_strictLow_sourceCodimensionTwo_degree_lt_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
 - `qs_ray_terminal_degreeOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - `qs_ray_terminal_degreeOne_or_fixedDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
