@@ -6,18 +6,19 @@ import Mathlib.Tactic
 # A19.105: first actual deformation below the locked ray
 
 A19.104b constructs an honest reverse-Rees family whose special fibre is
-exactly the balance-free affine ray and whose Hessian determinant is a positive
-pure parameter power.  The next staircase datum is therefore canonical: take
-the least positive parameter order occurring in that family.
+exactly the balance-free affine ray and whose determinant-closing order is
+strictly above its source level.  The next staircase datum is therefore
+canonical: take the least positive parameter order occurring in that family.
 
-The generic first-layer causality theorem already shows that this order occurs
-no later than the determinant clock.  The explicit reverse-Rees coefficient
-formula then says more: every monomial in this first layer comes from the
-represented determinant-one source and lies on the single parallel weight
-level obtained by dropping the ray level by exactly that first order.
+Generic causality puts this order no later than the determinant clock, while
+the explicit reverse-Rees coefficient formula shows every monomial in the
+first layer comes from the represented determinant-one source and lies on the
+single parallel weight level obtained by dropping the ray level by exactly
+that first order.  Since any occurring reverse-Rees order is at most the source
+level, the dominant-clock strengthening from A19.104b makes this first layer
+strictly preclosing automatically.
 
-Thus the first lower staircase layer is now an honest polynomial face of the
-same source filtration.  No assertion is made that it lies on the static ray.
+No assertion is made that the lower layer lies on the static ray.
 -/
 
 namespace HC4.Valuation
@@ -54,6 +55,8 @@ structure QsOtherFacetRayFirstActualLayerPackage
   order_le_defect :
     order ≤ 4 * R.level - 2 * ∑ i : Fin 4, R.weight i
   order_le_level : order ≤ R.level
+  order_lt_defect :
+    order < 4 * R.level - 2 * ∑ i : Fin 4, R.weight i
   layer : MvPolynomial (Fin 4) K
   layer_eq :
     layer = familyParameterLayer
@@ -74,7 +77,7 @@ structure QsOtherFacetRayFirstActualLayerPackage
       Finsupp.weight R.weight d < R.level
 
 /-- **A19.105 first honest staircase layer.**  The least positive actual
-parameter layer exists, is no later than the pure Hessian clock, and is
+parameter layer exists, lies strictly before determinant closure, and is
 supported exactly one fixed positive weight drop below the locked ray. -/
 theorem QsOtherFacetRayReverseReesPackage.firstActualLayerPackage
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -145,6 +148,9 @@ theorem QsOtherFacetRayReverseReesPackage.firstActualLayerPackage
     rcases MvPolynomial.support_nonempty.mpr hLne with ⟨d, hd⟩
     have heq := hdrop hd
     omega
+  have hjltdef :
+      j < 4 * R.level - 2 * ∑ i : Fin 4, R.weight i :=
+    lt_of_le_of_lt hjlevel R.level_lt_defect
 
   exact ⟨{
     order := j
@@ -152,6 +158,7 @@ theorem QsOtherFacetRayReverseReesPackage.firstActualLayerPackage
     order_pos := hjpos
     order_le_defect := hjdef
     order_le_level := hjlevel
+    order_lt_defect := hjltdef
     layer := L
     layer_eq := rfl
     layer_ne_zero := hLne
