@@ -44,6 +44,12 @@ structure QsOtherFacetRayFirstActualLayerPackage
       T .qs)
     (R : QsOtherFacetRayReverseReesPackage C) where
   order : ℕ
+  order_eq_first :
+    order = firstPositiveActualParameterOrder
+      (reverseWeightedReesFamily R.weight R.level
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family) R.bound)
+      R.positiveLayer
   order_pos : 0 < order
   order_le_defect :
     order ≤ 4 * R.level - 2 * ∑ i : Fin 4, R.weight i
@@ -142,6 +148,7 @@ theorem QsOtherFacetRayReverseReesPackage.firstActualLayerPackage
 
   exact ⟨{
     order := j
+    order_eq_first := rfl
     order_pos := hjpos
     order_le_defect := hjdef
     order_le_level := hjlevel
