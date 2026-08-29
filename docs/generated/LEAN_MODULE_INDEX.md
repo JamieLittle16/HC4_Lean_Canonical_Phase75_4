@@ -580,7 +580,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem IsExposedFace.restrict_ambient`, `theorem exists_nat_refine_exposed_face_fin4_positive_clock`
+- Declarations: `theorem finsupp_weight_fin4_linear_combination`, `theorem IsExposedFace.restrict_ambient`, `theorem exists_nat_refine_exposed_face_fin4_positive_clock`
 
 ### `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 
