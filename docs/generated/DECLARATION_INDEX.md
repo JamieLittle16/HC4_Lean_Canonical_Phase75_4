@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6829**.
+Distinct declaration spellings indexed: **6832**.
 
 ## Repeated declaration spellings
 
@@ -2004,8 +2004,10 @@ Distinct declaration spellings indexed: **6829**.
 - `QsOtherFacetRayFirstSuperfacePackage.combinedWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.initialForm_primary_eq_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
 - `QsOtherFacetRayFirstSuperfacePackage.polynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.polynomial_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.ray_exposed_in_polynomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
 - `QsOtherFacetRayFirstSuperfacePackage.ray_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.superface_exposed_coordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
@@ -5289,6 +5291,7 @@ Distinct declaration spellings indexed: **6829**.
 - `qsIntegralContactWeight_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsRayDegreeOneCoefficientPolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayDegreeOneCoefficientPolynomial_coeff_one_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
+- `qsRayPrimaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
 - `qs_exposed_topFaceCrossFacet_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_exposed_topFaceOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_quadraticSquare_source_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
