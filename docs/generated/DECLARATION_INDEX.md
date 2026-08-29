@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6768**.
+Distinct declaration spellings indexed: **6773**.
 
 ## Repeated declaration spellings
 
@@ -1987,6 +1987,7 @@ Distinct declaration spellings indexed: **6768**.
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayFirstHessianLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayHigherLongitudinalLayerWitness` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
+- `QsOtherFacetRayProfileReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `QsOtherFacetRayReverseReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `QsOtherFacetRayReverseReesPackage.actualLayerOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
@@ -1995,6 +1996,7 @@ Distinct declaration spellings indexed: **6768**.
 - `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
 - `QsOtherFacetRayReverseReesPackage.firstActualLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayReverseReesPackage.higherLongitudinalLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
+- `QsOtherFacetRayReverseReesPackage.profileReesPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -3350,6 +3352,7 @@ Distinct declaration spellings indexed: **6768**.
 - `distinctExactGradientCollision_of_normalizedGradientCovariance` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `div_eq_div_iff_cross` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `div_eval_eq_of_sub_eval_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `doubleFin4Weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `doublingGradientMap` — `def` in `HC4.PlanarDoublingInjectivity`
 - `doublingGradientMap_injective` — `theorem` in `HC4.PlanarDoublingInjectivity`
 - `doublingGradientMap_injective_of_det_ne_zero` — `theorem` in `HC4.PlanarDoublingInjectivity`
@@ -3736,6 +3739,7 @@ Distinct declaration spellings indexed: **6768**.
 - `finsuppDegree_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsuppSum_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsupp_eq_fourCoordinateSum` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
+- `finsupp_weight_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `finsupp_weight_fin4_linear_combination` — `theorem` in `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `firstActualDeformationFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
@@ -4170,6 +4174,7 @@ Distinct declaration spellings indexed: **6768**.
 - `initialForm_directionalMixedDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
 - `initialForm_directionalSecondDerivative_eq_component` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_directionalSecondDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
+- `initialForm_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `initialForm_eq_of_exposedSupport_and_coeff` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_eq_self_of_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_eq_zero_of_isWeightLE` — `theorem` in `HC4.Polynomial.WeightBounds`
