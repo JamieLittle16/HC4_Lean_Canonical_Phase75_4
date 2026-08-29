@@ -3009,6 +3009,9 @@ human architecture guide.
 - `HC4.Valuation.SymmetricSmithImprovementRestart`
   - `HC4.Newton.SymmetricSmithMinimality`
   - `HC4.Valuation.CommonParameterFactorRestart`
+- `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+  - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+  - `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `HC4.Valuation.ZeroGradientNormalization`
   - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6836**.
+Distinct declaration spellings indexed: **6838**.
 
 ## Repeated declaration spellings
 
@@ -4108,6 +4108,7 @@ Distinct declaration spellings indexed: **6836**.
 - `hessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero` — `theorem` in `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `hessianTermWeight` — `def` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTermWeight_eq` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTerm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
@@ -4230,6 +4231,7 @@ Distinct declaration spellings indexed: **6836**.
 - `initialForm_fourHessianMinorCross_eq_nextComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - `initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm` — `theorem` in `HC4.Polynomial.MaximalHessianInitial`
 - `initialForm_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.PolynomialInitial`
+- `initialForm_hessianPrincipalMinor_eq` — `theorem` in `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `initialForm_idempotent` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_mul_eq_left_mul_initialForm_of_leftHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
