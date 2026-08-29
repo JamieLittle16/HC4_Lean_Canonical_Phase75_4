@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6680**.
+Distinct declaration spellings indexed: **6683**.
 
 ## Repeated declaration spellings
 
@@ -5210,10 +5210,12 @@ Distinct declaration spellings indexed: **6680**.
 - `qs_ray_outside_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_outside_transverse_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
+- `qs_ray_pr_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_pr_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 - `qs_ray_rankThree_otherFacet_degree_add_two_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
 - `qs_ray_rankThree_otherFacet_strictLow_source_degree_add_three_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
+- `qs_ray_rq_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_rq_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_rq_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 - `qs_ray_scale_dvd_bump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralContactRatio`
@@ -5221,6 +5223,7 @@ Distinct declaration spellings indexed: **6680**.
 - `qs_ray_source_outside_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOneMaximality`
 - `qs_ray_source_positive_zero_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_source_zeroCoordinate_eq_one_of_degree_eq_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
+- `qs_ray_sp_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_sp_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_sp_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 - `qs_ray_strictLow_sourceCodimensionTwo_degree_lt_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
