@@ -6,14 +6,10 @@ import Mathlib.Tactic
 # A19.100a: source-native weighted staircase contradiction interface
 
 The surviving lower `qs` other-facet branch already carries an integral contact
-slope `delta >= 2` on the actual represented special fibre.  Because the
-contact weight is
-
-    ordinaryDegree4 d + delta * d[0],
-
-the literal weight of coordinate `0` is `delta + 1`.  This is exactly the
-positive-gap convention used by the state-free binary staircase profile
-rigidity theorem.
+gap on the actual represented special fibre.  The existing finite staircase
+rigidity theorem is state-free, but its binary profile weight is produced only
+after straightening the locked transverse ray.  We therefore keep these two
+integer parameters separate until that straightening has been proved.
 
 This file freezes the final algebraic contract without importing any planar
 terminal provenance.  A certificate retains the actual integral source bound,
@@ -24,8 +20,9 @@ is contradictory.
 
 The next source adapter therefore has one precise job: construct this
 certificate from the represented four-dimensional first-contact source and the
-strict transverse direction lock.  No JC2 hypothesis, planar collision, new
-carrier, or progress measure is introduced here.
+strict transverse direction lock, including the correct binary profile weight.
+No JC2 hypothesis, planar collision, new carrier, or progress measure is
+introduced here.
 -/
 
 namespace HC4.Valuation
@@ -47,33 +44,36 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- Source-native contract for the final weighted staircase contradiction.
 
-`gap` is the integral *extra* weight from A19.97.  Hence the actual transverse
-profile weight is `gap + 1`, matching
-`binaryStaircaseProfile_natDegree_le_one_of_positiveGap` exactly. -/
+`contactGap` is the integral extra source weight from A19.97.  `profileWeight`
+is deliberately separate: it is the integer weight of the binary coordinate
+obtained only after straightening one of the three locked cyclic transverse
+rays. -/
 structure QsOtherFacetWeightedProfileCertificate
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs) : Type u where
-  gap : ℕ
-  gap_two_le : 2 ≤ gap
-  bump_eq : C.bump = C.scale * gap
+  contactGap : ℕ
+  contactGap_two_le : 2 ≤ contactGap
+  bump_eq : C.bump = C.scale * contactGap
   source_weight_le :
     ∀ {d : Fin 4 →₀ ℕ},
       d ∈ (polynomialFamilySpecialFiber
         T.terminal.blocker.presented.family).support →
-      HC4.Polynomial.ordinaryDegree4 d + gap * d (0 : Fin 4) ≤
+      HC4.Polynomial.ordinaryDegree4 d + contactGap * d (0 : Fin 4) ≤
         T.topFace.degree
   weighted_contact_hessian_zero :
     HC4.Polynomial.hessianDeterminant
       (HC4.Polynomial.initialForm
-        (HC4.Newton.scaledContactWeight (0 : Fin 4) 1 gap)
+        (HC4.Newton.scaledContactWeight (0 : Fin 4) 1 contactGap)
         (T.topFace.degree : ℤ)
         (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family)) = 0
+  profileWeight : ℕ
+  profileWeight_two_le : 2 ≤ profileWeight
   profile : Polynomial K
   profile_coeff_zero_ne : profile.coeff 0 ≠ 0
-  profile_support : profile.natDegree * (gap + 1) ≤ T.topFace.degree
+  profile_support : profile.natDegree * profileWeight ≤ T.topFace.degree
   profile_residual :
-    binaryStaircaseProfileResidual T.topFace.degree (gap + 1) profile = 0
+    binaryStaircaseProfileResidual T.topFace.degree profileWeight profile = 0
   profile_degree_two_le : 2 ≤ profile.natDegree
 
 /-- **State-free terminal contradiction once the honest weighted profile has
@@ -85,9 +85,9 @@ theorem QsOtherFacetWeightedProfileCertificate.impossible
       T .qs}
     (P : QsOtherFacetWeightedProfileCertificate C) : False := by
   have hle : P.profile.natDegree ≤ 1 :=
-    binaryStaircaseProfile_natDegree_le_one_of_positiveGap
+    binaryStaircaseProfile_natDegree_le_one
       (K := K)
-      T.topFace.degree P.gap (by omega) P.profile
+      T.topFace.degree P.profileWeight P.profileWeight_two_le P.profile
       P.profile_coeff_zero_ne P.profile_support P.profile_residual
   omega
 
