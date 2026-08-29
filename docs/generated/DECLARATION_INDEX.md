@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6757**.
+Distinct declaration spellings indexed: **6761**.
 
 ## Repeated declaration spellings
 
@@ -1978,6 +1978,8 @@ Distinct declaration spellings indexed: **6757**.
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
+- `QsOtherFacetContactQuadraticReesPackage.rawLongitudinalProfilePackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
+- `QsOtherFacetContactRawLongitudinalProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -5224,6 +5226,7 @@ Distinct declaration spellings indexed: **6757**.
 - `pureRightAxis_support_shape` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pure_r_s_correction_eq_zero` — `theorem` in `HC4.Toric.ClassifiedSupport`
 - `qExponent` — `def` in `HC4.Toric.InvariantSemigroup`
+- `qsContactRawLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - `qsIntegralContactWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsIntegralContactWeight_cast_eq_scaledContactWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsIntegralContactWeight_finsupp` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
@@ -6243,6 +6246,7 @@ Distinct declaration spellings indexed: **6757**.
 - `smithTransverseParameterFactor_of_specialPoint_axisZero` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `smithTransverseParameterFactor_of_specialPoint_zero` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `smithTransverseParameterFactor_ramified_integralSection` — `theorem` in `HC4.Valuation.SymmetricSmithImprovementRestart`
+- `smithTransverse_cons_zero_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - `smithTwoExtremeBalance_alpha_ne_zero` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smithTwoExtremeBalance_cast_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smithTwoExtremeBalance_forces_target_grades` — `theorem` in `HC4.Newton.SmithExtremeBalance`
