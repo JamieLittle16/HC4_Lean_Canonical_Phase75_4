@@ -38,7 +38,7 @@ private theorem qs_rankThree_not_codimensionTwo
   intro htwo
   rcases HC4.Newton.mvRankThreeOnFacet_qs hthree with ⟨h0, h1, h2, h3⟩
   rcases htwo with ⟨i, j, hij, hi, hj⟩
-  fin_cases i <;> fin_cases j <;> simp at hij <;> omega
+  fin_cases i <;> fin_cases j <;> simp_all
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -53,7 +53,8 @@ theorem qs_ray_boundaryOutcome_otherFacet
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtcome : QsLowerBoundaryOutcome C) :
+    (houtcome :
+      AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.QsLowerBoundaryOutcome C) :
     ∃ next : ToricFacet,
       next ≠ .qs ∧
         HC4.Newton.MvRankThreeOnFacet next C.ray.outsideExponent := by
