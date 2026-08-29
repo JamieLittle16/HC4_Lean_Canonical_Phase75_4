@@ -322,6 +322,11 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
   - `HC4.Newton.MvBoundaryStrata`
   - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+- `HC4.Newton.FiniteSupportExposedFaceRefinement`
+  - `HC4.Newton.ExposedFaces`
+  - `HC4.Newton.FiniteSupportCrossFacetExposure`
+  - `HC4.Polynomial.WeightBounds`
+  - `HC4.Polynomial.WeightedInitial`
 - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Newton.ExposedBalancedBoundaryStratum`
   - `HC4.Polynomial.MaximalHessianInitial`

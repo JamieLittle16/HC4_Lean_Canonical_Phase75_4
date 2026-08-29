@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6711**.
+Distinct declaration spellings indexed: **6715**.
 
 ## Repeated declaration spellings
 
@@ -1331,6 +1331,7 @@ Distinct declaration spellings indexed: **6711**.
 - `CrossFacetInitialData.ray_face_weight_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetInitialData.support_crossFacet_affine_proportional` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.support_eq_of_contactCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
+- `CrossFacetInitialData.support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.support_subset` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetRayData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetRayData.coeff_zeroCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
@@ -3534,10 +3535,12 @@ Distinct declaration spellings indexed: **6711**.
 - `exists_minimalLongitudinalSmithPacket` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_minimal_binaryContactExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `exists_minimal_contactExponent` — `theorem` in `HC4.Newton.FirstContactSelection`
+- `exists_nat_refine_exposed_face` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_nonlinear_boundary_exponent_with_coordinate_pos` — `theorem` in `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
 - `exists_nonzero_root_multiplicity_factorisation` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `exists_other_positive_exponent_of_supported_kernel_linear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `exists_positiveTail_of_X_pow_dvd` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `exists_positive_nat_strict_upper_bound_on_finset` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_positive_tail_factorisation` — `theorem` in `HC4.Polynomial.ComplementaryEdgeRigidity`
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
@@ -4147,6 +4150,7 @@ Distinct declaration spellings indexed: **6711**.
 - `initialForm_prod_eq_prod` — `theorem` in `HC4.Polynomial.TopProduct`
 - `initialForm_singleCoordinate_cross_secondDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `initialForm_smul` — `theorem` in `HC4.Polynomial.WeightedInitial`
+- `initialForm_support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_zero` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
 - `integer_min_or_unit_gap` — `theorem` in `HC4.Newton.FiniteValuationTilt`
