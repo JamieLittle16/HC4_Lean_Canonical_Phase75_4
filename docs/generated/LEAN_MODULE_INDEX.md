@@ -560,7 +560,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.ExposedFaces`, `HC4.Newton.FiniteSupportCrossFacetExposure`, `HC4.Polynomial.WeightBounds`, `HC4.Polynomial.WeightedInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem initialForm_support_isExposedFace`, `theorem exists_positive_nat_strict_upper_bound_on_finset`, `theorem exists_nat_refine_exposed_face`, `theorem CrossFacetInitialData.support_isExposedFace`
+- Declarations: `theorem initialForm_support_isExposedFace`, `theorem exists_positive_nat_strict_upper_bound_on_finset`, `theorem exists_nat_refine_exposed_face`, `theorem exists_nat_refine_exposed_face_ge`, `theorem CrossFacetInitialData.support_isExposedFace`
 
 ### `HC4.Newton.FiniteSupportExposedVertex`
 
