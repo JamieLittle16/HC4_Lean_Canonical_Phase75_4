@@ -17,7 +17,8 @@ into the denominator-cleared first-contact equation gives
 Thus the rational first-contact slope is already integral.  In the genuine
 other-facet branch A19.88 supplies a two-degree drop, so the integral ratio is
 at least two.  These statements use only the exact contact equation retained
-by A19.66; no torus-balance hypothesis is reintroduced.
+by A19.66; no torus-balance hypothesis is reintroduced.  This is the
+normalization datum needed by the next source-native contact reduction.
 -/
 
 namespace HC4.Valuation
