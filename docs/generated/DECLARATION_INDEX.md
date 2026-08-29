@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6832**.
+Distinct declaration spellings indexed: **6836**.
 
 ## Repeated declaration spellings
 
@@ -3459,6 +3459,7 @@ Distinct declaration spellings indexed: **6832**.
 - `eulerLinear_eq_one_of_sq_eq_one` — `theorem` in `HC4.FacetRigidity.EulerEquation`
 - `eulerScaledHessian` — `def` in `HC4.Polynomial.ComplementaryMvSubstitution`
 - `eulerScaledHessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `eulerScaledHessianPrincipalMinor_eq_monomial_mul` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `eulerScaledHessian_apply` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
 - `eulerScaledHessian_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
@@ -4104,6 +4105,9 @@ Distinct declaration spellings indexed: **6832**.
 - `hessianLayer_eq_zero_of_pos_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `hessianMonomialContributionAt` — `def` in `HC4.Newton.TerminalActualHessian`
 - `hessianMonomialContributionAt_origin_ne_zero_exponent_eq` — `theorem` in `HC4.Newton.TerminalActualHessian`
+- `hessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianTermWeight` — `def` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTermWeight_eq` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTerm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
