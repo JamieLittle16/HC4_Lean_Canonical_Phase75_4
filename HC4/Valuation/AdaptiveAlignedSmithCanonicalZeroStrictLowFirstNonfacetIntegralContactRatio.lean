@@ -49,9 +49,9 @@ theorem qs_ray_bump_eq_scale_mul_outsideDegreeGap
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
   have hcontact := C.ray_contact_eq
-    C.ray.outsideExponent C.ray.outside_mem
+    C.ray.outsideExponent C.ray.outside_mem_face
   unfold HC4.Newton.scaledContactExponentWeight at hcontact
-  rw [hout0] at hcontact
+  simp only [HC4.Polynomial.facetOmittedCoordinate, hout0] at hcontact
   norm_num at hcontact
   have hcontactNat :
       C.scale * HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent + C.bump =
@@ -82,7 +82,7 @@ theorem qs_ray_otherFacet_two_mul_scale_le_bump
     (houtThree : HC4.Newton.MvRankThreeOnFacet next C.ray.outsideExponent) :
     2 * C.scale ≤ C.bump := by
   have hgap := C.qs_ray_rankThree_otherFacet_degree_add_two_le_topFace
-    hthree hne houtThree
+    hthree next hne houtThree
   have htwo :
       2 ≤ T.topFace.degree -
         HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent := by

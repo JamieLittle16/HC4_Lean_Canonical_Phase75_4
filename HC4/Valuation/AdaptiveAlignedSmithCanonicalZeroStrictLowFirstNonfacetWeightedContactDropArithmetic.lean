@@ -75,7 +75,8 @@ theorem qs_ray_pr_integral_contactGap_add_outside_eq_facet
   change HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent +
       r * C.ray.outsideExponent (0 : Fin 4) = T.topFace.degree at hout
   simp only [HC4.Polynomial.ordinaryDegree4] at hfacet hout
-  rw [hbase.1, hfacet1, hout0, hout1] at hfacet hout
+  simp only [hbase.1, hfacet1] at hfacet
+  simp only [hout0, hout1] at hout
   refine ⟨r, hr, hbump, ?_⟩
   omega
 
@@ -108,7 +109,8 @@ theorem qs_ray_sp_integral_contactGap_add_outside_eq_facet
   change HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent +
       r * C.ray.outsideExponent (0 : Fin 4) = T.topFace.degree at hout
   simp only [HC4.Polynomial.ordinaryDegree4] at hfacet hout
-  rw [hbase.1, hfacet2, hout0, hout2] at hfacet hout
+  simp only [hbase.1, hfacet2] at hfacet
+  simp only [hout0, hout2] at hout
   refine ⟨r, hr, hbump, ?_⟩
   omega
 
@@ -141,7 +143,8 @@ theorem qs_ray_rq_integral_contactGap_add_outside_eq_facet
   change HC4.Polynomial.ordinaryDegree4 C.ray.outsideExponent +
       r * C.ray.outsideExponent (0 : Fin 4) = T.topFace.degree at hout
   simp only [HC4.Polynomial.ordinaryDegree4] at hfacet hout
-  rw [hbase.1, hfacet3, hout0, hout3] at hfacet hout
+  simp only [hbase.1, hfacet3] at hfacet
+  simp only [hout0, hout3] at hout
   refine ⟨r, hr, hbump, ?_⟩
   omega
 
