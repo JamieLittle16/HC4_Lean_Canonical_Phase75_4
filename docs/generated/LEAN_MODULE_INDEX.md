@@ -559,7 +559,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
+- Imported by local modules: none
 - Declarations: `theorem exists_nat_refine_exposed_face_fin4_clock_gt_level`
 
 ### `HC4.Newton.FiniteSupportExposedFaceRefinement`
@@ -599,7 +599,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - Declarations: `theorem exists_nat_refine_exposed_face_fin4_two_level_lt_clock`
 
 ### `HC4.Newton.FiniteSupportSingularBoundaryVertex`
@@ -6455,9 +6455,9 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees.lean`
-- Purpose: A19.104b: honest reverse Rees family with the locked ray as special fibre
-- A-labels: `A19.104a`, `A19.104b`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Newton.FiniteSupportDominantClockRefinement`, `HC4.Valuation.BoundedReverseWeightedRees`
+- Purpose: A19.104b/A19.110: honest reverse Rees family with quadratic clock margin
+- A-labels: `A19.104a`, `A19.104b`, `A19.110`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Newton.FiniteSupportQuadraticClockRefinement`, `HC4.Valuation.BoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - Declarations: `structure QsOtherFacetRayReverseReesPackage`, `theorem qs_ray_otherFacet_rayReverseRees_package`
