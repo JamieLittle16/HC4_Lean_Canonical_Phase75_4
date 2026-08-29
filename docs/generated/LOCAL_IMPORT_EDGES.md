@@ -322,6 +322,8 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
   - `HC4.Newton.MvBoundaryStrata`
   - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+- `HC4.Newton.FiniteSupportDominantClockRefinement`
+  - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `HC4.Newton.FiniteSupportExposedFaceRefinement`
   - `HC4.Newton.ExposedFaces`
   - `HC4.Newton.FiniteSupportCrossFacetExposure`

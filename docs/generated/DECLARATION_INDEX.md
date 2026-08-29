@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6732**.
+Distinct declaration spellings indexed: **6733**.
 
 ## Repeated declaration spellings
 
@@ -3543,6 +3543,7 @@ Distinct declaration spellings indexed: **6732**.
 - `exists_minimal_binaryContactExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `exists_minimal_contactExponent` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `exists_nat_refine_exposed_face` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
+- `exists_nat_refine_exposed_face_fin4_clock_gt_level` — `theorem` in `HC4.Newton.FiniteSupportDominantClockRefinement`
 - `exists_nat_refine_exposed_face_fin4_positive_clock` — `theorem` in `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `exists_nat_refine_exposed_face_ge` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_nonlinear_boundary_exponent_with_coordinate_pos` — `theorem` in `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
