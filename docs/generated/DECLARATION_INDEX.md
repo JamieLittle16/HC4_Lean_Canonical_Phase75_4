@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6765**.
+Distinct declaration spellings indexed: **6768**.
 
 ## Repeated declaration spellings
 
@@ -4881,6 +4881,9 @@ Distinct declaration spellings indexed: **6765**.
 - `pderiv_zero_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_zero_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_zero_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `phase88RatFuncRelation` — `def` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_aeval_X` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_ne_zero` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`

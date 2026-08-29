@@ -2864,6 +2864,8 @@ human architecture guide.
 - `HC4.Valuation.ParameterRamification`
   - `HC4.Newton.SmithPoleMinimality`
   - `HC4.Valuation.SmithConformalCovariance`
+- `HC4.Valuation.PermutedFamilyHessianFourBlock`
+  - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.GeometricAssemblyEntry`
 - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
