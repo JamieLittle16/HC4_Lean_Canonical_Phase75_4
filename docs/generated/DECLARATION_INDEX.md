@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6842**.
+Distinct declaration spellings indexed: **6848**.
 
 ## Repeated declaration spellings
 
@@ -4942,6 +4942,11 @@ Distinct declaration spellings indexed: **6842**.
 - `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `permutedFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `permutedFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedPolynomialHessianFourBlock` — `def` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_activeDet` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `phase88RatFuncRelation` — `def` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_aeval_X` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_ne_zero` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
@@ -5106,6 +5111,7 @@ Distinct declaration spellings indexed: **6842**.
 - `polynomialFamilyZeroCollision_specialFiber` — `theorem` in `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `polynomialFamily_eq_constantPolynomialFamily_of_no_positiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomialFamily_ne_zero_of_hessianDefect` — `theorem` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
+- `polynomialHessian_symmetric` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `polynomialPairRatFunc` — `def` in `HC4.RationalRigidity.CanonicalReducedFraction`
 - `polynomialParameterOrder` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`
 - `polynomialParameterOrderCandidates` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`
