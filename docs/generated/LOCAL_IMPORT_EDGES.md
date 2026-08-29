@@ -2735,6 +2735,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedInitial`
   - `HC4.Valuation.ActualParameterLayer`
   - `HC4.Valuation.AdaptiveSmithWallExposure`
+- `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.CanonicalAdaptiveSmithWall`
   - `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `HC4.Valuation.CanonicalEntrySanity`
