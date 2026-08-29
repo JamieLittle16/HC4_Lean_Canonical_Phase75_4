@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6690**.
+Distinct declaration spellings indexed: **6702**.
 
 ## Repeated declaration spellings
 
@@ -1765,6 +1765,7 @@ Distinct declaration spellings indexed: **6690**.
 - `HasRankTwoTerminalOrStrictRepair` — `def` in `HC4.Newton.RankTwoRepairTerminal`
 - `HasRepairOrTerminal` — `def` in `HC4.Newton.FiniteRepairTermination`
 - `HasResidualNonScalarTerminalJump` — `def` in `HC4.Newton.TerminalDirectRankJumpReduction`
+- `HasReverseWeightBound` — `def` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `HasRightAxisHessianKernel` — `def` in `HC4.Newton.FixedKernelHessian`
 - `HasRightRecenteredHigherTransverseSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalLinearEscape`
 - `HasRightRecenteredQuadraticAxisCompetitor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
@@ -2366,10 +2367,13 @@ Distinct declaration spellings indexed: **6690**.
 - `adaptiveSmithFirstContactExposure_commonLevel_le_exactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
 - `adaptiveSmithFirstContactExposure_supportedCoefficient_exactFactorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
 - `adaptiveSmithInflateHom` — `def` in `HC4.Valuation.AdaptiveSmithWallExposure`
+- `adaptiveSmithInflateHom_injective` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `adaptiveSmithInflateHom_monomial` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `adaptiveSmithInflateSection` — `def` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `adaptiveSmithInflateSection_integralSection_eq` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `adaptiveSmithInflateVariable` — `def` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `adaptiveSmithInflate_adaptiveSmithExposureFamily_eq` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
+- `adaptiveSmithInflate_reverseWeightedReesFamily_eq` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `adaptiveSourceCoefficientParameterOrder` — `def` in `HC4.Valuation.AdaptiveCoefficientOrder`
 - `adaptiveSourceCoefficientParameterOrder_eq_zero_of_mem_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveSlopeKernelFree`
 - `adaptiveSourceCoefficientParameterOrder_pos_of_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -2843,6 +2847,7 @@ Distinct declaration spellings indexed: **6690**.
 - `coeff_M_rankThreeLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
 - `coeff_adaptiveDiagonalExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveDiagonalExposure`
 - `coeff_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
+- `coeff_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `coeff_add_binaryStaircaseProfileCross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_add_self_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_binaryDirectionalDeriv` — `theorem` in `HC4.Newton.DirectionalCoefficientRecurrence`
@@ -4980,6 +4985,8 @@ Distinct declaration spellings indexed: **6690**.
 - `polynomialFamilySpecialFiber_isHomogeneous` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `polynomialFamilySpecialFiber_maximalCommonParameterFactor_ne_zero` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `polynomialFamilySpecialFiber_pointedBoundaryShearFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
+- `polynomialFamilySpecialFiber_reverseWeightedReesFamily` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `polynomialFamilySpecialFiber_reverseWeightedReesFamily_eq_layer_zero` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `polynomialFamilySpecialFiber_translation_eq_longitudinalRightRecenter` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `polynomialFamilySpecialFiber_translation_eq_of_specialPoint_zero` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `polynomialFamilySpecialFiber_transverseSourceShearHom_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTransverseKernelRestart`
@@ -5683,6 +5690,11 @@ Distinct declaration spellings indexed: **6690**.
 - `reversePoint` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reversePointEquiv` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reverseSet` — `def` in `HC4.Toric.BranchReversal`
+- `reverseWeightedReesFamily` — `def` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_parameterLayer_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverse_exposedFace` — `theorem` in `HC4.Newton.Equivariance`
 - `reverse_rGradientInverse_reverse` — `theorem` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reverse_rGradientMap_reverse` — `theorem` in `HC4.ClassifiedFamilies.BranchConjugacy`

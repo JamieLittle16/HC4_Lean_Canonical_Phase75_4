@@ -2696,6 +2696,10 @@ human architecture guide.
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `HC4.Valuation.BinarySmithOrderExtraction`
   - `HC4.Valuation.SymmetricSmithImprovementRestart`
+- `HC4.Valuation.BoundedReverseWeightedRees`
+  - `HC4.Polynomial.WeightedInitial`
+  - `HC4.Valuation.ActualParameterLayer`
+  - `HC4.Valuation.AdaptiveSmithWallExposure`
 - `HC4.Valuation.CanonicalAdaptiveSmithWall`
   - `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `HC4.Valuation.CanonicalEntrySanity`
