@@ -2908,6 +2908,9 @@ human architecture guide.
   - `HC4.Valuation.MovingCollisionRecentering`
   - `HC4.Valuation.ParameterRamification`
   - `HC4.Valuation.PointedShearContinuation`
+- `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+  - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Valuation.ParameterRamification`
   - `HC4.Newton.SmithPoleMinimality`
   - `HC4.Valuation.SmithConformalCovariance`

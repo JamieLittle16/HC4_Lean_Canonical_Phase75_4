@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6857**.
+Distinct declaration spellings indexed: **6861**.
 
 ## Repeated declaration spellings
 
@@ -4823,6 +4823,8 @@ Distinct declaration spellings indexed: **6857**.
 - `opening` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `opening_repair_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `opposite_facets_intersection_origin` — `theorem` in `HC4.Toric.BoundaryGeometry`
+- `optionEquivRight_coeff_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
+- `optionEquivRight_monomial` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `orderTwo_terminalJet_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `ordinaryDegree4` — `def` in `HC4.Polynomial.FourExponent`
 - `ordinaryDegree4_cons_smithTransverseExponent_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
@@ -4865,7 +4867,9 @@ Distinct declaration spellings indexed: **6857**.
 - `parameterFirstEquiv` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
+- `parameterFirstEquiv_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstHessian` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
+- `parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstHessian_det` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_det_eq_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_symmetric` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
