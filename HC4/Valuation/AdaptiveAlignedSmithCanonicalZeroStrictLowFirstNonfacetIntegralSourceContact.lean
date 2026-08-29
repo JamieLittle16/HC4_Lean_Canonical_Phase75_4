@@ -38,6 +38,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+-- CI anchor: verify A19.97 after the generated inventory refresh.
+
 /-- In the surviving different-facet lower `.qs` branch, the cleared rational
 contact is already an honest integral source weight of slope at least two. -/
 theorem qs_ray_otherFacet_integral_source_contact
