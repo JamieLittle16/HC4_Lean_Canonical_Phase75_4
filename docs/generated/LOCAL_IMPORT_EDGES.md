@@ -334,6 +334,8 @@ human architecture guide.
   - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
   - `HC4.Newton.FiniteSupportExposedFaceRefinement`
+- `HC4.Newton.FiniteSupportQuadraticClockRefinement`
+  - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Polynomial.MonomialHessian`
