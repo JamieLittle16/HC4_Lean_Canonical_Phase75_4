@@ -64,6 +64,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+-- CI anchor: compile the source-native weighted-contact singularity after inventory refresh.
+
 /-- **A19.100 source-native weighted-contact singularity.**  In the genuine
 lower `.qs` other-facet branch, the integral contact slope exposes an actual
 maximal weighted initial form of the represented special fibre whose Hessian
