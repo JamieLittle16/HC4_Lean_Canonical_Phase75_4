@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6861**.
+Distinct declaration spellings indexed: **6865**.
 
 ## Repeated declaration spellings
 
@@ -2704,6 +2704,7 @@ Distinct declaration spellings indexed: **6861**.
 - `binaryStaircaseProfileResidual` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileResidual_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileResidual_eq_zero_of_hessianDet_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessian`
+- `binaryStaircaseProfileResidual_map_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `binaryStaircaseProfileSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileSecondEuler_C_mul_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileSecondEuler_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
@@ -4504,6 +4505,9 @@ Distinct declaration spellings indexed: **6861**.
 - `made` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
 - `mapCoeffs` — `def` in `HC4.Toric.CoefficientDescent`
 - `mapMatrix_lineMomentHessian` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `map_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
+- `map_binaryStaircaseProfileSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
+- `map_eulerDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `map_evalOne_reesVectorProjectiveWedge` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_evalOne_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
