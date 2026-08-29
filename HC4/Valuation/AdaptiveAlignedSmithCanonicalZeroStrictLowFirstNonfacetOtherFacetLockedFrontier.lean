@@ -12,7 +12,8 @@ cyclic facets.
 This file is the finite assembly seam between those two statements.  It does
 not add a new progress measure or a new geometric alternative: it simply
 eliminates the abstract `next ≠ .qs` witness and exposes the already-proved
-strict proportional drop in the appropriate transverse pair.
+strict proportional drop in the appropriate transverse pair.  The packaged
+frontier below is therefore lossless with respect to the A19.93 witness.
 -/
 
 namespace HC4.Valuation
