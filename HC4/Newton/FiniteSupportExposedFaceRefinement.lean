@@ -32,6 +32,8 @@ noncomputable section
 open HC4.Polynomial
 open MvPolynomial
 
+-- CI anchor: compile the coefficient-retaining refinement adapters.
+
 /-- The support of an exact weighted initial form is precisely the abstract
 upper exposed face of the source support, provided the source is globally
 bounded above by the selected level. -/
