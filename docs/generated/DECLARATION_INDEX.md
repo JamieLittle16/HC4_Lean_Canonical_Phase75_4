@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6718**.
+Distinct declaration spellings indexed: **6721**.
 
 ## Repeated declaration spellings
 
@@ -1284,6 +1284,7 @@ Distinct declaration spellings indexed: **6718**.
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.auxiliary_cross_proportional` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetInitialData.balanced` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
+- `CrossFacetInitialData.coeff_face_eq_source_of_mem` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.coeff_qsCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.exists_faceExponent_of_qsCoefficientPolynomial_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.face_weight_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
@@ -4130,11 +4131,13 @@ Distinct declaration spellings indexed: **6718**.
 - `initialForm_binaryHessianDetCross_eq_nextComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_binaryHessianEntry_eq_componentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_binaryHessianEntry_eq_integerComponentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
+- `initialForm_coeff_eq_source_of_mem` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_determinant_eq_self` — `theorem` in `HC4.Polynomial.DeterminantWeight`
 - `initialForm_directionalMixedDerivative_eq_component` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_directionalMixedDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
 - `initialForm_directionalSecondDerivative_eq_component` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_directionalSecondDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
+- `initialForm_eq_of_exposedSupport_and_coeff` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_eq_self_of_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_eq_zero_of_isWeightLE` — `theorem` in `HC4.Polynomial.WeightBounds`
 - `initialForm_eq_zero_of_isWeightLT` — `theorem` in `HC4.Polynomial.WeightBounds`
