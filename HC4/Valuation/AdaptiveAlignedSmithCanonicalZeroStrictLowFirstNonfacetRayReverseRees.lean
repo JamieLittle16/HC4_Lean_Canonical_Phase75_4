@@ -1,6 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees
-import HC4.Newton.FiniteSupportPositiveExposedFaceRefinement
+import HC4.Newton.FiniteSupportDominantClockRefinement
 import HC4.Valuation.BoundedReverseWeightedRees
 import Mathlib.Tactic
 
@@ -11,16 +11,17 @@ A19.104a makes the final balance-free ray an exact integer-weight initial form
 of the represented determinant-one source.  The signed direct weight need not
 itself be suitable for reverse Rees covariance.  We therefore restrict it back
 to the integral contact face and use that contact as a positive primary
-exposure.  A sufficiently large lexicographic multiple keeps the same ray
-while making all four final coordinate weights, the final source level, and
-the four-dimensional Hessian clock positive.
+exposure.
 
-Casting those positive integers to naturals gives an honest bounded reverse
-Rees family.  Its special fibre is literally `C.ray.face`, its determinant is a
-positive pure parameter power, and consequently it has an actual positive
-parameter layer.  No lower source monomial is asserted to lie on the static
-ray: later layers are retained as genuine deformations of this ray-leading
-family.
+The strict-low source witness gives more than positivity of the contact Hessian
+clock: that clock is strictly larger than the contact source level.  A
+sufficiently large lexicographic refinement preserves this strict margin while
+keeping the same final ray.  Consequently the resulting natural reverse-Rees
+family has all positive source weights, positive level, and determinant-closing
+order strictly above its source level.
+
+Its special fibre is literally `C.ray.face`; later parameter layers are genuine
+deformations and are never asserted to lie on the static ray.
 -/
 
 namespace HC4.Valuation
@@ -74,6 +75,8 @@ structure QsOtherFacetRayReverseReesPackage
           T.terminal.blocker.presented.family) bound)
       (4 * level - 2 * ∑ i : Fin 4, weight i)
   defect_pos : 0 < 4 * level - 2 * ∑ i : Fin 4, weight i
+  level_lt_defect :
+    level < 4 * level - 2 * ∑ i : Fin 4, weight i
   positiveLayer :
     HasPositiveActualParameterLayer
       (reverseWeightedReesFamily weight level
@@ -82,8 +85,8 @@ structure QsOtherFacetRayReverseReesPackage
 
 /-- **A19.104b ray-leading Rees construction.**  The surviving `.qs`
 other-facet endpoint admits a positive natural source weight whose exact
-maximal face is the already-locked affine ray, with a positive determinant
-clock and hence a genuine later source layer. -/
+maximal face is the already-locked affine ray, with determinant clock strictly
+above the source level and hence a genuine later source layer. -/
 theorem qs_ray_otherFacet_rayReverseRees_package
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
@@ -100,7 +103,7 @@ theorem qs_ray_otherFacet_rayReverseRees_package
   let c0 : ℤ := ((C.scale * T.topFace.degree : ℕ) : ℤ)
 
   rcases C.qs_ray_otherFacet_contactRees_package hthree hne houtThree with
-    ⟨r, _contactBound, hr, hbump, _hsource, _contactSpecial,
+    ⟨r, _contactBound, hr, hbump, hsource, _contactSpecial,
       _contactZero, _contactDefect, contactDeltaPos, _contactPositive⟩
 
   have hcontact :
@@ -142,8 +145,6 @@ theorem qs_ray_otherFacet_rayReverseRees_package
 
   have hscaleZ : (0 : ℤ) < (C.scale : ℤ) := by
     exact_mod_cast C.scale_pos
-  have hbumpZ : (0 : ℤ) < (C.bump : ℤ) := by
-    exact_mod_cast C.bump_pos
   have hw0pos : ∀ i : Fin 4, 0 < w0 i := by
     intro i
     by_cases hi : i = j
@@ -160,13 +161,10 @@ theorem qs_ray_otherFacet_rayReverseRees_package
   have hinnerNat :
       2 * (r + 4) < 4 * T.topFace.degree :=
     Nat.sub_pos_iff_lt.mp contactDeltaPos
-  have hinnerZ :
-      (2 : ℤ) * ((r : ℤ) + 4) <
-        4 * (T.topFace.degree : ℤ) := by
-    exact_mod_cast hinnerNat
   have hinner :
       0 < 4 * (T.topFace.degree : ℤ) -
         2 * ((r : ℤ) + 4) := by
+    exact_mod_cast hinnerNat
     omega
   have hclockEq :
       4 * c0 - 2 * ∑ i : Fin 4, w0 i =
@@ -177,14 +175,29 @@ theorem qs_ray_otherFacet_rayReverseRees_package
     rw [hbump]
     push_cast
     ring
-  have hclock0 :
-      0 < 4 * c0 - 2 * ∑ i : Fin 4, w0 i := by
-    rw [hclockEq]
-    exact mul_pos hscaleZ hinner
 
-  rcases HC4.Newton.exists_nat_refine_exposed_face_fin4_positive_clock
-      F.support hsourceNonempty hcontact hsecondary hw0pos hc0pos hclock0 with
-    ⟨M, _hM, hfinalRaw, hweightPosRaw, hlevelPosRaw, hclockPosRaw⟩
+  rcases T.strictLow_sourceCodimensionTwo_two_le with
+    ⟨e, he, hedeg, he0, _hecodim⟩
+  have heBound := hsource he
+  have hstrong : 2 * r + 3 ≤ T.topFace.degree := by
+    omega
+  have hstrongZ :
+      (2 : ℤ) * (r : ℤ) + 3 ≤ (T.topFace.degree : ℤ) := by
+    exact_mod_cast hstrong
+  have hinnerDominant :
+      (T.topFace.degree : ℤ) <
+        4 * (T.topFace.degree : ℤ) - 2 * ((r : ℤ) + 4) := by
+    omega
+  have hdominant0 :
+      c0 < 4 * c0 - 2 * ∑ i : Fin 4, w0 i := by
+    rw [hclockEq]
+    dsimp [c0]
+    push_cast
+    nlinarith
+
+  rcases HC4.Newton.exists_nat_refine_exposed_face_fin4_clock_gt_level
+      F.support hsourceNonempty hcontact hsecondary hw0pos hc0pos hdominant0 with
+    ⟨M, _hM, hfinalRaw, hweightPosRaw, hlevelPosRaw, hdominantRaw⟩
 
   let Wz : Fin 4 → ℤ := fun i => (M : ℤ) * w0 i + v i
   let Lz : ℤ := (M : ℤ) * c0 + d
@@ -198,9 +211,12 @@ theorem qs_ray_otherFacet_rayReverseRees_package
     simpa [Wz] using hweightPosRaw
   have hLzpos : 0 < Lz := by
     simpa [Lz] using hlevelPosRaw
+  have hdominantZ :
+      Lz < 4 * Lz - 2 * ∑ i : Fin 4, Wz i := by
+    simpa [Wz, Lz] using hdominantRaw
   have hclockZ :
-      0 < 4 * Lz - 2 * ∑ i : Fin 4, Wz i := by
-    simpa [Wz, Lz] using hclockPosRaw
+      0 < 4 * Lz - 2 * ∑ i : Fin 4, Wz i :=
+    lt_trans hLzpos hdominantZ
   have hExactZ :
       HC4.Polynomial.initialForm Wz Lz F = C.ray.face :=
     HC4.Newton.initialForm_eq_of_exposedSupport_and_coeff
@@ -254,6 +270,18 @@ theorem qs_ray_otherFacet_rayReverseRees_package
       0 < 4 * D - 2 * ∑ i : Fin 4, W i :=
     Nat.sub_pos_iff_lt.mpr hclockLt
 
+  have hdominantCast :
+      (D : ℤ) < ((4 * D - 2 * ∑ i : Fin 4, W i : ℕ) : ℤ) := by
+    rw [Nat.cast_sub hnonneg]
+    push_cast
+    have hz := hdominantZ
+    rw [← hcastW, ← hcastD] at hz
+    push_cast at hz
+    exact hz
+  have hlevelLtDelta :
+      D < 4 * D - 2 * ∑ i : Fin 4, W i := by
+    exact_mod_cast hdominantCast
+
   have hdetF : HC4.Polynomial.hessianDeterminant F = 1 := by
     dsimp [F]
     exact T.terminal.blocker.presented.zeroDefect_specialFiber_hessianDeterminant_eq_one
@@ -295,6 +323,7 @@ theorem qs_ray_otherFacet_rayReverseRees_package
     special_hessian_zero := by simpa [F] using hspecialZero
     hessianDefect := by simpa [F] using hdef
     defect_pos := hDelta
+    level_lt_defect := hlevelLtDelta
     positiveLayer := by simpa [F] using hpositive
   }⟩
 
