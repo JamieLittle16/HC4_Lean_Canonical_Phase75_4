@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperface
 import HC4.Newton.FiniteSupportExposedFaceRefinement
+import HC4.Polynomial.MaximalHessianInitial
 import Mathlib.Tactic
 
 /-!
@@ -14,11 +15,13 @@ corresponding exact initial form of the represented source and prove that its
 support is literally the stored first strict superface.  Consequently:
 
 * every monomial of the locked degree-one ray is retained;
-* at least one genuinely new source monomial is retained; and
+* at least one genuinely new source monomial is retained;
 * every retained coefficient is exactly the original represented-source
-  coefficient.
+  coefficient; and
+* the honest first-superface polynomial still has zero Hessian determinant.
 
-No planarity, Hessian-rank claim, or weighted-homogeneity shortcut is added.
+No planarity, Hessian-rank strengthening, or weighted-homogeneity shortcut is
+added.
 -/
 
 namespace HC4.Valuation
@@ -136,6 +139,16 @@ theorem QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem
   exact HC4.Newton.initialForm_coeff_eq_source_of_mem
     S.combinedWeight S.combinedLevel
     (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) he
+
+/-- Hessian singularity survives the exact first-superface exposure. -/
+theorem QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero
+    (S : QsOtherFacetRayFirstSuperfacePackage C R) :
+    HC4.Polynomial.hessianDeterminant S.polynomial = 0 := by
+  unfold QsOtherFacetRayFirstSuperfacePackage.polynomial
+  exact HC4.Polynomial.hessianDeterminant_initialForm_eq_zero_of_eq_zero
+    S.combinedWeight S.combinedLevel
+    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+    S.combinedWeight_bound C.hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
