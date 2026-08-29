@@ -25,6 +25,8 @@ open HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+-- CI anchor: compile A19.104a together with the positive refinement layer.
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
