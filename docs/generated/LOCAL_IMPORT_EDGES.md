@@ -2165,6 +2165,10 @@ human architecture guide.
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.RationalRigidity.RankThreeAffineTopBoundary`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
+  - `HC4.Newton.FiniteSupportCrossFacetRay`
+  - `HC4.Newton.FiniteSupportExposedFaceRefinement`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
   - `HC4.RationalRigidity.RankThreeTerminalDirectionSplit`

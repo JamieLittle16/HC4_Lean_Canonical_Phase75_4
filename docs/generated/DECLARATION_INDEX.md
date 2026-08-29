@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6716**.
+Distinct declaration spellings indexed: **6718**.
 
 ## Repeated declaration spellings
 
@@ -3658,6 +3658,7 @@ Distinct declaration spellings indexed: **6716**.
 - `fin4_distinct_01` — `theorem` in `HC4.Newton.RigidPacketEvaluatedHessianChart`
 - `fin4_distinct_02` — `theorem` in `HC4.Newton.RigidPacketEvaluatedHessianChart`
 - `fin4_distinct_12` — `theorem` in `HC4.Newton.RigidPacketEvaluatedHessianChart`
+- `fin4_finsupp_weight_linear_combination` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
 - `fin4_kernelBlowupSection_derivativeProduct_kernel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `fin4_kernelBlowupSection_derivativeProduct_of_ne` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `fin4_kernelBlowupSection_monomialProduct` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
@@ -5612,6 +5613,7 @@ Distinct declaration spellings indexed: **6716**.
 - `ray_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- `ray_support_directly_exposed_in_represented_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
 - `recenteredBlocker_exactFirstLayer_or_strictResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `recenteredBlocker_firstWallCompetition` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `recenteredCandidate_mem_projectedSupport_and_grade` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
