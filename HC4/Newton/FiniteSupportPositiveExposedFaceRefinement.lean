@@ -21,6 +21,26 @@ noncomputable section
 
 open scoped BigOperators
 
+/-- Finsupp weight is linear in a linear combination of two `Fin 4` source
+weights. -/
+theorem finsupp_weight_fin4_linear_combination
+    (M : ℤ) (w v : Fin 4 → ℤ) (e : Fin 4 →₀ ℕ) :
+    Finsupp.weight (fun i => M * w i + v i) e =
+      M * Finsupp.weight w e + Finsupp.weight v e := by
+  classical
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    · rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+      · rw [Fin.sum_univ_four, Fin.sum_univ_four, Fin.sum_univ_four]
+        push_cast
+        ring
+      · intro i
+        simp
+    · intro i
+      simp
+  · intro i
+    simp
+
 /-- An exposed face remains exposed after restricting the ambient support to
 an intermediate set which still contains the face. -/
 theorem IsExposedFace.restrict_ambient
@@ -42,18 +62,17 @@ theorem IsExposedFace.restrict_ambient
 
 /-- **Positive four-dimensional refinement.**
 
-Suppose a finite support is first exposed by a strictly positive integer source
-weight `w` at a positive level `c`, and its Hessian covariance clock
+Suppose a finite source support is first exposed by a strictly positive integer
+source weight `w` at a positive level `c`, and its Hessian covariance clock
 `4*c - 2*sum w` is positive.  Any further signed exposure `v,d` inside that
 face can be absorbed into one sufficiently large natural multiple of the
 primary weight.  The resulting direct weight still has positive coordinates,
 positive level, and positive Hessian clock. -/
 theorem exists_nat_refine_exposed_face_fin4_positive_clock
-    {α : Type*} [DecidableEq α]
-    (S : Finset α) (hS : S.Nonempty)
-    {F G : Set α}
+    (S : Finset (Fin 4 →₀ ℕ)) (hS : S.Nonempty)
+    {F G : Set (Fin 4 →₀ ℕ)}
     {w v : Fin 4 → ℤ} {c d : ℤ}
-    (hF : IsExposedFace (↑S : Set α) F
+    (hF : IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) F
       (fun x => Finsupp.weight w x) c)
     (hG : IsExposedFace F G
       (fun x => Finsupp.weight v x) d)
@@ -62,7 +81,7 @@ theorem exists_nat_refine_exposed_face_fin4_positive_clock
     (hclock : 0 < 4 * c - 2 * ∑ i : Fin 4, w i) :
     ∃ M : ℕ,
       0 < M ∧
-      IsExposedFace (↑S : Set α) G
+      IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) G
         (fun x =>
           Finsupp.weight (fun i => (M : ℤ) * w i + v i) x)
         ((M : ℤ) * c + d) ∧
@@ -96,11 +115,11 @@ theorem exists_nat_refine_exposed_face_fin4_positive_clock
   have hBMz : (B : ℤ) ≤ (M : ℤ) := by exact_mod_cast hBM
   have hMz : (0 : ℤ) < (M : ℤ) := by exact_mod_cast hMpos
   have hface :
-      IsExposedFace (↑S : Set α) G
+      IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) G
         (fun x =>
           Finsupp.weight (fun i => (M : ℤ) * w i + v i) x)
         ((M : ℤ) * c + d) := by
-    simpa only [HC4.Valuation.fin4_finsupp_weight_linear_combination] using hfaceRaw
+    simpa only [finsupp_weight_fin4_linear_combination] using hfaceRaw
 
   have hM_mul_weight : ∀ i : Fin 4, (M : ℤ) ≤ (M : ℤ) * w i := by
     intro i
