@@ -265,9 +265,9 @@ structure DegreeOneTerminalEvalData (K : Type u) [Field K] [CharZero K] where
     (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S
 
 set_option maxHeartbeats 1000000 in
-/-- Replays the already-established A19.90 unit-step derivation directly from
-packed data.  In particular this deliberately does not apply the pathological
-`rankThree_raw_target_eval_two_of_source_degree_one_unit_step` wrapper. -/
+/-- Direct packed derivation of the single `rho = 2` relation needed by A19.91.
+This bypasses both A19.90 wrapper theorems and the large combined
+`exists_rankThreeAutonomousPolynomial_unit_linear_top_relation` package. -/
 theorem DegreeOneTerminalEvalData.evalTwo
     [IsAlgClosed K]
     (D : DegreeOneTerminalEvalData K) :
@@ -278,43 +278,92 @@ theorem DegreeOneTerminalEvalData.evalTwo
       Polynomial.eval (2 : K)
         (HC4.Polynomial.rankThreeEtaNumeratorPolynomial
           (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S) := by
-  have hphiPos : 0 < D.phi.natDegree := by omega
-  rcases
-      HC4.RationalRigidity.exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
-        (K := K) (A := D.A) (B := D.B) (C := D.C) (P := 1)
-        (Q := D.Q) (R := D.R) (S := D.S) (phi := D.phi)
-        D.hA D.hB D.hC (by norm_num) hphiPos D.hphi0 D.hcert with
-    ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
+  have hphiPos : 0 < D.phi.natDegree := by
+    rw [D.hphiDeg]
+    norm_num
+  rcases D.hcert with ⟨b, hb, hden, hidentity⟩
+  have hdenNat : HC4.RationalRigidity.rankThreeTargetDenominator
+      (D.A : K) (D.B : K) (D.C : K) ((1 : ℕ) : K) D.Q D.R D.S =
+        Polynomial.C b := by
+    simpa only [Nat.cast_one] using hden
+  have hidentityNat :
+      Polynomial.aeval (HC4.RationalRigidity.logarithmicSourceRatFunc D.phi)
+          (HC4.RationalRigidity.rankThreeAutonomousPolynomial
+            (D.A : K) (D.B : K) (D.C : K) ((1 : ℕ) : K)
+            D.Q D.R D.S b) =
+        HC4.RationalRigidity.logarithmicSourceEtaRatFunc D.phi := by
+    simpa only [Nat.cast_one] using hidentity
   let T := HC4.RationalRigidity.rankThreeAutonomousPolynomial
-    (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S b
-  have hT1' : T.coeff 1 = (1 : K) := by simpa [T] using hT1
+    (D.A : K) (D.B : K) (D.C : K) ((1 : ℕ) : K) D.Q D.R D.S b
+
+  have hdegT0 :=
+    HC4.RationalRigidity.rankThreeAutonomousPolynomial_natDegree_le_two_of_certificate
+      (K := K) (A := D.A) (B := D.B) (C := D.C) (P := 1)
+      (Q := D.Q) (R := D.R) (S := D.S) (phi := D.phi)
+      D.hA D.hB D.hC (by norm_num) hphiPos D.hphi0
+      ⟨b, hb, hdenNat, hidentityNat⟩ b hb hdenNat hidentityNat
+  have hdegT : T.natDegree ≤ 2 := by
+    simpa [T] using hdegT0
+
+  have hcoeff := HC4.RationalRigidity.rankThreeAutonomousPolynomial_coeff_zero_one
+    (K := K) (A := D.A) (B := D.B) (C := D.C) (P := 1)
+    (Q := D.Q) (R := D.R) (S := D.S) (b := b)
+    D.hA D.hB D.hC (by norm_num) hb hdenNat
+  have hT0 : T.coeff 0 = 0 := by
+    simpa [T] using hcoeff.1
+  have hT1 : T.coeff 1 = (1 : K) := by
+    have hT1raw : T.coeff 1 = ((1 : ℕ) : K)⁻¹ := by
+      simpa [T] using hcoeff.2
+    simpa using hT1raw
+
+  have hphi : D.phi ≠ 0 := by
+    intro hz
+    have hzeroDeg : D.phi.natDegree = 0 := by simp [hz]
+    rw [D.hphiDeg] at hzeroDeg
+    norm_num at hzeroDeg
+  have hquad :
+      HC4.Polynomial.QuadraticAutonomousLogODE
+        (T.coeff 2) (T.coeff 1) D.phi := by
+    apply HC4.RationalRigidity.quadraticAutonomousLogODE_of_degree_le_two_ratFunc_identity
+      hphi
+    · exact hdegT
+    · exact hT0
+    · simpa [T] using hidentityNat
+  have htop := HC4.Polynomial.quadraticAutonomous_top_relation
+    (A := T.coeff 2) (B := T.coeff 1) hphiPos hquad
+  rw [hT1] at htop
+
   have hT2 : T.coeff 2 = (-1 : K) := by
     have htop' : T.coeff 2 * (D.phi.natDegree : K) + 1 = 0 := by
-      simpa [T] using htop
+      exact htop
     rw [D.hphiDeg] at htop'
     norm_num at htop' ⊢
     exact eq_neg_of_add_eq_zero_left htop'
   have hshape :
       T = Polynomial.C (T.coeff 1) * Polynomial.X +
         Polynomial.C (T.coeff 2) * Polynomial.X ^ 2 :=
-    HC4.RationalRigidity.eq_linear_add_quadratic_of_natDegree_le_two
-      (by simpa [T] using hdegT) (by simpa [T] using hT0)
+    HC4.RationalRigidity.eq_linear_add_quadratic_of_natDegree_le_two hdegT hT0
   have hTeval : Polynomial.eval (2 : K) T = (-2 : K) := by
-    rw [hshape, hT1', hT2]
+    rw [hshape, hT1, hT2]
     norm_num
+
   have hraw :=
     HC4.RationalRigidity.rankThreeAutonomousPolynomial_mul_rawDenominator
-      (K := K) D.hA D.hB D.hC (by norm_num) hb hden
+      (K := K) (A := D.A) (B := D.B) (C := D.C) (P := 1)
+      (Q := D.Q) (R := D.R) (S := D.S) (b := b)
+      D.hA D.hB D.hC (by norm_num) hb hdenNat
   have hrawT :
       T * HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-          (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S =
+          (D.A : K) (D.B : K) (D.C : K) ((1 : ℕ) : K)
+          D.Q D.R D.S =
         HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (D.A : K) (D.B : K) (D.C : K) (1 : K) D.Q D.R D.S := by
+          (D.A : K) (D.B : K) (D.C : K) ((1 : ℕ) : K)
+          D.Q D.R D.S := by
     simpa [T] using hraw
   have h2 := congrArg (Polynomial.eval (2 : K)) hrawT
   simp only [Polynomial.eval_mul] at h2
   rw [hTeval] at h2
-  exact h2
+  simpa only [Nat.cast_one] using h2
 
 /-- State-free A19.91 adapter: construct the packed terminal once, derive the
 single scalar relation, then finish by elementary codimension-two algebra. -/
