@@ -118,13 +118,16 @@ theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
       HC4.Polynomial.rankThreeEtaNumeratorPolynomial
         (A : K) (B : K) (C : K) (1 : K) Q R S := by
   have hphiPos : 0 < phi.natDegree := by omega
+  have hcertNat : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
+    simpa only [Nat.cast_one] using hcert
   rcases exists_rankThreeAutonomousPolynomial_unit_linear_top_relation
       (K := K) (A := A) (B := B) (C := C) (P := 1)
       (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC (by norm_num) hphiPos hphi0 hcert with
+      hA hB hC (by norm_num) hphiPos hphi0 hcertNat with
     ⟨_hPone, _hphi1, b, hb, hden, _hidentity, hdegT, hT0, hT1, htop⟩
   let T := rankThreeAutonomousPolynomial
-    (A : K) (B : K) (C : K) (1 : K) Q R S b
+    (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S b
   have hT2 : T.coeff 2 = (-1 : K) := by
     have htop' : T.coeff 2 * (phi.natDegree : K) + 1 = 0 := by
       simpa [T] using htop
@@ -142,9 +145,9 @@ theorem rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step
   have hraw := rankThreeAutonomousPolynomial_mul_rawDenominator
     (K := K) hA hB hC (by norm_num) hb hden
   rw [show rankThreeAutonomousPolynomial
-      (A : K) (B : K) (C : K) (1 : K) Q R S b =
+      (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S b =
         Polynomial.X - Polynomial.X ^ 2 by simpa [T] using hTexact] at hraw
-  exact hraw
+  simpa only [Nat.cast_one] using hraw
 
 set_option maxHeartbeats 1000000 in
 /-- **Unit-step degree-one raw relation at `rho = 2`.**  Final endpoint
@@ -169,22 +172,31 @@ theorem rankThree_raw_target_eval_two_of_source_degree_one_unit_step
           (A : K) (B : K) (C : K) (1 : K) Q R S) := by
   have hphiPos : 0 < phi.natDegree := by omega
   rcases hcert with ⟨b, hb, hden, hidentity⟩
+  have hdenNat : rankThreeTargetDenominator
+      (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S = Polynomial.C b := by
+    simpa only [Nat.cast_one] using hden
+  have hidentityNat :
+      Polynomial.aeval (logarithmicSourceRatFunc phi)
+          (rankThreeAutonomousPolynomial
+            (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S b) =
+        logarithmicSourceEtaRatFunc phi := by
+    simpa only [Nat.cast_one] using hidentity
   let T := rankThreeAutonomousPolynomial
-    (A : K) (B : K) (C : K) (1 : K) Q R S b
+    (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S b
 
   have hdegT0 :=
     rankThreeAutonomousPolynomial_natDegree_le_two_of_certificate
       (K := K) (A := A) (B := B) (C := C) (P := 1)
       (Q := Q) (R := R) (S := S) (phi := phi)
       hA hB hC (by norm_num) hphiPos hphi0
-      ⟨b, hb, hden, hidentity⟩ b hb hden hidentity
+      ⟨b, hb, hdenNat, hidentityNat⟩ b hb hdenNat hidentityNat
   have hdegT : T.natDegree ≤ 2 := by
     simpa [T] using hdegT0
 
   have hcoeff := rankThreeAutonomousPolynomial_coeff_zero_one
     (K := K) (A := A) (B := B) (C := C) (P := 1)
     (Q := Q) (R := R) (S := S) (b := b)
-    hA hB hC (by norm_num) hb hden
+    hA hB hC (by norm_num) hb hdenNat
   have hT0 : T.coeff 0 = 0 := by
     simpa [T] using hcoeff.1
   have hT1 : T.coeff 1 = (1 : K) := by
@@ -202,7 +214,7 @@ theorem rankThree_raw_target_eval_two_of_source_degree_one_unit_step
     apply quadraticAutonomousLogODE_of_degree_le_two_ratFunc_identity hphi
     · exact hdegT
     · exact hT0
-    · simpa [T] using hidentity
+    · simpa [T] using hidentityNat
   have htop := HC4.Polynomial.quadraticAutonomous_top_relation
     (A := T.coeff 2) (B := T.coeff 1) hphiPos hquad
   rw [hT1] at htop
@@ -224,17 +236,17 @@ theorem rankThree_raw_target_eval_two_of_source_degree_one_unit_step
   have hraw := rankThreeAutonomousPolynomial_mul_rawDenominator
     (K := K) (A := A) (B := B) (C := C) (P := 1)
     (Q := Q) (R := R) (S := S) (b := b)
-    hA hB hC (by norm_num) hb hden
+    hA hB hC (by norm_num) hb hdenNat
   have hrawT :
       T * HC4.Polynomial.rankThreeEtaDenominatorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S =
+          (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S =
         HC4.Polynomial.rankThreeEtaNumeratorPolynomial
-          (A : K) (B : K) (C : K) (1 : K) Q R S := by
+          (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
     simpa [T] using hraw
   have h2 := congrArg (Polynomial.eval (2 : K)) hrawT
   simp only [Polynomial.eval_mul] at h2
   rw [hTeval] at h2
-  exact h2
+  simpa only [Nat.cast_one] using h2
 
 end
 
