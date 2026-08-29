@@ -61,6 +61,8 @@ Distinct declaration spellings indexed: **6861**.
 - `hasTransverse` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
+- `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `hessian_transverseSourceReesFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `impossible_of_JC2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2`
 - `impossible_of_noSecondMarkedZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -129,6 +131,7 @@ Distinct declaration spellings indexed: **6861**.
 - `toClockLeft` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `toClockRight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `transverseReesDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `weight_eq_degree_of_secondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_eq_zero_of_rightPoint_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_le_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -4133,7 +4136,7 @@ Distinct declaration spellings indexed: **6861**.
 - `hessian_initialForm_entry` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `hessian_kernelInflateHom_entry` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessian_linearPower_mulVec_rigidTopKernelDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
-- `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `hessian_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `hessian_parameterRamificationFamily_entry` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -4144,7 +4147,7 @@ Distinct declaration spellings indexed: **6861**.
 - `hessian_smithConformalInflateHom_entry` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessian_succ_succ_preserves_longitudinalExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `hessian_succ_zero_longitudinalExponent_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
-- `hessian_transverseSourceReesFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `hessian_transverseSourceReesFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_transverseSourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `hessian_zeroDefectConstantParameterFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
 - `hessian_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
@@ -6816,7 +6819,7 @@ Distinct declaration spellings indexed: **6861**.
 - `transversePlanarAffineSupport_of_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
 - `transversePureAffine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `transversePureAffine_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
-- `transverseReesDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `transverseReesDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `transverseReesDerivativeCoefficient_eq_X_pow_shift` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `transverseReesDerivativeParameterShift` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `transverseReesKernelParameterShift` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`

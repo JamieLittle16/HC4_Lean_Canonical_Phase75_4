@@ -2643,6 +2643,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTangentialRawRay`
   - `HC4.Newton.SchurTangentialRawRay`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerTangency`
+- `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
+  - `HC4.Valuation.KernelInflationHessianDefect`
 - `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLeadingKernel`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
