@@ -10,16 +10,17 @@ import Mathlib.Tactic
 The abstract exposed-face calculus already proves that a sufficiently dominant
 primary weight can absorb a secondary exposure.  The finite Newton carriers in
 HC4, however, are represented by exact `MvPolynomial.initialForm`s.  This file
-supplies the two missing state-free adapters:
+supplies the missing state-free adapters:
 
 * an exact initial form with a global upper weight bound is literally an
   `IsExposedFace` on polynomial support;
+* retained initial-form support keeps the original source coefficients;
+* an abstract exposed-support identity plus coefficient inheritance upgrades
+  back to literal equality with an exact initial form; and
 * on a finite support there is always a positive natural primary scale large
   enough for `refine_exposed_face`.
 
-The latter uses only finiteness: choose a point maximizing the possible
-secondary gain and then a natural integer strictly above that maximum.  The
-scale may moreover be required to exceed any caller-supplied natural lower
+The scale may moreover be required to exceed any caller-supplied natural lower
 bound, which is what later lets one preserve source-weight nonnegativity and a
 positive Hessian clock while collapsing nested Newton faces.
 -/
@@ -63,6 +64,61 @@ theorem initialForm_support_isExposedFace
   · intro d hd
     change d ∈ P.support at hd
     exact hLE hd
+
+/-- Every monomial retained by an exact initial form keeps its source
+coefficient unchanged. -/
+theorem initialForm_coeff_eq_source_of_mem
+    {σ K : Type*} [CommSemiring K]
+    (w : σ → ℤ) (level : ℤ) (P : MvPolynomial σ K)
+    {d : σ →₀ ℕ}
+    (hd : d ∈ (HC4.Polynomial.initialForm w level P).support) :
+    MvPolynomial.coeff d (HC4.Polynomial.initialForm w level P) =
+      MvPolynomial.coeff d P := by
+  have hne := MvPolynomial.mem_support_iff.mp hd
+  rw [HC4.Polynomial.coeff_initialForm] at hne ⊢
+  have hw : Finsupp.weight w d = level := by
+    by_contra hnot
+    rw [if_neg hnot] at hne
+    exact hne rfl
+  rw [if_pos hw]
+
+/-- If a polynomial `G` has exactly an exposed subset of `P.support` and keeps
+`P`'s coefficients on that support, then `G` is literally the corresponding
+exact initial form.  This converts the set-level refinement calculus back into
+the polynomial equality required by Rees-family constructors. -/
+theorem initialForm_eq_of_exposedSupport_and_coeff
+    {σ K : Type*} [CommSemiring K]
+    (w : σ → ℤ) (level : ℤ)
+    (P G : MvPolynomial σ K)
+    (hface : IsExposedFace
+      (↑P.support : Set (σ →₀ ℕ))
+      (↑G.support : Set (σ →₀ ℕ))
+      (fun d => Finsupp.weight w d) level)
+    (hcoeff : ∀ d ∈ G.support,
+      MvPolynomial.coeff d G = MvPolynomial.coeff d P) :
+    HC4.Polynomial.initialForm w level P = G := by
+  classical
+  apply MvPolynomial.ext
+  intro d
+  rw [HC4.Polynomial.coeff_initialForm]
+  by_cases hdG : d ∈ G.support
+  · have hdGSet : d ∈ (↑G.support : Set (σ →₀ ℕ)) := by simpa using hdG
+    have hw : Finsupp.weight w d = level := hface.weight_eq hdGSet
+    rw [if_pos hw]
+    exact (hcoeff d hdG).symm
+  · have hGzero : MvPolynomial.coeff d G = 0 :=
+      MvPolynomial.notMem_support_iff.mp hdG
+    rw [hGzero]
+    by_cases hdP : d ∈ P.support
+    · have hwne : Finsupp.weight w d ≠ level := by
+        intro hw
+        have hdPSet : d ∈ (↑P.support : Set (σ →₀ ℕ)) := by simpa using hdP
+        have hdGSet := hface.mem_iff.mpr ⟨hdPSet, hw⟩
+        exact hdG (by simpa using hdGSet)
+      rw [if_neg hwne]
+    · have hPzero : MvPolynomial.coeff d P = 0 :=
+        MvPolynomial.notMem_support_iff.mp hdP
+      simp [hPzero]
 
 /-- A finite family of integer secondary gains has a positive natural strict
 upper bound. -/
@@ -167,6 +223,19 @@ theorem CrossFacetInitialData.support_isExposedFace
   rw [D.face_eq]
   exact initialForm_support_isExposedFace
     (crossFacetWeight i j D.scale D.bump) D.level F D.weight_bound
+
+/-- The exact cross-facet face retains the incoming source coefficient on each
+of its supported exponents. -/
+theorem CrossFacetInitialData.coeff_face_eq_source_of_mem
+    {K : Type*} [Field K] [CharZero K]
+    {F : MvPolynomial (Fin 4) K} {i j : Fin 4}
+    (D : CrossFacetInitialData F i j)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ D.face.support) :
+    MvPolynomial.coeff e D.face = MvPolynomial.coeff e F := by
+  rw [D.face_eq]
+  exact initialForm_coeff_eq_source_of_mem
+    (crossFacetWeight i j D.scale D.bump) D.level F (by simpa [D.face_eq] using he)
 
 end
 
