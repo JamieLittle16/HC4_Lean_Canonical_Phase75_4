@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6678**.
+Distinct declaration spellings indexed: **6680**.
 
 ## Repeated declaration spellings
 
@@ -1969,6 +1969,8 @@ Distinct declaration spellings indexed: **6678**.
 - `PreterminalBinaryFirstDeparture.mixed_or_affine` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalSchurDepartureData` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
 - `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
+- `QsOtherFacetWeightedProfileCertificate` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
+- `QsOtherFacetWeightedProfileCertificate.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QsTwoFixedTerminalData.impossible` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QuadraticAutonomousLogODE` — `def` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
