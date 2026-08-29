@@ -12,11 +12,12 @@ polynomial.
 This file closes that representation gap.  For any polynomial supported on a
 literal rank-three segment of length one, the corresponding principal minor of
 its Euler-scaled Hessian specialises exactly to the endpoint-pencil active
-minor.  Hence a nonzero endpoint minor immediately implies that the honest
-Euler-scaled Hessian minor itself is nonzero.
+minor.  The Euler-scaled minor is just the ordinary Hessian principal minor
+multiplied by `X_i^2 X_j^2`, so the nonzero endpoint pivot finally gives a
+nonzero ordinary Hessian pivot on the honest ray itself.
 
-No injectivity of the specialisation is needed for the nonvanishing direction:
-a ring homomorphism sends zero to zero.
+No injectivity of the specialisation is needed for the first nonvanishing
+step: a ring homomorphism sends zero to zero.
 -/
 
 namespace HC4.Polynomial
@@ -26,12 +27,41 @@ noncomputable section
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/-- Principal `2 x 2` minor of the ordinary polynomial Hessian. -/
+def hessianPrincipalMinor
+    (F : MvPolynomial (Fin 4) K) (i j : Fin 4) : MvPolynomial (Fin 4) K :=
+  hessian F i i * hessian F j j - hessian F i j * hessian F j i
+
 /-- Principal `2 x 2` minor of the Euler-scaled Hessian of an honest
 four-variable polynomial. -/
 def eulerScaledHessianPrincipalMinor
     (F : MvPolynomial (Fin 4) K) (i j : Fin 4) : MvPolynomial (Fin 4) K :=
   eulerScaledHessian F i i * eulerScaledHessian F j j -
     eulerScaledHessian F i j * eulerScaledHessian F j i
+
+/-- Euler scaling contributes only the harmless monomial row/column factor to
+a principal Hessian minor. -/
+theorem eulerScaledHessianPrincipalMinor_eq_monomial_mul
+    (F : MvPolynomial (Fin 4) K) (i j : Fin 4) :
+    eulerScaledHessianPrincipalMinor F i j =
+      (MvPolynomial.X i) ^ 2 * (MvPolynomial.X j) ^ 2 *
+        hessianPrincipalMinor F i j := by
+  unfold eulerScaledHessianPrincipalMinor hessianPrincipalMinor
+  rw [eulerScaledHessian_apply, eulerScaledHessian_apply,
+    eulerScaledHessian_apply, eulerScaledHessian_apply]
+  simp only [hessian_apply]
+  ring
+
+/-- Hence a nonzero Euler-scaled principal minor forces the corresponding
+ordinary Hessian principal minor to be nonzero. -/
+theorem hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero
+    (F : MvPolynomial (Fin 4) K) (i j : Fin 4)
+    (hEuler : eulerScaledHessianPrincipalMinor F i j ≠ 0) :
+    hessianPrincipalMinor F i j ≠ 0 := by
+  intro hzero
+  apply hEuler
+  rw [eulerScaledHessianPrincipalMinor_eq_monomial_mul, hzero]
+  simp
 
 /-- On an actual degree-one rank-three support line, specialisation of the
 Euler-scaled principal minor is literally the coefficient-weighted endpoint
@@ -103,6 +133,25 @@ theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
   rw [rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
     hsupp i j] at himage
   exact hminor (by simpa using himage)
+
+/-- Direct endpoint-pivot to ordinary-Hessian-pivot adapter. -/
+theorem hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
+    {v2 v3 v4 u2 u3 u4 : ℕ}
+    {F : MvPolynomial (Fin 4) K}
+    (hsupp : IsSupportedOnRankThreeLine
+      v2 v3 v4 1 u2 u3 u4 1 F)
+    (i j : Fin 4)
+    (hminor :
+      let phi := rankThreeLineCoefficientPolynomial
+        v2 v3 v4 1 u2 u3 u4 1 F
+      weightedRankThreeEndpointActiveMinor
+        (v2 : K) (v3 : K) (v4 : K)
+        (1 : K) (u2 : K) (u3 : K) (u4 : K)
+        (phi.coeff 0) (phi.coeff 1) i j ≠ 0) :
+    hessianPrincipalMinor F i j ≠ 0 :=
+  hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero F i j
+    (eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
+      hsupp i j hminor)
 
 end
 
