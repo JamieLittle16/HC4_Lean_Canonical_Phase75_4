@@ -38,6 +38,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+-- CI anchor: elaborate A19.99 after the generated inventory refresh.
+
 /-- **A19.99 integral strict-low residual gap.**  In the genuine lower `.qs`
 other-facet branch, one retained codimension-two source monomial lies at least
 four ordinary degrees below the original maximal top face.  The witnessing
