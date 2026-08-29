@@ -329,6 +329,8 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportCrossFacetExposure`
   - `HC4.Polynomial.WeightBounds`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Newton.FiniteSupportExposedSuperface`
+  - `HC4.Newton.ExposedFaces`
 - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Newton.ExposedBalancedBoundaryStratum`
   - `HC4.Polynomial.MaximalHessianInitial`

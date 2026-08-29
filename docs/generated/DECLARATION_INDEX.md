@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6779**.
+Distinct declaration spellings indexed: **6784**.
 
 ## Repeated declaration spellings
 
@@ -3560,9 +3560,11 @@ Distinct declaration spellings indexed: **6779**.
 - `exists_firstReesProjectiveWedgeDepartureData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `exists_firstTransverseKeyHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
 - `exists_firstTransverseKeyMaximalHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
+- `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
+- `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `exists_maximal_binaryOrdinaryDegreeComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
@@ -3638,6 +3640,8 @@ Distinct declaration spellings indexed: **6779**.
 - `exposedNonlinearBalancedCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `exposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
 - `exposedSingularNonlinearBoundaryVertex` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
+- `exposedSuperfaceCandidates` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
+- `exposedSuperfaceSlope` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_balanced_monomial_rankThree_or_extremeRay` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_monomial_on_boundary_of_zero_hessian` — `theorem` in `HC4.Newton.InteriorVertex`
@@ -4483,6 +4487,7 @@ Distinct declaration spellings indexed: **6779**.
 - `mem_alignedSmithSectionWalls_exists_coordinate` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `mem_balanced_iff_negativeWeight_eq_neg_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticInitialForm`
 - `mem_canonicalStrictSmithFirstContact_iff` — `theorem` in `HC4.Valuation.StrictSmithFirstContactMinimum`
+- `mem_exposedSuperfaceCandidates` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `mem_familyParameterLayerOrders_iff` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `mem_family_support_of_coeff_at_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingQuadraticSupport`
 - `mem_negativeSmithSourceSupport` — `theorem` in `HC4.Valuation.AlignedSmithFirstStop`
