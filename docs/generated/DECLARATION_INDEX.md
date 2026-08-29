@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6808**.
+Distinct declaration spellings indexed: **6818**.
 
 ## Repeated declaration spellings
 
@@ -1994,6 +1994,16 @@ Distinct declaration spellings indexed: **6808**.
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayFirstHessianLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayFirstSuperfacePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperface`
+- `QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.combinedLevel` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.combinedWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.combinedWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.polynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.polynomial_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.ray_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.superface_exposed_coordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
+- `QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayHigherLongitudinalLayerWitness` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayProfileReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `QsOtherFacetRayReverseReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
