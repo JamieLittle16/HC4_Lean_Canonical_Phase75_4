@@ -789,6 +789,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
+- `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+  - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
   - `HC4.Polynomial.RankThreeLineReconstruction`
   - `HC4.Polynomial.RankThreeWeightedPencils`

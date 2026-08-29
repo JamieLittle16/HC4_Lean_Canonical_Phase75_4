@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6823**.
+Distinct declaration spellings indexed: **6826**.
 
 ## Repeated declaration spellings
 
@@ -3456,6 +3456,8 @@ Distinct declaration spellings indexed: **6823**.
 - `eulerLinear_eq_one` — `theorem` in `HC4.FacetRigidity.EulerEquation`
 - `eulerLinear_eq_one_of_sq_eq_one` — `theorem` in `HC4.FacetRigidity.EulerEquation`
 - `eulerScaledHessian` — `def` in `HC4.Polynomial.ComplementaryMvSubstitution`
+- `eulerScaledHessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `eulerScaledHessian_apply` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
 - `eulerScaledHessian_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `eulerScaledHessian_eq` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
@@ -5614,6 +5616,7 @@ Distinct declaration spellings indexed: **6823**.
 - `rankThree_crossFacetInitial_or_topFaceOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
 - `rankThree_crossFacet_or_firstNonfacetCrossFacet_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `rankThree_crossFacet_or_nonlinearOutside_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
+- `rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `rankThree_eta_eq_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
