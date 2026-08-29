@@ -6405,7 +6405,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer.lean`
-- Purpose: A19.106: first Hessian layer and determinant timing of the ray-leading Rees family
+- Purpose: A19.106: first preclosing Hessian layer of the ray-leading Rees family
 - A-labels: `A19.105`, `A19.106`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`, `HC4.Valuation.FirstSchurDepartureBridge`
 - External imports: `Mathlib.Tactic`
