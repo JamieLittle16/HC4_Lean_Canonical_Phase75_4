@@ -4,19 +4,20 @@ import HC4.Valuation.FirstSchurDepartureBridge
 import Mathlib.Tactic
 
 /-!
-# A19.106: first Hessian layer and determinant timing of the ray-leading Rees family
+# A19.106: first preclosing Hessian layer of the ray-leading Rees family
 
 A19.105 identifies the least positive source layer of the honest ray-leading
-reverse-Rees family.  Existing generic coefficient calculus already implies
-that spatial Hessians commute with exact parameter-layer extraction and that
-there are no hidden positive Hessian layers before the least actual source
-order.
+reverse-Rees family and, using the dominant determinant clock, proves that this
+order is strictly before determinant closure.  Existing generic coefficient
+calculus then gives the complete first-variation package without any new
+four-by-four determinant calculation:
 
-The pure Hessian determinant clock gives one final two-way split: the first
-actual layer is either strictly preclosing, in which case the corresponding
-full determinant layer is zero, or it occurs exactly at determinant closure.
-This file packages those facts without introducing a Schur chart or expanding
-the four-by-four determinant.
+* spatial Hessians commute with exact parameter-layer extraction;
+* every positive Hessian layer below the first actual source order vanishes;
+* the full Hessian-determinant layer at the first actual order is zero.
+
+The remaining local task is therefore purely geometric: identify the Schur
+linear source of this one honest lower layer against the locked rank-three ray.
 -/
 
 namespace HC4.Valuation
@@ -37,8 +38,8 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
-/-- Coefficient-level Hessian and timing data at the first genuine deformation
-of the locked ray. -/
+/-- Coefficient-level Hessian data at the first genuine deformation of the
+locked ray.  The determinant layer is already preclosing and hence zero. -/
 structure QsOtherFacetRayFirstHessianLayerPackage
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs)
@@ -58,21 +59,17 @@ structure QsOtherFacetRayFirstHessianLayerPackage
           (polynomialFamilySpecialFiber
             T.terminal.blocker.presented.family) R.bound)
         n = 0
-  timing :
-    L.order < 4 * R.level - 2 * ∑ i : Fin 4, R.weight i ∨
-      L.order = 4 * R.level - 2 * ∑ i : Fin 4, R.weight i
-  preclosing_determinantLayer_zero :
-    L.order < 4 * R.level - 2 * ∑ i : Fin 4, R.weight i →
-      familyParameterLayer
-        (HC4.Polynomial.hessianDeterminant
-          (reverseWeightedReesFamily R.weight R.level
-            (polynomialFamilySpecialFiber
-              T.terminal.blocker.presented.family) R.bound))
-        L.order = 0
+  determinantLayer_zero :
+    familyParameterLayer
+      (HC4.Polynomial.hessianDeterminant
+        (reverseWeightedReesFamily R.weight R.level
+          (polynomialFamilySpecialFiber
+            T.terminal.blocker.presented.family) R.bound))
+      L.order = 0
 
 /-- **A19.106 exact first-Hessian frontier.**  The first actual lower source
-face is also the first positive Hessian layer, and it is either strictly below
-the pure determinant-closing order or exactly at it. -/
+face is the first positive Hessian layer and its full determinant coefficient
+vanishes because A19.105 places it strictly before closure. -/
 theorem QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -83,7 +80,6 @@ theorem QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage
     reverseWeightedReesFamily R.weight R.level
       (polynomialFamilySpecialFiber
         T.terminal.blocker.presented.family) R.bound
-  let Delta : ℕ := 4 * R.level - 2 * ∑ i : Fin 4, R.weight i
 
   have hhessian :
       familyParameterHessianLayer Q L.order = HC4.Polynomial.hessian L.layer := by
@@ -99,23 +95,15 @@ theorem QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage
     rw [← L.order_eq_first]
     exact hnlt
 
-  have htiming : L.order < Delta ∨ L.order = Delta := by
-    exact lt_or_eq_of_le (by simpa [Delta] using L.order_le_defect)
-
-  have hpre :
-      L.order < Delta →
-        familyParameterLayer (HC4.Polynomial.hessianDeterminant Q) L.order = 0 := by
-    intro hlt
-    exact hessianDefect_parameterLayer_eq_zero_of_lt
-      Q R.hessianDefect (by simpa [Delta] using hlt)
+  have hdetzero :
+      familyParameterLayer (HC4.Polynomial.hessianDeterminant Q) L.order = 0 :=
+    hessianDefect_parameterLayer_eq_zero_of_lt
+      Q R.hessianDefect L.order_lt_defect
 
   exact ⟨{
     hessianLayer_eq := by simpa [Q] using hhessian
     lowerHessian_zero := by simpa [Q] using hlower
-    timing := by simpa [Delta] using htiming
-    preclosing_determinantLayer_zero := by
-      intro hlt
-      simpa [Q, Delta] using hpre (by simpa [Delta] using hlt)
+    determinantLayer_zero := by simpa [Q] using hdetzero
   }⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
