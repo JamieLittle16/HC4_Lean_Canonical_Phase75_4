@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6748**.
+Distinct declaration spellings indexed: **6751**.
 
 ## Repeated declaration spellings
 
@@ -1980,7 +1980,10 @@ Distinct declaration spellings indexed: **6748**.
 - `QsOtherFacetRayHigherLongitudinalLayerWitness` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayReverseReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `QsOtherFacetRayReverseReesPackage.actualLayerOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
+- `QsOtherFacetRayReverseReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
 - `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_actualLayerOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
+- `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
+- `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
 - `QsOtherFacetRayReverseReesPackage.firstActualLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayReverseReesPackage.higherLongitudinalLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
