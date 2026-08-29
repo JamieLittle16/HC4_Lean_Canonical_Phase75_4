@@ -31,7 +31,7 @@ theorem reverseWeightedReesFamily_parameterLayer_mem_iff
   rw [reverseWeightedReesFamily_parameterLayer_coeff]
   by_cases hcond : d ∈ F.support ∧ D - Finsupp.weight w d = n
   · rw [if_pos hcond]
-    exact ⟨fun hcoeff => hcond,
+    exact ⟨fun _ => hcond,
       fun _ => MvPolynomial.mem_support_iff.mp hcond.1⟩
   · rw [if_neg hcond]
     simp [hcond]
@@ -44,8 +44,9 @@ theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
     familyParameterLayer (reverseWeightedReesFamily w D F h) n = 0 := by
   ext d
   rw [reverseWeightedReesFamily_parameterLayer_coeff]
-  have hdrop : D - Finsupp.weight w d ≤ D := Nat.sub_le D _
-  have hne : D - Finsupp.weight w d ≠ n := by omega
+  have hne : D - Finsupp.weight w d ≠ n := by
+    have hdrop : D - Finsupp.weight w d ≤ D := Nat.sub_le D _
+    omega
   simp [hne]
 
 /-- Every actual parameter exponent of a bounded reverse-Rees family is at
@@ -63,25 +64,11 @@ theorem reverseWeightedReesFamily_actualLayerOrder_le_level
   rw [reverseWeightedReesFamily_coeff] at hcoeff
   by_cases hdF : d ∈ F.support
   · rw [if_pos hdF] at hcoeff
-    have hnmem : n ∈
-        (Polynomial.X ^ (D - Finsupp.weight w d) *
-          Polynomial.C (MvPolynomial.coeff d F)).support := by
-      exact Polynomial.mem_support_iff.mpr hcoeff
-    have hdegree : n ≤ D - Finsupp.weight w d := by
-      have hdeg := Polynomial.le_natDegree_of_mem_supp _ hnmem
-      have hcoeffF : MvPolynomial.coeff d F ≠ 0 :=
-        MvPolynomial.mem_support_iff.mp hdF
-      have hnat :
-          (Polynomial.X ^ (D - Finsupp.weight w d) *
-            Polynomial.C (MvPolynomial.coeff d F)).natDegree =
-              D - Finsupp.weight w d := by
-        rw [Polynomial.natDegree_mul]
-        · simp
-        · exact pow_ne_zero _ Polynomial.X_ne_zero
-        · simp [hcoeffF]
-      rw [hnat] at hdeg
-      exact hdeg
-    exact hdegree.trans (Nat.sub_le D _)
+    rw [Polynomial.coeff_mul_C, Polynomial.coeff_X_pow] at hcoeff
+    by_cases heq : D - Finsupp.weight w d = n
+    · have hdrop : D - Finsupp.weight w d ≤ D := Nat.sub_le D _
+      omega
+    · simp [heq, Ne.symm heq] at hcoeff
   · rw [if_neg hdF] at hcoeff
     exact (hcoeff rfl).elim
 
