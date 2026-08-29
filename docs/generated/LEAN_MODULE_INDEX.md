@@ -317,7 +317,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.HessianDeterminant`
 - External imports: none
-- Imported by local modules: `HC4.MongeAmpere`, `HC4.MongeAmpere.InitialFormBridge`, `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.TerminalOneZeroHessianFactor`, `HC4.Newton.TerminalTwoZeroKellerReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactSingularity`
+- Imported by local modules: `HC4.MongeAmpere`, `HC4.MongeAmpere.InitialFormBridge`, `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.TerminalOneZeroHessianFactor`, `HC4.Newton.TerminalTwoZeroKellerReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`
 - Declarations: `def IsPolynomialMongeAmpere`, `theorem initialForm_hessianDeterminant_eq_zero`, `theorem hessianDeterminant_weight_eq_zero`, `theorem not_isPolynomialMongeAmpere_of_positive_hessian_weight`
 
 ### `HC4.MongeAmpere.SchurReduction`
@@ -2081,7 +2081,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.TopProduct`, `HC4.Polynomial.HessianDeterminant`
 - External imports: none
-- Imported by local modules: `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Newton.InteriorVertex`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.ComplementarySupportedEdgeImpossible`, `HC4.RationalRigidity.RankThreeExposedEdgeTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactSingularity`
+- Imported by local modules: `HC4.MongeAmpere.MaximalInitial`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Newton.InteriorVertex`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.ComplementarySupportedEdgeImpossible`, `HC4.RationalRigidity.RankThreeExposedEdgeTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`
 - Declarations: `theorem initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm`, `theorem hessianDeterminant_initialForm_eq_zero_of_eq_zero`
 
 ### `HC4.Polynomial.MonomialHessian`
@@ -6367,10 +6367,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactSingularity.lean`
 - Purpose: A19.100: the actual integral first-contact face is Hessian singular
 - A-labels: `A19.100`, `A19.97`, `A19.98`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralLockedFrontier`, `HC4.Polynomial.MaximalHessianInitial`, `HC4.MongeAmpere.PolynomialInitial`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralLockedFrontier`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def qsIntegralContactWeight`, `theorem qsIntegralContactWeight_eq`, `theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero`
+- Declarations: `theorem follows`, `theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
 
