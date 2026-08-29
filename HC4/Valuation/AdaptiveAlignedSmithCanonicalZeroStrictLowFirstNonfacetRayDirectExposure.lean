@@ -29,6 +29,8 @@ open HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+-- CI anchor: compile the direct A19.103 ray exposure.
+
 /-- Finsupp weight is linear in a linear combination of two coordinate
 weights.  We record the `Fin 4` form used by the collapsed ray exposure. -/
 theorem fin4_finsupp_weight_linear_combination
