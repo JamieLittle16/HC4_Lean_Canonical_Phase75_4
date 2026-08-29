@@ -6266,11 +6266,11 @@ Lean itself remains authoritative for elaborated names and dependencies.
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading.lean`
 - Purpose: A19.121: exact contact-Rees layer grading dictionary
-- A-labels: `A19.121`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
+- A-labels: `A19.114`, `A19.121`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit`
+- Declarations: `def qsContactTransverseDegree`, `theorem qsIntegralContactWeight_cons`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 
@@ -6279,7 +6279,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.114`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`, `HC4.Newton.MixedDegreeAxisCollision`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - Declarations: `def qsContactRawLongitudinalProfile`, `structure QsOtherFacetContactRawLongitudinalProfilePackage`, `theorem smithTransverse_cons_zero_eq`, `theorem QsOtherFacetContactQuadraticReesPackage.rawLongitudinalProfilePackage`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
