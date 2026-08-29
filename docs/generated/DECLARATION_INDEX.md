@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6786**.
+Distinct declaration spellings indexed: **6795**.
 
 ## Repeated declaration spellings
 
@@ -2981,6 +2981,10 @@ Distinct declaration spellings indexed: **6786**.
 - `coeff_two_n_shiftedEtaNumerator_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_two_n_shiftedEtaNumerator_ne_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_two_rankThreeEtaDenominatorPolynomial_unit_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
+- `coeff_two_symmetricLinearMinor` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_one_three` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_one_two` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_two_three` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
@@ -5162,6 +5166,7 @@ Distinct declaration spellings indexed: **6786**.
 - `positive_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `positive_cross_strict_component_drop` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 - `positive_cross_sum_gap_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
+- `positive_pair_core_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `positive_rBranch_character_ne_positive_sBranch_character` — `theorem` in `HC4.Toric.BranchCharacter`
 - `positive_singletonSmithFiber_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `power_polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
@@ -6849,6 +6854,10 @@ Distinct declaration spellings indexed: **6786**.
 - `weightedHomogeneous_hasConformalQuadraticWeight` — `theorem` in `HC4.Newton.TerminalConformalFace`
 - `weightedHomogeneous_quadraticCoeff_weightSum` — `theorem` in `HC4.Newton.TerminalConformalWeight`
 - `weightedPTransitionRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+- `weightedRankThreeEndpointActiveMinor` — `def` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `weightedRankThreeEndpointActiveMinor_one_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `weightedRankThreeEndpointActiveMinor_one_two_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `weightedRankThreeEndpointPencil` — `def` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `weightedRankThreeEndpointPencil_one_one` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `weightedSparseRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
