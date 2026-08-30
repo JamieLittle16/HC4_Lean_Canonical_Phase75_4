@@ -71,6 +71,20 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurD
   rw [permutedFamilyHessianFourBlock_determinantCore_eq_X_pow
     rho P.binaryHomogenizedFamily P.binaryHomogenized_hessianDefect]
 
+/-- Consequently every cleared-Schur coefficient strictly before the shifted
+binary determinant clock is zero. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    {n : ℕ}
+    (hn : n < (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6) :
+    ((permutedFamilyHessianFourBlock rho P.binaryHomogenizedFamily).schurDetCore).coeff n = 0 := by
+  rw [P.binaryHomogenized_permutedSchurDetCore_eq_activeDet_mul_X_pow rho]
+  rw [Polynomial.coeff_mul_X_pow']
+  simp [Nat.not_le_of_lt hn]
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
