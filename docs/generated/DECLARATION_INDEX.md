@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6915**.
+Distinct declaration spellings indexed: **6913**.
 
 ## Repeated declaration spellings
 
@@ -1984,14 +1984,12 @@ Distinct declaration spellings indexed: **6915**.
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomogenizedFamily_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
-- `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily_eq_reverseWeightedReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_eq_activeDet_mul_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
-- `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binary_hessianPrincipalMinor_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
 - `QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
