@@ -2182,7 +2182,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
-- Declarations: `def hessianPrincipalMinor`, `def eulerScaledHessianPrincipalMinor`, `theorem eulerScaledHessianPrincipalMinor_eq_monomial_mul`, `theorem hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero`, `theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor`, `theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`, `theorem hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`
+- Declarations: `def hessianPrincipalMinor`, `def eulerScaledHessianPrincipalMinor`, `theorem eulerScaledHessianPrincipalMinor_eq_monomial_mul`, `theorem hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero`, `theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor`, `theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse`, `theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`, `theorem hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`
 
 ### `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6903**.
+Distinct declaration spellings indexed: **6904**.
 
 ## Repeated declaration spellings
 
@@ -5697,6 +5697,7 @@ Distinct declaration spellings indexed: **6903**.
 - `rankThree_crossFacet_or_firstNonfacetCrossFacet_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `rankThree_crossFacet_or_nonlinearOutside_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
 - `rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `rankThree_eta_eq_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
