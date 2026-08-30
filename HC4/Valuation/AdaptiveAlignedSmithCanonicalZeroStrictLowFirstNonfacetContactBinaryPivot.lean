@@ -11,7 +11,7 @@ binary-homogenized contact family specializes at `tau = 1` to that represented
 source entrywise at Hessian level.
 
 Because a ring homomorphism sends a zero principal minor to zero, the source
-nonvanishing lifts immediately back to the binary family.  This supplies the
+nonvanishing lifts immediately back to the binary family.  This gives the
 nonzero active pivot needed to combine the exact A19.128 Schur clock with the
 A19.130--A19.132 binary Hessian identities.
 
