@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading
 import HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer
+import HC4.Valuation.BoundedReverseWeightedRees
 import Mathlib.Tactic
 
 /-!
@@ -104,6 +105,80 @@ theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [hd, hcoeff]
+
+/-- Binary source-inflation weight: only the longitudinal source coordinate
+carries the profile weight. -/
+noncomputable def QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C) : Fin 4 → ℕ :=
+  fun i => if i = (0 : Fin 4) then P.profileWeight else 0
+
+/-- The binary inflation weight of a source exponent is exactly profile weight
+times longitudinal degree. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (d : Fin 4 →₀ ℕ) :
+    Finsupp.weight P.binaryInflationWeight d =
+      P.profileWeight * d (0 : Fin 4) := by
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  rw [Fin.sum_univ_four]
+  simp [QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight,
+    nsmul_eq_mul]
+
+/-- **Binary normalization identity.**  Inflating only the longitudinal source
+coordinate by `tau^profileWeight` clears the binary reverse grading completely:
+the honest binary family becomes the represented source multiplied by the
+single common parameter power `tau^D`.
+
+This is the coefficientwise replacement for any illicit global homogeneity
+claim about the represented source. -/
+theorem QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomogenizedFamily_eq
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    adaptiveSmithInflateHom P.binaryInflationWeight P.binaryHomogenizedFamily =
+      MvPolynomial.C (Polynomial.X ^ T.topFace.degree) *
+        constantPolynomialFamily
+          (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
+  let F := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
+  apply MvPolynomial.ext
+  intro d
+  rw [coeff_adaptiveSmithInflateHom]
+  rw [P.coeff_binaryHomogenizedFamily]
+  rw [P.binaryInflationWeight_degree]
+  have hright :
+      MvPolynomial.coeff d
+          (MvPolynomial.C (Polynomial.X ^ T.topFace.degree) *
+            constantPolynomialFamily F) =
+        Polynomial.X ^ T.topFace.degree *
+          Polynomial.C (MvPolynomial.coeff d F) := by
+    simp [coeff_constantPolynomialFamily]
+  rw [hright]
+  by_cases hd : d ∈ F.support
+  · have hsource := P.source_weight_le hd
+    have hcoord :
+        d (0 : Fin 4) ≤ HC4.Polynomial.ordinaryDegree4 d := by
+      simp [HC4.Polynomial.ordinaryDegree4]
+    have hle : P.profileWeight * d (0 : Fin 4) ≤ T.topFace.degree := by
+      rw [P.profileWeight_eq]
+      calc
+        (P.contactGap + 1) * d (0 : Fin 4) =
+            d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by omega
+        _ ≤ HC4.Polynomial.ordinaryDegree4 d +
+              P.contactGap * d (0 : Fin 4) := Nat.add_le_add_right hcoord _
+        _ ≤ T.topFace.degree := hsource
+    have hexp :
+        P.profileWeight * d (0 : Fin 4) +
+            (T.topFace.degree - P.profileWeight * d (0 : Fin 4)) =
+          T.topFace.degree := by omega
+    rw [← pow_add, hexp]
+    ring
+  · have hcoeff : MvPolynomial.coeff d F = 0 :=
+      MvPolynomial.notMem_support_iff.mp hd
+    simp [hcoeff]
 
 /-- Longitudinal polynomial form of the binary-homogenized contact family. -/
 noncomputable def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal
