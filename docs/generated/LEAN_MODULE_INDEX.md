@@ -6307,10 +6307,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization.lean`
 - Purpose: A19.123: contact Rees as an honest binary profile homogenization
 - A-labels: `A19.114`, `A19.123`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`, `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`, `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`, `HC4.Valuation.BoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
-- Declarations: `def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily`, `def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal`, `theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudinal`
+- Declarations: `def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily`, `def QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree`, `theorem QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomogenizedFamily_eq`, `def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal`, `theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudinal`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 
@@ -8619,7 +8619,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.ActualParameterLayer`, `HC4.Valuation.AdaptiveSmithWallExposure`, `HC4.Polynomial.WeightedInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - Declarations: `def HasReverseWeightBound`, `def reverseWeightedReesFamily`, `theorem reverseWeightedReesFamily_coeff`, `theorem reverseWeightedReesFamily_parameterLayer_coeff`, `theorem reverseWeightedReesFamily_parameterLayer_zero_coeff`, `theorem polynomialFamilySpecialFiber_reverseWeightedReesFamily_eq_layer_zero`, `theorem polynomialFamilySpecialFiber_reverseWeightedReesFamily`, `theorem adaptiveSmithInflate_reverseWeightedReesFamily_eq`, `theorem adaptiveSmithInflateHom_monomial`, `theorem coeff_adaptiveSmithInflateHom`, `theorem adaptiveSmithInflateHom_injective`, `theorem reverseWeightedReesFamily_hasHessianDefect`
 
 ### `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
