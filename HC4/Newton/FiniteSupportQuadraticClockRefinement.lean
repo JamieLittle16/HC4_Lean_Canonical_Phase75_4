@@ -81,21 +81,23 @@ theorem exists_nat_refine_exposed_face_fin4_two_level_lt_clock
 
   have hM_mul_weight : ∀ i : Fin 4, (M : ℤ) ≤ (M : ℤ) * w i := by
     intro i
+    have hwi0 : (0 : ℤ) < w i := hwpos i
     have hwi : (1 : ℤ) ≤ w i := by omega
     have hnonneg : 0 ≤ (M : ℤ) * (w i - 1) :=
       mul_nonneg (le_of_lt hMz) (by omega)
     nlinarith
-  have hcoord : ∀ i : Fin 4, 0 < (M : ℤ) * w i + v i := by
+  have hneg : ∀ i : Fin 4, -v i < (M : ℤ) := by
     intro i
     fin_cases i
-    · have hneg : -v 0 < (M : ℤ) := lt_of_lt_of_le hg0 hBMz
-      linarith [hM_mul_weight 0]
-    · have hneg : -v 1 < (M : ℤ) := lt_of_lt_of_le hg1 hBMz
-      linarith [hM_mul_weight 1]
-    · have hneg : -v 2 < (M : ℤ) := lt_of_lt_of_le hg2 hBMz
-      linarith [hM_mul_weight 2]
-    · have hneg : -v 3 < (M : ℤ) := lt_of_lt_of_le hg3 hBMz
-      linarith [hM_mul_weight 3]
+    · exact lt_of_lt_of_le hg0 hBMz
+    · exact lt_of_lt_of_le hg1 hBMz
+    · exact lt_of_lt_of_le hg2 hBMz
+    · exact lt_of_lt_of_le hg3 hBMz
+  have hcoord : ∀ i : Fin 4, 0 < (M : ℤ) * w i + v i := by
+    intro i
+    have hMi := hM_mul_weight i
+    have hvi := hneg i
+    linarith
 
   have hMc : (M : ℤ) ≤ (M : ℤ) * c := by
     have hc : (1 : ℤ) ≤ c := by omega
