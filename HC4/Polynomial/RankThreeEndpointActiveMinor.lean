@@ -48,18 +48,8 @@ theorem coeff_two_symmetricLinearMinor
         (Polynomial.C a01 + Polynomial.X * Polynomial.C b01) *
           (Polynomial.C a01 + Polynomial.X * Polynomial.C b01)).coeff 2 =
       b00 * b11 - b01 * b01 := by
-  have hpoly :
-      (Polynomial.C a00 + Polynomial.X * Polynomial.C b00) *
-            (Polynomial.C a11 + Polynomial.X * Polynomial.C b11) -
-          (Polynomial.C a01 + Polynomial.X * Polynomial.C b01) *
-            (Polynomial.C a01 + Polynomial.X * Polynomial.C b01) =
-        Polynomial.C (a00 * a11 - a01 * a01) +
-          Polynomial.C
-            (a00 * b11 + b00 * a11 - 2 * a01 * b01) * Polynomial.X +
-          Polynomial.C (b00 * b11 - b01 * b01) * Polynomial.X ^ 2 := by
-    ring
-  rw [hpoly]
-  simp
+  simp [Polynomial.coeff_sub, Polynomial.coeff_mul]
+  ring
 
 /-- `.pr` active pair `(2,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
@@ -67,10 +57,8 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (2 : Fin 4) 3).coeff 2 =
       c1 ^ 2 * R * S * (1 - R - S) := by
-  unfold weightedRankThreeEndpointActiveMinor
-  simp only [weightedRankThreeEndpointPencil]
-  rw [coeff_two_symmetricLinearMinor]
-  simp [vectorHessianCore]
+  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
+  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
   ring
 
 /-- `.sp` active pair `(1,3)`: exact quadratic coefficient. -/
@@ -79,10 +67,8 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (1 : Fin 4) 3).coeff 2 =
       c1 ^ 2 * Q * S * (1 - Q - S) := by
-  unfold weightedRankThreeEndpointActiveMinor
-  simp only [weightedRankThreeEndpointPencil]
-  rw [coeff_two_symmetricLinearMinor]
-  simp [vectorHessianCore]
+  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
+  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
   ring
 
 /-- `.rq` active pair `(1,2)`: exact quadratic coefficient. -/
@@ -91,10 +77,8 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (1 : Fin 4) 2).coeff 2 =
       c1 ^ 2 * Q * R * (1 - Q - R) := by
-  unfold weightedRankThreeEndpointActiveMinor
-  simp only [weightedRankThreeEndpointPencil]
-  rw [coeff_two_symmetricLinearMinor]
-  simp [vectorHessianCore]
+  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
+  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
   ring
 
 private theorem positive_pair_core_ne_zero
@@ -105,9 +89,8 @@ private theorem positive_pair_core_ne_zero
   have hab : 2 ≤ a + b := by omega
   have hlast : (1 : K) - (a : K) - (b : K) ≠ 0 := by
     intro hz
-    have heq : ((a + b : ℕ) : K) = 1 := by
-      push_cast
-      linarith
+    have heq : (a : K) + (b : K) = 1 := by
+      linear_combination -hz
     have heqNat : a + b = 1 := by exact_mod_cast heq
     omega
   exact mul_ne_zero (mul_ne_zero ha0 hb0) hlast
@@ -120,8 +103,9 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero
     (weightedRankThreeEndpointActiveMinor
       A B C P Q (R : K) (S : K) c0 c1 (2 : Fin 4) 3).coeff 2 ≠ 0 := by
   rw [coeff_two_weightedRankThreeEndpointActiveMinor_two_three]
-  exact mul_ne_zero (pow_ne_zero 2 hc1)
-    (positive_pair_core_ne_zero (K := K) hR hS)
+  simpa [mul_assoc] using
+    mul_ne_zero (pow_ne_zero 2 hc1)
+      (positive_pair_core_ne_zero (K := K) hR hS)
 
 /-- Positive outside coordinates `(1,3)` make the quadratic endpoint-pivot
 coefficient itself nonzero. -/
@@ -131,8 +115,9 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero
     (weightedRankThreeEndpointActiveMinor
       A B C P (Q : K) R (S : K) c0 c1 (1 : Fin 4) 3).coeff 2 ≠ 0 := by
   rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_three]
-  exact mul_ne_zero (pow_ne_zero 2 hc1)
-    (positive_pair_core_ne_zero (K := K) hQ hS)
+  simpa [mul_assoc] using
+    mul_ne_zero (pow_ne_zero 2 hc1)
+      (positive_pair_core_ne_zero (K := K) hQ hS)
 
 /-- Positive outside coordinates `(1,2)` make the quadratic endpoint-pivot
 coefficient itself nonzero. -/
@@ -142,8 +127,9 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero
     (weightedRankThreeEndpointActiveMinor
       A B C P (Q : K) (R : K) S c0 c1 (1 : Fin 4) 2).coeff 2 ≠ 0 := by
   rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_two]
-  exact mul_ne_zero (pow_ne_zero 2 hc1)
-    (positive_pair_core_ne_zero (K := K) hQ hR)
+  simpa [mul_assoc] using
+    mul_ne_zero (pow_ne_zero 2 hc1)
+      (positive_pair_core_ne_zero (K := K) hQ hR)
 
 /-- Positive outside coordinates `(2,3)` give a genuine active pivot. -/
 theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero
