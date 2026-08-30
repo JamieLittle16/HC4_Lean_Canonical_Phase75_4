@@ -76,9 +76,11 @@ theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero
       (HC4.Newton.scaledContactWeight (0 : Fin 4) 1 r) (D : ℤ) F := by
     rw [HC4.Newton.isWeightLE_scaledContactWeight_iff]
     intro d hd
-    have h := hsource hd
+    have hnat :
+        HC4.Polynomial.ordinaryDegree4 d + r * d (0 : Fin 4) ≤ D := by
+      simpa [F, D, HC4.Polynomial.facetOmittedCoordinate] using hsource hd
     unfold HC4.Newton.scaledContactExponentWeight
-    simpa [D, HC4.Polynomial.facetOmittedCoordinate] using_mod_cast h
+    exact_mod_cast hnat
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
   have hdcontact :
