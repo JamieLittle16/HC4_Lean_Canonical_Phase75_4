@@ -112,6 +112,39 @@ private theorem positive_pair_core_ne_zero
     omega
   exact mul_ne_zero (mul_ne_zero ha0 hb0) hlast
 
+/-- Positive outside coordinates `(2,3)` make the quadratic endpoint-pivot
+coefficient itself nonzero. -/
+theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero
+    (A B C P Q : K) {R S : ℕ} (c0 c1 : K)
+    (hR : 0 < R) (hS : 0 < S) (hc1 : c1 ≠ 0) :
+    (weightedRankThreeEndpointActiveMinor
+      A B C P Q (R : K) (S : K) c0 c1 (2 : Fin 4) 3).coeff 2 ≠ 0 := by
+  rw [coeff_two_weightedRankThreeEndpointActiveMinor_two_three]
+  exact mul_ne_zero (pow_ne_zero 2 hc1)
+    (positive_pair_core_ne_zero (K := K) hR hS)
+
+/-- Positive outside coordinates `(1,3)` make the quadratic endpoint-pivot
+coefficient itself nonzero. -/
+theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero
+    (A B C P R : K) {Q S : ℕ} (c0 c1 : K)
+    (hQ : 0 < Q) (hS : 0 < S) (hc1 : c1 ≠ 0) :
+    (weightedRankThreeEndpointActiveMinor
+      A B C P (Q : K) R (S : K) c0 c1 (1 : Fin 4) 3).coeff 2 ≠ 0 := by
+  rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_three]
+  exact mul_ne_zero (pow_ne_zero 2 hc1)
+    (positive_pair_core_ne_zero (K := K) hQ hS)
+
+/-- Positive outside coordinates `(1,2)` make the quadratic endpoint-pivot
+coefficient itself nonzero. -/
+theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero
+    (A B C P S : K) {Q R : ℕ} (c0 c1 : K)
+    (hQ : 0 < Q) (hR : 0 < R) (hc1 : c1 ≠ 0) :
+    (weightedRankThreeEndpointActiveMinor
+      A B C P (Q : K) (R : K) S c0 c1 (1 : Fin 4) 2).coeff 2 ≠ 0 := by
+  rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_two]
+  exact mul_ne_zero (pow_ne_zero 2 hc1)
+    (positive_pair_core_ne_zero (K := K) hQ hR)
+
 /-- Positive outside coordinates `(2,3)` give a genuine active pivot. -/
 theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero
     (A B C P Q : K) {R S : ℕ} (c0 c1 : K)
@@ -120,11 +153,9 @@ theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero
       A B C P Q (R : K) (S : K) c0 c1 (2 : Fin 4) 3 ≠ 0 := by
   intro hz
   have hcoeff := congrArg (fun p : Polynomial K => p.coeff 2) hz
-  rw [coeff_two_weightedRankThreeEndpointActiveMinor_two_three] at hcoeff
   simp only [Polynomial.coeff_zero] at hcoeff
-  have hcore := positive_pair_core_ne_zero (K := K) hR hS
-  exact (mul_ne_zero (pow_ne_zero 2 hc1) hcore) (by
-    simpa [mul_assoc] using hcoeff)
+  exact (coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero
+    A B C P Q c0 c1 hR hS hc1) (by simpa using hcoeff)
 
 /-- Positive outside coordinates `(1,3)` give a genuine active pivot. -/
 theorem weightedRankThreeEndpointActiveMinor_one_three_ne_zero
@@ -134,11 +165,9 @@ theorem weightedRankThreeEndpointActiveMinor_one_three_ne_zero
       A B C P (Q : K) R (S : K) c0 c1 (1 : Fin 4) 3 ≠ 0 := by
   intro hz
   have hcoeff := congrArg (fun p : Polynomial K => p.coeff 2) hz
-  rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_three] at hcoeff
   simp only [Polynomial.coeff_zero] at hcoeff
-  have hcore := positive_pair_core_ne_zero (K := K) hQ hS
-  exact (mul_ne_zero (pow_ne_zero 2 hc1) hcore) (by
-    simpa [mul_assoc] using hcoeff)
+  exact (coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero
+    A B C P R c0 c1 hQ hS hc1) (by simpa using hcoeff)
 
 /-- Positive outside coordinates `(1,2)` give a genuine active pivot. -/
 theorem weightedRankThreeEndpointActiveMinor_one_two_ne_zero
@@ -148,11 +177,9 @@ theorem weightedRankThreeEndpointActiveMinor_one_two_ne_zero
       A B C P (Q : K) (R : K) S c0 c1 (1 : Fin 4) 2 ≠ 0 := by
   intro hz
   have hcoeff := congrArg (fun p : Polynomial K => p.coeff 2) hz
-  rw [coeff_two_weightedRankThreeEndpointActiveMinor_one_two] at hcoeff
   simp only [Polynomial.coeff_zero] at hcoeff
-  have hcore := positive_pair_core_ne_zero (K := K) hQ hR
-  exact (mul_ne_zero (pow_ne_zero 2 hc1) hcore) (by
-    simpa [mul_assoc] using hcoeff)
+  exact (coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero
+    A B C P S c0 c1 hQ hR hc1) (by simpa using hcoeff)
 
 end
 
