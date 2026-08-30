@@ -225,7 +225,7 @@ theorem adaptiveSmithInflateHom_monomial
         (Polynomial.X : Polynomial K) ^ Finsupp.weight w d := by
     rw [Finsupp.prod_fintype d
       (fun i e => (Polynomial.X ^ w i) ^ e) (by simp)]
-    rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    rw [Finsupp.weight_eq_sum]
     rw [Fin.prod_univ_four, Fin.sum_univ_four]
     simp only [← pow_mul]
     repeat' rw [← pow_add]
@@ -253,7 +253,7 @@ theorem adaptiveSmithInflateHom_monomial
       _ = _ := by rw [hparameter]
   rw [hcoefficient]
   rw [MvPolynomial.monomial_eq]
-  simp only [← map_mul]
+  simp only [MvPolynomial.C_mul]
   ring
 
 /-- Coefficients under adaptive diagonal inflation are multiplied by the
@@ -264,18 +264,20 @@ theorem coeff_adaptiveSmithInflateHom
     ∀ d : Fin 4 →₀ ℕ,
       MvPolynomial.coeff d (adaptiveSmithInflateHom w P) =
         Polynomial.X ^ Finsupp.weight w d * MvPolynomial.coeff d P := by
-  apply MvPolynomial.induction_on' P
-  · intro u a d
-    rw [adaptiveSmithInflateHom_monomial]
-    rw [MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial]
-    by_cases hdu : d = u
-    · subst d
-      simp
-    · simp [hdu]
-  · intro p q hp hq d
-    rw [map_add, MvPolynomial.coeff_add, MvPolynomial.coeff_add,
-      hp d, hq d]
-    ring
+  induction P using MvPolynomial.induction_on' with
+  | monomial u a =>
+      intro d
+      rw [adaptiveSmithInflateHom_monomial]
+      rw [MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial]
+      by_cases hdu : d = u
+      · subst d
+        simp
+      · simp [hdu]
+  | add p q hp hq =>
+      intro d
+      rw [map_add, MvPolynomial.coeff_add, MvPolynomial.coeff_add,
+        hp d, hq d]
+      ring
 
 /-- The adaptive positive diagonal source inflation is injective over the
 polynomial parameter ring. -/
@@ -347,18 +349,19 @@ theorem reverseWeightedReesFamily_hasHessianDefect
         (MvPolynomial.C_ne_zero.mpr Polynomial.X_ne_zero)) heq
   have htarget :
       adaptiveSmithInflateHom w
-          (MvPolynomial.C (Polynomial.X ^ N)) =
-        MvPolynomial.C (Polynomial.X ^ N) := by
+          (MvPolynomial.C ((Polynomial.X : Polynomial K) ^ N)) =
+        (MvPolynomial.C ((Polynomial.X : Polynomial K) ^ N) :
+          MvPolynomial (Fin 4) (Polynomial K)) := by
     simp [adaptiveSmithInflateHom]
   have hinflated :
       adaptiveSmithInflateHom w (HC4.Polynomial.hessianDeterminant Q) =
         adaptiveSmithInflateHom w
-          (MvPolynomial.C (Polynomial.X ^ N)) := by
+          (MvPolynomial.C ((Polynomial.X : Polynomial K) ^ N)) := by
     rw [htarget]
     simpa only [map_pow] using hcancel
   have hQ :
       HC4.Polynomial.hessianDeterminant Q =
-        MvPolynomial.C (Polynomial.X ^ N) :=
+        MvPolynomial.C ((Polynomial.X : Polynomial K) ^ N) :=
     adaptiveSmithInflateHom_injective w hinflated
   unfold HasPolynomialFamilyHessianDefect
   simpa [Q, N, S] using hQ
