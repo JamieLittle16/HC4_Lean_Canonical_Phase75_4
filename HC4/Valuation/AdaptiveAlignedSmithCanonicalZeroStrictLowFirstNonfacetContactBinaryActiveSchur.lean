@@ -14,7 +14,7 @@ This file closes that representation seam.  The active determinant of a
 permuted family four-block is exactly the parameter-first image of the
 corresponding ordinary Hessian principal minor.  Since the parameter-first map
 is an equivalence, the three cyclic A19.134 pivots remain nonzero in the exact
-Schur block consumed by A19.128.
+Schur block used by A19.128.
 
 No localization or division by the pivot is used.
 -/
