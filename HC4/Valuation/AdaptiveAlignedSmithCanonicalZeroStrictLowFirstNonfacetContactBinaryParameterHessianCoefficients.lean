@@ -84,8 +84,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_bi
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast
-      omega
+      push_cast [Nat.cast_sub hle]
     rw [Polynomial.derivative_mul]
     simp [hcast]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
@@ -115,8 +114,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterSecondEuler_co
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast
-      omega
+      push_cast [Nat.cast_sub hle]
     rw [Polynomial.derivative_mul]
     simp [hcast]
     ring
