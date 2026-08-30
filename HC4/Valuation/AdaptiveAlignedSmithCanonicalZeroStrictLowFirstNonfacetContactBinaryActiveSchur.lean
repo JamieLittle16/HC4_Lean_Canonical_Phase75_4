@@ -1,20 +1,37 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile
 import Mathlib.Tactic
 
 /-!
-# A19.135: nonzero active Schur pivot on the binary contact family
+# A19.135--A19.136: active binary Schur pivot and residual pre-clock range
 
 A19.134 proves nonvanishing of the relevant ordinary Hessian principal minor
 of the binary-homogenized contact family.  A19.128 formulates the exact
 closing clock using `permutedFamilyHessianFourBlock`, whose entries live after
 the canonical parameter-first ring equivalence.
 
-This file closes that representation seam.  The active determinant of a
+A19.135 closes that representation seam.  The active determinant of a
 permuted family four-block is exactly the parameter-first image of the
 corresponding ordinary Hessian principal minor.  Since the parameter-first map
 is an equivalence, the three cyclic A19.134 pivots remain nonzero in the exact
 Schur block consumed by A19.128.
+
+A19.136 records the exact clock inequality needed by the staircase residual
+adapter.  The noncancelling longitudinal profile has degree at least two and
+satisfies
+
+    natDegree * profileWeight <= topFace.degree.
+
+Hence `2 * profileWeight <= topFace.degree`, so every binary quadratic profile
+order
+
+    2 * topFace.degree - profileWeight * n
+
+lies strictly before the shifted Hessian clock from A19.128.  Consequently the
+cleared-Schur coefficient at every such order is zero.  This is the precise
+coefficientwise vanishing input for the next Euler/Schur identification; no
+evaluation at `tau = 1` is used here.
 
 No localization or division by the pivot is used.
 -/
@@ -77,6 +94,40 @@ theorem QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zer
   apply hminor
   apply (parameterFirstEquiv K).injective
   simpa using hzero
+
+/-- Every quadratic binary-profile parameter order lies strictly before the
+exact A19.128 Hessian clock.  The key input is the honest profile support
+bound together with its degree-at-least-two witness. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (Q : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (n : ℕ) :
+    2 * T.topFace.degree - P.profileWeight * n <
+      (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6 := by
+  have htwoWeight :
+      2 * P.profileWeight ≤ Q.profile.natDegree * P.profileWeight :=
+    Nat.mul_le_mul_right P.profileWeight Q.degree_two_le
+  have hbound : 2 * P.profileWeight ≤ T.topFace.degree :=
+    le_trans htwoWeight Q.support_bound
+  have hclock :
+      2 * T.topFace.degree <
+        (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6 := by
+    rw [P.profileWeight_eq] at hbound
+    omega
+  exact lt_of_le_of_lt (Nat.sub_le _ _) hclock
+
+/-- A19.128 therefore kills the cleared-Schur coefficient at every parameter
+order that can carry a coefficient of the binary staircase Hessian residual. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (Q : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (rho : Equiv.Perm (Fin 4))
+    (n : ℕ) :
+    ((permutedFamilyHessianFourBlock rho P.binaryHomogenizedFamily).schurDetCore).coeff
+        (2 * T.topFace.degree - P.profileWeight * n) = 0 := by
+  exact
+    P.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt rho
+      (P.binary_profileOrder_lt_hessianClock Q n)
 
 /-- `.pr`: the exact binary Schur block has nonzero active determinant. -/
 theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_activeDet_ne_zero
