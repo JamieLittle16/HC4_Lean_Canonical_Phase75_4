@@ -9,8 +9,8 @@ homogenization whose coefficient at a source exponent `d` is
 
     tau^(D - profileWeight * d₀) * c_d.
 
-At `tau = 1` this must recover the represented source exactly.  The closing
-Schur adapter needs that fact at Hessian level in order to transport A19.129's
+At `tau = 1` this recovers the represented source exactly.  The closing Schur
+adapter needs that fact at Hessian level in order to transport A19.129's
 nonzero source pivots to the honest binary family used by A19.128--A19.132.
 
 This file records only that representation bridge.  No rank, Schur, residual,
