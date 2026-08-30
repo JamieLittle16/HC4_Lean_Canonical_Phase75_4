@@ -84,6 +84,8 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   T .qs}
 
+-- CI anchor: elaborate the A19.136 convolution-order bridge on the refreshed inventory.
+
 /-- A nonzero ordinary binary Hessian principal minor gives a nonzero active
 determinant in the parameter-first permuted family block. -/
 theorem QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor
