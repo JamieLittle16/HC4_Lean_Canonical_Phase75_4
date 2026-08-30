@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6907**.
+Distinct declaration spellings indexed: **6910**.
 
 ## Repeated declaration spellings
 
@@ -5407,6 +5407,7 @@ Distinct declaration spellings indexed: **6907**.
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
 - `qs_ray_pr_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_pr_eulerScaledHessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`
+- `qs_ray_pr_hessianPrincipalMinor_specialisation_coeff_two_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_pr_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_pr_integral_contactGap_positiveDropDecomposition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropDecomposition`
 - `qs_ray_pr_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
@@ -5417,6 +5418,7 @@ Distinct declaration spellings indexed: **6907**.
 - `qs_ray_rankThree_otherFacet_strictLow_source_degree_add_three_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
 - `qs_ray_rq_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_rq_eulerScaledHessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`
+- `qs_ray_rq_hessianPrincipalMinor_specialisation_coeff_two_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_rq_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_rq_integral_contactGap_positiveDropDecomposition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropDecomposition`
 - `qs_ray_rq_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
@@ -5430,6 +5432,7 @@ Distinct declaration spellings indexed: **6907**.
 - `qs_ray_source_zeroCoordinate_eq_one_of_degree_eq_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - `qs_ray_sp_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_sp_eulerScaledHessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`
+- `qs_ray_sp_hessianPrincipalMinor_specialisation_coeff_two_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_sp_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_sp_integral_contactGap_positiveDropDecomposition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropDecomposition`
 - `qs_ray_sp_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`

@@ -2181,7 +2181,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.118`
 - Local imports: `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - Declarations: `def hessianPrincipalMinor`, `def eulerScaledHessianPrincipalMinor`, `theorem eulerScaledHessianPrincipalMinor_eq_monomial_mul`, `theorem hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero`, `theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor`, `theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse`, `theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`, `theorem hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`
 
 ### `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
@@ -2201,7 +2201,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
+- Imported by local modules: none
 - Declarations: `def weightedRankThreeEndpointActiveMinor`, `theorem coeff_two_symmetricLinearMinor`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two`, `theorem positive_pair_core_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_two_ne_zero`
 
 ### `HC4.Polynomial.RankThreeFractionBridge`
@@ -6557,10 +6557,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot.lean`
 - Purpose: A19.118: nonzero active Schur pivots on the three other facets
 - A-labels: `A19.118`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`, `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`
-- Declarations: `def qsRayDegreeOneCoefficientPolynomial`, `theorem qsRayDegreeOneCoefficientPolynomial_coeff_one_ne`, `theorem qs_ray_pr_endpointActiveMinor_ne_zero`, `theorem qs_ray_sp_endpointActiveMinor_ne_zero`, `theorem qs_ray_rq_endpointActiveMinor_ne_zero`
+- Declarations: `def qsRayDegreeOneCoefficientPolynomial`, `theorem qsRayDegreeOneCoefficientPolynomial_coeff_one_ne`, `theorem qs_ray_pr_endpointActiveMinor_ne_zero`, `theorem qs_ray_sp_endpointActiveMinor_ne_zero`, `theorem qs_ray_rq_endpointActiveMinor_ne_zero`, `theorem qs_ray_pr_hessianPrincipalMinor_specialisation_coeff_two_ne_zero`, `theorem qs_ray_sp_hessianPrincipalMinor_specialisation_coeff_two_ne_zero`, `theorem qs_ray_rq_hessianPrincipalMinor_specialisation_coeff_two_ne_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 
