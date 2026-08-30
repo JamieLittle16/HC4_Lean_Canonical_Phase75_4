@@ -49,7 +49,7 @@ theorem coeff_two_symmetricLinearMinor
           (Polynomial.C a01 + Polynomial.X * Polynomial.C b01)).coeff 2 =
       b00 * b11 - b01 * b01 := by
   simp [Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring
+  ring_nf
 
 /-- `.pr` active pair `(2,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
@@ -59,7 +59,7 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
       c1 ^ 2 * R * S * (1 - R - S) := by
   unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
   simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring
+  ring_nf
 
 /-- `.sp` active pair `(1,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three
@@ -69,7 +69,7 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three
       c1 ^ 2 * Q * S * (1 - Q - S) := by
   unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
   simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring
+  ring_nf
 
 /-- `.rq` active pair `(1,2)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two
@@ -79,7 +79,7 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two
       c1 ^ 2 * Q * R * (1 - Q - R) := by
   unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
   simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring
+  ring_nf
 
 private theorem positive_pair_core_ne_zero
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b) :
