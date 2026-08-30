@@ -19,9 +19,9 @@ Importantly, this module makes **no** singularity claim about the full
 represented source.  The retained `C.hessian_zero` concerns the first-contact
 face `C.face`, whereas the represented special fibre is the determinant-one
 source.  Earlier unrooted versions of this file incorrectly fed the former to
-a theorem requiring singularity of the latter.  The certified contact/Schur
-route uses only the valid source-pivot lift here; determinant closure is
-supplied by the honest parameter-family clock in A19.128.
+a theorem requiring singularity of the latter.  The certified binary
+contact/Schur route uses only the valid source-pivot lift here; determinant
+closure is supplied by the honest parameter-family clock in A19.128.
 -/
 
 namespace HC4.Valuation
