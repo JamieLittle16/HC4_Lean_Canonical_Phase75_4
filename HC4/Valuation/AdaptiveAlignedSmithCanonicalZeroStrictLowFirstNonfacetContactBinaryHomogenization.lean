@@ -161,12 +161,13 @@ theorem QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomog
   · have hsource := P.source_weight_le hd
     have hcoord :
         d (0 : Fin 4) ≤ HC4.Polynomial.ordinaryDegree4 d := by
-      simp [HC4.Polynomial.ordinaryDegree4]
+      unfold HC4.Polynomial.ordinaryDegree4
+      omega
     have hle : P.profileWeight * d (0 : Fin 4) ≤ T.topFace.degree := by
       rw [P.profileWeight_eq]
       calc
         (P.contactGap + 1) * d (0 : Fin 4) =
-            d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by omega
+            d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by ring
         _ ≤ HC4.Polynomial.ordinaryDegree4 d +
               P.contactGap * d (0 : Fin 4) := Nat.add_le_add_right hcoord _
         _ ≤ T.topFace.degree := hsource
