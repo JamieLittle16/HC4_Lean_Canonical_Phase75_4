@@ -59,7 +59,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.profileWeight_mul_longitudinal_l
   rw [P.profileWeight_eq]
   calc
     (P.contactGap + 1) * d (0 : Fin 4) =
-        d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by omega
+        d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by ring
     _ ≤ HC4.Polynomial.ordinaryDegree4 d +
           P.contactGap * d (0 : Fin 4) := Nat.add_le_add_right hcoord _
     _ ≤ T.topFace.degree := hbound
