@@ -6605,12 +6605,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur.lean`
-- Purpose: A19.129: cyclic cleared Schur blocks on the represented source
-- A-labels: `A19.114`, `A19.117`, `A19.124`, `A19.129`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- Purpose: A19.129: cyclic Schur pivots on the represented source
+- A-labels: `A19.124`, `A19.128`, `A19.129`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
-- Declarations: `theorem QsOtherFacetRayReverseReesPackage.sourceWeight_bound`, `theorem QsOtherFacetRayReverseReesPackage.pr_source_hessianPrincipalMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.sp_source_hessianPrincipalMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.rq_source_hessianPrincipalMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.pr_source_clearedSchur`, `theorem QsOtherFacetRayReverseReesPackage.sp_source_clearedSchur`, `theorem QsOtherFacetRayReverseReesPackage.rq_source_clearedSchur`
+- Declarations: `theorem QsOtherFacetRayReverseReesPackage.sourceWeight_bound`, `theorem QsOtherFacetRayReverseReesPackage.pr_source_hessianPrincipalMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.sp_source_hessianPrincipalMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.rq_source_hessianPrincipalMinor_ne_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`
 
@@ -8979,7 +8979,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.117`
 - Local imports: `HC4.Valuation.PermutedFamilyHessianFourBlock`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - Declarations: `theorem polynomialHessian_symmetric`, `def permutedPolynomialHessianFourBlock`, `theorem permutedPolynomialHessianFourBlock_matrix`, `theorem permutedPolynomialHessianFourBlock_activeDet`, `theorem permutedPolynomialHessianFourBlock_determinantCore`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero`
 
 ### `HC4.Valuation.PointedShearContinuation`
