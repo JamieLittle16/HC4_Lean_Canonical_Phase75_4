@@ -79,10 +79,13 @@ theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero
     have h := hsource hd
     unfold HC4.Newton.scaledContactExponentWeight
     push_cast
-    exact_mod_cast h
+    simpa [HC4.Polynomial.facetOmittedCoordinate, D] using h
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
-  have hdcontact := hsource hd
+  have hdcontact :
+      HC4.Polynomial.ordinaryDegree4 d + r * d (0 : Fin 4) ≤
+        T.topFace.degree := by
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hsource hd
   have hrle : r ≤ r * d (0 : Fin 4) := by
     have hd0one : 1 ≤ d (0 : Fin 4) := by omega
     simpa using Nat.mul_le_mul_left r hd0one
