@@ -66,7 +66,8 @@ def binaryStaircaseProfileHessianDet
     binaryStaircaseProfileHessian01 D r h *
       binaryStaircaseProfileHessian01 D r h
 
-/-- **Exact Hessian/residual identity.** -/
+/-- **Exact Hessian/residual identity.**  This is the canonical polynomial
+normal form consumed by the final binary Schur adapter. -/
 theorem binaryStaircaseProfileHessianDet_eq_residual
     (D r : ℕ) (h : Polynomial K) :
     binaryStaircaseProfileHessianDet D r h =
