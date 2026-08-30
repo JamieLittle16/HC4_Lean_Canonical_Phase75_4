@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6872**.
+Distinct declaration spellings indexed: **6873**.
 
 ## Repeated declaration spellings
 
@@ -2711,6 +2711,7 @@ Distinct declaration spellings indexed: **6872**.
 - `binaryStaircaseProfileResidual_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileResidual_eq_zero_of_coeffwise_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianRecognition`
 - `binaryStaircaseProfileResidual_eq_zero_of_hessianDet_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessian`
+- `binaryStaircaseProfileResidual_fraction_eq_zero_of_coeffwise_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition`
 - `binaryStaircaseProfileResidual_map_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `binaryStaircaseProfileSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfileSecondEuler_C_mul_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
