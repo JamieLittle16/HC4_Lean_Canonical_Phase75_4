@@ -1,11 +1,10 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot
 import HC4.Valuation.WeightedHessianPrincipalMinorInitial
-import HC4.Valuation.PermutedPolynomialHessianFourBlock
 import Mathlib.Tactic
 
 /-!
-# A19.129: cyclic cleared Schur blocks on the represented source
+# A19.129: cyclic Schur pivots on the represented source
 
 The first-superface route is useful geometrically, but the contact-profile
 closure should not identify that auxiliary exposure with a contact-Rees layer.
@@ -14,17 +13,15 @@ For the active Schur pivot no such identification is necessary.
 The ray-leading reverse Rees already says that the locked degree-one ray is the
 exact maximal initial form of the represented source.  The generic weighted
 Hessian-principal-minor theorem therefore lifts A19.124's nonzero cyclic ray
-pivots directly to the represented source itself.  That source already has
-zero Hessian determinant, so after the same cyclic coordinate permutations we
-obtain
+pivots directly to the represented source itself.
 
-    activeDet != 0,
-    schurDetCore = 0
-
-on the full source carrying the A19.114 longitudinal profile.
-
-This deliberately bypasses any assertion that A19.117's first strict
-superface is a contact-Rees parameter layer.
+Importantly, this module makes **no** singularity claim about the full
+represented source.  The retained `C.hessian_zero` concerns the first-contact
+face `C.face`, whereas the represented special fibre is the determinant-one
+source.  Earlier unrooted versions of this file incorrectly fed the former to
+a theorem requiring singularity of the latter.  The final contact/Schur route
+uses only the valid source-pivot lift here; determinant closure is supplied by
+the honest parameter-family clock in A19.128.
 -/
 
 namespace HC4.Valuation
@@ -102,66 +99,6 @@ theorem QsOtherFacetRayReverseReesPackage.rq_source_hessianPrincipalMinor_ne_zer
   exact HC4.Polynomial.hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero
     C.ray.face (1 : Fin 4) 2
     (C.qs_ray_rq_eulerScaledHessianPrincipalMinor_ne_zero hthree houtThree)
-
-/-- `.pr`: full represented-source four-block with nonzero active determinant
-and zero cleared Schur determinant. -/
-theorem QsOtherFacetRayReverseReesPackage.pr_source_clearedSchur
-    (R : QsOtherFacetRayReverseReesPackage C)
-    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : HC4.Newton.MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    let H := permutedPolynomialHessianFourBlock
-      qsPrSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    H.activeDet ≠ 0 ∧ H.schurDetCore = 0 := by
-  dsimp only
-  constructor
-  · rw [permutedPolynomialHessianFourBlock_activeDet]
-    simpa [qsPrSuperfaceSchurPermutation] using
-      R.pr_source_hessianPrincipalMinor_ne_zero hthree houtThree
-  · exact permutedPolynomialHessianFourBlock_schurDetCore_eq_zero
-      qsPrSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-      C.hessian_zero
-
-/-- `.sp`: full represented-source four-block with nonzero active determinant
-and zero cleared Schur determinant. -/
-theorem QsOtherFacetRayReverseReesPackage.sp_source_clearedSchur
-    (R : QsOtherFacetRayReverseReesPackage C)
-    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : HC4.Newton.MvRankThreeOnFacet .sp C.ray.outsideExponent) :
-    let H := permutedPolynomialHessianFourBlock
-      qsSpSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    H.activeDet ≠ 0 ∧ H.schurDetCore = 0 := by
-  dsimp only
-  constructor
-  · rw [permutedPolynomialHessianFourBlock_activeDet]
-    simpa [qsSpSuperfaceSchurPermutation] using
-      R.sp_source_hessianPrincipalMinor_ne_zero hthree houtThree
-  · exact permutedPolynomialHessianFourBlock_schurDetCore_eq_zero
-      qsSpSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-      C.hessian_zero
-
-/-- `.rq`: full represented-source four-block with nonzero active determinant
-and zero cleared Schur determinant. -/
-theorem QsOtherFacetRayReverseReesPackage.rq_source_clearedSchur
-    (R : QsOtherFacetRayReverseReesPackage C)
-    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : HC4.Newton.MvRankThreeOnFacet .rq C.ray.outsideExponent) :
-    let H := permutedPolynomialHessianFourBlock
-      qsRqSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    H.activeDet ≠ 0 ∧ H.schurDetCore = 0 := by
-  dsimp only
-  constructor
-  · rw [permutedPolynomialHessianFourBlock_activeDet]
-    simpa [qsRqSuperfaceSchurPermutation] using
-      R.rq_source_hessianPrincipalMinor_ne_zero hthree houtThree
-  · exact permutedPolynomialHessianFourBlock_schurDetCore_eq_zero
-      qsRqSuperfaceSchurPermutation
-      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-      C.hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
