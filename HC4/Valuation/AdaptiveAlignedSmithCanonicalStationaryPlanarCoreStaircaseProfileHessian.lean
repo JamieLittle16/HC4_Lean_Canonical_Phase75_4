@@ -76,7 +76,8 @@ theorem binaryStaircaseProfileHessianDet_eq_residual
     binaryStaircaseProfileHessian01
     binaryStaircaseProfileHessian11
     binaryStaircaseProfileResidual
-  ring_nf
+  simp only [map_mul, map_sub, map_add, map_pow, map_neg, map_one]
+  ring
 
 /-- A zero weighted-profile Hessian block determinant is exactly the residual
 hypothesis required by the existing staircase rigidity theorem. -/
