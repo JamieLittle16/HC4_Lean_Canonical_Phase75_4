@@ -17,21 +17,25 @@ corresponding ordinary Hessian principal minor.  Since the parameter-first map
 is an equivalence, the three cyclic A19.134 pivots remain nonzero in the exact
 Schur block consumed by A19.128.
 
-A19.136 records the exact clock inequality needed by the staircase residual
-adapter.  The noncancelling longitudinal profile has degree at least two and
-satisfies
+A19.136 records the exact clock and convolution arithmetic needed by the
+staircase residual adapter.  The noncancelling longitudinal profile has degree
+at least two and satisfies
 
     natDegree * profileWeight <= topFace.degree.
 
-Hence `2 * profileWeight <= topFace.degree`, so every binary quadratic profile
-order
+Hence every nonzero coefficient in longitudinal degree `n` satisfies
 
-    2 * topFace.degree - profileWeight * n
+    profileWeight * n <= topFace.degree.
 
-lies strictly before the shifted Hessian clock from A19.128.  Consequently the
-cleared-Schur coefficient at every such order is zero.  This is the precise
-coefficientwise vanishing input for the next Euler/Schur identification; no
-evaluation at `tau = 1` is used here.
+In particular two nonzero profile coefficients in degrees `i,j` have binary
+parameter orders which add without any truncated-subtraction ambiguity:
+
+    (D-r*i) + (D-r*j) = 2*D-r*(i+j).
+
+Moreover every such quadratic profile order lies strictly before the shifted
+Hessian clock from A19.128, so the corresponding cleared-Schur coefficient is
+zero.  These are the precise coefficientwise inputs for the Euler/Schur
+identification; no evaluation at `tau = 1` is used here.
 
 No localization or division by the pivot is used.
 -/
@@ -94,6 +98,39 @@ theorem QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zer
   apply hminor
   apply (parameterFirstEquiv K).injective
   simpa using hzero
+
+/-- Every nonzero coefficient of the exact raw longitudinal profile lies in a
+longitudinal degree whose binary weight is bounded by the top degree. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileWeight_mul_le_of_coeff_ne_zero
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (Q : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    {n : ℕ}
+    (hn : Q.profile.coeff n ≠ 0) :
+    n * P.profileWeight ≤ T.topFace.degree := by
+  have hnle : n ≤ Q.profile.natDegree :=
+    Polynomial.le_natDegree_of_ne_zero hn
+  calc
+    n * P.profileWeight ≤ Q.profile.natDegree * P.profileWeight :=
+      Nat.mul_le_mul_right P.profileWeight hnle
+    _ ≤ T.topFace.degree := Q.support_bound
+
+/-- Binary parameter orders of two actual longitudinal profile coefficients
+add to the single residual order indexed by their longitudinal degree sum.
+The support bounds remove all ambiguity from natural subtraction. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.binary_profileOrder_add
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (Q : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    {i j : ℕ}
+    (hi : Q.profile.coeff i ≠ 0)
+    (hj : Q.profile.coeff j ≠ 0) :
+    (T.topFace.degree - P.profileWeight * i) +
+        (T.topFace.degree - P.profileWeight * j) =
+      2 * T.topFace.degree - P.profileWeight * (i + j) := by
+  have hiBound := Q.profileWeight_mul_le_of_coeff_ne_zero hi
+  have hjBound := Q.profileWeight_mul_le_of_coeff_ne_zero hj
+  rw [Nat.mul_comm i P.profileWeight] at hiBound
+  rw [Nat.mul_comm j P.profileWeight] at hjBound
+  omega
 
 /-- Every quadratic binary-profile parameter order lies strictly before the
 exact A19.128 Hessian clock.  The key input is the honest profile support
