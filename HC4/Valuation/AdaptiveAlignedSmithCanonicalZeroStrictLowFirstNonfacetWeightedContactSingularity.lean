@@ -79,8 +79,12 @@ theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero
     have hnat :
         HC4.Polynomial.ordinaryDegree4 d + r * d (0 : Fin 4) ≤ D := by
       simpa [F, D, HC4.Polynomial.facetOmittedCoordinate] using hsource hd
+    have hz :
+        (HC4.Polynomial.ordinaryDegree4 d : ℤ) +
+            (r : ℤ) * (d (0 : Fin 4) : ℤ) ≤ (D : ℤ) := by
+      exact_mod_cast hnat
     unfold HC4.Newton.scaledContactExponentWeight
-    exact_mod_cast hnat
+    simpa using hz
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
   have hdcontact :
