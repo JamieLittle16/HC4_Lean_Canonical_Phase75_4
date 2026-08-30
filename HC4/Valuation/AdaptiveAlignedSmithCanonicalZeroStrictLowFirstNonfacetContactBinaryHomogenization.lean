@@ -128,6 +128,51 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree
   simp [QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight,
     nsmul_eq_mul]
 
+/-- The represented source is bounded by the pure binary inflation weight.
+This is the support fact needed to reuse the generic bounded reverse-Rees
+normalization theorem. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_bound
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    HasReverseWeightBound P.binaryInflationWeight T.topFace.degree
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
+  intro d hd
+  rw [P.binaryInflationWeight_degree]
+  have hsource := P.source_weight_le hd
+  have hcoord :
+      d (0 : Fin 4) ≤ HC4.Polynomial.ordinaryDegree4 d := by
+    unfold HC4.Polynomial.ordinaryDegree4
+    omega
+  rw [P.profileWeight_eq]
+  calc
+    (P.contactGap + 1) * d (0 : Fin 4) =
+        d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by ring
+    _ ≤ HC4.Polynomial.ordinaryDegree4 d +
+          P.contactGap * d (0 : Fin 4) := Nat.add_le_add_right hcoord _
+    _ ≤ T.topFace.degree := hsource
+
+/-- The transversely inflated contact family is literally the bounded reverse
+Rees family for the pure longitudinal binary weight. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily_eq_reverseWeightedReesFamily
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    P.binaryHomogenizedFamily =
+      reverseWeightedReesFamily P.binaryInflationWeight T.topFace.degree
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+        P.binaryInflationWeight_bound := by
+  let F := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
+  apply MvPolynomial.ext
+  intro d
+  rw [P.coeff_binaryHomogenizedFamily]
+  rw [reverseWeightedReesFamily_coeff]
+  by_cases hd : d ∈ F.support
+  · rw [if_pos hd, P.binaryInflationWeight_degree]
+  · have hcoeff : MvPolynomial.coeff d F = 0 :=
+      MvPolynomial.notMem_support_iff.mp hd
+    simp [hd, hcoeff]
+
 /-- **Binary normalization identity.**  Inflating only the longitudinal source
 coordinate by `tau^profileWeight` clears the binary reverse grading completely:
 the honest binary family becomes the represented source multiplied by the
@@ -143,43 +188,11 @@ theorem QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomog
       MvPolynomial.C (Polynomial.X ^ T.topFace.degree) *
         constantPolynomialFamily
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
-  let F := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
-  apply MvPolynomial.ext
-  intro d
-  rw [coeff_adaptiveSmithInflateHom]
-  rw [P.coeff_binaryHomogenizedFamily]
-  rw [P.binaryInflationWeight_degree]
-  have hright :
-      MvPolynomial.coeff d
-          (MvPolynomial.C (Polynomial.X ^ T.topFace.degree) *
-            constantPolynomialFamily F) =
-        Polynomial.X ^ T.topFace.degree *
-          Polynomial.C (MvPolynomial.coeff d F) := by
-    simp [coeff_constantPolynomialFamily]
-  rw [hright]
-  by_cases hd : d ∈ F.support
-  · have hsource := P.source_weight_le hd
-    have hcoord :
-        d (0 : Fin 4) ≤ HC4.Polynomial.ordinaryDegree4 d := by
-      unfold HC4.Polynomial.ordinaryDegree4
-      omega
-    have hle : P.profileWeight * d (0 : Fin 4) ≤ T.topFace.degree := by
-      rw [P.profileWeight_eq]
-      calc
-        (P.contactGap + 1) * d (0 : Fin 4) =
-            d (0 : Fin 4) + P.contactGap * d (0 : Fin 4) := by ring
-        _ ≤ HC4.Polynomial.ordinaryDegree4 d +
-              P.contactGap * d (0 : Fin 4) := Nat.add_le_add_right hcoord _
-        _ ≤ T.topFace.degree := hsource
-    have hexp :
-        P.profileWeight * d (0 : Fin 4) +
-            (T.topFace.degree - P.profileWeight * d (0 : Fin 4)) =
-          T.topFace.degree := by omega
-    rw [← pow_add, hexp]
-    ring
-  · have hcoeff : MvPolynomial.coeff d F = 0 :=
-      MvPolynomial.notMem_support_iff.mp hd
-    simp [hcoeff]
+  rw [P.binaryHomogenizedFamily_eq_reverseWeightedReesFamily]
+  exact adaptiveSmithInflate_reverseWeightedReesFamily_eq
+    P.binaryInflationWeight T.topFace.degree
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      P.binaryInflationWeight_bound
 
 /-- Longitudinal polynomial form of the binary-homogenized contact family. -/
 noncomputable def QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal
