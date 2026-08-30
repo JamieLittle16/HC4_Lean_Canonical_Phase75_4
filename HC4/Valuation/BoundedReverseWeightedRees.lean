@@ -225,12 +225,14 @@ theorem adaptiveSmithInflateHom_monomial
         (Polynomial.X : Polynomial K) ^ Finsupp.weight w d := by
     rw [Finsupp.prod_fintype d
       (fun i e => (Polynomial.X ^ w i) ^ e) (by simp)]
-    rw [Finsupp.weight_eq_sum]
-    rw [Fin.prod_univ_four, Fin.sum_univ_four]
-    simp only [← pow_mul]
-    repeat' rw [← pow_add]
-    congr 1
-    simp [nsmul_eq_mul, Nat.mul_comm, Nat.add_assoc]
+    rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    · rw [Fin.prod_univ_four, Fin.sum_univ_four]
+      simp only [← pow_mul]
+      repeat' rw [← pow_add]
+      congr 1
+      simp [nsmul_eq_mul, Nat.mul_comm, Nat.add_assoc]
+    · intro i
+      simp
   have hcoefficient :
       d.prod (fun i e =>
         (MvPolynomial.C (Polynomial.X ^ w i) :
@@ -269,10 +271,10 @@ theorem coeff_adaptiveSmithInflateHom
       intro d
       rw [adaptiveSmithInflateHom_monomial]
       rw [MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial]
-      by_cases hdu : d = u
-      · subst d
+      by_cases hud : u = d
+      · subst u
         simp
-      · simp [hdu]
+      · simp [hud]
   | add p q hp hq =>
       intro d
       rw [map_add, MvPolynomial.coeff_add, MvPolynomial.coeff_add,
