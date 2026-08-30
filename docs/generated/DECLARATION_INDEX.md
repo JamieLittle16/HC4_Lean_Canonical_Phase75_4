@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6883**.
+Distinct declaration spellings indexed: **6888**.
 
 ## Repeated declaration spellings
 
@@ -1995,7 +1995,10 @@ Distinct declaration spellings indexed: **6883**.
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
+- `QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
+- `QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_longitudinalEulerHessian_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
+- `QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_longitudinalEuler_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `QsOtherFacetContactQuadraticReesPackage.eval_one_parameterSecondEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
 - `QsOtherFacetContactQuadraticReesPackage.permutedSchurDetCore_eq_activeDet_mul_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.profileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
@@ -2962,6 +2965,7 @@ Distinct declaration spellings indexed: **6883**.
 - `coeff_eq_zero_outside_rankOnePacket` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `coeff_eulerDerivative` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_eulerLinear_succ` — `theorem` in `HC4.FacetRigidity.EulerEquation`
+- `coeff_eulerScaledHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `coeff_eval_derivative_finSuccEquiv_eq` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_eval_hasseDeriv_finSuccEquiv_eq` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_first_eq_zero_of_schurC_twoFactor` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
@@ -2990,6 +2994,7 @@ Distinct declaration spellings indexed: **6883**.
 - `coeff_mul_at_gap_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `coeff_mul_eq_constant_mul_of_right_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mul_eq_zero_of_right_vanishes_through` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `coeff_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `coeff_n_mul_d_shiftedEuler_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_n_mul_e_add_two_shiftedEta_mul_phi_pow_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_n_mul_j_add_e_shiftedEuler_pow_mul_phi_pow_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
