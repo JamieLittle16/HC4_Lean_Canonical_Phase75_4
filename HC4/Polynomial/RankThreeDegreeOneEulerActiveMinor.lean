@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreeDegreeOnePencilRealisation
+import HC4.Polynomial.RankThreeEndpointActiveMinor
 import Mathlib.Tactic
 
 /-!
@@ -106,7 +107,7 @@ theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
           (phi.coeff 0) (phi.coeff 1) a b := by
     rw [hF]
     have hab := congrFun (congrFun hm a) b
-    simpa using hab
+    simpa [hphi] using hab
   unfold eulerScaledHessianPrincipalMinor
     weightedRankThreeEndpointActiveMinor
   simp only [map_sub, map_mul]
