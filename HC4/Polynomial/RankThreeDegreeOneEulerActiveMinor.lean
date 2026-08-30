@@ -112,6 +112,36 @@ theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
   simp only [map_sub, map_mul]
   rw [hentry i i, hentry j j, hentry i j, hentry j i]
 
+/-- For transverse source coordinates the Euler row/column monomials
+specialise to one.  Hence the ordinary Hessian principal minor itself has
+exactly the same endpoint-pencil specialisation. -/
+theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
+    {v2 v3 v4 u2 u3 u4 : ℕ}
+    {F : MvPolynomial (Fin 4) K}
+    (hsupp : IsSupportedOnRankThreeLine
+      v2 v3 v4 1 u2 u3 u4 1 F)
+    (i j : Fin 4)
+    (hi : i ≠ (0 : Fin 4))
+    (hj : j ≠ (0 : Fin 4)) :
+    let phi := rankThreeLineCoefficientPolynomial
+      v2 v3 v4 1 u2 u3 u4 1 F
+    rankThreeLineSpecialisation
+        (hessianPrincipalMinor F i j) =
+      weightedRankThreeEndpointActiveMinor
+        (v2 : K) (v3 : K) (v4 : K)
+        (1 : K) (u2 : K) (u3 : K) (u4 : K)
+        (phi.coeff 0) (phi.coeff 1) i j := by
+  dsimp only
+  have h := rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
+    (K := K) hsupp i j
+  dsimp only at h
+  rw [eulerScaledHessianPrincipalMinor_eq_monomial_mul] at h
+  have hXi : rankThreeLineSpecialisation (MvPolynomial.X i) = 1 := by
+    fin_cases i <;> simp_all [rankThreeLineSpecialisation]
+  have hXj : rankThreeLineSpecialisation (MvPolynomial.X j) = 1 := by
+    fin_cases j <;> simp_all [rankThreeLineSpecialisation]
+  simpa [map_mul, map_pow, hXi, hXj] using h
+
 /-- Nonvanishing of the endpoint-pencil active minor lifts to nonvanishing of
 the honest Euler-scaled Hessian principal minor. -/
 theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
