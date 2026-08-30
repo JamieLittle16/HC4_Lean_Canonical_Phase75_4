@@ -61,7 +61,6 @@ theorem qsIntegralContactWeight_sum (r : ℕ) :
     ∑ i : Fin 4, qsIntegralContactWeight r i = r + 4 := by
   rw [Fin.sum_univ_four]
   simp [qsIntegralContactWeight]
-  omega
 
 /-- After casting to integers, the natural contact weights are exactly the
 existing denominator-cleared contact weight with `scale = 1`. -/
@@ -70,7 +69,7 @@ theorem qsIntegralContactWeight_cast_eq_scaledContactWeight (r : ℕ) :
       HC4.Newton.scaledContactWeight (0 : Fin 4) 1 r := by
   funext i
   fin_cases i <;>
-    simp [qsIntegralContactWeight, HC4.Newton.scaledContactWeight]
+    simp [qsIntegralContactWeight, HC4.Newton.scaledContactWeight] <;> ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -139,7 +138,7 @@ theorem qs_ray_otherFacet_contactRees_package
           T.terminal.blocker.presented.family).support →
         HC4.Polynomial.ordinaryDegree4 d + r * d (0 : Fin 4) ≤
           T.topFace.degree := by
-    simpa using hsource0
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hsource0
   let F : MvPolynomial (Fin 4) K :=
     polynomialFamilySpecialFiber T.terminal.blocker.presented.family
   let D : ℕ := T.topFace.degree
@@ -150,6 +149,9 @@ theorem qs_ray_otherFacet_contactRees_package
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
   have hdcontact := hsource hd
+  have hrle : r ≤ r * d (0 : Fin 4) := by
+    have hd0one : 1 ≤ d (0 : Fin 4) := by omega
+    simpa using Nat.mul_le_mul_left r hd0one
   have hcontact : r + 3 ≤ D := by
     dsimp [D]
     omega
@@ -187,10 +189,15 @@ theorem qs_ray_otherFacet_contactRees_package
       (HC4.Newton.scaledContactWeight (0 : Fin 4) 1 r) (D : ℤ) F := by
     rw [HC4.Newton.isWeightLE_scaledContactWeight_iff]
     intro e he
-    have hs := hsource he
+    have hnat :
+        HC4.Polynomial.ordinaryDegree4 e + r * e (0 : Fin 4) ≤ D :=
+      hsource he
     unfold HC4.Newton.scaledContactExponentWeight
-    push_cast
-    exact_mod_cast hs
+    have hz :
+        (HC4.Polynomial.ordinaryDegree4 e : ℤ) +
+            (r : ℤ) * (e (0 : Fin 4) : ℤ) ≤ (D : ℤ) := by
+      exact_mod_cast hnat
+    simpa using hz
   have hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere F := by
     dsimp [F]
     exact T.terminal.blocker.presented.zeroDefect_specialFiber_hessianDeterminant_eq_one
@@ -217,7 +224,7 @@ theorem qs_ray_otherFacet_contactRees_package
     hasPositiveActualParameterLayer_of_hessianDefect_pos
       _ hdef hDelta
   refine ⟨r, hbound, hr, hbump, ?_, ?_, ?_, ?_, ?_, hpositive⟩
-  · simpa [F, D] using hsource
+  · exact hsource
   · simpa [F, D] using hspecial
   · simpa [F, D] using hspecialZero
   · simpa [F, D] using hdef
