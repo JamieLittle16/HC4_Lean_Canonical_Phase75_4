@@ -38,7 +38,7 @@ open MvPolynomial
 upper exposed face of the source support, provided the source is globally
 bounded above by the selected level. -/
 theorem initialForm_support_isExposedFace
-    {σ K : Type*} [CommSemiring K]
+    {σ K : Type*} [CommRing K]
     (w : σ → ℤ) (level : ℤ) (P : MvPolynomial σ K)
     (hLE : HC4.Polynomial.IsWeightLE w level P) :
     IsExposedFace
