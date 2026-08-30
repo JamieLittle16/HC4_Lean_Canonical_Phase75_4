@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6913**.
+Distinct declaration spellings indexed: **6914**.
 
 ## Repeated declaration spellings
 
@@ -3056,6 +3056,7 @@ Distinct declaration spellings indexed: **6913**.
 - `coeff_three_rankThree_raw_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
+- `coeff_two_mul_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_n_shiftedEtaNumerator_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_two_n_shiftedEtaNumerator_ne_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_two_rankThreeEtaDenominatorPolynomial_unit_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
