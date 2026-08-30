@@ -31,10 +31,11 @@ theorem reverseWeightedReesFamily_parameterLayer_mem_iff
   rw [reverseWeightedReesFamily_parameterLayer_coeff]
   by_cases hcond : d ∈ F.support ∧ D - Finsupp.weight w d = n
   · rw [if_pos hcond]
-    exact ⟨fun _ => hcond,
-      fun _ => MvPolynomial.mem_support_iff.mp hcond.1⟩
+    have hcoeff : MvPolynomial.coeff d F ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp hcond.1
+    exact ⟨fun _ => hcond, fun _ => hcoeff⟩
   · rw [if_neg hcond]
-    simp [hcond]
+    exact ⟨fun hzero => (hzero rfl).elim, fun hpair => (hcond hpair).elim⟩
 
 /-- No reverse-Rees source layer can occur above the chosen level. -/
 theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
@@ -68,7 +69,7 @@ theorem reverseWeightedReesFamily_actualLayerOrder_le_level
     by_cases heq : D - Finsupp.weight w d = n
     · have hdrop : D - Finsupp.weight w d ≤ D := Nat.sub_le D _
       omega
-    · simp [heq, Ne.symm heq] at hcoeff
+    · simp [Ne.symm heq] at hcoeff
   · rw [if_neg hdF] at hcoeff
     exact (hcoeff rfl).elim
 
