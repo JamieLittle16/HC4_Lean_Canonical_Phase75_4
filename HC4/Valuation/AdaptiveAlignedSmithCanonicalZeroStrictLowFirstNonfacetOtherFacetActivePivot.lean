@@ -1,5 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil
-import HC4.Polynomial.RankThreeEndpointActiveMinor
+import HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor
 import Mathlib.Tactic
 
 /-!
@@ -18,8 +18,9 @@ coefficient in the endpoint pencil.  Thus it is a genuine polynomial pivot:
 * `.sp` uses coordinates `(1,3)`;
 * `.rq` uses coordinates `(1,2)`.
 
-This is the division-free active block needed by the next four-block Schur
-adapter.  No source permutation or determinant cancellation is performed here.
+The final three lemmas retain the stronger information needed by the binary
+Schur clock: after the canonical rank-three-line specialisation, the ordinary
+ray Hessian pivot has a nonzero coefficient in longitudinal degree two.
 -/
 
 namespace HC4.Valuation
@@ -171,6 +172,87 @@ theorem qs_ray_rq_endpointActiveMinor_ne_zero
     (C.qsRayDegreeOneCoefficientPolynomial.coeff 0)
     (C.qsRayDegreeOneCoefficientPolynomial.coeff 1)
     hout1 hout2 (C.qsRayDegreeOneCoefficientPolynomial_coeff_one_ne hthree)
+
+/-- `.pr`: after ordinary transverse-Hessian specialization, the quadratic
+longitudinal coefficient of the actual ray pivot is nonzero. -/
+theorem qs_ray_pr_hessianPrincipalMinor_specialisation_coeff_two_ne_zero
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (HC4.Polynomial.rankThreeLineSpecialisation
+      (HC4.Polynomial.hessianPrincipalMinor C.ray.face
+        (2 : Fin 4) 3)).coeff 2 ≠ 0 := by
+  rw [HC4.Polynomial.rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
+    (C.qs_ray_degreeOne_supportedLine hthree) (2 : Fin 4) 3 (by decide) (by decide)]
+  have hout :=
+    (HC4.Newton.mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree
+  rcases hout with ⟨_hout1, _hout0, hout2, hout3⟩
+  simpa [qsRayDegreeOneCoefficientPolynomial] using
+    HC4.Polynomial.coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero
+      (K := K)
+      (C.ray.facetExponent 1 : K)
+      (C.ray.facetExponent 2 : K)
+      (C.ray.facetExponent 3 : K)
+      (1 : K)
+      (C.ray.outsideExponent 1 : K)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 0)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 1)
+      hout2 hout3 (C.qsRayDegreeOneCoefficientPolynomial_coeff_one_ne hthree)
+
+/-- `.sp`: after ordinary transverse-Hessian specialization, the quadratic
+longitudinal coefficient of the actual ray pivot is nonzero. -/
+theorem qs_ray_sp_hessianPrincipalMinor_specialisation_coeff_two_ne_zero
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .sp C.ray.outsideExponent) :
+    (HC4.Polynomial.rankThreeLineSpecialisation
+      (HC4.Polynomial.hessianPrincipalMinor C.ray.face
+        (1 : Fin 4) 3)).coeff 2 ≠ 0 := by
+  rw [HC4.Polynomial.rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
+    (C.qs_ray_degreeOne_supportedLine hthree) (1 : Fin 4) 3 (by decide) (by decide)]
+  have hout :=
+    (HC4.Newton.mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree
+  rcases hout with ⟨_hout2, _hout0, hout1, hout3⟩
+  simpa [qsRayDegreeOneCoefficientPolynomial] using
+    HC4.Polynomial.coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero
+      (K := K)
+      (C.ray.facetExponent 1 : K)
+      (C.ray.facetExponent 2 : K)
+      (C.ray.facetExponent 3 : K)
+      (1 : K)
+      (C.ray.outsideExponent 2 : K)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 0)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 1)
+      hout1 hout3 (C.qsRayDegreeOneCoefficientPolynomial_coeff_one_ne hthree)
+
+/-- `.rq`: after ordinary transverse-Hessian specialization, the quadratic
+longitudinal coefficient of the actual ray pivot is nonzero. -/
+theorem qs_ray_rq_hessianPrincipalMinor_specialisation_coeff_two_ne_zero
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .rq C.ray.outsideExponent) :
+    (HC4.Polynomial.rankThreeLineSpecialisation
+      (HC4.Polynomial.hessianPrincipalMinor C.ray.face
+        (1 : Fin 4) 2)).coeff 2 ≠ 0 := by
+  rw [HC4.Polynomial.rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
+    (C.qs_ray_degreeOne_supportedLine hthree) (1 : Fin 4) 2 (by decide) (by decide)]
+  have hout :=
+    (HC4.Newton.mvRankThreeOnFacet_iff .rq C.ray.outsideExponent).1 houtThree
+  rcases hout with ⟨_hout3, _hout0, hout1, hout2⟩
+  simpa [qsRayDegreeOneCoefficientPolynomial] using
+    HC4.Polynomial.coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero
+      (K := K)
+      (C.ray.facetExponent 1 : K)
+      (C.ray.facetExponent 2 : K)
+      (C.ray.facetExponent 3 : K)
+      (1 : K)
+      (C.ray.outsideExponent 3 : K)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 0)
+      (C.qsRayDegreeOneCoefficientPolynomial.coeff 1)
+      hout1 hout2 (C.qsRayDegreeOneCoefficientPolynomial_coeff_one_ne hthree)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
