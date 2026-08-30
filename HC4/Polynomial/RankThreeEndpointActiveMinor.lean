@@ -39,6 +39,18 @@ def weightedRankThreeEndpointActiveMinor
   let M := weightedRankThreeEndpointPencil A B C P Q R S c0 c1
   M i i * M j j - M i j * M j i
 
+/-- Degree two of a product of two linear polynomials is the product of their
+linear coefficients.  Keeping this finite convolution separate prevents the
+endpoint-minor proofs below from expanding nested `coeff_mul` antidiagonals. -/
+private theorem coeff_two_mul_linear
+    (a0 a1 b0 b1 : K) :
+    ((Polynomial.C a0 + Polynomial.X * Polynomial.C a1) *
+      (Polynomial.C b0 + Polynomial.X * Polynomial.C b1)).coeff 2 =
+      a1 * b1 := by
+  rw [Polynomial.coeff_mul,
+    Finset.Nat.sum_antidiagonal_eq_sum_range_succ]
+  norm_num [Finset.sum_range_succ]
+
 /-- The quadratic coefficient of a symmetric linear `2 x 2` pencil depends
 only on the linear coefficient matrix. -/
 theorem coeff_two_symmetricLinearMinor
@@ -48,8 +60,8 @@ theorem coeff_two_symmetricLinearMinor
         (Polynomial.C a01 + Polynomial.X * Polynomial.C b01) *
           (Polynomial.C a01 + Polynomial.X * Polynomial.C b01)).coeff 2 =
       b00 * b11 - b01 * b01 := by
-  simp [Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring_nf
+  rw [Polynomial.coeff_sub,
+    coeff_two_mul_linear, coeff_two_mul_linear]
 
 /-- `.pr` active pair `(2,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
@@ -57,9 +69,18 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (2 : Fin 4) 3).coeff 2 =
       c1 ^ 2 * R * S * (1 - R - S) := by
-  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
-  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring_nf
+  have h := coeff_two_symmetricLinearMinor (K := K)
+    (c0 * (B * B - B)) (c0 * (B * C)) (c0 * (C * C - C))
+    (c1 * (R * R - R)) (c1 * (R * S)) (c1 * (S * S - S))
+  calc
+    (weightedRankThreeEndpointActiveMinor
+        A B C P Q R S c0 c1 (2 : Fin 4) 3).coeff 2 =
+        (c1 * (R * R - R)) * (c1 * (S * S - S)) -
+          (c1 * (R * S)) * (c1 * (R * S)) := by
+      simpa [weightedRankThreeEndpointActiveMinor,
+        weightedRankThreeEndpointPencil, vectorHessianCore,
+        map_mul, mul_assoc] using h
+    _ = c1 ^ 2 * R * S * (1 - R - S) := by ring
 
 /-- `.sp` active pair `(1,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three
@@ -67,9 +88,18 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (1 : Fin 4) 3).coeff 2 =
       c1 ^ 2 * Q * S * (1 - Q - S) := by
-  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
-  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring_nf
+  have h := coeff_two_symmetricLinearMinor (K := K)
+    (c0 * (A * A - A)) (c0 * (A * C)) (c0 * (C * C - C))
+    (c1 * (Q * Q - Q)) (c1 * (Q * S)) (c1 * (S * S - S))
+  calc
+    (weightedRankThreeEndpointActiveMinor
+        A B C P Q R S c0 c1 (1 : Fin 4) 3).coeff 2 =
+        (c1 * (Q * Q - Q)) * (c1 * (S * S - S)) -
+          (c1 * (Q * S)) * (c1 * (Q * S)) := by
+      simpa [weightedRankThreeEndpointActiveMinor,
+        weightedRankThreeEndpointPencil, vectorHessianCore,
+        map_mul, mul_assoc] using h
+    _ = c1 ^ 2 * Q * S * (1 - Q - S) := by ring
 
 /-- `.rq` active pair `(1,2)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two
@@ -77,9 +107,18 @@ theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two
     (weightedRankThreeEndpointActiveMinor
       A B C P Q R S c0 c1 (1 : Fin 4) 2).coeff 2 =
       c1 ^ 2 * Q * R * (1 - Q - R) := by
-  unfold weightedRankThreeEndpointActiveMinor weightedRankThreeEndpointPencil
-  simp [vectorHessianCore, Polynomial.coeff_sub, Polynomial.coeff_mul]
-  ring_nf
+  have h := coeff_two_symmetricLinearMinor (K := K)
+    (c0 * (A * A - A)) (c0 * (A * B)) (c0 * (B * B - B))
+    (c1 * (Q * Q - Q)) (c1 * (Q * R)) (c1 * (R * R - R))
+  calc
+    (weightedRankThreeEndpointActiveMinor
+        A B C P Q R S c0 c1 (1 : Fin 4) 2).coeff 2 =
+        (c1 * (Q * Q - Q)) * (c1 * (R * R - R)) -
+          (c1 * (Q * R)) * (c1 * (Q * R)) := by
+      simpa [weightedRankThreeEndpointActiveMinor,
+        weightedRankThreeEndpointPencil, vectorHessianCore,
+        map_mul, mul_assoc] using h
+    _ = c1 ^ 2 * Q * R * (1 - Q - R) := by ring
 
 private theorem positive_pair_core_ne_zero
     {a b : ℕ} (ha : 0 < a) (hb : 0 < b) :
