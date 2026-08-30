@@ -2202,7 +2202,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
-- Declarations: `def weightedRankThreeEndpointActiveMinor`, `theorem coeff_two_symmetricLinearMinor`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two`, `theorem positive_pair_core_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_two_ne_zero`
+- Declarations: `def weightedRankThreeEndpointActiveMinor`, `theorem coeff_two_symmetricLinearMinor`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two`, `theorem positive_pair_core_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero`, `theorem coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_two_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_three_ne_zero`, `theorem weightedRankThreeEndpointActiveMinor_one_two_ne_zero`
 
 ### `HC4.Polynomial.RankThreeFractionBridge`
 

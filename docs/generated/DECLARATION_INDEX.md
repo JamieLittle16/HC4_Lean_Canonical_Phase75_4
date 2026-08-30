@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6904**.
+Distinct declaration spellings indexed: **6907**.
 
 ## Repeated declaration spellings
 
@@ -3058,8 +3058,11 @@ Distinct declaration spellings indexed: **6904**.
 - `coeff_two_rankThreeEtaDenominatorPolynomial_unit_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
 - `coeff_two_symmetricLinearMinor` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointActiveMinor_one_three` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_one_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointActiveMinor_one_two` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_one_two_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointActiveMinor_two_three` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
+- `coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
