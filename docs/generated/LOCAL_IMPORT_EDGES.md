@@ -82,6 +82,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableTerminalClock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRelativeFirstContactReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingLowLayerElimination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockEndpoint`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible`
@@ -110,6 +111,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
