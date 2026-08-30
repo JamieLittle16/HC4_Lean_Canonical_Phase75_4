@@ -78,7 +78,7 @@ theorem qs_ray_otherFacet_weightedContact_hessianDeterminant_eq_zero
     intro d hd
     have h := hsource hd
     unfold HC4.Newton.scaledContactExponentWeight
-    exact_mod_cast h
+    simpa [D, HC4.Polynomial.facetOmittedCoordinate] using_mod_cast h
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
   have hdcontact :
