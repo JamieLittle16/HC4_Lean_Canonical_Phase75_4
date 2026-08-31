@@ -7,8 +7,7 @@ import Mathlib.Tactic
 # A19.101: honest reverse Rees family of the integral lower `qs` contact
 
 A19.97 bounds the actual represented zero-clock source by the integral contact
-weight `ordinaryDegree4 d + r*d₀ <= D`, with `r >= 2`.  A19.R1 turns exactly
-such a bounded filtration into an honest polynomial family.  This file records
+weight `ordinaryDegree4 d + r*d₀ <= D`, with `r >= 2`.  A19.R1 turns exactly such a bounded filtration into an honest polynomial family.  This file records
 the corresponding contact family and its positive pure Hessian clock.
 -/
 
@@ -138,7 +137,9 @@ theorem qs_ray_otherFacet_contactRees_package
           T.terminal.blocker.presented.family).support →
         HC4.Polynomial.ordinaryDegree4 d + r * d (0 : Fin 4) ≤
           T.topFace.degree := by
-    simpa [HC4.Polynomial.facetOmittedCoordinate] using hsource0
+    intro d hd
+    have hs := hsource0 (d := d) hd
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hs
   let F : MvPolynomial (Fin 4) K :=
     polynomialFamilySpecialFiber T.terminal.blocker.presented.family
   let D : ℕ := T.topFace.degree
