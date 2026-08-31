@@ -55,7 +55,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.profileWeight_mul_longitudinal_l
   have hbound := P.source_weight_le hd
   have hcoord :
       d (0 : Fin 4) ≤ HC4.Polynomial.ordinaryDegree4 d := by
-    simp [HC4.Polynomial.ordinaryDegree4]
+    unfold HC4.Polynomial.ordinaryDegree4
+    omega
   rw [P.profileWeight_eq]
   calc
     (P.contactGap + 1) * d (0 : Fin 4) =
@@ -84,9 +85,13 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_bi
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast [Nat.cast_sub hle]
-    rw [Polynomial.derivative_mul]
-    simp [hcast]
+      rw [Nat.cast_sub hle, Nat.cast_mul]
+    rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+    simp only [mul_zero, add_zero]
+    rw [Polynomial.derivative_X_pow]
+    simp only [Polynomial.eval_mul, Polynomial.eval_X, Polynomial.eval_C,
+      Polynomial.eval_pow, one_pow, one_mul, mul_one]
+    rw [hcast]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [F, hcoeff]
@@ -114,10 +119,28 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterSecondEuler_co
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast [Nat.cast_sub hle]
-    rw [Polynomial.derivative_mul]
-    simp [hcast]
-    ring
+      rw [Nat.cast_sub hle, Nat.cast_mul]
+    have hsecond : ∀ n : ℕ,
+        Polynomial.eval 1
+            (Polynomial.derivative
+              (Polynomial.derivative ((Polynomial.X : Polynomial K) ^ n))) =
+          (n : K) * ((n : K) - 1) := by
+      intro n
+      cases n with
+      | zero => simp
+      | succ n =>
+          rw [Polynomial.derivative_X_pow_succ]
+          rw [Polynomial.derivative_C_mul]
+          rw [Polynomial.derivative_X_pow]
+          simp
+          ring
+    rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+    simp only [mul_zero, add_zero]
+    rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+    simp only [mul_zero, add_zero]
+    simp only [Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X,
+      one_pow, one_mul, Polynomial.eval_C]
+    rw [hsecond, hcast]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [F, hcoeff]
