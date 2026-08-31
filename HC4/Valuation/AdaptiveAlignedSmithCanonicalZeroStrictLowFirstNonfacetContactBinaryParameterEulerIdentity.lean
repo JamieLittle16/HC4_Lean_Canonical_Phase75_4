@@ -41,6 +41,7 @@ private theorem parameterEuler_X_pow
   | succ n =>
       rw [Polynomial.derivative_X_pow_succ]
       rw [pow_succ]
+      simp only [Nat.cast_add, Nat.cast_one]
       ring
 
 private theorem parameterSecondEuler_X_pow
@@ -54,8 +55,11 @@ private theorem parameterSecondEuler_X_pow
       cases n with
       | zero => simp
       | succ n =>
-          simp [Polynomial.derivative_X_pow_succ,
-            Polynomial.derivative_C_mul, pow_succ]
+          rw [Polynomial.derivative_X_pow_succ]
+          rw [Polynomial.derivative_C_mul]
+          rw [Polynomial.derivative_X_pow_succ]
+          simp only [Nat.cast_add, Nat.cast_one]
+          rw [pow_succ, pow_succ]
           ring
 
 private theorem parameterEuler_X_pow_mul_C
