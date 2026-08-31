@@ -153,7 +153,7 @@ theorem qs_ray_otherFacet_rayReverseRees_package
     · simp [w0, HC4.Newton.scaledContactWeight, hi]
       omega
     · simp [w0, HC4.Newton.scaledContactWeight, hi]
-      exact hscaleZ
+      exact C.scale_pos
   have hDpos : 0 < T.topFace.degree := by
     omega
   have hc0pos : 0 < c0 := by
@@ -163,10 +163,14 @@ theorem qs_ray_otherFacet_rayReverseRees_package
   have hinnerNat :
       2 * (r + 4) < 4 * T.topFace.degree :=
     Nat.sub_pos_iff_lt.mp contactDeltaPos
+  have hinnerCast :
+      ((2 * (r + 4) : ℕ) : ℤ) <
+        ((4 * T.topFace.degree : ℕ) : ℤ) := by
+    exact_mod_cast hinnerNat
   have hinner :
       0 < 4 * (T.topFace.degree : ℤ) -
         2 * ((r : ℤ) + 4) := by
-    exact_mod_cast hinnerNat
+    push_cast at hinnerCast
     omega
   have hclockEq :
       4 * c0 - 2 * ∑ i : Fin 4, w0 i =
@@ -181,6 +185,9 @@ theorem qs_ray_otherFacet_rayReverseRees_package
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨e, he, hedeg, he0, _hecodim⟩
   have heBound := hsource he
+  have hrmul : 2 * r ≤ r * e (0 : Fin 4) := by
+    have hmul := Nat.mul_le_mul_left r he0
+    simpa [Nat.mul_comm] using hmul
   have hstrong : 2 * r + 3 ≤ T.topFace.degree := by
     omega
   have hstrongZ :
@@ -266,6 +273,7 @@ theorem qs_ray_otherFacet_rayReverseRees_package
   rw [← hcastW, ← hcastD] at hclockLtZ
   have hclockLt :
       2 * ∑ i : Fin 4, W i < 4 * D := by
+    rw [Fin.sum_univ_four] at hclockLtZ ⊢
     exact_mod_cast hclockLtZ
   have hnonneg :
       2 * ∑ i : Fin 4, W i ≤ 4 * D :=
@@ -278,9 +286,11 @@ theorem qs_ray_otherFacet_rayReverseRees_package
       ((2 * D : ℕ) : ℤ) <
         ((4 * D - 2 * ∑ i : Fin 4, W i : ℕ) : ℤ) := by
     rw [Nat.cast_sub hnonneg]
+    rw [Fin.sum_univ_four]
     push_cast
     have hz := hquadraticZ
     rw [← hcastW, ← hcastD] at hz
+    rw [Fin.sum_univ_four] at hz
     push_cast at hz
     exact hz
   have htwoLevelLtDelta :
