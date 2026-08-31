@@ -45,10 +45,12 @@ theorem coeff_mvEuler
       ring
   | monomial n a =>
       rw [MvPolynomial.X_mul_pderiv_monomial]
+      rw [MvPolynomial.coeff_smul]
       by_cases hdn : d = n
       · subst d
-        simp
-      · simp [hdn]
+        simp [MvPolynomial.coeff_monomial, nsmul_eq_mul]
+      · have hnd : n ≠ d := Ne.symm hdn
+        simp [MvPolynomial.coeff_monomial, hdn, hnd, nsmul_eq_mul]
 
 /-- Coefficientwise form of the Euler-scaled Hessian. -/
 theorem coeff_eulerScaledHessian
@@ -60,11 +62,21 @@ theorem coeff_eulerScaledHessian
         MvPolynomial.coeff d F := by
   by_cases hij : i = j
   · subst j
-    simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
-      coeff_mvEuler]
+    change
+      MvPolynomial.coeff d
+          ((MvPolynomial.X i * MvPolynomial.pderiv i
+              (MvPolynomial.X i * MvPolynomial.pderiv i F)) -
+            (MvPolynomial.X i * MvPolynomial.pderiv i F)) = _
+    rw [MvPolynomial.coeff_sub, coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
+    simp only [if_pos]
     ring
-  · simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
-      hij, coeff_mvEuler]
+  · change
+      MvPolynomial.coeff d
+          ((MvPolynomial.X i * MvPolynomial.pderiv i
+              (MvPolynomial.X j * MvPolynomial.pderiv j F)) - 0) = _
+    rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_zero, sub_zero,
+      coeff_mvEuler, coeff_mvEuler]
+    simp only [if_neg hij]
     ring
 
 universe w
@@ -114,7 +126,6 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_lo
             (MvPolynomial.coeff d P.binaryHomogenizedFamily)) := by
       rw [HC4.Polynomial.mvEuler, coeff_mvEuler]
       simp [Polynomial.derivative_mul]
-      ring
     _ = (d (0 : Fin 4) : K) *
         ((T.topFace.degree : K) -
           (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
@@ -137,7 +148,9 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_longitudinalEuler
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
   rw [coeff_eulerScaledHessian]
   simp only [if_pos]
-  simp [P.eval_one_coeff_binaryHomogenizedFamily]
+  rw [Polynomial.eval_mul]
+  rw [P.eval_one_coeff_binaryHomogenizedFamily]
+  simp only [Polynomial.eval_sub, Polynomial.eval_mul, Polynomial.eval_natCast]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
