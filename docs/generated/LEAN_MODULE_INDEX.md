@@ -6297,10 +6297,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur.lean`
 - Purpose: A19.135--A19.136: active binary Schur pivot and residual pre-clock range
 - A-labels: `A19.128`, `A19.134`, `A19.135`, `A19.136`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def qsPrSuperfaceSchurPermutation`, `def qsSpSuperfaceSchurPermutation`, `def qsRqSuperfaceSchurPermutation`, `theorem permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileWeight_mul_le_of_coeff_ne_zero`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.binary_profileOrder_add`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_activeDet_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_binary_activeDet_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_binary_activeDet_ne_zero`
+- Declarations: `theorem permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileWeight_mul_le_of_coeff_ne_zero`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.binary_profileOrder_add`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_activeDet_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_binary_activeDet_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_binary_activeDet_ne_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 
@@ -6629,7 +6629,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.126`, `A19.127`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - Declarations: `def qsPrSuperfaceSchurPermutation`, `def qsSpSuperfaceSchurPermutation`, `def qsRqSuperfaceSchurPermutation`, `theorem QsOtherFacetRayFirstSuperfacePackage.pr_clearedSchur`, `theorem QsOtherFacetRayFirstSuperfacePackage.sp_clearedSchur`, `theorem QsOtherFacetRayFirstSuperfacePackage.rq_clearedSchur`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
