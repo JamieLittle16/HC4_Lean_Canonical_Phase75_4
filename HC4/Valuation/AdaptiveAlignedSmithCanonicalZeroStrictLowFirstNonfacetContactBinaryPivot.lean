@@ -44,9 +44,9 @@ theorem QsOtherFacetContactQuadraticReesPackage.map_eval_one_hessianPrincipalMin
     (P : QsOtherFacetContactQuadraticReesPackage C)
     (i j : Fin 4) :
     MvPolynomial.map (Polynomial.evalRingHom 1)
-        (HC4.Polynomial.hessianPrincipalMinor
+        (HC4.Polynomial.hessianPrincipalMinor (K := Polynomial K)
           P.binaryHomogenizedFamily i j) =
-      HC4.Polynomial.hessianPrincipalMinor
+      HC4.Polynomial.hessianPrincipalMinor (K := K)
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
         i j := by
   unfold HC4.Polynomial.hessianPrincipalMinor
@@ -59,10 +59,10 @@ theorem QsOtherFacetContactQuadraticReesPackage.binary_hessianPrincipalMinor_ne_
     (P : QsOtherFacetContactQuadraticReesPackage C)
     (i j : Fin 4)
     (hsource :
-      HC4.Polynomial.hessianPrincipalMinor
+      HC4.Polynomial.hessianPrincipalMinor (K := K)
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
         i j ≠ 0) :
-    HC4.Polynomial.hessianPrincipalMinor
+    HC4.Polynomial.hessianPrincipalMinor (K := Polynomial K)
       P.binaryHomogenizedFamily i j ≠ 0 := by
   intro hzero
   apply hsource
@@ -76,7 +76,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_hessianPrincipalMinor_
     (R : QsOtherFacetRayReverseReesPackage C)
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : HC4.Newton.MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    HC4.Polynomial.hessianPrincipalMinor
+    HC4.Polynomial.hessianPrincipalMinor (K := Polynomial K)
       P.binaryHomogenizedFamily (2 : Fin 4) 3 ≠ 0 := by
   exact P.binary_hessianPrincipalMinor_ne_zero_of_source (2 : Fin 4) 3
     (R.pr_source_hessianPrincipalMinor_ne_zero hthree houtThree)
@@ -87,7 +87,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.sp_binary_hessianPrincipalMinor_
     (R : QsOtherFacetRayReverseReesPackage C)
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : HC4.Newton.MvRankThreeOnFacet .sp C.ray.outsideExponent) :
-    HC4.Polynomial.hessianPrincipalMinor
+    HC4.Polynomial.hessianPrincipalMinor (K := Polynomial K)
       P.binaryHomogenizedFamily (1 : Fin 4) 3 ≠ 0 := by
   exact P.binary_hessianPrincipalMinor_ne_zero_of_source (1 : Fin 4) 3
     (R.sp_source_hessianPrincipalMinor_ne_zero hthree houtThree)
@@ -98,7 +98,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.rq_binary_hessianPrincipalMinor_
     (R : QsOtherFacetRayReverseReesPackage C)
     (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : HC4.Newton.MvRankThreeOnFacet .rq C.ray.outsideExponent) :
-    HC4.Polynomial.hessianPrincipalMinor
+    HC4.Polynomial.hessianPrincipalMinor (K := Polynomial K)
       P.binaryHomogenizedFamily (1 : Fin 4) 2 ≠ 0 := by
   exact P.binary_hessianPrincipalMinor_ne_zero_of_source (1 : Fin 4) 2
     (R.rq_source_hessianPrincipalMinor_ne_zero hthree houtThree)
