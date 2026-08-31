@@ -54,6 +54,7 @@ private theorem coeff_two_mul_linear
         Polynomial.C (a0 * b0) * Polynomial.X ^ 0 +
           Polynomial.C (a0 * b1 + a1 * b0) * Polynomial.X ^ 1 +
           Polynomial.C (a1 * b1) * Polynomial.X ^ 2 := by
+    simp only [map_add, map_mul]
     ring
   rw [hpoly]
   simp only [Polynomial.coeff_add, Polynomial.coeff_C_mul_X_pow]
@@ -67,7 +68,14 @@ private theorem weightedRankThreeEndpointPencil_apply_eq_linear
       Polynomial.C (c0 * vectorHessianCore ![0, A, B, C] i j) +
         Polynomial.X *
           Polynomial.C (c1 * vectorHessianCore ![P, Q, R, S] i j) := by
-  unfold weightedRankThreeEndpointPencil
+  change
+    Polynomial.C c0 *
+          Polynomial.C (vectorHessianCore ![0, A, B, C] i j) +
+        Polynomial.X * Polynomial.C c1 *
+          Polynomial.C (vectorHessianCore ![P, Q, R, S] i j) =
+      Polynomial.C (c0 * vectorHessianCore ![0, A, B, C] i j) +
+        Polynomial.X *
+          Polynomial.C (c1 * vectorHessianCore ![P, Q, R, S] i j)
   simp only [map_mul]
   ring
 
