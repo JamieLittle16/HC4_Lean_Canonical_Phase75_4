@@ -121,6 +121,7 @@ theorem QsOtherFacetRayReverseReesPackage.firstSuperfacePackage
     have hle : H.exponent (0 : Fin 4) ≤ 1 := by
       rw [← hdeg]
       exact Polynomial.le_natDegree_of_mem_supp _ hidx
+    have htwo : 2 ≤ H.exponent (0 : Fin 4) := H.longitudinal_two_le
     omega
 
   have hHsourceSet : H.exponent ∈ (↑F.support : Set (Fin 4 →₀ ℕ)) := by
