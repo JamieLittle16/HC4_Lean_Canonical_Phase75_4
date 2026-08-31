@@ -96,6 +96,9 @@ Distinct declaration spellings indexed: **6920**.
 - `preterminal_canonicalStrictRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminal_rankTwoProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `pureLongitudinal_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+- `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsSpSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `rankThreeEtaDenominator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeEtaNumerator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_coeff_zero_ne_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
@@ -5372,12 +5375,12 @@ Distinct declaration spellings indexed: **6920**.
 - `qsIntegralContactWeight_cons` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `qsIntegralContactWeight_finsupp` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsIntegralContactWeight_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
-- `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qsRayDegreeOneCoefficientPolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayDegreeOneCoefficientPolynomial_coeff_one_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayPrimaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
-- `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
-- `qsSpSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsSpSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qs_exposed_topFaceCrossFacet_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_exposed_topFaceOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_quadraticSquare_source_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
