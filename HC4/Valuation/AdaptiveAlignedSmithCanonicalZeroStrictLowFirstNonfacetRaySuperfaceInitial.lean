@@ -56,6 +56,9 @@ theorem QsOtherFacetRayFirstSuperfacePackage.ray_exposed_in_polynomial
     rw [show Finsupp.weight wR e = (Finsupp.weight R.weight e : ℤ) by
       exact weight_natCast_eq R.weight e]
     exact_mod_cast h
+  have hInitEq :
+      HC4.Polynomial.initialForm wR (R.level : ℤ) F = C.ray.face := by
+    simpa [F, wR, qsRayPrimaryIntegerWeight] using R.initialForm_eq_ray
   have hRsource :
       HC4.Newton.IsExposedFace
         (↑F.support : Set (Fin 4 →₀ ℕ))
@@ -63,7 +66,7 @@ theorem QsOtherFacetRayFirstSuperfacePackage.ray_exposed_in_polynomial
         (fun e => Finsupp.weight wR e) (R.level : ℤ) := by
     have h := HC4.Newton.initialForm_support_isExposedFace
       wR (R.level : ℤ) F hRbound
-    rw [R.initialForm_eq_ray] at h
+    rw [hInitEq] at h
     exact h
   constructor
   · ext e
@@ -94,6 +97,9 @@ theorem QsOtherFacetRayFirstSuperfacePackage.initialForm_primary_eq_ray
         S.polynomial = C.ray.face := by
   let F := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
   let wR : Fin 4 → ℤ := qsRayPrimaryIntegerWeight R
+  have hInitEq :
+      HC4.Polynomial.initialForm wR (R.level : ℤ) F = C.ray.face := by
+    simpa [F, wR, qsRayPrimaryIntegerWeight] using R.initialForm_eq_ray
   apply HC4.Newton.initialForm_eq_of_exposedSupport_and_coeff
     wR (R.level : ℤ) S.polynomial C.ray.face S.ray_exposed_in_polynomial
   intro d hdRay
@@ -103,13 +109,13 @@ theorem QsOtherFacetRayFirstSuperfacePackage.initialForm_primary_eq_ray
     simpa [F] using S.coeff_polynomial_eq_source_of_mem hdS
   have hdInit :
       d ∈ (HC4.Polynomial.initialForm wR (R.level : ℤ) F).support := by
-    rw [R.initialForm_eq_ray]
+    rw [hInitEq]
     exact hdRay
   have hRayCoeff :
       MvPolynomial.coeff d C.ray.face = MvPolynomial.coeff d F := by
     have h := HC4.Newton.initialForm_coeff_eq_source_of_mem
       wR (R.level : ℤ) F hdInit
-    rw [R.initialForm_eq_ray] at h
+    rw [hInitEq] at h
     exact h
   exact hRayCoeff.trans hScoeff.symm
 
