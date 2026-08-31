@@ -6625,12 +6625,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur.lean`
-- Purpose: A19.127: cyclic cleared Schur blocks on the honest first superface
-- A-labels: `A19.126`, `A19.127`
+- Purpose: A19.127: cyclic coordinate permutations for the closing Schur blocks
+- A-labels: `A19.127`, `A19.135`, `A19.136`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
-- Declarations: `def qsPrSuperfaceSchurPermutation`, `def qsSpSuperfaceSchurPermutation`, `def qsRqSuperfaceSchurPermutation`, `theorem QsOtherFacetRayFirstSuperfacePackage.pr_clearedSchur`, `theorem QsOtherFacetRayFirstSuperfacePackage.sp_clearedSchur`, `theorem QsOtherFacetRayFirstSuperfacePackage.rq_clearedSchur`
+- Declarations: `def qsPrSuperfaceSchurPermutation`, `def qsSpSuperfaceSchurPermutation`, `def qsRqSuperfaceSchurPermutation`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
 
