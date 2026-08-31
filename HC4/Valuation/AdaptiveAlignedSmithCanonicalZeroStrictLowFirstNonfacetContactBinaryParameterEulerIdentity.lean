@@ -31,6 +31,77 @@ open HC4.Polynomial
 open HC4.Toric
 open Polynomial
 
+private theorem parameterEuler_X_pow
+    {R : Type*} [CommRing R] (n : ℕ) :
+    Polynomial.X * Polynomial.derivative
+        ((Polynomial.X : Polynomial R) ^ n) =
+      Polynomial.C (n : R) * Polynomial.X ^ n := by
+  cases n with
+  | zero => simp
+  | succ n =>
+      rw [Polynomial.derivative_X_pow_succ]
+      rw [pow_succ]
+      ring
+
+private theorem parameterSecondEuler_X_pow
+    {R : Type*} [CommRing R] (n : ℕ) :
+    Polynomial.X ^ 2 * Polynomial.derivative
+        (Polynomial.derivative ((Polynomial.X : Polynomial R) ^ n)) =
+      Polynomial.C ((n : R) * ((n : R) - 1)) * Polynomial.X ^ n := by
+  cases n with
+  | zero => simp
+  | succ n =>
+      cases n with
+      | zero => simp
+      | succ n =>
+          simp [Polynomial.derivative_X_pow_succ,
+            Polynomial.derivative_C_mul, pow_succ]
+          ring
+
+private theorem parameterEuler_X_pow_mul_C
+    {R : Type*} [CommRing R] (n : ℕ) (a : R) :
+    Polynomial.X * Polynomial.derivative
+        ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a) =
+      Polynomial.C (n : R) *
+        ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a) := by
+  rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+  simp only [mul_zero, add_zero]
+  calc
+    Polynomial.X *
+        (Polynomial.derivative ((Polynomial.X : Polynomial R) ^ n) *
+          Polynomial.C a) =
+      (Polynomial.X *
+        Polynomial.derivative ((Polynomial.X : Polynomial R) ^ n)) *
+          Polynomial.C a := by ring
+    _ = Polynomial.C (n : R) *
+        ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a) := by
+      rw [parameterEuler_X_pow]
+      ring
+
+private theorem parameterSecondEuler_X_pow_mul_C
+    {R : Type*} [CommRing R] (n : ℕ) (a : R) :
+    Polynomial.X ^ 2 * Polynomial.derivative
+        (Polynomial.derivative
+          ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a)) =
+      Polynomial.C ((n : R) * ((n : R) - 1)) *
+        ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a) := by
+  rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+  simp only [mul_zero, add_zero]
+  rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+  simp only [mul_zero, add_zero]
+  calc
+    Polynomial.X ^ 2 *
+        (Polynomial.derivative
+          (Polynomial.derivative ((Polynomial.X : Polynomial R) ^ n)) *
+            Polynomial.C a) =
+      (Polynomial.X ^ 2 * Polynomial.derivative
+        (Polynomial.derivative ((Polynomial.X : Polynomial R) ^ n))) *
+          Polynomial.C a := by ring
+    _ = Polynomial.C ((n : R) * ((n : R) - 1)) *
+        ((Polynomial.X : Polynomial R) ^ n * Polynomial.C a) := by
+      rw [parameterSecondEuler_X_pow]
+      ring
+
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
@@ -62,9 +133,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_coeff_binaryHomog
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
       rw [Nat.cast_sub hle, Nat.cast_mul]
-    rw [Polynomial.derivative_mul]
-    simp [hcast]
-    ring
+    rw [parameterEuler_X_pow_mul_C]
+    rw [hcast]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [F, hcoeff]
@@ -92,9 +162,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.parameterSecondEuler_coeff_binar
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
       rw [Nat.cast_sub hle, Nat.cast_mul]
-    rw [Polynomial.derivative_mul]
-    simp [hcast]
-    ring
+    rw [parameterSecondEuler_X_pow_mul_C]
+    rw [hcast]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [F, hcoeff]
