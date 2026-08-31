@@ -60,7 +60,7 @@ private theorem parameterSecondEuler_X_pow
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring
+          ring_nf
 
 private theorem parameterEuler_X_pow_mul_C
     {R : Type*} [CommRing R] (n : ℕ) (a : R) :
