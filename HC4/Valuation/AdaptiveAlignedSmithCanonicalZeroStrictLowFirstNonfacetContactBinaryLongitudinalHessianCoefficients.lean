@@ -29,13 +29,13 @@ open HC4.Polynomial
 open HC4.Toric
 open Polynomial
 
-universe u v
+universe v
 
-/-- Coefficientwise Euler differentiation of an arbitrary multivariate
+/-- Coefficientwise Euler differentiation of an arbitrary four-variable
 polynomial. -/
 theorem coeff_mvEuler
-    {σ : Type u} {R : Type v} [CommRing R]
-    (i : σ) (F : MvPolynomial σ R) (d : σ →₀ ℕ) :
+    {R : Type v} [CommRing R]
+    (i : Fin 4) (F : MvPolynomial (Fin 4) R) (d : Fin 4 →₀ ℕ) :
     MvPolynomial.coeff d (HC4.Polynomial.mvEuler i F) =
       ((d i : ℕ) : R) * MvPolynomial.coeff d F := by
   unfold HC4.Polynomial.mvEuler
