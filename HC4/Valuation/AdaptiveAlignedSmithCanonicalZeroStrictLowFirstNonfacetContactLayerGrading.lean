@@ -43,7 +43,16 @@ theorem qsIntegralContactWeight_cons
     Finsupp.weight (qsIntegralContactWeight r) (m.cons n) =
       qsContactTransverseDegree m + (r + 1) * n := by
   rw [qsIntegralContactWeight_finsupp]
-  simp [HC4.Polynomial.ordinaryDegree4, qsContactTransverseDegree]
+  have h1 : (m.cons n) (1 : Fin 4) = m (0 : Fin 3) := by
+    change Finsupp.cons n m (Fin.succ (0 : Fin 3)) = m (0 : Fin 3)
+    exact Finsupp.cons_succ (0 : Fin 3) n m
+  have h2 : (m.cons n) (2 : Fin 4) = m (1 : Fin 3) := by
+    change Finsupp.cons n m (Fin.succ (1 : Fin 3)) = m (1 : Fin 3)
+    exact Finsupp.cons_succ (1 : Fin 3) n m
+  have h3 : (m.cons n) (3 : Fin 4) = m (2 : Fin 3) := by
+    change Finsupp.cons n m (Fin.succ (2 : Fin 3)) = m (2 : Fin 3)
+    exact Finsupp.cons_succ (2 : Fin 3) n m
+  simp [HC4.Polynomial.ordinaryDegree4, qsContactTransverseDegree, h1, h2, h3]
   ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -117,6 +126,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_trans
     rw [qsIntegralContactWeight_finsupp] at h
     exact h
   rw [hweight]
+  unfold qsContactRawLongitudinalProfile
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
