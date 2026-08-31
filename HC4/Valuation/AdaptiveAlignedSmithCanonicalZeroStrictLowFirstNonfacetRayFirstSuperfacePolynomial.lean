@@ -148,8 +148,8 @@ theorem QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem
     S.combinedWeight S.combinedLevel
     (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) he
 
+set_option maxHeartbeats 2000000 in
 /-- Hessian singularity survives the exact first-superface exposure. -/
-set_option maxHeartbeats 400000 in
 theorem QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero
     (S : QsOtherFacetRayFirstSuperfacePackage C R) :
     HC4.Polynomial.hessianDeterminant S.polynomial = 0 := by
