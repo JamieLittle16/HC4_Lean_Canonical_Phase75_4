@@ -102,7 +102,15 @@ theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily
                 P.profileWeight * d (0 : Fin 4))) =
           T.topFace.degree - P.profileWeight * d (0 : Fin 4) := by
       omega
-    rw [hexp]
+    simpa [pureLongitudinalTransverseDegree] using
+      congrArg
+        (fun n : ℕ =>
+          (Polynomial.X : Polynomial K) ^ n *
+            Polynomial.C
+              (MvPolynomial.coeff d
+                (polynomialFamilySpecialFiber
+                  T.terminal.blocker.presented.family)))
+        hexp
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     have hd' :
