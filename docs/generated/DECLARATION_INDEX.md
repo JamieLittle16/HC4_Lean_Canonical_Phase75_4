@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6915**.
+Distinct declaration spellings indexed: **6916**.
 
 ## Repeated declaration spellings
 
@@ -6983,6 +6983,7 @@ Distinct declaration spellings indexed: **6915**.
 - `weightedRankThreeEndpointActiveMinor_one_two_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `weightedRankThreeEndpointPencil` — `def` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `weightedRankThreeEndpointPencil_apply_eq_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `weightedRankThreeEndpointPencil_one_one` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `weightedSparseRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `xeLmClearedAdjugateQuadratic` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
