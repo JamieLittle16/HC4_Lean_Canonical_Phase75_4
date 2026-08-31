@@ -68,8 +68,23 @@ private theorem smithTransverse_cons_zero_eq
     (e : Fin 4 →₀ ℕ) :
     (HC4.Newton.smithTransverseExponent (e 1) (e 2) (e 3)).cons (e 0) = e := by
   ext i
-  fin_cases i <;>
-    simp [HC4.Newton.smithTransverseExponent]
+  fin_cases i
+  · simp
+  · change
+      ((HC4.Newton.smithTransverseExponent (e 1) (e 2) (e 3)).cons (e 0))
+        (Fin.succ (0 : Fin 3)) = e 1
+    rw [Finsupp.cons_succ]
+    exact HC4.Newton.smithTransverseExponent_zero (e 1) (e 2) (e 3)
+  · change
+      ((HC4.Newton.smithTransverseExponent (e 1) (e 2) (e 3)).cons (e 0))
+        (Fin.succ (1 : Fin 3)) = e 2
+    rw [Finsupp.cons_succ]
+    exact HC4.Newton.smithTransverseExponent_one (e 1) (e 2) (e 3)
+  · change
+      ((HC4.Newton.smithTransverseExponent (e 1) (e 2) (e 3)).cons (e 0))
+        (Fin.succ (2 : Fin 3)) = e 3
+    rw [Finsupp.cons_succ]
+    exact HC4.Newton.smithTransverseExponent_two (e 1) (e 2) (e 3)
 
 /-- **A19.114 noncancelling raw profile.** -/
 theorem QsOtherFacetContactQuadraticReesPackage.rawLongitudinalProfilePackage
@@ -157,6 +172,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.rawLongitudinalProfilePackage
       Q.natDegree ≤
         HC4.Polynomial.ordinaryDegree4 (m.cons Q.natDegree) := by
     simp [HC4.Polynomial.ordinaryDegree4]
+    omega
   have hsupport : Q.natDegree * P.profileWeight ≤ T.topFace.degree := by
     rw [P.profileWeight_eq]
     calc
