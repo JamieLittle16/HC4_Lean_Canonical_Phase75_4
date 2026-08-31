@@ -26,12 +26,16 @@ namespace HC4.Polynomial
 noncomputable section
 
 universe u
-variable {K : Type u} [Field K] [CharZero K]
+variable {K : Type u}
 
-/-- Principal `2 x 2` minor of the ordinary polynomial Hessian. -/
-def hessianPrincipalMinor
+/-- Principal `2 x 2` minor of the ordinary polynomial Hessian.  The formula
+is division-free, so a commutative ring is sufficient; keeping this minimal
+allows parameter-polynomial coefficient rings such as `Polynomial K`. -/
+def hessianPrincipalMinor [CommRing K]
     (F : MvPolynomial (Fin 4) K) (i j : Fin 4) : MvPolynomial (Fin 4) K :=
   hessian F i i * hessian F j j - hessian F i j * hessian F j i
+
+variable [Field K] [CharZero K]
 
 /-- Principal `2 x 2` minor of the Euler-scaled Hessian of an honest
 four-variable polynomial. -/
