@@ -138,9 +138,17 @@ theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
   dsimp only at h
   rw [eulerScaledHessianPrincipalMinor_eq_monomial_mul] at h
   have hXi : rankThreeLineSpecialisation (MvPolynomial.X i) = 1 := by
-    fin_cases i <;> simp_all [rankThreeLineSpecialisation]
+    fin_cases i
+    · exact (hi rfl).elim
+    · simp [rankThreeLineSpecialisation]
+    · simp [rankThreeLineSpecialisation]
+    · simp [rankThreeLineSpecialisation]
   have hXj : rankThreeLineSpecialisation (MvPolynomial.X j) = 1 := by
-    fin_cases j <;> simp_all [rankThreeLineSpecialisation]
+    fin_cases j
+    · exact (hj rfl).elim
+    · simp [rankThreeLineSpecialisation]
+    · simp [rankThreeLineSpecialisation]
+    · simp [rankThreeLineSpecialisation]
   simpa [map_mul, map_pow, hXi, hXj] using h
 
 /-- Nonvanishing of the endpoint-pencil active minor lifts to nonvanishing of
@@ -160,9 +168,9 @@ theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
         (phi.coeff 0) (phi.coeff 1) i j ≠ 0) :
     eulerScaledHessianPrincipalMinor F i j ≠ 0 := by
   intro hz
-  have himage := congrArg rankThreeLineSpecialisation hz
+  have himage := congrArg (rankThreeLineSpecialisation (K := K)) hz
   rw [rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
-    hsupp i j] at himage
+    (K := K) hsupp i j] at himage
   exact hminor (by simpa using himage)
 
 /-- Direct endpoint-pivot to ordinary-Hessian-pivot adapter. -/
