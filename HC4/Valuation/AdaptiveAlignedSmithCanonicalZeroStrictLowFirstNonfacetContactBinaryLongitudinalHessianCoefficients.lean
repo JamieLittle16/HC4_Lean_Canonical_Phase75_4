@@ -42,7 +42,6 @@ theorem coeff_mvEuler
   induction F using MvPolynomial.induction_on' with
   | add P Q hP hQ =>
       simp only [map_add, mul_add, MvPolynomial.coeff_add, hP, hQ]
-      ring
   | monomial n a =>
       rw [MvPolynomial.X_mul_pderiv_monomial]
       rw [MvPolynomial.coeff_smul]
@@ -60,24 +59,13 @@ theorem coeff_eulerScaledHessian
       ((((d i : ℕ) : R) * ((d j : ℕ) : R)) -
         if i = j then ((d i : ℕ) : R) else 0) *
         MvPolynomial.coeff d F := by
+  classical
   by_cases hij : i = j
   · subst j
-    change
-      MvPolynomial.coeff d
-          ((MvPolynomial.X i * MvPolynomial.pderiv i
-              (MvPolynomial.X i * MvPolynomial.pderiv i F)) -
-            (MvPolynomial.X i * MvPolynomial.pderiv i F)) = _
-    rw [MvPolynomial.coeff_sub, coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
-    simp only [if_pos]
-    ring
-  · change
-      MvPolynomial.coeff d
-          ((MvPolynomial.X i * MvPolynomial.pderiv i
-              (MvPolynomial.X j * MvPolynomial.pderiv j F)) - 0) = _
-    rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_zero, sub_zero,
-      coeff_mvEuler, coeff_mvEuler]
-    simp only [if_neg hij]
-    ring
+    simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
+      coeff_mvEuler] <;> ring
+  · simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
+      hij, coeff_mvEuler] <;> ring
 
 universe w
 variable {K : Type w} [Field K] [CharZero K] [IsAlgClosed K]
