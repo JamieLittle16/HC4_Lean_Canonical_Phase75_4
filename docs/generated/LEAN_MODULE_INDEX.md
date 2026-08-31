@@ -6330,7 +6330,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_coeff_binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.parameterSecondEuler_coeff_binaryHomogenizedFamily`
+- Declarations: `theorem parameterEuler_X_pow`, `theorem parameterSecondEuler_X_pow`, `theorem parameterEuler_X_pow_mul_C`, `theorem parameterSecondEuler_X_pow_mul_C`, `theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_coeff_binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.parameterSecondEuler_coeff_binaryHomogenizedFamily`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
 

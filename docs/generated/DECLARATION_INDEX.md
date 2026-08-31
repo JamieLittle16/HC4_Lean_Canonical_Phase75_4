@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6916**.
+Distinct declaration spellings indexed: **6920**.
 
 ## Repeated declaration spellings
 
@@ -4916,6 +4916,8 @@ Distinct declaration spellings indexed: **6916**.
 - `parameterConstantCoeff_rightRecenteredHessianFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeff_scalarSchurThreeMatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock`
 - `parameterConstantCoeff_scaleAwareHessianFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
+- `parameterEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
+- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterFirstEquiv` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
@@ -4948,6 +4950,8 @@ Distinct declaration spellings indexed: **6916**.
 - `parameterRamification_pow_dvd` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `parameterRamification_sourceCoefficient_factorisation` — `theorem` in `HC4.Valuation.StrictSmithFirstContactGeometry`
 - `parameterRamification_two_lowestLayer_factorisation` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `parameterSecondEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
+- `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `pderiv_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `pderiv_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `pderiv_binaryDirectionalDeriv_first` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
