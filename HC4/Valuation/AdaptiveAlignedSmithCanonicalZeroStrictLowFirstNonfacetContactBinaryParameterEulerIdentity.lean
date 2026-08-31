@@ -60,7 +60,12 @@ private theorem parameterSecondEuler_X_pow
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring_nf
+          rw [← mul_assoc, ← map_mul]
+          have hscalar :
+              ((2 : R) + (n : R)) * ((1 : R) + (n : R)) =
+                (2 : R) + (n : R) * 3 + (n : R) ^ 2 := by
+            ring
+          rw [hscalar]
 
 private theorem parameterEuler_X_pow_mul_C
     {R : Type*} [CommRing R] (n : ℕ) (a : R) :
