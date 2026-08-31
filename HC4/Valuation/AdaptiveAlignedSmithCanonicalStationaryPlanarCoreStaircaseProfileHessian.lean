@@ -77,8 +77,7 @@ theorem binaryStaircaseProfileHessianDet_eq_residual
     binaryStaircaseProfileHessian01
     binaryStaircaseProfileHessian11
     binaryStaircaseProfileResidual
-  simp [map_mul, map_sub, map_add, map_pow]
-  rw [show (Polynomial.C (2 : K) : Polynomial K) = 2 by norm_num]
+  simp only [map_mul, map_sub, map_add, map_pow, map_one, map_ofNat]
   ring
 
 /-- A zero weighted-profile Hessian block determinant is exactly the residual
