@@ -33,7 +33,7 @@ theorem polynomialHessian_symmetric
     HC4.Polynomial.hessian F i j = HC4.Polynomial.hessian F j i := by
   change MvPolynomial.pderiv j (MvPolynomial.pderiv i F) =
     MvPolynomial.pderiv i (MvPolynomial.pderiv j F)
-  exact pderiv_comm_commRing i j F
+  rw [pderiv_comm_commRing]
 
 /-- Honest coordinate-permuted four-block of an ordinary polynomial Hessian. -/
 noncomputable def permutedPolynomialHessianFourBlock
