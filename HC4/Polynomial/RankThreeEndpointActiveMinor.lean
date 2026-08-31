@@ -40,8 +40,9 @@ def weightedRankThreeEndpointActiveMinor
   M i i * M j j - M i j * M j i
 
 /-- Degree two of a product of two linear polynomials is the product of their
-linear coefficients.  Proving the polynomial product identity first avoids
-exposing coefficient-convolution antidiagonals to the arithmetic tactics. -/
+linear coefficients.  Writing every term as `C _ * X^k` lets the dedicated
+coefficient lemma discharge the calculation without exposing convolution
+antidiagonals. -/
 private theorem coeff_two_mul_linear
     (a0 a1 b0 b1 : K) :
     ((Polynomial.C a0 + Polynomial.X * Polynomial.C a1) *
@@ -50,13 +51,25 @@ private theorem coeff_two_mul_linear
   have hpoly :
       (Polynomial.C a0 + Polynomial.X * Polynomial.C a1) *
           (Polynomial.C b0 + Polynomial.X * Polynomial.C b1) =
-        Polynomial.C (a0 * b0) +
-          Polynomial.C (a0 * b1 + a1 * b0) * Polynomial.X +
+        Polynomial.C (a0 * b0) * Polynomial.X ^ 0 +
+          Polynomial.C (a0 * b1 + a1 * b0) * Polynomial.X ^ 1 +
           Polynomial.C (a1 * b1) * Polynomial.X ^ 2 := by
-    simp only [map_mul, map_add]
     ring
   rw [hpoly]
-  simp
+  simp only [Polynomial.coeff_add, Polynomial.coeff_C_mul_X_pow]
+  norm_num
+
+/-- Each endpoint-pencil entry is literally a linear polynomial with the
+outside endpoint as its linear coefficient. -/
+private theorem weightedRankThreeEndpointPencil_apply_eq_linear
+    (A B C P Q R S c0 c1 : K) (i j : Fin 4) :
+    weightedRankThreeEndpointPencil A B C P Q R S c0 c1 i j =
+      Polynomial.C (c0 * vectorHessianCore ![0, A, B, C] i j) +
+        Polynomial.X *
+          Polynomial.C (c1 * vectorHessianCore ![P, Q, R, S] i j) := by
+  unfold weightedRankThreeEndpointPencil
+  simp only [map_mul]
+  ring
 
 /-- The quadratic coefficient of a symmetric linear `2 x 2` pencil depends
 only on the linear coefficient matrix. -/
@@ -79,14 +92,13 @@ private theorem coeff_two_weightedRankThreeEndpointPencil_mul
       (weightedRankThreeEndpointPencil A B C P Q R S c0 c1 k l)).coeff 2 =
       (c1 * vectorHessianCore ![P, Q, R, S] i j) *
         (c1 * vectorHessianCore ![P, Q, R, S] k l) := by
-  unfold weightedRankThreeEndpointPencil
-  convert
-    (coeff_two_mul_linear (K := K)
-      (c0 * vectorHessianCore ![0, A, B, C] i j)
-      (c1 * vectorHessianCore ![P, Q, R, S] i j)
-      (c0 * vectorHessianCore ![0, A, B, C] k l)
-      (c1 * vectorHessianCore ![P, Q, R, S] k l)) using 1 <;>
-    simp only [map_mul] <;> ring
+  rw [weightedRankThreeEndpointPencil_apply_eq_linear,
+    weightedRankThreeEndpointPencil_apply_eq_linear]
+  exact coeff_two_mul_linear
+    (c0 * vectorHessianCore ![0, A, B, C] i j)
+    (c1 * vectorHessianCore ![P, Q, R, S] i j)
+    (c0 * vectorHessianCore ![0, A, B, C] k l)
+    (c1 * vectorHessianCore ![P, Q, R, S] k l)
 
 /-- `.pr` active pair `(2,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
