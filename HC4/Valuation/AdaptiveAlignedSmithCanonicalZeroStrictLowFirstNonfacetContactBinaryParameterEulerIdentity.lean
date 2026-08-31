@@ -61,7 +61,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_coeff_binaryHomog
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast [Nat.cast_sub hle]
+      rw [Nat.cast_sub hle, Nat.cast_mul]
     rw [Polynomial.derivative_mul]
     simp [hcast]
     ring
@@ -91,7 +91,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.parameterSecondEuler_coeff_binar
         ((T.topFace.degree - P.profileWeight * d (0 : Fin 4) : ℕ) : K) =
           (T.topFace.degree : K) -
             (P.profileWeight : K) * (d (0 : Fin 4) : K) := by
-      push_cast [Nat.cast_sub hle]
+      rw [Nat.cast_sub hle, Nat.cast_mul]
     rw [Polynomial.derivative_mul]
     simp [hcast]
     ring
