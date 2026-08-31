@@ -105,7 +105,7 @@ theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
           (v2 : K) (v3 : K) (v4 : K)
           (1 : K) (u2 : K) (u3 : K) (u4 : K)
           (phi.coeff 0) (phi.coeff 1) a b := by
-    rw [hF]
+    rw [hF, hphi]
     have hab := congrFun (congrFun hm a) b
     simpa [Polynomial.coe_compRingHom_apply] using hab
   unfold eulerScaledHessianPrincipalMinor
