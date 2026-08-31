@@ -29,7 +29,8 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- Put the `.pr` active pair `(2,3)` into four-block coordinates `(0,1)`. -/
 def qsPrSuperfaceSchurPermutation : Equiv.Perm (Fin 4) :=
-  (Equiv.swap (1 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 2)
+  (Equiv.swap (1 : Fin 4) 3).trans
+    (Equiv.swap (0 : Fin 4) 2)
 
 /-- Put the `.sp` active pair `(1,3)` into four-block coordinates `(0,1)`. -/
 def qsSpSuperfaceSchurPermutation : Equiv.Perm (Fin 4) :=
