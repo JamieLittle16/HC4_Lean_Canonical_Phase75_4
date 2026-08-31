@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur
 import Mathlib.Tactic
 
 /-!
@@ -51,18 +52,6 @@ open scoped Matrix
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
-
-/-- Canonical permutation putting the `.pr` active pivot `(2,3)` first. -/
-def qsPrSuperfaceSchurPermutation : Equiv.Perm (Fin 4) :=
-  (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 3)
-
-/-- Canonical permutation putting the `.sp` active pivot `(1,3)` first. -/
-def qsSpSuperfaceSchurPermutation : Equiv.Perm (Fin 4) :=
-  (Equiv.swap (1 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 1)
-
-/-- Canonical permutation putting the `.rq` active pivot `(1,2)` first. -/
-def qsRqSuperfaceSchurPermutation : Equiv.Perm (Fin 4) :=
-  (Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1)
 
 /-- The active determinant of the state-free permuted family block is the
 parameter-first image of the corresponding ordinary Hessian principal minor. -/
