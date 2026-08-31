@@ -72,8 +72,13 @@ theorem hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
   have htop := congrArg
     (HC4.Polynomial.initialForm w
       ((m - w i - w i) + (m - w j - w j))) hzero
-  rw [initialForm_hessianPrincipalMinor_eq hF i j] at htop
-  exact hminor htop
+  have htop0 :
+      HC4.Polynomial.initialForm w
+          ((m - w i - w i) + (m - w j - w j))
+          (HC4.Polynomial.hessianPrincipalMinor F i j) = 0 := by
+    simpa using htop
+  rw [initialForm_hessianPrincipalMinor_eq hF i j] at htop0
+  exact hminor htop0
 
 end
 
