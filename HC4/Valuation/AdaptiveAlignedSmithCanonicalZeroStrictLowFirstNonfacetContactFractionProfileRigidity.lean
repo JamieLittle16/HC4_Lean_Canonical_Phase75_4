@@ -53,6 +53,7 @@ theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual
       (K := qsContactProfileField K)
       T.topFace.degree P.profileWeight P.profileWeight_two_le H.profile
       H.coeff_zero_ne H.support_bound hres
+  have htwo : 2 ≤ H.profile.natDegree := H.degree_two_le
   omega
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
