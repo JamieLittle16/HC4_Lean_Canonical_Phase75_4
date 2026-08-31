@@ -36,8 +36,9 @@ polynomial. -/
 theorem coeff_mvEuler
     {σ : Type u} {R : Type v} [CommRing R]
     (i : σ) (F : MvPolynomial σ R) (d : σ →₀ ℕ) :
-    MvPolynomial.coeff d (MvPolynomial.X i * MvPolynomial.pderiv i F) =
+    MvPolynomial.coeff d (HC4.Polynomial.mvEuler i F) =
       ((d i : ℕ) : R) * MvPolynomial.coeff d F := by
+  unfold HC4.Polynomial.mvEuler
   classical
   induction F using MvPolynomial.induction_on' with
   | add P Q hP hQ =>
@@ -62,10 +63,10 @@ theorem coeff_eulerScaledHessian
   classical
   by_cases hij : i = j
   · subst j
-    simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
-      coeff_mvEuler] <;> ring
-  · simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
-      hij, coeff_mvEuler] <;> ring
+    simp [HC4.Polynomial.eulerScaledHessian, coeff_mvEuler]
+    ring
+  · simp [HC4.Polynomial.eulerScaledHessian, hij, coeff_mvEuler]
+    ring
 
 universe w
 variable {K : Type w} [Field K] [CharZero K] [IsAlgClosed K]
@@ -112,7 +113,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_lo
         Polynomial.eval 1
           (Polynomial.X * Polynomial.derivative
             (MvPolynomial.coeff d P.binaryHomogenizedFamily)) := by
-      rw [HC4.Polynomial.mvEuler, coeff_mvEuler]
+      rw [coeff_mvEuler]
       simp [Polynomial.derivative_mul]
     _ = (d (0 : Fin 4) : K) *
         ((T.topFace.degree : K) -
