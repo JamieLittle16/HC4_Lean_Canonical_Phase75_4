@@ -107,7 +107,7 @@ theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor
           (phi.coeff 0) (phi.coeff 1) a b := by
     rw [hF]
     have hab := congrFun (congrFun hm a) b
-    simpa [hphi] using hab
+    simpa [Polynomial.coe_compRingHom_apply] using hab
   unfold eulerScaledHessianPrincipalMinor
     weightedRankThreeEndpointActiveMinor
   simp only [map_sub, map_mul]
@@ -137,13 +137,17 @@ theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse
     (K := K) hsupp i j
   dsimp only at h
   rw [eulerScaledHessianPrincipalMinor_eq_monomial_mul] at h
-  have hXi : rankThreeLineSpecialisation (MvPolynomial.X i) = 1 := by
+  have hXi :
+      rankThreeLineSpecialisation (K := K) (MvPolynomial.X i) =
+        (1 : Polynomial K) := by
     fin_cases i
     · exact (hi rfl).elim
     · simp [rankThreeLineSpecialisation]
     · simp [rankThreeLineSpecialisation]
     · simp [rankThreeLineSpecialisation]
-  have hXj : rankThreeLineSpecialisation (MvPolynomial.X j) = 1 := by
+  have hXj :
+      rankThreeLineSpecialisation (K := K) (MvPolynomial.X j) =
+        (1 : Polynomial K) := by
     fin_cases j
     · exact (hj rfl).elim
     · simp [rankThreeLineSpecialisation]
