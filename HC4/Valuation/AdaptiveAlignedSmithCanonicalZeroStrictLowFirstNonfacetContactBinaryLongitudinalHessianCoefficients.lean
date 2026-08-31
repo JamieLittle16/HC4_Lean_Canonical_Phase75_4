@@ -41,15 +41,14 @@ theorem coeff_mvEuler
   classical
   induction F using MvPolynomial.induction_on' with
   | add P Q hP hQ =>
-      simp only [MvPolynomial.pderiv_add, mul_add, MvPolynomial.coeff_add,
-        hP, hQ]
+      simp only [map_add, mul_add, MvPolynomial.coeff_add, hP, hQ]
       ring
   | monomial n a =>
       rw [MvPolynomial.X_mul_pderiv_monomial]
       by_cases hdn : d = n
       · subst d
-        simp [nsmul_eq_mul]
-      · simp [hdn, nsmul_eq_mul]
+        simp
+      · simp [hdn]
 
 /-- Coefficientwise form of the Euler-scaled Hessian. -/
 theorem coeff_eulerScaledHessian
@@ -59,14 +58,13 @@ theorem coeff_eulerScaledHessian
       ((((d i : ℕ) : R) * ((d j : ℕ) : R)) -
         if i = j then ((d i : ℕ) : R) else 0) *
         MvPolynomial.coeff d F := by
-  unfold HC4.Polynomial.eulerScaledHessian
   by_cases hij : i = j
   · subst j
-    simp only [if_pos, MvPolynomial.coeff_sub]
-    rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
+    simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
+      coeff_mvEuler]
     ring
-  · simp only [if_neg hij, sub_zero]
-    rw [coeff_mvEuler, coeff_mvEuler]
+  · simp [HC4.Polynomial.eulerScaledHessian, HC4.Polynomial.mvEuler,
+      hij, coeff_mvEuler]
     ring
 
 universe w
@@ -105,11 +103,25 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_lo
           (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
         MvPolynomial.coeff d
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
-  rw [HC4.Polynomial.mvEuler, coeff_mvEuler]
-  rw [Polynomial.derivative_mul]
-  simp
-  rw [P.eval_one_parameterEuler_coeff_binaryHomogenizedFamily]
-  ring
+  calc
+    Polynomial.eval 1
+        (Polynomial.X * Polynomial.derivative
+          (MvPolynomial.coeff d
+            (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily))) =
+      (d (0 : Fin 4) : K) *
+        Polynomial.eval 1
+          (Polynomial.X * Polynomial.derivative
+            (MvPolynomial.coeff d P.binaryHomogenizedFamily)) := by
+      rw [HC4.Polynomial.mvEuler, coeff_mvEuler]
+      simp [Polynomial.derivative_mul]
+      ring
+    _ = (d (0 : Fin 4) : K) *
+        ((T.topFace.degree : K) -
+          (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
+        MvPolynomial.coeff d
+          (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
+      rw [P.eval_one_parameterEuler_coeff_binaryHomogenizedFamily]
+      ring
 
 /-- Pure longitudinal falling-Euler Hessian coefficient of the honest binary
 family, evaluated at `tau=1`. -/
@@ -125,8 +137,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_longitudinalEuler
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
   rw [coeff_eulerScaledHessian]
   simp only [if_pos]
-  rw [map_mul, P.eval_one_coeff_binaryHomogenizedFamily]
-  simp
+  simp [P.eval_one_coeff_binaryHomogenizedFamily]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
