@@ -93,6 +93,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily
       rw [qsIntegralContactWeight_finsupp, hordinary, P.profileWeight_eq]
       ring
     rw [hweight] at hbound ⊢
+    rw [← mul_assoc]
     rw [← pow_add]
     have hexp :
         pureLongitudinalTransverseDegree d +
@@ -104,7 +105,16 @@ theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily
     rw [hexp]
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
-    simp [hd, hcoeff]
+    have hd' :
+        d ∉ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support := by
+      simpa [F] using hd
+    have hcoeff' :
+        MvPolynomial.coeff d
+          (polynomialFamilySpecialFiber
+            T.terminal.blocker.presented.family) = 0 := by
+      simpa [F] using hcoeff
+    simp [hd, hd', hcoeff, hcoeff']
 
 /-- Binary source-inflation weight: only the longitudinal source coordinate
 carries the profile weight. -/
@@ -123,10 +133,10 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree
     (d : Fin 4 →₀ ℕ) :
     Finsupp.weight P.binaryInflationWeight d =
       P.profileWeight * d (0 : Fin 4) := by
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
-  rw [Fin.sum_univ_four]
-  simp [QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight,
-    nsmul_eq_mul]
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype] <;>
+    simp [Fin.sum_univ_four,
+      QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight,
+      nsmul_eq_mul, Nat.mul_comm]
 
 /-- **Binary normalization identity.**  Inflating only the longitudinal source
 coordinate by `tau^profileWeight` clears the binary reverse grading completely:
@@ -171,7 +181,12 @@ theorem QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomog
     · rw [if_pos hd, P.binaryInflationWeight_degree]
     · have hcoeff : MvPolynomial.coeff d F = 0 :=
         MvPolynomial.notMem_support_iff.mp hd
-      simp [hd, hcoeff]
+      have hcoeff' :
+          MvPolynomial.coeff d
+            (polynomialFamilySpecialFiber
+              T.terminal.blocker.presented.family) = 0 := by
+        simpa [F] using hcoeff
+      simp [hd, hcoeff, hcoeff', F]
   rw [hfamily]
   exact adaptiveSmithInflate_reverseWeightedReesFamily_eq
     P.binaryInflationWeight T.topFace.degree F hbound
@@ -200,10 +215,10 @@ theorem QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudi
   rw [QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [P.coeff_binaryHomogenizedFamily]
-  simp only [MvPolynomial.coeff_mul, MvPolynomial.coeff_C,
-    MvPolynomial.coeff_map]
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
-  simp
+  rw [MvPolynomial.coeff_C_mul]
+  simp only [MvPolynomial.coeff_map]
+  simp [qsContactRawLongitudinalProfile,
+    MvPolynomial.finSuccEquiv_coeff_coeff]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
