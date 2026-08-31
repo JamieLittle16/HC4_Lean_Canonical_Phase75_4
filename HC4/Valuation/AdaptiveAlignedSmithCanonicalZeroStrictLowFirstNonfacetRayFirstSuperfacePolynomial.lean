@@ -66,8 +66,11 @@ theorem QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight
   rw [Finsupp.weight_apply, Finsupp.weight_apply, Finsupp.weight_apply]
   rw [Finsupp.sum_fintype, Finsupp.sum_fintype, Finsupp.sum_fintype]
   rw [Fin.sum_univ_four, Fin.sum_univ_four, Fin.sum_univ_four]
-  simp [QsOtherFacetRayFirstSuperfacePackage.combinedWeight, nsmul_eq_mul]
+  simp [QsOtherFacetRayFirstSuperfacePackage.combinedWeight]
   ring
+  all_goals
+    intro i
+    simp
 
 /-- A19.117's support exposure rewritten as an ordinary exact coordinate
 weight exposure. -/
@@ -104,6 +107,9 @@ theorem QsOtherFacetRayFirstSuperfacePackage.polynomial_support
   have hinit := HC4.Newton.initialForm_support_isExposedFace
     S.combinedWeight S.combinedLevel F S.combinedWeight_bound
   ext e
+  change e ∈ (↑(HC4.Polynomial.initialForm
+    S.combinedWeight S.combinedLevel F).support : Set (Fin 4 →₀ ℕ)) ↔
+      e ∈ S.superface
   rw [hinit.mem_iff, S.superface_exposed_coordinate.mem_iff]
 
 /-- Every locked-ray source monomial remains in the honest first-superface
@@ -124,8 +130,10 @@ theorem QsOtherFacetRayFirstSuperfacePackage.exists_support_not_ray
     ∃ e ∈ S.polynomial.support, e ∉ C.ray.face.support := by
   rcases S.strict with ⟨e, heSuper, heRay⟩
   refine ⟨e, ?_, ?_⟩
-  · rw [S.polynomial_support]
-    exact heSuper
+  · have hePolySet : e ∈ (↑S.polynomial.support : Set (Fin 4 →₀ ℕ)) := by
+      rw [S.polynomial_support]
+      exact heSuper
+    simpa using hePolySet
   · simpa using heRay
 
 /-- Every coefficient retained by the first-superface polynomial is literally
@@ -141,14 +149,16 @@ theorem QsOtherFacetRayFirstSuperfacePackage.coeff_polynomial_eq_source_of_mem
     (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) he
 
 /-- Hessian singularity survives the exact first-superface exposure. -/
+set_option maxHeartbeats 400000 in
 theorem QsOtherFacetRayFirstSuperfacePackage.hessianDeterminant_polynomial_eq_zero
     (S : QsOtherFacetRayFirstSuperfacePackage C R) :
     HC4.Polynomial.hessianDeterminant S.polynomial = 0 := by
-  unfold QsOtherFacetRayFirstSuperfacePackage.polynomial
-  exact HC4.Polynomial.hessianDeterminant_initialForm_eq_zero_of_eq_zero
-    S.combinedWeight S.combinedLevel
-    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    S.combinedWeight_bound C.hessian_zero
+  change HC4.Polynomial.hessianDeterminant
+    (HC4.Polynomial.initialForm S.combinedWeight S.combinedLevel
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)) = 0
+  apply HC4.Polynomial.hessianDeterminant_initialForm_eq_zero_of_eq_zero
+  · exact S.combinedWeight_bound
+  · exact C.hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
