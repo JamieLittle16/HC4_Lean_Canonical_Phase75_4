@@ -133,7 +133,6 @@ theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterSecondEuler_co
           rw [Polynomial.derivative_C_mul]
           rw [Polynomial.derivative_X_pow]
           simp
-          ring
     rw [Polynomial.derivative_mul, Polynomial.derivative_C]
     simp only [mul_zero, add_zero]
     rw [Polynomial.derivative_mul, Polynomial.derivative_C]
