@@ -114,6 +114,9 @@ theorem qs_ray_otherFacet_contactQuadraticRees_package
   rcases T.strictLow_sourceCodimensionTwo_two_le with
     ⟨d, hd, hdeg, hd0, _hcodim⟩
   have hdBound := hsource hd
+  have hrmul : 2 * r ≤ r * d (0 : Fin 4) := by
+    have hmul := Nat.mul_le_mul_left r hd0
+    simpa [Nat.mul_comm] using hmul
   have hstrong : 2 * r + 3 ≤ T.topFace.degree := by
     omega
   have hquadratic :
