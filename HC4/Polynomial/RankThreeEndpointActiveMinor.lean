@@ -40,16 +40,23 @@ def weightedRankThreeEndpointActiveMinor
   M i i * M j j - M i j * M j i
 
 /-- Degree two of a product of two linear polynomials is the product of their
-linear coefficients.  Keeping this finite convolution separate prevents the
-endpoint-minor proofs below from expanding nested `coeff_mul` antidiagonals. -/
+linear coefficients.  Proving the polynomial product identity first avoids
+exposing coefficient-convolution antidiagonals to the arithmetic tactics. -/
 private theorem coeff_two_mul_linear
     (a0 a1 b0 b1 : K) :
     ((Polynomial.C a0 + Polynomial.X * Polynomial.C a1) *
       (Polynomial.C b0 + Polynomial.X * Polynomial.C b1)).coeff 2 =
       a1 * b1 := by
-  rw [Polynomial.coeff_mul,
-    Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
-  norm_num [Finset.sum_range_succ]
+  have hpoly :
+      (Polynomial.C a0 + Polynomial.X * Polynomial.C a1) *
+          (Polynomial.C b0 + Polynomial.X * Polynomial.C b1) =
+        Polynomial.C (a0 * b0) +
+          Polynomial.C (a0 * b1 + a1 * b0) * Polynomial.X +
+          Polynomial.C (a1 * b1) * Polynomial.X ^ 2 := by
+    simp only [map_mul, map_add]
+    ring
+  rw [hpoly]
+  simp
 
 /-- The quadratic coefficient of a symmetric linear `2 x 2` pencil depends
 only on the linear coefficient matrix. -/
@@ -73,12 +80,13 @@ private theorem coeff_two_weightedRankThreeEndpointPencil_mul
       (c1 * vectorHessianCore ![P, Q, R, S] i j) *
         (c1 * vectorHessianCore ![P, Q, R, S] k l) := by
   unfold weightedRankThreeEndpointPencil
-  simpa [map_mul, mul_assoc] using
+  convert
     (coeff_two_mul_linear (K := K)
       (c0 * vectorHessianCore ![0, A, B, C] i j)
       (c1 * vectorHessianCore ![P, Q, R, S] i j)
       (c0 * vectorHessianCore ![0, A, B, C] k l)
-      (c1 * vectorHessianCore ![P, Q, R, S] k l))
+      (c1 * vectorHessianCore ![P, Q, R, S] k l)) using 1 <;>
+    simp only [map_mul] <;> ring
 
 /-- `.pr` active pair `(2,3)`: exact quadratic coefficient. -/
 theorem coeff_two_weightedRankThreeEndpointActiveMinor_two_three
