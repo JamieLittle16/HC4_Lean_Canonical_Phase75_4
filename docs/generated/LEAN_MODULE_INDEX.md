@@ -6319,7 +6319,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.130`, `A19.131`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`, `HC4.Polynomial.ComplementaryMvSubstitution`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySpecialization`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySpecialization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - Declarations: `theorem coeff_mvEuler`, `theorem coeff_eulerScaledHessian`, `theorem QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.eval_one_parameterEuler_coeff_longitudinalEuler_binaryHomogenizedFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_longitudinalEulerHessian_binaryHomogenizedFamily`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
@@ -6477,10 +6477,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler.lean`
 - Purpose: A19.R18: support-wide weighted Euler identity for the honest contact Rees
 - A-labels: `A19.102`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem parameterEuler_X_pow_mul_C`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff_weight`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coeff`
+- Declarations: `theorem parameterEuler_X_pow_mul_C`, `theorem parameterSecondEuler_X_pow_mul_C`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff_weight`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterSecondEuler_coeff_weight`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterSecondEuler_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_sourceEuler_coeff`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 
