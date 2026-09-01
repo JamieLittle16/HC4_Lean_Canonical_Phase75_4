@@ -1,5 +1,6 @@
 import HC4.Newton.GeneralFourBlockDeterminantCovariance
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge
+import Mathlib.Algebra.Polynomial.Degree.TrailingDegree
 import Mathlib.Tactic
 
 /-!
@@ -30,6 +31,64 @@ open scoped Matrix
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+
+/-- **Integral low-order pivot cancellation.**
+
+If `A` has nonzero constant coefficient, then its parameter trailing degree is
+zero.  Over a domain, multiplication by `A` therefore cannot hide the first
+nonzero coefficient of `B`.  Hence vanishing of all coefficients of `A * B`
+through order `N` forces the same vanishing for `B` through order `N`.
+
+This is the exact cancellation principle needed by the R18 Schur closure: it
+uses only the nonzero constant active pivot and never inverts that pivot. -/
+theorem polynomial_coeff_eq_zero_of_mul_coeff_eq_zero_up_to_of_coeff_zero_ne_zero
+    {R : Type*} [CommRing R] [IsDomain R]
+    (A B : Polynomial R)
+    (hA0 : A.coeff 0 ≠ 0)
+    {N n : ℕ}
+    (hn : n ≤ N)
+    (hprod : ∀ m : ℕ, m ≤ N → (A * B).coeff m = 0) :
+    B.coeff n = 0 := by
+  by_contra hBn
+  have hA : A ≠ 0 := by
+    intro hzero
+    rw [hzero] at hA0
+    simp at hA0
+  have hB : B ≠ 0 := by
+    intro hzero
+    rw [hzero] at hBn
+    simp at hBn
+  have hAtrail : A.natTrailingDegree = 0 := by
+    exact (Polynomial.natTrailingDegree_eq_zero).2 (Or.inr hA0)
+  have hBtrail_le : B.natTrailingDegree ≤ n :=
+    Polynomial.natTrailingDegree_le_of_ne_zero hBn
+  have hmultrail :
+      (A * B).natTrailingDegree = B.natTrailingDegree := by
+    rw [Polynomial.natTrailingDegree_mul hA hB, hAtrail, zero_add]
+  have hmul : A * B ≠ 0 := mul_ne_zero hA hB
+  have hcoeff :
+      (A * B).coeff (A * B).natTrailingDegree ≠ 0 :=
+    (Polynomial.coeff_natTrailingDegree_ne_zero).2 hmul
+  rw [hmultrail] at hcoeff
+  exact hcoeff (hprod B.natTrailingDegree (le_trans hBtrail_le hn))
+
+/-- Low-order Schur vanishing cancels a nonzero constant active pivot and gives
+low-order full-determinant vanishing.  This is just the general integral
+cancellation lemma composed with
+`schurDetCore = activeDet * determinantCore`. -/
+theorem generalFourBlock_determinantCore_coeff_eq_zero_of_schurDetCore_coeff_eq_zero_up_to
+    {R : Type*} [CommRing R] [IsDomain R]
+    (H : GeneralFourBlock (Polynomial R))
+    (hactive0 : H.activeDet.coeff 0 ≠ 0)
+    {N n : ℕ}
+    (hn : n ≤ N)
+    (hschur : ∀ m : ℕ, m ≤ N → H.schurDetCore.coeff m = 0) :
+    H.determinantCore.coeff n = 0 := by
+  apply polynomial_coeff_eq_zero_of_mul_coeff_eq_zero_up_to_of_coeff_zero_ne_zero
+    H.activeDet H.determinantCore hactive0 hn
+  intro m hm
+  rw [← H.schurDetCore_eq_activeDet_mul_determinantCore]
+  exact hschur m hm
 
 /-- Fixed source-coordinate monomial introduced by Euler scaling of the full
 four-by-four determinant. -/
