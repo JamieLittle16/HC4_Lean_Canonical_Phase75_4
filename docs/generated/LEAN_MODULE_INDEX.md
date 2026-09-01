@@ -6447,7 +6447,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge.lean`
 - Purpose: A19.R18: straightened binary Schur determinant versus the source-first clock
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - Declarations: `theorem familyParameterLayer_map_C_mul`, `def binaryEulerSchurSourceFactor`, `def binaryEulerSchurSourceFactorBase`, `theorem binaryEulerSchurSourceFactor_eq_map_C`, `theorem binaryEulerSchurSourceFactor_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero`
@@ -6459,7 +6459,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.128`, `A19.136`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.ParameterFirstLayerBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_eq_zero_of_lt`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_four_lt_hessianClock`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_six_lt_hessianClock`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_four_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_six_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySpecialization`
@@ -6509,7 +6509,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.114`, `A19.115`, `A19.119`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- Imported by local modules: `HC4`
 - Declarations: `theorem is`, `theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise_hessian`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactIntegralFace`
