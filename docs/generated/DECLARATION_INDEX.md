@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6928**.
+Distinct declaration spellings indexed: **6929**.
 
 ## Repeated declaration spellings
 
@@ -5004,6 +5004,7 @@ Distinct declaration spellings indexed: **6928**.
 - `pderiv_zero_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_zero_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_zero_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `permutedEulerScaledHessianFourBlock_eq_diagonalScale` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `permutedFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`

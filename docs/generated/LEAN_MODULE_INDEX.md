@@ -8980,7 +8980,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.PermutedFamilyHessianFourBlock`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
-- Declarations: `theorem polynomialHessian_symmetric`, `def permutedPolynomialHessianFourBlock`, `theorem permutedPolynomialHessianFourBlock_matrix`, `theorem permutedPolynomialHessianFourBlock_activeDet`, `theorem permutedPolynomialHessianFourBlock_determinantCore`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero`
+- Declarations: `theorem polynomialHessian_symmetric`, `def permutedPolynomialHessianFourBlock`, `theorem permutedPolynomialHessianFourBlock_matrix`, `theorem permutedPolynomialHessianFourBlock_activeDet`, `theorem permutedPolynomialHessianFourBlock_determinantCore`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero`, `theorem permutedEulerScaledHessianFourBlock_eq_diagonalScale`
 
 ### `HC4.Valuation.PointedShearContinuation`
 
