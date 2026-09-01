@@ -41,6 +41,8 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   T .qs}
 
+-- CI anchor: elaborate the exact Euler-source-factor bridge on the refreshed inventory.
+
 /-- Fixed source-coordinate monomial introduced by Euler scaling of the
 cleared Schur determinant. -/
 noncomputable def binaryEulerSchurSourceFactor
