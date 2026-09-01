@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6955**.
+Distinct declaration spellings indexed: **6957**.
 
 ## Repeated declaration spellings
 
@@ -2000,6 +2000,8 @@ Distinct declaration spellings indexed: **6955**.
 - `QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
+- `QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEulerParameterRow_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`
+- `QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEulerRow_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff_weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
