@@ -38,6 +38,8 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   T .qs}
 
+-- CI anchor: verify the positive-scale contact cancellation on the refreshed inventory.
+
 /-- The denominator-cleared first-contact carrier and the integral contact
 initial form are literally the same polynomial. -/
 theorem QsOtherFacetContactQuadraticReesPackage.integralContactInitialForm_eq_face
