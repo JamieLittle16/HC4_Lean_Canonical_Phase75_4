@@ -1,5 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport
 import Mathlib.Tactic
 
 /-!
@@ -9,8 +9,9 @@ The honest binary contact family is obtained from the contact Rees family by
 simultaneously inflating source coordinates `1,2,3` by the parameter `tau`.
 For the cyclic other-facet Schur order the active pair is transverse, the first
 complementary direction is longitudinal `x₀`, and the second complementary
-direction is the omitted transverse coordinate.  Hence the Hessian four-block
-is obtained from the inflated contact block by the diagonal congruence
+direction is the omitted transverse coordinate.  Hence the ordinary Hessian
+four-block is obtained from the inflated contact block by the diagonal
+congruence
 
     (tau, tau | 1, tau).
 
@@ -22,8 +23,10 @@ exact factors
     schurC       : tau^6,
     schurDetCore : tau^10.
 
-This is an integral polynomial identity.  No pivot is inverted and no
-coefficientwise nonvanishing claim is used.
+The existing R18 Euler-Schur transport already owns the simultaneous inflation
+ring homomorphism; this module reuses that owner rather than introducing a
+second copy.  All identities remain integral polynomial identities: no pivot
+is inverted and no coefficientwise nonvanishing claim is used.
 -/
 
 namespace HC4.Valuation
@@ -38,27 +41,14 @@ open scoped Matrix
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- Ring-hom form of the simultaneous unit inflation in source coordinates
-`1,2,3`. -/
-noncomputable def unitTransverseInflateHom :
-    MvPolynomial (Fin 4) (Polynomial K) →+*
-      MvPolynomial (Fin 4) (Polynomial K) :=
-  (kernelInflateHom (K := K) (3 : Fin 4) 1).comp
-    ((kernelInflateHom (K := K) (2 : Fin 4) 1).comp
-      (kernelInflateHom (K := K) (1 : Fin 4) 1))
-
-@[simp] theorem unitTransverseInflateHom_apply
-    (P : MvPolynomial (Fin 4) (Polynomial K)) :
-    unitTransverseInflateHom (K := K) P =
-      unitTransverseInflateFamily (K := K) P := by
-  rfl
-
 /-- The common row/column chain-rule factor for simultaneous transverse
 inflation. -/
 def unitTransverseDerivativeCoefficient (i : Fin 4) : Polynomial K :=
   if i = 0 then 1 else Polynomial.X
 
-/-- Entrywise Hessian covariance for the simultaneous transverse inflation. -/
+/-- Entrywise ordinary-Hessian covariance for simultaneous transverse
+inflation.  This is the non-Euler-scaled companion of the already-green
+`eulerScaledHessian_unitTransverseInflateFamily`. -/
 theorem hessian_unitTransverseInflateFamily_entry
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (i j : Fin 4) :
@@ -83,7 +73,7 @@ theorem hessian_unitTransverseInflateFamily_entry
 Whenever the first two permuted directions are transverse, the first
 complement is `x₀`, and the second complement is transverse, simultaneous
 transverse inflation is exactly diagonal congruence by `(tau,tau|1,tau)`
-after applying the inflation homomorphism to the old entries. -/
+after applying the canonical inflation homomorphism to the old entries. -/
 theorem permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     (rho : Equiv.Perm (Fin 4))
     (P : MvPolynomial (Fin 4) (Polynomial K))
@@ -94,7 +84,7 @@ theorem permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     permutedPolynomialHessianFourBlock rho
         (unitTransverseInflateFamily (K := K) P) =
       ((permutedPolynomialHessianFourBlock rho P).map
-          (unitTransverseInflateHom (K := K))).diagonalScale
+          (unitTransverseInflateRingHom (K := K))).diagonalScale
         (MvPolynomial.C (Polynomial.X : Polynomial K))
         (MvPolynomial.C (Polynomial.X : Polynomial K))
         1
