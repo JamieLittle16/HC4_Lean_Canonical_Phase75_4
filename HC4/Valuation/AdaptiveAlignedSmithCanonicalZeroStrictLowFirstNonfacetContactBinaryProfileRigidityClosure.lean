@@ -31,6 +31,8 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   T .qs}
 
+-- CI anchor: force a full Lean build after the generated inventory refresh.
+
 /-- **R18/R19 closing seam.**  Once the honest integral binary profile Hessian
 has zero determinant, the already-proved R19 staircase rigidity gives an
 immediate contradiction. -/
