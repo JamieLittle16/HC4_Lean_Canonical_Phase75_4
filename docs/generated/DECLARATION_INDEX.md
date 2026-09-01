@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7008**.
+Distinct declaration spellings indexed: **7010**.
 
 ## Repeated declaration spellings
 
@@ -3397,8 +3397,10 @@ Distinct declaration spellings indexed: **7008**.
 - `det_weightedThirdZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `determinant` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `determinantCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
+- `determinantCore_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockDeterminantCovariance`
 - `determinantCore_eq_zero_of_transverse_rankOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - `determinantCore_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `determinantCore_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockDeterminantCovariance`
 - `determinantOneCollision_singularTopFace` — `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
 - `determinantTail` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `determinantTail_eq_zero_of_scaledDeterminant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`

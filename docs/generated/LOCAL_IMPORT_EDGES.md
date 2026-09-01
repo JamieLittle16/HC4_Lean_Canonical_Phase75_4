@@ -435,6 +435,8 @@ human architecture guide.
   - `HC4.Newton.FacetCycleClassification`
 - `HC4.Newton.GeneralFourBlock`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Newton.GeneralFourBlockDeterminantCovariance`
+  - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Newton.GeneralFourBlockKernelLift`
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Newton.GeneralFourBlockSchur`
