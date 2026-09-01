@@ -41,7 +41,7 @@ theorem optionEquivRight_monomial
     rw [IsScalarTower.algebraMap_apply R (Polynomial R)]
     simp only [Polynomial.algebraMap_eq, MvPolynomial.algebraMap_eq,
       Option.elim_none, Option.elim_some, map_mul, mul_assoc]
-    simp only [mul_comm, map_finsuppProd, map_pow]
+    simp only [mul_comm, map_pow]
   · simp
   · intros
     rw [pow_add]
@@ -60,8 +60,7 @@ theorem optionEquivRight_coeff_coeff
   | monomial j r =>
       rw [optionEquivRight_monomial]
       classical
-      simp only [MvPolynomial.coeff_monomial, Polynomial.coeff_monomial,
-        apply_ite, Polynomial.coeff_zero]
+      simp only [MvPolynomial.coeff_monomial, apply_ite]
       by_cases hj : j = n
       · subst j
         simp
@@ -76,7 +75,9 @@ theorem optionEquivRight_coeff_coeff
             | some x =>
                 have hx := congrArg (fun q : σ →₀ ℕ => q x) hsome
                 simpa using hx
-          simp [hj, hsome, hnone]
+          simp [hj, hsome]
+          rw [Polynomial.coeff_monomial]
+          simp [hnone]
         · simp [hj, hsome]
 
 /-! ## The canonical parameter swap -/
