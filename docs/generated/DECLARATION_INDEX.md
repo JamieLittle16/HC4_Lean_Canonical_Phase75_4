@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6998**.
+Distinct declaration spellings indexed: **6997**.
 
 ## Repeated declaration spellings
 
@@ -7027,7 +7027,6 @@ Distinct declaration spellings indexed: **6998**.
 - `unitTransverseInflateFamily` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_hasHessianDefect_add_six` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
-- `unitTransverseInflateHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `unitTransverseInflateRingHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unitTransverseInflateRingHom_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`

@@ -6319,7 +6319,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.123`, `A19.136`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - Declarations: `def unitTransverseInflateRingHom`, `theorem unitTransverseInflateRingHom_apply`, `theorem eulerScaledHessian_unitTransverseInflateFamily`, `def QsOtherFacetContactQuadraticReesPackage.binaryEulerHessianFourBlock`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryEulerHessianFourBlock_eq_map_contact`, `def QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
@@ -6387,10 +6387,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation.lean`
 - Purpose: A19.R18: full binary Schur transport through transverse inflation
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def unitTransverseInflateHom`, `def unitTransverseDerivativeCoefficient`, `theorem hessian_unitTransverseInflateFamily_entry`, `theorem permutedPolynomialHessianFourBlock_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily`
+- Declarations: `def unitTransverseDerivativeCoefficient`, `theorem hessian_unitTransverseInflateFamily_entry`, `theorem permutedPolynomialHessianFourBlock_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 
@@ -6569,7 +6569,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - Declarations: `def qsPrContactSchurPermutation`, `def qsSpContactSchurPermutation`, `def qsRqContactSchurPermutation`, `def QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock`, `def QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
