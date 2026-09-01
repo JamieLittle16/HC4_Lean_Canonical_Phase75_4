@@ -38,8 +38,9 @@ theorem optionEquivRight_monomial
   rw [MvPolynomial.optionEquivRight_apply,
     MvPolynomial.aeval_monomial, Finsupp.prod_option_index]
   · rw [MvPolynomial.monomial_eq, ← Polynomial.C_mul_X_pow_eq_monomial]
-    simp only [MvPolynomial.algebraMap_eq, Option.elim_none, Option.elim_some,
-      map_mul, mul_assoc]
+    rw [IsScalarTower.algebraMap_apply R (Polynomial R)]
+    simp only [Polynomial.algebraMap_eq, MvPolynomial.algebraMap_eq,
+      Option.elim_none, Option.elim_some, map_mul, mul_assoc]
     simp only [mul_comm, map_finsuppProd, map_pow]
   · simp
   · intros
@@ -62,13 +63,21 @@ theorem optionEquivRight_coeff_coeff
       simp only [MvPolynomial.coeff_monomial, Polynomial.coeff_monomial,
         apply_ite, Polynomial.coeff_zero]
       by_cases hj : j = n
-      · simp [hj]
-      · rw [if_neg hj]
-        simp only [ite_eq_right_iff]
-        intro hjSome hjNone
-        apply False.elim (hj _)
-        simp only [Finsupp.ext_iff, Option.forall, hjNone, true_and]
-        simpa only [Finsupp.ext_iff] using hjSome
+      · subst j
+        simp
+      · by_cases hsome : j.some = n.some
+        · have hnone : j none ≠ n none := by
+            intro hnone
+            apply hj
+            apply Finsupp.ext
+            intro x
+            cases x with
+            | none => exact hnone
+            | some x =>
+                have hx := congrArg (fun q : σ →₀ ℕ => q x) hsome
+                simpa using hx
+          simp [hj, hsome, hnone]
+        · simp [hj, hsome]
 
 /-! ## The canonical parameter swap -/
 
@@ -103,6 +112,7 @@ theorem parameterFirstEquiv_coeff
 /-- Entrywise coefficient form of `parameterFirstHessian`: the `n`th outer
 parameter coefficient is literally the Hessian of the `n`th source layer. -/
 theorem parameterFirstHessian_coeff
+    [CharZero K]
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (n : ℕ) (i j : Fin 4) :
     (parameterFirstHessian P i j).coeff n =
