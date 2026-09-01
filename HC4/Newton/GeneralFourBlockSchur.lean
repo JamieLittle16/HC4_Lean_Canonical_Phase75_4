@@ -184,7 +184,8 @@ theorem activeDet_map {S : Type*} [CommRing S]
 theorem schurA_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).schurA = f H.schurA := by
-  have htwo : f (2 : R) = (2 : S) := by norm_num
+  have htwo : f (2 : R) = (2 : S) := by
+    simpa using f.map_natCast 2
   simp [map, schurA, activeDet, htwo]
 
 @[simp]
@@ -197,7 +198,8 @@ theorem schurB_map {S : Type*} [CommRing S]
 theorem schurC_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).schurC = f H.schurC := by
-  have htwo : f (2 : R) = (2 : S) := by norm_num
+  have htwo : f (2 : R) = (2 : S) := by
+    simpa using f.map_natCast 2
   simp [map, schurC, activeDet, htwo]
 
 @[simp]
@@ -210,7 +212,8 @@ theorem schurDetCore_map {S : Type*} [CommRing S]
 theorem determinantCore_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).determinantCore = f H.determinantCore := by
-  have htwo : f (2 : R) = (2 : S) := by norm_num
+  have htwo : f (2 : R) = (2 : S) := by
+    simpa using f.map_natCast 2
   simp [map, determinantCore, htwo]
 
 /-- The explicit determinant core is exactly the determinant of the displayed
