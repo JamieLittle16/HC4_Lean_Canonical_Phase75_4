@@ -18,9 +18,9 @@ where `w₀=r` and `w₁=w₂=w₃=1`.  Likewise the parameter row satisfies
 
 These are exactly the second-order equations needed to replace the omitted
 unit-weight transverse row/column by the parameter direction modulo the active
-source directions.  They are proved coefficientwise on the actual reverse Rees
-and therefore introduce no global homogeneity assumption on the represented
-source.
+source directions.  Both statements are proved coefficientwise on the actual
+reverse Rees and therefore introduce no global homogeneity assumption on the
+represented source.
 -/
 
 namespace HC4.Valuation
