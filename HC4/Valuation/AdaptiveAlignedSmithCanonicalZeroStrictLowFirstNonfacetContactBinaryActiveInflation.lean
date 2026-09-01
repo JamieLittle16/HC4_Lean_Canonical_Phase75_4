@@ -28,12 +28,6 @@ open HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-private theorem kernelInflateHom_C
-    (kernel : Fin 4) (slope : ℕ) (p : Polynomial K) :
-    kernelInflateHom (K := K) kernel slope (MvPolynomial.C p) =
-      MvPolynomial.C p := by
-  simp [kernelInflateHom]
-
 private theorem hessianPrincipalMinor_unitTransverseInflate_two_three
     (P : MvPolynomial (Fin 4) (Polynomial K)) :
     HC4.Polynomial.hessianPrincipalMinor
@@ -43,8 +37,8 @@ private theorem hessianPrincipalMinor_unitTransverseInflate_two_three
           (HC4.Polynomial.hessianPrincipalMinor P (2 : Fin 4) 3) := by
   unfold unitTransverseInflateFamily HC4.Polynomial.hessianPrincipalMinor
   repeat' rw [hessian_kernelInflateHom_entry]
-  simp [kernelInflateDerivativeCoefficient, map_sub, map_mul,
-    kernelInflateHom_C]
+  simp [kernelInflateDerivativeCoefficient, kernelInflateHom,
+    map_sub, map_mul]
   ring
 
 private theorem hessianPrincipalMinor_unitTransverseInflate_one_three
@@ -56,8 +50,8 @@ private theorem hessianPrincipalMinor_unitTransverseInflate_one_three
           (HC4.Polynomial.hessianPrincipalMinor P (1 : Fin 4) 3) := by
   unfold unitTransverseInflateFamily HC4.Polynomial.hessianPrincipalMinor
   repeat' rw [hessian_kernelInflateHom_entry]
-  simp [kernelInflateDerivativeCoefficient, map_sub, map_mul,
-    kernelInflateHom_C]
+  simp [kernelInflateDerivativeCoefficient, kernelInflateHom,
+    map_sub, map_mul]
   ring
 
 private theorem hessianPrincipalMinor_unitTransverseInflate_one_two
@@ -69,8 +63,8 @@ private theorem hessianPrincipalMinor_unitTransverseInflate_one_two
           (HC4.Polynomial.hessianPrincipalMinor P (1 : Fin 4) 2) := by
   unfold unitTransverseInflateFamily HC4.Polynomial.hessianPrincipalMinor
   repeat' rw [hessian_kernelInflateHom_entry]
-  simp [kernelInflateDerivativeCoefficient, map_sub, map_mul,
-    kernelInflateHom_C]
+  simp [kernelInflateDerivativeCoefficient, kernelInflateHom,
+    map_sub, map_mul]
   ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
