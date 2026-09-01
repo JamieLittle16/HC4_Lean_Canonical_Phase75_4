@@ -1,11 +1,13 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur
 import Mathlib.Tactic
 
 /-!
-# A19.135--A19.136: active binary Schur pivot and residual pre-clock range
+# A19.135--A19.136 / R18: active binary Schur pivot and exact Euler block
 
 A19.134 proves nonvanishing of the relevant ordinary Hessian principal minor
 of the binary-homogenized contact family.  A19.128 formulates the exact
@@ -19,24 +21,11 @@ is an equivalence, the three cyclic A19.134 pivots remain nonzero in the exact
 Schur block consumed by A19.128.
 
 A19.136 records the exact clock and convolution arithmetic needed by the
-staircase residual adapter.  The noncancelling longitudinal profile has degree
-at least two and satisfies
-
-    natDegree * profileWeight <= topFace.degree.
-
-Hence every nonzero coefficient in longitudinal degree `n` satisfies
-
-    profileWeight * n <= topFace.degree.
-
-In particular two nonzero profile coefficients in degrees `i,j` have binary
-parameter orders which add without any truncated-subtraction ambiguity:
-
-    (D-r*i) + (D-r*j) = 2*D-r*(i+j).
-
-Moreover every such quadratic profile order lies strictly before the shifted
-Hessian clock from A19.128, so the corresponding cleared-Schur coefficient is
-zero.  These are the precise coefficientwise inputs for the Euler/Schur
-identification; no evaluation at `tau = 1` is used here.
+staircase residual adapter.  R18 additionally exposes the mixed
+parameter/longitudinal and pure longitudinal Euler-Hessian coefficients before
+specialising the parameter.  Together with A19.132's second parameter-Euler
+identity, all three binary staircase factors therefore live in the same
+polynomial coefficient ring as the cleared Schur series.
 
 No localization or division by the pivot is used.
 -/
@@ -169,6 +158,45 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurD
   exact
     P.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt rho
       (P.binary_profileOrder_lt_hessianClock Q n)
+
+/-- **R18 mixed Euler coefficient.**  Before any `tau = 1` specialization,
+the mixed parameter/longitudinal Euler derivative has exactly the staircase
+factor `n * (D-r*n)` on every source monomial. -/
+theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (d : Fin 4 →₀ ℕ) :
+    Polynomial.X * Polynomial.derivative
+        (MvPolynomial.coeff d
+          (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily)) =
+      (d (0 : Fin 4) : Polynomial K) *
+        Polynomial.C
+          ((T.topFace.degree : K) -
+            (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
+        MvPolynomial.coeff d P.binaryHomogenizedFamily := by
+  rw [coeff_mvEuler]
+  simp only [Polynomial.derivative_mul]
+  have hconst :
+      Polynomial.derivative (d (0 : Fin 4) : Polynomial K) = 0 := by
+    simp
+  rw [hconst, zero_mul, zero_add]
+  rw [P.parameterEuler_coeff_binaryHomogenizedFamily]
+  ring
+
+/-- **R18 longitudinal Euler-Hessian coefficient.**  The pure longitudinal
+Euler-scaled source Hessian has exactly the falling factor `n(n-1)` in the
+same parameter polynomial ring. -/
+theorem QsOtherFacetContactQuadraticReesPackage.longitudinalEulerHessian_coeff_binaryHomogenizedFamily
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (d : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff d
+        (HC4.Polynomial.eulerScaledHessian P.binaryHomogenizedFamily
+          (0 : Fin 4) 0) =
+      ((d (0 : Fin 4) : Polynomial K) *
+          ((d (0 : Fin 4) : Polynomial K) - 1)) *
+        MvPolynomial.coeff d P.binaryHomogenizedFamily := by
+  rw [coeff_eulerScaledHessian]
+  simp only [if_pos]
+  ring
 
 /-- `.pr`: the exact binary Schur block has nonzero active determinant. -/
 theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_activeDet_ne_zero
