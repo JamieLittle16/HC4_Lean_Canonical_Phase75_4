@@ -106,6 +106,21 @@ theorem matrix_ofSymmetricMatrix
     simp [matrix, ofSymmetricMatrix]
   all_goals exact hsymm _ _
 
+/-- Map all ten entries of a general four-block through a ring homomorphism.
+This is the canonical representation bridge between source-first and
+parameter-first coefficient rings. -/
+def map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) : GeneralFourBlock S where
+  a := f H.a
+  b := f H.b
+  d := f H.d
+  p := f H.p
+  q := f H.q
+  r := f H.r
+  s := f H.s
+  x := f H.x
+  y := f H.y
+  z := f H.z
 
 /-- Determinant of the active `2 x 2` block. -/
 def activeDet (H : GeneralFourBlock R) : R :=
@@ -158,6 +173,42 @@ def determinantCore (H : GeneralFourBlock R) : R :=
     + H.p * H.p * H.s * H.s
     - 2 * H.p * H.q * H.r * H.s
     + H.q * H.q * H.r * H.r
+
+@[simp]
+theorem activeDet_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).activeDet = f H.activeDet := by
+  simp [map, activeDet]
+
+@[simp]
+theorem schurA_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurA = f H.schurA := by
+  simp [map, schurA, activeDet]
+
+@[simp]
+theorem schurB_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurB = f H.schurB := by
+  simp [map, schurB, activeDet]
+
+@[simp]
+theorem schurC_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurC = f H.schurC := by
+  simp [map, schurC, activeDet]
+
+@[simp]
+theorem schurDetCore_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurDetCore = f H.schurDetCore := by
+  simp [schurDetCore]
+
+@[simp]
+theorem determinantCore_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).determinantCore = f H.determinantCore := by
+  simp [map, determinantCore]
 
 /-- The explicit determinant core is exactly the determinant of the displayed
 symmetric matrix.  This finite identity is the bridge that lets later code
