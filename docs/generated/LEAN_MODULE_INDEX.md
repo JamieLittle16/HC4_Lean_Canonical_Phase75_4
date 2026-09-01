@@ -6429,7 +6429,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.101`, `A19.112`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
 - Declarations: `structure QsOtherFacetContactQuadraticReesPackage`, `theorem qs_ray_otherFacet_contactQuadraticRees_package`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
@@ -6445,12 +6445,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection.lean`
-- Purpose: A19.102: primitive direction at the chosen contact-Rees slope
-- A-labels: `A19.100d`, `A19.101`, `A19.102`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
+- Purpose: A19.102 / R18.2: primitive direction at the chosen contact-Rees slope
+- A-labels: `A19.100d`, `A19.101`, `A19.102`, `A19.81`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem contactSlope_eq_of_bump_eq`, `theorem qs_ray_pr_primitiveDirection_of_bump_eq`, `theorem qs_ray_sp_primitiveDirection_of_bump_eq`, `theorem qs_ray_rq_primitiveDirection_of_bump_eq`
+- Declarations: `theorem contactSlope_eq_of_bump_eq`, `theorem qs_ray_pr_primitiveDirection_of_bump_eq`, `theorem qs_ray_sp_primitiveDirection_of_bump_eq`, `theorem qs_ray_rq_primitiveDirection_of_bump_eq`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_binaryStraighteningArithmetic`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_binaryStraighteningArithmetic`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_binaryStraighteningArithmetic`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
 
