@@ -5,20 +5,18 @@ import Mathlib.Tactic
 /-!
 # A19.R18: shifted straightened determinant clock
 
-R20 now exposes the source-first full Hessian determinant clock at the shifted
-profile order
-
-    2 * D - profileWeight * n + 4.
-
-The R18 staircase extraction is performed after Euler row/column scaling and
-the weighted-Euler second-complement shear.  Neither operation changes the
-parameter order: Euler scaling contributes only a fixed source monomial, and
-the shear has unit genuine quotient coefficient.  Thus the shifted source
-clock transports literally to the straightened full determinant.
+R20 exposes the source-first full Hessian determinant clock at the shifted
+profile orders needed by the final cancellation.  The R18 staircase extraction
+is performed after Euler row/column scaling and the weighted-Euler
+second-complement shear.  Neither operation changes the parameter order: Euler
+scaling contributes only a fixed source monomial, and the shear has unit
+genuine quotient coefficient.  Thus both the historical active-pivot `+4`
+clock and the exact transverse-inflation `+6` clock transport literally to the
+straightened full determinant.
 
 This is the full-determinant companion of
 `binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero`.  No active
-pivot is divided out here; the next cancellation remains integral.
+pivot is divided out here; cancellation remains integral.
 -/
 
 namespace HC4.Valuation
@@ -99,6 +97,24 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determi
   rw [binaryEulerDeterminantSourceFactor_eq_map_C]
   rw [familyParameterLayer_map_C_mul]
   rw [P.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_four_eq_zero
+    rho n]
+  simp
+
+/-- **R18 inflation-matched straightened determinant clock.**  The exact six
+parameter powers contributed by simultaneous transverse inflation are also
+strictly before determinant closure, so the corresponding straightened Euler
+layer vanishes. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_parameterLayer_profileOrder_add_six_eq_zero
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    (n : ℕ) :
+    familyParameterLayer
+        (P.binaryWeightedEulerShear rho).determinantCore
+        ((2 * T.topFace.degree - P.profileWeight * n) + 6) = 0 := by
+  rw [P.binaryWeightedEulerShear_determinantCore_eq_sourceFactor_mul rho]
+  rw [binaryEulerDeterminantSourceFactor_eq_map_C]
+  rw [familyParameterLayer_map_C_mul]
+  rw [P.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_six_eq_zero
     rho n]
   simp
 
