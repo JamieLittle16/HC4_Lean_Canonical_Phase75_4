@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization
 import HC4.Valuation.KernelInflationHessianDefect
+import HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor
 import Mathlib.Tactic
 
 /-!
