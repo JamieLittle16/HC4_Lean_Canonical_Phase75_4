@@ -76,7 +76,7 @@ variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetD
   T .qs}
 
 /-- `.pr`: the binary `(2,3)` active pivot is exactly the contact pivot after
-transverse inflation, multiplied by `tau^4`. -/
+transverse inflation, multiplied by exactly `tau^4`. -/
 theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_hessianPrincipalMinor_eq_X_pow_four_mul
     (P : QsOtherFacetContactQuadraticReesPackage C) :
     HC4.Polynomial.hessianPrincipalMinor P.binaryHomogenizedFamily
