@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7017**.
+Distinct declaration spellings indexed: **7018**.
 
 ## Repeated declaration spellings
 
@@ -5083,6 +5083,7 @@ Distinct declaration spellings indexed: **7017**.
 - `permutedPolynomialHessianFourBlock` — `def` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_activeDet` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_determinantCore_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantInflation`
 - `permutedPolynomialHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
