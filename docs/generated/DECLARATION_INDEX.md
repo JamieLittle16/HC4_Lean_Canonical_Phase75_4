@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7025**.
+Distinct declaration spellings indexed: **7023**.
 
 ## Repeated declaration spellings
 
@@ -4073,7 +4073,6 @@ Distinct declaration spellings indexed: **7025**.
 - `fullVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
-- `generalFourBlock_determinantCore_coeff_eq_zero_of_schurDetCore_coeff_eq_zero_up_to` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `generalSurvivingSmithFaceShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `generalSurvivingSmithGradeShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `genuineCoefficientWall_specialFiber_has_negativeGrade` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
@@ -5305,7 +5304,6 @@ Distinct declaration spellings indexed: **7025**.
 - `polynomial_X_pow_dvd_le_parameterOrder` — `theorem` in `HC4.Valuation.AlignedSmithWallArithmetic`
 - `polynomial_X_pow_dvd_of_add_pow_dvd_pow_mul` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `polynomial_X_pow_mul_cancel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
-- `polynomial_coeff_eq_zero_of_mul_coeff_eq_zero_up_to_of_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `polynomial_eq_C_constantCoeff_of_positive_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomial_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
