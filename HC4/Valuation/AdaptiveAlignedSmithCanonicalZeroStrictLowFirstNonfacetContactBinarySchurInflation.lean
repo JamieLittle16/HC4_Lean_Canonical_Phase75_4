@@ -41,6 +41,8 @@ open scoped Matrix
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+-- CI anchor: elaborate the ordinary-Hessian Schur inflation transport.
+
 /-- The common row/column chain-rule factor for simultaneous transverse
 inflation. -/
 def unitTransverseDerivativeCoefficient (i : Fin 4) : Polynomial K :=
