@@ -5679,7 +5679,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.115`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianRecognition`
 - External imports: `Mathlib.RingTheory.Localization.FractionRing`, `Mathlib.Tactic`
-- Imported by local modules: `HC4`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 - Declarations: `theorem binaryStaircaseProfileResidual_fraction_eq_zero_of_coeffwise_hessian`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianRecognition`
@@ -6385,12 +6385,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity.lean`
-- Purpose: A19.119: the contact fraction profile is contradictory once its residual vanishes
+- Purpose: A19.119 / R19: contact fraction-profile rigidity
 - A-labels: `A19.114`, `A19.115`, `A19.119`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem is`, `theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual`
+- Declarations: `theorem is`, `theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise_hessian`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 
