@@ -184,7 +184,8 @@ theorem activeDet_map {S : Type*} [CommRing S]
 theorem schurA_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).schurA = f H.schurA := by
-  simp [map, schurA, activeDet]
+  have htwo : f (2 : R) = (2 : S) := by norm_num
+  simp [map, schurA, activeDet, htwo]
 
 @[simp]
 theorem schurB_map {S : Type*} [CommRing S]
@@ -196,7 +197,8 @@ theorem schurB_map {S : Type*} [CommRing S]
 theorem schurC_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).schurC = f H.schurC := by
-  simp [map, schurC, activeDet]
+  have htwo : f (2 : R) = (2 : S) := by norm_num
+  simp [map, schurC, activeDet, htwo]
 
 @[simp]
 theorem schurDetCore_map {S : Type*} [CommRing S]
@@ -208,7 +210,8 @@ theorem schurDetCore_map {S : Type*} [CommRing S]
 theorem determinantCore_map {S : Type*} [CommRing S]
     (H : GeneralFourBlock R) (f : R →+* S) :
     (H.map f).determinantCore = f H.determinantCore := by
-  simp [map, determinantCore]
+  have htwo : f (2 : R) = (2 : S) := by norm_num
+  simp [map, determinantCore, htwo]
 
 /-- The explicit determinant core is exactly the determinant of the displayed
 symmetric matrix.  This finite identity is the bridge that lets later code
