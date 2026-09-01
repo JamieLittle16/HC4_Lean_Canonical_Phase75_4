@@ -6400,7 +6400,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def binaryEulerSchurSourceFactor`, `theorem binaryEulerSchurSourceFactor_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul`
+- Declarations: `theorem familyParameterLayer_map_C_mul`, `def binaryEulerSchurSourceFactor`, `def binaryEulerSchurSourceFactorBase`, `theorem binaryEulerSchurSourceFactor_eq_map_C`, `theorem binaryEulerSchurSourceFactor_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 

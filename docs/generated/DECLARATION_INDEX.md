@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7000**.
+Distinct declaration spellings indexed: **7004**.
 
 ## Repeated declaration spellings
 
@@ -2000,6 +2000,7 @@ Distinct declaration spellings indexed: **7000**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binary_hessianPrincipalMinor_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
@@ -2691,6 +2692,8 @@ Distinct declaration spellings indexed: **7000**.
 - `binaryDirectionalHessianDet_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `binaryDirectionalHessianDet_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `binaryEulerSchurSourceFactor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- `binaryEulerSchurSourceFactorBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- `binaryEulerSchurSourceFactor_eq_map_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryEulerSchurSourceFactor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryExponentHessianCore` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryFiniteStaircaseProfile_terminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
@@ -3816,6 +3819,7 @@ Distinct declaration spellings indexed: **7000**.
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
