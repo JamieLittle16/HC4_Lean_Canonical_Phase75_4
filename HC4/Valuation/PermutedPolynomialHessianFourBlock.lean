@@ -21,6 +21,10 @@ four-block is literally the ordinary block under the generic diagonal
 congruence of `GeneralFourBlockSchur`, with the four source variables as the
 row/column scales.  This keeps all subsequent Schur covariance algebra in the
 single state-free R16 interface.
+
+R20 deliberately states this layer over a commutative ring.  The final binary
+contact family has coefficient ring `Polynomial K`, and none of the finite
+Hessian, permutation, or Euler-congruence identities here uses division.
 -/
 
 namespace HC4.Valuation
@@ -32,7 +36,7 @@ open HC4.Polynomial
 open scoped Matrix
 
 universe u
-variable {K : Type u} [Field K] [CharZero K]
+variable {K : Type u} [CommRing K]
 
 /-- Ordinary polynomial Hessian is symmetric. -/
 theorem polynomialHessian_symmetric
@@ -100,7 +104,7 @@ theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero
   apply GeneralFourBlock.schurDetCore_eq_zero_of_determinantCore_eq_zero
   rw [permutedPolynomialHessianFourBlock_determinantCore, hdet]
 
-/-- **A19.R17 Euler/four-block covariance.**
+/-- **A19.R17/R20 Euler/four-block covariance.**
 
 After simultaneous coordinate permutation, the Euler-scaled Hessian is exactly
 the ordinary Hessian four-block under diagonal congruence by the four source
