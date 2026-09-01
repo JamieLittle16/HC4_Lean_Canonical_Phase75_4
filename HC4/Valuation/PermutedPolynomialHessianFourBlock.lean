@@ -24,7 +24,10 @@ single state-free R16 interface.
 
 R20 deliberately states this layer over a commutative ring.  The final binary
 contact family has coefficient ring `Polynomial K`, and none of the finite
-Hessian, permutation, or Euler-congruence identities here uses division.
+Hessian, permutation, or Euler-congruence identities here uses division.  The
+last section then records that the existing parameter-first family block is
+exactly the ring-equivalence image of this source-first block, including all
+three cleared Schur entries and their determinant.
 -/
 
 namespace HC4.Valuation
@@ -130,6 +133,75 @@ theorem permutedEulerScaledHessianFourBlock_eq_diagonalScale
       GeneralFourBlock.diagonalScale,
       permutedPolynomialHessianFourBlock,
       Matrix.submatrix_apply, hentry]
+
+/-! ## Parameter-first transport -/
+
+section ParameterFirst
+
+variable {F : Type u} [Field F]
+
+/-- The exact parameter-first family block is simply the source-first Hessian
+block mapped through the canonical parameter/spatial ring equivalence. -/
+theorem permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    permutedFamilyHessianFourBlock rho P =
+      (permutedPolynomialHessianFourBlock rho P).map
+        (parameterFirstEquiv F).toRingEquiv.toRingHom := by
+  ext <;>
+    rfl
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_activeDet_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).activeDet =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).activeDet := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).schurA =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).schurA := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_schurB_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).schurB =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).schurB := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).schurC =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).schurC := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_schurDetCore_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).schurDetCore =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).schurDetCore := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+end ParameterFirst
 
 end
 
