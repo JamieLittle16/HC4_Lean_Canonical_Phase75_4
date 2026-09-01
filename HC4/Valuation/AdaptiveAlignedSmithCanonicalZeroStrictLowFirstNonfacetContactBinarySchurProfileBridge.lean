@@ -49,6 +49,15 @@ noncomputable def binaryEulerSchurSourceFactor
   (MvPolynomial.X (rho 0) * MvPolynomial.X (rho 1)) ^ 4 *
     (MvPolynomial.X (rho 2) * MvPolynomial.X (rho 3)) ^ 2
 
+/-- The Euler source factor is a genuine nonzero monomial. -/
+theorem binaryEulerSchurSourceFactor_ne_zero
+    (rho : Equiv.Perm (Fin 4)) :
+    binaryEulerSchurSourceFactor (K := K) rho ≠ 0 := by
+  unfold binaryEulerSchurSourceFactor
+  exact mul_ne_zero
+    (pow_ne_zero 4 (mul_ne_zero MvPolynomial.X_ne_zero MvPolynomial.X_ne_zero))
+    (pow_ne_zero 2 (mul_ne_zero MvPolynomial.X_ne_zero MvPolynomial.X_ne_zero))
+
 /-- **R18 exact determinant representation bridge.**  Weighted-Euler
 straightening preserves the Euler-scaled Schur determinant, and Euler scaling
 itself contributes only the displayed fixed source monomial. -/
