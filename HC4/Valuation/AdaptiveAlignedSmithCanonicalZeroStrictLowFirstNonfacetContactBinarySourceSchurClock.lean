@@ -15,11 +15,9 @@ family
 
 R20 transports those coefficient vanishings back across `parameterFirstEquiv`.
 Besides the already-used cleared Schur clock, R18 needs the full determinant
-one level above it: the active transverse pivot created by binary inflation
-starts at order four, while the full binary Hessian clock gained six orders.
-The original strict quadratic margin is therefore exactly enough to kill the
-shifted profile order `2D-r*n+4` without strengthening any geometric
-hypothesis.
+one level above it.  The original strict quadratic margin is enough both for
+the active-pivot shift by four and, more importantly for exact inflation
+cancellation, for the full transverse-inflation shift by six.
 
 This is purely representation plumbing: no new geometry, homogeneity
 assumption, division, or determinant argument is introduced.
@@ -79,6 +77,20 @@ theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_four_lt_
         2 * T.topFace.degree := Nat.sub_le _ _
   omega
 
+/-- The exact six powers of `tau` contributed by simultaneous transverse
+inflation also fit strictly below the binary Hessian clock.  This is the
+shift used when cancelling the full determinant inflation formula. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_six_lt_hessianClock
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (n : ℕ) :
+    (2 * T.topFace.degree - P.profileWeight * n) + 6 <
+      (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6 := by
+  have hmargin := P.two_level_lt_defect
+  have hsub :
+      2 * T.topFace.degree - P.profileWeight * n ≤
+        2 * T.topFace.degree := Nat.sub_le _ _
+  omega
+
 /-- Hence every shifted profile order needed for the one-pivot determinant
 cancellation is a zero source-first full-determinant layer. -/
 theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_four_eq_zero
@@ -91,6 +103,20 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSource
         ((2 * T.topFace.degree - P.profileWeight * n) + 4) = 0 := by
   exact P.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_eq_zero_of_lt
     rho (P.binary_profileOrder_add_four_lt_hessianClock n)
+
+/-- **R18 exact inflation-matched determinant clock.**  The full determinant
+of the binary family vanishes at the profile order shifted by the six powers
+of `tau` appearing in transverse-inflation covariance. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_six_eq_zero
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    (n : ℕ) :
+    familyParameterLayer
+        ((permutedPolynomialHessianFourBlock
+          rho P.binaryHomogenizedFamily).determinantCore)
+        ((2 * T.topFace.degree - P.profileWeight * n) + 6) = 0 := by
+  exact P.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_eq_zero_of_lt
+    rho (P.binary_profileOrder_add_six_lt_hessianClock n)
 
 /-- **R20 source-first Schur clock.**  At every parameter order which can
 carry the degree-`n` binary staircase residual coefficient, the source-first
