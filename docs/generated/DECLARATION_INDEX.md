@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6997**.
+Distinct declaration spellings indexed: **6999**.
 
 ## Repeated declaration spellings
 
@@ -2001,6 +2001,7 @@ Distinct declaration spellings indexed: **6997**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binary_hessianPrincipalMinor_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
 - `QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
@@ -2689,6 +2690,7 @@ Distinct declaration spellings indexed: **6997**.
 - `binaryDirectionalHessianDet_monomial_ne_zero_of_both_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryDirectionalHessianDet_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `binaryDirectionalHessianDet_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `binaryEulerSchurSourceFactor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryExponentHessianCore` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryFiniteStaircaseProfile_terminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
 - `binaryFiniteStaircaseProfile_terminal_impossible_of_positiveGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
