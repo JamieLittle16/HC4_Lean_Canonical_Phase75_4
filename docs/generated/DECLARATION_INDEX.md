@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6942**.
+Distinct declaration spellings indexed: **6948**.
 
 ## Repeated declaration spellings
 
@@ -5015,9 +5015,15 @@ Distinct declaration spellings indexed: **6942**.
 - `pderiv_zero_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `permutedEulerScaledHessianFourBlock_eq_diagonalScale` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_activeDet_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `permutedFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedFamilyHessianFourBlock_schurB_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedFamilyHessianFourBlock_schurDetCore_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock` — `def` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_activeDet` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`

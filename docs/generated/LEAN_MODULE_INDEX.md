@@ -8980,7 +8980,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.PermutedFamilyHessianFourBlock`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
-- Declarations: `theorem polynomialHessian_symmetric`, `def permutedPolynomialHessianFourBlock`, `theorem permutedPolynomialHessianFourBlock_matrix`, `theorem permutedPolynomialHessianFourBlock_activeDet`, `theorem permutedPolynomialHessianFourBlock_determinantCore`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero`, `theorem permutedEulerScaledHessianFourBlock_eq_diagonalScale`
+- Declarations: `theorem polynomialHessian_symmetric`, `def permutedPolynomialHessianFourBlock`, `theorem permutedPolynomialHessianFourBlock_matrix`, `theorem permutedPolynomialHessianFourBlock_activeDet`, `theorem permutedPolynomialHessianFourBlock_determinantCore`, `theorem permutedPolynomialHessianFourBlock_schurDetCore_eq_zero`, `theorem permutedEulerScaledHessianFourBlock_eq_diagonalScale`, `theorem permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock`, `theorem permutedFamilyHessianFourBlock_activeDet_eq_parameterFirstEquiv`, `theorem permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv`, `theorem permutedFamilyHessianFourBlock_schurB_eq_parameterFirstEquiv`, `theorem permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv`, `theorem permutedFamilyHessianFourBlock_schurDetCore_eq_parameterFirstEquiv`
 
 ### `HC4.Valuation.PointedShearContinuation`
 
