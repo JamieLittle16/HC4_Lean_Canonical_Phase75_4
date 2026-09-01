@@ -67,6 +67,8 @@ private theorem parameterSecondEuler_X_pow_mul_C
       | zero => simp
       | succ n =>
           rw [Polynomial.derivative_X_pow_succ]
+          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+          simp only [zero_mul, zero_add]
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
@@ -147,7 +149,14 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coef
       Polynomial.C (T.topFace.degree : K) *
         MvPolynomial.coeff d P.contactFamily := by
   rw [P.contactFamily_parameterEuler_coeff d]
-  ring
+  let w : K :=
+    (P.profileWeight : K) * (d (0 : Fin 4) : K) +
+      (d (1 : Fin 4) : K) + (d (2 : Fin 4) : K) +
+      (d (3 : Fin 4) : K)
+  let q : Polynomial K := MvPolynomial.coeff d P.contactFamily
+  change Polynomial.C ((T.topFace.degree : K) - w) * q +
+      Polynomial.C w * q = Polynomial.C (T.topFace.degree : K) * q
+  rw [← add_mul, ← Polynomial.C_add, sub_add_cancel]
 
 /-- Exact second falling parameter-Euler coefficient of the honest contact
 family, in the native contact weight. -/
