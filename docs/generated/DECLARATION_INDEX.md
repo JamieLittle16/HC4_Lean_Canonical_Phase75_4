@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7004**.
+Distinct declaration spellings indexed: **7005**.
 
 ## Repeated declaration spellings
 
@@ -5063,6 +5063,7 @@ Distinct declaration spellings indexed: **7004**.
 - `permutedFamilyHessianFourBlock_activeDet_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `permutedFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `permutedFamilyHessianFourBlock_determinantCore_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
