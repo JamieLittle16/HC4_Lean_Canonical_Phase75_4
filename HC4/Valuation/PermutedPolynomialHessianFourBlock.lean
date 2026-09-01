@@ -17,17 +17,18 @@ zero denominator-cleared binary Schur determinant.
 
 A19.R17 also records the exact Euler-scaled version needed by the final contact
 adapter.  After the same coordinate permutation, the Euler-scaled Hessian
-four-block is literally the ordinary block under the generic diagonal
-congruence of `GeneralFourBlockSchur`, with the four source variables as the
-row/column scales.  This keeps all subsequent Schur covariance algebra in the
-single state-free R16 interface.
+four-block is literally the ordinary block under diagonal congruence of
+`GeneralFourBlockSchur`, with the four source variables as the row/column
+scales.  This keeps all subsequent Schur covariance algebra in the single
+state-free R16 interface.
 
 R20 deliberately states this layer over a commutative ring.  The final binary
 contact family has coefficient ring `Polynomial K`, and none of the finite
 Hessian, permutation, or Euler-congruence identities here uses division.  The
 last section then records that the existing parameter-first family block is
-exactly the ring-equivalence image of this source-first block, including all
-three cleared Schur entries and their determinant.
+exactly the ring-equivalence image of this source-first block, including the
+active determinant, all three cleared Schur entries, the full determinant, and
+the cleared Schur determinant.
 -/
 
 namespace HC4.Valuation
@@ -188,6 +189,16 @@ theorem permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv
     (permutedFamilyHessianFourBlock rho P).schurC =
       parameterFirstEquiv F
         (permutedPolynomialHessianFourBlock rho P).schurC := by
+  rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
+  simp
+
+@[simp]
+theorem permutedFamilyHessianFourBlock_determinantCore_eq_parameterFirstEquiv
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial F)) :
+    (permutedFamilyHessianFourBlock rho P).determinantCore =
+      parameterFirstEquiv F
+        (permutedPolynomialHessianFourBlock rho P).determinantCore := by
   rw [permutedFamilyHessianFourBlock_eq_map_permutedPolynomialHessianFourBlock]
   simp
 
