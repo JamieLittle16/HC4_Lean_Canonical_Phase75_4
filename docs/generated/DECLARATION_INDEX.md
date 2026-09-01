@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7023**.
+Distinct declaration spellings indexed: **7027**.
 
 ## Repeated declaration spellings
 
@@ -3837,6 +3837,10 @@ Distinct declaration spellings indexed: **7023**.
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `familyParameterLayer_permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily_add_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
+- `familyParameterLayer_permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily_add_five` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
+- `familyParameterLayer_permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily_add_six` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
+- `familyParameterLayer_permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily_add_ten` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `familyParameterLayer_zero_eq_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `familyPositiveActualLayerOrders` — `def` in `HC4.Valuation.ActualParameterLayer`
