@@ -2191,7 +2191,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.118`
 - Local imports: `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`, `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - Declarations: `def hessianPrincipalMinor`, `def eulerScaledHessianPrincipalMinor`, `theorem eulerScaledHessianPrincipalMinor_eq_monomial_mul`, `theorem hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero`, `theorem rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor`, `theorem rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse`, `theorem eulerScaledHessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`, `theorem hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero`
 
 ### `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
@@ -6307,7 +6307,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation.lean`
 - Purpose: A19.R18: exact transverse-inflation factor on the cyclic active pivots
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`, `HC4.Valuation.KernelInflationHessianDefect`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`, `HC4.Valuation.KernelInflationHessianDefect`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - Declarations: `theorem hessianPrincipalMinor_unitTransverseInflate_two_three`, `theorem hessianPrincipalMinor_unitTransverseInflate_one_three`, `theorem hessianPrincipalMinor_unitTransverseInflate_one_two`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_binary_hessianPrincipalMinor_eq_X_pow_four_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_binary_hessianPrincipalMinor_eq_X_pow_four_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_binary_hessianPrincipalMinor_eq_X_pow_four_mul`
