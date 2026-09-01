@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6935**.
+Distinct declaration spellings indexed: **6942**.
 
 ## Repeated declaration spellings
 
@@ -2386,6 +2386,7 @@ Distinct declaration spellings indexed: **6935**.
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `activeDet_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeKernelExponent` — `def` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `activeKernelExponent_mem` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
@@ -3357,6 +3358,7 @@ Distinct declaration spellings indexed: **6935**.
 - `determinant` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `determinantCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
 - `determinantCore_eq_zero_of_transverse_rankOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
+- `determinantCore_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `determinantOneCollision_singularTopFace` — `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
 - `determinantTail` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `determinantTail_eq_zero_of_scaledDeterminant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
@@ -4553,6 +4555,7 @@ Distinct declaration spellings indexed: **6935**.
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `made` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
+- `map` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `mapCoeffs` — `def` in `HC4.Toric.CoefficientDescent`
 - `mapMatrix_lineMomentHessian` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `map_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
@@ -6130,9 +6133,11 @@ Distinct declaration spellings indexed: **6935**.
 - `scaledWeight_lt_of_primary_lt` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurB_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurBlock` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_detCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
@@ -6140,11 +6145,13 @@ Distinct declaration spellings indexed: **6935**.
 - `schurBlock_eq_chartBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
 - `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_eq_activeDet_mul_determinantCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurDetCore_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDeterminant` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurDeterminant_eq` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
