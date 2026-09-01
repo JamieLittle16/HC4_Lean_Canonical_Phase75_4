@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7010**.
+Distinct declaration spellings indexed: **7015**.
 
 ## Repeated declaration spellings
 
@@ -2001,6 +2001,8 @@ Distinct declaration spellings indexed: **7010**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_parameterLayer_profileOrder_add_four_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
@@ -2694,6 +2696,9 @@ Distinct declaration spellings indexed: **7010**.
 - `binaryDirectionalHessianDet_monomial_ne_zero_of_both_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryDirectionalHessianDet_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `binaryDirectionalHessianDet_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `binaryEulerDeterminantSourceFactor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
+- `binaryEulerDeterminantSourceFactorBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
+- `binaryEulerDeterminantSourceFactor_eq_map_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `binaryEulerSchurSourceFactor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryEulerSchurSourceFactorBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryEulerSchurSourceFactor_eq_map_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
