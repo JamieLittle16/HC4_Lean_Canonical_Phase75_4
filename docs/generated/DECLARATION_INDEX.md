@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6976**.
+Distinct declaration spellings indexed: **6981**.
 
 ## Repeated declaration spellings
 
@@ -2000,6 +2000,7 @@ Distinct declaration spellings indexed: **6976**.
 - `QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
+- `QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEulerParameterRow_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEulerRow_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`
@@ -2013,6 +2014,7 @@ Distinct declaration spellings indexed: **6976**.
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_specialFiber_eq_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactIntegralFace`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
@@ -5415,11 +5417,14 @@ Distinct declaration spellings indexed: **6976**.
 - `qsIntegralContactWeight_cons` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `qsIntegralContactWeight_finsupp` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsIntegralContactWeight_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
+- `qsPrContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qsRayDegreeOneCoefficientPolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayDegreeOneCoefficientPolynomial_coeff_one_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayPrimaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
+- `qsRqContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qsSpContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `qsSpSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qs_contactFace_pr_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `qs_contactFace_rq_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
