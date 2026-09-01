@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7015**.
+Distinct declaration spellings indexed: **7017**.
 
 ## Repeated declaration spellings
 
@@ -7044,9 +7044,11 @@ Distinct declaration spellings indexed: **7015**.
 - `unitTransverseDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `unitTransverseInflateFamily` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_hasHessianDefect_add_six` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitTransverseInflateFamily_injective` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryInflationInjective`
 - `unitTransverseInflateFamily_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateRingHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unitTransverseInflateRingHom_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `unitTransverseInflateRingHom_injective` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryInflationInjective`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unit_denominator_of_reduced_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unmarkedCoefficient_X_dvd_of_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
