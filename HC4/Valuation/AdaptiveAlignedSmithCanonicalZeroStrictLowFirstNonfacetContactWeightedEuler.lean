@@ -80,7 +80,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coe
             Finsupp.weight (qsIntegralContactWeight P.contactGap) d : ℕ) : K) =
           (T.topFace.degree : K) -
             (Finsupp.weight (qsIntegralContactWeight P.contactGap) d : K) := by
-      exact_mod_cast Nat.cast_sub hle
+      rw [Nat.cast_sub hle]
     rw [parameterEuler_X_pow_mul_C]
     rw [hcast]
   · rw [if_neg hd]
