@@ -6405,12 +6405,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock.lean`
-- Purpose: A19.R20: source-first form of the binary Schur clock
+- Purpose: A19.R20: source-first form of the binary Hessian and Schur clocks
 - A-labels: `A19.128`, `A19.136`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.ParameterFirstLayerBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
-- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero`
+- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_eq_zero_of_lt`, `theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_four_lt_hessianClock`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceDeterminantCore_parameterLayer_profileOrder_add_four_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySpecialization`
 
