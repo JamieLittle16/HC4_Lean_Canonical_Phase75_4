@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6981**.
+Distinct declaration spellings indexed: **6990**.
 
 ## Repeated declaration spellings
 
@@ -1986,6 +1986,8 @@ Distinct declaration spellings indexed: **6981**.
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerOrder_le_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.adaptiveSmithInflate_binaryHomogenizedFamily_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
+- `QsOtherFacetContactQuadraticReesPackage.binaryEulerHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryEulerHessianFourBlock_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
@@ -1995,6 +1997,10 @@ Distinct declaration spellings indexed: **6981**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryInflationWeight_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binary_hessianPrincipalMinor_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
 - `QsOtherFacetContactQuadraticReesPackage.binary_permuted_activeDet_ne_zero_of_minor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_lt_hessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
@@ -3558,6 +3564,7 @@ Distinct declaration spellings indexed: **6981**.
 - `eulerScaledHessian_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `eulerScaledHessian_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `eulerScaledHessian_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `eulerScaledHessian_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `eval_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_allSourceSignHom_neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -7013,6 +7020,8 @@ Distinct declaration spellings indexed: **6981**.
 - `unitTransverseInflateFamily` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_hasHessianDefect_add_six` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitTransverseInflateRingHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `unitTransverseInflateRingHom_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unit_denominator_of_reduced_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unmarkedCoefficient_X_dvd_of_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
