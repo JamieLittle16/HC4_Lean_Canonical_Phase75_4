@@ -12,7 +12,7 @@ transverse coordinates acquires exactly four factors of `tau`.
 
 The three surviving other-facet pivots use precisely the pairs `(2,3)`,
 `(1,3)`, and `(1,2)`.  We record those identities directly.  This isolates the
-only valuation shift contributed by the active block and avoids treating mere
+exact valuation shift contributed by the active block and avoids treating mere
 nonvanishing as coefficientwise invertibility.
 -/
 
