@@ -69,6 +69,7 @@ Distinct declaration spellings indexed: **7037**.
 - `impossible_of_noSecondMarkedZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `integralWeight_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
+- `kernelInflateHom_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`, `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `leftPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -4484,7 +4485,7 @@ Distinct declaration spellings indexed: **7037**.
 - `kernelExponent_dvd_denominatorClearingRamification` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelInflateDerivativeCoefficient` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
-- `kernelInflateHom_C` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
+- `kernelInflateHom_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`, `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
 - `kernelInflateHom_hasIntegralKernelCoefficientDivisibility` — `theorem` in `HC4.Valuation.RigidClosingZeroSlopeElimination`
 - `kernelInflateHom_injective` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
 - `kernelInflateHom_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
