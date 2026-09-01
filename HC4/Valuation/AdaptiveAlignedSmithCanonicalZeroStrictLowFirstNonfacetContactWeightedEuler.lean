@@ -72,7 +72,7 @@ private theorem parameterSecondEuler_X_pow_mul_C
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring
+          ring_nf
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
