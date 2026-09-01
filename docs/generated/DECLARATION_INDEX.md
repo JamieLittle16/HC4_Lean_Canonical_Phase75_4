@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6949**.
+Distinct declaration spellings indexed: **6952**.
 
 ## Repeated declaration spellings
 
@@ -91,6 +91,7 @@ Distinct declaration spellings indexed: **6949**.
 - `opening_repair_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `ordinaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`, `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
+- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - `positiveEntryOrders` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `presentedState_rawDefect_eq_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `preterminal_canonicalStrictRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
@@ -1999,8 +2000,11 @@ Distinct declaration spellings indexed: **6949**.
 - `QsOtherFacetContactQuadraticReesPackage.coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
+- `QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterEuler_coeff_weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
+- `QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.eval_one_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
@@ -4926,7 +4930,7 @@ Distinct declaration spellings indexed: **6949**.
 - `parameterConstantCoeff_scalarSchurThreeMatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningScalarSchurClock`
 - `parameterConstantCoeff_scaleAwareHessianFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `parameterEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
-- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
+- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
 - `parameterFirstEquiv` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
