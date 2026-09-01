@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6999**.
+Distinct declaration spellings indexed: **7000**.
 
 ## Repeated declaration spellings
 
@@ -2691,6 +2691,7 @@ Distinct declaration spellings indexed: **6999**.
 - `binaryDirectionalHessianDet_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `binaryDirectionalHessianDet_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `binaryEulerSchurSourceFactor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- `binaryEulerSchurSourceFactor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `binaryExponentHessianCore` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryFiniteStaircaseProfile_terminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
 - `binaryFiniteStaircaseProfile_terminal_impossible_of_positiveGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
