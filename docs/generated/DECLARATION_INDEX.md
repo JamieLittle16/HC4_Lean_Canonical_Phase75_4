@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7027**.
+Distinct declaration spellings indexed: **7037**.
 
 ## Repeated declaration spellings
 
@@ -2070,8 +2070,18 @@ Distinct declaration spellings indexed: **7027**.
 - `QsOtherFacetContactQuadraticReesPackage.sp_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 - `QsOtherFacetContactRawLongitudinalProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.binary_profileOrder_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.fractionProfilePackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_profileHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileRigidityClosure`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.profileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.profileWeight_mul_le_of_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
