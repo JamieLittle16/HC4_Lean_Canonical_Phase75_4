@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6990**.
+Distinct declaration spellings indexed: **6998**.
 
 ## Repeated declaration spellings
 
@@ -4238,6 +4238,7 @@ Distinct declaration spellings indexed: **6990**.
 - `hessian_succ_zero_longitudinalExponent_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `hessian_transverseSourceReesFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_transverseSourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `hessian_unitTransverseInflateFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `hessian_zeroDefectConstantParameterFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
 - `hessian_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `hessian_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
@@ -5065,7 +5066,12 @@ Distinct declaration spellings indexed: **6990**.
 - `permutedPolynomialHessianFourBlock_activeDet` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
+- `permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
+- `permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `permutedPolynomialHessianFourBlock_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
+- `permutedPolynomialHessianFourBlock_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `phase88RatFuncRelation` — `def` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_aeval_X` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `phase88RatFuncRelation_ne_zero` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
@@ -7017,9 +7023,11 @@ Distinct declaration spellings indexed: **6990**.
 - `unitKernelDeflateSection_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseDeflateSection` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseDeflateSection_zeroCoordinate` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitTransverseDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `unitTransverseInflateFamily` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_hasHessianDefect_add_six` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitTransverseInflateFamily_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitTransverseInflateHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`
 - `unitTransverseInflateRingHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unitTransverseInflateRingHom_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
