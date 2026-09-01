@@ -179,8 +179,29 @@ theorem QsOtherFacetContactQuadraticReesPackage.parameterEuler_longitudinalEuler
       Polynomial.derivative (d (0 : Fin 4) : Polynomial K) = 0 := by
     simp
   rw [hconst, zero_mul, zero_add]
-  rw [P.parameterEuler_coeff_binaryHomogenizedFamily]
-  ring
+  calc
+    Polynomial.X *
+          ((d (0 : Fin 4) : Polynomial K) *
+            Polynomial.derivative
+              (MvPolynomial.coeff d P.binaryHomogenizedFamily)) =
+        (d (0 : Fin 4) : Polynomial K) *
+          (Polynomial.X * Polynomial.derivative
+            (MvPolynomial.coeff d P.binaryHomogenizedFamily)) := by
+      ring
+    _ =
+        (d (0 : Fin 4) : Polynomial K) *
+          (Polynomial.C
+              ((T.topFace.degree : K) -
+                (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
+            MvPolynomial.coeff d P.binaryHomogenizedFamily) := by
+      rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
+    _ =
+        (d (0 : Fin 4) : Polynomial K) *
+          Polynomial.C
+            ((T.topFace.degree : K) -
+              (P.profileWeight : K) * (d (0 : Fin 4) : K)) *
+          MvPolynomial.coeff d P.binaryHomogenizedFamily := by
+      ring
 
 /-- **R18 longitudinal Euler-Hessian coefficient.**  The pure longitudinal
 Euler-scaled source Hessian has exactly the falling factor `n(n-1)` in the
