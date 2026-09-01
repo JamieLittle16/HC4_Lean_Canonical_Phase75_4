@@ -33,6 +33,19 @@ open scoped Matrix
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/-- A parameter-free source polynomial factors straight through exact
+parameter-layer extraction.  This is the generic plumbing used below for the
+Euler source monomial. -/
+theorem familyParameterLayer_map_C_mul
+    (A : MvPolynomial (Fin 4) K)
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (n : ℕ) :
+    familyParameterLayer (MvPolynomial.map Polynomial.C A * F) n =
+      A * familyParameterLayer F n := by
+  classical
+  ext d
+  simp [familyParameterLayer_coeff, MvPolynomial.coeff_mul]
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -50,6 +63,22 @@ noncomputable def binaryEulerSchurSourceFactor
     MvPolynomial (Fin 4) (Polynomial K) :=
   (MvPolynomial.X (rho 0) * MvPolynomial.X (rho 1)) ^ 4 *
     (MvPolynomial.X (rho 2) * MvPolynomial.X (rho 3)) ^ 2
+
+/-- The same Euler source monomial over the ground field. -/
+noncomputable def binaryEulerSchurSourceFactorBase
+    (rho : Equiv.Perm (Fin 4)) :
+    MvPolynomial (Fin 4) K :=
+  (MvPolynomial.X (rho 0) * MvPolynomial.X (rho 1)) ^ 4 *
+    (MvPolynomial.X (rho 2) * MvPolynomial.X (rho 3)) ^ 2
+
+/-- The polynomial-coefficient Euler factor is literally the coefficientwise
+constant lift of its ground-field source monomial. -/
+theorem binaryEulerSchurSourceFactor_eq_map_C
+    (rho : Equiv.Perm (Fin 4)) :
+    binaryEulerSchurSourceFactor (K := K) rho =
+      MvPolynomial.map Polynomial.C
+        (binaryEulerSchurSourceFactorBase (K := K) rho) := by
+  simp [binaryEulerSchurSourceFactor, binaryEulerSchurSourceFactorBase]
 
 /-- The Euler source factor is a genuine nonzero monomial. -/
 theorem binaryEulerSchurSourceFactor_ne_zero
@@ -78,6 +107,24 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDe
   rw [GeneralFourBlock.schurDetCore_diagonalScale]
   unfold binaryEulerSchurSourceFactor
   ring
+
+/-- **R18 straightened source clock.**  The fixed Euler source monomial has no
+parameter content, so every zero source-first Schur layer supplied by R20 is
+also a zero layer of the straightened Euler-Schur determinant. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (Q : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (rho : Equiv.Perm (Fin 4))
+    (n : ℕ) :
+    familyParameterLayer
+        (P.binaryWeightedEulerShear rho).schurDetCore
+        (2 * T.topFace.degree - P.profileWeight * n) = 0 := by
+  rw [P.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul rho]
+  rw [binaryEulerSchurSourceFactor_eq_map_C]
+  rw [familyParameterLayer_map_C_mul]
+  rw [P.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero
+    Q rho n]
+  simp
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
