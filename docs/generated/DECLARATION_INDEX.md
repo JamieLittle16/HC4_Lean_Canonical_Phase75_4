@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **6916**.
+Distinct declaration spellings indexed: **6928**.
 
 ## Repeated declaration spellings
 
@@ -2379,6 +2379,8 @@ Distinct declaration spellings indexed: **6916**.
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`
+- `activeDet_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `activeDet_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeKernelExponent` — `def` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `activeKernelExponent_mem` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `activeKernelExponent_pos` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
@@ -3362,6 +3364,7 @@ Distinct declaration spellings indexed: **6916**.
 - `determinant_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `determinant_eq_zero_of_not_hasPositiveTransverseLayer` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `determinant_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.DeterminantWeight`
+- `diagonalScale` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `directClosingCanonicalSquareCommonLevel` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
 - `directClosingCanonicalSquareRamification` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
 - `directClosingCanonicalSquareWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
@@ -6119,15 +6122,23 @@ Distinct declaration spellings indexed: **6916**.
 - `scaledWeight_le_of_lexDominates` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `scaledWeight_lt_of_primary_lt` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurB_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurBlock` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_detCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_detCore_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_eq_chartBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
 - `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurDetCore_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_eq_activeDet_mul_determinantCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurDetCore_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDeterminant` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurDeterminant_eq` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurDeterminant_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
@@ -6209,6 +6220,7 @@ Distinct declaration spellings indexed: **6916**.
 - `shearMap_comp_inverse` — `theorem` in `HC4.QuasiTranslation.RankOneShear`
 - `shearMap_injective` — `theorem` in `HC4.QuasiTranslation.RankOneShear`
 - `shearMap_surjective` — `theorem` in `HC4.QuasiTranslation.RankOneShear`
+- `shearSecondComplement` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `shiftedAutonomousClearedRHS` — `def` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `shiftedAutonomousClearedRHS_translatePolynomial` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `shiftedAutonomousClearedRHS_zero_eq_clearedPolynomialSubstitution` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousClearing`
