@@ -72,7 +72,12 @@ private theorem parameterSecondEuler_X_pow_mul_C
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring_nf
+          have hscalar :
+              (2 + (n : R)) * (1 + (n : R)) =
+                2 + (n : R) * 3 + (n : R) ^ 2 := by
+            ring
+          rw [← hscalar, Polynomial.C_mul]
+          ring
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
