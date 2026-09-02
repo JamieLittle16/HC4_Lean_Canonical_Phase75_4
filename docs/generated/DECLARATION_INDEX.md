@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7055**.
+Distinct declaration spellings indexed: **7060**.
 
 ## Repeated declaration spellings
 
@@ -2056,6 +2056,7 @@ Distinct declaration spellings indexed: **7055**.
 - `QsOtherFacetContactQuadraticReesPackage.pr_binary_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.pr_binary_hessianPrincipalMinor_eq_X_pow_four_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
 - `QsOtherFacetContactQuadraticReesPackage.pr_binary_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
+- `QsOtherFacetContactQuadraticReesPackage.pr_cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 - `QsOtherFacetContactQuadraticReesPackage.profileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
@@ -2064,12 +2065,14 @@ Distinct declaration spellings indexed: **7055**.
 - `QsOtherFacetContactQuadraticReesPackage.rq_binary_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.rq_binary_hessianPrincipalMinor_eq_X_pow_four_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
 - `QsOtherFacetContactQuadraticReesPackage.rq_binary_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
+- `QsOtherFacetContactQuadraticReesPackage.rq_cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `QsOtherFacetContactQuadraticReesPackage.rq_contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - `QsOtherFacetContactQuadraticReesPackage.rq_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 - `QsOtherFacetContactQuadraticReesPackage.sp_binaryStraighteningArithmetic` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `QsOtherFacetContactQuadraticReesPackage.sp_binary_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.sp_binary_hessianPrincipalMinor_eq_X_pow_four_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
 - `QsOtherFacetContactQuadraticReesPackage.sp_binary_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryPivot`
+- `QsOtherFacetContactQuadraticReesPackage.sp_cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `QsOtherFacetContactQuadraticReesPackage.sp_contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - `QsOtherFacetContactQuadraticReesPackage.sp_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 - `QsOtherFacetContactRawLongitudinalProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
@@ -5335,10 +5338,12 @@ Distinct declaration spellings indexed: **7055**.
 - `polynomial_X_pow_dvd_le_parameterOrder` — `theorem` in `HC4.Valuation.AlignedSmithWallArithmetic`
 - `polynomial_X_pow_dvd_of_add_pow_dvd_pow_mul` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `polynomial_X_pow_mul_cancel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
+- `polynomial_coeff_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_eq_C_constantCoeff_of_positive_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomial_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `polynomial_eq_of_surjective_eval` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `polynomial_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_exists_two_support_of_derivative_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
