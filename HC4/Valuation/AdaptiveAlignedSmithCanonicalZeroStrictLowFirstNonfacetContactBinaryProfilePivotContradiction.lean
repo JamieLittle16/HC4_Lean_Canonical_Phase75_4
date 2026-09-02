@@ -14,7 +14,8 @@ strictly below the binary Hessian closing clock.  The right factor is already
 proved to have smaller parameter degree, and each cyclic contact active pivot
 has nonzero constant parameter coefficient.  Bounded triangular cancellation
 therefore kills the whole binary profile determinant, after which the R18/R19
-terminal splice gives `False`.
+terminal splice gives `False`.  This is the final consumer of the product
+clock supplied by the weighted-Euler Schur adapter.
 -/
 
 namespace HC4.Valuation
