@@ -12,7 +12,8 @@ operations.  The canonical family-level parameter Euler operators now make
 that lift literal.
 
 No new support assumption is introduced here: each proof is extensional and
-uses the existing support-wide coefficient theorem.
+uses the existing support-wide coefficient theorem.  This module is the
+family-level interface consumed by the final quotient straightening.
 -/
 
 namespace HC4.Valuation
