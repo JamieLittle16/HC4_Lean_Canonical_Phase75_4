@@ -1900,7 +1900,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.TerminalTwoZeroHessianSquare`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.PlanarJC2HessianEmbedding`
-- Declarations: `theorem standardTwoZero_positivePositiveHessian_zero_of_doublingForm`, `theorem standardTwoZero_hessian_eq_model_of_doublingForm`, `theorem standardTwoZero_hessianDeterminant_eq_crossDet_sq_of_doublingForm`
+- Declarations: `theorem standardTwoZero_positivePositiveHessian_zero_of_doublingForm`, `theorem standardTwoZero_hessian_eq_model_of_doublingForm`, `theorem standardTwoZero_hessianDeterminant_eq_crossDet_sq_of_doublingForm`, `theorem standardTwoZero_crossDet_eq_zero_of_doublingForm_of_hessianDeterminant_eq_zero`
 
 ### `HC4.Newton.ZeroSchurFirstEntryClock`
 

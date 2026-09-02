@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7095**.
+Distinct declaration spellings indexed: **7096**.
 
 ## Repeated declaration spellings
 
@@ -6753,6 +6753,7 @@ Distinct declaration spellings indexed: **7095**.
 - `standardTwoZeroDoublingForm_hasPlanarPair` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `standardTwoZeroHessianModel` — `def` in `HC4.Newton.TerminalTwoZeroHessianSquare`
 - `standardTwoZeroTerminalWeight` — `def` in `HC4.Newton.TerminalTwoZeroPattern`
+- `standardTwoZero_crossDet_eq_zero_of_doublingForm_of_hessianDeterminant_eq_zero` — `theorem` in `HC4.Newton.TwoZeroDoublingHessianSquareGeneral`
 - `standardTwoZero_euler_decomposition` — `theorem` in `HC4.Newton.TerminalTwoZeroSupport`
 - `standardTwoZero_gradient_conjugacy` — `theorem` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
 - `standardTwoZero_gradient_positive_eq_planar` — `theorem` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
