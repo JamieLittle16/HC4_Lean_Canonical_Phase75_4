@@ -198,6 +198,60 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
     Polynomial.coeff_sub, map_sub]
   ring
 
+/-- A zero binary family determinant layer at the exact quadratic profile order
+forces the corresponding integral profile-Hessian determinant coefficient to
+vanish. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (n : ℕ)
+    (hzero :
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * n) = 0) :
+    R.profileHessianDet.coeff n = 0 := by
+  apply MvPolynomial.ext
+  intro m
+  rw [MvPolynomial.coeff_zero]
+  have hlong := R.binaryProfileHessianDetFamily_longitudinal_coeff n
+  have hm := congrArg
+    (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
+    hlong
+  have hmN := congrArg
+    (fun q : Polynomial K =>
+      q.coeff (2 * T.topFace.degree - P.profileWeight * n)) hm
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hmN
+  rw [← familyParameterLayer_coeff] at hmN
+  rw [hzero] at hmN
+  simp only [MvPolynomial.coeff_zero] at hmN
+  rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map] at hmN
+  have hrhs :
+      (((Polynomial.X : Polynomial K) ^
+          (2 * T.topFace.degree - P.profileWeight * n) *
+        Polynomial.C (MvPolynomial.coeff m (R.profileHessianDet.coeff n))).coeff
+          (2 * T.topFace.degree - P.profileWeight * n)) =
+        MvPolynomial.coeff m (R.profileHessianDet.coeff n) := by
+    simpa using
+      (Polynomial.coeff_X_pow_mul
+        (Polynomial.C (MvPolynomial.coeff m (R.profileHessianDet.coeff n)))
+        (2 * T.topFace.degree - P.profileWeight * n) 0)
+  rw [hrhs] at hmN
+  exact hmN.symm
+
+/-- If every exact quadratic profile layer of the whole binary Hessian
+determinant vanishes, then the integral profile Hessian determinant is the zero
+polynomial. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_eq_zero_of_binaryFamily_layers
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (hlayers : ∀ n : ℕ,
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * n) = 0) :
+    R.profileHessianDet = 0 := by
+  apply Polynomial.ext
+  intro n
+  rw [Polynomial.coeff_zero]
+  exact R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer n (hlayers n)
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
