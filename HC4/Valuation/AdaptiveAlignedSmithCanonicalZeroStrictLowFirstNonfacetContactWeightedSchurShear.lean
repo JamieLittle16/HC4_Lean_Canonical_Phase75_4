@@ -68,7 +68,11 @@ theorem activeDet_mul_rawComplementDet_eq_schur_coupling_correction
     H.activeDet * (H.x * H.z - H.y * H.y) =
       H.x * H.schurC + H.z * H.schurA - 2 * H.y * H.schurB -
         H.determinantCore + (H.p * H.s - H.q * H.r) ^ 2 := by
-  unfold activeDet schurA schurB schurC determinantCore
+  unfold HC4.Newton.GeneralFourBlock.activeDet
+    HC4.Newton.GeneralFourBlock.schurA
+    HC4.Newton.GeneralFourBlock.schurB
+    HC4.Newton.GeneralFourBlock.schurC
+    HC4.Newton.GeneralFourBlock.determinantCore
   ring
 
 end GeneralFourBlock
