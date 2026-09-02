@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7131**.
+Distinct declaration spellings indexed: **7141**.
 
 ## Repeated declaration spellings
 
@@ -2151,6 +2151,9 @@ Distinct declaration spellings indexed: **7131**.
 - `QsOtherFacetRayProfileReesPackage.binaryHessianClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryHomogenized_determinantLayer_eq_zero_of_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
+- `QsOtherFacetRayProfileReesPackage.binaryHomogenized_determinantLayer_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
+- `QsOtherFacetRayProfileReesPackage.binaryHomogenized_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `QsOtherFacetRayProfileReesPackage.binaryInflationWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryInflationWeight_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryProfileHessian00Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
@@ -2160,6 +2163,8 @@ Distinct declaration spellings indexed: **7131**.
 - `QsOtherFacetRayProfileReesPackage.binaryProfileHessian11Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryProfileHessian11_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.binaryProfileHessianDetFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessianDetFamily_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
+- `QsOtherFacetRayProfileReesPackage.binary_profileOrder_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `QsOtherFacetRayProfileReesPackage.coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.coeff_profileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
@@ -2174,7 +2179,10 @@ Distinct declaration spellings indexed: **7131**.
 - `QsOtherFacetRayProfileReesPackage.profileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.profileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.profileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
+- `QsOtherFacetRayProfileReesPackage.profileHessianDet_eq_zero_of_binaryFamily_layers` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `QsOtherFacetRayProfileReesPackage.profileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileWeight_mul_le_of_rawProfile_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `QsOtherFacetRayProfileReesPackage.profileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.quadraticProfileOrder_lt_clock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayProfileReesPackage.rayFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
@@ -4569,6 +4577,7 @@ Distinct declaration spellings indexed: **7131**.
 - `kernelInflateDerivativeCoefficient` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom_C` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
+- `kernelInflateHom_hasHessianDefect_add_two_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `kernelInflateHom_hasIntegralKernelCoefficientDivisibility` — `theorem` in `HC4.Valuation.RigidClosingZeroSlopeElimination`
 - `kernelInflateHom_injective` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
 - `kernelInflateHom_isHomogeneous` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
@@ -7204,6 +7213,7 @@ Distinct declaration spellings indexed: **7131**.
 - `weightedRankThreeEndpointPencil_one_one` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `weightedSparseRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `weightedTransverseInflateFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `weightedTransverseInflateFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryProfileDeterminant`
 - `xeLmClearedAdjugateQuadratic` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
 - `xeLmClearedAdjugateQuadratic_eq_eulerCoefficient_mul_sq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
 - `xeLmClearedRS2Source` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
