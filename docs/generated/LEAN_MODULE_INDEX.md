@@ -6580,7 +6580,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
-- Declarations: `theorem familyParameterLayer_map_C_mul`, `def binaryEulerSchurSourceFactor`, `def binaryEulerSchurSourceFactorBase`, `theorem binaryEulerSchurSourceFactor_eq_map_C`, `theorem binaryEulerSchurSourceFactor_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero`
+- Declarations: `theorem familyParameterLayer_map_C_mul`, `def binaryEulerSchurSourceFactor`, `def binaryEulerSchurSourceFactorBase`, `theorem binaryEulerSchurSourceFactor_eq_map_C`, `theorem binaryEulerSchurSourceFactor_ne_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_eq_zero_of_lt`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`
 
