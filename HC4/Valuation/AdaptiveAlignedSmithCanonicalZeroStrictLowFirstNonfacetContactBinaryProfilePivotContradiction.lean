@@ -41,8 +41,6 @@ private abbrev binaryProfileClock
     (P : QsOtherFacetContactQuadraticReesPackage C) : ℕ :=
   (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6
 
--- CI anchor: elaborate the source-first profile-pivot product representation.
-
 /-- The parameter-first product consumed by the bounded pivot cancellation is
 literally the parameter-first image of the source-first contact pivot times the
 whole binary profile determinant.  This removes the last representation seam
@@ -137,6 +135,61 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.rq_impossible_of_profil
   rw [← parameterFirstEquiv_coeff]
   rw [hzero]
   simp
+
+/-- `.pr`, source-first form: a quotient adapter may stay entirely in the
+`MvPolynomial (Polynomial K)` representation. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotSourceProductClock
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (hprod : ∀ q : ℕ, q < binaryProfileClock P →
+      familyParameterLayer
+        (HC4.Polynomial.hessianPrincipalMinor P.contactFamily
+            (2 : Fin 4) (3 : Fin 4) *
+          P.binaryProfileHessianDetFamily)
+        q = 0) : False := by
+  apply R.pr_impossible_of_profilePivotProductClock hthree houtThree
+  intro q hq
+  rw [P.profilePivotProduct_coeff_eq_sourceLayer
+    qsPrSuperfaceSchurPermutation q]
+  simpa [qsPrSuperfaceSchurPermutation] using hprod q hq
+
+/-- `.sp`, source-first form. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.sp_impossible_of_profilePivotSourceProductClock
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .sp C.ray.outsideExponent)
+    (hprod : ∀ q : ℕ, q < binaryProfileClock P →
+      familyParameterLayer
+        (HC4.Polynomial.hessianPrincipalMinor P.contactFamily
+            (1 : Fin 4) (3 : Fin 4) *
+          P.binaryProfileHessianDetFamily)
+        q = 0) : False := by
+  apply R.sp_impossible_of_profilePivotProductClock hthree houtThree
+  intro q hq
+  rw [P.profilePivotProduct_coeff_eq_sourceLayer
+    qsSpSuperfaceSchurPermutation q]
+  simpa [qsSpSuperfaceSchurPermutation] using hprod q hq
+
+/-- `.rq`, source-first form. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.rq_impossible_of_profilePivotSourceProductClock
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .rq C.ray.outsideExponent)
+    (hprod : ∀ q : ℕ, q < binaryProfileClock P →
+      familyParameterLayer
+        (HC4.Polynomial.hessianPrincipalMinor P.contactFamily
+            (1 : Fin 4) (2 : Fin 4) *
+          P.binaryProfileHessianDetFamily)
+        q = 0) : False := by
+  apply R.rq_impossible_of_profilePivotProductClock hthree houtThree
+  intro q hq
+  rw [P.profilePivotProduct_coeff_eq_sourceLayer
+    qsRqSuperfaceSchurPermutation q]
+  simpa [qsRqSuperfaceSchurPermutation] using hprod q hq
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
