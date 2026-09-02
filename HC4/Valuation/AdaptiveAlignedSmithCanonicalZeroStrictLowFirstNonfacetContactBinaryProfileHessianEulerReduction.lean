@@ -6,8 +6,8 @@ import Mathlib.Tactic
 
 The binary homogenized contact family satisfies the literal two-variable
 weighted Euler equation in the family parameter and longitudinal source
-coordinate.  Its two falling row identities therefore remove the
-parameter-parameter Hessian entry from the final binary determinant.
+coordinate.  Its falling row identities therefore remove the auxiliary
+parameter-Hessian entries from the final binary determinant.
 
 Writing
 
@@ -15,16 +15,18 @@ Writing
 * `H01 = tau d_tau (E_0 F)`,
 * `H11 = (E_0^2-E_0) F`,
 
-we obtain the division-free identity
+we first obtain the division-free identity
 
     H00 * H11 - H01^2
       = (D-1) (tau d_tau F) * H11
           - (D-r) (E_0 F) * H01.
 
-This is the form matched by the final weighted-source Schur calculation.  It
-uses only the already-certified whole-family falling Euler rows and introduces
-no new support, geometry, localization, or pivot-cancellation hypothesis.  In
-particular, the final Schur adapter can now compare first-row terms directly.
+Using the first weighted Euler equation and the longitudinal falling row once
+more gives a second form containing only `F`, `E_0 F`, and `H11`.  These are
+the forms matched by the final weighted-source Schur calculation.
+
+No new support, geometry, localization, or pivot-cancellation hypothesis is
+introduced.
 -/
 
 namespace HC4.Valuation
@@ -73,6 +75,43 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
     hLongitudinal *
       (familyParameterEuler
         (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily))
+
+/-- **R18 source-facing binary profile determinant form.**  Eliminating the
+parameter Euler direction as well leaves only the binary family itself, its
+longitudinal Euler derivative, and the longitudinal falling Hessian. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_longitudinal_reduction
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    P.binaryProfileHessianDetFamily =
+      MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) * ((T.topFace.degree : K) - 1))) *
+        P.binaryHomogenizedFamily * P.binaryProfileHessian11Family +
+      MvPolynomial.C
+          (Polynomial.C
+            ((P.profileWeight : K) * (1 - (P.profileWeight : K)))) *
+        HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily *
+          P.binaryProfileHessian11Family -
+      MvPolynomial.C
+          (Polynomial.C
+            (((T.topFace.degree : K) - (P.profileWeight : K)) ^ 2)) *
+        HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily *
+          HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily := by
+  rw [P.binaryProfileHessianDetFamily_eq_euler_reduction]
+  have hWeighted := P.binaryHomogenized_weightedEuler
+  have hLongitudinal := P.binaryHomogenized_fallingLongitudinalRow
+  unfold QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian01Family
+    QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian11Family
+  linear_combination
+    MvPolynomial.C
+        (Polynomial.C ((T.topFace.degree : K) - 1)) *
+      hWeighted *
+        (HC4.Polynomial.eulerScaledHessian
+          P.binaryHomogenizedFamily (0 : Fin 4) (0 : Fin 4)) -
+    MvPolynomial.C
+        (Polynomial.C
+          ((T.topFace.degree : K) - (P.profileWeight : K))) *
+      hLongitudinal *
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
