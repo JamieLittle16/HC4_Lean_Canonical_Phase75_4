@@ -71,7 +71,6 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
   have h03 : (0 : Fin 4) ≠ 3 := by decide
   have h12 : (1 : Fin 4) ≠ 2 := by decide
   have h13 : (1 : Fin 4) ≠ 3 := by decide
-  have h23 : (2 : Fin 4) ≠ 3 := by decide
   fin_cases i <;>
     rw [P.contactFamily_parameterEuler_sourceEuler_coeff] <;>
     simp only [coeff_eulerScaledHessian, coeff_mvEuler] <;>
@@ -79,7 +78,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
       hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))] <;>
     simp only [map_sub, map_add, map_mul] <;>
     norm_num <;>
-    simp only [h02, h03, h12, h13, h23, eq_self, if_true, if_false] <;>
+    (try simp only [h02, h03, h12, h13, if_false]) <;>
     ring
 
 /-- **R18 falling parameter-row weighted Euler identity.**  The second
