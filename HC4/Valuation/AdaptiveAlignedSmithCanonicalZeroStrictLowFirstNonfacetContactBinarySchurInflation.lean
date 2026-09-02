@@ -91,12 +91,14 @@ theorem permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
         (MvPolynomial.C (Polynomial.X : Polynomial K))
         1
         (MvPolynomial.C (Polynomial.X : Polynomial K)) := by
-  ext <;>
-    simp [permutedPolynomialHessianFourBlock,
+  apply GeneralFourBlock.ext <;>
+    simp only [permutedPolynomialHessianFourBlock,
       GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
-      GeneralFourBlock.map, GeneralFourBlock.diagonalScale,
-      hessian_unitTransverseInflateFamily_entry,
-      unitTransverseDerivativeCoefficient, hzero, hone, htwo, hthree]
+      GeneralFourBlock.map, GeneralFourBlock.diagonalScale]
+  all_goals
+    rw [hessian_unitTransverseInflateFamily_entry]
+    simp [unitTransverseDerivativeCoefficient, hzero, hone, htwo, hthree,
+      unitTransverseInflateRingHom_apply] <;> ring
 
 /-- The first cleared quotient entry acquires exactly `tau^4`. -/
 theorem permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily
@@ -113,7 +115,9 @@ theorem permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily
           (permutedPolynomialHessianFourBlock rho P).schurA := by
   rw [permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     rho P hzero hone htwo hthree]
-  simp
+  rw [GeneralFourBlock.schurA_diagonalScale]
+  rw [GeneralFourBlock.schurA_map]
+  rw [unitTransverseInflateRingHom_apply]
   ring
 
 /-- The mixed cleared quotient entry acquires exactly `tau^5`. -/
@@ -131,7 +135,9 @@ theorem permutedPolynomialHessianFourBlock_schurB_unitTransverseInflateFamily
           (permutedPolynomialHessianFourBlock rho P).schurB := by
   rw [permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     rho P hzero hone htwo hthree]
-  simp
+  rw [GeneralFourBlock.schurB_diagonalScale]
+  rw [GeneralFourBlock.schurB_map]
+  rw [unitTransverseInflateRingHom_apply]
   ring
 
 /-- The second cleared quotient entry acquires exactly `tau^6`. -/
@@ -149,7 +155,9 @@ theorem permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily
           (permutedPolynomialHessianFourBlock rho P).schurC := by
   rw [permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     rho P hzero hone htwo hthree]
-  simp
+  rw [GeneralFourBlock.schurC_diagonalScale]
+  rw [GeneralFourBlock.schurC_map]
+  rw [unitTransverseInflateRingHom_apply]
   ring
 
 /-- Consequently the cleared quotient determinant acquires exactly `tau^10`. -/
@@ -167,7 +175,9 @@ theorem permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFam
           (permutedPolynomialHessianFourBlock rho P).schurDetCore := by
   rw [permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     rho P hzero hone htwo hthree]
-  simp
+  rw [GeneralFourBlock.schurDetCore_diagonalScale]
+  rw [GeneralFourBlock.schurDetCore_map]
+  rw [unitTransverseInflateRingHom_apply]
   ring
 
 end
