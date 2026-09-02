@@ -20,6 +20,12 @@ vanishes directly.  Therefore the same block determinant calculation gives
 without any weight assumption.  This is the exact algebraic bridge needed to
 embed an arbitrary planar Keller map into the four-dimensional Hessian
 problem; no Jacobian-conjecture hypothesis is used here.
+
+For the singular-face use needed by final assembly, the same identity has an
+unconditional consequence: if the doubling form itself has zero Hessian
+determinant, then its planar cross determinant is zero.  This uses only that
+the polynomial ring over a field is a domain; no planar injectivity or JC2
+hypothesis enters.
 -/
 
 namespace HC4.Newton
@@ -116,6 +122,25 @@ theorem standardTwoZero_hessianDeterminant_eq_crossDet_sq_of_doublingForm
         (standardTwoZeroC F))
       (MvPolynomial.pderiv 1
         (standardTwoZeroC F)))
+
+/-- **Singular two-zero closure.**  On an honest doubling form, zero Hessian
+determinant forces the planar cross determinant itself to vanish.  This is the
+singular counterpart of the older Keller reduction: the square is zero rather
+than one, so no planar injectivity hypothesis is needed. -/
+theorem standardTwoZero_crossDet_eq_zero_of_doublingForm_of_hessianDeterminant_eq_zero
+    {F : MvPolynomial (Fin 4) K}
+    (hform : HasStandardTwoZeroDoublingForm F)
+    (hzero : HC4.Polynomial.hessianDeterminant F = 0) :
+    standardTwoZeroCrossDet F = 0 := by
+  have hsquare :=
+    standardTwoZero_hessianDeterminant_eq_crossDet_sq_of_doublingForm hform
+  rw [hzero] at hsquare
+  have hmul :
+      standardTwoZeroCrossDet F * standardTwoZeroCrossDet F = 0 := by
+    simpa [pow_two] using hsquare.symm
+  rcases mul_eq_zero.mp hmul with h | h
+  · exact h
+  · exact h
 
 end
 
