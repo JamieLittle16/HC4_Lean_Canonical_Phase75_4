@@ -6400,7 +6400,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem parameterEuler_X_pow_mul`, `theorem familyParameterEuler_unitTransverseInflateFamily`
+- Declarations: `theorem parameterEuler_X_pow_mul`, `theorem familyParameterEuler_unitTransverseInflateFamily`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_weightedEuler`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingParameterRow`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingLongitudinalRow`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 
