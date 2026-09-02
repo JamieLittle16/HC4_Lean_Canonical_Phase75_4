@@ -6450,7 +6450,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem polynomial_coeff_eq_zero_of_constant_pivot`, `theorem polynomial_eq_zero_of_constant_pivot`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_cancel_contactFamily_activeDet`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_cancel_contactFamily_activeDet`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_cancel_contactFamily_activeDet`
+- Declarations: `theorem polynomial_coeff_eq_zero_of_constant_pivot`, `theorem polynomial_eq_zero_of_constant_pivot`, `theorem polynomial_eq_zero_of_constant_pivot_of_natDegree_lt`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_cancel_contactFamily_activeDet`, `theorem QsOtherFacetContactQuadraticReesPackage.sp_cancel_contactFamily_activeDet`, `theorem QsOtherFacetContactQuadraticReesPackage.rq_cancel_contactFamily_activeDet`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 

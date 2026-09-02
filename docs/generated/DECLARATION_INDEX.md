@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7060**.
+Distinct declaration spellings indexed: **7061**.
 
 ## Repeated declaration spellings
 
@@ -5344,6 +5344,7 @@ Distinct declaration spellings indexed: **7060**.
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `polynomial_eq_of_surjective_eval` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
+- `polynomial_eq_zero_of_constant_pivot_of_natDegree_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_exists_two_support_of_derivative_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
