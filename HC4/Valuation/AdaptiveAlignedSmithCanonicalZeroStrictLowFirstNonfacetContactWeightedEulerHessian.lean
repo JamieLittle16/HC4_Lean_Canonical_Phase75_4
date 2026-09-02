@@ -66,12 +66,14 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
         MvPolynomial.coeff d (HC4.Polynomial.mvEuler i P.contactFamily) := by
   have hnat (n : ℕ) :
       (n : Polynomial K) = Polynomial.C (n : K) := by
-    simpa using
-      (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+    exact (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
   fin_cases i <;>
     rw [P.contactFamily_parameterEuler_sourceEuler_coeff] <;>
     simp only [coeff_eulerScaledHessian, coeff_mvEuler] <;>
-    simp [hnat, map_sub, map_add, map_mul] <;>
+    rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
+      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))] <;>
+    simp only [map_sub, map_add, map_mul] <;>
+    norm_num <;>
     ring
 
 /-- **R18 falling parameter-row weighted Euler identity.**  The second
@@ -100,15 +102,16 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
           (MvPolynomial.coeff d P.contactFamily)) := by
   have hnat (n : ℕ) :
       (n : Polynomial K) = Polynomial.C (n : K) := by
-    simpa using
-      (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+    exact (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
   rw [P.contactFamily_parameterSecondEuler_coeff,
     P.contactFamily_parameterEuler_sourceEuler_coeff,
     P.contactFamily_parameterEuler_sourceEuler_coeff,
     P.contactFamily_parameterEuler_sourceEuler_coeff,
     P.contactFamily_parameterEuler_sourceEuler_coeff,
     P.contactFamily_parameterEuler_coeff]
-  simp [hnat, map_sub, map_add, map_mul]
+  rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
+    hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
+  simp only [map_sub, map_add, map_mul]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
