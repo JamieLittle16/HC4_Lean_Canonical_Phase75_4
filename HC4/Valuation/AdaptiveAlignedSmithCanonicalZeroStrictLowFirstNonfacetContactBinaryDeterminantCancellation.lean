@@ -36,7 +36,7 @@ theorem familyParameterLayer_C_X_pow_mul_add
         ((MvPolynomial.C (Polynomial.X : Polynomial K)) ^ s * F)
         (n + s) =
       familyParameterLayer F n := by
-  rw [MvPolynomial.C_pow]
+  rw [← MvPolynomial.C_pow]
   ext d
   rw [familyParameterLayer_coeff, MvPolynomial.coeff_C_mul,
     familyParameterLayer_coeff]
