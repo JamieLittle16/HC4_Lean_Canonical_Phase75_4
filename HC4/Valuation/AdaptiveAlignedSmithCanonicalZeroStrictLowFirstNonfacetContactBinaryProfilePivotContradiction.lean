@@ -41,6 +41,26 @@ private abbrev binaryProfileClock
     (P : QsOtherFacetContactQuadraticReesPackage C) : ℕ :=
   (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6
 
+/-- The parameter-first product consumed by the bounded pivot cancellation is
+literally the parameter-first image of the source-first contact pivot times the
+whole binary profile determinant.  This removes the last representation seam
+from the quotient adapter: it may prove its clock directly with
+`familyParameterLayer` in the source-first ring. -/
+theorem QsOtherFacetContactQuadraticReesPackage.profilePivotProduct_coeff_eq_sourceLayer
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    (q : ℕ) :
+    (((permutedFamilyHessianFourBlock rho P.contactFamily).activeDet *
+        parameterFirstEquiv K P.binaryProfileHessianDetFamily).coeff q) =
+      familyParameterLayer
+        (HC4.Polynomial.hessianPrincipalMinor P.contactFamily
+            (rho 0) (rho 1) *
+          P.binaryProfileHessianDetFamily)
+        q := by
+  rw [permutedFamilyHessianFourBlock_activeDet_eq_parameterFirst_hessianPrincipalMinor]
+  rw [← map_mul]
+  rw [parameterFirstEquiv_coeff]
+
 /-- `.pr`: the below-clock active-pivot product identity already contradicts
 R19. -/
 theorem QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotProductClock
