@@ -23,7 +23,8 @@ we obtain the division-free identity
 
 This is the form matched by the final weighted-source Schur calculation.  It
 uses only the already-certified whole-family falling Euler rows and introduces
-no new support, geometry, localization, or pivot-cancellation hypothesis.
+no new support, geometry, localization, or pivot-cancellation hypothesis.  In
+particular, the final Schur adapter can now compare first-row terms directly.
 -/
 
 namespace HC4.Valuation
