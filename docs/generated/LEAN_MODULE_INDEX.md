@@ -6520,7 +6520,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.ParameterFirstLayerBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def familyParameterEuler`, `def familyParameterSecondEuler`, `theorem parameterFirstEquiv_familyParameterEuler`, `theorem parameterFirstEquiv_familyParameterSecondEuler`, `theorem familyParameterLayer_familyParameterEuler`, `theorem familyParameterLayer_familyParameterSecondEuler`
+- Declarations: `def familyParameterEuler`, `def familyParameterSecondEuler`, `theorem parameterFirstEquiv_familyParameterEuler`, `theorem parameterFirstEquiv_familyParameterSecondEuler`, `theorem familyParameterLayer_familyParameterEuler`, `theorem familyParameterLayer_familyParameterSecondEuler`, `theorem coeff_familyParameterEuler`, `theorem coeff_familyParameterSecondEuler`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 

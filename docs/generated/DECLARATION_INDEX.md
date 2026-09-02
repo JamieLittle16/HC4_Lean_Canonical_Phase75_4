@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7043**.
+Distinct declaration spellings indexed: **7045**.
 
 ## Repeated declaration spellings
 
@@ -3049,6 +3049,8 @@ Distinct declaration spellings indexed: **7043**.
 - `coeff_eulerScaledHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `coeff_eval_derivative_finSuccEquiv_eq` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_eval_hasseDeriv_finSuccEquiv_eq` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `coeff_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
+- `coeff_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `coeff_first_eq_zero_of_schurC_twoFactor` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `coeff_five_rankThreeEtaNumeratorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_fourVariableLinearPart_eq_zero_of_not_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
