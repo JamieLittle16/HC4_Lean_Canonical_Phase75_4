@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7094**.
+Distinct declaration spellings indexed: **7095**.
 
 ## Repeated declaration spellings
 
@@ -2481,6 +2481,7 @@ Distinct declaration spellings indexed: **7094**.
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `activeDet_mul_rawComplementDet_eq_schur_coupling_correction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `activeDet_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeKernelExponent` — `def` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `activeKernelExponent_mem` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`

@@ -6780,7 +6780,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
-- Declarations: `def qsPrContactSchurPermutation`, `def qsSpContactSchurPermutation`, `def qsRqContactSchurPermutation`, `def QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock`, `def QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear`
+- Declarations: `theorem activeDet_mul_rawComplementDet_eq_schur_coupling_correction`, `def qsPrContactSchurPermutation`, `def qsSpContactSchurPermutation`, `def qsRqContactSchurPermutation`, `def QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock`, `def QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 
