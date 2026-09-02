@@ -64,6 +64,25 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSource
   rw [parameterFirstEquiv_coeff] at h
   exact h
 
+/-- **R20 unrestricted source-first Schur clock.**  Every source-first cleared
+Schur layer strictly before the shifted binary Hessian clock vanishes.  This is
+just the family-first clock transported back across `parameterFirstEquiv`. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_eq_zero_of_lt
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    {n : ℕ}
+    (hn : n < (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6) :
+    familyParameterLayer
+        ((permutedPolynomialHessianFourBlock
+          rho P.binaryHomogenizedFamily).schurDetCore)
+        n = 0 := by
+  have h :=
+    P.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt rho hn
+  rw [permutedFamilyHessianFourBlock_schurDetCore_eq_parameterFirstEquiv]
+    at h
+  rw [parameterFirstEquiv_coeff] at h
+  exact h
+
 /-- The order carrying a quadratic profile coefficient after one binary active
 pivot is still strictly before the full binary Hessian clock. -/
 theorem QsOtherFacetContactQuadraticReesPackage.binary_profileOrder_add_four_lt_hessianClock
@@ -130,13 +149,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSource
         ((permutedPolynomialHessianFourBlock
           rho P.binaryHomogenizedFamily).schurDetCore)
         (2 * T.topFace.degree - P.profileWeight * n) = 0 := by
-  have h :=
-    P.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero
-      Q rho n
-  rw [permutedFamilyHessianFourBlock_schurDetCore_eq_parameterFirstEquiv]
-    at h
-  rw [parameterFirstEquiv_coeff] at h
-  exact h
+  exact P.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_eq_zero_of_lt
+    rho (P.binary_profileOrder_lt_hessianClock Q n)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
