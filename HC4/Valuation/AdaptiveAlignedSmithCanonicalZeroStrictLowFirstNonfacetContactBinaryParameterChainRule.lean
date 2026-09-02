@@ -17,7 +17,8 @@ straightening into the binary parameter/longitudinal Hessian calculation.
 
 The statement is representation plumbing only.  It uses the existing combined
 inflation and parameter-Euler owners and introduces no new geometric
-hypothesis, localization, or cancellation principle.
+hypothesis, localization, or cancellation principle.  The identity is stated
+at whole-family level so the final Schur adapter can consume it directly.
 -/
 
 namespace HC4.Valuation
