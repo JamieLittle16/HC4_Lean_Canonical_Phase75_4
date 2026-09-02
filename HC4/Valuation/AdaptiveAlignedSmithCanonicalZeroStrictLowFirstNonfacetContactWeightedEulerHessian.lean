@@ -67,14 +67,48 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
   have hnat (n : ℕ) :
       (n : Polynomial K) = Polynomial.C (n : K) := by
     exact (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
-  fin_cases i <;>
-    rw [P.contactFamily_parameterEuler_sourceEuler_coeff] <;>
-    simp only [coeff_eulerScaledHessian, coeff_mvEuler] <;>
+  have h01 : (0 : Fin 4) ≠ 1 := by decide
+  have h02 : (0 : Fin 4) ≠ 2 := by decide
+  have h03 : (0 : Fin 4) ≠ 3 := by decide
+  have h10 : (1 : Fin 4) ≠ 0 := by decide
+  have h12 : (1 : Fin 4) ≠ 2 := by decide
+  have h13 : (1 : Fin 4) ≠ 3 := by decide
+  have h20 : (2 : Fin 4) ≠ 0 := by decide
+  have h21 : (2 : Fin 4) ≠ 1 := by decide
+  have h23 : (2 : Fin 4) ≠ 3 := by decide
+  have h30 : (3 : Fin 4) ≠ 0 := by decide
+  have h31 : (3 : Fin 4) ≠ 1 := by decide
+  have h32 : (3 : Fin 4) ≠ 2 := by decide
+  fin_cases i
+  · rw [P.contactFamily_parameterEuler_sourceEuler_coeff]
+    simp only [coeff_eulerScaledHessian, coeff_mvEuler]
     rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
-      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))] <;>
-    simp only [map_sub, map_add, map_mul] <;>
-    split_ifs <;>
-    norm_num at * <;>
+      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
+    simp only [map_sub, map_add, map_mul,
+      if_pos (show (0 : Fin 4) = 0 by rfl),
+      if_neg h01, if_neg h02, if_neg h03]
+    ring
+  · rw [P.contactFamily_parameterEuler_sourceEuler_coeff]
+    simp only [coeff_eulerScaledHessian, coeff_mvEuler]
+    rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
+      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
+    simp only [map_sub, map_add, map_mul,
+      if_neg h10, if_pos (show (1 : Fin 4) = 1 by rfl),
+      if_neg h12, if_neg h13]
+    ring
+  · rw [P.contactFamily_parameterEuler_sourceEuler_coeff]
+    simp only [coeff_eulerScaledHessian, coeff_mvEuler]
+    rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
+      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
+    simp only [map_sub, map_add, map_mul,
+      if_neg h20, if_neg h21, if_pos (show (2 : Fin 4) = 2 by rfl), if_neg h23]
+    ring
+  · rw [P.contactFamily_parameterEuler_sourceEuler_coeff]
+    simp only [coeff_eulerScaledHessian, coeff_mvEuler]
+    rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
+      hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
+    simp only [map_sub, map_add, map_mul,
+      if_neg h30, if_neg h31, if_neg h32, if_pos (show (3 : Fin 4) = 3 by rfl)]
     ring
 
 /-- **R18 falling parameter-row weighted Euler identity.**  The second
