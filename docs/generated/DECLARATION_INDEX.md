@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7096**.
+Distinct declaration spellings indexed: **7131**.
 
 ## Repeated declaration spellings
 
@@ -92,8 +92,8 @@ Distinct declaration spellings indexed: **7096**.
 - `opening_repair_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `ordinaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`, `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
-- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
-- `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `positiveEntryOrders` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `presentedState_rawDefect_eq_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `preterminal_canonicalStrictRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
@@ -2148,6 +2148,37 @@ Distinct declaration spellings indexed: **7096**.
 - `QsOtherFacetRayFirstSuperfacePackage.weight_combinedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `QsOtherFacetRayHigherLongitudinalLayerWitness` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayProfileReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
+- `QsOtherFacetRayProfileReesPackage.binaryHessianClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryInflationWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryInflationWeight_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian00Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian00_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian01Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian01_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian11Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessian11_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.binaryProfileHessianDetFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_profileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_profileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_profileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.coeff_profileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.longitudinalEulerHessian_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.parameterEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.parameterEuler_longitudinalEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.parameterSecondEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileHessian00` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.profileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.quadraticProfileOrder_lt_clock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.rayFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `QsOtherFacetRayProfileReesPackage.two_level_lt_binaryHessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `QsOtherFacetRayReverseReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `QsOtherFacetRayReverseReesPackage.actualLayerOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
@@ -3149,6 +3180,7 @@ Distinct declaration spellings indexed: **7096**.
 - `coeff_rankThreePolynomialMomentHessian` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `coeff_rankThreeRawMomentEntry` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `coeff_rankThreeVerticalPolynomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalFiber`
+- `coeff_rayRawLongitudinalProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `coeff_rigidLongitudinalEval_eq_eval_initialForm` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `coeff_single_zero_killBinaryTransverseLinear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `coeff_smithScalarLevelDegreeComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -3179,6 +3211,7 @@ Distinct declaration spellings indexed: **7096**.
 - `coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointPencil_mul` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `coeff_weightedTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_zero_positiveParameterRemainder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
@@ -5050,7 +5083,7 @@ Distinct declaration spellings indexed: **7096**.
 - `parameterConstantCoeff_scaleAwareHessianFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `parameterEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterEuler_X_pow_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterChainRule`
-- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `parameterFirstEquiv` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
@@ -5086,7 +5119,7 @@ Distinct declaration spellings indexed: **7096**.
 - `parameterRamification_sourceCoefficient_factorisation` — `theorem` in `HC4.Valuation.StrictSmithFirstContactGeometry`
 - `parameterRamification_two_lowestLayer_factorisation` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `parameterSecondEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
-- `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `pderiv_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `pderiv_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `pderiv_binaryDirectionalDeriv_first` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
@@ -5964,6 +5997,7 @@ Distinct declaration spellings indexed: **7096**.
 - `rawSpecialSchurProjectiveWedge_or_constantLine` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawBinaryProjectiveLine`
 - `raw_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
 - `ray` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- `rayRawLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `ray_coeff_eq_represented_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
 - `ray_contact_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_direct_initialForm_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
@@ -7169,6 +7203,7 @@ Distinct declaration spellings indexed: **7096**.
 - `weightedRankThreeEndpointPencil_apply_eq_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `weightedRankThreeEndpointPencil_one_one` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `weightedSparseRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
+- `weightedTransverseInflateFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `xeLmClearedAdjugateQuadratic` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
 - `xeLmClearedAdjugateQuadratic_eq_eulerCoefficient_mul_sq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
 - `xeLmClearedRS2Source` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
