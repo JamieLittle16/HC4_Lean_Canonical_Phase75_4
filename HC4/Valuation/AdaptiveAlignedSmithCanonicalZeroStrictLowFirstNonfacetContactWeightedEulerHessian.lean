@@ -85,7 +85,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
       simp only [coeff_eulerScaledHessian, coeff_mvEuler]
       rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
         hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
-      simp only [map_sub, map_add, map_mul,
+      simp only [map_sub, map_add, map_mul, map_one,
         if_neg (by decide : (1 : Fin 4) ≠ 0),
         if_true,
         if_neg (by decide : (1 : Fin 4) ≠ 2),
@@ -97,7 +97,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
         simp only [coeff_eulerScaledHessian, coeff_mvEuler]
         rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
           hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
-        simp only [map_sub, map_add, map_mul,
+        simp only [map_sub, map_add, map_mul, map_one,
           if_neg (by decide : (2 : Fin 4) ≠ 0),
           if_neg (by decide : (2 : Fin 4) ≠ 1),
           if_true,
@@ -110,7 +110,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
         simp only [coeff_eulerScaledHessian, coeff_mvEuler]
         rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
           hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
-        simp only [map_sub, map_add, map_mul,
+        simp only [map_sub, map_add, map_mul, map_one,
           if_neg (by decide : (3 : Fin 4) ≠ 0),
           if_neg (by decide : (3 : Fin 4) ≠ 1),
           if_neg (by decide : (3 : Fin 4) ≠ 2),
