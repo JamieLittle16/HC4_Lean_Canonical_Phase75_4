@@ -25,7 +25,9 @@ namespace HC4.Valuation
 
 noncomputable section
 
+open HC4.Newton
 open HC4.Polynomial
+open HC4.Toric
 open Polynomial
 
 universe u
@@ -70,6 +72,75 @@ theorem familyParameterEuler_unitTransverseInflateFamily
     simp [pureLongitudinalTransverseDegree]
   rw [hdeg]
   ring
+
+namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+
+variable [CharZero K] [IsAlgClosed K]
+variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+  (K := K) state}
+variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+  T .qs}
+
+/-- **R18 binary weighted Euler equation.**  After the three transverse
+inflations, the transverse grading has moved entirely into the family
+parameter, leaving the literal two-variable weight `(1, profileWeight)` on
+`(tau, x₀)`. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_weightedEuler
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    familyParameterEuler P.binaryHomogenizedFamily +
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K)) *
+          HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily =
+      MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) *
+        P.binaryHomogenizedFamily := by
+  ext d
+  simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
+    coeff_familyParameterEuler, coeff_mvEuler]
+  rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
+  ring
+
+/-- **R18 binary falling parameter row.**  Differentiating the two-variable
+weighted Euler equation in the family parameter gives the exact relation among
+`H00` and `H01` used by the profile Hessian. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingParameterRow
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    familyParameterSecondEuler P.binaryHomogenizedFamily +
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K)) *
+          familyParameterEuler
+            (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily) =
+      MvPolynomial.C
+          (Polynomial.C ((T.topFace.degree : K) - 1)) *
+        familyParameterEuler P.binaryHomogenizedFamily := by
+  ext d
+  simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
+    coeff_familyParameterSecondEuler, coeff_familyParameterEuler]
+  rw [P.parameterSecondEuler_coeff_binaryHomogenizedFamily d]
+  rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
+  rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
+  ring
+
+/-- **R18 binary falling longitudinal row.**  Differentiating in `x₀` gives
+the exact relation among the mixed and longitudinal entries of the canonical
+binary profile Hessian. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingLongitudinalRow
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    familyParameterEuler
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily) +
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K)) *
+          HC4.Polynomial.eulerScaledHessian
+            P.binaryHomogenizedFamily (0 : Fin 4) (0 : Fin 4) =
+      MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) - (P.profileWeight : K))) *
+        HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily := by
+  ext d
+  simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
+    coeff_familyParameterEuler, coeff_mvEuler]
+  rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
+  rw [P.longitudinalEulerHessian_coeff_binaryHomogenizedFamily d]
+  ring
+
+end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
 
