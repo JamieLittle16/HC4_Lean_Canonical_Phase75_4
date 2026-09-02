@@ -67,6 +67,34 @@ theorem polynomial_eq_zero_of_constant_pivot
       exact polynomial_coeff_eq_zero_of_constant_pivot
         A B hA0 (hprod n) (fun k hk => ih k hk)
 
+/-- **R18 bounded constant-pivot cancellation.**  It is enough for the product
+to vanish below a strict bound containing the entire support of the right
+factor.  This is the form consumed by the Hessian clock: no coefficient at or
+above the closing order is required. -/
+theorem polynomial_eq_zero_of_constant_pivot_of_natDegree_lt
+    {R : Type u} [CommRing R] [IsDomain R]
+    (A B : Polynomial R)
+    (N : ℕ)
+    (hA0 : A.coeff 0 ≠ 0)
+    (hBdeg : B.natDegree < N)
+    (hprod : ∀ n : ℕ, n < N → (A * B).coeff n = 0) :
+    B = 0 := by
+  have hlow : ∀ n : ℕ, n < N → B.coeff n = 0 := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+        intro hn
+        exact polynomial_coeff_eq_zero_of_constant_pivot
+          A B hA0 (hprod n hn)
+            (fun k hk => ih k hk (lt_trans hk hn))
+  apply Polynomial.ext
+  intro n
+  rw [Polynomial.coeff_zero]
+  by_cases hn : n < N
+  · exact hlow n hn
+  · exact Polynomial.coeff_eq_zero_of_natDegree_lt
+      (lt_of_lt_of_le hBdeg (Nat.le_of_not_gt hn))
+
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
