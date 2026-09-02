@@ -26,6 +26,13 @@ Consequently the denominator-cleared Schur determinant is unchanged.  The
 support-wide weighted Euler identities in the imported R18 owner can now be
 applied entrywise to this straightened block without any endpoint
 extrapolation, localization, or division.
+
+The raw complementary determinant is not the cleared Schur determinant.  The
+exact correction formula recorded below shows that their difference is
+controlled by the three bordered `3 x 3` Schur minors, the full determinant,
+and one final mixed coupling minor square.  Thus later product-clock code has a
+precise algebraic target and cannot silently discard the active/profile
+coupling terms.
 -/
 
 namespace HC4.Valuation
@@ -36,6 +43,35 @@ open HC4.Newton
 open HC4.Polynomial
 open HC4.Toric
 open scoped Matrix
+
+universe v
+variable {R : Type v} [CommRing R]
+
+namespace GeneralFourBlock
+
+/-- **Exact raw-complement / Schur correction identity.**
+
+For the symmetric `2+2` block with active block
+
+    A = [[a,b],[b,d]],
+
+coupling block `B = [[p,q],[r,s]]`, and raw complementary block
+`C = [[x,y],[y,z]]`, the active-pivot multiple of `det C` is the sum of the
+three bordered `3 x 3` Schur numerators and the full determinant correction,
+plus the square of the mixed coupling minor `p*s-q*r`.
+
+In particular, vanishing of the cleared Schur determinant or even of the full
+determinant does not by itself identify `activeDet * det C` with zero: the
+mixed coupling square is a genuine residual term. -/
+theorem activeDet_mul_rawComplementDet_eq_schur_coupling_correction
+    (H : GeneralFourBlock R) :
+    H.activeDet * (H.x * H.z - H.y * H.y) =
+      H.x * H.schurC + H.z * H.schurA - 2 * H.y * H.schurB -
+        H.determinantCore + (H.p * H.s - H.q * H.r) ^ 2 := by
+  unfold activeDet schurA schurB schurC determinantCore
+  ring
+
+end GeneralFourBlock
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
