@@ -24,7 +24,7 @@ open HC4.Newton
 open HC4.Polynomial
 
 universe u
-variable {K : Type u} [Field K]
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- The full permuted Hessian determinant acquires exactly `tau^6` under
 simultaneous unit transverse inflation. -/
@@ -43,7 +43,8 @@ theorem permutedPolynomialHessianFourBlock_determinantCore_unitTransverseInflate
   rw [permutedPolynomialHessianFourBlock_unitTransverseInflateFamily
     rho P hzero hone htwo hthree]
   rw [GeneralFourBlock.determinantCore_diagonalScale]
-  simp
+  rw [GeneralFourBlock.determinantCore_map]
+  rw [unitTransverseInflateRingHom_apply]
   ring
 
 end
