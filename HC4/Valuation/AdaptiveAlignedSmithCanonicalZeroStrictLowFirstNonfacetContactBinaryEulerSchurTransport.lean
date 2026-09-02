@@ -111,7 +111,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_
   apply GeneralFourBlock.ext <;>
     simp only [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear,
       GeneralFourBlock.shearSecondComplement, GeneralFourBlock.map,
-      map_add, map_mul, map_pow, map_natCast, map_ofNat]
+      map_add, map_mul, map_pow, map_natCast, map_ofNat, map_one,
+      one_mul, mul_one, one_pow]
 
 /-- The denominator-cleared straightened Schur determinant transports without
 any denominator or loss of information. -/
