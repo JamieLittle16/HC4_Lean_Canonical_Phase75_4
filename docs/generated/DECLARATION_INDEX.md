@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7048**.
+Distinct declaration spellings indexed: **7053**.
 
 ## Repeated declaration spellings
 
@@ -1991,6 +1991,7 @@ Distinct declaration spellings indexed: **7048**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
+- `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_parameterLayer_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_eq_zero_of_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_coeff_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_permutedSchurDetCore_eq_activeDet_mul_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`
@@ -2072,6 +2073,9 @@ Distinct declaration spellings indexed: **7048**.
 - `QsOtherFacetContactQuadraticReesPackage.sp_contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - `QsOtherFacetContactQuadraticReesPackage.sp_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
 - `QsOtherFacetContactRawLongitudinalProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian00_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian01_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian11_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.binary_profileOrder_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
@@ -5435,6 +5439,7 @@ Distinct declaration spellings indexed: **7048**.
 - `prod_smithConformalDerivativeCoefficient` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `prod_sub_prod_isWeightLT` — `theorem` in `HC4.Polynomial.TopProduct`
 - `produces` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated`
+- `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `projectedSmithExponent_mixedDegreeOutcome` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `projectedSupport_linear_of_source_transverseDegree_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `projectedSupport_lowNegativeFirst_factorData` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
