@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7037**.
+Distinct declaration spellings indexed: **7043**.
 
 ## Repeated declaration spellings
 
@@ -3830,6 +3830,7 @@ Distinct declaration spellings indexed: **7037**.
 - `familyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `familyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `familyIntegralityObstruction_to_earlierWall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
+- `familyParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterHessianLayer_eq_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterHessianLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
@@ -3843,6 +3844,8 @@ Distinct declaration spellings indexed: **7037**.
 - `familyParameterLayer_eq_firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
+- `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
@@ -3853,6 +3856,7 @@ Distinct declaration spellings indexed: **7037**.
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily_add_ten` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `familyParameterLayer_zero_eq_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
+- `familyParameterSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyPositiveActualLayerOrders` — `def` in `HC4.Valuation.ActualParameterLayer`
 - `familyPositiveParameterOrders` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `familySpecialFiber_firstLongitudinalDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
@@ -5003,6 +5007,8 @@ Distinct declaration spellings indexed: **7037**.
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
+- `parameterFirstEquiv_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
+- `parameterFirstEquiv_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `parameterFirstHessian` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstHessian_det` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
