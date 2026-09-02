@@ -72,8 +72,9 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
     simp only [coeff_eulerScaledHessian, coeff_mvEuler] <;>
     rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
       hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))] <;>
-    simp only [map_sub, map_add, map_mul, Fin.isValue, Fin.reduceFinMk] <;>
-    norm_num <;>
+    simp only [map_sub, map_add, map_mul] <;>
+    split_ifs <;>
+    norm_num at * <;>
     ring
 
 /-- **R18 falling parameter-row weighted Euler identity.**  The second
