@@ -17,7 +17,8 @@ a longitudinal coefficient of degree `n` occurs at parameter order
 have, at that exact parameter layer and longitudinal degree, precisely the
 integral staircase coefficients `H00`, `H01`, and `H11`.
 
-This module records that recognition before any active Schur cancellation.
+This module records that recognition before any active Schur cancellation and
+serves as the parameter/longitudinal half of the final A19.R18 adapter.
 -/
 
 namespace HC4.Valuation
