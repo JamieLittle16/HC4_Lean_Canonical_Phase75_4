@@ -89,6 +89,76 @@ theorem familyParameterLayer_familyParameterSecondEuler
           push_cast
           ring
 
+/-- On every spatial monomial, the family-level first Euler operator is
+literally `X * derivative` on its coefficient polynomial. -/
+theorem coeff_familyParameterEuler
+    (F : MvPolynomial (Fin 4) (Polynomial K)) (d : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff d (familyParameterEuler F) =
+      Polynomial.X * Polynomial.derivative (MvPolynomial.coeff d F) := by
+  apply Polynomial.ext
+  intro n
+  calc
+    (MvPolynomial.coeff d (familyParameterEuler F)).coeff n =
+        MvPolynomial.coeff d
+          (familyParameterLayer (familyParameterEuler F) n) := by
+      rw [familyParameterLayer_coeff]
+    _ = MvPolynomial.coeff d
+          ((n : MvPolynomial (Fin 4) K) * familyParameterLayer F n) := by
+      rw [familyParameterLayer_familyParameterEuler]
+    _ = (n : K) * MvPolynomial.coeff d (familyParameterLayer F n) := by
+      simp
+    _ = (n : K) * (MvPolynomial.coeff d F).coeff n := by
+      rw [familyParameterLayer_coeff]
+    _ = (Polynomial.X *
+          Polynomial.derivative (MvPolynomial.coeff d F)).coeff n := by
+      cases n with
+      | zero => simp
+      | succ n =>
+          simp only [Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
+            Polynomial.coeff_derivative]
+          push_cast
+          ring
+
+/-- On every spatial monomial, the falling second family Euler operator is
+literally `X² * derivative derivative` on its coefficient polynomial. -/
+theorem coeff_familyParameterSecondEuler
+    (F : MvPolynomial (Fin 4) (Polynomial K)) (d : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff d (familyParameterSecondEuler F) =
+      Polynomial.X ^ 2 *
+        Polynomial.derivative
+          (Polynomial.derivative (MvPolynomial.coeff d F)) := by
+  apply Polynomial.ext
+  intro n
+  calc
+    (MvPolynomial.coeff d (familyParameterSecondEuler F)).coeff n =
+        MvPolynomial.coeff d
+          (familyParameterLayer (familyParameterSecondEuler F) n) := by
+      rw [familyParameterLayer_coeff]
+    _ = MvPolynomial.coeff d
+          ((n : MvPolynomial (Fin 4) K) *
+            ((n : MvPolynomial (Fin 4) K) - 1) *
+              familyParameterLayer F n) := by
+      rw [familyParameterLayer_familyParameterSecondEuler]
+    _ = (n : K) * ((n : K) - 1) *
+          MvPolynomial.coeff d (familyParameterLayer F n) := by
+      simp
+    _ = (n : K) * ((n : K) - 1) *
+          (MvPolynomial.coeff d F).coeff n := by
+      rw [familyParameterLayer_coeff]
+    _ = (Polynomial.X ^ 2 *
+          Polynomial.derivative
+            (Polynomial.derivative (MvPolynomial.coeff d F))).coeff n := by
+      cases n with
+      | zero => simp
+      | succ n =>
+          cases n with
+          | zero => simp
+          | succ n =>
+              simp only [pow_two, Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
+                Polynomial.coeff_derivative]
+              push_cast
+              ring
+
 end
 
 end HC4.Valuation
