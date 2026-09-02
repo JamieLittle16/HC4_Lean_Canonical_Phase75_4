@@ -78,7 +78,8 @@ theorem binaryEulerSchurSourceFactor_eq_map_C
     binaryEulerSchurSourceFactor (K := K) rho =
       MvPolynomial.map Polynomial.C
         (binaryEulerSchurSourceFactorBase (K := K) rho) := by
-  simp [binaryEulerSchurSourceFactor, binaryEulerSchurSourceFactorBase]
+  simp [binaryEulerSchurSourceFactor,
+    binaryEulerSchurSourceFactorBase]
 
 /-- The Euler source factor is a genuine nonzero monomial. -/
 theorem binaryEulerSchurSourceFactor_ne_zero
@@ -108,6 +109,24 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDe
   unfold binaryEulerSchurSourceFactor
   ring
 
+/-- **R18 unrestricted straightened source clock.**  Every parameter layer
+strictly before the exact binary Hessian clock vanishes after weighted-Euler
+straightening.  The Euler source factor is parameter-free, so this is a direct
+transport of the unrestricted R20 source-first Schur clock. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_eq_zero_of_lt
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    {q : ℕ}
+    (hq : q < (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6) :
+    familyParameterLayer
+        (P.binaryWeightedEulerShear rho).schurDetCore q = 0 := by
+  rw [P.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul rho]
+  rw [binaryEulerSchurSourceFactor_eq_map_C]
+  rw [familyParameterLayer_map_C_mul]
+  rw [P.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_eq_zero_of_lt
+    rho hq]
+  simp
+
 /-- **R18 straightened source clock.**  The fixed Euler source monomial has no
 parameter content, so every zero source-first Schur layer supplied by R20 is
 also a zero layer of the straightened Euler-Schur determinant. -/
@@ -119,12 +138,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_paramet
     familyParameterLayer
         (P.binaryWeightedEulerShear rho).schurDetCore
         (2 * T.topFace.degree - P.profileWeight * n) = 0 := by
-  rw [P.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul rho]
-  rw [binaryEulerSchurSourceFactor_eq_map_C]
-  rw [familyParameterLayer_map_C_mul]
-  rw [P.binaryHomogenized_permutedSourceSchurDetCore_parameterLayer_profileOrder_eq_zero
-    Q rho n]
-  simp
+  exact P.binaryWeightedEulerShear_parameterLayer_eq_zero_of_lt rho
+    (P.binary_profileOrder_lt_hessianClock Q n)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
