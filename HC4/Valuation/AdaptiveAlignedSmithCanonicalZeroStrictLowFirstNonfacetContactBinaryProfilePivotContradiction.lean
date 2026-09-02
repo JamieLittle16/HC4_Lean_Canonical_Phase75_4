@@ -41,6 +41,8 @@ private abbrev binaryProfileClock
     (P : QsOtherFacetContactQuadraticReesPackage C) : ℕ :=
   (4 * T.topFace.degree - 2 * (P.contactGap + 4)) + 6
 
+-- CI anchor: elaborate the source-first profile-pivot product representation.
+
 /-- The parameter-first product consumed by the bounded pivot cancellation is
 literally the parameter-first image of the source-first contact pivot times the
 whole binary profile determinant.  This removes the last representation seam
