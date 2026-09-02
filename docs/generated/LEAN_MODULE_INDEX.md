@@ -6490,7 +6490,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianFamily`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_euler_reduction`
+- Declarations: `theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_euler_reduction`, `theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_longitudinal_reduction`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianFamily`
 
