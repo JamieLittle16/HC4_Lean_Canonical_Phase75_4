@@ -42,6 +42,8 @@ theorem finsupp_weight_doubleFin4Weight
     Finsupp.weight (doubleFin4Weight w) d =
       2 * Finsupp.weight w d := by
   rw [Finsupp.weight_apply, Finsupp.weight_apply]
+  rw [Finsupp.sum_fintype, Finsupp.sum_fintype] <;>
+    try { intro i; simp }
   rw [Fin.sum_univ_four, Fin.sum_univ_four]
   simp [doubleFin4Weight]
   ring
@@ -61,6 +63,8 @@ theorem initialForm_doubleFin4Weight
       Finsupp.weight (fun i => (doubleFin4Weight w i : ℤ)) d =
         2 * Finsupp.weight (fun i => (w i : ℤ)) d := by
     rw [Finsupp.weight_apply, Finsupp.weight_apply]
+    rw [Finsupp.sum_fintype, Finsupp.sum_fintype] <;>
+      try { intro i; simp }
     rw [Fin.sum_univ_four, Fin.sum_univ_four]
     simp [doubleFin4Weight]
     ring
@@ -139,7 +143,6 @@ theorem QsOtherFacetRayReverseReesPackage.profileReesPackage
       ∑ i : Fin 4, W i = 2 * ∑ i : Fin 4, R.weight i := by
     dsimp [W]
     rw [Fin.sum_univ_four, Fin.sum_univ_four]
-    simp [doubleFin4Weight]
     ring
   have hnonneg :
       2 * ∑ i : Fin 4, W i ≤ 4 * D := by
@@ -169,9 +172,20 @@ theorem QsOtherFacetRayReverseReesPackage.profileReesPackage
   have hinit :
       HC4.Polynomial.initialForm (fun i => (W i : ℤ)) (D : ℤ) F =
         C.ray.face := by
-    dsimp [W, D]
-    rw [initialForm_doubleFin4Weight]
-    simpa [F] using R.initialForm_eq_ray
+    change HC4.Polynomial.initialForm
+        (fun i => (doubleFin4Weight R.weight i : ℤ))
+        ((2 * R.level : ℕ) : ℤ) F = C.ray.face
+    calc
+      HC4.Polynomial.initialForm
+          (fun i => (doubleFin4Weight R.weight i : ℤ))
+          ((2 * R.level : ℕ) : ℤ) F =
+          HC4.Polynomial.initialForm
+            (fun i => (doubleFin4Weight R.weight i : ℤ))
+            (2 * (R.level : ℤ)) F := by rw [Nat.cast_mul, Nat.cast_ofNat]
+      _ = HC4.Polynomial.initialForm
+            (fun i => (R.weight i : ℤ)) (R.level : ℤ) F :=
+        initialForm_doubleFin4Weight R.weight R.level F
+      _ = C.ray.face := by simpa [F] using R.initialForm_eq_ray
   have hspecial :
       polynomialFamilySpecialFiber
           (reverseWeightedReesFamily W D F hbound) = C.ray.face := by

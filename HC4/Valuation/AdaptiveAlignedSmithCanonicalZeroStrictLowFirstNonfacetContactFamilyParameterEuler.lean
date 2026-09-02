@@ -65,8 +65,8 @@ theorem familyParameterLayer_familyParameterEuler
   cases n with
   | zero => simp
   | succ n =>
-      simp only [Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
-        Polynomial.coeff_derivative]
+      rw [show n + 1 = n.succ by omega]
+      rw [Polynomial.coeff_X_mul, Polynomial.coeff_derivative]
       push_cast
       ring
 
@@ -82,10 +82,12 @@ theorem familyParameterLayer_familyParameterSecondEuler
   | zero => simp
   | succ n =>
       cases n with
-      | zero => simp
+      | zero => simp [Polynomial.coeff_X_pow_mul']
       | succ n =>
-          simp only [pow_two, Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
-            Polynomial.coeff_derivative]
+          rw [Polynomial.coeff_X_pow_mul']
+          simp only [show 2 ≤ n + 1 + 1 by omega, if_pos]
+          rw [show n + 1 + 1 - 2 = n by omega]
+          rw [Polynomial.coeff_derivative, Polynomial.coeff_derivative]
           push_cast
           ring
 
@@ -106,7 +108,9 @@ theorem coeff_familyParameterEuler
           ((n : MvPolynomial (Fin 4) K) * familyParameterLayer F n) := by
       rw [familyParameterLayer_familyParameterEuler]
     _ = (n : K) * MvPolynomial.coeff d (familyParameterLayer F n) := by
-      simp
+      change MvPolynomial.coeff d
+          (MvPolynomial.C (n : K) * familyParameterLayer F n) = _
+      rw [MvPolynomial.coeff_C_mul]
     _ = (n : K) * (MvPolynomial.coeff d F).coeff n := by
       rw [familyParameterLayer_coeff]
     _ = (Polynomial.X *
@@ -114,10 +118,12 @@ theorem coeff_familyParameterEuler
       cases n with
       | zero => simp
       | succ n =>
-          simp only [Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
-            Polynomial.coeff_derivative]
+          rw [show n + 1 = n.succ by omega]
+          rw [Polynomial.coeff_X_mul, Polynomial.coeff_derivative]
           push_cast
-          ring
+          ring_nf
+          simp [Nat.add_comm]
+  all_goals rfl
 
 /-- On every spatial monomial, the falling second family Euler operator is
 literally `X² * derivative derivative` on its coefficient polynomial. -/
@@ -141,7 +147,13 @@ theorem coeff_familyParameterSecondEuler
       rw [familyParameterLayer_familyParameterSecondEuler]
     _ = (n : K) * ((n : K) - 1) *
           MvPolynomial.coeff d (familyParameterLayer F n) := by
-      simp
+      change MvPolynomial.coeff d
+          (MvPolynomial.C (n : K) *
+            (MvPolynomial.C (n : K) - 1) * familyParameterLayer F n) = _
+      rw [show MvPolynomial.C (n : K) * (MvPolynomial.C (n : K) - 1) =
+          MvPolynomial.C ((n : K) * ((n : K) - 1)) by
+        rw [map_mul, map_sub, map_one]]
+      rw [MvPolynomial.coeff_C_mul]
     _ = (n : K) * ((n : K) - 1) *
           (MvPolynomial.coeff d F).coeff n := by
       rw [familyParameterLayer_coeff]
@@ -149,15 +161,18 @@ theorem coeff_familyParameterSecondEuler
           Polynomial.derivative
             (Polynomial.derivative (MvPolynomial.coeff d F))).coeff n := by
       cases n with
-      | zero => simp
+      | zero => simp [Polynomial.coeff_X_pow_mul']
       | succ n =>
           cases n with
-          | zero => simp
+          | zero => simp [Polynomial.coeff_X_pow_mul']
           | succ n =>
-              simp only [pow_two, Nat.succ_eq_add_one, Polynomial.coeff_X_mul,
-                Polynomial.coeff_derivative]
+              rw [Polynomial.coeff_X_pow_mul']
+              simp only [show 2 ≤ n + 1 + 1 by omega, if_pos]
+              rw [show n + 1 + 1 - 2 = n by omega]
+              rw [Polynomial.coeff_derivative, Polynomial.coeff_derivative]
               push_cast
-              ring
+              ring_nf
+  all_goals rfl
 
 end
 
