@@ -26,7 +26,8 @@ more gives a second form containing only `F`, `E_0 F`, and `H11`.  These are
 the forms matched by the final weighted-source Schur calculation.
 
 No new support, geometry, localization, or pivot-cancellation hypothesis is
-introduced.
+introduced.  The second identity is the source-facing normal form used by the
+next Schur quotient adapter.
 -/
 
 namespace HC4.Valuation
