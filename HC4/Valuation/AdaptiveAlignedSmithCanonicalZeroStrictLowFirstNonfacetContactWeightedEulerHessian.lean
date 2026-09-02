@@ -74,7 +74,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
     rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
       hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
     simp only [map_sub, map_add, map_mul,
-      if_pos rfl,
+      if_true,
       if_neg (by decide : (0 : Fin 4) ≠ 1),
       if_neg (by decide : (0 : Fin 4) ≠ 2),
       if_neg (by decide : (0 : Fin 4) ≠ 3)]
@@ -87,7 +87,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
         hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
       simp only [map_sub, map_add, map_mul,
         if_neg (by decide : (1 : Fin 4) ≠ 0),
-        if_pos rfl,
+        if_true,
         if_neg (by decide : (1 : Fin 4) ≠ 2),
         if_neg (by decide : (1 : Fin 4) ≠ 3)]
       ring
@@ -100,7 +100,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
         simp only [map_sub, map_add, map_mul,
           if_neg (by decide : (2 : Fin 4) ≠ 0),
           if_neg (by decide : (2 : Fin 4) ≠ 1),
-          if_pos rfl,
+          if_true,
           if_neg (by decide : (2 : Fin 4) ≠ 3)]
         ring
       · have hi3 : i = (3 : Fin 4) := by
@@ -114,7 +114,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
           if_neg (by decide : (3 : Fin 4) ≠ 0),
           if_neg (by decide : (3 : Fin 4) ≠ 1),
           if_neg (by decide : (3 : Fin 4) ≠ 2),
-          if_pos rfl]
+          if_true]
         ring
 
 /-- **R18 falling parameter-row weighted Euler identity.**  The second
