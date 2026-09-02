@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7089**.
+Distinct declaration spellings indexed: **7090**.
 
 ## Repeated declaration spellings
 
@@ -2018,6 +2018,7 @@ Distinct declaration spellings indexed: **7089**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_parameterLayer_profileOrder_add_four_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_parameterLayer_profileOrder_add_six_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_eq_zero_of_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_parameterLayer_profileOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
