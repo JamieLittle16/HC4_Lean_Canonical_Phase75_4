@@ -6680,7 +6680,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization`
-- Declarations: `def qsContactTransverseDegree`, `theorem qsIntegralContactWeight_cons`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff`
+- Declarations: `def qsContactTransverseDegree`, `theorem qsIntegralContactWeight_cons`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_source_coeff_at_deficit`, `theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_transverse_coeff`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_add_profileWeight_mul_le`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_le_profileOrder`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
 
