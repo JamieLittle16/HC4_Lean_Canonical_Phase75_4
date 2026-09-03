@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7155**.
+Distinct declaration spellings indexed: **7156**.
 
 ## Repeated declaration spellings
 
@@ -2911,6 +2911,7 @@ Distinct declaration spellings indexed: **7155**.
 - `binaryStaircaseProfile_natDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfile_natDegree_le_one_of_positiveGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `binaryStaircaseProfile_secondLeadingFactor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseTerminalArithmetic`
+- `binaryStaircaseProfile_terminal_impossible_of_two_residual_coeffs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileTwoCoefficientRigidity`
 - `binaryStationaryLowDegree_zeroJet_forces_degree_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalNormalForm`
 - `binaryStationaryStaircaseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
 - `binaryStationaryStaircaseDegree_one_eq_next` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
