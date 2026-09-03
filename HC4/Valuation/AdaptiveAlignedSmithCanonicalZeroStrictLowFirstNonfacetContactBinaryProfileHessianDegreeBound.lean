@@ -14,6 +14,17 @@ Hence its parameter-first polynomial has degree at most `2D`.  The existing
 strict binary Hessian margin puts `2D` strictly below the closing clock.  This
 is exactly the support hypothesis required by bounded constant-pivot
 cancellation.
+
+R18.21 additionally needs the opposite, extremal end of the same support
+calculation.  If `N` is the highest longitudinal profile index, every profile
+Hessian entry still has longitudinal degree at most `N`, hence its determinant
+has degree at most `2N`.  Consequently the exact binary determinant family has
+no parameter support below
+
+    qNN = 2D - r(2N).
+
+This is the first triangularity fact needed for the two exposed staircase
+coefficients; it does not assert any Schur-to-profile implication.
 -/
 
 namespace HC4.Valuation
@@ -35,6 +46,122 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
   T .qs}
+
+/-- The parameter-parameter profile Hessian entry has no longitudinal support
+above the raw profile. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00_natDegree_le_profile
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P) :
+    R.profileHessian00.natDegree ≤ R.profile.natDegree := by
+  rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
+  intro n hn
+  rw [R.coeff_profileHessian00]
+  rw [Polynomial.coeff_eq_zero_of_natDegree_lt hn]
+  simp
+
+/-- The mixed profile Hessian entry has no longitudinal support above the raw
+profile. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian01_natDegree_le_profile
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P) :
+    R.profileHessian01.natDegree ≤ R.profile.natDegree := by
+  rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
+  intro n hn
+  rw [R.coeff_profileHessian01]
+  rw [Polynomial.coeff_eq_zero_of_natDegree_lt hn]
+  simp
+
+/-- The longitudinal profile Hessian entry has no longitudinal support above
+the raw profile. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian11_natDegree_le_profile
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P) :
+    R.profileHessian11.natDegree ≤ R.profile.natDegree := by
+  rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
+  intro n hn
+  rw [R.coeff_profileHessian11]
+  rw [Polynomial.coeff_eq_zero_of_natDegree_lt hn]
+  simp
+
+/-- Therefore the integral profile-Hessian determinant is supported in
+longitudinal degree at most twice the profile degree. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_natDegree_le_two_profile
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P) :
+    R.profileHessianDet.natDegree ≤ R.profile.natDegree + R.profile.natDegree := by
+  rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
+  intro n hn
+  rw [QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet,
+    Polynomial.coeff_sub]
+  have h0011 :
+      (R.profileHessian00 * R.profileHessian11).natDegree ≤
+        R.profile.natDegree + R.profile.natDegree :=
+    le_trans Polynomial.natDegree_mul_le
+      (Nat.add_le_add R.profileHessian00_natDegree_le_profile
+        R.profileHessian11_natDegree_le_profile)
+  have h0101 :
+      (R.profileHessian01 * R.profileHessian01).natDegree ≤
+        R.profile.natDegree + R.profile.natDegree :=
+    le_trans Polynomial.natDegree_mul_le
+      (Nat.add_le_add R.profileHessian01_natDegree_le_profile
+        R.profileHessian01_natDegree_le_profile)
+  rw [Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt h0011 hn),
+    Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt h0101 hn)]
+  rfl
+
+/-- **R18.21 first exposed parameter order.**  If `N` is the highest raw
+longitudinal profile index, the whole binary profile-Hessian determinant has no
+parameter layer below `qNN = 2D-r(2N)`.  This is the lower-support companion to
+the `2D` upper degree bound below. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDetFamily_parameterLayer_eq_zero_of_lt_qNN
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    {q : ℕ}
+    (hq : q <
+      2 * T.topFace.degree -
+        P.profileWeight * (R.profile.natDegree + R.profile.natDegree)) :
+    familyParameterLayer P.binaryProfileHessianDetFamily q = 0 := by
+  have hNbound : R.profile.natDegree * P.profileWeight ≤ T.topFace.degree :=
+    R.support_bound
+  have htwoBound :
+      P.profileWeight * (R.profile.natDegree + R.profile.natDegree) ≤
+        2 * T.topFace.degree := by
+    rw [Nat.mul_add]
+    omega
+  apply (MvPolynomial.finSuccEquiv K 3).injective
+  apply Polynomial.ext
+  intro n
+  apply MvPolynomial.ext
+  intro m
+  rw [Polynomial.coeff_zero, MvPolynomial.coeff_zero]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [familyParameterLayer_coeff]
+  have hlong := R.binaryProfileHessianDetFamily_longitudinal_coeff n
+  have hm := congrArg
+    (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
+    hlong
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
+  rw [hm]
+  rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
+  by_cases hn : n ≤ R.profile.natDegree + R.profile.natDegree
+  · have horder :
+        2 * T.topFace.degree -
+            P.profileWeight * (R.profile.natDegree + R.profile.natDegree) ≤
+          2 * T.topFace.degree - P.profileWeight * n := by
+      omega
+    have hqorder :
+        q < 2 * T.topFace.degree - P.profileWeight * n :=
+      lt_of_lt_of_le hq horder
+    rw [Polynomial.coeff_X_pow_mul']
+    simp [Nat.not_le.mpr hqorder]
+  · have hnlt :
+        R.profile.natDegree + R.profile.natDegree < n :=
+      Nat.lt_of_not_ge hn
+    have hdet : R.profileHessianDet.coeff n = 0 :=
+      Polynomial.coeff_eq_zero_of_natDegree_lt
+        (lt_of_le_of_lt R.profileHessianDet_natDegree_le_two_profile hnlt)
+    rw [hdet]
+    simp
 
 /-- No parameter layer of the binary profile-Hessian determinant occurs above
 `2D`. -/
