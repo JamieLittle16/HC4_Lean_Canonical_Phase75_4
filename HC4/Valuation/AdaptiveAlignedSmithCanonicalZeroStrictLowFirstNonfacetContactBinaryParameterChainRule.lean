@@ -129,7 +129,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingParamet
   rw [P.parameterSecondEuler_coeff_binaryHomogenizedFamily d]
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
   rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
-  simp only [map_sub, map_add, map_mul, map_pow, map_natCast, map_one]
+  simp only [map_sub, map_add, map_mul, map_pow, map_neg,
+    map_natCast, map_one]
   ring
 
 /-- **R18 binary falling longitudinal row.**  Differentiating in `x₀` gives
