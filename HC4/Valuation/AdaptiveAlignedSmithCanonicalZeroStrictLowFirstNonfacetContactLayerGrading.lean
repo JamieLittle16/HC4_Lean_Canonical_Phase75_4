@@ -129,6 +129,43 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_longitudinal_trans
   unfold qsContactRawLongitudinalProfile
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
 
+/-- Every transverse monomial occurring in longitudinal profile slice `n`
+uses at most the contact weight left after paying the binary longitudinal
+cost `profileWeight * n`.  This is the exact support budget needed by the
+R18.21 extremal correction calculation. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_add_profileWeight_mul_le
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    {n : ℕ} {m : Fin 3 →₀ ℕ}
+    (hm : m ∈ (R.profile.coeff n).support) :
+    qsContactTransverseDegree m + P.profileWeight * n ≤ T.topFace.degree := by
+  have hcoeff : MvPolynomial.coeff m (R.profile.coeff n) ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hm
+  rw [R.profile_eq, qsContactRawLongitudinalProfile,
+    MvPolynomial.finSuccEquiv_coeff_coeff] at hcoeff
+  have hsource :
+      m.cons n ∈ (polynomialFamilySpecialFiber
+        T.terminal.blocker.presented.family).support :=
+    MvPolynomial.mem_support_iff.mpr hcoeff
+  have hbound := P.bound hsource
+  rw [qsIntegralContactWeight_cons, ← P.profileWeight_eq] at hbound
+  exact hbound
+
+/-- Equivalently, the transverse total degree of slice `n` is bounded by its
+pure binary parameter order `D - profileWeight*n`. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_le_profileOrder
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    {n : ℕ} {m : Fin 3 →₀ ℕ}
+    (hm : m ∈ (R.profile.coeff n).support) :
+    qsContactTransverseDegree m ≤ T.topFace.degree - P.profileWeight * n := by
+  have h := R.transverseDegree_add_profileWeight_mul_le hm
+  omega
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
