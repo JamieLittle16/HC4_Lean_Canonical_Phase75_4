@@ -150,10 +150,11 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingLongitu
   apply MvPolynomial.ext
   intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
-    coeff_familyParameterEuler, coeff_mvEuler]
+    coeff_familyParameterEuler]
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
   rw [P.longitudinalEulerHessian_coeff_binaryHomogenizedFamily d]
-  simp only [map_sub, map_add, map_mul, map_pow, map_natCast, map_one]
+  simp only [coeff_mvEuler, map_sub, map_add, map_mul, map_pow,
+    map_natCast, map_one]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
