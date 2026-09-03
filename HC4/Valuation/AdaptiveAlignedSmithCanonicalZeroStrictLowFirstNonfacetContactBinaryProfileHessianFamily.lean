@@ -67,6 +67,7 @@ noncomputable def QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDe
   P.binaryProfileHessian00Family * P.binaryProfileHessian11Family -
     P.binaryProfileHessian01Family * P.binaryProfileHessian01Family
 
+omit [IsAlgClosed K] in
 private theorem QsOtherFacetContactRawLongitudinalProfilePackage.profile_coeff_coeff
     {P : QsOtherFacetContactQuadraticReesPackage C}
     (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
@@ -89,21 +90,57 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian00F
           ((Polynomial.X : Polynomial K) ^
             (T.topFace.degree - P.profileWeight * n)) *
         MvPolynomial.map Polynomial.C (R.profileHessian00.coeff n) := by
-  ext m
+  apply MvPolynomial.ext
+  intro m
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian00Family]
   rw [coeff_familyParameterSecondEuler]
   rw [P.parameterSecondEuler_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
-  have hprofile := congrArg
-    (fun A : MvPolynomial (Fin 3) K => MvPolynomial.coeff m A)
-    (R.coeff_profileHessian00 n)
   have hbase := R.profile_coeff_coeff m n
-  simp only [MvPolynomial.coeff_mul, MvPolynomial.coeff_sub,
-    MvPolynomial.coeff_natCast, MvPolynomial.coeff_ofNat] at hprofile
-  simp only [Finsupp.cons_zero]
-  rw [hprofile, hbase]
+  have haffine :
+      (T.topFace.degree : MvPolynomial (Fin 3) K) -
+          (P.profileWeight : MvPolynomial (Fin 3) K) *
+            (n : MvPolynomial (Fin 3) K) =
+        MvPolynomial.C
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K)) := by
+    have hD :
+        (T.topFace.degree : MvPolynomial (Fin 3) K) =
+          MvPolynomial.C (T.topFace.degree : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K)
+        T.topFace.degree).symm
+    have hr :
+        (P.profileWeight : MvPolynomial (Fin 3) K) =
+          MvPolynomial.C (P.profileWeight : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K)
+        P.profileWeight).symm
+    have hn :
+        (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
+    rw [hD, hr, hn, ← MvPolynomial.C_mul, ← MvPolynomial.C_sub]
+  have hscalar :
+      ((T.topFace.degree : MvPolynomial (Fin 3) K) -
+          (P.profileWeight : MvPolynomial (Fin 3) K) *
+            (n : MvPolynomial (Fin 3) K)) *
+        ((T.topFace.degree : MvPolynomial (Fin 3) K) -
+          (P.profileWeight : MvPolynomial (Fin 3) K) *
+            (n : MvPolynomial (Fin 3) K) - 1) =
+      MvPolynomial.C
+        (((T.topFace.degree : K) - (P.profileWeight : K) * (n : K)) *
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K) - 1)) := by
+    rw [haffine, ← MvPolynomial.C_1, ← MvPolynomial.C_sub,
+      ← MvPolynomial.C_mul]
+  have hprofile :
+      MvPolynomial.coeff m (R.profileHessian00.coeff n) =
+        (((T.topFace.degree : K) - (P.profileWeight : K) * (n : K)) *
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K) - 1)) *
+          MvPolynomial.coeff m (R.profile.coeff n) := by
+    rw [R.coeff_profileHessian00, hscalar, MvPolynomial.coeff_C_mul]
+  rw [hprofile, hbase, Polynomial.C_mul]
   ring
 
 /-- Whole-longitudinal coefficient formula for the mixed entry. -/
@@ -117,21 +154,61 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian01F
           ((Polynomial.X : Polynomial K) ^
             (T.topFace.degree - P.profileWeight * n)) *
         MvPolynomial.map Polynomial.C (R.profileHessian01.coeff n) := by
-  ext m
+  apply MvPolynomial.ext
+  intro m
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian01Family]
   rw [coeff_familyParameterEuler]
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
-  have hprofile := congrArg
-    (fun A : MvPolynomial (Fin 3) K => MvPolynomial.coeff m A)
-    (R.coeff_profileHessian01 n)
   have hbase := R.profile_coeff_coeff m n
-  simp only [MvPolynomial.coeff_mul, MvPolynomial.coeff_sub,
-    MvPolynomial.coeff_natCast, MvPolynomial.coeff_ofNat] at hprofile
-  simp only [Finsupp.cons_zero]
-  rw [hprofile, hbase]
+  have haffine :
+      (T.topFace.degree : MvPolynomial (Fin 3) K) -
+          (P.profileWeight : MvPolynomial (Fin 3) K) *
+            (n : MvPolynomial (Fin 3) K) =
+        MvPolynomial.C
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K)) := by
+    have hD :
+        (T.topFace.degree : MvPolynomial (Fin 3) K) =
+          MvPolynomial.C (T.topFace.degree : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K)
+        T.topFace.degree).symm
+    have hr :
+        (P.profileWeight : MvPolynomial (Fin 3) K) =
+          MvPolynomial.C (P.profileWeight : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K)
+        P.profileWeight).symm
+    have hn :
+        (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
+    rw [hD, hr, hn, ← MvPolynomial.C_mul, ← MvPolynomial.C_sub]
+  have hscalar :
+      (n : MvPolynomial (Fin 3) K) *
+        ((T.topFace.degree : MvPolynomial (Fin 3) K) -
+          (P.profileWeight : MvPolynomial (Fin 3) K) *
+            (n : MvPolynomial (Fin 3) K)) =
+      MvPolynomial.C
+        ((n : K) *
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K))) := by
+    have hn :
+        (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
+    rw [hn, haffine, ← MvPolynomial.C_mul]
+  have hprofile :
+      MvPolynomial.coeff m (R.profileHessian01.coeff n) =
+        ((n : K) *
+          ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K))) *
+          MvPolynomial.coeff m (R.profile.coeff n) := by
+    rw [R.coeff_profileHessian01, hscalar, MvPolynomial.coeff_C_mul]
+  have hnPolynomial :
+      (n : Polynomial K) = Polynomial.C (n : K) :=
+    (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+  rw [hnPolynomial, hprofile, hbase, Polynomial.C_mul]
   ring
 
 /-- Whole-longitudinal coefficient formula for the longitudinal entry. -/
@@ -145,20 +222,37 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian11F
           ((Polynomial.X : Polynomial K) ^
             (T.topFace.degree - P.profileWeight * n)) *
         MvPolynomial.map Polynomial.C (R.profileHessian11.coeff n) := by
-  ext m
+  apply MvPolynomial.ext
+  intro m
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian11Family]
   rw [P.longitudinalEulerHessian_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
-  have hprofile := congrArg
-    (fun A : MvPolynomial (Fin 3) K => MvPolynomial.coeff m A)
-    (R.coeff_profileHessian11 n)
   have hbase := R.profile_coeff_coeff m n
-  simp only [MvPolynomial.coeff_mul, MvPolynomial.coeff_sub,
-    MvPolynomial.coeff_natCast, MvPolynomial.coeff_ofNat] at hprofile
-  simp only [Finsupp.cons_zero]
-  rw [hprofile, hbase]
+  have hscalar :
+      (n : MvPolynomial (Fin 3) K) *
+          ((n : MvPolynomial (Fin 3) K) - 1) =
+        MvPolynomial.C ((n : K) * ((n : K) - 1)) := by
+    have hn :
+        (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
+      (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
+    rw [hn, ← MvPolynomial.C_1, ← MvPolynomial.C_sub,
+      ← MvPolynomial.C_mul]
+  have hprofile :
+      MvPolynomial.coeff m (R.profileHessian11.coeff n) =
+        ((n : K) * ((n : K) - 1)) *
+          MvPolynomial.coeff m (R.profile.coeff n) := by
+    rw [R.coeff_profileHessian11, hscalar, MvPolynomial.coeff_C_mul]
+  have hnPolynomial :
+      (n : Polynomial K) * ((n : Polynomial K) - 1) =
+        Polynomial.C ((n : K) * ((n : K) - 1)) := by
+    have hn :
+        (n : Polynomial K) = Polynomial.C (n : K) :=
+      (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+    rw [hn, ← Polynomial.C_1, ← Polynomial.C_sub, ← Polynomial.C_mul]
+  rw [hnPolynomial, hprofile, hbase, Polynomial.C_mul]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
