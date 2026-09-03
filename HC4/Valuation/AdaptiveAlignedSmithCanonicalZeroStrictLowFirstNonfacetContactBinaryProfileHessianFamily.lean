@@ -98,6 +98,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian00F
   rw [P.parameterSecondEuler_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
+  simp only [Finsupp.cons_zero]
   have hbase := R.profile_coeff_coeff m n
   have haffine :
       (T.topFace.degree : MvPolynomial (Fin 3) K) -
@@ -140,7 +141,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian00F
           ((T.topFace.degree : K) - (P.profileWeight : K) * (n : K) - 1)) *
           MvPolynomial.coeff m (R.profile.coeff n) := by
     rw [R.coeff_profileHessian00, hscalar, MvPolynomial.coeff_C_mul]
-  rw [hprofile, hbase, Polynomial.C_mul]
+  rw [hprofile, hbase]
+  simp only [Polynomial.C_mul, Polynomial.C_sub, Polynomial.C_1]
   ring
 
 /-- Whole-longitudinal coefficient formula for the mixed entry. -/
@@ -162,6 +164,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian01F
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
+  simp only [Finsupp.cons_zero]
   have hbase := R.profile_coeff_coeff m n
   have haffine :
       (T.topFace.degree : MvPolynomial (Fin 3) K) -
@@ -198,7 +201,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian01F
         (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
       (map_natCast
         (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
-    rw [hn, haffine, ← MvPolynomial.C_mul]
+    rw [haffine, hn, ← MvPolynomial.C_mul]
   have hprofile :
       MvPolynomial.coeff m (R.profileHessian01.coeff n) =
         ((n : K) *
@@ -208,7 +211,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian01F
   have hnPolynomial :
       (n : Polynomial K) = Polynomial.C (n : K) :=
     (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
-  rw [hnPolynomial, hprofile, hbase, Polynomial.C_mul]
+  rw [hnPolynomial, hprofile, hbase]
+  simp only [Polynomial.C_mul]
   ring
 
 /-- Whole-longitudinal coefficient formula for the longitudinal entry. -/
@@ -229,6 +233,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian11F
   rw [P.longitudinalEulerHessian_coeff_binaryHomogenizedFamily]
   rw [P.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
+  simp only [Finsupp.cons_zero]
   have hbase := R.profile_coeff_coeff m n
   have hscalar :
       (n : MvPolynomial (Fin 3) K) *
@@ -252,7 +257,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessian11F
         (n : Polynomial K) = Polynomial.C (n : K) :=
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
     rw [hn, ← Polynomial.C_1, ← Polynomial.C_sub, ← Polynomial.C_mul]
-  rw [hnPolynomial, hprofile, hbase, Polynomial.C_mul]
+  rw [hnPolynomial, hprofile, hbase]
+  simp only [Polynomial.C_mul]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
