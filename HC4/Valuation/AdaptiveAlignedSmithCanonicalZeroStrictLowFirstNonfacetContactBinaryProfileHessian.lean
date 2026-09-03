@@ -121,8 +121,10 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian00
           (P.profileWeight : MvPolynomial (Fin 3) K) *
             (n : MvPolynomial (Fin 3) K) - 1)) *
         R.profile.coeff n := by
-  simp [QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00,
-    coeff_eulerDerivative, R.coeff_profileParameterEuler]
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00
+  rw [Polynomial.coeff_sub, Polynomial.coeff_C_mul,
+    Polynomial.coeff_C_mul, coeff_eulerDerivative,
+    R.coeff_profileParameterEuler]
   ring
 
 /-- Exact coefficient formula for `H01`. -/
