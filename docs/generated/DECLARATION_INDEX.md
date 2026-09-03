@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7141**.
+Distinct declaration spellings indexed: **7143**.
 
 ## Repeated declaration spellings
 
@@ -2910,6 +2910,8 @@ Distinct declaration spellings indexed: **7141**.
 - `binaryStationaryStaircaseDetLevel` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
 - `binaryStationaryStaircaseLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
 - `binaryStationaryStaircaseLayer_terminal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
+- `binaryWeightedEulerShear_couplingCorrection_parameterLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
+- `binaryWeightedEulerShear_couplingCorrection_profileOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binomialODEModel` — `def` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `binomialODEModel_satisfies` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `block` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
