@@ -46,6 +46,7 @@ theorem familyParameterLayer_map_C_mul
   apply MvPolynomial.ext
   intro d
   simp only [familyParameterLayer_coeff, MvPolynomial.coeff_mul]
+  rw [Polynomial.finset_sum_coeff]
   apply Finset.sum_congr rfl
   intro b hb
   rw [MvPolynomial.coeff_map]
