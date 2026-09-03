@@ -102,6 +102,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
   have hLongitudinal := P.binaryHomogenized_fallingLongitudinalRow
   unfold QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian01Family
     QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian11Family
+  simp only [map_sub, map_mul, map_pow, map_one] at hWeighted hLongitudinal ⊢
   linear_combination
     MvPolynomial.C
         (Polynomial.C ((T.topFace.degree : K) - 1)) *
