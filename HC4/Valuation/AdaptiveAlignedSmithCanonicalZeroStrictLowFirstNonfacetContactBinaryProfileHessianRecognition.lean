@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryHomogenization
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport
 import Mathlib.Tactic
 
 /-!
@@ -106,10 +107,29 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
     (fun F : MvPolynomial (Fin 4) K =>
       (MvPolynomial.finSuccEquiv K 3 F).coeff n) hlayer
   have hbase := P.binaryHomogenized_parameterLayer_longitudinal_coeff R n
+  have hcoeff' :
+      (MvPolynomial.finSuccEquiv K 3
+        (familyParameterLayer
+          (familyParameterSecondEuler P.binaryHomogenizedFamily) q)).coeff n =
+        (q : MvPolynomial (Fin 3) K) *
+          ((q : MvPolynomial (Fin 3) K) - 1) * R.profile.coeff n := by
+    calc
+      (MvPolynomial.finSuccEquiv K 3
+        (familyParameterLayer
+          (familyParameterSecondEuler P.binaryHomogenizedFamily) q)).coeff n =
+          (q : MvPolynomial (Fin 3) K) *
+            ((q : MvPolynomial (Fin 3) K) - 1) *
+              (MvPolynomial.finSuccEquiv K 3
+                (familyParameterLayer P.binaryHomogenizedFamily q)).coeff n := by
+        simpa using hcoeff
+      _ = (q : MvPolynomial (Fin 3) K) *
+            ((q : MvPolynomial (Fin 3) K) - 1) * R.profile.coeff n := by
+        rw [show q = T.topFace.degree - P.profileWeight * n by rfl]
+        rw [hbase]
   have hq := profile_order_cast P R hn
   rw [R.coeff_profileHessian00]
   rw [← hq]
-  simpa [q, hbase] using hcoeff
+  simpa [q] using hcoeff'
 
 /-- Exact `H01` recognition at every nonzero profile coefficient. -/
 theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian01_layer
@@ -146,7 +166,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
   have hq := profile_order_cast P R hn
   rw [R.coeff_profileHessian01]
   rw [← hq]
-  simpa [q, hEulerLayer] using hcoeff
+  simpa [q, hEulerLayer, mul_assoc, mul_comm, mul_left_comm] using hcoeff
 
 /-- Exact `H11` recognition at every nonzero profile coefficient. -/
 theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian11_layer
