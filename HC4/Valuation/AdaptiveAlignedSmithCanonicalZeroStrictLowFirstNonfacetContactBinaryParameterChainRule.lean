@@ -48,6 +48,11 @@ private theorem parameterEuler_X_pow_mul
       rw [Polynomial.derivative_mul, Polynomial.derivative_X_pow_succ]
       rw [pow_succ]
       push_cast
+      have hnat :
+          (m : Polynomial K) = Polynomial.C (m : K) := by
+        exact (map_natCast (Polynomial.C : K →+* Polynomial K) m).symm
+      rw [hnat]
+      simp only [map_add, map_one]
       ring
 
 /-- **R18 transverse-inflation parameter chain rule.**  Parameter Euler after
@@ -61,17 +66,19 @@ theorem familyParameterEuler_unitTransverseInflateFamily
           HC4.Polynomial.mvEuler (1 : Fin 4) F +
           HC4.Polynomial.mvEuler (2 : Fin 4) F +
           HC4.Polynomial.mvEuler (3 : Fin 4) F) := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   rw [coeff_familyParameterEuler, coeff_unitTransverseInflateFamily]
   rw [parameterEuler_X_pow_mul]
   rw [coeff_unitTransverseInflateFamily]
   simp only [MvPolynomial.coeff_add, coeff_familyParameterEuler, coeff_mvEuler]
   have hdeg :
-      (pureLongitudinalTransverseDegree d : Polynomial K) =
+      ((d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) : ℕ) : Polynomial K) =
         (d (1 : Fin 4) : Polynomial K) +
           (d (2 : Fin 4) : Polynomial K) +
           (d (3 : Fin 4) : Polynomial K) := by
-    simp [pureLongitudinalTransverseDegree]
+    push_cast
+    ring
   rw [hdeg]
   ring
 
@@ -95,10 +102,12 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_weightedEuler
           HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily =
       MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) *
         P.binaryHomogenizedFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
   rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
+  simp only [map_sub, map_mul, map_natCast, map_one]
   ring
 
 /-- **R18 binary falling parameter row.**  Differentiating the two-variable
@@ -113,12 +122,14 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingParamet
       MvPolynomial.C
           (Polynomial.C ((T.topFace.degree : K) - 1)) *
         familyParameterEuler P.binaryHomogenizedFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterSecondEuler, coeff_familyParameterEuler]
   rw [P.parameterSecondEuler_coeff_binaryHomogenizedFamily d]
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
   rw [P.parameterEuler_coeff_binaryHomogenizedFamily d]
+  simp only [map_sub, map_add, map_mul, map_pow, map_natCast, map_one]
   ring
 
 /-- **R18 binary falling longitudinal row.**  Differentiating in `x₀` gives
@@ -135,11 +146,13 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryHomogenized_fallingLongitu
           (Polynomial.C
             ((T.topFace.degree : K) - (P.profileWeight : K))) *
         HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
   rw [P.parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily d]
   rw [P.longitudinalEulerHessian_coeff_binaryHomogenizedFamily d]
+  simp only [map_sub, map_add, map_mul, map_pow, map_natCast, map_one]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
