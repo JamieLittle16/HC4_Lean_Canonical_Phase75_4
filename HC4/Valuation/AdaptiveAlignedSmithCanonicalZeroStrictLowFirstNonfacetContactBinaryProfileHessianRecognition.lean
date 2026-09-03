@@ -107,6 +107,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
     (fun F : MvPolynomial (Fin 4) K =>
       (MvPolynomial.finSuccEquiv K 3 F).coeff n) hlayer
   have hbase := P.binaryHomogenized_parameterLayer_longitudinal_coeff R n
+  have hbaseq :
+      (MvPolynomial.finSuccEquiv K 3
+        (familyParameterLayer P.binaryHomogenizedFamily q)).coeff n =
+        R.profile.coeff n := by
+    simpa [q] using hbase
   have hcoeff' :
       (MvPolynomial.finSuccEquiv K 3
         (familyParameterLayer
@@ -117,15 +122,27 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
       (MvPolynomial.finSuccEquiv K 3
         (familyParameterLayer
           (familyParameterSecondEuler P.binaryHomogenizedFamily) q)).coeff n =
-          (q : MvPolynomial (Fin 3) K) *
+          (((q : Polynomial (MvPolynomial (Fin 3) K)) *
+              ((q : Polynomial (MvPolynomial (Fin 3) K)) - 1)) *
+            (MvPolynomial.finSuccEquiv K 3
+              (familyParameterLayer P.binaryHomogenizedFamily q))).coeff n := by
+        simpa only [map_mul, map_sub, map_one, map_natCast] using hcoeff
+      _ = (q : MvPolynomial (Fin 3) K) *
             ((q : MvPolynomial (Fin 3) K) - 1) *
               (MvPolynomial.finSuccEquiv K 3
                 (familyParameterLayer P.binaryHomogenizedFamily q)).coeff n := by
-        simpa [Polynomial.coeff_C_mul] using hcoeff
+        rw [show
+          (q : Polynomial (MvPolynomial (Fin 3) K)) *
+              ((q : Polynomial (MvPolynomial (Fin 3) K)) - 1) =
+            Polynomial.C
+              ((q : MvPolynomial (Fin 3) K) *
+                ((q : MvPolynomial (Fin 3) K) - 1)) by
+          push_cast
+          ring]
+        rw [Polynomial.coeff_C_mul]
       _ = (q : MvPolynomial (Fin 3) K) *
             ((q : MvPolynomial (Fin 3) K) - 1) * R.profile.coeff n := by
-        rw [show q = T.topFace.degree - P.profileWeight * n by rfl]
-        rw [hbase]
+        rw [hbaseq]
   have hq := profile_order_cast P R hn
   rw [R.coeff_profileHessian00]
   rw [← hq]
@@ -167,7 +184,17 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
       MvPolynomial.coeff m (R.profile.coeff n) at hm
     rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
     rw [familyParameterLayer_coeff] at hm
-    simpa using congrArg (fun a : K => (n : K) * a) hm
+    have hmq :
+        (MvPolynomial.coeff (Finsupp.cons n m) P.binaryHomogenizedFamily).coeff q =
+          MvPolynomial.coeff m (R.profile.coeff n) := by
+      simpa [q] using hm
+    rw [Finsupp.cons_zero]
+    rw [Polynomial.coeff_natCast_mul]
+    rw [show (n : MvPolynomial (Fin 3) K) =
+        MvPolynomial.C (n : K) by
+      push_cast]
+    rw [MvPolynomial.coeff_C_mul]
+    exact congrArg (fun a : K => (n : K) * a) hmq
   have hcoeff' :
       (MvPolynomial.finSuccEquiv K 3
         (familyParameterLayer
@@ -180,11 +207,16 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
         (familyParameterLayer
           (familyParameterEuler
             (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily)) q)).coeff n =
-          (q : MvPolynomial (Fin 3) K) *
+          ((q : Polynomial (MvPolynomial (Fin 3) K)) *
+            (MvPolynomial.finSuccEquiv K 3
+              (familyParameterLayer
+                (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily) q))).coeff n := by
+        simpa only [map_mul, map_natCast] using hcoeff
+      _ = (q : MvPolynomial (Fin 3) K) *
             (MvPolynomial.finSuccEquiv K 3
               (familyParameterLayer
                 (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily) q)).coeff n := by
-        simpa [Polynomial.coeff_C_mul] using hcoeff
+        rw [Polynomial.coeff_natCast_mul]
       _ = (q : MvPolynomial (Fin 3) K) *
             ((n : MvPolynomial (Fin 3) K) * R.profile.coeff n) := by
         rw [hEulerLayer]
@@ -223,15 +255,27 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian1
     MvPolynomial.coeff m (R.profile.coeff n) at hm
   rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
   rw [familyParameterLayer_coeff] at hm
+  have hmq :
+      (MvPolynomial.coeff (Finsupp.cons n m) P.binaryHomogenizedFamily).coeff q =
+        MvPolynomial.coeff m (R.profile.coeff n) := by
+    simpa [q] using hm
   rw [R.coeff_profileHessian11]
-  have hprofile := congrArg
-    (fun A : MvPolynomial (Fin 3) K => MvPolynomial.coeff m A)
-    (R.coeff_profileHessian11 n)
-  simp only [MvPolynomial.coeff_mul] at hprofile
-  simpa [q] using hprofile.trans
-    (by
-      rw [← hm]
-      ring)
+  rw [Finsupp.cons_zero]
+  rw [show
+      (n : Polynomial K) * (n : Polynomial K) - (n : Polynomial K) =
+        Polynomial.C ((n : K) * ((n : K) - 1)) by
+    push_cast
+    ring]
+  rw [Polynomial.coeff_C_mul]
+  rw [show
+      (n : MvPolynomial (Fin 3) K) *
+          ((n : MvPolynomial (Fin 3) K) - 1) =
+        MvPolynomial.C ((n : K) * ((n : K) - 1)) by
+    push_cast
+    ring]
+  rw [MvPolynomial.coeff_C_mul]
+  exact congrArg
+    (fun a : K => ((n : K) * ((n : K) - 1)) * a) hmq
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
