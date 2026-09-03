@@ -43,8 +43,13 @@ theorem familyParameterLayer_map_C_mul
     familyParameterLayer (MvPolynomial.map Polynomial.C A * F) n =
       A * familyParameterLayer F n := by
   classical
-  ext d
-  simp [familyParameterLayer_coeff, MvPolynomial.coeff_mul]
+  apply MvPolynomial.ext
+  intro d
+  simp only [familyParameterLayer_coeff, MvPolynomial.coeff_mul]
+  apply Finset.sum_congr rfl
+  intro b hb
+  rw [MvPolynomial.coeff_map]
+  rw [Polynomial.coeff_C_mul]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -86,8 +91,14 @@ theorem binaryEulerSchurSourceFactor_ne_zero
     binaryEulerSchurSourceFactor (K := K) rho ≠ 0 := by
   unfold binaryEulerSchurSourceFactor
   exact mul_ne_zero
-    (pow_ne_zero 4 (mul_ne_zero MvPolynomial.X_ne_zero MvPolynomial.X_ne_zero))
-    (pow_ne_zero 2 (mul_ne_zero MvPolynomial.X_ne_zero MvPolynomial.X_ne_zero))
+    (pow_ne_zero 4
+      (mul_ne_zero
+        (MvPolynomial.X_ne_zero (rho 0))
+        (MvPolynomial.X_ne_zero (rho 1))))
+    (pow_ne_zero 2
+      (mul_ne_zero
+        (MvPolynomial.X_ne_zero (rho 2))
+        (MvPolynomial.X_ne_zero (rho 3))))
 
 /-- **R18 exact determinant representation bridge.**  Weighted-Euler
 straightening preserves the Euler-scaled Schur determinant, and Euler scaling
