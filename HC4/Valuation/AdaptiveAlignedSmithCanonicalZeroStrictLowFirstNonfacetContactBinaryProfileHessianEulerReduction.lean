@@ -104,14 +104,12 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
     QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian11Family
   simp only [map_sub, map_mul, map_pow, map_one] at hWeighted hLongitudinal ⊢
   linear_combination
-    MvPolynomial.C
-        (Polynomial.C ((T.topFace.degree : K) - 1)) *
+    (MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) - 1) *
       hWeighted *
         (HC4.Polynomial.eulerScaledHessian
           P.binaryHomogenizedFamily (0 : Fin 4) (0 : Fin 4)) -
-    MvPolynomial.C
-        (Polynomial.C
-          ((T.topFace.degree : K) - (P.profileWeight : K))) *
+    (MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) -
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K))) *
       hLongitudinal *
         (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily)
 
