@@ -137,8 +137,14 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
             Polynomial.C
               ((q : MvPolynomial (Fin 3) K) *
                 ((q : MvPolynomial (Fin 3) K) - 1)) by
-          push_cast
-          ring]
+          have hqC :
+              (q : Polynomial (MvPolynomial (Fin 3) K)) =
+                Polynomial.C (q : MvPolynomial (Fin 3) K) :=
+            (map_natCast
+              (Polynomial.C : MvPolynomial (Fin 3) K →+*
+                Polynomial (MvPolynomial (Fin 3) K)) q).symm
+          rw [hqC, ← Polynomial.C_1, ← Polynomial.C_sub,
+            ← Polynomial.C_mul]]
         rw [Polynomial.coeff_C_mul]
       _ = (q : MvPolynomial (Fin 3) K) *
             ((q : MvPolynomial (Fin 3) K) - 1) * R.profile.coeff n := by
@@ -192,7 +198,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian0
     rw [Polynomial.coeff_natCast_mul]
     rw [show (n : MvPolynomial (Fin 3) K) =
         MvPolynomial.C (n : K) by
-      push_cast]
+      exact (map_natCast
+        (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm]
     rw [MvPolynomial.coeff_C_mul]
     exact congrArg (fun a : K => (n : K) * a) hmq
   have hcoeff' :
@@ -264,15 +271,22 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryParameterHessian1
   rw [show
       (n : Polynomial K) * (n : Polynomial K) - (n : Polynomial K) =
         Polynomial.C ((n : K) * ((n : K) - 1)) by
-    push_cast
+    have hnC :
+        (n : Polynomial K) = Polynomial.C (n : K) :=
+      (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+    rw [hnC, ← Polynomial.C_mul, ← Polynomial.C_sub]
+    congr 1
     ring]
   rw [Polynomial.coeff_C_mul]
   rw [show
       (n : MvPolynomial (Fin 3) K) *
           ((n : MvPolynomial (Fin 3) K) - 1) =
         MvPolynomial.C ((n : K) * ((n : K) - 1)) by
-    push_cast
-    ring]
+    have hnC :
+        (n : MvPolynomial (Fin 3) K) = MvPolynomial.C (n : K) :=
+      (map_natCast (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) n).symm
+    rw [hnC, ← MvPolynomial.C_1, ← MvPolynomial.C_sub,
+      ← MvPolynomial.C_mul]]
   rw [MvPolynomial.coeff_C_mul]
   exact congrArg
     (fun a : K => ((n : K) * ((n : K) - 1)) * a) hmq
