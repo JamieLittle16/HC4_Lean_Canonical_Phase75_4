@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7175**.
+Distinct declaration spellings indexed: **7178**.
 
 ## Repeated declaration spellings
 
@@ -2074,7 +2074,10 @@ Distinct declaration spellings indexed: **7175**.
 - `QsOtherFacetContactQuadraticReesPackage.pr_cancel_contactFamily_activeDet_of_natDegree_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianBoundedCancellation`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactFamily_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
+- `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_activeDet_mul_rawComplementDet_sub_profileReduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_rawComplementDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
+- `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_rawComplementDet_eq_profileReduction_add_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
+- `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_rawComplementDet_sub_profileReduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.profilePivotProduct_coeff_eq_sourceLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
