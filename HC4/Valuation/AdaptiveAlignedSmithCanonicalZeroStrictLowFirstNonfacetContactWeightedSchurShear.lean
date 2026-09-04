@@ -280,8 +280,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
         MvPolynomial.C (Polynomial.C (P.profileWeight : K)) := by
     norm_num
   rw [hr]
-  simp only [map_sub, map_mul, map_one] at
-    hWeighted hParameter h0 h1 h2 h3 ⊢
+  simp only [map_sub, map_mul, map_one] at hWeighted hParameter h0 h1 h2 h3 ⊢
   linear_combination
     MvPolynomial.C (Polynomial.C (P.profileWeight : K)) * h0 +
       h1 + h2 + h3 - hParameter +
