@@ -143,7 +143,30 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalPara
         R.contactLongitudinalParameterLayer q n := by
   rw [familyParameterLayer_familyParameterSecondEuler]
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
-  simpa [mul_comm, mul_left_comm, mul_assoc]
+  apply MvPolynomial.ext
+  intro m
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  change
+    MvPolynomial.coeff (m.cons n)
+        (MvPolynomial.C (q : K) * (MvPolynomial.C (q : K) - 1) *
+          familyParameterLayer P.contactFamily q) =
+      MvPolynomial.coeff m
+        (MvPolynomial.C (q : K) * (MvPolynomial.C (q : K) - 1) *
+          (MvPolynomial.finSuccEquiv K 3
+            (familyParameterLayer P.contactFamily q)).coeff n)
+  have hscalar4 :
+      (MvPolynomial.C (q : K) * (MvPolynomial.C (q : K) - 1) :
+          MvPolynomial (Fin 4) K) =
+        MvPolynomial.C ((q : K) * ((q : K) - 1)) := by
+    rw [map_mul, map_sub, map_one]
+  have hscalar3 :
+      (MvPolynomial.C (q : K) * (MvPolynomial.C (q : K) - 1) :
+          MvPolynomial (Fin 3) K) =
+        MvPolynomial.C ((q : K) * ((q : K) - 1)) := by
+    rw [map_mul, map_sub, map_one]
+  rw [hscalar4, hscalar3]
+  rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_C_mul]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
 
 /-- **R18.31 spatial Euler commutation.**  Exact coefficient-parameter layer
 extraction commutes with every source Euler operator.  This is linear in the
@@ -175,11 +198,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   apply MvPolynomial.ext
   intro m
-  simp only [MvPolynomial.finSuccEquiv_coeff_coeff, coeff_mvEuler]
-  simpa [mul_comm] using
-    (Polynomial.coeff_mul_natCast (R := K)
-      (p := MvPolynomial.coeff (m.cons n) P.contactFamily)
-      (a := n) (k := q))
+  rw [MvPolynomial.coeff_C_mul]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [coeff_mvEuler]
+  simp
 
 /-- The first exposed contact layer is literally the retained nonzero leading
 transverse slice. -/
