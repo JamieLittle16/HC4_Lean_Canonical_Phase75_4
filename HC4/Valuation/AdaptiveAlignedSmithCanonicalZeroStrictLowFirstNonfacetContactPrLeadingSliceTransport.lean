@@ -3,18 +3,19 @@ import HC4.Valuation.BoundedReverseWeightedRees
 import Mathlib.Tactic
 
 /-!
-# A19.R18.21: contact-Rees transport of the leading transverse slice
+# A19.R18.21: contact-Rees transport of exposed transverse slices
 
-The maximal transverse slice selected in the previous module lives in the raw
-source profile.  The honest contact Rees records every source monomial at the
-parameter deficit
+The maximal transverse slices selected from a raw longitudinal profile live in
+the source coefficient ring.  The honest contact Rees records every source
+monomial at the parameter deficit
 
     D - (transverseDegree + profileWeight * longitudinalDegree).
 
-This module freezes that statement first for an arbitrary longitudinal slice,
-then for the leading maximal-transverse homogeneous component.  On that
-component the transverse degree is constant, so the whole component is
-literally one parameter monomial times the raw homogeneous slice.
+This module first freezes that statement for an arbitrary exact transverse
+component at an arbitrary longitudinal index.  The leading-slice theorem is
+then just the canonical specialization used by R18.21.  The same generic
+transport is consumed by the next-highest slice module, avoiding a second copy
+of the contact-grading proof.
 
 No determinant, Schur, or terminal geometry is used here.
 -/
@@ -85,12 +86,52 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlic
     rw [hraw]
     simp
 
+/-- **R18.21 generic exact-component transport.**  Taking a fixed transverse
+weight component of a longitudinal source slice commutes with passage to the
+honest contact family, up to the single contact parameter monomial prescribed
+by the exact grade. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_initialForm
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (n t : ℕ) :
+    HC4.Polynomial.initialForm
+        qsContactTransverseIntegerWeight (t : ℤ)
+        (R.contactLongitudinalSlice n) =
+      MvPolynomial.C
+          (Polynomial.X ^
+            (T.topFace.degree - (t + P.profileWeight * n))) *
+        MvPolynomial.map Polynomial.C
+          (HC4.Polynomial.initialForm
+            qsContactTransverseIntegerWeight (t : ℤ)
+            (R.profile.coeff n)) := by
+  classical
+  apply MvPolynomial.ext
+  intro m
+  rw [HC4.Polynomial.coeff_initialForm,
+    weight_qsContactTransverseIntegerWeight]
+  rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
+  rw [R.contactLongitudinalSlice_coeff]
+  by_cases hm : qsContactTransverseDegree m = t
+  · have hweight :
+        (qsContactTransverseDegree m : ℤ) = (t : ℤ) := by
+      exact_mod_cast hm
+    rw [if_pos hweight]
+    rw [HC4.Polynomial.coeff_initialForm,
+      weight_qsContactTransverseIntegerWeight, if_pos hweight]
+    rw [hm]
+  · have hweight :
+        (qsContactTransverseDegree m : ℤ) ≠ (t : ℤ) := by
+      exact_mod_cast hm
+    rw [if_neg hweight]
+    rw [HC4.Polynomial.coeff_initialForm,
+      weight_qsContactTransverseIntegerWeight, if_neg hweight]
+    simp
+
 /-- **R18.21 uniform contact order on the leading transverse slice.**
 
 After selecting the maximal transverse homogeneous component, every surviving
 coefficient has the same contact deficit.  Therefore the corresponding exact
 component of the honest contact-family leading longitudinal slice is a single
-parameter monomial times the constant lift of the raw slice. -/
+parameter monomial times the constant lift of the raw homogeneous slice. -/
 theorem QsOtherFacetContactLeadingTransverseSliceData.contactLeadingSlice_initialForm
     {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
     (S : QsOtherFacetContactLeadingTransverseSliceData R) :
@@ -103,34 +144,9 @@ theorem QsOtherFacetContactLeadingTransverseSliceData.contactLeadingSlice_initia
               (S.transverseDegree +
                 P.profileWeight * R.profile.natDegree))) *
         MvPolynomial.map Polynomial.C S.slice := by
-  classical
-  apply MvPolynomial.ext
-  intro m
-  rw [HC4.Polynomial.coeff_initialForm,
-    weight_qsContactTransverseIntegerWeight]
-  rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
-  rw [R.contactLongitudinalSlice_coeff]
-  by_cases hm : qsContactTransverseDegree m = S.transverseDegree
-  · have hweight :
-        (qsContactTransverseDegree m : ℤ) =
-          (S.transverseDegree : ℤ) := by exact_mod_cast hm
-    rw [if_pos hweight]
-    have hScoeff :
-        MvPolynomial.coeff m S.slice =
-          MvPolynomial.coeff m
-            (R.profile.coeff R.profile.natDegree) := by
-      rw [S.slice_eq, HC4.Polynomial.coeff_initialForm,
-        weight_qsContactTransverseIntegerWeight, if_pos hweight]
-    rw [hScoeff, hm]
-  · have hweight :
-        (qsContactTransverseDegree m : ℤ) ≠
-          (S.transverseDegree : ℤ) := by exact_mod_cast hm
-    rw [if_neg hweight]
-    have hSzero : MvPolynomial.coeff m S.slice = 0 := by
-      rw [S.slice_eq, HC4.Polynomial.coeff_initialForm,
-        weight_qsContactTransverseIntegerWeight, if_neg hweight]
-    rw [hSzero]
-    simp
+  rw [S.slice_eq]
+  exact R.contactLongitudinalSlice_initialForm
+    R.profile.natDegree S.transverseDegree
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
