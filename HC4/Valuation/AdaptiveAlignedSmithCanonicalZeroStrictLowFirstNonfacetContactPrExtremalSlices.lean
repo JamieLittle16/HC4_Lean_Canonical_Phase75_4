@@ -61,7 +61,6 @@ noncomputable def qsContactTransverseFallingEuler
 
 /-- Exact transverse support degree gives Mathlib natural weighted
 homogeneity for the all-ones weight. -/
-omit [CharZero K] [IsAlgClosed K] in
 theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
     (S : MvPolynomial (Fin 3) K)
     (t : ℕ)
@@ -87,7 +86,6 @@ theorem qsContactTransverseEuler_eq_degree_mul
     Fin.sum_univ_three] using heuler
 
 /-- The transverse Euler operator is linear over coefficient-field constants. -/
-omit [CharZero K] [IsAlgClosed K] in
 theorem qsContactTransverseEuler_C_mul
     (a : K)
     (S : MvPolynomial (Fin 3) K) :
@@ -107,7 +105,7 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
   have hE := qsContactTransverseEuler_eq_degree_mul S t hexact
   unfold qsContactTransverseFallingEuler
   rw [hE, qsContactTransverseEuler_C_mul, hE]
-  ring_nf
+  ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -162,9 +160,14 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
   let Q : Polynomial (MvPolynomial (Fin 3) K) :=
     R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N
   have hQne : Q ≠ 0 := by
-    dsimp [Q, N]
-    exact sub_leadingMonomial_ne_zero_of_coeff_zero_ne_zero
-      R.profile R.profile.natDegree (by omega) R.coeff_zero_ne
+    intro hzero
+    have hc := congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 3) K) => p.coeff 0) hzero
+    dsimp [Q] at hc
+    rw [Polynomial.coeff_sub, Polynomial.coeff_C_mul] at hc
+    have h0N : (0 : ℕ) ≠ N := by omega
+    simp [Polynomial.coeff_X_pow, h0N] at hc
+    exact R.coeff_zero_ne hc
   have htopdeg :
       (Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree ≤ N := by
     calc
@@ -191,7 +194,6 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
     omega
   have hQlead : Q.coeff M ≠ 0 := by
     dsimp [M]
-    rw [Polynomial.coeff_natDegree]
     exact Polynomial.leadingCoeff_ne_zero.mpr hQne
   have hprofileM : R.profile.coeff M = Q.coeff M := by
     dsimp [Q]
