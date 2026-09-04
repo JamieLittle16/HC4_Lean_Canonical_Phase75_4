@@ -97,6 +97,72 @@ theorem prContactWeightedEuler_rawComplement_crossScalar_of_topTransverseZero
   rw [htopK, hqMK]
   ring
 
+/-! ## Zero-forcing consequences used by the closing extremal argument -/
+
+/-- If the PR self scalar vanishes at a genuinely positive longitudinal
+exponent, the monomial is forced to be pure longitudinal.  This is the exact
+finite arithmetic implication needed at the first exposed order; it uses only
+characteristic zero and no Schur or support hypothesis. -/
+theorem prContactWeightedEuler_selfDegreeScalar_eq_zero_forces_transverse_zero
+    (n t : ℕ)
+    (hn : 0 < n)
+    (hzero :
+      - (n : K) * (t : K) * ((n : K) + (t : K) - 1) = 0) :
+    t = 0 := by
+  by_contra ht
+  have htpos : 0 < t := Nat.pos_of_ne_zero ht
+  have hn0 : (n : K) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hn)
+  have ht0 : (t : K) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt htpos)
+  have hlast : (n : K) + (t : K) - 1 ≠ 0 := by
+    intro hz
+    have hone : (n : K) + (t : K) = 1 := by
+      linear_combination hz
+    have hnat : n + t = 1 := by
+      exact_mod_cast hone
+    omega
+  exact
+    (mul_ne_zero (mul_ne_zero (neg_ne_zero.mpr hn0) ht0) hlast) hzero
+
+/-- After the leading slice has become pure longitudinal, vanishing of the PR
+cross scalar at longitudinal degree `N ≥ 2` forces the next transverse degree
+to be one of the two finite possibilities `0` or `1`.  This is deliberately
+weaker than choosing either branch: the next geometric commit must rule out
+the surviving alternative from the actual terminal equations. -/
+theorem prContactWeightedEuler_crossDegreeScalar_eq_zero_forces_transverse_zero_or_one
+    (N u : ℕ)
+    (hN : 2 ≤ N)
+    (hzero :
+      (N : K) * (u : K) * ((N : K) - 1) * ((u : K) - 1) = 0) :
+    u = 0 ∨ u = 1 := by
+  by_cases hu0 : u = 0
+  · exact Or.inl hu0
+  by_cases hu1 : u = 1
+  · exact Or.inr hu1
+  exfalso
+  have hNpos : 0 < N := by omega
+  have hN0 : (N : K) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hNpos)
+  have hu0K : (u : K) ≠ 0 := by
+    exact_mod_cast hu0
+  have hNm1 : (N : K) - 1 ≠ 0 := by
+    intro hz
+    have hone : (N : K) = 1 := by
+      linear_combination hz
+    have hNat : N = 1 := by
+      exact_mod_cast hone
+    omega
+  have hum1 : (u : K) - 1 ≠ 0 := by
+    intro hz
+    have hone : (u : K) = 1 := by
+      linear_combination hz
+    have hNat : u = 1 := by
+      exact_mod_cast hone
+    exact hu1 hNat
+  exact
+    (mul_ne_zero (mul_ne_zero (mul_ne_zero hN0 hu0K) hNm1) hum1) hzero
+
 end
 
 end HC4.Valuation
