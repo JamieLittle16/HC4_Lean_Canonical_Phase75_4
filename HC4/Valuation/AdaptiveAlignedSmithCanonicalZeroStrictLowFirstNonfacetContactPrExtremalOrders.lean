@@ -103,7 +103,8 @@ theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero
     E.leading.transverseDegree = 0 := by
   apply prContactWeightedEuler_selfDegreeScalar_eq_zero_forces_transverse_zero
     (K := K) E.next.N E.leading.transverseDegree
-  · omega
+  · have hN := E.N_two_le
+    omega
   · exact hzero
 
 /-- **R18.27 next scalar consequence.**  After the leading slice is pure
