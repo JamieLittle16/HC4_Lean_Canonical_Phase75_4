@@ -85,6 +85,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_act
   rw [P.pr_contactWeightedEulerShear_rawComplementDet_eq_profileReduction_add_residual]
   ring
 
+-- CI anchor: verify the exact residual obstruction after inventory refresh.
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
