@@ -105,7 +105,7 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
   have hE := qsContactTransverseEuler_eq_degree_mul S t hexact
   unfold qsContactTransverseFallingEuler
   rw [hE, qsContactTransverseEuler_C_mul, hE]
-  ring
+  ring_nf
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
