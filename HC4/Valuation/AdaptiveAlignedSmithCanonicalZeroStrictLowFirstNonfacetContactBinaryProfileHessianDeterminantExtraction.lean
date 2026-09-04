@@ -216,10 +216,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_coeff
   have hm := congrArg
     (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
     hlong
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff m
+    P.binaryProfileHessianDetFamily n] at hm
   have hmN := congrArg
     (fun q : Polynomial K =>
       q.coeff (2 * T.topFace.degree - P.profileWeight * n)) hm
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hmN
   rw [← familyParameterLayer_coeff] at hmN
   rw [hzero] at hmN
   simp only [MvPolynomial.coeff_zero] at hmN
