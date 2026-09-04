@@ -103,9 +103,24 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
     qsContactTransverseFallingEuler S =
       MvPolynomial.C ((t : K) * ((t : K) - 1)) * S := by
   have hE := qsContactTransverseEuler_eq_degree_mul S t hexact
+  have hC :
+      MvPolynomial.C ((t : K) * ((t : K) - 1)) =
+        MvPolynomial.C (t : K) * MvPolynomial.C (t : K) -
+          MvPolynomial.C (t : K) := by
+    calc
+      MvPolynomial.C ((t : K) * ((t : K) - 1)) =
+          MvPolynomial.C ((t : K) * (t : K) - (t : K)) := by
+        congr 1
+        ring
+      _ = MvPolynomial.C ((t : K) * (t : K)) -
+          MvPolynomial.C (t : K) := by
+        rw [MvPolynomial.C_sub]
+      _ = MvPolynomial.C (t : K) * MvPolynomial.C (t : K) -
+          MvPolynomial.C (t : K) := by
+        rw [MvPolynomial.C_mul]
   unfold qsContactTransverseFallingEuler
-  rw [hE, qsContactTransverseEuler_C_mul, hE]
-  ring_nf
+  rw [hE, qsContactTransverseEuler_C_mul, hE, hC]
+  ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
