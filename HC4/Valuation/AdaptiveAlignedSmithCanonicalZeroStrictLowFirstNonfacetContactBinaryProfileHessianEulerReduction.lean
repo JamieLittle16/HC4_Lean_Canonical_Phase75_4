@@ -125,7 +125,7 @@ private theorem mvEuler_zero_unitTransverseInflateFamily
   ext d
   rw [coeff_mvEuler, coeff_unitTransverseInflateFamily,
     coeff_unitTransverseInflateFamily, coeff_mvEuler]
-  ring
+  ring_nf
 
 /-- Contact-native preimage of the binary longitudinal profile determinant.
 It uses only the contact family, its longitudinal Euler row, and its
@@ -188,7 +188,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
     dsimp [f]
     simp [unitTransverseInflateRingHom, kernelInflateHom_C]
   rw [P.binaryProfileHessianDetFamily_eq_longitudinal_reduction,
-    hfam, hEuler, hHessian]
+    hEuler, hHessian, hfam]
   unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
   simp only [map_add, map_sub, map_mul, hC]
 
