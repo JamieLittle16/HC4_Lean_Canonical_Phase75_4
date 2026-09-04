@@ -175,30 +175,50 @@ private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_contac
   exact familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse
     (contactWeightedEulerShear_extremalRemainder P rho) d q
 
-/-- The same exact contact/binary grading dictionary for the binary profile
-Hessian determinant.  R18.21 can therefore compare the correction remainder
-with the profile determinant coefficientwise in one contact grade, without
-ever identifying the two filtrations globally. -/
-private theorem binaryProfileHessianDetFamily_layer_coeff_eq_contactReduction
+/-- The binary Euler active-pivot/profile product is the simultaneous
+transverse inflation of the corresponding honest-contact product.  This keeps
+the active pivot attached to the correction identity instead of comparing the
+correction remainder with a bare profile determinant. -/
+private theorem binaryWeightedEulerShear_activeDet_mul_profile_eq_map_contact
     (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4)) :
+    (P.binaryWeightedEulerShear rho).activeDet *
+        P.binaryProfileHessianDetFamily =
+      unitTransverseInflateRingHom (K := K)
+        ((P.contactWeightedEulerShear rho).activeDet *
+          P.contactProfileHessianDetReduction) := by
+  rw [P.binaryWeightedEulerShear_activeDet rho,
+    P.binaryProfileHessianDetFamily_eq_map_contactProfileReduction]
+  exact (map_mul (unitTransverseInflateRingHom (K := K)) _ _).symm
+
+/-- Coefficientwise contact/binary grading dictionary for the active-pivot
+profile product. -/
+private theorem binaryWeightedEulerShear_activeDet_mul_profile_layer_coeff_eq_contact
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
     (d : Fin 4 →₀ ℕ)
     (q : ℕ) :
     MvPolynomial.coeff d
-        (familyParameterLayer P.binaryProfileHessianDetFamily
+        (familyParameterLayer
+          ((P.binaryWeightedEulerShear rho).activeDet *
+            P.binaryProfileHessianDetFamily)
           (q + (d 1 + d 2 + d 3))) =
       MvPolynomial.coeff d
-        (familyParameterLayer P.contactProfileHessianDetReduction q) := by
-  rw [P.binaryProfileHessianDetFamily_eq_map_contactProfileReduction]
+        (familyParameterLayer
+          ((P.contactWeightedEulerShear rho).activeDet *
+            P.contactProfileHessianDetReduction) q) := by
+  rw [binaryWeightedEulerShear_activeDet_mul_profile_eq_map_contact]
   rw [unitTransverseInflateRingHom_apply]
   exact familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse
-    P.contactProfileHessianDetReduction d q
+    ((P.contactWeightedEulerShear rho).activeDet *
+      P.contactProfileHessianDetReduction) d q
 
 /-- **R18.21 contact comparison adapter.**  To identify an extremal binary
-correction coefficient with the corresponding binary profile-Hessian
+correction coefficient with the corresponding active-pivot/profile-product
 coefficient, it is enough to prove the single coefficient identity in the
 honest contact grading.  This is the exact local obligation consumed by the
 remaining terminal-geometry calculation. -/
-private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_profile_of_contact
+private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_activeProfile_of_contact
     (P : QsOtherFacetContactQuadraticReesPackage C)
     (rho : Equiv.Perm (Fin 4))
     (d : Fin 4 →₀ ℕ)
@@ -208,13 +228,17 @@ private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_profil
           (familyParameterLayer
             (contactWeightedEulerShear_extremalRemainder P rho) q) =
         MvPolynomial.coeff d
-          (familyParameterLayer P.contactProfileHessianDetReduction q)) :
+          (familyParameterLayer
+            ((P.contactWeightedEulerShear rho).activeDet *
+              P.contactProfileHessianDetReduction) q)) :
     MvPolynomial.coeff d
         (familyParameterLayer
           (binaryWeightedEulerShear_extremalRemainder P rho)
           (q + (d 1 + d 2 + d 3))) =
       MvPolynomial.coeff d
-        (familyParameterLayer P.binaryProfileHessianDetFamily
+        (familyParameterLayer
+          ((P.binaryWeightedEulerShear rho).activeDet *
+            P.binaryProfileHessianDetFamily)
           (q + (d 1 + d 2 + d 3))) := by
   calc
     MvPolynomial.coeff d
@@ -227,11 +251,16 @@ private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_profil
       binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_contact
         P rho d q
     _ = MvPolynomial.coeff d
-        (familyParameterLayer P.contactProfileHessianDetReduction q) := hcontact
+        (familyParameterLayer
+          ((P.contactWeightedEulerShear rho).activeDet *
+            P.contactProfileHessianDetReduction) q) := hcontact
     _ = MvPolynomial.coeff d
-        (familyParameterLayer P.binaryProfileHessianDetFamily
+        (familyParameterLayer
+          ((P.binaryWeightedEulerShear rho).activeDet *
+            P.binaryProfileHessianDetFamily)
           (q + (d 1 + d 2 + d 3))) :=
-      (binaryProfileHessianDetFamily_layer_coeff_eq_contactReduction P d q).symm
+      (binaryWeightedEulerShear_activeDet_mul_profile_layer_coeff_eq_contact
+        P rho d q).symm
 
 /-- The correction identity at the active-pivot shifted profile order.  The
 `+4` is the exact order used by the one-pivot finite-staircase cancellation;
@@ -308,7 +337,7 @@ private theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_fou
       rw [hd]
       simp [binaryWeightedEulerShear_extremalRemainder]
 
--- CI anchor: compile the transverse correction transport after inventory refresh.
+-- CI anchor: compile the active-profile correction transport after inventory refresh.
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
