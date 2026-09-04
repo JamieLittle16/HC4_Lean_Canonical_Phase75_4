@@ -335,7 +335,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_raw
           (Polynomial.C
             ((T.topFace.degree : K) - (P.profileWeight : K))) * E) +
       P.contactProfileParameterResidual := by
-  dsimp only
+  dsimp
   have hx :
       (P.contactWeightedEulerShear qsPrContactSchurPermutation).x =
         HC4.Polynomial.eulerScaledHessian
