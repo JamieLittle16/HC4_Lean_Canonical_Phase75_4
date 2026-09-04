@@ -193,7 +193,6 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
   unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
   simp only [map_add, map_sub, map_mul]
   simp_rw [hC]
-  ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
