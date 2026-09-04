@@ -1,8 +1,10 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDeterminantExtraction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileTwoCoefficientRigidity
 import Mathlib.Tactic
 
 /-!
@@ -12,17 +14,15 @@ A19.114 constructs the exact symbolic longitudinal profile of the represented
 source, and A19.115 injects it into the fraction field of the transverse
 coefficient domain without losing its constant coefficient or degree.
 
-At that point every input of the already-green finite staircase rigidity
-theorem is present except one equation:
+The historical closing interface asked for the complete stationary residual
+to vanish.  R18.21 has now isolated the two coefficients actually used by the
+finite staircase contradiction: the leading `N+N` coefficient and the
+next-highest `N+M` coefficient.  This file therefore owns both consumers.
 
-    binaryStaircaseProfileResidual D profileWeight profile = 0.
-
-The first theorem below freezes that final field-valued interface.  R19 then
-composes the integral fraction-field recognition theorem with this endpoint:
-a caller may remain entirely in the honest transverse polynomial coefficient
-ring and supply only three staircase Hessian entries, their coefficient
-formulas, and a zero determinant.  Localization and the final finite staircase
-contradiction are discharged here once and for all.
+The integral profile Hessian maps exactly to the canonical fraction-field
+staircase residual.  Consequently two zero binary determinant-family layers at
+the corresponding exact parameter orders already imply `False`; no all-depth
+product clock is needed.
 
 No transverse evaluation, planar JC2 hypothesis, or division in the geometric
 coefficient ring is introduced.
@@ -62,6 +62,75 @@ theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual
       H.coeff_zero_ne H.support_bound hres
   have htwo : 2 ≤ H.profile.natDegree := H.degree_two_le
   omega
+
+/-- **R19 localization identity.**  Mapping the honest integral profile Hessian
+determinant into the transverse fraction field gives exactly the canonical
+stationary staircase residual of the mapped profile. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHessianDet_eq_residual
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P) :
+    Polynomial.map
+        (algebraMap (MvPolynomial (Fin 3) K) (qsContactProfileField K))
+        R.profileHessianDet =
+      binaryStaircaseProfileResidual T.topFace.degree P.profileWeight
+        (Polynomial.map
+          (algebraMap (MvPolynomial (Fin 3) K) (qsContactProfileField K))
+          R.profile) := by
+  let A := MvPolynomial (Fin 3) K
+  let L := qsContactProfileField K
+  let ι : A →+* L := algebraMap A L
+  change Polynomial.map ι R.profileHessianDet =
+    binaryStaircaseProfileResidual T.topFace.degree P.profileWeight
+      (Polynomial.map ι R.profile)
+  have h00coeff : ∀ n : ℕ,
+      (Polynomial.map ι R.profileHessian00).coeff n =
+        (((T.topFace.degree : L) - (P.profileWeight : L) * (n : L)) *
+          ((T.topFace.degree : L) - (P.profileWeight : L) * (n : L) - 1)) *
+          (Polynomial.map ι R.profile).coeff n := by
+    intro n
+    simpa [A, L, ι] using congrArg ι (R.coeff_profileHessian00 n)
+  have h01coeff : ∀ n : ℕ,
+      (Polynomial.map ι R.profileHessian01).coeff n =
+        (n : L) *
+          ((T.topFace.degree : L) - (P.profileWeight : L) * (n : L)) *
+          (Polynomial.map ι R.profile).coeff n := by
+    intro n
+    simpa [A, L, ι] using congrArg ι (R.coeff_profileHessian01 n)
+  have h11coeff : ∀ n : ℕ,
+      (Polynomial.map ι R.profileHessian11).coeff n =
+        (n : L) * ((n : L) - 1) *
+          (Polynomial.map ι R.profile).coeff n := by
+    intro n
+    simpa [A, L, ι] using congrArg ι (R.coeff_profileHessian11 n)
+  have h00eq :
+      Polynomial.map ι R.profileHessian00 =
+        binaryStaircaseProfileHessian00
+          T.topFace.degree P.profileWeight (Polynomial.map ι R.profile) :=
+    binaryStaircaseProfileHessian00_eq_of_coeff
+      T.topFace.degree P.profileWeight
+      (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian00)
+      h00coeff
+  have h01eq :
+      Polynomial.map ι R.profileHessian01 =
+        binaryStaircaseProfileHessian01
+          T.topFace.degree P.profileWeight (Polynomial.map ι R.profile) :=
+    binaryStaircaseProfileHessian01_eq_of_coeff
+      T.topFace.degree P.profileWeight
+      (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian01)
+      h01coeff
+  have h11eq :
+      Polynomial.map ι R.profileHessian11 =
+        binaryStaircaseProfileHessian11 (Polynomial.map ι R.profile) :=
+    binaryStaircaseProfileHessian11_eq_of_coeff
+      (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian11)
+      h11coeff
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet
+  simp only [map_sub, map_mul]
+  rw [h00eq, h01eq, h11eq]
+  exact binaryStaircaseProfileHessianDet_eq_residual
+    T.topFace.degree P.profileWeight (Polynomial.map ι R.profile)
 
 /-- **A19.R19 integral closing interface.**
 
@@ -117,6 +186,101 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise
   apply H.impossible_of_residual
   rw [hprofile]
   exact hres
+
+/-- **R19 two-exposed-layer terminal contradiction.**
+
+Let `N` be the actual highest longitudinal profile index and `M` the degree
+left after deleting its leading monomial.  It is enough to kill the binary
+profile-Hessian determinant family at the two exact parameter orders attached
+to longitudinal degrees `N+N` and `N+M`.  Localization preserves the finite
+profile data and turns those two integral equations into the two field-valued
+residual coefficients consumed by the stationary staircase contradiction. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binaryProfileHessianDetFamily_layers
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (N M : ℕ)
+    (hN : N = R.profile.natDegree)
+    (hM : M =
+      (R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree)
+    (hNN :
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * (N + N)) = 0)
+    (hNM :
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * (N + M)) = 0) : False := by
+  let A := MvPolynomial (Fin 3) K
+  let L := qsContactProfileField K
+  let ι : A →+* L := algebraMap A L
+  have hι : Function.Injective ι := IsFractionRing.injective A L
+  let H : QsOtherFacetContactFractionProfilePackage C P :=
+    Classical.choice R.fractionProfilePackage
+  have hprofile : H.profile = Polynomial.map ι R.profile := by
+    dsimp [ι, A, L]
+    rw [H.profile_eq, qsContactFractionLongitudinalProfile, ← R.profile_eq]
+  have hmapDegree :
+      (Polynomial.map ι R.profile).natDegree = R.profile.natDegree :=
+    Polynomial.natDegree_map_eq_of_injective hι R.profile
+  have hdegree : H.profile.natDegree = R.profile.natDegree := by
+    rw [hprofile]
+    exact hmapDegree
+  have hNfrac : N = H.profile.natDegree := by
+    rw [hdegree]
+    exact hN
+  have hNtwo : 2 ≤ N := by
+    rw [hNfrac]
+    exact H.degree_two_le
+  have hlead : H.profile.leadingCoeff = ι R.profile.leadingCoeff := by
+    calc
+      H.profile.leadingCoeff = H.profile.coeff H.profile.natDegree :=
+        (Polynomial.coeff_natDegree H.profile).symm
+      _ = H.profile.coeff R.profile.natDegree := by rw [hdegree]
+      _ = (Polynomial.map ι R.profile).coeff R.profile.natDegree := by
+        rw [hprofile]
+      _ = ι (R.profile.coeff R.profile.natDegree) := by
+        rw [Polynomial.coeff_map]
+      _ = ι R.profile.leadingCoeff := by
+        rw [Polynomial.coeff_natDegree]
+  let Q : Polynomial A :=
+    R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N
+  have hMq : M = Q.natDegree := by
+    simpa [Q] using hM
+  have hsub :
+      H.profile - Polynomial.C H.profile.leadingCoeff * Polynomial.X ^ N =
+        Polynomial.map ι Q := by
+    rw [hprofile, hlead]
+    simp [Q]
+  have hmapQDegree : (Polynomial.map ι Q).natDegree = Q.natDegree :=
+    Polynomial.natDegree_map_eq_of_injective hι Q
+  have hMfrac :
+      M =
+        (H.profile - Polynomial.C H.profile.leadingCoeff * Polynomial.X ^ N).natDegree := by
+    rw [hsub]
+    exact hMq.trans hmapQDegree.symm
+  have hNNint : R.profileHessianDet.coeff (N + N) = 0 :=
+    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + N) hNN
+  have hNMint : R.profileHessianDet.coeff (N + M) = 0 :=
+    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + M) hNM
+  have hmapDet := R.fractionMap_profileHessianDet_eq_residual
+  have hNNfrac :
+      (binaryStaircaseProfileResidual
+        T.topFace.degree P.profileWeight H.profile).coeff (N + N) = 0 := by
+    rw [hprofile]
+    rw [← hmapDet]
+    rw [Polynomial.coeff_map, hNNint]
+    simp
+  have hNMfrac :
+      (binaryStaircaseProfileResidual
+        T.topFace.degree P.profileWeight H.profile).coeff (N + M) = 0 := by
+    rw [hprofile]
+    rw [← hmapDet]
+    rw [Polynomial.coeff_map, hNMint]
+    simp
+  exact binaryStaircaseProfile_terminal_impossible_of_two_residual_coeffs
+    (K := L)
+    T.topFace.degree P.profileWeight N M H.profile
+    H.coeff_zero_ne H.support_bound hNfrac hNtwo hMfrac hNNfrac hNMfrac
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
