@@ -6750,7 +6750,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem familyParameterLayer_sub_exact`, `theorem familyParameterLayer_eulerScaledHessian_zero_zero`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSourceHessianLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingSourceHessianLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq_zero_of_lt`
+- Declarations: `theorem familyParameterLayer_sub_exact`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSourceHessianLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingSourceHessianLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq_zero_of_lt`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 

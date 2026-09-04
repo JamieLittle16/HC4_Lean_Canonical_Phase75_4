@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7240**.
+Distinct declaration spellings indexed: **7239**.
 
 ## Repeated declaration spellings
 
@@ -4011,7 +4011,6 @@ Distinct declaration spellings indexed: **7240**.
 - `familyParameterLayer_eq_firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
-- `familyParameterLayer_eulerScaledHessian_zero_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalResidualLayers`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
