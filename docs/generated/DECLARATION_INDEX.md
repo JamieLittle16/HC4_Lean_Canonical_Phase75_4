@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7160**.
+Distinct declaration spellings indexed: **7164**.
 
 ## Repeated declaration spellings
 
@@ -2928,6 +2928,8 @@ Distinct declaration spellings indexed: **7160**.
 - `binaryWeightedEulerShear_couplingCorrection_profileOrder_add_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binaryWeightedEulerShear_couplingCorrection_profileOrder_add_four_reduced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binaryWeightedEulerShear_extremalRemainder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
+- `binaryWeightedEulerShear_extremalRemainder_eq_map_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
+- `binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binaryWeightedEulerShear_mixedCouplingSquare` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binomialODEModel` — `def` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `binomialODEModel_satisfies` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
@@ -3397,6 +3399,7 @@ Distinct declaration spellings indexed: **7160**.
 - `contactSlope_eq_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
 - `contactSlope_le_iff_cross` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `contactSourceWeight_lt_commonLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`
+- `contactWeightedEulerShear_extremalRemainder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `contact_degree_lt` — `theorem` in `HC4.Newton.ScaledContact`
 - `contact_equation` — `theorem` in `HC4.Newton.ScaledContact`
 - `coordinateAxisPoint` — `def` in `HC4.Newton.ExactCollisionFirstWall`
@@ -3962,6 +3965,7 @@ Distinct declaration spellings indexed: **7160**.
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily_add_six` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily_add_ten` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
+- `familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `familyParameterLayer_zero_eq_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `familyParameterSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyPositiveActualLayerOrders` — `def` in `HC4.Valuation.ActualParameterLayer`
