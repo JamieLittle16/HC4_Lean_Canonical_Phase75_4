@@ -5,7 +5,7 @@ import HC4.Polynomial.WeightedInitial
 import Mathlib.Tactic
 
 /-!
-# A19.R18.29--30: exact honest-contact layers of the two exposed PR slices
+# A19.R18.29--31: exact honest-contact layers of the two exposed PR slices
 
 The qNN/qNM coefficient calculation should not manipulate coefficient-ring
 parameter derivatives and transverse source grading at the same time.  The
@@ -21,11 +21,15 @@ literally the transverse weight-`t` component of the raw longitudinal profile
 coefficient.  This file records that dictionary once and specializes it to the
 leading and next-highest slices retained by `prExtremalDegreeData`.
 
-R18.30 also records the corresponding dictionary after applying the first and
-falling second parameter-Euler operators.  Thus the remaining extremal
-coefficient calculation can replace every `τ∂τ` and `τ²∂τ²` occurrence by the
-literal scalars `q` and `q(q-1)` on the retained source slice before doing any
-Schur or residual algebra.
+R18.30 records the corresponding dictionary after applying the first and
+falling second parameter-Euler operators.  R18.31 records the spatial
+longitudinal Euler companion: exact parameter-layer extraction commutes with
+`x₀∂₀`, and after longitudinal coefficient extraction that operator is simply
+multiplication by the retained longitudinal index.
+
+Thus the remaining extremal coefficient calculation can replace every
+parameter/source Euler occurrence by its literal finite scalar before doing
+any Schur or residual algebra.
 
 No determinant, Schur identity, pivot cancellation, or terminal vanishing is
 used here.
@@ -140,6 +144,41 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalPara
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   simp
 
+/-- **R18.31 spatial Euler commutation.**  Exact coefficient-parameter layer
+extraction commutes with every source Euler operator.  This is linear in the
+family parameter; unlike a generic product-layer statement it introduces no
+convolution clock. -/
+theorem familyParameterLayer_mvEuler
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (q : ℕ) (i : Fin 4) :
+    familyParameterLayer (HC4.Polynomial.mvEuler i F) q =
+      HC4.Polynomial.mvEuler i (familyParameterLayer F q) := by
+  apply MvPolynomial.ext
+  intro d
+  simp only [familyParameterLayer_coeff, coeff_mvEuler]
+  have h := Polynomial.coeff_mul_natCast
+    (R := K) (p := MvPolynomial.coeff d F) (a := d i) (k := q)
+  simpa [mul_comm] using h
+
+/-- **R18.31 longitudinal source-Euler dictionary.**  After exact parameter
+layer extraction, `x₀∂₀` acts on longitudinal coefficient `n` by the scalar
+`n`. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSourceEulerLayer_eq
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (q n : ℕ) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) q)).coeff n =
+      MvPolynomial.C (n : K) * R.contactLongitudinalParameterLayer q n := by
+  rw [familyParameterLayer_mvEuler]
+  apply MvPolynomial.ext
+  intro m
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff,
+    MvPolynomial.coeff_C_mul,
+    MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [coeff_mvEuler]
+  simp
+
 /-- The first exposed contact layer is literally the retained nonzero leading
 transverse slice. -/
 theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq
@@ -222,6 +261,32 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterSecondEulerL
       MvPolynomial.C (E.qM : K) * (MvPolynomial.C (E.qM : K) - 1) *
         E.next.slice := by
   rw [R.contactLongitudinalParameterSecondEulerLayer_eq]
+  rw [E.contactNextParameterLayer_eq]
+
+/-- On the leading exposed slice, the longitudinal source Euler contributes the
+literal leading index `N`. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingSourceEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) E.qN)).coeff
+        E.next.N =
+      MvPolynomial.C (E.next.N : K) * E.leading.slice := by
+  rw [R.contactLongitudinalSourceEulerLayer_eq]
+  rw [E.contactLeadingParameterLayer_eq]
+
+/-- On the next exposed slice, the longitudinal source Euler contributes the
+literal next index `M`. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactNextSourceEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) E.qM)).coeff
+        E.next.M =
+      MvPolynomial.C (E.next.M : K) * E.next.slice := by
+  rw [R.contactLongitudinalSourceEulerLayer_eq]
   rw [E.contactNextParameterLayer_eq]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
