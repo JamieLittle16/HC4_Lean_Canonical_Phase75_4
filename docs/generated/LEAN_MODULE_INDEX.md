@@ -6340,7 +6340,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
-- Declarations: `theorem binaryWeightedEulerShear_couplingCorrection_parameterLayer`, `theorem binaryWeightedEulerShear_couplingCorrection_profileOrder`
+- Declarations: `theorem binaryWeightedEulerShear_couplingCorrection_parameterLayer`, `def binaryWeightedEulerShear_borderedCorrection`, `def binaryWeightedEulerShear_mixedCouplingSquare`, `def binaryWeightedEulerShear_extremalRemainder`, `theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_four`, `theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_four_reduced`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`
 
