@@ -128,6 +128,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHess
       (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian11)
       h11coeff
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet
+  rw [Polynomial.map_sub, Polynomial.map_mul, Polynomial.map_mul]
   rw [h00eq, h01eq, h11eq]
   exact binaryStaircaseProfileHessianDet_eq_residual
     T.topFace.degree P.profileWeight (Polynomial.map ι R.profile)
