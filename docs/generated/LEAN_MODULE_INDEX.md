@@ -6725,12 +6725,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar.lean`
-- Purpose: A19.R18.21: finite `.pr` extremal scalar
+- Purpose: A19.R18.21: finite `.pr` extremal scalars
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem prContactWeightedEuler_rawComplement_selfScalar`
+- Declarations: `theorem prContactWeightedEuler_rawComplement_selfScalar`, `theorem prContactWeightedEuler_rawComplement_crossScalar_of_topTransverseZero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
 
