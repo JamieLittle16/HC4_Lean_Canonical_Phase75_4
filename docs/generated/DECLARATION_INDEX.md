@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7187**.
+Distinct declaration spellings indexed: **7189**.
 
 ## Repeated declaration spellings
 
@@ -5517,8 +5517,10 @@ Distinct declaration spellings indexed: **7187**.
 - `positive_singletonSmithFiber_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `power_polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `power_polynomial_identity_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `prContactWeightedEuler_crossDegreeScalar_eq_zero_forces_transverse_zero_or_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 - `prContactWeightedEuler_rawComplement_crossScalar_of_topTransverseZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 - `prContactWeightedEuler_rawComplement_selfScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
+- `prContactWeightedEuler_selfDegreeScalar_eq_zero_forces_transverse_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 - `prepend_internal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalBoundaryContinuationReduction`
 - `presentedRankThreeTerminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminal`
 - `presentedRankThreeTerminal_presentedState_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier`
