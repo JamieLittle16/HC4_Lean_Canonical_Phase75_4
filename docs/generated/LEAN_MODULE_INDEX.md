@@ -6557,10 +6557,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation.lean`
 - Purpose: A19.R18.21: two-step active-pivot cancellation
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianExtremalSupport`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianExtremalSupport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem QsOtherFacetContactRawLongitudinalProfilePackage.two_exposed_layers_eq_zero_of_profilePivotProduct`
+- Declarations: `theorem QsOtherFacetContactRawLongitudinalProfilePackage.two_exposed_layers_eq_zero_of_profilePivotProduct`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_two_exposed_profilePivotProduct_coeffs`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileRigidityClosure`
 
@@ -6689,7 +6689,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.114`, `A19.115`, `A19.119`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDeterminantExtraction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileTwoCoefficientRigidity`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileRigidityClosure`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileRigidityClosure`
 - Declarations: `theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHessianDet_eq_residual`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise_hessian`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_profileHessianDet_coeffs`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binaryProfileHessianDetFamily_layers`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactIntegralFace`
@@ -6749,7 +6749,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSliceTransport`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSliceTransport`
 - Declarations: `def qsContactTransverseNatWeight`, `theorem weight_qsContactTransverseNatWeight`, `def qsContactTransverseEuler`, `def qsContactTransverseFallingEuler`, `theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree`, `theorem qsContactTransverseEuler_eq_degree_mul`, `theorem qsContactTransverseEuler_C_mul`, `theorem qsContactTransverseFallingEuler_eq_degree_mul`, `structure QsOtherFacetContactNextTransverseSliceData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice`, `theorem QsOtherFacetContactLeadingTransverseSliceData.transverseEuler_eq`, `theorem QsOtherFacetContactLeadingTransverseSliceData.transverseFallingEuler_eq`, `theorem QsOtherFacetContactNextTransverseSliceData.transverseEuler_eq`, `theorem QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq`, `structure QsOtherFacetContactPrExtremalDegreeData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`

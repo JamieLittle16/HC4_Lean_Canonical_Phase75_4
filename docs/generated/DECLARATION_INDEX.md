@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7210**.
+Distinct declaration spellings indexed: **7211**.
 
 ## Repeated declaration spellings
 
@@ -2141,6 +2141,7 @@ Distinct declaration spellings indexed: **7210**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotSourceProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_two_exposed_profilePivotProduct_coeffs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00_natDegree_le_profile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDegreeBound`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
