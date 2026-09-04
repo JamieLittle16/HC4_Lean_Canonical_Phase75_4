@@ -33,7 +33,7 @@ open HC4.Polynomial
 open HC4.Toric
 
 universe u
-variable {K : Type u} [Field K]
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- Natural all-ones weight on the three transverse profile variables. -/
 def qsContactTransverseNatWeight : Fin 3 → ℕ := fun _ => 1
@@ -61,6 +61,7 @@ noncomputable def qsContactTransverseFallingEuler
 
 /-- Exact transverse support degree gives Mathlib natural weighted
 homogeneity for the all-ones weight. -/
+omit [CharZero K] [IsAlgClosed K] in
 theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
     (S : MvPolynomial (Fin 3) K)
     (t : ℕ)
@@ -86,6 +87,7 @@ theorem qsContactTransverseEuler_eq_degree_mul
     Fin.sum_univ_three] using heuler
 
 /-- The transverse Euler operator is linear over coefficient-field constants. -/
+omit [CharZero K] [IsAlgClosed K] in
 theorem qsContactTransverseEuler_C_mul
     (a : K)
     (S : MvPolynomial (Fin 3) K) :
@@ -106,8 +108,6 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
   unfold qsContactTransverseFallingEuler
   rw [hE, qsContactTransverseEuler_C_mul, hE]
   ring_nf
-
-variable [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -144,6 +144,10 @@ structure QsOtherFacetContactNextTransverseSliceData
     ∀ m : Fin 3 →₀ ℕ,
       MvPolynomial.coeff m slice ≠ 0 →
         qsContactTransverseDegree m = transverseDegree
+  transverseDegree_max :
+    ∀ m : Fin 3 →₀ ℕ,
+      MvPolynomial.coeff m (R.profile.coeff M) ≠ 0 →
+        qsContactTransverseDegree m ≤ transverseDegree
 
 /-- The next-highest longitudinal coefficient is genuinely nonzero and hence
 has a nonzero maximal transverse homogeneous component. -/
@@ -244,6 +248,12 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
       rw [weight_qsContactTransverseIntegerWeight] at hw
       exact_mod_cast hw
     · exact (hq' rfl).elim
+  have hmax' :
+      ∀ q : Fin 3 →₀ ℕ,
+        MvPolynomial.coeff q (R.profile.coeff M) ≠ 0 →
+          qsContactTransverseDegree q ≤ t := by
+    intro q hq
+    exact hmax q (MvPolynomial.mem_support_iff.mpr hq)
   exact ⟨{
     N := N
     M := M
@@ -256,6 +266,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
     slice_ne_zero := hSne
     slice_source := hsource
     slice_exact_transverseDegree := hexact
+    transverseDegree_max := hmax'
   }⟩
 
 /-- Leading exposed slice: exact transverse Euler eigenvalue. -/
@@ -278,6 +289,21 @@ theorem QsOtherFacetContactLeadingTransverseSliceData.transverseFallingEuler_eq
   qsContactTransverseFallingEuler_eq_degree_mul
     S.slice S.transverseDegree S.slice_exact_transverseDegree
 
+/-- Leading maximality collapses the entire leading coefficient to transverse
+degree zero once the exposed self scalar has forced the maximal slice degree
+to vanish. -/
+theorem QsOtherFacetContactLeadingTransverseSliceData.source_transverseDegree_eq_zero
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactLeadingTransverseSliceData R)
+    (hzero : S.transverseDegree = 0)
+    {m : Fin 3 →₀ ℕ}
+    (hm : MvPolynomial.coeff m
+      (R.profile.coeff R.profile.natDegree) ≠ 0) :
+    qsContactTransverseDegree m = 0 := by
+  have hle := S.transverseDegree_max m hm
+  rw [hzero] at hle
+  omega
+
 /-- Next-highest exposed slice: exact transverse Euler eigenvalue. -/
 theorem QsOtherFacetContactNextTransverseSliceData.transverseEuler_eq
     {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
@@ -297,6 +323,18 @@ theorem QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq
         S.slice :=
   qsContactTransverseFallingEuler_eq_degree_mul
     S.slice S.transverseDegree S.slice_exact_transverseDegree
+
+/-- Once the cross scalar has forced the maximal next transverse degree to at
+most one, every monomial in the whole next longitudinal coefficient has
+transverse degree at most one. -/
+theorem QsOtherFacetContactNextTransverseSliceData.source_transverseDegree_le_one
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactNextTransverseSliceData R)
+    (hle : S.transverseDegree ≤ 1)
+    {m : Fin 3 →₀ ℕ}
+    (hm : MvPolynomial.coeff m (R.profile.coeff S.M) ≠ 0) :
+    qsContactTransverseDegree m ≤ 1 := by
+  exact le_trans (S.transverseDegree_max m hm) hle
 
 /-- Finite PR extremal data used by the closing coefficient calculation.  It
 retains one actual supported monomial from each exact transverse slice and the
