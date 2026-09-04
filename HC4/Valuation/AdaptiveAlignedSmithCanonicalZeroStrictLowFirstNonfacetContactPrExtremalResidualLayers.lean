@@ -7,9 +7,8 @@ import Mathlib.Tactic
 The first genuine PR coefficient calculation is the leading self pair.  Two
 small finite facts are needed before expanding the exact parameter residual:
 
-* exact parameter-layer extraction commutes with the longitudinal
-  Euler-scaled Hessian, so the retained longitudinal index contributes the
-  literal falling scalar `N(N-1)`; and
+* exact parameter-layer extraction through the longitudinal Euler-Hessian
+  gives the literal falling scalar `N(N-1)`; and
 * the retained order `qN` is the first honest-contact parameter order at
   longitudinal degree `N`.  Any smaller order would correspond to a
   transverse degree strictly larger than the maximal retained leading slice.
@@ -49,48 +48,11 @@ theorem familyParameterLayer_sub_exact
   intro d
   simp [familyParameterLayer_coeff]
 
-/-- Exact parameter-layer extraction commutes with the pure longitudinal
-Euler-scaled Hessian. -/
-theorem familyParameterLayer_eulerScaledHessian_zero_zero
-    (F : MvPolynomial (Fin 4) (Polynomial K))
-    (q : ℕ) :
-    familyParameterLayer
-        (HC4.Polynomial.eulerScaledHessian F (0 : Fin 4) 0) q =
-      HC4.Polynomial.eulerScaledHessian
-        (familyParameterLayer F q) (0 : Fin 4) 0 := by
-  calc
-    familyParameterLayer
-        (HC4.Polynomial.eulerScaledHessian F (0 : Fin 4) 0) q =
-      familyParameterLayer
-        (HC4.Polynomial.mvEuler (0 : Fin 4)
-            (HC4.Polynomial.mvEuler (0 : Fin 4) F) -
-          HC4.Polynomial.mvEuler (0 : Fin 4) F) q := by
-        rfl
-    _ = familyParameterLayer
-          (HC4.Polynomial.mvEuler (0 : Fin 4)
-            (HC4.Polynomial.mvEuler (0 : Fin 4) F)) q -
-        familyParameterLayer
-          (HC4.Polynomial.mvEuler (0 : Fin 4) F) q :=
-      familyParameterLayer_sub_exact _ _ q
-    _ = HC4.Polynomial.mvEuler (0 : Fin 4)
-          (familyParameterLayer
-            (HC4.Polynomial.mvEuler (0 : Fin 4) F) q) -
-        HC4.Polynomial.mvEuler (0 : Fin 4)
-          (familyParameterLayer F q) := by
-      rw [familyParameterLayer_mvEuler, familyParameterLayer_mvEuler]
-    _ = HC4.Polynomial.mvEuler (0 : Fin 4)
-          (HC4.Polynomial.mvEuler (0 : Fin 4)
-            (familyParameterLayer F q)) -
-        HC4.Polynomial.mvEuler (0 : Fin 4)
-          (familyParameterLayer F q) := by
-      rw [familyParameterLayer_mvEuler]
-    _ = HC4.Polynomial.eulerScaledHessian
-        (familyParameterLayer F q) (0 : Fin 4) 0 := by
-      rfl
-
 /-- On longitudinal coefficient `n`, the pure longitudinal Euler-Hessian
 contributes exactly the falling scalar `n(n-1)` on every honest contact
-parameter layer. -/
+parameter layer.  We calculate directly as `D₀D₀-D₀`; this avoids any
+coefficient-ring coercion between the parameter polynomial and the source
+Euler operators. -/
 theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSourceHessianLayer_eq
     (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
     (q n : ℕ) :
@@ -100,15 +62,23 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
           (0 : Fin 4) 0) q)).coeff n =
       MvPolynomial.C ((n : K) * ((n : K) - 1)) *
         R.contactLongitudinalParameterLayer q n := by
-  rw [familyParameterLayer_eulerScaledHessian_zero_zero]
+  change
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer
+        (HC4.Polynomial.mvEuler (0 : Fin 4)
+            (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) -
+          HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) q)).coeff n = _
+  rw [familyParameterLayer_sub_exact]
+  rw [familyParameterLayer_mvEuler, familyParameterLayer_mvEuler,
+    familyParameterLayer_mvEuler]
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   apply MvPolynomial.ext
   intro m
   rw [MvPolynomial.coeff_C_mul]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
-  rw [coeff_eulerScaledHessian]
-  simp only [if_pos]
+  rw [MvPolynomial.coeff_sub]
+  rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
   have hzero : (m.cons n) (0 : Fin 4) = n := by
     rfl
   rw [hzero]
