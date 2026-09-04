@@ -20,9 +20,10 @@ finite staircase contradiction: the leading `N+N` coefficient and the
 next-highest `N+M` coefficient.  This file therefore owns both consumers.
 
 The integral profile Hessian maps exactly to the canonical fraction-field
-staircase residual.  Consequently two zero binary determinant-family layers at
-the corresponding exact parameter orders already imply `False`; no all-depth
-product clock is needed.
+staircase residual.  Consequently two zero integral profile-Hessian
+determinant coefficients already imply `False`.  The binary-family layer
+interface is retained as a thin adapter for callers that naturally own those
+exact parameter layers.
 
 No transverse evaluation, planar JC2 hypothesis, or division in the geometric
 coefficient ring is introduced.
@@ -187,15 +188,14 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise
   rw [hprofile]
   exact hres
 
-/-- **R19 two-exposed-layer terminal contradiction.**
+/-- **R19 integral two-exposed-coefficient terminal contradiction.**
 
-Let `N` be the actual highest longitudinal profile index and `M` the degree
-left after deleting its leading monomial.  It is enough to kill the binary
-profile-Hessian determinant family at the two exact parameter orders attached
-to longitudinal degrees `N+N` and `N+M`.  Localization preserves the finite
-profile data and turns those two integral equations into the two field-valued
-residual coefficients consumed by the stationary staircase contradiction. -/
-theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binaryProfileHessianDetFamily_layers
+This is the minimal finite interface needed by R18.21.  Once active-pivot
+cancellation has exposed zeros of the two integral profile-Hessian determinant
+coefficients at `N+N` and `N+M`, localization carries those two equations
+straight to the two stationary staircase residual coefficients.  No converse
+parameter-layer extraction is required. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_profileHessianDet_coeffs
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
     {P : QsOtherFacetContactQuadraticReesPackage C}
@@ -204,12 +204,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
     (hN : N = R.profile.natDegree)
     (hM : M =
       (R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree)
-    (hNN :
-      familyParameterLayer P.binaryProfileHessianDetFamily
-        (2 * T.topFace.degree - P.profileWeight * (N + N)) = 0)
-    (hNM :
-      familyParameterLayer P.binaryProfileHessianDetFamily
-        (2 * T.topFace.degree - P.profileWeight * (N + M)) = 0) : False := by
+    (hNNint : R.profileHessianDet.coeff (N + N) = 0)
+    (hNMint : R.profileHessianDet.coeff (N + M) = 0) : False := by
   let A := MvPolynomial (Fin 3) K
   let L := qsContactProfileField K
   let ι : A →+* L := algebraMap A L
@@ -258,10 +254,6 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
         (H.profile - Polynomial.C H.profile.leadingCoeff * Polynomial.X ^ N).natDegree := by
     rw [hsub]
     exact hMq.trans hmapQDegree.symm
-  have hNNint : R.profileHessianDet.coeff (N + N) = 0 :=
-    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + N) hNN
-  have hNMint : R.profileHessianDet.coeff (N + M) = 0 :=
-    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + M) hNM
   have hmapDet := R.fractionMap_profileHessianDet_eq_residual
   have hNNfrac :
       (binaryStaircaseProfileResidual
@@ -284,6 +276,30 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
     (h0 := H.coeff_zero_ne) (hsupport := H.support_bound)
     (hN := hNfrac) (hNtwo := hNtwo) (hM := hMfrac)
     (hNN := hNNfrac) (hNM := hNMfrac)
+
+/-- **R19 binary-layer adapter.**  Two zero exact parameter layers imply the
+two integral coefficient equations and hence the finite contradiction above. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binaryProfileHessianDetFamily_layers
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (N M : ℕ)
+    (hN : N = R.profile.natDegree)
+    (hM : M =
+      (R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree)
+    (hNN :
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * (N + N)) = 0)
+    (hNM :
+      familyParameterLayer P.binaryProfileHessianDetFamily
+        (2 * T.topFace.degree - P.profileWeight * (N + M)) = 0) : False := by
+  have hNNint : R.profileHessianDet.coeff (N + N) = 0 :=
+    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + N) hNN
+  have hNMint : R.profileHessianDet.coeff (N + M) = 0 :=
+    R.profileHessianDet_coeff_eq_zero_of_binaryFamily_layer (N + M) hNM
+  exact R.impossible_of_two_profileHessianDet_coeffs
+    N M hN hM hNNint hNMint
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
