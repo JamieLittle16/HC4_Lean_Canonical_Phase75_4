@@ -6659,7 +6659,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.ParameterFirstLayerBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterChainRule`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerFamily`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterChainRule`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerFamily`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - Declarations: `def familyParameterEuler`, `def familyParameterSecondEuler`, `theorem parameterFirstEquiv_familyParameterEuler`, `theorem parameterFirstEquiv_familyParameterSecondEuler`, `theorem familyParameterLayer_familyParameterEuler`, `theorem familyParameterLayer_familyParameterSecondEuler`, `theorem coeff_familyParameterEuler`, `theorem coeff_familyParameterSecondEuler`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyPivot`
@@ -6725,12 +6725,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer.lean`
-- Purpose: A19.R18.29: exact honest-contact layers of the two exposed PR slices
+- Purpose: A19.R18.29--30: exact honest-contact layers of the two exposed PR slices
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`, `HC4.Polynomial.WeightedInitial`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`, `HC4.Polynomial.WeightedInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer_eq_initialForm`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterLayer_eq`
+- Declarations: `def QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer_eq_initialForm`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterEulerLayer_eq`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterSecondEulerLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterEulerLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterSecondEulerLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterEulerLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterSecondEulerLayer_eq`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 
