@@ -1,4 +1,4 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerHessian
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerFamily
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur
 import HC4.Valuation.PermutedPolynomialHessianFourBlock
 import Mathlib.Tactic
@@ -185,6 +185,48 @@ not change the denominator-cleared Schur determinant. -/
     (P.contactWeightedEulerShear rho).activeDet =
       (P.contactEulerHessianFourBlock rho).activeDet := by
   simp [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear]
+
+/-- Euler-scaled Hessian symmetry over the contact coefficient ring. -/
+private theorem contactEulerScaledHessian_symmetric
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (i j : Fin 4) :
+    HC4.Polynomial.eulerScaledHessian F i j =
+      HC4.Polynomial.eulerScaledHessian F j i := by
+  rw [HC4.Polynomial.eulerScaledHessian_apply,
+    HC4.Polynomial.eulerScaledHessian_apply]
+  rw [pderiv_comm_commRing]
+  ring
+
+/-- **R18.21 `.pr` straightened mixed complement entry.**  The second
+complement after weighted-Euler straightening is the full source weighted
+Euler direction, so its pairing with the longitudinal direction is exactly the
+falling weighted-Euler row with the parameter-Euler term moved to the right. -/
+theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    (P.contactWeightedEulerShear qsPrContactSchurPermutation).y =
+      MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) - (P.profileWeight : K))) *
+        HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily -
+      familyParameterEuler
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) := by
+  have h := P.contactFamily_fallingWeightedEulerRow (0 : Fin 4)
+  simp only [if_pos rfl] at h
+  rw [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear,
+    QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock]
+  simp only [GeneralFourBlock.shearSecondComplement,
+    GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
+    qsPrContactSchurPermutation_zero, qsPrContactSchurPermutation_one,
+    qsPrContactSchurPermutation_two, qsPrContactSchurPermutation_three,
+    one_mul]
+  rw [contactEulerScaledHessian_symmetric P.contactFamily (2 : Fin 4) 0,
+    contactEulerScaledHessian_symmetric P.contactFamily (3 : Fin 4) 0]
+  have hr :
+      (P.profileWeight : MvPolynomial (Fin 4) (Polynomial K)) =
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K)) := by
+    norm_num
+  rw [hr]
+  linear_combination h
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
