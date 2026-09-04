@@ -70,6 +70,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalPara
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [P.contactFamily_longitudinal_transverse_coeff q n m]
+  rw [← R.profile_eq]
   rw [HC4.Polynomial.coeff_initialForm,
     weight_qsContactTransverseIntegerWeight]
   by_cases hm : MvPolynomial.coeff m (R.profile.coeff n) = 0
