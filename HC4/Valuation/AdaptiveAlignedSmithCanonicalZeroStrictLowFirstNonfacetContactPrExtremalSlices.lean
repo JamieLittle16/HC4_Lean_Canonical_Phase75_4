@@ -61,6 +61,7 @@ noncomputable def qsContactTransverseFallingEuler
 
 /-- Exact transverse support degree gives Mathlib natural weighted
 homogeneity for the all-ones weight. -/
+omit [CharZero K] [IsAlgClosed K] in
 theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
     (S : MvPolynomial (Fin 3) K)
     (t : ℕ)
@@ -86,13 +87,13 @@ theorem qsContactTransverseEuler_eq_degree_mul
     Fin.sum_univ_three] using heuler
 
 /-- The transverse Euler operator is linear over coefficient-field constants. -/
+omit [CharZero K] [IsAlgClosed K] in
 theorem qsContactTransverseEuler_C_mul
     (a : K)
     (S : MvPolynomial (Fin 3) K) :
     qsContactTransverseEuler (MvPolynomial.C a * S) =
       MvPolynomial.C a * qsContactTransverseEuler S := by
-  simp [qsContactTransverseEuler, MvPolynomial.pderiv_C_mul,
-    Fin.sum_univ_three]
+  simp [qsContactTransverseEuler, Fin.sum_univ_three]
   ring
 
 /-- **R18.23 falling transverse Euler identity.** -/
@@ -106,7 +107,7 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
   have hE := qsContactTransverseEuler_eq_degree_mul S t hexact
   unfold qsContactTransverseFallingEuler
   rw [hE, qsContactTransverseEuler_C_mul, hE]
-  ring
+  ring_nf
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -160,23 +161,38 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
     dsimp [Q, N]
     exact sub_leadingMonomial_ne_zero_of_coeff_zero_ne_zero
       R.profile R.profile.natDegree (by omega) R.coeff_zero_ne
-  have hQdeg : Q.natDegree ≤ N - 1 := by
+  have htopdeg :
+      (Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree ≤ N := by
+    calc
+      (Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N).natDegree ≤
+          (Polynomial.X ^ N).natDegree := Polynomial.natDegree_C_mul_le _ _
+      _ = N := by simp
+  have hQdeg : Q.natDegree ≤ N := by
     dsimp [Q]
-    exact natDegree_sub_leadingMonomial_le_pred
-      R.profile N rfl hNpos
+    exact (Polynomial.natDegree_sub_le_iff_left htopdeg).2 (by simp [N])
+  have hQcoeffN : Q.coeff N = 0 := by
+    dsimp [Q, N]
+    rw [Polynomial.coeff_sub, Polynomial.coeff_C_mul]
+    simp [Polynomial.coeff_X_pow]
   let M : ℕ := Q.natDegree
   have hMN : M < N := by
+    have hne : Q.natDegree ≠ N := by
+      intro heq
+      have hlead : Q.coeff Q.natDegree ≠ 0 := by
+        rw [Polynomial.coeff_natDegree]
+        exact Polynomial.leadingCoeff_ne_zero.mpr hQne
+      rw [heq, hQcoeffN] at hlead
+      exact hlead rfl
     dsimp [M]
     omega
   have hQlead : Q.coeff M ≠ 0 := by
     dsimp [M]
-    rw [Polynomial.coeff_natDegree]
     exact Polynomial.leadingCoeff_ne_zero.mpr hQne
   have hprofileM : R.profile.coeff M = Q.coeff M := by
     dsimp [Q]
     rw [Polynomial.coeff_sub, Polynomial.coeff_C_mul]
     have hne : M ≠ N := Nat.ne_of_lt hMN
-    simp [Polynomial.coeff_X_pow, hne, Ne.symm hne]
+    simp [Polynomial.coeff_X_pow, hne]
   have hAMne : R.profile.coeff M ≠ 0 := by
     rw [hprofileM]
     exact hQlead
@@ -341,12 +357,12 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData
       qN + P.profileWeight * M.N + L.transverseDegree = T.topFace.degree := by
     dsimp [qN]
     rw [hLN]
-    rw [← hleadDegree] at hleadBound
+    rw [hleadDegree] at hleadBound
     omega
   have hnextGrade :
       qM + P.profileWeight * M.M + M.transverseDegree = T.topFace.degree := by
     dsimp [qM]
-    rw [← hnextDegree] at hnextBound
+    rw [hnextDegree] at hnextBound
     omega
   exact ⟨{
     leading := L
