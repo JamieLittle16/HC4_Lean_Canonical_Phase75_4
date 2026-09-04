@@ -51,14 +51,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler
   intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
-  rw [← P.contactFamily_weightedEuler_coeff d]
-  have hnat (n : ℕ) :
-      (n : Polynomial K) = Polynomial.C (n : K) := by
-    exact (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
-  rw [hnat (d (0 : Fin 4)), hnat (d (1 : Fin 4)),
-    hnat (d (2 : Fin 4)), hnat (d (3 : Fin 4))]
-  simp only [map_add, map_mul]
-  ring
+  have h := P.contactFamily_weightedEuler_coeff d
+  linear_combination h
 
 /-- **R18 family falling source-row equation.**  This is the whole-family
 form of the second-order weighted Euler identity used to straighten the
