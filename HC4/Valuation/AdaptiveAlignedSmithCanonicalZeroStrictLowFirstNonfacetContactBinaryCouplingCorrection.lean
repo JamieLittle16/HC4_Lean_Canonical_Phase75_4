@@ -98,6 +98,80 @@ private noncomputable def binaryWeightedEulerShear_extremalRemainder
   binaryWeightedEulerShear_borderedCorrection P rho +
     binaryWeightedEulerShear_mixedCouplingSquare P rho
 
+/-- The same correction remainder before the simultaneous transverse
+inflation.  It is kept private: its only purpose is to expose the exact contact
+layer from which each binary source coefficient originates. -/
+private noncomputable def contactWeightedEulerShear_extremalRemainder
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4)) :
+    MvPolynomial (Fin 4) (Polynomial K) :=
+  (P.contactWeightedEulerShear rho).x *
+      (P.contactWeightedEulerShear rho).schurC +
+    (P.contactWeightedEulerShear rho).z *
+      (P.contactWeightedEulerShear rho).schurA -
+    2 * (P.contactWeightedEulerShear rho).y *
+      (P.contactWeightedEulerShear rho).schurB +
+    ((P.contactWeightedEulerShear rho).p *
+        (P.contactWeightedEulerShear rho).s -
+      (P.contactWeightedEulerShear rho).q *
+        (P.contactWeightedEulerShear rho).r) ^ 2
+
+/-- The binary correction remainder is literally the contact correction
+remainder transported through simultaneous unit transverse inflation. -/
+private theorem binaryWeightedEulerShear_extremalRemainder_eq_map_contact
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4)) :
+    binaryWeightedEulerShear_extremalRemainder P rho =
+      unitTransverseInflateRingHom (K := K)
+        (contactWeightedEulerShear_extremalRemainder P rho) := by
+  rw [binaryWeightedEulerShear_extremalRemainder,
+    binaryWeightedEulerShear_borderedCorrection,
+    binaryWeightedEulerShear_mixedCouplingSquare,
+    P.binaryWeightedEulerShear_eq_map_contact rho]
+  simp [contactWeightedEulerShear_extremalRemainder,
+    GeneralFourBlock.map]
+
+/-- Exact coefficient shift under simultaneous unit transverse inflation.
+A contact parameter layer `q` at source exponent `d` reappears in binary layer
+`q + (d₁+d₂+d₃)`, with no loss or cancellation. -/
+private theorem familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (d : Fin 4 →₀ ℕ)
+    (q : ℕ) :
+    MvPolynomial.coeff d
+        (familyParameterLayer
+          (unitTransverseInflateFamily (K := K) F)
+          (q + (d 1 + d 2 + d 3))) =
+      MvPolynomial.coeff d (familyParameterLayer F q) := by
+  rw [familyParameterLayer_coeff, coeff_unitTransverseInflateFamily,
+    Polynomial.coeff_X_pow_mul']
+  have hle : d 1 + d 2 + d 3 ≤ q + (d 1 + d 2 + d 3) := by
+    omega
+  rw [if_pos hle]
+  have hsub : q + (d 1 + d 2 + d 3) - (d 1 + d 2 + d 3) = q := by
+    omega
+  rw [hsub, familyParameterLayer_coeff]
+
+/-- Coefficientwise contact/binary grading dictionary for the private R18.21
+correction remainder.  This is the precise replacement for any claim that the
+contact and binary filtrations are equal. -/
+private theorem binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_contact
+    (P : QsOtherFacetContactQuadraticReesPackage C)
+    (rho : Equiv.Perm (Fin 4))
+    (d : Fin 4 →₀ ℕ)
+    (q : ℕ) :
+    MvPolynomial.coeff d
+        (familyParameterLayer
+          (binaryWeightedEulerShear_extremalRemainder P rho)
+          (q + (d 1 + d 2 + d 3))) =
+      MvPolynomial.coeff d
+        (familyParameterLayer
+          (contactWeightedEulerShear_extremalRemainder P rho) q) := by
+  rw [binaryWeightedEulerShear_extremalRemainder_eq_map_contact]
+  rw [unitTransverseInflateRingHom_apply]
+  exact familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse
+    (contactWeightedEulerShear_extremalRemainder P rho) d q
+
 /-- The correction identity at the active-pivot shifted profile order.  The
 `+4` is the exact order used by the one-pivot finite-staircase cancellation;
 the older unshifted wrapper is deliberately not exposed. -/
@@ -172,8 +246,6 @@ private theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_fou
         Polynomial.coeff_add, Polynomial.coeff_sub]
       rw [hd]
       simp [binaryWeightedEulerShear_extremalRemainder]
-
--- CI anchor: compile the normalized R18.21 remainder after inventory refresh.
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
