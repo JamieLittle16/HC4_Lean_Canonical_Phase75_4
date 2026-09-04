@@ -6735,12 +6735,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices.lean`
-- Purpose: A19.R18.22: exact two exposed PR profile slices
+- Purpose: A19.R18.22--23: exact two exposed PR profile slices and Euler action
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
-- External imports: `Mathlib.Tactic`
+- External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `structure QsOtherFacetContactNextTransverseSliceData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice`, `structure QsOtherFacetContactPrExtremalDegreeData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData`
+- Declarations: `def qsContactTransverseNatWeight`, `theorem weight_qsContactTransverseNatWeight`, `def qsContactTransverseEuler`, `def qsContactTransverseFallingEuler`, `theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree`, `theorem qsContactTransverseEuler_eq_degree_mul`, `theorem qsContactTransverseEuler_C_mul`, `theorem qsContactTransverseFallingEuler_eq_degree_mul`, `structure QsOtherFacetContactNextTransverseSliceData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice`, `theorem QsOtherFacetContactLeadingTransverseSliceData.transverseEuler_eq`, `theorem QsOtherFacetContactLeadingTransverseSliceData.transverseFallingEuler_eq`, `theorem QsOtherFacetContactNextTransverseSliceData.transverseEuler_eq`, `theorem QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq`, `structure QsOtherFacetContactPrExtremalDegreeData`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 
