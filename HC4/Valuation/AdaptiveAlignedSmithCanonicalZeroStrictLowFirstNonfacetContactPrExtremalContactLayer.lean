@@ -171,12 +171,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
         (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) q)).coeff n =
       MvPolynomial.C (n : K) * R.contactLongitudinalParameterLayer q n := by
   rw [familyParameterLayer_mvEuler]
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   apply MvPolynomial.ext
   intro m
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff,
-    MvPolynomial.coeff_C_mul,
-    MvPolynomial.finSuccEquiv_coeff_coeff]
-  rw [coeff_mvEuler]
+  simp only [MvPolynomial.finSuccEquiv_coeff_coeff,
+    MvPolynomial.coeff_C_mul, coeff_mvEuler]
   simp
 
 /-- The first exposed contact layer is literally the retained nonzero leading
