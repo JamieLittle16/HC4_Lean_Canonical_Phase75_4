@@ -52,6 +52,20 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
   have h := P.contactFamily_weightedEuler_coeff d
+  have hnat (n : ℕ) :
+      (n : Polynomial K) = Polynomial.C (n : K) := by
+    exact (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
+  have hscalar :
+      Polynomial.C
+          ((P.profileWeight : K) * (d (0 : Fin 4) : K) +
+            (d (1 : Fin 4) : K) + (d (2 : Fin 4) : K) +
+            (d (3 : Fin 4) : K)) =
+        Polynomial.C (P.profileWeight : K) * (d (0 : Fin 4) : Polynomial K) +
+          (d (1 : Fin 4) : Polynomial K) +
+          (d (2 : Fin 4) : Polynomial K) +
+          (d (3 : Fin 4) : Polynomial K) := by
+    simp only [map_add, map_mul, hnat]
+  rw [hscalar] at h
   linear_combination h
 
 /-- **R18 family falling source-row equation.**  This is the whole-family
