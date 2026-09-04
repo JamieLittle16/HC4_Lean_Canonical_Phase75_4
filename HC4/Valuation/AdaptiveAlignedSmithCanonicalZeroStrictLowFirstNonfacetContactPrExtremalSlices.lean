@@ -33,7 +33,7 @@ open HC4.Polynomial
 open HC4.Toric
 
 universe u
-variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+variable {K : Type u} [Field K]
 
 /-- Natural all-ones weight on the three transverse profile variables. -/
 def qsContactTransverseNatWeight : Fin 3 → ℕ := fun _ => 1
@@ -61,7 +61,6 @@ noncomputable def qsContactTransverseFallingEuler
 
 /-- Exact transverse support degree gives Mathlib natural weighted
 homogeneity for the all-ones weight. -/
-omit [CharZero K] [IsAlgClosed K] in
 theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
     (S : MvPolynomial (Fin 3) K)
     (t : ℕ)
@@ -87,7 +86,6 @@ theorem qsContactTransverseEuler_eq_degree_mul
     Fin.sum_univ_three] using heuler
 
 /-- The transverse Euler operator is linear over coefficient-field constants. -/
-omit [CharZero K] [IsAlgClosed K] in
 theorem qsContactTransverseEuler_C_mul
     (a : K)
     (S : MvPolynomial (Fin 3) K) :
@@ -108,6 +106,8 @@ theorem qsContactTransverseFallingEuler_eq_degree_mul
   unfold qsContactTransverseFallingEuler
   rw [hE, qsContactTransverseEuler_C_mul, hE]
   ring_nf
+
+variable [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -187,6 +187,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
     omega
   have hQlead : Q.coeff M ≠ 0 := by
     dsimp [M]
+    rw [Polynomial.coeff_natDegree]
     exact Polynomial.leadingCoeff_ne_zero.mpr hQne
   have hprofileM : R.profile.coeff M = Q.coeff M := by
     dsimp [Q]
