@@ -163,6 +163,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
       unitTransverseInflateRingHom (K := K)
         P.contactProfileHessianDetReduction := by
   let f := unitTransverseInflateRingHom (K := K)
+  change P.binaryProfileHessianDetFamily = f P.contactProfileHessianDetReduction
   have hfam :
       P.binaryHomogenizedFamily = f P.contactFamily := by
     rw [QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily]
@@ -190,7 +191,9 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
   rw [P.binaryProfileHessianDetFamily_eq_longitudinal_reduction,
     hEuler, hHessian, hfam]
   unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
-  simp only [map_add, map_sub, map_mul, hC]
+  simp only [map_add, map_sub, map_mul]
+  simp_rw [hC]
+  ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
