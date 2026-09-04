@@ -6820,7 +6820,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerFamily`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
-- Declarations: `theorem activeDet_mul_rawComplementDet_eq_schur_coupling_correction`, `def qsPrContactSchurPermutation`, `def qsSpContactSchurPermutation`, `def qsRqContactSchurPermutation`, `def QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock`, `def QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear`, `theorem contactEulerScaledHessian_symmetric`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y`
+- Declarations: `theorem activeDet_mul_rawComplementDet_eq_schur_coupling_correction`, `def qsPrContactSchurPermutation`, `def qsSpContactSchurPermutation`, `def qsRqContactSchurPermutation`, `def QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock`, `def QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear`, `theorem contactEulerScaledHessian_symmetric`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 
