@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7231**.
+Distinct declaration spellings indexed: **7235**.
 
 ## Repeated declaration spellings
 
@@ -1995,9 +1995,11 @@ Distinct declaration spellings indexed: **7231**.
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterSecondEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
+- `QsOtherFacetContactPrExtremalDegreeData.contactLeadingSourceEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactNextParameterEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactNextParameterLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactNextParameterSecondEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
+- `QsOtherFacetContactPrExtremalDegreeData.contactNextSourceEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
@@ -2147,6 +2149,7 @@ Distinct declaration spellings indexed: **7231**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSourceEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.exists_leadingTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHessianDet_eq_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
@@ -4009,6 +4012,7 @@ Distinct declaration spellings indexed: **7231**.
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- `familyParameterLayer_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily_add_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
