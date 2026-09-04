@@ -228,6 +228,62 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y
   rw [hr]
   linear_combination h
 
+/-- **R18.21 `.pr` straightened quadratic complement entry.**  The weighted
+source direction has falling quadratic coefficient
+
+`D(D-1)F - 2(D-1) EτF + Eτ²F + r(1-r) E₀F`.
+
+This is a whole-family identity.  It is obtained only from the four falling
+source-row equations, the falling parameter-row equation, and the contact
+weighted-Euler equation. -/
+theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    (P.contactWeightedEulerShear qsPrContactSchurPermutation).z =
+      MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) * ((T.topFace.degree : K) - 1))) *
+        P.contactFamily -
+      2 * MvPolynomial.C
+          (Polynomial.C ((T.topFace.degree : K) - 1)) *
+        familyParameterEuler P.contactFamily +
+      familyParameterSecondEuler P.contactFamily +
+      MvPolynomial.C
+          (Polynomial.C
+            ((P.profileWeight : K) * (1 - (P.profileWeight : K)))) *
+        HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily := by
+  have hWeighted := P.contactFamily_weightedEuler
+  have hParameter := P.contactFamily_fallingWeightedEulerParameterRow
+  have h0 := P.contactFamily_fallingWeightedEulerRow (0 : Fin 4)
+  have h1 := P.contactFamily_fallingWeightedEulerRow (1 : Fin 4)
+  have h2 := P.contactFamily_fallingWeightedEulerRow (2 : Fin 4)
+  have h3 := P.contactFamily_fallingWeightedEulerRow (3 : Fin 4)
+  simp only [if_pos rfl] at h0
+  simp only [if_neg (by decide : (1 : Fin 4) ≠ 0)] at h1
+  simp only [if_neg (by decide : (2 : Fin 4) ≠ 0)] at h2
+  simp only [if_neg (by decide : (3 : Fin 4) ≠ 0)] at h3
+  rw [contactEulerScaledHessian_symmetric P.contactFamily (0 : Fin 4) 2,
+    contactEulerScaledHessian_symmetric P.contactFamily (0 : Fin 4) 3] at h0
+  rw [contactEulerScaledHessian_symmetric P.contactFamily (1 : Fin 4) 0,
+    contactEulerScaledHessian_symmetric P.contactFamily (1 : Fin 4) 2,
+    contactEulerScaledHessian_symmetric P.contactFamily (1 : Fin 4) 3] at h1
+  rw [contactEulerScaledHessian_symmetric P.contactFamily (3 : Fin 4) 2] at h3
+  rw [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear,
+    QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock]
+  simp only [GeneralFourBlock.shearSecondComplement,
+    GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
+    qsPrContactSchurPermutation_zero, qsPrContactSchurPermutation_one,
+    qsPrContactSchurPermutation_two, qsPrContactSchurPermutation_three,
+    one_mul, one_pow]
+  have hr :
+      (P.profileWeight : MvPolynomial (Fin 4) (Polynomial K)) =
+        MvPolynomial.C (Polynomial.C (P.profileWeight : K)) := by
+    norm_num
+  rw [hr]
+  linear_combination
+    MvPolynomial.C (Polynomial.C (P.profileWeight : K)) * h0 +
+      h1 + h2 + h3 - hParameter +
+      MvPolynomial.C (Polynomial.C ((T.topFace.degree : K) - 1)) * hWeighted
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
