@@ -284,7 +284,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
   linear_combination
     MvPolynomial.C (Polynomial.C (P.profileWeight : K)) * h0 +
       h1 + h2 + h3 - hParameter +
-      MvPolynomial.C (Polynomial.C ((T.topFace.degree : K) - 1)) * hWeighted
+      (MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) - 1) * hWeighted
 
 /-- The only discrepancy between the straightened weighted-source complement
 and the contact longitudinal profile core is parameter differentiation.  This
