@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7207**.
+Distinct declaration spellings indexed: **7208**.
 
 ## Repeated declaration spellings
 
@@ -2125,6 +2125,7 @@ Distinct declaration spellings indexed: **7207**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.exists_leadingTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHessianDet_eq_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`

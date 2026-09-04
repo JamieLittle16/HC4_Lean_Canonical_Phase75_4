@@ -6745,12 +6745,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport.lean`
-- Purpose: A19.R18.21: contact-Rees transport of the leading transverse slice
+- Purpose: A19.R18.21: contact-Rees transport of exposed transverse slices
 - A-labels: `A19.121`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`, `HC4.Valuation.BoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff`, `theorem QsOtherFacetContactLeadingTransverseSliceData.contactLeadingSlice_initialForm`
+- Declarations: `def QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff`, `theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_initialForm`, `theorem QsOtherFacetContactLeadingTransverseSliceData.contactLeadingSlice_initialForm`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`
 
