@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7189**.
+Distinct declaration spellings indexed: **7193**.
 
 ## Repeated declaration spellings
 
@@ -1984,6 +1984,8 @@ Distinct declaration spellings indexed: **7189**.
 - `QsOtherFacetContactFractionProfilePackage.impossible_of_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 - `QsOtherFacetContactLeadingTransverseSliceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`
 - `QsOtherFacetContactLeadingTransverseSliceData.contactLeadingSlice_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
+- `QsOtherFacetContactNextTransverseSliceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
+- `QsOtherFacetContactPrExtremalDegreeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactQuadraticReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerOrder_le_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
@@ -2121,12 +2123,14 @@ Distinct declaration spellings indexed: **7189**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.exists_leadingTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.fractionProfilePackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_binaryProfileHessianDetFamily_layers` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileTerminalContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_coeffwise_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_profileHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileRigidityClosure`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.parameterFirst_binaryProfileHessianDetFamily_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDegreeBound`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.parameterFirst_binaryProfileHessianDetFamily_natDegree_lt_hessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDegreeBound`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotSourceProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.profileHessian00` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
