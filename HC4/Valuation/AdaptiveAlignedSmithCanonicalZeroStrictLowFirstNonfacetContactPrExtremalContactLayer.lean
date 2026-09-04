@@ -1,10 +1,11 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler
 import HC4.Polynomial.WeightedInitial
 import Mathlib.Tactic
 
 /-!
-# A19.R18.29: exact honest-contact layers of the two exposed PR slices
+# A19.R18.29--30: exact honest-contact layers of the two exposed PR slices
 
 The qNN/qNM coefficient calculation should not manipulate coefficient-ring
 parameter derivatives and transverse source grading at the same time.  The
@@ -20,9 +21,14 @@ literally the transverse weight-`t` component of the raw longitudinal profile
 coefficient.  This file records that dictionary once and specializes it to the
 leading and next-highest slices retained by `prExtremalDegreeData`.
 
+R18.30 also records the corresponding dictionary after applying the first and
+falling second parameter-Euler operators.  Thus the remaining extremal
+coefficient calculation can replace every `τ∂τ` and `τ²∂τ²` occurrence by the
+literal scalars `q` and `q(q-1)` on the retained source slice before doing any
+Schur or residual algebra.
+
 No determinant, Schur identity, pivot cancellation, or terminal vanishing is
-used here.  The next coefficient calculation can therefore work entirely with
-the two nonzero source polynomials `E.leading.slice` and `E.next.slice`.
+used here.
 -/
 
 namespace HC4.Valuation
@@ -108,6 +114,32 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalPara
       intro hcond
       exact hqne hcond.2
 
+/-- **R18.30 first parameter-Euler dictionary.**  Longitudinal extraction
+commutes with taking an exact contact parameter layer, and `τ∂τ` acts on that
+layer by the literal scalar `q`. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterEulerLayer_eq
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (q n : ℕ) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterEuler P.contactFamily) q)).coeff n =
+      MvPolynomial.C (q : K) * R.contactLongitudinalParameterLayer q n := by
+  rw [familyParameterLayer_familyParameterEuler]
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
+  simp
+
+/-- **R18.30 falling second parameter-Euler dictionary.**  The same exact
+contact layer sees `τ²∂τ²` as the literal falling scalar `q(q-1)`. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterSecondEulerLayer_eq
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (q n : ℕ) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterSecondEuler P.contactFamily) q)).coeff n =
+      MvPolynomial.C (q : K) * (MvPolynomial.C (q : K) - 1) *
+        R.contactLongitudinalParameterLayer q n := by
+  rw [familyParameterLayer_familyParameterSecondEuler]
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
+  simp
+
 /-- The first exposed contact layer is literally the retained nonzero leading
 transverse slice. -/
 theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq
@@ -141,6 +173,56 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterLayer_eq
       R.contactLongitudinalParameterLayer_eq_initialForm
         E.qM E.next.M E.next.transverseDegree E.next_grade
     _ = E.next.slice := E.next.slice_eq.symm
+
+/-- On the leading exposed source slice, the first parameter Euler is exactly
+multiplication by the retained contact deficit `qN`. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterEuler P.contactFamily) E.qN)).coeff
+        E.next.N =
+      MvPolynomial.C (E.qN : K) * E.leading.slice := by
+  rw [R.contactLongitudinalParameterEulerLayer_eq]
+  rw [E.contactLeadingParameterLayer_eq]
+
+/-- On the leading exposed source slice, the falling second parameter Euler is
+exactly multiplication by `qN(qN-1)`. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterSecondEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterSecondEuler P.contactFamily) E.qN)).coeff
+        E.next.N =
+      MvPolynomial.C (E.qN : K) * (MvPolynomial.C (E.qN : K) - 1) *
+        E.leading.slice := by
+  rw [R.contactLongitudinalParameterSecondEulerLayer_eq]
+  rw [E.contactLeadingParameterLayer_eq]
+
+/-- The corresponding first parameter-Euler formula on the next-highest
+exposed slice. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterEuler P.contactFamily) E.qM)).coeff
+        E.next.M =
+      MvPolynomial.C (E.qM : K) * E.next.slice := by
+  rw [R.contactLongitudinalParameterEulerLayer_eq]
+  rw [E.contactNextParameterLayer_eq]
+
+/-- The corresponding falling second parameter-Euler formula on the
+next-highest exposed slice. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactNextParameterSecondEulerLayer_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer (familyParameterSecondEuler P.contactFamily) E.qM)).coeff
+        E.next.M =
+      MvPolynomial.C (E.qM : K) * (MvPolynomial.C (E.qM : K) - 1) *
+        E.next.slice := by
+  rw [R.contactLongitudinalParameterSecondEulerLayer_eq]
+  rw [E.contactNextParameterLayer_eq]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
