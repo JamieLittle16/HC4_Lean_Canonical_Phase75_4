@@ -53,7 +53,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_raw
   dsimp at h
   rw [h]
   unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
-  ring
+  ring_nf
 
 /-- Subtractive form of the exact PR obstruction.  This is the form consumed
 by the extremal coefficient calculation. -/
