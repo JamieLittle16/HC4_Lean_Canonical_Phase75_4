@@ -2,7 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.26: exact parameter orders of the two exposed PR pairs
+# A19.R18.26--27: exact parameter orders and scalar consequences of the two exposed PR pairs
 
 The contact and binary filtrations are deliberately not identified.  For the
 two extremal longitudinal pairs we only need their exact arithmetic relation.
@@ -17,6 +17,11 @@ For the leading/next pair, with next deficit `qM` and transverse degree `u`,
 These are consequences only of the two honest contact grading equations
 retained by `QsOtherFacetContactPrExtremalDegreeData`.  They are the exact
 bookkeeping needed by the coefficientwise transverse-inflation transport.
+
+The same finite package is also the natural owner for the two scalar
+consequences: a zero leading self scalar forces `t = 0`; after that, a zero
+leading/next cross scalar forces `u ≤ 1`.  No geometric vanishing is assumed in
+these wrappers.
 -/
 
 namespace HC4.Valuation
@@ -83,6 +88,37 @@ theorem QsOtherFacetContactPrExtremalDegreeData.qNM_add_four_eq_contact_pair
         (E.leading.transverseDegree + E.next.transverseDegree + 4) := by
   rw [E.qNM_eq_contact_pair]
   omega
+
+/-- **R18.27 leading scalar consequence.**  The leading longitudinal index is
+positive, so a zero PR self scalar forces the maximal transverse degree to be
+zero. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (hzero :
+      - (E.next.N : K) * (E.leading.transverseDegree : K) *
+          ((E.next.N : K) + (E.leading.transverseDegree : K) - 1) = 0) :
+    E.leading.transverseDegree = 0 := by
+  apply prContactWeightedEuler_selfDegreeScalar_eq_zero_forces_transverse_zero
+    (K := K) E.next.N E.leading.transverseDegree
+  · omega
+  · exact hzero
+
+/-- **R18.27 next scalar consequence.**  After the leading slice is pure
+longitudinal, a zero PR cross scalar leaves only transverse degrees zero and
+one; equivalently the maximal next transverse degree is at most one. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (hzero :
+      (E.next.N : K) * (E.next.transverseDegree : K) *
+          ((E.next.N : K) - 1) *
+          ((E.next.transverseDegree : K) - 1) = 0) :
+    E.next.transverseDegree ≤ 1 := by
+  rcases
+      prContactWeightedEuler_crossDegreeScalar_eq_zero_forces_transverse_zero_or_one
+        (K := K) E.next.N E.next.transverseDegree E.N_two_le hzero with
+    h0 | h1
+  · omega
+  · omega
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
