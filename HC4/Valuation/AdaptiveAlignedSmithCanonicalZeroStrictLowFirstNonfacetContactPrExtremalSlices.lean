@@ -1,9 +1,10 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity
+import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 import Mathlib.Tactic
 
 /-!
-# A19.R18.22: exact two exposed PR profile slices
+# A19.R18.22--23: exact two exposed PR profile slices and Euler action
 
 R18.21 has reduced the closing arithmetic to the highest longitudinal profile
 index and the next-highest index.  The leading transverse slice is already
@@ -11,16 +12,16 @@ retained canonically.  This module performs the matching finite extraction for
 the next-highest longitudinal coefficient and records the honest contact-Rees
 grade of one supported monomial in each exposed slice.
 
-Nothing here uses a Schur identity or a terminal vanishing equation.  The
-purpose is to make the next closing module consume concrete finite data:
+The two PR scalar identities are uniform on a fixed transverse total degree,
+not merely on a chosen monomial.  We therefore also convert the exact support
+of each retained slice into the polynomial Euler identities
 
-* `N = natDegree profile`, with `N >= 2`;
-* `M` is the degree after deleting the leading monomial, with `M < N`;
-* the leading and next transverse slices are nonzero exact homogeneous pieces;
-* their contact deficits satisfy `q + profileWeight * n + transverseDegree = D`.
+    E_perp S = t S,
+    (E_perp^2 - E_perp) S = t (t - 1) S.
 
-Thus the PR scalar lemmas can be applied without any later reconstruction of
-support or grading data.
+This prevents cancellation between distinct transverse monomials of the same
+total degree from being hidden behind the single-monomial scalar formulas.
+Nothing here uses a Schur identity or a terminal vanishing equation.
 -/
 
 namespace HC4.Valuation
@@ -33,6 +34,79 @@ open HC4.Toric
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+
+/-- Natural all-ones weight on the three transverse profile variables. -/
+def qsContactTransverseNatWeight : Fin 3 → ℕ := fun _ => 1
+
+/-- Its Finsupp weight is exactly the total transverse degree already used by
+the contact grading. -/
+theorem weight_qsContactTransverseNatWeight
+    (m : Fin 3 →₀ ℕ) :
+    Finsupp.weight qsContactTransverseNatWeight m =
+      qsContactTransverseDegree m := by
+  rw [Finsupp.weight_apply]
+  simp [qsContactTransverseNatWeight, Finsupp.sum_fintype,
+    qsContactTransverseDegree, Fin.sum_univ_three]
+
+/-- Total transverse Euler operator on a three-variable profile coefficient. -/
+noncomputable def qsContactTransverseEuler
+    (S : MvPolynomial (Fin 3) K) : MvPolynomial (Fin 3) K :=
+  ∑ i : Fin 3, MvPolynomial.X i * MvPolynomial.pderiv i S
+
+/-- Falling radial Euler operator `E_perp (E_perp S) - E_perp S`. -/
+noncomputable def qsContactTransverseFallingEuler
+    (S : MvPolynomial (Fin 3) K) : MvPolynomial (Fin 3) K :=
+  qsContactTransverseEuler (qsContactTransverseEuler S) -
+    qsContactTransverseEuler S
+
+/-- Exact transverse support degree gives Mathlib natural weighted
+homogeneity for the all-ones weight. -/
+theorem isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
+    (S : MvPolynomial (Fin 3) K)
+    (t : ℕ)
+    (hexact : ∀ m : Fin 3 →₀ ℕ,
+      MvPolynomial.coeff m S ≠ 0 → qsContactTransverseDegree m = t) :
+    MvPolynomial.IsWeightedHomogeneous qsContactTransverseNatWeight S t := by
+  intro m hm
+  rw [weight_qsContactTransverseNatWeight]
+  exact hexact m hm
+
+/-- **R18.23 transverse Euler identity.** -/
+theorem qsContactTransverseEuler_eq_degree_mul
+    (S : MvPolynomial (Fin 3) K)
+    (t : ℕ)
+    (hexact : ∀ m : Fin 3 →₀ ℕ,
+      MvPolynomial.coeff m S ≠ 0 → qsContactTransverseDegree m = t) :
+    qsContactTransverseEuler S = MvPolynomial.C (t : K) * S := by
+  have hhom :=
+    isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree
+      S t hexact
+  have heuler := hhom.sum_weight_X_mul_pderiv
+  simpa [qsContactTransverseEuler, qsContactTransverseNatWeight,
+    Fin.sum_univ_three] using heuler
+
+/-- The transverse Euler operator is linear over coefficient-field constants. -/
+theorem qsContactTransverseEuler_C_mul
+    (a : K)
+    (S : MvPolynomial (Fin 3) K) :
+    qsContactTransverseEuler (MvPolynomial.C a * S) =
+      MvPolynomial.C a * qsContactTransverseEuler S := by
+  simp [qsContactTransverseEuler, MvPolynomial.pderiv_C_mul,
+    Fin.sum_univ_three]
+  ring
+
+/-- **R18.23 falling transverse Euler identity.** -/
+theorem qsContactTransverseFallingEuler_eq_degree_mul
+    (S : MvPolynomial (Fin 3) K)
+    (t : ℕ)
+    (hexact : ∀ m : Fin 3 →₀ ℕ,
+      MvPolynomial.coeff m S ≠ 0 → qsContactTransverseDegree m = t) :
+    qsContactTransverseFallingEuler S =
+      MvPolynomial.C ((t : K) * ((t : K) - 1)) * S := by
+  have hE := qsContactTransverseEuler_eq_degree_mul S t hexact
+  unfold qsContactTransverseFallingEuler
+  rw [hE, qsContactTransverseEuler_C_mul, hE]
+  ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -167,6 +241,46 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_nextTransverseSl
     slice_exact_transverseDegree := hexact
   }⟩
 
+/-- Leading exposed slice: exact transverse Euler eigenvalue. -/
+theorem QsOtherFacetContactLeadingTransverseSliceData.transverseEuler_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactLeadingTransverseSliceData R) :
+    qsContactTransverseEuler S.slice =
+      MvPolynomial.C (S.transverseDegree : K) * S.slice :=
+  qsContactTransverseEuler_eq_degree_mul
+    S.slice S.transverseDegree S.slice_exact_transverseDegree
+
+/-- Leading exposed slice: exact falling transverse Euler eigenvalue. -/
+theorem QsOtherFacetContactLeadingTransverseSliceData.transverseFallingEuler_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactLeadingTransverseSliceData R) :
+    qsContactTransverseFallingEuler S.slice =
+      MvPolynomial.C
+        ((S.transverseDegree : K) * ((S.transverseDegree : K) - 1)) *
+        S.slice :=
+  qsContactTransverseFallingEuler_eq_degree_mul
+    S.slice S.transverseDegree S.slice_exact_transverseDegree
+
+/-- Next-highest exposed slice: exact transverse Euler eigenvalue. -/
+theorem QsOtherFacetContactNextTransverseSliceData.transverseEuler_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactNextTransverseSliceData R) :
+    qsContactTransverseEuler S.slice =
+      MvPolynomial.C (S.transverseDegree : K) * S.slice :=
+  qsContactTransverseEuler_eq_degree_mul
+    S.slice S.transverseDegree S.slice_exact_transverseDegree
+
+/-- Next-highest exposed slice: exact falling transverse Euler eigenvalue. -/
+theorem QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (S : QsOtherFacetContactNextTransverseSliceData R) :
+    qsContactTransverseFallingEuler S.slice =
+      MvPolynomial.C
+        ((S.transverseDegree : K) * ((S.transverseDegree : K) - 1)) *
+        S.slice :=
+  qsContactTransverseFallingEuler_eq_degree_mul
+    S.slice S.transverseDegree S.slice_exact_transverseDegree
+
 /-- Finite PR extremal data used by the closing coefficient calculation.  It
 retains one actual supported monomial from each exact transverse slice and the
 corresponding honest contact deficit equations. -/
@@ -243,7 +357,9 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData
     next_mem := hmM
     qN := qN
     qM := qM
-    N_two_le := by simpa [M.N_eq] using R.degree_two_le
+    N_two_le := by
+      rw [M.N_eq]
+      exact R.degree_two_le
     leading_grade := hleadGrade
     next_grade := hnextGrade
   }⟩
