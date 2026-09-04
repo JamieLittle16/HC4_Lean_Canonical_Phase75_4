@@ -211,7 +211,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y
       familyParameterEuler
         (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) := by
   have h := P.contactFamily_fallingWeightedEulerRow (0 : Fin 4)
-  simp only [if_pos rfl] at h
+  simp only [if_pos rfl, if_true] at h
   rw [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear,
     QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock]
   simp only [GeneralFourBlock.shearSecondComplement,
@@ -226,6 +226,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y
         MvPolynomial.C (Polynomial.C (P.profileWeight : K)) := by
     norm_num
   rw [hr]
+  simp only [map_sub] at h ⊢
   linear_combination h
 
 /-- **R18.21 `.pr` straightened quadratic complement entry.**  The weighted
@@ -257,7 +258,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
   have h1 := P.contactFamily_fallingWeightedEulerRow (1 : Fin 4)
   have h2 := P.contactFamily_fallingWeightedEulerRow (2 : Fin 4)
   have h3 := P.contactFamily_fallingWeightedEulerRow (3 : Fin 4)
-  simp only [if_pos rfl] at h0
+  simp only [if_pos rfl, if_true] at h0
   simp only [if_neg (by decide : (1 : Fin 4) ≠ 0)] at h1
   simp only [if_neg (by decide : (2 : Fin 4) ≠ 0)] at h2
   simp only [if_neg (by decide : (3 : Fin 4) ≠ 0)] at h3
@@ -279,6 +280,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
         MvPolynomial.C (Polynomial.C (P.profileWeight : K)) := by
     norm_num
   rw [hr]
+  simp only [map_sub, map_mul, map_one] at
+    hWeighted hParameter h0 h1 h2 h3 ⊢
   linear_combination
     MvPolynomial.C (Polynomial.C (P.profileWeight : K)) * h0 +
       h1 + h2 + h3 - hParameter +
