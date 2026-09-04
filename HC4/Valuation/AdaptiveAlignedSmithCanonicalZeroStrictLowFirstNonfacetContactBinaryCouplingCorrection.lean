@@ -173,6 +173,8 @@ private theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_fou
       rw [hd]
       simp [binaryWeightedEulerShear_extremalRemainder]
 
+-- CI anchor: compile the normalized R18.21 remainder after inventory refresh.
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
