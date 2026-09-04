@@ -213,14 +213,30 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_coeff
   intro m
   rw [MvPolynomial.coeff_zero]
   have hlong := R.binaryProfileHessianDetFamily_longitudinal_coeff n
-  have hm := congrArg
-    (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
-    hlong
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff m
-    P.binaryProfileHessianDetFamily n] at hm
-  have hmN := congrArg
-    (fun q : Polynomial K =>
-      q.coeff (2 * T.topFace.degree - P.profileWeight * n)) hm
+  have hm :
+      MvPolynomial.coeff m
+          ((MvPolynomial.finSuccEquiv (Polynomial K) 3
+            P.binaryProfileHessianDetFamily).coeff n) =
+        MvPolynomial.coeff m
+          (MvPolynomial.C
+              ((Polynomial.X : Polynomial K) ^
+                (2 * T.topFace.degree - P.profileWeight * n)) *
+            MvPolynomial.map Polynomial.C (R.profileHessianDet.coeff n)) := by
+    exact congrArg (fun A : MvPolynomial (Fin 3) (Polynomial K) =>
+      MvPolynomial.coeff m A) hlong
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
+  have hmN :
+      (MvPolynomial.coeff (m.cons n) P.binaryProfileHessianDetFamily).coeff
+          (2 * T.topFace.degree - P.profileWeight * n) =
+        (MvPolynomial.coeff m
+          (MvPolynomial.C
+              ((Polynomial.X : Polynomial K) ^
+                (2 * T.topFace.degree - P.profileWeight * n)) *
+            MvPolynomial.map Polynomial.C (R.profileHessianDet.coeff n))).coeff
+          (2 * T.topFace.degree - P.profileWeight * n) := by
+    exact congrArg
+      (fun q : Polynomial K =>
+        q.coeff (2 * T.topFace.degree - P.profileWeight * n)) hm
   rw [← familyParameterLayer_coeff] at hmN
   rw [hzero] at hmN
   simp only [MvPolynomial.coeff_zero] at hmN
