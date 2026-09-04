@@ -284,6 +284,71 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z
       h1 + h2 + h3 - hParameter +
       MvPolynomial.C (Polynomial.C ((T.topFace.degree : K) - 1)) * hWeighted
 
+/-- The only discrepancy between the straightened weighted-source complement
+and the contact longitudinal profile core is parameter differentiation.  This
+is the genuine local obstruction left for the two extremal profile orders. -/
+noncomputable def QsOtherFacetContactQuadraticReesPackage.contactProfileParameterResidual
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    MvPolynomial (Fin 4) (Polynomial K) :=
+  HC4.Polynomial.eulerScaledHessian
+      P.contactFamily (0 : Fin 4) (0 : Fin 4) *
+    (familyParameterSecondEuler P.contactFamily -
+      2 * MvPolynomial.C
+          (Polynomial.C ((T.topFace.degree : K) - 1)) *
+        familyParameterEuler P.contactFamily) +
+  2 * MvPolynomial.C
+      (Polynomial.C
+        ((T.topFace.degree : K) - (P.profileWeight : K))) *
+    HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily *
+      familyParameterEuler
+        (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) -
+  familyParameterEuler
+      (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) *
+    familyParameterEuler
+      (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily)
+
+/-- **R18.21 exact contact obstruction.**  For `.pr`, the raw determinant of
+the straightened complementary two-plane is the contact longitudinal profile
+core plus exactly `contactProfileParameterResidual`.  No Schur term, endpoint
+support assertion, or active-pivot cancellation is used. -/
+theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_rawComplementDet
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    let E := HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily
+    let H := HC4.Polynomial.eulerScaledHessian
+      P.contactFamily (0 : Fin 4) (0 : Fin 4)
+    (P.contactWeightedEulerShear qsPrContactSchurPermutation).x *
+        (P.contactWeightedEulerShear qsPrContactSchurPermutation).z -
+      (P.contactWeightedEulerShear qsPrContactSchurPermutation).y *
+        (P.contactWeightedEulerShear qsPrContactSchurPermutation).y =
+      MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) * ((T.topFace.degree : K) - 1))) *
+        P.contactFamily * H +
+      MvPolynomial.C
+          (Polynomial.C
+            ((P.profileWeight : K) * (1 - (P.profileWeight : K)))) *
+        E * H -
+      (MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) - (P.profileWeight : K))) * E) *
+        (MvPolynomial.C
+          (Polynomial.C
+            ((T.topFace.degree : K) - (P.profileWeight : K))) * E) +
+      P.contactProfileParameterResidual := by
+  dsimp only
+  have hx :
+      (P.contactWeightedEulerShear qsPrContactSchurPermutation).x =
+        HC4.Polynomial.eulerScaledHessian
+          P.contactFamily (0 : Fin 4) (0 : Fin 4) := by
+    simp [QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear,
+      QsOtherFacetContactQuadraticReesPackage.contactEulerHessianFourBlock,
+      GeneralFourBlock.shearSecondComplement,
+      GeneralFourBlock.ofSymmetricMatrix]
+  rw [hx, P.pr_contactWeightedEulerShear_y,
+    P.pr_contactWeightedEulerShear_z]
+  unfold QsOtherFacetContactQuadraticReesPackage.contactProfileParameterResidual
+  ring
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
