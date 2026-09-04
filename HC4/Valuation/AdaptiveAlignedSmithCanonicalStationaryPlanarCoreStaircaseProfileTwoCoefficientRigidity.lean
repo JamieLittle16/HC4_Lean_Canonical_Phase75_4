@@ -85,11 +85,9 @@ theorem binaryStaircaseProfile_terminal_impossible_of_two_residual_coeffs
   have hqcoeff : q.coeff M = aM := by
     rw [hMq]
     dsimp [aM]
-    exact Polynomial.coeff_natDegree q
   have hhcoeff : h.coeff N = aN := by
     rw [hN]
     dsimp [aN]
-    exact Polynomial.coeff_natDegree h
 
   have hleadingEq :
       aN ^ 2 * binaryStaircaseProfileLeadingScalar (K := K) D r N = 0 := by
@@ -132,12 +130,11 @@ theorem binaryStaircaseProfile_terminal_impossible_of_two_residual_coeffs
     simpa [htopcoeff, hqcoeff] using hc
   have hcrossEq :
       aN * aM * binaryStaircaseProfileCrossScalar (K := K) D r N M = 0 := by
-    have hc := congrArg
-      (fun p : Polynomial K => p.coeff (N + M)) hresDecomp
-    rw [hNM] at hc
+    have hc := hNM
+    rw [hresDecomp] at hc
     simp only [Polynomial.coeff_add] at hc
     rw [htopzero, hqzero, hcrosscoeff] at hc
-    simpa using hc.symm
+    simpa using hc
 
   have hsupportN : N * r ≤ D := by
     rw [hN]
