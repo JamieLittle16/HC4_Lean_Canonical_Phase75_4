@@ -128,8 +128,11 @@ private theorem binaryWeightedEulerShear_extremalRemainder_eq_map_contact
     binaryWeightedEulerShear_borderedCorrection,
     binaryWeightedEulerShear_mixedCouplingSquare,
     P.binaryWeightedEulerShear_eq_map_contact rho]
-  simp [contactWeightedEulerShear_extremalRemainder,
-    GeneralFourBlock.map]
+  rw [GeneralFourBlock.schurC_map, GeneralFourBlock.schurA_map,
+    GeneralFourBlock.schurB_map]
+  simp only [GeneralFourBlock.map]
+  simp only [contactWeightedEulerShear_extremalRemainder,
+    map_add, map_sub, map_mul, map_pow, map_ofNat]
 
 /-- Exact coefficient shift under simultaneous unit transverse inflation.
 A contact parameter layer `q` at source exponent `d` reappears in binary layer
