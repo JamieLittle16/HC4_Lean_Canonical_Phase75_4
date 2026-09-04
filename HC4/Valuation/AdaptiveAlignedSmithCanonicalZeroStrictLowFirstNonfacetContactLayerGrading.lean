@@ -63,6 +63,7 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- Exact source-coefficient formula for every layer of the canonical integral
 contact Rees. -/
+omit [IsAlgClosed K] in
 theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_parameterLayer_coeff
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -149,7 +150,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_add_pr
       m.cons n ∈ (polynomialFamilySpecialFiber
         T.terminal.blocker.presented.family).support :=
     MvPolynomial.mem_support_iff.mpr hcoeff
-  have hbound := P.bound hsource
+  have hbound := P.bound (m.cons n) hsource
   rw [qsIntegralContactWeight_cons, ← P.profileWeight_eq] at hbound
   exact hbound
 
