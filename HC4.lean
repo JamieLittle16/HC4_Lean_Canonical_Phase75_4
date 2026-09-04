@@ -189,7 +189,8 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 
 -- Current contact-profile/Schur closing chain.  These roots are deliberate:
 -- every new A19 seam must be compiled by `lake build`, not merely exist as an
--- unimported source file.
+-- unimported source file.  R18.30--R18.31 keep the parameter/source Euler
+-- scalar dictionaries on this rooted seam.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianFractionRecognition
