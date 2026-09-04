@@ -47,7 +47,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler
       HC4.Polynomial.mvEuler (3 : Fin 4) P.contactFamily =
     MvPolynomial.C (Polynomial.C (T.topFace.degree : K)) *
       P.contactFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
   simpa [← Polynomial.C_mul, ← Polynomial.C_add] using
@@ -74,7 +75,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
           ((T.topFace.degree : K) -
             (if i = (0 : Fin 4) then (P.profileWeight : K) else 1))) *
       HC4.Polynomial.mvEuler i P.contactFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler]
   exact P.contactFamily_fallingWeightedEulerRow_coeff i d
@@ -95,7 +97,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_fallingWeightedEul
     MvPolynomial.C
         (Polynomial.C ((T.topFace.degree : K) - 1)) *
       familyParameterEuler P.contactFamily := by
-  ext d
+  apply MvPolynomial.ext
+  intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_familyParameterSecondEuler]
   exact P.contactFamily_fallingWeightedEulerParameterRow_coeff d
