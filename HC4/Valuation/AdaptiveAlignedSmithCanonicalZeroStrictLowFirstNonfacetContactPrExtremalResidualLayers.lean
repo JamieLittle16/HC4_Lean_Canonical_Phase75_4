@@ -80,7 +80,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   rw [MvPolynomial.coeff_sub]
   rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
   have hzero : (m.cons n) (0 : Fin 4) = n := by
-    rfl
+    simp
   rw [hzero]
   ring
 
