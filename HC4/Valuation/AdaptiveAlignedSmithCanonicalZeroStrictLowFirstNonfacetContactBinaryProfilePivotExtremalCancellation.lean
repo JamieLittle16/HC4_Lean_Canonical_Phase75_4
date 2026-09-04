@@ -1,5 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianExtremalSupport
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity
 import Mathlib.Tactic
 
 /-!
@@ -132,6 +134,46 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.two_exposed_layers_eq_z
     dsimp [B] at h
     rw [parameterFirstEquiv_coeff] at h
     simpa [qNM] using h
+
+/-- **R18.24 finite `.pr` terminal consumer.**
+
+Once the actual PR contact calculation kills the active-pivot/profile product
+at the two exposed orders selected by `prExtremalDegreeData`, no further clock
+or recurrence is required: two-step triangular cancellation exposes the two
+binary profile-Hessian layers, and R19's finite staircase theorem gives the
+contradiction.  This theorem is intentionally the last adapter before the
+hard contact coefficient calculation. -/
+theorem QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_two_exposed_profilePivotProduct_coeffs
+    {P : QsOtherFacetContactQuadraticReesPackage C}
+    (R : QsOtherFacetContactRawLongitudinalProfilePackage C P)
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : HC4.Newton.MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (hprodNN :
+      (((permutedFamilyHessianFourBlock
+          qsPrSuperfaceSchurPermutation P.contactFamily).activeDet *
+        parameterFirstEquiv K P.binaryProfileHessianDetFamily).coeff
+          (2 * T.topFace.degree -
+            P.profileWeight * (E.next.N + E.next.N))) = 0)
+    (hprodNM :
+      (((permutedFamilyHessianFourBlock
+          qsPrSuperfaceSchurPermutation P.contactFamily).activeDet *
+        parameterFirstEquiv K P.binaryProfileHessianDetFamily).coeff
+          (2 * T.topFace.degree -
+            P.profileWeight * (E.next.N + E.next.M))) = 0) : False := by
+  let A : Polynomial (MvPolynomial (Fin 4) K) :=
+    (permutedFamilyHessianFourBlock
+      qsPrSuperfaceSchurPermutation P.contactFamily).activeDet
+  have hA0 : A.coeff 0 ≠ 0 := by
+    dsimp [A]
+    exact P.pr_contactFamily_activeDet_coeff_zero_ne_zero hthree houtThree
+  have hlayers :=
+    R.two_exposed_layers_eq_zero_of_profilePivotProduct
+      A hA0 E.next.N E.next.M E.next.N_eq E.next.M_eq E.next.M_lt_N
+      (by simpa [A] using hprodNN)
+      (by simpa [A] using hprodNM)
+  exact R.impossible_of_two_binaryProfileHessianDetFamily_layers
+    E.next.N E.next.M E.next.N_eq E.next.M_eq hlayers.1 hlayers.2
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
