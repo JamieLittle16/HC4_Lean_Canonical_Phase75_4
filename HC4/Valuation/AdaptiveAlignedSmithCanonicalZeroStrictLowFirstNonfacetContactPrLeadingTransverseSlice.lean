@@ -166,6 +166,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_leadingTransvers
     transverseDegree_max := by simpa [A] using hmax'
   }⟩
 
+-- CI anchor: verify maximal-transverse slice extraction after inventory refresh.
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
