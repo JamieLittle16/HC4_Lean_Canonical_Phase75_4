@@ -41,6 +41,8 @@ theorem unitTransverseInflateFamily_injective
     P = Q := by
   exact unitTransverseInflateRingHom_injective (K := K) h
 
+-- CI anchor: compile the contact-native profile preimage bridge after inventory refresh.
+
 end
 
 end HC4.Valuation
