@@ -2,29 +2,29 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.21: finite `.pr` extremal scalar
+# A19.R18.21: finite `.pr` extremal scalars
 
-At the highest longitudinal profile order the only longitudinal pairing is the
-leading slice with itself.  Before doing any support selection inside that
-slice, the weighted-Euler arithmetic can therefore be computed once for a
-single source monomial.
+At the two exposed longitudinal profile orders the weighted-Euler arithmetic is
+finite.  The highest order uses the leading slice with itself.  Once that
+calculation forces the leading transverse degree to zero, the next order uses
+the leading slice against the next-highest slice.
 
-If
-
-* `n` is its longitudinal exponent,
-* `t` is its total transverse degree,
-* `q` is its honest contact-Rees parameter deficit,
-* `r` is the integral contact slope, and
-* `D = q + r*n + t` is the exact contact grading,
-
-then the self contribution to the straightened raw complementary determinant
-collapses to
+For one source monomial, if `n` is its longitudinal exponent, `t` its total
+transverse degree, `q` its honest contact-Rees parameter deficit, `r` the
+integral contact slope, and `D = q + r*n + t`, then the self contribution to
+the straightened raw complementary determinant is
 
     - n * t * (n + t - 1).
 
-In particular all dependence on `q`, `r`, and `D` cancels.  This is the finite
-coordinate identity needed to analyse the `qNN` layer without confusing the
-contact and binary filtrations.
+For a pure-longitudinal leading monomial of longitudinal degree `N` and a
+next-slice monomial of transverse degree `u`, the symmetric cross contribution
+is
+
+    N * u * (N - 1) * (u - 1).
+
+Thus both contact deficits and the contact slope disappear from the two finite
+coordinate calculations.  These identities are the arithmetic core needed to
+analyse `qNN` and `qNM` without confusing the contact and binary filtrations.
 -/
 
 namespace HC4.Valuation
@@ -58,7 +58,44 @@ theorem prContactWeightedEuler_rawComplement_selfScalar
   rw [hgradeK]
   ring
 
--- CI anchor: verify the finite PR self scalar after inventory refresh.
+/-- **R18.21 PR next-extremal cross scalar.**
+
+Assume the leading slice is already pure longitudinal.  If its longitudinal
+exponent is `N`, its contact deficit is `qN`, and a next-slice monomial has
+longitudinal exponent `M`, transverse degree `u`, and contact deficit `qM`,
+then the symmetric `(N,M)+(M,N)` raw-complement contribution collapses to the
+stated degree-only scalar. -/
+theorem prContactWeightedEuler_rawComplement_crossScalar_of_topTransverseZero
+    (D r N M u qN qM : ℕ)
+    (htop : qN + r * N = D)
+    (hnext : qM + r * M + u = D) :
+    ((N : K) * ((N : K) - 1)) *
+          ((D : K) * ((D : K) - 1) -
+            2 * ((D : K) - 1) * (qM : K) +
+            (qM : K) * ((qM : K) - 1) +
+            (r : K) * (1 - (r : K)) * (M : K)) +
+      ((M : K) * ((M : K) - 1)) *
+          ((D : K) * ((D : K) - 1) -
+            2 * ((D : K) - 1) * (qN : K) +
+            (qN : K) * ((qN : K) - 1) +
+            (r : K) * (1 - (r : K)) * (N : K)) -
+      2 *
+        ((N : K) * ((D : K) - (r : K) - (qN : K))) *
+        ((M : K) * ((D : K) - (r : K) - (qM : K))) =
+      (N : K) * (u : K) * ((N : K) - 1) * ((u : K) - 1) := by
+  have htopK :
+      (D : K) = (qN : K) + (r : K) * (N : K) := by
+    exact_mod_cast htop.symm
+  have hnextK :
+      (D : K) = (qM : K) + (r : K) * (M : K) + (u : K) := by
+    exact_mod_cast hnext.symm
+  have hqMK :
+      (qM : K) =
+        (qN : K) + (r : K) * (N : K) -
+          (r : K) * (M : K) - (u : K) := by
+    linear_combination htopK - hnextK
+  rw [htopK, hqMK]
+  ring
 
 end
 
