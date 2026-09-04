@@ -48,7 +48,6 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- The A19.115 fraction-field profile is impossible as soon as the honest
 contact/Schur calculation supplies the stationary residual equation. -/
-omit [IsAlgClosed K] in
 theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -129,6 +128,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHess
       (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian11)
       h11coeff
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet
+  simp only [map_sub, map_mul]
   rw [h00eq, h01eq, h11eq]
   exact binaryStaircaseProfileHessianDet_eq_residual
     T.topFace.degree P.profileWeight (Polynomial.map ι R.profile)
@@ -242,11 +242,19 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_profi
     R.profile - Polynomial.C R.profile.leadingCoeff * Polynomial.X ^ N
   have hMq : M = Q.natDegree := by
     simpa [Q] using hM
+  have hmapC :
+      Polynomial.map ι (Polynomial.C R.profile.leadingCoeff) =
+        Polynomial.C (ι R.profile.leadingCoeff) := by
+    simp
+  have hmapX :
+      Polynomial.map ι (Polynomial.X ^ N) = Polynomial.X ^ N := by
+    simp
   have hsub :
       H.profile - Polynomial.C H.profile.leadingCoeff * Polynomial.X ^ N =
         Polynomial.map ι Q := by
     rw [hlead, hprofile]
-    simp [Q]
+    dsimp [Q]
+    rw [Polynomial.map_sub, Polynomial.map_mul, hmapC, hmapX]
   have hmapQDegree : (Polynomial.map ι Q).natDegree = Q.natDegree :=
     Polynomial.natDegree_map_eq_of_injective hι Q
   have hMfrac :
