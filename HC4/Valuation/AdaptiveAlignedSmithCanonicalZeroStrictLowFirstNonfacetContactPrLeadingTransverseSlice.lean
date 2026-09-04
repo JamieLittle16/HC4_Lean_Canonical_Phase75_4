@@ -99,7 +99,6 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.exists_leadingTransvers
     simp at hdeg
   have hAne : A ≠ 0 := by
     dsimp [A]
-    rw [Polynomial.coeff_natDegree]
     exact Polynomial.leadingCoeff_ne_zero.mpr hprofile
   have hAsupport : A.support.Nonempty := MvPolynomial.support_nonempty.mpr hAne
   rcases Finset.exists_max_image A.support qsContactTransverseDegree hAsupport with
