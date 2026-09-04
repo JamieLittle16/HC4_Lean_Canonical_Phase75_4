@@ -2,7 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.26--27: exact parameter orders and scalar consequences of the two exposed PR pairs
+# A19.R18.26--28: exact parameter orders and scalar consequences of the two exposed PR pairs
 
 The contact and binary filtrations are deliberately not identified.  For the
 two extremal longitudinal pairs we only need their exact arithmetic relation.
@@ -20,8 +20,11 @@ bookkeeping needed by the coefficientwise transverse-inflation transport.
 
 The same finite package is also the natural owner for the two scalar
 consequences: a zero leading self scalar forces `t = 0`; after that, a zero
-leading/next cross scalar forces `u ≤ 1`.  No geometric vanishing is assumed in
-these wrappers.
+leading/next cross scalar forces `u ≤ 1`.  R18.28 additionally records the
+precise nonzero-slice cancellation needed by the forthcoming coefficient
+calculation: if the scalar times the retained nonzero slice product vanishes,
+then the scalar itself vanishes and the R18.27 degree collapse applies.
+No geometric vanishing is assumed in these wrappers.
 -/
 
 namespace HC4.Valuation
@@ -119,6 +122,66 @@ theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_
     h0 | h1
   · omega
   · omega
+
+/-- **R18.28 leading slice cancellation.**  The maximal leading transverse
+slice is nonzero, so vanishing of the self scalar times its square already
+forces the scalar to vanish.  This is the exact form produced by the leading
+`qNN` coefficient calculation. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (hzero :
+      MvPolynomial.C
+          (- (E.next.N : K) * (E.leading.transverseDegree : K) *
+            ((E.next.N : K) + (E.leading.transverseDegree : K) - 1)) *
+        E.leading.slice * E.leading.slice = 0) :
+    E.leading.transverseDegree = 0 := by
+  let a : K :=
+    - (E.next.N : K) * (E.leading.transverseDegree : K) *
+      ((E.next.N : K) + (E.leading.transverseDegree : K) - 1)
+  have haC : (MvPolynomial.C a : MvPolynomial (Fin 3) K) = 0 := by
+    by_contra hne
+    have hprod :
+        (MvPolynomial.C a : MvPolynomial (Fin 3) K) *
+            E.leading.slice * E.leading.slice ≠ 0 :=
+      mul_ne_zero (mul_ne_zero hne E.leading.slice_ne_zero)
+        E.leading.slice_ne_zero
+    exact hprod (by simpa [a] using hzero)
+  have ha : a = 0 := by
+    apply MvPolynomial.C_injective (Fin 3) K
+    simpa using haC
+  apply E.leading_transverseDegree_eq_zero_of_selfScalar
+  simpa [a] using ha
+
+/-- **R18.28 leading/next slice cancellation.**  Once the leading slice has
+been forced pure longitudinal, both retained extremal slices are nonzero.
+Thus a zero cross scalar times their product forces exactly the scalar equation
+consumed by R18.27, and hence the entire next longitudinal coefficient has
+maximal transverse degree at most one. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossSlice
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (hzero :
+      MvPolynomial.C
+          ((E.next.N : K) * (E.next.transverseDegree : K) *
+            ((E.next.N : K) - 1) *
+            ((E.next.transverseDegree : K) - 1)) *
+        E.leading.slice * E.next.slice = 0) :
+    E.next.transverseDegree ≤ 1 := by
+  let a : K :=
+    (E.next.N : K) * (E.next.transverseDegree : K) *
+      ((E.next.N : K) - 1) * ((E.next.transverseDegree : K) - 1)
+  have haC : (MvPolynomial.C a : MvPolynomial (Fin 3) K) = 0 := by
+    by_contra hne
+    have hprod :
+        (MvPolynomial.C a : MvPolynomial (Fin 3) K) *
+            E.leading.slice * E.next.slice ≠ 0 :=
+      mul_ne_zero (mul_ne_zero hne E.leading.slice_ne_zero)
+        E.next.slice_ne_zero
+    exact hprod (by simpa [a] using hzero)
+  have ha : a = 0 := by
+    apply MvPolynomial.C_injective (Fin 3) K
+    simpa using haC
+  apply E.next_transverseDegree_le_one_of_crossScalar
+  simpa [a] using ha
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
