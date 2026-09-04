@@ -247,6 +247,8 @@ private theorem binaryWeightedEulerShear_couplingCorrection_profileOrder_add_fou
       rw [hd]
       simp [binaryWeightedEulerShear_extremalRemainder]
 
+-- CI anchor: compile the transverse correction transport after inventory refresh.
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
