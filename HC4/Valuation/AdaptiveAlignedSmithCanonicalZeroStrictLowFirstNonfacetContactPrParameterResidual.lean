@@ -53,7 +53,20 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_raw
   dsimp at h
   rw [h]
   unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
-  ring_nf
+  have hsquare :
+      (MvPolynomial.C
+          (Polynomial.C
+            (((T.topFace.degree : K) - (P.profileWeight : K)) ^ 2)) :
+        MvPolynomial (Fin 4) (Polynomial K)) =
+        MvPolynomial.C
+            (Polynomial.C
+              ((T.topFace.degree : K) - (P.profileWeight : K))) *
+          MvPolynomial.C
+            (Polynomial.C
+              ((T.topFace.degree : K) - (P.profileWeight : K))) := by
+    simp [pow_two]
+  rw [hsquare]
+  ring
 
 /-- Subtractive form of the exact PR obstruction.  This is the form consumed
 by the extremal coefficient calculation. -/
