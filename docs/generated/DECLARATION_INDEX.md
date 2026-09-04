@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7164**.
+Distinct declaration spellings indexed: **7167**.
 
 ## Repeated declaration spellings
 
@@ -2012,6 +2012,7 @@ Distinct declaration spellings indexed: **7164**.
 - `QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianFamily`
 - `QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_euler_reduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - `QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_longitudinal_reduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
+- `QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_map_contactProfileReduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `QsOtherFacetContactQuadraticReesPackage.binaryWeightedEulerShear_determinantCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantProfileBridge`
@@ -2046,6 +2047,7 @@ Distinct declaration spellings indexed: **7164**.
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_specialFiber_eq_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactIntegralFace`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEulerFamily`
 - `QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`
+- `QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - `QsOtherFacetContactQuadraticReesPackage.contactWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
 - `QsOtherFacetContactQuadraticReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`
@@ -4842,6 +4844,7 @@ Distinct declaration spellings indexed: **7164**.
 - `mvEuler_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `mvEuler_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `mvEuler_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `mvEuler_zero_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - `mvExponentOnBoundary_iff_coordinate_zero` — `theorem` in `HC4.Polynomial.FourExponent`
 - `mvGradientAt` — `def` in `HC4.Newton.ExactCollisionFirstWall`
 - `mvGradientComponentAt` — `def` in `HC4.Newton.ExactCollisionFirstWall`
