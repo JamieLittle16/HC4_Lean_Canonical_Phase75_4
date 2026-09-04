@@ -47,6 +47,7 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- The A19.115 fraction-field profile is impossible as soon as the honest
 contact/Schur calculation supplies the stationary residual equation. -/
+omit [IsAlgClosed K] in
 theorem QsOtherFacetContactFractionProfilePackage.impossible_of_residual
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -127,7 +128,6 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.fractionMap_profileHess
       (Polynomial.map ι R.profile) (Polynomial.map ι R.profileHessian11)
       h11coeff
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet
-  simp only [map_sub, map_mul]
   rw [h00eq, h01eq, h11eq]
   exact binaryStaircaseProfileHessianDet_eq_residual
     T.topFace.degree P.profileWeight (Polynomial.map ι R.profile)
@@ -233,8 +233,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
     exact H.degree_two_le
   have hlead : H.profile.leadingCoeff = ι R.profile.leadingCoeff := by
     calc
-      H.profile.leadingCoeff = H.profile.coeff H.profile.natDegree :=
-        (Polynomial.coeff_natDegree H.profile).symm
+      H.profile.leadingCoeff = H.profile.coeff H.profile.natDegree := by
+        rw [Polynomial.coeff_natDegree]
       _ = H.profile.coeff R.profile.natDegree := by rw [hdegree]
       _ = (Polynomial.map ι R.profile).coeff R.profile.natDegree := by
         rw [hprofile]
@@ -249,7 +249,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
   have hsub :
       H.profile - Polynomial.C H.profile.leadingCoeff * Polynomial.X ^ N =
         Polynomial.map ι Q := by
-    rw [hprofile, hlead]
+    rw [hlead, hprofile]
     simp [Q]
   have hmapQDegree : (Polynomial.map ι Q).natDegree = Q.natDegree :=
     Polynomial.natDegree_map_eq_of_injective hι Q
@@ -279,8 +279,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.impossible_of_two_binar
     simp
   exact binaryStaircaseProfile_terminal_impossible_of_two_residual_coeffs
     (K := L)
-    T.topFace.degree P.profileWeight N M H.profile
-    H.coeff_zero_ne H.support_bound hNfrac hNtwo hMfrac hNNfrac hNMfrac
+    (D := T.topFace.degree) (r := P.profileWeight) (N := N) (M := M)
+    (hr := P.profileWeight_two_le) (h := H.profile)
+    (h0 := H.coeff_zero_ne) (hsupport := H.support_bound)
+    (hN := hNfrac) (hNtwo := hNtwo) (hM := hMfrac)
+    (hNN := hNNfrac) (hNM := hNMfrac)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
