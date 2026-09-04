@@ -58,18 +58,35 @@ theorem familyParameterLayer_eulerScaledHessian_zero_zero
         (HC4.Polynomial.eulerScaledHessian F (0 : Fin 4) 0) q =
       HC4.Polynomial.eulerScaledHessian
         (familyParameterLayer F q) (0 : Fin 4) 0 := by
-  change
+  calc
     familyParameterLayer
+        (HC4.Polynomial.eulerScaledHessian F (0 : Fin 4) 0) q =
+      familyParameterLayer
         (HC4.Polynomial.mvEuler (0 : Fin 4)
             (HC4.Polynomial.mvEuler (0 : Fin 4) F) -
-          HC4.Polynomial.mvEuler (0 : Fin 4) F) q =
-      HC4.Polynomial.mvEuler (0 : Fin 4)
+          HC4.Polynomial.mvEuler (0 : Fin 4) F) q := by
+        rfl
+    _ = familyParameterLayer
+          (HC4.Polynomial.mvEuler (0 : Fin 4)
+            (HC4.Polynomial.mvEuler (0 : Fin 4) F)) q -
+        familyParameterLayer
+          (HC4.Polynomial.mvEuler (0 : Fin 4) F) q :=
+      familyParameterLayer_sub_exact _ _ q
+    _ = HC4.Polynomial.mvEuler (0 : Fin 4)
+          (familyParameterLayer
+            (HC4.Polynomial.mvEuler (0 : Fin 4) F) q) -
+        HC4.Polynomial.mvEuler (0 : Fin 4)
+          (familyParameterLayer F q) := by
+      rw [familyParameterLayer_mvEuler, familyParameterLayer_mvEuler]
+    _ = HC4.Polynomial.mvEuler (0 : Fin 4)
           (HC4.Polynomial.mvEuler (0 : Fin 4)
             (familyParameterLayer F q)) -
-        HC4.Polynomial.mvEuler (0 : Fin 4) (familyParameterLayer F q)
-  rw [familyParameterLayer_sub_exact]
-  rw [familyParameterLayer_mvEuler, familyParameterLayer_mvEuler,
-    familyParameterLayer_mvEuler]
+        HC4.Polynomial.mvEuler (0 : Fin 4)
+          (familyParameterLayer F q) := by
+      rw [familyParameterLayer_mvEuler]
+    _ = HC4.Polynomial.eulerScaledHessian
+        (familyParameterLayer F q) (0 : Fin 4) 0 := by
+      rfl
 
 /-- On longitudinal coefficient `n`, the pure longitudinal Euler-Hessian
 contributes exactly the falling scalar `n(n-1)` on every honest contact
@@ -92,7 +109,9 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [coeff_eulerScaledHessian]
   simp only [if_pos]
-  simp
+  have hzero : (m.cons n) (0 : Fin 4) = n := by
+    rfl
+  rw [hzero]
   ring
 
 /-- The leading exposed source slice therefore sees the exact longitudinal
