@@ -6725,12 +6725,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders.lean`
-- Purpose: A19.R18.26--27: exact parameter orders and scalar consequences of the two exposed PR pairs
+- Purpose: A19.R18.26--28: exact parameter orders and scalar consequences of the two exposed PR pairs
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem QsOtherFacetContactPrExtremalDegreeData.qNN_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNM_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNN_add_four_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNM_add_four_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar`, `theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar`
+- Declarations: `theorem QsOtherFacetContactPrExtremalDegreeData.qNN_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNM_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNN_add_four_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.qNM_add_four_eq_contact_pair`, `theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar`, `theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar`, `theorem QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice`, `theorem QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossSlice`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 

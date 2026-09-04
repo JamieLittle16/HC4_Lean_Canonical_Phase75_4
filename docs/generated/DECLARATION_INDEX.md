@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7219**.
+Distinct declaration spellings indexed: **7221**.
 
 ## Repeated declaration spellings
 
@@ -1993,7 +1993,9 @@ Distinct declaration spellings indexed: **7219**.
 - `QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactPrExtremalDegreeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
+- `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
+- `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.qNM_add_four_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.qNM_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.qNN_add_four_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
