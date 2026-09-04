@@ -113,6 +113,85 @@ theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq
       hLongitudinal *
         (HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily)
 
+/-- Longitudinal Euler differentiation commutes with the three transverse
+unit inflations.  This is the missing one-row companion of the already-owned
+Euler-Hessian transport theorem. -/
+private theorem mvEuler_zero_unitTransverseInflateFamily
+    (F : MvPolynomial (Fin 4) (Polynomial K)) :
+    HC4.Polynomial.mvEuler (0 : Fin 4)
+        (unitTransverseInflateFamily (K := K) F) =
+      unitTransverseInflateFamily (K := K)
+        (HC4.Polynomial.mvEuler (0 : Fin 4) F) := by
+  ext d
+  rw [coeff_mvEuler, coeff_unitTransverseInflateFamily,
+    coeff_unitTransverseInflateFamily, coeff_mvEuler]
+  ring
+
+/-- Contact-native preimage of the binary longitudinal profile determinant.
+It uses only the contact family, its longitudinal Euler row, and its
+longitudinal Euler-Hessian entry.  No Schur complement or active-pivot
+cancellation is present in this definition. -/
+noncomputable def QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    MvPolynomial (Fin 4) (Polynomial K) :=
+  MvPolynomial.C
+      (Polynomial.C
+        ((T.topFace.degree : K) * ((T.topFace.degree : K) - 1))) *
+    P.contactFamily *
+      HC4.Polynomial.eulerScaledHessian
+        P.contactFamily (0 : Fin 4) (0 : Fin 4) +
+  MvPolynomial.C
+      (Polynomial.C
+        ((P.profileWeight : K) * (1 - (P.profileWeight : K)))) *
+    HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily *
+      HC4.Polynomial.eulerScaledHessian
+        P.contactFamily (0 : Fin 4) (0 : Fin 4) -
+  MvPolynomial.C
+      (Polynomial.C
+        (((T.topFace.degree : K) - (P.profileWeight : K)) ^ 2)) *
+    HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily *
+      HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily
+
+/-- **R18.21 contact/binary profile bridge.**  The complete binary
+profile-Hessian determinant is exactly simultaneous transverse inflation of
+the contact-native longitudinal reduction.  This is the correct filtration
+bridge for the final correction calculation: it preserves the contact
+parameter grading and does not identify the contact and ray filtrations. -/
+theorem QsOtherFacetContactQuadraticReesPackage.binaryProfileHessianDetFamily_eq_map_contactProfileReduction
+    (P : QsOtherFacetContactQuadraticReesPackage C) :
+    P.binaryProfileHessianDetFamily =
+      unitTransverseInflateRingHom (K := K)
+        P.contactProfileHessianDetReduction := by
+  let f := unitTransverseInflateRingHom (K := K)
+  have hfam :
+      P.binaryHomogenizedFamily = f P.contactFamily := by
+    rw [QsOtherFacetContactQuadraticReesPackage.binaryHomogenizedFamily]
+    exact (unitTransverseInflateRingHom_apply P.contactFamily).symm
+  have hEuler :
+      HC4.Polynomial.mvEuler (0 : Fin 4) P.binaryHomogenizedFamily =
+        f (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) := by
+    rw [hfam]
+    rw [unitTransverseInflateRingHom_apply]
+    exact mvEuler_zero_unitTransverseInflateFamily P.contactFamily
+  have hHessian :
+      P.binaryProfileHessian11Family =
+        f (HC4.Polynomial.eulerScaledHessian
+          P.contactFamily (0 : Fin 4) (0 : Fin 4)) := by
+    unfold QsOtherFacetContactQuadraticReesPackage.binaryProfileHessian11Family
+    rw [hfam]
+    rw [unitTransverseInflateRingHom_apply]
+    exact eulerScaledHessian_unitTransverseInflateFamily
+      P.contactFamily (0 : Fin 4) (0 : Fin 4)
+  have hC (c : Polynomial K) :
+      f (MvPolynomial.C c) =
+        (MvPolynomial.C c : MvPolynomial (Fin 4) (Polynomial K)) := by
+    dsimp [f]
+    simp [unitTransverseInflateRingHom, kernelInflateHom_C]
+  rw [P.binaryProfileHessianDetFamily_eq_longitudinal_reduction,
+    hfam, hEuler, hHessian]
+  unfold QsOtherFacetContactQuadraticReesPackage.contactProfileHessianDetReduction
+  simp only [map_add, map_sub, map_mul, hC]
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
