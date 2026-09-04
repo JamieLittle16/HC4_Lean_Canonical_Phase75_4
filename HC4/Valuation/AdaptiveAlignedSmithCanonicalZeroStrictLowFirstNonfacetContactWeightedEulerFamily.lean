@@ -51,7 +51,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_weightedEuler
   intro d
   simp only [MvPolynomial.coeff_add, MvPolynomial.coeff_C_mul,
     coeff_familyParameterEuler, coeff_mvEuler]
-  linear_combination P.contactFamily_weightedEuler_coeff d
+  convert P.contactFamily_weightedEuler_coeff d using 1 <;> ring
 
 /-- **R18 family falling source-row equation.**  This is the whole-family
 form of the second-order weighted Euler identity used to straighten the
