@@ -58,6 +58,8 @@ theorem prContactWeightedEuler_rawComplement_selfScalar
   rw [hgradeK]
   ring
 
+-- CI anchor: verify the finite PR self scalar after inventory refresh.
+
 end
 
 end HC4.Valuation
