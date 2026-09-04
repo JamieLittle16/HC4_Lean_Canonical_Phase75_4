@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7221**.
+Distinct declaration spellings indexed: **7225**.
 
 ## Repeated declaration spellings
 
@@ -1992,6 +1992,8 @@ Distinct declaration spellings indexed: **7221**.
 - `QsOtherFacetContactNextTransverseSliceData.transverseEuler_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactNextTransverseSliceData.transverseFallingEuler_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `QsOtherFacetContactPrExtremalDegreeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
+- `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
+- `QsOtherFacetContactPrExtremalDegreeData.contactNextParameterLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
@@ -2134,6 +2136,8 @@ Distinct declaration spellings indexed: **7221**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.coeff_profileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessian`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer_eq_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSlice_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
