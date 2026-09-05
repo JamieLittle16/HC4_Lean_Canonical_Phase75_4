@@ -29,15 +29,6 @@ open HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- The exact parameter-zero source layer is the usual polynomial-family
-special fibre. -/
-theorem familyParameterLayer_zero_eq_polynomialFamilySpecialFiber
-    (F : MvPolynomial (Fin 4) (Polynomial K)) :
-    familyParameterLayer F 0 = polynomialFamilySpecialFiber F := by
-  ext d
-  rw [familyParameterLayer_coeff]
-  simp [polynomialFamilySpecialFiber]
-
 /-- Constant coefficient of the active determinant in a parameter-first
 permuted Hessian block is exactly the corresponding Hessian principal minor
 of the honest special fibre. -/
@@ -47,18 +38,23 @@ theorem permutedFamilyHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_mino
     (permutedFamilyHessianFourBlock rho F).activeDet.coeff 0 =
       HC4.Polynomial.hessianPrincipalMinor
         (polynomialFamilySpecialFiber F) (rho 0) (rho 1) := by
+  have hsym :
+      HC4.Polynomial.hessian (polynomialFamilySpecialFiber F) (rho 0) (rho 1) =
+        HC4.Polynomial.hessian (polynomialFamilySpecialFiber F) (rho 1) (rho 0) := by
+    have h := congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
+      (parameterFirstHessian_symmetric F (rho 0) (rho 1))
+    simpa [parameterFirstHessian_coeff,
+      familyParameterLayer_zero_eq_polynomialFamilySpecialFiber] using h
   unfold permutedFamilyHessianFourBlock GeneralFourBlock.activeDet
     GeneralFourBlock.ofSymmetricMatrix HC4.Polynomial.hessianPrincipalMinor
   simp only [Matrix.submatrix_apply]
   rw [Polynomial.coeff_zero_eq_eval_zero]
   simp only [Polynomial.eval_sub, Polynomial.eval_mul]
-  rw [← Polynomial.coeff_zero_eq_eval_zero,
-    ← Polynomial.coeff_zero_eq_eval_zero,
-    ← Polynomial.coeff_zero_eq_eval_zero,
-    ← Polynomial.coeff_zero_eq_eval_zero]
-  rw [parameterFirstHessian_coeff, parameterFirstHessian_coeff,
-    parameterFirstHessian_coeff, parameterFirstHessian_coeff]
+  simp only [← Polynomial.coeff_zero_eq_eval_zero]
+  simp_rw [parameterFirstHessian_coeff]
   rw [familyParameterLayer_zero_eq_polynomialFamilySpecialFiber]
+  simpa only [hsym]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
