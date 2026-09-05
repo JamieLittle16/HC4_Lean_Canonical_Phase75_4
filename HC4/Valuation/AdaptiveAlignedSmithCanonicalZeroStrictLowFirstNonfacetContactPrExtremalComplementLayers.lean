@@ -112,6 +112,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear
     rw [finSuccEquiv_coeff_constant_mul]
     rw [E.contactLeadingSourceEulerLayer_eq]
   rw [hfirst, hsecond]
+  simp only [map_mul, map_sub]
   ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
