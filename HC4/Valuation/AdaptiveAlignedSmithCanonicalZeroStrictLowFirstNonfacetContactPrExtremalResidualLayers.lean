@@ -190,8 +190,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactParameterLayer_longitudin
         T.topFace.degree -
             (qsContactTransverseDegree m + P.profileWeight * n) = q
   · rw [if_pos hcond, hzero]
-    simp
-  · rw [if_neg hcond]
+  · simp only [if_neg hcond, MvPolynomial.coeff_zero]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
