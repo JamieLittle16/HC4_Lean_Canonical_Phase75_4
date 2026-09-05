@@ -6725,12 +6725,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers.lean`
-- Purpose: A19.R18.34: leading PR weighted-complement contact layers
+- Purpose: A19.R18.34-R18.35: leading PR weighted-complement contact layers
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalResidualLayers`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem familyParameterLayer_constant_mul`, `theorem finSuccEquiv_coeff_constant_mul`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear_yLayer_eq`
+- Declarations: `theorem familyParameterLayer_add_exact`, `theorem familyParameterLayer_constant_mul`, `theorem familyParameterLayer_two_constant_mul`, `theorem finSuccEquiv_coeff_constant_mul`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear_yLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear_zLayer_eq`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 
