@@ -184,7 +184,99 @@ The RationalRigidity certificate is reconstructed canonically from the retained 
 
 The **codimension-two branch** remains a distinct boundary branch and should not be silently identified with the rank-three branch or with the two-zero/JC2 route without a theorem that supplies the required carrier hypotheses.
 
-The next live lower-ray reduction is to use the positive first-contact bump to rule out homogeneous affine direction (`1 + q + r + s = 0`) and feed the remaining RationalRigidity scalar cases into the existing fixed-direction endgame. The direct maximal-top-face ray is genuinely homogeneous and must be consumed by the homogeneous RR route instead; these two cases must not be conflated.
+The subsequent A19.80--A19.95 reductions and the current contact calculation
+are recorded below. The older affine-direction task is not the current
+closing gate.
+
+### 8a. Current exposed-`qs` frontier and exact PR calculation
+
+`qs_rankThree_startCodimensionTwo_or_lockedOtherFacet_or_quadraticSquare`
+in `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier.lean`
+retains three alternatives:
+
+1. an actual lower ray whose **starting** endpoint is codimension two;
+2. an actual lower ray starting rank three on `.qs` and ending rank three on
+   `.pr`, `.sp`, or `.rq`, with the strict transverse direction lock;
+3. a literal coordinate-zero quadratic square in the represented source.
+
+Eliminating the other-facet branch does not by itself eliminate alternative 1.
+A19.91 eliminates the **outside** codimension-two endpoint under a rank-three
+starting hypothesis; it does not eliminate a codimension-two starting endpoint.
+A19.86 turns the square into supported codimension-two data, but does not
+construct an entire two-zero polynomial carrier.
+
+The current finite-calculation owner is
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient.lean`.
+R18.36--R18.37 are included in the root build and were checked by Lean CI #1538
+at `2e4c8ef3f67fb764b239d073d2a638a14e3389a0`, including the axiom audit,
+negative control, and proof-escape check.
+
+Write `N = E.next.N`, `t = E.leading.transverseDegree`, `q = E.qN`, and
+`S = E.leading.slice`. At exact contact parameter order `2q` and longitudinal
+index `2N`, the proved identities are:
+
+| Quantity | Exact coefficient |
+| --- | --- |
+| Straightened raw complementary determinant | `C(-N*t*(N+t-1)) * S * S` |
+| `contactProfileParameterResidual` | `C(N*q*(q+N+2*t-1)) * S * S` |
+
+The longitudinal convolution collapses to `(N,N)` by the support ceiling;
+the parameter convolution then collapses to `(q,q)` by leading-order
+minimality. Both collapses are proved, not assumed.
+
+The residual coefficient is zero **if and only if `q = 0`**. This follows
+from `N >= 2`, characteristic zero, and the retained nonzero slice. Thus
+extremality does not permit discarding the parameter residual at positive
+contact deficit.
+
+**The geometric zero is still unproved.** In particular,
+`contactLeadingRawComplementDetLayer_eq` is a coefficient identity; it does
+not establish `t = 0`. The existing
+`leading_transverseDegree_eq_zero_of_selfSlice` will establish that conclusion
+only after its zero hypothesis has genuinely been supplied.
+
+The exact remaining correction must be kept visible. Put `A = H.activeDet`,
+`P = contactProfileHessianDetReduction`, `R = contactProfileParameterResidual`,
+and let `B` be the sum of the three bordered Schur contributions and the mixed
+coupling square. The already-proved whole-family identities give
+
+```text
+A * P = B - H.determinantCore - A * R.
+```
+
+At the appropriately transported binary layer the determinant clock kills
+the full determinant contribution. Obtaining an active-pivot/profile product
+zero still requires cancellation of the remaining `B - A * R` coefficient.
+Neither full-determinant vanishing nor the identity for the leading residual
+alone supplies this cancellation. Contact/binary coefficient transport must
+retain its transverse-degree shift.
+
+Consequently `hprodNN`, `hprodNM`, unconditional `.pr/.sp/.rq` impossibility,
+and unconditional presented-terminal impossibility are not yet proved by this
+calculation. A fixed remaining commit count is not justified while this
+geometric gate remains open.
+
+### 8b. Final import audit remains an explicit obligation
+
+The A19.1 public statement has no JC2 hypothesis. Its current transitive
+imports nevertheless include the older conditional owner
+`HC4.Newton.TerminalTwoZeroJC2Endpoint`, for example along:
+
+```text
+AdaptiveAlignedSmithCanonicalHC4Reduction
+  -> AdaptiveAlignedSmithCanonicalCollisionAutoDegree
+  -> NonlinearDegreeBoundPreservation
+  -> IntegralKernelBlowup
+  -> PolynomialFamilyKernelRestart
+  -> KernelBlowupCertificate
+  -> HC4.Newton.RestartClassification
+  -> HC4.Newton.TerminalTwoZeroJC2Endpoint
+```
+
+This is an import dependency, not evidence of an assumed JC2 axiom in A19.1.
+It must still be separated if the final public owner is required to have no
+transitive imports from the conditional JC2 route. Merely choosing a new
+filename for the final theorem does not achieve that isolation.
 
 ## 9. What is already closed and should not be reopened
 
