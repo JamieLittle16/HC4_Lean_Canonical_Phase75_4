@@ -181,8 +181,9 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactParameterLayer_longitudin
   have hdeg : R.profile.natDegree < n := by
     rw [← E.next.N_eq]
     exact hn
-  have hzero : R.profile.coeff n = 0 :=
-    Polynomial.coeff_eq_zero_of_natDegree_lt hdeg
+  have hzero : R.profile.coeff n = 0 := by
+    apply Polynomial.coeff_eq_zero_of_natDegree_lt
+    exact hdeg
   by_cases hcond :
       m.cons n ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support ∧
