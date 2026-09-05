@@ -2,19 +2,21 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.32: exact leading layers for the PR parameter residual
+# A19.R18.32-R18.33: exact leading layers for the PR parameter residual
 
-The first genuine PR coefficient calculation is the leading self pair.  Two
+The first genuine PR coefficient calculation is the leading self pair.  Three
 small finite facts are needed before expanding the exact parameter residual:
 
 * exact parameter-layer extraction through the longitudinal Euler-Hessian
-  gives the literal falling scalar `N(N-1)`; and
+  gives the literal falling scalar `N(N-1)`;
 * the retained order `qN` is the first honest-contact parameter order at
-  longitudinal degree `N`.  Any smaller order would correspond to a
-  transverse degree strictly larger than the maximal retained leading slice.
+  longitudinal degree `N`; and
+* no honest-contact layer has longitudinal index strictly above `N`.
 
-These are local consequences of the already-certified contact grading.  No
-Schur vanishing, product clock, localization, or new geometric hypothesis is
+The last two statements collapse the two-dimensional convolution at the
+leading self pair to the unique split `(qN,N) + (qN,N)`.  These are local
+consequences of the already-certified contact grading.  No Schur vanishing,
+all-depth product clock, localization, or new geometric hypothesis is
 introduced here.
 -/
 
@@ -158,6 +160,37 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq_
     omega
   · rw [if_neg hw]
     simp
+
+/-- **R18.33 top-longitudinal support ceiling.**  The honest contact Rees does
+not create new source exponents.  Since `N` is the raw profile's natural
+degree, every exact parameter layer has zero longitudinal coefficient above
+`N`.  This is the source-direction half of the extremal self-pair
+convolution collapse. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactParameterLayer_longitudinal_eq_zero_of_N_lt
+    {R : QsOtherFacetContactRawLongitudinalProfilePackage C P}
+    (E : QsOtherFacetContactPrExtremalDegreeData R)
+    (q n : ℕ)
+    (hn : E.next.N < n) :
+    R.contactLongitudinalParameterLayer q n = 0 := by
+  unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
+  apply MvPolynomial.ext
+  intro m
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [P.contactFamily_longitudinal_transverse_coeff]
+  rw [← R.profile_eq]
+  have hdeg : R.profile.natDegree < n := by
+    rw [← E.next.N_eq]
+    exact hn
+  have hzero : R.profile.coeff n = 0 :=
+    Polynomial.coeff_eq_zero_of_natDegree_lt hdeg
+  by_cases hcond :
+      m.cons n ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support ∧
+        T.topFace.degree -
+            (qsContactTransverseDegree m + P.profileWeight * n) = q
+  · rw [if_pos hcond, hzero]
+    simp
+  · rw [if_neg hcond]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
