@@ -107,7 +107,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.profileHessianDet_natDe
         R.profileHessian01_natDegree_le_profile)
   rw [Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt h0011 hn),
     Polynomial.coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt h0101 hn)]
-  rfl
+  simp
 
 /-- **R18.21 first exposed parameter order.**  If `N` is the highest raw
 longitudinal profile index, the whole binary profile-Hessian determinant has no
@@ -129,6 +129,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
     rw [Nat.mul_add]
     omega
   apply (MvPolynomial.finSuccEquiv K 3).injective
+  simp only [map_zero]
   apply Polynomial.ext
   intro n
   apply MvPolynomial.ext
@@ -144,7 +145,11 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
   rw [hm]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   by_cases hn : n ≤ R.profile.natDegree + R.profile.natDegree
-  · have horder :
+  · have hmul :
+        P.profileWeight * n ≤
+          P.profileWeight * (R.profile.natDegree + R.profile.natDegree) :=
+      Nat.mul_le_mul_left P.profileWeight hn
+    have horder :
         2 * T.topFace.degree -
             P.profileWeight * (R.profile.natDegree + R.profile.natDegree) ≤
           2 * T.topFace.degree - P.profileWeight * n := by
@@ -172,6 +177,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
     (hq : 2 * T.topFace.degree < q) :
     familyParameterLayer P.binaryProfileHessianDetFamily q = 0 := by
   apply (MvPolynomial.finSuccEquiv K 3).injective
+  simp only [map_zero]
   apply Polynomial.ext
   intro n
   apply MvPolynomial.ext
