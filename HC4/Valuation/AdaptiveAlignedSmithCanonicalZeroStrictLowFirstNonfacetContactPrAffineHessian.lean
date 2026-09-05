@@ -36,9 +36,10 @@ theorem pr_contact_pair_hessian_eq_zero
     (i j : Fin 4) (hi : i = 0 ∨ i = 1) (hj : j = 0 ∨ j = 1) :
     HC4.Polynomial.hessian C.face i j = 0 := by
   classical
+  change MvPolynomial.pderiv j (MvPolynomial.pderiv i C.face) = 0
   apply MvPolynomial.ext
   intro d
-  rw [hessian_apply, coeff_pderiv_backport, coeff_pderiv_backport,
+  rw [coeff_pderiv_backport, coeff_pderiv_backport,
     MvPolynomial.coeff_zero]
   have hc : MvPolynomial.coeff
       (d + Finsupp.single j 1 + Finsupp.single i 1) C.face = 0 := by
