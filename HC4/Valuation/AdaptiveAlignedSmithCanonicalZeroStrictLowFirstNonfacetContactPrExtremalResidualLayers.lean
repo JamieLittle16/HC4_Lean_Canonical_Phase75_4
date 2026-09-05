@@ -79,6 +79,9 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   rw [familyParameterLayer_coeff, familyParameterLayer_coeff,
     familyParameterLayer_coeff]
   rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
+  have h0 : (Finsupp.cons n m) (0 : Fin 4) = n := by
+    simp
+  rw [h0]
   simp
   ring
 
