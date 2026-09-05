@@ -121,13 +121,6 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
       2 * T.topFace.degree -
         P.profileWeight * (R.profile.natDegree + R.profile.natDegree)) :
     familyParameterLayer P.binaryProfileHessianDetFamily q = 0 := by
-  have hNbound : R.profile.natDegree * P.profileWeight ≤ T.topFace.degree :=
-    R.support_bound
-  have htwoBound :
-      P.profileWeight * (R.profile.natDegree + R.profile.natDegree) ≤
-        2 * T.topFace.degree := by
-    rw [Nat.mul_add]
-    omega
   apply (MvPolynomial.finSuccEquiv K 3).injective
   simp only [map_zero]
   apply Polynomial.ext
@@ -137,12 +130,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
   rw [Polynomial.coeff_zero, MvPolynomial.coeff_zero]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [familyParameterLayer_coeff]
-  have hlong := R.binaryProfileHessianDetFamily_longitudinal_coeff n
-  have hm := congrArg
-    (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
-    hlong
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
-  rw [hm]
+  rw [← MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [R.binaryProfileHessianDetFamily_longitudinal_coeff n]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   by_cases hn : n ≤ R.profile.natDegree + R.profile.natDegree
   · have hmul :
@@ -152,8 +141,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
     have horder :
         2 * T.topFace.degree -
             P.profileWeight * (R.profile.natDegree + R.profile.natDegree) ≤
-          2 * T.topFace.degree - P.profileWeight * n := by
-      omega
+          2 * T.topFace.degree - P.profileWeight * n :=
+      Nat.sub_le_sub_left hmul (2 * T.topFace.degree)
     have hqorder :
         q < 2 * T.topFace.degree - P.profileWeight * n :=
       lt_of_lt_of_le hq horder
@@ -185,12 +174,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
   rw [Polynomial.coeff_zero, MvPolynomial.coeff_zero]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [familyParameterLayer_coeff]
-  have hlong := R.binaryProfileHessianDetFamily_longitudinal_coeff n
-  have hm := congrArg
-    (fun A : MvPolynomial (Fin 3) (Polynomial K) => MvPolynomial.coeff m A)
-    hlong
-  rw [MvPolynomial.finSuccEquiv_coeff_coeff] at hm
-  rw [hm]
+  rw [← MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [R.binaryProfileHessianDetFamily_longitudinal_coeff n]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   rw [Polynomial.coeff_X_pow_mul']
   have hslt :
