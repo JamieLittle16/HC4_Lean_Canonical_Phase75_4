@@ -69,8 +69,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
             (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) -
           HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) q)).coeff n = _
   rw [familyParameterLayer_sub_exact]
-  rw [familyParameterLayer_mvEuler, familyParameterLayer_mvEuler,
-    familyParameterLayer_mvEuler]
+  rw [familyParameterLayer_mvEuler]
   unfold QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalParameterLayer
   apply MvPolynomial.ext
   intro m
@@ -156,6 +155,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq_
     rw [hdegree] at hmax
     omega
   · rw [if_neg hw]
+    simp
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
