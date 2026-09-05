@@ -91,8 +91,12 @@ original first-contact carrier `C.face`. -/
 theorem QsOtherFacetContactQuadraticReesPackage.contactFamily_specialFiber_eq_face
     (P : QsOtherFacetContactQuadraticReesPackage C) :
     polynomialFamilySpecialFiber P.contactFamily = C.face := by
-  rw [P.specialFiber_eq_contact]
-  exact P.integralContactInitialForm_eq_face
+  change polynomialFamilySpecialFiber
+      (reverseWeightedReesFamily
+        (qsIntegralContactWeight P.contactGap) T.topFace.degree
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) P.bound) =
+    C.face
+  exact P.specialFiber_eq_contact.trans P.integralContactInitialForm_eq_face
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
