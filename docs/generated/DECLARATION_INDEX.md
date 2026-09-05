@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7256**.
+Distinct declaration spellings indexed: **7257**.
 
 ## Repeated declaration spellings
 
@@ -1995,6 +1995,7 @@ Distinct declaration spellings indexed: **7256**.
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterLayer_eq_zero_of_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalResidualLayers`
+- `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterSecondEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingRawComplementDetLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
 - `QsOtherFacetContactPrExtremalDegreeData.contactLeadingSourceEulerLayer_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
