@@ -218,6 +218,95 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingRawComplementDetLa
   simp only [map_sub, map_mul, map_add, map_neg, map_one] at hsC ⊢
   linear_combination hsC * E.leading.slice * E.leading.slice
 
+/-- **R18.37 exact leading parameter residual.**  The residual does not
+vanish just because the contact convolution is extremal.  Its scalar is
+`N*qN*(qN+N+2*t-1)`, whereas the raw complementary determinant has scalar
+`-N*t*(N+t-1)`.  These two quantities must not be identified. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer P.contactProfileParameterResidual
+        (E.qN + E.qN))).coeff (E.next.N + E.next.N) =
+      MvPolynomial.C
+        ((E.next.N : K) * (E.qN : K) *
+          ((E.qN : K) + (E.next.N : K) +
+            2 * (E.leading.transverseDegree : K) - 1)) *
+        E.leading.slice * E.leading.slice := by
+  let F := P.contactFamily
+  let H := HC4.Polynomial.eulerScaledHessian F (0 : Fin 4) 0
+  let A := HC4.Polynomial.mvEuler (0 : Fin 4) F
+  let B := familyParameterEuler A
+  let J := familyParameterEuler F
+  let L := familyParameterSecondEuler F
+  have hH (q n : ℕ) : prLayer H q n =
+      MvPolynomial.C ((n : K) * ((n : K) - 1)) *
+        R.contactLongitudinalParameterLayer q n :=
+    R.contactLongitudinalSourceHessianLayer_eq q n
+  have hA (q n : ℕ) : prLayer A q n =
+      MvPolynomial.C (n : K) * R.contactLongitudinalParameterLayer q n :=
+    R.contactLongitudinalSourceEulerLayer_eq q n
+  have hJ (q n : ℕ) : prLayer J q n =
+      MvPolynomial.C (q : K) * R.contactLongitudinalParameterLayer q n :=
+    R.contactLongitudinalParameterEulerLayer_eq q n
+  have hL (q n : ℕ) : prLayer L q n =
+      MvPolynomial.C ((q : K) * ((q : K) - 1)) *
+        R.contactLongitudinalParameterLayer q n := by
+    have h := R.contactLongitudinalParameterSecondEulerLayer_eq q n
+    simpa only [map_mul, map_sub, map_one] using h
+  have hB (q n : ℕ) : prLayer B q n =
+      MvPolynomial.C ((q : K) * (n : K)) *
+        R.contactLongitudinalParameterLayer q n := by
+    have hb : prLayer B q n = MvPolynomial.C (q : K) * prLayer A q n := by
+      dsimp [B, prLayer]
+      rw [familyParameterLayer_familyParameterEuler]
+      apply MvPolynomial.ext
+      intro m
+      simp only [MvPolynomial.finSuccEquiv_coeff_coeff]
+      change MvPolynomial.coeff (m.cons n)
+          (MvPolynomial.C (q : K) * _) = _
+      rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_C_mul,
+        MvPolynomial.finSuccEquiv_coeff_coeff]
+    rw [hb, hA, map_mul, mul_assoc]
+  have hres : P.contactProfileParameterResidual =
+      H * L -
+        MvPolynomial.C (Polynomial.C (2 * ((T.topFace.degree : K) - 1))) *
+          (H * J) +
+        MvPolynomial.C (Polynomial.C
+          (2 * ((T.topFace.degree : K) - (P.profileWeight : K)))) *
+          (A * B) - B * B := by
+    unfold QsOtherFacetContactQuadraticReesPackage.contactProfileParameterResidual
+    dsimp [H, L, J, A, B, F]
+    simp only [map_mul, map_ofNat]
+    ring
+  change prLayer _ _ _ = _
+  rw [hres]
+  simp only [prLayer_sub, prLayer_add, prLayer_constant_mul]
+  rw [prLayer_mul_leading E H L _ _ hH hL,
+    prLayer_mul_leading E H J _ _ hH hJ,
+    prLayer_mul_leading E A B _ _ hA hB,
+    prLayer_mul_leading E B B _ _ hB hB]
+  rw [hH, hL, hJ, hA, hB, E.contactLeadingParameterLayer_eq]
+  have hgradeK : (T.topFace.degree : K) =
+      (E.qN : K) + (P.profileWeight : K) * (E.next.N : K) +
+        (E.leading.transverseDegree : K) := by
+    exact_mod_cast E.leading_grade.symm
+  have hs :
+      (E.next.N : K) * ((E.next.N : K) - 1) *
+          ((E.qN : K) * ((E.qN : K) - 1)) -
+        2 * ((T.topFace.degree : K) - 1) *
+          ((E.next.N : K) * ((E.next.N : K) - 1) * (E.qN : K)) +
+        2 * ((T.topFace.degree : K) - (P.profileWeight : K)) *
+          ((E.next.N : K) * ((E.qN : K) * (E.next.N : K))) -
+        ((E.qN : K) * (E.next.N : K)) * ((E.qN : K) * (E.next.N : K)) =
+      (E.next.N : K) * (E.qN : K) *
+        ((E.qN : K) + (E.next.N : K) +
+          2 * (E.leading.transverseDegree : K) - 1) := by
+    rw [hgradeK]
+    ring
+  have hsC := congrArg (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) hs
+  simp only [map_sub, map_mul, map_add, map_one, map_ofNat] at hsC ⊢
+  linear_combination hsC * E.leading.slice * E.leading.slice
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
