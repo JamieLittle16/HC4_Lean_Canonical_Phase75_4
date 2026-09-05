@@ -187,7 +187,9 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.binaryProfileHessianDet
   have hpos :
       0 < q - (2 * T.topFace.degree - P.profileWeight * n) :=
     Nat.sub_pos_of_lt hslt
-  simp [hsle, Nat.ne_of_gt hpos]
+  simp [hsle]
+  rw [Polynomial.coeff_C]
+  simp [Nat.ne_of_gt hpos]
 
 /-- The parameter-first binary profile-Hessian determinant has degree at most
 `2D`. -/
