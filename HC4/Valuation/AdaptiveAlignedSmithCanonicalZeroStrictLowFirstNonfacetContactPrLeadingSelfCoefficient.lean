@@ -307,6 +307,42 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualL
   simp only [map_sub, map_mul, map_add, map_one, map_ofNat] at hsC ⊢
   linear_combination hsC * E.leading.slice * E.leading.slice
 
+/-- The leading parameter-residual coefficient vanishes exactly when the
+leading contact deficit is zero.  In particular, extremal support gives no
+permission to discard the residual at a positive contact deficit. -/
+theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq_zero_iff
+    (E : QsOtherFacetContactPrExtremalDegreeData R) :
+    (MvPolynomial.finSuccEquiv K 3
+      (familyParameterLayer P.contactProfileParameterResidual
+        (E.qN + E.qN))).coeff (E.next.N + E.next.N) = 0 ↔ E.qN = 0 := by
+  rw [E.contactLeadingParameterResidualLayer_eq]
+  constructor
+  · intro hz
+    have hC := (mul_eq_zero.mp
+      ((mul_eq_zero.mp hz).resolve_right E.leading.slice_ne_zero)).resolve_right
+        E.leading.slice_ne_zero
+    have hs : (E.next.N : K) * (E.qN : K) *
+        ((E.qN : K) + (E.next.N : K) +
+          2 * (E.leading.transverseDegree : K) - 1) = 0 := by
+      apply MvPolynomial.C_injective (Fin 3) K
+      simpa only [map_zero] using hC
+    have hN : (E.next.N : K) ≠ 0 := by
+      have hNpos : 0 < E.next.N := by have := E.N_two_le; omega
+      exact_mod_cast Nat.ne_of_gt hNpos
+    have hlast : (E.qN : K) + (E.next.N : K) +
+        2 * (E.leading.transverseDegree : K) - 1 ≠ 0 := by
+      intro heq
+      have heq' := sub_eq_zero.mp heq
+      have hnat : E.qN + E.next.N + 2 * E.leading.transverseDegree = 1 := by
+        exact_mod_cast heq'
+      have := E.N_two_le
+      omega
+    have hq : (E.qN : K) = 0 :=
+      (mul_eq_zero.mp ((mul_eq_zero.mp hs).resolve_right hlast)).resolve_left hN
+    exact_mod_cast hq
+  · intro hq
+    simp [hq]
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
