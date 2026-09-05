@@ -6800,7 +6800,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def prLayer`, `theorem prLayer_add`, `theorem prLayer_sub`, `theorem prLayer_constant_mul`, `theorem prLayer_mul`, `theorem prLayer_mul_leading`, `theorem prLayer_x`, `theorem prLayer_y`, `theorem prLayer_z`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingRawComplementDetLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq`
+- Declarations: `def prLayer`, `theorem prLayer_add`, `theorem prLayer_sub`, `theorem prLayer_constant_mul`, `theorem prLayer_mul`, `theorem prLayer_mul_leading`, `theorem prLayer_x`, `theorem prLayer_y`, `theorem prLayer_z`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingRawComplementDetLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq`, `theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingParameterResidualLayer_eq_zero_iff`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSliceTransport`
 
