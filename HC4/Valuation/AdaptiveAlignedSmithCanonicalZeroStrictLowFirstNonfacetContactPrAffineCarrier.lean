@@ -47,7 +47,7 @@ theorem pr_contact_support_pair_le_one
   have hv := (C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree).1
   have ho := C.qs_ray_outside_zeroCoordinate_eq_one hthree
   have ho1 := ((mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree).1
-  simp only [crossFacetRayAux0, Matrix.cons_val_zero] at h
+  simp [crossFacetRayAux0, HC4.Polynomial.facetOmittedCoordinate] at h
   rw [hv, ho, ho1] at h
   norm_num at h
   omega
