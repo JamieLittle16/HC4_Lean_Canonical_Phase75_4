@@ -79,9 +79,7 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [MvPolynomial.coeff_sub]
   rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
-  have hzero : (m.cons n) (0 : Fin 4) = n := by
-    simp
-  rw [hzero]
+  simp
   ring
 
 /-- The leading exposed source slice therefore sees the exact longitudinal
