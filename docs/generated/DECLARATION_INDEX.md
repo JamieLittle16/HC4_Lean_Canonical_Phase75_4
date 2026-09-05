@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7265**.
+Distinct declaration spellings indexed: **7267**.
 
 ## Repeated declaration spellings
 
@@ -2174,6 +2174,8 @@ Distinct declaration spellings indexed: **7265**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.parameterFirst_binaryProfileHessianDetFamily_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDegreeBound`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.parameterFirst_binaryProfileHessianDetFamily_natDegree_lt_hessianClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianDegreeBound`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.prExtremalDegreeData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_leading_profileHessianDet_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrOneCoefficient`
+- `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_leading_profilePivotProduct_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrOneCoefficient`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_profilePivotSourceProductClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.pr_impossible_of_two_exposed_profilePivotProduct_coeffs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation`
