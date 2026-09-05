@@ -76,9 +76,13 @@ private theorem familyParameterLayer_two_constant_mul
     familyParameterLayer
         (2 * MvPolynomial.C (Polynomial.C c) * F) q =
       MvPolynomial.C ((2 : K) * c) * familyParameterLayer F q := by
-  apply MvPolynomial.ext
-  intro d
-  simp [familyParameterLayer_coeff]
+  have hc :
+      (2 * MvPolynomial.C (Polynomial.C c) :
+        MvPolynomial (Fin 4) (Polynomial K)) =
+        MvPolynomial.C (Polynomial.C ((2 : K) * c)) := by
+    simp only [map_mul, map_ofNat]
+  rw [hc]
+  exact familyParameterLayer_constant_mul ((2 : K) * c) F q
 
 private theorem finSuccEquiv_coeff_constant_mul
     (c : K)
@@ -173,6 +177,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear
           E.leading.slice := by
     rw [familyParameterLayer_constant_mul]
     rw [finSuccEquiv_coeff_constant_mul]
+    change MvPolynomial.C _ * R.contactLongitudinalParameterLayer E.qN E.next.N = _
     rw [E.contactLeadingParameterLayer_eq]
   have hsecond :
       (MvPolynomial.finSuccEquiv K 3
@@ -201,6 +206,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear
     rw [familyParameterLayer_constant_mul]
     rw [finSuccEquiv_coeff_constant_mul]
     rw [E.contactLeadingSourceEulerLayer_eq]
+  simp only [map_add, map_sub] at hfirst hsecond hthird hfourth
   rw [hfirst, hsecond, hthird, hfourth]
   simp only [map_mul, map_sub, map_add, map_one]
   ring
