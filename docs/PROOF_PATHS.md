@@ -469,6 +469,28 @@ This path remains valid where its hypotheses are present. It is not the default 
 
 Do not force a balance equation or an integral finite-segment parameterization merely to enter it.
 
+## 15a. Exact PR leading self calculation (R18.36--R18.37)
+
+All files below are under `HC4/Valuation/` and share the prefix
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContact`.
+
+| Owner suffix | Established output |
+| --- | --- |
+| `PrExtremalContactLayer.lean` | Exact contact slices and parameter/source Euler scalars |
+| `PrExtremalResidualLayers.lean` | Longitudinal Hessian scalar, leading contact-order minimality, longitudinal support ceiling |
+| `PrExtremalComplementLayers.lean` | Leading straightened mixed and quadratic entries |
+| `PrLeadingSelfCoefficient.lean` | Full leading raw-complement coefficient; exact parameter-residual coefficient; residual-zero iff leading contact deficit is zero |
+| `PrExtremalOrders.lean` | Nonzero-slice cancellation **when** the scalar/slice zero has been supplied |
+| `BinaryProfilePivotExtremalCancellation.lean` | Terminal contradiction **when** both exposed active-pivot/profile product coefficients have been proved zero |
+
+The last two rows are conditional consumers, not proofs of their inputs.
+R18.36--R18.37 finish the displayed coefficient calculations, but do not kill
+the raw complementary coefficient or either exposed active-pivot/profile
+product coefficient. The remaining geometric correction is explained in
+`CURRENT_STATE.md`, section 8a. In particular, the parameter residual is not
+identically zero at the leading exposed order when its contact deficit is
+positive.
+
 ## 16. Rank-three RationalRigidity route
 
 The RationalRigidity directory is the contradiction owner. Typical flow is:
