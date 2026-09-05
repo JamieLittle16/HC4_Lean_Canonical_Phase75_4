@@ -2,7 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.33: the exact leading PR self coefficient
+# A19.R18.36: the exact leading PR self coefficient
 
 We extract both indices of the leading self pair.  The longitudinal support
 ceiling leaves only `(N,N)`, and contact-order minimality then leaves only
@@ -58,8 +58,9 @@ private theorem prLayer_constant_mul (c : K)
   apply MvPolynomial.ext
   intro m
   simp only [prLayer, MvPolynomial.finSuccEquiv_coeff_coeff,
-    MvPolynomial.coeff_C_mul, familyParameterLayer_coeff,
-    Polynomial.coeff_C_mul]
+    MvPolynomial.coeff_C_mul]
+  rw [familyParameterLayer_coeff, familyParameterLayer_coeff,
+    MvPolynomial.coeff_C_mul, Polynomial.coeff_C_mul]
 
 omit [CharZero K] [IsAlgClosed K] in
 private theorem prLayer_mul (F G : MvPolynomial (Fin 4) (Polynomial K)) (q n : ℕ) :
@@ -96,9 +97,9 @@ private theorem prLayer_mul_leading
       · rw [hF, E.contactParameterLayer_longitudinal_eq_zero_of_N_lt i ab.1 ha]
         simp
       · have hb : E.next.N < ab.2 := by
-          have hpair : ab.1 ≠ E.next.N ∨ ab.2 ≠ E.next.N := by
-            simpa only [Prod.ext_iff, not_and_or] using hne
-          omega
+          by_contra hb
+          apply hne
+          apply Prod.ext <;> omega
         rw [hG, E.contactParameterLayer_longitudinal_eq_zero_of_N_lt j ab.2 hb]
         simp
     · intro hnot
@@ -111,9 +112,9 @@ private theorem prLayer_mul_leading
     · rw [hF, E.contactLeadingParameterLayer_eq_zero_of_lt ij.1 hi]
       simp
     · have hj : ij.2 < E.qN := by
-        have hpair : ij.1 ≠ E.qN ∨ ij.2 ≠ E.qN := by
-          simpa only [Prod.ext_iff, not_and_or] using hne
-        omega
+        by_contra hj
+        apply hne
+        apply Prod.ext <;> omega
       rw [hG, E.contactLeadingParameterLayer_eq_zero_of_lt ij.2 hj]
       simp
   · intro hnot
@@ -181,11 +182,13 @@ private theorem prLayer_z (q n : ℕ) :
   change prLayer (familyParameterSecondEuler P.contactFamily) q n = _ at hee
   change prLayer (HC4.Polynomial.mvEuler (0 : Fin 4) P.contactFamily) q n = _ at hn
   rw [he, hee, hn]
-  change _ = MvPolynomial.C _ * prLayer P.contactFamily q n
+  have hbase : prLayer P.contactFamily q n =
+      R.contactLongitudinalParameterLayer q n := rfl
+  rw [hbase]
   simp only [map_add, map_sub, map_mul, map_one, map_ofNat]
   ring
 
-/-- **R18.33 exact leading self coefficient.**  Both convolutions and all
+/-- **R18.36 exact leading self coefficient.**  Both convolutions and all
 parameter/source Euler operators have been evaluated.  The right side is the
 precise nonzero-slice expression consumed by
 `leading_transverseDegree_eq_zero_of_selfSlice` if geometry proves it zero. -/
@@ -212,7 +215,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingRawComplementDetLa
     T.topFace.degree P.profileWeight E.next.N E.leading.transverseDegree E.qN
     E.leading_grade
   have hsC := congrArg (MvPolynomial.C : K →+* MvPolynomial (Fin 3) K) hs
-  simp only [map_sub, map_mul] at hsC
+  simp only [map_sub, map_mul, map_add, map_neg, map_one] at hsC ⊢
   linear_combination hsC * E.leading.slice * E.leading.slice
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
