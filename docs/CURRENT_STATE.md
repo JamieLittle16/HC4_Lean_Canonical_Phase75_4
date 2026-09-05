@@ -1,0 +1,368 @@
+# Current HC4 Lean proof state
+
+This document is the authoritative **theorem-level status ledger** for the live HC4 final assembly. It answers one question: **what has actually been reduced or proved in Lean, and what remains a live local obligation?**
+
+It is deliberately not a phase diary. Historical `FORMALISATION_STATUS_PHASE*.md` files record useful checkpoints, but they are not current TODO lists.
+
+For the mathematical architecture see `PROOF_ARCHITECTURE.md`. For exact file-by-file paths see `PROOF_PATHS.md`. For exhaustive source inventory see `generated/LEAN_MODULE_INDEX.md` and `generated/DECLARATION_INDEX.md`.
+
+## 1. What the public theorem is trying to prove
+
+The unrestricted target is determinant-one gradient injectivity in four variables:
+
+```lean
+F : MvPolynomial (Fin 4) K
+hdet : HC4.Polynomial.hessianDeterminant F = 1
+⊢ Function.Injective (mvGradientMap F)
+```
+
+with the ambient assumptions used by the A19 front door (`Field`, `CharZero`, `IsAlgClosed`).
+
+The current development does **not** require the public input polynomial to be homogeneous, torus-balanced, pre-normalized, or supplied with an external nonlinear degree cap.
+
+## 2. Unrestricted collision entry is already formalized
+
+The front door from a hypothetical noninjective gradient map is implemented by:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalCollisionNormalization.lean`
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalCollisionAutoDegree.lean`
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry.lean`
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalHC4Reduction.lean`
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalHC4ReachableTerminalReduction.lean`
+
+The important established facts are:
+
+1. a distinct exact gradient collision can be normalized into the canonical axis form;
+2. the nonlinear degree cap can be chosen canonically from the polynomial itself;
+3. the normalized collision enters the scale-aware canonical Smith/Rees state machine;
+4. the reachable-terminal reduction retains the canonical rank-one repair equality instead of quantifying over arbitrary unrelated terminal states.
+
+Therefore the remaining proof is **not** an entry-normalization problem.
+
+In particular, `gradient_injective_of_hessianDeterminant_one_of_presentedTerminal_impossible` already provides the unrestricted determinant-one conclusion once final assembly supplies an unconditional contradiction for every canonical presented terminal. The live mathematical task is therefore terminal closure, not construction of another global HC4 entry theorem.
+
+## 3. The only rank-one recursion is complete
+
+The global rank-one recursive object is:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.lean`
+
+`AdaptiveAlignedSmithCanonicalRankOneTerminationTrace` has only two constructors:
+
+```text
+terminal geometry
+restart globalProgress rawDefect_lt repair_eq tail
+```
+
+and recurses only on the natural number `source.rawDefect`.
+
+This is a completed termination mechanism, not a remaining design problem. Final assembly must not invent a second rational clock, cross-scale well-founded order, repair-rank recursion, or parallel trace unless a new theorem first proves the existing trace cannot express the required successor.
+
+Structural consumption of the trace is already isolated in:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneTraceCollapse.lean`
+
+## 4. Successful positive Rees steps are already absorbed into that trace
+
+The important A19 correction is implemented by:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalPositiveTransverseReesSourceProgress.lean`
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction.lean`
+
+A successful positive transverse Rees coefficient bound at an **actual rank-one trace state** gives exactly:
+
+- global macro progress;
+- strict decrease of actual `rawDefect`;
+- unchanged repair state.
+
+So successful Rees moves are ordinary restart edges of the existing rank-one trace.
+
+`AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace` retains a rank-one trace after all such immediately successful Rees bounds have been consumed.
+
+## 5. Positive reached rank-three states are not local terminal obligations
+
+This is the key current global theorem:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure.lean` (A19.45)
+
+It proves, at the actual state reached by the Rees-reduced trace:
+
+```text
+rawDefect = 0
+OR
+∃ target, AdaptiveAlignedSmithCanonicalGlobalMacroProgress target reachedState
+```
+
+Consequently:
+
+> **Any reached rank-three state which is terminal for the outer global macro order has literal raw defect zero.**
+
+This supersedes older status descriptions in which positive low layers were listed as final local obligations. Positive geometry may still be useful internally for proving the global successor, but it is not the live terminal branch after A19.45.
+
+## 6. The live local terminal is zero-clock strict-low
+
+A19.46 first reduced the locally terminal situation to one zero-clock blocker first-contact producer:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome.lean`
+
+That producer was subsequently removed from the live interface. The producer-free local terminal is:
+
+- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal.lean` (A19.53)
+
+It retains the actual:
+
+- reached state;
+- canonical rank-one repair equality;
+- presented blocker;
+- source raw defect equality `= 0`;
+- represented strict-low Smith exponent;
+- proof that the exponent has one of the three genuinely strict-low patterns.
+
+Thus the current local problem is not “construct some endpoint.” It starts from concrete data already present on the reached terminal state.
+
+## 7. The zero-clock strict-low carrier has already been strengthened substantially
+
+The active chain is:
+
+```text
+A19.49  residual normal form
+A19.50  exact same-exponent mixed degree
+A19.51  zero-clock packet
+A19.52  honest first-contact Hessian geometry
+A19.53  producer-free zero strict-low terminal
+A19.54  retained singular maximal ordinary top face
+A19.55  balance-free boundary rank split
+A19.56  actual finite-support boundary strata
+A19.57  recentered positive longitudinal support
+A19.58  rank-three top-face cross-facet/confinement split
+A19.59  first-nonfacet source hypotheses
+A19.60  direct-cross / lower-outside / confined source split
+A19.61  low-negative actual source support
+A19.62  low-negative confinement facet elimination
+A19.63  pure-longitudinal actual source support
+A19.64  pattern-sensitive confinement classification
+A19.65  low-degree tame or literal quadratic square
+A19.66  honest lower first-nonfacet cross-facet carrier
+A19.67  balance-free finite-support affine ray
+A19.68  prescribed-positive singular boundary exponent
+A19.69  genuine transition away from the starting facet
+A19.70  exact rank-three boundary residual reduction
+A19.71  exhaustive zero-clock terminal residual assembly
+A19.72  contact-zero affine ray to RationalRigidity terminal or codimension two
+A19.73  `.qs` strict-low ray reduction with retained carrier provenance
+```
+
+The detailed files and inputs/outputs are listed in `PROOF_PATHS.md`. A19.72 and A19.73 are kernel-checked on the live final-assembly branch; their residual types deliberately retain light geometric carriers and reconstruct the large RationalRigidity certificate only when consumed.
+
+## 8. Exact current boundary frontier
+
+At A19.55 the singular nonlinear maximal ordinary top face exposes an actual boundary exponent with the exhaustive balance-free split:
+
+```text
+rank three on one coordinate facet
+OR
+codimension two on two coordinate boundaries.
+```
+
+A19.71 combines the rank-three reduction with the original codimension-two half, leaving only five provenance-honest zero-clock alternatives:
+
+1. a genuine boundary transition on the actual maximal top face;
+2. a genuine boundary transition on an explicitly retained lower first-contact carrier;
+3. a genuine codimension-two boundary exponent;
+4. a literal omitted-coordinate quadratic square in the represented source;
+5. complete nonlinear source confinement to the starting facet.
+
+For the marked `.qs` rank-three branch, A19.73 strengthens this further. The complete nonlinear-confinement branch is impossible from the actual strict-low source witnesses. Each cross-facet branch retains an exact contact-coordinate-`0` balance-free affine ray. By A19.72 its facet endpoint is either:
+
+```text
+rank three on `.qs`, hence carrying the complete general affine RationalRigidity terminal certificate
+OR
+codimension two.
+```
+
+The RationalRigidity certificate is reconstructed canonically from the retained ray rather than duplicated inside the A19.73 residual type. This avoids expensive dependent normalization while preserving all support, first-contact, endpoint and affine-slope provenance.
+
+The **codimension-two branch** remains a distinct boundary branch and should not be silently identified with the rank-three branch or with the two-zero/JC2 route without a theorem that supplies the required carrier hypotheses.
+
+The subsequent A19.80--A19.95 reductions and the current contact calculation
+are recorded below. The older affine-direction task is not the current
+closing gate.
+
+### 8a. Current exposed-`qs` frontier and exact PR calculation
+
+`qs_rankThree_startCodimensionTwo_or_lockedOtherFacet_or_quadraticSquare`
+in `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier.lean`
+retains three alternatives:
+
+1. an actual lower ray whose **starting** endpoint is codimension two;
+2. an actual lower ray starting rank three on `.qs` and ending rank three on
+   `.pr`, `.sp`, or `.rq`, with the strict transverse direction lock;
+3. a literal coordinate-zero quadratic square in the represented source.
+
+Eliminating the other-facet branch does not by itself eliminate alternative 1.
+A19.91 eliminates the **outside** codimension-two endpoint under a rank-three
+starting hypothesis; it does not eliminate a codimension-two starting endpoint.
+A19.86 turns the square into supported codimension-two data, but does not
+construct an entire two-zero polynomial carrier.
+
+The current finite-calculation owner is
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient.lean`.
+R18.36--R18.37 are included in the root build and were checked by Lean CI #1538
+at `2e4c8ef3f67fb764b239d073d2a638a14e3389a0`, including the axiom audit,
+negative control, and proof-escape check.
+
+Write `N = E.next.N`, `t = E.leading.transverseDegree`, `q = E.qN`, and
+`S = E.leading.slice`. At exact contact parameter order `2q` and longitudinal
+index `2N`, the proved identities are:
+
+| Quantity | Exact coefficient |
+| --- | --- |
+| Straightened raw complementary determinant | `C(-N*t*(N+t-1)) * S * S` |
+| `contactProfileParameterResidual` | `C(N*q*(q+N+2*t-1)) * S * S` |
+
+The longitudinal convolution collapses to `(N,N)` by the support ceiling;
+the parameter convolution then collapses to `(q,q)` by leading-order
+minimality. Both collapses are proved, not assumed.
+
+The residual coefficient is zero **if and only if `q = 0`**. This follows
+from `N >= 2`, characteristic zero, and the retained nonzero slice. Thus
+extremality does not permit discarding the parameter residual at positive
+contact deficit.
+
+**The geometric zero is still unproved.** In particular,
+`contactLeadingRawComplementDetLayer_eq` is a coefficient identity; it does
+not establish `t = 0`. The existing
+`leading_transverseDegree_eq_zero_of_selfSlice` will establish that conclusion
+only after its zero hypothesis has genuinely been supplied.
+
+The exact remaining correction must be kept visible. Put `A = H.activeDet`,
+`P = contactProfileHessianDetReduction`, `R = contactProfileParameterResidual`,
+and let `B` be the sum of the three bordered Schur contributions and the mixed
+coupling square. The already-proved whole-family identities give
+
+```text
+A * P = B - H.determinantCore - A * R.
+```
+
+At the appropriately transported binary layer the determinant clock kills
+the full determinant contribution. Obtaining an active-pivot/profile product
+zero still requires cancellation of the remaining `B - A * R` coefficient.
+Neither full-determinant vanishing nor the identity for the leading residual
+alone supplies this cancellation. Contact/binary coefficient transport must
+retain its transverse-degree shift.
+
+Consequently `hprodNN`, `hprodNM`, unconditional `.pr/.sp/.rq` impossibility,
+and unconditional presented-terminal impossibility are not yet proved by this
+calculation. A fixed remaining commit count is not justified while this
+geometric gate remains open.
+
+### 8b. Final import audit remains an explicit obligation
+
+The A19.1 public statement has no JC2 hypothesis. Its current transitive
+imports nevertheless include the older conditional owner
+`HC4.Newton.TerminalTwoZeroJC2Endpoint`, for example along:
+
+```text
+AdaptiveAlignedSmithCanonicalHC4Reduction
+  -> AdaptiveAlignedSmithCanonicalCollisionAutoDegree
+  -> NonlinearDegreeBoundPreservation
+  -> IntegralKernelBlowup
+  -> PolynomialFamilyKernelRestart
+  -> KernelBlowupCertificate
+  -> HC4.Newton.RestartClassification
+  -> HC4.Newton.TerminalTwoZeroJC2Endpoint
+```
+
+This is an import dependency, not evidence of an assumed JC2 axiom in A19.1.
+It must still be separated if the final public owner is required to have no
+transitive imports from the conditional JC2 route. Merely choosing a new
+filename for the final theorem does not achieve that isolation.
+
+## 9. What is already closed and should not be reopened
+
+The following are not current missing pieces:
+
+- arbitrary-collision normalization;
+- automatic nonlinear degree-cap entry;
+- rank-one well-founded termination;
+- structural trace collapse;
+- successful positive Rees restart integration;
+- positive reached rank-three local elimination (A19.45 sends it to outer global progress);
+- surviving zero-clock strict-low constructor case;
+- zero-clock no-strict-low terminal case;
+- construction of concrete strict-low residual factorizations;
+- existence of same-exponent mixed-degree support and first longitudinal departure;
+- zero-linear-jet first-contact Hessian exposure;
+- existence of a singular maximal ordinary top face;
+- generic balance-free boundary rank split;
+- generic finite two-sided cross-facet exposure;
+- generic balance-free finite-support affine ray extraction;
+- contact-zero affine realization as an honest `RankThreeAffineLineData`;
+- affine RationalRigidity terminal certification for a rank-three `.qs` ray endpoint;
+- forcing a singular boundary exponent to retain positivity in a prescribed coordinate;
+- low-degree-tame versus literal quadratic-square exhaustiveness;
+- unrestricted collision-to-terminal reduction under an unconditional terminal-impossibility theorem.
+
+Before creating infrastructure in one of these categories, find and reuse the existing owner.
+
+## 10. Older residual-resolver interfaces are milestones, not the live TODO list
+
+Several A19 files deliberately record successive reductions. They remain proved and useful, but newer theorems are stronger.
+
+### A19.24 — `AdaptiveAlignedSmithCanonicalFinalResidualResolver`
+
+Had three fields:
+
+- zero strict-low;
+- positive low layer;
+- positive Rees re-entry.
+
+### A19.26 — constructor-specific refinement
+
+Separated blocker/surviving constructors and discharged crossed impossible cases.
+
+### A19.34b — Rees-reduced resolver
+
+Deleted the successful positive Rees-reentry field by inserting success into the existing raw-defect trace.
+
+### A19.35 — source-order low-layer refinement
+
+Split a positive low layer into actual special-fibre support or a genuinely earlier positive actual parameter layer.
+
+### A19.45 — global rank-three closure
+
+Stronger still: a positive reached rank-three state is outer global progress, so positive low-layer cases are no longer terminal local obligations.
+
+### A19.46 → A19.53
+
+A19.46 isolated one zero-blocker first-contact producer. A19.53 removed the producer and retained the actual strict-low terminal data directly.
+
+### A19.71 → A19.73
+
+A19.71 assembles the exhaustive zero-clock boundary residual. A19.72 supplies the balance-free affine RationalRigidity terminal bridge for a contact-zero `.qs` ray. A19.73 specializes the `.qs` strict-low rank-three branch, removes complete nonlinear confinement, and retains only top/lower affine rays, codimension-two endpoints, or the literal quadratic-square branch.
+
+**Rule:** when deciding what remains, start from A19.45/A19.53 and the newest zero-strict-low modules, not from the older resolver structures.
+
+## 11. Current proof claim
+
+The repository contains a very large, kernel-checked reduction and local-geometry development, but this status document should not claim unrestricted HC4 until a top-level theorem closes **every** live terminal branch and is included in the audited root build.
+
+The global unrestricted front door itself is already available: once final assembly proves every `AdaptiveAlignedSmithCanonicalTerminalData` impossible without caller-supplied hypotheses, `gradient_injective_of_hessianDeterminant_one_of_presentedTerminal_impossible` yields determinant-one gradient injectivity for an arbitrary four-variable polynomial.
+
+Therefore the remaining proof should be described precisely as **final unconditional terminal closure plus public theorem export**, not as a missing global reduction.
+
+The correct final milestone will be an unconditional theorem of the public determinant-one gradient-injectivity form, with no resolver/producer/terminal-impossibility argument supplied by the caller.
+
+Until that theorem exists, describe the project as being in final local assembly, not as a completed proof of unrestricted HC4.
+
+## 12. How to update this document
+
+Update `CURRENT_STATE.md` whenever a change does one of the following:
+
+- removes a residual branch;
+- replaces a producer/hypothesis with constructed data;
+- changes the strongest global/local split;
+- changes the active terminal carrier;
+- produces the final unconditional HC4 theorem.
+
+Do **not** update it for ordinary compile repairs or helper lemmas that do not change the proof frontier.

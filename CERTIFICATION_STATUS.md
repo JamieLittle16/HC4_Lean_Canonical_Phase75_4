@@ -1,3 +1,5 @@
+> **Historical snapshot — not current proof status.** This file records the old Phase 75.2 certification state. The live branch has substantially newer A18/A19 infrastructure and final assembly. Use [`docs/README.md`](docs/README.md) and the current Lean source for present status.
+
 # Certification status — canonical Phase 75.2
 
 ## What is certified by the current development

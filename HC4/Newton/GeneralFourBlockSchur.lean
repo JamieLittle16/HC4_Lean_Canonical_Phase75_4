@@ -106,6 +106,21 @@ theorem matrix_ofSymmetricMatrix
     simp [matrix, ofSymmetricMatrix]
   all_goals exact hsymm _ _
 
+/-- Map all ten entries of a general four-block through a ring homomorphism.
+This is the canonical representation bridge between source-first and
+parameter-first coefficient rings. -/
+def map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) : GeneralFourBlock S where
+  a := f H.a
+  b := f H.b
+  d := f H.d
+  p := f H.p
+  q := f H.q
+  r := f H.r
+  s := f H.s
+  x := f H.x
+  y := f H.y
+  z := f H.z
 
 /-- Determinant of the active `2 x 2` block. -/
 def activeDet (H : GeneralFourBlock R) : R :=
@@ -159,6 +174,48 @@ def determinantCore (H : GeneralFourBlock R) : R :=
     - 2 * H.p * H.q * H.r * H.s
     + H.q * H.q * H.r * H.r
 
+@[simp]
+theorem activeDet_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).activeDet = f H.activeDet := by
+  simp [map, activeDet]
+
+@[simp]
+theorem schurA_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurA = f H.schurA := by
+  have htwo : f (2 : R) = (2 : S) := by
+    exact map_ofNat f 2
+  simp [map, schurA, activeDet, htwo]
+
+@[simp]
+theorem schurB_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurB = f H.schurB := by
+  simp [map, schurB, activeDet]
+
+@[simp]
+theorem schurC_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurC = f H.schurC := by
+  have htwo : f (2 : R) = (2 : S) := by
+    exact map_ofNat f 2
+  simp [map, schurC, activeDet, htwo]
+
+@[simp]
+theorem schurDetCore_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).schurDetCore = f H.schurDetCore := by
+  simp [schurDetCore]
+
+@[simp]
+theorem determinantCore_map {S : Type*} [CommRing S]
+    (H : GeneralFourBlock R) (f : R →+* S) :
+    (H.map f).determinantCore = f H.determinantCore := by
+  have htwo : f (2 : R) = (2 : S) := by
+    exact map_ofNat f 2
+  simp [map, determinantCore, htwo]
+
 /-- The explicit determinant core is exactly the determinant of the displayed
 symmetric matrix.  This finite identity is the bridge that lets later code
 transport an actual Hessian determinant through a ring equivalence without
@@ -196,6 +253,133 @@ theorem schurBlock_detCore
     H.schurBlock.detCore = H.activeDet * H.determinantCore := by
   simpa [schurBlock, schurDetCore, BinarySchurBlock.detCore] using
     H.schurDetCore_eq_activeDet_mul_determinantCore
+
+/-- Congruence scaling of the four underlying directions.  This is the raw
+algebraic operation used when an ordinary Hessian is replaced by its
+Euler-scaled Hessian: each matrix entry is multiplied by the scale on its row
+and on its column. -/
+def diagonalScale (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    GeneralFourBlock R where
+  a := s0 * s0 * H.a
+  b := s0 * s1 * H.b
+  d := s1 * s1 * H.d
+  p := s0 * t0 * H.p
+  q := s0 * t1 * H.q
+  r := s1 * t0 * H.r
+  s := s1 * t1 * H.s
+  x := t0 * t0 * H.x
+  y := t0 * t1 * H.y
+  z := t1 * t1 * H.z
+
+@[simp]
+theorem activeDet_diagonalScale
+    (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    (H.diagonalScale s0 s1 t0 t1).activeDet =
+      (s0 * s1) ^ 2 * H.activeDet := by
+  unfold diagonalScale activeDet
+  ring
+
+@[simp]
+theorem schurA_diagonalScale
+    (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    (H.diagonalScale s0 s1 t0 t1).schurA =
+      (s0 * s1) ^ 2 * t0 ^ 2 * H.schurA := by
+  unfold diagonalScale schurA activeDet
+  ring
+
+@[simp]
+theorem schurB_diagonalScale
+    (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    (H.diagonalScale s0 s1 t0 t1).schurB =
+      (s0 * s1) ^ 2 * t0 * t1 * H.schurB := by
+  unfold diagonalScale schurB activeDet
+  ring
+
+@[simp]
+theorem schurC_diagonalScale
+    (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    (H.diagonalScale s0 s1 t0 t1).schurC =
+      (s0 * s1) ^ 2 * t1 ^ 2 * H.schurC := by
+  unfold diagonalScale schurC activeDet
+  ring
+
+/-- The cleared Schur determinant transforms by the square of the determinant
+of the diagonal change on the active pair and the square of the determinant
+of the diagonal change on the complementary pair. -/
+@[simp]
+theorem schurDetCore_diagonalScale
+    (H : GeneralFourBlock R) (s0 s1 t0 t1 : R) :
+    (H.diagonalScale s0 s1 t0 t1).schurDetCore =
+      (s0 * s1) ^ 4 * (t0 * t1) ^ 2 * H.schurDetCore := by
+  unfold schurDetCore
+  rw [schurA_diagonalScale, schurB_diagonalScale, schurC_diagonalScale]
+  ring
+
+/-- Replace the second complementary direction by
+
+`lam * v + mu * u + alpha * e₀ + beta * e₁`,
+
+where `e₀,e₁` are the active directions and `u,v` are the two complementary
+directions.  The formula is the corresponding symmetric congruence written in
+the ten scalar entries. -/
+def shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) : GeneralFourBlock R where
+  a := H.a
+  b := H.b
+  d := H.d
+  p := H.p
+  q := lam * H.q + mu * H.p + alpha * H.a + beta * H.b
+  r := H.r
+  s := lam * H.s + mu * H.r + alpha * H.b + beta * H.d
+  x := H.x
+  y := lam * H.y + mu * H.x + alpha * H.p + beta * H.r
+  z := lam ^ 2 * H.z + mu ^ 2 * H.x + alpha ^ 2 * H.a + beta ^ 2 * H.d +
+    2 * lam * mu * H.y + 2 * lam * alpha * H.q + 2 * lam * beta * H.s +
+    2 * mu * alpha * H.p + 2 * mu * beta * H.r + 2 * alpha * beta * H.b
+
+@[simp]
+theorem activeDet_shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) :
+    (H.shearSecondComplement lam mu alpha beta).activeDet = H.activeDet := by
+  rfl
+
+/-- Active-span additions disappear after taking the Schur quotient; only the
+components in the two-dimensional complementary quotient remain. -/
+@[simp]
+theorem schurA_shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) :
+    (H.shearSecondComplement lam mu alpha beta).schurA = H.schurA := by
+  unfold shearSecondComplement schurA activeDet
+  ring
+
+@[simp]
+theorem schurB_shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) :
+    (H.shearSecondComplement lam mu alpha beta).schurB =
+      lam * H.schurB + mu * H.schurA := by
+  unfold shearSecondComplement schurA schurB activeDet
+  ring
+
+@[simp]
+theorem schurC_shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) :
+    (H.shearSecondComplement lam mu alpha beta).schurC =
+      lam ^ 2 * H.schurC + 2 * lam * mu * H.schurB + mu ^ 2 * H.schurA := by
+  unfold shearSecondComplement schurA schurB schurC activeDet
+  ring
+
+/-- Consequently the cleared Schur determinant is insensitive to active-span
+shears and to adding the first complementary direction, and scales only by the
+square of the genuine second-quotient component. -/
+@[simp]
+theorem schurDetCore_shearSecondComplement
+    (H : GeneralFourBlock R) (lam mu alpha beta : R) :
+    (H.shearSecondComplement lam mu alpha beta).schurDetCore =
+      lam ^ 2 * H.schurDetCore := by
+  unfold schurDetCore
+  rw [schurA_shearSecondComplement, schurB_shearSecondComplement,
+    schurC_shearSecondComplement]
+  ring
 
 end GeneralFourBlock
 
