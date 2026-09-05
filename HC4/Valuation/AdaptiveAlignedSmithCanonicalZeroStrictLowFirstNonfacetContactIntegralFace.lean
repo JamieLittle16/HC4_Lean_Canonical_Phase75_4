@@ -1,4 +1,4 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock
 import Mathlib.Tactic
 
 /-!
@@ -63,13 +63,8 @@ theorem QsOtherFacetContactQuadraticReesPackage.integralContactInitialForm_eq_fa
           ((C.scale * T.topFace.degree : ℕ) : ℤ) := by
     rw [HC4.Newton.weight_scaledContactWeight,
       HC4.Newton.weight_scaledContactWeight]
-    change
-      (HC4.Polynomial.ordinaryDegree4 d : ℤ) +
-            (P.contactGap : ℤ) * (d (0 : Fin 4) : ℤ) =
-          (T.topFace.degree : ℤ) ↔
-        (C.scale : ℤ) * HC4.Polynomial.ordinaryDegree4 d +
-            (C.bump : ℤ) * (d (0 : Fin 4) : ℤ) =
-          (C.scale : ℤ) * T.topFace.degree
+    simp only [HC4.Newton.scaledContactExponentWeight,
+      HC4.Polynomial.facetOmittedCoordinate, Nat.cast_one, one_mul, Nat.cast_mul]
     rw [P.bump_eq]
     push_cast
     have hs : (0 : ℤ) < C.scale := by
