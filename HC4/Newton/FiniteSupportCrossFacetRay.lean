@@ -104,6 +104,46 @@ theorem CrossFacetInitialData.auxiliary_cross_proportional
     (mul_eq_zero.mp hscaled).resolve_left hscale
   exact sub_eq_zero.mp hcross
 
+/-- The first exposure bounds the entire source, even after its endpoints
+are refined further.  This inequality must not be confused with the equality
+which holds only on the exposed face. -/
+theorem CrossFacetInitialData.auxiliary_cross_le
+    {F : MvPolynomial (Fin 4) K} {i j : Fin 4}
+    (D : CrossFacetInitialData F i j)
+    {v o d : Fin 4 →₀ ℕ}
+    (hv : v ∈ D.face.support) (ho : o ∈ D.face.support)
+    (hd : d ∈ F.support) (hvj : v j = 0) :
+    (o j : ℤ) * ((d i : ℤ) - (v i : ℤ)) ≤
+      (d j : ℤ) * ((o i : ℤ) - (v i : ℤ)) := by
+  have hvw := D.ray_face_weight_eq hv
+  have how := D.ray_face_weight_eq ho
+  have hdw := D.weight_bound hd
+  rw [weight_crossFacetWeight] at hvw how hdw
+  rw [hvj] at hvw
+  simp only [Nat.cast_zero, mul_zero, add_zero] at hvw
+  have hdifference :
+      (D.scale : ℤ) * ((d i : ℤ) - (v i : ℤ)) +
+        D.bump * (d j : ℤ) ≤ 0 := by
+    linarith
+  have hodifference :
+      (D.scale : ℤ) * ((o i : ℤ) - (v i : ℤ)) +
+        D.bump * (o j : ℤ) = 0 := by
+    linear_combination how - hvw
+  have hscaled :
+      (D.scale : ℤ) *
+        ((o j : ℤ) * ((d i : ℤ) - (v i : ℤ)) -
+          (d j : ℤ) * ((o i : ℤ) - (v i : ℤ))) ≤ 0 := by
+    calc
+      _ = (o j : ℤ) *
+          ((D.scale : ℤ) * ((d i : ℤ) - (v i : ℤ)) + D.bump * (d j : ℤ)) -
+        (d j : ℤ) *
+          ((D.scale : ℤ) * ((o i : ℤ) - (v i : ℤ)) + D.bump * (o j : ℤ)) := by ring
+      _ ≤ 0 := by
+        rw [hodifference, mul_zero, sub_zero]
+        exact mul_nonpos_of_nonneg_of_nonpos (Int.natCast_nonneg _) hdifference
+  have hscale : (0 : ℤ) < D.scale := by exact_mod_cast D.scale_pos
+  nlinarith
+
 /-- Complete balance-free affine-ray carrier obtained by three successive
 finite cross-facet exposures. -/
 structure CrossFacetRayData
@@ -120,6 +160,14 @@ structure CrossFacetRayData
   support_subset : face.support ⊆ F.support
   hessian_zero_of_source :
     hessianDeterminant F = 0 → hessianDeterminant face = 0
+  first_auxiliary_support_bound :
+    ∀ d ∈ F.support,
+      (outsideExponent j : ℤ) *
+          ((d (crossFacetRayAux0 j) : ℤ) -
+            (facetExponent (crossFacetRayAux0 j) : ℤ)) ≤
+        (d j : ℤ) *
+          ((outsideExponent (crossFacetRayAux0 j) : ℤ) -
+            (facetExponent (crossFacetRayAux0 j) : ℤ))
   affine_proportional :
     ∀ d ∈ face.support, ∀ k : Fin 4,
       (outsideExponent j : ℤ) *
@@ -178,6 +226,11 @@ noncomputable def crossFacetRayData
     hessian_zero_of_source := by
       intro hzero
       exact D2.hessian_zero (D1.hessian_zero (D0.hessian_zero hzero))
+    first_auxiliary_support_bound := by
+      intro d hd
+      exact D0.auxiliary_cross_le
+        (hD1D0 (hD2D1 D2.facet_mem_face))
+        (hD1D0 (hD2D1 D2.outside_mem_face)) hd D2.facet_coordinate_zero
     affine_proportional := ?_
   }
 
