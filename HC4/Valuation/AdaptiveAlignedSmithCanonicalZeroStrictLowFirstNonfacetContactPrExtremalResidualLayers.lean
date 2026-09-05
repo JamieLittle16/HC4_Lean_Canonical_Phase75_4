@@ -76,6 +76,8 @@ theorem QsOtherFacetContactRawLongitudinalProfilePackage.contactLongitudinalSour
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [MvPolynomial.finSuccEquiv_coeff_coeff]
   rw [MvPolynomial.coeff_sub]
+  rw [familyParameterLayer_coeff, familyParameterLayer_coeff,
+    familyParameterLayer_coeff]
   rw [coeff_mvEuler, coeff_mvEuler, coeff_mvEuler]
   simp
   ring
