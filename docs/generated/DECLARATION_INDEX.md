@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7258**.
+Distinct declaration spellings indexed: **7263**.
 
 ## Repeated declaration spellings
 
@@ -1288,6 +1288,7 @@ Distinct declaration spellings indexed: **7258**.
 - `CoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
+- `CrossFacetInitialData.auxiliary_cross_le` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetInitialData.auxiliary_cross_proportional` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetInitialData.balanced` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.coeff_face_eq_source_of_mem` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
@@ -2012,6 +2013,8 @@ Distinct declaration spellings indexed: **7258**.
 - `QsOtherFacetContactPrExtremalDegreeData.leading_transverseDegree_eq_zero_of_selfSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.next_transverseDegree_le_one_of_crossSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
+- `QsOtherFacetContactPrExtremalDegreeData.pr_contactLeadingParameterResidualLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
+- `QsOtherFacetContactPrExtremalDegreeData.pr_qN_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
 - `QsOtherFacetContactPrExtremalDegreeData.qNM_add_four_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.qNM_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
 - `QsOtherFacetContactPrExtremalDegreeData.qNN_add_four_eq_contact_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalOrders`
@@ -5582,6 +5585,8 @@ Distinct declaration spellings indexed: **7258**.
 - `prLayer_x` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
 - `prLayer_y` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
 - `prLayer_z` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
+- `pr_contact_longitudinal_coeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
+- `pr_contact_support_pair_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
 - `prepend_internal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalBoundaryContinuationReduction`
 - `presentedRankThreeTerminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminal`
 - `presentedRankThreeTerminal_presentedState_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier`
