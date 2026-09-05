@@ -2,12 +2,13 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCont
 import Mathlib.Tactic
 
 /-!
-# A19.R18.33: leading PR weighted-complement contact layers
+# A19.R18.34: leading PR weighted-complement contact layers
 
 The first exposed PR coefficient is now reduced to literal finite contact
-layers.  R18.29--R18.32 already identify the leading contact slice and the
-parameter/source Euler scalars.  Here we consume the actual straightened PR
-mixed-complement formula and compute its leading `(qN,N)` layer.
+layers.  R18.29--R18.33 already identify the leading contact slice, the
+parameter/source Euler scalars, and the extremal support ceiling.  Here we
+consume the actual straightened PR mixed-complement formula and compute its
+leading `(qN,N)` layer.
 
 The result is the exact scalar entering the self-pair calculation:
 
@@ -48,7 +49,11 @@ private theorem familyParameterLayer_constant_mul
       MvPolynomial.C c * familyParameterLayer F q := by
   apply MvPolynomial.ext
   intro d
-  simp [familyParameterLayer_coeff, Polynomial.coeff_C_mul]
+  rw [familyParameterLayer_coeff]
+  rw [MvPolynomial.coeff_C_mul]
+  rw [Polynomial.coeff_C_mul]
+  rw [MvPolynomial.coeff_C_mul]
+  rw [familyParameterLayer_coeff]
 
 private theorem finSuccEquiv_coeff_constant_mul
     (c : K)
@@ -58,10 +63,12 @@ private theorem finSuccEquiv_coeff_constant_mul
       MvPolynomial.C c * (MvPolynomial.finSuccEquiv K 3 F).coeff n := by
   apply MvPolynomial.ext
   intro m
-  simp only [MvPolynomial.finSuccEquiv_coeff_coeff,
-    MvPolynomial.coeff_C_mul]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
+  rw [MvPolynomial.coeff_C_mul]
+  rw [MvPolynomial.coeff_C_mul]
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff]
 
-/-- **R18.33 leading mixed-complement layer.**  The straightened PR mixed
+/-- **R18.34 leading mixed-complement layer.**  The straightened PR mixed
 complement entry on the retained leading slice is exactly
 `N (D-r-qN) S_N`.  No determinant or Schur vanishing is used. -/
 theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear_yLayer_eq
@@ -77,7 +84,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear
         E.leading.slice := by
   rw [P.pr_contactWeightedEulerShear_y]
   rw [familyParameterLayer_sub_exact]
-  simp only [map_sub, Polynomial.coeff_sub]
+  rw [map_sub, Polynomial.coeff_sub]
   have hfirst :
       (MvPolynomial.finSuccEquiv K 3
         (familyParameterLayer
@@ -101,13 +108,7 @@ theorem QsOtherFacetContactPrExtremalDegreeData.contactLeadingWeightedEulerShear
         MvPolynomial.C (E.qN : K) *
           (MvPolynomial.C (E.next.N : K) * E.leading.slice) := by
     rw [familyParameterLayer_familyParameterEuler]
-    have hq :
-        (E.qN : MvPolynomial (Fin 4) K) =
-          MvPolynomial.C (E.qN : K) := by
-      exact
-        (map_natCast
-          (MvPolynomial.C : K →+* MvPolynomial (Fin 4) K) E.qN).symm
-    rw [hq]
+    rw [← MvPolynomial.C_eq_coe_nat]
     rw [finSuccEquiv_coeff_constant_mul]
     rw [E.contactLeadingSourceEulerLayer_eq]
   rw [hfirst, hsecond]
