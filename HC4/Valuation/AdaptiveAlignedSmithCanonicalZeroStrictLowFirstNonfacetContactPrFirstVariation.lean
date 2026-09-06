@@ -11,6 +11,7 @@ bordered minors. The genuine determinant clock kills their sum. No constant
 kernel, vanishing raw complementary determinant, or product clock is assumed.
 This is a necessary equation for the actual terminal family, not a terminal
 contradiction. Later coefficients still contain nonlinear convolution terms.
+The indices are literally one and two; no identification with qN is asserted.
 -/
 
 namespace HC4.Newton.GeneralFourBlock
@@ -48,7 +49,6 @@ private theorem mul_coeff_two (f g : Polynomial R) :
       f.coeff 1 * g.coeff 1 + f.coeff 2 * g.coeff 0 := by
   rw [Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map]
   simp [Finset.sum_range_succ]
-  ring
 
 /-- The next clock equation retains the quadratic first-layer correction.
 In particular a zero mixed constant does not kill its first-layer square. -/
