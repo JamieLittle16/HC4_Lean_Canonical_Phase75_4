@@ -29,7 +29,7 @@ theorem coeff_one_determinant_of_zero_complement
         2 * H.y.coeff 1 * H.schurB.coeff 0 =
       H.determinantCore.coeff 1 := by
   have h := congrArg (fun f : Polynomial R => f.coeff 1)
-    H.activeDet_mul_rawComplementDet_eq_schur_coupling_correction
+    (HC4.Valuation.GeneralFourBlock.activeDet_mul_rawComplementDet_eq_schur_coupling_correction H)
   have hraw0 : (H.x * H.z - H.y * H.y).coeff 0 = 0 := by
     simp [hx, hy, hz]
   have hraw1 : (H.x * H.z - H.y * H.y).coeff 1 = 0 := by
@@ -115,7 +115,7 @@ theorem QsOtherFacetContactQuadraticReesPackage.pr_contact_firstVariation_eq_zer
   have hmargin := P.two_level_lt_defect
   have hlarge : 1 < 4 * T.topFace.degree - 2 * (P.contactGap + 4) := by
     omega
-  simp [Nat.ne_of_gt hlarge, Ne.symm (Nat.ne_of_gt hlarge)]
+  simp [Ne.symm (Nat.ne_of_gt hlarge)]
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 end
