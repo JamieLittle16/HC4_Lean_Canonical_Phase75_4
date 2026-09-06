@@ -23,7 +23,7 @@ variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetD
 
 private theorem weight_four_nat (w : Fin 4 → ℕ) (d : Fin 4 →₀ ℕ) :
     Finsupp.weight w d = d 0 * w 0 + d 1 * w 1 + d 2 * w 2 + d 3 * w 3 := by
-  simp [Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four, nsmul_eq_mul]
+  simp [Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four]
 
 /-- The strict-low monomial has weight strictly greater than twice w0. -/
 theorem QsOtherFacetRayReverseReesPackage.two_longitudinal_weight_lt_level
@@ -54,9 +54,7 @@ theorem QsOtherFacetRayReverseReesPackage.ray_support_weight_eq_level
   have hn := MvPolynomial.mem_support_iff.mp hd
   rw [← R.initialForm_eq_ray, HC4.Polynomial.coeff_initialForm] at hn
   split_ifs at hn with hw
-  · rw [weight_four_nat]
-    simp only [Finsupp.weight_apply, Finsupp.sum_fintype,
-      Fin.sum_univ_four, nsmul_eq_mul] at hw
+  · simp only [Finsupp.weight_apply, nsmul_eq_mul] at hw ⊢
     exact_mod_cast hw
   · exact (hn rfl).elim
 
