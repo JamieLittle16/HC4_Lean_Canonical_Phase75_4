@@ -7,13 +7,14 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7283**.
+Distinct declaration spellings indexed: **7287**.
 
 ## Repeated declaration spellings
 
 - `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `HasPositiveEntryLayer` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `add` — `def` in `HC4.Toric.InvariantSemigroup`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `allTransverseZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
@@ -113,11 +114,11 @@ Distinct declaration spellings indexed: **7283**.
 - `rightSpecial_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `sameScale_or_rankTwoProgress_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`
 - `scale` — `def` in `HC4.Newton.FirstSchurEntry`, `def` in `HC4.Toric.InvariantSemigroup`
-- `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
-- `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
+- `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurBlock` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_detCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
-- `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurPivot_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `specialFiber_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`
@@ -1600,6 +1601,7 @@ Distinct declaration spellings indexed: **7283**.
 - `FixedScaleEpisodeKey.lt_of_source_lt` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `FixedScaleEpisodeKey.lt_wellFounded` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `FixedScaleEpisodeProgress` — `def` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
+- `FourBlockParameterBudget` — `structure` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `FourBoundaryCycle` — `structure` in `HC4.Newton.FourBoundaryCycle`
 - `FourBoundaryCycle.facet_normal_form` — `theorem` in `HC4.Newton.FourBoundaryCycle`
 - `FourBoundaryCycle.forward_vertices_are_p_r_q_s` — `theorem` in `HC4.Newton.FourBoundaryCycle`
@@ -2600,7 +2602,7 @@ Distinct declaration spellings indexed: **7283**.
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
-- `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`
+- `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `activeDet_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_mul_rawComplementDet_eq_schur_coupling_correction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
@@ -2718,6 +2720,7 @@ Distinct declaration spellings indexed: **7283**.
 - `alignLeft_kernel_coeff` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
 - `alignLeft_leading_ne_zero` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_offDiag_coeff` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
+- `alignLeft_transverse_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `alignRight` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignRight_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignRight_leading_ne_zero` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -6249,6 +6252,7 @@ Distinct declaration spellings indexed: **7283**.
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedRees_fourBlockParameterBudget` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `reverseWeightedRees_parameterFirstHessian_budget` — `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `reverse_exposedFace` — `theorem` in `HC4.Newton.Equivariance`
 - `reverse_rGradientInverse_reverse` — `theorem` in `HC4.ClassifiedFamilies.BranchConjugacy`
@@ -6461,11 +6465,11 @@ Distinct declaration spellings indexed: **7283**.
 - `scaledWeight` — `def` in `HC4.Newton.LexicographicRefinement`
 - `scaledWeight_le_of_lexDominates` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `scaledWeight_lt_of_primary_lt` — `theorem` in `HC4.Newton.LexicographicRefinement`
-- `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
-- `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
@@ -6473,7 +6477,7 @@ Distinct declaration spellings indexed: **7283**.
 - `schurBlock_detCore` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_detCore_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_eq_chartBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
-- `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
@@ -6488,6 +6492,7 @@ Distinct declaration spellings indexed: **7283**.
 - `schurDeterminant_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
 - `schurPivot_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurTangentialOrder_of_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerTangency`
+- `schur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schur_offDiag_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockRankTwoGeometry`
 - `secondDirectionalDerivative_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `secondDirectionalDerivative_rigidPairDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
