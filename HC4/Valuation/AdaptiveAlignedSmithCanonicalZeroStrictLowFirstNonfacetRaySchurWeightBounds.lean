@@ -52,7 +52,7 @@ theorem QsOtherFacetRayReverseReesPackage.ray_support_weight_eq_level
     {d : Fin 4 →₀ ℕ} (hd : d ∈ C.ray.face.support) :
     Finsupp.weight R.weight d = R.level := by
   have hn := MvPolynomial.mem_support_iff.mp hd
-  rw [← R.initialForm_eq_ray, coeff_initialForm] at hn
+  rw [← R.initialForm_eq_ray, HC4.Polynomial.coeff_initialForm] at hn
   split_ifs at hn with hw
   · rw [weight_four_nat]
     simp only [Finsupp.weight_apply, Finsupp.sum_fintype,
