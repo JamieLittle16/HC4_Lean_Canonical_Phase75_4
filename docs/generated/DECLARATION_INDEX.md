@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7267**.
+Distinct declaration spellings indexed: **7269**.
 
 ## Repeated declaration spellings
 
@@ -2116,6 +2116,7 @@ Distinct declaration spellings indexed: **7267**.
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_rawComplementDet_sub_profileReduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrParameterResidual`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_y` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `QsOtherFacetContactQuadraticReesPackage.pr_contactWeightedEulerShear_z` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
+- `QsOtherFacetContactQuadraticReesPackage.pr_contact_firstVariation_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `QsOtherFacetContactQuadraticReesPackage.profilePivotProduct_coeff_eq_sourceLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
 - `QsOtherFacetContactQuadraticReesPackage.profileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterHessianCoefficients`
 - `QsOtherFacetContactQuadraticReesPackage.rawLongitudinalProfilePackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLongitudinalProfile`
@@ -3256,6 +3257,7 @@ Distinct declaration spellings indexed: **7267**.
 - `coeff_n_shiftedEuler_ne_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_one_complementaryEtaNumerator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_one_det_rankThreePencilPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
+- `coeff_one_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_S_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
