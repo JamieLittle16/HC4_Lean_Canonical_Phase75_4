@@ -229,6 +229,55 @@ from `N >= 2`, characteristic zero, and the retained nonzero slice. Thus
 extremality does not permit discarding the parameter residual at positive
 contact deficit.
 
+The later affine-carrier and single-coefficient modules were checked by Lean
+CI #1556 at `ef0e54a47f1d595bd759636fd8967ec7b3adc39c`. The first exposure
+bounds the entire contact support by `d0 + d1 <= 1`. Consequently the leading
+contact order is positive, and the displayed leading residual is **nonzero**
+in the surviving PR branch. `PrAffineHessian.lean` also proves the zero `(0,1)`
+Hessian block and zero mixed determinant on that same contact carrier. This
+mixed determinant is distinct from the retained nonzero active principal minor.
+
+`PrOneCoefficient.lean` shortens the conditional PR consumer: `hprodNN` alone
+suffices. Its vanishing would force `D = N*r`, contradicting the leading grade
+`D = qN + r*N + t` and `qN > 0`. The N--M product coefficient is therefore not
+required for this conditional PR closure. The leading product-zero premise
+has not been supplied.
+
+The new `PrFirstVariation.lean` derives the first two necessary parameter-layer
+equations from the actual contact determinant clock. For the raw permuted
+contact Hessian block H it states
+
+    H.x[1] * H.schurC[0] + H.z[1] * H.schurA[0]
+      - 2 * H.y[1] * H.schurB[0] = 0.
+
+Here brackets denote parameter coefficients. The affine carrier and its zero
+mixed determinant eliminate the other first-order contributions. At order two,
+write `L2` for the same left-hand expression with the complementary entries
+at order two. The exact second equation is
+
+    L2 = H.activeDet[0] * (H.x[1]*H.z[1] - H.y[1]^2)
+       - (H.x[1]*H.schurC[1] + H.z[1]*H.schurA[1]
+          - 2*H.y[1]*H.schurB[1])
+       - (H.p*H.s - H.q*H.r)[1]^2.
+
+The right side is retained, not asserted zero. Both equations are on the
+actual contact family and require no new geometric hypothesis beyond the
+surviving PR endpoint hypotheses. They do not yet yield terminal impossibility.
+The indices are literally 1 and 2, not `qN` and `2*qN`. They can be
+vacuous when the first actual layer occurs later. Applying analogous equations
+at extremal contact orders still requires the appropriate lower-layer
+convolution control; replacing these indices without that proof is invalid.
+Lean CI #1564 passed at `c50b3c1f275ad97b31909a974b8b5b525712bb94`,
+including the full build, axiom audit, negative control and proof-escape check.
+
+The exact symbolic investigation in [PR34_REES_EXTREMAL_OBSTRUCTION.md](PR34_REES_EXTREMAL_OBSTRUCTION.md)
+shows why the full clock must enter substantively: even an honest Rees family
+with common-monomial contact coefficients and identically zero mixed coupling
+can have a surviving bordered correction. In the documented example, clock
+orders two and three give incompatible constraints on every possible later
+Rees continuation. This restricted symbolic result is not a general Lean
+terminal theorem.
+
 **The geometric zero is still unproved.** In particular,
 `contactLeadingRawComplementDetLayer_eq` is a coefficient identity; it does
 not establish `t = 0`. The existing
@@ -251,7 +300,7 @@ Neither full-determinant vanishing nor the identity for the leading residual
 alone supplies this cancellation. Contact/binary coefficient transport must
 retain its transverse-degree shift.
 
-Consequently `hprodNN`, `hprodNM`, unconditional `.pr/.sp/.rq` impossibility,
+Consequently `hprodNN`, unconditional `.pr/.sp/.rq` impossibility,
 and unconditional presented-terminal impossibility are not yet proved by this
 calculation. A fixed remaining commit count is not justified while this
 geometric gate remains open.

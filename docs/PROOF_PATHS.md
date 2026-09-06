@@ -480,10 +480,17 @@ All files below are under `HC4/Valuation/` and share the prefix
 | `PrExtremalResidualLayers.lean` | Longitudinal Hessian scalar, leading contact-order minimality, longitudinal support ceiling |
 | `PrExtremalComplementLayers.lean` | Leading straightened mixed and quadratic entries |
 | `PrLeadingSelfCoefficient.lean` | Full leading raw-complement coefficient; exact parameter-residual coefficient; residual-zero iff leading contact deficit is zero |
+| `PrAffineCarrier.lean` | Whole contact support bound `d0+d1 <= 1`; `qN > 0`; nonzero leading residual |
+| `PrAffineHessian.lean` | Zero complementary Hessian block and zero mixed determinant on the actual contact carrier |
+| `PrFirstVariation.lean` | Actual first and second clock equations, with the quadratic bordered/mixed correction retained |
+| `PrOneCoefficient.lean` | PR contradiction **when only the leading product coefficient** has been proved zero |
 | `PrExtremalOrders.lean` | Nonzero-slice cancellation **when** the scalar/slice zero has been supplied |
 | `BinaryProfilePivotExtremalCancellation.lean` | Terminal contradiction **when** both exposed active-pivot/profile product coefficients have been proved zero |
 
-The last two rows are conditional consumers, not proofs of their inputs.
+The scalar and product cancellation rows are conditional consumers, not proofs
+of their inputs. `PrOneCoefficient` supersedes the need for the next-pair input
+in the surviving PR branch. `PrFirstVariation` supplies two necessary clock
+equations, not the missing leading-product zero.
 R18.36--R18.37 finish the displayed coefficient calculations, but do not kill
 the raw complementary coefficient or either exposed active-pivot/profile
 product coefficient. The remaining geometric correction is explained in
