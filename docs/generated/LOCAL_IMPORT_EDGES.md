@@ -185,6 +185,7 @@ human architecture guide.
   - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
+  - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Valuation.RigidClosingExactCollisionSource`
   - `HC4.Valuation.RigidClosingFirstKernelAssembly`
   - `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -3162,6 +3163,10 @@ human architecture guide.
 - `HC4.Valuation.QuadraticFamilyCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
+- `HC4.Valuation.ReverseReesHessianParameterBudget`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
 - `HC4.Valuation.RigidClosingExactCollisionSource`
   - `HC4.Valuation.CanonicalSmithDefectExposureCollision`
   - `HC4.Valuation.RigidPacketZeroSchurBridge`
