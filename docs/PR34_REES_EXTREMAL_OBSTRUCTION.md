@@ -111,3 +111,35 @@ or unrestricted HC4 is claimed here.
 Reproduce with SymPy:
 
     python tools/research/pr_rees_extremal_probe.py
+
+## Why leading-index minimality does not imply a sparse family jet
+
+The precise R18.32 conclusion is
+`contactLongitudinalParameterLayer q N = 0` for `q < qN`. It does not state
+`familyParameterLayer contactFamily q = 0`. Earlier layers at longitudinal
+indices below N remain possible. Thus the literal first/second variation
+identities cannot simply be reindexed to qN/2qN.
+
+An exact support test uses D=9, weights (3,1,1,1), h=zw and
+
+    F9 = x h³ + y h⁴ + λ e² x h² + e³ (3x+4hy)².
+
+It satisfies the weighted Rees/Euler identity and has N=2, qN=3, t=0.
+Its longitudinal-N coefficients at parameter orders 0,1,2 vanish, while its
+order-two longitudinal-one coefficient is λh². For its Euler-scaled active
+pivot A and contact profile core P, the exact coefficient is
+
+    [e⁶ x⁴ λ³](A P) = 2592 h⁹.
+
+This illustrates an actual four-factor convolution contribution from lower
+longitudinal layers that the two-factor leading-pair lemma does not exclude.
+As above, this is a contact coefficient, not the final binary product
+coefficient after all degree shifts. F9 is only a support test: no full
+Hessian clock or complete terminal hypotheses are asserted (in particular it
+does not supply the required strict-low monomial of degree at least three
+and longitudinal exponent at least two). The script checks these displayed
+identities exactly.
+
+A closing proof must use further actual terminal constraints or the full clock
+to control these lower-index terms. No such general elimination is proved by
+this test or by the literal order-one/order-two variation theorems.

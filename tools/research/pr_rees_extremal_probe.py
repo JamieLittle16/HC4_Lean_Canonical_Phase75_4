@@ -66,3 +66,16 @@ truncated=s.expand(truncated)
 assert s.expand(truncated.coeff(e,2).coeff(x,2)-32*a*h**4)==0
 assert s.expand(truncated.coeff(e,3).coeff(x,3)-192*(24-a)*h**2)==0
 print('PASS: clock order 2 forces a=0; clock order 3 forces a=24.')
+
+# qN minimality is only at longitudinal N; earlier lower-index layers survive.
+lam=s.symbols('lam')
+F9=x*h**3+y*h**4+lam*e**2*x*h**2+e**3*(3*x+4*h*y)**2
+assert s.expand(3*x*s.diff(F9,x)+sum(vv*s.diff(F9,vv) for vv in (y,z,w))+e*s.diff(F9,e)-9*F9)==0
+assert all(s.expand(F9).coeff(e,j).coeff(x,2)==0 for j in range(3))
+assert s.expand(F9).coeff(e,3).coeff(x,2)==9
+assert s.expand(F9).coeff(e,2).coeff(x,1)==lam*h**2
+L9=x*s.diff(F9,x)
+core9=s.expand(x**2*s.diff(F9,x,2)*(72*F9-6*L9)-36*L9**2)
+pivot9=s.expand(z**2*w**2*(s.diff(F9,z,2)*s.diff(F9,w,2)-s.diff(F9,z,w)**2))
+assert s.expand(pivot9*core9).coeff(e,6).coeff(x,4).coeff(lam,3)==2592*h**9
+print('PASS: qN=3 minimality at N=2 allows lower-index layers and a nonzero quartic convolution term.')

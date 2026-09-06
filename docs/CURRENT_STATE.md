@@ -267,6 +267,10 @@ The indices are literally 1 and 2, not `qN` and `2*qN`. They can be
 vacuous when the first actual layer occurs later. Applying analogous equations
 at extremal contact orders still requires the appropriate lower-layer
 convolution control; replacing these indices without that proof is invalid.
+In particular R18.32 gives vanishing only at longitudinal index `N`, not
+vanishing of every earlier source layer. Lower longitudinal indices may
+contribute to the four-factor bordered correction. The extended exact Rees
+support test in `PR34_REES_EXTREMAL_OBSTRUCTION.md` exhibits this distinction.
 Lean CI #1564 passed at `c50b3c1f275ad97b31909a974b8b5b525712bb94`,
 including the full build, axiom audit, negative control and proof-escape check.
 
