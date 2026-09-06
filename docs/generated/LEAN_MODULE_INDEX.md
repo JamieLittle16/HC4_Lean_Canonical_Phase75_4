@@ -6815,12 +6815,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation.lean`
-- Purpose: First determinant variation on the actual affine PR contact carrier
+- Purpose: First two determinant variations on the actual affine PR contact carrier
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem coeff_one_determinant_of_zero_complement`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contact_firstVariation_eq_zero`
+- Declarations: `theorem coeff_one_determinant_of_zero_complement`, `theorem mul_coeff_two`, `theorem coeff_two_determinant_of_zero_complement`, `theorem pr_contact_zeroComplementData`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contact_firstVariation_eq_zero`, `theorem QsOtherFacetContactQuadraticReesPackage.pr_contact_secondVariation_eq`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingSelfCoefficient`
 
