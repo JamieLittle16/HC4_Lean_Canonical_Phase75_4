@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7273**.
+Distinct declaration spellings indexed: **7278**.
 
 ## Repeated declaration spellings
 
@@ -2273,8 +2273,11 @@ Distinct declaration spellings indexed: **7273**.
 - `QsOtherFacetRayReverseReesPackage.firstActualLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayReverseReesPackage.firstSuperfacePackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperface`
 - `QsOtherFacetRayReverseReesPackage.higherLongitudinalLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
+- `QsOtherFacetRayReverseReesPackage.pr_complementary_weights_lt_half_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
+- `QsOtherFacetRayReverseReesPackage.pr_omitted_weight_lt_longitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.profileReesPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
+- `QsOtherFacetRayReverseReesPackage.ray_support_weight_eq_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
 - `QsOtherFacetRayReverseReesPackage.relativeFirstDeformation_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -2282,6 +2285,7 @@ Distinct declaration spellings indexed: **7273**.
 - `QsOtherFacetRayReverseReesPackage.sourceLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.sourceWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.sp_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
+- `QsOtherFacetRayReverseReesPackage.two_longitudinal_weight_lt_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetWeightedProfileCertificate` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
 - `QsOtherFacetWeightedProfileCertificate.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
@@ -7319,6 +7323,7 @@ Distinct declaration spellings indexed: **7273**.
 - `weight_eq_degree_of_secondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_eq_zero_of_rightPoint_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_eq_zero_or_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
+- `weight_four_nat` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `weight_le_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_natCast_eq` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `weight_one_cons_smithTransverseExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
