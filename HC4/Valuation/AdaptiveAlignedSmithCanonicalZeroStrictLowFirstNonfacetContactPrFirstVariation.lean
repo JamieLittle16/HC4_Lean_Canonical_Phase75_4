@@ -46,7 +46,7 @@ theorem coeff_one_determinant_of_zero_complement
 private theorem mul_coeff_two (f g : Polynomial R) :
     (f * g).coeff 2 = f.coeff 0 * g.coeff 2 +
       f.coeff 1 * g.coeff 1 + f.coeff 2 * g.coeff 0 := by
-  rw [Polynomial.coeff_mul, Nat.antidiagonal_eq_map]
+  rw [Polynomial.coeff_mul, Finset.Nat.antidiagonal_eq_map]
   simp [Finset.sum_range_succ]
   ring
 
@@ -83,6 +83,7 @@ theorem coeff_two_determinant_of_zero_complement
     hraw0, hraw1, hraw2, hmix2, hx, hy, hz,
     zero_mul, mul_zero, zero_add, add_zero] at h
   norm_num [hx, hy, hz] at h
+  simp only [Polynomial.coeff_sub, Polynomial.mul_coeff_one]
   linear_combination -h
 
 end HC4.Newton.GeneralFourBlock
