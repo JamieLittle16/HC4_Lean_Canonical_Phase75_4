@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7293**.
+Distinct declaration spellings indexed: **7299**.
 
 ## Repeated declaration spellings
 
@@ -3740,6 +3740,7 @@ Distinct declaration spellings indexed: **7293**.
 - `eliminate_unit_polynomial_denominator` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `endpointResidualNormalForm_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `endpointResidual_eval_one_ne_zero_or_extraFactor` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `endpoint_three_scalar_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `entryBlock` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `entryBlock_detCore_eq_zero_of_determinantTail_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `entryBlock_detCore_eq_zero_of_scaledDeterminant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
@@ -5716,6 +5717,7 @@ Distinct declaration spellings indexed: **7293**.
 - `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qsRayDegreeOneCoefficientPolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayDegreeOneCoefficientPolynomial_coeff_one_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
+- `qsRayDegreeOneCoefficientPolynomial_coeff_zero_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `qsRayPrimaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
 - `qsRqContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
@@ -5797,6 +5799,7 @@ Distinct declaration spellings indexed: **7293**.
 - `qs_ray_strictLow_sourceCodimensionTwo_degree_lt_outside` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`
 - `qs_ray_terminal_degreeOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - `qs_ray_terminal_degreeOne_or_fixedDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
+- `qs_ray_transverseHessianMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `qs_remainingSlope_add_one_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_remainingSlope_ne_zero_of_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_topFace_ray_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
@@ -6151,6 +6154,8 @@ Distinct declaration spellings indexed: **7293**.
 - `raw_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
 - `ray` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `rayRawLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `rayTransverseHessianMinor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
+- `rayTransverseHessianMinor_specialisation_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `ray_coeff_eq_represented_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
 - `ray_contact_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_direct_initialForm_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
@@ -6158,6 +6163,7 @@ Distinct declaration spellings indexed: **7293**.
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_support_directly_exposed_in_represented_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
+- `ray_transverse_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `recenteredBlocker_exactFirstLayer_or_strictResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `recenteredBlocker_firstWallCompetition` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `recenteredCandidate_mem_projectedSupport_and_grade` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
