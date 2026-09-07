@@ -7197,7 +7197,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor.lean`
 - Purpose: A nonzero three-coordinate Hessian minor on the actual ray
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- Local imports: `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - External imports: none
 - Imported by local modules: `HC4`
 - Declarations: `def rayTransverseHessianMinor`, `theorem ray_transverse_entry`, `theorem rayTransverseHessianMinor_specialisation_coeff_zero`, `theorem endpoint_three_scalar_ne_zero`, `theorem pr_schurC_coeff_zero_eq_transverseMinor`, `theorem qsRayDegreeOneCoefficientPolynomial_coeff_zero_ne`, `theorem qs_ray_transverseHessianMinor_ne_zero`, `theorem QsOtherFacetRayReverseReesPackage.pr_ray_schurC_coeff_zero_ne_zero`
@@ -9509,7 +9509,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.SmithFrontierFourBlockExtraction`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`, `HC4.Valuation.ReverseReesHessianParameterBudget`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.ReverseReesHessianParameterBudget`
 - Declarations: `theorem optionEquivRight_monomial`, `theorem optionEquivRight_coeff_coeff`, `theorem parameterFirstEquiv_coeff`, `theorem parameterFirstHessian_coeff`
 
 ### `HC4.Valuation.ParameterRamification`
