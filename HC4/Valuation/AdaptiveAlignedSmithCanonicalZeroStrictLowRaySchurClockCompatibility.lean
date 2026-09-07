@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees
 import HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockDispatcher
 
 /-!
 # Ray clock compatibility at the reached zero-clock terminal
@@ -63,6 +64,17 @@ theorem QsOtherFacetRayReverseReesPackage.defect_ne_ramified_source_defect
       ramification * state.rawDefect := by
   rw [T.terminal.source_zero, mul_zero]
   exact Nat.ne_of_gt R.defect_pos
+
+/-- No target carrying the positive ray clock is a certified ramified internal
+presentation of the original zero-clock state. Thus the existing source
+presentation certificate cannot be obtained just by changing the target family. -/
+theorem QsOtherFacetRayReverseReesPackage.no_ramifiedInternalMove_to_ray_defect
+    (R : QsOtherFacetRayReverseReesPackage C)
+    (target : ScaleAwareAdaptiveGeometricRestartState (K := K))
+    (hraw : target.rawDefect = 4 * R.level - 2 * ∑ i : Fin 4, R.weight i) :
+    ¬ HasCertifiedRamifiedEpisodeInternalMove target state := by
+  rintro ⟨h⟩
+  exact R.defect_ne_ramified_source_defect h.ramification (hraw.symm.trans h.raw_eq)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 end
