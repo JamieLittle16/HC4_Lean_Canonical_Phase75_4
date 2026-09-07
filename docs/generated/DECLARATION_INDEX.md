@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7287**.
+Distinct declaration spellings indexed: **7292**.
 
 ## Repeated declaration spellings
 
@@ -2271,6 +2271,8 @@ Distinct declaration spellings indexed: **7287**.
 - `QsOtherFacetRayReverseReesPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `QsOtherFacetRayReverseReesPackage.actualLayerOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.actualLayerPairOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
+- `QsOtherFacetRayReverseReesPackage.defect_ne_ramified_source_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
+- `QsOtherFacetRayReverseReesPackage.defect_ne_terminalBlocker_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_actualLayerOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_actualLayerPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
 - `QsOtherFacetRayReverseReesPackage.determinantLayer_zero_of_le_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayQuadraticPreclosing`
@@ -2279,6 +2281,7 @@ Distinct declaration spellings indexed: **7287**.
 - `QsOtherFacetRayReverseReesPackage.higherLongitudinalLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayReverseReesPackage.pr_complementary_weights_lt_half_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_omitted_weight_lt_longitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
+- `QsOtherFacetRayReverseReesPackage.pr_raySchur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.profileReesPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `QsOtherFacetRayReverseReesPackage.ray_support_weight_eq_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
@@ -5009,12 +5012,14 @@ Distinct declaration spellings indexed: **7287**.
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_presentedTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_reachableTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableHC4Reduction`
+- `no_exactRankOneSchurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - `no_firstActualLayer_wholeFamilyContact_of_overlap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `no_infinite_strictRepairChain` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `no_laurent_weight_relation_of_nonexceptional` — `theorem` in `HC4.Toric.FourSidedCharacter`
 - `no_negativeSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `no_positive_admissible_of_maximalIntegralKernelSlope_eq_zero` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `no_quadraticAutonomous_positive_reciprocal` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
+- `no_recenteredRankOneSchurChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - `no_shiftedPolynomialAutonomousLogODE_degree_ge_three` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `no_three_facet_cycle` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `nonScalarIntegralWeight_exists_centered_ne_zero` — `theorem` in `HC4.Newton.TerminalCenteredWeights`

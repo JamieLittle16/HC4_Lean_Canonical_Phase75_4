@@ -142,6 +142,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
@@ -2489,7 +2490,9 @@ human architecture guide.
   - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
+  - `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySuperfaceInitial`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstSuperfacePolynomial`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
@@ -2551,6 +2554,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
+  - `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
