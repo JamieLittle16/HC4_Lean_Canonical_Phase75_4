@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7299**.
+Distinct declaration spellings indexed: **7301**.
 
 ## Repeated declaration spellings
 
@@ -2283,6 +2283,7 @@ Distinct declaration spellings indexed: **7299**.
 - `QsOtherFacetRayReverseReesPackage.pr_complementary_weights_lt_half_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_omitted_weight_lt_longitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_raySchur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
+- `QsOtherFacetRayReverseReesPackage.pr_ray_schurC_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `QsOtherFacetRayReverseReesPackage.pr_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.profileReesPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `QsOtherFacetRayReverseReesPackage.ray_support_weight_eq_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
@@ -5613,6 +5614,7 @@ Distinct declaration spellings indexed: **7299**.
 - `pr_contact_pair_hessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineHessian`
 - `pr_contact_support_pair_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
 - `pr_contact_zeroComplementData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
+- `pr_schurC_coeff_zero_eq_transverseMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
 - `prepend_internal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalBoundaryContinuationReduction`
 - `presentedRankThreeTerminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminal`
 - `presentedRankThreeTerminal_presentedState_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier`
