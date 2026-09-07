@@ -50,7 +50,8 @@ private theorem ray_transverse_entry
     rw [hF, hp]
     have hij := congrFun (congrFun hm i.succ) j.succ
     simpa [Polynomial.coe_compRingHom_apply] using hij
-  rw [HC4.Polynomial.eulerScaledHessian_apply] at he
+  rw [HC4.Polynomial.eulerScaledHessian_apply,
+    HC4.Newton.pderiv_comm_backport i.succ j.succ] at he
   have hx (k : Fin 3) :
       HC4.Polynomial.rankThreeLineSpecialisation (K := K) (MvPolynomial.X k.succ) = 1 := by
     fin_cases k <;> simp [HC4.Polynomial.rankThreeLineSpecialisation]
@@ -66,7 +67,7 @@ theorem rayTransverseHessianMinor_specialisation_coeff_zero
   unfold rayTransverseHessianMinor
   rw [Matrix.det_fin_three]
   simp only [Matrix.of_apply, map_sub, map_add, map_mul]
-  simp only [ray_transverse_entry hs]
+  simp only [ray_transverse_entry hs 0 0, ray_transverse_entry hs 0 1, ray_transverse_entry hs 0 2, ray_transverse_entry hs 1 0, ray_transverse_entry hs 1 1, ray_transverse_entry hs 1 2, ray_transverse_entry hs 2 0, ray_transverse_entry hs 2 1, ray_transverse_entry hs 2 2]
   simp [HC4.Polynomial.weightedRankThreeEndpointPencil, HC4.Polynomial.vectorHessianCore]
   ring
 
