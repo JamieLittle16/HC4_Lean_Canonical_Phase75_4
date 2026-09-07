@@ -3579,7 +3579,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`, `HC4.Valuation.AdaptiveAlignedSmithBoundaryReentry`, `HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockStationaryEndgame`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFactorOneFirstContact`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockStationaryEndgame`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFactorOneFirstContact`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - Declarations: `def AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState`, `theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState_rawDefect`, `theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState_scale`, `theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState_degreeCap`, `theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState_sourceComplexity`, `theorem AdaptiveAlignedSmithMinimalZeroJetEndpoint.toOuterScaleAwareState_repair`, `structure CertifiedRamifiedEpisodeInternalMove`, `def HasCertifiedRamifiedEpisodeInternalMove`, `theorem CertifiedRamifiedEpisodeInternalMove.scaledDefect_equivalent`, `def CertifiedRamifiedEpisodeInternalMove.then_spend`, `theorem HasCertifiedRamifiedEpisodeInternalMove.then_spend`, `def AdaptiveAlignedSmithMinimalZeroJetEndpoint.certifiedOuterSpend_of_defect_lt`, `def AdaptiveAlignedSmithMinimalZeroJetEndpoint.certifiedOuterInternal_of_defect_eq`, `def ScaleAwareAdaptiveGeometricRestartState.alignedBoundaryScaleAwareReentry`, `theorem ScaleAwareAdaptiveGeometricRestartState.alignedBoundaryScaleAwareReentry_rawDefect`, `theorem ScaleAwareAdaptiveGeometricRestartState.alignedBoundaryScaleAwareReentry_scale`, `def ScaleAwareAdaptiveGeometricRestartState.alignedBoundaryCertifiedInternalMove`, `theorem firstLongitudinalDeparture`, `inductive AdaptiveAlignedSmithCanonicalExactClockOutcome`, `theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockDispatcher`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockEarlySchurKernelLift`
@@ -7527,10 +7527,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility.lean`
 - Purpose: Ray clock compatibility at the reached zero-clock terminal
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`, `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockDispatcher`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem no_exactRankOneSchurClock`, `theorem no_recenteredRankOneSchurChart`, `theorem QsOtherFacetRayReverseReesPackage.defect_ne_terminalBlocker_defect`, `theorem QsOtherFacetRayReverseReesPackage.defect_ne_ramified_source_defect`
+- Declarations: `theorem no_exactRankOneSchurClock`, `theorem no_recenteredRankOneSchurChart`, `theorem QsOtherFacetRayReverseReesPackage.defect_ne_terminalBlocker_defect`, `theorem QsOtherFacetRayReverseReesPackage.defect_ne_ramified_source_defect`, `theorem QsOtherFacetRayReverseReesPackage.no_ramifiedInternalMove_to_ray_defect`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
 

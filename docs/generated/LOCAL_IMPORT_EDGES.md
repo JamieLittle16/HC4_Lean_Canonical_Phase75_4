@@ -2555,6 +2555,7 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
   - `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRecenteredOutsideSupport`
