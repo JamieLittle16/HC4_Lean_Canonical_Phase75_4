@@ -212,3 +212,5 @@ import HC4.Valuation.ReverseReesHessianParameterBudget
 import HC4.Valuation.ReverseReesSchurParameterBudget
 
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility
+
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor
