@@ -109,7 +109,7 @@ theorem alignLeft_transverse_coeffs_eq_zero_of_clock_le
       (Polynomial.C (H.schurA.coeff 0)) ^ 2 * H.schurC).coeff n = 0)
   simp only [pow_two, two_mul, add_mul, mul_assoc, neg_mul,
     Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
-    Polynomial.coeff_C_mul, ha, hb, hz, mul_zero, neg_zero, add_zero, sub_zero]
+    Polynomial.coeff_C_mul, ha, hb, hz, mul_zero, neg_zero, add_zero, sub_zero, and_self]
 
 end FourBlockParameterBudget
 

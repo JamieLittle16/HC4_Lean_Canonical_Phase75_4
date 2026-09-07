@@ -6,6 +6,40 @@ It is deliberately not a phase diary. Historical `FORMALISATION_STATUS_PHASE*.md
 
 For the mathematical architecture see `PROOF_ARCHITECTURE.md`. For exact file-by-file paths see `PROOF_PATHS.md`. For exhaustive source inventory see `generated/LEAN_MODULE_INDEX.md` and `generated/DECLARATION_INDEX.md`.
 
+## Ray Schur route: source-clock compatibility audit (2026-09-07)
+
+The sharp coefficient bounds now have an actual `.pr` ray-Rees adapter in
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`:
+all three raw Schur entries vanish at every parameter order at least the ray
+defect. Both complementary weights are strictly below half the source level.
+This is not yet a construction of the ray rank-one Schur clock. That construction
+still needs a nonzero constant Schur entry (a retained three-by-three minor),
+beyond the existing nonzero two-by-two active pivot.
+
+The proposed direct use of stationary `GlobalStationaryRankTwoProgress.ofGeometry`
+is blocked by an exact clock mismatch, not an elaboration problem.
+`ZeroStrictLowTerminalData.zeroClockFirstContactPacket.2.1` gives
+`terminal.blocker.blocker.aligned.endpoint.defect = 0`.
+The ray package gives `0 < 4*level - 2*sum weight`.
+The new `AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
+proves that no exact rank-one Schur clock, and hence no corresponding recentered
+rank-one Schur chart, exists on the retained original blocker. It also proves
+that the ray defect differs from the original blocker defect and from every
+natural ramification multiple of the source defect.
+
+These facts do not refute an auxiliary ray clock. They rule out identifying it
+with the original stationary clock. A viable global route must construct a
+new certified source transition and show that the resulting geometric progress
+is consumed by the terminal-exclusion argument. Merely constructing a state
+with a smaller repair tag does not do this: `GlobalMacroProgress` is an order
+relation, and the local terminal record has no assertion that all such smaller
+states are impossible. No direct reverse-Rees source-transition adapter was
+found in the global/certified progress owners audited here.
+
+**Status:** actual ray-clock construction and source-honest terminal exclusion
+remain open. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
+The same-carrier codimension-two contradiction remains a separate obligation.
+
 ## 1. What the public theorem is trying to prove
 
 The unrestricted target is determinant-one gradient injectivity in four variables:

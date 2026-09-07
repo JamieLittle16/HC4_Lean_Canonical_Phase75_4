@@ -1,3 +1,5 @@
+import HC4.Valuation.ReverseReesSchurParameterBudget
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock
 import Mathlib.Tactic
@@ -88,6 +90,29 @@ theorem QsOtherFacetRayReverseReesPackage.pr_complementary_weights_lt_half_level
   have h0 := R.two_longitudinal_weight_lt_level
   have h1 := R.pr_omitted_weight_lt_longitudinal hthree hout
   constructor <;> omega
+
+/-- The sharp cubic bounds exclude every raw Schur coefficient at or after
+closure on the actual ray Rees. No degree hypothesis is added. -/
+theorem QsOtherFacetRayReverseReesPackage.pr_raySchur_coeffs_eq_zero_of_clock_le
+    (R : QsOtherFacetRayReverseReesPackage C)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (hout : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (n : ℕ) (hn : 4 * R.level - 2 * ∑ i : Fin 4, R.weight i ≤ n) :
+    let H := permutedFamilyHessianFourBlock qsPrSuperfaceSchurPermutation
+      (reverseWeightedReesFamily R.weight R.level
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) R.bound)
+    H.schurA.coeff n = 0 ∧ H.schurB.coeff n = 0 ∧ H.schurC.coeff n = 0 := by
+  let H := permutedFamilyHessianFourBlock qsPrSuperfaceSchurPermutation
+    (reverseWeightedReesFamily R.weight R.level
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) R.bound)
+  have B : FourBlockParameterBudget H R.level
+      (R.weight 2) (R.weight 3) (R.weight 0) (R.weight 1) :=
+    reverseWeightedRees_fourBlockParameterBudget R.weight R.level _ R.bound
+      qsPrSuperfaceSchurPermutation
+  have hm := R.two_level_lt_defect
+  rw [Fin.sum_univ_four] at hm hn
+  have hc := R.pr_complementary_weights_lt_half_level hthree hout
+  exact B.schur_coeffs_eq_zero_of_clock_le (by omega) hc.1 hc.2 n (by omega)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 end
