@@ -1,3 +1,4 @@
+import HC4.Valuation.ParameterFirstLayerBridge
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur
@@ -11,6 +12,8 @@ the original rank-three endpoint: its constant longitudinal coefficient is
 c0^3*A*B*C*(A+B+C-1). This is nonzero for positive integral A,B,C.
 This concerns the actual ray Hessian, not the original zero-clock blocker.
 -/
+set_option maxHeartbeats 2000000
+
 namespace HC4.Valuation
 noncomputable section
 open HC4.Polynomial HC4.Newton
@@ -62,7 +65,7 @@ theorem rayTransverseHessianMinor_specialisation_coeff_zero
       c ^ 3 * (A : K) * (B : K) * (C : K) * ((A : K) + (B : K) + (C : K) - 1) := by
   unfold rayTransverseHessianMinor
   rw [Matrix.det_fin_three]
-  simp only [map_sub, map_add, map_mul]
+  simp only [Matrix.of_apply, map_sub, map_add, map_mul]
   simp only [ray_transverse_entry hs]
   simp [HC4.Polynomial.weightedRankThreeEndpointPencil, HC4.Polynomial.vectorHessianCore]
   ring
