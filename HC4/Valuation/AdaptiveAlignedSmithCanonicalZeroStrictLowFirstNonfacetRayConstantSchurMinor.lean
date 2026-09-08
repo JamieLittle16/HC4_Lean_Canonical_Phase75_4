@@ -113,9 +113,6 @@ theorem pr_schurC_coeff_zero_eq_transverseMinor
         G 2 2 * G 3 1 * G 3 1) = _
   unfold rayTransverseHessianMinor
   rw [Matrix.det_fin_three]
-  change (G 2 2 * G 3 3 - G 2 3 * G 2 3) * G 1 1 -
-      (G 3 3 * G 2 1 * G 2 1 - 2 * G 2 3 * G 2 1 * G 3 1 +
-        G 2 2 * G 3 1 * G 3 1) = _
   dsimp only [G]
   have h0 : (0 : Fin 3).succ = (1 : Fin 4) := rfl
   have h1 : (1 : Fin 3).succ = (2 : Fin 4) := rfl
