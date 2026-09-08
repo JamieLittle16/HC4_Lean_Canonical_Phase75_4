@@ -107,11 +107,17 @@ theorem pr_schurC_coeff_zero_eq_transverseMinor
   simp only [← Polynomial.coeff_zero_eq_eval_zero]
   simp_rw [parameterFirstHessian_coeff]
   rw [familyParameterLayer_zero_eq_polynomialFamilySpecialFiber]
-  simp only [qsPrSuperfaceSchurPermutation, Equiv.trans_apply, Equiv.swap_apply_def]
-  norm_num
+  let G := HC4.Polynomial.hessian (polynomialFamilySpecialFiber F)
+  change (G 2 2 * G 3 3 - G 2 3 * G 2 3) * G 1 1 -
+      (G 3 3 * G 2 1 * G 2 1 - 2 * G 2 3 * G 2 1 * G 3 1 +
+        G 2 2 * G 3 1 * G 3 1) = _
   unfold rayTransverseHessianMinor
   rw [Matrix.det_fin_three]
-  simp only [Matrix.of_apply, Fin.succ_mk, hsym 2 1, hsym 3 1, hsym 3 2]
+  change (G 2 2 * G 3 3 - G 2 3 * G 2 3) * G 1 1 -
+      (G 3 3 * G 2 1 * G 2 1 - 2 * G 2 3 * G 2 1 * G 3 1 +
+        G 2 2 * G 3 1 * G 3 1) = _
+  dsimp only [G]
+  simp only [Matrix.of_apply, hsym 2 1, hsym 3 1, hsym 3 2]
   ring
 
 variable [IsAlgClosed K]
