@@ -16,7 +16,12 @@ def kernel(deg,prefix):
 def weighted(deg,prefix):
     return sum(s.Symbol(f'{prefix}_{i}_{j}_{k}')*x**i*y**j*z**k*w**(deg-3*i-j-k) for i in range(deg//3+1) for j in range(deg-3*i+1) for k in range(deg-3*i-j+1))
 F0=x*(z*w)**3+y*(z*w)**4
+H0=s.hessian(F0,(x,y,z,w))
+v=s.Matrix([4*z*w,-3,0,0])
+assert all(s.expand(e)==0 for e in H0*v)
+assert s.expand(H0.extract([1,2,3],[1,2,3]).det())!=0
 G2=(A*z+B*w)*u**2+y*u*sum(q[i]*z**(3-i)*w**i for i in range(4))+u*ordinary(4,'p4_')+ordinary(7,'p7_')+y*ordinary(6,'q6_')
+assert s.expand((v.T*s.hessian(G2,(x,y,z,w))*v)[0])==0
 H={k:s.hessian(f,(x,y,z,w)).subs(y,0).applyfunc(s.expand) for k,f in [(0,F0),(2,G2),(3,kernel(6,'g3')),(4,weighted(5,'g4')),(6,weighted(3,'g6'))]}
 for M in H.values():
  for e in M: assert e==0 or s.degree(e,x)<=1
@@ -53,3 +58,14 @@ Q=8*a*m**2-8*a*m-16*a+b*(m**2-4*m+3)
 assert s.expand((m-3)**2*T-Q*((m-3)*b-4*(m+1)*a)
                 -8*(m+1)**2*(m-1)**2*a**2) == 0
 print('PASS: all six extremal coefficients and the elimination certificate')
+
+# Conditional common-monomial endpoint: the full source would need to have
+# this form. This identity does not establish that missing support condition.
+fxx,fxy,fyy,fxh,fyh,fhh,fh=s.symbols('fxx fxy fyy fxh fyh fhh fh')
+M=s.Matrix([[fxx,fxy,w*fxh,z*fxh],
+            [fxy,fyy,w*fyh,z*fyh],
+            [w*fxh,w*fyh,w*w*fhh,fh+z*w*fhh],
+            [z*fxh,z*fyh,fh+z*w*fhh,z*z*fhh]])
+D3=fxx*fyy*fhh+2*fxy*fxh*fyh-fxx*fyh**2-fyy*fxh**2-fxy**2*fhh
+assert s.expand(M.det()+fh*(fh*(fxx*fyy-fxy**2)+2*z*w*D3))==0
+print('PASS: conditional common-monomial determinant factorization')

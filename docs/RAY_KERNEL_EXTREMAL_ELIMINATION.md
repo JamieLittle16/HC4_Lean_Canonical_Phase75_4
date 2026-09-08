@@ -115,7 +115,8 @@ a*(64*a^2-8*a*q1+q1^2) = 0,
 with the symmetric pair for `c,q3`. Hence `a=c=0`.
 The new `ray_kernel_order_one_extremal_elimination` Lean theorem proves
 this scalar step using the more general
-`quadratic_cubic_extremal_elimination` (CI pending for this extension).
+`quadratic_cubic_extremal_elimination` (full CI #1593 passed at
+`9cd89d77c5a81c550cc966bdd567ae8c73545e10`, including all proof audits).
 The latter needs only a field and two explicitly nonzero elimination scalars.
 
 The middle coefficient `b` survives this calculation. Its `x^2*z*w` monomial
@@ -123,6 +124,24 @@ has three supported coordinates, whereas the eliminated `x^2*z^2` and
 `x^2*w^2` terms have two. The surviving term can affect later layers, so
 this first-order calculation and the order-2 calculation cannot simply be
 combined into a complete model exclusion.
+
+### Conditional endpoint if all layers depend on the same monomial
+
+If the **entire** source is `F=f(x,y,h)` with `h=z*w`, direct Hessian expansion
+gives
+
+```
+det Hess_(x,y,z,w) F
+  = -f_h * (f_h * det Hess_(x,y) f + 2*h * det Hess_(x,y,h) f).
+```
+
+Thus determinant one forces the substituted polynomial `f_h(x,y,z*w)` to
+be a unit, hence constant over a field. This is incompatible with the displayed
+leading rank-three ray. The displayed Hessian calculation is checked
+at the end of `ray_kernel_extremal_probe.py`; the source chain-rule adapter is
+not a Lean theorem in this patch. Crucially, the actual later source layers
+have **not** been shown to depend only on `x,y,z*w`. This is a conditional
+endpoint for a possible support argument, not an exclusion of those layers.
 
 An actual terminal has not been reduced to this model. Arbitrary common
 monomials, endpoint power gaps, weights, higher longitudinal degree, and the

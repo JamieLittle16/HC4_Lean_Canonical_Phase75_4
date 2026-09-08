@@ -70,8 +70,11 @@ Two successive extremal determinant equations eliminate the nonlinear
 first-layer coefficient in a rank-three model, even with all permitted later
 corrections in the tested weight system. The scalar elimination is compiled and verified in Lean: full CI #1591 passed
 at `d7467cc39d36aefe5e0ff40e3b67fdba68b6ca51`, including the axiom audit,
-negative control and escape-hatch checks. The source coefficient extraction
-and coverage of arbitrary terminal rays remain open.
+negative control and escape-hatch checks. The generic quadratic/cubic elimination and first-order boundary corollary
+also passed full CI #1593 at `9cd89d77c5a81c550cc966bdd567ae8c73545e10`.
+The first-order model excludes its two-coordinate quadratic boundary terms,
+but a mixed `x^2*z*w` term survives and can affect later layers. The source
+coefficient extraction and coverage of arbitrary terminal rays remain open.
 
 ## 1. What the public theorem is trying to prove
 

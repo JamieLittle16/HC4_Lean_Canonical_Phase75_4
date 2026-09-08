@@ -28,6 +28,7 @@ def coeff(n,j):
 q=s.symbols('q0:5')
 def ordinary(deg,prefix):return sum(s.Symbol(f'{prefix}{i}')*z**i*w**(deg-i) for i in range(deg+1))
 G1+=u*ordinary(5,'p5_')+ordinary(8,'p8_')+y*u*sum(q[i]*z**(4-i)*w**i for i in range(5))+y*ordinary(7,'q7_')
+assert s.expand((s.Matrix([[4*z*w,-3,0,0]])*s.hessian(G1,(x,y,z,w))*s.Matrix([4*z*w,-3,0,0]))[0])==0
 H[1]=s.hessian(G1,(x,y,z,w)).subs(y,0).applyfunc(s.expand)
 entries={(k,i,j,d):M[i,j].coeff(x,d) for k,M in H.items() for i in range(4) for j in range(4) for d in range(3)}
 C24=coeff(2,4)
