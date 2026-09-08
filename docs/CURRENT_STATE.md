@@ -6,15 +6,34 @@ It is deliberately not a phase diary. Historical `FORMALISATION_STATUS_PHASE*.md
 
 For the mathematical architecture see `PROOF_ARCHITECTURE.md`. For exact file-by-file paths see `PROOF_PATHS.md`. For exhaustive source inventory see `generated/LEAN_MODULE_INDEX.md` and `generated/DECLARATION_INDEX.md`.
 
-## Ray Schur route: source-clock compatibility audit (2026-09-07)
+## Ray Schur route: local clock proved, source connection open (2026-09-08)
 
 The sharp coefficient bounds now have an actual `.pr` ray-Rees adapter in
 `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`:
 all three raw Schur entries vanish at every parameter order at least the ray
 defect. Both complementary weights are strictly below half the source level.
-This is not yet a construction of the ray rank-one Schur clock. That construction
-still needs a nonzero constant Schur entry (a retained three-by-three minor),
-beyond the existing nonzero two-by-two active pivot.
+The local ray rank-one Schur clock is now constructed in
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`.
+Its theorem
+`QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock`
+takes only the retained ray Rees package and the actual `.qs`/`.pr` endpoint
+hypotheses. It returns an exact clock with the ray defect, a literal left or
+right constant alignment of the actual ray Hessian Schur block, strict
+`firstOrder < defect`, and a nonzero off-diagonal coefficient at that order.
+
+The missing constant pivot is supplied by
+`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`.
+The principal Hessian minor on coordinates (1,2,3) has constant longitudinal
+coefficient `c0^3*A*B*C*(A+B+C-1)` after the established ray specialisation.
+Positive integral A,B,C and the retained nonzero endpoint coefficient make
+this nonzero. The file identifies this same minor with the constant
+`.pr` Schur C entry on the ray reverse Rees. No Hessian-rank assumption,
+division, source-presentation assumption or closing-order exclusion is added
+to the clock theorem. The existing all-three coefficient bounds rule out
+closing after either constant alignment.
+
+The local clock and constant-minor modules compiled in Lean CI #1587 at
+`27d0b0c59d8f754896f903c610fa31d6ceca9290`.
 
 The proposed direct use of stationary `GlobalStationaryRankTwoProgress.ofGeometry`
 is blocked by an exact clock mismatch, not an elaboration problem.
@@ -36,8 +55,8 @@ relation, and the local terminal record has no assertion that all such smaller
 states are impossible. No direct reverse-Rees source-transition adapter was
 found in the global/certified progress owners audited here.
 
-**Status:** actual ray-clock construction and source-honest terminal exclusion
-remain open. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
+**Status:** the actual `.pr` ray clock and strict preterminal departure are proved.
+Source-honest terminal exclusion remains open. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
 The same-carrier codimension-two contradiction remains a separate obligation.
 
 ## 1. What the public theorem is trying to prove
