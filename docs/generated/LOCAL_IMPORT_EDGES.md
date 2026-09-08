@@ -30,6 +30,7 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetEndpointTransition`
   - `HC4.Newton.FirstContactCrossFacetExit`
   - `HC4.Newton.FirstContactHonestSlice`
+  - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.Newton.SymmetricSmithMinimality`
@@ -537,6 +538,8 @@ human architecture guide.
 - `HC4.Newton.RankTwoRepairTerminal`
   - `HC4.Newton.RankOneRepairProgress`
   - `HC4.Newton.RankTwoHomogeneousPacketClassification`
+- `HC4.Newton.RayKernelExtremalElimination`
+  - _(no local imports)_
 - `HC4.Newton.RestartClassification`
   - `HC4.Newton.RankTwoRepairTerminal`
   - `HC4.Newton.SmithRefinedFacePolynomial`
