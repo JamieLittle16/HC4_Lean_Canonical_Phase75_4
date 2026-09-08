@@ -64,6 +64,14 @@ vanishing. The test does not satisfy the retained rank-three endpoint geometry;
 using that additional geometry to control coupling remains the missing argument. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
 The same-carrier codimension-two contradiction remains a separate obligation.
 
+A new model calculation is recorded in
+[RAY_KERNEL_EXTREMAL_ELIMINATION.md](RAY_KERNEL_EXTREMAL_ELIMINATION.md).
+Two successive extremal determinant equations eliminate the nonlinear
+first-layer coefficient in a rank-three model, even with all permitted later
+corrections in the tested weight system. The scalar elimination is now stated
+and proved in Lean; CI validation is pending. The source coefficient extraction
+and coverage of arbitrary terminal rays remain open.
+
 ## 1. What the public theorem is trying to prove
 
 The unrestricted target is determinant-one gradient injectivity in four variables:

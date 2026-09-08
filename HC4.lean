@@ -216,3 +216,5 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockComp
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor
 
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock
+
+import HC4.Newton.RayKernelExtremalElimination
