@@ -1300,7 +1300,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: none
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem ray_kernel_extremal_elimination`
+- Declarations: `theorem quadratic_cubic_extremal_elimination`, `theorem ray_kernel_order_one_extremal_elimination`, `theorem ray_kernel_extremal_elimination`
 
 ### `HC4.Newton.RestartClassification`
 

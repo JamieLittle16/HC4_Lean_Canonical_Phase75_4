@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7303**.
+Distinct declaration spellings indexed: **7305**.
 
 ## Repeated declaration spellings
 
@@ -5858,6 +5858,7 @@ Distinct declaration spellings indexed: **7303**.
 - `quadraticSmithSubface_pderiv_three_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
 - `quadratic_clearedSquare_of_leftPivot` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
+- `quadratic_cubic_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `quadratic_eq_rightAxis` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `quadratic_weight_below_contact` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `quasi_translation_identity` — `theorem` in `HC4.QuasiTranslation.RankOneShear`
@@ -6164,6 +6165,7 @@ Distinct declaration spellings indexed: **7303**.
 - `ray_direct_initialForm_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
 - `ray_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_kernel_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
+- `ray_kernel_order_one_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_support_directly_exposed_in_represented_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
