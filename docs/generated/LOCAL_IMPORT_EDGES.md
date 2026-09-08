@@ -30,6 +30,7 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetEndpointTransition`
   - `HC4.Newton.FirstContactCrossFacetExit`
   - `HC4.Newton.FirstContactHonestSlice`
+  - `HC4.Newton.ProductCoordinateHessian`
   - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
   - `HC4.Newton.SingularBoundaryRankSplit`
@@ -512,6 +513,10 @@ human architecture guide.
   - `HC4.Newton.TerminalPermutedGradient`
 - `HC4.Newton.PreterminalFirstDeparture`
   - `HC4.Newton.FiniteRepairTermination`
+- `HC4.Newton.ProductCoordinateHessian`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.GeneralFourBlockSchur`
+  - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Newton.RankOnePacketExactCollision`
   - `HC4.Newton.ExactCollisionFirstWall`
   - `HC4.Newton.SmithRefinedFacePolynomial`

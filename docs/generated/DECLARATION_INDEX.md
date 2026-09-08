@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7305**.
+Distinct declaration spellings indexed: **7314**.
 
 ## Repeated declaration spellings
 
@@ -4431,6 +4431,7 @@ Distinct declaration spellings indexed: **7305**.
 - `hessianDeterminant_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
 - `hessianDeterminant_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
+- `hessianDeterminant_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `hessianDeterminant_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
 - `hessianDeterminant_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_smithScalarLevelDegreeComponent_eq_zero_of_maximal` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -4476,6 +4477,7 @@ Distinct declaration spellings indexed: **7305**.
 - `hessian_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
 - `hessian_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `hessian_polynomialFamilyTranslationHom_entry` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
+- `hessian_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `hessian_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
 - `hessian_smithConformalInflateHom_entry` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessian_succ_succ_preserves_longitudinalExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
@@ -5281,6 +5283,7 @@ Distinct declaration spellings indexed: **7305**.
 - `pderiv_pderiv_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyLinearPartAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
+- `pderiv_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `pderiv_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `pderiv_second_eq_zero_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pderiv_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
@@ -5664,6 +5667,12 @@ Distinct declaration spellings indexed: **7305**.
 - `prod_smithConformalDerivativeCoefficient` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `prod_sub_prod_isWeightLT` — `theorem` in `HC4.Polynomial.TopProduct`
 - `produces` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated`
+- `productCoordinateHessianBlock` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateHessianCofactor` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateIndex` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateLift` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateMultiplier` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinate_derivative_constant_of_hessianDeterminant_one` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `projectedSmithExponent_mixedDegreeOutcome` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `projectedSupport_linear_of_source_transverseDegree_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
