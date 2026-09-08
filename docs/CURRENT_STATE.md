@@ -56,7 +56,12 @@ states are impossible. No direct reverse-Rees source-transition adapter was
 found in the global/certified progress owners audited here.
 
 **Status:** the actual `.pr` ray clock and strict preterminal departure are proved.
-Source-honest terminal exclusion remains open. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
+Source-honest terminal exclusion remains open.
+The exact Hessian-one countertest in [RAY_FULL_TO_BINARY_OBSTRUCTION.md](RAY_FULL_TO_BINARY_OBSTRUCTION.md)
+shows why full determinant-layer vanishing, positive Rees weights, the quadratic
+margin and Euler identities do not by themselves imply binary profile-layer
+vanishing. The test does not satisfy the retained rank-three endpoint geometry;
+using that additional geometry to control coupling remains the missing argument. No `.pr` impossibility or unrestricted HC4 theorem is claimed.
 The same-carrier codimension-two contradiction remains a separate obligation.
 
 ## 1. What the public theorem is trying to prove
