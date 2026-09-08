@@ -138,8 +138,10 @@ det Hess_(x,y,z,w) F
 Thus determinant one forces the substituted polynomial `f_h(x,y,z*w)` to
 be a unit, hence constant over a field. This is incompatible with the displayed
 leading rank-three ray. The displayed Hessian calculation is checked
-at the end of `ray_kernel_extremal_probe.py`; the source chain-rule adapter is
-not a Lean theorem in this patch. Crucially, the actual later source layers
+at the end of `ray_kernel_extremal_probe.py`. The new owner
+`HC4/Newton/ProductCoordinateHessian.lean` now supplies the actual polynomial
+substitution, chain rule, Hessian equality, determinant factorization and
+constant-unit consequence (CI pending). Crucially, the actual later source layers
 have **not** been shown to depend only on `x,y,z*w`. This is a conditional
 endpoint for a possible support argument, not an exclusion of those layers.
 

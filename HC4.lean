@@ -218,3 +218,4 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayC
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock
 
 import HC4.Newton.RayKernelExtremalElimination
+import HC4.Newton.ProductCoordinateHessian

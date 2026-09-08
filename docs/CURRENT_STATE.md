@@ -76,6 +76,12 @@ The first-order model excludes its two-coordinate quadratic boundary terms,
 but a mixed `x^2*z*w` term survives and can affect later layers. The source
 coefficient extraction and coverage of arbitrary terminal rays remain open.
 
+The product-coordinate branch now has a source-level Lean implementation in
+`HC4/Newton/ProductCoordinateHessian.lean` (CI pending): for an actual
+`F=f(x,y,z*w)`, determinant one forces the substituted `f_h` to be constant.
+This is conditional on the whole source having that form; the terminal support
+argument needed to invoke it remains open.
+
 ## 1. What the public theorem is trying to prove
 
 The unrestricted target is determinant-one gradient injectivity in four variables:
