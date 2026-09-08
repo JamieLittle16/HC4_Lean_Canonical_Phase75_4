@@ -117,7 +117,10 @@ theorem pr_schurC_coeff_zero_eq_transverseMinor
       (G 3 3 * G 2 1 * G 2 1 - 2 * G 2 3 * G 2 1 * G 3 1 +
         G 2 2 * G 3 1 * G 3 1) = _
   dsimp only [G]
-  simp only [Matrix.of_apply, hsym 2 1, hsym 3 1, hsym 3 2]
+  have h0 : (0 : Fin 3).succ = (1 : Fin 4) := rfl
+  have h1 : (1 : Fin 3).succ = (2 : Fin 4) := rfl
+  have h2 : (2 : Fin 3).succ = (3 : Fin 4) := rfl
+  simp only [Matrix.of_apply, h0, h1, h2, hsym 2 1, hsym 3 1, hsym 3 2]
   ring
 
 variable [IsAlgClosed K]
