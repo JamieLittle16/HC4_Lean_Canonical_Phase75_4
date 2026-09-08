@@ -68,8 +68,9 @@ A new model calculation is recorded in
 [RAY_KERNEL_EXTREMAL_ELIMINATION.md](RAY_KERNEL_EXTREMAL_ELIMINATION.md).
 Two successive extremal determinant equations eliminate the nonlinear
 first-layer coefficient in a rank-three model, even with all permitted later
-corrections in the tested weight system. The scalar elimination is now stated
-and proved in Lean; CI validation is pending. The source coefficient extraction
+corrections in the tested weight system. The scalar elimination is compiled and verified in Lean: full CI #1591 passed
+at `d7467cc39d36aefe5e0ff40e3b67fdba68b6ca51`, including the axiom audit,
+negative control and escape-hatch checks. The source coefficient extraction
 and coverage of arbitrary terminal rays remain open.
 
 ## 1. What the public theorem is trying to prove

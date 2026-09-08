@@ -10,6 +10,36 @@ terminal supplies either coefficient equation. Those adapters remain open.
 
 namespace HC4.Newton
 
+/-- A division-free elimination certificate for a quadratic/cubic pair of
+extremal equations. The two nonzero scalars are the coefficients left after
+eliminating the auxiliary variable in its zero and nonzero branches. -/
+theorem quadratic_cubic_extremal_elimination
+    {K : Type*} [Field K] (A q r s a b c : K)
+    (ha : a ≠ 0) (hresultant : a * r^2 + b * r * s + c * s^2 ≠ 0)
+    (hsecond : q * (r * q - s * A) = 0)
+    (hthird : A * (a * A^2 + b * A * q + c * q^2) = 0) : A = 0 := by
+  by_contra hA
+  have hbracket := (mul_eq_zero.mp hthird).resolve_left hA
+  rcases mul_eq_zero.mp hsecond with hq | hlinear
+  · have hz : a * A^2 = 0 := by simpa [hq] using hbracket
+    exact (mul_ne_zero ha (pow_ne_zero 2 hA)) hz
+  · have hz : (a * r^2 + b * r * s + c * s^2) * A^2 = 0 := by
+      linear_combination r^2 * hbracket -
+        (b * A * r + c * r * q + c * s * A) * hlinear
+    exact (mul_ne_zero hresultant (pow_ne_zero 2 hA)) hz
+
+/-- The scalar pair arising at the first positive order of the level-9
+model, after the outer kernel coefficients have vanished. -/
+theorem ray_kernel_order_one_extremal_elimination
+    {K : Type*} [Field K] [CharZero K] (A q : K)
+    (hsecond : q * (q - 32 * A) = 0)
+    (hthird : A * (64 * A^2 - 8 * A * q + q^2) = 0) : A = 0 := by
+  apply quadratic_cubic_extremal_elimination A q 1 32 64 (-8) 1
+  · norm_num
+  · norm_num
+  · simpa using hsecond
+  · simpa [sub_eq_add_neg] using hthird
+
 /-- Two successive extremal equations exclude the candidate quadratic
 coefficient. No ordering or division by `m - 3` is required. -/
 theorem ray_kernel_extremal_elimination

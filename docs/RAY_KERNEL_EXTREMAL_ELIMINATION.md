@@ -2,7 +2,9 @@
 
 This is progress on a restricted source calculation, not terminal impossibility.
 The scalar elimination has a Lean proof in
-`HC4/Newton/RayKernelExtremalElimination.lean` (CI pending at introduction).
+`HC4/Newton/RayKernelExtremalElimination.lean`. Full Lean CI #1591 passed
+at `d7467cc39d36aefe5e0ff40e3b67fdba68b6ca51` (8268 build jobs, axiom
+audit, negative control and escape-hatch checks).
 The Hessian coefficient calculations below are exact symbolic checks, not yet
 Lean-certified source adapters.
 
@@ -88,6 +90,39 @@ equation and this certificate eliminate it. This finite algebra is independent
 of the unresolved geometric adapters.
 
 ## Remaining coverage
+
+### First-order extension in the same weight system
+
+`tools/research/ray_kernel_order_one_probe.py` also treats the entire
+kernel-compatible weight-8 first layer, with arbitrary weight-7 and weight-6
+corrections. Its highest longitudinal part is
+
+```
+u^2*(a*z^2+b*z*w+c*w^2) + y*u^2*(d*z+e*w).
+```
+
+All lower longitudinal terms are included. At order 2, the coefficient of
+`x^4` is `729*w^4*z^4*(17*d^2*z^2+30*d*e*w*z+17*e^2*w^2)`.
+The extreme coefficients force `d=e=0`. Write the remaining `y*u` term as
+`y*u*sum(qi*z^(4-i)*w^i)`. The outer coefficients then force `q0=q4=0`,
+and the next pair gives, up to nonzero constants,
+
+```
+q1*(q1-32*a) = 0
+a*(64*a^2-8*a*q1+q1^2) = 0,
+```
+
+with the symmetric pair for `c,q3`. Hence `a=c=0`.
+The new `ray_kernel_order_one_extremal_elimination` Lean theorem proves
+this scalar step using the more general
+`quadratic_cubic_extremal_elimination` (CI pending for this extension).
+The latter needs only a field and two explicitly nonzero elimination scalars.
+
+The middle coefficient `b` survives this calculation. Its `x^2*z*w` monomial
+has three supported coordinates, whereas the eliminated `x^2*z^2` and
+`x^2*w^2` terms have two. The surviving term can affect later layers, so
+this first-order calculation and the order-2 calculation cannot simply be
+combined into a complete model exclusion.
 
 An actual terminal has not been reduced to this model. Arbitrary common
 monomials, endpoint power gaps, weights, higher longitudinal degree, and the
