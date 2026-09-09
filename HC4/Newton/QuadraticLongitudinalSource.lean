@@ -109,5 +109,70 @@ theorem quadraticLongitudinalSource_kernel_coefficient_eq_zero
     (by simpa using hb) hzero
   simpa using hk
 
+
+private theorem quadraticLongitudinalSource_factor_ne_zero
+    [CharZero K] (b g : K) (hb : b ≠ 0) :
+    (3 * C b * X (1 : Fin 3) * X 2 - C g : MvPolynomial (Fin 3) K) ≠ 0 := by
+  intro hz
+  have hg : g = 0 := by
+    have h := congrArg (MvPolynomial.eval (fun _ : Fin 3 => (0 : K))) hz
+    simpa using h
+  have hzero : 3*b = 0 := by
+    have h := congrArg (MvPolynomial.eval (fun _ : Fin 3 => (1 : K))) hz
+    simpa [hg] using h
+  exact (mul_ne_zero (by norm_num) hb) hzero
+
+/-- Determinant one gives the second kernel derivative equation for the
+actual lower source polynomial, with no assumptions on its degree. -/
+theorem quadraticLongitudinalSource_kernel_second_derivative_eq_zero
+    [CharZero K] (b g k : K) (B D : MvPolynomial (Fin 3) K) (hb : b ≠ 0)
+    (hdet : HC4.Polynomial.hessianDeterminant
+      (quadraticLongitudinalSource b g k B D) = 1) :
+    pderiv 0 (pderiv 0 B) = 0 := by
+  have hk := quadraticLongitudinalSource_kernel_coefficient_eq_zero b g k B D hb hdet
+  subst k
+  have hzero :
+      (quadraticLongitudinalHessianBoundary (C b) (C g) (C (0 : K))
+        (X 0) (X 1) (X 2) (fun i => pderiv i B)
+        (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).determinantCore.coeff 5 = 0 := by
+    rw [← hessianDeterminant_quadraticLongitudinalSource, hdet, map_one]
+    simp
+  simp only [map_zero] at hzero
+  exact quadraticLongitudinalHessianBoundary_kernel_second_derivative_eq_zero
+    (C b) (C g) (X 0) (X 1) (X 2) (fun i => pderiv i B)
+    (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)
+    (by simpa using hb) (quadraticLongitudinalSource_factor_ne_zero b g hb) hzero
+
+
+/-- The same source is quadratic in the kernel coordinate as well: the
+third derivative of the longitudinal-constant part vanishes. -/
+theorem quadraticLongitudinalSource_kernel_third_derivative_eq_zero
+    [CharZero K] (b g k : K) (B D : MvPolynomial (Fin 3) K) (hb : b ≠ 0)
+    (hdet : HC4.Polynomial.hessianDeterminant
+      (quadraticLongitudinalSource b g k B D) = 1) :
+    pderiv 0 (pderiv 0 (pderiv 0 D)) = 0 := by
+  have hk := quadraticLongitudinalSource_kernel_coefficient_eq_zero b g k B D hb hdet
+  have hB := quadraticLongitudinalSource_kernel_second_derivative_eq_zero b g k B D hb hdet
+  subst k
+  have hJ (i : Fin 3) : pderiv 0 (pderiv i (pderiv 0 B)) = 0 := by
+    rw [pderiv_comm_backport 0 i, hB, map_zero]
+  have hzero :
+      (quadraticLongitudinalHessianBoundary (C b) (C g) (C (0 : K))
+        (X 0) (X 1) (X 2) (fun i => pderiv i B)
+        (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).determinantCore.coeff 4 = 0 := by
+    rw [← hessianDeterminant_quadraticLongitudinalSource, hdet, map_one]
+    simp
+  simp only [map_zero] at hzero
+  rw [quadraticLongitudinalHessianBoundary_coeff_four _ _ _ _ _ _ _ _ hB] at hzero
+  have hd := congrArg (pderiv (0 : Fin 3)) hzero
+  have hproduct :
+      (2 * (C b)^2 * (3*C b*X 1*X 2-C g)) *
+        pderiv 0 (pderiv 0 (pderiv 0 D)) = 0 := by
+    simpa [pderiv_mul, pderiv_pow, HC4.Polynomial.hessian_apply, hJ, hB] using hd
+  have hleft : (2 * (C b)^2 * (3*C b*X 1*X 2-C g) : MvPolynomial (Fin 3) K) ≠ 0 :=
+    mul_ne_zero (mul_ne_zero (by norm_num) (pow_ne_zero 2 (by simpa using hb)))
+      (quadraticLongitudinalSource_factor_ne_zero b g hb)
+  exact (mul_eq_zero.mp hproduct).resolve_left hleft
+
 end
 end HC4.Newton

@@ -118,6 +118,13 @@ pending); the independently differentiated model calculation passes.
 This excludes the formerly surviving first-order mixed term in the model. These are conditional jet consumers: the arbitrary
 terminal has not been shown to have quadratic longitudinal degree.
 
+`QuadraticLongitudinalSource.lean` adds the actual-source bridge (CI pending):
+for the explicitly constructed four-variable quadratic source, it identifies
+the full Hessian and derives `k=0`, `B_yy=0`, `C_yyy=0` from determinant one
+and a nonzero mixed coefficient. The lower polynomials have no degree or
+common-product restrictions. The arbitrary-terminal normal-form reduction
+and the model-specific coefficient extraction remain open.
+
 ## 1. What the public theorem is trying to prove
 
 The unrestricted target is determinant-one gradient injectivity in four variables:

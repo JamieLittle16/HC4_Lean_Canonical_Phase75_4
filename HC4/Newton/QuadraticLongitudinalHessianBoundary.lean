@@ -50,8 +50,9 @@ theorem quadraticLongitudinalHessianBoundary_coeff_six
     (quadraticLongitudinalHessianBoundary b g k y z w v J K).determinantCore.coeff 6 =
       4*b^2*k^2 := by
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore]
-  ring_nf
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, ← C_pow, -map_pow]
+  conv_lhs => arg 1; ring_nf
+  simp only [← C_pow, ← C_mul]
+  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
   <;> ring
 
 set_option maxHeartbeats 2000000 in
@@ -64,8 +65,9 @@ theorem quadraticLongitudinalHessianBoundary_coeff_five
     (quadraticLongitudinalHessianBoundary b g 0 y z w v J K).determinantCore.coeff 5 =
       2*b^2*(3*b*z*w-g)*(J 0 0) := by
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore]
-  ring_nf
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, ← C_pow, -map_pow]
+  conv_lhs => arg 1; ring_nf
+  simp only [← C_pow, ← C_mul]
+  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
   <;> ring
 
 set_option maxHeartbeats 2000000 in
@@ -80,8 +82,9 @@ theorem quadraticLongitudinalHessianBoundary_coeff_four
           4*b*w*(v 0)*(J 0 2) + 4*b*z^2*(J 0 1)^2 -
           4*b*z*(v 0)*(J 0 1) + b*(v 0)^2 + 4*g*(J 0 2)*(J 0 1)) := by
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore, hJ]
-  ring_nf
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, ← C_pow, -map_pow]
+  conv_lhs => arg 1; ring_nf
+  simp only [← C_pow, ← C_mul]
+  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
   <;> ring
 
 /-- In characteristic zero a nonzero mixed coefficient eliminates the

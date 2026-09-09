@@ -315,3 +315,19 @@ source adapter, including its unrestricted longitudinal degree and endpoint
 weights, remains open. Earlier affine positive Hessian layers may still
 matter in later first-nonlinear-layer cases; the model calculation is not
 asserted to cover those cases or prove unrestricted HC4.
+
+
+## Actual-source owner
+
+`HC4/Newton/QuadraticLongitudinalSource.lean` now contains a source bridge
+(CI pending): `quadraticLongitudinalSource b g k B D` is an actual
+`MvPolynomial (Fin 4) K`, with arbitrary `B,D : MvPolynomial (Fin 3) K`.
+It identifies every Hessian entry after `finSuccEquiv`, transports the
+actual Hessian determinant, and derives `k=0`, `B_yy=0`, `D_yyy=0` from
+Hessian determinant one and `b != 0`.
+
+This does not assume a stationary potential or a binary determinant
+identity. Its explicit limitation is the displayed quadratic longitudinal
+source form; an arbitrary terminal has not been reduced to that form.
+The translation removing linear transverse terms and the model-specific
+balanced coefficient extraction are still separate source adapters.

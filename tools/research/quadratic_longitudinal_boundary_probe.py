@@ -37,3 +37,11 @@ assert s.expand(s.diff(actual,y)-2*b**2*(3*b*z*w-g)*s.diff(C,y,3)) == 0
 print('PASS: exact x^6, x^5, x^4 identities with unrestricted lower source jets')
 print('Conditional consequence for b != 0: k=0, B_yy=0, C_yyy=0')
 print('No arbitrary-terminal quadratic-degree reduction or contradiction is asserted.')
+
+# The transverse translation used in the model is exact and does not alter
+# the coefficient of y in the quadratic longitudinal term.
+l, m, Z, W = s.symbols('l m Z W')
+a = b*z*w+l*z+m*w+g+k*y
+translated = a.subs({z:Z-m/b,w:W-l/b})
+assert s.simplify(translated-(b*Z*W+g-l*m/b+k*y)) == 0
+print('PASS: exact transverse translation for nonzero mixed coefficient')

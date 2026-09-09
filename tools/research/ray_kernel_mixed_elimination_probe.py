@@ -14,6 +14,14 @@ runpy.run_path(str(here / 'quadratic_longitudinal_boundary_probe.py'))
 data = runpy.run_path(str(here / 'ray_kernel_order_one_probe.py'))
 a, b, c, z, w = (data[n] for n in ('a', 'b', 'c', 'z', 'w'))
 q = data['q']
+# Verify the original first-layer ansatz covers every weight-eight monomial
+# that is affine in the kernel coordinate after the invertible u-change.
+U = s.Symbol('U')
+x, y = data['x'], data['y']
+normal = s.Poly(s.expand(data['G1'].subs(x, (U-4*z*w*y)/3)), U,y,z,w)
+expected = {(i,j,l,8-3*i-j-l) for j in (0,1)
+            for i in range((8-j)//3+1) for l in range(8-3*i-j+1)}
+assert set(normal.monoms()) == expected and len(expected) == 33
 vanished = {a:0, c:0, q[1]:0, q[3]:0}
 second = s.expand(data['R2'].subs(vanished)).coeff(z,8).coeff(w,8)
 third = s.expand(data['R3'].subs(vanished)).coeff(z,6).coeff(w,6)
