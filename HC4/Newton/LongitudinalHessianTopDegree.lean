@@ -31,7 +31,7 @@ theorem matrix_det_top_coefficient
     (M : Matrix ι ι (Polynomial R)) (N : ℕ)
     (hdegree : ∀ i j, (M i j).natDegree ≤ N) :
     M.det.coeff (Fintype.card ι * N) =
-      (fun i j => (M i j).coeff N : Matrix ι ι R).det := by
+      Matrix.det (fun i j => (M i j).coeff N : Matrix ι ι R) := by
   classical
   rw [Matrix.det_apply, Matrix.det_apply, Polynomial.finset_sum_coeff]
   refine Finset.sum_congr rfl ?_
