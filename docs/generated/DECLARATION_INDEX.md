@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7355**.
+Distinct declaration spellings indexed: **7360**.
 
 ## Repeated declaration spellings
 
@@ -3015,6 +3015,7 @@ Distinct declaration spellings indexed: **7355**.
 - `binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_activeProfile_of_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binaryWeightedEulerShear_extremalRemainder_layer_coeff_eq_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `binaryWeightedEulerShear_mixedCouplingSquare` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
+- `binary_euler_adjugate_quadratic` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `binomialODEModel` — `def` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `binomialODEModel_satisfies` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `block` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
@@ -4816,6 +4817,10 @@ Distinct declaration spellings indexed: **7355**.
 - `longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_single_eval_one_eq_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_transverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalFactor`
+- `longitudinalHessianCoupledKernelBlock` — `def` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `longitudinalHessianCoupledKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `longitudinalHessianCoupledKernelBlock_euler_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `longitudinalHessianCoupledKernelBlock_kernel_or_minor_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `longitudinalHessianDegreeScale` — `def` in `HC4.Newton.LongitudinalHessianTopDegree`
 - `longitudinalHessianDegreeScale_det` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
 - `longitudinalHessianDegreeScale_kernel_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
