@@ -43,7 +43,7 @@ theorem QsOtherFacetRayReverseReesPackage.source_ne_productCoordinateLift
     split_ifs at hcoeff
     · simpa [heq] using hcoeff
     · exact (hcoeff rfl).elim
-  have hdet : hessianDeterminant (productCoordinateLift f) = 1 := by
+  have hdet : HC4.Polynomial.hessianDeterminant (productCoordinateLift f) = 1 := by
     rw [← heq]
     exact T.terminal.blocker.presented.zeroDefect_specialFiber_hessianDeterminant_eq_one
       T.presented_zero
