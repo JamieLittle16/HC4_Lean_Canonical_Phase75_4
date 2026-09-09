@@ -8,6 +8,29 @@ audit, negative control and escape-hatch checks).
 The Hessian coefficient calculations below are exact symbolic checks, not yet
 Lean-certified source adapters.
 
+## Scope correction: an additional first-layer kernel term
+
+The order-2 calculation below is restricted to a zero coefficient of `y*u^2`.
+The earlier version incorrectly described its first-layer ansatz as exhaustive.
+The full weight-7 kernel solution also includes `k*y*u^2`. This term changes
+both the outer quadratic equations and the higher equations. The existing
+Lean scalar lemmas remain correct under their stated equations; those equations
+have not been obtained for this extra branch.
+
+`tools/research/ray_kernel_missing_term_probe.py` checks the corrected coefficients.
+In particular,
+
+```
+[t^4*x^3] det Hess =
+  1944*k*w^4*z^4*(Q3 - 8*w*z*(A*z+B*w))
+[t^4*x^2*z^10*w^4] det Hess = 648*(q0^2 - 3*k*[z^6]Q6).
+```
+
+Thus the outer coefficient is not a pure square for general `k`. If `k` is
+nonzero, the first equation instead forces `Q3=8*w*z*(A*z+B*w)`; subsequent
+coefficients still couple to the affine terms. No unrestricted order-2 model
+exclusion follows from the old six equations.
+
 ## Model and permitted corrections
 
 Use weights `(3,1,1,1)`, level 9, clock 24, and
@@ -22,19 +45,20 @@ D = 4*h*partial_x - 3*partial_y
 The initial Hessian has rank three and kernel `(4*h,-3,0,0)`.
 Assume the globally first nonzero positive Hessian layer has order 2.
 The first determinant equation implies `D^2 G2 = 0`.
-The polynomial coordinate change from `(x,y)` to `(u,y)` classifies its
+The polynomial coordinate change from `(x,y)` to `(u,y)` gives the full
 weight-7 solutions as
 
 ```
-G2 = (A*z+B*w)*u^2 + y*u*Q3 + u*P4 + P7 + y*Q6
+G2 = (A*z+B*w)*u^2 + k*y*u^2 + y*u*Q3 + u*P4 + P7 + y*Q6
 Q3 = q0*z^3 + q1*z^2*w + q2*z*w^2 + q3*w^3.
 ```
 
 Here `Pj,Qj` are arbitrary homogeneous binary polynomials of degree `j`.
+The remainder of this order-2 subsection assumes `k=0`.
 Order 3 similarly imposes the kernel equation on the weight-6 layer `G3`.
 The script `tools/research/ray_kernel_extremal_probe.py` includes **every**
 kernel-compatible `G3`, **every** weight-5 correction `G4`, **every** weight-3
-correction `G6`, and all displayed first-layer terms. `G5` cannot occur in a
+correction `G6`, and all displayed first-layer terms with `k=0`. `G5` cannot occur in a
 determinant coefficient of order 4 or 6, since the order-1 Hessian is zero.
 Higher layers cannot contribute. Restricting to `y=0` after differentiating
 selects exactly the coefficients displayed below.
@@ -143,7 +167,8 @@ at the end of `ray_kernel_extremal_probe.py`. The new owner
 substitution, chain rule, Hessian equality, determinant factorization and
 constant-unit consequence (full CI #1596 passed at
 `fb223970a284a82ca64634fb11c6c451c30cfe64`). The follow-up coefficient
-exclusion and actual-terminal adapter are pending CI. Crucially, the actual later source layers
+exclusion and actual-terminal adapter passed full CI #1601 at
+`8cab1f3d01147470d687db6fa6802ae228fb1f3c`, including all proof audits. Crucially, the actual later source layers
 have **not** been shown to depend only on `x,y,z*w`. This is a conditional
 endpoint for a possible support argument, not an exclusion of those layers.
 
@@ -170,3 +195,9 @@ Thus the whole-source common-product branch, including `x^2*z*w` and all later
 common-product terms, has an exact contradiction consumer. The open branch is
 an actual later source layer outside this form. This patch does not show that
 such a layer is impossible or supplies a certified global transition.
+
+
+The product-coordinate owner has 14 transitive HC4 modules in its local import
+closure and no JC2 module dependencies. No unrestricted HC4 theorem has been
+added. The scope correction above concerns symbolic source-equation coverage;
+it does not invalidate any of the compiled scalar or source-level theorems.

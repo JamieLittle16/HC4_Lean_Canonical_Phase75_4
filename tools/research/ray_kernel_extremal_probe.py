@@ -4,6 +4,8 @@ Requires SymPy. These checks are not Lean proofs and do not cover all terminal
 rays. All weight-5 and weight-3 later corrections and every kernel-compatible
 weight-6 correction are included, as are all affine-in-kernel first-layer terms.
 The weight-8 Hessian layer is assumed zero (globally first Hessian order 2).
+IMPORTANT: the coefficient of the additional kernel term y*u^2 is assumed
+zero. See ray_kernel_missing_term_probe.py for the nonzero branch.
 """
 import sympy as s
 from itertools import product, permutations

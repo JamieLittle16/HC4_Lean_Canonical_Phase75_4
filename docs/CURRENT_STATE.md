@@ -76,6 +76,13 @@ The first-order model excludes its two-coordinate quadratic boundary terms,
 but a mixed `x^2*z*w` term survives and can affect later layers. The source
 coefficient extraction and coverage of arbitrary terminal rays remain open.
 
+**Model scope correction:** the earlier weight-7 first-layer ansatz omitted
+`k*y*u^2`. Its nonzero branch changes the extremal equations. The order-2
+symbolic exclusion is therefore only established for `k=0`; it is not a full
+classification. The Lean scalar lemmas are unchanged and valid, and the
+first-order calculation already included its corresponding kernel terms.
+See the correction at the start of `RAY_KERNEL_EXTREMAL_ELIMINATION.md`.
+
 The product-coordinate branch now has a source-level Lean implementation in
 `HC4/Newton/ProductCoordinateHessian.lean` (full CI #1596 passed at
 `fb223970a284a82ca64634fb11c6c451c30cfe64`): for an actual
@@ -83,7 +90,9 @@ The product-coordinate branch now has a source-level Lean implementation in
 This is conditional on the whole source having that form; the terminal support
 argument needed to invoke it remains open. A follow-up adds coefficient
 exclusion and `QsOtherFacetRayReverseReesPackage.source_ne_productCoordinateLift`,
-which applies the obstruction to the actual retained terminal source (CI pending).
+which applies the obstruction to the actual retained terminal source. Full
+CI #1601 passed at `8cab1f3d01147470d687db6fa6802ae228fb1f3c`, including
+the axiom audit, negative control and escape-hatch checks.
 
 ## 1. What the public theorem is trying to prove
 
