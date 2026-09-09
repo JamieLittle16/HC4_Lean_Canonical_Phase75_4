@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7341**.
+Distinct declaration spellings indexed: **7344**.
 
 ## Repeated declaration spellings
 
@@ -5878,7 +5878,10 @@ Distinct declaration spellings indexed: **7341**.
 - `quadraticLongitudinalHessianBoundary_kernel_second_derivative_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
 - `quadraticLongitudinalSource` — `def` in `HC4.Newton.QuadraticLongitudinalSource`
 - `quadraticLongitudinalSourceLift` — `def` in `HC4.Newton.QuadraticLongitudinalSource`
+- `quadraticLongitudinalSource_factor_ne_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `quadraticLongitudinalSource_kernel_coefficient_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
+- `quadraticLongitudinalSource_kernel_second_derivative_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
+- `quadraticLongitudinalSource_kernel_third_derivative_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `quadraticPolynomialFamily_exactCollision_sections_eq` — `theorem` in `HC4.Valuation.QuadraticFamilyCollision`
 - `quadraticSmithSpecialFiber_hessianDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubfaceDegreeComponent_degree_two_le_of_ne_zero` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
