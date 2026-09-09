@@ -30,6 +30,7 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetEndpointTransition`
   - `HC4.Newton.FirstContactCrossFacetExit`
   - `HC4.Newton.FirstContactHonestSlice`
+  - `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
   - `HC4.Newton.ProductCoordinateHessian`
   - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
@@ -482,6 +483,8 @@ human architecture guide.
   - `HC4.Newton.FiniteDirectionalRecurrence`
 - `HC4.Newton.LinearPowerRecurrenceClassification`
   - `HC4.Newton.LinearPowerRecurrence`
+- `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
+  - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Newton.SymmetricSmithMinimality`
 - `HC4.Newton.MixedDegreeFirstWallCompetition`

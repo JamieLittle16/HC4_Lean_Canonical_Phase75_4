@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7322**.
+Distinct declaration spellings indexed: **7326**.
 
 ## Repeated declaration spellings
 
@@ -4820,6 +4820,9 @@ Distinct declaration spellings indexed: **7322**.
 - `longitudinalPlanarAffineSupport_of_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
 - `longitudinalPureAffine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `longitudinalPureAffine_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
+- `longitudinalRankTwoInitialBlock` — `def` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
+- `longitudinalRankTwoInitialBlock_coeff_four` — `theorem` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
+- `longitudinalRankTwoInitialBlock_first_entry_eq_zero` — `theorem` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
 - `longitudinalRightRecenterHom` — `def` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalSignHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
 - `longitudinalSignHom_X_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
@@ -6182,6 +6185,7 @@ Distinct declaration spellings indexed: **7322**.
 - `ray_direct_initialForm_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`
 - `ray_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_kernel_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
+- `ray_kernel_omitted_term_top_coefficient` — `theorem` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
 - `ray_kernel_order_one_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
