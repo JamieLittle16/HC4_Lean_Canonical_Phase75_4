@@ -83,14 +83,15 @@ theorem hessian_quadraticLongitudinalSource
       (quadraticLongitudinalHessianBoundary (C b) (C g) (C k)
         (X 0) (X 1) (X 2) (fun i => pderiv i B)
         (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).matrix := by
-  ext i j
+  apply Matrix.ext
+  intro i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.map_apply, HC4.Polynomial.hessian_apply,
       quadraticLongitudinalSource, pderiv_numeral,
       pderiv_quadraticLongitudinalSourceLift,
       finSuccEquiv_quadraticLongitudinalSourceLift,
       quadraticLongitudinalHessianBoundary, GeneralFourBlock.matrix,
-      finSuccEquiv_four_X, finSuccEquiv_four_C, pderiv_comm_backport] <;> ring
+      finSuccEquiv_four_X, finSuccEquiv_four_C, map_ofNat, pderiv_comm_backport] <;> ring
 
 /-- Determinant transport uses the actual Hessian and the standard ring
 equivalence; there is no potential-identification hypothesis. -/
