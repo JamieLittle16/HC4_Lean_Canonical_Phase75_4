@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7334**.
+Distinct declaration spellings indexed: **7341**.
 
 ## Repeated declaration spellings
 
@@ -4098,6 +4098,7 @@ Distinct declaration spellings indexed: **7334**.
 - `finSuccEquiv_hessian_succ_succ_eq_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `finSuccEquiv_hessian_succ_zero_eq_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `finSuccEquiv_longitudinalRightRecenterHom` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `finSuccEquiv_quadraticLongitudinalSourceLift` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `finTwo_allHessianMinorsZero_of_binaryDet_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `finTwo_coord_le_degree_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `finTwo_degree_eq_add_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
@@ -4433,6 +4434,7 @@ Distinct declaration spellings indexed: **7334**.
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
 - `hessianDeterminant_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `hessianDeterminant_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `hessianDeterminant_quadraticLongitudinalSource` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `hessianDeterminant_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
 - `hessianDeterminant_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_smithScalarLevelDegreeComponent_eq_zero_of_maximal` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -4479,6 +4481,7 @@ Distinct declaration spellings indexed: **7334**.
 - `hessian_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `hessian_polynomialFamilyTranslationHom_entry` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `hessian_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `hessian_quadraticLongitudinalSource` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `hessian_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
 - `hessian_smithConformalInflateHom_entry` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessian_succ_succ_preserves_longitudinalExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
@@ -5288,6 +5291,7 @@ Distinct declaration spellings indexed: **7334**.
 - `pderiv_polynomialFamilyLinearPartAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `pderiv_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `pderiv_quadraticLongitudinalSourceLift` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `pderiv_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `pderiv_second_eq_zero_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pderiv_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
@@ -5872,6 +5876,9 @@ Distinct declaration spellings indexed: **7334**.
 - `quadraticLongitudinalHessianBoundary_coeff_six` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
 - `quadraticLongitudinalHessianBoundary_kernel_coefficient_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
 - `quadraticLongitudinalHessianBoundary_kernel_second_derivative_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalSource` — `def` in `HC4.Newton.QuadraticLongitudinalSource`
+- `quadraticLongitudinalSourceLift` — `def` in `HC4.Newton.QuadraticLongitudinalSource`
+- `quadraticLongitudinalSource_kernel_coefficient_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `quadraticPolynomialFamily_exactCollision_sections_eq` — `theorem` in `HC4.Valuation.QuadraticFamilyCollision`
 - `quadraticSmithSpecialFiber_hessianDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubfaceDegreeComponent_degree_two_le_of_ne_zero` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`

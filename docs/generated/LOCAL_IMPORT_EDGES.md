@@ -33,6 +33,7 @@ human architecture guide.
   - `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
   - `HC4.Newton.ProductCoordinateHessian`
   - `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+  - `HC4.Newton.QuadraticLongitudinalSource`
   - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
   - `HC4.Newton.SingularBoundaryRankSplit`
@@ -524,6 +525,10 @@ human architecture guide.
   - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Newton.QuadraticLongitudinalHessianBoundary`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Newton.QuadraticLongitudinalSource`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+  - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Newton.RankOnePacketExactCollision`
   - `HC4.Newton.ExactCollisionFirstWall`
   - `HC4.Newton.SmithRefinedFacePolynomial`
