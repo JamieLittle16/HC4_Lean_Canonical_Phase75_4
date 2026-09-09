@@ -77,10 +77,13 @@ but a mixed `x^2*z*w` term survives and can affect later layers. The source
 coefficient extraction and coverage of arbitrary terminal rays remain open.
 
 The product-coordinate branch now has a source-level Lean implementation in
-`HC4/Newton/ProductCoordinateHessian.lean` (CI pending): for an actual
+`HC4/Newton/ProductCoordinateHessian.lean` (full CI #1596 passed at
+`fb223970a284a82ca64634fb11c6c451c30cfe64`): for an actual
 `F=f(x,y,z*w)`, determinant one forces the substituted `f_h` to be constant.
 This is conditional on the whole source having that form; the terminal support
-argument needed to invoke it remains open.
+argument needed to invoke it remains open. A follow-up adds coefficient
+exclusion and `QsOtherFacetRayReverseReesPackage.source_ne_productCoordinateLift`,
+which applies the obstruction to the actual retained terminal source (CI pending).
 
 ## 1. What the public theorem is trying to prove
 

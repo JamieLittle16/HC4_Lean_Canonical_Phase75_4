@@ -141,7 +141,9 @@ leading rank-three ray. The displayed Hessian calculation is checked
 at the end of `ray_kernel_extremal_probe.py`. The new owner
 `HC4/Newton/ProductCoordinateHessian.lean` now supplies the actual polynomial
 substitution, chain rule, Hessian equality, determinant factorization and
-constant-unit consequence (CI pending). Crucially, the actual later source layers
+constant-unit consequence (full CI #1596 passed at
+`fb223970a284a82ca64634fb11c6c451c30cfe64`). The follow-up coefficient
+exclusion and actual-terminal adapter are pending CI. Crucially, the actual later source layers
 have **not** been shown to depend only on `x,y,z*w`. This is a conditional
 endpoint for a possible support argument, not an exclusion of those layers.
 
@@ -151,3 +153,20 @@ possibility of earlier affine Hessian layers require further work. In particular
 globally first Hessian order and first transverse Schur order cannot be silently
 identified. No new global-progress constructor or unrestricted HC4 theorem is
 asserted here.
+
+
+## Actual terminal adapter
+
+`AdaptiveAlignedSmithCanonicalZeroStrictLowRayProductCoordinateExclusion`
+uses the retained `.qs` ray monomial on the actual determinant-one source.
+`QsOtherFacetRayReverseReesPackage.source_ne_productCoordinateLift` rules out
+any equality of that source with `productCoordinateLift f`. Its proof uses
+source coefficient membership obtained through the actual initial-form equality,
+not an identification of the source with the ray. The source coefficient theorem
+permits only the pure `z*w` monomial among supported monomials involving `z`;
+the retained ray monomial has positive `y` and `z` exponents.
+
+Thus the whole-source common-product branch, including `x^2*z*w` and all later
+common-product terms, has an exact contradiction consumer. The open branch is
+an actual later source layer outside this form. This patch does not show that
+such a layer is impossible or supplies a certified global transition.
