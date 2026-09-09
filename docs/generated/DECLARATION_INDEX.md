@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7347**.
+Distinct declaration spellings indexed: **7355**.
 
 ## Repeated declaration spellings
 
@@ -4816,6 +4816,13 @@ Distinct declaration spellings indexed: **7347**.
 - `longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_single_eval_one_eq_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_transverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalFactor`
+- `longitudinalHessianDegreeScale` — `def` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianDegreeScale_det` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianDegreeScale_kernel_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianTopKernelBlock` — `def` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianTopKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianTopKernelBlock_kernel_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
+- `longitudinalHessianTopKernelBlock_mixed_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
 - `longitudinalIntegerWeight` — `def` in `HC4.Newton.MixedDegreeWallRefinement`
 - `longitudinalIntegerWeight_eq` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `longitudinalLowDimensional_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
@@ -4868,6 +4875,7 @@ Distinct declaration spellings indexed: **7347**.
 - `matrixToParameterGap_coe` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `matrix_det` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `matrix_det_hasNoPositiveParameterCoeffBelow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
+- `matrix_det_top_coefficient` — `theorem` in `HC4.Newton.LongitudinalHessianTopDegree`
 - `matrix_mulVec_clearedKernelLift` — `theorem` in `HC4.Newton.GeneralFourBlockKernelLift`
 - `matrix_ofSymmetricMatrix` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `maximalCommonParameterFamilyData` — `def` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
