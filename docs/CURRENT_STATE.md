@@ -130,7 +130,7 @@ The new quadratic boundary/source modules have no build warnings. The
 source owner's 15-module transitive HC4 import closure has no JC2 module.
 
 `LongitudinalHessianTopDegree.lean` extends the top-coefficient mechanism to
-arbitrary positive longitudinal degree (CI pending). Scaling the longitudinal
+arbitrary positive longitudinal degree (full CI #1620 passed at `73916efa8ca6998a41d56fda7358ed12c9ef1757`). Scaling the longitudinal
 row and column changes determinant one to `X^2`; a common degree-`N` bound
 on the scaled entries extracts the degree-`4*N` coefficient exactly. If the
 top matrix has zero second derivatives involving the kernel coordinate, its

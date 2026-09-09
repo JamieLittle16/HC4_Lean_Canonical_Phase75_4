@@ -265,8 +265,9 @@ therefore give `k=0` and `B_yy=0`. Write `B=y*p(z,w)+q(z,w)`. Then
 
 The second summand is independent of `y`. Differentiating this equation
 in `y` forces `C_yyy=0`, so this conditional source branch becomes quadratic
-in both `x` and `y`. This last polynomial-derivative inference and the source
-identification are not yet formalized. Quadraticity alone is not terminal
+in both `x` and `y`. This polynomial-derivative inference and the source
+identification are formalized in `QuadraticLongitudinalSource.lean`
+(full CI #1617 passed). Quadraticity alone is not terminal
 impossibility, and no change of carrier or nonzero minor is assumed.
 
 `HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` formalizes the three
@@ -335,7 +336,7 @@ balanced coefficient extraction are still separate source adapters.
 
 ## Arbitrary longitudinal degree: top coefficient without layer ordering
 
-`HC4/Newton/LongitudinalHessianTopDegree.lean` (CI pending) proves a matrix
+`HC4/Newton/LongitudinalHessianTopDegree.lean` (full CI #1620 passed at `73916efa8ca6998a41d56fda7358ed12c9ef1757`) proves a matrix
 coefficient theorem for every positive degree `N`. Scale the longitudinal
 row and column by `X`, so that every Hessian entry has the same degree bound
 `N`. The determinant acquires a factor `X^2`. The coefficient at `4*N`
@@ -358,3 +359,14 @@ This removes the numerical longitudinal degree-two restriction from this
 part of the coefficient mechanism. It does not establish the required
 leading-coefficient shape or minor for every terminal. Those geometric
 hypotheses remain explicit, and the unrestricted HC4 theorem is still open.
+
+
+The zero mixed derivatives involving the kernel coordinate are essential.
+For example, `a(y,z,w)=z*(y+w)` is affine in `y` and its `(z,w)` Hessian
+minor is `-1`. Nevertheless `x^N*a` has identical `y` and `w` Hessian
+rows, hence zero determinant, with `a_y=z` nonzero. The coupling `a_yz=1`
+prevents application of the top-kernel theorem. This is a counterexample
+to weakening its leading-matrix hypothesis, not to determinant-one HC4.
+The existing terminal support witness only certifies a monomial with
+longitudinal exponent at least two; it does not identify the highest
+longitudinal coefficient or its transverse minor.
