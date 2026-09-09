@@ -370,3 +370,25 @@ to weakening its leading-matrix hypothesis, not to determinant-one HC4.
 The existing terminal support witness only certifies a monomial with
 longitudinal exponent at least two; it does not identify the highest
 longitudinal coefficient or its transverse minor.
+
+
+## Coupled leading kernel: Euler cancellation
+
+`LongitudinalHessianCoupledKernel.lean` (CI pending) retains both mixed
+kernel derivatives. For the scaled leading matrix of `x^n*y*k(z,w)`, put
+`D=k_zz*k_ww-k_zw^2` and `Q=k_z^2*k_ww-2*k_z*k_w*k_zw+k_w^2*k_zz`.
+Its determinant is `-n*k*(n*k*D-(n+1)*Q)`. If `k` satisfies the ordinary
+homogeneous Euler equations of degree `m`, then `(m-1)*Q=m*k*D`, giving
+`(m-1)*det = n*(n+m)*k^2*D`. This identity involves no division, including
+when `m=1`. For positive natural `n`, singularity forces `k=0` or `D=0`.
+Thus mixed derivatives can be retained under an Euler hypothesis; they do
+not need to be separately declared zero. The nonzero minor must still
+belong to this same kernel coefficient `k`, not the transverse part of an
+unrelated coefficient. The example `k=z` has `D=0` and is consistent with
+the theorem.
+
+The terminal direction lock only constrains the two endpoint exponents.
+It does not supply ordinary homogeneity of an arbitrary later leading
+coefficient. Deriving a source-level leading matrix, its Euler equations,
+and its nonzero minor remains open. This is not a terminal contradiction
+or an unrestricted HC4 proof.
