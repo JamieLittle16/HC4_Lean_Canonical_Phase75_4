@@ -53,12 +53,11 @@ theorem quadraticLongitudinalHessianBoundary_coeff_six
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
   simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
-    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul,
     Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
-    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
-    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+    Polynomial.coeff_mul_ofNat]
   norm_num
-  <;> ring
+  ring
 
 set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 4096 in
@@ -73,12 +72,11 @@ theorem quadraticLongitudinalHessianBoundary_coeff_five
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
   simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
-    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul,
     Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
-    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
-    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+    Polynomial.coeff_mul_ofNat]
   norm_num
-  <;> ring
+  ring
 
 set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 4096 in
@@ -95,12 +93,11 @@ theorem quadraticLongitudinalHessianBoundary_coeff_four
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
   simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
-    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul,
     Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
-    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
-    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+    Polynomial.coeff_mul_ofNat]
   norm_num
-  <;> ring
+  ring
 
 /-- In characteristic zero a nonzero mixed coefficient eliminates the
 kernel-linear part of the quadratic longitudinal coefficient. -/

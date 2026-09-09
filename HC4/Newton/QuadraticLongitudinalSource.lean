@@ -19,6 +19,23 @@ open MvPolynomial
 
 variable {K : Type*} [Field K]
 
+private theorem pderiv_numeral {d n : ℕ} [Nat.AtLeastTwo n] (i : Fin d) :
+    pderiv i (ofNat(n) : MvPolynomial (Fin d) K) = 0 :=
+  (pderiv i).map_natCast n
+
+private theorem finSuccEquiv_four_X (i : Fin 4) :
+    finSuccEquiv K 3 (X i) =
+      ![Polynomial.X, Polynomial.C (X 0), Polynomial.C (X 1), Polynomial.C (X 2)] i := by
+  fin_cases i
+  · exact finSuccEquiv_X_zero
+  · exact finSuccEquiv_X_succ (j := 0)
+  · exact finSuccEquiv_X_succ (j := 1)
+  · exact finSuccEquiv_X_succ (j := 2)
+
+private theorem finSuccEquiv_four_C (c : K) :
+    finSuccEquiv K 3 (C c) = Polynomial.C (C c) := by
+  simp [finSuccEquiv_apply]
+
 /-- Include the three transverse variables as coordinates 1, 2, 3. -/
 def quadraticLongitudinalSourceLift :
     MvPolynomial (Fin 3) K →ₐ[K] MvPolynomial (Fin 4) K :=
@@ -38,7 +55,7 @@ private theorem pderiv_quadraticLongitudinalSourceLift
   | mul_X p j hp =>
     rw [map_mul, pderiv_mul, hp]
     fin_cases i <;> fin_cases j <;>
-      simp [quadraticLongitudinalSourceLift, pderiv_mul] <;> ring
+      simp [quadraticLongitudinalSourceLift] <;> ring
 
 private theorem finSuccEquiv_quadraticLongitudinalSourceLift
     (f : MvPolynomial (Fin 3) K) :
@@ -48,7 +65,7 @@ private theorem finSuccEquiv_quadraticLongitudinalSourceLift
   | add p q hp hq => simp only [map_add, hp, hq]
   | mul_X p j hp =>
     rw [map_mul, map_mul, hp]
-    fin_cases j <;> simp [quadraticLongitudinalSourceLift, finSuccEquiv_apply]
+    fin_cases j <;> simp [quadraticLongitudinalSourceLift, finSuccEquiv_four_X]
 
 /-- A source with a mixed quadratic longitudinal coefficient and completely
 unrestricted lower transverse polynomials. -/
@@ -69,11 +86,11 @@ theorem hessian_quadraticLongitudinalSource
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.map_apply, HC4.Polynomial.hessian_apply,
-      quadraticLongitudinalSource, pderiv_pow, pderiv_mul,
+      quadraticLongitudinalSource, pderiv_numeral,
       pderiv_quadraticLongitudinalSourceLift,
       finSuccEquiv_quadraticLongitudinalSourceLift,
       quadraticLongitudinalHessianBoundary, GeneralFourBlock.matrix,
-      finSuccEquiv_apply, pderiv_comm_backport] <;> ring
+      finSuccEquiv_four_X, finSuccEquiv_four_C, pderiv_comm_backport] <;> ring
 
 /-- Determinant transport uses the actual Hessian and the standard ring
 equivalence; there is no potential-identification hypothesis. -/
@@ -102,7 +119,7 @@ theorem quadraticLongitudinalSource_kernel_coefficient_eq_zero
         (X 0) (X 1) (X 2) (fun i => pderiv i B)
         (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).determinantCore.coeff 6 = 0 := by
     rw [← hessianDeterminant_quadraticLongitudinalSource, hdet, map_one]
-    simp
+    simp [Polynomial.coeff_one]
   have hk := quadraticLongitudinalHessianBoundary_kernel_coefficient_eq_zero
     (C b) (C g) (C k) (X 0) (X 1) (X 2) (fun i => pderiv i B)
     (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)
@@ -136,7 +153,7 @@ theorem quadraticLongitudinalSource_kernel_second_derivative_eq_zero
         (X 0) (X 1) (X 2) (fun i => pderiv i B)
         (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).determinantCore.coeff 5 = 0 := by
     rw [← hessianDeterminant_quadraticLongitudinalSource, hdet, map_one]
-    simp
+    simp [Polynomial.coeff_one]
   simp only [map_zero] at hzero
   exact quadraticLongitudinalHessianBoundary_kernel_second_derivative_eq_zero
     (C b) (C g) (X 0) (X 1) (X 2) (fun i => pderiv i B)
@@ -161,14 +178,14 @@ theorem quadraticLongitudinalSource_kernel_third_derivative_eq_zero
         (X 0) (X 1) (X 2) (fun i => pderiv i B)
         (HC4.Polynomial.hessian B) (HC4.Polynomial.hessian D)).determinantCore.coeff 4 = 0 := by
     rw [← hessianDeterminant_quadraticLongitudinalSource, hdet, map_one]
-    simp
+    simp [Polynomial.coeff_one]
   simp only [map_zero] at hzero
   rw [quadraticLongitudinalHessianBoundary_coeff_four _ _ _ _ _ _ _ _ hB] at hzero
   have hd := congrArg (pderiv (0 : Fin 3)) hzero
   have hproduct :
       (2 * (C b)^2 * (3*C b*X 1*X 2-C g)) *
         pderiv 0 (pderiv 0 (pderiv 0 D)) = 0 := by
-    simpa [pderiv_mul, pderiv_pow, HC4.Polynomial.hessian_apply, hJ, hB] using hd
+    simpa [pderiv_mul, pderiv_pow, pderiv_numeral, HC4.Polynomial.hessian_apply, hJ, hB] using hd
   have hleft : (2 * (C b)^2 * (3*C b*X 1*X 2-C g) : MvPolynomial (Fin 3) K) ≠ 0 :=
     mul_ne_zero (mul_ne_zero (by norm_num) (pow_ne_zero 2 (by simpa using hb)))
       (quadraticLongitudinalSource_factor_ne_zero b g hb)
