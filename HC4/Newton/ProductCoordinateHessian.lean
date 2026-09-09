@@ -21,7 +21,7 @@ noncomputable section
 open MvPolynomial
 open scoped Matrix
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K]
 
 /-- Substitute the product of the last two coordinates for the third one. -/
 def productCoordinateLift : MvPolynomial (Fin 3) K →ₐ[K] MvPolynomial (Fin 4) K :=
@@ -38,13 +38,13 @@ theorem pderiv_productCoordinateLift (f : MvPolynomial (Fin 3) K) (i : Fin 4) :
         productCoordinateLift (pderiv (productCoordinateIndex i) f) := by
   classical
   induction f using MvPolynomial.induction_on with
-  | C a => simp [productCoordinateLift, pderiv_C]
+  | C a => simp [productCoordinateLift]
   | add p q hp hq => simp only [map_add, hp, hq]; ring
   | mul_X p j hp =>
     rw [map_mul, pderiv_mul, hp, pderiv_mul, map_add, map_mul]
     fin_cases i <;> fin_cases j <;>
       simp [productCoordinateLift, productCoordinateIndex,
-        productCoordinateMultiplier, pderiv_mul] <;> ring
+        productCoordinateMultiplier] <;> ring
 
 /-- The actual Hessian entries after the product-coordinate substitution. -/
 def productCoordinateHessianBlock (f : MvPolynomial (Fin 3) K) :
@@ -67,7 +67,7 @@ theorem hessian_productCoordinateLift (f : MvPolynomial (Fin 3) K) :
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [HC4.Polynomial.hessian_apply, pderiv_productCoordinateLift,
-      productCoordinateIndex, productCoordinateMultiplier, pderiv_mul,
+      productCoordinateIndex, productCoordinateMultiplier,
       productCoordinateHessianBlock, GeneralFourBlock.matrix,
       pderiv_comm_backport] <;> ring
 
@@ -88,7 +88,7 @@ theorem hessianDeterminant_productCoordinateLift (f : MvPolynomial (Fin 3) K) :
   simp [productCoordinateHessianBlock, GeneralFourBlock.determinantCore,
     productCoordinateHessianCofactor, HC4.Polynomial.hessianDeterminant,
     Matrix.det_fin_three, HC4.Polynomial.hessian_apply, pderiv_comm_backport]
-  <;> ring
+  ring
 
 /-- Determinant one forces the substituted derivative in the product
 coordinate to be a constant unit. No hypothesis on a terminal is added here. -/
@@ -131,6 +131,8 @@ theorem productCoordinate_source_derivative_constant_of_hessianDeterminant_one
   refine ⟨c, hc, productCoordinateLift_injective ?_⟩
   simpa [productCoordinateLift] using heq
 
+variable [CharZero K]
+
 /-- Every coefficient involving the product coordinate, except its pure
 linear coefficient, vanishes in a determinant-one source of this form. -/
 theorem productCoordinate_coeff_add_single_eq_zero
@@ -143,7 +145,7 @@ theorem productCoordinate_coeff_add_single_eq_zero
     productCoordinate_source_derivative_constant_of_hessianDeterminant_one f hdet
   have hz : coeff m (pderiv 2 f) = 0 := by
     rw [hc]
-    simp [coeff_C, hm]
+    simp [coeff_C, Ne.symm hm]
   rw [coeff_pderiv_backport] at hz
   exact (mul_eq_zero.mp hz).resolve_right (by exact_mod_cast Nat.succ_ne_zero (m 2))
 
@@ -181,7 +183,7 @@ theorem productCoordinate_supported_exponent_eq_product
     rw [← hmadd, hm, add_comm]
   have hz : coeff m (pderiv 2 (productCoordinateLift f)) = 0 := by
     rw [hderiv]
-    simp [coeff_monomial, hmne, Ne.symm hmne]
+    simp [coeff_monomial, Ne.symm hmne]
   rw [coeff_pderiv_backport, hmadd] at hz
   exact (mul_ne_zero hd (by exact_mod_cast Nat.succ_ne_zero (m 2))) hz
 
