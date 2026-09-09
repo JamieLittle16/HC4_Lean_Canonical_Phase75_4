@@ -63,4 +63,32 @@ theorem ray_kernel_extremal_elimination
       (mul_ne_zero (mul_ne_zero (by norm_num) (pow_ne_zero 2 hplus))
         (pow_ne_zero 2 hminus)) (pow_ne_zero 2 hA)) hz
 
+/-- The balanced coefficients eliminate the formerly surviving mixed
+quadratic term once the higher longitudinal equations remove the two
+contaminating later-layer coefficients. -/
+theorem ray_kernel_order_one_mixed_elimination
+    {K : Type*} [Field K] [CharZero K] (b q : K)
+    (hsecond : q * (32*b + 3*q) = 0)
+    (hthird : b * (q^2 - 16*b*q - 128*b^2) = 0) : b = 0 := by
+  apply quadratic_cubic_extremal_elimination b q 3 (-32) (-128) (-16) 1
+  · norm_num
+  · norm_num
+  · linear_combination hsecond
+  · linear_combination hthird
+
+/-- Literal model coefficient equations, including the later source terms.
+The hypotheses `hk`, `hr` must come from the full-source highest coefficients;
+they cannot be inferred from first-layer kernel compatibility alone. -/
+theorem ray_kernel_order_one_mixed_elimination_of_coefficients
+    {K : Type*} [Field K] [CharZero K] (b q k r : K)
+    (hk : k = 0) (hr : r = 0)
+    (hsecond : -9*(288*b*q - 12*r + 32*k + 27*q^2) = 0)
+    (hthird : -54*(-1152*b^3 - 144*b^2*q + 32*b*k + 9*b*q^2 - 2*k*q) = 0) :
+    b = 0 := by
+  subst k
+  subst r
+  apply ray_kernel_order_one_mixed_elimination b q
+  · linear_combination (-1/81 : K) * hsecond
+  · linear_combination (-1/486 : K) * hthird
+
 end HC4.Newton

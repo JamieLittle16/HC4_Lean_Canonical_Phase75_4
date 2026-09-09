@@ -41,6 +41,7 @@ def quadraticLongitudinalHessianBoundary
   y := C b*X^2 + C (J 1 2)*X + C (K 1 2)
   z := C (J 2 2)*X + C (K 2 2)
 
+set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 4096 in
 /-- No lower source jet contributes to the degree-six coefficient. -/
 theorem quadraticLongitudinalHessianBoundary_coeff_six
@@ -53,6 +54,7 @@ theorem quadraticLongitudinalHessianBoundary_coeff_six
   simp [coeff_add, coeff_mul_C, coeff_C_mul, ← C_pow]
   <;> ring
 
+set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 4096 in
 /-- After the first elimination, the next coefficient detects the genuine
 second kernel derivative of the longitudinal-linear source coefficient. -/
@@ -66,6 +68,7 @@ theorem quadraticLongitudinalHessianBoundary_coeff_five
   simp [coeff_add, coeff_mul_C, coeff_C_mul, ← C_pow]
   <;> ring
 
+set_option maxHeartbeats 2000000 in
 set_option maxRecDepth 4096 in
 /-- The remaining degree-four equation, retaining every mixed correction. -/
 theorem quadraticLongitudinalHessianBoundary_coeff_four
