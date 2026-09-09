@@ -271,7 +271,7 @@ impossibility, and no change of carrier or nonzero minor is assumed.
 
 `HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` formalizes the three
 coefficient identities and the first two scalar elimination consumers with
-all lower jets arbitrary (CI pending). The independently differentiated
+all lower jets arbitrary (full CI #1617 passed at `daa2bcbe0f58d60b85c3701ba35abdbda1c44fff`). The independently differentiated
 source calculation is checked by
 `tools/research/quadratic_longitudinal_boundary_probe.py`.
 
@@ -310,7 +310,7 @@ only on `x,y,z*w`.
 
 The exact symbolic regression is `ray_kernel_mixed_elimination_probe.py`.
 The scalar conclusion and literal-coefficient adapter are Lean theorems in
-`RayKernelExtremalElimination.lean` (CI pending). The arbitrary terminal
+`RayKernelExtremalElimination.lean` (full CI #1617 passed at `daa2bcbe0f58d60b85c3701ba35abdbda1c44fff`). The arbitrary terminal
 source adapter, including its unrestricted longitudinal degree and endpoint
 weights, remains open. Earlier affine positive Hessian layers may still
 matter in later first-nonlinear-layer cases; the model calculation is not
@@ -320,7 +320,7 @@ asserted to cover those cases or prove unrestricted HC4.
 ## Actual-source owner
 
 `HC4/Newton/QuadraticLongitudinalSource.lean` now contains a source bridge
-(CI pending): `quadraticLongitudinalSource b g k B D` is an actual
+(full CI #1617 passed at `daa2bcbe0f58d60b85c3701ba35abdbda1c44fff`): `quadraticLongitudinalSource b g k B D` is an actual
 `MvPolynomial (Fin 4) K`, with arbitrary `B,D : MvPolynomial (Fin 3) K`.
 It identifies every Hessian entry after `finSuccEquiv`, transports the
 actual Hessian determinant, and derives `k=0`, `B_yy=0`, `D_yyy=0` from
@@ -331,3 +331,30 @@ identity. Its explicit limitation is the displayed quadratic longitudinal
 source form; an arbitrary terminal has not been reduced to that form.
 The translation removing linear transverse terms and the model-specific
 balanced coefficient extraction are still separate source adapters.
+
+
+## Arbitrary longitudinal degree: top coefficient without layer ordering
+
+`HC4/Newton/LongitudinalHessianTopDegree.lean` (CI pending) proves a matrix
+coefficient theorem for every positive degree `N`. Scale the longitudinal
+row and column by `X`, so that every Hessian entry has the same degree bound
+`N`. The determinant acquires a factor `X^2`. The coefficient at `4*N`
+is precisely the determinant of the matrix of degree-`N` coefficients.
+No lower longitudinal term contributes, regardless of its parameter order.
+
+If the leading source coefficient has zero second derivatives involving
+the kernel coordinate, its top matrix has determinant
+
+```
+-N^2*k^2*(zz*ww-zw^2).
+```
+
+The minor `zz*ww-zw^2` is on this same leading matrix. Its nonvanishing
+forces `k=0`; no unrelated rank-three minor is substituted. For the mixed
+quadratic transverse coefficient, this specializes to `N^2*b^2*k^2`.
+The transverse polynomial is not otherwise degree-bounded by this theorem.
+
+This removes the numerical longitudinal degree-two restriction from this
+part of the coefficient mechanism. It does not establish the required
+leading-coefficient shape or minor for every terminal. Those geometric
+hypotheses remain explicit, and the unrestricted HC4 theorem is still open.

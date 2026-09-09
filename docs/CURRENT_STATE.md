@@ -102,7 +102,7 @@ CI #1601 passed at `8cab1f3d01147470d687db6fa6802ae228fb1f3c`, including
 the axiom audit, negative control and escape-hatch checks.
 
 The mixed quadratic boundary now has exact finite-jet identities in
-`HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` (CI pending).
+`HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` (full CI #1617 passed at `daa2bcbe0f58d60b85c3701ba35abdbda1c44fff`).
 For `F=(b*z*w+g+k*y)*x^2+B(y,z,w)*x+C(y,z,w)`, with unrestricted lower
 polynomials, the degree-six coefficient is `4*b^2*k^2`. When `b` is nonzero,
 this forces `k=0`; the degree-five coefficient is then
@@ -113,17 +113,32 @@ that contaminate the model's balanced second/third determinant equations.
 Those equations reduce to `q*(32*b+3*q)=0` and
 `b*(q^2-16*b*q-128*b^2)=0`, which force `b=0`.
 `RayKernelExtremalElimination.ray_kernel_order_one_mixed_elimination`
-and its literal-coefficient wrapper formalize this scalar conclusion (CI
-pending); the independently differentiated model calculation passes.
+and its literal-coefficient wrapper formalize this scalar conclusion (full CI #1617 passed); the independently differentiated model calculation passes.
 This excludes the formerly surviving first-order mixed term in the model. These are conditional jet consumers: the arbitrary
 terminal has not been shown to have quadratic longitudinal degree.
 
-`QuadraticLongitudinalSource.lean` adds the actual-source bridge (CI pending):
+`QuadraticLongitudinalSource.lean` adds the actual-source bridge (full CI #1617 passed at `daa2bcbe0f58d60b85c3701ba35abdbda1c44fff`):
 for the explicitly constructed four-variable quadratic source, it identifies
 the full Hessian and derives `k=0`, `B_yy=0`, `C_yyy=0` from determinant one
 and a nonzero mixed coefficient. The lower polynomials have no degree or
 common-product restrictions. The arbitrary-terminal normal-form reduction
 and the model-specific coefficient extraction remain open.
+
+**Verified source checkpoint:** full CI #1617 passed at
+`daa2bcbe0f58d60b85c3701ba35abdbda1c44fff` (8273 jobs, all proof audits).
+The new quadratic boundary/source modules have no build warnings. The
+source owner's 15-module transitive HC4 import closure has no JC2 module.
+
+`LongitudinalHessianTopDegree.lean` extends the top-coefficient mechanism to
+arbitrary positive longitudinal degree (CI pending). Scaling the longitudinal
+row and column changes determinant one to `X^2`; a common degree-`N` bound
+on the scaled entries extracts the degree-`4*N` coefficient exactly. If the
+top matrix has zero second derivatives involving the kernel coordinate, its
+determinant is a negative square times its own transverse minor. A nonzero
+minor therefore eliminates the top kernel entry. This uses a degree bound
+on the whole matrix, independent of parameter-layer ordering. Obtaining
+that leading-matrix shape and its nonzero minor from arbitrary terminal
+geometry remains open; no terminal contradiction is asserted.
 
 ## 1. What the public theorem is trying to prove
 
