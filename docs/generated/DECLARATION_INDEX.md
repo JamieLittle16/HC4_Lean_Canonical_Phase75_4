@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7314**.
+Distinct declaration spellings indexed: **7322**.
 
 ## Repeated declaration spellings
 
@@ -2294,6 +2294,7 @@ Distinct declaration spellings indexed: **7314**.
 - `QsOtherFacetRayReverseReesPackage.rq_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.sourceLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`
 - `QsOtherFacetRayReverseReesPackage.sourceWeight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
+- `QsOtherFacetRayReverseReesPackage.source_ne_productCoordinateLift` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRayProductCoordinateExclusion`
 - `QsOtherFacetRayReverseReesPackage.sp_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `QsOtherFacetRayReverseReesPackage.two_longitudinal_weight_lt_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetWeightedProfileCertificate` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
@@ -5671,8 +5672,15 @@ Distinct declaration spellings indexed: **7314**.
 - `productCoordinateHessianCofactor` — `def` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinateIndex` — `def` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinateLift` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateLift_injective` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinateMultiplier` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateRetract` — `def` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinateRetract_lift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinate_coeff_add_single_eq_zero` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinate_derivative_constant_of_hessianDeterminant_one` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinate_hessianDeterminant_ne_one_of_coeff_ne_zero` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinate_source_derivative_constant_of_hessianDeterminant_one` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
+- `productCoordinate_supported_exponent_eq_product` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `projectedSmithExponent_mixedDegreeOutcome` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `projectedSupport_linear_of_source_transverseDegree_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
