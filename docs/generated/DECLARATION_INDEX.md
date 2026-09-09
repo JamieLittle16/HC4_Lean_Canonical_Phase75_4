@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7344**.
+Distinct declaration spellings indexed: **7347**.
 
 ## Repeated declaration spellings
 
@@ -4095,6 +4095,8 @@ Distinct declaration spellings indexed: **7344**.
 - `finSuccEquiv_coeff_pderiv_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseDerivativeProfile`
 - `finSuccEquiv_coeff_pderiv_zero_of_longitudinalExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseDerivativeProfile`
 - `finSuccEquiv_eq_monomial_of_longitudinalExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalCancellationInterface`
+- `finSuccEquiv_four_C` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
+- `finSuccEquiv_four_X` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `finSuccEquiv_hessian_succ_succ_eq_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `finSuccEquiv_hessian_succ_zero_eq_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `finSuccEquiv_longitudinalRightRecenterHom` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -5276,6 +5278,7 @@ Distinct declaration spellings indexed: **7344**.
 - `pderiv_initialForm` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `pderiv_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `pderiv_kernelInflateHom` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
+- `pderiv_numeral` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `pderiv_one_binaryLinearFormTransverseDeriv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `pderiv_one_binarySourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `pderiv_one_ne_zero_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`

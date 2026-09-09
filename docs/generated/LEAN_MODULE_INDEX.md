@@ -1230,7 +1230,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.QuadraticLongitudinalHessianBoundary`, `HC4.Newton.CharZeroHessianKernelRigidity`, `HC4.Polynomial.HessianDeterminant`
 - External imports: `Mathlib.Algebra.MvPolynomial.Equiv`
 - Imported by local modules: `HC4`
-- Declarations: `def quadraticLongitudinalSourceLift`, `theorem pderiv_quadraticLongitudinalSourceLift`, `theorem finSuccEquiv_quadraticLongitudinalSourceLift`, `def quadraticLongitudinalSource`, `theorem hessian_quadraticLongitudinalSource`, `theorem hessianDeterminant_quadraticLongitudinalSource`, `theorem quadraticLongitudinalSource_kernel_coefficient_eq_zero`, `theorem quadraticLongitudinalSource_factor_ne_zero`, `theorem quadraticLongitudinalSource_kernel_second_derivative_eq_zero`, `theorem quadraticLongitudinalSource_kernel_third_derivative_eq_zero`
+- Declarations: `theorem pderiv_numeral`, `theorem finSuccEquiv_four_X`, `theorem finSuccEquiv_four_C`, `def quadraticLongitudinalSourceLift`, `theorem pderiv_quadraticLongitudinalSourceLift`, `theorem finSuccEquiv_quadraticLongitudinalSourceLift`, `def quadraticLongitudinalSource`, `theorem hessian_quadraticLongitudinalSource`, `theorem hessianDeterminant_quadraticLongitudinalSource`, `theorem quadraticLongitudinalSource_kernel_coefficient_eq_zero`, `theorem quadraticLongitudinalSource_factor_ne_zero`, `theorem quadraticLongitudinalSource_kernel_second_derivative_eq_zero`, `theorem quadraticLongitudinalSource_kernel_third_derivative_eq_zero`
 
 ### `HC4.Newton.RankOnePacketExactCollision`
 
