@@ -52,7 +52,12 @@ theorem quadraticLongitudinalHessianBoundary_coeff_six
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore]
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
+  simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
+    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
+    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+  norm_num
   <;> ring
 
 set_option maxHeartbeats 2000000 in
@@ -67,7 +72,12 @@ theorem quadraticLongitudinalHessianBoundary_coeff_five
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore]
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
+  simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
+    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
+    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+  norm_num
   <;> ring
 
 set_option maxHeartbeats 2000000 in
@@ -84,7 +94,12 @@ theorem quadraticLongitudinalHessianBoundary_coeff_four
   simp only [quadraticLongitudinalHessianBoundary, GeneralFourBlock.determinantCore, hJ]
   conv_lhs => arg 1; ring_nf
   simp only [← C_pow, ← C_mul]
-  simp [coeff_add, coeff_mul_C, coeff_C_mul, coeff_mul_X_pow, -map_mul, -map_pow]
+  simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_neg,
+    Polynomial.coeff_mul_C, Polynomial.coeff_C_mul, Polynomial.coeff_mul_X_pow,
+    Polynomial.coeff_X_pow, Polynomial.coeff_C, Polynomial.coeff_X,
+    Polynomial.coeff_mul_natCast, Polynomial.coeff_natCast_mul,
+    Polynomial.coeff_mul_ofNat, Polynomial.coeff_ofNat_mul]
+  norm_num
   <;> ring
 
 /-- In characteristic zero a nonzero mixed coefficient eliminates the
