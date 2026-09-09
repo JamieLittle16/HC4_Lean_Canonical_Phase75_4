@@ -231,3 +231,46 @@ The product-coordinate owner has 14 transitive HC4 modules in its local import
 closure and no JC2 module dependencies. No unrestricted HC4 theorem has been
 added. The scope correction above concerns symbolic source-equation coverage;
 it does not invalidate any of the compiled scalar or source-level theorems.
+
+
+## Mixed quadratic boundary: unrestricted lower polynomials
+
+The next calculation uses the entire source, without choosing a Rees layer:
+
+```
+F = (b*z*w + g + k*y)*x^2 + B(y,z,w)*x + C(y,z,w).
+```
+
+The terms linear in `z,w` in the coefficient of `x^2` can be removed by
+translations when `b` is nonzero. This observation does not bound the
+longitudinal degree of an arbitrary terminal; that reduction remains open.
+No product-coordinate hypothesis is imposed on `B` or `C`.
+
+The exact full-Hessian coefficients are
+
+```
+[x^6] det Hess F = 4*b^2*k^2
+[x^5] det Hess F (after k=0) = 2*b^2*(3*b*z*w-g)*B_yy.
+```
+
+In a characteristic-zero polynomial domain, `b != 0` and determinant one
+therefore give `k=0` and `B_yy=0`. Write `B=y*p(z,w)+q(z,w)`. Then
+
+```
+[x^4] det Hess F =
+  2*b^2*(3*b*z*w-g)*C_yy
+  + b*(4*b*w^2*p_w^2 - 4*b*w*z*p_w*p_z - 4*b*w*p*p_w
+       + 4*b*z^2*p_z^2 - 4*b*z*p*p_z + b*p^2 + 4*g*p_w*p_z).
+```
+
+The second summand is independent of `y`. Differentiating this equation
+in `y` forces `C_yyy=0`, so this conditional source branch becomes quadratic
+in both `x` and `y`. This last polynomial-derivative inference and the source
+identification are not yet formalized. Quadraticity alone is not terminal
+impossibility, and no change of carrier or nonzero minor is assumed.
+
+`HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` formalizes the three
+coefficient identities and the first two scalar elimination consumers with
+all lower jets arbitrary (CI pending). The independently differentiated
+source calculation is checked by
+`tools/research/quadratic_longitudinal_boundary_probe.py`.

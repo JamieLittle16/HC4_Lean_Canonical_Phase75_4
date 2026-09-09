@@ -100,6 +100,17 @@ which applies the obstruction to the actual retained terminal source. Full
 CI #1601 passed at `8cab1f3d01147470d687db6fa6802ae228fb1f3c`, including
 the axiom audit, negative control and escape-hatch checks.
 
+The mixed quadratic boundary now has exact finite-jet identities in
+`HC4/Newton/QuadraticLongitudinalHessianBoundary.lean` (CI pending).
+For `F=(b*z*w+g+k*y)*x^2+B(y,z,w)*x+C(y,z,w)`, with unrestricted lower
+polynomials, the degree-six coefficient is `4*b^2*k^2`. When `b` is nonzero,
+this forces `k=0`; the degree-five coefficient is then
+`2*b^2*(3*b*z*w-g)*B_yy`, forcing `B_yy=0` over the polynomial domain.
+The degree-four equation retains the remaining mixed correction explicitly.
+Thus the surviving mixed term imposes constraints on later layers; it is not
+itself eliminated here. These are conditional jet consumers: the arbitrary
+terminal has not been shown to have quadratic longitudinal degree.
+
 ## 1. What the public theorem is trying to prove
 
 The unrestricted target is determinant-one gradient injectivity in four variables:

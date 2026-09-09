@@ -221,3 +221,4 @@ import HC4.Newton.RayKernelExtremalElimination
 import HC4.Newton.ProductCoordinateHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRayProductCoordinateExclusion
 import HC4.Newton.LongitudinalRankTwoInitialCoefficient
+import HC4.Newton.QuadraticLongitudinalHessianBoundary
