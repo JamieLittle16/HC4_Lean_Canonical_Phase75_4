@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7332**.
+Distinct declaration spellings indexed: **7334**.
 
 ## Repeated declaration spellings
 
@@ -6193,6 +6193,8 @@ Distinct declaration spellings indexed: **7332**.
 - `ray_kernel_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_kernel_omitted_term_top_coefficient` — `theorem` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
 - `ray_kernel_order_one_extremal_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
+- `ray_kernel_order_one_mixed_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
+- `ray_kernel_order_one_mixed_elimination_of_coefficients` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_support_directly_exposed_in_represented_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
