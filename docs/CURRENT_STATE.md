@@ -73,7 +73,8 @@ at `d7467cc39d36aefe5e0ff40e3b67fdba68b6ca51`, including the axiom audit,
 negative control and escape-hatch checks. The generic quadratic/cubic elimination and first-order boundary corollary
 also passed full CI #1593 at `9cd89d77c5a81c550cc966bdd567ae8c73545e10`.
 The first-order model excludes its two-coordinate quadratic boundary terms,
-but a mixed `x^2*z*w` term survives and can affect later layers. The source
+and leaves a mixed `x^2*z*w` term. The subsequent full-source calculation
+below now excludes that mixed term in this model. The source
 coefficient extraction and coverage of arbitrary terminal rays remain open.
 
 **Omitted-term resolution in the model:** the missing `k*y*u^2` term is now
@@ -107,8 +108,14 @@ polynomials, the degree-six coefficient is `4*b^2*k^2`. When `b` is nonzero,
 this forces `k=0`; the degree-five coefficient is then
 `2*b^2*(3*b*z*w-g)*B_yy`, forcing `B_yy=0` over the polynomial domain.
 The degree-four equation retains the remaining mixed correction explicitly.
-Thus the surviving mixed term imposes constraints on later layers; it is not
-itself eliminated here. These are conditional jet consumers: the arbitrary
+These full-source constraints eliminate the two later-layer coefficients
+that contaminate the model's balanced second/third determinant equations.
+Those equations reduce to `q*(32*b+3*q)=0` and
+`b*(q^2-16*b*q-128*b^2)=0`, which force `b=0`.
+`RayKernelExtremalElimination.ray_kernel_order_one_mixed_elimination`
+and its literal-coefficient wrapper formalize this scalar conclusion (CI
+pending); the independently differentiated model calculation passes.
+This excludes the formerly surviving first-order mixed term in the model. These are conditional jet consumers: the arbitrary
 terminal has not been shown to have quadratic longitudinal degree.
 
 ## 1. What the public theorem is trying to prove

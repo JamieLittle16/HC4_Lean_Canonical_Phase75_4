@@ -274,3 +274,44 @@ coefficient identities and the first two scalar elimination consumers with
 all lower jets arbitrary (CI pending). The independently differentiated
 source calculation is checked by
 `tools/research/quadratic_longitudinal_boundary_probe.py`.
+
+
+## Resolution of the first-order mixed coefficient
+
+The full-source boundary equations remove exactly the two contaminating
+terms in the old balanced coefficient calculation. After the already-checked
+outer eliminations, set `q=q2`, `k=[x^2*y]G2`, and
+`r=[x*y^2*z*w]G2`. With every permitted later layer retained:
+
+```
+[t^2*x^2*z^8*w^8] det Hess = -9*(288*b*q - 12*r + 32*k + 27*q^2)
+[t^3*x^3*z^6*w^6] det Hess =
+  -54*(-1152*b^3 - 144*b^2*q + 32*b*k + 9*b*q^2 - 2*k*q).
+```
+
+If `b` is nonzero, the full coefficient of `x^2` is
+`9*b*z*w + A*z + B*w + k*y + c`: the first-layer outer quadratic
+coefficients have vanished and the lower weight budget allows only affine
+corrections. Translate `z,w` to remove the two linear transverse terms.
+This leaves determinant one and the vanishing of `B_yy` invariant. The
+whole-source degree-six and degree-five identities give `k=0` and `r=0`.
+The two displayed equations therefore give
+
+```
+q*(32*b+3*q) = 0
+b*(q^2-16*b*q-128*b^2) = 0.
+```
+
+For `q=0`, the cubic bracket is `-128*b^2`. For `3*q=-32*b`,
+it is `(1408/9)*b^2`. Either branch contradicts `b != 0` in
+characteristic zero. Thus the previously surviving mixed first-order term
+is excluded in this model, without assuming that the whole source depends
+only on `x,y,z*w`.
+
+The exact symbolic regression is `ray_kernel_mixed_elimination_probe.py`.
+The scalar conclusion and literal-coefficient adapter are Lean theorems in
+`RayKernelExtremalElimination.lean` (CI pending). The arbitrary terminal
+source adapter, including its unrestricted longitudinal degree and endpoint
+weights, remains open. Earlier affine positive Hessian layers may still
+matter in later first-nonlinear-layer cases; the model calculation is not
+asserted to cover those cases or prove unrestricted HC4.
