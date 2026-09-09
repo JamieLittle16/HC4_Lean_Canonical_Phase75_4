@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7326**.
+Distinct declaration spellings indexed: **7332**.
 
 ## Repeated declaration spellings
 
@@ -5866,6 +5866,12 @@ Distinct declaration spellings indexed: **7326**.
 - `quadraticFamilyHessianMatrix_transverseSourceShear_ij_of_ne_added` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `quadraticFamilyHessianMatrix_transverseSourceShear_kell` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `quadraticFamilyHessianMatrix_transverseSourceShear_kk` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
+- `quadraticLongitudinalHessianBoundary` — `def` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalHessianBoundary_coeff_five` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalHessianBoundary_coeff_four` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalHessianBoundary_coeff_six` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalHessianBoundary_kernel_coefficient_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
+- `quadraticLongitudinalHessianBoundary_kernel_second_derivative_eq_zero` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
 - `quadraticPolynomialFamily_exactCollision_sections_eq` — `theorem` in `HC4.Valuation.QuadraticFamilyCollision`
 - `quadraticSmithSpecialFiber_hessianDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubfaceDegreeComponent_degree_two_le_of_ne_zero` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
