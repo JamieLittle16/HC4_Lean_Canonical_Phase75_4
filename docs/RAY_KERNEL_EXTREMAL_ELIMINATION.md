@@ -8,7 +8,35 @@ audit, negative control and escape-hatch checks).
 The Hessian coefficient calculations below are exact symbolic checks, not yet
 Lean-certified source adapters.
 
-## Scope correction: an additional first-layer kernel term
+## Resolution of the omitted first-layer term
+
+The omitted `k*y*u^2` term is eliminated **before** the lower coefficients are
+used. The previously unexamined highest longitudinal coefficient is
+
+```
+[t^4*x^4] det Hess = 14580*k^2*w^4*z^4.
+```
+
+It forces `k=0` in characteristic zero. The symbolic check in
+`tools/research/ray_kernel_top_coefficient_probe.py` enumerates all 27
+weight-7 monomials in the kernel coordinates `(u,y,z,w)` with kernel-coordinate
+degree at most one. It includes all permitted later corrections and uses the
+full Hessian without first specializing `y=0`. The earlier six coefficient
+checks then apply. This settles the omitted-term issue in this model; it is
+not an arbitrary-terminal source theorem.
+
+`HC4/Newton/LongitudinalRankTwoInitialCoefficient.lean` gives the finite
+four-block coefficient identity with arbitrary polynomial tails (CI pending).
+The first two rows start at order two, the `(0,0)` entry is zero, and the
+constant transverse block has nonzero determinant. The order-four coefficient
+is exactly minus the square of the `(0,1)` departure times that determinant.
+Its specialization gives the displayed factor 14580. For the preceding
+longitudinal extraction, Mathlib already supplies
+`Matrix.coeff_det_X_add_C_card`; no new determinant-degree infrastructure is
+needed. The source-identification hypotheses are not yet derived for arbitrary
+terminal rays, whose longitudinal degrees and endpoint exponents can differ.
+
+## Historical scope correction: the additional first-layer kernel term
 
 The order-2 calculation below is restricted to a zero coefficient of `y*u^2`.
 The earlier version incorrectly described its first-layer ansatz as exhaustive.

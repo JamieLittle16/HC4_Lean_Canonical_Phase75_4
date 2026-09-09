@@ -76,12 +76,16 @@ The first-order model excludes its two-coordinate quadratic boundary terms,
 but a mixed `x^2*z*w` term survives and can affect later layers. The source
 coefficient extraction and coverage of arbitrary terminal rays remain open.
 
-**Model scope correction:** the earlier weight-7 first-layer ansatz omitted
-`k*y*u^2`. Its nonzero branch changes the extremal equations. The order-2
-symbolic exclusion is therefore only established for `k=0`; it is not a full
-classification. The Lean scalar lemmas are unchanged and valid, and the
-first-order calculation already included its corresponding kernel terms.
-See the correction at the start of `RAY_KERNEL_EXTREMAL_ELIMINATION.md`.
+**Omitted-term resolution in the model:** the missing `k*y*u^2` term is now
+eliminated by the highest longitudinal coefficient
+`[t^4*x^4] det Hess = 14580*k^2*w^4*z^4`. The exact symbolic check includes
+all 27 first-layer kernel monomials and every permitted later correction.
+This supplies `k=0` before the earlier six equations are applied.
+`LongitudinalRankTwoInitialCoefficient.lean` records the finite-block identity
+with arbitrary polynomial tails (CI pending). The source identification and
+coverage of arbitrary terminal geometry remain open; this is a model result.
+See the resolution and the historical scope correction in
+`RAY_KERNEL_EXTREMAL_ELIMINATION.md`.
 
 The product-coordinate branch now has a source-level Lean implementation in
 `HC4/Newton/ProductCoordinateHessian.lean` (full CI #1596 passed at
