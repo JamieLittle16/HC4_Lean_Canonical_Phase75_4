@@ -26,7 +26,9 @@ checks then apply. This settles the omitted-term issue in this model; it is
 not an arbitrary-terminal source theorem.
 
 `HC4/Newton/LongitudinalRankTwoInitialCoefficient.lean` gives the finite
-four-block coefficient identity with arbitrary polynomial tails (CI pending).
+four-block coefficient identity with arbitrary polynomial tails. Full CI #1603
+passed at `9ae6f26accca2d8d871630a19fd7e4b6fa819c30`: 8271 build jobs,
+axiom audit, negative control and escape-hatch checks; no new-module warnings.
 The first two rows start at order two, the `(0,0)` entry is zero, and the
 constant transverse block has nonzero determinant. The order-four coefficient
 is exactly minus the square of the `(0,1)` departure times that determinant.

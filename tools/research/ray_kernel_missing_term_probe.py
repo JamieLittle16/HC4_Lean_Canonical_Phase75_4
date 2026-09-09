@@ -2,6 +2,8 @@
 Exact SymPy diagnostics only; not a Lean source coefficient theorem.
 The full first layer includes k*y*u^2, omitted from the original ansatz.
 All permitted later layers from the earlier probe are retained here.
+This records why the lower coefficients alone were insufficient. The higher
+coefficient in ray_kernel_top_coefficient_probe.py now eliminates k first.
 """
 import sympy as s
 from itertools import product, permutations

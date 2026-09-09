@@ -82,7 +82,9 @@ eliminated by the highest longitudinal coefficient
 all 27 first-layer kernel monomials and every permitted later correction.
 This supplies `k=0` before the earlier six equations are applied.
 `LongitudinalRankTwoInitialCoefficient.lean` records the finite-block identity
-with arbitrary polynomial tails (CI pending). The source identification and
+with arbitrary polynomial tails. Full CI #1603 passed at
+`9ae6f26accca2d8d871630a19fd7e4b6fa819c30` (8271 build jobs and all proof
+audits); the new module has no build warnings. The source identification and
 coverage of arbitrary terminal geometry remain open; this is a model result.
 See the resolution and the historical scope correction in
 `RAY_KERNEL_EXTREMAL_ELIMINATION.md`.
