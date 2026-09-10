@@ -3071,6 +3071,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveSectionBoundaryShearFamily`
   - `HC4.Valuation.AdaptiveSectionBoundaryNormalization`
   - `HC4.Valuation.NonlinearDegreeBoundPreservation`
+- `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
+  - `HC4.Valuation.AdaptiveSmithWallExposure`
+  - `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `HC4.Valuation.AdaptiveSmithWallExposure`
   - `HC4.Newton.MixedDegreeFirstWallCompetition`
   - `HC4.Valuation.CanonicalSmithDefectExposure`
