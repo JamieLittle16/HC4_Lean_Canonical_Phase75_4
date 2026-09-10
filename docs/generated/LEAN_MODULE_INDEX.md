@@ -9730,7 +9730,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.ReverseReesAssociatedGraded`, `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def reverseReesSchurALoss`, `def reverseReesSchurBLoss`, `def reverseReesSchurCLoss`, `theorem schurA_diagonal_parameter_factor`, `theorem schurB_diagonal_parameter_factor`, `theorem schurC_diagonal_parameter_factor`, `theorem common_parameter_cube`, `theorem reverseWeightedRees_schurA_inflate_eq`, `theorem reverseWeightedRees_schurB_inflate_eq`, `theorem reverseWeightedRees_schurC_inflate_eq`, `theorem reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm`, `theorem reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm`
+- Declarations: `def reverseReesSchurALoss`, `def reverseReesSchurBLoss`, `def reverseReesSchurCLoss`, `theorem schurA_diagonal_parameter_factor`, `theorem schurB_diagonal_parameter_factor`, `theorem schurC_diagonal_parameter_factor`, `theorem common_parameter_cube`, `theorem reverseWeightedRees_schurA_inflate_eq`, `theorem reverseWeightedRees_schurB_inflate_eq`, `theorem reverseWeightedRees_schurC_inflate_eq`, `theorem reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm`, `theorem reverseWeightedRees_familyParameterLayer_schurB_eq_initialForm`, `theorem reverseWeightedRees_familyParameterLayer_schurC_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstSchurB_coeff_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstSchurC_coeff_eq_initialForm`
 
 ### `HC4.Valuation.ReverseReesSchurParameterBudget`
 
