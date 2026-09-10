@@ -7307,7 +7307,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock.lean`
 - Purpose: An exact preterminal Schur clock on the actual PR ray Rees
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.ReverseReesAssociatedGraded`
 - External imports: none
 - Imported by local modules: `HC4`
 - Declarations: `theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock`, `theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_nondegenerateSchurCoefficient`
@@ -9699,7 +9699,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.BoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
 - Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`
 
 ### `HC4.Valuation.ReverseReesHessianParameterBudget`
