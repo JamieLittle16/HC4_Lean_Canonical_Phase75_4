@@ -32,6 +32,64 @@ open HC4.Newton
 
 variable {K : Type*} [Field K]
 
+/-- Generic associated-graded extraction from an exact adaptive normalization.
+If inflating a polynomial family by `w` gives exactly `X^E` times a constant
+source, then every in-range parameter layer is the corresponding weighted
+initial form of that source. -/
+theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
+    (w : Fin 4 → ℕ) (E n : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (G : MvPolynomial (Fin 4) K)
+    (hEq : adaptiveSmithInflateHom w P =
+      MvPolynomial.C (Polynomial.X ^ E) * constantPolynomialFamily G)
+    (hn : n ≤ E) :
+    familyParameterLayer P n =
+      initialForm (fun i => (w i : ℤ)) ((E - n : ℕ) : ℤ) G := by
+  ext d
+  rw [familyParameterLayer_coeff, HC4.Polynomial.coeff_initialForm]
+  have heq := congrArg (MvPolynomial.coeff d) hEq
+  rw [coeff_adaptiveSmithInflateHom,
+    MvPolynomial.coeff_C_mul, coeff_constantPolynomialFamily] at heq
+  have hcoeff := congrArg
+    (fun c : Polynomial K => c.coeff (Finsupp.weight w d + n)) heq
+  have hleft :
+      (Polynomial.X ^ Finsupp.weight w d * MvPolynomial.coeff d P).coeff
+          (Finsupp.weight w d + n) =
+        (MvPolynomial.coeff d P).coeff n := by
+    rw [Polynomial.coeff_X_pow_mul']
+    simp
+  rw [hleft] at hcoeff
+  have hcast :
+      Finsupp.weight (fun i => (w i : ℤ)) d =
+        (Finsupp.weight w d : ℤ) := by
+    rw [Finsupp.weight_apply, Finsupp.weight_apply]
+    push_cast
+    rfl
+  rw [hcast]
+  by_cases hw : Finsupp.weight w d = E - n
+  · have hsum : Finsupp.weight w d + n = E := by omega
+    have hwz :
+        (Finsupp.weight w d : ℤ) = ((E - n : ℕ) : ℤ) := by
+      exact_mod_cast hw
+    rw [Polynomial.coeff_X_pow_mul'] at hcoeff
+    simp [hsum] at hcoeff
+    simpa [hwz] using hcoeff
+  · have hwz :
+        (Finsupp.weight w d : ℤ) ≠ ((E - n : ℕ) : ℤ) := by
+      exact_mod_cast hw
+    have hsumne : Finsupp.weight w d + n ≠ E := by
+      intro hsum
+      apply hw
+      omega
+    by_cases hle : E ≤ Finsupp.weight w d + n
+    · have hpos : 0 < Finsupp.weight w d + n - E := by omega
+      rw [Polynomial.coeff_X_pow_mul'] at hcoeff
+      simp [hle, Nat.ne_of_gt hpos] at hcoeff
+      simpa [hwz] using hcoeff
+    · rw [Polynomial.coeff_X_pow_mul'] at hcoeff
+      simp [hle] at hcoeff
+      simpa [hwz] using hcoeff
+
 /-- Every in-range parameter layer of a bounded reverse Rees family is exactly
 an initial form of the original source. -/
 theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
@@ -39,28 +97,9 @@ theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
     (h : HasReverseWeightBound w D F) (hn : n ≤ D) :
     familyParameterLayer (reverseWeightedReesFamily w D F h) n =
       initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
-  ext d
-  rw [reverseWeightedReesFamily_parameterLayer_coeff,
-    HC4.Polynomial.coeff_initialForm]
-  by_cases hd : d ∈ F.support
-  · have hle : Finsupp.weight w d ≤ D := h d hd
-    have hcast :
-        Finsupp.weight (fun i => (w i : ℤ)) d =
-          (Finsupp.weight w d : ℤ) := by
-      rw [Finsupp.weight_apply, Finsupp.weight_apply]
-      push_cast
-      rfl
-    rw [hcast]
-    simp only [hd, true_and]
-    have heq :
-        D - Finsupp.weight w d = n ↔
-          Finsupp.weight w d = D - n := by
-      omega
-    rw [heq]
-    norm_cast
-  · have hcoeff : MvPolynomial.coeff d F = 0 :=
-      MvPolynomial.notMem_support_iff.mp hd
-    simp [hd, hcoeff]
+  exact familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
+    w D n (reverseWeightedReesFamily w D F h) F
+    (adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h) hn
 
 /-- Coefficientwise Hessian provenance for the reverse Rees family.  At
 parameter order `n`, differentiation merely shifts the associated weight by
