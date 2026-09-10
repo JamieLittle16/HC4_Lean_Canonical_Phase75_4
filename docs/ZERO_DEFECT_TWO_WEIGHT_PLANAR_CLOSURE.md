@@ -2,11 +2,13 @@
 
 > **Status: PAPER CANDIDATE — NOT YET LEAN VERIFIED.**
 >
-> This note records a no-JC2 closure mechanism for an honest first-contact
+> This note records a no-JC2 **consumer theorem** for an honest first-contact
 > terminal **provided that the terminal lattice is retained on the same blocker
-> whose Hessian defect is zero**.  It must not be cited as a compiled theorem
-> until the support/contact lemmas and same-blocker adapter below are checked in
-> Lean.
+> whose Hessian defect is zero**.  It must not be cited as a compiled theorem.
+> More importantly, the current A19 zero-clock strict-low packet does **not**
+> automatically supply the positive family-parameter contact required by this
+> hypothesis.  Constructing such a balanced first-contact lattice, or replacing
+> it by an equivalent source-honest geometric argument, remains substantive.
 
 ## 1. Why this is different from the generic JC2 endpoint
 
@@ -29,10 +31,11 @@ Jacobian for `(A,C)`, and a terminal gradient collision gives a genuine planar
 Keller collision.  If all earlier provenance is forgotten, this is the real
 JC2 seam.
 
-However, an honest first-contact terminal still carries an *earlier exposure
-weight* and a positive contact monomial.  At zero source defect that second
-weight gives an additional grading which is strong enough to force the planar
-pair triangular.
+However, an honest first-contact terminal also carries an *earlier exposure
+weight* and a positive contact monomial.  At zero blocker defect that second
+weight is strong enough to force the planar pair triangular.  Thus **once such
+an endpoint exists on the same zero-defect blocker**, no general JC2 theorem is
+needed to consume it.
 
 ## 2. Retained first-contact data
 
@@ -238,52 +241,121 @@ the terminal gradient collision.
 
 Hence:
 
-> **Paper theorem candidate.**  An honest first-contact terminal built on a
-> blocker of Hessian defect zero is impossible, without invoking planar JC2.
+> **Paper consumer theorem candidate.**  An honest first-contact terminal
+> built on a blocker of Hessian defect zero is impossible, without invoking
+> planar JC2.
 
-## 7. Why this does not prove JC2
+## 7. Where the JC2 hardness actually moved
 
-The exact planar doubling embedding shows that unrestricted HC4 contains the
-full planar JC2 problem.  The argument above only closes the branch in which
-an honest first-contact terminal is tied to a **zero-defect** blocker while
-retaining the positive first-contact exposure grading.
+The exact planar doubling embedding proves that unrestricted HC4 contains the
+full planar JC2 problem.  The live A19 reduction is stronger than older
+producer-based descriptions: positive reached rank-three states are consumed
+as global progress, and the only local terminal retained by the current proof
+architecture is the literal zero-clock strict-low terminal.
 
-An arbitrary embedded planar Keller counterexample need not enter this
-zero-defect first-contact branch; it may be routed through a positive-defect
-branch.  Thus the argument can remove JC2 from the current zero-clock
-strict-low residual without claiming a solution of JC2 itself.
+Therefore an unconditional theorem eliminating **every** current zero-clock
+strict-low terminal would prove unrestricted HC4 and, through the exact
+embedding, planar JC2 as a consequence.  The hardness cannot simply be said to
+"route through a positive-defect terminal".
 
-## 8. Lean checklist
+The missing hypothesis in the consumer theorem above identifies where that
+hardness can hide.  `AdaptiveAlignedSmithLayerSensitiveFirstContactData`
+requires a supported source coefficient at a **positive family-parameter
+order** and an integral supporting lattice.  By contrast, A19.51--52 only
+force a later **spatial/longitudinal** monomial in the determinant-one special
+fibre.  A zero-defect polynomial family may even be parameter-constant, so
+positive family-parameter contact cannot be inferred merely from determinant
+one plus collision.
 
-1. **Same-blocker API.**  Do not return an unrelated existential endpoint from
-   the zero-strict-low producer.  Retain the actual presented blocker `D.blocker`
-   (or at minimum an equality identifying the endpoint blocker with it).
-2. **Zero-clock transport.**  Use pure-presentation `raw_eq` plus
-   `D.defect_eq` to derive `D.blocker.aligned.endpoint.defect = 0` from the
-   incoming `state.rawDefect = 0`.
-3. **Generic terminal contact level.**  Generalise/reuse the existing
-   direct-closing theorem proving that every nonzero terminal coefficient has
-   exact source contact level `R*q + weight = commonLevel`.
-4. **Permute both weights.**  Reuse the A19.38 permutation fixing coordinate
-   `0`; transport terminal support and the earlier exposure weight together.
-5. **Two-zero support.**  Reuse the standard two-zero doubling/support theorem
-   to get `e_2 + e_3 = 1` for every terminal support exponent after
-   standardisation.
-6. **Exclude `s=0`.**  Use nonemptiness of both planar components and the
-   strict inequality for `contactExponent`.
-7. **Layer bound.**  Derive `b_A+b_C <= 1` directly on supported exponents;
-   this may be easier in Lean than introducing `degreeOf` immediately.
-8. **Triangular planar lemma.**  Prove that a two-variable Keller pair whose
-   y-support satisfies the bound is injective.  Keep this state-free.
-9. **Splice locally.**  Use this theorem only for the zero-defect
-   same-blocker endpoint.  Do not alter the generic A19.38 JC2 endpoint until
-   the positive-defect branches are separately understood.
+Thus the present logical status is:
 
-## 9. Relation to the current codimension-two attack
+\[
+\text{zero-clock strict-low geometry}
+\quad\stackrel{?}{\Longrightarrow}\quad
+\text{same-blocker balanced positive first contact}
+\quad\Longrightarrow\quad
+\text{triangular planar contradiction}.
+\]
 
-The mixed Hessian calculations around a codimension-two exposed vertex were
-already forcing cone/one-direction behaviour.  The two-weight proof explains
-that phenomenon globally: once that branch is routed source-honestly into a
-zero-defect first-contact terminal, the retained exposure grading leaves room
-for total planar y-degree at most one.  The resulting Keller map is therefore
-triangular rather than a genuine arbitrary JC2 configuration.
+The second implication is the new paper result.  The first implication (or a
+replacement argument extracting the same degree collapse directly from the
+codimension-two geometry) is the genuine remaining mathematical seam.
+
+## 8. A useful equivalence check on the balanced weight
+
+For a generic doubling form
+
+\[
+F=zA(x,y)+wC(x,y)
+\]
+
+with `p = deg_y A` and `q = deg_y C`, a collision-preserving weight has the
+form
+
+\[
+W=(0,s,u,v).
+\]
+
+If the full top `y`-layers of both components survive at a zero-defect balanced
+level, the same inequalities used above give `p+q <= 1`.  Conversely, solving
+
+\[
+2\max(u+sp,\,v+sq)=s+u+v
+\]
+
+shows that for `p+q >= 2` no such positive balanced presentation can retain
+those two top layers.  This is a useful warning: existence of the balanced
+lattice is already essentially equivalent to the desired degree collapse in a
+generic planar presentation.  It must be forced by the extra HC4/strict-low
+geometry, not assumed as a harmless normalization.
+
+## 9. Lean / mathematics checklist
+
+1. **Do not reintroduce the old producer as an assumption.**  The live A19.53
+   object is producer-free; any new lattice must be constructed from its actual
+   retained source geometry.
+2. **Zero-clock transport is already green.**
+   `zeroStrictLow_zeroClockPacket` already proves the presented and blocker
+   defects are literally zero.
+3. **Separate spatial departure from parameter departure.**  The A19.52
+   `HasFirstExactSmithExponentLongitudinalDeparture` is a supported monomial in
+   the special fibre; it is not a positive parameter-order witness.
+4. **If an honest lattice is constructed, keep the same blocker.**  Then the
+   two-weight consumer applies without a generic JC2 assumption.
+5. **Generic terminal contact level.**  Generalise/reuse the existing
+   direct-closing theorem proving every nonzero terminal coefficient has exact
+   source contact level `R*q + weight = commonLevel`.
+6. **Permute both weights.**  Reuse the first-contact terminal permutation
+   fixing coordinate `0`; transport the earlier exposure weight with it.
+7. **Two-zero support.**  Reuse
+   `standardTwoZero_support_positivePairDegree_one`.
+8. **Triangular planar lemma.**  Keep the final `deg_y A + deg_y C <= 1`
+   injectivity statement state-free.
+9. **Alternative route.**  If balanced lattice construction is as hard as the
+   generic planar problem, use the codimension-two exposed top vertex directly:
+   the mixed determinant coefficients force unit departures / fixed-kernel
+   cone normal forms, which may feed the existing longitudinal/kernel-opening
+   infrastructure without ever constructing a planar endpoint.
+
+## 10. Relation to the current codimension-two attack
+
+The mixed Hessian calculations around a codimension-two exposed vertex force
+cone/one-direction behaviour.  For the exactly-two-positive-coordinate model,
+two independent departures satisfy
+
+\[
+-ABmn(m-1)(n-1)(D-1)=0,
+\]
+
+so one departure is primitive.  In the doubly primitive case the next
+coefficient gives proportional transverse exponents; in the asymmetric case
+the remaining coefficients force one active exponent of the vertex to be one
+and again produce a three-linear-form cone.
+
+This suggests the most promising unconditional continuation is to use the
+canonical exposed-vertex provenance to promote that local constant kernel to a
+source-honest top-face/kernel statement.  If that succeeds, the existing
+kernel-opening / longitudinal top-degree machinery can replace the missing
+balanced-lattice construction.  If it fails precisely because further support
+breaks the kernel, the first kernel-breaking support is the next canonical
+contact to analyse.
