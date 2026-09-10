@@ -7310,7 +7310,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock`
+- Declarations: `theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock`, `theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_nondegenerateSchurCoefficient`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 

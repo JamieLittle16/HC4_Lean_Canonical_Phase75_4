@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7364**.
+Distinct declaration spellings indexed: **7365**.
 
 ## Repeated declaration spellings
 
@@ -2282,6 +2282,7 @@ Distinct declaration spellings indexed: **7364**.
 - `QsOtherFacetRayReverseReesPackage.higherLongitudinalLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
 - `QsOtherFacetRayReverseReesPackage.no_ramifiedInternalMove_to_ray_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - `QsOtherFacetRayReverseReesPackage.pr_complementary_weights_lt_half_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
+- `QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_nondegenerateSchurCoefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
 - `QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
 - `QsOtherFacetRayReverseReesPackage.pr_omitted_weight_lt_longitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetRayReverseReesPackage.pr_raySchur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
