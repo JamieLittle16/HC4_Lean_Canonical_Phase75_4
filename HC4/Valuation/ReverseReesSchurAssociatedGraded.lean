@@ -224,31 +224,9 @@ theorem reverseWeightedRees_schurC_inflate_eq
     (MvPolynomial.C_ne_zero.mpr
       (pow_ne_zero _ Polynomial.X_ne_zero)) hs'
 
-/-- Parameter-first coefficient `n` of Schur `A` is an exact initial form of
-the actual source Schur polynomial. -/
-theorem reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm
-    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
-    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
-    (hloss : reverseReesSchurALoss w rho ≤ 3 * D)
-    (hn : n ≤ 3 * D - reverseReesSchurALoss w rho) :
-    let Q := reverseWeightedReesFamily w D F h
-    let H := permutedFamilyHessianFourBlock rho Q
-    let HF := permutedPolynomialHessianFourBlock rho F
-    H.schurA.coeff n =
-      initialForm (fun i => (w i : ℤ))
-        (((3 * D - reverseReesSchurALoss w rho) - n : ℕ) : ℤ)
-        HF.schurA := by
-  dsimp
-  rw [permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv,
-    parameterFirstEquiv_coeff]
-  exact congrArg (fun P => MvPolynomial.coeff (0 : Fin 4 →₀ ℕ) P)
-    (by
-      -- the equality itself is polynomial-valued; `exact` below avoids any
-      -- source evaluation and keeps the whole associated-graded polynomial.
-      skip)
+/-! ## Exact associated-graded coefficients -/
 
-/-- Whole-polynomial form of the previous theorem, used internally and by the
-ray specialization. -/
+/-- Whole source-first Schur-`A` layer is an exact source initial form. -/
 theorem reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm
     (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
     (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
@@ -264,6 +242,100 @@ theorem reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm
     w (3 * D - reverseReesSchurALoss w rho) n
   · exact reverseWeightedRees_schurA_inflate_eq w D F h rho hloss
   · exact hn
+
+/-- Whole source-first Schur-`B` layer is an exact source initial form. -/
+theorem reverseWeightedRees_familyParameterLayer_schurB_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
+    (hloss : reverseReesSchurBLoss w rho ≤ 3 * D)
+    (hn : n ≤ 3 * D - reverseReesSchurBLoss w rho) :
+    familyParameterLayer
+        (permutedPolynomialHessianFourBlock rho
+          (reverseWeightedReesFamily w D F h)).schurB n =
+      initialForm (fun i => (w i : ℤ))
+        (((3 * D - reverseReesSchurBLoss w rho) - n : ℕ) : ℤ)
+        (permutedPolynomialHessianFourBlock rho F).schurB := by
+  apply familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
+    w (3 * D - reverseReesSchurBLoss w rho) n
+  · exact reverseWeightedRees_schurB_inflate_eq w D F h rho hloss
+  · exact hn
+
+/-- Whole source-first Schur-`C` layer is an exact source initial form. -/
+theorem reverseWeightedRees_familyParameterLayer_schurC_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
+    (hloss : reverseReesSchurCLoss w rho ≤ 3 * D)
+    (hn : n ≤ 3 * D - reverseReesSchurCLoss w rho) :
+    familyParameterLayer
+        (permutedPolynomialHessianFourBlock rho
+          (reverseWeightedReesFamily w D F h)).schurC n =
+      initialForm (fun i => (w i : ℤ))
+        (((3 * D - reverseReesSchurCLoss w rho) - n : ℕ) : ℤ)
+        (permutedPolynomialHessianFourBlock rho F).schurC := by
+  apply familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
+    w (3 * D - reverseReesSchurCLoss w rho) n
+  · exact reverseWeightedRees_schurC_inflate_eq w D F h rho hloss
+  · exact hn
+
+/-- Parameter-first coefficient `n` of Schur `A` is the same exact source
+initial form. -/
+theorem reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
+    (hloss : reverseReesSchurALoss w rho ≤ 3 * D)
+    (hn : n ≤ 3 * D - reverseReesSchurALoss w rho) :
+    let Q := reverseWeightedReesFamily w D F h
+    let H := permutedFamilyHessianFourBlock rho Q
+    let HF := permutedPolynomialHessianFourBlock rho F
+    H.schurA.coeff n =
+      initialForm (fun i => (w i : ℤ))
+        (((3 * D - reverseReesSchurALoss w rho) - n : ℕ) : ℤ)
+        HF.schurA := by
+  dsimp
+  rw [permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv,
+    parameterFirstEquiv_coeff]
+  exact reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm
+    w D n F h rho hloss hn
+
+/-- Parameter-first coefficient `n` of Schur `B` is an exact source initial
+form. -/
+theorem reverseWeightedRees_parameterFirstSchurB_coeff_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
+    (hloss : reverseReesSchurBLoss w rho ≤ 3 * D)
+    (hn : n ≤ 3 * D - reverseReesSchurBLoss w rho) :
+    let Q := reverseWeightedReesFamily w D F h
+    let H := permutedFamilyHessianFourBlock rho Q
+    let HF := permutedPolynomialHessianFourBlock rho F
+    H.schurB.coeff n =
+      initialForm (fun i => (w i : ℤ))
+        (((3 * D - reverseReesSchurBLoss w rho) - n : ℕ) : ℤ)
+        HF.schurB := by
+  dsimp
+  rw [permutedFamilyHessianFourBlock_schurB_eq_parameterFirstEquiv,
+    parameterFirstEquiv_coeff]
+  exact reverseWeightedRees_familyParameterLayer_schurB_eq_initialForm
+    w D n F h rho hloss hn
+
+/-- Parameter-first coefficient `n` of Schur `C` is an exact source initial
+form. -/
+theorem reverseWeightedRees_parameterFirstSchurC_coeff_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (rho : Equiv.Perm (Fin 4))
+    (hloss : reverseReesSchurCLoss w rho ≤ 3 * D)
+    (hn : n ≤ 3 * D - reverseReesSchurCLoss w rho) :
+    let Q := reverseWeightedReesFamily w D F h
+    let H := permutedFamilyHessianFourBlock rho Q
+    let HF := permutedPolynomialHessianFourBlock rho F
+    H.schurC.coeff n =
+      initialForm (fun i => (w i : ℤ))
+        (((3 * D - reverseReesSchurCLoss w rho) - n : ℕ) : ℤ)
+        HF.schurC := by
+  dsimp
+  rw [permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv,
+    parameterFirstEquiv_coeff]
+  exact reverseWeightedRees_familyParameterLayer_schurC_eq_initialForm
+    w D n F h rho hloss hn
 
 end
 
