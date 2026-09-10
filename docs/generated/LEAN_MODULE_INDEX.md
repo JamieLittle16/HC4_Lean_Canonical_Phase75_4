@@ -2151,7 +2151,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.WeightedInitial`
 - External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.LinearAlgebra.Matrix.Defs`
-- Imported by local modules: `HC4.Newton.TerminalPermutedGradient`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeBounds`, `HC4.Polynomial.DeterminantWeight`
+- Imported by local modules: `HC4.Newton.TerminalPermutedGradient`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeBounds`, `HC4.Polynomial.DeterminantWeight`, `HC4.Valuation.ReverseReesAssociatedGraded`
 - Declarations: `theorem pderiv_isWeightedHomogeneous`, `theorem pderiv_initialForm`, `def hessian`, `theorem hessian_apply`, `theorem hessian_entry_isWeightedHomogeneous`, `theorem hessian_initialForm_entry`
 
 ### `HC4.Polynomial.DeterminantWeight`
@@ -9599,7 +9599,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.SmithFrontierFourBlockExtraction`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.ReverseReesHessianParameterBudget`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySourceSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`, `HC4.Valuation.ReverseReesAssociatedGraded`, `HC4.Valuation.ReverseReesHessianParameterBudget`
 - Declarations: `theorem optionEquivRight_monomial`, `theorem optionEquivRight_coeff_coeff`, `theorem parameterFirstEquiv_coeff`, `theorem parameterFirstHessian_coeff`
 
 ### `HC4.Valuation.ParameterRamification`
@@ -9697,10 +9697,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/ReverseReesAssociatedGraded.lean`
 - Purpose: Associated graded layers of the bounded reverse Rees family
 - A-labels: none detected
-- Local imports: `HC4.Valuation.BoundedReverseWeightedRees`
+- Local imports: `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Polynomial.DerivativeWeight`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
-- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`
+- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`
 
 ### `HC4.Valuation.ReverseReesHessianParameterBudget`
 

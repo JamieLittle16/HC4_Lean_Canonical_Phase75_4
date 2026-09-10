@@ -3213,7 +3213,9 @@ human architecture guide.
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `HC4.Valuation.ReverseReesAssociatedGraded`
+  - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Valuation.BoundedReverseWeightedRees`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
 - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Valuation.BoundedReverseWeightedRees`
