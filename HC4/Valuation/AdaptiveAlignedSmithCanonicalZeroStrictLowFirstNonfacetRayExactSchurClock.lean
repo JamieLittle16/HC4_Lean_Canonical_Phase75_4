@@ -119,6 +119,43 @@ theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_schurClock
     exact ⟨S, rfl, Or.inr ⟨hp, rfl⟩, hpre,
       S.offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre⟩
 
+/-- At the first preterminal ray-Schur order the aligned binary coefficient
+block is already nondegenerate.  This is a statement only about the honest
+reverse-Rees family built from the terminal source; it does not identify that
+auxiliary clock with the zero-defect blocker and asserts no global progress.
+
+The key point is that exact-clock algebra kills the kernel coefficient below
+closure while the off-diagonal coefficient is nonzero.  Hence the determinant
+of the coefficient block is the literal negative square `-B^2`. -/
+theorem QsOtherFacetRayReverseReesPackage.pr_exists_exact_preterminal_nondegenerateSchurCoefficient
+    (R : QsOtherFacetRayReverseReesPackage C)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (hout : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let H := permutedFamilyHessianFourBlock qsPrSuperfaceSchurPermutation
+      (reverseWeightedReesFamily R.weight R.level
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) R.bound)
+    ∃ S : ExactRankOneSchurClockAt (MvPolynomial (Fin 4) K),
+      S.defect = 4 * R.level - 2 * ∑ i : Fin 4, R.weight i ∧
+      ((∃ h : H.polynomialSchurSeries.LeftPivot,
+          S.series = H.polynomialSchurSeries.alignLeft h) ∨
+        (∃ h : H.polynomialSchurSeries.RightAxisPivot,
+          S.series = H.polynomialSchurSeries.alignRight h)) ∧
+      S.firstOrder < S.defect ∧
+      S.series.offDiag.coeff S.firstOrder ≠ 0 ∧
+      S.series.kernel.coeff S.firstOrder = 0 ∧
+      S.series.active.coeff S.firstOrder *
+          S.series.kernel.coeff S.firstOrder -
+        S.series.offDiag.coeff S.firstOrder *
+          S.series.offDiag.coeff S.firstOrder ≠ 0 := by
+  rcases R.pr_exists_exact_preterminal_schurClock hthree hout with
+    ⟨S, hdef, halign, hpre, hoff⟩
+  have hkernel : S.series.kernel.coeff S.firstOrder = 0 :=
+    S.kernel_coeff_firstOrder_eq_zero_of_preterminal hpre
+  refine ⟨S, hdef, halign, hpre, hoff, hkernel, ?_⟩
+  rw [hkernel]
+  simp only [mul_zero, zero_sub]
+  exact neg_ne_zero.mpr (mul_ne_zero hoff hoff)
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 end
 end HC4.Valuation
