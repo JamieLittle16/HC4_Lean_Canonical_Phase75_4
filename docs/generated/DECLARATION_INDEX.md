@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7360**.
+Distinct declaration spellings indexed: **7364**.
 
 ## Repeated declaration spellings
 
@@ -69,6 +69,7 @@ Distinct declaration spellings indexed: **7360**.
 - `impossible_of_JC2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2`
 - `impossible_of_noSecondMarkedZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `integralWeight_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `lemma` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `leftPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -2855,6 +2856,10 @@ Distinct declaration spellings indexed: **7360**.
 - `balanced_zero_character_as_generators` — `theorem` in `HC4.Toric.BranchCharacter`
 - `balanced_zero_character_normal_form` — `theorem` in `HC4.Toric.BranchCharacter`
 - `basePotential` — `def` in `HC4.Toric.ClassifiedSupport`
+- `bigradedHessianCoupledKernelBlock` — `def` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `bigradedHessianCoupledKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `bigradedHessianCoupledKernelBlock_euler_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `bigradedHessianCoupledKernelBlock_kernel_or_minor_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `binaryAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `binaryAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `binaryAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
@@ -4659,7 +4664,7 @@ Distinct declaration spellings indexed: **7360**.
 - `integralZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
 - `intersection_exposed` — `theorem` in `HC4.Newton.ExposedFaces`
 - `introduced_exponent_eq_one_of_rankThree_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
-- `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`
+- `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `lemma` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `isMongeAmpere_pullback` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `isPoleMinimalAgainstSmithSeparators_iff_no_strictImprovement` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `isPolynomialMongeAmpere_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`

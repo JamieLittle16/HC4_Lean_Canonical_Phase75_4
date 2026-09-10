@@ -1095,12 +1095,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Newton.LongitudinalHessianCoupledKernel`
 
 - Path: `HC4/Newton/LongitudinalHessianCoupledKernel.lean`
-- Purpose: Euler cancellation with the leading mixed kernel derivatives retained
+- Purpose: Euler cancellation with leading mixed kernel derivatives retained
 - A-labels: none detected
 - Local imports: `HC4.Newton.LongitudinalHessianTopDegree`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `def longitudinalHessianCoupledKernelBlock`, `theorem longitudinalHessianCoupledKernelBlock_determinant`, `theorem binary_euler_adjugate_quadratic`, `theorem longitudinalHessianCoupledKernelBlock_euler_determinant`, `theorem longitudinalHessianCoupledKernelBlock_kernel_or_minor_eq_zero`
+- Declarations: `def longitudinalHessianCoupledKernelBlock`, `theorem longitudinalHessianCoupledKernelBlock_determinant`, `theorem binary_euler_adjugate_quadratic`, `theorem longitudinalHessianCoupledKernelBlock_euler_determinant`, `theorem longitudinalHessianCoupledKernelBlock_kernel_or_minor_eq_zero`, `def bigradedHessianCoupledKernelBlock`, `theorem bigradedHessianCoupledKernelBlock_determinant`, `theorem bigradedHessianCoupledKernelBlock_euler_determinant`, `lemma is`, `theorem bigradedHessianCoupledKernelBlock_kernel_or_minor_eq_zero`
 
 ### `HC4.Newton.LongitudinalHessianTopDegree`
 
