@@ -9219,7 +9219,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.AdaptiveSmithWallExposure`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.ReverseReesAssociatedGraded`
 - Declarations: `theorem permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom`, `theorem schurA_adaptiveSmithInflateHom`, `theorem schurB_adaptiveSmithInflateHom`, `theorem schurC_adaptiveSmithInflateHom`, `theorem permutedPolynomialHessianFourBlock_constantPolynomialFamily`, `theorem schurA_C_mul`, `theorem schurB_C_mul`, `theorem schurC_C_mul`
 
 ### `HC4.Valuation.AdaptiveSmithWallExposure`
@@ -9707,10 +9707,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/ReverseReesAssociatedGraded.lean`
 - Purpose: Associated graded layers of the bounded reverse Rees family
 - A-labels: none detected
-- Local imports: `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Polynomial.DerivativeWeight`
+- Local imports: `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Valuation.AdaptiveSmithFourBlockCovariance`, `HC4.Polynomial.DerivativeWeight`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
-- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`
+- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`, `theorem reverseWeightedRees_schurA_normalization`, `theorem reverseWeightedRees_schurB_normalization`, `theorem reverseWeightedRees_schurC_normalization`
 
 ### `HC4.Valuation.ReverseReesHessianParameterBudget`
 
