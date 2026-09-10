@@ -9710,7 +9710,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Valuation.AdaptiveSmithFourBlockCovariance`, `HC4.Polynomial.DerivativeWeight`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`
-- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`, `theorem reverseWeightedRees_schurA_normalization`, `theorem reverseWeightedRees_schurB_normalization`, `theorem reverseWeightedRees_schurC_normalization`
+- Declarations: `theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq`, `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`, `theorem reverseWeightedRees_schurA_normalization`, `theorem reverseWeightedRees_schurB_normalization`, `theorem reverseWeightedRees_schurC_normalization`
 
 ### `HC4.Valuation.ReverseReesHessianParameterBudget`
 

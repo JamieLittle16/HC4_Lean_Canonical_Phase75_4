@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7378**.
+Distinct declaration spellings indexed: **7379**.
 
 ## Repeated declaration spellings
 
@@ -4049,6 +4049,7 @@ Distinct declaration spellings indexed: **7378**.
 - `familyParameterLayer_coeff` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_eq_firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
+- `familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
