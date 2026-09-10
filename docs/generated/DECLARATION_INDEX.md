@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7371**.
+Distinct declaration spellings indexed: **7375**.
 
 ## Repeated declaration spellings
 
@@ -5353,6 +5353,7 @@ Distinct declaration spellings indexed: **7371**.
 - `permutedPolynomialHessianFourBlock` — `def` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_activeDet` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
+- `permutedPolynomialHessianFourBlock_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `permutedPolynomialHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedPolynomialHessianFourBlock_determinantCore_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantInflation`
 - `permutedPolynomialHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
@@ -6548,11 +6549,13 @@ Distinct declaration spellings indexed: **7371**.
 - `scaledWeight_le_of_lexDominates` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `scaledWeight_lt_of_primary_lt` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `schurA` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
+- `schurA_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
+- `schurB_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurB_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
@@ -6562,6 +6565,7 @@ Distinct declaration spellings indexed: **7371**.
 - `schurBlock_detCore_eq_zero_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurBlock_eq_chartBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
 - `schurC` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
+- `schurC_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`

@@ -9220,7 +9220,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.AdaptiveSmithWallExposure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom`, `theorem schurA_adaptiveSmithInflateHom`, `theorem schurB_adaptiveSmithInflateHom`, `theorem schurC_adaptiveSmithInflateHom`
+- Declarations: `theorem permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom`, `theorem schurA_adaptiveSmithInflateHom`, `theorem schurB_adaptiveSmithInflateHom`, `theorem schurC_adaptiveSmithInflateHom`, `theorem permutedPolynomialHessianFourBlock_constantPolynomialFamily`, `theorem schurA_C_mul`, `theorem schurB_C_mul`, `theorem schurC_C_mul`
 
 ### `HC4.Valuation.AdaptiveSmithWallExposure`
 
