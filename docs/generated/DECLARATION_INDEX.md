@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7379**.
+Distinct declaration spellings indexed: **7391**.
 
 ## Repeated declaration spellings
 
@@ -3359,6 +3359,7 @@ Distinct declaration spellings indexed: **7379**.
 - `commonParameterFactor_one_exactCollision_and_strictRestart` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `commonParameterFactor_one_hasHessianDefect_sub_four` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `commonParameterFactor_one_strictGlobalRestart` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
+- `common_parameter_cube` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `common_r_s_levels_eq_zero` — `theorem` in `HC4.Toric.SupportIntersection`
 - `common_r_s_support_on_pq_cone` — `theorem` in `HC4.Toric.SupportIntersection`
 - `comp_X_pow_eq_zero_of_pos` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
@@ -6325,6 +6326,9 @@ Distinct declaration spellings indexed: **7379**.
 - `reverseFacet` — `def` in `HC4.Toric.Facets`
 - `reversePoint` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reversePointEquiv` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
+- `reverseReesSchurALoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseReesSchurBLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseReesSchurCLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseSet` — `def` in `HC4.Toric.BranchReversal`
 - `reverseWeightedReesFamily` — `def` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_actualLayerOrder_le_level` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
@@ -6335,11 +6339,16 @@ Distinct declaration spellings indexed: **7379**.
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_fourBlockParameterBudget` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `reverseWeightedRees_parameterFirstHessian_budget` — `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
+- `reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseWeightedRees_schurA_inflate_eq` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_schurA_normalization` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
+- `reverseWeightedRees_schurB_inflate_eq` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_schurB_normalization` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
+- `reverseWeightedRees_schurC_inflate_eq` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_schurC_normalization` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `reverse_exposedFace` — `theorem` in `HC4.Newton.Equivariance`
 - `reverse_rGradientInverse_reverse` — `theorem` in `HC4.ClassifiedFamilies.BranchConjugacy`
@@ -6556,12 +6565,14 @@ Distinct declaration spellings indexed: **7379**.
 - `schurA_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurA_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurB_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurB_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurB_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `schurB_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurBlock` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`
@@ -6572,6 +6583,7 @@ Distinct declaration spellings indexed: **7379**.
 - `schurC_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
+- `schurC_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`

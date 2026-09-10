@@ -3224,6 +3224,9 @@ human architecture guide.
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Valuation.BoundedReverseWeightedRees`
   - `HC4.Valuation.ParameterFirstLayerBridge`
+- `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+  - `HC4.Valuation.PermutedFamilyHessianFourBlock`
+  - `HC4.Valuation.ReverseReesAssociatedGraded`
 - `HC4.Valuation.ReverseReesSchurParameterBudget`
   - `HC4.Newton.RankOneSchurSeriesAlignment`
   - `HC4.Valuation.PermutedFamilyHessianFourBlock`
