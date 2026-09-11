@@ -753,6 +753,7 @@ human architecture guide.
   - `HC4.Polynomial.AutonomousODEQuadraticRigidity`
   - `HC4.Polynomial.AutonomousODEReconstruction`
   - `HC4.Polynomial.AutonomousODETranslation`
+  - `HC4.Polynomial.BinarySchurProjectiveMotion`
   - `HC4.Polynomial.ComplementaryEdgeAssembly`
   - `HC4.Polynomial.ComplementaryEdgeRigidity`
   - `HC4.Polynomial.ComplementaryFractionBridge`
