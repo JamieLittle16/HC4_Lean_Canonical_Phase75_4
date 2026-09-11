@@ -789,6 +789,8 @@ human architecture guide.
   - `HC4.Polynomial.AutonomousODERootFactorisation`
 - `HC4.Polynomial.AutonomousODETranslation`
   - `HC4.Polynomial.AutonomousODEPolynomialDegree`
+- `HC4.Polynomial.BinarySchurProjectiveMotion`
+  - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Polynomial.ComplementaryEdgeAssembly`
   - `HC4.Polynomial.ComplementaryLogHessian`
   - `HC4.Polynomial.LogarithmicInitialSlope`

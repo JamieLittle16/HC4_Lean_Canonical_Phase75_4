@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7395**.
+Distinct declaration spellings indexed: **7402**.
 
 ## Repeated declaration spellings
 
@@ -2938,6 +2938,13 @@ Distinct declaration spellings indexed: **7395**.
 - `binaryOrdinary_isWeightedHomogeneous_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryOutsideSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryProfileClock` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
+- `binarySchurDerivativeDet` — `def` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurDerivativeDet_ne_zero_of_scaledMotion` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurDerivativeDet_ne_zero_of_wedge` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurDerivativeDet_negativeSquare` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurProjectiveWedge` — `def` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurProjectiveWedge_ne_zero_of_scaledRelation` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
+- `binarySchurProjectiveWedge_scaledRelation` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySecondContact_level_lt_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binarySingleCoordinateWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binarySingularHessian_crossComponent_recurrence_integer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseRecurrence`
