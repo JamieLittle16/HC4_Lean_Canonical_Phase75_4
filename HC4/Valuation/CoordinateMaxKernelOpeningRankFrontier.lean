@@ -92,7 +92,20 @@ theorem kernelLastFamilyHessianFourBlock_determinantCore_eq_zero
       parameterFirstHessian_det P
     _ = 0 := by rw [hdet]; simp
 
-namespace HC4.Newton.CanonicalCoordinateMaxKernelOpeningData
+end
+end HC4.Valuation
+
+namespace HC4.Newton
+
+noncomputable section
+
+open HC4.Polynomial
+open HC4.Valuation
+open scoped Matrix
+
+variable {K : Type*} [Field K] [CharZero K]
+
+namespace CanonicalCoordinateMaxKernelOpeningData
 
 variable {F : MvPolynomial (Fin 4) K}
 variable (D : CanonicalCoordinateMaxKernelOpeningData F)
@@ -234,8 +247,7 @@ noncomputable def rankFrontier
     exact .activeThree (by simpa [B] using hactive)
       (by simpa [B, hrow, hzero, E] using E.exists_nonzero_principalMinor_at_order)
 
-end HC4.Newton.CanonicalCoordinateMaxKernelOpeningData
+end CanonicalCoordinateMaxKernelOpeningData
 
 end
-
-end HC4.Valuation
+end HC4.Newton
