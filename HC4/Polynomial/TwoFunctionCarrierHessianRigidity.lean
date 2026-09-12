@@ -19,9 +19,11 @@ concrete factorisation then has the form
 
     nonzero_monomial_prefactor * A * B = 0.
 
-Under `V>0`, `ell>0` and `A != 0`, the prefactor is nonzero in the
-multivariate polynomial domain, hence `B=0`.  The concrete coefficient
-extraction theorem then contradicts `a,b,Q' != 0` in characteristic zero.
+The first factor `A` needs no extra source-facing nonvanishing hypothesis:
+when `ell>0` and `Q'!=0`, differentiating `A` in `x` and then specialising
+`z=0, y=X, w=1` gives `X Q'`, so `A` cannot vanish.  The remaining monomial
+prefactor is nonzero for `V,ell>0`; hence `B=0`, and the concrete coefficient
+extraction theorem contradicts `a,b,Q' != 0` in characteristic zero.
 -/
 
 namespace HC4.Polynomial
@@ -30,13 +32,12 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- **Complete two-function carrier contradiction.** -/
-theorem twoFunctionCarrier_hessian_impossible
-    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
-    (a b : K) (ha : a ≠ 0) (hb : b ≠ 0)
-    (P Q : Polynomial K) (hQ1 : Q.derivative ≠ 0)
-    (hA :
-      twoFunctionEulerFactorA
+/-- Differentiating the concrete first Euler factor in `x` isolates a term
+whose `H=0` specialisation is `X * Q'`. -/
+theorem pderiv_zero_twoFunctionEulerFactorA
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    MvPolynomial.pderiv (0 : Fin 4)
+      (twoFunctionEulerFactorA
         V ell
         (MvPolynomial.X (0 : Fin 4))
         (MvPolynomial.X (2 : Fin 4))
@@ -45,7 +46,46 @@ theorem twoFunctionCarrier_hessian_impossible
         (MvPolynomial.C a)
         (MvPolynomial.C b)
         (polynomialLift (twoFunctionY (K := K) V) Q.derivative)
-        (polynomialLift (twoFunctionY (K := K) V) P.derivative) ≠ 0)
+        (polynomialLift (twoFunctionY (K := K) V) P.derivative)) =
+      twoFunctionY (K := K) V *
+          polynomialLift (twoFunctionY (K := K) V) Q.derivative +
+        twoFunctionH (K := K) V ^ ell *
+          (MvPolynomial.C b * MvPolynomial.C (ell : K)) := by
+  simp [twoFunctionEulerFactorA, pderiv_polynomialLift,
+    twoFunctionY, twoFunctionH, MvPolynomial.pderiv_mul,
+    MvPolynomial.pderiv_pow]
+  ring
+
+/-- The first determinant factor is automatically nonzero once the primitive
+`Q` direction is genuinely nonlinear.  No separate locked-ray `A != 0`
+hypothesis is needed downstream. -/
+theorem twoFunctionEulerFactorA_ne_zero
+    (V ell : ℕ) (hell : 0 < ell)
+    (a b : K) (P Q : Polynomial K)
+    (hQ1 : Q.derivative ≠ 0) :
+    twoFunctionEulerFactorA
+        V ell
+        (MvPolynomial.X (0 : Fin 4))
+        (MvPolynomial.X (2 : Fin 4))
+        (twoFunctionY (K := K) V)
+        (twoFunctionH (K := K) V)
+        (MvPolynomial.C a)
+        (MvPolynomial.C b)
+        (polynomialLift (twoFunctionY (K := K) V) Q.derivative)
+        (polynomialLift (twoFunctionY (K := K) V) P.derivative) ≠ 0 := by
+  intro hA
+  have hd := congrArg (MvPolynomial.pderiv (0 : Fin 4)) hA
+  rw [pderiv_zero_twoFunctionEulerFactorA] at hd
+  have hs := congrArg (twoFunctionYSpecialisation (K := K)) hd
+  have hXQ : Polynomial.X * Q.derivative = 0 := by
+    simpa [hell.ne'] using hs
+  exact (mul_ne_zero Polynomial.X_ne_zero hQ1) hXQ
+
+/-- **Complete two-function carrier contradiction.** -/
+theorem twoFunctionCarrier_hessian_impossible
+    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
+    (a b : K) (ha : a ≠ 0) (hb : b ≠ 0)
+    (P Q : Polynomial K) (hQ1 : Q.derivative ≠ 0)
     (hdet : hessianDeterminant (twoFunctionCarrier V ell a b P Q) = 0) :
     False := by
   let R := MvPolynomial (Fin 4) K
@@ -91,7 +131,8 @@ theorem twoFunctionCarrier_hessian_impossible
     exact mul_ne_zero MvPolynomial.X_ne_zero
       (pow_ne_zero _ MvPolynomial.X_ne_zero)
   have hA' : A ≠ 0 := by
-    simpa [A, Y, H, q1, p1, R] using hA
+    simpa [A, Y, H, q1, p1, R] using
+      (twoFunctionEulerFactorA_ne_zero V ell hell a b P Q hQ1)
 
   have h1 : (V : R) * (ell : R) ≠ 0 := mul_ne_zero hV0 hell0
   have h2 : (V : R) * (ell : R) * ((V : R) + 1) ≠ 0 :=
