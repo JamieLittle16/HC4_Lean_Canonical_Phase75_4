@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7584**.
+Distinct declaration spellings indexed: **7591**.
 
 ## Repeated declaration spellings
 
@@ -5392,6 +5392,7 @@ Distinct declaration spellings indexed: **7584**.
 - `ordinarySourceVectorTopDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `ordinarySourceVectorTopDegree_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `ordinarySourceVector_component_isWeightLE` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
+- `ordinaryTopNatWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
 - `ordinaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`, `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
 - `ordinaryWeightLT_one_eq_C_constantCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`
 - `originExponent` — `def` in `HC4.Toric.BoundaryGeometry`
@@ -7503,6 +7504,12 @@ Distinct declaration spellings indexed: **7584**.
 - `topFace_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `topKernelReesSource` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+- `topKernelReesSource_hasReverseWeightBound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+- `topKernelReesSource_hessianDeterminant_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+- `topKernelReverseReesFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+- `topKernelReverseRees_evalOne_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+- `topKernelReverseRees_specialFiber_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
 - `topKernel_rankTwo_or_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `toric_exponent_relation` — `theorem` in `HC4.Toric.InvariantSemigroup`
 - `totalDegree_rigidTopBinaryPlaneSpecialisation_monomial_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
