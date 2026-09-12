@@ -47,7 +47,19 @@ theorem weight_coordinateMaxNatWeight
   · intro j
     simp
 
-namespace HC4.Newton.CanonicalCoordinateMaxKernelOpeningData
+end
+end HC4.Valuation
+
+namespace HC4.Newton
+
+noncomputable section
+
+open HC4.Polynomial
+open HC4.Valuation
+
+variable {K : Type*} [Field K] [CharZero K]
+
+namespace CanonicalCoordinateMaxKernelOpeningData
 
 variable {F : MvPolynomial (Fin 4) K}
 variable (D : CanonicalCoordinateMaxKernelOpeningData F)
@@ -161,8 +173,7 @@ theorem exists_parameterFirstHessian_kernelRow_ne_zero
   rw [hleft] at hrecovered
   exact hi hrecovered.symm
 
-end HC4.Newton.CanonicalCoordinateMaxKernelOpeningData
+end CanonicalCoordinateMaxKernelOpeningData
 
 end
-
-end HC4.Valuation
+end HC4.Newton
