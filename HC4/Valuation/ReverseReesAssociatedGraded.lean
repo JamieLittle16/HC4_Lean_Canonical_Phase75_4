@@ -88,8 +88,11 @@ theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
       omega
     by_cases hle : E ≤ Finsupp.weight w d + n
     · have hpos : 0 < Finsupp.weight w d + n - E := by omega
+      have hne : Finsupp.weight w d + n - E ≠ 0 := Nat.ne_of_gt hpos
       rw [Polynomial.coeff_X_pow_mul'] at hcoeff
-      simp [hle, Nat.ne_of_gt hpos] at hcoeff
+      simp only [if_pos hle] at hcoeff
+      rw [Polynomial.coeff_C] at hcoeff
+      simp [hne] at hcoeff
       simpa [hwz] using hcoeff
     · rw [Polynomial.coeff_X_pow_mul'] at hcoeff
       simp [hle] at hcoeff
