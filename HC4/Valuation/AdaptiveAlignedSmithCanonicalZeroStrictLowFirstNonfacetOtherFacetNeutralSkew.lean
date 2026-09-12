@@ -93,7 +93,7 @@ theorem sum_qsOtherFacetSkewWeight_eq_two_level
     (next : ToricFacet) :
     ∑ i : Fin 4, qsOtherFacetSkewWeight C next i =
       2 * qsOtherFacetSkewLevel C next := by
-  fin_cases next <;>
+  cases next <;>
     simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel,
       Fin.sum_univ_four] <;> ring
 
@@ -104,7 +104,6 @@ private theorem weight_explicit_fin4
       a 2 * (e 2 : ℤ) + a 3 * (e 3 : ℤ) := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    push_cast
     ring
   · intro i
     simp
@@ -121,8 +120,7 @@ theorem qsOtherFacetSkewWeight_facet_eq_level
       qsOtherFacetSkewLevel C next := by
   have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
     (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
-  fin_cases next
-  · exact (hne rfl).elim
+  cases next
   · have harith := C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree
     have hfacet1 : C.ray.facetExponent (1 : Fin 4) = 1 := harith.1
     have hcrossZ :
@@ -133,16 +131,6 @@ theorem qsOtherFacetSkewWeight_facet_eq_level
     simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel,
       hfacet0, hfacet1]
     nlinarith
-  · have harith := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
-    have hfacet2 : C.ray.facetExponent (2 : Fin 4) = 1 := harith.1
-    have hcrossZ :
-        (C.ray.facetExponent 1 : ℤ) * C.ray.outsideExponent 3 =
-          (C.ray.facetExponent 3 : ℤ) * C.ray.outsideExponent 1 := by
-      exact_mod_cast harith.2
-    rw [weight_explicit_fin4]
-    simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel,
-      hfacet0, hfacet2]
-    nlinarith
   · have harith := C.qs_ray_rq_outside_base_eq_one_and_cross hthree houtThree
     have hfacet3 : C.ray.facetExponent (3 : Fin 4) = 1 := harith.1
     have hcrossZ :
@@ -152,6 +140,17 @@ theorem qsOtherFacetSkewWeight_facet_eq_level
     rw [weight_explicit_fin4]
     simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel,
       hfacet0, hfacet3]
+    nlinarith
+  · exact (hne rfl).elim
+  · have harith := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
+    have hfacet2 : C.ray.facetExponent (2 : Fin 4) = 1 := harith.1
+    have hcrossZ :
+        (C.ray.facetExponent 1 : ℤ) * C.ray.outsideExponent 3 =
+          (C.ray.facetExponent 3 : ℤ) * C.ray.outsideExponent 1 := by
+      exact_mod_cast harith.2
+    rw [weight_explicit_fin4]
+    simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel,
+      hfacet0, hfacet2]
     nlinarith
 
 /-- The skew takes the same level on the lower other-facet endpoint. -/
@@ -166,8 +165,7 @@ theorem qsOtherFacetSkewWeight_outside_eq_level
       qsOtherFacetSkewLevel C next := by
   have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
-  fin_cases next
-  · exact (hne rfl).elim
+  cases next
   · have hout := (mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree
     rcases hout with ⟨hout1, _hout0, _hout2, _hout3⟩
     have harith := C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree
@@ -178,16 +176,6 @@ theorem qsOtherFacetSkewWeight_outside_eq_level
     rw [weight_explicit_fin4]
     simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel, hout0, hout1]
     nlinarith
-  · have hout := (mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree
-    rcases hout with ⟨hout2, _hout0, _hout1, _hout3⟩
-    have harith := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
-    have hcrossZ :
-        (C.ray.facetExponent 1 : ℤ) * C.ray.outsideExponent 3 =
-          (C.ray.facetExponent 3 : ℤ) * C.ray.outsideExponent 1 := by
-      exact_mod_cast harith.2
-    rw [weight_explicit_fin4]
-    simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel, hout0, hout2]
-    nlinarith
   · have hout := (mvRankThreeOnFacet_iff .rq C.ray.outsideExponent).1 houtThree
     rcases hout with ⟨hout3, _hout0, _hout1, _hout2⟩
     have harith := C.qs_ray_rq_outside_base_eq_one_and_cross hthree houtThree
@@ -197,6 +185,17 @@ theorem qsOtherFacetSkewWeight_outside_eq_level
       exact_mod_cast harith.2
     rw [weight_explicit_fin4]
     simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel, hout0, hout3]
+    nlinarith
+  · exact (hne rfl).elim
+  · have hout := (mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree
+    rcases hout with ⟨hout2, _hout0, _hout1, _hout3⟩
+    have harith := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
+    have hcrossZ :
+        (C.ray.facetExponent 1 : ℤ) * C.ray.outsideExponent 3 =
+          (C.ray.facetExponent 3 : ℤ) * C.ray.outsideExponent 1 := by
+      exact_mod_cast harith.2
+    rw [weight_explicit_fin4]
+    simp [qsOtherFacetSkewWeight, qsOtherFacetSkewLevel, hout0, hout2]
     nlinarith
 
 /-- Because the locked ray has exactly its two degree-one endpoints, the skew
@@ -248,22 +247,12 @@ theorem qsOtherFacetSkewWeight_independent_witness
     ∃ i : Fin 4,
       qsOtherFacetPairWeight next i = 0 ∧
       qsOtherFacetSkewWeight C next i ≠ 0 := by
-  fin_cases next
-  · exact (hne rfl).elim
+  cases next
   · have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
     have hout := (mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree
     rcases hbase with ⟨_h0, _h1, _h2, hfacet3⟩
     rcases hout with ⟨_hout1, _hout0, _hout2, hout3⟩
     refine ⟨(2 : Fin 4), by simp [qsOtherFacetPairWeight], ?_⟩
-    simp [qsOtherFacetSkewWeight]
-    have hf : (0 : ℤ) < C.ray.facetExponent 3 := by exact_mod_cast hfacet3
-    have ho : (0 : ℤ) < C.ray.outsideExponent 3 := by exact_mod_cast hout3
-    omega
-  · have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
-    have hout := (mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree
-    rcases hbase with ⟨_h0, _h1, _h2, hfacet3⟩
-    rcases hout with ⟨_hout2, _hout0, _hout1, hout3⟩
-    refine ⟨(1 : Fin 4), by simp [qsOtherFacetPairWeight], ?_⟩
     simp [qsOtherFacetSkewWeight]
     have hf : (0 : ℤ) < C.ray.facetExponent 3 := by exact_mod_cast hfacet3
     have ho : (0 : ℤ) < C.ray.outsideExponent 3 := by exact_mod_cast hout3
@@ -276,6 +265,16 @@ theorem qsOtherFacetSkewWeight_independent_witness
     simp [qsOtherFacetSkewWeight]
     have hf : (0 : ℤ) < C.ray.facetExponent 2 := by exact_mod_cast hfacet2
     have ho : (0 : ℤ) < C.ray.outsideExponent 2 := by exact_mod_cast hout2
+    omega
+  · exact (hne rfl).elim
+  · have hbase := HC4.Newton.mvRankThreeOnFacet_qs hthree
+    have hout := (mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree
+    rcases hbase with ⟨_h0, _h1, _h2, hfacet3⟩
+    rcases hout with ⟨_hout2, _hout0, _hout1, hout3⟩
+    refine ⟨(1 : Fin 4), by simp [qsOtherFacetPairWeight], ?_⟩
+    simp [qsOtherFacetSkewWeight]
+    have hf : (0 : ℤ) < C.ray.facetExponent 3 := by exact_mod_cast hfacet3
+    have ho : (0 : ℤ) < C.ray.outsideExponent 3 := by exact_mod_cast hout3
     omega
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
