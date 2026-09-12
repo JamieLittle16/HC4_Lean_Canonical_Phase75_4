@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface
 import HC4.Polynomial.MaximalSingularInitial
+import HC4.Polynomial.LineSupportedHessianExtremal
 import Mathlib.Tactic
 
 /-!
