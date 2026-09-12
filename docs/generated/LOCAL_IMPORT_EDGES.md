@@ -857,6 +857,8 @@ human architecture guide.
 - `HC4.Polynomial.MaximalHessianInitial`
   - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.TopProduct`
+- `HC4.Polynomial.MaximalSingularInitial`
+  - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Polynomial.MonomialHessian`
   - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.HessianDeterminant`
