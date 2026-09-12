@@ -44,11 +44,13 @@ theorem permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom
         (MvPolynomial.C (Polynomial.X ^ W (rho 2)))
         (MvPolynomial.C (Polynomial.X ^ W (rho 3))) := by
   ext <;>
-    simp [permutedPolynomialHessianFourBlock,
+    simp only [permutedPolynomialHessianFourBlock,
       GeneralFourBlock.ofSymmetricMatrix,
       GeneralFourBlock.map, GeneralFourBlock.diagonalScale,
-      Matrix.submatrix_apply,
-      hessian_adaptiveSmithInflateHom_entry, mul_assoc]
+      Matrix.submatrix_apply]
+  all_goals
+    rw [hessian_adaptiveSmithInflateHom_entry]
+    ring
 
 /-- Cleared Schur `A` transforms by the exact cubic diagonal weight. -/
 theorem schurA_adaptiveSmithInflateHom
