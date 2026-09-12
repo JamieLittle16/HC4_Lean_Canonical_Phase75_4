@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7558**.
+Distinct declaration spellings indexed: **7561**.
 
 ## Repeated declaration spellings
 
@@ -3420,6 +3420,7 @@ Distinct declaration spellings indexed: **7558**.
 - `coefficientFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalTerminal`
 - `coefficientOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`
 - `coefficient_detCore` — `theorem` in `HC4.Newton.FirstSchurEntry`
+- `coefficient_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `collisionDisplacement` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionRecentering`
 - `combinedSourceWeight_degree_sub_level_eq` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `commonKernelSlopeOne` — `theorem` in `HC4.Valuation.RigidClosingZeroSlopeElimination`
@@ -4868,6 +4869,7 @@ Distinct declaration spellings indexed: **7558**.
 - `kernel_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_eq_zero_of_not_hasPositiveTransverseLayer` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `kernel_ratio_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `killBinaryTransverseLinear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killBinaryTransverseLinear_support_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killBinaryTransverseLinear_topFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
@@ -4893,6 +4895,7 @@ Distinct declaration spellings indexed: **7558**.
 - `liftTransversePolynomial_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `lineMomentHessian` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `lineMomentHessian_eq_scaled_logarithmicCore` — `theorem` in `HC4.Polynomial.LogHessianMoments`
+- `linearForm_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `linearPowerProfile` — `def` in `HC4.Newton.LinearPowerRecurrence`
