@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7669**.
+Distinct declaration spellings indexed: **7673**.
 
 ## Repeated declaration spellings
 
@@ -3732,6 +3732,7 @@ Distinct declaration spellings indexed: **7669**.
 - `det_shiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_sparseRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `det_transverseSourceShearMatrices` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `det_twoFunctionEulerHessianMatrix` — `theorem` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `det_twoZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `det_upperBlockUnitriangular` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `det_weightedFirstZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
@@ -7683,6 +7684,9 @@ Distinct declaration spellings indexed: **7669**.
 - `twice_firstOrder_le_defect` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `twoByTwoWitness_or_allZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
