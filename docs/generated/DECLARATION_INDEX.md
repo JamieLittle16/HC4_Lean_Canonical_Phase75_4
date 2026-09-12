@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7620**.
+Distinct declaration spellings indexed: **7624**.
 
 ## Repeated declaration spellings
 
@@ -4022,6 +4022,7 @@ Distinct declaration spellings indexed: **7620**.
 - `exists_eval_ne_zero_of_ne_zero_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `exists_exactRankOneSchurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`
 - `exists_exposed_nonlinear_balanced_monomial` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
+- `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -6394,6 +6395,9 @@ Distinct declaration spellings indexed: **7620**.
 - `ratFunc_eval_aeval` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `ratFunc_eval_eq_num_div_denom` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `ratFunc_transcendental_of_denom_natDegree_pos` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
+- `ratioWallWeight` — `def` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
+- `ratioWallWeight_eq_zero_of_eq_base` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
+- `ratioWallWeight_self` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `ratio_eq_zero_of_ne_extraction` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `rationalInfinityValue` — `def` in `HC4.RationalRigidity.FinitePreimage`

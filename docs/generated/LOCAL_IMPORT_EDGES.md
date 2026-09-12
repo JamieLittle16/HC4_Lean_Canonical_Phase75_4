@@ -368,6 +368,8 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `HC4.Newton.FiniteSupportQuadraticClockRefinement`
   - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
+- `HC4.Newton.FiniteSupportRayPlanarRefinement`
+  - `HC4.Newton.ExposedFaces`
 - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.Newton.TerminalTwoZeroSupport`
