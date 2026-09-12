@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7681**.
+Distinct declaration spellings indexed: **7690**.
 
 ## Repeated declaration spellings
 
@@ -5182,9 +5182,14 @@ Distinct declaration spellings indexed: **7681**.
 - `mvEuler_C_mul` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `mvEuler_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `mvEuler_monomial_general` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
+- `mvEuler_one_twoFunctionY` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_polynomialLift` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `mvEuler_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `mvEuler_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `mvEuler_three_twoFunctionH` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_three_twoFunctionY` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_two_twoFunctionH` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_zero_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianEulerReduction`
 - `mvExponentOnBoundary_iff_coordinate_zero` — `theorem` in `HC4.Polynomial.FourExponent`
 - `mvGradientAt` — `def` in `HC4.Newton.ExactCollisionFirstWall`
@@ -5546,6 +5551,7 @@ Distinct declaration spellings indexed: **7681**.
 - `pderiv_pderiv_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyLinearPartAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
+- `pderiv_polynomialLift` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `pderiv_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `pderiv_quadraticLongitudinalSourceLift` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `pderiv_ratio_cross` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
@@ -5763,6 +5769,7 @@ Distinct declaration spellings indexed: **7681**.
 - `polynomialFamily_eq_constantPolynomialFamily_of_no_positiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomialFamily_ne_zero_of_hessianDefect` — `theorem` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
 - `polynomialHessian_symmetric` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
+- `polynomialLift` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `polynomialPairRatFunc` — `def` in `HC4.RationalRigidity.CanonicalReducedFraction`
 - `polynomialParameterOrder` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`
 - `polynomialParameterOrderCandidates` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`
@@ -7693,6 +7700,8 @@ Distinct declaration spellings indexed: **7681**.
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionFactorBxSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunctionFactorBzSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `twoFunctionH` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionY` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `twoFunction_factorB_series_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
