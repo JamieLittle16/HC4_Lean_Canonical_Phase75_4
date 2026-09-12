@@ -3357,6 +3357,8 @@ human architecture guide.
   - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.SingularFirstKernelBreakRankTwo`
   - `HC4.Valuation.FirstKernelBreakRankTwo`
+- `HC4.Valuation.SingularFirstKernelBreakSelector`
+  - `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `HC4.Valuation.SmithConformalCovariance`
   - `HC4.Newton.SmithValuationTiltAdapter`
   - `HC4.Valuation.IntegralKernelSlopeExtraction`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7532**.
+Distinct declaration spellings indexed: **7539**.
 
 ## Repeated declaration spellings
 
@@ -4007,6 +4007,7 @@ Distinct declaration spellings indexed: **7532**.
 - `exists_firstTransverseKeyHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
 - `exists_firstTransverseKeyMaximalHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
+- `exists_fourBlockKernelRowBreakAt` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
@@ -4299,6 +4300,10 @@ Distinct declaration spellings indexed: **7532**.
 - `firstFactor_dvd_kernel` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstFactor_dvd_offDiag` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstFactor_ne_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
+- `firstFourBlockKernelRowBreakOrder` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
+- `firstFourBlockKernelRowBreakOrder_lower_zero` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
+- `firstFourBlockKernelRowBreakOrder_pos` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
+- `firstFourBlockKernelRowBreakOrder_spec` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `firstKernelBlowup_exactCollision` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBlowup_hessianDefect` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBlowup_rightSpecial` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -4371,6 +4376,7 @@ Distinct declaration spellings indexed: **7532**.
 - `fourAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+- `fourBlockKernelRowBreakAt` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `fourExponentFinsupp` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `fourHessianEntry_isWeightLE` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - `fourHessianEntry_isWeightedHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
@@ -6850,6 +6856,7 @@ Distinct declaration spellings indexed: **7532**.
 - `signedRightRecentered_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedKernelFirstContact`
 - `singleCoordinate_initialForm_eq_monomial_of_contactFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `single_one_eq_iff` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
+- `singularFirstKernelBreakData_of_kernelRow` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 - `singular_codimensionTwoTrinomial_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `singular_codimensionTwoWeightedDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
