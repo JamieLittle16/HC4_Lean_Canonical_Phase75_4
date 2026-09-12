@@ -915,6 +915,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeLogHessian`
 - `HC4.Polynomial.RankThreePencils`
   - `HC4.Polynomial.MonomialHessian`
+- `HC4.Polynomial.RankThreeQuotientFibers`
+  - `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
 - `HC4.Polynomial.RankThreeVerticalLine`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeVerticalMomentRealisation`

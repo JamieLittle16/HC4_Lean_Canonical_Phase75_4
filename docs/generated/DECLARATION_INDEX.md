@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7710**.
+Distinct declaration spellings indexed: **7718**.
 
 ## Repeated declaration spellings
 
@@ -2385,6 +2385,7 @@ Distinct declaration spellings indexed: **7710**.
 - `RankThreeFractionEquation` — `def` in `HC4.Polynomial.RankThreeFractionBridge`
 - `RankThreeFractionMomentDetZero` — `def` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `RankThreeOnFacet` — `def` in `HC4.Newton.BoundaryStrata`
+- `RankThreeQuotientCoordinate` — `structure` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `RankThreeRatFuncEquation` — `def` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `RankThreeTerminalBinomialNormalForm` — `structure` in `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
 - `RankTwoFourBlock` — `structure` in `HC4.Newton.RankTwoFourBlockSchur`
@@ -5941,6 +5942,9 @@ Distinct declaration spellings indexed: **7710**.
 - `primitiveZeroSmithSource_mem_specialFiber` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `primitiveZeroSmithSource_specialFiber_symmetricMinimal` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `primitiveZeroSmithSource_zeroLeftDepartureFrontier` — `theorem` in `HC4.Valuation.ZeroLeftDepartureFrontier`
+- `primitive_pair_shape_of_quotient_eq_of_le_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `primitive_pair_shape_of_quotient_eq_one_zero` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `primitive_pair_shape_of_quotient_eq_zero_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `printSource` — `def` in `HC4.Valuation.AdaptiveFamilyFourBlockSourceProbe`
 - `prod_adaptiveSmithDerivativeCoefficient` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `prod_kernelInflateDerivativeCoefficient` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
@@ -6337,6 +6341,9 @@ Distinct declaration spellings indexed: **7710**.
 - `rankThreePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreePolynomialMomentHessian_one_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - `rankThreePolynomialMoment_det_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
+- `rankThreeQuotientCoordinate` — `def` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `rankThreeQuotientCoordinate_eq_iff` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `rankThreeQuotientCoordinate_eq_of_primitive_step` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `rankThreeRawMomentEntry` — `def` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeRawMomentEntry_eq_moment` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeRepairState` — `def` in `HC4.Newton.RankOneRepairProgress`
@@ -7865,4 +7872,5 @@ Distinct declaration spellings indexed: **7710**.
 - `zero_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `zero_mem_integralKernelSlopeCandidates` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `zero_mem_polynomialParameterOrderCandidates` — `theorem` in `HC4.Valuation.AlignedSmithWallArithmetic`
+- `zero_one_layers_of_quotient_eq_of_le_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `zero_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.FiniteDirectionalRecurrence`
