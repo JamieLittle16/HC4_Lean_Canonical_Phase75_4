@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7640**.
+Distinct declaration spellings indexed: **7645**.
 
 ## Repeated declaration spellings
 
@@ -3694,6 +3694,7 @@ Distinct declaration spellings indexed: **7640**.
 - `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `det_exponentHessianCore` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `det_exponentHessianCore_ne_zero` — `theorem` in `HC4.Polynomial.MonomialHessian`
+- `det_exponentHessianMinor3` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `det_hessianCongruence` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_hessianCongruence_of_det_one` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_hyperbolicFour` — `theorem` in `HC4.MongeAmpere.HyperbolicBase`
@@ -4115,6 +4116,7 @@ Distinct declaration spellings indexed: **7640**.
 - `exists_zeroSmithSource_minimalOrder` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `exponentHessianCore` — `def` in `HC4.Polynomial.MonomialHessian`
 - `exponentHessianCore_factor` — `theorem` in `HC4.Polynomial.MonomialHessian`
+- `exponentHessianMinor3` — `def` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `exponent_eq_one_of_positiveWeightedTerm_eq_weight` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `exponent_eq_zero_of_pderiv_eq_zero` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
 - `exponent_eq_zero_of_positiveWeightedTerm_eq_zero` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
@@ -4368,6 +4370,8 @@ Distinct declaration spellings indexed: **7640**.
 - `firstLongitudinalDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
 - `firstLongitudinalDeparture_ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
 - `firstLongitudinalDeparture_support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
+- `firstMixedHessianCoreAtZero` — `def` in `HC4.Polynomial.LineSupportedHessianExtremal`
+- `firstMixedHessianCoreAtZero_factor` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `firstNonfacetContactCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `firstNonfacetCrossFacetData_of_tame` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `firstNonfacetCrossFacet_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
@@ -5191,6 +5195,7 @@ Distinct declaration spellings indexed: **7640**.
 - `natDegree_sub_leadingMonomial_le_pred` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `natDegree_translatePolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `nat_eq_one_of_firstMixedHessianCoreAtZero_eq_zero` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `nat_pair_sum_two_cases` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `needs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `negativeLongitudinalAxisPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`

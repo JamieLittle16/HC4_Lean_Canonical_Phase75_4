@@ -853,6 +853,8 @@ human architecture guide.
   - `HC4.Toric.Facets`
 - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.DeterminantWeight`
+- `HC4.Polynomial.LineSupportedHessianExtremal`
+  - `HC4.Polynomial.MonomialHessian`
 - `HC4.Polynomial.LogHessianMoments`
   - `HC4.Polynomial.ComplementaryFractionBridge`
 - `HC4.Polynomial.LogarithmicInitialSlope`
