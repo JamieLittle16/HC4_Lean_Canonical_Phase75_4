@@ -237,7 +237,6 @@ theorem qs_ray_otherFacet_neutralSuperface_package
   let pair : Fin 4 → ℤ := qsOtherFacetPairWeight next
   let v : (Fin 4 →₀ ℕ) → ℤ := fun e => -qsOtherFacetPairDegree next e
   let d : ℤ := -1
-
   have hsourceBound : HC4.Polynomial.IsWeightLE w c F := by
     intro e he
     have hnat := R.bound e he
@@ -248,8 +247,8 @@ theorem qs_ray_otherFacet_neutralSuperface_package
       push_cast
       rfl
     rw [hcast]
-    dsimp [c]
-    exact_mod_cast hnat
+    change (Finsupp.weight R.weight e : ℤ) ≤ (R.level : ℤ)
+    omega
 
   have hinit : HC4.Polynomial.initialForm w c F = C.ray.face := by
     simpa [w, c, F] using R.initialForm_eq_ray
