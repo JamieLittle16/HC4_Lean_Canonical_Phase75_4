@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7468**.
+Distinct declaration spellings indexed: **7470**.
 
 ## Repeated declaration spellings
 
@@ -3179,6 +3179,7 @@ Distinct declaration spellings indexed: **7468**.
 - `certifiedFixedScaleEpisodeProgress_of_rigidClock` — `theorem` in `HC4.Valuation.RigidClosingFixedScaleProgress`
 - `certifiedFixedScaleEpisodeProgress_of_source_lt` — `theorem` in `HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress`
 - `certifiedFixedScaleEpisodeProgress_wellFounded` — `theorem` in `HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress`
+- `certifiedRamifiedRawDefectSpend_impossible_of_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
 - `certifiedRamifiedSpend_or_allTransverseZeroRationalSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedProgressUpgrade`
 - `certifiedRamifiedSpend_or_recenteredZeroRationalSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedProgressUpgrade`
 - `certifiedSameScaleEpisodeProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
@@ -5111,6 +5112,7 @@ Distinct declaration spellings indexed: **7468**.
 - `noWall_rightSection_unramifiedSmith_divisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
 - `noWall_unramifiedSmith_coefficientDivisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
 - `noWall_unramifiedSmith_commonFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`
+- `no_certifiedRamifiedRawDefectSpend_of_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
 - `no_common_positive_r_s_support` — `theorem` in `HC4.Toric.SupportIntersection`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_presentedTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`

@@ -2118,6 +2118,8 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry`
   - `HC4.Valuation.NonlinearDegreeBoundPreservation`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedProgressUpgrade`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
