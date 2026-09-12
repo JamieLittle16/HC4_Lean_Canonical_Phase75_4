@@ -2060,7 +2060,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: Binary Schur projective motion
 - A-labels: none detected
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`
-- External imports: `Mathlib.Tactic`
+- External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial`
 - Declarations: `def binarySchurProjectiveWedge`, `def binarySchurDerivativeDet`, `theorem binarySchurProjectiveWedge_scaledRelation`, `theorem binarySchurProjectiveWedge_ne_zero_of_scaledRelation`, `theorem binarySchurDerivativeDet_negativeSquare`, `theorem binarySchurDerivativeDet_ne_zero_of_wedge`, `theorem binarySchurDerivativeDet_ne_zero_of_scaledMotion`
 
