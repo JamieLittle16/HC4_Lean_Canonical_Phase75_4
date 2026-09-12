@@ -225,3 +225,4 @@ import HC4.Newton.QuadraticLongitudinalHessianBoundary
 import HC4.Newton.QuadraticLongitudinalSource
 import HC4.Newton.LongitudinalHessianTopDegree
 import HC4.Newton.LongitudinalHessianCoupledKernel
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface
