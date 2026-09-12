@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7549**.
+Distinct declaration spellings indexed: **7556**.
 
 ## Repeated declaration spellings
 
@@ -1271,6 +1271,9 @@ Distinct declaration spellings indexed: **7549**.
 - `CertifiedSameScaleEpisodeProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
 - `CertifiedTerminalDirectJumpEndpoint` — `inductive` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `CertifiedTerminalEndpoint` — `inductive` in `HC4.Newton.RestartClassification`
+- `ChildHessianRankAtMostOne` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `ChildHessianRankTwoWitness` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `ChildLinearPowerData` — `structure` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
 - `ClassifiedBranch` — `inductive` in `HC4.ClassifiedFamilies.ClassifiedEquiv`
 - `ComplementaryClearedEquation` — `def` in `HC4.Polynomial.ComplementaryEdgeAssembly`
 - `ComplementaryFractionCoreDetZero` — `def` in `HC4.Polynomial.ComplementaryFractionBridge`
@@ -3203,6 +3206,10 @@ Distinct declaration spellings indexed: **7549**.
 - `certifiedTerminalEndpoint_gradient_injective_of_JC2` — `theorem` in `HC4.Newton.RestartClassification`
 - `character_eq_zero_of_reverseClosed` — `theorem` in `HC4.Toric.SymmetricEigenSupport`
 - `chart_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
+- `childHessian_rankTwoWitness_or_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `child_isHomogeneous` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `child_linearPower_of_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `child_rankTwo_or_linearPower` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
 - `classifiedGradient` — `def` in `HC4.ClassifiedFamilies.ClassifiedEquiv`
 - `classifiedGradientEquiv` — `def` in `HC4.ClassifiedFamilies.ClassifiedEquiv`
 - `classifiedGradient_bijective` — `theorem` in `HC4.ClassifiedFamilies.ClassifiedEquiv`
