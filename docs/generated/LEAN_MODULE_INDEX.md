@@ -2311,7 +2311,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.MonomialHessian`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
 - Declarations: `def exponentHessianMinor3`, `theorem det_exponentHessianMinor3`, `def firstMixedHessianCoreAtZero`, `theorem firstMixedHessianCoreAtZero_factor`, `theorem nat_eq_one_of_firstMixedHessianCoreAtZero_eq_zero`
 
 ### `HC4.Polynomial.LogHessianMoments`
@@ -7417,7 +7417,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice.lean`
 - Purpose: A19 highest pair-degree singular slice
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Polynomial.MaximalSingularInitial`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Polynomial.MaximalSingularInitial`, `HC4.Polynomial.LineSupportedHessianExtremal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `structure QsOtherFacetHighestPairSlicePackage`, `theorem QsOtherFacetNeutralSuperfacePackage.highestPairSlice`

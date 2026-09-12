@@ -2509,6 +2509,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
+  - `HC4.Polynomial.LineSupportedHessianExtremal`
   - `HC4.Polynomial.MaximalSingularInitial`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier`
