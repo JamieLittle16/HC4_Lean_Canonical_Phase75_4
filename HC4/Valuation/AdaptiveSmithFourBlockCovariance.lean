@@ -50,7 +50,6 @@ theorem permutedPolynomialHessianFourBlock_adaptiveSmithInflateHom
       Matrix.submatrix_apply]
   all_goals
     rw [hessian_adaptiveSmithInflateHom_entry]
-    ring
 
 /-- Cleared Schur `A` transforms by the exact cubic diagonal weight. -/
 theorem schurA_adaptiveSmithInflateHom
@@ -154,8 +153,7 @@ theorem schurA_C_mul
         (permutedPolynomialHessianFourBlock rho P).schurA := by
   unfold permutedPolynomialHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     GeneralFourBlock.schurA GeneralFourBlock.activeDet
-  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply,
-    MvPolynomial.pderiv_C_mul]
+  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply]
   ring
 
 /-- Scalar cubic covariance for the off-diagonal cleared Schur entry. -/
@@ -168,8 +166,7 @@ theorem schurB_C_mul
         (permutedPolynomialHessianFourBlock rho P).schurB := by
   unfold permutedPolynomialHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     GeneralFourBlock.schurB GeneralFourBlock.activeDet
-  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply,
-    MvPolynomial.pderiv_C_mul]
+  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply]
   ring
 
 /-- Scalar cubic covariance for the second diagonal cleared Schur entry. -/
@@ -182,8 +179,7 @@ theorem schurC_C_mul
         (permutedPolynomialHessianFourBlock rho P).schurC := by
   unfold permutedPolynomialHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     GeneralFourBlock.schurC GeneralFourBlock.activeDet
-  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply,
-    MvPolynomial.pderiv_C_mul]
+  simp [Matrix.submatrix_apply, HC4.Polynomial.hessian_apply]
   ring
 
 end
