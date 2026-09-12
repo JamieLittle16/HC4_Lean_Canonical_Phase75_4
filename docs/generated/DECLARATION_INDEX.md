@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7539**.
+Distinct declaration spellings indexed: **7549**.
 
 ## Repeated declaration spellings
 
@@ -105,6 +105,7 @@ Distinct declaration spellings indexed: **7539**.
 - `preterminal_canonicalStrictRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminal_rankTwoProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `pureLongitudinal_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+- `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `rankThreeEtaDenominator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeEtaNumerator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_coeff_zero_ne_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
@@ -2317,6 +2318,7 @@ Distinct declaration spellings indexed: **7539**.
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QsTwoFixedTerminalData.impossible` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QuadraticAutonomousLogODE` — `def` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
+- `RankFrontier` — `inductive` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `RankOneHomogeneousGlobalGradientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
 - `RankOneHomogeneousLinearPowerData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `RankOneHomogeneousLogGradientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
@@ -4839,6 +4841,13 @@ Distinct declaration spellings indexed: **7539**.
 - `kernelInflateHom_unit_hasHessianDefect_add_two` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `kernelInflateVariable` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflate_integralKernelBlowupFamily_eq` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
+- `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastFamilyHessianFourBlock` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastFamilyHessianFourBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastParameterFirstHessian` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastPerm` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelOpeningBinaryDeparture` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFilteredRankThreeClosure`
 - `kernelSlopeDenominatorClearingRamification` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelSlopeDenominatorClearingRamification_pos` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -5387,6 +5396,7 @@ Distinct declaration spellings indexed: **7539**.
 - `parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstHessian_det` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_det_eq_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
+- `parameterFirstHessian_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `parameterFirstHessian_symmetric` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterGapJet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapJet_fst` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
@@ -6087,7 +6097,7 @@ Distinct declaration spellings indexed: **7539**.
 - `ramifiedStrictMacro_or_allTransverseZeroRationalSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
 - `ramifiedStrictMacro_or_recenteredZeroRationalSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
 - `ramified_sub_lt_unramified` — `theorem` in `HC4.Valuation.ScaledDefect`
-- `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`
+- `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
 - `rankOneOrder2031` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
@@ -6463,6 +6473,7 @@ Distinct declaration spellings indexed: **7539**.
 - `reversePointEquiv` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reverseReesFamily` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `reverseReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
+- `reverseReesFamily_layer_zero_eq_child` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `reverseReesSchurALoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseReesSchurBLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseReesSchurCLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`

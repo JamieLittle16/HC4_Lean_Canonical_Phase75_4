@@ -3172,6 +3172,9 @@ human architecture guide.
 - `HC4.Valuation.ConcreteIntegralKernelRestart`
   - `HC4.Valuation.IntegralKernelBlowup`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
+- `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
+  - `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
   - `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
   - `HC4.Polynomial.NonlinearSupportHessianRowBreak`
