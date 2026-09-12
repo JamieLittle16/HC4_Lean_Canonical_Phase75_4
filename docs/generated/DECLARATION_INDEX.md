@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7564**.
+Distinct declaration spellings indexed: **7570**.
 
 ## Repeated declaration spellings
 
@@ -4118,6 +4118,7 @@ Distinct declaration spellings indexed: **7564**.
 - `ext` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `extendCoeffs` — `def` in `HC4.Toric.ClassifiedDescent`
 - `extractionCoordinate_ne_kernelCoordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
+- `extraction_pderiv_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `extraction_ratio_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `face_balanced_of_specialFiber_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
@@ -4873,6 +4874,7 @@ Distinct declaration spellings indexed: **7564**.
 - `kernel_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_eq_zero_of_not_hasPositiveTransverseLayer` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `kernel_ratio_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
+- `kernel_ratio_eq_zero_from_pureAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `killBinaryTransverseLinear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killBinaryTransverseLinear_support_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killBinaryTransverseLinear_topFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
@@ -5451,6 +5453,7 @@ Distinct declaration spellings indexed: **7564**.
 - `pderiv_eq_zero_of_no_activeSupport` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `pderiv_eq_zero_of_no_binaryOutsideSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_eq_zero_of_positiveCoordinateSupport_empty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `pderiv_extraction_support_coordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `pderiv_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `pderiv_gradientRatioLinearForm_fin` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `pderiv_gradientRatioLinearForm_pow_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
@@ -5464,6 +5467,7 @@ Distinct declaration spellings indexed: **7564**.
 - `pderiv_one_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_one_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_one_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `pderiv_other_support_extraction_coordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `pderiv_pderiv_eq_zero_of_longitudinalTransverseDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
 - `pderiv_pderiv_eq_zero_of_transverseComplementDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
 - `pderiv_pderiv_ne_zero_of_support_exponent_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
@@ -5475,6 +5479,7 @@ Distinct declaration spellings indexed: **7564**.
 - `pderiv_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `pderiv_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `pderiv_quadraticLongitudinalSourceLift` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
+- `pderiv_ratio_cross` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `pderiv_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `pderiv_second_eq_zero_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pderiv_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
@@ -6349,6 +6354,7 @@ Distinct declaration spellings indexed: **7564**.
 - `ratFunc_eval_aeval` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `ratFunc_eval_eq_num_div_denom` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `ratFunc_transcendental_of_denom_natDegree_pos` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
+- `ratio_eq_zero_of_ne_extraction` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `rationalInfinityValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `rationalNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`

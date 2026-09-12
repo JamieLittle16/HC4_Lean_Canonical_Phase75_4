@@ -3182,6 +3182,8 @@ human architecture guide.
 - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
+- `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
   - `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
