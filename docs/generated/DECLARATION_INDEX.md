@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7417**.
+Distinct declaration spellings indexed: **7427**.
 
 ## Repeated declaration spellings
 
@@ -3259,6 +3259,7 @@ Distinct declaration spellings indexed: **7417**.
 - `coeff_first_eq_zero_of_schurC_twoFactor` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `coeff_five_rankThreeEtaNumeratorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `coeff_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `coeff_fourVariableLinearPart_eq_zero_of_not_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `coeff_fourVariableLinearPart_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `coeff_four_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
@@ -4309,6 +4310,12 @@ Distinct declaration spellings indexed: **7417**.
 - `fourOrdinaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryReverseReesFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourOrdinaryReverseReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourUnitSourceInflateFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourUnitSourceInflateFamily_C` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourUnitSourceInflateFamily_hasHessianDefect_add_eight` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourUnitSourceInflateFamily_injective` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourUnitSourceInflate_reverseRees_eq` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourVariableLinearPart` — `def` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `four_facet_cycle_normal_form` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `four_le_canonicalSmith_rawExponent` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
@@ -4452,11 +4459,13 @@ Distinct declaration spellings indexed: **7417**.
 - `hessianDeterminant_elementaryShearHom` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `hessianDeterminant_eq_zero_of_pderiv_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `hessianDeterminant_finTwo_eq_binaryDirectionalHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
+- `hessianDeterminant_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `hessianDeterminant_initialForm_eq_zero_of_eq_zero` — `theorem` in `HC4.Polynomial.MaximalHessianInitial`
 - `hessianDeterminant_integralKernelBlowup_factor` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessianDeterminant_integralSmithConformalFamily` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessianDeterminant_kernelInflateHom` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
+- `hessianDeterminant_map_polynomialC` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `hessianDeterminant_monomial_ne_zero` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `hessianDeterminant_ordinaryInitial_eq_zero_of_mongeAmpere` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`
 - `hessianDeterminant_ordinaryQuadraticInitial_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`
@@ -4466,6 +4475,7 @@ Distinct declaration spellings indexed: **7417**.
 - `hessianDeterminant_productCoordinateLift` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `hessianDeterminant_quadraticLongitudinalSource` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `hessianDeterminant_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
+- `hessianDeterminant_scalarMapped_eq_X_pow_four_mul` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `hessianDeterminant_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_smithScalarLevelDegreeComponent_eq_zero_of_maximal` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `hessianDeterminant_smithSubfaceDegreeComponent_eq_zero_of_maximal` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
