@@ -837,6 +837,9 @@ human architecture guide.
 - `HC4.Polynomial.MonomialHessian`
   - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.HessianDeterminant`
+- `HC4.Polynomial.MonomialHessianPrincipalMinor`
+  - `HC4.Polynomial.MonomialHessian`
+  - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`

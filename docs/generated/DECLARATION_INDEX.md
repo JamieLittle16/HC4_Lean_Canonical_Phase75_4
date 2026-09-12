@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7456**.
+Distinct declaration spellings indexed: **7458**.
 
 ## Repeated declaration spellings
 
@@ -3857,6 +3857,7 @@ Distinct declaration spellings indexed: **7456**.
 - `eval_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroEndpoint`
 - `eval_one_binaryDirectionalHessianDet_monomial_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `eval_one_hessianDeterminant_monomial` — `theorem` in `HC4.Polynomial.MonomialHessian`
+- `eval_one_hessianPrincipalMinor_monomial` — `theorem` in `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - `eval_one_hessian_monomial` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `eval_one_hessian_monomial_finTwo_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `eval_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -4514,6 +4515,7 @@ Distinct declaration spellings indexed: **7456**.
 - `hessianMonomialContributionAt` — `def` in `HC4.Newton.TerminalActualHessian`
 - `hessianMonomialContributionAt_origin_ne_zero_exponent_eq` — `theorem` in `HC4.Newton.TerminalActualHessian`
 - `hessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `hessianPrincipalMinor_monomial_ne_zero_of_two_positive` — `theorem` in `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - `hessianPrincipalMinor_ne_zero_of_crossFacetRay` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
