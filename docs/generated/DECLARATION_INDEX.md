@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7561**.
+Distinct declaration spellings indexed: **7564**.
 
 ## Repeated declaration spellings
 
@@ -3207,6 +3207,7 @@ Distinct declaration spellings indexed: **7561**.
 - `character_eq_zero_of_reverseClosed` — `theorem` in `HC4.Toric.SymmetricEigenSupport`
 - `chart_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `childHessian_rankTwoWitness_or_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `child_extractionCoordinate_eq` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `child_isHomogeneous` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
 - `child_linearPower_of_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
 - `child_rankTwo_or_linearPower` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
@@ -4116,6 +4117,8 @@ Distinct declaration spellings indexed: **7561**.
 - `exposed_monomial_on_boundary_of_zero_hessian` — `theorem` in `HC4.Newton.InteriorVertex`
 - `ext` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `extendCoeffs` — `def` in `HC4.Toric.ClassifiedDescent`
+- `extractionCoordinate_ne_kernelCoordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
+- `extraction_ratio_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `face_balanced_of_specialFiber_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
