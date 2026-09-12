@@ -805,6 +805,8 @@ human architecture guide.
   - `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `HC4.Polynomial.CodimensionTwoTripleHessianCore`
   - `HC4.Polynomial.RankThreePencils`
+- `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
+  - `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
   - `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `HC4.Polynomial.ComplementaryEdgeAssembly`
