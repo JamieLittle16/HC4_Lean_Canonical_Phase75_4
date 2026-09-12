@@ -114,7 +114,7 @@ theorem QsOtherFacetPlanarCarrierPackage.skew_eq_of_pairDegree_eq
       P.pairGap *
         (Finsupp.weight (qsOtherFacetSkewWeight C next) e -
           Finsupp.weight (qsOtherFacetSkewWeight C next) f) = 0 := by
-    nlinarith
+    linear_combination heWall - hfWall + P.skewGap * hpair
   have hgap0 : P.pairGap ≠ 0 := ne_of_gt P.pairGap_pos
   have hdiff := (mul_eq_zero.mp hmul).resolve_left hgap0
   exact sub_eq_zero.mp hdiff
@@ -274,9 +274,11 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
         Finsupp.weight P.finalWeight C.ray.facetExponent :=
     houtFinal.trans hfacetFinal.symm
 
-  fin_cases next
-  · exact (hne rfl).elim
-  · have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
+  cases next with
+  | qs =>
+    exact (hne rfl).elim
+  | pr =>
+    have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
       (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
     have hfacet1 : C.ray.facetExponent (1 : Fin 4) = 1 :=
       (C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree).1
@@ -301,11 +303,12 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hsr :
         qsOtherFacetSkewWeight C .pr 2 * r2 +
           qsOtherFacetSkewWeight C .pr 3 * r3 = 0 := by
-      dsimp [r2, r3, t]
-      nlinarith
+      dsimp [r2, r3, t, qsOtherFacetSkewWeight]
+      linear_combination hskew - ((e 0 : ℤ) - (f 0 : ℤ)) * hskewRay
     have hwr : P.finalWeight 2 * r2 + P.finalWeight 3 * r3 = 0 := by
       dsimp [r2, r3, t]
-      nlinarith
+      linear_combination hfinal - ((e 0 : ℤ) - (f 0 : ℤ)) * hfinalRay -
+        P.finalWeight 1 * hpair
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
@@ -317,7 +320,8 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       exact sub_eq_zero.mp hr.1
     · dsimp [r3, t] at hr
       exact sub_eq_zero.mp hr.2
-  · have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
+  | sp =>
+    have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
       (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
     have hfacet2 : C.ray.facetExponent (2 : Fin 4) = 1 :=
       (C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree).1
@@ -342,11 +346,12 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hsr :
         qsOtherFacetSkewWeight C .sp 1 * r1 +
           qsOtherFacetSkewWeight C .sp 3 * r3 = 0 := by
-      dsimp [r1, r3, t]
-      nlinarith
+      dsimp [r1, r3, t, qsOtherFacetSkewWeight]
+      linear_combination hskew - ((e 0 : ℤ) - (f 0 : ℤ)) * hskewRay
     have hwr : P.finalWeight 1 * r1 + P.finalWeight 3 * r3 = 0 := by
       dsimp [r1, r3, t]
-      nlinarith
+      linear_combination hfinal - ((e 0 : ℤ) - (f 0 : ℤ)) * hfinalRay -
+        P.finalWeight 2 * hpair
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
@@ -358,7 +363,8 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       linarith
     · dsimp [r3, t] at hr
       exact sub_eq_zero.mp hr.2
-  · have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
+  | rq =>
+    have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
       (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
     have hfacet3 : C.ray.facetExponent (3 : Fin 4) = 1 :=
       (C.qs_ray_rq_outside_base_eq_one_and_cross hthree houtThree).1
@@ -383,11 +389,12 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hsr :
         qsOtherFacetSkewWeight C .rq 1 * r1 +
           qsOtherFacetSkewWeight C .rq 2 * r2 = 0 := by
-      dsimp [r1, r2, t]
-      nlinarith
+      dsimp [r1, r2, t, qsOtherFacetSkewWeight]
+      linear_combination hskew - ((e 0 : ℤ) - (f 0 : ℤ)) * hskewRay
     have hwr : P.finalWeight 1 * r1 + P.finalWeight 2 * r2 = 0 := by
       dsimp [r1, r2, t]
-      nlinarith
+      linear_combination hfinal - ((e 0 : ℤ) - (f 0 : ℤ)) * hfinalRay -
+        P.finalWeight 3 * hpair
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
