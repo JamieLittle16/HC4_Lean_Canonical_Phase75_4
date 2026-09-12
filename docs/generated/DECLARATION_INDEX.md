@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7624**.
+Distinct declaration spellings indexed: **7628**.
 
 ## Repeated declaration spellings
 
@@ -2232,6 +2232,7 @@ Distinct declaration spellings indexed: **7624**.
 - `QsOtherFacetHighestPairSlicePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
 - `QsOtherFacetNeutralSuperfacePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `QsOtherFacetNeutralSuperfacePackage.highestPairSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
+- `QsOtherFacetPlanarCarrierPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -6009,6 +6010,7 @@ Distinct declaration spellings indexed: **7624**.
 - `qs_ray_otherFacet_integral_strictLow_source_degree_add_four_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralResidualDegreeGap`
 - `qs_ray_otherFacet_neutralSuperface_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qs_ray_otherFacet_pairDegree_eq_one_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
+- `qs_ray_otherFacet_planarCarrier_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 - `qs_ray_otherFacet_rayReverseRees_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `qs_ray_otherFacet_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier`
 - `qs_ray_otherFacet_two_mul_scale_le_bump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralContactRatio`
@@ -6396,6 +6398,7 @@ Distinct declaration spellings indexed: **7624**.
 - `ratFunc_eval_eq_num_div_denom` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `ratFunc_transcendental_of_denom_natDegree_pos` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `ratioWallWeight` — `def` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
+- `ratioWallWeight_eq_finsuppWeight_sub_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 - `ratioWallWeight_eq_zero_of_eq_base` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `ratioWallWeight_self` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `ratio_eq_zero_of_ne_extraction` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
@@ -7691,6 +7694,7 @@ Distinct declaration spellings indexed: **7624**.
 - `weight_qsContactTransverseNatWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `weight_rankThreeVerticalLowestWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `weight_rankThreeVerticalTrailingWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
+- `weight_scalar_mul_fin4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 - `weight_scaledContactWeight` — `theorem` in `HC4.Newton.ScaledContact`
 - `weight_standardPositivePair` — `theorem` in `HC4.Newton.TerminalTwoZeroSupport`
 - `weight_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
