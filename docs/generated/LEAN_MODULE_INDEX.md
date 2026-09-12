@@ -7420,7 +7420,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Polynomial.MaximalSingularInitial`, `HC4.Polynomial.LineSupportedHessianExtremal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `structure QsOtherFacetHighestPairSlicePackage`, `theorem QsOtherFacetNeutralSuperfacePackage.highestPairSlice`
+- Declarations: `structure QsOtherFacetHighestPairSlicePackage`, `theorem QsOtherFacetHighestPairSlicePackage.mem_carrier_of_mem_slice`, `theorem QsOtherFacetHighestPairSlicePackage.pairDegree_eq_pairLevel_of_mem`, `theorem QsOtherFacetNeutralSuperfacePackage.highestPairSlice`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier`
 

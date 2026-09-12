@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7645**.
+Distinct declaration spellings indexed: **7647**.
 
 ## Repeated declaration spellings
 
@@ -2232,6 +2232,8 @@ Distinct declaration spellings indexed: **7645**.
 - `QsOtherFacetContactRawLongitudinalProfilePackage.transverseDegree_le_profileOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactLayerGrading`
 - `QsOtherFacetContactRawLongitudinalProfilePackage.two_exposed_layers_eq_zero_of_profilePivotProduct` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotExtremalCancellation`
 - `QsOtherFacetHighestPairSlicePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
+- `QsOtherFacetHighestPairSlicePackage.mem_carrier_of_mem_slice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
+- `QsOtherFacetHighestPairSlicePackage.pairDegree_eq_pairLevel_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
 - `QsOtherFacetNeutralSuperfacePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `QsOtherFacetNeutralSuperfacePackage.highestPairSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
 - `QsOtherFacetPlanarCarrierPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
