@@ -970,6 +970,10 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.RationalRigidity.FinitePreimage`
   - `HC4.RationalRigidity.ChartCertificates`
+- `HC4.RationalRigidity.LineSupportedHessianRigidity`
+  - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+  - `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
+  - `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - `HC4.RationalRigidity.LogarithmicInfinityCertificate`
   - `HC4.Polynomial.AutonomousODEQuadraticRigidity`
   - `HC4.RationalRigidity.RankThreeReducedTarget`

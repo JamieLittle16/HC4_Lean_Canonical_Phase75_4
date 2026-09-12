@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7652**.
+Distinct declaration spellings indexed: **7654**.
 
 ## Repeated declaration spellings
 
@@ -4957,6 +4957,8 @@ Distinct declaration spellings indexed: **7652**.
 - `literalConstantSourceDirection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `literalSpecialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `localRestartClassification` — `theorem` in `HC4.Newton.RestartClassification`
+- `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
+- `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `logarithmicCoreFromMoments` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `logarithmicEtaNumerator` — `def` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `logarithmicEtaNumerator_local_factor` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
