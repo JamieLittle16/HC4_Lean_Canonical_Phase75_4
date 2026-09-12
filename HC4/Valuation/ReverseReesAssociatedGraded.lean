@@ -52,6 +52,11 @@ theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
     MvPolynomial.coeff_C_mul, coeff_constantPolynomialFamily] at heq
   have hcoeff := congrArg
     (fun c : Polynomial K => c.coeff (Finsupp.weight w d + n)) heq
+  change
+    (Polynomial.X ^ Finsupp.weight w d * MvPolynomial.coeff d P).coeff
+        (Finsupp.weight w d + n) =
+      (Polynomial.X ^ E * Polynomial.C (MvPolynomial.coeff d G)).coeff
+        (Finsupp.weight w d + n) at hcoeff
   have hleft :
       (Polynomial.X ^ Finsupp.weight w d * MvPolynomial.coeff d P).coeff
           (Finsupp.weight w d + n) =
@@ -135,12 +140,21 @@ theorem reverseWeightedRees_schurA_normalization
         (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
           constantPolynomialFamily HF.schurA := by
   dsimp
-  have hnorm := adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h
-  have hs := congrArg
-    (fun P => (permutedPolynomialHessianFourBlock rho P).schurA) hnorm
-  rw [schurA_adaptiveSmithInflateHom, schurA_C_mul,
-    schurA_constantPolynomialFamily] at hs
-  exact hs
+  let Q := reverseWeightedReesFamily w D F h
+  calc
+    (MvPolynomial.C (Polynomial.X ^ w (rho 0)) *
+          MvPolynomial.C (Polynomial.X ^ w (rho 1))) ^ 2 *
+        (MvPolynomial.C (Polynomial.X ^ w (rho 2))) ^ 2 *
+        adaptiveSmithInflateHom w
+          (permutedPolynomialHessianFourBlock rho Q).schurA =
+      (permutedPolynomialHessianFourBlock rho
+        (adaptiveSmithInflateHom w Q)).schurA := by
+          exact (schurA_adaptiveSmithInflateHom w rho Q).symm
+    _ = (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
+          constantPolynomialFamily
+            (permutedPolynomialHessianFourBlock rho F).schurA := by
+      rw [adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h,
+        schurA_C_mul, schurA_constantPolynomialFamily]
 
 /-- Exact source-normalization equation for the off-diagonal cleared Schur
 entry of a bounded reverse Rees family. -/
@@ -158,12 +172,22 @@ theorem reverseWeightedRees_schurB_normalization
         (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
           constantPolynomialFamily HF.schurB := by
   dsimp
-  have hnorm := adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h
-  have hs := congrArg
-    (fun P => (permutedPolynomialHessianFourBlock rho P).schurB) hnorm
-  rw [schurB_adaptiveSmithInflateHom, schurB_C_mul,
-    schurB_constantPolynomialFamily] at hs
-  exact hs
+  let Q := reverseWeightedReesFamily w D F h
+  calc
+    (MvPolynomial.C (Polynomial.X ^ w (rho 0)) *
+          MvPolynomial.C (Polynomial.X ^ w (rho 1))) ^ 2 *
+        MvPolynomial.C (Polynomial.X ^ w (rho 2)) *
+        MvPolynomial.C (Polynomial.X ^ w (rho 3)) *
+        adaptiveSmithInflateHom w
+          (permutedPolynomialHessianFourBlock rho Q).schurB =
+      (permutedPolynomialHessianFourBlock rho
+        (adaptiveSmithInflateHom w Q)).schurB := by
+          exact (schurB_adaptiveSmithInflateHom w rho Q).symm
+    _ = (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
+          constantPolynomialFamily
+            (permutedPolynomialHessianFourBlock rho F).schurB := by
+      rw [adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h,
+        schurB_C_mul, schurB_constantPolynomialFamily]
 
 /-- Exact source-normalization equation for the second diagonal cleared Schur
 entry of a bounded reverse Rees family. -/
@@ -180,12 +204,21 @@ theorem reverseWeightedRees_schurC_normalization
         (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
           constantPolynomialFamily HF.schurC := by
   dsimp
-  have hnorm := adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h
-  have hs := congrArg
-    (fun P => (permutedPolynomialHessianFourBlock rho P).schurC) hnorm
-  rw [schurC_adaptiveSmithInflateHom, schurC_C_mul,
-    schurC_constantPolynomialFamily] at hs
-  exact hs
+  let Q := reverseWeightedReesFamily w D F h
+  calc
+    (MvPolynomial.C (Polynomial.X ^ w (rho 0)) *
+          MvPolynomial.C (Polynomial.X ^ w (rho 1))) ^ 2 *
+        (MvPolynomial.C (Polynomial.X ^ w (rho 3))) ^ 2 *
+        adaptiveSmithInflateHom w
+          (permutedPolynomialHessianFourBlock rho Q).schurC =
+      (permutedPolynomialHessianFourBlock rho
+        (adaptiveSmithInflateHom w Q)).schurC := by
+          exact (schurC_adaptiveSmithInflateHom w rho Q).symm
+    _ = (MvPolynomial.C (Polynomial.X ^ D)) ^ 3 *
+          constantPolynomialFamily
+            (permutedPolynomialHessianFourBlock rho F).schurC := by
+      rw [adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h,
+        schurC_C_mul, schurC_constantPolynomialFamily]
 
 end
 
