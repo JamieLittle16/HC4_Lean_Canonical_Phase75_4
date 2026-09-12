@@ -16,15 +16,16 @@ proves the highest-direction relation
     (D - 1) Q R S (1 + Q + R + S) = 0,
 
 where `D = natDegree phi` and `(1,Q,R,S)` is the primitive affine direction.
-For the locked-ray orientation used by the A19 planar slices,
+Thus whenever the direction factor `Q R S (1 + Q + R + S)` is nonzero, the
+coefficient polynomial has degree one.  For the locked-ray orientation used by
+the A19 planar slices,
 
     (1,Q,R,S) = (1,-1,-1,-V),   V > 0,
 
 the direction factor is `V(V+1)`, hence is nonzero in characteristic zero.
-Therefore `D = 1`.  The already-formalised unit-longitudinal-step theorem also
-shows that the coefficient at index `1` is nonzero; together with the assumed
-nonzero index `0`, the coefficient support is exactly the two adjacent indices
-`{0,1}`.
+The already-formalised unit-longitudinal-step theorem also shows that the
+coefficient at index `1` is nonzero; together with the assumed nonzero index
+`0`, the coefficient support is exactly the two adjacent indices `{0,1}`.
 
 No A19 state object appears in this file.  In particular this result does not
 use balance, a repair tag, a blocker clock, or a JC2 hypothesis.
@@ -37,6 +38,38 @@ noncomputable section
 open HC4.Polynomial
 
 variable {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
+
+/-- **Generic noncharacteristic affine-line degree-one rigidity.**
+
+The mature rank-three terminal machinery only needs the affine direction to
+avoid the exceptional highest-direction divisor.  Keeping this statement
+separate from the locked-ray specialization makes the A19 `.pr/.sp/.rq`
+coordinate permutations source-honest and avoids rebuilding the rational
+rigidity argument for each facet. -/
+theorem affine_line_natDegree_eq_one_of_direction_factor_ne_zero
+    {A B C u1 : ℕ} {q r s : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C u1 q r s phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hu1 : 0 < u1)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hdir : q * r * s * (1 + q + r + s) ≠ 0)
+    (hdet : hessianDeterminant L.polynomial = 0) :
+    phi.natDegree = 1 := by
+  have hcert := hasRankThreePolynomialTerminalCertificate_of_affine_line
+    L hA hB hC hu1 hphiDeg hphi0 hdet
+  have hrel := rankThree_terminal_highest_direction_relation
+    (K := K) (A := A) (B := B) (C := C) (P := u1)
+    (Q := q) (R := r) (S := s) (phi := phi)
+    hA hB hC hu1 hphiDeg hphi0 hcert
+  have hprod :
+      ((phi.natDegree : K) - 1) *
+          (q * r * s * (1 + q + r + s)) = 0 := by
+    simpa [mul_assoc] using hrel
+  have hdegsub : (phi.natDegree : K) - 1 = 0 :=
+    (mul_eq_zero.mp hprod).resolve_right hdir
+  have hdegcast : (phi.natDegree : K) = 1 := sub_eq_zero.mp hdegsub
+  exact_mod_cast hdegcast
 
 /-- **Locked-ray degree-one rigidity.**
 
@@ -53,19 +86,6 @@ theorem lockedRay_affine_line_natDegree_eq_one
     (hphi0 : phi.coeff 0 ≠ 0)
     (hdet : hessianDeterminant L.polynomial = 0) :
     phi.natDegree = 1 := by
-  have hcert := hasRankThreePolynomialTerminalCertificate_of_affine_line
-    L hA hB hC hu1 hphiDeg hphi0 hdet
-  have hrel := rankThree_terminal_highest_direction_relation
-    (K := K) (A := A) (B := B) (C := C) (P := u1)
-    (Q := (-1 : K)) (R := (-1 : K)) (S := (-(V : K)))
-    (phi := phi)
-    hA hB hC hu1 hphiDeg hphi0 hcert
-  have hdir :
-      ((-1 : K) * (-1 : K) * (-(V : K)) *
-          (1 + (-1 : K) + (-1 : K) + (-(V : K)))) =
-        (V : K) * ((V : K) + 1) := by
-    ring
-  rw [hdir] at hrel
   have hV0 : (V : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hV)
   have hVp1Nat : V + 1 ≠ 0 := by omega
@@ -73,12 +93,18 @@ theorem lockedRay_affine_line_natDegree_eq_one
     have hcast : ((V + 1 : ℕ) : K) ≠ 0 := by
       exact_mod_cast hVp1Nat
     simpa using hcast
-  have hdir0 : (V : K) * ((V : K) + 1) ≠ 0 :=
-    mul_ne_zero hV0 hVp1
-  have hdegsub : (phi.natDegree : K) - 1 = 0 :=
-    (mul_eq_zero.mp hrel).resolve_right hdir0
-  have hdegcast : (phi.natDegree : K) = 1 := sub_eq_zero.mp hdegsub
-  exact_mod_cast hdegcast
+  have hdirEq :
+      ((-1 : K) * (-1 : K) * (-(V : K)) *
+          (1 + (-1 : K) + (-1 : K) + (-(V : K)))) =
+        (V : K) * ((V : K) + 1) := by
+    ring
+  have hdir :
+      (-1 : K) * (-1 : K) * (-(V : K)) *
+          (1 + (-1 : K) + (-1 : K) + (-(V : K))) ≠ 0 := by
+    rw [hdirEq]
+    exact mul_ne_zero hV0 hVp1
+  exact affine_line_natDegree_eq_one_of_direction_factor_ne_zero
+    L hA hB hC hu1 hphiDeg hphi0 hdir hdet
 
 /-- **Exact adjacent coefficient support.**
 
