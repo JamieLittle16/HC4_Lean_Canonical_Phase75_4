@@ -2612,7 +2612,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.ComplementaryMvSubstitution`, `HC4.Polynomial.TwoFunctionEulerHessian`
 - External imports: `Mathlib.Algebra.Polynomial.Derivative`, `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def twoFunctionY`, `def twoFunctionH`, `def polynomialLift`, `theorem pderiv_polynomialLift`, `theorem mvEuler_polynomialLift`, `theorem mvEuler_one_twoFunctionY`, `theorem mvEuler_three_twoFunctionY`, `theorem mvEuler_two_twoFunctionH`, `theorem mvEuler_three_twoFunctionH`
+- Declarations: `def twoFunctionY`, `def twoFunctionH`, `def polynomialLift`, `theorem pderiv_polynomialLift`, `theorem mvEuler_polynomialLift`, `theorem mvEuler_one_twoFunctionY`, `theorem mvEuler_three_twoFunctionY`, `theorem mvEuler_two_twoFunctionH`, `theorem mvEuler_three_twoFunctionH`, `def twoFunctionCarrier`, `theorem eulerScaledHessian_twoFunctionCarrier`, `theorem det_eulerScaledHessian_twoFunctionCarrier`
 
 ### `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 

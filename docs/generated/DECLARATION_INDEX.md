@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7690**.
+Distinct declaration spellings indexed: **7693**.
 
 ## Repeated declaration spellings
 
@@ -3712,6 +3712,7 @@ Distinct declaration spellings indexed: **7690**.
 - `det_elementaryShearMatrices` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `det_eq_normalizationFactor_mul_det` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `det_eulerScaledHessian_twoFunctionCarrier` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `det_exponentHessianCore` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `det_exponentHessianCore_ne_zero` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `det_exponentHessianMinor3` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
@@ -3930,6 +3931,7 @@ Distinct declaration spellings indexed: **7690**.
 - `eulerScaledHessian_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `eulerScaledHessian_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `eulerScaledHessian_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `eulerScaledHessian_twoFunctionCarrier` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `eulerScaledHessian_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
 - `eval_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
@@ -7695,6 +7697,7 @@ Distinct declaration spellings indexed: **7690**.
 - `twice_firstOrder_le_defect` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `twoByTwoWitness_or_allZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `twoFunctionCarrier` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
