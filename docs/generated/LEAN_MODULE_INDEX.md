@@ -2726,7 +2726,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeHighestDirectionRelation`, `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.RationalRigidity`
-- Declarations: `theorem lockedRay_affine_line_natDegree_eq_one`, `theorem lockedRay_affine_line_support_eq_zero_one`
+- Declarations: `theorem affine_line_natDegree_eq_one_of_direction_factor_ne_zero`, `theorem lockedRay_affine_line_natDegree_eq_one`, `theorem lockedRay_affine_line_support_eq_zero_one`
 
 ### `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 
