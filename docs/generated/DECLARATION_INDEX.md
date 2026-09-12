@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7506**.
+Distinct declaration spellings indexed: **7510**.
 
 ## Repeated declaration spellings
 
@@ -3235,6 +3235,9 @@ Distinct declaration spellings indexed: **7506**.
 - `codimensionTwoSTSpecialisation_monomial` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `codimensionTwoTopFaceData_of_stratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `codimensionTwoTrinomial` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
+- `codimensionTwoTrinomial_eq_lowerEndpointForm` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
+- `codimensionTwoTrinomial_eq_primitivePairForm` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
+- `codimensionTwoTrinomial_eq_upperEndpointForm` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `codimensionTwoTripleHessianCore` — `def` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoTriple_bothPrimitive_middleFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoTriple_firstMixedFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
@@ -6823,6 +6826,7 @@ Distinct declaration spellings indexed: **7506**.
 - `singleCoordinate_initialForm_eq_monomial_of_contactFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `single_one_eq_iff` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
+- `singular_codimensionTwoTrinomial_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `singular_codimensionTwoWeightedDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
 - `slice_finSuccEquiv_eq_longitudinalMonomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `smithAxisProjectedSupport` — `def` in `HC4.Valuation.SymmetricSmithImprovementRestart`
