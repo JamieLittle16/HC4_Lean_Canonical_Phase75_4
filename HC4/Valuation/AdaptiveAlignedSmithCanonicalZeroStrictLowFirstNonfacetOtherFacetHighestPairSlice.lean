@@ -51,6 +51,39 @@ structure QsOtherFacetHighestPairSlicePackage
   pairLevel_gt_one : 1 < pairLevel
   hessian_zero : HC4.Polynomial.hessianDeterminant slice = 0
 
+/-- Every highest-pair monomial is an honest monomial of the neutral source
+carrier; taking the second initial form creates no new support. -/
+theorem QsOtherFacetHighestPairSlicePackage.mem_carrier_of_mem_slice
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {next : ToricFacet}
+    {P : QsOtherFacetNeutralSuperfacePackage C next}
+    (S : QsOtherFacetHighestPairSlicePackage C next P)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ S.slice.support) :
+    e ∈ P.carrier.support := by
+  rw [S.slice_eq_initialForm] at he
+  exact HC4.Polynomial.support_initialForm_subset
+    (qsOtherFacetPairWeight next) S.pairLevel P.carrier he
+
+/-- Every monomial of the highest slice has pair degree exactly the retained
+maximal pair level. -/
+theorem QsOtherFacetHighestPairSlicePackage.pairDegree_eq_pairLevel_of_mem
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {next : ToricFacet}
+    {P : QsOtherFacetNeutralSuperfacePackage C next}
+    (S : QsOtherFacetHighestPairSlicePackage C next P)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ S.slice.support) :
+    qsOtherFacetPairDegree next e = S.pairLevel := by
+  have hcoeff : MvPolynomial.coeff e S.slice ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp he
+  rw [S.slice_eq_initialForm, HC4.Polynomial.coeff_initialForm] at hcoeff
+  split_ifs at hcoeff with hw
+  · simpa [finsupp_weight_qsOtherFacetPairWeight] using hw
+  · exact (hcoeff rfl).elim
+
 /-- **A19 highest-slice singularity adapter.**  A neutral source superface has
 a nonzero singular maximal pair-degree component, and the retained strict
 source exit forces its pair level to be greater than one. -/
