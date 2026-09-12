@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7402**.
+Distinct declaration spellings indexed: **7411**.
 
 ## Repeated declaration spellings
 
@@ -1491,6 +1491,7 @@ Distinct declaration spellings indexed: **7402**.
 - `FirstBinarySchurFamilyEntry` — `structure` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `FirstContactKernelNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
 - `FirstContactRationalNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
+- `FirstKernelBreakFourBlockData` — `structure` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `FirstKeyCanonicalMaximalHomogeneousKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalCancellationInterface`
 - `FirstKeyCanonicalMaximalHomogeneousKernelData.degreeOne_or_nonradialKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyPureRadialElimination`
 - `FirstKeyCanonicalMaximalHomogeneousKernelData.degreeOne_or_pureLongitudinalBlocker` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyBlockerPatternReduction`
@@ -3223,6 +3224,7 @@ Distinct declaration spellings indexed: **7402**.
 - `coeffYZ_eq_zero_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeffZZ_eq_zero_of_ySquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeff_M_rankThreeLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
+- `coeff_active_mul_kernelPair_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `coeff_adaptiveDiagonalExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveDiagonalExposure`
 - `coeff_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `coeff_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
@@ -3267,6 +3269,7 @@ Distinct declaration spellings indexed: **7402**.
 - `coeff_integralSmithConformalFamily` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `coeff_integralSmithConformalFamily_of_mem` — `theorem` in `HC4.Valuation.SymmetricSmithImprovementRestart`
 - `coeff_kernelInflateHom` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
+- `coeff_kernelPair_eq_zero_through` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `coeff_local_correction_at_m` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_longitudinalCoefficientPolynomial` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_longitudinalCoefficientPolynomialAt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -3627,7 +3630,9 @@ Distinct declaration spellings indexed: **7402**.
 - `det_weightedThirdZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `determinant` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `determinantCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
+- `determinantCore_coeff_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `determinantCore_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockDeterminantCovariance`
+- `determinantCore_eq_activeThreeDet_mul_z_add_kernelPairs` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `determinantCore_eq_zero_of_transverse_rankOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - `determinantCore_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `determinantCore_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockDeterminantCovariance`
@@ -3953,6 +3958,7 @@ Distinct declaration spellings indexed: **7402**.
 - `exists_nat_refine_exposed_face_fin4_two_level_lt_clock` — `theorem` in `HC4.Newton.FiniteSupportQuadraticClockRefinement`
 - `exists_nat_refine_exposed_face_ge` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_nonlinear_boundary_exponent_with_coordinate_pos` — `theorem` in `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
+- `exists_nonzero_principalMinor_at_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `exists_nonzero_root_multiplicity_factorisation` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `exists_other_positive_exponent_of_supported_kernel_linear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `exists_positiveTail_of_X_pow_dvd` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -4219,6 +4225,7 @@ Distinct declaration spellings indexed: **7402**.
 - `firstKernelBlowup_rightSpecial` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBlowup_specialPoints_ne` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBlowup_terminalDefect_of_exactClosure` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
+- `firstKernelBreakActiveThreeDet` — `def` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `firstKernelOffender_active` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelOffender_maximalSlope_lt_firstOrder` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelOffender_not_candidateDivisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurOffenderDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -4714,6 +4721,7 @@ Distinct declaration spellings indexed: **7402**.
 - `kernelCoefficientQuotient_spec_of_mem` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelCoefficientTauPower` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelCoefficientTauPower_sub_single_of_ne` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
+- `kernelDiagonal_coeff_order_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `kernelExponent_dvd_denominatorClearingRamification` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelInflateDerivativeCoefficient` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
@@ -4957,6 +4965,7 @@ Distinct declaration spellings indexed: **7402**.
 - `mixedDeparture_hasRepairOrTerminal` — `theorem` in `HC4.Newton.RestartClassification`
 - `mixedThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixedThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+- `mixed_coeff_ne_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `mongeAmpere` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `mongeAmpere_hasNondegenerateActualHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `monic_denominator_eq_one_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`

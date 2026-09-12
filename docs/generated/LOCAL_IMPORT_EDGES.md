@@ -3142,6 +3142,9 @@ human architecture guide.
   - `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `HC4.Valuation.FirstActualDeformationLayerShift`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+- `HC4.Valuation.FirstKernelBreakRankTwo`
+  - `HC4.Newton.FirstSchurLayerLinearization`
+  - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Valuation.FirstSchurDepartureBridge`
   - `HC4.Newton.FirstSchurLayerLinearization`
   - `HC4.Newton.MixedDepartureAdapter`
