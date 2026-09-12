@@ -7470,7 +7470,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`, `HC4.Newton.InteriorVertex`, `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem qs_ray_otherFacet_locked_direction_signs`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos`
+- Declarations: `theorem qs_ray_otherFacet_locked_direction_signs`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos`, `def negativeZeroCoordinateWeight`, `theorem finsupp_weight_negativeZeroCoordinateWeight`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 

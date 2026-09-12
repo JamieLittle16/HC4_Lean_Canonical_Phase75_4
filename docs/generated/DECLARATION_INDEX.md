@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7658**.
+Distinct declaration spellings indexed: **7661**.
 
 ## Repeated declaration spellings
 
@@ -2244,6 +2244,7 @@ Distinct declaration spellings indexed: **7658**.
 - `QsOtherFacetPlanarHighestPairSlicePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- `QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
@@ -4288,6 +4289,7 @@ Distinct declaration spellings indexed: **7658**.
 - `finsupp_eq_fourCoordinateSum` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
 - `finsupp_weight_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `finsupp_weight_fin4_linear_combination` — `theorem` in `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
+- `finsupp_weight_negativeZeroCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `finsupp_weight_qsOtherFacetPairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `finsupp_weight_qsOtherFacetPair_combination` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `firstActualDeformationFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
@@ -5211,6 +5213,7 @@ Distinct declaration spellings indexed: **7658**.
 - `negativeLongitudinalAxisPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `negativeSmithDerivative_lowPattern_cases` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `negativeSmithSourceSupport` — `def` in `HC4.Valuation.AlignedSmithFirstStop`
+- `negativeZeroCoordinateWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `negative_character_normal_form` — `theorem` in `HC4.Toric.CharacterSupport`
 - `negative_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `nestedC` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
