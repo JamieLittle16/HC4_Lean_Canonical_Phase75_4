@@ -7470,7 +7470,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`, `HC4.Polynomial.MaximalSingularInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
-- Declarations: `structure QsOtherFacetPlanarHighestPairSlicePackage`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_source_and_finalLevel`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem`, `theorem QsOtherFacetPlanarCarrierPackage.highestPairSlice`
+- Declarations: `structure QsOtherFacetPlanarHighestPairSlicePackage`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.support_source_and_finalLevel`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem`, `theorem QsOtherFacetPlanarCarrierPackage.highestPairSlice`, `theorem qs_ray_otherFacet_planarHighestPairSlice_package`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 

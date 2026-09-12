@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7651**.
+Distinct declaration spellings indexed: **7652**.
 
 ## Repeated declaration spellings
 
@@ -6031,6 +6031,7 @@ Distinct declaration spellings indexed: **7651**.
 - `qs_ray_otherFacet_neutralSuperface_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qs_ray_otherFacet_pairDegree_eq_one_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qs_ray_otherFacet_planarCarrier_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
+- `qs_ray_otherFacet_planarHighestPairSlice_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `qs_ray_otherFacet_rayReverseRees_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayReverseRees`
 - `qs_ray_otherFacet_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier`
 - `qs_ray_otherFacet_two_mul_scale_le_bump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralContactRatio`
