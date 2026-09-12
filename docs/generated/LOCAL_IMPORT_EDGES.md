@@ -944,6 +944,7 @@ human architecture guide.
   - `HC4.RationalRigidity.ClearedInfinityEvaluation`
   - `HC4.RationalRigidity.DenominatorClearing`
   - `HC4.RationalRigidity.FinitePreimage`
+  - `HC4.RationalRigidity.LineSupportedHessianRigidity`
   - `HC4.RationalRigidity.LogarithmicInfinityCertificate`
   - `HC4.RationalRigidity.LogarithmicSourceRatFunc`
   - `HC4.RationalRigidity.LogarithmicSourceRegularity`

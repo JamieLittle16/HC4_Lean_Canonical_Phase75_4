@@ -231,7 +231,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity.lean`
 - Purpose: (no module-doc heading)
 - A-labels: none detected
-- Local imports: `HC4.RationalRigidity.DenominatorClearing`, `HC4.RationalRigidity.Assembly`, `HC4.RationalRigidity.PoleRemovalAssembly`, `HC4.RationalRigidity.ReducedFractionAssembly`, `HC4.RationalRigidity.ChartCertificates`, `HC4.RationalRigidity.FinitePreimage`, `HC4.RationalRigidity.AutonomousDenominatorRemoval`, `HC4.RationalRigidity.CanonicalReducedFraction`, `HC4.RationalRigidity.LogarithmicSourceRegularity`, `HC4.RationalRigidity.RegularRatFuncEvaluation`, `HC4.RationalRigidity.AutonomousRatFuncAssembly`, `HC4.RationalRigidity.LogarithmicSourceRatFunc`, `HC4.RationalRigidity.RankThreeReducedTarget`, `HC4.RationalRigidity.LogarithmicInfinityCertificate`, `HC4.RationalRigidity.ClearedInfinityEvaluation`, `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- Local imports: `HC4.RationalRigidity.DenominatorClearing`, `HC4.RationalRigidity.Assembly`, `HC4.RationalRigidity.PoleRemovalAssembly`, `HC4.RationalRigidity.ReducedFractionAssembly`, `HC4.RationalRigidity.ChartCertificates`, `HC4.RationalRigidity.FinitePreimage`, `HC4.RationalRigidity.AutonomousDenominatorRemoval`, `HC4.RationalRigidity.CanonicalReducedFraction`, `HC4.RationalRigidity.LogarithmicSourceRegularity`, `HC4.RationalRigidity.RegularRatFuncEvaluation`, `HC4.RationalRigidity.AutonomousRatFuncAssembly`, `HC4.RationalRigidity.LogarithmicSourceRatFunc`, `HC4.RationalRigidity.RankThreeReducedTarget`, `HC4.RationalRigidity.LogarithmicInfinityCertificate`, `HC4.RationalRigidity.ClearedInfinityEvaluation`, `HC4.RationalRigidity.RankThreeInfinityAssembly`, `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - External imports: none
 - Imported by local modules: `HC4`
 - Declarations: none detected
@@ -2725,7 +2725,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeHighestDirectionRelation`, `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.RationalRigidity`
 - Declarations: `theorem lockedRay_affine_line_natDegree_eq_one`, `theorem lockedRay_affine_line_support_eq_zero_one`
 
 ### `HC4.RationalRigidity.LogarithmicInfinityCertificate`
