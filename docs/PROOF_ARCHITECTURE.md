@@ -1,27 +1,36 @@
 # HC4 proof architecture
 
-This document explains the **live mathematical architecture** of the cumulative HC4 Lean development. It is organized by proof role, not chronology.
+**Architecture checkpoint: 12 September 2026.**
 
-Use the documentation set as follows:
+This document explains the live unrestricted HC4 proof architecture by proof
+role. It is not a chronological phase diary.
 
-- `CURRENT_STATE.md` — exact theorem-level status and live frontier;
-- `PROOF_PATHS.md` — branch-by-branch file sequence;
-- `CANONICAL_OWNERS.md` — canonical reusable definitions and theorem families;
-- `GLOSSARY_AND_INVARIANTS.md` — carrier, clock, balance, and provenance vocabulary;
-- `HISTORICAL_AND_SUPERSEDED_ROUTES.md` — how older proved routes relate to the current one;
-- `generated/LEAN_MODULE_INDEX.md` — exhaustive index of every Lean module.
+Documentation ownership:
 
-## 1. The current top-level proof shape
+- `CURRENT_STATE.md` — authoritative theorem/status ledger;
+- `PROOF_ARCHITECTURE.md` — this file, mathematical architecture;
+- `PROOF_PATHS.md` — route map from current carriers to canonical owners;
+- `FILTERED_FIRST_KERNEL_BREAK_LEMMA.md` — precise new algebraic lemma;
+- `FORMALISATION_PLAN_2026-09-12.md` — implementation order;
+- `LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md` — line-rigidity paper proof;
+- `CANONICAL_OWNERS.md` — reusable theorem/definition ownership;
+- `GLOSSARY_AND_INVARIANTS.md` — vocabulary and provenance rules;
+- `HISTORICAL_AND_SUPERSEDED_ROUTES.md` — older routes and why they are no
+  longer the live TODO list;
+- `generated/LEAN_MODULE_INDEX.md` and `generated/DECLARATION_INDEX.md` —
+  exhaustive Lean inventory.
 
-The unrestricted proof begins by contradicting a hypothetical distinct exact gradient collision for a four-variable polynomial with Hessian determinant one.
+Use the status labels `LEAN VERIFIED`, `PAPER CANDIDATE`, and `OPEN` exactly as
+defined in `CURRENT_STATE.md`.
+
+## 1. Top-level proof shape
 
 ```text
-F with hessianDeterminant F = 1
-        +
-distinct p,q with mvGradientMap F p = mvGradientMap F q
+F with det Hess(F)=1
++ hypothetical distinct gradient collision
         |
         v
-canonical collision normalization
+canonical collision normalisation
 + automatic nonlinear degree cap
         |
         v
@@ -31,502 +40,419 @@ zero-defect collision entry
 canonical positive rank-one re-entry
         |
         v
-rank-one state
-        |
-        v
-A18.4.109 raw-defect termination trace
-with successful positive Rees moves folded into restart edges
+existing rawDefect termination trace
         |
         v
 actual reached rank-three state
-repair provenance retained
         |
-        +--------------------------------------+
-        |                                      |
-        | outer global successor exists        | no outer global successor
-        v                                      v
-continue global macro proof              A19.45 forces rawDefect = 0
-                                               |
-                                               v
-                                  producer-free zero strict-low terminal
-                                               |
-                                               v
-                                  genuine singular maximal top face
-                                               |
-                                               v
-                                  balance-free boundary rank split
-                                               |
-                         +---------------------+---------------------+
-                         |                                           |
-                         v                                           v
-                  rank-three facet                            codimension two
-                         |
-                         v
-                  A19.58--A19.70
-        cross-facet / lower first contact /
-        quadratic square / confinement frontier
+        +------------------------------------------+
+        |                                          |
+        | outer global successor                   | globally terminal
+        v                                          v
+continue existing trace                     rawDefect = 0
+                                                   |
+                                                   v
+                                      zero-clock strict-low source
+                                                   |
+                                                   v
+                                      singular maximal top face
+                                                   |
+                                                   v
+                                  A19.55 balance-free boundary split
+                                                   |
+                          +------------------------+-----------------------+
+                          |                                                |
+                          v                                                v
+                 rank-three facet / other facet              same-carrier codim two
+                          |                                                |
+                          v                                                v
+              source-honest planar closure                 primitive departures
+                          |                                                |
+                          v                                                v
+               line rigidity + contact                    constant-kernel cone
+                / singleton elimination                           |
+                          |                                      v
+                          |                           ordinary reverse-Rees
+                          |                                      |
+                          |                                      v
+                          |                           first kernel-breaking layer
+                          |                                      |
+                          |                                      v
+                          |                           nonzero 2x2 Hessian minor
+                          |                                      |
+                          +----------------------+---------------+
+                                                 |
+                                                 v
+                                  existing geometry-bearing consumers
+                                                 |
+                                                 v
+                                    existing global trace/descent
+                                                 |
+                                                 v
+                                reachable-terminal HC4 contradiction
 ```
 
-The decisive current point is A19.45: **positive reached rank-three geometry is outer global progress, not a locally terminal low-layer branch**. The genuinely local final frontier is at literal raw defect zero.
+The upper half of this diagram is already formalised. The two lower local
+closure paths are the current **PAPER CANDIDATE** mathematics to formalise.
 
-## 2. Unrestricted collision entry
+## 2. Unrestricted entry and global termination
 
-Canonical modules:
+The public theorem does not assume homogeneity, balance, a degree cap, or JC2.
+The canonical collision normalisation and automatic degree selection already
+enter the scale-aware state machine.
 
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalCollisionNormalization.lean`
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalCollisionAutoDegree.lean`
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry.lean`
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalHC4Reduction.lean`
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalHC4ReachableTerminalReduction.lean`
+The only rank-one recursive object is the existing termination trace, whose
+recursive measure is the natural number `rawDefect`. Successful positive Rees
+moves at actual trace states are ordinary restart edges when they supply
+existing global progress, strict actual raw-defect decrease, and unchanged
+repair provenance.
 
-The public input is not assumed homogeneous, torus-balanced, pre-normalized, or equipped with an external degree cap.
+Architectural prohibition: do not introduce rational well-founded descent,
+cross-scale descent treated as a natural order, repair promotion as a new
+termination measure, or a parallel final trace.
 
-The reachable-terminal reduction is the preferred final-assembly interface because it retains actual provenance from the canonical rank-one path, especially
+**Status: LEAN VERIFIED.**
 
-```lean
-state.repair = rankOneRepairState 0
-```
+## 3. Global/local boundary
 
-Do not weaken this to an arbitrary-terminal interface unless a reusable theorem genuinely benefits from the stronger quantification.
+The decisive global theorem forces any reached rank-three state that is
+terminal for the outer global macro order to have literal raw defect zero.
+Therefore positive reached rank-three geometry is not a final local branch.
 
-## 3. The only rank-one recursion
+The local proof begins from the producer-free zero-clock strict-low terminal,
+retaining the actual represented source, the canonical repair equality, and
+the strict-low Smith pattern.
 
-Owner:
+**Status: LEAN VERIFIED.**
 
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.lean`
+## 4. A19.55 is the only local boundary split to close
 
-The trace has two constructors:
-
-```text
-terminal completeRankThreeGeometry
-restart globalProgress rawDefect_lt repair_eq tail
-```
-
-Its recursive call is justified only by:
-
-```lean
-target.rawDefect < source.rawDefect
-```
-
-with `rawDefect : ℕ`.
-
-Structural consumption is owned by:
-
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneTraceCollapse.lean`
-
-### Architectural invariant
-
-There is no need for another final rank-one recursion. In particular do not introduce:
-
-- rational well-founded descent;
-- cross-scale descent treated as a natural order;
-- repair promotion as a termination measure;
-- a second final trace object duplicating A18.4.109.
-
-If a proposed move supplies global macro progress, strict actual raw-defect decrease, and unchanged repair state, it belongs as an ordinary restart edge of the existing trace.
-
-## 4. Positive Rees moves and clock provenance
-
-Canonical family:
-
-- `AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier.lean`
-- `AdaptiveAlignedSmithCanonicalPositiveTransverseReesSourceProgress.lean`
-- `AdaptiveAlignedSmithCanonicalPositiveTransverseReesUnramified*.lean`
-- `AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder.lean`
-- `AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction.lean`
-
-The key correction in A19.34b is **where** a successful Rees test is consumed.
-
-A normalized terminal may contain a positive pure ramification. A strict decrease measured only after that presentation is not automatically a strict decrease from the unramified source state. Therefore successful Rees progress is tested at the actual rank-one trace state, where it produces the exact A18 restart data.
-
-`AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace` is the resulting trace-facing carrier.
-
-Older positive-low-layer resolver structures remain proved milestones, but A19.45 subsequently shows that positive **reached rank-three** geometry is outer global progress.
-
-## 5. A19.45: the global/local boundary
-
-Owner:
-
-- `HC4/Valuation/AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure.lean`
-
-At the actual reached state:
-
-```text
-rawDefect = 0
-OR
-genuine AdaptiveAlignedSmithCanonicalGlobalMacroProgress
-```
-
-Thus if the reached state is globally terminal, its raw defect is literally zero.
-
-This theorem is the current boundary between global and local proof work. New local terminal arguments should normally begin **after** using A19.45, not from older positive residual resolver fields.
-
-## 6. Producer-free zero-clock terminal
-
-Historical intermediate owner:
-
-- `AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome.lean` (A19.46)
-
-A19.46 reduced the local problem to one zero-blocker first-contact producer.
-
-Current owner:
-
-- `AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal.lean` (A19.53)
-
-A19.53 removes that producer and retains actual data:
-
-- zero-clock reached state;
-- canonical repair equality;
-- canonical presented blocker;
-- actual represented strict-low Smith exponent;
-- support membership;
-- one of the three genuine strict-low patterns.
-
-This is an important architectural shift: **retain existing witnesses rather than manufacture a synthetic endpoint.**
-
-## 7. The zero strict-low source packet
-
-The live chain begins before Newton boundary analysis:
-
-### A19.49 — residual normal form
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm.lean`
-
-Turns the actual strict-low pattern into an exact two-endpoint polynomial factorization.
-
-### A19.50 — exact same-exponent mixedness
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree.lean`
-
-Retains mixed ordinary-degree support and the first longitudinal departure at the **same actual Smith exponent**.
-
-### A19.51 — zero-clock packet
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket.lean`
-
-Carries the source zero clock through the certified pure presentation and bundles the normal form/mixedness/departure data.
-
-### A19.52 — Hessian first contact
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian.lean`
-
-Uses the already-proved zero-linear-jet/right-recentering infrastructure to turn actual later longitudinal support into genuine nonzero diagonal-or-mixed Hessian geometry.
-
-### A19.53 — producer-free terminal
-
-`AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal.lean`
-
-Packages the actual local terminal data.
-
-### A19.54 — singular top-face carrier
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal.lean`
-
-Attaches the genuine nonzero maximal ordinary top face of the represented zero-clock family, with Hessian determinant zero.
-
-## 8. Balance-free Newton boundary architecture
-
-At this point the important carrier is the **actual singular maximal ordinary top face**.
-
-### Generic owners
-
-- `HC4/Newton/FiniteSupportExposedVertex.lean`
-- `HC4/Newton/FiniteSupportSingularBoundaryVertex.lean`
-- `HC4/Newton/MvBoundaryStrata.lean`
-- `HC4/Newton/SingularBoundaryRankSplit.lean`
-- `HC4/Newton/PositiveCoordinateSingularBoundaryVertex.lean`
-
-### A19.55
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier.lean`
-
-Exposes an actual nonlinear boundary exponent and splits:
+The singular maximal ordinary top face exposes an actual nonlinear boundary
+exponent and splits exhaustively into
 
 ```text
 rank three on a coordinate facet
 OR
-codimension two
+same-carrier codimension two.
 ```
 
-No torus balance is used.
+The codimension-two constructor here is not the later degree-one lower `.qs`
+outside endpoint that A19.91 eliminates. Keep them distinct.
 
-### A19.56
+The final proof should eliminate both A19.55 constructors without adding a
+caller-supplied resolver.
 
-`AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata.lean`
+**Status: LEAN VERIFIED up to this split.**
 
-Converts the abstract boundary condition into actual finite support slices on the same top face.
+## 5. Rank-three other-facet architecture
 
-## 9. Rank-three top-face architecture
+### 5.1 Exact source ray, not an auxiliary terminal clock
 
-For a rank-three boundary exponent on a coordinate facet:
+The rank-three route retains an actual source-supported locked ray and actual
+contact provenance. Auxiliary ray-Rees clocks may be useful local calculations,
+but they are not the zero blocker clock and must not be fed directly into a
+stationary terminal contradiction.
 
-### A19.58 — direct cross or top-face confinement
+The current paper route instead stays source-honest.
 
-`AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit.lean`
+### 5.2 Defect-neutral planar refinement
 
-If the same top face contains positive support in the omitted coordinate, construct `CrossFacetInitialData` there. Otherwise the whole top face is confined to the facet.
-
-### A19.59 — transport confinement to source hypotheses
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource.lean`
-
-Exports:
-
-- nonlinear degree bound;
-- polynomial Monge–Ampère equation;
-- top-degree-on-facet hypothesis.
-
-### A19.60 — source trichotomy
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit.lean`
+Let `(W,L)` expose the locked ray and have positive Hessian defect. Perturb by
 
 ```text
-direct top-face cross-facet
-OR
-lower nonlinear source support outside facet
-OR
-all nonlinear source support confined
+u = (1,1,0,0),
+(W_t,L_t)=(W+t*u,L+t).
 ```
 
-This split is source-honest: it does not infer that a recentered witness lies on the top face.
-
-## 10. Residual source support and confinement
-
-### Low-negative source witnesses
-
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport.lean` (A19.61)
-
-The factorized coefficient polynomial reconstructs actual nonlinear source support.
-
-### Low-negative confinement elimination
-
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination.lean` (A19.62)
-
-Uses explicit positive source coordinates to restrict possible confinement facets.
-
-### Pure-longitudinal source witness
-
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport.lean` (A19.63)
-
-Reconstructs an actual nonlinear axis monomial.
-
-### Unified pattern-sensitive confinement classification
-
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit.lean` (A19.64)
-
-In particular complete nonlinear confinement cannot occur on the marked `.qs` facet.
-
-## 11. Lower first-nonfacet cross-facet architecture
-
-### A19.65 — exhaustive low-degree split
-
-Generic owner:
-
-- `HC4/Newton/FirstNonfacetLowDegreeSquareSplit.lean`
+The determinant defect is invariant:
 
 ```text
-LowDegreeTameAtFacet
-OR
-literal supported omitted-coordinate quadratic square
+4(L+t)-2*sum(W+t*u)=4L-2*sum W.
 ```
 
-The failure branch is explicit finite-support data.
+A small independent neutral skew perturbation selects a generic first
+normal-fan wall. Finite support lets us keep source weights positive and choose
+an exact rational, hence integral, exposure. The new planar carrier contains
+the ray and genuine nonlinear source support and is singular because it is an
+exact positive-defect source exposure.
 
-### A19.66 — actual first-nonfacet carrier
+Do not infer this singularity from the smaller ray.
 
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet.lean`
+**Status: PAPER CANDIDATE.**
 
-In the tame branch the generic first-nonfacet selector is applied to the actual represented special fibre. The resulting carrier retains:
+### 5.3 Highest pair-degree slice
 
-- exact first-contact face;
-- scale/bump;
-- Hessian singularity;
-- nonlinear support;
-- actual support on both sides of the contact facet;
-- exact contact equation.
-
-It is intentionally a **lower first-contact carrier**, not the maximal top face.
-
-## 12. Two cross-facet routes — keep them distinct
-
-There are two mathematically different routes.
-
-### 12.1 Balanced affine-line route
-
-Owner:
-
-- `HC4/Newton/FirstContactCrossFacetAffineLine.lean`
-
-Downstream:
-
-- `FirstContactCrossFacetEndpointStratum.lean`
-- `FirstContactCrossFacetAffineRR*.lean`
-- `HC4/RationalRigidity/RankThreeAffineTwoFixedImpossible.lean`
-
-This route uses a genuine torus-balance equation. It remains reusable where balance is proved.
-
-### 12.2 Balance-free finite-support ray route
-
-Owners:
-
-- `HC4/Newton/FiniteSupportCrossFacetExposure.lean`
-- `HC4/Newton/FiniteSupportCrossFacetRay.lean`
-
-`FiniteSupportCrossFacetRay` performs three successive exact exposures in the three non-contact coordinates. Their exact weight equations replace the unavailable balance equation and force support onto an affine ray.
-
-This is the active unrestricted zero-clock cross-facet route.
-
-Do not add balance merely to reuse the older route.
-
-## 13. A19.67--A19.70 boundary transition chain
-
-### A19.67
-
-`HC4/Newton/FiniteSupportCrossFacetRay.lean`
-
-Produces `CrossFacetRayData` with actual support provenance and coordinatewise affine proportionality.
-
-### A19.68
-
-- `HC4/Newton/PositiveCoordinateSingularBoundaryVertex.lean`
-- `AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary.lean`
-
-Forces an exposed singular boundary exponent while preserving positivity of the old contact coordinate. Therefore a rank-three outcome cannot return to the same omitted-coordinate facet.
-
-### A19.69
-
-`AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition.lean`
-
-A direct or lower cross-facet carrier yields:
+Grade by `p=e0+e1`. A `4 x 4` Hessian determinant loses exactly four units of
+pair degree. For maximal occupied pair degree `N`,
 
 ```text
-rank three on a different facet
-OR
-codimension two
+[degree_p = 4*N-4] det Hess(G) = det Hess(G_N).
 ```
 
-### A19.70
+Thus the highest slice is itself singular. Since the planar carrier contains
+the ray direction and that direction has pair degree zero, a nonconstant
+highest slice lies on an affine line parallel to the locked ray.
 
-`AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction.lean`
+**Status: PAPER CANDIDATE.**
 
-The current exact rank-three frontier is:
+### 5.4 Line-supported rigidity
 
-1. top-face boundary transition;
-2. boundary transition on a retained lower first-contact carrier;
-3. literal omitted-coordinate quadratic square;
-4. complete nonlinear source confinement to the starting facet.
+The one-variable recurrence/rational-first-integral theorem in
+`LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md` says that a nonconstant finite
+line-supported singular-Hessian polynomial in direction
 
-Carrier identity is retained in every branch.
+```text
+(1,-1,-alpha,-beta)
+```
 
-## 14. Codimension-two is a separate branch
+has only two adjacent monomials. For `V>1`, the primitive orientation is
+uniquely
 
-`MvExponentOnCodimensionTwoBoundary` is owned by `HC4/Newton/SingularBoundaryRankSplit.lean`.
+```text
+(1,-1,-1,-V).
+```
 
-A codimension-two exponent is not automatically a specialized two-zero planar collision. The repository has a separate two-zero/JC2 route, but an adapter must prove that the exact current carrier satisfies those stronger hypotheses before using it.
+**Status: PAPER CANDIDATE.**
 
-Relevant planar modules include:
+### 5.5 Non-singleton carrier contradiction
 
-- `HC4/Newton/TwoZeroDoublingHessianSquareGeneral.lean`
-- `HC4/Newton/TerminalTwoZeroDoublingForm.lean`
-- `HC4/Newton/TerminalTwoZeroPlanarCollision.lean`
-- `HC4/PlanarJC2HessianEmbedding.lean`
-- `HC4/Valuation/AdaptiveAlignedSmithFirstContactTwoZeroJC2.lean`
-- `AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision.lean`
-- `AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier.lean`
-- `AdaptiveAlignedSmithCanonicalJC2HC4Assembly.lean`
+If all nonlinear quotient fibers are nonconstant, the carrier takes the form
 
-## 15. Terminal RationalRigidity architecture
+```text
+F=x(Q(Y)+b H^ell)+z(P(Y)+a H^ell Y),
+Y=y w^V,
+H=z w^V.
+```
 
-`HC4/RationalRigidity/` owns the contradiction algebra. Major families are:
+Its full Hessian determinant factors as
 
-- balanced homogeneous direction/endpoint rigidity;
-- supported/binomial line normal forms;
-- affine line terminal normal forms;
-- fixed-direction and two-fixed equalities;
-- autonomous-polynomial clearing and quadratic extraction;
-- root multiplicity;
-- vertical-line contradiction.
+```text
+V*ell*(V+1)*w^(V*ell+2*V-2)*z^(ell-2) * A * B
+```
 
-Important active terminal owner:
+with the explicit factors recorded in `CURRENT_STATE.md` and the formalisation
+plan. The locked lower ray makes `A != 0`; a primitive top slice has `Q' != 0`.
+The equations `B=0` force `ell=1`, `Q''=0`, and inconsistent formulas for
+`P''`.
 
-- `HC4/RationalRigidity/RankThreeAffineTwoFixedImpossible.lean`
+This is the actual contradiction. The older four-monomial cross-ratio equation
+is only one coefficient relation and must never be cited alone.
 
-Valuation/Newton code should package exact data for RationalRigidity and invoke it. Do not reproduce the projective/univariate algebra inside a state-machine adapter.
+**Status: PAPER CANDIDATE.**
 
-`AdaptiveAlignedSmithCanonicalTerminalImpossible.lean` is an example of the correct adapter pattern: it packages an actual singular carrier into an already-closed terminal contradiction when the genuine supported balanced rank-three line certificates are available.
+### 5.6 Singleton/developable escape
 
-## 16. Carrier provenance is part of the proof
+Bare singular-Hessian geometry admits developable staircase families, so the
+proof must spend the retained A19 contact/source provenance.
 
-Treat these as distinct until an explicit theorem connects them:
+After the `(X,Y,H)` substitution, the contact inequality pins the unique top
+ordinary homogeneous piece to
+
+```text
+A * Y * H^(ell+1).
+```
+
+The characteristic-zero three-variable singular-Hessian classification then
+leaves a constant-kernel or developable normal form. The locked ray and the
+contact pair-degree bound rule out both.
+
+For Lean, prefer a tailored proof of this A19-special normal form. Formalising
+the full external classification is a fallback.
+
+**Status: PAPER CANDIDATE.**
+
+### 5.7 `V=1`
+
+Keep the symmetric orientation case separate. Same-orientation carriers are
+killed by the same determinant factorisation; mixed orientations are killed by
+extremal coefficients yielding the incompatible nonzero-endpoint equations
+
+```text
+2 AD = BC,
+AD = 2 BC.
+```
+
+**Status: PAPER CANDIDATE.**
+
+## 6. Same-carrier codimension-two architecture
+
+Do not project this branch to generic two-zero JC2. Its source/contact/ray
+provenance gives a stronger finite route.
+
+### 6.1 Primitive departures
+
+Normalise the codimension-two top vertex and two independent departures as
+
+```text
+H0 = x^p y^(D-p)
+Hz = A x^a y^(D-m-a) z^m
+Hw = B x^c y^(D-n-c) w^n.
+```
+
+The first extremal determinant equation forces `m=1` or `n=1`.
+
+The next equations close every case:
+
+- `m=n=1` forces `a=c`, so the two departures share one transverse linear
+  form and a constant shear removes the complementary coordinate;
+- `m=1<n` forces `a=0` or `a=D-1`, then respectively
+  `(p,c)=(1,0)` or `(D-1,D-n)`, again giving an explicit constant-kernel
+  shear;
+- `n=1<m` is symmetric.
+
+Thus the branch reaches an immediate rank-two witness, an all-minors-zero
+rigid residual, or a literal constant-kernel cone.
+
+**Status: PAPER CANDIDATE.**
+
+### 6.2 Filtered kernel break
+
+The constant-kernel rank-three case is consumed by the standalone theorem in
+`FILTERED_FIRST_KERNEL_BREAK_LEMMA.md`.
+
+For a polynomial family with
+
+```text
+det Hess(P) = t^Delta
+```
+
+and special Hessian kernel `e3`, let `q` be the first order where that kernel
+breaks. If `q < Delta`, the coefficient of `t^q` in the determinant is exactly
+
+```text
+activeThreeDet * Hess(P_q) 3 3.
+```
+
+Therefore the diagonal kernel entry of `Hess(P_q)` is zero. Since the kernel
+breaks, some mixed entry is nonzero, and the corresponding principal minor is
+
+```text
+-(Hess(P_q) i 3)^2 != 0.
+```
+
+This is an actual polynomial rank-two witness.
+
+**Status: PAPER CANDIDATE.**
+
+### 6.3 Ordinary reverse-Rees is the source-honest adapter
+
+For the represented source with maximal ordinary degree `D`, define
+
+```text
+R_F(t,x)=sum t^q H_(D-q)(x)=t^D F(x/t).
+```
+
+Then
+
+```text
+det Hess(R_F)=t^(4D-8).
+```
+
+A gradient collision `a != b` is transported to the exact moving collision
+`t*a != t*b` over the polynomial parameter. If `q` is the first homogeneous
+layer breaking the constant kernel, then
+
+```text
+q <= D-2 < 4(D-2).
+```
+
+Thus the first break occurs strictly before closure and the generic filtered
+kernel-break theorem gives a nonzero `2 x 2` Hessian minor.
+
+This filtration parameter is separate from every A19 zero/ray/ramification
+clock.
+
+**Status: PAPER CANDIDATE.**
+
+## 7. Geometry must precede progress
+
+The repository already contains geometry-bearing consumers for nonzero Hessian
+minors, moving Schur wedges, constant source kernels and derivative-lift
+rank-two witnesses.
+
+The final adapters must produce one of these geometric objects first. Only
+then may existing finite repair/global progress machinery be invoked.
+
+A naked `withRepairOnly` successor, a smaller repair tag, or a semantic rank
+promotion is not itself a contradiction.
+
+**Status: LEAN VERIFIED infrastructure.**
+
+## 8. Why generic JC2 is no longer the active plan
+
+The unrestricted generic two-zero projection is indeed full JC2 and cannot be
+used as a casual terminal lemma. The current branches retain much stronger
+source/contact provenance:
+
+- the rank-three branch retains a locked ray, exact positive source exposure,
+  contact-face bounds and primitive line slices;
+- the codimension-two branch retains a concrete top carrier and first
+  departures that force a constant-kernel cone before any generic planar
+  projection.
+
+Therefore the current paper programme closes both branches before generic JC2.
+The JC2 modules remain valid reusable/historical infrastructure but are not the
+preferred unrestricted final splice.
+
+## 9. Provenance invariants
+
+Keep distinct until a theorem explicitly identifies them:
 
 ```text
 original source
-normalized/recentered source
+normalised/recentered source
 polynomial family
 family special fibre
 presented/ramified family
-blocker endpoint raw special fibre
+blocker special fibre
 right-recentered special fibre
 maximal ordinary top face
 first-contact face
-cross-facet face
 lower first-nonfacet carrier
 finite-support ray
+neutral planar refinement
+ordinary reverse-Rees family
 ```
 
-A support witness on one carrier is not automatically support on another.
-
-The same applies to clocks:
+Likewise keep distinct:
 
 ```text
 source raw defect
 presented raw defect
 endpoint defect
-actual trace-edge raw-defect decrease
+zero blocker clock
+ray-Rees defect
 parameter-layer order
+ordinary reverse-Rees order
 ramified parameter order
 ```
 
-See `GLOSSARY_AND_INVARIANTS.md` for the full rules.
+No equality between these quantities may be inserted merely because their
+roles look analogous.
 
-## 17. What not to rebuild
+## 10. What not to rebuild
 
-Before adding new infrastructure, search for existing owners of:
+Search existing owners before creating:
 
-- four-variable boundary/facet predicates;
-- coordinate support filters;
-- exact initial-form coefficient/support identities;
-- finite-support maxima/minima and exposed vertices;
-- Hessian singularity preservation through exact initial forms;
-- first-contact weights/contact equations;
-- cross-facet exposure and affine-ray extraction;
-- Smith projected support/pattern predicates;
-- exact same-exponent mixed-degree data;
-- longitudinal coefficient polynomial reconstruction;
-- right-recentering/zero-linear-jet identities;
-- positive Rees bounds, source progress, and low-layer order;
-- canonical global macro progress;
-- rank-one termination trace;
-- RationalRigidity line/endpoint contradictions.
+- ordinary degree components;
+- weighted initial forms and support identities;
+- finite-support exposed vertices/rays;
+- family parameter layers and Hessian coefficient extraction;
+- source-coordinate kernel transport;
+- Schur projective wedges;
+- rank-two Hessian witness structures;
+- geometry-bearing global progress;
+- rank-one termination recursion.
 
-Use `CANONICAL_OWNERS.md` and the generated declaration index before declaring a generic-looking theorem or definition.
+The formalisation plan lists the genuinely new modules.
 
-## 18. How the documentation stays non-duplicative
+## 11. Completion criterion
 
-The documentation itself has ownership boundaries:
+The paper programme is currently **PAPER CANDIDATE closed**: no specific local
+branch from the 12 September audit is known to remain unresolved.
 
-- **current truth:** `CURRENT_STATE.md`;
-- **mathematical architecture:** this file;
-- **exact route lookup:** `PROOF_PATHS.md`;
-- **definition/theorem ownership:** `CANONICAL_OWNERS.md`;
-- **vocabulary and invariants:** `GLOSSARY_AND_INVARIANTS.md`;
-- **old-route interpretation:** `HISTORICAL_AND_SUPERSEDED_ROUTES.md`;
-- **every file/declaration/import:** generated indexes.
-
-Do not copy full status tables between documents. Link to the owner document instead.
-
-## 19. Final completion criterion
-
-The project reaches unrestricted HC4 only when a top-level theorem proves determinant-one gradient injectivity with no caller-supplied resolver, producer, terminal-impossibility hypothesis, balance assumption, homogeneity assumption, or JC2 hypothesis, and that theorem is included in the audited root build.
-
-Until then, the correct description is: **global termination and unrestricted entry are built; final zero-clock local boundary assembly remains.**
+That is not yet unrestricted HC4. Completion requires Lean verification of the
+new local lemmas and adapters, elimination of both A19.55 constructors, and a
+green audited public theorem proving determinant-one gradient injectivity with
+no caller-supplied resolver, producer, balance assumption, homogeneity
+assumption, or JC2 hypothesis.
