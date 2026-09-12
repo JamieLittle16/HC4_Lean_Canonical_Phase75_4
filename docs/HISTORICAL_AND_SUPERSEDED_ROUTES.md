@@ -4,6 +4,17 @@ The HC4 repository is cumulative. Old theorems are usually retained because they
 
 This document prevents a common failure mode: seeing an older reduction or phase note, assuming it is current, and rebuilding infrastructure that a later route has already replaced.
 
+## 0. 12 September 2026 supersession note
+
+The current paper programme has moved beyond two previously live gaps:
+
+- the source-honest rank-three other-facet branch now has a complete paper candidate closure through defect-neutral planar refinement, highest-slice singularity, line-supported rigidity, and contact/developable elimination;
+- the A19.55 same-carrier codimension-two branch now has a complete paper candidate closure through primitive-departure cone geometry and the ordinary reverse-Rees filtered first-kernel-break lemma.
+
+These arguments are **PAPER CANDIDATE**, not Lean verified. The authoritative status is `CURRENT_STATE.md`; the implementation order is `FORMALISATION_PLAN_2026-09-12.md`.
+
+Consequently, older notes that say “source-honest terminal exclusion remains open,” “same-carrier codimension two remains open,” or “fall back to generic JC2” are historical checkpoints, not the current TODO list.
+
 ## 1. Status vocabulary
 
 Use these labels when reading old files.
@@ -23,6 +34,16 @@ A proved theorem or resolver structure whose obligations were subsequently reduc
 ### Historical checkpoint
 
 A Markdown/status artifact describing the repository at an earlier point. Useful for archaeology only.
+
+For current work also use the stronger verification labels:
+
+```text
+LEAN VERIFIED
+PAPER CANDIDATE
+OPEN
+```
+
+as defined in `CURRENT_STATE.md`.
 
 ## 2. Historical phase Markdown files
 
@@ -50,6 +71,7 @@ Lean source
   > generated inventory
   > docs/CURRENT_STATE.md
   > docs/PROOF_PATHS.md / PROOF_ARCHITECTURE.md
+  > docs/FORMALISATION_PLAN_2026-09-12.md
   > canonical owners
   > historical status files
 ```
@@ -227,7 +249,9 @@ The current direction is to retain actual objects already present in the proof:
 - actual singular maximal top face;
 - actual finite cross-facet carrier;
 - actual finite-support ray;
-- actual boundary exponent.
+- actual boundary exponent;
+- actual neutral planar carrier;
+- actual homogeneous layer of the ordinary reverse-Rees family.
 
 Prefer this provenance-preserving route over manufacturing a new endpoint unless a theorem genuinely requires one and the construction is proved.
 
@@ -272,11 +296,44 @@ The repository contains a real planar/JC2 pathway:
 - `AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier.lean`
 - `AdaptiveAlignedSmithCanonicalJC2HC4Assembly.lean`
 
-Status: **reusable specialized route**, not an automatic interpretation of every codimension-two boundary exponent.
+Status: **reusable specialized route, not the live unrestricted closure plan.**
 
-A current codimension-two carrier must first be proved to satisfy the exact two-zero/planar hypotheses.
+A generic two-zero projection is full JC2. The current A19.55 same-carrier
+codimension-two branch retains stronger first-departure provenance and now has
+a paper route to a constant-kernel cone and an ordinary reverse-Rees
+rank-two witness before generic JC2. The rank-three other-facet branch likewise
+retains stronger ray/contact provenance and has its own paper closure.
 
-## 11. Classified-family / old main assembly route
+Keep these modules; do not use them as an unproved adapter.
+
+## 11. Auxiliary ray-Schur clock as direct terminal contradiction
+
+The `.pr` ray reverse-Rees, exact Schur clock, constant pivot/minor and weight
+bounds remain proved and useful. The compatibility audit also proves that its
+positive ray defect is not the original zero blocker defect and cannot be
+identified with a natural ramification multiple of the source defect.
+
+Therefore the historical direct move
+
+```text
+auxiliary ray clock
+-> stationary rank-two/global progress on original zero blocker
+```
+
+is superseded. The current rank-three paper route uses source-honest neutral
+refinement and contact geometry instead.
+
+Do not delete the ray-clock modules; their clock-separation theorem is itself a
+critical invariant.
+
+## 12. Four-monomial cross-ratio as standalone contradiction
+
+Superseded. The cross-ratio equation is one exact coefficient constraint, not a
+contradiction by itself. The current no-singleton carrier calculation uses the
+**full Hessian determinant factorisation**, which supplies additional
+incompatible differential equations.
+
+## 13. Classified-family / old main assembly route
 
 `HC4/MainAssembly.lean` and `HC4/ClassifiedFamilies/*` belong to an older downstream classification architecture: once a gradient has already been placed into one of the classified forms, they provide explicit inverses/conjugacies and final injectivity consequences.
 
@@ -284,7 +341,7 @@ These modules remain valuable, but they are not the current missing bridge from 
 
 Do not read `MainAssembly.lean` as the current unrestricted front door.
 
-## 12. Historical “missing GN / autonomous ODE / four-sided” ledger entries
+## 14. Historical “missing GN / autonomous ODE / four-sided” ledger entries
 
 Old phase ledgers listed broad manuscript gaps such as Gordan–Noether, autonomous ODE front halves, four-sided character bridges, or global Newton assembly.
 
@@ -295,13 +352,14 @@ Since then the repository has accumulated extensive replacement infrastructure, 
 - large rank-three RationalRigidity families;
 - global Smith/Rees termination and provenance;
 - unrestricted collision entry;
-- producer-free zero-clock local carriers.
+- producer-free zero-clock local carriers;
+- the current paper-level planar/contact and filtered-kernel closure arguments.
 
 Therefore an old ledger line saying “missing X” is not evidence that X should be implemented under that historical formulation.
 
 Search the current module/declaration indexes and live proof path first.
 
-## 13. How to classify an old file you encounter
+## 15. How to classify an old file you encounter
 
 Ask in this order:
 
@@ -321,7 +379,7 @@ historical artifact
 
 Do not delete proved infrastructure merely because it is not on the current main path; instead keep the live-path documentation explicit.
 
-## 14. Migration rules for future proof work
+## 16. Migration rules for future proof work
 
 ### If an old resolver has more fields than a new resolver
 
@@ -343,11 +401,17 @@ Adapt the retained witness rather than constructing a second endpoint.
 
 Use A19.45 and route it to outer global progress.
 
+### If an old theorem suggests generic JC2 from a codimension-two endpoint
+
+First check `CURRENT_STATE.md` and the 12 September paper closure. The live
+A19.55 branch has stronger provenance and should be formalised through that
+route before any generic JC2 fallback.
+
 ### If an old phase note says a theorem is missing
 
 Search the generated index and current source before writing anything.
 
-## 15. What should actually be removed?
+## 17. What should actually be removed?
 
 Normally, very little Lean infrastructure needs deletion during final assembly. Keeping proved alternate routes has value.
 
