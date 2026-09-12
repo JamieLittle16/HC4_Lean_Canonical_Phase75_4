@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7718**.
+Distinct declaration spellings indexed: **7723**.
 
 ## Repeated declaration spellings
 
@@ -2252,6 +2252,8 @@ Distinct declaration spellings indexed: **7718**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_primitive_pair_is_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.primitive_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
@@ -2351,6 +2353,8 @@ Distinct declaration spellings indexed: **7718**.
 - `QsOtherFacetRayReverseReesPackage.two_longitudinal_weight_lt_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `QsOtherFacetWeightedProfileCertificate` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
 - `QsOtherFacetWeightedProfileCertificate.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedProfileRigidity`
+- `QsPrLockedQuotientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
+- `QsPrLockedQuotientData.direction_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QsTwoFixedTerminalData.impossible` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
 - `QuadraticAutonomousLogODE` — `def` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
@@ -6029,6 +6033,7 @@ Distinct declaration spellings indexed: **7718**.
 - `qsOtherFacetSkewWeight_independent_witness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
 - `qsOtherFacetSkewWeight_outside_eq_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
 - `qsPrContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
+- `qsPrLockedQuotientData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `qsPrSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qsRayDegreeOneCoefficientPolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qsRayDegreeOneCoefficientPolynomial_coeff_one_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
