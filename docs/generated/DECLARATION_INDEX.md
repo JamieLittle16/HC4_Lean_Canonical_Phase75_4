@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7673**.
+Distinct declaration spellings indexed: **7674**.
 
 ## Repeated declaration spellings
 
@@ -7687,6 +7687,7 @@ Distinct declaration spellings indexed: **7673**.
 - `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
