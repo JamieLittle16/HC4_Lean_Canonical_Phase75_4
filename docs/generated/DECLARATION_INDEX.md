@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7510**.
+Distinct declaration spellings indexed: **7513**.
 
 ## Repeated declaration spellings
 
@@ -3994,6 +3994,7 @@ Distinct declaration spellings indexed: **7510**.
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_firstReesProjectiveWedgeDepartureData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
+- `exists_firstThree_zero_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exists_firstTransverseKeyHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
 - `exists_firstTransverseKeyMaximalHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
@@ -4078,6 +4079,8 @@ Distinct declaration spellings indexed: **7510**.
 - `exposedNonlinearBalancedCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `exposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
 - `exposedSingularNonlinearBoundaryVertex` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
+- `exposedSingularNonlinearBoundaryVertex_carrier_coordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
+- `exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exposedSuperfaceCandidates` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposedSuperfaceSlope` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
