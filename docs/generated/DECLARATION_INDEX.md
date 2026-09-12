@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7464**.
+Distinct declaration spellings indexed: **7468**.
 
 ## Repeated declaration spellings
 
@@ -1728,6 +1728,7 @@ Distinct declaration spellings indexed: **7464**.
 - `HasIntegralRigidMatrixNormalization` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `HasIntegralSmithConformalCoefficientDivisibility` — `def` in `HC4.Valuation.SmithConformalCovariance`
 - `HasIntegralSmithConformalSectionDivisibility` — `def` in `HC4.Valuation.SmithConformalCovariance`
+- `HasJointCodimensionTwoDeparture` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `HasLeftPivotHessianKernel` — `def` in `HC4.Newton.FixedKernelHessian`
 - `HasLinearPowerTransverseNormalForm` — `def` in `HC4.Newton.LinearPowerPacketNormalForm`
 - `HasNoNegativeLowSmithPatterns` — `def` in `HC4.Newton.SmithFirstWallGradeClassification`
@@ -1808,6 +1809,7 @@ Distinct declaration spellings indexed: **7464**.
 - `HasRigidRankTwoTerminal` — `def` in `HC4.Newton.RankTwoRepairTerminal`
 - `HasRigidTwoStageClosingOutcome` — `def` in `HC4.Valuation.RigidPacketZeroSchurBridge`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `HasSeparatedCodimensionTwoDepartures` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `HasSeparatedRightSmithSectionWall` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
 - `HasSeparatedSectionWallStrictRestart` — `def` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `HasSmithCanonicalRepairOutcome` — `def` in `HC4.Newton.SmithRefinedFacePolynomial`
@@ -3497,6 +3499,7 @@ Distinct declaration spellings indexed: **7464**.
 - `constantCoordinateDirectionForChartKind_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `constantFamily_hasIntegralCanonicalSmithConformalDivisibility` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantKernel_or_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `constantKernel_or_joint_or_separated` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `constantPolynomialFamily` — `def` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantPolynomialFamily_transverseSourceShearVariableBase` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `constantSourceDirectionalDerivative` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
@@ -4752,6 +4755,7 @@ Distinct declaration spellings indexed: **7464**.
 - `iteratedBinaryLinearFormTransverseDeriv_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `iteratedInitialForm` — `def` in `HC4.Newton.IteratedRefinement`
 - `iteratedInitialForm_eq_lexInitialForm` — `theorem` in `HC4.Newton.IteratedRefinement`
+- `joint_or_separated_of_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `kernelBlowupSection` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelBlowupSection_apply_kernel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelBlowupSection_apply_of_ne` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
