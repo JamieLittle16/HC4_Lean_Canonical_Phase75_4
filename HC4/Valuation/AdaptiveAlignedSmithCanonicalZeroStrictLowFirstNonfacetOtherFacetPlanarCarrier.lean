@@ -99,7 +99,21 @@ private theorem weight_scalar_mul_fin4
       a * Finsupp.weight w e := by
   have h := HC4.Newton.finsupp_weight_fin4_linear_combination
     a w (fun _ => 0) e
-  simpa using h
+  have hz : Finsupp.weight (fun _ : Fin 4 => (0 : ℤ)) e = 0 := by
+    rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    · simp
+    · intro i
+      simp
+  simpa [hz] using h
+
+private theorem weight_sub_scalar_mul_fin4
+    (a b : ℤ) (w v : Fin 4 → ℤ) (e : Fin 4 →₀ ℕ) :
+    Finsupp.weight (fun i => a * w i - b * v i) e =
+      a * Finsupp.weight w e - b * Finsupp.weight v e := by
+  have h := HC4.Newton.finsupp_weight_fin4_linear_combination
+    a w (fun i => (-b) * v i) e
+  rw [weight_scalar_mul_fin4] at h
+  simpa [sub_eq_add_neg, neg_mul] using h
 
 /-- Linearise the ratio wall into an honest `Fin 4` source weight. -/
 private theorem ratioWallWeight_eq_finsuppWeight_sub_level
@@ -122,16 +136,9 @@ private theorem ratioWallWeight_eq_finsuppWeight_sub_level
         (qsOtherFacetSkewLevel C next) a e =
       Finsupp.weight theta e - thetaLevel := by
   dsimp
-  have hlin := HC4.Newton.finsupp_weight_fin4_linear_combination
-    (qsOtherFacetPairDegree next a - 1)
-    (qsOtherFacetSkewWeight C next)
-    (fun i =>
-      -(Finsupp.weight (qsOtherFacetSkewWeight C next) a -
-          qsOtherFacetSkewLevel C next) *
-        qsOtherFacetPairWeight next i) e
-  rw [hlin]
-  rw [weight_scalar_mul_fin4]
+  rw [weight_sub_scalar_mul_fin4]
   rw [finsupp_weight_qsOtherFacetPairWeight]
+  simp [HC4.Newton.ratioWallWeight]
   ring
 
 /-- **A19 planar source carrier.**  The two defect-neutral refinements can be
@@ -172,6 +179,7 @@ theorem qs_ray_otherFacet_planarCarrier_package
       push_cast
       rfl
     rw [hcast]
+    change (Finsupp.weight R.weight e : ℤ) ≤ (R.level : ℤ)
     exact_mod_cast hnat
 
   have hinit : HC4.Polynomial.initialForm w c F = C.ray.face := by
@@ -385,7 +393,7 @@ theorem qs_ray_otherFacet_planarCarrier_package
       exact_mod_cast R.weight_pos i
     have hpairNonneg : (0 : ℤ) ≤ pair i := by
       dsimp [pair]
-      fin_cases next <;> fin_cases i <;>
+      cases next <;> fin_cases i <;>
         norm_num [qsOtherFacetPairWeight]
     dsimp [W1]
     have hAw : 0 < A * w i := mul_pos hA hwz
@@ -403,10 +411,9 @@ theorem qs_ray_otherFacet_planarCarrier_package
   have hsumW1 :
       ∑ i : Fin 4, W1 i =
         A * (∑ i : Fin 4, w i) + B * 2 := by
+    simp only [Fin.sum_univ_four] at hsumPair ⊢
     dsimp [W1]
-    rw [Fin.sum_univ_four, Fin.sum_univ_four, Fin.sum_univ_four] at hsumPair ⊢
-    ring_nf at hsumPair ⊢
-    nlinarith
+    nlinarith [hsumPair]
   have hbaseLtNat :
       2 * ∑ i : Fin 4, R.weight i < 4 * R.level :=
     Nat.sub_pos_iff_lt.mp R.defect_pos
@@ -486,7 +493,7 @@ theorem qs_ray_otherFacet_planarCarrier_package
       exact haG2
     simpa using this
   have haPair : 1 < qsOtherFacetPairDegree next a := by
-    dsimp [pairDegree] at hpGap
+    dsimp [pGap, pairDegree] at hpGap
     omega
 
   have hFirstLevel :
