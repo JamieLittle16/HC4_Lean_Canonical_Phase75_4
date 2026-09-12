@@ -54,7 +54,12 @@ private theorem weight_scalar_mul_fin4
       a * Finsupp.weight w e := by
   have h := HC4.Newton.finsupp_weight_fin4_linear_combination
     a w (fun _ => 0) e
-  simpa using h
+  have hz : Finsupp.weight (fun _ : Fin 4 => (0 : ℤ)) e = 0 := by
+    rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    · simp
+    · intro i
+      simp
+  simpa [hz] using h
 
 private theorem weight_wall_combination
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -69,9 +74,8 @@ private theorem weight_wall_combination
   have h := HC4.Newton.finsupp_weight_fin4_linear_combination
     a (qsOtherFacetSkewWeight C next)
     (fun i => (-b) * qsOtherFacetPairWeight next i) e
-  rw [h, weight_scalar_mul_fin4,
-    finsupp_weight_qsOtherFacetPairWeight]
-  ring
+  rw [weight_scalar_mul_fin4, finsupp_weight_qsOtherFacetPairWeight] at h
+  simpa [sub_eq_add_neg, neg_mul] using h
 
 /-- Every support point of the final source carrier attains the exact final
 source level. -/
@@ -105,7 +109,7 @@ theorem QsOtherFacetPlanarCarrierPackage.skew_eq_of_pairDegree_eq
   have heWall := P.support_wall_level he
   have hfWall := P.support_wall_level hf
   rw [P.wallWeight_eq] at heWall hfWall
-  rw [weight_wall_combination, weight_wall_combination] at heWall hfWall
+  simp only [weight_wall_combination] at heWall hfWall
   have hmul :
       P.pairGap *
         (Finsupp.weight (qsOtherFacetSkewWeight C next) e -
@@ -152,7 +156,7 @@ private theorem pr_transverseDet_ne_zero
     simpa using h
   have hfacetLevel := P.support_final_level hfacetMem
   have houtLevel := P.support_final_level houtMem
-  rw [weight_explicit_fin4, weight_explicit_fin4] at hfacetLevel houtLevel
+  simp only [weight_explicit_fin4] at hfacetLevel houtLevel
   simp [hfacet0, hfacet1, hout0, hout1] at hfacetLevel houtLevel
   have hclock := P.hessianClock_pos
   rw [Fin.sum_univ_four] at hclock
@@ -184,7 +188,7 @@ private theorem sp_transverseDet_ne_zero
     simpa using h
   have hfacetLevel := P.support_final_level hfacetMem
   have houtLevel := P.support_final_level houtMem
-  rw [weight_explicit_fin4, weight_explicit_fin4] at hfacetLevel houtLevel
+  simp only [weight_explicit_fin4] at hfacetLevel houtLevel
   simp [hfacet0, hfacet2, hout0, hout2] at hfacetLevel houtLevel
   have hclock := P.hessianClock_pos
   rw [Fin.sum_univ_four] at hclock
@@ -216,7 +220,7 @@ private theorem rq_transverseDet_ne_zero
     simpa using h
   have hfacetLevel := P.support_final_level hfacetMem
   have houtLevel := P.support_final_level houtMem
-  rw [weight_explicit_fin4, weight_explicit_fin4] at hfacetLevel houtLevel
+  simp only [weight_explicit_fin4] at hfacetLevel houtLevel
   simp [hfacet0, hfacet3, hout0, hout3] at hfacetLevel houtLevel
   have hclock := P.hessianClock_pos
   rw [Fin.sum_univ_four] at hclock
@@ -282,9 +286,8 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       ((mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree).1
     have hdet := pr_transverseDet_ne_zero C P hthree houtThree
     simp [qsOtherFacetPairDegree] at hpair
-    rw [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
-    simp [qsOtherFacetSkewWeight, hfacet0, hfacet1, hout0, hout1] at
-      hskew hskewRay
+    simp only [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
+    simp [qsOtherFacetSkewWeight, hfacet0, hfacet1, hout0, hout1] at hskew hskewRay
     simp [hfacet0, hfacet1, hout0, hout1] at hfinalRay
     let t : ℤ := (e 0 : ℤ) - (f 0 : ℤ)
     let r2 : ℤ :=
@@ -302,7 +305,6 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       nlinarith
     have hwr : P.finalWeight 2 * r2 + P.finalWeight 3 * r3 = 0 := by
       dsimp [r2, r3, t]
-      rw [weight_explicit_fin4] at hfinal
       nlinarith
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
@@ -325,9 +327,8 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       ((mvRankThreeOnFacet_iff .sp C.ray.outsideExponent).1 houtThree).1
     have hdet := sp_transverseDet_ne_zero C P hthree houtThree
     simp [qsOtherFacetPairDegree] at hpair
-    rw [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
-    simp [qsOtherFacetSkewWeight, hfacet0, hfacet2, hout0, hout2] at
-      hskew hskewRay
+    simp only [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
+    simp [qsOtherFacetSkewWeight, hfacet0, hfacet2, hout0, hout2] at hskew hskewRay
     simp [hfacet0, hfacet2, hout0, hout2] at hfinalRay
     let t : ℤ := (e 0 : ℤ) - (f 0 : ℤ)
     let r1 : ℤ :=
@@ -345,7 +346,6 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       nlinarith
     have hwr : P.finalWeight 1 * r1 + P.finalWeight 3 * r3 = 0 := by
       dsimp [r1, r3, t]
-      rw [weight_explicit_fin4] at hfinal
       nlinarith
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
@@ -368,9 +368,8 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       ((mvRankThreeOnFacet_iff .rq C.ray.outsideExponent).1 houtThree).1
     have hdet := rq_transverseDet_ne_zero C P hthree houtThree
     simp [qsOtherFacetPairDegree] at hpair
-    rw [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
-    simp [qsOtherFacetSkewWeight, hfacet0, hfacet3, hout0, hout3] at
-      hskew hskewRay
+    simp only [weight_explicit_fin4] at hskew hfinal hskewRay hfinalRay
+    simp [qsOtherFacetSkewWeight, hfacet0, hfacet3, hout0, hout3] at hskew hskewRay
     simp [hfacet0, hfacet3, hout0, hout3] at hfinalRay
     let t : ℤ := (e 0 : ℤ) - (f 0 : ℤ)
     let r1 : ℤ :=
@@ -388,7 +387,6 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
       nlinarith
     have hwr : P.finalWeight 1 * r1 + P.finalWeight 2 * r2 = 0 := by
       dsimp [r1, r2, t]
-      rw [weight_explicit_fin4] at hfinal
       nlinarith
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
