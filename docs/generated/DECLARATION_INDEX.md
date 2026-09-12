@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7706**.
+Distinct declaration spellings indexed: **7707**.
 
 ## Repeated declaration spellings
 
@@ -7700,6 +7700,7 @@ Distinct declaration spellings indexed: **7706**.
 - `twoByTwoWitness_or_allZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `twoFunctionCarrier` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionCarrier_hessian_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
 - `twoFunctionConcreteBx` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionConcreteBx_constant_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionConcreteBx_eq_zero_of_factorB_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`

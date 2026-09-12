@@ -927,6 +927,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `HC4.Polynomial.TopProduct`
   - `HC4.Polynomial.DerivativeBounds`
+- `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
+  - `HC4.Polynomial.ComplementaryMvMomentRealisation`
+  - `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `HC4.Polynomial.TwoFunctionEulerCalculus`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
   - `HC4.Polynomial.TwoFunctionEulerHessian`
