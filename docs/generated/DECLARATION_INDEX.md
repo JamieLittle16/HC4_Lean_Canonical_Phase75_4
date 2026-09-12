@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7479**.
+Distinct declaration spellings indexed: **7490**.
 
 ## Repeated declaration spellings
 
@@ -3241,6 +3241,7 @@ Distinct declaration spellings indexed: **7479**.
 - `codimensionTwoTriple_m_one_cubicFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoUpperEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoUpperEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoWeightedDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `codimensionTwo_zeroCoordinateSupports_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `coeffYY_eq_zero_of_zSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeffYZ_eq_zero_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
@@ -3339,12 +3340,19 @@ Distinct declaration spellings indexed: **7479**.
 - `coeff_rayRawLongitudinalProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `coeff_rigidLongitudinalEval_eq_eval_initialForm` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `coeff_s_cube_t_det_codimensionTwoDeparturePencil_leftPrimitive` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `coeff_s_cube_t_det_codimensionTwoWeightedDeparturePencil_leftPrimitive` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_sq_t_det_codimensionTwoDeparturePencil_leftTop` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `coeff_s_sq_t_det_codimensionTwoDeparturePencil_leftZero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `coeff_s_sq_t_det_codimensionTwoWeightedDeparturePencil_leftTop` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
+- `coeff_s_sq_t_det_codimensionTwoWeightedDeparturePencil_leftZero` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_sq_t_sq_det_codimensionTwoDeparturePencil_leftTop_baseTop` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `coeff_s_sq_t_sq_det_codimensionTwoDeparturePencil_leftZero_baseOne` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `coeff_s_sq_t_sq_det_codimensionTwoDeparturePencil_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_leftTop_baseTop` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
+- `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_leftZero_baseOne` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
+- `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_t_det_codimensionTwoDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `coeff_s_t_det_codimensionTwoWeightedDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_single_zero_killBinaryTransverseLinear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `coeff_smithScalarLevelDegreeComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `coeff_smithSubfaceDegreeComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -5089,6 +5097,7 @@ Distinct declaration spellings indexed: **7479**.
 - `negative_character_normal_form` — `theorem` in `HC4.Toric.CharacterSupport`
 - `negative_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `nestedC` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `nestedCw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `noCounterexample_of_JC2_canonicalEntry_and_frontierExhaustion` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_completeCanonicalReduction` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_losslessCanonicalReduction` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
@@ -6545,6 +6554,7 @@ Distinct declaration spellings indexed: **7479**.
 - `sProjectedSupport_unique_preimage` — `theorem` in `HC4.Toric.BranchCoordinates`
 - `sValue` — `def` in `HC4.ClassifiedFamilies.TriangularInverse`
 - `sVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `sVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `sameScale_or_rankTwoProgress_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`
 - `same_sign_of_positive_weight_cross_relation` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `saturatedKernelBlowup_canonicalWall_or_strictImprovement` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
@@ -7256,6 +7266,7 @@ Distinct declaration spellings indexed: **7479**.
 - `symmetricTargetGrade_exponent_cases_of_noWLinear` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `symmetricTargetGrade_of_separatorDelta_one_one_nonpositive` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `tVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `tVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `tail` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `tailActive` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tailBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
