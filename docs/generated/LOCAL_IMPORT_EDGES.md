@@ -3160,6 +3160,8 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
   - `HC4.Valuation.FirstKernelBreakRankTwo`
   - `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `HC4.Valuation.FourOrdinaryReverseReesCollision`
+  - `HC4.Valuation.FourOrdinaryReverseRees`
 - `HC4.Valuation.GeometricAssemblyEntry`
   - `HC4.Valuation.CoupledSmithWallClosure`
   - `HC4.Valuation.IntegralKernelSlopeExtraction`

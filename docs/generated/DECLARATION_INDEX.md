@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7427**.
+Distinct declaration spellings indexed: **7432**.
 
 ## Repeated declaration spellings
 
@@ -3826,12 +3826,14 @@ Distinct declaration spellings indexed: **7427**.
 - `eval_eq_of_strictlyLowerWeightSupport` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `eval_eq_of_support_transverseDegree_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
 - `eval_finCons_zero_eq_longitudinalAxisRestriction` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `eval_fourUnitSourceInflateFamily_constantSection` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `eval_fourVariableLinearPart` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `eval_integralKernelBlowupFamily_eq_of_eq` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `eval_integralKernelBlowupFamily_kernelBlowupSection` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `eval_integralSmithConformalFamily` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `eval_kernelInflateHom` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `eval_left_ne_zero_of_isCoprime_right_eval_zero` — `theorem` in `HC4.RationalRigidity.AutonomousDenominatorRemoval`
+- `eval_map_polynomialC_constantSection` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `eval_monomial_eq_of_eq_on_exponent_support` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `eval_ne_zero_of_bezout_and_cleared_chart` — `theorem` in `HC4.RationalRigidity.ChartCertificates`
 - `eval_ne_zero_of_dvd` — `theorem` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
@@ -4310,7 +4312,9 @@ Distinct declaration spellings indexed: **7427**.
 - `fourOrdinaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryReverseReesFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourOrdinaryReverseReesFamily_exactGradientCollision` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `fourOrdinaryReverseReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourReverseReesScaledSection` — `def` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `fourUnitSourceInflateFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourUnitSourceInflateFamily_C` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourUnitSourceInflateFamily_hasHessianDefect_add_eight` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
@@ -5326,6 +5330,7 @@ Distinct declaration spellings indexed: **7427**.
 - `pderiv_eq_zero_of_all_supported_exponents_zero` — `theorem` in `HC4.Newton.TerminalTwoZeroSupport`
 - `pderiv_eq_zero_of_no_activeSupport` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `pderiv_eq_zero_of_no_binaryOutsideSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `pderiv_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `pderiv_gradientRatioLinearForm_fin` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `pderiv_gradientRatioLinearForm_pow_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `pderiv_initialForm` — `theorem` in `HC4.Polynomial.DerivativeWeight`
