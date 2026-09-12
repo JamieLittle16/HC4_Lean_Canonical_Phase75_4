@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7435**.
+Distinct declaration spellings indexed: **7441**.
 
 ## Repeated declaration spellings
 
@@ -845,6 +845,7 @@ Distinct declaration spellings indexed: **7435**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundaryData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStratum` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryTransition` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoTopFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactProducer` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactProducer.toCoreProducer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
@@ -3220,6 +3221,7 @@ Distinct declaration spellings indexed: **7435**.
 - `closing_of_rankOne_closure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingRigidRankTwoGeometry`
 - `closing_of_residual_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingRigidRankTwoGeometry`
 - `closing_transverse_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `codimensionTwoTopFaceData_of_stratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `codimensionTwo_zeroCoordinateSupports_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `coeffYY_eq_zero_of_zSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeffYZ_eq_zero_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
@@ -3479,6 +3481,7 @@ Distinct declaration spellings indexed: **7435**.
 - `constantCoordinateDirectionForChartKind` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `constantCoordinateDirectionForChartKind_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `constantFamily_hasIntegralCanonicalSmithConformalDivisibility` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
+- `constantKernel_or_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `constantPolynomialFamily` — `def` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantPolynomialFamily_transverseSourceShearVariableBase` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `constantSourceDirectionalDerivative` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
@@ -4288,6 +4291,7 @@ Distinct declaration spellings indexed: **7435**.
 - `first_contact_hessianDeterminant_eq_zero_of_isWeightLE` — `theorem` in `HC4.MongeAmpere.FirstContactMaximal`
 - `first_contact_positive_via_lower_bound` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `first_contact_scaled_hessianDeterminant_eq_zero_of_isWeightLE` — `theorem` in `HC4.MongeAmpere.FirstContactMaximal`
+- `first_zeroSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `five_dvd_alignedSmithSectionWallStep` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `fixedDegreeRepair_rigid_or_rankTwoContinuation` — `theorem` in `HC4.Valuation.AdaptiveGeometricRestartState`
 - `fixedScaleEpisodeProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
@@ -5333,6 +5337,7 @@ Distinct declaration spellings indexed: **7435**.
 - `pderiv_eq_zero_of_all_supported_exponents_zero` — `theorem` in `HC4.Newton.TerminalTwoZeroSupport`
 - `pderiv_eq_zero_of_no_activeSupport` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `pderiv_eq_zero_of_no_binaryOutsideSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `pderiv_eq_zero_of_positiveCoordinateSupport_empty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `pderiv_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `pderiv_gradientRatioLinearForm_fin` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `pderiv_gradientRatioLinearForm_pow_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
@@ -6650,6 +6655,7 @@ Distinct declaration spellings indexed: **7435**.
 - `secondThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `secondThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `secondZero_or_rightPoint_negativeAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`
+- `second_zeroSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `sectionCoordinateParameterOrder` — `def` in `HC4.Valuation.AlignedSmithFirstStop`
 - `sectionCoordinateParameterOrder_dvd` — `theorem` in `HC4.Valuation.AlignedSmithFirstStop`
 - `sectionCoordinateParameterOrder_pos_of_constantCoeff_zero` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
