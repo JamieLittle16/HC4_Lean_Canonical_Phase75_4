@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7490**.
+Distinct declaration spellings indexed: **7496**.
 
 ## Repeated declaration spellings
 
@@ -3413,7 +3413,9 @@ Distinct declaration spellings indexed: **7490**.
 - `common_r_s_levels_eq_zero` — `theorem` in `HC4.Toric.SupportIntersection`
 - `common_r_s_support_on_pq_cone` — `theorem` in `HC4.Toric.SupportIntersection`
 - `comp_X_pow_eq_zero_of_pos` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
+- `comp_X_pow_eq_zero_of_pos_domain` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `comp_X_pow_injective` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
+- `comp_X_pow_injective_domain` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `complementPermutation_two_standard_zeros` — `theorem` in `HC4.Newton.TerminalTwoZeroPattern`
 - `complementPermutation_zero_maps_to_degree` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
 - `complementWeightPermutation_to_oppositeCentered` — `theorem` in `HC4.Newton.TerminalWeightPermutation`
@@ -4688,6 +4690,7 @@ Distinct declaration spellings indexed: **7490**.
 - `initialForm_support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_zero` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
+- `innerPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `integer_min_or_unit_gap` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `integralAdaptiveSmithSection` — `def` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `integralAdaptiveSmithSection_constantCoeff_zero_of_weight_lt_ramification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExposureNoBoundary`
@@ -5098,6 +5101,8 @@ Distinct declaration spellings indexed: **7490**.
 - `negative_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `nestedC` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `nestedCw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
+- `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
+- `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `noCounterexample_of_JC2_canonicalEntry_and_frontierExhaustion` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_completeCanonicalReduction` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_losslessCanonicalReduction` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
@@ -5677,6 +5682,7 @@ Distinct declaration spellings indexed: **7490**.
 - `polynomial_identity_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `polynomial_identity_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_leadingCoeff_derivative_of_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
+- `polynomial_map_injective_of_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `polynomial_natDegree_eq_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_natDegree_pos_of_later_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
 - `polynomial_taylor_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
