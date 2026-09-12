@@ -72,19 +72,25 @@ theorem nat_eq_one_of_firstMixedHessianCoreAtZero_eq_zero
   have hu₃K : (u₃ : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hu₃)
   have hsumK : (u₁ : K) + (u₂ : K) + (u₃ : K) - 1 ≠ 0 := by
     intro h
+    have hsumEqK : (u₁ : K) + (u₂ : K) + (u₃ : K) = 1 :=
+      sub_eq_zero.mp h
     have hcast : ((u₁ + u₂ + u₃ : ℕ) : K) = 1 := by
-      push_cast
-      linarith
+      simpa [Nat.cast_add] using hsumEqK
     have hnat : u₁ + u₂ + u₃ = 1 := by exact_mod_cast hcast
     omega
-  have hvfactor : (v₀ : K) * ((v₀ : K) - 1) = 0 := by
-    apply (mul_eq_zero.mp ?_)
-    · exact hu₁K
-    · apply (mul_eq_zero.mp ?_)
-      · exact hu₂K
-      · apply (mul_eq_zero.mp ?_)
-        · exact hu₃K
-        · exact hzero
+  have hprod :
+      (((u₁ : K) * (u₂ : K) * (u₃ : K)) *
+          ((v₀ : K) * ((v₀ : K) - 1))) *
+        ((u₁ : K) + (u₂ : K) + (u₃ : K) - 1) = 0 := by
+    simpa [mul_assoc] using hzero
+  have hmiddle :
+      ((u₁ : K) * (u₂ : K) * (u₃ : K)) *
+        ((v₀ : K) * ((v₀ : K) - 1)) = 0 :=
+    (mul_eq_zero.mp hprod).resolve_right hsumK
+  have huProd : (u₁ : K) * (u₂ : K) * (u₃ : K) ≠ 0 :=
+    mul_ne_zero (mul_ne_zero hu₁K hu₂K) hu₃K
+  have hvfactor : (v₀ : K) * ((v₀ : K) - 1) = 0 :=
+    (mul_eq_zero.mp hmiddle).resolve_left huProd
   rcases mul_eq_zero.mp hvfactor with hvzero | hvone
   · have : v₀ = 0 := by exact_mod_cast hvzero
     omega
