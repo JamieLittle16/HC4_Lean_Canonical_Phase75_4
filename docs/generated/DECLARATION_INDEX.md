@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7725**.
+Distinct declaration spellings indexed: **7729**.
 
 ## Repeated declaration spellings
 
@@ -2918,6 +2918,8 @@ Distinct declaration spellings indexed: **7725**.
 - `balanced_zero_character_as_generators` — `theorem` in `HC4.Toric.BranchCharacter`
 - `balanced_zero_character_normal_form` — `theorem` in `HC4.Toric.BranchCharacter`
 - `basePotential` — `def` in `HC4.Toric.ClassifiedSupport`
+- `base_three_eq_one_of_weighted_endpoint_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
+- `base_two_eq_one_of_weighted_endpoint_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `bigradedHessianCoupledKernelBlock` — `def` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `bigradedHessianCoupledKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `bigradedHessianCoupledKernelBlock_euler_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
@@ -3437,6 +3439,8 @@ Distinct declaration spellings indexed: **7725**.
 - `coeff_three_rankThree_raw_first_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`
 - `coeff_three_rankThree_raw_outer_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`
 - `coeff_three_rankThree_raw_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
+- `coeff_three_weightedRankThreeEndpointPencil_three_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
+- `coeff_three_weightedRankThreeEndpointPencil_two_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `coeff_two_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
