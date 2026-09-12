@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7520**.
+Distinct declaration spellings indexed: **7522**.
 
 ## Repeated declaration spellings
 
@@ -4008,6 +4008,7 @@ Distinct declaration spellings indexed: **7520**.
 - `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
+- `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
@@ -5430,6 +5431,7 @@ Distinct declaration spellings indexed: **7520**.
 - `pderiv_pderiv_eq_zero_of_transverseComplementDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
 - `pderiv_pderiv_ne_zero_of_support_exponent_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
 - `pderiv_pderiv_ne_zero_of_support_exponents_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
+- `pderiv_pderiv_ne_zero_of_support_two_positive` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `pderiv_pderiv_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_pderiv_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `pderiv_polynomialFamilyLinearPartAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`

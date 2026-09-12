@@ -864,6 +864,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `HC4.Polynomial.NestedPolynomialPowerInflation`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
+- `HC4.Polynomial.NonlinearSupportHessianRowBreak`
+  - `HC4.Newton.TerminalTwoZeroSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`
