@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7574**.
+Distinct declaration spellings indexed: **7576**.
 
 ## Repeated declaration spellings
 
@@ -2329,6 +2329,7 @@ Distinct declaration spellings indexed: **7574**.
 - `RankOneHomogeneousLogGradientData.toGlobalGradientData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
 - `RankOnePacketQuadraticNonzero` — `def` in `HC4.Newton.RankOnePacketQuadratic`
 - `RankOneSchurSeries` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
+- `RankOneSpecialFiberFirstBreakOutcome` — `inductive` in `HC4.Valuation.RankOneSpecialFiberFirstBreak`
 - `RankThreeAffineLineData` — `structure` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.eulerScaledHessian_term` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.exponent_zero_eq` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
@@ -6168,6 +6169,7 @@ Distinct declaration spellings indexed: **7574**.
 - `rankOnePersistentPacket_rigid_or_rankTwoProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankOnePersistentPacket_support_cases` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `rankOneRepairState` — `def` in `HC4.Newton.RankOneRepairProgress`
+- `rankOneSpecialFiber_firstKernelRowBreak_rankTwo` — `theorem` in `HC4.Valuation.RankOneSpecialFiberFirstBreak`
 - `rankOneSwap12` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `rankOneSwap13` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `rankOneSwap23` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
