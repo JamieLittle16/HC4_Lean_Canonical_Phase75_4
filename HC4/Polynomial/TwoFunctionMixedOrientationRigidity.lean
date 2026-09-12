@@ -30,7 +30,7 @@ theorem mixedOrientation_endpoint_coefficients_impossible
     False := by
   have hBC : B * C ≠ 0 := mul_ne_zero hB hC
   have hthreeBC : (3 : K) * (B * C) = 0 := by
-    linear_combination 2 * h₁ - 4 * h₂
+    linear_combination h₁ - 2 * h₂
   exact (mul_ne_zero (by norm_num) hBC) hthreeBC
 
 end
