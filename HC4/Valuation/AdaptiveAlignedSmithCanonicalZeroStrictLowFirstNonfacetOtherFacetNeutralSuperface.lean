@@ -71,7 +71,7 @@ theorem finsupp_weight_qsOtherFacetPairWeight
       qsOtherFacetPairDegree next e := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    fin_cases next <;>
+    cases next <;>
       simp [qsOtherFacetPairWeight, qsOtherFacetPairDegree]
   · intro i
     simp
@@ -81,7 +81,7 @@ other-facet branch. -/
 theorem sum_qsOtherFacetPairWeight_eq_two
     (next : ToricFacet) (hne : next ≠ .qs) :
     ∑ i : Fin 4, qsOtherFacetPairWeight next i = 2 := by
-  fin_cases next <;> simp_all [qsOtherFacetPairWeight, Fin.sum_univ_four]
+  cases next <;> simp_all [qsOtherFacetPairWeight, Fin.sum_univ_four]
 
 /-- A strict-low source exponent with coordinate `0 >= 2` lies strictly above
 pair degree one for every genuine other-facet choice. -/
@@ -91,7 +91,7 @@ theorem one_lt_qsOtherFacetPairDegree_of_two_le_zeroCoordinate
     1 < qsOtherFacetPairDegree next e := by
   have he0z : (2 : ℤ) ≤ (e (0 : Fin 4) : ℤ) := by
     exact_mod_cast he0
-  fin_cases next
+  cases next
   · exact (hne rfl).elim
   · have hnonneg : (0 : ℤ) ≤ (e (1 : Fin 4) : ℤ) := by positivity
     simp [qsOtherFacetPairDegree]
@@ -122,7 +122,7 @@ theorem qs_ray_otherFacet_pairDegree_eq_one_of_mem
     C.qs_ray_outside_zeroCoordinate_eq_one hthree
 
   have hfacetPair : qsOtherFacetPairDegree next C.ray.facetExponent = 1 := by
-    fin_cases next
+    cases next
     · exact (hne rfl).elim
     · have hbase := C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree
       simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
@@ -132,7 +132,7 @@ theorem qs_ray_otherFacet_pairDegree_eq_one_of_mem
       simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
 
   have houtPair : qsOtherFacetPairDegree next C.ray.outsideExponent = 1 := by
-    fin_cases next
+    cases next
     · exact (hne rfl).elim
     · have hout := (HC4.Newton.mvRankThreeOnFacet_iff .pr
           C.ray.outsideExponent).1 houtThree
@@ -158,12 +158,14 @@ theorem qs_ray_otherFacet_pairDegree_eq_one_of_mem
   · have heq : e = C.ray.facetExponent :=
       C.ray.support_eq_of_zeroCoordinate_eq he C.ray.facet_mem_face
         (he0.trans hfacet0.symm)
-    simpa [heq] using hfacetPair
+    rw [heq]
+    exact hfacetPair
   · have he1 : e (0 : Fin 4) = 1 := by omega
     have heq : e = C.ray.outsideExponent :=
       C.ray.support_eq_of_zeroCoordinate_eq he C.ray.outside_mem_face
         (by simpa [he1, hout0])
-    simpa [heq] using houtPair
+    rw [heq]
+    exact houtPair
 
 /-- Linearisation of the combined primary/pair weight on finite exponents. -/
 theorem finsupp_weight_qsOtherFacetPair_combination
@@ -183,8 +185,10 @@ theorem finsupp_weight_qsOtherFacetPair_combination
         B * Finsupp.weight (qsOtherFacetPairWeight next) e := by
           have h := HC4.Newton.finsupp_weight_fin4_linear_combination
             B (qsOtherFacetPairWeight next) (fun _ => 0) e
-          simp only [add_zero, Finsupp.weight_zero] at h
-          rw [h]
+          have hzero :
+              Finsupp.weight (fun _ : Fin 4 => (0 : ℤ)) e = 0 := by
+            simp [Finsupp.weight_apply]
+          simpa [hzero] using h
     _ = _ := by rw [finsupp_weight_qsOtherFacetPairWeight]
 
 /-- The exact source-facing carrier produced by the neutral first-superface
@@ -244,6 +248,7 @@ theorem qs_ray_otherFacet_neutralSuperface_package
       push_cast
       rfl
     rw [hcast]
+    dsimp [c]
     exact_mod_cast hnat
 
   have hinit : HC4.Polynomial.initialForm w c F = C.ray.face := by
@@ -362,7 +367,9 @@ theorem qs_ray_otherFacet_neutralSuperface_package
       ∑ i : Fin 4, W i =
         A * (∑ i : Fin 4, w i) + B * 2 := by
     dsimp [W]
-    rw [Fin.sum_univ_four, Fin.sum_univ_four, Fin.sum_univ_four] at hsumPair ⊢
+    rw [Fin.sum_univ_four] at hsumPair
+    rw [Fin.sum_univ_four]
+    rw [Fin.sum_univ_four]
     ring_nf at hsumPair ⊢
     nlinarith
 
