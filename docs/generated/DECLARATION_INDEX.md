@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7513**.
+Distinct declaration spellings indexed: **7515**.
 
 ## Repeated declaration spellings
 
@@ -4075,6 +4075,8 @@ Distinct declaration spellings indexed: **7513**.
 - `exposedBoundary_exponent_mem_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `exposedBoundary_rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
 - `exposedBoundary_zeroCoordinate_maximal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
+- `exposedCodimensionTwo_carrier_has_coordinateKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
+- `exposedCodimensionTwo_carrier_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
 - `exposedFace_self` — `theorem` in `HC4.Newton.ExposedFaces`
 - `exposedNonlinearBalancedCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `exposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
