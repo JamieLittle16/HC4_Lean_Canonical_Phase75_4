@@ -92,14 +92,14 @@ theorem one_lt_qsOtherFacetPairDegree_of_two_le_zeroCoordinate
   have he0z : (2 : ℤ) ≤ (e (0 : Fin 4) : ℤ) := by
     exact_mod_cast he0
   cases next
-  · exact (hne rfl).elim
   · have hnonneg : (0 : ℤ) ≤ (e (1 : Fin 4) : ℤ) := by positivity
     simp [qsOtherFacetPairDegree]
     omega
-  · have hnonneg : (0 : ℤ) ≤ (e (2 : Fin 4) : ℤ) := by positivity
+  · have hnonneg : (0 : ℤ) ≤ (e (3 : Fin 4) : ℤ) := by positivity
     simp [qsOtherFacetPairDegree]
     omega
-  · have hnonneg : (0 : ℤ) ≤ (e (3 : Fin 4) : ℤ) := by positivity
+  · exact (hne rfl).elim
+  · have hnonneg : (0 : ℤ) ≤ (e (2 : Fin 4) : ℤ) := by positivity
     simp [qsOtherFacetPairDegree]
     omega
 
@@ -123,29 +123,29 @@ theorem qs_ray_otherFacet_pairDegree_eq_one_of_mem
 
   have hfacetPair : qsOtherFacetPairDegree next C.ray.facetExponent = 1 := by
     cases next
-    · exact (hne rfl).elim
     · have hbase := C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree
       simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
-    · have hbase := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
-      simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
     · have hbase := C.qs_ray_rq_outside_base_eq_one_and_cross hthree houtThree
+      simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
+    · exact (hne rfl).elim
+    · have hbase := C.qs_ray_sp_outside_base_eq_one_and_cross hthree houtThree
       simp [qsOtherFacetPairDegree, hfacet0, hbase.1]
 
   have houtPair : qsOtherFacetPairDegree next C.ray.outsideExponent = 1 := by
     cases next
-    · exact (hne rfl).elim
     · have hout := (HC4.Newton.mvRankThreeOnFacet_iff .pr
           C.ray.outsideExponent).1 houtThree
       rcases hout with ⟨hout1, _hout0, _hout2, _hout3⟩
       simp [qsOtherFacetPairDegree, hout0, hout1]
-    · have hout := (HC4.Newton.mvRankThreeOnFacet_iff .sp
-          C.ray.outsideExponent).1 houtThree
-      rcases hout with ⟨hout2, _hout0, _hout1, _hout3⟩
-      simp [qsOtherFacetPairDegree, hout0, hout2]
     · have hout := (HC4.Newton.mvRankThreeOnFacet_iff .rq
           C.ray.outsideExponent).1 houtThree
       rcases hout with ⟨hout3, _hout0, _hout1, _hout2⟩
       simp [qsOtherFacetPairDegree, hout0, hout3]
+    · exact (hne rfl).elim
+    · have hout := (HC4.Newton.mvRankThreeOnFacet_iff .sp
+          C.ray.outsideExponent).1 houtThree
+      rcases hout with ⟨hout2, _hout0, _hout1, _hout3⟩
+      simp [qsOtherFacetPairDegree, hout0, hout2]
 
   have hdeg : C.ray.zeroCoefficientPolynomial.natDegree = 1 :=
     C.qs_ray_terminal_degreeOne hthree
