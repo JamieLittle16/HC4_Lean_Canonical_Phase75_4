@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7496**.
+Distinct declaration spellings indexed: **7505**.
 
 ## Repeated declaration spellings
 
@@ -3230,7 +3230,11 @@ Distinct declaration spellings indexed: **7496**.
 - `codimensionTwoLowerEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoPrimitivePair_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoSTSpecialisation` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
+- `codimensionTwoSTSpecialisation_eulerScaledHessian_trinomial` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
+- `codimensionTwoSTSpecialisation_monomial` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `codimensionTwoTopFaceData_of_stratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `codimensionTwoTrinomial` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `codimensionTwoTripleHessianCore` — `def` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoTriple_bothPrimitive_middleFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoTriple_firstMixedFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
@@ -3634,6 +3638,7 @@ Distinct declaration spellings indexed: **7496**.
 - `detCore_scale` — `theorem` in `HC4.Newton.FirstSchurEntry`
 - `det_binaryExponentHessianCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `det_codimensionTwoTripleHessianCore` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `det_codimensionTwoWeightedDeparturePencil_eq_zero_of_trinomial_hessian_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `det_complementaryLogHessianCore` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `det_congruence` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `det_congruence_of_det_eq_neg_one` — `theorem` in `HC4.LinearAlgebra.Congruence`
@@ -3854,6 +3859,7 @@ Distinct declaration spellings indexed: **7496**.
 - `eulerScaledHessian_apply` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
 - `eulerScaledHessian_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `eulerScaledHessian_eq` — `theorem` in `HC4.Polynomial.ComplementaryMvSubstitution`
+- `eulerScaledHessian_monomial_general` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `eulerScaledHessian_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `eulerScaledHessian_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `eulerScaledHessian_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
@@ -4344,6 +4350,7 @@ Distinct declaration spellings indexed: **7496**.
 - `fourAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+- `fourExponentFinsupp` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `fourHessianEntry_isWeightLE` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - `fourHessianEntry_isWeightedHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - `fourHessianMinorCross` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
@@ -5054,6 +5061,7 @@ Distinct declaration spellings indexed: **7496**.
 - `mvEuler` — `def` in `HC4.Polynomial.ComplementaryMvSubstitution`
 - `mvEuler_C_mul` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `mvEuler_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `mvEuler_monomial_general` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `mvEuler_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `mvEuler_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `mvEuler_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
@@ -5100,6 +5108,7 @@ Distinct declaration spellings indexed: **7496**.
 - `negative_character_normal_form` — `theorem` in `HC4.Toric.CharacterSupport`
 - `negative_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `nestedC` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `nestedCoefficientHom` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `nestedCw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
