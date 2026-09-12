@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7578**.
+Distinct declaration spellings indexed: **7580**.
 
 ## Repeated declaration spellings
 
@@ -4293,6 +4293,7 @@ Distinct declaration spellings indexed: **7578**.
 - `firstActualParameterLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualParameterOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualParameterOrder_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
+- `firstBreakRankTwoOutcome` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
 - `firstClosingKernelStage_forBlock` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstClosingKernelStage_integral_or_offender` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstClosingKernelStage_terminal_or_residual_or_offender` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -4859,6 +4860,7 @@ Distinct declaration spellings indexed: **7578**.
 - `kernelInflateHom_unit_hasHessianDefect_add_two` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `kernelInflateVariable` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflate_integralKernelBlowupFamily_eq` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
+- `kernelLastBlock_activeDiagonal_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
 - `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`

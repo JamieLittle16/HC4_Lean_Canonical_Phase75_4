@@ -3182,6 +3182,10 @@ human architecture guide.
 - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
+- `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+  - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
 - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
   - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
