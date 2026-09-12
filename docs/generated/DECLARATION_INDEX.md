@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7470**.
+Distinct declaration spellings indexed: **7479**.
 
 ## Repeated declaration spellings
 
@@ -3231,6 +3231,14 @@ Distinct declaration spellings indexed: **7470**.
 - `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoPrimitivePair_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoTopFaceData_of_stratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `codimensionTwoTripleHessianCore` — `def` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_bothPrimitive_middleFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_firstMixedFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_m_one_a_top_middleFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_m_one_a_top_quadraticFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_m_one_a_zero_middleFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_m_one_a_zero_quadraticFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+- `codimensionTwoTriple_m_one_cubicFactor` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `codimensionTwoUpperEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoUpperEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwo_zeroCoordinateSupports_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
@@ -3615,6 +3623,7 @@ Distinct declaration spellings indexed: **7470**.
 - `detCore_eq_zero_of_scale_detCore_eq_zero` — `theorem` in `HC4.Newton.FirstSchurEntry`
 - `detCore_scale` — `theorem` in `HC4.Newton.FirstSchurEntry`
 - `det_binaryExponentHessianCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `det_codimensionTwoTripleHessianCore` — `theorem` in `HC4.Polynomial.CodimensionTwoTripleHessianCore`
 - `det_complementaryLogHessianCore` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `det_congruence` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `det_congruence_of_det_eq_neg_one` — `theorem` in `HC4.LinearAlgebra.Congruence`

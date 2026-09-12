@@ -799,6 +799,8 @@ human architecture guide.
   - `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 - `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
   - `HC4.Polynomial.RankThreePencils`
+- `HC4.Polynomial.CodimensionTwoTripleHessianCore`
+  - `HC4.Polynomial.RankThreePencils`
 - `HC4.Polynomial.ComplementaryEdgeAssembly`
   - `HC4.Polynomial.ComplementaryLogHessian`
   - `HC4.Polynomial.LogarithmicInitialSlope`
