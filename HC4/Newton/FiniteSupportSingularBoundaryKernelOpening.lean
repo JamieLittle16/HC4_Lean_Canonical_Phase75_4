@@ -21,8 +21,8 @@ There are then only two possibilities:
   on which the kernel holds while its parent still breaks it.
 
 This file retains that first opening together with the exact coordinate-max
-weight, level, singularity and source-support provenance.  No Rees family or
-repair step is introduced yet.
+weight, level, singularity, nonzeroness and source-support provenance.  No Rees
+family or repair step is introduced yet.
 -/
 
 namespace HC4.Newton
@@ -45,6 +45,7 @@ structure CanonicalCoordinateMaxKernelOpeningData
   kernelCoordinate : Fin 4
   parent_hessian_zero : hessianDeterminant parent = 0
   child_hessian_zero : hessianDeterminant child = 0
+  child_ne_zero : child ≠ 0
   child_eq_initialForm :
     child = initialForm
       (coordinateMaxWeight extractionCoordinate)
@@ -104,6 +105,7 @@ noncomputable def exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOut
         kernelCoordinate := k
         parent_hessian_zero := hzero
         child_hessian_zero := h0zero
+        child_ne_zero := D0.face_ne_zero
         child_eq_initialForm := D0.face_eq
         weight_bound := D0.weight_bound
         parent_support_subset_source := by intro d hd; exact hd
@@ -120,6 +122,7 @@ noncomputable def exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOut
           kernelCoordinate := k
           parent_hessian_zero := h0zero
           child_hessian_zero := h1zero
+          child_ne_zero := D1.face_ne_zero
           child_eq_initialForm := D1.face_eq
           weight_bound := D1.weight_bound
           parent_support_subset_source := D0.support_subset
@@ -135,6 +138,7 @@ noncomputable def exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOut
           kernelCoordinate := k
           parent_hessian_zero := h1zero
           child_hessian_zero := h2zero
+          child_ne_zero := D2.face_ne_zero
           child_eq_initialForm := D2.face_eq
           weight_bound := D2.weight_bound
           parent_support_subset_source := fun d hd =>
