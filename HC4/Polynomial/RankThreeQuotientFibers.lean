@@ -72,6 +72,23 @@ theorem rankThreeQuotientCoordinate_eq_iff
   · rintro ⟨hp, hr, hs⟩
     apply RankThreeQuotientCoordinate.ext <;> assumption
 
+/-- Inside one quotient fiber, the longitudinal coordinate determines the
+entire source exponent. -/
+theorem eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+    (alpha beta : ℕ) (e f : Fin 4 →₀ ℕ)
+    (hq : rankThreeQuotientCoordinate alpha beta e =
+      rankThreeQuotientCoordinate alpha beta f)
+    (h0 : e 0 = f 0) :
+    e = f := by
+  rw [rankThreeQuotientCoordinate_eq_iff] at hq
+  rcases hq with ⟨hp, hr, hs⟩
+  ext i
+  fin_cases i
+  · exact h0
+  · omega
+  · omega
+  · omega
+
 /-- Moving one primitive step `(1,-1,-alpha,-beta)` preserves quotient
 coordinates.  The hypotheses are written without truncated subtraction. -/
 theorem rankThreeQuotientCoordinate_eq_of_primitive_step
@@ -123,15 +140,8 @@ theorem zero_one_layers_of_quotient_eq_of_le_one
     (e 0 = 0 ∧ f 0 = 1) ∨ (e 0 = 1 ∧ f 0 = 0) := by
   have hcoord : e 0 ≠ f 0 := by
     intro h0
-    rw [rankThreeQuotientCoordinate_eq_iff] at hq
-    rcases hq with ⟨hp, hr, hs⟩
-    apply hne
-    ext i
-    fin_cases i
-    · exact h0
-    · omega
-    · omega
-    · omega
+    exact hne (eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+      alpha beta e f hq h0)
   interval_cases hE : e 0 <;> interval_cases hF : f 0 <;> simp_all
 
 /-- Therefore every non-singleton fiber under the longitudinal bound has the
@@ -157,6 +167,50 @@ theorem primitive_pair_shape_of_quotient_eq_of_le_one
     rcases primitive_pair_shape_of_quotient_eq_one_zero
       alpha beta e f hq he0 hf0 with ⟨h1, h2, h3⟩
     exact ⟨he0, hf0, h1, h2, h3⟩
+
+/-- A finite bounded subset of one quotient fiber is exactly a two-point set as
+soon as it contains two distinct exponents.  This is the combinatorial form
+needed by the no-singleton carrier reconstruction. -/
+theorem finset_eq_pair_of_rankThreeQuotientFiber_of_le_one
+    (alpha beta : ℕ)
+    (S : Finset (Fin 4 →₀ ℕ))
+    (e f : Fin 4 →₀ ℕ)
+    (he : e ∈ S) (hf : f ∈ S) (hne : e ≠ f)
+    (hquot : ∀ g ∈ S,
+      rankThreeQuotientCoordinate alpha beta g =
+        rankThreeQuotientCoordinate alpha beta e)
+    (hbound : ∀ g ∈ S, g 0 ≤ 1) :
+    S = {e, f} := by
+  have hqf := hquot f hf
+  have hlayers := zero_one_layers_of_quotient_eq_of_le_one
+    alpha beta e f hqf.symm (hbound e he) (hbound f hf) hne
+  ext g
+  simp only [Finset.mem_insert, Finset.mem_singleton]
+  constructor
+  · intro hg
+    have hqg := hquot g hg
+    have hg0 : g 0 ≤ 1 := hbound g hg
+    rcases hlayers with ⟨he0, hf0⟩ | ⟨he0, hf0⟩
+    · by_cases hge : g 0 = e 0
+      · left
+        exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          alpha beta g e hqg hge
+      · right
+        have hgf0 : g 0 = f 0 := by omega
+        exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          alpha beta g f (hqg.trans hqf.symm) hgf0
+    · by_cases hge : g 0 = e 0
+      · left
+        exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          alpha beta g e hqg hge
+      · right
+        have hgf0 : g 0 = f 0 := by omega
+        exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          alpha beta g f (hqg.trans hqf.symm) hgf0
+  · intro hg
+    rcases hg with rfl | rfl
+    · exact he
+    · exact hf
 
 end
 
