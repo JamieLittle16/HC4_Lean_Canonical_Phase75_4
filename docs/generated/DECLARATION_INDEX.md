@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7674**.
+Distinct declaration spellings indexed: **7681**.
 
 ## Repeated declaration spellings
 
@@ -3334,6 +3334,8 @@ Distinct declaration spellings indexed: **7674**.
 - `coeff_complementaryPolynomialMomentHessian` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `coeff_complementaryRawMomentEntry` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `coeff_cons_one_longitudinalRightRecenterHom` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `coeff_ell_twoFunctionFactorBxSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `coeff_ell_twoFunctionFactorBzSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coeff_eq_zero_outside_rankOnePacket` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `coeff_eulerDerivative` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_eulerLinear_succ` — `theorem` in `HC4.FacetRigidity.EulerEquation`
@@ -3454,6 +3456,8 @@ Distinct declaration spellings indexed: **7674**.
 - `coeff_zero_rankThreeLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
 - `coeff_zero_shiftedEulerCore` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_zero_taylor_one_twoEndpointResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `coeff_zero_twoFunctionFactorBxSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `coeff_zero_twoFunctionFactorBzSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coefficient` — `def` in `HC4.Newton.FirstSchurEntry`
 - `coefficientFiber_natDegree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalTerminal`
 - `coefficientFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalTerminal`
@@ -7687,7 +7691,10 @@ Distinct declaration spellings indexed: **7674**.
 - `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunctionFactorBxSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `twoFunctionFactorBzSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
+- `twoFunction_factorB_series_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
