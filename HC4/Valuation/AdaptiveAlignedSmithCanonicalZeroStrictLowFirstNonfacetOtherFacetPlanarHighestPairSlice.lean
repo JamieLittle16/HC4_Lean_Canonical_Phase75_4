@@ -146,6 +146,19 @@ theorem QsOtherFacetPlanarCarrierPackage.highestPairSlice
     hessian_zero := by simpa [S] using hsliceZero
   }⟩
 
+/-- Direct source-facing entry: construct the planar carrier and its highest
+singular pair slice together. The slice's type retains the exact parent
+package, including both affine equations and the source exposure. -/
+theorem qs_ray_otherFacet_planarHighestPairSlice_package
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    {next : ToricFacet} (hne : next ≠ .qs)
+    (houtThree : MvRankThreeOnFacet next C.ray.outsideExponent) :
+    ∃ P : QsOtherFacetPlanarCarrierPackage C next,
+      Nonempty (QsOtherFacetPlanarHighestPairSlicePackage C next P) := by
+  rcases C.qs_ray_otherFacet_planarCarrier_package hthree hne houtThree with ⟨P⟩
+  exact ⟨P, P.highestPairSlice⟩
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
