@@ -68,6 +68,54 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel
   rw [finsupp_weight_qsOtherFacetPairWeight] at hm
   exact hm.2
 
+/-- Both planar affine equations are inherited by every supported slice
+monomial. The parent package is retained, so no neutral-superface replacement
+or reconstruction of the planar wall is needed. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs}
+    {next : ToricFacet} {P : QsOtherFacetPlanarCarrierPackage C next}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C next P)
+    {e : Fin 4 →₀ ℕ} (he : e ∈ S.slice.support) :
+    Finsupp.weight P.firstWeight e = P.firstLevel ∧
+      Finsupp.weight P.wallWeight e = P.wallLevel := by
+  have hp := (S.support_parent_and_pairLevel he).1
+  exact ⟨P.support_first_level hp, P.support_wall_level hp⟩
+
+/-- Slice support is actual represented-source support, on the same final
+exposure level. This preserves the source provenance through both extractions. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.support_source_and_finalLevel
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs}
+    {next : ToricFacet} {P : QsOtherFacetPlanarCarrierPackage C next}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C next P)
+    {e : Fin 4 →₀ ℕ} (he : e ∈ S.slice.support) :
+    e ∈ (polynomialFamilySpecialFiber T.terminal.blocker.presented.family).support ∧
+      Finsupp.weight P.finalWeight e = P.finalLevel := by
+  have hp := (S.support_parent_and_pairLevel he).1
+  have hface := HC4.Newton.initialForm_support_isExposedFace
+    P.finalWeight P.finalLevel
+    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) P.source_bound
+  have hi : e ∈ (HC4.Polynomial.initialForm P.finalWeight P.finalLevel
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)).support := by
+    simpa [P.carrier_eq_initialForm] using hp
+  have hm := hface.mem_iff.mp (by simpa using hi)
+  exact ⟨by simpa using hm.1, hm.2⟩
+
+/-- A retained slice coefficient is literally the source coefficient, not
+just a nonzero witness on a different polynomial or carrier. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs}
+    {next : ToricFacet} {P : QsOtherFacetPlanarCarrierPackage C next}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C next P)
+    {e : Fin 4 →₀ ℕ} (he : e ∈ S.slice.support) :
+    MvPolynomial.coeff e S.slice =
+      MvPolynomial.coeff e
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
+  have hpair := (S.support_parent_and_pairLevel he).2
+  have hfinal := (S.support_source_and_finalLevel he).2
+  rw [S.slice_eq_initialForm, HC4.Polynomial.coeff_initialForm,
+    finsupp_weight_qsOtherFacetPairWeight, if_pos hpair,
+    P.carrier_eq_initialForm, HC4.Polynomial.coeff_initialForm, if_pos hfinal]
+
 /-- **Highest pair slice.** -/
 theorem QsOtherFacetPlanarCarrierPackage.highestPairSlice
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
