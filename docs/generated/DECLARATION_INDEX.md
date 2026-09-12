@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7597**.
+Distinct declaration spellings indexed: **7599**.
 
 ## Repeated declaration spellings
 
@@ -1494,6 +1494,7 @@ Distinct declaration spellings indexed: **7597**.
 - `ExactZeroSchurFourBlockData` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ExhaustedRankThreeRepairStateImpossible` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalAssemblySoundness`
 - `Exponent` — `structure` in `HC4.Toric.InvariantSemigroup`
+- `ExposedCodimensionTwoResolvedRankTwoGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoFinalGeometry`
 - `ExposedNonlinearBalancedCore` — `structure` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `ExposedSingularNonlinearBoundaryVertexData` — `structure` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `ExposedSingularNonlinearBoundaryVertexData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.SingularBoundaryRankSplit`
@@ -4112,6 +4113,7 @@ Distinct declaration spellings indexed: **7597**.
 - `exposedCodimensionTwo_carrier_has_coordinateKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
 - `exposedCodimensionTwo_carrier_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
 - `exposedCodimensionTwo_firstOpening_child_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoKernelOpening`
+- `exposedCodimensionTwo_resolvedRankTwoGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoFinalGeometry`
 - `exposedCodimensionTwo_topKernel_or_openingRankTwo_or_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoKernelOpening`
 - `exposedCodimensionTwo_topKernel_or_rankTwoGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
 - `exposedFace_self` — `theorem` in `HC4.Newton.ExposedFaces`
