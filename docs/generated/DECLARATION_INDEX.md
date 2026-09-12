@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7432**.
+Distinct declaration spellings indexed: **7435**.
 
 ## Repeated declaration spellings
 
@@ -1608,6 +1608,7 @@ Distinct declaration spellings indexed: **7432**.
 - `FourBoundaryCycle.facet_normal_form` — `theorem` in `HC4.Newton.FourBoundaryCycle`
 - `FourBoundaryCycle.forward_vertices_are_p_r_q_s` — `theorem` in `HC4.Newton.FourBoundaryCycle`
 - `FourBoundaryCycle.vertices_on_transition_rays` — `theorem` in `HC4.Newton.FourBoundaryCycle`
+- `FourOrdinaryLayerPrincipalRankTwoWitness` — `structure` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
 - `FrontierClearedPreterminalSchurCertificate` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierClearedRankOneSchurSeries` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierExactFourBlockSchurData` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
@@ -4314,6 +4315,8 @@ Distinct declaration spellings indexed: **7432**.
 - `fourOrdinaryReverseReesFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourOrdinaryReverseReesFamily_exactGradientCollision` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `fourOrdinaryReverseReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
+- `fourOrdinaryReverseRees_firstKernelBreak_rankTwo` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
+- `fourOrdinaryReverseRees_parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
 - `fourReverseReesScaledSection` — `def` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `fourUnitSourceInflateFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourUnitSourceInflateFamily_C` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
