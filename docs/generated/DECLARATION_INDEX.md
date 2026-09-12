@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7522**.
+Distinct declaration spellings indexed: **7532**.
 
 ## Repeated declaration spellings
 
@@ -3570,6 +3570,7 @@ Distinct declaration spellings indexed: **7522**.
 - `coordinateAxisPoint_zero_ne_zeroPoint` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `coordinateKernelVectorForChartKind` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `coordinateMaxInitialData` — `def` in `HC4.Newton.FiniteSupportExposedVertex`
+- `coordinateMaxNatWeight` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `coordinateMaxWeight` — `def` in `HC4.Newton.FiniteSupportExposedVertex`
 - `coordinateMax_contactCoordinate_honestPair_sameDegree` — `theorem` in `HC4.Newton.FirstContactHonestSlice`
 - `coordinateMax_contactCoordinate_ordinaryDegree_eq` — `theorem` in `HC4.Newton.FirstContactHonestSlice`
@@ -4030,6 +4031,8 @@ Distinct declaration spellings indexed: **7522**.
 - `exists_nonzero_principalMinor_at_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `exists_nonzero_root_multiplicity_factorisation` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `exists_other_positive_exponent_of_supported_kernel_linear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
+- `exists_parameterFirstHessian_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
+- `exists_parent_hessianRow_entry_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `exists_positiveTail_of_X_pow_dvd` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `exists_positive_nat_strict_upper_bound_on_finset` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_positive_tail_factorisation` — `theorem` in `HC4.Polynomial.ComplementaryEdgeRigidity`
@@ -4512,6 +4515,7 @@ Distinct declaration spellings indexed: **7522**.
 - `hasRankThreePolynomialTerminalCertificate_of_supported_edge` — `theorem` in `HC4.RationalRigidity.RankThreeSupportedEdgeTerminal`
 - `hasRankThreePolynomialTerminalCertificate_of_vertical_line` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalLineTerminal`
 - `hasRankThreePolynomialTerminalCertificate_of_vertical_support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
+- `hasReverseWeightBound` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `hasRigidRankTwoTerminal_of_schurEntry` — `theorem` in `HC4.Newton.RankTwoRepairTerminal`
 - `hasSchur` — `def` in `HC4.Newton.TerminalSchurSignatureProbe`
 - `hasSecondMarkedTerminalZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -4987,6 +4991,7 @@ Distinct declaration spellings indexed: **7522**.
 - `map_eulerDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `map_evalOne_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `map_evalOne_reesVectorProjectiveWedge` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
+- `map_evalOne_reverseReesFamily` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `map_evalOne_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_exposedFace_equiv` — `theorem` in `HC4.Newton.Equivariance`
@@ -5402,6 +5407,7 @@ Distinct declaration spellings indexed: **7522**.
 - `parameterRamification_two_lowestLayer_factorisation` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `parameterSecondEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `parent_support_degree_ge_three` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `pderiv_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `pderiv_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `pderiv_binaryDirectionalDeriv_first` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
@@ -6449,6 +6455,8 @@ Distinct declaration spellings indexed: **7522**.
 - `reverseFacet` — `def` in `HC4.Toric.Facets`
 - `reversePoint` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reversePointEquiv` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
+- `reverseReesFamily` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
+- `reverseReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `reverseReesSchurALoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseReesSchurBLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseReesSchurCLoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
@@ -7081,6 +7089,7 @@ Distinct declaration spellings indexed: **7522**.
 - `specialFiber_or_firstPositiveActual_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`
 - `specialFiber_projectedSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalZeroJet`
 - `specialFiber_pureLongitudinal_derivative_endpointFactors` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
+- `specialFiber_reverseReesFamily_eq_child` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `specialFiber_saturatedKernelBlowup_active` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `specialFiber_saturatedKernelBlowup_eq_firstContactFace` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `specialFiber_symmetricMinimal_or_familyStrictImprovement` — `theorem` in `HC4.Valuation.BinarySmithOrderExtraction`
@@ -7568,6 +7577,7 @@ Distinct declaration spellings indexed: **7522**.
 - `weight_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`
 - `weight_binaryFirstContactWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `weight_binarySingleCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `weight_coordinateMaxNatWeight` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `weight_coordinateMaxWeight` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `weight_crossFacetWeight` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `weight_cross_relation_of_invariant_endpoints` — `theorem` in `HC4.Polynomial.RankThreePencils`
