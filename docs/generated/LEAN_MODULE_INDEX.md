@@ -7417,7 +7417,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice.lean`
 - Purpose: A19 highest pair-degree singular slice
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Polynomial.MaximalSingularInitial`, `HC4.Polynomial.LineSupportedHessianExtremal`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`, `HC4.Polynomial.MaximalSingularInitial`, `HC4.Polynomial.LineSupportedHessianExtremal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `structure QsOtherFacetHighestPairSlicePackage`, `theorem QsOtherFacetHighestPairSlicePackage.mem_carrier_of_mem_slice`, `theorem QsOtherFacetHighestPairSlicePackage.pairDegree_eq_pairLevel_of_mem`, `theorem QsOtherFacetNeutralSuperfacePackage.highestPairSlice`
@@ -7459,7 +7459,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`, `HC4.Newton.FiniteSupportRayPlanarRefinement`, `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`, `HC4.MongeAmpere.PolynomialInitial`, `HC4.Polynomial.MaximalHessianInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - Declarations: `structure QsOtherFacetPlanarCarrierPackage`, `theorem weight_scalar_mul_fin4`, `theorem ratioWallWeight_eq_finsuppWeight_sub_level`, `theorem qs_ray_otherFacet_planarCarrier_package`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
