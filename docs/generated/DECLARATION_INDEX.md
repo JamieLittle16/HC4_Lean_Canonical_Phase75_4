@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7709**.
+Distinct declaration spellings indexed: **7710**.
 
 ## Repeated declaration spellings
 
@@ -5163,6 +5163,7 @@ Distinct declaration spellings indexed: **7709**.
 - `mixedDegreePair_of_not_degreePure` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `mixedDegree_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
 - `mixedDeparture_hasRepairOrTerminal` — `theorem` in `HC4.Newton.RestartClassification`
+- `mixedOrientation_endpoint_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
 - `mixedThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixedThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixed_coeff_ne_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
