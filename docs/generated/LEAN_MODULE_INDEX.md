@@ -2552,7 +2552,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
 - External imports: `Mathlib.RingTheory.MvPolynomial.Basic`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
-- Declarations: `structure RankThreeQuotientCoordinate`, `def rankThreeQuotientCoordinate`, `theorem rankThreeQuotientCoordinate_eq_iff`, `theorem rankThreeQuotientCoordinate_eq_of_primitive_step`, `theorem primitive_pair_shape_of_quotient_eq_zero_one`, `theorem primitive_pair_shape_of_quotient_eq_one_zero`, `theorem zero_one_layers_of_quotient_eq_of_le_one`, `theorem primitive_pair_shape_of_quotient_eq_of_le_one`
+- Declarations: `structure RankThreeQuotientCoordinate`, `def rankThreeQuotientCoordinate`, `theorem rankThreeQuotientCoordinate_eq_iff`, `theorem eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq`, `theorem rankThreeQuotientCoordinate_eq_of_primitive_step`, `theorem primitive_pair_shape_of_quotient_eq_zero_one`, `theorem primitive_pair_shape_of_quotient_eq_one_zero`, `theorem zero_one_layers_of_quotient_eq_of_le_one`, `theorem primitive_pair_shape_of_quotient_eq_of_le_one`, `theorem finset_eq_pair_of_rankThreeQuotientFiber_of_le_one`
 
 ### `HC4.Polynomial.RankThreeVerticalLine`
 

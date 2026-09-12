@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7723**.
+Distinct declaration spellings indexed: **7725**.
 
 ## Repeated declaration spellings
 
@@ -3902,6 +3902,7 @@ Distinct declaration spellings indexed: **7723**.
 - `eq_complementaryLinePolynomial_of_supported` — `theorem` in `HC4.Polynomial.ComplementaryLineRecognition`
 - `eq_complementaryLineRangePolynomial_of_supported` — `theorem` in `HC4.Polynomial.ComplementaryLineRecognition`
 - `eq_linear_add_quadratic_of_natDegree_le_two` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousQuadraticExtraction`
+- `eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `eq_one_of_sq_eq_one_of_coeff_zero_eq_one` — `theorem` in `HC4.FacetRigidity.EulerEquation`
 - `eq_rankOnePacketYY` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `eq_rankOnePacketYZ` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
@@ -4303,6 +4304,7 @@ Distinct declaration spellings indexed: **7723**.
 - `finiteTiltedValue_gt_minimum` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `finite_cleared_identity_of_ratFunc_identity` — `theorem` in `HC4.RationalRigidity.AutonomousRatFuncAssembly`
 - `finite_infinity_target_cover` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `finset_eq_pair_of_rankThreeQuotientFiber_of_le_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `finsuppDegree_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsuppSum_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsupp_eq_fourCoordinateSum` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
