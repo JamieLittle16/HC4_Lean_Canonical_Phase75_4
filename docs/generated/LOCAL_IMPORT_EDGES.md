@@ -930,6 +930,9 @@ human architecture guide.
 - `HC4.Polynomial.TwoFunctionEulerCalculus`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
   - `HC4.Polynomial.TwoFunctionEulerHessian`
+- `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+  - `HC4.Polynomial.TwoFunctionEulerCalculus`
+  - `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `HC4.Polynomial.TwoFunctionEulerFactorSeries`
   - `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `HC4.Polynomial.TwoFunctionEulerHessian`

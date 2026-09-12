@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7693**.
+Distinct declaration spellings indexed: **7706**.
 
 ## Repeated declaration spellings
 
@@ -5580,6 +5580,7 @@ Distinct declaration spellings indexed: **7693**.
 - `pderiv_zero_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_zero_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_zero_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `pderiv_zero_twoFunctionEulerFactorB` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `permutedEulerScaledHessianFourBlock_eq_diagonalScale` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
 - `permutedFamilyHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`
@@ -5822,6 +5823,7 @@ Distinct declaration spellings indexed: **7693**.
 - `polynomial_eq_of_surjective_eval` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_eq_zero_of_constant_pivot_of_natDegree_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
+- `polynomial_eq_zero_of_twoFunctionY_lift_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `polynomial_exists_two_support_of_derivative_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
@@ -7698,13 +7700,24 @@ Distinct declaration spellings indexed: **7693**.
 - `twoByTwoWitness_or_allZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `twoFunctionCarrier` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionConcreteBx` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBx_constant_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBx_eq_zero_of_factorB_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBx_top_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBz` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBz_constant_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBz_eq_zero_of_factorB_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunctionConcreteBz_top_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunctionEulerFactorB_eq_xBx_add_zBz` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionFactorBxSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunctionFactorBzSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunctionH` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `twoFunctionY` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionYSpecialisation` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
+- `twoFunction_concrete_factorB_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `twoFunction_factorB_series_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
