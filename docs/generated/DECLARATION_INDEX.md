@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7458**.
+Distinct declaration spellings indexed: **7464**.
 
 ## Repeated declaration spellings
 
@@ -3223,7 +3223,13 @@ Distinct declaration spellings indexed: **7458**.
 - `closing_of_residual_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingRigidRankTwoGeometry`
 - `closing_transverse_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `codimensionTwoDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `codimensionTwoLowerEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoLowerEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoPrimitivePair_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoTopFaceData_of_stratum` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `codimensionTwoUpperEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoUpperEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwo_zeroCoordinateSupports_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `coeffYY_eq_zero_of_zSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeffYZ_eq_zero_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`

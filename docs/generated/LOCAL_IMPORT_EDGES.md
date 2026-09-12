@@ -794,6 +794,9 @@ human architecture guide.
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
   - `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 - `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
   - `HC4.Polynomial.RankThreePencils`
 - `HC4.Polynomial.ComplementaryEdgeAssembly`
