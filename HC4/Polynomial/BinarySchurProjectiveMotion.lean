@@ -1,4 +1,5 @@
 import HC4.Newton.GeneralFourBlockSchur
+import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 import Mathlib.Tactic
 
 /-!
