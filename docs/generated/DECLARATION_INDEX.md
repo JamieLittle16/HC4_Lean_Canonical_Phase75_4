@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7452**.
+Distinct declaration spellings indexed: **7455**.
 
 ## Repeated declaration spellings
 
@@ -642,6 +642,7 @@ Distinct declaration spellings indexed: **7452**.
 - `AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
 - `AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress_of_reachedRankThree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact_of_coreProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroBlockerCoreReduction`
@@ -3723,6 +3724,7 @@ Distinct declaration spellings indexed: **7452**.
 - `directClosing_sourceOriginHessianLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `directClosing_specialHessian_adjugate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
 - `directClosing_specialHessian_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
+- `directZeroDefectRankTwoProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
 - `directionalCoefficient_recurrence` — `theorem` in `HC4.Newton.DirectionalCoefficientRecurrence`
 - `directionalCoefficient_recurrence_assoc` — `theorem` in `HC4.Newton.DirectionalCoefficientRecurrence`
 - `directionalCoefficient_solve_first` — `theorem` in `HC4.Newton.DirectionalCoefficientRecurrence`
@@ -3957,6 +3959,7 @@ Distinct declaration spellings indexed: **7452**.
 - `exists_firstTransverseKeyMaximalHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
+- `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
