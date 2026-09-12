@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7516**.
+Distinct declaration spellings indexed: **7517**.
 
 ## Repeated declaration spellings
 
@@ -64,6 +64,7 @@ Distinct declaration spellings indexed: **7516**.
 - `hasSecondMarkedTerminalZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `hasTransverse` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `hessianDeterminant_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`, `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_transverseSourceReesFamily_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
@@ -4527,7 +4528,7 @@ Distinct declaration spellings indexed: **7516**.
 - `hessianDeterminant_adaptiveSmithExposureFamily_equation` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `hessianDeterminant_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `hessianDeterminant_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
-- `hessianDeterminant_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
+- `hessianDeterminant_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`, `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `hessianDeterminant_elementaryShearHom` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `hessianDeterminant_eq_zero_of_pderiv_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `hessianDeterminant_finTwo_eq_binaryDirectionalHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
@@ -6451,6 +6452,7 @@ Distinct declaration spellings indexed: **7516**.
 - `reverseWeightedReesFamily_actualLayerOrder_le_level` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`

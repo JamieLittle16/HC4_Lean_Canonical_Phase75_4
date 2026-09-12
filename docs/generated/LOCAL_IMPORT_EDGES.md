@@ -3343,6 +3343,8 @@ human architecture guide.
 - `HC4.Valuation.SeparatedSmithBoundaryClosure`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
+- `HC4.Valuation.SingularBoundedReverseWeightedRees`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.SingularFirstKernelBreakRankTwo`
   - `HC4.Valuation.FirstKernelBreakRankTwo`
 - `HC4.Valuation.SmithConformalCovariance`
