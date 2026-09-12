@@ -18,11 +18,12 @@ other-facet rank-three endpoint, coordinate `0` increases from `0` to `1` and
 every transverse coordinate decreases strictly.  Hence coordinate `0` is an
 injective parameter on the highest slice.  Any support point minimal in that
 coordinate has all three transverse coordinates strictly positive as soon as
-the slice contains a second monomial.
+the slice contains a second monomial.  Exposing that point by the weight
+`(-1,0,0,0)` and using singularity then forces the only remaining possible
+boundary coordinate, namely coordinate `0`, to vanish.
 
-The remaining boundary conclusion is then supplied by the existing Newton
-`exposed_monomial_on_boundary_of_zero_hessian` theorem; no new Hessian
-calculation, balance relation, repair tag, or JC2 assumption is introduced.
+No new Hessian calculation, balance relation, repair tag, or JC2 assumption is
+introduced.
 -/
 
 namespace HC4.Valuation
@@ -165,6 +166,124 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transve
   have heiPos : (0 : ℤ) < (e i : ℤ) := by
     nlinarith
   exact_mod_cast heiPos
+
+private def negativeZeroCoordinateWeight : Fin 4 → ℤ :=
+  fun i => if i = 0 then -1 else 0
+
+private theorem finsupp_weight_negativeZeroCoordinateWeight
+    (d : Fin 4 →₀ ℕ) :
+    Finsupp.weight negativeZeroCoordinateWeight d = -(d 0 : ℤ) := by
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · rw [Fin.sum_univ_four]
+    simp [negativeZeroCoordinateWeight]
+  · intro i
+    simp
+
+/-- **Boundary-start normalization for a nontrivial highest slice.**
+
+If the highest pair slice contains two distinct monomials, then its
+minimal-`x₀` support point is a genuine `.qs` boundary point: coordinate `0`
+is zero while all three transverse coordinates are positive. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {next : ToricFacet}
+    {P : QsOtherFacetPlanarCarrierPackage C next}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C next P)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (hne : next ≠ .qs)
+    (houtThree : MvRankThreeOnFacet next C.ray.outsideExponent)
+    (hnontrivial :
+      ∃ a ∈ S.slice.support, ∃ b ∈ S.slice.support, a ≠ b) :
+    ∃ e ∈ S.slice.support,
+      e 0 = 0 ∧ ∀ i : Fin 4, i ≠ 0 → 0 < e i := by
+  have hsupp : S.slice.support.Nonempty :=
+    MvPolynomial.support_nonempty.mpr S.slice_ne_zero
+  let levels : Finset ℕ := S.slice.support.image (fun d => d (0 : Fin 4))
+  have hlevels : levels.Nonempty := by
+    dsimp [levels]
+    exact hsupp.image _
+  let m : ℕ := levels.min' hlevels
+  have hm : m ∈ levels := by
+    dsimp [m]
+    exact Finset.min'_mem levels hlevels
+  have hm' : m ∈ S.slice.support.image (fun d => d (0 : Fin 4)) := by
+    simpa [levels] using hm
+  rcases Finset.mem_image.mp hm' with ⟨e, he, heq⟩
+  have hmin : ∀ d ∈ S.slice.support, e 0 ≤ d 0 := by
+    intro d hd
+    have hdlevel : d 0 ∈ levels := by
+      dsimp [levels]
+      exact Finset.mem_image.mpr ⟨d, hd, rfl⟩
+    have hle : m ≤ d 0 := Finset.min'_le levels (d 0) hdlevel
+    omega
+  rcases hnontrivial with ⟨a, ha, b, hb, hab⟩
+  have hother : ∃ f ∈ S.slice.support, f ≠ e := by
+    by_cases hae : a = e
+    · refine ⟨b, hb, ?_⟩
+      intro hbe
+      exact hab (hae.trans hbe.symm)
+    · exact ⟨a, ha, hae⟩
+  have htrans := S.minimal_zeroCoordinate_transverse_pos
+    hthree hne houtThree he hmin hother
+  have h1 : 0 < e (1 : Fin 4) := htrans 1 (by decide)
+  have h2 : 0 < e (2 : Fin 4) := htrans 2 (by decide)
+  have h3 : 0 < e (3 : Fin 4) := htrans 3 (by decide)
+  have hdeg : 3 ≤ ordinaryDegree4 e := by
+    simp only [ordinaryDegree4]
+    omega
+  let level : ℤ := -(e 0 : ℤ)
+  have hbound : IsWeightLE negativeZeroCoordinateWeight level S.slice := by
+    intro d hd
+    rw [finsupp_weight_negativeZeroCoordinateWeight]
+    dsimp [level]
+    have hle := hmin d hd
+    have hleZ : (e 0 : ℤ) ≤ (d 0 : ℤ) := by exact_mod_cast hle
+    omega
+  have heWeight :
+      Finsupp.weight negativeZeroCoordinateWeight e = level := by
+    rw [finsupp_weight_negativeZeroCoordinateWeight]
+  have hinit :
+      initialForm negativeZeroCoordinateWeight level S.slice =
+        MvPolynomial.monomial e (MvPolynomial.coeff e S.slice) := by
+    ext d
+    rw [coeff_initialForm]
+    by_cases hdWeight :
+        Finsupp.weight negativeZeroCoordinateWeight d = level
+    · rw [if_pos hdWeight]
+      by_cases hde : d = e
+      · subst d
+        simp
+      · have hd0 : d 0 = e 0 := by
+          rw [finsupp_weight_negativeZeroCoordinateWeight] at hdWeight
+          dsimp [level] at hdWeight
+          have hz : (d 0 : ℤ) = (e 0 : ℤ) := by omega
+          exact_mod_cast hz
+        have hcoeffZero : MvPolynomial.coeff d S.slice = 0 := by
+          by_contra hcoeff
+          have hdmem : d ∈ S.slice.support :=
+            MvPolynomial.mem_support_iff.mpr hcoeff
+          exact hde (S.eq_of_zeroCoordinate_eq
+            hthree hne houtThree hdmem he hd0)
+        simp [hcoeffZero, hde]
+    · rw [if_neg hdWeight]
+      have hde : d ≠ e := by
+        intro hde
+        subst d
+        exact hdWeight heWeight
+      simp [hde]
+  have hc : MvPolynomial.coeff e S.slice ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp he
+  have hboundary := HC4.Newton.exposed_monomial_on_boundary_of_zero_hessian
+    hbound S.hessian_zero hinit hc hdeg
+  have hzero := (mvExponentOnBoundary_iff_coordinate_zero e).1 hboundary
+  have he0 : e 0 = 0 := by
+    rcases hzero with h0 | h1z | h2z | h3z
+    · exact h0
+    · exact (Nat.ne_of_gt h1 h1z).elim
+    · exact (Nat.ne_of_gt h2 h2z).elim
+    · exact (Nat.ne_of_gt h3 h3z).elim
+  exact ⟨e, he, he0, htrans⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
