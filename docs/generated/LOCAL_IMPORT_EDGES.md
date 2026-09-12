@@ -2212,6 +2212,9 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
   - `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoKernelOpening`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`

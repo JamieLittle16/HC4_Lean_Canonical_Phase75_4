@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7580**.
+Distinct declaration spellings indexed: **7581**.
 
 ## Repeated declaration spellings
 
@@ -4105,6 +4105,7 @@ Distinct declaration spellings indexed: **7580**.
 - `exposedCodimensionTwo_carrier_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoCarrierKernel`
 - `exposedCodimensionTwo_firstOpening_child_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoKernelOpening`
 - `exposedCodimensionTwo_topKernel_or_openingRankTwo_or_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoKernelOpening`
+- `exposedCodimensionTwo_topKernel_or_rankTwoGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
 - `exposedFace_self` — `theorem` in `HC4.Newton.ExposedFaces`
 - `exposedNonlinearBalancedCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `exposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
