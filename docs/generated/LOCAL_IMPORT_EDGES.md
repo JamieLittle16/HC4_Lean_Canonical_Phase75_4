@@ -370,6 +370,8 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.Newton.TerminalTwoZeroSupport`
+- `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
+  - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Polynomial.MonomialHessian`

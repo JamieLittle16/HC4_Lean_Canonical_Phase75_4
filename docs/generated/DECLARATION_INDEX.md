@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7517**.
+Distinct declaration spellings indexed: **7520**.
 
 ## Repeated declaration spellings
 
@@ -1160,6 +1160,8 @@ Distinct declaration spellings indexed: **7517**.
 - `CanonicalAdaptiveSmithWallData` — `structure` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
 - `CanonicalAdaptiveSmithWallData.lowerBound` — `theorem` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
 - `CanonicalAdaptiveSmithWallData.realization` — `def` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
+- `CanonicalCodimensionTwoKernelOutcome` — `inductive` in `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
+- `CanonicalCoordinateMaxKernelOpeningData` — `structure` in `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
 - `CanonicalDepartureFrontierExhaustionUnderJC2` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `CanonicalExactCollisionEntry` — `structure` in `HC4.Valuation.FinalRestartAssembly`
 - `CanonicalExactCollisionEntry.impossible_of_two_le_degree` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
@@ -4089,6 +4091,7 @@ Distinct declaration spellings indexed: **7517**.
 - `exposedSingularNonlinearBoundaryVertex` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `exposedSingularNonlinearBoundaryVertex_carrier_coordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
+- `exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOutcome` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
 - `exposedSuperfaceCandidates` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposedSuperfaceSlope` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
