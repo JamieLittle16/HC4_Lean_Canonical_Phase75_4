@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7576**.
+Distinct declaration spellings indexed: **7578**.
 
 ## Repeated declaration spellings
 
@@ -4120,6 +4120,7 @@ Distinct declaration spellings indexed: **7576**.
 - `ext` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `extendCoeffs` — `def` in `HC4.Toric.ClassifiedDescent`
 - `extractionCoordinate_ne_kernelCoordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
+- `extraction_hessian_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
 - `extraction_pderiv_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `extraction_ratio_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `face_balanced_of_specialFiber_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
@@ -4609,6 +4610,7 @@ Distinct declaration spellings indexed: **7576**.
 - `hessianTermWeight_eq` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTerm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessian_C_mul_gradientRatioLinearForm_pow_add_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
+- `hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
 - `hessian_C_mul_gradientRatioLinearForm_pow_add_two_finFour` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `hessian_adaptiveSmithInflateHom_entry` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `hessian_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
