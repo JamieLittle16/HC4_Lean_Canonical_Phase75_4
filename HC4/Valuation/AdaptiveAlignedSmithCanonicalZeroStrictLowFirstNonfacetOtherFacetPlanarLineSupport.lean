@@ -43,7 +43,6 @@ private theorem weight_explicit_fin4
       a 2 * (e 2 : ℤ) + a 3 * (e 3 : ℤ) := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    push_cast
     ring
   · intro i
     simp
@@ -312,7 +311,7 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
-    · simp [t, hfacet0, hout0]
+    · simp [hfacet0, hout0]
     · dsimp [t]
       simp [hfacet1, hout1]
       linarith
@@ -355,7 +354,7 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
-    · simp [t, hfacet0, hout0]
+    · simp [hfacet0, hout0]
     · dsimp [r1, t] at hr
       exact sub_eq_zero.mp hr.1
     · dsimp [t]
@@ -398,7 +397,7 @@ theorem QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray
     have hr := two_by_two_kernel_zero hdet hsr hwr
     intro i
     fin_cases i
-    · simp [t, hfacet0, hout0]
+    · simp [hfacet0, hout0]
     · dsimp [r1, t] at hr
       exact sub_eq_zero.mp hr.1
     · dsimp [r2, t] at hr
