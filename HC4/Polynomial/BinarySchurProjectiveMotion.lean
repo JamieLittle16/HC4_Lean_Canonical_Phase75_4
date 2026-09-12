@@ -75,6 +75,7 @@ theorem binarySchurProjectiveWedge_scaledRelation
           (MvPolynomial.C alpha * m * A) *
             MvPolynomial.pderiv k A := by
       rw [hrel, hdiff]
+      ring
     _ = MvPolynomial.C alpha * A ^ 2 * MvPolynomial.pderiv k m := by
       ring
 
@@ -95,8 +96,9 @@ theorem binarySchurProjectiveWedge_ne_zero_of_scaledRelation
     A B m alpha beta k hrel
   have hrhs :
       MvPolynomial.C alpha * A ^ 2 * MvPolynomial.pderiv k m ≠ 0 := by
-    have hCalpha : MvPolynomial.C alpha ≠ 0 := by
-      simpa using halpha
+    have hCalpha :
+        (MvPolynomial.C alpha : MvPolynomial (Fin 4) K) ≠ 0 :=
+      MvPolynomial.C_ne_zero.mpr halpha
     exact mul_ne_zero (mul_ne_zero hCalpha (pow_ne_zero 2 hA)) hdm
   apply hrhs
   rw [← hid, hwedge]
@@ -115,8 +117,13 @@ theorem binarySchurDerivativeDet_negativeSquare
   let Cp : MvPolynomial (Fin 4) K := MvPolynomial.pderiv k C
 
   have hdiff := congrArg (MvPolynomial.pderiv k) hrankOne
-  have hdiff' : Ap * C + A * Cp = Bp * B + B * Bp := by
+  have hdiffRaw : A * Cp + C * Ap = B * Bp + B * Bp := by
     simpa [Ap, Bp, Cp, MvPolynomial.pderiv_mul] using hdiff
+  have hdiff' : Ap * C + A * Cp = Bp * B + B * Bp := by
+    calc
+      Ap * C + A * Cp = A * Cp + C * Ap := by ring
+      _ = B * Bp + B * Bp := hdiffRaw
+      _ = Bp * B + B * Bp := by ring
 
   have hzero :
       A ^ 2 * (Ap * Cp - Bp * Bp) +
