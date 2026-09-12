@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7655**.
+Distinct declaration spellings indexed: **7658**.
 
 ## Repeated declaration spellings
 
@@ -2243,6 +2243,8 @@ Distinct declaration spellings indexed: **7655**.
 - `QsOtherFacetPlanarCarrierPackage.support_final_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarHighestPairSlicePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
+- `QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
@@ -6031,6 +6033,7 @@ Distinct declaration spellings indexed: **7655**.
 - `qs_ray_otherFacet_integral_locked_source_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralLockedFrontier`
 - `qs_ray_otherFacet_integral_source_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralSourceContact`
 - `qs_ray_otherFacet_integral_strictLow_source_degree_add_four_le_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralResidualDegreeGap`
+- `qs_ray_otherFacet_locked_direction_signs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `qs_ray_otherFacet_neutralSuperface_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qs_ray_otherFacet_pairDegree_eq_one_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qs_ray_otherFacet_planarCarrier_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
