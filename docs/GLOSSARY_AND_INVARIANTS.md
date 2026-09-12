@@ -7,6 +7,8 @@ This document defines the vocabulary used by the current A18/A19 proof and recor
 
 The Lean source remains authoritative. This glossary describes intended meaning and proof discipline.
 
+**12 September 2026 note:** the final paper-closure programme introduces two new terms that must remain provenance-distinct from older objects: the **defect-neutral planar refinement** and the **ordinary reverse-Rees family**. Both are defined below. Neither is the original zero blocker clock or the earlier auxiliary ray clock.
+
 ## 1. Source-level objects
 
 ### Source polynomial
@@ -50,6 +52,39 @@ A genuine positive parameter order occurring in the family. The phrase **actual*
 ### First positive actual parameter order
 
 The minimum positive parameter order of the actual family, when one exists. It is used to compare genuine source parameter order against determinant/raw-defect clocks.
+
+### Ordinary reverse-Rees family
+
+For a four-variable source polynomial with ordinary homogeneous decomposition
+
+```text
+F = H_0 + H_1 + ... + H_D,
+```
+
+the 12 September codimension-two closure uses
+
+```text
+R_F(t,x) = H_D + t H_(D-1) + ... + t^D H_0
+         = t^D F(x/t).
+```
+
+This family is attached to ordinary source degree. If `det Hess(F)=1`, then
+
+```text
+det Hess(R_F) = t^(4D-8).
+```
+
+If `grad F(a)=grad F(b)`, it retains the exact moving collision along `t*a` and `t*b`.
+
+**Clock discipline:** its parameter order and determinant exponent `4D-8` are ordinary-degree filtration data. They are not the source raw defect, endpoint defect, zero blocker clock, auxiliary ray defect, or ramification multiple unless a separate theorem proves such an equality.
+
+### First kernel-breaking layer
+
+For a family whose special-fibre Hessian has a literal constant kernel direction `v`, the first kernel-breaking layer is the least positive parameter order `q` whose Hessian coefficient does not annihilate `v`.
+
+In the filtered-kernel paper lemma, `q < Delta` together with a rank-three special kernel forces an actual nonzero `2 x 2` Hessian minor in that coefficient potential.
+
+Do not confuse “first actual source layer” with “first kernel-breaking layer”: the former is about nonzero source coefficients; the latter is about failure of one Hessian kernel direction. They may coincide in a particular adapter only if proved.
 
 ## 3. Presentation and ramification
 
@@ -110,6 +145,12 @@ A defect attached to an aligned/Smith endpoint or blocker endpoint. It may be re
 
 The raw defect of a presented/ramified state. It may equal a positive ramification factor times the source raw defect. That relationship must be used explicitly.
 
+### Auxiliary ray defect / ray-Rees clock
+
+A determinant/Hessian order arising from a secondary Rees construction on an exposed finite-support ray. It can be mathematically useful while being incompatible with the original zero-blocker clock.
+
+The current repository explicitly contains such a clock mismatch. Therefore never feed an auxiliary ray clock into an original-blocker stationary theorem without an explicit source transition/clock-transport theorem.
+
 ## 5. Progress vocabulary
 
 ### Global macro progress
@@ -134,6 +175,12 @@ A proposed move with exactly these properties belongs here.
 After rank-three geometry is reached, some states may admit a strict global-macro successor even if that successor is not inserted into the raw-defect-only rank-one trace at that point. A19.45 exposes this distinction.
 
 At a globally terminal reached rank-three state, A19.45 forces literal `rawDefect = 0`.
+
+### Geometry-bearing rank-two progress
+
+A rank-two transition justified by an actual source/Hessian/Schur witness, such as a nonzero `2 x 2` Hessian minor or a nonzero projective-wedge derivative packet.
+
+The geometry is logically prior to the repair/global transition. A bare `withRepairOnly` state or smaller repair tag is not itself a contradiction.
 
 ## 6. Newton/support carriers
 
@@ -192,6 +239,29 @@ The generic carrier is `CrossFacetInitialData`.
 
 This route does not require torus balance.
 
+### Defect-neutral planar refinement
+
+The 12 September rank-three paper route perturbs an exact locked-ray source exposure by a source-weight direction whose contribution to the Hessian defect is zero. The canonical prototype is
+
+```text
+u = (1,1,0,0),
+(W_t,L_t)=(W+t*u,L+t),
+```
+
+for which
+
+```text
+4(L+t)-2*sum(W+t*u)=4L-2*sum W.
+```
+
+A small independent neutral skew perturbation is used to choose a generic first normal-fan wall. The resulting planar carrier must be an **exact source exposure** with its own positive determinant defect; its singularity must not be inferred merely from the smaller locked ray.
+
+### Highest pair-degree slice
+
+On the neutral planar carrier, pair degree means `p(e)=e0+e1`. The top occupied `p`-slice is an exact homogeneous component for this grading. In the paper proof its Hessian determinant is the top `p`-graded piece of the whole carrier determinant.
+
+This is a new slice of the planar carrier, not the maximal ordinary top face of the original source.
+
 ## 7. Boundary vocabulary
 
 ### Coordinate facet
@@ -221,6 +291,12 @@ Because the definition depends on a facet match, elimination may require `mvRank
 An exponent has two distinct zero coordinates.
 
 This is weaker/different from a fully constructed two-zero planar collision carrier.
+
+### Same-carrier A19.55 codimension two
+
+The codimension-two constructor exposed on the actual singular maximal ordinary top face in A19.55. It retains that carrier and its subsequent first-departure/source provenance.
+
+Do not conflate it with later lower-carrier endpoint statements such as the degree-one `.qs` outside endpoint exclusion.
 
 ## 8. Balance and homogeneity
 
@@ -300,6 +376,12 @@ A more general affine support relation that need not satisfy the older integral 
 
 Do not coerce an affine line into the older segment representation without proving the arithmetic conditions.
 
+### Line-supported Hessian rigidity
+
+The current paper theorem that a finite nonconstant line-supported four-variable polynomial with singular Hessian, in the relevant primitive line direction, has only two adjacent monomials. The proof uses a one-variable recurrence/rational first integral and is recorded in `LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md`.
+
+Until formalised, this remains `PAPER CANDIDATE` rather than a reusable Lean theorem.
+
 ### Two-fixed contradiction
 
 The affine RationalRigidity route eventually derives incompatible fixed relations at two normalized endpoints/directions. `RankThreeAffineTwoFixedImpossible.lean` is a terminal owner for that contradiction.
@@ -319,6 +401,12 @@ A specialized geometry with the exact zero-coordinate structure required by the 
 A carrier that has been converted to the two-dimensional Jacobian/Hessian problem required by `PlanarJC2HessianEmbedding` and related theorems.
 
 A generic codimension-two exponent is not automatically a planar collision.
+
+### Generic JC2 projection
+
+The unrestricted projection from arbitrary two-zero data to a genuine planar Jacobian problem. This is full JC2-strength and must not be smuggled in merely because a codimension-two exponent exists.
+
+The current A19.55 paper route aims to close before this projection by using stronger first-departure/constant-kernel provenance.
 
 ## 13. Carrier identity invariants
 
@@ -340,14 +428,20 @@ Every inequality involving a defect/order should say whether it concerns:
 - source raw defect;
 - presented raw defect;
 - endpoint defect;
+- zero blocker clock;
+- auxiliary ray defect/order;
 - first positive actual parameter order;
+- first kernel-breaking order;
+- ordinary reverse-Rees order;
 - ramified order.
 
-Do not cancel scale factors informally.
+Do not cancel scale factors informally or identify two clocks by analogy.
 
 ### Invariant C — repair provenance
 
 If a theorem needs `state.repair = rankOneRepairState 0`, preserve or rederive that exact equality through every transition.
+
+A smaller repair tag is not itself a terminal contradiction.
 
 ### Invariant D — balance provenance
 
@@ -360,6 +454,14 @@ If an actual exponent/face/target has already been constructed, prefer storing i
 ### Invariant F — no duplicate termination
 
 Global recursive descent remains the `rawDefect : ℕ` recursion already encoded in `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace`.
+
+### Invariant G — singularity provenance
+
+A singular ray or slice does not make an arbitrary larger carrier singular. Every singularity statement must come from the exact carrier's own determinant equation, initial-form theorem, positive-defect exposure, or a proved coefficient extraction.
+
+### Invariant H — geometry before progress
+
+Rank-two/global progress may consume actual nonzero Hessian/Schur geometry, but a progress/state wrapper may not be used as a substitute for proving that geometry.
 
 ## 14. Namespace ownership
 
@@ -431,11 +533,23 @@ Fix: use the rank-three-or-codimension-two split.
 
 ### Error: “Codimension two means planar JC2.”
 
-Fix: build the exact planar collision carrier first.
+Fix: retain A19.55 source/first-departure provenance and build the exact planar carrier only if that route is genuinely needed.
 
 ### Error: “An affine ray gives torus balance.”
 
 Fix: use the balance-free route or prove actual balance separately.
+
+### Error: “A singular ray makes its planar superface singular.”
+
+Fix: prove singularity for the exact planar carrier, for example from its own positive determinant defect.
+
+### Error: “The ordinary reverse-Rees determinant exponent is the blocker defect.”
+
+Fix: treat it as an independent ordinary-degree filtration clock unless an explicit bridge theorem says otherwise.
+
+### Error: “A nonzero repair transition closes the terminal.”
+
+Fix: first produce the actual source/Hessian/Schur geometry consumed by the transition.
 
 ### Error: “A positive reached rank-three state is a local low-layer terminal.”
 
@@ -453,6 +567,6 @@ For every substantial new final-assembly module, say:
 2. **Consumes:** previous module/theorem interface.
 3. **Produces:** exact next interface.
 4. **Preserves:** support/repair/clock provenance that remains available.
-5. **Does not assume:** especially balance, homogeneity, JC2, synthetic endpoint, or new progress if absent.
+5. **Does not assume:** especially balance, homogeneity, JC2, synthetic endpoint, clock identification, or new progress if absent.
 
 That small discipline makes the generated module index much more useful because its purpose field comes directly from module documentation.
