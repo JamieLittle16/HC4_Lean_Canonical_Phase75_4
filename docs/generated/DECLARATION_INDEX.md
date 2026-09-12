@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7570**.
+Distinct declaration spellings indexed: **7574**.
 
 ## Repeated declaration spellings
 
@@ -3207,6 +3207,7 @@ Distinct declaration spellings indexed: **7570**.
 - `character_eq_zero_of_reverseClosed` — `theorem` in `HC4.Toric.SymmetricEigenSupport`
 - `chart_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `childHessian_rankTwoWitness_or_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
+- `child_eq_pureAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
 - `child_extractionCoordinate_eq` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `child_isHomogeneous` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
 - `child_linearPower_of_rankAtMostOne` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
@@ -4900,6 +4901,7 @@ Distinct declaration spellings indexed: **7570**.
 - `liftTransversePolynomial_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `lineMomentHessian` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `lineMomentHessian_eq_scaled_logarithmicCore` — `theorem` in `HC4.Polynomial.LogHessianMoments`
+- `linearForm_eq_extractionAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
 - `linearForm_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
@@ -5894,6 +5896,8 @@ Distinct declaration spellings indexed: **7570**.
 - `projectiveWedge_eq_zero_iff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `projectiveWedge_two_three_of_raw_generator` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `pullbackField` — `def` in `HC4.LinearAlgebra.Congruence`
+- `pureAxisCoefficient` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
+- `pureAxisCoefficient_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
 - `pureCoefficientWall_departureFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `pureCoefficientWall_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `pureCoefficientWall_losslessFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
