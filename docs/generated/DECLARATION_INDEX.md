@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7707**.
+Distinct declaration spellings indexed: **7709**.
 
 ## Repeated declaration spellings
 
@@ -5580,6 +5580,7 @@ Distinct declaration spellings indexed: **7707**.
 - `pderiv_zero_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_zero_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `pderiv_zero_transverseDeriv_ne_zero_of_positiveDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `pderiv_zero_twoFunctionEulerFactorA` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
 - `pderiv_zero_twoFunctionEulerFactorB` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `permutedEulerScaledHessianFourBlock_eq_diagonalScale` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `permutedFamilyHessianFourBlock` — `def` in `HC4.Valuation.PermutedFamilyHessianFourBlock`
@@ -7710,6 +7711,7 @@ Distinct declaration spellings indexed: **7707**.
 - `twoFunctionConcreteBz_eq_zero_of_factorB_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionConcreteBz_top_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionEulerFactorA` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
+- `twoFunctionEulerFactorA_ne_zero` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
 - `twoFunctionEulerFactorB` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `twoFunctionEulerFactorB_eq_xBx_add_zBz` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionEulerHessianMatrix` — `def` in `HC4.Polynomial.TwoFunctionEulerHessian`

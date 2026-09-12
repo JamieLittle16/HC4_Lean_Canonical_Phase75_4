@@ -2612,7 +2612,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`, `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem twoFunctionCarrier_hessian_impossible`
+- Declarations: `theorem pderiv_zero_twoFunctionEulerFactorA`, `theorem twoFunctionEulerFactorA_ne_zero`, `theorem twoFunctionCarrier_hessian_impossible`
 
 ### `HC4.Polynomial.TwoFunctionEulerCalculus`
 
