@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7411**.
+Distinct declaration spellings indexed: **7417**.
 
 ## Repeated declaration spellings
 
@@ -3239,6 +3239,7 @@ Distinct declaration spellings indexed: **7411**.
 - `coeff_binaryStaircaseProfileSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_clearedPolynomialSubstitution_top` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `coeff_coeff_C_X_pow_mul_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `coeff_coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `coeff_coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_coeff_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`
 - `coeff_commonParameterFactorFamily_of_mem` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
@@ -3257,6 +3258,7 @@ Distinct declaration spellings indexed: **7411**.
 - `coeff_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `coeff_first_eq_zero_of_schurC_twoFactor` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `coeff_five_rankThreeEtaNumeratorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
+- `coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `coeff_fourVariableLinearPart_eq_zero_of_not_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `coeff_fourVariableLinearPart_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `coeff_four_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
@@ -4068,6 +4070,7 @@ Distinct declaration spellings indexed: **7411**.
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
+- `familyParameterLayer_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
@@ -4082,6 +4085,7 @@ Distinct declaration spellings indexed: **7411**.
 - `familyParameterLayer_two_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `familyParameterLayer_zero_eq_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
+- `familyParameterLayer_zero_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `familyParameterSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyPositiveActualLayerOrders` — `def` in `HC4.Valuation.ActualParameterLayer`
 - `familyPositiveParameterOrders` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
@@ -4304,6 +4308,7 @@ Distinct declaration spellings indexed: **7411**.
 - `fourOrdinaryDegreeComponent_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+- `fourOrdinaryReverseReesFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourVariableLinearPart` — `def` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `four_facet_cycle_normal_form` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `four_le_canonicalSmith_rawExponent` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
@@ -4890,6 +4895,7 @@ Distinct declaration spellings indexed: **7411**.
 - `map_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `map_binaryStaircaseProfileSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
 - `map_eulerDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileResidualMap`
+- `map_evalOne_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `map_evalOne_reesVectorProjectiveWedge` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_evalOne_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
