@@ -7460,7 +7460,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`, `HC4.Newton.FiniteSupportRayPlanarRefinement`, `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`, `HC4.MongeAmpere.PolynomialInitial`, `HC4.Polynomial.MaximalHessianInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
-- Declarations: `structure QsOtherFacetPlanarCarrierPackage`, `theorem weight_scalar_mul_fin4`, `theorem ratioWallWeight_eq_finsuppWeight_sub_level`, `theorem qs_ray_otherFacet_planarCarrier_package`
+- Declarations: `structure QsOtherFacetPlanarCarrierPackage`, `theorem weight_scalar_mul_fin4`, `theorem weight_sub_scalar_mul_fin4`, `theorem ratioWallWeight_eq_finsuppWeight_sub_level`, `theorem qs_ray_otherFacet_planarCarrier_package`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 
