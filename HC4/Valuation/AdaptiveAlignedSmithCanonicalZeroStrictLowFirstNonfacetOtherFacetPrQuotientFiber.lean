@@ -131,17 +131,24 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem
   rw [hd2] at h2
   rw [hd3] at h3
   rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
-  constructor
-  · apply Int.ofNat.inj
-    push_cast
-    nlinarith [h1]
-  constructor
-  · apply Int.ofNat.inj
-    push_cast
+  have hpairZ :
+      (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) := by
+    linarith [h1]
+  have hfirstZ :
+      (D.alpha : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
+        (D.alpha : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by
     nlinarith [h2]
-  · apply Int.ofNat.inj
-    push_cast
+  have hsecondZ :
+      (D.beta : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
+        (D.beta : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by
     nlinarith [h3]
+  refine ⟨?_, ?_, ?_⟩
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add] using hpairZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hfirstZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hsecondZ
 
 /-- A nontrivial primitive highest `.pr` slice is therefore an honest
 non-singleton quotient fiber. -/
