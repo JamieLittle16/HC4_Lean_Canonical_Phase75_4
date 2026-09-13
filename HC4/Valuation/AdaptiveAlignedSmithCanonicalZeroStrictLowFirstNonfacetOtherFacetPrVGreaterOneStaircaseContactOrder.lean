@@ -126,6 +126,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
   dsimp only at hs
   have hcurveZ := hs.2
   rw [hj] at hcurveZ
+  norm_num at hcurveZ
   have hjNat : e 0 + e 2 = j + 1 := by
     simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
       one_mul] using hj
@@ -183,6 +184,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
   dsimp only at hs
   have hcurveZ := hs.2
   rw [hj] at hcurveZ
+  norm_num at hcurveZ
   have hjNat : e 0 + e 3 = j + 1 := by
     simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
       one_mul] using hj
@@ -212,7 +214,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
     one_mul]
   rw [hjNat, hcurve]
   have hweight :
-      e 0 + e 1 + (j + 1) + F.V * (e 0 + e 1 + j) =
+      e 0 + e 1 + F.V * (e 0 + e 1 + j) + (j + 1) =
         (F.V + 1) * (e 0 + e 1 + j) + 1 := by
     ring
   rw [hweight, Nat.mul_sub_left_distrib]
