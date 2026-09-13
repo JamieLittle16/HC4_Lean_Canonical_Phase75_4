@@ -272,6 +272,85 @@ theorem exists_firstPositiveLayer_strictInterior_coordinates
     omega
   exact ⟨e, k, j, he, rfl, hinterior.1, hinterior.2, hj, hjpos, hjlt⟩
 
+/-- Every supported exact layer coefficient is the literal carrier coefficient.
+This keeps coefficient provenance when constructing the first-variation profile. -/
+theorem parameterLayer_coeff_eq_carrier_of_mem
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    {q : ℕ} {e : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family q).support) :
+    MvPolynomial.coeff e (familyParameterLayer D.family q) =
+      MvPolynomial.coeff e P.carrier := by
+  have hsource := D.parameterLayer_support_source_and_order he
+  have hformula := reverseWeightedReesFamily_parameterLayer_coeff
+    (K := K) (qsIntegralContactWeight (F.V + 1))
+    T.topFace.degree q P.carrier D.bound e
+  change MvPolynomial.coeff e (familyParameterLayer D.family q) = _ at hformula
+  simpa [hsource.1, hsource.2] using hformula
+
+/-- The first positive layer has a single full quotient coordinate, not just
+one pair degree. The carrier's two retained affine equations supply this fact. -/
+theorem firstPositiveLayer_quotient_fiber
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e f : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support)
+    (hf : f ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support) :
+    rankThreeQuotientCoordinate 1 F.V e =
+      rankThreeQuotientCoordinate 1 F.V f := by
+  have hp := D.firstPositiveLayer_pair_fiber hthree houtThree he hf
+  apply F.quotient.pair_fiber
+    (D.parameterLayer_support_source_and_order he).1
+    (D.parameterLayer_support_source_and_order hf).1
+  change e 0 + e 1 = f 0 + f 1 at hp
+  change (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ)
+  exact_mod_cast hp
+
+/-- Shared first-interior coordinates, with exact coefficients retained for
+all supported monomials. These are derived from the live frontier. -/
+theorem exists_firstPositiveLayer_strictInterior_fiber
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (hnot : ¬ F.NoStrictInteriorSupport) :
+    ∃ k j : ℕ, 1 < k ∧ k < F.highest.n ∧
+      0 < j ∧ j < F.locked.ell ∧
+      ∀ e ∈ (familyParameterLayer D.family
+        (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support,
+        (rankThreeQuotientCoordinate 1 F.V e).pair = k ∧
+        (rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1 ∧
+        MvPolynomial.coeff e (familyParameterLayer D.family
+          (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)) =
+          MvPolynomial.coeff e P.carrier := by
+  obtain ⟨e, k, j, he, hk, hkgt, hklt, hj, hjpos, hjlt⟩ :=
+    D.exists_firstPositiveLayer_strictInterior_coordinates hthree houtThree hnot
+  refine ⟨k, j, hkgt, hklt, hjpos, hjlt, ?_⟩
+  intro f hf
+  have hq := D.firstPositiveLayer_quotient_fiber hthree houtThree hf he
+  refine ⟨?_, ?_, D.parameterLayer_coeff_eq_carrier_of_mem hf⟩
+  · rw [hq, ← hk]
+  · rw [hq, hj]
+
 end QsOtherFacetPrLeftVPlanarContactReesData
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
