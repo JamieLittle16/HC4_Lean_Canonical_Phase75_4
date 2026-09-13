@@ -2631,7 +2631,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeQuotientFibers`
 - External imports: `Mathlib.Data.Finsupp.Weight`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - Declarations: `def RankThreeDirectionNeutralWeight`, `def rankThreeQuotientWeight`, `theorem finsupp_weight_eq_rankThreeQuotientWeight`, `theorem finsupp_weight_eq_of_rankThreeQuotientCoordinate_eq`, `theorem rankThreeDirectionNeutralWeight_of_primitive_pair`
 
 ### `HC4.Polynomial.RankThreeVerticalLine`
@@ -8307,7 +8307,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation.lean`
 - Purpose: A19 whole-carrier interpolation on the non-unit PR quotient line
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`, `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolationRight`
 - Declarations: `theorem weight_explicit_fin4`, `theorem two_by_two_kernel_zero`, `theorem rankThreeQuotientCoordinate_affine_interpolation`, `theorem pr_final_skew_transverseDet_ne_zero`, `theorem QsOtherFacetPrLeftVContactFrontierData.quotient_affine_interpolation`
