@@ -66,7 +66,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_
     have hq := Q.pair_fiber
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
-    have hq3 := congrArg RankThreeQuotientCoordinate.secondTransverse hq
+    have hq3 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.secondTransverse hq
     simp only [rankThreeQuotientCoordinate_secondTransverse] at hq3
     rw [D.e0_zero, D.e1_zero, D.e0_three, D.e1_three] at hq3
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq3
@@ -86,7 +86,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_
     have hq := Q.pair_fiber
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
-    have hq3 := congrArg RankThreeQuotientCoordinate.secondTransverse hq
+    have hq3 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.secondTransverse hq
     simp only [rankThreeQuotientCoordinate_secondTransverse] at hq3
     rw [D.e0_zero, D.e1_zero, D.e0_three, D.e1_three] at hq3
     simp at hq3
@@ -123,7 +123,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source
     have hq := Q.pair_fiber
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
-    have hq2 := congrArg RankThreeQuotientCoordinate.firstTransverse hq
+    have hq2 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hq
     simp only [rankThreeQuotientCoordinate_firstTransverse] at hq2
     rw [D.e0_zero, D.e1_zero, D.e0_two, D.e1_two] at hq2
     simp at hq2
@@ -140,7 +140,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source
     have hq := Q.pair_fiber
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
-    have hq2 := congrArg RankThreeQuotientCoordinate.firstTransverse hq
+    have hq2 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hq
     simp only [rankThreeQuotientCoordinate_firstTransverse] at hq2
     rw [D.e0_zero, D.e1_zero, D.e0_two, D.e1_two] at hq2
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq2
