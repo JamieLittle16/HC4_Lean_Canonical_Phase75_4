@@ -2362,7 +2362,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.AffineEulerTwoRootRigidity`, `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - External imports: `Mathlib.Algebra.DualNumber`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarLockedMomentRealisation`, `HC4.Valuation.PlanarContactFirstVariationBridge`
-- Declarations: `def lockedBinomialMomentHessian`, `def parallelStaircaseMomentHessian`, `def lockedParallelFirstVariationDualPencil`, `theorem snd_det_lockedParallelFirstVariationDualPencil`, `theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero`
+- Declarations: `def lockedBinomialMomentHessian`, `def parallelStaircaseMomentHessian`, `def lockedParallelFirstVariationDualPencil`, `lemma snd_det_lockedParallelFirstVariationDualPencil`, `theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero`
 
 ### `HC4.Polynomial.LogHessianMoments`
 
