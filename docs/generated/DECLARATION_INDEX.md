@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7807**.
+Distinct declaration spellings indexed: **7809**.
 
 ## Repeated declaration spellings
 
@@ -2272,7 +2272,9 @@ Distinct declaration spellings indexed: **7807**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_contactSlope_frontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrContactSlope`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_data` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneHighestSliceOrientation`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceNormalForm`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source_data` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneHighestSliceOrientation`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_source_data_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_normal_form` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveDirection`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_primitive_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`
