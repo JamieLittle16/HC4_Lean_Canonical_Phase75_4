@@ -81,7 +81,7 @@ theorem rankThreeAffineMoment_eq_primitiveBinomialScaledPencil
     (n p q alpha beta : ℕ) (phi : Polynomial K)
     (hsupp : phi.support = {0, 1}) :
     rankThreeAffinePolynomialMomentHessian
-        n p q 1 (-(alpha : K)) (-(beta : K)) phi =
+        n p q 1 (-(1 : K)) (-(alpha : K)) (-(beta : K)) phi =
       primitiveBinomialScaledHessianPencil
         (Polynomial.C (n : K)) (Polynomial.C (p : K))
         (Polynomial.C (q : K)) (Polynomial.C (alpha : K))
@@ -108,7 +108,7 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
     (hphi0 : phi.coeff 0 ≠ 0) (hphi1 : phi.coeff 1 ≠ 0)
     (hdet :
       (rankThreeAffinePolynomialMomentHessian
-        n p q 1 (-(alpha : K)) (-(beta : K)) phi).det = 0) :
+        n p q 1 (-(1 : K)) (-(alpha : K)) (-(beta : K)) phi).det = 0) :
     primitiveBinomialDetCoeff0
         (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 ∧
       primitiveBinomialDetCoeff1
@@ -118,11 +118,6 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
   rw [rankThreeAffineMoment_eq_primitiveBinomialScaledPencil
     n p q alpha beta phi hsupp] at hdet
   rw [det_primitiveBinomialScaledHessianPencil] at hdet
-
-  have hc0 : Polynomial.C (phi.coeff 0) ≠ (0 : Polynomial K) := by
-    simpa using hphi0
-  have hc1 : Polynomial.C (phi.coeff 1) ≠ (0 : Polynomial K) := by
-    simpa using hphi1
 
   have hcoeff2 := congrArg (fun f : Polynomial K => f.coeff 2) hdet
   have hcoeff3 := congrArg (fun f : Polynomial K => f.coeff 3) hdet
@@ -162,7 +157,7 @@ theorem primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero
     (hphi0 : phi.coeff 0 ≠ 0) (hphi1 : phi.coeff 1 ≠ 0)
     (hdet :
       (rankThreeAffinePolynomialMomentHessian
-        n p q 1 (-(alpha : K)) (-(beta : K)) phi).det = 0) :
+        n p q 1 (-(1 : K)) (-(alpha : K)) (-(beta : K)) phi).det = 0) :
     (p = alpha ∧ alpha = 1 ∧ q = beta * n) ∨
       (q = beta ∧ beta = 1 ∧ p = alpha * n) := by
   rcases primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
