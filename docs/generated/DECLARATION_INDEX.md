@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7834**.
+Distinct declaration spellings indexed: **7841**.
 
 ## Repeated declaration spellings
 
@@ -2300,6 +2300,8 @@ Distinct declaration spellings indexed: **7834**.
 - `QsOtherFacetPrHighestSliceRightSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
 - `QsOtherFacetPrHighestSliceRightSourceData.quotientContactOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactOrders`
 - `QsOtherFacetPrLeftVContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`
+- `QsOtherFacetPrLeftVContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `QsOtherFacetPrLeftVContactFrontierData.topFace_degree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_bounds` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlopeConsequences`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlope`
 - `QsOtherFacetPrLockedLeftSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrLockedSourceCoefficients`
@@ -2318,6 +2320,8 @@ Distinct declaration spellings indexed: **7834**.
 - `QsOtherFacetPrQuotientCarrierData.quotientContactOrder_eq_of_pairDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
 - `QsOtherFacetPrQuotientCarrierData.sourceContactDeficit_eq_quotientContactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
 - `QsOtherFacetPrRightVContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`
+- `QsOtherFacetPrRightVContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `QsOtherFacetPrRightVContactFrontierData.topFace_degree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `QsOtherFacetPrRightVContactFrontierData.wallSlope_bounds` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlopeConsequences`
 - `QsOtherFacetPrRightVContactFrontierData.wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlope`
 - `QsOtherFacetPrTwoFunctionCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrTwoFunctionCarrier`
@@ -4783,6 +4787,8 @@ Distinct declaration spellings indexed: **7834**.
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `highestSlice_cross_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
+- `highest_weight_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `highest_weight_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `homogeneous_eq_C_mul_gradientRatioLinearForm_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `homogeneous_eq_C_mul_topLinearForm_pow_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `homogeneous_exactAxisCollision_generalSurvivingSmithFaceShape` — `theorem` in `HC4.Newton.SmithRefinedFacePolynomial`
@@ -5025,6 +5031,7 @@ Distinct declaration spellings indexed: **7834**.
 - `killBinaryTransverseLinear_topFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killed_or_order_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSectionGauge`
 - `layer_eq_sourceWedgeInitialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `le_from_scaled_degree_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `leadingCoeff_eulerDerivative_eq_of_pos` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `leftKernel_first` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `leftKernel_nonzero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
