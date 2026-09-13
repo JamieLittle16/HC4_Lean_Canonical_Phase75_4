@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8013**.
+Distinct declaration spellings indexed: **8020**.
 
 ## Repeated declaration spellings
 
@@ -3108,6 +3108,9 @@ Distinct declaration spellings indexed: **8013**.
 - `binaryHessianEntry_isWeightedHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `binaryHomogeneous_eq_linearFormPow_of_hessianDet_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `binaryHomogeneous_hasExactTransverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
+- `binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `binaryHomogenizedFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `binaryLinearFormTransverseDeriv` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `binaryLinearFormTransverseDeriv_hasExactTransverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `binaryLinearFormTransverseDeriv_hessianDet_eq_zero_of_sq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
@@ -3130,6 +3133,7 @@ Distinct declaration spellings indexed: **8013**.
 - `binaryOrdinary_isWeightedHomogeneous_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryOutsideSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryProfileClock` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
+- `binaryProfileWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `binarySchurDerivativeDet` — `def` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_scaledMotion` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_wedge` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
@@ -3355,6 +3359,7 @@ Distinct declaration spellings indexed: **8013**.
 - `canonicalZeroSmithBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalBlockerCompetition`
 - `canonical_four_facet_cycle_pairwise_distinct` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `canonical_rankLadder_exhaustion` — `theorem` in `HC4.Newton.RankOneRepairProgress`
+- `carrierLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
 - `certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
@@ -3454,6 +3459,8 @@ Distinct declaration spellings indexed: **8013**.
 - `coeff_add_binaryStaircaseProfileCross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_add_self_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_binaryDirectionalDeriv` — `theorem` in `HC4.Newton.DirectionalCoefficientRecurrence`
+- `coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `coeff_binaryHomogenizedLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `coeff_binaryOrdinaryDegreeComponent_of_degree_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `coeff_binaryStaircaseProfileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianCoefficients`
 - `coeff_binaryStaircaseProfileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianCoefficients`
