@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8061**.
+Distinct declaration spellings indexed: **8066**.
 
 ## Repeated declaration spellings
 
@@ -5493,6 +5493,7 @@ Distinct declaration spellings indexed: **8061**.
 - `noCounterexample_of_JC2_losslessCanonicalReduction` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `noCounterexample_of_currentCanonicalEntry` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
 - `noPositiveParameterLayer_or_first` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
+- `noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `noWallDefectDrop` — `def` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedDefectDrop`
 - `noWallPrimitiveSmithFamily` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `noWallPrimitiveSmithFamily_canonicalCollision` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
@@ -7688,8 +7689,12 @@ Distinct declaration spellings indexed: **8061**.
 - `standardTwoZero_terminal_not_planarJC2` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardZeroPairEmbedding` — `def` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `stationaryCarrierProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
+- `stationaryCarrierProfileFraction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
+- `stationaryCarrierProfileFraction_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
+- `stationaryCarrierProfileFraction_natDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `stationaryCarrierProfile_coeff_top_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileEndpoints`
 - `stationaryCarrierProfile_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileEndpoints`
+- `stationaryCarrierProfile_natDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `stationaryIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryIndex_mul_weight_le_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationarySoundElimination_of_internal_then_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
