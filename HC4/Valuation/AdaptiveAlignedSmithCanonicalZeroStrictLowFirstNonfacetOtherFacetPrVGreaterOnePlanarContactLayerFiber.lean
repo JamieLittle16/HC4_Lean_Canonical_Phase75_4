@@ -32,6 +32,33 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 namespace QsOtherFacetPrLeftVPlanarContactReesData
 
+/-- Exact layer-index form of the retained contact interpolation law.  A
+monomial supported in parameter layer `q` has pair degree `k` satisfying
+
+    `(n - 1) * q = B * (k - 1)`,
+
+where `B = (V+1)(ell+1-n)` is the positive locked-to-highest contact step. -/
+theorem parameterLayer_contactOrder_interpolation
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {q : ℕ} {e : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family q).support) :
+    (F.highest.n - 1) * q =
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+        ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
+  rcases D.parameterLayer_support_source_and_order he with ⟨heP, heOrder⟩
+  have hinterp := F.contactOrder_interpolation hthree houtThree heP
+  rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e,
+    heOrder] at hinterp
+  exact hinterp
+
 /-- Every exact planar-contact Rees layer has one pair degree.  This is the
 all-depth form of the first-positive-layer pair-fibre statement. -/
 theorem parameterLayer_pair_fiber
@@ -49,14 +76,10 @@ theorem parameterLayer_pair_fiber
     (hf : f ∈ (familyParameterLayer D.family q).support) :
     (rankThreeQuotientCoordinate 1 F.V e).pair =
       (rankThreeQuotientCoordinate 1 F.V f).pair := by
-  rcases D.parameterLayer_support_source_and_order he with ⟨heP, heOrder⟩
-  rcases D.parameterLayer_support_source_and_order hf with ⟨hfP, hfOrder⟩
-  have heInterp := F.contactOrder_interpolation hthree houtThree heP
-  have hfInterp := F.contactOrder_interpolation hthree houtThree hfP
-  rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e,
-    heOrder] at heInterp
-  rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree f,
-    hfOrder] at hfInterp
+  have heInterp := D.parameterLayer_contactOrder_interpolation
+    hthree houtThree he
+  have hfInterp := D.parameterLayer_contactOrder_interpolation
+    hthree houtThree hf
   have hprod :
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
           ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) =
@@ -71,6 +94,8 @@ theorem parameterLayer_pair_fiber
       (rankThreeQuotientCoordinate 1 F.V e).pair - 1 =
         (rankThreeQuotientCoordinate 1 F.V f).pair - 1 := by
     exact Nat.eq_of_mul_eq_mul_left hfactor hprod
+  have heP := (D.parameterLayer_support_source_and_order he).1
+  have hfP := (D.parameterLayer_support_source_and_order hf).1
   have hePos := F.support_pair_pos hthree houtThree heP
   have hfPos := F.support_pair_pos hthree houtThree hfP
   omega
