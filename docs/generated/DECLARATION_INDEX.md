@@ -4365,6 +4365,7 @@ Distinct declaration spellings indexed: **7977**.
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurC_unitTransverseInflateFamily_add_six` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurDetCore_unitTransverseInflateFamily_add_ten` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
 - `familyParameterLayer_sub_exact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalResidualLayers`
+- `familyParameterLayer_sub_generic` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `familyParameterLayer_two_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
@@ -4491,7 +4492,6 @@ Distinct declaration spellings indexed: **7977**.
 - `firstActualParameterOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualParameterOrder_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualSpecialisedEulerDualJet` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
-- `firstActualSpecialisedEulerDualJet_apply` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `firstActualSpecialisedEulerDualJet_det_snd_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `firstBreakRankTwoOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
 - `firstClosingKernelStage_forBlock` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
