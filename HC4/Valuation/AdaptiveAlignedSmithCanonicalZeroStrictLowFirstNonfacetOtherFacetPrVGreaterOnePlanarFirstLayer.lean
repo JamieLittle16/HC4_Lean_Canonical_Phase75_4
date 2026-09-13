@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge
+import HC4.Polynomial.RankThreeQuotientFibers
 import Mathlib.Tactic
 
 /-!
@@ -76,13 +77,15 @@ theorem parameterLayer_support_source_and_order
     (K := K) (qsIntegralContactWeight (F.V + 1))
     T.topFace.degree q P.carrier D.bound e
   change MvPolynomial.coeff e (familyParameterLayer D.family q) = _ at hformula
-  rw [hformula] at hc
   by_cases hcond :
       e ∈ P.carrier.support ∧
         T.topFace.degree -
             Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e = q
   · exact hcond
-  · simp [hcond] at hc
+  · exfalso
+    apply hc
+    rw [hformula]
+    simp [hcond]
 
 /-- Equal exact parameter order on two actual staircase monomials forces equal
 pair degree. -/
@@ -103,8 +106,8 @@ theorem pair_eq_of_reverseOrder_eq
           Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e =
         T.topFace.degree -
           Finsupp.weight (qsIntegralContactWeight (F.V + 1)) f) :
-    (rankThreeQuotientCoordinate 1 F.V e).pair =
-      (rankThreeQuotientCoordinate 1 F.V f).pair := by
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair =
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).pair := by
   have heq := F.contactOrder_interpolation hthree houtThree he
   have hfq := F.contactOrder_interpolation hthree houtThree hf
   rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e] at heq
@@ -116,13 +119,13 @@ theorem pair_eq_of_reverseOrder_eq
     exact Nat.mul_pos (by omega) (by omega)
   have hmul :
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-          ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) =
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) =
         (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-          ((rankThreeQuotientCoordinate 1 F.V f).pair - 1) := by
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).pair - 1) := by
     rw [← heq, ← hfq]
   have hsub :
-      (rankThreeQuotientCoordinate 1 F.V e).pair - 1 =
-        (rankThreeQuotientCoordinate 1 F.V f).pair - 1 :=
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1 =
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).pair - 1 :=
     Nat.mul_left_cancel hmul
   have hepos := F.support_pair_pos hthree houtThree he
   have hfpos := F.support_pair_pos hthree houtThree hf
@@ -145,8 +148,8 @@ theorem firstPositiveLayer_pair_fiber
       (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support)
     (hf : f ∈ (familyParameterLayer D.family
       (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support) :
-    (rankThreeQuotientCoordinate 1 F.V e).pair =
-      (rankThreeQuotientCoordinate 1 F.V f).pair := by
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair =
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).pair := by
   rcases D.parameterLayer_support_source_and_order he with ⟨heP, heq⟩
   rcases D.parameterLayer_support_source_and_order hf with ⟨hfP, hfq⟩
   exact D.pair_eq_of_reverseOrder_eq hthree houtThree heP hfP
@@ -167,7 +170,7 @@ theorem firstPositiveLayer_pair_gt_one
     {e : Fin 4 →₀ ℕ}
     (he : e ∈ (familyParameterLayer D.family
       (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support) :
-    1 < (rankThreeQuotientCoordinate 1 F.V e).pair := by
+    1 < (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair := by
   rcases D.parameterLayer_support_source_and_order he with ⟨heP, heq⟩
   have hinterp := F.contactOrder_interpolation hthree houtThree heP
   rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e, heq] at hinterp
@@ -175,7 +178,8 @@ theorem firstPositiveLayer_pair_gt_one
   have hnpos : 0 < F.highest.n - 1 := by omega
   have hkpos := F.support_pair_pos hthree houtThree heP
   by_contra hnot
-  have hk1 : (rankThreeQuotientCoordinate 1 F.V e).pair = 1 := by omega
+  have hk1 : (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = 1 := by
+    omega
   rw [hk1] at hinterp
   simp at hinterp
   exact (Nat.mul_pos hnpos hqpos).ne' hinterp
@@ -193,7 +197,8 @@ theorem reverseOrder_lt_highest_of_pair_lt_highest
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support)
-    (hklt : (rankThreeQuotientCoordinate 1 F.V e).pair < F.highest.n) :
+    (hklt : (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair <
+      F.highest.n) :
     T.topFace.degree -
         Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e <
       D.highestOrder := by
@@ -207,17 +212,25 @@ theorem reverseOrder_lt_highest_of_pair_lt_highest
   have hn1pos : 0 < F.highest.n - 1 := by omega
   unfold highestOrder
   have htarget :
-      (rankThreeQuotientCoordinate 1 F.V e).pair - 1 < F.highest.n - 1 := by
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1 <
+        F.highest.n - 1 := by
     omega
   by_contra hnot
   have hge :
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) ≤
         T.topFace.degree -
-          Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e := by omega
+          Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e := by
+    omega
   have hmulGe := Nat.mul_le_mul_left (F.highest.n - 1) hge
   rw [hinterp] at hmulGe
+  have hmulGe' :
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          (F.highest.n - 1) ≤
+        (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
+    simpa [Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc] using hmulGe
   have hmulLt := Nat.mul_lt_mul_of_pos_left htarget hBpos
-  omega
+  exact (not_lt_of_ge hmulGe') hmulLt
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
