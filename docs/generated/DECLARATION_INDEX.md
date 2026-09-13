@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7809**.
+Distinct declaration spellings indexed: **7814**.
 
 ## Repeated declaration spellings
 
@@ -2243,6 +2243,7 @@ Distinct declaration spellings indexed: **7809**.
 - `QsOtherFacetPlanarAffineRRPackage.pr_primitive_endpoint_orientation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
 - `QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarCarrierPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
+- `QsOtherFacetPlanarCarrierPackage.contactFamily_coeff_at_quotientContactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
 - `QsOtherFacetPlanarCarrierPackage.contactFamily_coeff_at_source_deficit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
 - `QsOtherFacetPlanarCarrierPackage.exists_pr_quotient_data_and_fiber_rule` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPlanarQuotientFibers`
 - `QsOtherFacetPlanarCarrierPackage.highestPairSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
@@ -2304,6 +2305,9 @@ Distinct declaration spellings indexed: **7809**.
 - `QsOtherFacetPrQuotientCarrierData.contactSlope_eq_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrContactSlope`
 - `QsOtherFacetPrQuotientCarrierData.contactWeight_eq_of_quotient_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
 - `QsOtherFacetPrQuotientCarrierData.contactWeight_eq_quotientSum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
+- `QsOtherFacetPrQuotientCarrierData.pairFiber_contact_coefficients_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
+- `QsOtherFacetPrQuotientCarrierData.quotientContactOrder_eq_of_pairDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
+- `QsOtherFacetPrQuotientCarrierData.sourceContactDeficit_eq_quotientContactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
 - `QsOtherFacetPrTwoFunctionCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrTwoFunctionCarrier`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
@@ -6104,6 +6108,7 @@ Distinct declaration spellings indexed: **7809**.
 - `qsIntegralContactWeight_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qsOtherFacetPairDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `qsOtherFacetPairWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
+- `qsOtherFacetPrQuotientContactOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientContactBridge`
 - `qsOtherFacetSkewLevel` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
 - `qsOtherFacetSkewWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
 - `qsOtherFacetSkewWeight_eq_level_of_ray_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
