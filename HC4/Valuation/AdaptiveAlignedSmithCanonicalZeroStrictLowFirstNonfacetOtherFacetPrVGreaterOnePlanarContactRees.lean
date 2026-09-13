@@ -135,7 +135,15 @@ theorem QsOtherFacetPrLeftVContactFrontierData.planarContactRees
       ring
     rw [hdeg, F.topFace_degree_eq]
     dsimp [q]
-    omega
+    have hcancel :
+        ((F.V + 1) * (F.locked.ell + 1) + 1) -
+            ((F.V + 1) * F.highest.n + 1) =
+          (F.V + 1) * (F.locked.ell + 1) -
+            (F.V + 1) * F.highest.n := by
+      omega
+    rw [hcancel]
+    exact (Nat.mul_sub_left_distrib
+      (F.V + 1) (F.locked.ell + 1) F.highest.n).symm
   have hfamilyCoeff :
       MvPolynomial.coeff F.highest.e0 Q =
         Polynomial.X ^ q * Polynomial.C
