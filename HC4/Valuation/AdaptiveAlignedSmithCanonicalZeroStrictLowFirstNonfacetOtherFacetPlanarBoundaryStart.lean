@@ -239,11 +239,12 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontr
   have h1 : 0 < e (1 : Fin 4) := htrans 1 (by decide)
   have h2 : 0 < e (2 : Fin 4) := htrans 2 (by decide)
   have h3 : 0 < e (3 : Fin 4) := htrans 3 (by decide)
-  have hdeg : 3 ≤ ordinaryDegree4 e := by
-    simp only [ordinaryDegree4]
+  have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 e := by
+    simp only [HC4.Polynomial.ordinaryDegree4]
     omega
   let level : ℤ := -(e 0 : ℤ)
-  have hbound : IsWeightLE negativeZeroCoordinateWeight level S.slice := by
+  have hbound : HC4.Polynomial.IsWeightLE
+      negativeZeroCoordinateWeight level S.slice := by
     intro d hd
     rw [finsupp_weight_negativeZeroCoordinateWeight]
     dsimp [level]
@@ -254,10 +255,10 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontr
       Finsupp.weight negativeZeroCoordinateWeight e = level := by
     rw [finsupp_weight_negativeZeroCoordinateWeight]
   have hinit :
-      initialForm negativeZeroCoordinateWeight level S.slice =
+      HC4.Polynomial.initialForm negativeZeroCoordinateWeight level S.slice =
         MvPolynomial.monomial e (MvPolynomial.coeff e S.slice) := by
     ext d
-    rw [coeff_initialForm]
+    rw [HC4.Polynomial.coeff_initialForm]
     by_cases hdWeight :
         Finsupp.weight negativeZeroCoordinateWeight d = level
     · rw [if_pos hdWeight]
@@ -286,7 +287,8 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontr
     MvPolynomial.mem_support_iff.mp he
   have hboundary := HC4.Newton.exposed_monomial_on_boundary_of_zero_hessian
     hbound S.hessian_zero hinit hc hdeg
-  have hzero := (mvExponentOnBoundary_iff_coordinate_zero e).1 hboundary
+  have hzero :=
+    (HC4.Polynomial.mvExponentOnBoundary_iff_coordinate_zero e).1 hboundary
   have he0 : e 0 = 0 := by
     rcases hzero with h0 | h1z | h2z | h3z
     · exact h0
