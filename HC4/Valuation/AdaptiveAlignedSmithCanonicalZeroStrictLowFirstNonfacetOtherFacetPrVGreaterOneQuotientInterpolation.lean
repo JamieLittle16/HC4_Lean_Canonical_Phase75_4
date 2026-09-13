@@ -110,8 +110,7 @@ theorem rankThreeQuotientCoordinate_affine_interpolation
     unfold HC4.Polynomial.rankThreeQuotientWeight at hv
     rw [hpairL] at hv
     norm_num at hv
-    ring_nf at hv ⊢
-    exact hv
+    linear_combination hv
   rcases two_by_two_kernel_zero hdet hwlin hvlin with ⟨hx, hy⟩
   dsimp [x] at hx
   dsimp [y] at hy
