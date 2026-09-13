@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7761**.
+Distinct declaration spellings indexed: **7766**.
 
 ## Repeated declaration spellings
 
@@ -2395,6 +2395,7 @@ Distinct declaration spellings indexed: **7761**.
 - `RankThreeAffineTerminalScalarData` — `structure` in `HC4.RationalRigidity.RankThreeAffineTerminalScalarData`
 - `RankThreeAffineTerminalScalarData.impossible_of_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalScalarData`
 - `RankThreeAffineTerminalTopStratum` — `inductive` in `HC4.RationalRigidity.RankThreeAffineTerminalBoundaryStratum`
+- `RankThreeDirectionNeutralWeight` — `def` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `RankThreeFractionCoreDetZero` — `def` in `HC4.Polynomial.RankThreeFractionBridge`
 - `RankThreeFractionEquation` — `def` in `HC4.Polynomial.RankThreeFractionBridge`
 - `RankThreeFractionMomentDetZero` — `def` in `HC4.Polynomial.RankThreeFractionMomentBridge`
@@ -4325,6 +4326,8 @@ Distinct declaration spellings indexed: **7761**.
 - `finsuppSum_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsupp_eq_fourCoordinateSum` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
 - `finsupp_weight_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
+- `finsupp_weight_eq_of_rankThreeQuotientCoordinate_eq` — `theorem` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
+- `finsupp_weight_eq_rankThreeQuotientWeight` — `theorem` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `finsupp_weight_fin4_linear_combination` — `theorem` in `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `finsupp_weight_negativeZeroCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `finsupp_weight_qsOtherFacetPairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
@@ -6329,6 +6332,7 @@ Distinct declaration spellings indexed: **7761**.
 - `rankThreeAutonomousPolynomial_mul_rawDenominator` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `rankThreeAutonomousPolynomial_natDegree_le_two_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeTargetDegreeBound`
 - `rankThreeDirectionDefect` — `def` in `HC4.Polynomial.RankThreeLogHessian`
+- `rankThreeDirectionNeutralWeight_of_primitive_pair` — `theorem` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `rankThreeEtaDenominator` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreeEtaDenominatorPolynomial` — `def` in `HC4.Polynomial.RankThreeFractionBridge`
 - `rankThreeEtaDenominatorPolynomial_ne_zero_of_positive_endpoint` — `theorem` in `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`
@@ -6386,6 +6390,7 @@ Distinct declaration spellings indexed: **7761**.
 - `rankThreeQuotientCoordinate` — `def` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `rankThreeQuotientCoordinate_eq_iff` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `rankThreeQuotientCoordinate_eq_of_primitive_step` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `rankThreeQuotientWeight` — `def` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `rankThreeRawMomentEntry` — `def` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeRawMomentEntry_eq_moment` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeRepairState` — `def` in `HC4.Newton.RankOneRepairProgress`
