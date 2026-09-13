@@ -121,7 +121,12 @@ theorem twoRootEulerOperator_derivative_form
   simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
     mul_one, mul_zero, add_zero]
   push_cast
-  ring_nf
+  have hsplit :
+      Polynomial.C (1 + (j : K) * 2) =
+        1 + Polynomial.C ((j : K) * 2) := by
+    simp
+  rw [hsplit]
+  ring
 
 /-- The affine linear form used before translation. -/
 def affineEulerLinear (c d : K) : Polynomial K :=
