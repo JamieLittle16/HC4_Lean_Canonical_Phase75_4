@@ -46,8 +46,8 @@ def QsOtherFacetPrLeftVContactFrontierData.NoStrictInteriorSupport
     {R : QsOtherFacetContactQuadraticReesPackage C}
     (F : QsOtherFacetPrLeftVContactFrontierData C P S R) : Prop :=
   ∀ {e : Fin 4 →₀ ℕ}, e ∈ P.carrier.support →
-    (rankThreeQuotientCoordinate 1 F.V e).pair = 1 ∨
-      (rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = 1 ∨
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n
 
 /-- Once strict-interior quotient support is absent, the actual planar carrier
 has exactly the locked source pair and the primitive highest source pair.
@@ -80,7 +80,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noSt
   · intro he
     rcases hno he with hlocked | hhighest
     · have hpairNat : e 0 + e 1 = 1 := by
-        simpa [rankThreeQuotientCoordinate] using hlocked
+        simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hlocked
       have hpairE : qsOtherFacetPairDegree .pr e = (1 : ℤ) := by
         have hcast := congrArg (fun m : ℕ => (m : ℤ)) hpairNat
         simpa [qsOtherFacetPairDegree] using hcast
@@ -89,8 +89,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noSt
         simp [qsOtherFacetPairDegree,
           F.locked.facet_zero, F.locked.facet_one]
       have hqEF :
-          rankThreeQuotientCoordinate 1 F.V e =
-            rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent :=
+          HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e =
+            HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent :=
         F.quotient.pair_fiber he F.locked.facet_provenance.carrier_mem
           (hpairE.trans hpairF.symm)
       have hpairO :
@@ -98,8 +98,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noSt
         simp [qsOtherFacetPairDegree,
           F.locked.outside_zero, F.locked.outside_one]
       have hqFO :
-          rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent =
-            rankThreeQuotientCoordinate 1 F.V C.ray.outsideExponent :=
+          HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent =
+            HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V C.ray.outsideExponent :=
         F.quotient.pair_fiber
           F.locked.facet_provenance.carrier_mem
           F.locked.outside_provenance.carrier_mem
@@ -107,17 +107,17 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noSt
       have he0cases : e 0 = 0 ∨ e 0 = 1 := by omega
       rcases he0cases with he0 | he0
       · have heq : e = C.ray.facetExponent :=
-          eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          HC4.Polynomial.eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
             1 F.V e C.ray.facetExponent hqEF (by
               rw [he0, F.locked.facet_zero])
         exact Or.inl heq
       · have heq : e = C.ray.outsideExponent :=
-          eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          HC4.Polynomial.eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
             1 F.V e C.ray.outsideExponent (hqEF.trans hqFO) (by
               rw [he0, F.locked.outside_zero])
         exact Or.inr (Or.inl heq)
     · have hpairNat : e 0 + e 1 = F.highest.n := by
-        simpa [rankThreeQuotientCoordinate] using hhighest
+        simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hhighest
       have hpairE :
           qsOtherFacetPairDegree .pr e = (F.highest.n : ℤ) := by
         have hcast := congrArg (fun m : ℕ => (m : ℤ)) hpairNat
