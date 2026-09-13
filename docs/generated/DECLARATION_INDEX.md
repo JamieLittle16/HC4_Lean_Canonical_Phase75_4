@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7751**.
+Distinct declaration spellings indexed: **7753**.
 
 ## Repeated declaration spellings
 
@@ -2240,6 +2240,7 @@ Distinct declaration spellings indexed: **7751**.
 - `QsOtherFacetPlanarAffineRRPackage.coefficient_natDegree_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarAffineRRPackage.coefficient_support_eq_zero_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarAffineRRPackage.direction_factor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
+- `QsOtherFacetPlanarAffineRRPackage.pr_primitive_endpoint_orientation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
 - `QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarCarrierPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`
 - `QsOtherFacetPlanarCarrierPackage.exists_pr_quotient_data_and_fiber_rule` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPlanarQuotientFibers`
@@ -2253,6 +2254,7 @@ Distinct declaration spellings indexed: **7751**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- `QsOtherFacetPlanarHighestPairSlicePackage.exists_pr_primitive_orientation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
 - `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_primitive_pair_is_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
