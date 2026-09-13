@@ -46,8 +46,8 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_pairDegree_eq
     (he : e ∈ P.carrier.support) (hf : f ∈ P.carrier.support)
     (hpair : qsOtherFacetPairDegree .pr e =
       qsOtherFacetPairDegree .pr f) :
-    rankThreeQuotientCoordinate D.alpha D.beta e =
-      rankThreeQuotientCoordinate D.alpha D.beta f := by
+    HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta e =
+      HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta f := by
   have hpar := P.support_difference_parallel_ray
     hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree he hf hpair
   have hdir := D.direction_eq hthree houtThree
@@ -58,20 +58,25 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_pairDegree_eq
   rw [hd1] at h1
   rw [hd2] at h2
   rw [hd3] at h3
-  rw [rankThreeQuotientCoordinate_eq_iff]
-  constructor
-  · exact_mod_cast (show
-      (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) by
-        nlinarith [h1])
-  constructor
-  · exact_mod_cast (show
+  rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
+  have hpairZ :
+      (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) := by
+    linarith [h1]
+  have hfirstZ :
       (D.alpha : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
-        (D.alpha : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) by
-        nlinarith [h2])
-  · exact_mod_cast (show
+        (D.alpha : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by
+    nlinarith [h2]
+  have hsecondZ :
       (D.beta : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
-        (D.beta : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) by
-        nlinarith [h3])
+        (D.beta : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by
+    nlinarith [h3]
+  refine ⟨?_, ?_, ?_⟩
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add] using hpairZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hfirstZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hsecondZ
 
 /-- The quotient drop data can be chosen canonically, so callers do not need
 to thread it merely to use the fixed-pair fiber property. -/
@@ -85,8 +90,8 @@ theorem QsOtherFacetPlanarCarrierPackage.exists_pr_quotient_data_and_fiber_rule
       ∀ {e f : Fin 4 →₀ ℕ},
         e ∈ P.carrier.support → f ∈ P.carrier.support →
         qsOtherFacetPairDegree .pr e = qsOtherFacetPairDegree .pr f →
-        rankThreeQuotientCoordinate D.alpha D.beta e =
-          rankThreeQuotientCoordinate D.alpha D.beta f := by
+        HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta e =
+          HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta f := by
   let D := C.qsPrLockedQuotientData hthree houtThree
   exact ⟨D, fun he hf hpair =>
     P.pr_quotient_eq_of_pairDegree_eq hthree houtThree D he hf hpair⟩
