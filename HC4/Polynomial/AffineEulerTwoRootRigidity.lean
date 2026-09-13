@@ -118,14 +118,10 @@ theorem twoRootEulerOperator_derivative_form
         Polynomial.C (((2 * j : ℕ) : K)) * Polynomial.X * phi.derivative +
       Polynomial.C (((j * (j + 1) : ℕ) : K)) * phi := by
   unfold twoRootEulerOperator eulerDerivative
-  simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
-    mul_one, mul_zero, add_zero]
+  simp only [Polynomial.derivative_mul, Polynomial.derivative_X]
   push_cast
-  have hsplit :
-      Polynomial.C (1 + (j : K) * 2) =
-        1 + Polynomial.C ((j : K) * 2) := by
-    simp
-  rw [hsplit]
+  rw [show Polynomial.C (2 * (j : K) + 1) =
+      Polynomial.C (2 * (j : K)) + 1 by simp]
   ring
 
 /-- The affine linear form used before translation. -/
