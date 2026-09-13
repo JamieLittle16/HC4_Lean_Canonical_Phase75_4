@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7932**.
+Distinct declaration spellings indexed: **7936**.
 
 ## Repeated declaration spellings
 
@@ -4029,6 +4029,7 @@ Distinct declaration spellings indexed: **7932**.
 - `eq_rankOnePacketZZ` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `eq_rankThreeLinePolynomial_of_supported` — `theorem` in `HC4.Polynomial.RankThreeLineReconstruction`
 - `eq_rankThreeLineRangePolynomial_of_supported` — `theorem` in `HC4.Polynomial.RankThreeLineReconstruction`
+- `eq_two_adjacent_terms_of_lockedBinomialFirstVariationEulerResidual_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `eq_two_term_of_quadraticAutonomous_leading_neg_one` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `eq_zero_of_exactPositiveTransverseDegree_of_independent` — `theorem` in `HC4.Newton.TransverseSupportRigidity`
 - `eq_zero_of_positiveTransverseSupport_of_independent` — `theorem` in `HC4.Newton.TransverseSupportRigidity`
@@ -5119,6 +5120,7 @@ Distinct declaration spellings indexed: **7932**.
 - `literalConstantSourceDirection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `literalSpecialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `localRestartClassification` — `theorem` in `HC4.Newton.RestartClassification`
+- `lockedBinomialFirstVariationEulerResidual` — `def` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `locked_facet_reverseOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
@@ -7607,6 +7609,7 @@ Distinct declaration spellings indexed: **7932**.
 - `support_coordinate_le_max_two_degreeCap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
 - `support_eq_single_of_pderiv_eq_C_of_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
 - `support_extendCoeffs_eq` — `theorem` in `HC4.Toric.ClassifiedDescent`
+- `support_index_eq_pred_or_eq_of_lockedBinomialFirstVariationEulerResidual_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `support_initialForm_pureLongitudinalTransverseDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
 - `support_initialForm_subset` — `theorem` in `HC4.Polynomial.FourExponent`
 - `support_initialForm_transverseComplementDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
@@ -7614,6 +7617,7 @@ Distinct declaration spellings indexed: **7932**.
 - `support_integralSmithConformalFamily_subset` — `theorem` in `HC4.Valuation.SymmetricSmithImprovementRestart`
 - `support_integralSmithConformalFamily_subset_degreeBound` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `support_le_of_natDegree_le` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `support_lockedBinomialFirstVariationEulerResidual_subset` — `theorem` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `support_mapCoeffs_eq` — `theorem` in `HC4.Toric.CoefficientDescent`
 - `support_noWallPrimitiveSmithFamily_subset_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithZeroJet`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
