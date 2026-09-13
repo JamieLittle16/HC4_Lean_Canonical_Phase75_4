@@ -118,7 +118,12 @@ theorem rankThreeQuotientCoordinate_eq_of_primitive_step
     rankThreeQuotientCoordinate alpha beta e =
       rankThreeQuotientCoordinate alpha beta f := by
   rw [rankThreeQuotientCoordinate_eq_iff]
-  omega
+  refine ⟨?_, ?_, ?_⟩
+  · omega
+  · rw [h2, h0, Nat.mul_add]
+    omega
+  · rw [h3, h0, Nat.mul_add]
+    omega
 
 /-- Conversely, two quotient-equal exponents whose longitudinal coordinates
 are `0` and `1` are exactly one primitive source step apart. -/
