@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7997**.
+Distinct declaration spellings indexed: **7998**.
 
 ## Repeated declaration spellings
 
@@ -7522,6 +7522,7 @@ Distinct declaration spellings indexed: **7997**.
 - `specialPoint_axis_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoint_zero_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `specialisedEulerHessian_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`
 - `specialisedParameterFirstEulerHessian` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_coeff` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
