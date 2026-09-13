@@ -60,8 +60,8 @@ theorem support_twoRootEulerOperator_eq_zero
   intro m hm
   have hmne : phi.coeff m ≠ 0 := Polynomial.mem_support_iff.mp hm
   have hc := congrArg (fun p : Polynomial K => p.coeff m) hzero
+  change (twoRootEulerOperator j phi).coeff m = 0 at hc
   rw [coeff_twoRootEulerOperator] at hc
-  simp only [Polynomial.coeff_zero] at hc
   have hscalar :
       ((m : K) - (j : K)) *
         ((m : K) - ((j + 1 : ℕ) : K)) = 0 :=
@@ -110,6 +110,19 @@ theorem natDegree_le_succ_of_twoRootEulerOperator_eq_zero
   · omega
   · omega
 
+/-- Ordinary-derivative form of the normalized two-root Euler operator. -/
+theorem twoRootEulerOperator_derivative_form
+    (j : ℕ) (phi : Polynomial K) :
+    twoRootEulerOperator j phi =
+      Polynomial.X ^ 2 * phi.derivative.derivative -
+        Polynomial.C (((2 * j : ℕ) : K)) * Polynomial.X * phi.derivative +
+      Polynomial.C (((j * (j + 1) : ℕ) : K)) * phi := by
+  unfold twoRootEulerOperator eulerDerivative
+  simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
+    mul_one, mul_zero, add_zero]
+  push_cast
+  ring
+
 /-- The affine linear form used before translation. -/
 def affineEulerLinear (c d : K) : Polynomial K :=
   Polynomial.C c + Polynomial.C d * Polynomial.X
@@ -131,7 +144,7 @@ theorem translatePolynomial_affineEulerLinear_root
   simp only [Polynomial.add_comp, Polynomial.mul_comp,
     Polynomial.C_comp, Polynomial.X_comp]
   have hroot : c + d * (-c / d) = 0 := by
-    field_simp
+    field_simp [hd] <;> ring
   rw [show
       Polynomial.C c + Polynomial.C d *
           (Polynomial.X + Polynomial.C (-c / d)) =
@@ -165,24 +178,38 @@ theorem twoRootEulerOperator_translate_of_affineTwoRoot
     dsimp [psi]
     rw [derivative_translatePolynomial alpha phi,
       derivative_translatePolynomial alpha (Polynomial.derivative phi)]
-  have hscaled :
-      Polynomial.C (d ^ 2) * twoRootEulerOperator j psi = 0 := by
+  have htrans' :
+      (Polynomial.C d * Polynomial.X) ^ 2 * psi.derivative.derivative -
+          Polynomial.C (((2 * j : ℕ) : K) * d) *
+            (Polynomial.C d * Polynomial.X) * psi.derivative +
+        Polynomial.C (((j * (j + 1) : ℕ) : K) * d ^ 2) * psi = 0 := by
     unfold affineTwoRootEulerOperator at htrans
     simp only [translatePolynomial, Polynomial.zero_comp,
       Polynomial.add_comp, Polynomial.sub_comp, Polynomial.mul_comp,
       Polynomial.pow_comp, Polynomial.C_comp] at htrans
     fold translatePolynomial at htrans
     rw [hL, hd1, hd2] at htrans
-    unfold twoRootEulerOperator eulerDerivative
-    simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
-      Polynomial.derivative_C, mul_one, mul_zero, add_zero,
-      Polynomial.C_mul, Polynomial.C_pow]
-    push_cast
-    ring_nf at htrans ⊢
     exact htrans
+  have hscaled :
+      Polynomial.C (d ^ 2) * twoRootEulerOperator j psi = 0 := by
+    rw [twoRootEulerOperator_derivative_form]
+    calc
+      Polynomial.C (d ^ 2) *
+          (Polynomial.X ^ 2 * psi.derivative.derivative -
+            Polynomial.C (((2 * j : ℕ) : K)) * Polynomial.X * psi.derivative +
+            Polynomial.C (((j * (j + 1) : ℕ) : K)) * psi) =
+        (Polynomial.C d * Polynomial.X) ^ 2 * psi.derivative.derivative -
+          Polynomial.C (((2 * j : ℕ) : K) * d) *
+            (Polynomial.C d * Polynomial.X) * psi.derivative +
+          Polynomial.C (((j * (j + 1) : ℕ) : K) * d ^ 2) * psi := by
+            simp only [Polynomial.C_mul, Polynomial.C_pow]
+            ring
+      _ = 0 := htrans'
   have hC : (Polynomial.C (d ^ 2) : Polynomial K) ≠ 0 := by
     exact Polynomial.C_ne_zero.mpr (pow_ne_zero 2 hd)
-  exact (mul_eq_zero.mp hscaled).resolve_left hC
+  have hpsi : twoRootEulerOperator j psi = 0 :=
+    (mul_eq_zero.mp hscaled).resolve_left hC
+  simpa [psi, alpha] using hpsi
 
 /-- Hence the translated affine solution is supported only at the adjacent
 powers `j,j+1`. -/
