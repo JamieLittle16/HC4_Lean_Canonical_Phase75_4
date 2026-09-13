@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7775**.
+Distinct declaration spellings indexed: **7778**.
 
 ## Repeated declaration spellings
 
@@ -2255,6 +2255,8 @@ Distinct declaration spellings indexed: **7775**.
 - `QsOtherFacetPlanarCarrierPackage.skew_eq_of_pairDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarCarrierPackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarCarrierPackage.support_final_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
+- `QsOtherFacetPlanarCarrierPackage.support_wall_gap_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarWallRatio`
+- `QsOtherFacetPlanarCarrierPackage.support_wall_ratio` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarWallRatio`
 - `QsOtherFacetPlanarHighestPairSlicePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.affineRRPackage_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
 - `QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
@@ -4338,6 +4340,7 @@ Distinct declaration spellings indexed: **7775**.
 - `finsupp_weight_negativeZeroCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `finsupp_weight_qsOtherFacetPairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `finsupp_weight_qsOtherFacetPair_combination` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
+- `finsupp_weight_sub_scaled_fin4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarWallRatio`
 - `firstActualDeformationFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
