@@ -62,21 +62,21 @@ structure QsOtherFacetPrQuotientCarrierData
     (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) =
       -(beta : ℤ)
   firstWeight_neutral :
-    RankThreeDirectionNeutralWeight alpha beta P.firstWeight
+    HC4.Polynomial.RankThreeDirectionNeutralWeight alpha beta P.firstWeight
   wallWeight_neutral :
-    RankThreeDirectionNeutralWeight alpha beta P.wallWeight
+    HC4.Polynomial.RankThreeDirectionNeutralWeight alpha beta P.wallWeight
   support_quotient_line :
     ∀ {e : Fin 4 →₀ ℕ}, e ∈ P.carrier.support →
-      rankThreeQuotientWeight P.firstWeight
-          (rankThreeQuotientCoordinate alpha beta e) = P.firstLevel ∧
-        rankThreeQuotientWeight P.wallWeight
-          (rankThreeQuotientCoordinate alpha beta e) = P.wallLevel
+      HC4.Polynomial.rankThreeQuotientWeight P.firstWeight
+          (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e) = P.firstLevel ∧
+        HC4.Polynomial.rankThreeQuotientWeight P.wallWeight
+          (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e) = P.wallLevel
   pair_fiber :
     ∀ {e f : Fin 4 →₀ ℕ},
       e ∈ P.carrier.support → f ∈ P.carrier.support →
       qsOtherFacetPairDegree .pr e = qsOtherFacetPairDegree .pr f →
-      rankThreeQuotientCoordinate alpha beta e =
-        rankThreeQuotientCoordinate alpha beta f
+      HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e =
+        HC4.Polynomial.rankThreeQuotientCoordinate alpha beta f
 
 /-- Package the whole carrier in the normalized left orientation
 `(1,-1,-1,-V)`. -/
