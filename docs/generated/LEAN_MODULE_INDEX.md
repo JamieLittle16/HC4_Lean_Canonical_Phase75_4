@@ -8017,10 +8017,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation.lean`
 - Purpose: A19 moment realisation of every planar-contact parameter layer
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `HC4.Valuation.PlanarContactFirstVariationBridge`, `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem specialisedEulerHessian_eq_parallelStaircaseMomentHessian`
+- Declarations: `theorem specialisedEulerHessian_eq_parallelStaircaseMomentHessian`, `theorem specialisedParameterFirstEulerHessian_coeff_eq_parallelStaircaseMomentHessian`, `theorem specialisedParameterFirstEulerHessian_det_coeff_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 
@@ -10919,7 +10919,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.ParameterGapDualJet`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Polynomial.LockedBinomialParallelFirstVariation`, `HC4.Polynomial.RankThreeMvSubstitution`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstVariation`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstVariation`
 - Declarations: `theorem familyParameterLayer_sub_generic`, `theorem familyParameterLayer_mvEuler_generic`, `theorem familyParameterLayer_eulerScaledHessian_apply`, `def parameterFirstEulerHessian`, `theorem parameterFirstEulerHessian_coeff`, `theorem det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing`, `theorem parameterFirstEulerHessian_det_eq_zero`, `def specialisedParameterFirstEulerHessian`, `theorem specialisedParameterFirstEulerHessian_coeff`, `theorem specialisedParameterFirstEulerHessian_det_eq_zero`, `theorem specialisedParameterFirstEulerHessian_hasGap`, `def firstActualSpecialisedEulerDualJet`, `theorem firstActualSpecialisedEulerDualJet_det_snd_eq_zero`, `theorem affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification`
 
 ### `HC4.Valuation.PointedShearContinuation`

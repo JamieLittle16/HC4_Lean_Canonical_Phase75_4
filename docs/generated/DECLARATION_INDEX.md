@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8011**.
+Distinct declaration spellings indexed: **8013**.
 
 ## Repeated declaration spellings
 
@@ -7548,6 +7548,8 @@ Distinct declaration spellings indexed: **8011**.
 - `specialisedEulerHessian_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`
 - `specialisedParameterFirstEulerHessian` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_coeff` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `specialisedParameterFirstEulerHessian_coeff_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`
+- `specialisedParameterFirstEulerHessian_det_coeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`
 - `specialisedParameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_hasGap` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `squareCoefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
