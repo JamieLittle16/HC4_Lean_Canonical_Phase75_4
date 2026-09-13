@@ -61,15 +61,32 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_pairDegree_eq
   rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
   have hpairZ :
       (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) := by
-    linarith [h1]
+    calc
+      (e 0 : ℤ) + (e 1 : ℤ) =
+          (e 0 : ℤ) + (f 1 : ℤ) + ((e 1 : ℤ) - (f 1 : ℤ)) := by ring
+      _ = (e 0 : ℤ) + (f 1 : ℤ) +
+          (((e 0 : ℤ) - (f 0 : ℤ)) * (-1)) := by rw [h1]
+      _ = (f 0 : ℤ) + (f 1 : ℤ) := by ring
   have hfirstZ :
       (D.alpha : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
         (D.alpha : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by
-    nlinarith [h2]
+    calc
+      (D.alpha : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
+          (D.alpha : ℤ) * (e 0 : ℤ) + (f 2 : ℤ) +
+            ((e 2 : ℤ) - (f 2 : ℤ)) := by ring
+      _ = (D.alpha : ℤ) * (e 0 : ℤ) + (f 2 : ℤ) +
+          (((e 0 : ℤ) - (f 0 : ℤ)) * (-(D.alpha : ℤ))) := by rw [h2]
+      _ = (D.alpha : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by ring
   have hsecondZ :
       (D.beta : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
         (D.beta : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by
-    nlinarith [h3]
+    calc
+      (D.beta : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
+          (D.beta : ℤ) * (e 0 : ℤ) + (f 3 : ℤ) +
+            ((e 3 : ℤ) - (f 3 : ℤ)) := by ring
+      _ = (D.beta : ℤ) * (e 0 : ℤ) + (f 3 : ℤ) +
+          (((e 0 : ℤ) - (f 0 : ℤ)) * (-(D.beta : ℤ))) := by rw [h3]
+      _ = (D.beta : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by ring
   refine ⟨?_, ?_, ?_⟩
   · apply Int.ofNat.inj
     simpa only [Nat.cast_add] using hpairZ
