@@ -60,6 +60,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_o
       (by decide : (.pr : ToricFacet) ≠ .qs) houtThree
 
   have he0face : e0 ∈ A.ray.face.support := by
+    change A.ray.zeroExponentAt 0 ∈ A.ray.face.support
     have hzero : A.ray.facetExponent (0 : Fin 4) = 0 :=
       A.ray.facet_coordinate_zero
     have heq := A.ray.zeroExponentAt_eq_of_face_mem A.ray.facet_mem_face
@@ -67,6 +68,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_o
     rw [heq]
     exact A.ray.facet_mem_face
   have he0zero : e0 (0 : Fin 4) = 0 := by
+    change (A.ray.zeroExponentAt 0) (0 : Fin 4) = 0
     have hzero : A.ray.facetExponent (0 : Fin 4) = 0 :=
       A.ray.facet_coordinate_zero
     have heq := A.ray.zeroExponentAt_eq_of_face_mem A.ray.facet_mem_face
@@ -95,7 +97,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_o
     rw [hsupp]
     simp
   have hq := S.pr_quotient_eq_of_mem hthree houtThree D he0S he1S
-  have hshape := primitive_pair_shape_of_quotient_eq_zero_one
+  have hshape := HC4.Polynomial.primitive_pair_shape_of_quotient_eq_zero_one
     D.alpha D.beta e0 e1 hq he0zero he1zero
 
   have he0facet : e0 = A.ray.facetExponent := by
