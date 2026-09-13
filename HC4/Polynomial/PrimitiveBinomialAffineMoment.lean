@@ -60,7 +60,12 @@ private theorem primitiveBinomialDetCoeff0_map
     (f : R →+* S) (n p q alpha beta : R) :
     primitiveBinomialDetCoeff0 (f n) (f p) (f q) (f alpha) (f beta) =
       f (primitiveBinomialDetCoeff0 n p q alpha beta) := by
-  have htwo : f (2 : R) = (2 : S) := by norm_num
+  have htwo : f (2 : R) = (2 : S) := by
+    calc
+      f (2 : R) = f ((1 : R) + 1) := congrArg f (by ring)
+      _ = f (1 : R) + f 1 := by rw [map_add]
+      _ = (1 : S) + 1 := by simp
+      _ = 2 := by ring
   simp [primitiveBinomialDetCoeff0, htwo]
 
 private theorem primitiveBinomialDetCoeff1_map
@@ -68,7 +73,12 @@ private theorem primitiveBinomialDetCoeff1_map
     (f : R →+* S) (n p q alpha beta : R) :
     primitiveBinomialDetCoeff1 (f n) (f p) (f q) (f alpha) (f beta) =
       f (primitiveBinomialDetCoeff1 n p q alpha beta) := by
-  have htwo : f (2 : R) = (2 : S) := by norm_num
+  have htwo : f (2 : R) = (2 : S) := by
+    calc
+      f (2 : R) = f ((1 : R) + 1) := congrArg f (by ring)
+      _ = f (1 : R) + f 1 := by rw [map_add]
+      _ = (1 : S) + 1 := by simp
+      _ = 2 := by ring
   simp [primitiveBinomialDetCoeff1, htwo]
 
 private theorem primitiveBinomialDetCoeff2_map
