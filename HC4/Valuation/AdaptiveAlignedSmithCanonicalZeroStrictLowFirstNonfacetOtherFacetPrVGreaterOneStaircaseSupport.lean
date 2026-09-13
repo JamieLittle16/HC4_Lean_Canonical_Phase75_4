@@ -34,7 +34,7 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 highest quotient points is equivalent to the staircase wall equation and the
 monomial-curve equation. -/
 theorem left_staircase_equations_of_affine_interpolation
-    (V ell n : ℕ) (q : RankThreeQuotientCoordinate)
+    (V ell n : ℕ) (q : HC4.Polynomial.RankThreeQuotientCoordinate)
     (hn : 2 ≤ n)
     (hfirst :
       ((n : ℤ) - 1) *
@@ -74,7 +74,7 @@ theorem left_staircase_equations_of_affine_interpolation
 
 /-- Swapped arithmetic companion. -/
 theorem right_staircase_equations_of_affine_interpolation
-    (V ell n : ℕ) (q : RankThreeQuotientCoordinate)
+    (V ell n : ℕ) (q : HC4.Polynomial.RankThreeQuotientCoordinate)
     (hn : 2 ≤ n)
     (hfirst :
       ((n : ℤ) - 1) *
@@ -130,7 +130,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_staircase_equations
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    let q := rankThreeQuotientCoordinate 1 F.V e
+    let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e
     ((F.highest.n : ℤ) - 1) *
           ((q.firstTransverse : ℤ) - 1) =
         (F.locked.ell : ℤ) *
@@ -138,14 +138,14 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_staircase_equations
       (q.secondTransverse : ℤ) =
         (F.V : ℤ) *
           ((q.pair : ℤ) + (q.firstTransverse : ℤ) - 1) := by
-  let q := rankThreeQuotientCoordinate 1 F.V e
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e
   have hi := F.quotient_affine_interpolation hthree houtThree he
   dsimp only at hi
   have hfirst :
       ((F.highest.n : ℤ) - 1) *
           ((q.firstTransverse : ℤ) - ((F.locked.ell : ℤ) + 1)) =
         ((q.pair : ℤ) - 1) * (1 - ((F.locked.ell : ℤ) + 1)) := by
-    simpa [q, rankThreeQuotientCoordinate,
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one,
       F.locked.facet_two, F.locked.facet_three,
       F.highest.e0_zero, F.highest.e0_one,
@@ -158,7 +158,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_staircase_equations
         ((q.pair : ℤ) - 1) *
           ((F.V : ℤ) * (F.highest.n : ℤ) -
             (F.V : ℤ) * ((F.locked.ell : ℤ) + 1)) := by
-    simpa [q, rankThreeQuotientCoordinate,
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one,
       F.locked.facet_two, F.locked.facet_three,
       F.highest.e0_zero, F.highest.e0_one,
@@ -179,7 +179,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_equations
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    let q := rankThreeQuotientCoordinate F.V 1 e
+    let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
     ((F.highest.n : ℤ) - 1) *
           ((q.secondTransverse : ℤ) - 1) =
         (F.locked.ell : ℤ) *
@@ -187,7 +187,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_equations
       (q.firstTransverse : ℤ) =
         (F.V : ℤ) *
           ((q.pair : ℤ) + (q.secondTransverse : ℤ) - 1) := by
-  let q := rankThreeQuotientCoordinate F.V 1 e
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
   have hi := F.quotient_affine_interpolation hthree houtThree he
   dsimp only at hi
   have hfirst :
@@ -197,7 +197,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_equations
         ((q.pair : ℤ) - 1) *
           ((F.V : ℤ) * (F.highest.n : ℤ) -
             (F.V : ℤ) * ((F.locked.ell : ℤ) + 1)) := by
-    simpa [q, rankThreeQuotientCoordinate,
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one,
       F.locked.facet_two, F.locked.facet_three,
       F.highest.e0_zero, F.highest.e0_one,
@@ -207,7 +207,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_equations
       ((F.highest.n : ℤ) - 1) *
           ((q.secondTransverse : ℤ) - ((F.locked.ell : ℤ) + 1)) =
         ((q.pair : ℤ) - 1) * (1 - ((F.locked.ell : ℤ) + 1)) := by
-    simpa [q, rankThreeQuotientCoordinate,
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one,
       F.locked.facet_two, F.locked.facet_three,
       F.highest.e0_zero, F.highest.e0_one,
