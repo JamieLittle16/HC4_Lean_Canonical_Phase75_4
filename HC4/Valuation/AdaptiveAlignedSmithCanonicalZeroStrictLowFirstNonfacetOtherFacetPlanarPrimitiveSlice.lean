@@ -121,7 +121,7 @@ theorem QsOtherFacetPlanarAffineRRPackage.coefficient_natDegree_eq_one
   have hphi0 : A.ray.zeroCoefficientPolynomial.coeff 0 ≠ 0 :=
     A.ray.zeroCoefficientPolynomial_coeff_zero_ne
   have hdir := A.direction_factor_ne_zero hthree hne houtThree
-  have hdet : hessianDeterminant L.polynomial = 0 := by
+  have hdet : HC4.Polynomial.hessianDeterminant L.polynomial = 0 := by
     dsimp [L]
     exact A.ray.zeroAffineLineData_hessian_zero S.hessian_zero
   exact HC4.RationalRigidity.affine_line_natDegree_eq_one_of_direction_factor_ne_zero
