@@ -109,8 +109,8 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
         Finsupp.weight P.finalWeight C.ray.outsideExponent := by
     rw [P.support_final_level hfacetMem, P.support_final_level houtMem]
   have hfinalNeutral :
-      RankThreeDirectionNeutralWeight F.V 1 P.finalWeight :=
-    rankThreeDirectionNeutralWeight_of_primitive_pair
+      HC4.Polynomial.RankThreeDirectionNeutralWeight F.V 1 P.finalWeight :=
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
       F.V 1 P.finalWeight C.ray.facetExponent C.ray.outsideExponent
       h0 h1 h2 h3 hfinalEq
   have hskewEq :
@@ -121,62 +121,66 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
         hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree,
       C.qsOtherFacetSkewWeight_outside_eq_level
         hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree]
-  have hskewNeutral : RankThreeDirectionNeutralWeight F.V 1 skew :=
-    rankThreeDirectionNeutralWeight_of_primitive_pair
+  have hskewNeutral :
+      HC4.Polynomial.RankThreeDirectionNeutralWeight F.V 1 skew :=
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
       F.V 1 skew C.ray.facetExponent C.ray.outsideExponent
       h0 h1 h2 h3 hskewEq
   have hpairL : qL.pair = 1 := by
     simp [qL, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one]
   have hwq :
-      rankThreeQuotientWeight P.finalWeight q =
-        rankThreeQuotientWeight P.finalWeight qL := by
+      HC4.Polynomial.rankThreeQuotientWeight P.finalWeight q =
+        HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qL := by
     calc
-      rankThreeQuotientWeight P.finalWeight q =
+      HC4.Polynomial.rankThreeQuotientWeight P.finalWeight q =
           Finsupp.weight P.finalWeight e := by
             symm
-            exact finsupp_weight_eq_rankThreeQuotientWeight
+            exact HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
               F.V 1 P.finalWeight hfinalNeutral e
       _ = P.finalLevel := P.support_final_level he
       _ = Finsupp.weight P.finalWeight C.ray.facetExponent :=
         (P.support_final_level hfacetMem).symm
-      _ = rankThreeQuotientWeight P.finalWeight qL :=
-        finsupp_weight_eq_rankThreeQuotientWeight
+      _ = HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qL :=
+        HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
           F.V 1 P.finalWeight hfinalNeutral C.ray.facetExponent
   have hwH :
-      rankThreeQuotientWeight P.finalWeight qH =
-        rankThreeQuotientWeight P.finalWeight qL := by
+      HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qH =
+        HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qL := by
     calc
-      rankThreeQuotientWeight P.finalWeight qH =
+      HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qH =
           Finsupp.weight P.finalWeight F.highest.e0 := by
             symm
-            exact finsupp_weight_eq_rankThreeQuotientWeight
+            exact HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
               F.V 1 P.finalWeight hfinalNeutral F.highest.e0
       _ = P.finalLevel :=
         P.support_final_level F.highest.e0_provenance.carrier_mem
       _ = Finsupp.weight P.finalWeight C.ray.facetExponent :=
         (P.support_final_level hfacetMem).symm
-      _ = rankThreeQuotientWeight P.finalWeight qL :=
-        finsupp_weight_eq_rankThreeQuotientWeight
+      _ = HC4.Polynomial.rankThreeQuotientWeight P.finalWeight qL :=
+        HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
           F.V 1 P.finalWeight hfinalNeutral C.ray.facetExponent
   have hskewL :
-      rankThreeQuotientWeight skew qL = qsOtherFacetSkewLevel C .pr := by
+      HC4.Polynomial.rankThreeQuotientWeight skew qL =
+        qsOtherFacetSkewLevel C .pr := by
     calc
-      rankThreeQuotientWeight skew qL =
+      HC4.Polynomial.rankThreeQuotientWeight skew qL =
           Finsupp.weight skew C.ray.facetExponent := by
             symm
-            exact finsupp_weight_eq_rankThreeQuotientWeight
+            exact HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
               F.V 1 skew hskewNeutral C.ray.facetExponent
       _ = qsOtherFacetSkewLevel C .pr := by
         dsimp [skew]
         exact C.qsOtherFacetSkewWeight_facet_eq_level
           hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree
   have hskewE :
-      Finsupp.weight skew e = rankThreeQuotientWeight skew q :=
-    finsupp_weight_eq_rankThreeQuotientWeight F.V 1 skew hskewNeutral e
+      Finsupp.weight skew e = HC4.Polynomial.rankThreeQuotientWeight skew q :=
+    HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
+      F.V 1 skew hskewNeutral e
   have hskewH :
-      Finsupp.weight skew F.highest.e0 = rankThreeQuotientWeight skew qH :=
-    finsupp_weight_eq_rankThreeQuotientWeight
+      Finsupp.weight skew F.highest.e0 =
+        HC4.Polynomial.rankThreeQuotientWeight skew qH :=
+    HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
       F.V 1 skew hskewNeutral F.highest.e0
   have hpairE : qsOtherFacetPairDegree .pr e = (q.pair : ℤ) := by
     simp [q, qsOtherFacetPairDegree, HC4.Polynomial.rankThreeQuotientCoordinate]
@@ -186,7 +190,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
   have hv := P.support_wall_ratio he F.highest.e0_provenance.carrier_mem
   rw [hpairE, hpairH, hskewE, hskewH, ← hskewL] at hv
   have hdet := pr_final_skew_transverseDet_ne_zero_right C P hthree houtThree
-  exact HC4.Polynomial.rankThreeQuotientCoordinate_affine_interpolation
+  exact HC4.Valuation.rankThreeQuotientCoordinate_affine_interpolation
     P.finalWeight skew qL qH q hpairL hdet hwq hwH hv
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
