@@ -71,13 +71,14 @@ noncomputable def lockedParallelFirstVariationDualPencil
     (lockedBinomialMomentHessian V ell a b r s,
       parallelStaircaseMomentHessian V k j phi r s)
 
+set_option maxHeartbeats 2000000
+
 /-- **Exact locked-binomial first-variation factorisation.**
 
 The height `j` of the parallel staircase disappears from the determinant
 coefficient.  The remaining differential operator is exactly the previously
 formalised affine two-root Euler operator with adjacent roots `k-1,k`. -/
-set_option maxHeartbeats 2000000 in
-lemma snd_det_lockedParallelFirstVariationDualPencil
+theorem snd_det_lockedParallelFirstVariationDualPencil
     (V ell k j : ℕ) (hk : 1 ≤ k) (a b : K) (phi : Polynomial K) :
     TrivSqZeroExt.snd
         (lockedParallelFirstVariationDualPencil
@@ -97,8 +98,9 @@ lemma snd_det_lockedParallelFirstVariationDualPencil
     rankThreeLogBaseExponent, rankThreeLogDirection,
     Matrix.det_fin_three, Fin.succAbove,
     affineTwoRootEulerOperator, affineEulerLinear,
-    eulerDerivative, DualNumber.snd_mul]
+    eulerDerivative]
   push_cast
+  rw [Nat.cast_sub hk]
   ring
 
 /-- Vanishing first variation forces the affine two-root Euler equation as soon
