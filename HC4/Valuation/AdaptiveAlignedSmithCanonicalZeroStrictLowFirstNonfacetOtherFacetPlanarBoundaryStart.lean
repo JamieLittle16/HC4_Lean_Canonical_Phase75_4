@@ -276,13 +276,15 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontr
             MvPolynomial.mem_support_iff.mpr hcoeff
           exact hde (S.eq_of_zeroCoordinate_eq
             hthree hne houtThree hdmem he hd0)
-        simp [hcoeffZero, hde]
+        have hed : e ≠ d := Ne.symm hde
+        simp [hcoeffZero, hde, hed]
     · rw [if_neg hdWeight]
       have hde : d ≠ e := by
         intro hde
         subst d
         exact hdWeight heWeight
-      simp [hde]
+      have hed : e ≠ d := Ne.symm hde
+      simp [hde, hed]
   have hc : MvPolynomial.coeff e S.slice ≠ 0 :=
     MvPolynomial.mem_support_iff.mp he
   have hboundary := HC4.Newton.exposed_monomial_on_boundary_of_zero_hessian
