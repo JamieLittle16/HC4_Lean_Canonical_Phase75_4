@@ -2905,7 +2905,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeHighestDirectionRelation`, `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.RationalRigidity`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- Imported by local modules: `HC4.RationalRigidity`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - Declarations: `theorem affine_line_natDegree_eq_one_of_direction_factor_ne_zero`, `theorem lockedRay_affine_line_natDegree_eq_one`, `theorem lockedRay_affine_line_support_eq_zero_one`
 
 ### `HC4.RationalRigidity.LogarithmicInfinityCertificate`
@@ -7697,7 +7697,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice.lean`
 - Purpose: A19 primitive highest planar slice
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`, `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - Declarations: `theorem QsOtherFacetPlanarAffineRRPackage.direction_factor_ne_zero`, `theorem QsOtherFacetPlanarAffineRRPackage.coefficient_natDegree_eq_one`, `theorem QsOtherFacetPlanarAffineRRPackage.coefficient_support_eq_zero_one`, `theorem QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.primitive_of_nontrivial`
