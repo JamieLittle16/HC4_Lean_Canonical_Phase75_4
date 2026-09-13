@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7983**.
+Distinct declaration spellings indexed: **7985**.
 
 ## Repeated declaration spellings
 
@@ -4197,6 +4197,7 @@ Distinct declaration spellings indexed: **7983**.
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `exists_firstPositiveLayer_strictInterior_affineCoordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineCoordinates`
 - `exists_firstPositiveLayer_strictInterior_coordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `exists_firstPositiveLayer_strictInterior_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `exists_firstReesProjectiveWedgeDepartureData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
@@ -4565,6 +4566,7 @@ Distinct declaration spellings indexed: **7983**.
 - `firstPositiveEntryOrder` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_mem` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `firstPositiveLayer_affine_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineCoordinates`
 - `firstPositiveLayer_pair_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `firstPositiveLayer_pair_gt_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
