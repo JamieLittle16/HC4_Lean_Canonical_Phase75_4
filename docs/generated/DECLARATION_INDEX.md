@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7924**.
+Distinct declaration spellings indexed: **7929**.
 
 ## Repeated declaration spellings
 
@@ -5121,6 +5121,8 @@ Distinct declaration spellings indexed: **7924**.
 - `localRestartClassification` — `theorem` in `HC4.Newton.RestartClassification`
 - `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
+- `locked_facet_reverseOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
+- `locked_outside_reverseOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `logarithmicCoreFromMoments` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `logarithmicEtaNumerator` — `def` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `logarithmicEtaNumerator_local_factor` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
@@ -7414,6 +7416,7 @@ Distinct declaration spellings indexed: **7924**.
 - `specialFiber_blocker_or_quadraticRefinement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSupportFrontier`
 - `specialFiber_canonicalWallData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalWallData`
 - `specialFiber_eq_alignedRawSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalWallData`
+- `specialFiber_eq_locked_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `specialFiber_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `specialFiber_free_of_saturatedKernelSlope_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveSlopeKernelFree`
 - `specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`
@@ -8045,6 +8048,8 @@ Distinct declaration spellings indexed: **7924**.
 - `zeroJetNormalizedFamily_valueAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `zeroJetNormalizedSpecialFiber_axisData` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `zeroJetNormalizedSpecialFiber_valueAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
+- `zeroLayer_locked_coefficients` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
+- `zeroLayer_support_eq_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `zeroOrderCanonicalFamilyWall_longitudinal_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrderCanonicalFamilyWall_transverse_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroPolynomialSection` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
