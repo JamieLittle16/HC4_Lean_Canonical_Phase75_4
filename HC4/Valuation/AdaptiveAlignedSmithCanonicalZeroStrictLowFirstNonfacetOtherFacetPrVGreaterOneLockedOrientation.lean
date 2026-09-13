@@ -103,18 +103,17 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_leftV_source_data
     have hDV : D.V = V := by
       have hz : (D.V : ℤ) = (V : ℤ) := by nlinarith
       exact_mod_cast hz
-    subst D.V
     exact ⟨{
       ell := D.ell
       ell_pos := D.ell_pos
       facet_zero := D.facet_zero
       facet_one := D.facet_one
       facet_two := D.facet_two
-      facet_three := D.facet_three
+      facet_three := by simpa [hDV] using D.facet_three
       outside_zero := D.outside_zero
       outside_one := D.outside_one
       outside_two := D.outside_two
-      outside_three := D.outside_three
+      outside_three := by simpa [hDV] using D.outside_three
       facet_provenance := D.facet_provenance
       outside_provenance := D.outside_provenance
     }⟩
@@ -160,17 +159,16 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_rightV_source_data
     have hDV : D.V = V := by
       have hz : (D.V : ℤ) = (V : ℤ) := by nlinarith
       exact_mod_cast hz
-    subst D.V
     exact ⟨{
       ell := D.ell
       ell_pos := D.ell_pos
       facet_zero := D.facet_zero
       facet_one := D.facet_one
-      facet_two := D.facet_two
+      facet_two := by simpa [hDV] using D.facet_two
       facet_three := D.facet_three
       outside_zero := D.outside_zero
       outside_one := D.outside_one
-      outside_two := D.outside_two
+      outside_two := by simpa [hDV] using D.outside_two
       outside_three := D.outside_three
       facet_provenance := D.facet_provenance
       outside_provenance := D.outside_provenance
