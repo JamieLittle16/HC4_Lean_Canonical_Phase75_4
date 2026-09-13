@@ -100,12 +100,14 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_unit_or_V_
   rcases S.pr_locked_direction_normal_form
       hthree houtThree hnontrivial with
     ⟨V, hVpos, hd0, hd1, horient⟩
-  rcases Nat.eq_one_or_one_lt_of_pos hVpos with rfl | hV
-  · left
+  by_cases hVone : V = 1
+  · subst V
+    left
     rcases horient with h | h
     · exact ⟨hd0, hd1, h.1, by simpa using h.2⟩
     · exact ⟨hd0, hd1, by simpa using h.1, h.2⟩
   · right
+    have hV : 1 < V := by omega
     exact ⟨V, hV, hd0, hd1, horient⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
