@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7985**.
+Distinct declaration spellings indexed: **7991**.
 
 ## Repeated declaration spellings
 
@@ -2325,6 +2325,7 @@ Distinct declaration spellings indexed: **7985**.
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_bounds` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlopeConsequences`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_contactDeficit_identity` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlope`
+- `QsOtherFacetPrLeftVFirstInteriorAffineLayerData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `QsOtherFacetPrLeftVFourTermCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFourTermCarrier`
 - `QsOtherFacetPrLeftVPlanarContactReesData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLockedLeftSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrLockedSourceCoefficients`
@@ -3450,6 +3451,7 @@ Distinct declaration spellings indexed: **7985**.
 - `coeff_coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `coeff_coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_coeff_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`
+- `coeff_coefficientProfile_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `coeff_commonParameterFactorFamily_of_mem` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `coeff_commonParameterFactorFamily_of_not_mem` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `coeff_complementaryLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.ComplementaryLineRecognition`
@@ -3591,6 +3593,8 @@ Distinct declaration spellings indexed: **7985**.
 - `coefficientFiber_natDegree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalTerminal`
 - `coefficientFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalTerminal`
 - `coefficientOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`
+- `coefficientProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
+- `coefficientProfile_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `coefficient_detCore` — `theorem` in `HC4.Newton.FirstSchurEntry`
 - `coefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `collisionDisplacement` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionRecentering`
@@ -4032,6 +4036,7 @@ Distinct declaration spellings indexed: **7985**.
 - `eq_complementaryLineRangePolynomial_of_supported` — `theorem` in `HC4.Polynomial.ComplementaryLineRecognition`
 - `eq_linear_add_quadratic_of_natDegree_le_two` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousQuadraticExtraction`
 - `eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `eq_one_of_sq_eq_one_of_coeff_zero_eq_one` — `theorem` in `HC4.FacetRigidity.EulerEquation`
 - `eq_rankOnePacketYY` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
 - `eq_rankOnePacketYZ` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
@@ -4231,6 +4236,7 @@ Distinct declaration spellings indexed: **7985**.
 - `exists_nonzero_maximal_singular_initial` — `theorem` in `HC4.Polynomial.MaximalSingularInitial`
 - `exists_nonzero_principalMinor_at_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `exists_nonzero_root_multiplicity_factorisation` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
+- `exists_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `exists_other_positive_exponent_of_supported_kernel_linear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `exists_parameterFirstHessian_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `exists_parent_hessianRow_entry_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
