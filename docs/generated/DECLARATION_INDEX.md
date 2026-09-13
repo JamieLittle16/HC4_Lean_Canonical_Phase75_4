@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8069**.
+Distinct declaration spellings indexed: **8071**.
 
 ## Repeated declaration spellings
 
@@ -3250,6 +3250,7 @@ Distinct declaration spellings indexed: **8069**.
 - `boundary_rankThree_or_extremeRay` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `branchCharacter` — `def` in `HC4.Toric.BranchCharacter`
 - `bump_le_scale_mul_m_sub_three` — `theorem` in `HC4.Newton.ScaledContact`
+- `cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactFamilyActiveConstant`
 - `canonicalAdaptiveAlignedSmithRepairRanking` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
 - `canonicalAdaptiveSmithWall_or_strictImprovement` — `theorem` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
 - `canonicalDegreeRamification` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
@@ -3795,6 +3796,7 @@ Distinct declaration spellings indexed: **8069**.
 - `contactEulerScaledHessian_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `contactExponent_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`
 - `contactExponent_weightedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`
+- `contactFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactFamilyActiveConstant`
 - `contactOrder_eq_parameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `contactSlope` — `def` in `HC4.Newton.FirstContactSelection`
 - `contactSlope_eq_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
