@@ -102,7 +102,8 @@ theorem snd_det_lockedParallelFirstVariationDualPencil
   push_cast
   rw [Nat.cast_sub hk]
   ring_nf
-  simpa only [Polynomial.C_eq_natCast]
+  simp only [Polynomial.C_eq_natCast]
+  ring
 
 /-- Vanishing first variation forces the affine two-root Euler equation as soon
 as the locked endpoint coefficient and the non-unit staircase parameters are
