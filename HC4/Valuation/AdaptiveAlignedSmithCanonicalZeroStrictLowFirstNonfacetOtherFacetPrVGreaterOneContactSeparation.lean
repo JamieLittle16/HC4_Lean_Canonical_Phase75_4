@@ -48,19 +48,9 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 private theorem le_from_scaled_degree_bound
     (V n m : ℕ) (h : (V + 1) * n + 1 ≤ (V + 1) * m + 1) : n ≤ m := by
-  by_contra hnm
-  have hmn : m < n := Nat.lt_of_not_ge hnm
-  have hVZ : (0 : ℤ) < (V : ℤ) + 1 := by positivity
-  have hdiffZ : (0 : ℤ) < (n : ℤ) - (m : ℤ) := by
-    exact_mod_cast hmn
-  have hprod :
-      (0 : ℤ) < ((V : ℤ) + 1) * ((n : ℤ) - (m : ℤ)) :=
-    mul_pos hVZ hdiffZ
-  have hz :
-      (((V + 1) * n + 1 : ℕ) : ℤ) ≤
-        (((V + 1) * m + 1 : ℕ) : ℤ) := by exact_mod_cast h
-  push_cast at hz
-  nlinarith
+  have hmul : (V + 1) * n ≤ (V + 1) * m := by
+    omega
+  exact Nat.le_of_mul_le_mul_left hmul (by omega)
 
 /-- Exact source top degree in the `(1,V)` contact frontier. -/
 theorem QsOtherFacetPrLeftVContactFrontierData.topFace_degree_eq
@@ -75,7 +65,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.topFace_degree_eq
   rw [HC4.Polynomial.ordinaryDegree4] at hdeg
   simp [F.locked.facet_zero, F.locked.facet_one,
     F.locked.facet_two, F.locked.facet_three] at hdeg
-  omega
+  ring_nf at hdeg ⊢ <;> omega
 
 /-- Exact source top degree in the swapped `(V,1)` frontier. -/
 theorem QsOtherFacetPrRightVContactFrontierData.topFace_degree_eq
@@ -90,7 +80,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.topFace_degree_eq
   rw [HC4.Polynomial.ordinaryDegree4] at hdeg
   simp [F.locked.facet_zero, F.locked.facet_one,
     F.locked.facet_two, F.locked.facet_three] at hdeg
-  omega
+  ring_nf at hdeg ⊢ <;> omega
 
 private theorem highest_weight_left
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -153,6 +143,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.highest_n_lt_locked_height
     MvPolynomial.mem_support_iff.mpr hc.2
   have hpair := C.pr_contact_support_pair_le_one hthree houtThree hface
   rw [F.highest.e0_zero, F.highest.e0_one] at hpair
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   omega
 
 /-- Swapped non-unit orientation: the same strict source/contact separation. -/
@@ -185,6 +176,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.highest_n_lt_locked_height
     MvPolynomial.mem_support_iff.mpr hc.2
   have hpair := C.pr_contact_support_pair_le_one hthree houtThree hface
   rw [F.highest.e0_zero, F.highest.e0_one] at hpair
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   omega
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
