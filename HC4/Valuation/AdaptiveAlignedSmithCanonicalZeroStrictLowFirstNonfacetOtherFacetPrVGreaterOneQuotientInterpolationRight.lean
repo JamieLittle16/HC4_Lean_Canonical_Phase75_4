@@ -78,9 +78,9 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    let q := rankThreeQuotientCoordinate F.V 1 e
-    let qL := rankThreeQuotientCoordinate F.V 1 C.ray.facetExponent
-    let qH := rankThreeQuotientCoordinate F.V 1 F.highest.e0
+    let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
+    let qL := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 C.ray.facetExponent
+    let qH := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 F.highest.e0
     ((qH.pair : ℤ) - 1) *
           ((q.firstTransverse : ℤ) - (qL.firstTransverse : ℤ)) =
         ((q.pair : ℤ) - 1) *
@@ -89,9 +89,9 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
           ((q.secondTransverse : ℤ) - (qL.secondTransverse : ℤ)) =
         ((q.pair : ℤ) - 1) *
           ((qH.secondTransverse : ℤ) - (qL.secondTransverse : ℤ)) := by
-  let q := rankThreeQuotientCoordinate F.V 1 e
-  let qL := rankThreeQuotientCoordinate F.V 1 C.ray.facetExponent
-  let qH := rankThreeQuotientCoordinate F.V 1 F.highest.e0
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
+  let qL := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 C.ray.facetExponent
+  let qH := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 F.highest.e0
   let skew := qsOtherFacetSkewWeight C .pr
   have hfacetMem := F.locked.facet_provenance.carrier_mem
   have houtMem := F.locked.outside_provenance.carrier_mem
@@ -126,7 +126,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
       F.V 1 skew C.ray.facetExponent C.ray.outsideExponent
       h0 h1 h2 h3 hskewEq
   have hpairL : qL.pair = 1 := by
-    simp [qL, rankThreeQuotientCoordinate,
+    simp [qL, HC4.Polynomial.rankThreeQuotientCoordinate,
       F.locked.facet_zero, F.locked.facet_one]
   have hwq :
       rankThreeQuotientWeight P.finalWeight q =
@@ -179,14 +179,14 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
     finsupp_weight_eq_rankThreeQuotientWeight
       F.V 1 skew hskewNeutral F.highest.e0
   have hpairE : qsOtherFacetPairDegree .pr e = (q.pair : ℤ) := by
-    simp [q, qsOtherFacetPairDegree, rankThreeQuotientCoordinate]
+    simp [q, qsOtherFacetPairDegree, HC4.Polynomial.rankThreeQuotientCoordinate]
   have hpairH :
       qsOtherFacetPairDegree .pr F.highest.e0 = (qH.pair : ℤ) := by
-    simp [qH, qsOtherFacetPairDegree, rankThreeQuotientCoordinate]
+    simp [qH, qsOtherFacetPairDegree, HC4.Polynomial.rankThreeQuotientCoordinate]
   have hv := P.support_wall_ratio he F.highest.e0_provenance.carrier_mem
   rw [hpairE, hpairH, hskewE, hskewH, ← hskewL] at hv
   have hdet := pr_final_skew_transverseDet_ne_zero_right C P hthree houtThree
-  exact rankThreeQuotientCoordinate_affine_interpolation
+  exact HC4.Polynomial.rankThreeQuotientCoordinate_affine_interpolation
     P.finalWeight skew qL qH q hpairL hdet hwq hwH hv
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
