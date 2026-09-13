@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7759**.
+Distinct declaration spellings indexed: **7761**.
 
 ## Repeated declaration spellings
 
@@ -6127,6 +6127,8 @@ Distinct declaration spellings indexed: **7759**.
 - `qs_ray_pr_integral_contactGap_add_outside_eq_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropArithmetic`
 - `qs_ray_pr_integral_contactGap_positiveDropDecomposition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactDropDecomposition`
 - `qs_ray_pr_integral_contactGap_primitiveDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactPrimitiveDirection`
+- `qs_ray_pr_normalized_left_endpoint_curve` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedRay`
+- `qs_ray_pr_normalized_right_endpoint_curve` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedRay`
 - `qs_ray_pr_outside_base_eq_one_and_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetEndpointArithmetic`
 - `qs_ray_pr_outside_strict_directionLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
 - `qs_ray_pr_primitiveDirection_of_bump_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactReesPrimitiveDirection`
