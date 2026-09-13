@@ -87,8 +87,9 @@ theorem rankThreeDirectionNeutralWeight_of_primitive_pair
     Finsupp.sum_fintype, Finsupp.sum_fintype] at hw
   · rw [Fin.sum_univ_four] at hw
     norm_num at hw
+    rw [h1, h2, h3, h0] at hw
     push_cast at hw
-    omega
+    nlinarith
   · intro i
     simp
   · intro i
