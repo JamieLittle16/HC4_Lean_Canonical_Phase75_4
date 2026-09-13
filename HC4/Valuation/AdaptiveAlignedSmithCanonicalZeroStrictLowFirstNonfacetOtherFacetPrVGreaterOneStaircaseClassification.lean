@@ -83,8 +83,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_pair_pos
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    1 ≤ (rankThreeQuotientCoordinate 1 F.V e).pair := by
-  let q := rankThreeQuotientCoordinate 1 F.V e
+    1 ≤ (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hsource := P.support_source he
@@ -115,8 +115,8 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_pair_pos
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    1 ≤ (rankThreeQuotientCoordinate F.V 1 e).pair := by
-  let q := rankThreeQuotientCoordinate F.V 1 e
+    1 ≤ (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hsource := P.support_source he
@@ -149,13 +149,13 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_staircase_classification
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
     ∃ j : ℕ,
-      (rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1 ∧
-      (rankThreeQuotientCoordinate 1 F.V e).pair ≤ F.highest.n ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1 ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair ≤ F.highest.n ∧
       j ≤ F.locked.ell ∧
       (j = 0 ↔
-        (rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n) ∧
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n) ∧
       (j = F.locked.ell ↔
-        (rankThreeQuotientCoordinate 1 F.V e).pair = 1) :=
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = 1) :=
   F.support_staircase_bounds_of_pair_pos hthree houtThree he
     (F.support_pair_pos hthree houtThree he)
 
@@ -171,13 +171,13 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_classification
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
     ∃ j : ℕ,
-      (rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1 ∧
-      (rankThreeQuotientCoordinate F.V 1 e).pair ≤ F.highest.n ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1 ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair ≤ F.highest.n ∧
       j ≤ F.locked.ell ∧
       (j = 0 ↔
-        (rankThreeQuotientCoordinate F.V 1 e).pair = F.highest.n) ∧
+        (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair = F.highest.n) ∧
       (j = F.locked.ell ↔
-        (rankThreeQuotientCoordinate F.V 1 e).pair = 1) :=
+        (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair = 1) :=
   F.support_staircase_bounds_of_pair_pos hthree houtThree he
     (F.support_pair_pos hthree houtThree he)
 
