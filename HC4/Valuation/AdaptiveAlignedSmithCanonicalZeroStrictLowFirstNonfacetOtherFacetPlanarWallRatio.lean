@@ -37,8 +37,8 @@ private theorem finsupp_weight_sub_scaled_fin4
     simp [Finsupp.weight_apply]
   rw [hzero] at hscaled
   simp only [add_zero] at hscaled
-  rw [h, hscaled]
-  ring
+  rw [hscaled] at h
+  simpa [sub_eq_add_neg] using h
 
 /-- Every support point satisfies the unscaled maximal-ratio wall equation. -/
 theorem QsOtherFacetPlanarCarrierPackage.support_wall_gap_eq

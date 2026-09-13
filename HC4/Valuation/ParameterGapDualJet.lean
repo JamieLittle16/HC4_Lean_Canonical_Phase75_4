@@ -164,7 +164,7 @@ theorem snd_det_matrixParameterGapDualJet
   change TrivSqZeroExt.snd ((J.mapMatrix G).det) = M.det.coeff j
   rw [← hmap]
   change ((G.det : parameterGapSubring (R := R) j) : Polynomial R).coeff j = _
-  rw [hsub]
+  simpa using congrArg (fun p : Polynomial R => p.coeff j) hsub
 
 end
 

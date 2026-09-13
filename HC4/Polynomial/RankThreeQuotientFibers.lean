@@ -32,6 +32,15 @@ structure RankThreeQuotientCoordinate where
   secondTransverse : ℕ
   deriving DecidableEq
 
+@[ext] theorem RankThreeQuotientCoordinate.ext'
+    {a b : RankThreeQuotientCoordinate}
+    (hpair : a.pair = b.pair)
+    (hfirst : a.firstTransverse = b.firstTransverse)
+    (hsecond : a.secondTransverse = b.secondTransverse) : a = b := by
+  cases a
+  cases b
+  simp_all
+
 /-- Quotient coordinate of a four-variable exponent. -/
 def rankThreeQuotientCoordinate
     (alpha beta : ℕ) (e : Fin 4 →₀ ℕ) : RankThreeQuotientCoordinate :=
@@ -70,7 +79,7 @@ theorem rankThreeQuotientCoordinate_eq_iff
     have hs := congrArg RankThreeQuotientCoordinate.secondTransverse h
     exact ⟨hp, hr, hs⟩
   · rintro ⟨hp, hr, hs⟩
-    apply RankThreeQuotientCoordinate.ext <;> assumption
+    exact RankThreeQuotientCoordinate.ext' hp hr hs
 
 /-- Inside one quotient fiber, the longitudinal coordinate determines the
 entire source exponent. -/
@@ -82,12 +91,21 @@ theorem eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
     e = f := by
   rw [rankThreeQuotientCoordinate_eq_iff] at hq
   rcases hq with ⟨hp, hr, hs⟩
+  have h1 : e 1 = f 1 := by
+    rw [h0] at hp
+    exact Nat.add_left_cancel hp
+  have h2 : e 2 = f 2 := by
+    rw [h0] at hr
+    exact Nat.add_left_cancel hr
+  have h3 : e 3 = f 3 := by
+    rw [h0] at hs
+    exact Nat.add_left_cancel hs
   ext i
   fin_cases i
   · exact h0
-  · omega
-  · omega
-  · omega
+  · exact h1
+  · exact h2
+  · exact h3
 
 /-- Moving one primitive step `(1,-1,-alpha,-beta)` preserves quotient
 coordinates.  The hypotheses are written without truncated subtraction. -/
@@ -115,7 +133,10 @@ theorem primitive_pair_shape_of_quotient_eq_zero_one
   rw [rankThreeQuotientCoordinate_eq_iff] at hq
   rcases hq with ⟨hp, hr, hs⟩
   simp [he0, hf0] at hp hr hs
-  omega
+  refine ⟨?_, ?_, ?_⟩
+  · omega
+  · simpa [Nat.add_comm] using hr
+  · simpa [Nat.add_comm] using hs
 
 /-- Same statement with the endpoint orientation reversed. -/
 theorem primitive_pair_shape_of_quotient_eq_one_zero
