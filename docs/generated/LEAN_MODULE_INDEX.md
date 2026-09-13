@@ -2452,7 +2452,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`, `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
-- Declarations: `def primitiveBinomialScaledHessianPencil`, `theorem det_primitiveBinomialScaledHessianPencil`, `theorem polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one`, `theorem rankThreeAffineMoment_eq_primitiveBinomialScaledPencil`, `theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero`, `theorem primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero`
+- Declarations: `def primitiveBinomialScaledHessianPencil`, `theorem det_primitiveBinomialScaledHessianPencil`, `theorem primitiveBinomialDetCoeff0_map`, `theorem primitiveBinomialDetCoeff1_map`, `theorem primitiveBinomialDetCoeff2_map`, `theorem polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one`, `theorem rankThreeAffineMoment_eq_primitiveBinomialScaledPencil`, `theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero`, `theorem primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero`
 
 ### `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 

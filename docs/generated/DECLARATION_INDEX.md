@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8075**.
+Distinct declaration spellings indexed: **8078**.
 
 ## Repeated declaration spellings
 
@@ -6227,13 +6227,16 @@ Distinct declaration spellings indexed: **8075**.
 - `preterminal_source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `primitiveBinomialBaseExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff0_map` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomialDetCoeff0_of_both_boundary` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0_of_p_boundary_alpha_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0_of_q_boundary_beta_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff1` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff1_map` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomialDetCoeff1_of_p_eq_alpha` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff1_of_q_eq_beta` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff2` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff2_map` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomialFarExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialHessianPencil` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialScaledHessianPencil` — `def` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
