@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7963**.
+Distinct declaration spellings indexed: **7977**.
 
 ## Repeated declaration spellings
 
@@ -2895,6 +2895,7 @@ Distinct declaration spellings indexed: **7963**.
 - `affineEulerLinear` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -3838,6 +3839,7 @@ Distinct declaration spellings indexed: **7963**.
 - `det_elementaryShearMatrices` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `det_eq_normalizationFactor_mul_det` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `det_eulerScaledHessian_twoFunctionCarrier` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `det_exponentHessianCore` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `det_exponentHessianCore_ne_zero` — `theorem` in `HC4.Polynomial.MonomialHessian`
@@ -4348,12 +4350,14 @@ Distinct declaration spellings indexed: **7963**.
 - `familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `familyParameterLayer_eulerScaledHessian_apply` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
+- `familyParameterLayer_mvEuler_generic` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily_add_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
@@ -4486,6 +4490,9 @@ Distinct declaration spellings indexed: **7963**.
 - `firstActualParameterLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualParameterOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `firstActualParameterOrder_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
+- `firstActualSpecialisedEulerDualJet` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `firstActualSpecialisedEulerDualJet_apply` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `firstActualSpecialisedEulerDualJet_det_snd_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `firstBreakRankTwoOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
 - `firstClosingKernelStage_forBlock` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstClosingKernelStage_integral_or_offender` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -5659,6 +5666,9 @@ Distinct declaration spellings indexed: **7963**.
 - `parameterFirstEquiv_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstEquiv_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `parameterFirstEquiv_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
+- `parameterFirstEulerHessian` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `parameterFirstEulerHessian_coeff` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `parameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `parameterFirstHessian` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.ParameterFirstLayerBridge`
 - `parameterFirstHessian_det` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
@@ -7492,6 +7502,10 @@ Distinct declaration spellings indexed: **7963**.
 - `specialPoint_axis_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoint_zero_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `specialisedParameterFirstEulerHessian` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `specialisedParameterFirstEulerHessian_coeff` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `specialisedParameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `specialisedParameterFirstEulerHessian_hasGap` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `squareCoefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareCoefficient_specialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareContactLevel_exactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`

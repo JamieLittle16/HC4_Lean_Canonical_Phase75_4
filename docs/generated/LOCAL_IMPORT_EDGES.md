@@ -3513,6 +3513,11 @@ human architecture guide.
 - `HC4.Valuation.PermutedPolynomialHessianFourBlock`
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.PermutedFamilyHessianFourBlock`
+- `HC4.Valuation.PlanarContactFirstVariationBridge`
+  - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+  - `HC4.Polynomial.RankThreeMvSubstitution`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.ParameterGapDualJet`
 - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.GeometricAssemblyEntry`
 - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
