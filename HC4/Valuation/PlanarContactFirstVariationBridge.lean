@@ -7,37 +7,39 @@ import Mathlib.Tactic
 /-!
 # First actual planar-contact layer -> locked-binomial first variation
 
-This file is representation plumbing between the singular planar-contact Rees
-family and the state-free locked-binomial first-variation calculation.
+This file contains only representation plumbing.  For a polynomial family
+`P` with least positive actual parameter layer `q`, it Euler-scales the
+spatial Hessian, moves the family parameter to the outer polynomial variable,
+specialises the source variables to the standard rank-three line, and takes
+the exact `(0,q)` dual-number jet.
 
-For an arbitrary polynomial family `P` with a genuine least positive actual
-parameter layer `q`, we:
-
-1. Euler-scale the spatial Hessian;
-2. move the family parameter to the outer polynomial variable;
-3. specialise the spatial rank-three line `x0 = T`, `x1=x2=x3=1`;
-4. take the exact `(0,q)` dual-number gap jet.
-
-Because `q` is the least *actual* positive source layer, every entry has the
-required coefficient gap.  If `det Hess(P)=0`, the dual determinant has zero
-nilpotent part.  Therefore, once the special fibre and first actual layer are
-identified with the locked and parallel moment Hessians, the state-free
-factorisation forces the affine two-root Euler equation.
-
-No A19 state, blocker clock, JC2 input, or repair object occurs here.
+Because `q` is the least actual positive source layer, every matrix entry has
+the same parameter gap.  Hence singularity of the whole family kills the
+nilpotent determinant of the jet.  Once the special fibre and the first layer
+are identified with the locked and parallel moment Hessians, the state-free
+first-variation factorisation gives the affine two-root Euler equation.
 -/
 
 namespace HC4.Valuation
 
 noncomputable section
 
-open HC4.Newton
-open HC4.Polynomial
+open HC4.Newton HC4.Polynomial
+open scoped Matrix
 
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
-/-- Exact parameter layer extraction commutes with source Euler operators. -/
+/-- Exact parameter-layer extraction is additive over subtraction. -/
+theorem familyParameterLayer_sub_generic
+    (F G : MvPolynomial (Fin 4) (Polynomial K)) (q : ℕ) :
+    familyParameterLayer (F - G) q =
+      familyParameterLayer F q - familyParameterLayer G q := by
+  apply MvPolynomial.ext
+  intro d
+  simp [familyParameterLayer_coeff]
+
+/-- Exact parameter-layer extraction commutes with source Euler operators. -/
 theorem familyParameterLayer_mvEuler_generic
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (n : ℕ) (i : Fin 4) :
@@ -50,7 +52,7 @@ theorem familyParameterLayer_mvEuler_generic
     (R := K) (p := MvPolynomial.coeff d P) (a := d i) (k := n)
   simpa [mul_comm] using h
 
-/-- Consequently exact parameter layers commute with the Euler-scaled Hessian. -/
+/-- Exact parameter layers commute with the Euler-scaled Hessian. -/
 theorem familyParameterLayer_eulerScaledHessian_apply
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (n : ℕ) (i j : Fin 4) :
@@ -60,7 +62,7 @@ theorem familyParameterLayer_eulerScaledHessian_apply
   by_cases hij : i = j
   · subst j
     simp only [if_pos]
-    rw [familyParameterLayer_sub_exact,
+    rw [familyParameterLayer_sub_generic,
       familyParameterLayer_mvEuler_generic,
       familyParameterLayer_mvEuler_generic,
       familyParameterLayer_mvEuler_generic]
@@ -68,16 +70,14 @@ theorem familyParameterLayer_eulerScaledHessian_apply
     rw [familyParameterLayer_mvEuler_generic,
       familyParameterLayer_mvEuler_generic]
 
-/-- Euler-scaled Hessian with the family parameter moved to the outer
-polynomial variable. -/
+/-- Euler-scaled Hessian with the family parameter outermost. -/
 noncomputable def parameterFirstEulerHessian
     (P : MvPolynomial (Fin 4) (Polynomial K)) :
     Matrix (Fin 4) (Fin 4) (Polynomial (MvPolynomial (Fin 4) K)) :=
   (parameterFirstEquiv K).toRingEquiv.mapMatrix
     (HC4.Polynomial.eulerScaledHessian P)
 
-/-- Coefficient `n` is exactly the Euler-scaled Hessian of the exact source
-layer `P_n`. -/
+/-- Outer coefficient `n` is the Euler-scaled Hessian of source layer `P_n`. -/
 theorem parameterFirstEulerHessian_coeff
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (n : ℕ) (i j : Fin 4) :
@@ -89,9 +89,7 @@ theorem parameterFirstEulerHessian_coeff
   rw [parameterFirstEquiv_coeff,
     familyParameterLayer_eulerScaledHessian_apply]
 
-/-- Ring-level Euler scaling identity.  The older owner states this over a
-field, but its proof is purely commutative-ring algebra and the family
-coefficient ring is `Polynomial K`. -/
+/-- Euler row/column scaling identity over an arbitrary commutative ring. -/
 theorem det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing
     {R : Type*} [CommRing R]
     (P : MvPolynomial (Fin 4) R) :
@@ -112,19 +110,26 @@ theorem det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commR
   simp [D, H, HC4.Polynomial.hessianDeterminant]
   ring
 
-/-- A singular polynomial family has identically zero determinant after the
-parameter-first Euler-Hessian conversion. -/
+/-- A singular family remains singular after parameter-first Euler scaling. -/
 theorem parameterFirstEulerHessian_det_eq_zero
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (hdet : HC4.Polynomial.hessianDeterminant P = 0) :
     (parameterFirstEulerHessian P).det = 0 := by
-  unfold parameterFirstEulerHessian
-  rw [← RingHom.map_det]
-  rw [det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing,
-    hdet, mul_zero, map_zero]
+  calc
+    (parameterFirstEulerHessian P).det =
+        parameterFirstEquiv K
+          ((HC4.Polynomial.eulerScaledHessian P).det) := by
+      unfold parameterFirstEulerHessian
+      exact
+        (RingEquiv.map_det
+          (parameterFirstEquiv K).toRingEquiv
+          (HC4.Polynomial.eulerScaledHessian P)).symm
+    _ = 0 := by
+      rw [det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing,
+        hdet, mul_zero]
+      simp
 
-/-- Specialise the spatial coefficient of the parameter-first Euler Hessian to
-the rank-three line. -/
+/-- Spatial rank-three specialisation of the parameter-first Euler Hessian. -/
 noncomputable def specialisedParameterFirstEulerHessian
     (P : MvPolynomial (Fin 4) (Polynomial K)) :
     Matrix (Fin 4) (Fin 4) (Polynomial (Polynomial K)) :=
@@ -132,8 +137,7 @@ noncomputable def specialisedParameterFirstEulerHessian
     (HC4.Polynomial.rankThreeLineSpecialisation (K := K))).mapMatrix
       (parameterFirstEulerHessian P)
 
-/-- Coefficients of the specialised parameter-first matrix are literally the
-specialised Euler-Hessian layers. -/
+/-- Its coefficient `n` is the specialised Euler Hessian of source layer `n`. -/
 theorem specialisedParameterFirstEulerHessian_coeff
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (n : ℕ) (i j : Fin 4) :
@@ -145,17 +149,24 @@ theorem specialisedParameterFirstEulerHessian_coeff
   simp only [RingHom.mapMatrix_apply, Polynomial.coeff_map]
   rw [parameterFirstEulerHessian_coeff]
 
-/-- The specialised matrix is still singular as a polynomial matrix. -/
+/-- Spatial specialisation preserves the zero determinant. -/
 theorem specialisedParameterFirstEulerHessian_det_eq_zero
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (hdet : HC4.Polynomial.hessianDeterminant P = 0) :
     (specialisedParameterFirstEulerHessian P).det = 0 := by
-  unfold specialisedParameterFirstEulerHessian
-  rw [← RingHom.map_det]
-  rw [parameterFirstEulerHessian_det_eq_zero P hdet, map_zero]
+  let f := Polynomial.mapRingHom
+    (HC4.Polynomial.rankThreeLineSpecialisation (K := K))
+  calc
+    (specialisedParameterFirstEulerHessian P).det =
+        f ((parameterFirstEulerHessian P).det) := by
+      unfold specialisedParameterFirstEulerHessian
+      exact (RingHom.map_det f (parameterFirstEulerHessian P)).symm
+    _ = 0 := by
+      rw [parameterFirstEulerHessian_det_eq_zero P hdet]
+      simp [f]
 
-/-- The least positive actual source layer gives a genuine coefficient gap in
-every specialised Euler-Hessian entry. -/
+/-- Minimality of the first positive actual source layer gives a common gap in
+all specialised Euler-Hessian entries. -/
 theorem specialisedParameterFirstEulerHessian_hasGap
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (h : HasPositiveActualParameterLayer P)
@@ -169,7 +180,7 @@ theorem specialisedParameterFirstEulerHessian_hasGap
     P h hnpos hnlt]
   simp [HC4.Polynomial.eulerScaledHessian]
 
-/-- The exact `(0,q)` dual jet of the specialised Euler Hessian. -/
+/-- Exact `(0,q)` dual jet of the specialised Euler Hessian. -/
 noncomputable def firstActualSpecialisedEulerDualJet
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (h : HasPositiveActualParameterLayer P) :
@@ -179,9 +190,7 @@ noncomputable def firstActualSpecialisedEulerDualJet
     (specialisedParameterFirstEulerHessian P)
     (specialisedParameterFirstEulerHessian_hasGap P h)
 
-/-- Its constant and nilpotent entries are the specialised Euler Hessians of
-the special fibre and first actual layer. -/
-theorem firstActualSpecialisedEulerDualJet_apply
+@[simp] theorem firstActualSpecialisedEulerDualJet_apply
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (h : HasPositiveActualParameterLayer P)
     (i j : Fin 4) :
@@ -198,8 +207,7 @@ theorem firstActualSpecialisedEulerDualJet_apply
   rw [specialisedParameterFirstEulerHessian_coeff,
     specialisedParameterFirstEulerHessian_coeff]
 
-/-- Singularity of the whole family kills the nilpotent determinant of the
-first-actual-layer dual jet. -/
+/-- Singularity kills the nilpotent determinant coefficient of the first jet. -/
 theorem firstActualSpecialisedEulerDualJet_det_snd_eq_zero
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (h : HasPositiveActualParameterLayer P)
@@ -210,11 +218,9 @@ theorem firstActualSpecialisedEulerDualJet_det_snd_eq_zero
   rw [specialisedParameterFirstEulerHessian_det_eq_zero P hdet]
   simp
 
-/-- **First-variation moment bridge.**
-
-If the special fibre and first actual layer specialise to the locked and
-parallel rank-three moment Hessians, singularity of the whole family forces
-the affine two-root Euler equation on the first-layer profile. -/
+/-- **First-variation moment bridge.**  Exact moment identification of the
+special fibre and first actual layer turns family singularity into the
+state-free affine two-root Euler equation. -/
 theorem affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (h : HasPositiveActualParameterLayer P)
@@ -247,8 +253,8 @@ theorem affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification
     rw [firstActualSpecialisedEulerDualJet_apply]
     have hz := congrFun (congrFun hzero r) s
     have hf := congrFun (congrFun hfirst r) s
-    simp [HC4.Polynomial.lockedParallelFirstVariationDualPencil,
-      hz, hf]
+    change (_, _) = (_, _)
+    exact Prod.ext hz hf
   have hnil := firstActualSpecialisedEulerDualJet_det_snd_eq_zero P h hdet
   rw [hjet] at hnil
   exact
