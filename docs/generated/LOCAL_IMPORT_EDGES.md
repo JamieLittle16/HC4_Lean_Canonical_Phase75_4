@@ -786,6 +786,9 @@ human architecture guide.
   - `HC4.Polynomial.TopProduct`
   - `HC4.Polynomial.WeightBounds`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Polynomial.AffineEulerDegreeOneRigidity`
+  - `HC4.Polynomial.AffineEulerTwoRootRigidity`
+  - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - `HC4.Polynomial.AffineEulerTwoRootRigidity`
   - `HC4.Polynomial.AutonomousODETranslation`
 - `HC4.Polynomial.AutonomousODEPoleOrder`

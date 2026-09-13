@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7977**.
+Distinct declaration spellings indexed: **7980**.
 
 ## Repeated declaration spellings
 
@@ -2897,6 +2897,7 @@ Distinct declaration spellings indexed: **7977**.
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `affineTwoRoot_degreeOne_primitive` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -3503,6 +3504,7 @@ Distinct declaration spellings indexed: **7977**.
 - `coeff_n_mul_natDegree_shiftedAutonomousClearedRHS` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_n_shiftedEuler_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_n_shiftedEuler_ne_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
+- `coeff_one_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_one_complementaryEtaNumerator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_one_det_rankThreePencilPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `coeff_one_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
@@ -3575,6 +3577,7 @@ Distinct declaration spellings indexed: **7977**.
 - `coeff_two_weightedRankThreeEndpointPencil_mul` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `coeff_weightedTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `coeff_zero_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_zero_positiveParameterRemainder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
