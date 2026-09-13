@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8043**.
+Distinct declaration spellings indexed: **8058**.
 
 ## Repeated declaration spellings
 
@@ -3133,7 +3133,15 @@ Distinct declaration spellings indexed: **8043**.
 - `binaryOrdinary_isWeightedHomogeneous_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryOutsideSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryProfileClock` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfilePivotContradiction`
+- `binaryProfileHessian00Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessian00Family_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessian01Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessian01Family_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessian11Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessian11Family_longitudinal_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryProfileHessianDetFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `binaryProfileWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `binaryProfileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `binarySchurDerivativeDet` — `def` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_scaledMotion` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_wedge` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
@@ -3365,6 +3373,7 @@ Distinct declaration spellings indexed: **8043**.
 - `carrierProfileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `carrierProfileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `carrierProfileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `carrierProfile_coeff_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `carrierProfile_fraction_staircaseResidual_eq_zero_of_hessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileResidual`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
@@ -5267,6 +5276,7 @@ Distinct declaration spellings indexed: **8043**.
 - `longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_single_eval_one_eq_zero_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `longitudinalCoefficient_transverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalFactor`
+- `longitudinalEulerHessian_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `longitudinalHessianCoupledKernelBlock` — `def` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `longitudinalHessianCoupledKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `longitudinalHessianCoupledKernelBlock_euler_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
@@ -5719,6 +5729,8 @@ Distinct declaration spellings indexed: **8043**.
 - `parameterEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterEuler_X_pow_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterChainRule`
 - `parameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `parameterEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `parameterFirstEquiv` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstEquiv_C_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
@@ -5767,6 +5779,7 @@ Distinct declaration spellings indexed: **8043**.
 - `parameterRamification_two_lowestLayer_factorisation` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `parameterSecondEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
+- `parameterSecondEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `parent_support_degree_ge_three` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `pderiv_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `pderiv_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -5896,6 +5909,8 @@ Distinct declaration spellings indexed: **8043**.
 - `planarJacobianMatrixAt` — `def` in `HC4.PlanarJacobianEvaluation`
 - `planarJacobianMatrixAt_det_ne_zero` — `theorem` in `HC4.PlanarJacobianEvaluation`
 - `planarJacobian_crossDet_eval_ne_zero` — `theorem` in `HC4.PlanarJC2Interface`
+- `planarParameterEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `planarParameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `planarPolynomialMapEval` — `def` in `HC4.PlanarJC2Interface`
 - `planarRigid_exactResidual_exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalDirectResidualClosure`
 - `planar_injective_of_JC2` — `theorem` in `HC4.PlanarJC2Interface`
