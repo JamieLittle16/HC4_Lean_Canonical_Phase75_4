@@ -124,8 +124,8 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_left_weights_neutral
     (hdir3 :
       (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) =
         -(V : ℤ)) :
-    RankThreeDirectionNeutralWeight 1 V P.firstWeight ∧
-      RankThreeDirectionNeutralWeight 1 V P.wallWeight := by
+    HC4.Polynomial.RankThreeDirectionNeutralWeight 1 V P.firstWeight ∧
+      HC4.Polynomial.RankThreeDirectionNeutralWeight 1 V P.wallWeight := by
   rcases normalized_left_primitive_pair hthree houtThree hdir2 hdir3 with
     ⟨h0, h1, h2, h3⟩
   rcases ray_endpoints_mem_planarCarrier (C := C) (P := P) with ⟨hf, ho⟩
@@ -138,10 +138,12 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_left_weights_neutral
         Finsupp.weight P.wallWeight C.ray.outsideExponent := by
     rw [P.support_wall_level hf, P.support_wall_level ho]
   exact ⟨
-    rankThreeDirectionNeutralWeight_of_primitive_pair 1 V P.firstWeight
-      C.ray.facetExponent C.ray.outsideExponent h0 h1 h2 h3 hwFirst,
-    rankThreeDirectionNeutralWeight_of_primitive_pair 1 V P.wallWeight
-      C.ray.facetExponent C.ray.outsideExponent h0 h1 h2 h3 hwWall⟩
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
+      1 V P.firstWeight C.ray.facetExponent C.ray.outsideExponent
+      h0 h1 h2 h3 hwFirst,
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
+      1 V P.wallWeight C.ray.facetExponent C.ray.outsideExponent
+      h0 h1 h2 h3 hwWall⟩
 
 /-- Symmetric neutral-weight statement for the `(V,1)` orientation. -/
 theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_right_weights_neutral
@@ -156,8 +158,8 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_right_weights_neutral
         -(V : ℤ))
     (hdir3 :
       (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) = -1) :
-    RankThreeDirectionNeutralWeight V 1 P.firstWeight ∧
-      RankThreeDirectionNeutralWeight V 1 P.wallWeight := by
+    HC4.Polynomial.RankThreeDirectionNeutralWeight V 1 P.firstWeight ∧
+      HC4.Polynomial.RankThreeDirectionNeutralWeight V 1 P.wallWeight := by
   rcases normalized_right_primitive_pair hthree houtThree hdir2 hdir3 with
     ⟨h0, h1, h2, h3⟩
   rcases ray_endpoints_mem_planarCarrier (C := C) (P := P) with ⟨hf, ho⟩
@@ -170,10 +172,12 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_right_weights_neutral
         Finsupp.weight P.wallWeight C.ray.outsideExponent := by
     rw [P.support_wall_level hf, P.support_wall_level ho]
   exact ⟨
-    rankThreeDirectionNeutralWeight_of_primitive_pair V 1 P.firstWeight
-      C.ray.facetExponent C.ray.outsideExponent h0 h1 h2 h3 hwFirst,
-    rankThreeDirectionNeutralWeight_of_primitive_pair V 1 P.wallWeight
-      C.ray.facetExponent C.ray.outsideExponent h0 h1 h2 h3 hwWall⟩
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
+      V 1 P.firstWeight C.ray.facetExponent C.ray.outsideExponent
+      h0 h1 h2 h3 hwFirst,
+    HC4.Polynomial.rankThreeDirectionNeutralWeight_of_primitive_pair
+      V 1 P.wallWeight C.ray.facetExponent C.ray.outsideExponent
+      h0 h1 h2 h3 hwWall⟩
 
 /-- Every actual carrier support exponent maps onto the two retained quotient
 hyperplanes in the left orientation. -/
@@ -190,16 +194,18 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_left_quotient_line
       (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) =
         -(V : ℤ))
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    rankThreeQuotientWeight P.firstWeight
-        (rankThreeQuotientCoordinate 1 V e) = P.firstLevel ∧
-      rankThreeQuotientWeight P.wallWeight
-        (rankThreeQuotientCoordinate 1 V e) = P.wallLevel := by
+    HC4.Polynomial.rankThreeQuotientWeight P.firstWeight
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V e) = P.firstLevel ∧
+      HC4.Polynomial.rankThreeQuotientWeight P.wallWeight
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V e) = P.wallLevel := by
   rcases P.pr_normalized_left_weights_neutral
       hthree houtThree hdir2 hdir3 with ⟨hfirst, hwall⟩
   constructor
-  · rw [← finsupp_weight_eq_rankThreeQuotientWeight 1 V P.firstWeight hfirst e]
+  · rw [← HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
+      1 V P.firstWeight hfirst e]
     exact P.support_first_level he
-  · rw [← finsupp_weight_eq_rankThreeQuotientWeight 1 V P.wallWeight hwall e]
+  · rw [← HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
+      1 V P.wallWeight hwall e]
     exact P.support_wall_level he
 
 /-- Symmetric quotient-line statement in the `(V,1)` orientation. -/
@@ -216,16 +222,18 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_normalized_right_quotient_line
     (hdir3 :
       (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) = -1)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support) :
-    rankThreeQuotientWeight P.firstWeight
-        (rankThreeQuotientCoordinate V 1 e) = P.firstLevel ∧
-      rankThreeQuotientWeight P.wallWeight
-        (rankThreeQuotientCoordinate V 1 e) = P.wallLevel := by
+    HC4.Polynomial.rankThreeQuotientWeight P.firstWeight
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 e) = P.firstLevel ∧
+      HC4.Polynomial.rankThreeQuotientWeight P.wallWeight
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 e) = P.wallLevel := by
   rcases P.pr_normalized_right_weights_neutral
       hthree houtThree hdir2 hdir3 with ⟨hfirst, hwall⟩
   constructor
-  · rw [← finsupp_weight_eq_rankThreeQuotientWeight V 1 P.firstWeight hfirst e]
+  · rw [← HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
+      V 1 P.firstWeight hfirst e]
     exact P.support_first_level he
-  · rw [← finsupp_weight_eq_rankThreeQuotientWeight V 1 P.wallWeight hwall e]
+  · rw [← HC4.Polynomial.finsupp_weight_eq_rankThreeQuotientWeight
+      V 1 P.wallWeight hwall e]
     exact P.support_wall_level he
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
