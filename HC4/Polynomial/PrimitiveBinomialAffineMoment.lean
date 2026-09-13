@@ -51,6 +51,31 @@ theorem det_primitiveBinomialScaledHessianPencil
     primitiveBinomialDetCoeff2, Matrix.det_fin_three, Fin.succAbove]
   ring
 
+/-- The three primitive determinant coefficients are functorial under
+commutative-ring homomorphisms.  Keeping this transport abstract avoids
+re-expanding large coefficient formulas after specialising to constant
+polynomials. -/
+private theorem primitiveBinomialDetCoeff0_map
+    {R S : Type*} [CommRing R] [CommRing S]
+    (f : R →+* S) (n p q alpha beta : R) :
+    primitiveBinomialDetCoeff0 (f n) (f p) (f q) (f alpha) (f beta) =
+      f (primitiveBinomialDetCoeff0 n p q alpha beta) := by
+  simp [primitiveBinomialDetCoeff0]
+
+private theorem primitiveBinomialDetCoeff1_map
+    {R S : Type*} [CommRing R] [CommRing S]
+    (f : R →+* S) (n p q alpha beta : R) :
+    primitiveBinomialDetCoeff1 (f n) (f p) (f q) (f alpha) (f beta) =
+      f (primitiveBinomialDetCoeff1 n p q alpha beta) := by
+  simp [primitiveBinomialDetCoeff1]
+
+private theorem primitiveBinomialDetCoeff2_map
+    {R S : Type*} [CommRing R] [CommRing S]
+    (f : R →+* S) (n p q alpha beta : R) :
+    primitiveBinomialDetCoeff2 (f n) (f p) (f q) (f alpha) (f beta) =
+      f (primitiveBinomialDetCoeff2 n p q alpha beta) := by
+  simp [primitiveBinomialDetCoeff2]
+
 /-- A polynomial supported exactly at `0` and `1` is its literal affine
 binomial. -/
 theorem polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one
@@ -130,90 +155,74 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
           (Polynomial.C (q : K)) (Polynomial.C (alpha : K))
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff0
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp only [primitiveBinomialDetCoeff0,
-      Polynomial.C_neg, Polynomial.C_add, Polynomial.C_sub,
-      Polynomial.C_mul, Polynomial.C_pow, Polynomial.C_eq_natCast] <;> ring
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) :=
+    primitiveBinomialDetCoeff0_map
+      (Polynomial.C : K →+* Polynomial K)
+      (n : K) (p : K) (q : K) (alpha : K) (beta : K)
   have hC1 :
       primitiveBinomialDetCoeff1
           (Polynomial.C (n : K)) (Polynomial.C (p : K))
           (Polynomial.C (q : K)) (Polynomial.C (alpha : K))
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff1
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp only [primitiveBinomialDetCoeff1,
-      Polynomial.C_add, Polynomial.C_sub, Polynomial.C_mul,
-      Polynomial.C_pow, Polynomial.C_eq_natCast] <;> ring
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) :=
+    primitiveBinomialDetCoeff1_map
+      (Polynomial.C : K →+* Polynomial K)
+      (n : K) (p : K) (q : K) (alpha : K) (beta : K)
   have hC2 :
       primitiveBinomialDetCoeff2
           (Polynomial.C (n : K)) (Polynomial.C (p : K))
           (Polynomial.C (q : K)) (Polynomial.C (alpha : K))
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff2
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp only [primitiveBinomialDetCoeff2,
-      Polynomial.C_add, Polynomial.C_sub, Polynomial.C_mul,
-      Polynomial.C_eq_natCast] <;> ring
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) :=
+    primitiveBinomialDetCoeff2_map
+      (Polynomial.C : K →+* Polynomial K)
+      (n : K) (p : K) (q : K) (alpha : K) (beta : K)
 
   rw [hC0, hC1, hC2] at hdet
   simp only [← Polynomial.C_pow, ← Polynomial.C_mul] at hdet
 
-  have hcoeff2 :
-      -((phi.coeff 0)^2 * (phi.coeff 1)^2 *
-        primitiveBinomialDetCoeff0
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) = 0 := by
+  have h0 :
+      primitiveBinomialDetCoeff0
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
     have h := congrArg (fun f : Polynomial K => f.coeff 2) hdet
     simp only [Polynomial.coeff_sub, Polynomial.coeff_neg] at h
     rw [Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow] at h
     norm_num at h
-    exact h
-  have hcoeff3 :
-      -((phi.coeff 0) * (phi.coeff 1)^3 *
-        primitiveBinomialDetCoeff1
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) = 0 := by
+    rcases h with (hc0 | hc1) | hcoeff
+    · exact (hphi0 hc0).elim
+    · exact (hphi1 hc1).elim
+    · exact hcoeff
+  have h1 :
+      primitiveBinomialDetCoeff1
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
     have h := congrArg (fun f : Polynomial K => f.coeff 3) hdet
     simp only [Polynomial.coeff_sub, Polynomial.coeff_neg] at h
     rw [Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow] at h
     norm_num at h
-    exact h
-  have hcoeff4 :
-      -((phi.coeff 1)^4 *
-        primitiveBinomialDetCoeff2
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K)) = 0 := by
+    rcases h with (hc0 | hc1) | hcoeff
+    · exact (hphi0 hc0).elim
+    · exact (hphi1 hc1).elim
+    · exact hcoeff
+  have h2 :
+      primitiveBinomialDetCoeff2
+          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
     have h := congrArg (fun f : Polynomial K => f.coeff 4) hdet
     simp only [Polynomial.coeff_sub, Polynomial.coeff_neg] at h
     rw [Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow,
       Polynomial.coeff_C_mul_X_pow] at h
     norm_num at h
-    exact h
+    rcases h with hc1 | hcoeff
+    · exact (hphi1 hc1).elim
+    · exact hcoeff
 
-  have h0 :
-      (phi.coeff 0)^2 * (phi.coeff 1)^2 *
-        primitiveBinomialDetCoeff0
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
-    exact neg_eq_zero.mp hcoeff2
-  have h1 :
-      (phi.coeff 0) * (phi.coeff 1)^3 *
-        primitiveBinomialDetCoeff1
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
-    exact neg_eq_zero.mp hcoeff3
-  have h2 :
-      (phi.coeff 1)^4 *
-        primitiveBinomialDetCoeff2
-          (n : K) (p : K) (q : K) (alpha : K) (beta : K) = 0 := by
-    exact neg_eq_zero.mp hcoeff4
-
-  refine ⟨?_, ?_, ?_⟩
-  · exact (mul_eq_zero.mp h0).resolve_left
-      (mul_ne_zero (pow_ne_zero 2 hphi0) (pow_ne_zero 2 hphi1))
-  · exact (mul_eq_zero.mp h1).resolve_left
-      (mul_ne_zero hphi0 (pow_ne_zero 3 hphi1))
-  · exact (mul_eq_zero.mp h2).resolve_left (pow_ne_zero 4 hphi1)
+  exact ⟨h0, h1, h2⟩
 
 /-- Combined state-free endpoint theorem directly at the affine-moment
 interface used by A19. -/
