@@ -56,9 +56,15 @@ theorem prVGreaterOne_wallSlope_contactDeficit_nat
   have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by
     have : (1 : ℤ) < (n : ℤ) := by exact_mod_cast (show 1 < n by omega)
     omega
+  have hnellZ : (n : ℤ) < ((ell + 1 : ℕ) : ℤ) := by
+    exact_mod_cast hnell
   have hgapZ : (0 : ℤ) < (ell : ℤ) + 1 - (n : ℤ) := by
-    exact_mod_cast (show n < ell + 1 from hnell)
-  have hk1Z : (0 : ℤ) ≤ (k : ℤ) - 1 := by exact_mod_cast hk
+    push_cast at hnellZ
+    omega
+  have hkZ : (1 : ℤ) ≤ (k : ℤ) := by
+    exact_mod_cast hk
+  have hk1Z : (0 : ℤ) ≤ (k : ℤ) - 1 := by
+    omega
   have hdefNonnegZ :
       (0 : ℤ) ≤ (ell : ℤ) + 1 - (k : ℤ) - (j : ℤ) := by
     have hrhs :
@@ -110,12 +116,12 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support)
     {j : ℕ}
-    (hj : (rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1) :
+    (hj : (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1) :
     qsOtherFacetPrQuotientContactOrder (T := T) 1 F.V e =
       (F.V + 1) *
         (F.locked.ell + 1 -
-          ((rankThreeQuotientCoordinate 1 F.V e).pair + j)) := by
-  let q := rankThreeQuotientCoordinate 1 F.V e
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair + j)) := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hcurveZ := hs.2
@@ -136,9 +142,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
     (by simpa [q] using hslopeZ)
   unfold qsOtherFacetPrQuotientContactOrder
   rw [F.topFace_degree_eq]
-  simp only [q, rankThreeQuotientCoordinate_pair,
-    rankThreeQuotientCoordinate_firstTransverse,
-    rankThreeQuotientCoordinate_secondTransverse]
+  simp only [q, HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse]
   change
     (F.V + 1) * (F.locked.ell + 1) + 1 -
         (q.pair + (j + 1) + q.secondTransverse) =
@@ -158,12 +164,12 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support)
     {j : ℕ}
-    (hj : (rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1) :
+    (hj : (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1) :
     qsOtherFacetPrQuotientContactOrder (T := T) F.V 1 e =
       (F.V + 1) *
         (F.locked.ell + 1 -
-          ((rankThreeQuotientCoordinate F.V 1 e).pair + j)) := by
-  let q := rankThreeQuotientCoordinate F.V 1 e
+          ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair + j)) := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hcurveZ := hs.2
@@ -205,7 +211,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_interpolation
     (F.highest.n - 1) *
         qsOtherFacetPrQuotientContactOrder (T := T) 1 F.V e =
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-        ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
+        ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
   rcases F.support_staircase_classification hthree houtThree he with
     ⟨j, hj, _hkN, _hjell, _hj0, _hjellEq⟩
   have hk := F.support_pair_pos hthree houtThree he
@@ -216,7 +222,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_interpolation
   norm_num at hslopeZ
   have hdef := prVGreaterOne_wallSlope_contactDeficit_nat
     F.locked.ell F.highest.n
-    (rankThreeQuotientCoordinate 1 F.V e).pair j
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair j
     F.locked.ell_pos F.highest.n_two_le
     (F.highest_n_lt_locked_height hthree houtThree) hk
     (by simpa using hslopeZ)
@@ -238,7 +244,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_interpolation
     (F.highest.n - 1) *
         qsOtherFacetPrQuotientContactOrder (T := T) F.V 1 e =
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-        ((rankThreeQuotientCoordinate F.V 1 e).pair - 1) := by
+        ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair - 1) := by
   rcases F.support_staircase_classification hthree houtThree he with
     ⟨j, hj, _hkN, _hjell, _hj0, _hjellEq⟩
   have hk := F.support_pair_pos hthree houtThree he
@@ -249,7 +255,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_interpolation
   norm_num at hslopeZ
   have hdef := prVGreaterOne_wallSlope_contactDeficit_nat
     F.locked.ell F.highest.n
-    (rankThreeQuotientCoordinate F.V 1 e).pair j
+    (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair j
     F.locked.ell_pos F.highest.n_two_le
     (F.highest_n_lt_locked_height hthree houtThree) hk
     (by simpa using hslopeZ)
