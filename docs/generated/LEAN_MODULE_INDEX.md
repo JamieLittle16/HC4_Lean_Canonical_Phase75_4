@@ -2621,7 +2621,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
 - External imports: `Mathlib.RingTheory.MvPolynomial.Basic`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.RankThreeQuotientWeightFactorization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
+- Imported by local modules: `HC4.Polynomial.RankThreeQuotientWeightFactorization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - Declarations: `structure RankThreeQuotientCoordinate`, `def rankThreeQuotientCoordinate`, `theorem rankThreeQuotientCoordinate_eq_iff`, `theorem eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq`, `theorem rankThreeQuotientCoordinate_eq_of_primitive_step`, `theorem primitive_pair_shape_of_quotient_eq_zero_one`, `theorem primitive_pair_shape_of_quotient_eq_one_zero`, `theorem zero_one_layers_of_quotient_eq_of_le_one`, `theorem primitive_pair_shape_of_quotient_eq_of_le_one`, `theorem finset_eq_pair_of_rankThreeQuotientFiber_of_le_one`
 
 ### `HC4.Polynomial.RankThreeQuotientWeightFactorization`
@@ -8167,7 +8167,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer.lean`
 - Purpose: A19 first positive planar-contact staircase layer
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`, `HC4.Polynomial.RankThreeQuotientFibers`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - Declarations: `theorem reverseOrder_eq_quotientContactOrder`, `theorem parameterLayer_support_source_and_order`, `theorem pair_eq_of_reverseOrder_eq`, `theorem firstPositiveLayer_pair_fiber`, `theorem firstPositiveLayer_pair_gt_one`, `theorem reverseOrder_lt_highest_of_pair_lt_highest`
