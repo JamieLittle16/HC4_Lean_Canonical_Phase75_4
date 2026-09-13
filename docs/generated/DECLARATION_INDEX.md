@@ -103,7 +103,6 @@ Distinct declaration spellings indexed: **8075**.
 - `mongeAmpere` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `mongeAmpere_hasNondegenerateActualHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `mvC_mul_mvC_div_cancel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyClosingCarrierExit`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTransverseKernelRestart`
-- `noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStationaryNoInteriorClosure`
 - `nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `ofDirect` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationComposition`
 - `ofNoWall` — `def` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`, `def` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
@@ -5503,7 +5502,7 @@ Distinct declaration spellings indexed: **8075**.
 - `noCounterexample_of_JC2_losslessCanonicalReduction` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `noCounterexample_of_currentCanonicalEntry` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
 - `noPositiveParameterLayer_or_first` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
-- `noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStationaryNoInteriorClosure`
+- `noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `noWallDefectDrop` — `def` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedDefectDrop`
 - `noWallPrimitiveSmithFamily` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `noWallPrimitiveSmithFamily_canonicalCollision` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
