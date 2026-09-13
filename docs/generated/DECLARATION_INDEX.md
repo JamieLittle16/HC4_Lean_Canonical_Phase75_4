@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7936**.
+Distinct declaration spellings indexed: **7947**.
 
 ## Repeated declaration spellings
 
@@ -3815,6 +3815,7 @@ Distinct declaration spellings indexed: **7936**.
 - `dependsOnlyOnStandardZeroPair_vars_subset_range` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `derivativeRemainder_eq_single_axis_of_contribution_ne_zero` — `theorem` in `HC4.Newton.SmithFirstWallTransverse`
 - `derivative_binaryAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
+- `derivative_comp_lockedBinomialAffineNormalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `derivative_det_rankThreePencilPolynomial_eval_zero` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `derivative_fourAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `derivative_monomial_eval_neg_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity`
@@ -4017,6 +4018,7 @@ Distinct declaration spellings indexed: **7936**.
 - `entry_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `entry_nonzero_at_first` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `eq_C_add_C_mul_X_of_natDegree_le_one` — `theorem` in `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
+- `eq_adjacent_lockedAffineFactor_powers_of_firstVariation_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `eq_binomialODEModel_of_separatedBinomialODE` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `eq_binomial_power_of_translate_eq_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
 - `eq_complementaryLinePolynomial_of_supported` — `theorem` in `HC4.Polynomial.ComplementaryLineRecognition`
@@ -5120,7 +5122,15 @@ Distinct declaration spellings indexed: **7936**.
 - `literalConstantSourceDirection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `literalSpecialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `localRestartClassification` — `theorem` in `HC4.Newton.RestartClassification`
+- `lockedBinomialAffineFactor` — `def` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialAffineFactor_comp_normalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialAffineFirstVariationResidual` — `def` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialAffineFirstVariationResidual_comp_normalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialAffineNormalize` — `def` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialAffineNormalize_comp_factor` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialFirstVariationEulerResidual` — `def` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
+- `lockedBinomialFirstVariationEulerResidual_eq_derivative_form` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialFirstVariationEulerResidual_normalized_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `locked_facet_reverseOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
@@ -7083,6 +7093,7 @@ Distinct declaration spellings indexed: **7936**.
 - `schurTangentialOrder_of_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerTangency`
 - `schur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schur_offDiag_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockRankTwoGeometry`
+- `secondDerivative_comp_lockedBinomialAffineNormalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `secondDirectionalDerivative_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `secondDirectionalDerivative_rigidPairDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `secondPivotSwap01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
