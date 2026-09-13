@@ -126,11 +126,13 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
   dsimp only at hs
   have hcurveZ := hs.2
   rw [hj] at hcurveZ
-  have hcurve : q.secondTransverse = F.V * (q.pair + j) := by
-    exact_mod_cast (show
-      (q.secondTransverse : ℤ) =
-        (F.V : ℤ) * ((q.pair : ℤ) + (j : ℤ)) by
-          simpa [q] using hcurveZ)
+  have hjNat : e 0 + e 2 = j + 1 := by
+    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+      one_mul] using hj
+  have hcurve : F.V * e 0 + e 3 = F.V * (e 0 + e 1 + j) := by
+    apply Int.ofNat.inj
+    push_cast
+    nlinarith [hcurveZ]
   have hk := F.support_pair_pos hthree houtThree he
   have hslopeZ := hs.1
   rw [hj] at hslopeZ
@@ -142,14 +144,11 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
     (by simpa [q] using hslopeZ)
   unfold qsOtherFacetPrQuotientContactOrder
   rw [F.topFace_degree_eq]
-  simp only [q, HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair,
     HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-    HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse]
-  change
-    (F.V + 1) * (F.locked.ell + 1) + 1 -
-        (q.pair + (j + 1) + q.secondTransverse) =
-      (F.V + 1) * (F.locked.ell + 1 - (q.pair + j))
-  rw [hcurve]
+    HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    one_mul]
+  rw [hjNat, hcurve]
   omega
 
 /-- Swapped exact contact-order formula. -/
@@ -174,11 +173,13 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
   dsimp only at hs
   have hcurveZ := hs.2
   rw [hj] at hcurveZ
-  have hcurve : q.firstTransverse = F.V * (q.pair + j) := by
-    exact_mod_cast (show
-      (q.firstTransverse : ℤ) =
-        (F.V : ℤ) * ((q.pair : ℤ) + (j : ℤ)) by
-          simpa [q] using hcurveZ)
+  have hjNat : e 0 + e 3 = j + 1 := by
+    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+      one_mul] using hj
+  have hcurve : F.V * e 0 + e 2 = F.V * (e 0 + e 1 + j) := by
+    apply Int.ofNat.inj
+    push_cast
+    nlinarith [hcurveZ]
   have hk := F.support_pair_pos hthree houtThree he
   have hslopeZ := hs.1
   rw [hj] at hslopeZ
@@ -190,11 +191,11 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
     (by simpa [q] using hslopeZ)
   unfold qsOtherFacetPrQuotientContactOrder
   rw [F.topFace_degree_eq]
-  change
-    (F.V + 1) * (F.locked.ell + 1) + 1 -
-        (q.pair + q.firstTransverse + (j + 1)) =
-      (F.V + 1) * (F.locked.ell + 1 - (q.pair + j))
-  rw [hcurve]
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    one_mul]
+  rw [hjNat, hcurve]
   omega
 
 /-- The left contact order satisfies the exact endpoint interpolation law. -/
@@ -227,8 +228,23 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_interpolation
     (F.highest_n_lt_locked_height hthree houtThree) hk
     (by simpa using hslopeZ)
   rw [F.contactOrder_eq_of_staircase_height hthree houtThree he hj]
-  rw [hdef.2]
-  ring
+  calc
+    (F.highest.n - 1) *
+        ((F.V + 1) *
+          (F.locked.ell + 1 -
+            ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair + j))) =
+      (F.V + 1) *
+        ((F.highest.n - 1) *
+          (F.locked.ell + 1 -
+            ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair + j))) := by
+        ring
+    _ = (F.V + 1) *
+        ((F.locked.ell + 1 - F.highest.n) *
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1)) := by
+        rw [hdef.2]
+    _ = (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+        ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
+        ring
 
 /-- Symmetric endpoint interpolation law. -/
 theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_interpolation
@@ -260,8 +276,23 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_interpolation
     (F.highest_n_lt_locked_height hthree houtThree) hk
     (by simpa using hslopeZ)
   rw [F.contactOrder_eq_of_staircase_height hthree houtThree he hj]
-  rw [hdef.2]
-  ring
+  calc
+    (F.highest.n - 1) *
+        ((F.V + 1) *
+          (F.locked.ell + 1 -
+            ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair + j))) =
+      (F.V + 1) *
+        ((F.highest.n - 1) *
+          (F.locked.ell + 1 -
+            ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair + j))) := by
+        ring
+    _ = (F.V + 1) *
+        ((F.locked.ell + 1 - F.highest.n) *
+          ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair - 1)) := by
+        rw [hdef.2]
+    _ = (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+        ((HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair - 1) := by
+        ring
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
