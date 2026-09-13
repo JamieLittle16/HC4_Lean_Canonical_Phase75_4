@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7731**.
+Distinct declaration spellings indexed: **7745**.
 
 ## Repeated declaration spellings
 
@@ -3742,6 +3742,7 @@ Distinct declaration spellings indexed: **7731**.
 - `det_oneZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.OneZeroBlockDeterminant`
 - `det_oneZeroRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `det_planarJacobianMatrixAt` — `theorem` in `HC4.PlanarJacobianEvaluation`
+- `det_primitiveBinomialHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `det_rankThreeLogHessianCore` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `det_reindexRankTwoAxis` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `det_rigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -5949,6 +5950,18 @@ Distinct declaration spellings indexed: **7731**.
 - `preterminal_rankTwoProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminal_secondDerivative_zero` — `theorem` in `HC4.Newton.PreterminalFirstDeparture`
 - `preterminal_source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `primitiveBinomialBaseExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff0` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff0_of_both_boundary` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff0_of_p_boundary_alpha_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff0_of_q_boundary_beta_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff1` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff1_of_p_eq_alpha` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff1_of_q_eq_beta` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialDetCoeff2` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialFarExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialHessianPencil` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomial_endpoint_orientation_of_coefficients_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveZeroSmithSource_departureFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `primitiveZeroSmithSource_losslessFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `primitiveZeroSmithSource_mem_specialFiber` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
@@ -6777,6 +6790,7 @@ Distinct declaration spellings indexed: **7731**.
 - `scalarElementaryShearHom_neg_comp` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `scalarElementaryShearVariable` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `scalarElementaryShearVariable_isWeightLE` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
+- `scalarExponentHessianCore` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `scalarMinimal_strictEarlier_or_tied` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `scalarPivotSwap01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningScalarPivot`
 - `scalarPivotSwap02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningScalarPivot`

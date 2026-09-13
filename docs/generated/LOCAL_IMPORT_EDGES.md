@@ -876,6 +876,8 @@ human architecture guide.
 - `HC4.Polynomial.NonlinearSupportHessianRowBreak`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
+- `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+  - _(no local imports)_
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`
