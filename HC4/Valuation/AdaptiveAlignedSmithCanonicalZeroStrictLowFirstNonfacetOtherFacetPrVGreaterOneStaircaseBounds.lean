@@ -66,9 +66,12 @@ theorem prVGreaterOne_quotientStaircase_bounds
       nlinarith
     have hn1 : 1 ≤ n := by omega
     have hnk : n ≤ k := by omega
+    have heqCast :
+        ((n - 1 : ℕ) : ℤ) = ((ell * (k - n) : ℕ) : ℤ) := by
+      rw [Nat.cast_sub hn1, Nat.cast_mul, Nat.cast_sub hnk]
+      exact heqZ
     have heqNat : n - 1 = ell * (k - n) := by
-      apply Int.ofNat.inj
-      simpa only [Nat.cast_sub hn1, Nat.cast_mul, Nat.cast_sub hnk] using heqZ
+      exact Int.ofNat.inj heqCast
     have hmul : ell ≤ ell * (k - n) := by
       have h := Nat.mul_le_mul_left ell hkdiff
       simpa using h
