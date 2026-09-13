@@ -123,8 +123,16 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_o
       exact hleft.2.2
     have he11 : e1 1 = e0 1 - 1 := by omega
     have he12 : e1 2 = 0 := by omega
+    have hshape3 := hshape.2.2
+    rw [he03] at hshape3
+    have he13sub : e1 3 = D.beta * e0 1 - D.beta := by
+      omega
     have he13 : e1 3 = D.beta * (e0 1 - 1) := by
-      nlinarith [hshape.2.2]
+      calc
+        e1 3 = D.beta * e0 1 - D.beta := he13sub
+        _ = D.beta * e0 1 - D.beta * 1 := by simp
+        _ = D.beta * (e0 1 - 1) :=
+          (Nat.mul_sub_left_distrib D.beta (e0 1) 1).symm
     exact ⟨e0 1, D.beta, e0, e1,
       hn, D.beta_pos, hsupp,
       he0zero, rfl, he02, by simpa [Nat.mul_comm] using he03,
@@ -138,8 +146,16 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_o
       exact hright.2.2
     have he11 : e1 1 = e0 1 - 1 := by omega
     have he13 : e1 3 = 0 := by omega
+    have hshape2 := hshape.2.1
+    rw [he02] at hshape2
+    have he12sub : e1 2 = D.alpha * e0 1 - D.alpha := by
+      omega
     have he12 : e1 2 = D.alpha * (e0 1 - 1) := by
-      nlinarith [hshape.2.1]
+      calc
+        e1 2 = D.alpha * e0 1 - D.alpha := he12sub
+        _ = D.alpha * e0 1 - D.alpha * 1 := by simp
+        _ = D.alpha * (e0 1 - 1) :=
+          (Nat.mul_sub_left_distrib D.alpha (e0 1) 1).symm
     exact ⟨e0 1, D.alpha, e0, e1,
       hn, D.alpha_pos, hsupp,
       he0zero, rfl, by simpa [Nat.mul_comm] using he02, he03,
