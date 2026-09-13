@@ -182,17 +182,17 @@ theorem primitiveBinomial_endpoint_orientation_of_coefficients_zero
     omega
   have hboundary : p = alpha ∨ q = beta := by
     simp only [primitiveBinomialDetCoeff2] at h2
-    rcases mul_eq_zero.mp h2 with hpaK | hrest
-    · left
-      have hk : (p : K) = (alpha : K) := sub_eq_zero.mp hpaK
-      exact_mod_cast hk
-    · rcases mul_eq_zero.mp hrest with hqbK | hrest
-      · right
-        have hk : (q : K) = (beta : K) := sub_eq_zero.mp hqbK
-        exact_mod_cast hk
-      · rcases mul_eq_zero.mp hrest with hnK | hsumK
-        · exact (hn1 hnK).elim
-        · exact (hsum hsumK).elim
+    rcases mul_eq_zero.mp h2 with hleft | hsumK
+    · rcases mul_eq_zero.mp hleft with hpq | hnK
+      · rcases mul_eq_zero.mp hpq with hpaK | hqbK
+        · left
+          have hk : (p : K) = (alpha : K) := sub_eq_zero.mp hpaK
+          exact_mod_cast hk
+        · right
+          have hk : (q : K) = (beta : K) := sub_eq_zero.mp hqbK
+          exact_mod_cast hk
+      · exact (hn1 hnK).elim
+    · exact (hsum hsumK).elim
   rcases hboundary with hp | hq
   · subst p
     by_cases hqb : q = beta
@@ -245,9 +245,13 @@ theorem primitiveBinomial_endpoint_orientation_of_coefficients_zero
               (mul_ne_zero
                 (mul_ne_zero (neg_ne_zero.mpr ha0) ha1K) hqbeta) hn1) htail
         exact (hprod h1).elim
-      rw [ha1, primitiveBinomialDetCoeff0_of_p_boundary_alpha_one] at h0
+      have h0' :
+          primitiveBinomialDetCoeff0
+            (n : K) 1 (q : K) 1 (beta : K) = 0 := by
+        simpa [ha1] using h0
+      rw [primitiveBinomialDetCoeff0_of_p_boundary_alpha_one] at h0'
       have hsquare : ((q : K) - (beta : K) * (n : K))^2 = 0 := by
-        exact neg_eq_zero.mp h0
+        exact neg_eq_zero.mp h0'
       have hlin : (q : K) - (beta : K) * (n : K) = 0 :=
         (sq_eq_zero_iff).mp hsquare
       have hk : (q : K) = (beta : K) * (n : K) := sub_eq_zero.mp hlin
@@ -304,9 +308,13 @@ theorem primitiveBinomial_endpoint_orientation_of_coefficients_zero
               (mul_ne_zero
                 (mul_ne_zero (neg_ne_zero.mpr hb0) hpalpha) hb1K) hn1) htail
         exact (hprod h1).elim
-      rw [hb1, primitiveBinomialDetCoeff0_of_q_boundary_beta_one] at h0
+      have h0' :
+          primitiveBinomialDetCoeff0
+            (n : K) (p : K) 1 (alpha : K) 1 = 0 := by
+        simpa [hb1] using h0
+      rw [primitiveBinomialDetCoeff0_of_q_boundary_beta_one] at h0'
       have hsquare : ((p : K) - (alpha : K) * (n : K))^2 = 0 := by
-        exact neg_eq_zero.mp h0
+        exact neg_eq_zero.mp h0'
       have hlin : (p : K) - (alpha : K) * (n : K) = 0 :=
         (sq_eq_zero_iff).mp hsquare
       have hk : (p : K) = (alpha : K) * (n : K) := sub_eq_zero.mp hlin
