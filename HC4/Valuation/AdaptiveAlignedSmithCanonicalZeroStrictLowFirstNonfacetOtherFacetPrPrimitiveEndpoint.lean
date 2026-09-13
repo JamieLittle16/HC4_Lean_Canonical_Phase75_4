@@ -115,13 +115,13 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_non
     rw [A.slope_eq_locked (3 : Fin 4), hdir.2.2.2]
     norm_num
 
-  have hLdet : hessianDeterminant L.polynomial = 0 := by
+  have hLdet : HC4.Polynomial.hessianDeterminant L.polynomial = 0 := by
     dsimp [L]
     exact A.ray.zeroAffineLineData_hessian_zero S.hessian_zero
   have hmoment := L.polynomialMoment_det_zero_of_hessian_zero
     (by norm_num : 0 < (1 : ℕ)) hLdet
   change
-      (rankThreeAffinePolynomialMomentHessian
+      (HC4.Polynomial.rankThreeAffinePolynomialMomentHessian
         (A.ray.facetExponent 1) (A.ray.facetExponent 2)
         (A.ray.facetExponent 3) 1
         (A.ray.zeroSlope 1) (A.ray.zeroSlope 2) (A.ray.zeroSlope 3)
