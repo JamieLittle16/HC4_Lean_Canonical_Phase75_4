@@ -62,6 +62,9 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_left
   rw [hdir2] at h2
   rw [hdir3] at h3
   rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
+  have hpairZ :
+      (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) := by
+    simpa [qsOtherFacetPairDegree] using hpair
   have hfirstZ :
       (e 0 : ℤ) + (e 2 : ℤ) = (f 0 : ℤ) + (f 2 : ℤ) := by
     nlinarith [h2]
@@ -70,11 +73,15 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_left
         (V : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by
     nlinarith [h3]
   refine ⟨?_, ?_, ?_⟩
-  · simpa [qsOtherFacetPairDegree] using hpair
   · apply Int.ofNat.inj
-    simpa only [Nat.cast_add] using hfirstZ
+    push_cast
+    exact hpairZ
   · apply Int.ofNat.inj
-    simpa only [Nat.cast_add, Nat.cast_mul] using hsecondZ
+    push_cast
+    simpa using hfirstZ
+  · apply Int.ofNat.inj
+    push_cast
+    exact hsecondZ
 
 /-- Fixed pair-degree slices are `(V,1)` quotient fibers in the swapped
 primitive orientation. -/
@@ -103,6 +110,9 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_right
   rw [hdir2] at h2
   rw [hdir3] at h3
   rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
+  have hpairZ :
+      (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) := by
+    simpa [qsOtherFacetPairDegree] using hpair
   have hfirstZ :
       (V : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
         (V : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by
@@ -111,11 +121,15 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_right
       (e 0 : ℤ) + (e 3 : ℤ) = (f 0 : ℤ) + (f 3 : ℤ) := by
     nlinarith [h3]
   refine ⟨?_, ?_, ?_⟩
-  · simpa [qsOtherFacetPairDegree] using hpair
   · apply Int.ofNat.inj
-    simpa only [Nat.cast_add, Nat.cast_mul] using hfirstZ
+    push_cast
+    exact hpairZ
   · apply Int.ofNat.inj
-    simpa only [Nat.cast_add] using hsecondZ
+    push_cast
+    exact hfirstZ
+  · apply Int.ofNat.inj
+    push_cast
+    simpa using hsecondZ
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
