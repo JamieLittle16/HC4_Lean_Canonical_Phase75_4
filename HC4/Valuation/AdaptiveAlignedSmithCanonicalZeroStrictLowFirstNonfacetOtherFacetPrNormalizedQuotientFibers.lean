@@ -53,25 +53,28 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_left
     (he : e ∈ P.carrier.support) (hf : f ∈ P.carrier.support)
     (hpair : qsOtherFacetPairDegree .pr e =
       qsOtherFacetPairDegree .pr f) :
-    rankThreeQuotientCoordinate 1 V e =
-      rankThreeQuotientCoordinate 1 V f := by
+    HC4.Polynomial.rankThreeQuotientCoordinate 1 V e =
+      HC4.Polynomial.rankThreeQuotientCoordinate 1 V f := by
   have hpar := P.support_difference_parallel_ray
     hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree he hf hpair
   have h2 := hpar (2 : Fin 4)
   have h3 := hpar (3 : Fin 4)
   rw [hdir2] at h2
   rw [hdir3] at h3
-  rw [rankThreeQuotientCoordinate_eq_iff]
-  constructor
-  · simpa [qsOtherFacetPairDegree] using hpair
-  constructor
-  · exact_mod_cast (show
-      (e 0 : ℤ) + (e 2 : ℤ) = (f 0 : ℤ) + (f 2 : ℤ) by
-        nlinarith [h2])
-  · exact_mod_cast (show
+  rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
+  have hfirstZ :
+      (e 0 : ℤ) + (e 2 : ℤ) = (f 0 : ℤ) + (f 2 : ℤ) := by
+    nlinarith [h2]
+  have hsecondZ :
       (V : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
-        (V : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) by
-        nlinarith [h3])
+        (V : ℤ) * (f 0 : ℤ) + (f 3 : ℤ) := by
+    nlinarith [h3]
+  refine ⟨?_, ?_, ?_⟩
+  · simpa [qsOtherFacetPairDegree] using hpair
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add] using hfirstZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hsecondZ
 
 /-- Fixed pair-degree slices are `(V,1)` quotient fibers in the swapped
 primitive orientation. -/
@@ -91,25 +94,28 @@ theorem QsOtherFacetPlanarCarrierPackage.pr_quotient_eq_of_normalized_right
     (he : e ∈ P.carrier.support) (hf : f ∈ P.carrier.support)
     (hpair : qsOtherFacetPairDegree .pr e =
       qsOtherFacetPairDegree .pr f) :
-    rankThreeQuotientCoordinate V 1 e =
-      rankThreeQuotientCoordinate V 1 f := by
+    HC4.Polynomial.rankThreeQuotientCoordinate V 1 e =
+      HC4.Polynomial.rankThreeQuotientCoordinate V 1 f := by
   have hpar := P.support_difference_parallel_ray
     hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree he hf hpair
   have h2 := hpar (2 : Fin 4)
   have h3 := hpar (3 : Fin 4)
   rw [hdir2] at h2
   rw [hdir3] at h3
-  rw [rankThreeQuotientCoordinate_eq_iff]
-  constructor
-  · simpa [qsOtherFacetPairDegree] using hpair
-  constructor
-  · exact_mod_cast (show
+  rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
+  have hfirstZ :
       (V : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
-        (V : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) by
-        nlinarith [h2])
-  · exact_mod_cast (show
-      (e 0 : ℤ) + (e 3 : ℤ) = (f 0 : ℤ) + (f 3 : ℤ) by
-        nlinarith [h3])
+        (V : ℤ) * (f 0 : ℤ) + (f 2 : ℤ) := by
+    nlinarith [h2]
+  have hsecondZ :
+      (e 0 : ℤ) + (e 3 : ℤ) = (f 0 : ℤ) + (f 3 : ℤ) := by
+    nlinarith [h3]
+  refine ⟨?_, ?_, ?_⟩
+  · simpa [qsOtherFacetPairDegree] using hpair
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add, Nat.cast_mul] using hfirstZ
+  · apply Int.ofNat.inj
+    simpa only [Nat.cast_add] using hsecondZ
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
