@@ -101,6 +101,7 @@ theorem snd_det_lockedParallelFirstVariationDualPencil
     eulerDerivative]
   push_cast
   rw [Nat.cast_sub hk]
+  simp only [Polynomial.C_eq_natCast]
   ring
 
 /-- Vanishing first variation forces the affine two-root Euler equation as soon
