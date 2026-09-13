@@ -7650,7 +7650,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`, `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_nontrivial`
+- Declarations: `theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_nontrivial`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_primitive_of_nontrivial`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
 
