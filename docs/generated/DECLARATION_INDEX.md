@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7929**.
+Distinct declaration spellings indexed: **7932**.
 
 ## Repeated declaration spellings
 
@@ -7421,7 +7421,9 @@ Distinct declaration spellings indexed: **7929**.
 - `specialFiber_free_of_saturatedKernelSlope_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveSlopeKernelFree`
 - `specialFiber_hessianDeterminant_eq_one_of_source_rawDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalConformalZeroClockEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticZeroClockEndpoint`
 - `specialFiber_hessianDeterminant_eq_zero_of_familyDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`
+- `specialFiber_hessianPrincipalMinor_two_three_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`
 - `specialFiber_hessian_zero_of_presentedRawDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalClockSplitResolution`
+- `specialFiber_lineCoefficient_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`
 - `specialFiber_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLinearCornerElimination`
 - `specialFiber_linearCoeff_zero_of_gradientAtZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `specialFiber_markedPoints_distinct` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
@@ -7439,6 +7441,7 @@ Distinct declaration spellings indexed: **7929**.
 - `specialFiber_reverseReesFamily_eq_child` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `specialFiber_saturatedKernelBlowup_active` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `specialFiber_saturatedKernelBlowup_eq_firstContactFace` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
+- `specialFiber_supportedRankThreeLine` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`
 - `specialFiber_symmetricMinimal_or_familyStrictImprovement` — `theorem` in `HC4.Valuation.BinarySmithOrderExtraction`
 - `specialFiber_witness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAllTransverseRationalKernelDispatcher`
 - `specialFiber_witnesses` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAllTransverseRationalKernelDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryDispatcher`
