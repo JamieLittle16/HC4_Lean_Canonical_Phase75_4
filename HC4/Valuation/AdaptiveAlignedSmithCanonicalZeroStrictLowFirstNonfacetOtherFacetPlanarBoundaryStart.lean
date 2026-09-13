@@ -1,6 +1,9 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock
 import HC4.Newton.InteriorVertex
+import HC4.Polynomial.FourExponent
+import HC4.Polynomial.WeightBounds
+import HC4.Polynomial.WeightedInitial
 import HC4.RationalRigidity.LineSupportedHessianRigidity
 import Mathlib.Tactic
 
@@ -116,7 +119,8 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq
   ext i
   have hi := hpar i
   have ht : (e 0 : ℤ) - (f 0 : ℤ) = 0 := by
-    exact_mod_cast sub_eq_zero.mpr hzero
+    rw [hzero]
+    simp
   rw [ht] at hi
   simp only [zero_mul] at hi
   have hiz : (e i : ℤ) = (f i : ℤ) := sub_eq_zero.mp hi
@@ -151,11 +155,17 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transve
   have hstepNat : C.ray.outsideExponent i < C.ray.facetExponent i :=
     hsigns.2.2 i hi
   have htneg : (e 0 : ℤ) - (f 0 : ℤ) < 0 := by
-    exact_mod_cast hef0
+    have hef0Z : (e 0 : ℤ) < (f 0 : ℤ) := by
+      exact_mod_cast hef0
+    exact sub_neg.mpr hef0Z
   have hstepneg :
       (C.ray.outsideExponent i : ℤ) -
           (C.ray.facetExponent i : ℤ) < 0 := by
-    exact_mod_cast hstepNat
+    have hstepZ :
+        (C.ray.outsideExponent i : ℤ) <
+          (C.ray.facetExponent i : ℤ) := by
+      exact_mod_cast hstepNat
+    exact sub_neg.mpr hstepZ
   have hprod :
       0 < ((e 0 : ℤ) - (f 0 : ℤ)) *
         ((C.ray.outsideExponent i : ℤ) -
