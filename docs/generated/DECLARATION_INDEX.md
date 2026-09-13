@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7980**.
+Distinct declaration spellings indexed: **7983**.
 
 ## Repeated declaration spellings
 
@@ -4198,6 +4198,7 @@ Distinct declaration spellings indexed: **7980**.
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_firstPositiveLayer_strictInterior_coordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
+- `exists_firstPositiveLayer_strictInterior_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `exists_firstReesProjectiveWedgeDepartureData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `exists_firstThree_zero_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exists_firstTransverseKeyHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
@@ -4567,6 +4568,7 @@ Distinct declaration spellings indexed: **7980**.
 - `firstPositiveLayer_pair_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `firstPositiveLayer_pair_gt_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
+- `firstPositiveLayer_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `firstPositiveOrder_lt_highest_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `firstPositiveParameterOrder` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `firstPositiveParameterOrder_le` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
@@ -5685,6 +5687,7 @@ Distinct declaration spellings indexed: **7980**.
 - `parameterGapJet_snd` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapSubring` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `parameterLayer_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
+- `parameterLayer_coeff_eq_carrier_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `parameterLayer_mem_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `parameterLayer_support_source_and_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `parameterRamificationFamily` — `def` in `HC4.Valuation.ParameterRamification`

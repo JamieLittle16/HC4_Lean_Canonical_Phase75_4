@@ -8000,7 +8000,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneNoInteriorSupport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem parameterLayer_mem_of_carrier_mem`, `theorem exists_strictInterior_of_not_noStrictInterior`, `theorem reverseOrder_pos_of_strictInterior`, `theorem firstPositiveOrder_lt_highest_of_not_noStrictInterior`, `theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior`, `theorem exists_firstPositiveLayer_strictInterior_coordinates`
+- Declarations: `theorem parameterLayer_mem_of_carrier_mem`, `theorem exists_strictInterior_of_not_noStrictInterior`, `theorem reverseOrder_pos_of_strictInterior`, `theorem firstPositiveOrder_lt_highest_of_not_noStrictInterior`, `theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior`, `theorem exists_firstPositiveLayer_strictInterior_coordinates`, `theorem parameterLayer_coeff_eq_carrier_of_mem`, `theorem firstPositiveLayer_quotient_fiber`, `theorem exists_firstPositiveLayer_strictInterior_fiber`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 
