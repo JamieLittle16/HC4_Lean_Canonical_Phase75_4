@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8020**.
+Distinct declaration spellings indexed: **8029**.
 
 ## Repeated declaration spellings
 
@@ -3360,6 +3360,11 @@ Distinct declaration spellings indexed: **8020**.
 - `canonical_four_facet_cycle_pairwise_distinct` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `canonical_rankLadder_exhaustion` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `carrierLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `carrierProfileHessian00` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `carrierProfileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `carrierProfileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `carrierProfileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `carrierProfileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
 - `certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
@@ -3467,6 +3472,10 @@ Distinct declaration spellings indexed: **8020**.
 - `coeff_binaryStaircaseProfileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianCoefficients`
 - `coeff_binaryStaircaseProfileResidual_eq_zero_of_two_mul_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_binaryStaircaseProfileSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
+- `coeff_carrierProfileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `coeff_carrierProfileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `coeff_carrierProfileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `coeff_carrierProfileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `coeff_clearedPolynomialSubstitution_top` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `coeff_coeff_C_X_pow_mul_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `coeff_coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
