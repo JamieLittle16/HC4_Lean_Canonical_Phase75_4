@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7897**.
+Distinct declaration spellings indexed: **7909**.
 
 ## Repeated declaration spellings
 
@@ -2756,6 +2756,7 @@ Distinct declaration spellings indexed: **7897**.
 - `V_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrTwoFunctionCarrier`
 - `X_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_dvd_longitudinalCoefficient_single_of_zeroGradient` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `X_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `X_mul_X_sub_one_dvd_longitudinalCoefficient_single_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_pow_dvd_of_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `X_pow_dvd_rigidLongitudinalEval_of_support_lowerBound` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -2764,6 +2765,10 @@ Distinct declaration spellings indexed: **7897**.
 - `X_pow_mul_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `X_sub_one_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_sub_one_dvd_longitudinalCoefficient_single_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `X_two_mul_H_pow_mul_Y_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `X_two_mul_polynomialLift_monomial_eq` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `X_zero_mul_H_pow_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `X_zero_mul_polynomialLift_monomial_eq` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
@@ -7886,6 +7891,7 @@ Distinct declaration spellings indexed: **7897**.
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `twoFunctionCarrier` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `twoFunctionCarrier_hessian_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
+- `twoFunctionCarrier_monomial_normalForm` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `twoFunctionConcreteBx` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionConcreteBx_constant_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunctionConcreteBx_eq_zero_of_factorB_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
@@ -7902,7 +7908,13 @@ Distinct declaration spellings indexed: **7897**.
 - `twoFunctionFactorBxSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunctionFactorBzSeries` — `def` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `twoFunctionH` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionHExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `twoFunctionHighestXExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `twoFunctionHighestZExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `twoFunctionLockedFacetExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `twoFunctionLockedOutsideExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `twoFunctionY` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `twoFunctionYExponent` — `def` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `twoFunctionYSpecialisation` — `def` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunction_concrete_factorB_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
