@@ -136,6 +136,36 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_non
       hn D.alpha_pos D.beta_pos hpa hbq hsupp hphi0 hphi1 hmoment
   exact ⟨D, A, horient⟩
 
+/-- The preceding endpoint classification fixes the *global* locked `.pr`
+direction itself.  Since the quotient data comes from the original source ray,
+the same `V` controls every later fixed-pair fiber, not only the highest slice. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_primitive_of_nontrivial
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (hnontrivial :
+      ∃ a ∈ S.slice.support, ∃ b ∈ S.slice.support, a ≠ b) :
+    ∃ V : ℕ, 0 < V ∧
+      (((C.ray.outsideExponent 0 : ℤ) - (C.ray.facetExponent 0 : ℤ) = 1 ∧
+        (C.ray.outsideExponent 1 : ℤ) - (C.ray.facetExponent 1 : ℤ) = -1 ∧
+        (C.ray.outsideExponent 2 : ℤ) - (C.ray.facetExponent 2 : ℤ) = -1 ∧
+        (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) = -(V : ℤ)) ∨
+       ((C.ray.outsideExponent 0 : ℤ) - (C.ray.facetExponent 0 : ℤ) = 1 ∧
+        (C.ray.outsideExponent 1 : ℤ) - (C.ray.facetExponent 1 : ℤ) = -1 ∧
+        (C.ray.outsideExponent 2 : ℤ) - (C.ray.facetExponent 2 : ℤ) = -(V : ℤ) ∧
+        (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ) = -1)) := by
+  rcases S.pr_endpoint_orientation_of_nontrivial
+      hthree houtThree hnontrivial with ⟨D, A, horient⟩
+  have hdir := D.direction_eq hthree houtThree
+  rcases horient with hleft | hright
+  · refine ⟨D.beta, D.beta_pos, Or.inl ⟨hdir.1, hdir.2.1, ?_, hdir.2.2.2⟩⟩
+    simpa [hleft.2.1] using hdir.2.2.1
+  · refine ⟨D.alpha, D.alpha_pos, Or.inr ⟨hdir.1, hdir.2.1, hdir.2.2.1, ?_⟩⟩
+    simpa [hright.2.1] using hdir.2.2.2
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
