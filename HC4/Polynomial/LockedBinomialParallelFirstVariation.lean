@@ -77,7 +77,7 @@ The height `j` of the parallel staircase disappears from the determinant
 coefficient.  The remaining differential operator is exactly the previously
 formalised affine two-root Euler operator with adjacent roots `k-1,k`. -/
 set_option maxHeartbeats 2000000 in
-theorem snd_det_lockedParallelFirstVariationDualPencil
+lemma snd_det_lockedParallelFirstVariationDualPencil
     (V ell k j : ℕ) (hk : 1 ≤ k) (a b : K) (phi : Polynomial K) :
     TrivSqZeroExt.snd
         (lockedParallelFirstVariationDualPencil
@@ -99,10 +99,6 @@ theorem snd_det_lockedParallelFirstVariationDualPencil
     affineTwoRootEulerOperator, affineEulerLinear,
     eulerDerivative, DualNumber.snd_mul]
   push_cast
-  have hkcast : (((k - 1 : ℕ) : K)) = (k : K) - 1 := by
-    rw [Nat.cast_sub hk]
-    norm_num
-  rw [hkcast]
   ring
 
 /-- Vanishing first variation forces the affine two-root Euler equation as soon
@@ -140,7 +136,9 @@ theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero
         (a * ((ell : K) + 1)) (b * (ell : K)) ≠ 0 := by
     intro hz
     have hc := congrArg (fun p : Polynomial K => p.coeff 1) hz
-    simp [affineEulerLinear, hB] at hc
+    have hc' : b * (ell : K) = 0 := by
+      simpa [affineEulerLinear, Polynomial.coeff_one] using hc
+    exact hB hc'
   have hX2 : (Polynomial.X : Polynomial K) ^ 2 ≠ 0 :=
     pow_ne_zero 2 Polynomial.X_ne_zero
   rcases mul_eq_zero.mp hdet with hprefix | hop
