@@ -129,10 +129,15 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
   have hjNat : e 0 + e 2 = j + 1 := by
     simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
       one_mul] using hj
+  have hcurveZ' :
+      (F.V : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
+        (F.V : ℤ) * ((e 0 : ℤ) + (e 1 : ℤ) + (j : ℤ)) := by
+    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+      HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+      Nat.cast_add, Nat.cast_mul, Nat.cast_one] using hcurveZ
   have hcurve : F.V * e 0 + e 3 = F.V * (e 0 + e 1 + j) := by
     apply Int.ofNat.inj
-    push_cast
-    nlinarith [hcurveZ]
+    simpa only [Nat.cast_add, Nat.cast_mul] using hcurveZ'
   have hk := F.support_pair_pos hthree houtThree he
   have hslopeZ := hs.1
   rw [hj] at hslopeZ
@@ -149,6 +154,11 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
     HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     one_mul]
   rw [hjNat, hcurve]
+  have hweight :
+      e 0 + e 1 + (j + 1) + F.V * (e 0 + e 1 + j) =
+        (F.V + 1) * (e 0 + e 1 + j) + 1 := by
+    ring
+  rw [hweight, Nat.mul_sub_left_distrib]
   omega
 
 /-- Swapped exact contact-order formula. -/
@@ -176,10 +186,15 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
   have hjNat : e 0 + e 3 = j + 1 := by
     simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
       one_mul] using hj
+  have hcurveZ' :
+      (F.V : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
+        (F.V : ℤ) * ((e 0 : ℤ) + (e 1 : ℤ) + (j : ℤ)) := by
+    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+      HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+      Nat.cast_add, Nat.cast_mul, Nat.cast_one] using hcurveZ
   have hcurve : F.V * e 0 + e 2 = F.V * (e 0 + e 1 + j) := by
     apply Int.ofNat.inj
-    push_cast
-    nlinarith [hcurveZ]
+    simpa only [Nat.cast_add, Nat.cast_mul] using hcurveZ'
   have hk := F.support_pair_pos hthree houtThree he
   have hslopeZ := hs.1
   rw [hj] at hslopeZ
@@ -196,6 +211,11 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
     HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     one_mul]
   rw [hjNat, hcurve]
+  have hweight :
+      e 0 + e 1 + (j + 1) + F.V * (e 0 + e 1 + j) =
+        (F.V + 1) * (e 0 + e 1 + j) + 1 := by
+    ring
+  rw [hweight, Nat.mul_sub_left_distrib]
   omega
 
 /-- The left contact order satisfies the exact endpoint interpolation law. -/
