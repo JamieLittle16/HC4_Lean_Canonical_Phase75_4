@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7871**.
+Distinct declaration spellings indexed: **7883**.
 
 ## Repeated declaration spellings
 
@@ -2750,7 +2750,9 @@ Distinct declaration spellings indexed: **7871**.
 - `X_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_dvd_longitudinalCoefficient_single_of_zeroGradient` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_mul_X_sub_one_dvd_longitudinalCoefficient_single_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `X_pow_dvd_of_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `X_pow_dvd_rigidLongitudinalEval_of_support_lowerBound` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `X_pow_dvd_translate_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `X_pow_mul_mul_X_pow_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `X_pow_mul_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `X_sub_one_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -2870,7 +2872,9 @@ Distinct declaration spellings indexed: **7871**.
 - `admissibleIntegralKernelSlope_le_maximal` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `aeval_rankThreeEtaDenominatorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `aeval_rankThreeEtaNumeratorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
+- `affineEulerLinear` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
+- `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -3529,6 +3533,7 @@ Distinct declaration spellings indexed: **7871**.
 - `coeff_three_weightedRankThreeEndpointPencil_three_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `coeff_three_weightedRankThreeEndpointPencil_two_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
+- `coeff_twoRootEulerOperator` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `coeff_two_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_two_mul_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
@@ -5332,6 +5337,7 @@ Distinct declaration spellings indexed: **7871**.
 - `natDegree_eulerDerivative_eq_of_pos` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `natDegree_eulerDerivative_eulerDerivative_le` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `natDegree_eulerDerivative_le` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
+- `natDegree_le_succ_of_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `natDegree_le_two_of_polynomialAutonomousLogODE_after_translation` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `natDegree_le_two_of_shiftedPolynomialAutonomousLogODE` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `natDegree_ne_zero_of_coeff_ne_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -7571,6 +7577,7 @@ Distinct declaration spellings indexed: **7871**.
 - `support_mapCoeffs_eq` — `theorem` in `HC4.Toric.CoefficientDescent`
 - `support_noWallPrimitiveSmithFamily_subset_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithZeroJet`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
+- `support_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `supported_balanced_rankThree_degreeOne_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedDegreeOneImpossible`
 - `supported_balanced_rankThree_edge_directionDegenerate` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedDirectionDegeneracy`
 - `supported_balanced_rankThree_edge_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible`
@@ -7772,9 +7779,11 @@ Distinct declaration spellings indexed: **7871**.
 - `totalDegree_rigidTopBinaryPlaneSpecialisation_monomial_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `translatePolynomial` — `def` in `HC4.Polynomial.AutonomousODETranslation`
+- `translatePolynomial_affineEulerLinear_root` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `translatePolynomial_injective` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `translatePolynomial_neg_comp` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
+- `translated_support_subset_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `transportPlanarRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `transportWSquareRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `transverseAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
@@ -7884,6 +7893,9 @@ Distinct declaration spellings indexed: **7871**.
 - `twoFunction_concrete_factorB_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `twoFunction_factorB_series_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `twoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `twoRootEulerOperator_support_subset` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `twoRootEulerOperator_translate_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
