@@ -43,7 +43,7 @@ singular matrix `A` has nonzero adjugate `C` and `C B C = C`, then some
 nonzero vector in `ker A` has nonzero `B`-quadratic value. -/
 theorem exists_kernel_quadratic_ne_zero_of_adjugate_sandwich
     (A B : Matrix (Fin 4) (Fin 4) K)
-    (hA : A.IsSymm)
+    (hA : ∀ i j, A i j = A j i)
     (hdet : A.det = 0)
     (hAdj : A.adjugate ≠ 0)
     (hsand : A.adjugate * B * A.adjugate = A.adjugate) :
@@ -53,11 +53,18 @@ theorem exists_kernel_quadratic_ne_zero_of_adjugate_sandwich
       dotProduct v (B.mulVec v) ≠ 0 := by
   let C := A.adjugate
   have hCne : C ≠ 0 := by simpa [C] using hAdj
-  have hCsymm : C.IsSymm := by
-    dsimp [C]
-    calc
-      A.adjugate.transpose = A.transpose.adjugate := Matrix.adjugate_transpose A
-      _ = A.adjugate := congrArg Matrix.adjugate hA
+  have hAT : A.transpose = A := by
+    ext i j
+    exact hA j i
+  have hCsymm : ∀ i j, C i j = C j i := by
+    have hCT : C.transpose = C := by
+      dsimp [C]
+      calc
+        A.adjugate.transpose = A.transpose.adjugate := Matrix.adjugate_transpose A
+        _ = A.adjugate := congrArg Matrix.adjugate hAT
+    intro i j
+    have h := congrFun (congrFun hCT i) j
+    exact h.symm
   have hAC : A * C = 0 := by
     have h := Matrix.mul_adjugate A
     rw [hdet] at h
@@ -73,7 +80,8 @@ theorem exists_kernel_quadratic_ne_zero_of_adjugate_sandwich
   rcases hCentry with ⟨i, k, hik⟩
 
   have hCtranspose (r : Fin 4) : C.transpose r = C r := by
-    exact congrFun hCsymm r
+    funext x
+    exact hCsymm x r
 
   have hkernel (r : Fin 4) : A.mulVec (C r) = 0 := by
     have hrowcol : C r = C.col r := by
@@ -99,8 +107,7 @@ theorem exists_kernel_quadratic_ne_zero_of_adjugate_sandwich
         rw [show v = C i + C k by rfl, Matrix.mulVec_add, hkernel i, hkernel k]
         simp
       have hki : C k i = C i k := by
-        have h := congrFun (hCtranspose k) i
-        simpa using h.symm
+        exact hCsymm k i
       have hq : dotProduct v (B.mulVec v) = 2 * C i k := by
         change dotProduct (C i + C k) (B.mulVec (C i + C k)) = 2 * C i k
         rw [Matrix.mulVec_add]
@@ -154,14 +161,12 @@ variable {B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
 theorem sourceOriginHessianLayer_isSymm
     (C : AdaptiveAlignedSmithRankOneClosingSourceCarrier B)
     (n : ℕ) :
-    (sourceOriginHessianLayer C.family n).IsSymm := by
-  change (sourceOriginHessianLayer C.family n).transpose =
-    sourceOriginHessianLayer C.family n
-  ext i k
-  change sourceOriginHessianLayer C.family n k i =
-    sourceOriginHessianLayer C.family n i k
+    ∀ i k,
+      sourceOriginHessianLayer C.family n i k =
+        sourceOriginHessianLayer C.family n k i := by
+  intro i k
   rw [sourceOriginHessianLayer_apply, sourceOriginHessianLayer_apply]
-  exact quadraticFamilyHessianMatrix_coeff_symmetric C.family n k i
+  exact quadraticFamilyHessianMatrix_coeff_symmetric C.family n i k
 
 /-- The direct-closing equality branch already contains a genuinely fresh
 kernel quadratic direction at the honest source origin. -/

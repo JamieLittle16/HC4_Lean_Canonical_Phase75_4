@@ -57,7 +57,7 @@ inductive AdaptiveAlignedSmithCanonicalExactClockGeometryFinalLocalOutcome
         (AdaptiveAlignedSmithCanonicalGlobalStationaryRankTwoProgress
           RR s complexity))
 
-  | local
+  | localProblem
       (P : AdaptiveAlignedSmithCanonicalExactClockFinalLocalProblem s)
 
   | survivingExactClock
@@ -99,14 +99,14 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
     | schurClosing S hclockS hposS C =>
         rcases C.firstActualLayer_strict_or_eq_and_provenancedEarlierWall with
           hlt | ⟨heq, hwall⟩
-        · exact .local {
+        · exact .localProblem {
             stationary := S
             clock_eq := hclockS
             clock_pos := hposS
             geometry := .earlySchurTangential C hlt
               (C.firstActualLayer_schurTangential_of_lt_defect hlt)
           }
-        · exact .local {
+        · exact .localProblem {
             stationary := S
             clock_eq := hclockS
             clock_pos := hposS
@@ -114,7 +114,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
           }
 
     | zeroSchurClosing S hclockS hposS C =>
-        exact .local {
+        exact .localProblem {
           stationary := S
           clock_eq := hclockS
           clock_pos := hposS
@@ -122,7 +122,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
         }
 
     | planarRigidPacket S hclockS hposS hall P hrigid =>
-        exact .local {
+        exact .localProblem {
           stationary := S
           clock_eq := hclockS
           clock_pos := hposS
@@ -130,7 +130,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
         }
 
     | wSquareRigidPacket S hclockS hposS hall P hrigid =>
-        exact .local {
+        exact .localProblem {
           stationary := S
           clock_eq := hclockS
           clock_pos := hposS
@@ -201,18 +201,19 @@ theorem ScaleAwareAdaptiveGeometricRestartState.alignedSmithCanonicalExactClockG
   | sectionBoundaryInternal B =>
       exact .residual (.sectionBoundaryInternal B)
 
-  | local P =>
+  | localProblem P =>
       cases P.geometry with
       | earlySchurTangential C hlt htangential =>
-          cases P.earlySchur_geometricPreassembly
-              RR complexity hsrepair C hlt with
-          | rankTwoProgress D =>
-              exact .earlySchurRankTwoProgress D
-          | constantLineRS2 _P _C _hlt R =>
-              exact .residual
-                (.earlySchurConstantRS2
-                  P.stationary P.clock_eq P.clock_pos
-                  C hlt htangential R)
+          rcases C.earlySchur_rankTwoGeometry_or_constantLineRS2Preassembly
+              P complexity hlt with hG | hR
+          · rcases hG with ⟨G⟩
+            exact .earlySchurRankTwoProgress
+              ⟨AdaptiveAlignedSmithCanonicalGlobalEarlySchurRankTwoProgress.ofGeometry
+                RR P complexity hsrepair C hlt G⟩
+          · exact .residual
+              (.earlySchurConstantRS2
+                P.stationary P.clock_eq P.clock_pos
+                C hlt htangential hR)
 
       | canonicalEarlierWall C heq wall =>
           exact .residual

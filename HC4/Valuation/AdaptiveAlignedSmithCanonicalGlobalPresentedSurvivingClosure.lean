@@ -275,9 +275,9 @@ theorem AdaptiveAlignedSmithCanonicalSurvivingRigidExposureRankTwoGeometry.globa
     · simpa [target, ScaleAwareAdaptiveGeometricRestartState.withRepairOnly]
         using hrepair
 
-  let local : AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro RR s :=
+  let hlocalMacro : AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro RR s :=
     .mk exposed target hexposed hprogress
-  exact local.prepend_internal RR D.sourcePresentation
+  exact hlocalMacro.prepend_internal RR D.sourcePresentation
 
 /-! ## Complete presented-surviving closure -/
 

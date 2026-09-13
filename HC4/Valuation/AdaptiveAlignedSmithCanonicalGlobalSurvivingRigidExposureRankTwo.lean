@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithRigidPacketExposureClosing
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingRankTwoAbsoluteScale
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCanonicalExposureNeutrality
 import Mathlib.Tactic
 
 /-!
@@ -217,8 +218,14 @@ theorem AdaptiveAlignedSmithRigidPacketEndpoint.geometricExposureOutcome
                 zeroSchur := Z
                 closing := Or.inr ⟨S, hres, rfl, hclose,
                   S.series.transverse_nonzero_at_first S.hasTransverse |>.imp
-                    (fun h => by simpa [hclose] using h)
-                    (fun h => by simpa [hclose] using h)⟩
+                    (fun h => by
+                      change S.series.offDiag.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)
+                    (fun h => by
+                      change S.series.kernel.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)⟩
               }
               exact .canonicalClosing C (by simpa [C] using hspecial)
           · let S := E.toRankOneClockRight hres htail
@@ -240,8 +247,14 @@ theorem AdaptiveAlignedSmithRigidPacketEndpoint.geometricExposureOutcome
                 zeroSchur := Z
                 closing := Or.inr ⟨S, hres, rfl, hclose,
                   S.series.transverse_nonzero_at_first S.hasTransverse |>.imp
-                    (fun h => by simpa [hclose] using h)
-                    (fun h => by simpa [hclose] using h)⟩
+                    (fun h => by
+                      change S.series.offDiag.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)
+                    (fun h => by
+                      change S.series.kernel.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)⟩
               }
               exact .canonicalClosing C (by simpa [C] using hspecial)
 
@@ -278,8 +291,14 @@ theorem AdaptiveAlignedSmithRigidPacketEndpoint.geometricExposureOutcome
                 zeroSchur := Z
                 closing := Or.inr ⟨S, hres, rfl, hclose,
                   S.series.transverse_nonzero_at_first S.hasTransverse |>.imp
-                    (fun h => by simpa [hclose] using h)
-                    (fun h => by simpa [hclose] using h)⟩
+                    (fun h => by
+                      change S.series.offDiag.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)
+                    (fun h => by
+                      change S.series.kernel.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)⟩
               }
               exact .canonicalClosing C (by simpa [C] using hspecial)
           · let S := E.toRankOneClockRight hres htail
@@ -301,15 +320,23 @@ theorem AdaptiveAlignedSmithRigidPacketEndpoint.geometricExposureOutcome
                 zeroSchur := Z
                 closing := Or.inr ⟨S, hres, rfl, hclose,
                   S.series.transverse_nonzero_at_first S.hasTransverse |>.imp
-                    (fun h => by simpa [hclose] using h)
-                    (fun h => by simpa [hclose] using h)⟩
+                    (fun h => by
+                      change S.series.offDiag.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)
+                    (fun h => by
+                      change S.series.kernel.coeff S.firstOrder ≠ 0 at h
+                      rw [hclose] at h
+                      exact h)⟩
               }
               exact .canonicalClosing C (by simpa [C] using hspecial)
     · exact .boundary d hboundary
 
 /-- Global rank-two continuation on the *actual canonical exposure family*.
-The aligned state is retained as provenance, while the recursive target is the
-exposure state at its honest absolute scale. -/
+The recursive target is recorded on the exact exposure family together with a
+certified ramified presentation from the caller's source state.  The latter is
+intentionally stored directly: callers may be either before the aligned
+presentation or already at that presented state. -/
 structure AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
     (RR : RepairRanking)
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
@@ -320,23 +347,18 @@ structure AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgre
     (complexity : ℕ) : Type (u + 1) where
   geometry : AdaptiveAlignedSmithCanonicalSurvivingRigidExposureRankTwoGeometry
     W P R hD complexity
-  outer : ScaleAwareAdaptiveGeometricRestartState (K := K)
-  outer_eq : outer = W.original.aligned.toOuterScaleAwareState s
   exposed : ScaleAwareAdaptiveGeometricRestartState (K := K)
-  exposed_eq :
-    exposed =
-      (geometry.exposure.toAdaptiveState geometry.canonicalSpecial).toScaleAwareAt
-        (geometry.exposure.ramification.R * outer.scale)
-        (Nat.mul_pos geometry.exposure.ramification.R_pos outer.scale_pos)
+  exposed_family : exposed.family = geometry.exposure.family
   target : ScaleAwareAdaptiveGeometricRestartState (K := K)
   target_eq : target = exposed.withRepairOnly (rankTwoRepairState complexity)
-  alignedPresentation : HasCertifiedRamifiedEpisodeInternalMove outer s
+  sourcePresentation : HasCertifiedRamifiedEpisodeInternalMove exposed s
   exposedProgress : CertifiedSameScaleEpisodeProgress RR target exposed
   globalProgress : AdaptiveAlignedSmithCanonicalGlobalMacroProgress target s
 
-/-- Attach a retained surviving-rigid zero-Schur witness to the exact exposed
-family on which it was proved. -/
-noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometry
+/-- Generic clock-aware constructor.  If the retained aligned endpoint has
+clock `q * s.rawDefect`, the canonical exposure is a pure presentation from
+`s` with total ramification `exposure.R * q`. -/
+noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometryAtClock
     (RR : RepairRanking)
     {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s)
@@ -345,21 +367,39 @@ noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankT
     (hD : 3 ≤ P.degree)
     (complexity : ℕ)
     (hsrepair : s.repair = rankOneRepairState complexity)
+    (q : ℕ)
+    (hq : 0 < q)
+    (hclock : W.original.aligned.endpoint.defect = q * s.rawDefect)
     (G : AdaptiveAlignedSmithCanonicalSurvivingRigidExposureRankTwoGeometry
       W P R hD complexity) :
     AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
       RR s W P R hD complexity := by
-  let outer := W.original.aligned.toOuterScaleAwareState s
   let exposedOrd := G.exposure.toAdaptiveState G.canonicalSpecial
   let exposed := exposedOrd.toScaleAwareAt
-    (G.exposure.ramification.R * outer.scale)
-    (Nat.mul_pos G.exposure.ramification.R_pos outer.scale_pos)
+    ((G.exposure.ramification.R * q) * s.scale)
+    (Nat.mul_pos
+      (Nat.mul_pos G.exposure.ramification.R_pos hq) s.scale_pos)
   let target := exposed.withRepairOnly (rankTwoRepairState complexity)
 
+  have hsource : HasCertifiedRamifiedEpisodeInternalMove exposed s := by
+    change Nonempty (CertifiedRamifiedEpisodeInternalMove exposed s)
+    exact ⟨{
+      ramification := G.exposure.ramification.R * q
+      ramification_pos := Nat.mul_pos G.exposure.ramification.R_pos hq
+      scale_eq := by rfl
+      raw_eq := by
+        change G.exposure.defect =
+          (G.exposure.ramification.R * q) * s.rawDefect
+        rw [G.exposure.canonical_defect_eq_ramified_aligned W, hclock]
+        ac_rfl
+      degreeCap_eq := by rfl
+      sourceComplexity_eq := by rfl
+      repair_eq := by rfl
+    }⟩
+
   have hexposedRepair : exposed.repair = rankOneRepairState complexity := by
-    change (W.original.aligned.toAdaptiveState s).repair =
-      rankOneRepairState complexity
-    simpa using hsrepair
+    change s.repair = rankOneRepairState complexity
+    exact hsrepair
 
   have hpresented : CertifiedSameScaleEpisodeProgress RR target exposed := by
     apply certifiedSameScaleEpisodeProgress_of_repairProgress (K := K) RR
@@ -380,19 +420,54 @@ noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankT
 
   exact {
     geometry := G
-    outer := outer
-    outer_eq := rfl
     exposed := exposed
-    exposed_eq := rfl
+    exposed_family := rfl
     target := target
     target_eq := rfl
-    alignedPresentation :=
-      ⟨W.original.aligned.certifiedOuterInternal_of_defect_eq
-        s (by
-          exact W.original.aligned.endpoint.defect_eq_alignedSmithRamificationIndex_mul_rawDefect)⟩
+    sourcePresentation := hsource
     exposedProgress := hpresented
     globalProgress := hglobal
   }
+
+/-- Direct-source constructor: the aligned endpoint is at the canonical outer
+clock `alignedSmithRamificationIndex * s.rawDefect`. -/
+noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometry
+    (RR : RepairRanking)
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s)
+    (P : AdaptiveAlignedSmithPersistentPacketEndpoint (K := K) s W)
+    (R : AdaptiveAlignedSmithRigidPacketEndpoint (K := K) s W P)
+    (hD : 3 ≤ P.degree)
+    (complexity : ℕ)
+    (hsrepair : s.repair = rankOneRepairState complexity)
+    (hclock : W.original.aligned.endpoint.defect =
+      alignedSmithRamificationIndex * s.rawDefect)
+    (G : AdaptiveAlignedSmithCanonicalSurvivingRigidExposureRankTwoGeometry
+      W P R hD complexity) :
+    AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
+      RR s W P R hD complexity :=
+  AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometryAtClock
+    RR W P R hD complexity hsrepair
+      alignedSmithRamificationIndex alignedSmithRamificationIndex_pos hclock G
+
+/-- Presented-source constructor: the retained aligned endpoint is already the
+caller's scale-aware state, so its clock is exactly `s.rawDefect`. -/
+noncomputable def AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofPresentedGeometry
+    (RR : RepairRanking)
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s)
+    (P : AdaptiveAlignedSmithPersistentPacketEndpoint (K := K) s W)
+    (R : AdaptiveAlignedSmithRigidPacketEndpoint (K := K) s W P)
+    (hD : 3 ≤ P.degree)
+    (complexity : ℕ)
+    (hsrepair : s.repair = rankOneRepairState complexity)
+    (hclock : W.original.aligned.endpoint.defect = s.rawDefect)
+    (G : AdaptiveAlignedSmithCanonicalSurvivingRigidExposureRankTwoGeometry
+      W P R hD complexity) :
+    AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
+      RR s W P R hD complexity :=
+  AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.ofGeometryAtClock
+    RR W P R hD complexity hsrepair 1 (by omega) (by simpa using hclock) G
 
 namespace AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
 
@@ -410,24 +485,9 @@ theorem target_family
     (D : AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
       RR s W P R hD complexity) :
     D.target.family = D.geometry.exposure.family := by
-  rw [D.target_eq, D.exposed_eq]
-  rfl
-
-/-- The target is recorded at the true absolute exposure scale. -/
-@[simp]
-theorem target_scale
-    {RR : RepairRanking}
-    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
-    {W : AdaptiveAlignedSmithSurvivingStateEndpoint (K := K) s}
-    {P : AdaptiveAlignedSmithPersistentPacketEndpoint (K := K) s W}
-    {R : AdaptiveAlignedSmithRigidPacketEndpoint (K := K) s W P}
-    {hD : 3 ≤ P.degree}
-    {complexity : ℕ}
-    (D : AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
-      RR s W P R hD complexity) :
-    D.target.scale = D.geometry.exposure.ramification.R * D.outer.scale := by
-  rw [D.target_eq, D.exposed_eq]
-  rfl
+  rw [D.target_eq]
+  change D.exposed.family = D.geometry.exposure.family
+  exact D.exposed_family
 
 end AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress
 

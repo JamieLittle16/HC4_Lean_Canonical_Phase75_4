@@ -111,9 +111,9 @@ theorem AdaptiveSurvivingWallExposureData.canonicalRamification_gt_four
     exact_mod_cast hmZ
   have hsep := d.ramification.positiveLayerSeparated
     1 (by omega) (0 : Fin 4 →₀ ℕ)
-  simp only [one_mul, Finsupp.weight_zero, add_zero] at hsep
-  rw [hm] at hsep
-  exact hsep
+  have hsep' : d.commonLevel < d.ramification.R := by
+    simpa [Finsupp.weight_apply] using hsep
+  omega
 
 /-- Every transverse coordinate of the exposed right section still has zero
 special value. -/

@@ -42,8 +42,6 @@ universe u v
 
 variable {K : Type u} [Field K] [CharZero K]
 
-namespace HC4.Newton.GeneralFourBlock
-
 /-- Four transverse rank-one relations already force the full determinant of
 a symmetric four-block to vanish.
 
@@ -70,9 +68,7 @@ theorem determinantCore_eq_zero_of_transverse_rankOne
       rcases mul_eq_zero.mp hs2 with h | h <;> exact h
     unfold GeneralFourBlock.determinantCore
     rw [hd, hr, hs]
-    have hxy : H.x * H.z = H.y * H.y := sub_eq_zero.mp hxz
-    rw [hxy]
-    ring
+    linear_combination -(H.b * H.b) * hxz
   · have hd2 : H.d * H.d ≠ 0 := mul_ne_zero hd hd
     have hmul : H.d * H.d * H.determinantCore = 0 := by
       unfold GeneralFourBlock.determinantCore
@@ -89,8 +85,6 @@ theorem determinantCore_eq_zero_of_transverse_rankOne
     have hmul' : (H.d * H.d) * H.determinantCore = 0 := by
       simpa [mul_assoc] using hmul
     exact (mul_eq_zero.mp hmul').resolve_left hd2
-
-end HC4.Newton.GeneralFourBlock
 
 /-- The honest family Hessian of one scale-aware restart state, packaged as a
 symmetric four-block over the original polynomial coefficient ring. -/
@@ -154,7 +148,7 @@ theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_rankTwoGeometry
     · by_cases h23 : H.x * H.z - H.y * H.y = 0
       · by_cases hcross : H.d * H.y - H.r * H.s = 0
         · have hdet0 : H.determinantCore = 0 :=
-            H.determinantCore_eq_zero_of_transverse_rankOne
+            determinantCore_eq_zero_of_transverse_rankOne H
               h12 h13 h23 hcross
           have hdet1 : H.determinantCore = 1 := by
             rw [show H = scaleAwareFamilyHessianFourBlock s by rfl,
@@ -174,7 +168,7 @@ transition. -/
 structure AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankTwoProgress
     (RR : RepairRanking)
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
-    (complexity : ℕ) : Prop where
+    (complexity : ℕ) : Type (u + 1) where
   source_zero : s.rawDefect = 0
   geometry : AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry s
   target : ScaleAwareAdaptiveGeometricRestartState (K := K)
@@ -184,7 +178,7 @@ structure AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankTwoProgress
 
 /-- Attach the finite rank promotion only after the unit-determinant source has
 supplied an actual nonzero transverse Hessian minor. -/
-theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankTwoProgress
+noncomputable def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankTwoProgress
     (RR : RepairRanking)
     (s : ScaleAwareAdaptiveGeometricRestartState (K := K))
     (complexity : ℕ)
