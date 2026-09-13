@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8078**.
+Distinct declaration spellings indexed: **8076**.
 
 ## Repeated declaration spellings
 
@@ -4426,14 +4426,12 @@ Distinct declaration spellings indexed: **8078**.
 - `familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
-- `familyParameterLayer_eulerScaledHessian_apply` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
 - `familyParameterLayer_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
-- `familyParameterLayer_mvEuler_generic` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_permutedPolynomialHessianFourBlock_schurA_unitTransverseInflateFamily_add_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurInflationLayers`
