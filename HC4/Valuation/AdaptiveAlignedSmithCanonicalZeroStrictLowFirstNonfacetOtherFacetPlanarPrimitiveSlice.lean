@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR
+import HC4.RationalRigidity.LineSupportedHessianRigidity
 import Mathlib.Tactic
 
 /-!
@@ -58,15 +59,24 @@ theorem QsOtherFacetPlanarAffineRRPackage.direction_factor_ne_zero
     (C.ray.outsideExponent 3 : ℤ) - (C.ray.facetExponent 3 : ℤ)
   have hsigns := C.qs_ray_otherFacet_locked_direction_signs
     hthree hne houtThree
+  have hd1lt : (C.ray.outsideExponent 1 : ℤ) <
+      (C.ray.facetExponent 1 : ℤ) := by
+    exact_mod_cast hsigns.2.2 (1 : Fin 4) (by decide)
+  have hd2lt : (C.ray.outsideExponent 2 : ℤ) <
+      (C.ray.facetExponent 2 : ℤ) := by
+    exact_mod_cast hsigns.2.2 (2 : Fin 4) (by decide)
+  have hd3lt : (C.ray.outsideExponent 3 : ℤ) <
+      (C.ray.facetExponent 3 : ℤ) := by
+    exact_mod_cast hsigns.2.2 (3 : Fin 4) (by decide)
   have hd1neg : d1 < 0 := by
     dsimp [d1]
-    exact_mod_cast hsigns.2.2 (1 : Fin 4) (by decide)
+    exact sub_neg.mpr hd1lt
   have hd2neg : d2 < 0 := by
     dsimp [d2]
-    exact_mod_cast hsigns.2.2 (2 : Fin 4) (by decide)
+    exact sub_neg.mpr hd2lt
   have hd3neg : d3 < 0 := by
     dsimp [d3]
-    exact_mod_cast hsigns.2.2 (3 : Fin 4) (by decide)
+    exact sub_neg.mpr hd3lt
   have hd1ne : d1 ≠ 0 := ne_of_lt hd1neg
   have hd2ne : d2 ≠ 0 := ne_of_lt hd2neg
   have hd3ne : d3 ≠ 0 := ne_of_lt hd3neg
@@ -136,8 +146,9 @@ theorem QsOtherFacetPlanarAffineRRPackage.coefficient_support_eq_zero_one
     exact A.ray.zeroCoefficientPolynomial_coeff_zero_ne
   have hphiNe : phi ≠ 0 := by
     intro hzero
-    subst phi
-    simp at hphi0
+    apply hphi0
+    rw [hzero]
+    simp
   have hdeg : phi.natDegree = 1 := by
     dsimp [phi]
     exact A.coefficient_natDegree_eq_one hthree hne houtThree
@@ -175,11 +186,13 @@ theorem QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair
     S.slice.support =
       {A.ray.zeroExponentAt 0, A.ray.zeroExponentAt 1} := by
   have hphi := A.coefficient_support_eq_zero_one hthree hne houtThree
+  have hfaceSupport : A.ray.face.support = S.slice.support :=
+    congrArg (fun f => f.support) A.face_eq
   ext d
   constructor
   · intro hd
     have hdFace : d ∈ A.ray.face.support := by
-      rw [A.face_eq]
+      rw [hfaceSupport]
       exact hd
     have hidx := A.ray.zeroCoefficientPolynomial_mem_of_face_mem hdFace
     rw [hphi] at hidx
@@ -200,7 +213,7 @@ theorem QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair
       rcases A.ray.exists_faceExponent_of_zeroCoefficientPolynomial_mem h0phi with
         ⟨e, he, he0⟩
       have hs := A.ray.zeroExponentAt_spec ⟨e, he, he0⟩
-      rw [← A.face_eq]
+      rw [← hfaceSupport]
       exact hs.1
     · have h1phi : 1 ∈ A.ray.zeroCoefficientPolynomial.support := by
         rw [hphi]
@@ -208,7 +221,7 @@ theorem QsOtherFacetPlanarAffineRRPackage.slice_support_eq_primitive_pair
       rcases A.ray.exists_faceExponent_of_zeroCoefficientPolynomial_mem h1phi with
         ⟨e, he, he1⟩
       have hs := A.ray.zeroExponentAt_spec ⟨e, he, he1⟩
-      rw [← A.face_eq]
+      rw [← hfaceSupport]
       exact hs.1
 
 /-- Direct source-facing primitive-slice entry. -/
