@@ -24,6 +24,49 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
+private theorem weight_explicit_fin4_right
+    (a : Fin 4 → ℤ) (e : Fin 4 →₀ ℕ) :
+    Finsupp.weight a e =
+      a 0 * (e 0 : ℤ) + a 1 * (e 1 : ℤ) +
+      a 2 * (e 2 : ℤ) + a 3 * (e 3 : ℤ) := by
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · rw [Fin.sum_univ_four]
+    ring
+  · intro i
+    simp
+
+private theorem pr_final_skew_transverseDet_ne_zero_right
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs)
+    (P : QsOtherFacetPlanarCarrierPackage C .pr)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    P.finalWeight 2 * qsOtherFacetSkewWeight C .pr 3 -
+      P.finalWeight 3 * qsOtherFacetSkewWeight C .pr 2 ≠ 0 := by
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
+    (HC4.Newton.mvRankThreeOnFacet_qs hthree).1
+  have hfacet1 : C.ray.facetExponent (1 : Fin 4) = 1 :=
+    (C.qs_ray_pr_outside_base_eq_one_and_cross hthree houtThree).1
+  have hout0 : C.ray.outsideExponent (0 : Fin 4) = 1 :=
+    C.qs_ray_outside_zeroCoordinate_eq_one hthree
+  have hout1 : C.ray.outsideExponent (1 : Fin 4) = 0 :=
+    ((mvRankThreeOnFacet_iff .pr C.ray.outsideExponent).1 houtThree).1
+  have hfacetMem : C.ray.facetExponent ∈ P.carrier.support := by
+    have h := P.ray_support_subset (by simpa using C.ray.facet_mem_face)
+    simpa using h
+  have houtMem : C.ray.outsideExponent ∈ P.carrier.support := by
+    have h := P.ray_support_subset (by simpa using C.ray.outside_mem_face)
+    simpa using h
+  have hfacetLevel := P.support_final_level hfacetMem
+  have houtLevel := P.support_final_level houtMem
+  simp only [weight_explicit_fin4_right] at hfacetLevel houtLevel
+  simp [hfacet0, hfacet1, hout0, hout1] at hfacetLevel houtLevel
+  have hclock := P.hessianClock_pos
+  rw [Fin.sum_univ_four] at hclock
+  intro hdet
+  simp [qsOtherFacetSkewWeight] at hdet
+  nlinarith
+
 /-- **Whole-carrier quotient interpolation, right orientation.** -/
 theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -142,7 +185,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation
     simp [qH, qsOtherFacetPairDegree, rankThreeQuotientCoordinate]
   have hv := P.support_wall_ratio he F.highest.e0_provenance.carrier_mem
   rw [hpairE, hpairH, hskewE, hskewH, ← hskewL] at hv
-  have hdet := pr_final_skew_transverseDet_ne_zero C P hthree houtThree
+  have hdet := pr_final_skew_transverseDet_ne_zero_right C P hthree houtThree
   exact rankThreeQuotientCoordinate_affine_interpolation
     P.finalWeight skew qL qH q hpairL hdet hwq hwH hv
 
