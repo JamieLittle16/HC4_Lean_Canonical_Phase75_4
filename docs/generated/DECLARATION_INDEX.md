@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7915**.
+Distinct declaration spellings indexed: **7918**.
 
 ## Repeated declaration spellings
 
@@ -42,7 +42,7 @@ Distinct declaration spellings indexed: **7915**.
 - `exists_nonzero_principalMinor_at_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `exists_ramifiedSpend_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCurrentScaleConstantKernel`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCurrentScaleConstantKernel`
-- `family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
+- `family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `family_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `family_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `fibre` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -2312,6 +2312,7 @@ Distinct declaration spellings indexed: **7915**.
 - `QsOtherFacetPrLeftVContactFrontierData.locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
+- `QsOtherFacetPrLeftVContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLeftVContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.staircase_contact_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneNoInteriorSupport`
@@ -2325,6 +2326,7 @@ Distinct declaration spellings indexed: **7915**.
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_contactDeficit_identity` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlope`
 - `QsOtherFacetPrLeftVFourTermCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFourTermCarrier`
+- `QsOtherFacetPrLeftVPlanarContactReesData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLockedLeftSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrLockedSourceCoefficients`
 - `QsOtherFacetPrLockedLeftVSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneLockedOrientation`
 - `QsOtherFacetPrLockedLeftVSourceData.quotientContactOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactOrders`
@@ -4316,7 +4318,7 @@ Distinct declaration spellings indexed: **7915**.
 - `facetLeadingFactor_pos` — `theorem` in `HC4.FacetRigidity.LeadingCoefficient`
 - `facetOmittedCoordinate` — `def` in `HC4.Polynomial.FourExponent`
 - `facets_adjacent_of_common_nonzero` — `theorem` in `HC4.Newton.BoundaryCycle`
-- `family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
+- `family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `familyHessianFourBlock` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `familyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `familyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
@@ -4830,6 +4832,7 @@ Distinct declaration spellings indexed: **7915**.
 - `hessian_zero_zero_initialForm_zero_ne_zero_of_axisRestriction_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `highestOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `highestSlice_cross_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
 - `highest_pairLevel_eq_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `highest_pairLevel_eq_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
