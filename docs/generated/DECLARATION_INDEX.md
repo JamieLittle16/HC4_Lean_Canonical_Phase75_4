@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7745**.
+Distinct declaration spellings indexed: **7751**.
 
 ## Repeated declaration spellings
 
@@ -3743,6 +3743,7 @@ Distinct declaration spellings indexed: **7745**.
 - `det_oneZeroRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `det_planarJacobianMatrixAt` — `theorem` in `HC4.PlanarJacobianEvaluation`
 - `det_primitiveBinomialHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `det_primitiveBinomialScaledHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `det_rankThreeLogHessianCore` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `det_reindexRankTwoAxis` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `det_rigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -5836,6 +5837,7 @@ Distinct declaration spellings indexed: **7745**.
 - `polynomial_eq_C_constantCoeff_of_positive_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomial_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `polynomial_eq_of_surjective_eval` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_eq_zero_of_constant_pivot_of_natDegree_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
@@ -5961,6 +5963,9 @@ Distinct declaration spellings indexed: **7745**.
 - `primitiveBinomialDetCoeff2` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialFarExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialHessianPencil` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveBinomialScaledHessianPencil` — `def` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
+- `primitiveBinomial_coefficients_zero_of_affineMoment_det_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
+- `primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomial_endpoint_orientation_of_coefficients_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveZeroSmithSource_departureFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `primitiveZeroSmithSource_losslessFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
@@ -6301,6 +6306,7 @@ Distinct declaration spellings indexed: **7745**.
 - `rankOne_to_rankTwo_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThreeAffineFractionMomentDetZero_of_polynomialMoment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffineLine_topExponent_on_boundary_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTopBoundary`
+- `rankThreeAffineMoment_eq_primitiveBinomialScaledPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `rankThreeAffinePolynomialMomentHessian` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
