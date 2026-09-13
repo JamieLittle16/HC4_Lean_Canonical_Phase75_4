@@ -41,9 +41,9 @@ coordinates. -/
 def qsOtherFacetPrQuotientContactOrder
     (alpha beta : ℕ) (e : Fin 4 →₀ ℕ) : ℕ :=
   T.topFace.degree -
-    ((rankThreeQuotientCoordinate alpha beta e).pair +
-      (rankThreeQuotientCoordinate alpha beta e).firstTransverse +
-      (rankThreeQuotientCoordinate alpha beta e).secondTransverse)
+    ((HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).pair +
+      (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).firstTransverse +
+      (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).secondTransverse)
 
 /-- The quotient-coordinate order is exactly the honest source contact
 deficit. -/
