@@ -121,7 +121,7 @@ theorem twoRootEulerOperator_derivative_form
   simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
     mul_one, mul_zero, add_zero]
   push_cast
-  ring
+  ring_nf
 
 /-- The affine linear form used before translation. -/
 def affineEulerLinear (c d : K) : Polynomial K :=
@@ -187,9 +187,16 @@ theorem twoRootEulerOperator_translate_of_affineTwoRoot
     simp only [translatePolynomial, Polynomial.zero_comp,
       Polynomial.add_comp, Polynomial.sub_comp, Polynomial.mul_comp,
       Polynomial.pow_comp, Polynomial.C_comp] at htrans
-    fold translatePolynomial at htrans
+    change
+      translatePolynomial alpha (affineEulerLinear c d) ^ 2 *
+          translatePolynomial alpha phi.derivative.derivative -
+        Polynomial.C (((2 * j : ℕ) : K) * d) *
+          translatePolynomial alpha (affineEulerLinear c d) *
+          translatePolynomial alpha phi.derivative +
+        Polynomial.C (((j * (j + 1) : ℕ) : K) * d ^ 2) *
+          translatePolynomial alpha phi = 0 at htrans
     rw [hL, hd1, hd2] at htrans
-    exact htrans
+    simpa [psi] using htrans
   have hscaled :
       Polynomial.C (d ^ 2) * twoRootEulerOperator j psi = 0 := by
     rw [twoRootEulerOperator_derivative_form]
@@ -202,8 +209,8 @@ theorem twoRootEulerOperator_translate_of_affineTwoRoot
           Polynomial.C (((2 * j : ℕ) : K) * d) *
             (Polynomial.C d * Polynomial.X) * psi.derivative +
           Polynomial.C (((j * (j + 1) : ℕ) : K) * d ^ 2) * psi := by
-            simp only [Polynomial.C_mul, Polynomial.C_pow]
-            ring
+        simp only [Polynomial.C_mul, Polynomial.C_pow]
+        ring_nf
       _ = 0 := htrans'
   have hC : (Polynomial.C (d ^ 2) : Polynomial K) ≠ 0 := by
     exact Polynomial.C_ne_zero.mpr (pow_ne_zero 2 hd)
