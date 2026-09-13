@@ -75,8 +75,10 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_non
   have hphi1 : phi.coeff 1 ≠ 0 :=
     Polynomial.mem_support_iff.mp h1supp
 
+  have hfaceSupport : A.ray.face.support = S.slice.support :=
+    congrArg (fun f => f.support) A.face_eq
   have hbaseS : A.ray.facetExponent ∈ S.slice.support := by
-    rw [← A.face_eq]
+    rw [← hfaceSupport]
     exact A.ray.facet_mem_face
   have hpair :
       qsOtherFacetPairDegree .pr A.ray.facetExponent = S.pairLevel :=
@@ -93,10 +95,10 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_non
   rcases A.ray.exists_faceExponent_of_zeroCoefficientPolynomial_mem h1supp with
     ⟨e1, he1face, he10⟩
   have he1S : e1 ∈ S.slice.support := by
-    rw [← A.face_eq]
+    rw [← hfaceSupport]
     exact he1face
   have hq := S.pr_quotient_eq_of_mem hthree houtThree D hbaseS he1S
-  have hshape := primitive_pair_shape_of_quotient_eq_zero_one
+  have hshape := HC4.Polynomial.primitive_pair_shape_of_quotient_eq_zero_one
     D.alpha D.beta A.ray.facetExponent e1 hq
     A.ray.facet_coordinate_zero he10
   have hpa : D.alpha ≤ A.ray.facetExponent 2 := by omega
