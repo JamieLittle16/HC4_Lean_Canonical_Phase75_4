@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8058**.
+Distinct declaration spellings indexed: **8061**.
 
 ## Repeated declaration spellings
 
@@ -3111,6 +3111,9 @@ Distinct declaration spellings indexed: **8058**.
 - `binaryHomogenizedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `binaryHomogenizedFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `binaryHomogenizedLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
+- `binaryHomogenized_fallingLongitudinalRow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryParameterChainRule`
+- `binaryHomogenized_fallingParameterRow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryParameterChainRule`
+- `binaryHomogenized_weightedEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryParameterChainRule`
 - `binaryLinearFormTransverseDeriv` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `binaryLinearFormTransverseDeriv_hasExactTransverseDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `binaryLinearFormTransverseDeriv_hessianDet_eq_zero_of_sq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
