@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8037**.
+Distinct declaration spellings indexed: **8040**.
 
 ## Repeated declaration spellings
 
@@ -3582,6 +3582,7 @@ Distinct declaration spellings indexed: **8037**.
 - `coeff_specialFiber_commonParameterFactor_minOrder` — `theorem` in `HC4.Valuation.StrictSmithMaximalNormalization`
 - `coeff_specialFiber_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `coeff_sq_eq_zero_of_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `coeff_stationaryCarrierProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `coeff_sub_own_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `coeff_three_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
@@ -5455,6 +5456,7 @@ Distinct declaration spellings indexed: **8037**.
 - `natDegree_le_two_of_polynomialAutonomousLogODE_after_translation` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `natDegree_le_two_of_shiftedPolynomialAutonomousLogODE` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `natDegree_ne_zero_of_coeff_ne_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `natDegree_stationaryCarrierProfile_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `natDegree_sub_leadingMonomial_le_pred` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `natDegree_translatePolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
@@ -7666,6 +7668,7 @@ Distinct declaration spellings indexed: **8037**.
 - `standardTwoZero_terminal_hasPlanarKellerCollision` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardTwoZero_terminal_not_planarJC2` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardZeroPairEmbedding` — `def` in `HC4.Newton.TerminalTwoZeroPlanarisation`
+- `stationaryCarrierProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `stationaryIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryIndex_mul_weight_le_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationarySoundElimination_of_internal_then_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
