@@ -33,7 +33,7 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 staircase. -/
 theorem prVGreaterOne_quotientStaircase_pair_pos
     (V ell n k r s : ℕ)
-    (hell : 0 < ell) (hn : 2 ≤ n) (hnell : n < ell + 1)
+    (_hell : 0 < ell) (hn : 2 ≤ n) (hnell : n < ell + 1)
     (hwall :
       ((n : ℤ) - 1) * ((r : ℤ) - 1) =
         (ell : ℤ) * ((n : ℤ) - (k : ℤ)))
