@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7792**.
+Distinct declaration spellings indexed: **7797**.
 
 ## Repeated declaration spellings
 
@@ -2246,6 +2246,7 @@ Distinct declaration spellings indexed: **7792**.
 - `QsOtherFacetPlanarCarrierPackage.contactFamily_coeff_at_source_deficit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
 - `QsOtherFacetPlanarCarrierPackage.exists_pr_quotient_data_and_fiber_rule` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPlanarQuotientFibers`
 - `QsOtherFacetPlanarCarrierPackage.highestPairSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
+- `QsOtherFacetPlanarCarrierPackage.pr_coefficientProvenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
 - `QsOtherFacetPlanarCarrierPackage.pr_leftQuotientCarrierData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedCarrier`
 - `QsOtherFacetPlanarCarrierPackage.pr_normalized_left_quotient_line` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`
 - `QsOtherFacetPlanarCarrierPackage.pr_normalized_left_weights_neutral` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`
@@ -2271,6 +2272,7 @@ Distinct declaration spellings indexed: **7792**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_contactSlope_frontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrContactSlope`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_normal_form_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceNormalForm`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_source_data_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_normal_form` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveDirection`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_primitive_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_locked_direction_unit_or_V_gt_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveDirection`
@@ -2283,6 +2285,9 @@ Distinct declaration spellings indexed: **7792**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_source_and_finalLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
+- `QsOtherFacetPrCarrierCoefficientProvenance` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
+- `QsOtherFacetPrHighestSliceLeftSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
+- `QsOtherFacetPrHighestSliceRightSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`
 - `QsOtherFacetPrQuotientCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedCarrier`
 - `QsOtherFacetPrQuotientCarrierData.contactGap_eq_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
 - `QsOtherFacetPrQuotientCarrierData.contactOrder_eq_of_quotient_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierContactLayer`
