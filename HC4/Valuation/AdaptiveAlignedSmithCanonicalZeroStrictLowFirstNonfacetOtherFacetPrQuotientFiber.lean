@@ -118,8 +118,8 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem
     (D : QsPrLockedQuotientData C)
     {e f : Fin 4 →₀ ℕ}
     (he : e ∈ S.slice.support) (hf : f ∈ S.slice.support) :
-    rankThreeQuotientCoordinate D.alpha D.beta e =
-      rankThreeQuotientCoordinate D.alpha D.beta f := by
+    HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta e =
+      HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta f := by
   have hpar := S.support_difference_parallel_ray
     hthree (by decide : (.pr : ToricFacet) ≠ .qs) houtThree he hf
   have hdir := D.direction_eq hthree houtThree
@@ -130,7 +130,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem
   rw [hd1] at h1
   rw [hd2] at h2
   rw [hd3] at h3
-  rw [rankThreeQuotientCoordinate_eq_iff]
+  rw [HC4.Polynomial.rankThreeQuotientCoordinate_eq_iff]
   constructor
   · exact_mod_cast (show
       (e 0 : ℤ) + (e 1 : ℤ) = (f 0 : ℤ) + (f 1 : ℤ) by
@@ -160,8 +160,8 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_primitive_pair_is_quotient_
         (e0 e1 : Fin 4 →₀ ℕ),
       S.slice.support = {e0, e1} ∧
       e0 ≠ e1 ∧
-      rankThreeQuotientCoordinate D.alpha D.beta e0 =
-        rankThreeQuotientCoordinate D.alpha D.beta e1 := by
+      HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta e0 =
+        HC4.Polynomial.rankThreeQuotientCoordinate D.alpha D.beta e1 := by
   let D := C.qsPrLockedQuotientData hthree houtThree
   rcases S.primitive_of_nontrivial hthree
       (by decide : (.pr : ToricFacet) ≠ .qs) houtThree hnontrivial with
