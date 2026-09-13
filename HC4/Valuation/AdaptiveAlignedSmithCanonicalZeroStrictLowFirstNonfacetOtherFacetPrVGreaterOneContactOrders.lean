@@ -47,12 +47,12 @@ private theorem left_highest_quotient_sum
     {V : ℕ}
     (D : QsOtherFacetPrHighestSliceLeftSourceData C P S R)
     (hDV : D.V = V) :
-    (rankThreeQuotientCoordinate 1 V D.e0).pair +
-        (rankThreeQuotientCoordinate 1 V D.e0).firstTransverse +
-        (rankThreeQuotientCoordinate 1 V D.e0).secondTransverse =
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 V D.e0).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V D.e0).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V D.e0).secondTransverse =
       (V + 1) * D.n + 1 := by
   rw [← hDV]
-  simp [rankThreeQuotientCoordinate, D.e0_zero, D.e0_one,
+  simp [HC4.Polynomial.rankThreeQuotientCoordinate, D.e0_zero, D.e0_one,
     D.e0_two, D.e0_three]
   ring
 
@@ -65,12 +65,12 @@ private theorem right_highest_quotient_sum
     {V : ℕ}
     (D : QsOtherFacetPrHighestSliceRightSourceData C P S R)
     (hDV : D.V = V) :
-    (rankThreeQuotientCoordinate V 1 D.e0).pair +
-        (rankThreeQuotientCoordinate V 1 D.e0).firstTransverse +
-        (rankThreeQuotientCoordinate V 1 D.e0).secondTransverse =
+    (HC4.Polynomial.rankThreeQuotientCoordinate V 1 D.e0).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 D.e0).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 D.e0).secondTransverse =
       (V + 1) * D.n + 1 := by
   rw [← hDV]
-  simp [rankThreeQuotientCoordinate, D.e0_zero, D.e0_one,
+  simp [HC4.Polynomial.rankThreeQuotientCoordinate, D.e0_zero, D.e0_one,
     D.e0_two, D.e0_three]
   ring
 
@@ -81,11 +81,11 @@ private theorem left_locked_quotient_sum
     {R : QsOtherFacetContactQuadraticReesPackage C}
     {V : ℕ}
     (D : QsOtherFacetPrLockedLeftVSourceData C P R V) :
-    (rankThreeQuotientCoordinate 1 V C.ray.facetExponent).pair +
-        (rankThreeQuotientCoordinate 1 V C.ray.facetExponent).firstTransverse +
-        (rankThreeQuotientCoordinate 1 V C.ray.facetExponent).secondTransverse =
+    (HC4.Polynomial.rankThreeQuotientCoordinate 1 V C.ray.facetExponent).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V C.ray.facetExponent).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 V C.ray.facetExponent).secondTransverse =
       (V + 1) * (D.ell + 1) + 1 := by
-  simp [rankThreeQuotientCoordinate, D.facet_zero, D.facet_one,
+  simp [HC4.Polynomial.rankThreeQuotientCoordinate, D.facet_zero, D.facet_one,
     D.facet_two, D.facet_three]
   ring
 
@@ -96,11 +96,11 @@ private theorem right_locked_quotient_sum
     {R : QsOtherFacetContactQuadraticReesPackage C}
     {V : ℕ}
     (D : QsOtherFacetPrLockedRightVSourceData C P R V) :
-    (rankThreeQuotientCoordinate V 1 C.ray.facetExponent).pair +
-        (rankThreeQuotientCoordinate V 1 C.ray.facetExponent).firstTransverse +
-        (rankThreeQuotientCoordinate V 1 C.ray.facetExponent).secondTransverse =
+    (HC4.Polynomial.rankThreeQuotientCoordinate V 1 C.ray.facetExponent).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 C.ray.facetExponent).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate V 1 C.ray.facetExponent).secondTransverse =
       (V + 1) * (D.ell + 1) + 1 := by
-  simp [rankThreeQuotientCoordinate, D.facet_zero, D.facet_one,
+  simp [HC4.Polynomial.rankThreeQuotientCoordinate, D.facet_zero, D.facet_one,
     D.facet_two, D.facet_three]
   ring
 
