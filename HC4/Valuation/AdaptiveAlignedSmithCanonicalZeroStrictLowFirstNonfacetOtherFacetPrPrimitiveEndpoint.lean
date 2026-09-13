@@ -129,7 +129,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_non
   rw [hs1, hs2, hs3] at hmoment
 
   have horient :=
-    primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero
+    HC4.Polynomial.primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero
       (K := K)
       (n := A.ray.facetExponent 1)
       (p := A.ray.facetExponent 2)
