@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7918**.
+Distinct declaration spellings indexed: **7924**.
 
 ## Repeated declaration spellings
 
@@ -4547,6 +4547,8 @@ Distinct declaration spellings indexed: **7918**.
 - `firstPositiveEntryOrder` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_mem` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `firstPositiveLayer_pair_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
+- `firstPositiveLayer_pair_gt_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `firstPositiveParameterOrder` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `firstPositiveParameterOrder_le` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `firstPositiveParameterOrder_mem` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
@@ -5611,6 +5613,7 @@ Distinct declaration spellings indexed: **7918**.
 - `overlapDirectClosingQuadratic_twoVisibleLayers` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingQuadraticSupport`
 - `overlapRelativeFirstDeformation_originHessian_ne_zero_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `pExponent` — `def` in `HC4.Toric.InvariantSemigroup`
+- `pair_eq_of_reverseOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `pair_rees_specialFiber_eq_slice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `parameterConstantCoeffFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
@@ -5643,6 +5646,7 @@ Distinct declaration spellings indexed: **7918**.
 - `parameterGapJet_snd` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapSubring` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `parameterLayer_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
+- `parameterLayer_support_source_and_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `parameterRamificationFamily` — `def` in `HC4.Valuation.ParameterRamification`
 - `parameterRamificationFamily_coefficientDivisibility` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `parameterRamificationFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -6783,6 +6787,8 @@ Distinct declaration spellings indexed: **7918**.
 - `reverseExponent_injective` — `theorem` in `HC4.Toric.BranchReversal`
 - `reverseExponent_surjective` — `theorem` in `HC4.Toric.BranchReversal`
 - `reverseFacet` — `def` in `HC4.Toric.Facets`
+- `reverseOrder_eq_quotientContactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
+- `reverseOrder_lt_highest_of_pair_lt_highest` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `reversePoint` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reversePointEquiv` — `def` in `HC4.ClassifiedFamilies.BranchConjugacy`
 - `reverseReesFamily` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
