@@ -146,6 +146,7 @@ Distinct declaration spellings indexed: **8011**.
 - `specialFiber_not_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
 - `specialFiber_witnesses` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAllTransverseRationalKernelDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryDispatcher`
 - `specialPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `specialisedEulerHessian_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`
 - `squareContact_weight_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `tailMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ScalarPivotThreeSchurClock`
@@ -7544,7 +7545,7 @@ Distinct declaration spellings indexed: **8011**.
 - `specialPoint_axis_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoint_zero_transverse_constantCoeff` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `specialPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
-- `specialisedEulerHessian_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`
+- `specialisedEulerHessian_eq_parallelStaircaseMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorMomentRealisation`
 - `specialisedParameterFirstEulerHessian` — `def` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_coeff` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
