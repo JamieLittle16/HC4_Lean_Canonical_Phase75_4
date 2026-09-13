@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7958**.
+Distinct declaration spellings indexed: **7963**.
 
 ## Repeated declaration spellings
 
@@ -3492,6 +3492,7 @@ Distinct declaration spellings indexed: **7958**.
 - `coeff_m_logarithmicEtaOverRhoDenominator_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_sq_eulerDerivative_local_form` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `coeff_mul_at_gap_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
+- `coeff_mul_at_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `coeff_mul_eq_constant_mul_of_right_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mul_eq_zero_of_right_vanishes_through` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
@@ -5262,7 +5263,9 @@ Distinct declaration spellings indexed: **7958**.
 - `matrix4_det_ne_zero_exists_entry_ne_zero` — `theorem` in `HC4.Newton.TerminalQuadraticHessian`
 - `matrix4_det_ne_zero_exists_permutation_entries_ne_zero` — `theorem` in `HC4.Newton.TerminalWeightPermutation`
 - `matrix4_det_ne_zero_row_exists_entry` — `theorem` in `HC4.Newton.TerminalCenteredWeights`
+- `matrixParameterGapDualJet` — `def` in `HC4.Valuation.ParameterGapDualJet`
 - `matrixToParameterGap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
+- `matrixToParameterGapCommRing` — `def` in `HC4.Valuation.ParameterGapDualJet`
 - `matrixToParameterGap_coe` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `matrix_det` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `matrix_det_hasNoPositiveParameterCoeffBelow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
@@ -5662,6 +5665,7 @@ Distinct declaration spellings indexed: **7958**.
 - `parameterFirstHessian_det_eq_X_pow` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterFirstHessian_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `parameterFirstHessian_symmetric` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
+- `parameterGapDualJet` — `def` in `HC4.Valuation.ParameterGapDualJet`
 - `parameterGapJet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapJet_fst` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapJet_mapMatrix_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
@@ -7383,6 +7387,7 @@ Distinct declaration spellings indexed: **7958**.
 - `smithTwoExtremeBalance_nat_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
