@@ -39,43 +39,18 @@ theorem familyParameterLayer_sub_generic
   intro d
   simp [familyParameterLayer_coeff]
 
-/-- Exact parameter-layer extraction commutes with source Euler operators. -/
-theorem familyParameterLayer_mvEuler_generic
-    (P : MvPolynomial (Fin 4) (Polynomial K))
-    (n : ℕ) (i : Fin 4) :
-    familyParameterLayer (HC4.Polynomial.mvEuler i P) n =
-      HC4.Polynomial.mvEuler i (familyParameterLayer P n) := by
-  apply MvPolynomial.ext
-  intro d
-  simp only [familyParameterLayer_coeff, coeff_mvEuler]
-  have h := Polynomial.coeff_mul_natCast
-    (R := K) (p := MvPolynomial.coeff d P) (a := d i) (k := n)
-  simpa [mul_comm] using h
+/-- Euler-scaled Hessian with the family parameter outermost.
 
-/-- Exact parameter layers commute with the Euler-scaled Hessian. -/
-theorem familyParameterLayer_eulerScaledHessian_apply
-    (P : MvPolynomial (Fin 4) (Polynomial K))
-    (n : ℕ) (i j : Fin 4) :
-    familyParameterLayer (HC4.Polynomial.eulerScaledHessian P i j) n =
-      HC4.Polynomial.eulerScaledHessian (familyParameterLayer P n) i j := by
-  unfold HC4.Polynomial.eulerScaledHessian
-  by_cases hij : i = j
-  · subst j
-    simp only [if_pos]
-    rw [familyParameterLayer_sub_generic,
-      familyParameterLayer_mvEuler_generic,
-      familyParameterLayer_mvEuler_generic,
-      familyParameterLayer_mvEuler_generic]
-  · simp only [if_neg hij, sub_zero]
-    rw [familyParameterLayer_mvEuler_generic,
-      familyParameterLayer_mvEuler_generic]
-
-/-- Euler-scaled Hessian with the family parameter outermost. -/
+We build it from the already-certified `parameterFirstHessian`, multiplying
+row `i` and column `j` by the corresponding spatial coordinates.  This is
+exactly the Euler-scaled Hessian, but avoids duplicating the existing
+coefficient/partial-derivative bridge. -/
 noncomputable def parameterFirstEulerHessian
     (P : MvPolynomial (Fin 4) (Polynomial K)) :
     Matrix (Fin 4) (Fin 4) (Polynomial (MvPolynomial (Fin 4) K)) :=
-  (parameterFirstEquiv K).toRingEquiv.mapMatrix
-    (HC4.Polynomial.eulerScaledHessian P)
+  fun i j =>
+    Polynomial.C (MvPolynomial.X i * MvPolynomial.X j) *
+      parameterFirstHessian P j i
 
 /-- Outer coefficient `n` is the Euler-scaled Hessian of source layer `P_n`. -/
 theorem parameterFirstEulerHessian_coeff
@@ -83,11 +58,11 @@ theorem parameterFirstEulerHessian_coeff
     (n : ℕ) (i j : Fin 4) :
     (parameterFirstEulerHessian P i j).coeff n =
       HC4.Polynomial.eulerScaledHessian (familyParameterLayer P n) i j := by
-  change
-    (parameterFirstEquiv K
-      (HC4.Polynomial.eulerScaledHessian P i j)).coeff n = _
-  rw [parameterFirstEquiv_coeff,
-    familyParameterLayer_eulerScaledHessian_apply]
+  unfold parameterFirstEulerHessian
+  rw [Polynomial.coeff_C_mul]
+  rw [parameterFirstHessian_coeff]
+  rw [HC4.Polynomial.eulerScaledHessian_apply]
+  rfl
 
 /-- Euler row/column scaling identity over an arbitrary commutative ring. -/
 theorem det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing
@@ -115,19 +90,22 @@ theorem parameterFirstEulerHessian_det_eq_zero
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (hdet : HC4.Polynomial.hessianDeterminant P = 0) :
     (parameterFirstEulerHessian P).det = 0 := by
-  calc
-    (parameterFirstEulerHessian P).det =
-        parameterFirstEquiv K
-          ((HC4.Polynomial.eulerScaledHessian P).det) := by
-      unfold parameterFirstEulerHessian
-      exact
-        (RingEquiv.map_det
-          (parameterFirstEquiv K).toRingEquiv
-          (HC4.Polynomial.eulerScaledHessian P)).symm
-    _ = 0 := by
-      rw [det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing,
-        hdet, mul_zero]
-      simp
+  let D : Matrix (Fin 4) (Fin 4)
+      (Polynomial (MvPolynomial (Fin 4) K)) :=
+    Matrix.diagonal (fun i => Polynomial.C (MvPolynomial.X i))
+  let H : Matrix (Fin 4) (Fin 4)
+      (Polynomial (MvPolynomial (Fin 4) K)) :=
+    Matrix.transpose (parameterFirstHessian P)
+  have hmatrix : parameterFirstEulerHessian P = D * H * D := by
+    apply Matrix.ext
+    intro i j
+    simp [parameterFirstEulerHessian, D, H]
+    ring
+  have hH : (parameterFirstHessian P).det = 0 := by
+    rw [parameterFirstHessian_det, hdet]
+    simp
+  rw [hmatrix, Matrix.det_mul, Matrix.det_mul]
+  simp [H, hH]
 
 /-- Spatial rank-three specialisation of the parameter-first Euler Hessian. -/
 noncomputable def specialisedParameterFirstEulerHessian
@@ -145,8 +123,11 @@ theorem specialisedParameterFirstEulerHessian_coeff
       HC4.Polynomial.rankThreeLineSpecialisation
         (HC4.Polynomial.eulerScaledHessian
           (familyParameterLayer P n) i j) := by
-  unfold specialisedParameterFirstEulerHessian
-  simp only [RingHom.mapMatrix_apply, Polynomial.coeff_map]
+  change
+    (Polynomial.map
+      (HC4.Polynomial.rankThreeLineSpecialisation (K := K))
+      (parameterFirstEulerHessian P i j)).coeff n = _
+  rw [Polynomial.coeff_map]
   rw [parameterFirstEulerHessian_coeff]
 
 /-- Spatial specialisation preserves the zero determinant. -/
@@ -178,7 +159,7 @@ theorem specialisedParameterFirstEulerHessian_hasGap
   rw [specialisedParameterFirstEulerHessian_coeff]
   rw [familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual
     P h hnpos hnlt]
-  simp [HC4.Polynomial.eulerScaledHessian]
+  simp [HC4.Polynomial.eulerScaledHessian_apply]
 
 /-- Exact `(0,q)` dual jet of the specialised Euler Hessian. -/
 noncomputable def firstActualSpecialisedEulerDualJet
