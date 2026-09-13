@@ -2311,7 +2311,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.WeightedInitial`, `HC4.Toric.Facets`
 - External imports: none
-- Imported by local modules: `HC4.Newton.MixedDegreeFirstWallCompetition`, `HC4.Newton.MvBoundaryStrata`, `HC4.Newton.ScaledContact`, `HC4.Polynomial`, `HC4.Polynomial.MonomialHessian`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`
+- Imported by local modules: `HC4.Newton.MixedDegreeFirstWallCompetition`, `HC4.Newton.MvBoundaryStrata`, `HC4.Newton.ScaledContact`, `HC4.Polynomial`, `HC4.Polynomial.MonomialHessian`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - Declarations: `def toToricExponent`, `def ordinaryDegree4`, `def IsBalancedExponent`, `def facetOmittedCoordinate`, `theorem not_onFacet_toToricExponent_of_pos`, `def HasBalancedMvSupport`, `def MvSupportOnFacet`, `def MvExponentOnBoundary`, `theorem mvExponentOnBoundary_iff_coordinate_zero`, `theorem coordinate_pos_of_not_mvExponentOnBoundary`, `theorem support_initialForm_subset`, `theorem HasBalancedMvSupport.initialForm`, `theorem MvSupportOnFacet.initialForm`
 
 ### `HC4.Polynomial.HessianDeterminant`
@@ -2791,7 +2791,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.WeightedInitial`
 - External imports: `Mathlib`
-- Imported by local modules: `HC4.Newton.FiniteSupportExposedFaceRefinement`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticWeight`
+- Imported by local modules: `HC4.Newton.FiniteSupportExposedFaceRefinement`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticWeight`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - Declarations: `def IsWeightLE`, `def IsWeightLT`, `theorem isWeightLE_zero`, `theorem isWeightLT_zero`, `theorem IsWeightLT.isWeightLE`, `theorem IsWeightLE.add`, `theorem IsWeightLT.add`, `theorem IsWeightLE.neg`, `theorem IsWeightLT.neg`, `theorem IsWeightLE.sub`, `theorem IsWeightLT.sub`, `theorem IsWeightLE.mul`, `theorem IsWeightLT.mul_le`, `theorem IsWeightLE.mul_lt`, `theorem isWeightLE_of_isWeightedHomogeneous`, `theorem initialForm_eq_zero_of_isWeightLE`, `theorem initialForm_eq_zero_of_isWeightLT`, `theorem sub_initialForm_isWeightLT`
 
 ### `HC4.Polynomial.WeightedInitial`
@@ -2801,7 +2801,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: none
 - External imports: `Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous`
-- Imported by local modules: `HC4.Newton.FiniteSupportExposedFaceRefinement`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeWeight`, `HC4.Polynomial.FourExponent`, `HC4.Polynomial.WeightBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticInitialForm`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`, `HC4.Valuation.BoundedReverseWeightedRees`
+- Imported by local modules: `HC4.Newton.FiniteSupportExposedFaceRefinement`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Polynomial`, `HC4.Polynomial.DerivativeWeight`, `HC4.Polynomial.FourExponent`, `HC4.Polynomial.WeightBounds`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticInitialForm`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`, `HC4.Valuation.BoundedReverseWeightedRees`
 - Declarations: `def initialForm`, `theorem coeff_initialForm`, `theorem initialForm_isWeightedHomogeneous`, `theorem initialForm_zero`, `theorem initialForm_add`, `theorem initialForm_smul`, `theorem initialForm_eq_self_of_isWeightedHomogeneous`, `theorem initialForm_eq_zero_of_isWeightedHomogeneous`, `theorem initialForm_idempotent`
 
 ## Area: `QuasiTranslation`
@@ -7657,7 +7657,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart.lean`
 - Purpose: A19 boundary start for the source-honest highest planar slice
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`, `HC4.Newton.InteriorVertex`, `HC4.RationalRigidity.LineSupportedHessianRigidity`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`, `HC4.Newton.InteriorVertex`, `HC4.Polynomial.FourExponent`, `HC4.Polynomial.WeightBounds`, `HC4.Polynomial.WeightedInitial`, `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
 - Declarations: `theorem qs_ray_otherFacet_locked_direction_signs`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.eq_of_zeroCoordinate_eq`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos`, `def negativeZeroCoordinateWeight`, `theorem finsupp_weight_negativeZeroCoordinateWeight`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial`

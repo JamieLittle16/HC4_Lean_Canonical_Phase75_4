@@ -2580,6 +2580,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
   - `HC4.Newton.InteriorVertex`
+  - `HC4.Polynomial.FourExponent`
+  - `HC4.Polynomial.WeightBounds`
+  - `HC4.Polynomial.WeightedInitial`
   - `HC4.RationalRigidity.LineSupportedHessianRigidity`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
