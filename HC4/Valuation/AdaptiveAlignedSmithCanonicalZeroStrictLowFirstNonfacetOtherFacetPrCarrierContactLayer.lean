@@ -39,7 +39,7 @@ theorem ordinaryDegree4_add_quotientDrops_mul_zero
         (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).firstTransverse +
         (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).secondTransverse := by
   simp [HC4.Polynomial.ordinaryDegree4,
-    HC4.Polynomial.rankThreeQuotientCoordinate]
+    HC4.Polynomial.rankThreeQuotientCoordinate, Nat.add_mul]
   omega
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
