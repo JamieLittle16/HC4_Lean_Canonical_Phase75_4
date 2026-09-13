@@ -70,9 +70,14 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_
     change V * D.e0 0 + D.e0 3 = V * D.e1 0 + D.e1 3 at hq3
     rw [D.e0_zero, D.e1_zero, D.e0_three, D.e1_three] at hq3
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq3
-    have hn : D.n = (D.n - 1) + 1 := by omega
-    rw [hn, Nat.mul_add] at hq3
-    have hDV : D.V = V := by omega
+    have hn1 : 1 ≤ D.n := le_trans (by decide : 1 ≤ 2) D.n_two_le
+    have hn : D.n = (D.n - 1) + 1 := (Nat.sub_add_cancel hn1).symm
+    have hmul : D.V * D.n = D.V * (D.n - 1) + D.V := by
+      rw [hn, Nat.mul_add]
+      simp
+    rw [hmul] at hq3
+    rw [Nat.add_comm V (D.V * (D.n - 1))] at hq3
+    have hDV : D.V = V := Nat.add_left_cancel hq3
     exact ⟨D, hDV⟩
   · rcases hright with ⟨D⟩
     have he0S : D.e0 ∈ S.slice.support := by
@@ -144,9 +149,14 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source
     change V * D.e0 0 + D.e0 2 = V * D.e1 0 + D.e1 2 at hq2
     rw [D.e0_zero, D.e1_zero, D.e0_two, D.e1_two] at hq2
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq2
-    have hn : D.n = (D.n - 1) + 1 := by omega
-    rw [hn, Nat.mul_add] at hq2
-    have hDV : D.V = V := by omega
+    have hn1 : 1 ≤ D.n := le_trans (by decide : 1 ≤ 2) D.n_two_le
+    have hn : D.n = (D.n - 1) + 1 := (Nat.sub_add_cancel hn1).symm
+    have hmul : D.V * D.n = D.V * (D.n - 1) + D.V := by
+      rw [hn, Nat.mul_add]
+      simp
+    rw [hmul] at hq2
+    rw [Nat.add_comm V (D.V * (D.n - 1))] at hq2
+    have hDV : D.V = V := Nat.add_left_cancel hq2
     exact ⟨D, hDV⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
