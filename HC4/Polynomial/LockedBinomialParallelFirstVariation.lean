@@ -111,7 +111,7 @@ nonzero. -/
 theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero
     (V ell k j : ℕ)
     (hV : 0 < V) (hell : 0 < ell) (hk : 1 ≤ k)
-    (a b : K) (ha : a ≠ 0) (hb : b ≠ 0)
+    (a b : K) (_ha : a ≠ 0) (hb : b ≠ 0)
     (phi : Polynomial K)
     (hdet :
       TrivSqZeroExt.snd
@@ -124,9 +124,11 @@ theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero
     V ell k j hk a b phi] at hdet
   have hVK : (V : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hV)
+  have hV1Nat : V + 1 ≠ 0 := by omega
+  have hV1Cast : ((V + 1 : ℕ) : K) ≠ 0 :=
+    Nat.cast_ne_zero.mpr hV1Nat
   have hV1K : (V : K) + 1 ≠ 0 := by
-    have : (0 : K) < (V : K) + 1 := by positivity
-    exact ne_of_gt this
+    simpa [Nat.cast_add] using hV1Cast
   have hellK : (ell : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hell)
   have hscalar :
@@ -141,12 +143,12 @@ theorem affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero
     simp [affineEulerLinear, hB] at hc
   have hX2 : (Polynomial.X : Polynomial K) ^ 2 ≠ 0 :=
     pow_ne_zero 2 Polynomial.X_ne_zero
-  rcases mul_eq_zero.mp hdet with hleft | hop
-  · rcases mul_eq_zero.mp hleft with hscalar0 | hrest
-    · exact (hscalar hscalar0).elim
-    · rcases mul_eq_zero.mp hrest with hlinear0 | hX
+  rcases mul_eq_zero.mp hdet with hprefix | hop
+  · rcases mul_eq_zero.mp hprefix with hprefix' | hX
+    · rcases mul_eq_zero.mp hprefix' with hscalar0 | hlinear0
+      · exact (hscalar hscalar0).elim
       · exact (hlinear hlinear0).elim
-      · exact (hX2 hX).elim
+    · exact (hX2 hX).elim
   · exact hop
 
 end
