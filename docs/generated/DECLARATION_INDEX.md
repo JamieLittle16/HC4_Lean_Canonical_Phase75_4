@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8075**.
+Distinct declaration spellings indexed: **8074**.
 
 ## Repeated declaration spellings
 
@@ -2322,7 +2322,6 @@ Distinct declaration spellings indexed: **8075**.
 - `QsOtherFacetPrLeftVContactFrontierData.impossible_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
-- `QsOtherFacetPrLeftVContactFrontierData.noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidityClosure`
 - `QsOtherFacetPrLeftVContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `QsOtherFacetPrLeftVContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLeftVContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
