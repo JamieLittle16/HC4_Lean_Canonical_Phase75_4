@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8030**.
+Distinct declaration spellings indexed: **8037**.
 
 ## Repeated declaration spellings
 
@@ -7666,7 +7666,13 @@ Distinct declaration spellings indexed: **8030**.
 - `standardTwoZero_terminal_hasPlanarKellerCollision` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardTwoZero_terminal_not_planarJC2` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardZeroPairEmbedding` — `def` in `HC4.Newton.TerminalTwoZeroPlanarisation`
+- `stationaryIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationaryIndex_mul_weight_le_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationarySoundElimination_of_internal_then_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
+- `stationaryTotalDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationaryWeight_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationary_scaledOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `step` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `strictLowBlocker` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLowBlocker_aligned` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
@@ -8054,6 +8060,7 @@ Distinct declaration spellings indexed: **8030**.
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
+- `two_le_stationaryWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `two_le_terminalQuadraticDegree_of_generalSurvivingShape` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticWeight`
 - `two_mul_slope_le_of_integralKernelBlowup` — `theorem` in `HC4.Valuation.ExactKernelDefectDrop`
 - `uniqueGradientContributor_impossible` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
