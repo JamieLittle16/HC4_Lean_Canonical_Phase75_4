@@ -67,7 +67,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
     have hq3 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.secondTransverse hq
-    simp only [rankThreeQuotientCoordinate_secondTransverse] at hq3
+    change V * D.e0 0 + D.e0 3 = V * D.e1 0 + D.e1 3 at hq3
     rw [D.e0_zero, D.e1_zero, D.e0_three, D.e1_three] at hq3
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq3
     have hn : D.n = (D.n - 1) + 1 := by omega
@@ -87,7 +87,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_leftV_source_
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
     have hq3 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.secondTransverse hq
-    simp only [rankThreeQuotientCoordinate_secondTransverse] at hq3
+    change V * D.e0 0 + D.e0 3 = V * D.e1 0 + D.e1 3 at hq3
     rw [D.e0_zero, D.e1_zero, D.e0_three, D.e1_three] at hq3
     simp at hq3
     omega
@@ -124,7 +124,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
     have hq2 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hq
-    simp only [rankThreeQuotientCoordinate_firstTransverse] at hq2
+    change V * D.e0 0 + D.e0 2 = V * D.e1 0 + D.e1 2 at hq2
     rw [D.e0_zero, D.e1_zero, D.e0_two, D.e1_two] at hq2
     simp at hq2
     omega
@@ -141,7 +141,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_highest_slice_rightV_source
       D.e0_provenance.carrier_mem D.e1_provenance.carrier_mem
       (he0.2.trans he1.2.symm)
     have hq2 := congrArg HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hq
-    simp only [rankThreeQuotientCoordinate_firstTransverse] at hq2
+    change V * D.e0 0 + D.e0 2 = V * D.e1 0 + D.e1 2 at hq2
     rw [D.e0_zero, D.e1_zero, D.e0_two, D.e1_two] at hq2
     simp only [Nat.mul_zero, Nat.mul_one, zero_add] at hq2
     have hn : D.n = (D.n - 1) + 1 := by omega
