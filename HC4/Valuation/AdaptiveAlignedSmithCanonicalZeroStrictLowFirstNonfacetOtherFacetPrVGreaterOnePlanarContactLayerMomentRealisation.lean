@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation
+import HC4.Valuation.PlanarContactFirstVariationBridge
 import HC4.Polynomial.LockedBinomialParallelFirstVariation
 import Mathlib.Tactic
 
@@ -59,7 +60,50 @@ theorem specialisedEulerHessian_eq_parallelStaircaseMomentHessian
   have hrs := congrFun (congrFun h r) s
   simpa [HC4.Polynomial.parallelStaircaseMomentHessian] using hrs
 
+/-- Coefficient `order` of the complete specialised parameter-first Hessian is
+literally the parallel-staircase moment matrix of the exact layer profile. -/
+theorem specialisedParameterFirstEulerHessian_coeff_eq_parallelStaircaseMomentHessian
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    {D : QsOtherFacetPrLeftVPlanarContactReesData F}
+    {order : ℕ}
+    (A : QsOtherFacetPrLeftVParameterAffineLayerData D order)
+    (r s : Fin 4) :
+    (specialisedParameterFirstEulerHessian D.family r s).coeff order =
+      HC4.Polynomial.parallelStaircaseMomentHessian
+        F.V A.k A.j A.coefficientProfile r s := by
+  rw [specialisedParameterFirstEulerHessian_coeff]
+  have h := A.specialisedEulerHessian_eq_parallelStaircaseMomentHessian
+  exact congrFun (congrFun h r) s
+
 end QsOtherFacetPrLeftVParameterAffineLayerData
+
+namespace QsOtherFacetPrLeftVPlanarContactReesData
+
+/-- Every parameter coefficient of the specialised Euler-Hessian determinant
+vanishes, because the complete planar-contact family is singular.  This is the
+all-depth determinant equation to be combined with the exact layer moment
+identification above. -/
+theorem specialisedParameterFirstEulerHessian_det_coeff_eq_zero
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (order : ℕ) :
+    ((specialisedParameterFirstEulerHessian D.family).det).coeff order = 0 := by
+  have hzero := specialisedParameterFirstEulerHessian_det_eq_zero
+    D.family D.hessian_zero
+  rw [hzero]
+  rfl
+
+end QsOtherFacetPrLeftVPlanarContactReesData
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
