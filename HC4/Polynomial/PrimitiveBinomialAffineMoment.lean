@@ -72,7 +72,7 @@ theorem polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one
   have hjzero : phi.coeff j = 0 := by
     simpa [Polynomial.mem_support_iff] using hjnot
   rw [hjzero]
-  simp only [Polynomial.coeff_add, Polynomial.coeff_C_mul]
+  rw [Polynomial.coeff_add, Polynomial.coeff_C_mul, Polynomial.coeff_C]
   simp [hj0, hj1]
 
 set_option maxHeartbeats 2000000 in
@@ -99,7 +99,7 @@ theorem rankThreeAffineMoment_eq_primitiveBinomialScaledPencil
       eulerDerivative, primitiveBinomialScaledHessianPencil,
       scalarExponentHessianCore, primitiveBinomialBaseExponent,
       primitiveBinomialFarExponent, rankThreeLogBaseExponent,
-      rankThreeLogDirection] <;> ring_nf
+      rankThreeLogDirection] <;> ring
 
 /-- Zero determinant of the actual degree-one affine moment matrix forces the
 three geometric determinant coefficients to vanish. -/
@@ -128,7 +128,8 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff0
           (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp [primitiveBinomialDetCoeff0]
+    simp only [primitiveBinomialDetCoeff0, map_add, map_sub, map_mul, map_pow,
+      map_neg, Polynomial.C_eq_natCast]
   have hC1 :
       primitiveBinomialDetCoeff1
           (Polynomial.C (n : K)) (Polynomial.C (p : K))
@@ -136,7 +137,8 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff1
           (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp [primitiveBinomialDetCoeff1]
+    simp only [primitiveBinomialDetCoeff1, map_add, map_sub, map_mul, map_pow,
+      map_neg, Polynomial.C_eq_natCast]
   have hC2 :
       primitiveBinomialDetCoeff2
           (Polynomial.C (n : K)) (Polynomial.C (p : K))
@@ -144,7 +146,8 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
           (Polynomial.C (beta : K)) =
         Polynomial.C (primitiveBinomialDetCoeff2
           (n : K) (p : K) (q : K) (alpha : K) (beta : K)) := by
-    simp [primitiveBinomialDetCoeff2]
+    simp only [primitiveBinomialDetCoeff2, map_add, map_sub, map_mul, map_pow,
+      map_neg, Polynomial.C_eq_natCast]
 
   rw [hC0, hC1, hC2] at hdet
   simp only [← Polynomial.C_pow, ← Polynomial.C_mul] at hdet
@@ -152,17 +155,9 @@ theorem primitiveBinomial_coefficients_zero_of_affineMoment_det_zero
   have hcoeff2 := congrArg (fun f : Polynomial K => f.coeff 2) hdet
   have hcoeff3 := congrArg (fun f : Polynomial K => f.coeff 3) hdet
   have hcoeff4 := congrArg (fun f : Polynomial K => f.coeff 4) hdet
-
-  rw [Polynomial.coeff_sub, Polynomial.coeff_sub,
-    Polynomial.coeff_neg, Polynomial.coeff_C_mul_X_pow,
-    Polynomial.coeff_C_mul_X_pow, Polynomial.coeff_C_mul_X_pow] at hcoeff2
-  rw [Polynomial.coeff_sub, Polynomial.coeff_sub,
-    Polynomial.coeff_neg, Polynomial.coeff_C_mul_X_pow,
-    Polynomial.coeff_C_mul_X_pow, Polynomial.coeff_C_mul_X_pow] at hcoeff3
-  rw [Polynomial.coeff_sub, Polynomial.coeff_sub,
-    Polynomial.coeff_neg, Polynomial.coeff_C_mul_X_pow,
-    Polynomial.coeff_C_mul_X_pow, Polynomial.coeff_C_mul_X_pow] at hcoeff4
-  norm_num at hcoeff2 hcoeff3 hcoeff4
+  dsimp only at hcoeff2 hcoeff3 hcoeff4
+  norm_num [Polynomial.coeff_sub, Polynomial.coeff_neg,
+    Polynomial.coeff_C_mul_X_pow] at hcoeff2 hcoeff3 hcoeff4
 
   have h0 :
       (phi.coeff 0)^2 * (phi.coeff 1)^2 *
