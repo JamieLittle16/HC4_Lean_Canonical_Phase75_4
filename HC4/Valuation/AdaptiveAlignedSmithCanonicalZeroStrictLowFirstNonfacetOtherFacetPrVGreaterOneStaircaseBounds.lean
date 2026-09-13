@@ -64,8 +64,11 @@ theorem prVGreaterOne_quotientStaircase_bounds
       rw [hr0] at hwall
       norm_num at hwall
       nlinarith
+    have hn1 : 1 ≤ n := by omega
+    have hnk : n ≤ k := by omega
     have heqNat : n - 1 = ell * (k - n) := by
-      exact_mod_cast heqZ
+      apply Int.ofNat.inj
+      simpa only [Nat.cast_sub hn1, Nat.cast_mul, Nat.cast_sub hnk] using heqZ
     have hmul : ell ≤ ell * (k - n) := by
       have h := Nat.mul_le_mul_left ell hkdiff
       simpa using h
@@ -103,16 +106,16 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_staircase_bounds_of_pair_
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support)
-    (hk : 1 ≤ (rankThreeQuotientCoordinate 1 F.V e).pair) :
+    (hk : 1 ≤ (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair) :
     ∃ j : ℕ,
-      (rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1 ∧
-      (rankThreeQuotientCoordinate 1 F.V e).pair ≤ F.highest.n ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).firstTransverse = j + 1 ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair ≤ F.highest.n ∧
       j ≤ F.locked.ell ∧
       (j = 0 ↔
-        (rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n) ∧
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n) ∧
       (j = F.locked.ell ↔
-        (rankThreeQuotientCoordinate 1 F.V e).pair = 1) := by
-  let q := rankThreeQuotientCoordinate 1 F.V e
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = 1) := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hsep := F.highest_n_lt_locked_height hthree houtThree
@@ -134,16 +137,16 @@ theorem QsOtherFacetPrRightVContactFrontierData.support_staircase_bounds_of_pair
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ} (he : e ∈ P.carrier.support)
-    (hk : 1 ≤ (rankThreeQuotientCoordinate F.V 1 e).pair) :
+    (hk : 1 ≤ (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair) :
     ∃ j : ℕ,
-      (rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1 ∧
-      (rankThreeQuotientCoordinate F.V 1 e).pair ≤ F.highest.n ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).secondTransverse = j + 1 ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair ≤ F.highest.n ∧
       j ≤ F.locked.ell ∧
       (j = 0 ↔
-        (rankThreeQuotientCoordinate F.V 1 e).pair = F.highest.n) ∧
+        (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair = F.highest.n) ∧
       (j = F.locked.ell ↔
-        (rankThreeQuotientCoordinate F.V 1 e).pair = 1) := by
-  let q := rankThreeQuotientCoordinate F.V 1 e
+        (HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e).pair = 1) := by
+  let q := HC4.Polynomial.rankThreeQuotientCoordinate F.V 1 e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
   have hsep := F.highest_n_lt_locked_height hthree houtThree
