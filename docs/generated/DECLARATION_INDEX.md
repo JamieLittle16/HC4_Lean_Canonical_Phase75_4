@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7753**.
+Distinct declaration spellings indexed: **7754**.
 
 ## Repeated declaration spellings
 
@@ -2256,6 +2256,7 @@ Distinct declaration spellings indexed: **7753**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.exists_boundary_start_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
 - `QsOtherFacetPlanarHighestPairSlicePackage.exists_pr_primitive_orientation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpointOrientation`
 - `QsOtherFacetPlanarHighestPairSlicePackage.minimal_zeroCoordinate_transverse_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarBoundaryStart`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_endpoint_orientation_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrPrimitiveEndpoint`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_primitive_pair_is_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.primitive_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
