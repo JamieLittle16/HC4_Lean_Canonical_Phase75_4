@@ -35,10 +35,11 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 theorem ordinaryDegree4_add_quotientDrops_mul_zero
     (alpha beta : ℕ) (e : Fin 4 →₀ ℕ) :
     HC4.Polynomial.ordinaryDegree4 e + (alpha + beta) * e 0 =
-      (rankThreeQuotientCoordinate alpha beta e).pair +
-        (rankThreeQuotientCoordinate alpha beta e).firstTransverse +
-        (rankThreeQuotientCoordinate alpha beta e).secondTransverse := by
-  simp [HC4.Polynomial.ordinaryDegree4, rankThreeQuotientCoordinate]
+      (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).secondTransverse := by
+  simp [HC4.Polynomial.ordinaryDegree4,
+    HC4.Polynomial.rankThreeQuotientCoordinate]
   omega
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -87,7 +88,7 @@ theorem QsOtherFacetPrQuotientCarrierData.contactGap_eq_sum
   have hsame : R.contactGap = r := by
     have hmul : C.scale * R.contactGap = C.scale * r := by
       rw [← R.bump_eq, ← hbump]
-    exact Nat.mul_left_cancel hmul
+    exact Nat.mul_left_cancel C.scale_pos hmul
   have hrsum : r = alpha + beta := Q.contactSlope_eq_sum hray
   exact hsame.trans hrsum
 
@@ -104,9 +105,9 @@ theorem QsOtherFacetPrQuotientCarrierData.contactWeight_eq_quotientSum
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     (e : Fin 4 →₀ ℕ) :
     HC4.Polynomial.ordinaryDegree4 e + R.contactGap * e 0 =
-      (rankThreeQuotientCoordinate alpha beta e).pair +
-        (rankThreeQuotientCoordinate alpha beta e).firstTransverse +
-        (rankThreeQuotientCoordinate alpha beta e).secondTransverse := by
+      (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).pair +
+        (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).firstTransverse +
+        (HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e).secondTransverse := by
   rw [Q.contactGap_eq_sum R hthree houtThree]
   exact ordinaryDegree4_add_quotientDrops_mul_zero alpha beta e
 
@@ -122,8 +123,8 @@ theorem QsOtherFacetPrQuotientCarrierData.contactWeight_eq_of_quotient_eq
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e f : Fin 4 →₀ ℕ}
-    (hq : rankThreeQuotientCoordinate alpha beta e =
-      rankThreeQuotientCoordinate alpha beta f) :
+    (hq : HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e =
+      HC4.Polynomial.rankThreeQuotientCoordinate alpha beta f) :
     HC4.Polynomial.ordinaryDegree4 e + R.contactGap * e 0 =
       HC4.Polynomial.ordinaryDegree4 f + R.contactGap * f 0 := by
   rw [Q.contactWeight_eq_quotientSum R hthree houtThree e,
@@ -168,8 +169,8 @@ theorem QsOtherFacetPrQuotientCarrierData.contactOrder_eq_of_quotient_eq
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e f : Fin 4 →₀ ℕ}
-    (hq : rankThreeQuotientCoordinate alpha beta e =
-      rankThreeQuotientCoordinate alpha beta f) :
+    (hq : HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e =
+      HC4.Polynomial.rankThreeQuotientCoordinate alpha beta f) :
     T.topFace.degree -
         (HC4.Polynomial.ordinaryDegree4 e + R.contactGap * e 0) =
       T.topFace.degree -
