@@ -7980,7 +7980,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem parameterLayer_pair_fiber`, `theorem parameterLayer_quotient_fiber`
+- Declarations: `theorem parameterLayer_contactOrder_interpolation`, `theorem parameterLayer_pair_fiber`, `theorem parameterLayer_quotient_fiber`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 
