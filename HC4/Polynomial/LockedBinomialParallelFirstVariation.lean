@@ -102,7 +102,14 @@ theorem snd_det_lockedParallelFirstVariationDualPencil
   push_cast
   rw [Nat.cast_sub hk]
   ring_nf
-  norm_num <;> ring
+  have hCtwo : Polynomial.C (2 : K) = (2 : Polynomial K) := by
+    calc
+      Polynomial.C (2 : K) = Polynomial.C ((1 : K) + 1) := by congr 1 <;> ring
+      _ = Polynomial.C (1 : K) + Polynomial.C 1 := by rw [Polynomial.C_add]
+      _ = (1 : Polynomial K) + 1 := by simp
+      _ = 2 := by ring
+  rw [hCtwo]
+  ring
 
 /-- Vanishing first variation forces the affine two-root Euler equation as soon
 as the locked endpoint coefficient and the non-unit staircase parameters are
