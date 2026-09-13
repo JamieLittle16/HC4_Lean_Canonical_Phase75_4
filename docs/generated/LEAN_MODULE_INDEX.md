@@ -2032,7 +2032,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.AutonomousODETranslation`
 - External imports: `Mathlib.Algebra.Polynomial.Degree.Lemmas`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.AffineEulerDegreeOneRigidity`, `HC4.Polynomial.LockedBinomialParallelFirstVariation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorTwoMode`
-- Declarations: `def twoRootEulerOperator`, `theorem coeff_twoRootEulerOperator`, `theorem support_twoRootEulerOperator_eq_zero`, `theorem twoRootEulerOperator_support_subset`, `theorem X_pow_dvd_of_twoRootEulerOperator_eq_zero`, `theorem natDegree_le_succ_of_twoRootEulerOperator_eq_zero`, `def affineEulerLinear`, `def affineTwoRootEulerOperator`, `theorem translatePolynomial_affineEulerLinear_root`, `theorem twoRootEulerOperator_translate_of_affineTwoRoot`, `theorem translated_support_subset_of_affineTwoRoot`, `theorem X_pow_dvd_translate_of_affineTwoRoot`
+- Declarations: `def twoRootEulerOperator`, `theorem coeff_twoRootEulerOperator`, `theorem support_twoRootEulerOperator_eq_zero`, `theorem twoRootEulerOperator_support_subset`, `theorem X_pow_dvd_of_twoRootEulerOperator_eq_zero`, `theorem natDegree_le_succ_of_twoRootEulerOperator_eq_zero`, `theorem twoRootEulerOperator_derivative_form`, `def affineEulerLinear`, `def affineTwoRootEulerOperator`, `theorem translatePolynomial_affineEulerLinear_root`, `theorem twoRootEulerOperator_translate_of_affineTwoRoot`, `theorem translated_support_subset_of_affineTwoRoot`, `theorem X_pow_dvd_translate_of_affineTwoRoot`
 
 ### `HC4.Polynomial.AutonomousODEPoleOrder`
 
