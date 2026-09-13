@@ -133,9 +133,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_heig
   have hcurveZ' :
       (F.V : ℤ) * (e 0 : ℤ) + (e 3 : ℤ) =
         (F.V : ℤ) * ((e 0 : ℤ) + (e 1 : ℤ) + (j : ℤ)) := by
-    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
-      HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-      Nat.cast_add, Nat.cast_mul, Nat.cast_one] using hcurveZ
+    convert hcurveZ using 1 <;> ring
   have hcurve : F.V * e 0 + e 3 = F.V * (e 0 + e 1 + j) := by
     apply Int.ofNat.inj
     simpa only [Nat.cast_add, Nat.cast_mul] using hcurveZ'
@@ -191,9 +189,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.contactOrder_eq_of_staircase_hei
   have hcurveZ' :
       (F.V : ℤ) * (e 0 : ℤ) + (e 2 : ℤ) =
         (F.V : ℤ) * ((e 0 : ℤ) + (e 1 : ℤ) + (j : ℤ)) := by
-    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-      HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-      Nat.cast_add, Nat.cast_mul, Nat.cast_one] using hcurveZ
+    convert hcurveZ using 1 <;> ring
   have hcurve : F.V * e 0 + e 2 = F.V * (e 0 + e 1 + j) := by
     apply Int.ofNat.inj
     simpa only [Nat.cast_add, Nat.cast_mul] using hcurveZ'
