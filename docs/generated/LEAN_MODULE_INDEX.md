@@ -7910,7 +7910,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseSupport`
-- Declarations: `theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation`
+- Declarations: `theorem weight_explicit_fin4_right`, `theorem pr_final_skew_transverseDet_ne_zero_right`, `theorem QsOtherFacetPrRightVContactFrontierData.quotient_affine_interpolation`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseSupport`
 
