@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **7953**.
+Distinct declaration spellings indexed: **7958**.
 
 ## Repeated declaration spellings
 
@@ -2895,6 +2895,7 @@ Distinct declaration spellings indexed: **7953**.
 - `affineEulerLinear` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -5135,6 +5136,8 @@ Distinct declaration spellings indexed: **7953**.
 - `lockedBinomialFirstVariationEulerResidual` — `def` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `lockedBinomialFirstVariationEulerResidual_eq_derivative_form` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialFirstVariationEulerResidual_normalized_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
+- `lockedBinomialMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `lockedParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `locked_facet_reverseOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
@@ -5633,6 +5636,7 @@ Distinct declaration spellings indexed: **7953**.
 - `pExponent` — `def` in `HC4.Toric.InvariantSemigroup`
 - `pair_eq_of_reverseOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `pair_rees_specialFiber_eq_slice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
+- `parallelStaircaseMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `parameterConstantCoeffFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_schurA` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
@@ -7378,6 +7382,7 @@ Distinct declaration spellings indexed: **7953**.
 - `smithTwoExtremeBalance_forces_target_grades` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smithTwoExtremeBalance_nat_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
+- `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`

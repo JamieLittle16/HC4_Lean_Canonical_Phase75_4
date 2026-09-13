@@ -862,6 +862,9 @@ human architecture guide.
   - `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
   - `HC4.Polynomial.AutonomousODEReconstruction`
+- `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+  - `HC4.Polynomial.AffineEulerTwoRootRigidity`
+  - `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `HC4.Polynomial.LogHessianMoments`
   - `HC4.Polynomial.ComplementaryFractionBridge`
 - `HC4.Polynomial.LogarithmicInitialSlope`
