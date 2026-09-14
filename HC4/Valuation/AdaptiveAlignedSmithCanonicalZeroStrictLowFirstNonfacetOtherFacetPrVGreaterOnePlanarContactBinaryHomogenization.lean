@@ -91,6 +91,11 @@ theorem coeff_binaryHomogenizedFamily
       simp [HC4.Polynomial.ordinaryDegree4]
       ring
     rw [hordinary] at hbound ⊢
+    have hweight :
+        d 0 + (d 1 + d 2 + d 3) + (F.V + 1) * d 0 =
+          (d 1 + d 2 + d 3) + (F.V + 2) * d 0 := by
+      ring
+    rw [hweight] at hbound
     rw [← mul_assoc]
     rw [← pow_add]
     have hexp :
@@ -98,6 +103,7 @@ theorem coeff_binaryHomogenizedFamily
             (T.topFace.degree -
               (d 0 + (d 1 + d 2 + d 3) + (F.V + 1) * d 0)) =
           T.topFace.degree - (F.V + 2) * d 0 := by
+      rw [hweight]
       omega
     simpa [binaryProfileWeight] using
       congrArg
@@ -121,11 +127,13 @@ theorem binaryHomogenizedFamily_hessianDeterminant_eq_zero
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (D : QsOtherFacetPrLeftVPlanarContactReesData F) :
     HC4.Polynomial.hessianDeterminant D.binaryHomogenizedFamily = 0 := by
+  have hzero : HC4.Polynomial.hessianDeterminant D.family = 0 := by
+    simpa [family] using D.hessian_zero
   unfold binaryHomogenizedFamily unitTransverseInflateFamily
   rw [hessianDeterminant_kernelInflateHom]
   rw [hessianDeterminant_kernelInflateHom]
   rw [hessianDeterminant_kernelInflateHom]
-  rw [D.hessian_zero]
+  rw [hzero]
   simp
 
 /-- Exact longitudinal profile of the singular planar carrier, retaining the
