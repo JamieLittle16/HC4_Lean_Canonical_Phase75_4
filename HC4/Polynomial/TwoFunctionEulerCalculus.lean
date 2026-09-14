@@ -287,6 +287,75 @@ private theorem mvEuler_three_twoFunctionH_pow_local
   exact mvEuler_pow_of_eigen_local (K := K) (3 : Fin 4)
     (twoFunctionH V) (V : MvPolynomial (Fin 4) K) hbase ell
 
+/-! Cache the four first Euler derivatives of the carrier.  The Hessian proof
+below differentiates these compact invariant-coordinate formulas rather than
+re-expanding the original carrier in every one of its sixteen entries. -/
+
+private theorem mvEuler_zero_twoFunctionCarrier_local
+    {K : Type*} [CommRing K]
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    mvEuler (0 : Fin 4) (twoFunctionCarrier V ell a b P Q) =
+      MvPolynomial.X (0 : Fin 4) *
+        (polynomialLift (twoFunctionY (K := K) V) Q +
+          MvPolynomial.C b * twoFunctionH (K := K) V ^ ell) := by
+  simp [twoFunctionCarrier, mvEuler_add_local, mvEuler_mul_local,
+    mvEuler_C_local, mvEuler_X_local, mvEuler_polynomialLift,
+    mvEuler_zero_twoFunctionY_local, mvEuler_zero_twoFunctionH_pow_local]
+
+private theorem mvEuler_one_twoFunctionCarrier_local
+    {K : Type*} [CommRing K]
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    mvEuler (1 : Fin 4) (twoFunctionCarrier V ell a b P Q) =
+      MvPolynomial.X (0 : Fin 4) *
+          (twoFunctionY (K := K) V *
+            polynomialLift (twoFunctionY (K := K) V) Q.derivative) +
+        MvPolynomial.X (2 : Fin 4) *
+          (twoFunctionY (K := K) V *
+              polynomialLift (twoFunctionY (K := K) V) P.derivative +
+            MvPolynomial.C a * twoFunctionH (K := K) V ^ ell *
+              twoFunctionY (K := K) V) := by
+  simp [twoFunctionCarrier, mvEuler_add_local, mvEuler_mul_local,
+    mvEuler_C_local, mvEuler_X_local, mvEuler_polynomialLift,
+    mvEuler_one_twoFunctionY, mvEuler_one_twoFunctionH_pow_local]
+  ring
+
+private theorem mvEuler_two_twoFunctionCarrier_local
+    {K : Type*} [CommRing K]
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    mvEuler (2 : Fin 4) (twoFunctionCarrier V ell a b P Q) =
+      MvPolynomial.C b * (ell : MvPolynomial (Fin 4) K) *
+          MvPolynomial.X (0 : Fin 4) * twoFunctionH (K := K) V ^ ell +
+        MvPolynomial.X (2 : Fin 4) *
+          (polynomialLift (twoFunctionY (K := K) V) P +
+            MvPolynomial.C a * ((ell : MvPolynomial (Fin 4) K) + 1) *
+              twoFunctionH (K := K) V ^ ell * twoFunctionY (K := K) V) := by
+  simp [twoFunctionCarrier, mvEuler_add_local, mvEuler_mul_local,
+    mvEuler_C_local, mvEuler_X_local, mvEuler_polynomialLift,
+    mvEuler_two_twoFunctionY_local, mvEuler_two_twoFunctionH_pow_local]
+  ring
+
+private theorem mvEuler_three_twoFunctionCarrier_local
+    {K : Type*} [CommRing K]
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    mvEuler (3 : Fin 4) (twoFunctionCarrier V ell a b P Q) =
+      (V : MvPolynomial (Fin 4) K) *
+        (MvPolynomial.X (0 : Fin 4) *
+            (twoFunctionY (K := K) V *
+                polynomialLift (twoFunctionY (K := K) V) Q.derivative +
+              MvPolynomial.C b * (ell : MvPolynomial (Fin 4) K) *
+                twoFunctionH (K := K) V ^ ell) +
+          MvPolynomial.X (2 : Fin 4) *
+            (twoFunctionY (K := K) V *
+                polynomialLift (twoFunctionY (K := K) V) P.derivative +
+              MvPolynomial.C a * ((ell : MvPolynomial (Fin 4) K) + 1) *
+                twoFunctionH (K := K) V ^ ell *
+                twoFunctionY (K := K) V)) := by
+  simp [twoFunctionCarrier, mvEuler_add_local, mvEuler_mul_local,
+    mvEuler_C_local, mvEuler_X_local, mvEuler_polynomialLift,
+    mvEuler_three_twoFunctionY_local,
+    mvEuler_three_twoFunctionH_pow_local]
+  ring
+
 set_option maxHeartbeats 2000000
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
@@ -312,16 +381,16 @@ theorem eulerScaledHessian_twoFunctionCarrier
   apply Matrix.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [eulerScaledHessian, twoFunctionCarrier,
-      twoFunctionEulerHessianMatrix, mvEuler_add_local, mvEuler_mul_local,
-      mvEuler_C_local, mvEuler_X_local, mvEuler_polynomialLift,
-      mvEuler_zero_twoFunctionY_local, mvEuler_one_twoFunctionY,
-      mvEuler_two_twoFunctionY_local, mvEuler_three_twoFunctionY_local,
-      mvEuler_zero_twoFunctionH_local, mvEuler_one_twoFunctionH_local,
-      mvEuler_two_twoFunctionH, mvEuler_three_twoFunctionH_local,
-      mvEuler_zero_twoFunctionH_pow_local,
-      mvEuler_one_twoFunctionH_pow_local,
-      mvEuler_two_twoFunctionH_pow_local,
+    simp [eulerScaledHessian, twoFunctionEulerHessianMatrix,
+      mvEuler_zero_twoFunctionCarrier_local,
+      mvEuler_one_twoFunctionCarrier_local,
+      mvEuler_two_twoFunctionCarrier_local,
+      mvEuler_three_twoFunctionCarrier_local,
+      mvEuler_add_local, mvEuler_mul_local, mvEuler_C_local, mvEuler_X_local,
+      mvEuler_polynomialLift, mvEuler_zero_twoFunctionY_local,
+      mvEuler_one_twoFunctionY, mvEuler_two_twoFunctionY_local,
+      mvEuler_three_twoFunctionY_local, mvEuler_zero_twoFunctionH_pow_local,
+      mvEuler_one_twoFunctionH_pow_local, mvEuler_two_twoFunctionH_pow_local,
       mvEuler_three_twoFunctionH_pow_local] <;>
     ring
 
