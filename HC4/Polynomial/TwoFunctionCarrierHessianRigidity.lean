@@ -83,7 +83,7 @@ theorem twoFunctionEulerFactorA_ne_zero
 
 /-- **Complete two-function carrier contradiction.** -/
 theorem twoFunctionCarrier_hessian_impossible
-    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
+    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
     (a b : K) (ha : a ≠ 0) (hb : b ≠ 0)
     (P Q : Polynomial K) (hQ1 : Q.derivative ≠ 0)
     (hdet : hessianDeterminant (twoFunctionCarrier V ell a b P Q) = 0) :
@@ -108,10 +108,11 @@ theorem twoFunctionCarrier_hessian_impossible
     rw [hdet]
     simp
 
-  rw [det_eulerScaledHessian_twoFunctionCarrier] at hscaled
+  rw [det_eulerScaledHessian_twoFunctionCarrier V ell hV hell] at hscaled
 
+  have hVpos : 0 < V := by omega
   have hV0 : (V : R) ≠ 0 := by
-    exact Nat.cast_ne_zero.mpr (Nat.ne_of_gt hV)
+    exact Nat.cast_ne_zero.mpr (Nat.ne_of_gt hVpos)
   have hell0 : (ell : R) ≠ 0 := by
     exact Nat.cast_ne_zero.mpr (Nat.ne_of_gt hell)
   have hV1cast : ((V + 1 : ℕ) : R) ≠ 0 := by
