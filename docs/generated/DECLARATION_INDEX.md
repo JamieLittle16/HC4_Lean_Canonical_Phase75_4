@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8091**.
+Distinct declaration spellings indexed: **8094**.
 
 ## Repeated declaration spellings
 
@@ -3255,6 +3255,7 @@ Distinct declaration spellings indexed: **8091**.
 - `branchCharacter` — `def` in `HC4.Toric.BranchCharacter`
 - `bump_le_scale_mul_m_sub_three` — `theorem` in `HC4.Newton.ScaledContact`
 - `cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactFamilyActiveConstant`
+- `cancel_stationaryRamifiedFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
 - `canonicalAdaptiveAlignedSmithRepairRanking` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
 - `canonicalAdaptiveSmithWall_or_strictImprovement` — `theorem` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
 - `canonicalDegreeRamification` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
@@ -6040,6 +6041,7 @@ Distinct declaration spellings indexed: **8091**.
 - `polynomialFamilySpecialFiber_pointedBoundaryShearFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `polynomialFamilySpecialFiber_reverseWeightedReesFamily` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `polynomialFamilySpecialFiber_reverseWeightedReesFamily_eq_layer_zero` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `polynomialFamilySpecialFiber_stationaryRamifiedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
 - `polynomialFamilySpecialFiber_translation_eq_longitudinalRightRecenter` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `polynomialFamilySpecialFiber_translation_eq_of_specialPoint_zero` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `polynomialFamilySpecialFiber_transverseSourceShearHom_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTransverseKernelRestart`
@@ -7718,6 +7720,7 @@ Distinct declaration spellings indexed: **8091**.
 - `stationaryIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryIndex_mul_weight_le_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryRamifiedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
+- `stationaryRamifiedFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
 - `stationaryRamifiedFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `stationarySoundElimination_of_internal_then_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSoundEpisodeInterface`
 - `stationaryTotalDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
