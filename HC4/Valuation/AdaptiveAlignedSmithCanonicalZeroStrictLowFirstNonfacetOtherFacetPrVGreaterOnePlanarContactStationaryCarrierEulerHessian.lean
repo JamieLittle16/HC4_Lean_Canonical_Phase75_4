@@ -109,11 +109,23 @@ theorem stationaryRamifiedFamily_wallEulerRow
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
     rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
     simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
-    fin_cases i <;>
-      simp only [if_true, if_false] <;>
+    fin_cases i
+    · simp only [if_true]
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 0 : K)) * hP
+    · simp only [if_false, if_true]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 1 : K)) * hP
+    · simp only [if_false, if_true]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 2 : K)) * hP
+    · simp only [if_false]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 3 : K)) * hP
   · have hzero := D.stationaryRamifiedFamily_coeff_eq_zero_of_not_carrier_mem he
     rw [hzero]
     simp
@@ -163,11 +175,23 @@ theorem stationaryRamifiedFamily_curveEulerRow
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
     rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
     simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
-    fin_cases i <;>
-      simp only [if_true, if_false] <;>
+    fin_cases i
+    · simp only [if_true]
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 0 : K)) * hP
+    · simp only [if_false, if_true]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 1 : K)) * hP
+    · simp only [if_false, if_true]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 2 : K)) * hP
+    · simp only [if_false]
+      linear_combination
+        (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
+          (Polynomial.C (e 3 : K)) * hP
   · have hzero := D.stationaryRamifiedFamily_coeff_eq_zero_of_not_carrier_mem he
     rw [hzero]
     simp
