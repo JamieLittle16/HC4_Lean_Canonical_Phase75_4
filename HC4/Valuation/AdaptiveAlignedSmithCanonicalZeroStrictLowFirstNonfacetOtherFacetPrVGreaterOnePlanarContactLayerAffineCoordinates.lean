@@ -93,9 +93,9 @@ theorem exists_parameterLayer_affineCoordinates
   have hstair := F.support_staircase_equations hthree houtThree hfP
   dsimp only at hstair
   have hsecondZ := hstair.2
-  simp only [rankThreeQuotientCoordinate_secondTransverse,
-    rankThreeQuotientCoordinate_pair,
-    rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
   rw [hpairNat, hfirstNat] at hsecondZ
   have hsecond : F.V * f 0 + f 3 = F.V * (k + j) := by
     have hsecondZ' :
