@@ -116,32 +116,28 @@ theorem twoFunction_factorB_coefficients_impossible
           Polynomial.C a * Q.derivative :=
     sub_eq_zero.mp hrel4zero
 
-  have hthreeRaw :
-      (Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1) *
-          Polynomial.C a * Q.derivative = 0 := by
-    linear_combination hrel4 - hrel1
-  have hconst :
-      Polynomial.C (3 : K) =
-        Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1 := by
-    calc
-      Polynomial.C (3 : K) =
-          Polynomial.C ((2 : K) * 2 - 1) := by congr 1 <;> ring
-      _ = Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1 := by
-        rw [map_sub, map_mul, map_one]
-  have hthree :
-      Polynomial.C (3 : K) * Polynomial.C a * Q.derivative = 0 := by
-    rw [hconst]
-    exact hthreeRaw
-  have hthreeK : (3 : K) ≠ 0 := by norm_num
-  have hthreeC : Polynomial.C (3 : K) ≠ (0 : Polynomial K) :=
-    Polynomial.C_ne_zero.mpr hthreeK
   have haC : Polynomial.C a ≠ (0 : Polynomial K) :=
     Polynomial.C_ne_zero.mpr ha
-  have hnonzero :
-      Polynomial.C (3 : K) * Polynomial.C a * Q.derivative ≠
-        (0 : Polynomial K) :=
-    mul_ne_zero (mul_ne_zero hthreeC haC) hQ1
-  exact hnonzero hthree
+  have hAQ : Polynomial.C a * Q.derivative ≠ (0 : Polynomial K) :=
+    mul_ne_zero haC hQ1
+  have hscalarPoly :
+      (1 : Polynomial K) =
+        Polynomial.C (2 : K) * Polynomial.C (2 : K) := by
+    apply mul_right_cancel₀ hAQ
+    calc
+      (1 : Polynomial K) * (Polynomial.C a * Q.derivative) =
+          Polynomial.C a * Q.derivative := one_mul _
+      _ = Polynomial.C b * P.derivative.derivative := hrel1.symm
+      _ = Polynomial.C (2 : K) * Polynomial.C (2 : K) *
+          Polynomial.C a * Q.derivative := hrel4
+      _ = (Polynomial.C (2 : K) * Polynomial.C (2 : K)) *
+          (Polynomial.C a * Q.derivative) := by ring
+  have hscalarC :
+      Polynomial.C (1 : K) = Polynomial.C ((2 : K) * 2) := by
+    simpa only [map_one, map_mul] using hscalarPoly
+  have hscalar : (1 : K) = (2 : K) * 2 :=
+    Polynomial.C_injective hscalarC
+  norm_num at hscalar
 
 end
 
