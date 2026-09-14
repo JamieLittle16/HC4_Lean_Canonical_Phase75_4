@@ -120,6 +120,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.twoFunctionCarrierData_of_noStric
   rcases F.fourTermCarrierData_of_noStrictInterior hno with ⟨D⟩
   let Ppoly : Polynomial K := Polynomial.monomial F.highest.n D.p
   let Qpoly : Polynomial K := Polynomial.monomial (F.highest.n - 1) D.q
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   have hn1 : F.highest.n - 1 ≠ 0 := by omega
   have hQderiv : Qpoly.derivative ≠ 0 := by
     dsimp [Qpoly]
