@@ -38,10 +38,9 @@ theorem familyParameterEuler_familyParameterEuler
       familyParameterSecondEuler Q + familyParameterEuler Q := by
   apply MvPolynomial.ext
   intro e
-  rw [coeff_familyParameterEuler, coeff_familyParameterEuler,
-    coeff_familyParameterSecondEuler, MvPolynomial.coeff_add,
-    coeff_familyParameterEuler]
-  simp only [Polynomial.derivative_mul, Polynomial.derivative_X, one_mul]
+  simp only [coeff_familyParameterEuler, coeff_familyParameterSecondEuler,
+    MvPolynomial.coeff_add, Polynomial.derivative_mul,
+    Polynomial.derivative_X, one_mul]
   ring
 
 /-- The family parameter Euler operator is additive. -/
@@ -51,9 +50,8 @@ theorem familyParameterEuler_add
       familyParameterEuler A + familyParameterEuler B := by
   apply MvPolynomial.ext
   intro e
-  rw [coeff_familyParameterEuler, coeff_familyParameterEuler,
-    coeff_familyParameterEuler, MvPolynomial.coeff_add,
-    MvPolynomial.coeff_add, Polynomial.derivative_add]
+  simp only [coeff_familyParameterEuler, MvPolynomial.coeff_add,
+    Polynomial.derivative_add]
   ring
 
 /-- A ground-field scalar is constant in the family parameter, so parameter
@@ -117,7 +115,7 @@ theorem stationaryRamifiedFamily_fallingParameterRow
     familyParameterEuler_groundScalar_mul,
     familyParameterEuler_groundScalar_mul,
     familyParameterEuler_familyParameterEuler] at h
-  linear_combination h
+  simpa [map_add, add_mul, add_assoc, add_comm, add_left_comm] using h
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
