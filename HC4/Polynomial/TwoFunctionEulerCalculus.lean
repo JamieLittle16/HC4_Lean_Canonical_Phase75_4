@@ -54,8 +54,7 @@ theorem pderiv_polynomialLift
     rw [map_add, hp, hq]
     ring
   · intro n a
-    simp [Polynomial.derivative_monomial, MvPolynomial.pderiv_mul,
-      MvPolynomial.pderiv_pow]
+    simp [Polynomial.derivative_monomial]
     ring
 
 /-- Euler form of the chain rule. -/
@@ -72,33 +71,55 @@ theorem mvEuler_polynomialLift
 theorem mvEuler_one_twoFunctionY
     {K : Type*} [CommRing K] (V : ℕ) :
     mvEuler (1 : Fin 4) (twoFunctionY (K := K) V) = twoFunctionY V := by
-  simp [mvEuler, twoFunctionY, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_pow]
+  simp [mvEuler, twoFunctionY]
 
 /-- `Y` has Euler weight `V` in the `w` coordinate. -/
 theorem mvEuler_three_twoFunctionY
     {K : Type*} [CommRing K] (V : ℕ) :
     mvEuler (3 : Fin 4) (twoFunctionY (K := K) V) =
       (V : K) • twoFunctionY V := by
-  simp [mvEuler, twoFunctionY, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_pow]
-  ring
+  by_cases hV : V = 0
+  · subst V
+    simp [mvEuler, twoFunctionY]
+  · have hVpos : 0 < V := Nat.pos_of_ne_zero hV
+    simp [mvEuler, twoFunctionY, hV]
+    have hpow :
+        MvPolynomial.X (3 : Fin 4) *
+            MvPolynomial.X (3 : Fin 4) ^ (V - 1) =
+          MvPolynomial.X (3 : Fin 4) ^ V := by
+      rw [← pow_succ']
+      congr 1
+      omega
+    rw [hpow]
+    simp [Algebra.smul_def]
+    ring
 
 /-- `H` has Euler weight one in the `z` coordinate. -/
 theorem mvEuler_two_twoFunctionH
     {K : Type*} [CommRing K] (V : ℕ) :
     mvEuler (2 : Fin 4) (twoFunctionH (K := K) V) = twoFunctionH V := by
-  simp [mvEuler, twoFunctionH, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_pow]
+  simp [mvEuler, twoFunctionH]
 
 /-- `H` has Euler weight `V` in the `w` coordinate. -/
 theorem mvEuler_three_twoFunctionH
     {K : Type*} [CommRing K] (V : ℕ) :
     mvEuler (3 : Fin 4) (twoFunctionH (K := K) V) =
       (V : K) • twoFunctionH V := by
-  simp [mvEuler, twoFunctionH, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_pow]
-  ring
+  by_cases hV : V = 0
+  · subst V
+    simp [mvEuler, twoFunctionH]
+  · have hVpos : 0 < V := Nat.pos_of_ne_zero hV
+    simp [mvEuler, twoFunctionH, hV]
+    have hpow :
+        MvPolynomial.X (3 : Fin 4) *
+            MvPolynomial.X (3 : Fin 4) ^ (V - 1) =
+          MvPolynomial.X (3 : Fin 4) ^ V := by
+      rw [← pow_succ']
+      congr 1
+      omega
+    rw [hpow]
+    simp [Algebra.smul_def]
+    ring
 
 /-- The actual four-variable no-singleton carrier from the paper argument:
 
@@ -117,6 +138,7 @@ def twoFunctionCarrier
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
 the abstract matrix used in `TwoFunctionEulerHessian`. -/
+set_option maxHeartbeats 2000000 in
 theorem eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
     (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
@@ -138,8 +160,7 @@ theorem eulerScaledHessian_twoFunctionCarrier
   fin_cases i <;> fin_cases j <;>
     simp [eulerScaledHessian_apply, twoFunctionCarrier,
       twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
-      twoFunctionY, twoFunctionH, MvPolynomial.pderiv_mul,
-      MvPolynomial.pderiv_pow] <;>
+      twoFunctionY, twoFunctionH] <;>
     ring
 
 /-- Determinant factorisation for the **actual** four-variable carrier. -/
