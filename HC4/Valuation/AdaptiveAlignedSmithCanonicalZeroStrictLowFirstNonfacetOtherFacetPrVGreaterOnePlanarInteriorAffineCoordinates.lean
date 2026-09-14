@@ -80,21 +80,19 @@ theorem exists_firstPositiveLayer_strictInterior_affineCoordinates
   have heP : e ∈ P.carrier.support :=
     (D.parameterLayer_support_source_and_order he).1
   have hstair := F.support_staircase_equations hthree houtThree heP
-  dsimp only at hstair
   have hsecondZ := hstair.2
-  change
-    ((F.V * e 0 + e 3 : ℕ) : ℤ) =
-      (F.V : ℤ) *
-        (((e 0 + e 1 : ℕ) : ℤ) + ((e 0 + e 2 : ℕ) : ℤ) - 1)
-    at hsecondZ
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
   rw [hpairNat, hfirstNat] at hsecondZ
+  have hsumZ :
+      (k : ℤ) + ((j + 1 : ℕ) : ℤ) - 1 = ((k + j : ℕ) : ℤ) := by
+    push_cast
+    ring
+  rw [hsumZ] at hsecondZ
   have hsecond : F.V * e 0 + e 3 = F.V * (k + j) := by
-    have hsecondZ' :
-        ((F.V * e 0 + e 3 : ℕ) : ℤ) =
-          ((F.V * (k + j) : ℕ) : ℤ) := by
-      push_cast at hsecondZ ⊢
-      nlinarith
-    exact_mod_cast hsecondZ'
+    apply Int.ofNat.inj
+    simpa only [Nat.cast_mul, Nat.cast_add] using hsecondZ
   exact ⟨hpairNat, hfirstNat, hsecond, hcoeff⟩
 
 /-- Coordinatewise subtraction form used by the generic affine-line moment
@@ -119,12 +117,27 @@ theorem firstPositiveLayer_affine_cast
           (e 0 : K) *
             HC4.Polynomial.rankThreeLogDirection
               (1 : K) (-1 : K) (-1 : K) (-(F.V : K)) i := by
+  have hpairK : (e 0 : K) + (e 1 : K) = (k : K) := by
+    exact_mod_cast hpair
+  have hfirstK : (e 0 : K) + (e 2 : K) = ((j + 1 : ℕ) : K) := by
+    exact_mod_cast hfirst
+  have hsecondK :
+      (F.V : K) * (e 0 : K) + (e 3 : K) =
+        (F.V : K) * ((k + j : ℕ) : K) := by
+    exact_mod_cast hsecond
   funext i
-  fin_cases i <;>
-    simp [HC4.Polynomial.rankThreeLogBaseExponent,
-      HC4.Polynomial.rankThreeLogDirection] <;>
-    push_cast <;>
-    nlinarith
+  fin_cases i
+  · simp [HC4.Polynomial.rankThreeLogBaseExponent,
+      HC4.Polynomial.rankThreeLogDirection]
+  · simp [HC4.Polynomial.rankThreeLogBaseExponent,
+      HC4.Polynomial.rankThreeLogDirection]
+    linarith [hpairK]
+  · simp [HC4.Polynomial.rankThreeLogBaseExponent,
+      HC4.Polynomial.rankThreeLogDirection]
+    linarith [hfirstK]
+  · simp [HC4.Polynomial.rankThreeLogBaseExponent,
+      HC4.Polynomial.rankThreeLogDirection]
+    nlinarith [hsecondK]
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
