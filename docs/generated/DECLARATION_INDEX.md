@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8159**.
+Distinct declaration spellings indexed: **8161**.
 
 ## Repeated declaration spellings
 
@@ -5455,6 +5455,8 @@ Distinct declaration spellings indexed: **8159**.
 - `mvEuler_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `mvEuler_monomial_general` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `mvEuler_mul_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_natCast_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_one_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionCarrier_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionH_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionH_pow_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
