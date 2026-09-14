@@ -75,6 +75,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.fourTermCarrierData_of_noStrictIn
   let b := MvPolynomial.coeff C.ray.outsideExponent P.carrier
   let p := MvPolynomial.coeff F.highest.e0 P.carrier
   let q := MvPolynomial.coeff F.highest.e1 P.carrier
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   have hFO : C.ray.facetExponent ≠ C.ray.outsideExponent := by
     intro h
     have h0 : C.ray.facetExponent 0 = C.ray.outsideExponent 0 := by
@@ -83,27 +84,31 @@ theorem QsOtherFacetPrLeftVContactFrontierData.fourTermCarrierData_of_noStrictIn
     omega
   have hFH0 : C.ray.facetExponent ≠ F.highest.e0 := by
     intro h
-    have h1 : C.ray.facetExponent 1 = F.highest.e0 1 := by
-      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
-    rw [F.locked.facet_one, F.highest.e0_one] at h1
+    have hp : 1 = F.highest.n := by
+      simpa [F.locked.facet_zero, F.locked.facet_one,
+        F.highest.e0_zero, F.highest.e0_one] using
+        congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hFH1 : C.ray.facetExponent ≠ F.highest.e1 := by
     intro h
-    have h0 : C.ray.facetExponent 0 = F.highest.e1 0 := by
-      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
-    rw [F.locked.facet_zero, F.highest.e1_zero] at h0
+    have hp : 1 = F.highest.n := by
+      simpa [F.locked.facet_zero, F.locked.facet_one,
+        F.highest.e1_zero, F.highest.e1_one] using
+        congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hOH0 : C.ray.outsideExponent ≠ F.highest.e0 := by
     intro h
-    have h0 : C.ray.outsideExponent 0 = F.highest.e0 0 := by
-      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
-    rw [F.locked.outside_zero, F.highest.e0_zero] at h0
+    have hp : 1 = F.highest.n := by
+      simpa [F.locked.outside_zero, F.locked.outside_one,
+        F.highest.e0_zero, F.highest.e0_one] using
+        congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hOH1 : C.ray.outsideExponent ≠ F.highest.e1 := by
     intro h
-    have h1 : C.ray.outsideExponent 1 = F.highest.e1 1 := by
-      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
-    rw [F.locked.outside_one, F.highest.e1_one] at h1
+    have hp : 1 = F.highest.n := by
+      simpa [F.locked.outside_zero, F.locked.outside_one,
+        F.highest.e1_zero, F.highest.e1_one] using
+        congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hH01 : F.highest.e0 ≠ F.highest.e1 := by
     intro h
