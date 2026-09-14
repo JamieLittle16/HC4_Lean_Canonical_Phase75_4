@@ -64,7 +64,10 @@ theorem stationaryRamifiedFamily_hessianDeterminant_eq_zero
     HC4.Polynomial.hessianDeterminant D.stationaryRamifiedFamily = 0 := by
   unfold stationaryRamifiedFamily
   rw [hessianDeterminant_parameterRamificationFamily]
-  simp [D.hessian_zero]
+  have hz : HC4.Polynomial.hessianDeterminant D.family = 0 := by
+    simpa [QsOtherFacetPrLeftVPlanarContactReesData.family] using D.hessian_zero
+  rw [hz]
+  simp
 
 /-- Source-wide stationary order formula.  This is the monomial form of the
 exact-layer theorem `stationary_scaledOrder_eq`, avoiding any choice of a
@@ -153,6 +156,7 @@ theorem coeff_stationaryRamifiedFamily_of_carrier_mem
   rw [parameterRamificationHom_apply]
   simp
   rw [D.stationary_scaledOrder_eq_of_carrier_mem hthree houtThree he]
+  exact Or.inl rfl
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
