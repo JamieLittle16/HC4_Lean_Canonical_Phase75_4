@@ -148,6 +148,8 @@ theorem stationary_scaledOrder_eq
     change e 0 + e 1 = A.k
     exact (A.coordinates e he).1
   rw [hpair] at hinterp
+  have hkpos : 1 ≤ A.k := A.k_pos
+  have hkle : A.k ≤ F.highest.n := A.k_le_highest
   have hdecomp :
       F.highest.n - 1 =
         (F.highest.n - A.k) + (A.k - 1) := by
