@@ -76,8 +76,8 @@ theorem coeff_stationaryDepthEuler
       Polynomial.C
           ((F.highest.n : K) - (e 0 : K) - (e 1 : K)) *
         MvPolynomial.coeff e Q := by
-  rw [stationaryDepthEuler]
-  simp only [MvPolynomial.coeff_sub, MvPolynomial.coeff_C_mul, coeff_mvEuler]
+  rw [stationaryDepthEuler, MvPolynomial.coeff_sub, MvPolynomial.coeff_sub,
+    MvPolynomial.coeff_C_mul, coeff_mvEuler, coeff_mvEuler]
   have h0 : (e 0 : Polynomial K) = Polynomial.C (e 0 : K) :=
     (map_natCast (Polynomial.C : K →+* Polynomial K) (e 0)).symm
   have h1 : (e 1 : Polynomial K) = Polynomial.C (e 1 : K) :=
