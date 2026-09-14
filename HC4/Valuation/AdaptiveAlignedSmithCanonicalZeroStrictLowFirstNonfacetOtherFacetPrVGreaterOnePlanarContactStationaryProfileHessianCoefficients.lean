@@ -89,7 +89,17 @@ private theorem stationaryParameterSecondEuler_X_pow_mul_C
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring_nf
+          have hscalar :
+              ((2 : K) + (q : K)) * (1 + (q : K)) =
+                2 + (q : K) * 3 + (q : K) ^ 2 := by
+            ring
+          have hC :
+              Polynomial.C ((2 : K) + (q : K)) *
+                  Polynomial.C ((1 : K) + (q : K)) =
+                Polynomial.C (2 + (q : K) * 3 + (q : K) ^ 2) := by
+            rw [← Polynomial.C_mul, hscalar]
+          rw [hC]
+          ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
