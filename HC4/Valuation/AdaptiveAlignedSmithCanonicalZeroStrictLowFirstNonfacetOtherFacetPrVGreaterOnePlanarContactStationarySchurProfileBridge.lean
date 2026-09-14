@@ -132,6 +132,24 @@ theorem cancel_stationaryPairWeightedEulerShear_activeDet
   exact (mul_eq_zero.mp hprod).resolve_left
     (D.stationaryPairWeightedEulerShear_activeDet_ne_zero hthree houtThree)
 
+/-- Cancelling the genuine source-first active pivot from the cleared Schur
+identity leaves the full determinant core of the weighted-Euler sheared block
+identically zero. -/
+theorem stationaryPairWeightedEulerShear_determinantCore_eq_zero
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    D.stationaryPairWeightedEulerShear.determinantCore = 0 := by
+  apply D.cancel_stationaryPairWeightedEulerShear_activeDet hthree houtThree
+  rw [← GeneralFourBlock.schurDetCore_eq_activeDet_mul_determinantCore]
+  exact D.stationaryPairWeightedEulerShear_schurDetCore_eq_zero
+
 /-- The sheared stationary Schur determinant, with the family parameter moved
 outermost and the four source variables specialised to the canonical
 rank-three line.  Its target ring is exactly the ring of the integral
@@ -162,6 +180,38 @@ theorem specialisedStationarySchurDet_eq_zero
     D.specialisedStationarySchurDet = 0 := by
   unfold specialisedStationarySchurDet
   rw [D.stationaryPairWeightedEulerShear_schurDetCore_eq_zero]
+  simp
+
+/-- Parameter-first, line-specialised determinant core of the same stationary
+weighted-Euler sheared block. -/
+noncomputable def specialisedStationaryDeterminantCore
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F) :
+    Polynomial (Polynomial K) :=
+  Polynomial.map
+    (HC4.Polynomial.rankThreeLineSpecialisation (K := K))
+    (parameterFirstEquiv K D.stationaryPairWeightedEulerShear.determinantCore)
+
+/-- The source-first pivot cancellation remains zero after moving the parameter
+outermost and specialising the honest rank-three line. -/
+theorem specialisedStationaryDeterminantCore_eq_zero
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    D.specialisedStationaryDeterminantCore = 0 := by
+  unfold specialisedStationaryDeterminantCore
+  rw [D.stationaryPairWeightedEulerShear_determinantCore_eq_zero hthree houtThree]
   simp
 
 end QsOtherFacetPrLeftVPlanarContactReesData
