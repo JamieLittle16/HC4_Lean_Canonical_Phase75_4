@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinarySchurSingularity
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryLayerBridge
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
 
 /-!
@@ -15,6 +16,7 @@ a duplicate of the canonical theorem now living in
 seam until the root inventory is next reorganised.  Rooting these imports here
 also ensures CI checks the source-honest planar binary Schur singularity, the
 canonical stationary residual-to-no-interior adapter, the exact contact-layer
-coefficient bridge into the stationary profile, and the two exact affine Euler
+coefficient bridge into the stationary profile, the whole specialised contact-
+family/stationary-profile coefficient bridge, and the two exact affine Euler
 equations of the literal planar carrier.
 -/
