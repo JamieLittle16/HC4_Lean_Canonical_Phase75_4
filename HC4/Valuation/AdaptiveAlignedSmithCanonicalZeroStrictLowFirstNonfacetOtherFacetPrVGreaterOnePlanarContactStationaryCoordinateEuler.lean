@@ -87,6 +87,7 @@ theorem stationaryRamifiedFamily_depthActiveEuler
   have hw := D.stationaryRamifiedFamily_wallEuler hthree houtThree
   have hc := D.stationaryRamifiedFamily_curveEuler hthree houtThree
   unfold stationaryDepthEuler
+  simp only [map_add, map_sub, map_mul, map_one] at hw hc ⊢
   linear_combination
     -(MvPolynomial.C (Polynomial.C (F.V : K))) * hw +
       MvPolynomial.C (Polynomial.C ((F.highest.n : K) - 1)) * hc
