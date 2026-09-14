@@ -82,11 +82,11 @@ theorem mvEuler_three_twoFunctionY
   · subst V
     simp [mvEuler, twoFunctionY]
   · have hVpos : 0 < V := Nat.pos_of_ne_zero hV
-    simp [mvEuler, twoFunctionY, hV]
+    simp [mvEuler, twoFunctionY]
     have hpow :
-        MvPolynomial.X (3 : Fin 4) *
-            MvPolynomial.X (3 : Fin 4) ^ (V - 1) =
-          MvPolynomial.X (3 : Fin 4) ^ V := by
+        (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) *
+            (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ^ (V - 1) =
+          (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ^ V := by
       rw [← pow_succ']
       congr 1
       omega
@@ -109,11 +109,11 @@ theorem mvEuler_three_twoFunctionH
   · subst V
     simp [mvEuler, twoFunctionH]
   · have hVpos : 0 < V := Nat.pos_of_ne_zero hV
-    simp [mvEuler, twoFunctionH, hV]
+    simp [mvEuler, twoFunctionH]
     have hpow :
-        MvPolynomial.X (3 : Fin 4) *
-            MvPolynomial.X (3 : Fin 4) ^ (V - 1) =
-          MvPolynomial.X (3 : Fin 4) ^ V := by
+        (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) *
+            (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ^ (V - 1) =
+          (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ^ V := by
       rw [← pow_succ']
       congr 1
       omega
@@ -138,7 +138,6 @@ def twoFunctionCarrier
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
 the abstract matrix used in `TwoFunctionEulerHessian`. -/
-set_option maxHeartbeats 2000000 in
 theorem eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
     (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
@@ -155,13 +154,14 @@ theorem eulerScaledHessian_twoFunctionCarrier
         (polynomialLift (twoFunctionY (K := K) V) Q.derivative.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative) := by
-  apply Matrix.ext
-  intro i j
-  fin_cases i <;> fin_cases j <;>
-    simp [eulerScaledHessian_apply, twoFunctionCarrier,
-      twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
-      twoFunctionY, twoFunctionH] <;>
-    ring
+  set_option maxHeartbeats 2000000 in
+    apply Matrix.ext
+    intro i j
+    fin_cases i <;> fin_cases j <;>
+      simp [eulerScaledHessian_apply, twoFunctionCarrier,
+        twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
+        twoFunctionY, twoFunctionH] <;>
+      ring
 
 /-- Determinant factorisation for the **actual** four-variable carrier. -/
 theorem det_eulerScaledHessian_twoFunctionCarrier
