@@ -168,7 +168,7 @@ theorem stationaryRamifiedFamily_weightedEuler
           (F.stationaryWeight : K) * ((e 0 : K) + (e 1 : K)) := by
       exact_mod_cast hq
     have hP := congrArg Polynomial.C hK
-    simp only [map_add, map_mul] at hP
+    simp only [map_add, map_mul, map_natCast] at hP ⊢
     linear_combination
       (Polynomial.X ^ q * Polynomial.C (MvPolynomial.coeff e P.carrier)) * hP
   · have hcoeff0 :
