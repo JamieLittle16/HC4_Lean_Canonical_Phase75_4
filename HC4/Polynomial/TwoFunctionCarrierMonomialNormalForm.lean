@@ -143,7 +143,8 @@ theorem twoFunctionCarrier_monomial_normalForm
       MvPolynomial.monomial (twoFunctionHighestZExponent V n) p +
       MvPolynomial.monomial (twoFunctionHighestXExponent V n) q := by
   unfold twoFunctionCarrier
-  ring_nf
+  dsimp only
+  rw [mul_add, mul_add]
   rw [X_zero_mul_polynomialLift_monomial_eq,
     X_zero_mul_H_pow_eq_monomial,
     X_two_mul_polynomialLift_monomial_eq,
