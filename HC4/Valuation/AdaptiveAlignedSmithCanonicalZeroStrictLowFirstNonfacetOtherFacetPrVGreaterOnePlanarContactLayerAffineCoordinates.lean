@@ -4,10 +4,9 @@ import Mathlib.Tactic
 /-!
 # A19 affine coordinates for every nonzero planar-contact layer
 
-The first-interior development constructed affine source coordinates only for
-the least positive actual layer.  The all-depth singular-family argument needs
-the same source-honest description at an arbitrary nonzero exact parameter
-layer.
+The first-interior development constructed affine source coordinates only for the
+least positive actual layer.  The all-depth singular-family argument needs the
+same source-honest description at an arbitrary nonzero exact parameter layer.
 
 The preceding exact-layer quotient-fibre theorem supplies the missing uniform
 input.  Choosing one supported monomial fixes the pair degree `k` and staircase
@@ -81,7 +80,6 @@ theorem exists_parameterLayer_affineCoordinates
   have hpair :
       (rankThreeQuotientCoordinate 1 F.V f).pair = k := by
     rw [hq]
-    rfl
   have hfirst :
       (rankThreeQuotientCoordinate 1 F.V f).firstTransverse = j + 1 := by
     rw [hq]
@@ -95,11 +93,9 @@ theorem exists_parameterLayer_affineCoordinates
   have hstair := F.support_staircase_equations hthree houtThree hfP
   dsimp only at hstair
   have hsecondZ := hstair.2
-  change
-    ((F.V * f 0 + f 3 : ℕ) : ℤ) =
-      (F.V : ℤ) *
-        (((f 0 + f 1 : ℕ) : ℤ) + ((f 0 + f 2 : ℕ) : ℤ) - 1)
-    at hsecondZ
+  simp only [rankThreeQuotientCoordinate_secondTransverse,
+    rankThreeQuotientCoordinate_pair,
+    rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
   rw [hpairNat, hfirstNat] at hsecondZ
   have hsecond : F.V * f 0 + f 3 = F.V * (k + j) := by
     have hsecondZ' :
