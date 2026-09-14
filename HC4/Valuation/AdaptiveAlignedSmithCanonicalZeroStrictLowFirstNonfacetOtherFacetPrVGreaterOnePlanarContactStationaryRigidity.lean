@@ -146,8 +146,8 @@ theorem noStrictInteriorSupport_of_stationaryResidual
   have hrigid : F.stationaryCarrierProfileFraction.natDegree ≤ 1 :=
     binaryStaircaseProfile_natDegree_le_one
       F.stationaryTotalDegree F.stationaryWeight
-      F.stationaryCarrierProfileFraction
       (F.two_le_stationaryWeight hthree houtThree)
+      F.stationaryCarrierProfileFraction
       (F.stationaryCarrierProfileFraction_coeff_zero_ne_zero
         hthree houtThree)
       hsupport hres
