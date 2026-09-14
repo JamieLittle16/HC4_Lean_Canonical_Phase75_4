@@ -186,6 +186,16 @@ private theorem mvEuler_C_local
     mvEuler i (MvPolynomial.C a : MvPolynomial (Fin 4) K) = 0 := by
   simp [mvEuler]
 
+private theorem mvEuler_natCast_local
+    {K : Type*} [CommRing K] (i : Fin 4) (n : ℕ) :
+    mvEuler i (n : MvPolynomial (Fin 4) K) = 0 := by
+  simp [mvEuler]
+
+private theorem mvEuler_one_local
+    {K : Type*} [CommRing K] (i : Fin 4) :
+    mvEuler i (1 : MvPolynomial (Fin 4) K) = 0 := by
+  simp [mvEuler]
+
 private theorem mvEuler_X_local
     {K : Type*} [CommRing K] (i j : Fin 4) :
     mvEuler i (MvPolynomial.X j : MvPolynomial (Fin 4) K) =
@@ -386,7 +396,8 @@ theorem eulerScaledHessian_twoFunctionCarrier
       mvEuler_one_twoFunctionCarrier_local,
       mvEuler_two_twoFunctionCarrier_local,
       mvEuler_three_twoFunctionCarrier_local,
-      mvEuler_add_local, mvEuler_mul_local, mvEuler_C_local, mvEuler_X_local,
+      mvEuler_add_local, mvEuler_mul_local, mvEuler_C_local,
+      mvEuler_natCast_local, mvEuler_one_local, mvEuler_X_local,
       mvEuler_polynomialLift, mvEuler_zero_twoFunctionY_local,
       mvEuler_one_twoFunctionY, mvEuler_two_twoFunctionY_local,
       mvEuler_three_twoFunctionY_local, mvEuler_zero_twoFunctionH_pow_local,
