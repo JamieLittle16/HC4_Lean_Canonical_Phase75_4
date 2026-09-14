@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8100**.
+Distinct declaration spellings indexed: **8113**.
 
 ## Repeated declaration spellings
 
@@ -3608,6 +3608,8 @@ Distinct declaration spellings indexed: **8100**.
 - `coeff_specialFiber_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `coeff_sq_eq_zero_of_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_stationaryCarrierProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
+- `coeff_stationaryDepthEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `coeff_stationaryDepthSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
 - `coeff_stationaryRamifiedFamily_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `coeff_sub_own_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `coeff_three_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
@@ -5002,6 +5004,7 @@ Distinct declaration spellings indexed: **8100**.
 - `impossible_of_quadraticContact_both_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
 - `impossible_of_singular_singletonSmithFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingularSingletonContradiction`
 - `impossible_of_squareContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`
+- `impossible_of_stationary_coeffwise_hessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianClosure`
 - `impossible_of_supportedBalancedRankThree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible`
 - `in` — `theorem` in `HC4.Valuation.RigidPacketZeroSchurBridge`
 - `infinityTargetValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
@@ -7717,8 +7720,18 @@ Distinct declaration spellings indexed: **8100**.
 - `stationaryCarrierProfile_coeff_top_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileEndpoints`
 - `stationaryCarrierProfile_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileEndpoints`
 - `stationaryCarrierProfile_natDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
+- `stationaryDepthEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryDepthSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryEulerHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
+- `stationaryEulerHessianFourBlock_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
 - `stationaryIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryIndex_mul_weight_le_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationaryPairWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
+- `stationaryPairWeightedEulerShear_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
+- `stationaryProfileHessian00Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryProfileHessian01Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryProfileHessian11Family` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryProfileHessianDetFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
 - `stationaryRamifiedFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `stationaryRamifiedFamily_activeDet_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
 - `stationaryRamifiedFamily_curveEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryCarrierEuler`
