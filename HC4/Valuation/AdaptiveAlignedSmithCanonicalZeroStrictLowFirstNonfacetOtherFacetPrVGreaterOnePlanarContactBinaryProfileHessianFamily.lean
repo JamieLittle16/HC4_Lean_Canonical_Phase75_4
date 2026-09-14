@@ -163,7 +163,15 @@ theorem binaryProfileWeight_mul_longitudinal_le
   have hd0le : d 0 ≤ HC4.Polynomial.ordinaryDegree4 d := by
     rw [hordinary]
     omega
-  omega
+  have hstep :
+      d 0 + (F.V + 1) * d 0 ≤
+        HC4.Polynomial.ordinaryDegree4 d + (F.V + 1) * d 0 :=
+    Nat.add_le_add_right hd0le _
+  have hdecomp :
+      (F.V + 2) * d 0 = d 0 + (F.V + 1) * d 0 := by
+    ring
+  rw [hdecomp]
+  exact le_trans hstep hbound
 
 /-- Exact parameter-Euler eigenvalue of each planar binary-family source
 coefficient. -/
@@ -265,6 +273,7 @@ theorem parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily
             (D.binaryProfileWeight : K) * (d (0 : Fin 4) : K)) *
         MvPolynomial.coeff d D.binaryHomogenizedFamily := by
       rw [D.parameterEuler_coeff_binaryHomogenizedFamily d]
+      ring
 
 /-- Exact longitudinal falling-Euler Hessian coefficient. -/
 theorem longitudinalEulerHessian_coeff_binaryHomogenizedFamily
