@@ -79,7 +79,6 @@ theorem coeff_stationaryCarrierProfile
   apply Finset.sum_congr rfl
   intro e he
   simp only [Polynomial.coeff_monomial]
-  split <;> simp_all
 
 /-- The finite stationary profile has no outer support above `n-1`.  This is
 an exact consequence of positivity of every actual pair degree, not an added
@@ -101,11 +100,11 @@ theorem natDegree_stationaryCarrierProfile_le
   intro e he
   have hkpos : 1 ≤ e 0 + e 1 := by
     have h := F.support_pair_pos hthree houtThree he
-    simpa [rankThreeQuotientCoordinate] using h
+    simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using h
   have hkle : e 0 + e 1 ≤ F.highest.n := by
     rcases F.support_staircase_classification hthree houtThree he with
       ⟨j, _hj, hk, _hjle, _hzero, _hlocked⟩
-    simpa [rankThreeQuotientCoordinate] using hk
+    simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hk
   have hlt : F.highest.n - (e 0 + e 1) < m := by
     omega
   have hne : F.highest.n - (e 0 + e 1) ≠ m := by omega
