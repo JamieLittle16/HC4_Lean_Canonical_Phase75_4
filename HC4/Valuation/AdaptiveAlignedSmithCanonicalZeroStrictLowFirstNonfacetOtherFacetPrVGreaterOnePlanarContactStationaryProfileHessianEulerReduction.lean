@@ -52,8 +52,23 @@ private theorem stationaryTotalDegree_cast
       (F.stationaryWeight : K) * ((F.highest.n : K) - 1) := by
   unfold QsOtherFacetPrLeftVContactFrontierData.stationaryTotalDegree
   rw [Nat.cast_mul]
-  rw [Nat.cast_sub (by omega : 1 ≤ F.highest.n)]
+  have hn1 : 1 ≤ F.highest.n :=
+    le_trans (by decide : 1 ≤ 2) F.highest.n_two_le
+  rw [Nat.cast_sub hn1]
   norm_num
+
+private theorem stationaryTotalDegree_mapped
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R} :
+    MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) =
+      MvPolynomial.C (Polynomial.C (F.stationaryWeight : K)) *
+        (MvPolynomial.C (Polynomial.C (F.highest.n : K)) - 1) := by
+  rw [stationaryTotalDegree_cast (K := K) (F := F)]
+  simp only [map_mul, map_sub, map_one]
 
 /-- Stationary depth commutes with parameter Euler differentiation. -/
 theorem stationaryDepthEuler_familyParameterEuler
@@ -89,9 +104,7 @@ theorem stationaryDepthEuler_add
       D.stationaryDepthEuler A + D.stationaryDepthEuler B := by
   apply MvPolynomial.ext
   intro e
-  rw [D.coeff_stationaryDepthEuler, D.coeff_stationaryDepthEuler,
-    D.coeff_stationaryDepthEuler, MvPolynomial.coeff_add,
-    MvPolynomial.coeff_add]
+  simp only [MvPolynomial.coeff_add, D.coeff_stationaryDepthEuler]
   ring
 
 /-- Stationary depth commutes with multiplication by a ground-field scalar. -/
@@ -158,6 +171,13 @@ theorem familyParameterEuler_stationaryDepthEuler
   have h1 : (e 1 : Polynomial K) = Polynomial.C (e 1 : K) :=
     (map_natCast (Polynomial.C : K →+* Polynomial K) (e 1)).symm
   rw [h0, h1]
+  have hC :
+      Polynomial.C
+          ((F.highest.n : K) - (e 0 : K) - (e 1 : K)) =
+        Polynomial.C (F.highest.n : K) -
+          Polynomial.C (e 0 : K) - Polynomial.C (e 1 : K) := by
+    rw [map_sub, map_sub]
+  rw [hC]
   simp only [Polynomial.derivative_mul, Polynomial.derivative_C,
     zero_mul, zero_add]
   ring
@@ -179,7 +199,7 @@ theorem stationaryRamifiedFamily_parameterDepthWeightedEuler
       MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) *
         D.stationaryRamifiedFamily := by
   have h := D.stationaryRamifiedFamily_weightedEuler hthree houtThree
-  have hD := stationaryTotalDegree_cast (K := K) (F := F)
+  have hD := stationaryTotalDegree_mapped (K := K) (F := F)
   unfold stationaryDepthEuler
   rw [hD]
   linear_combination h
@@ -210,6 +230,7 @@ theorem stationaryProfileHessian_depthRow
     D.stationaryDepthEuler_groundScalar_mul,
     D.stationaryDepthEuler_stationaryDepthEuler] at h
   unfold stationaryProfileHessian01Family stationaryProfileHessian11Family
+  simp only [map_sub] at h ⊢
   linear_combination h
 
 /-- **Falling stationary parameter row in profile-Hessian notation.** -/
@@ -232,10 +253,10 @@ theorem stationaryProfileHessian_parameterRow
   have hP := D.stationaryRamifiedFamily_fallingParameterRow hthree houtThree
   have hB := D.familyParameterEuler_stationaryDepthEuler
     D.stationaryRamifiedFamily
-  have hD := stationaryTotalDegree_cast (K := K) (F := F)
+  have hD := stationaryTotalDegree_mapped (K := K) (F := F)
   unfold stationaryProfileHessian00Family stationaryProfileHessian01Family
-  rw [hB]
-  rw [hD]
+  rw [hB, hD]
+  simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
   linear_combination hP
 
 /-- **First Euler reduction of the stationary profile determinant.** -/
@@ -298,16 +319,28 @@ theorem stationaryProfileHessianDetFamily_eq_depth_reduction
   have hWeighted :=
     D.stationaryRamifiedFamily_parameterDepthWeightedEuler hthree houtThree
   have hDepth := D.stationaryProfileHessian_depthRow hthree houtThree
+  have hWeighted' :
+      familyParameterEuler D.stationaryRamifiedFamily =
+        MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) *
+            D.stationaryRamifiedFamily -
+          MvPolynomial.C (Polynomial.C (F.stationaryWeight : K)) *
+            D.stationaryDepthEuler D.stationaryRamifiedFamily := by
+    linear_combination hWeighted
+  have hDepth' :
+      familyParameterEuler
+          (D.stationaryDepthEuler D.stationaryRamifiedFamily) =
+        (MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) -
+            MvPolynomial.C (Polynomial.C (F.stationaryWeight : K))) *
+            D.stationaryDepthEuler D.stationaryRamifiedFamily -
+          MvPolynomial.C (Polynomial.C (F.stationaryWeight : K)) *
+            D.stationaryDepthSecondEuler D.stationaryRamifiedFamily := by
+    unfold stationaryProfileHessian01Family stationaryProfileHessian11Family at hDepth
+    simp only [map_sub] at hDepth ⊢
+    linear_combination hDepth
   unfold stationaryProfileHessian01Family stationaryProfileHessian11Family
-  simp only [map_sub, map_mul, map_pow, map_one] at hWeighted hDepth ⊢
-  linear_combination
-    (MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) - 1) *
-      hWeighted *
-        D.stationaryDepthSecondEuler D.stationaryRamifiedFamily -
-    (MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) -
-        MvPolynomial.C (Polynomial.C (F.stationaryWeight : K))) *
-      hDepth *
-        D.stationaryDepthEuler D.stationaryRamifiedFamily
+  rw [hWeighted', hDepth']
+  simp only [map_sub, map_mul, map_pow, map_one]
+  ring
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
