@@ -161,38 +161,22 @@ theorem specialFiber_hessianPrincipalMinor_two_three_ne_zero
     (K := K)
     (D.specialFiber_supportedRankThreeLine hthree houtThree)
     (2 : Fin 4) 3
-  dsimp only [phi]
+  dsimp only
   exact HC4.Polynomial.weightedRankThreeEndpointActiveMinor_two_three_ne_zero
     (K := K)
+    (A := (C.ray.facetExponent 1 : K))
+    (B := (C.ray.facetExponent 2 : K))
+    (C := (C.ray.facetExponent 3 : K))
+    (P := (1 : K))
+    (Q := (C.ray.outsideExponent 1 : K))
     (R := C.ray.outsideExponent 2)
     (S := C.ray.outsideExponent 3)
-    (C.ray.facetExponent 1 : K)
-    (C.ray.facetExponent 2 : K)
-    (C.ray.facetExponent 3 : K)
-    (1 : K)
-    (C.ray.outsideExponent 1 : K)
-    (HC4.Polynomial.rankThreeLineCoefficientPolynomial
-      (C.ray.facetExponent 1)
-      (C.ray.facetExponent 2)
-      (C.ray.facetExponent 3)
-      1
-      (C.ray.outsideExponent 1)
-      (C.ray.outsideExponent 2)
-      (C.ray.outsideExponent 3)
-      1
-      (polynomialFamilySpecialFiber D.family)).coeff 0
-    (HC4.Polynomial.rankThreeLineCoefficientPolynomial
-      (C.ray.facetExponent 1)
-      (C.ray.facetExponent 2)
-      (C.ray.facetExponent 3)
-      1
-      (C.ray.outsideExponent 1)
-      (C.ray.outsideExponent 2)
-      (C.ray.outsideExponent 3)
-      1
-      (polynomialFamilySpecialFiber D.family)).coeff 1
+    (c0 := phi.coeff 0)
+    (c1 := phi.coeff 1)
     hout2 hout3
-    (D.specialFiber_lineCoefficient_one_ne_zero hthree houtThree)
+    (by
+      dsimp [phi]
+      exact D.specialFiber_lineCoefficient_one_ne_zero hthree houtThree)
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
