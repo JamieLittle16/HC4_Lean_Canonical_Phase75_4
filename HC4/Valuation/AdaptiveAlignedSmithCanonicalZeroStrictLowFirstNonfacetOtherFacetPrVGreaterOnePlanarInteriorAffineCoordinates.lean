@@ -80,6 +80,7 @@ theorem exists_firstPositiveLayer_strictInterior_affineCoordinates
   have heP : e ∈ P.carrier.support :=
     (D.parameterLayer_support_source_and_order he).1
   have hstair := F.support_staircase_equations hthree houtThree heP
+  dsimp only at hstair
   have hsecondZ := hstair.2
   simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     HC4.Polynomial.rankThreeQuotientCoordinate_pair,
