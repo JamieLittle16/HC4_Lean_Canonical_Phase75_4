@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8076**.
+Distinct declaration spellings indexed: **8080**.
 
 ## Repeated declaration spellings
 
@@ -3386,6 +3386,8 @@ Distinct declaration spellings indexed: **8076**.
 - `carrierProfileParameterEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `carrierProfile_coeff_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
 - `carrierProfile_fraction_staircaseResidual_eq_zero_of_hessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileResidual`
+- `carrier_curveEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
+- `carrier_wallEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
 - `certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
@@ -7756,6 +7758,7 @@ Distinct declaration spellings indexed: **8076**.
 - `support_commonParameterFactorFamily_subset` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `support_coordinate_dvd_canonicalDegreeRamification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
 - `support_coordinate_le_max_two_degreeCap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
+- `support_curveEuler_scalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `support_eq_single_of_pderiv_eq_C_of_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
 - `support_extendCoeffs_eq` — `theorem` in `HC4.Toric.ClassifiedDescent`
 - `support_index_eq_pred_or_eq_of_lockedBinomialFirstVariationEulerResidual_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
@@ -7771,6 +7774,7 @@ Distinct declaration spellings indexed: **8076**.
 - `support_noWallPrimitiveSmithFamily_subset_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithZeroJet`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `support_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `support_wallEuler_scalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `supported_balanced_rankThree_degreeOne_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedDegreeOneImpossible`
 - `supported_balanced_rankThree_edge_directionDegenerate` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedDirectionDegeneracy`
 - `supported_balanced_rankThree_edge_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible`
