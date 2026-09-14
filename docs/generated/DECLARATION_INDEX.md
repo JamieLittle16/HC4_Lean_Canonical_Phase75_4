@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8081**.
+Distinct declaration spellings indexed: **8082**.
 
 ## Repeated declaration spellings
 
@@ -5178,6 +5178,7 @@ Distinct declaration spellings indexed: **8081**.
 - `killBinaryTransverseLinear_topFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killed_or_order_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSectionGauge`
 - `layer_eq_sourceWedgeInitialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `layer_mem_of_carrier_mem_of_pair_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryLayerBridge`
 - `le_from_scaled_degree_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `leadingCoeff_eulerDerivative_eq_of_pos` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `leftKernel_first` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
