@@ -110,6 +110,7 @@ theorem layer_mem_of_carrier_mem_of_pair_eq
   have hsame :
       (F.highest.n - 1) * q = (F.highest.n - 1) * order :=
     heInterp.trans hfInterp.symm
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   have hn1pos : 0 < F.highest.n - 1 := by
     omega
   have hq : q = order := Nat.mul_left_cancel hn1pos hsame
@@ -146,6 +147,7 @@ theorem coefficientProfile_eq_stationaryCarrierProfile_coeff
       Polynomial.notMem_support_iff.mp ht
     rw [hleft]
     rw [F.coeff_stationaryCarrierProfile, Polynomial.finset_sum_coeff]
+    symm
     apply Finset.sum_eq_zero
     intro e he
     by_cases houter :
