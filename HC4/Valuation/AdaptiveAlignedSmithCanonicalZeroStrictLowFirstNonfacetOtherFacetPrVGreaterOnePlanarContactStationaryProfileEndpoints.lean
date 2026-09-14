@@ -57,27 +57,29 @@ theorem coeff_coeff_stationaryCarrierProfile_of_mem
     · have hdle : d 0 + d 1 ≤ F.highest.n := by
         rcases F.support_staircase_classification hthree houtThree hd with
           ⟨j, _hj, hk, _hjle, _hzero, _hlocked⟩
-        simpa [rankThreeQuotientCoordinate] using hk
+        simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_pair] using hk
       have hele : e 0 + e 1 ≤ F.highest.n := by
         rcases F.support_staircase_classification hthree houtThree he with
           ⟨j, _hj, hk, _hjle, _hzero, _hlocked⟩
-        simpa [rankThreeQuotientCoordinate] using hk
+        simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_pair] using hk
       have hpair : d 0 + d 1 = e 0 + e 1 := by omega
       by_cases hzero : d 0 = e 0
       · have hpairZ :
           qsOtherFacetPairDegree .pr d = qsOtherFacetPairDegree .pr e := by
-          simp [qsOtherFacetPairDegree, hpair]
+          change (d 0 : ℤ) + (d 1 : ℤ) = (e 0 : ℤ) + (e 1 : ℤ)
+          exact_mod_cast hpair
         have hq :
-            rankThreeQuotientCoordinate 1 F.V d =
-              rankThreeQuotientCoordinate 1 F.V e :=
+            HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V d =
+              HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e :=
           F.quotient.pair_fiber hd he hpairZ
         have hEq : d = e :=
-          eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+          HC4.Polynomial.eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
             1 F.V d e hq hzero
         exact (hde hEq).elim
       · simp [horder, Polynomial.coeff_monomial, hzero]
     · simp [horder]
-  · exact he
+  · intro hnot
+    exact (hnot he).elim
 
 /-- The primitive highest pair survives as a nonzero constant coefficient of
 the outer stationary profile. -/
@@ -95,7 +97,8 @@ theorem stationaryCarrierProfile_coeff_zero_ne_zero
     hthree houtThree F.highest.e0_provenance.carrier_mem
   simp [F.highest.e0_zero, F.highest.e0_one] at hcoeff
   intro hz
-  have hz0 := congrArg (fun p : Polynomial K => p.coeff 0) hz
+  have hz0 : (F.stationaryCarrierProfile.coeff 0).coeff 0 = 0 := by
+    simpa using congrArg (fun p : Polynomial K => p.coeff 0) hz
   rw [hcoeff] at hz0
   exact F.highest.e0_provenance.carrier_coeff_ne hz0
 
@@ -115,7 +118,9 @@ theorem stationaryCarrierProfile_coeff_top_ne_zero
     hthree houtThree F.locked.facet_provenance.carrier_mem
   simp [F.locked.facet_zero, F.locked.facet_one] at hcoeff
   intro hz
-  have hz0 := congrArg (fun p : Polynomial K => p.coeff 0) hz
+  have hz0 :
+      (F.stationaryCarrierProfile.coeff (F.highest.n - 1)).coeff 0 = 0 := by
+    simpa using congrArg (fun p : Polynomial K => p.coeff 0) hz
   rw [hcoeff] at hz0
   exact F.locked.facet_provenance.carrier_coeff_ne hz0
 
