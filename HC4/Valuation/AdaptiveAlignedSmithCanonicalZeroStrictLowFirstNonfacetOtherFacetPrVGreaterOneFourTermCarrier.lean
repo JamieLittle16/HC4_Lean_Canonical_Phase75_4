@@ -77,32 +77,38 @@ theorem QsOtherFacetPrLeftVContactFrontierData.fourTermCarrierData_of_noStrictIn
   let q := MvPolynomial.coeff F.highest.e1 P.carrier
   have hFO : C.ray.facetExponent ≠ C.ray.outsideExponent := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    have h0 : C.ray.facetExponent 0 = C.ray.outsideExponent 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
     rw [F.locked.facet_zero, F.locked.outside_zero] at h0
     omega
   have hFH0 : C.ray.facetExponent ≠ F.highest.e0 := by
     intro h
-    have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
+    have h1 : C.ray.facetExponent 1 = F.highest.e0 1 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
     rw [F.locked.facet_one, F.highest.e0_one] at h1
     omega
   have hFH1 : C.ray.facetExponent ≠ F.highest.e1 := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    have h0 : C.ray.facetExponent 0 = F.highest.e1 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
     rw [F.locked.facet_zero, F.highest.e1_zero] at h0
     omega
   have hOH0 : C.ray.outsideExponent ≠ F.highest.e0 := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    have h0 : C.ray.outsideExponent 0 = F.highest.e0 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
     rw [F.locked.outside_zero, F.highest.e0_zero] at h0
     omega
   have hOH1 : C.ray.outsideExponent ≠ F.highest.e1 := by
     intro h
-    have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
+    have h1 : C.ray.outsideExponent 1 = F.highest.e1 1 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) h
     rw [F.locked.outside_one, F.highest.e1_one] at h1
     omega
   have hH01 : F.highest.e0 ≠ F.highest.e1 := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    have h0 : F.highest.e0 0 = F.highest.e1 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
     rw [F.highest.e0_zero, F.highest.e1_zero] at h0
     omega
   have hsupp := F.support_eq_locked_highest_of_noStrictInterior hno
