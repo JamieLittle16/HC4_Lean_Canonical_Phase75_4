@@ -104,8 +104,8 @@ theorem zeroLayer_support_eq_locked
     simp [qsOtherFacetPairDegree,
       F.locked.outside_zero, F.locked.outside_one]
   have hqFacetOutside :
-      rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent =
-        rankThreeQuotientCoordinate 1 F.V C.ray.outsideExponent :=
+      HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent =
+        HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V C.ray.outsideExponent :=
     F.quotient.pair_fiber
       F.locked.facet_provenance.carrier_mem
       F.locked.outside_provenance.carrier_mem
@@ -120,16 +120,18 @@ theorem zeroLayer_support_eq_locked
       (heOrder.trans hfacetOrder.symm)
     have hpairNat : e 0 + e 1 = 1 := by
       have hfacetPairNat :
-          (rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent).pair = 1 := by
-        simp [rankThreeQuotientCoordinate,
+          (HC4.Polynomial.rankThreeQuotientCoordinate
+            1 F.V C.ray.facetExponent).pair = 1 := by
+        simp [HC4.Polynomial.rankThreeQuotientCoordinate,
           F.locked.facet_zero, F.locked.facet_one]
-      simpa [rankThreeQuotientCoordinate, hfacetPairNat] using hpairEq
+      simpa [HC4.Polynomial.rankThreeQuotientCoordinate, hfacetPairNat] using hpairEq
     have hpairE : qsOtherFacetPairDegree .pr e = (1 : ℤ) := by
       have hcast := congrArg (fun m : ℕ => (m : ℤ)) hpairNat
       simpa [qsOtherFacetPairDegree] using hcast
     have hqEF :
-        rankThreeQuotientCoordinate 1 F.V e =
-          rankThreeQuotientCoordinate 1 F.V C.ray.facetExponent :=
+        HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e =
+          HC4.Polynomial.rankThreeQuotientCoordinate
+            1 F.V C.ray.facetExponent :=
       F.quotient.pair_fiber heP F.locked.facet_provenance.carrier_mem
         (hpairE.trans hpairFacet.symm)
     have he0 : e 0 = 0 ∨ e 0 = 1 := by omega
@@ -230,14 +232,23 @@ theorem specialFiber_eq_locked_pair
   have hcoeff := D.zeroLayer_locked_coefficients hthree houtThree
   have hne : C.ray.facetExponent ≠ C.ray.outsideExponent := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    have h0 : C.ray.facetExponent 0 = C.ray.outsideExponent 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
     rw [F.locked.facet_zero, F.locked.outside_zero] at h0
     omega
   have hsum := MvPolynomial.as_sum L
   rw [hsupp] at hsum
   dsimp [L] at hsum ⊢
-  rw [hcoeff.1, hcoeff.2] at hsum
-  simpa [Finset.sum_insert, hne, Ne.symm hne] using hsum
+  calc
+    familyParameterLayer D.family 0 =
+        ∑ v ∈ {C.ray.facetExponent, C.ray.outsideExponent},
+          MvPolynomial.monomial v
+            (MvPolynomial.coeff v (familyParameterLayer D.family 0)) := hsum
+    _ = MvPolynomial.monomial C.ray.facetExponent
+          (MvPolynomial.coeff C.ray.facetExponent P.carrier) +
+        MvPolynomial.monomial C.ray.outsideExponent
+          (MvPolynomial.coeff C.ray.outsideExponent P.carrier) := by
+      simp [Finset.sum_insert, hne, Ne.symm hne, hcoeff.1, hcoeff.2]
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
