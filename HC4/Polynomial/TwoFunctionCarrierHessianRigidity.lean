@@ -54,7 +54,6 @@ theorem pderiv_zero_twoFunctionEulerFactorA
   simp [twoFunctionEulerFactorA, pderiv_polynomialLift,
     twoFunctionY, twoFunctionH, MvPolynomial.pderiv_mul,
     MvPolynomial.pderiv_pow]
-  ring
 
 /-- The first determinant factor is automatically nonzero once the primitive
 `Q` direction is genuinely nonlinear.  No separate locked-ray `A != 0`
@@ -119,8 +118,10 @@ theorem twoFunctionCarrier_hessian_impossible
     exact Nat.cast_ne_zero.mpr (by omega)
   have hV1 : (V : R) + 1 ≠ 0 := by
     simpa [Nat.cast_add] using hV1cast
+  have hx0 : (MvPolynomial.X (0 : Fin 4) : R) ≠ 0 := by
+    exact MvPolynomial.X_ne_zero (0 : Fin 4)
   have hx : (MvPolynomial.X (0 : Fin 4) : R) ^ 2 ≠ 0 :=
-    pow_ne_zero _ MvPolynomial.X_ne_zero
+    pow_ne_zero _ hx0
   have hY : Y ≠ 0 := by
     dsimp [Y, R]
     unfold twoFunctionY
