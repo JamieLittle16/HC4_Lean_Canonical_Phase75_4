@@ -73,7 +73,7 @@ theorem V_pos
     {P : QsOtherFacetPlanarCarrierPackage C .pr}
     (D : QsOtherFacetPrTwoFunctionCarrierData C P) :
     0 < D.V := by
-  omega
+  exact lt_trans Nat.zero_lt_one D.V_gt_one
 
 /-- **Standard non-unit PR carrier endpoint.**  Once source reconstruction has
 produced the literal two-function carrier package, the branch is impossible.
