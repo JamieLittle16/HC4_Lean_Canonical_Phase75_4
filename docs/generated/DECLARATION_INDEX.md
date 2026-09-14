@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8171**.
+Distinct declaration spellings indexed: **8173**.
 
 ## Repeated declaration spellings
 
@@ -7643,6 +7643,8 @@ Distinct declaration spellings indexed: **8171**.
 - `specialisedParameterFirstFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
 - `specialisedParameterFirstFamily_coeff_eq_coefficientProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
 - `specialisedParameterFirstFamily_coeff_eq_stationaryCarrierProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
+- `specialisedStationarySchurDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
+- `specialisedStationarySchurDet_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
 - `squareCoefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareCoefficient_specialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareContactLevel_exactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
