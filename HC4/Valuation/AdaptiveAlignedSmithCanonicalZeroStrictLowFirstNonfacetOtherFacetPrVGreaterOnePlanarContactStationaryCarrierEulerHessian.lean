@@ -143,7 +143,7 @@ theorem stationaryRamifiedFamily_wallEulerRow
             · rfl
           subst i
           rw [hnat (e 0), hnat (e 1), hnat (e 2)]
-          simp only [map_add, map_sub, map_mul, map_one,
+          simp only [map_add, map_sub, map_mul, map_one, map_zero,
             if_neg (by decide : (3 : Fin 4) ≠ 0),
             if_neg (by decide : (3 : Fin 4) ≠ 1),
             if_neg (by decide : (3 : Fin 4) ≠ 2)] at hP ⊢
