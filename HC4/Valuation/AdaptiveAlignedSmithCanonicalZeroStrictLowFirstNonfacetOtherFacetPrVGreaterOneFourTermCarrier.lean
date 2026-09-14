@@ -84,28 +84,28 @@ theorem QsOtherFacetPrLeftVContactFrontierData.fourTermCarrierData_of_noStrictIn
     omega
   have hFH0 : C.ray.facetExponent ≠ F.highest.e0 := by
     intro h
-    have hp : F.highest.n - 1 = 0 := by
+    have hp : 1 = F.highest.n := by
       simpa [F.locked.facet_zero, F.locked.facet_one,
         F.highest.e0_zero, F.highest.e0_one] using
         congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hFH1 : C.ray.facetExponent ≠ F.highest.e1 := by
     intro h
-    have hp : 1 = F.highest.n := by
+    have hp : F.highest.n - 1 = 0 := by
       simpa [F.locked.facet_zero, F.locked.facet_one,
         F.highest.e1_zero, F.highest.e1_one] using
         congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hOH0 : C.ray.outsideExponent ≠ F.highest.e0 := by
     intro h
-    have hp : F.highest.n - 1 = 0 := by
+    have hp : 1 = F.highest.n := by
       simpa [F.locked.outside_zero, F.locked.outside_one,
         F.highest.e0_zero, F.highest.e0_one] using
         congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
     omega
   have hOH1 : C.ray.outsideExponent ≠ F.highest.e1 := by
     intro h
-    have hp : 1 = F.highest.n := by
+    have hp : F.highest.n - 1 = 0 := by
       simpa [F.locked.outside_zero, F.locked.outside_one,
         F.highest.e1_zero, F.highest.e1_one] using
         congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
