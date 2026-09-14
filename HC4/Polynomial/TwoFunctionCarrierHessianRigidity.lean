@@ -125,13 +125,13 @@ theorem twoFunctionCarrier_hessian_impossible
   have hY : Y ≠ 0 := by
     dsimp [Y, R]
     unfold twoFunctionY
-    exact mul_ne_zero MvPolynomial.X_ne_zero
-      (pow_ne_zero _ MvPolynomial.X_ne_zero)
+    exact mul_ne_zero (MvPolynomial.X_ne_zero (1 : Fin 4))
+      (pow_ne_zero _ (MvPolynomial.X_ne_zero (3 : Fin 4)))
   have hH : H ≠ 0 := by
     dsimp [H, R]
     unfold twoFunctionH
-    exact mul_ne_zero MvPolynomial.X_ne_zero
-      (pow_ne_zero _ MvPolynomial.X_ne_zero)
+    exact mul_ne_zero (MvPolynomial.X_ne_zero (2 : Fin 4))
+      (pow_ne_zero _ (MvPolynomial.X_ne_zero (3 : Fin 4)))
   have hA' : A ≠ 0 := by
     simpa [A, Y, H, q1, p1, R] using
       (twoFunctionEulerFactorA_ne_zero V ell hell a b P Q hQ1)
