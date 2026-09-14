@@ -64,7 +64,10 @@ private theorem planarParameterSecondEuler_X_pow_mul_C
           rw [Polynomial.derivative_mul, Polynomial.derivative_C]
           simp only [mul_zero, add_zero]
           rw [Polynomial.derivative_X_pow_succ]
-          rw [Polynomial.derivative_C_mul]
+          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+          simp only [mul_zero, add_zero]
+          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+          simp only [zero_mul, zero_add]
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           have hscalar :
@@ -149,6 +152,7 @@ theorem binaryProfileWeight_mul_longitudinal_le
     {d : Fin 4 →₀ ℕ}
     (hd : d ∈ P.carrier.support) :
     D.binaryProfileWeight * d (0 : Fin 4) ≤ T.topFace.degree := by
+  change (F.V + 2) * d (0 : Fin 4) ≤ T.topFace.degree
   have hbound := D.bound d hd
   rw [qsIntegralContactWeight_finsupp] at hbound
   have hordinary :
@@ -156,8 +160,9 @@ theorem binaryProfileWeight_mul_longitudinal_le
         d 0 + (d 1 + d 2 + d 3) := by
     simp [HC4.Polynomial.ordinaryDegree4]
     ring
-  rw [hordinary] at hbound
-  simp [binaryProfileWeight]
+  have hd0le : d 0 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+    rw [hordinary]
+    omega
   omega
 
 /-- Exact parameter-Euler eigenvalue of each planar binary-family source
@@ -245,9 +250,21 @@ theorem parameterEuler_longitudinalEuler_coeff_binaryHomogenizedFamily
         MvPolynomial.coeff d D.binaryHomogenizedFamily := by
   rw [coeff_mvEuler]
   rw [Polynomial.derivative_mul]
-  simp only [Polynomial.derivative_natCast, zero_mul, add_zero]
-  rw [D.parameterEuler_coeff_binaryHomogenizedFamily d]
-  ring
+  simp only [Polynomial.derivative_natCast, zero_mul, zero_add]
+  calc
+    Polynomial.X *
+        ((d (0 : Fin 4) : Polynomial K) *
+          Polynomial.derivative (MvPolynomial.coeff d D.binaryHomogenizedFamily)) =
+      (d (0 : Fin 4) : Polynomial K) *
+        (Polynomial.X *
+          Polynomial.derivative (MvPolynomial.coeff d D.binaryHomogenizedFamily)) := by
+      ring
+    _ = (d (0 : Fin 4) : Polynomial K) *
+        Polynomial.C
+          ((T.topFace.degree : K) -
+            (D.binaryProfileWeight : K) * (d (0 : Fin 4) : K)) *
+        MvPolynomial.coeff d D.binaryHomogenizedFamily := by
+      rw [D.parameterEuler_coeff_binaryHomogenizedFamily d]
 
 /-- Exact longitudinal falling-Euler Hessian coefficient. -/
 theorem longitudinalEulerHessian_coeff_binaryHomogenizedFamily
@@ -269,7 +286,6 @@ theorem longitudinalEulerHessian_coeff_binaryHomogenizedFamily
   simp only [if_pos]
   ring
 
-omit [IsAlgClosed K] in
 private theorem carrierProfile_coeff_coeff
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -308,7 +324,7 @@ theorem binaryProfileHessian00Family_longitudinal_coeff
   rw [D.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   simp only [Finsupp.cons_zero]
-  have hbase := D.carrierProfile_coeff_coeff m n
+  have hbase := carrierProfile_coeff_coeff D m n
   have haffine :
       (T.topFace.degree : MvPolynomial (Fin 3) K) -
           (D.binaryProfileWeight : MvPolynomial (Fin 3) K) *
@@ -379,7 +395,7 @@ theorem binaryProfileHessian01Family_longitudinal_coeff
   rw [D.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   simp only [Finsupp.cons_zero]
-  have hbase := D.carrierProfile_coeff_coeff m n
+  have hbase := carrierProfile_coeff_coeff D m n
   have haffine :
       (T.topFace.degree : MvPolynomial (Fin 3) K) -
           (D.binaryProfileWeight : MvPolynomial (Fin 3) K) *
@@ -453,7 +469,7 @@ theorem binaryProfileHessian11Family_longitudinal_coeff
   rw [D.coeff_binaryHomogenizedFamily]
   rw [MvPolynomial.coeff_C_mul, MvPolynomial.coeff_map]
   simp only [Finsupp.cons_zero]
-  have hbase := D.carrierProfile_coeff_coeff m n
+  have hbase := carrierProfile_coeff_coeff D m n
   have hscalar :
       (n : MvPolynomial (Fin 3) K) *
           ((n : MvPolynomial (Fin 3) K) - 1) =
