@@ -49,7 +49,7 @@ def twoFunctionHighestXExponent (V n : ℕ) : Fin 4 →₀ ℕ :=
   change
     MvPolynomial.monomial (Finsupp.single (1 : Fin 4) 1) (1 : K) *
       MvPolynomial.monomial (Finsupp.single (3 : Fin 4) V) (1 : K) = _
-  rw [MvPolynomial.monomial_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
   simp
 
 @[simp] theorem twoFunctionH_eq_monomial
@@ -61,7 +61,7 @@ def twoFunctionHighestXExponent (V n : ℕ) : Fin 4 →₀ ℕ :=
   change
     MvPolynomial.monomial (Finsupp.single (2 : Fin 4) 1) (1 : K) *
       MvPolynomial.monomial (Finsupp.single (3 : Fin 4) V) (1 : K) = _
-  rw [MvPolynomial.monomial_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
   simp
 
 @[simp] theorem polynomialLift_monomial
@@ -86,11 +86,10 @@ theorem X_two_mul_H_pow_mul_Y_eq_monomial
       MvPolynomial.monomial (twoFunctionLockedFacetExponent V ell) a := by
   rw [twoFunctionY_eq_monomial, twoFunctionH_eq_monomial,
     MvPolynomial.monomial_pow, X_eq_monomial]
-  change
-    MvPolynomial.monomial (Finsupp.single (2 : Fin 4) 1) (1 : K) *
-      (MvPolynomial.monomial 0 a *
-        MvPolynomial.monomial (ell • twoFunctionHExponent V) 1 *
-        MvPolynomial.monomial (twoFunctionYExponent V) 1) = _
+  simp only [one_pow]
+  rw [MvPolynomial.C_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
+  rw [MvPolynomial.monomial_mul]
   simp [twoFunctionLockedFacetExponent, add_assoc]
 
 /-- `x H^ell` is the locked outside monomial. -/
@@ -100,10 +99,9 @@ theorem X_zero_mul_H_pow_eq_monomial
         (MvPolynomial.C b * twoFunctionH (K := K) V ^ ell) =
       MvPolynomial.monomial (twoFunctionLockedOutsideExponent V ell) b := by
   rw [twoFunctionH_eq_monomial, MvPolynomial.monomial_pow, X_eq_monomial]
-  change
-    MvPolynomial.monomial (Finsupp.single (0 : Fin 4) 1) (1 : K) *
-      (MvPolynomial.monomial 0 b *
-        MvPolynomial.monomial (ell • twoFunctionHExponent V) 1) = _
+  simp only [one_pow]
+  rw [MvPolynomial.C_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
   simp [twoFunctionLockedOutsideExponent, add_assoc]
 
 /-- `z P(Y)` for a pure degree-`n` `P` is the highest `z Y^n` monomial. -/
@@ -114,10 +112,9 @@ theorem X_two_mul_polynomialLift_monomial_eq
       MvPolynomial.monomial (twoFunctionHighestZExponent V n) p := by
   rw [polynomialLift_monomial, twoFunctionY_eq_monomial,
     MvPolynomial.monomial_pow, X_eq_monomial]
-  change
-    MvPolynomial.monomial (Finsupp.single (2 : Fin 4) 1) (1 : K) *
-      (MvPolynomial.monomial 0 p *
-        MvPolynomial.monomial (n • twoFunctionYExponent V) 1) = _
+  simp only [one_pow]
+  rw [MvPolynomial.C_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
   simp [twoFunctionHighestZExponent, add_assoc]
 
 /-- `x Q(Y)` for pure degree `n-1` `Q` is the highest `x Y^(n-1)` monomial. -/
@@ -129,10 +126,9 @@ theorem X_zero_mul_polynomialLift_monomial_eq
       MvPolynomial.monomial (twoFunctionHighestXExponent V n) q := by
   rw [polynomialLift_monomial, twoFunctionY_eq_monomial,
     MvPolynomial.monomial_pow, X_eq_monomial]
-  change
-    MvPolynomial.monomial (Finsupp.single (0 : Fin 4) 1) (1 : K) *
-      (MvPolynomial.monomial 0 q *
-        MvPolynomial.monomial ((n - 1) • twoFunctionYExponent V) 1) = _
+  simp only [one_pow]
+  rw [MvPolynomial.C_mul_monomial]
+  rw [MvPolynomial.monomial_mul]
   simp [twoFunctionHighestXExponent, add_assoc]
 
 /-- **Four-monomial normal form.** -/
@@ -147,7 +143,7 @@ theorem twoFunctionCarrier_monomial_normalForm
       MvPolynomial.monomial (twoFunctionHighestZExponent V n) p +
       MvPolynomial.monomial (twoFunctionHighestXExponent V n) q := by
   unfold twoFunctionCarrier
-  rw [mul_add, mul_add]
+  ring_nf
   rw [X_zero_mul_polynomialLift_monomial_eq,
     X_zero_mul_H_pow_eq_monomial,
     X_two_mul_polynomialLift_monomial_eq,
