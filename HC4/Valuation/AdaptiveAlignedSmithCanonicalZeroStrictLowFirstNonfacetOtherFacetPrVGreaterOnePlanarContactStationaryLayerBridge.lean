@@ -11,8 +11,9 @@ outside by distance from the primitive highest pair and inside by coordinate
 `0`.
 
 This file identifies those two representations on every actual layer monomial.
-It is deliberately coefficientwise: no support is recreated and no converse
-layer-membership assertion is assumed.
+No support is recreated: the converse direction is obtained from the literal
+reverse-Rees occurrence of each carrier monomial and the already-proved strict
+contact-order interpolation.
 -/
 
 namespace HC4.Valuation
@@ -66,6 +67,54 @@ theorem coeff_coefficientProfile_eq_stationaryCarrierProfile
         (F.highest.n - A.k)).coeff (e 0) := by
       rw [← hpair]
       exact hstationary.symm
+
+/-- **Converse layer membership at fixed pair degree.**  If an actual carrier
+monomial has the pair degree of `A`, then its literal reverse-Rees order is
+exactly `order`, so it belongs to the same exact contact layer.  The proof uses
+only the source-honest contact interpolation and cancellation by `n-1 > 0`. -/
+theorem layer_mem_of_carrier_mem_of_pair_eq
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    {D : QsOtherFacetPrLeftVPlanarContactReesData F}
+    {order : ℕ}
+    (A : QsOtherFacetPrLeftVParameterAffineLayerData D order)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ P.carrier.support)
+    (hpair : e 0 + e 1 = A.k) :
+    e ∈ (familyParameterLayer D.family order).support := by
+  classical
+  rcases MvPolynomial.support_nonempty.mpr A.layer_ne with ⟨f, hf⟩
+  let q := T.topFace.degree -
+    Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e
+  have heq : e ∈ (familyParameterLayer D.family q).support := by
+    simpa [q] using D.parameterLayer_mem_of_carrier_mem he
+  have heInterp := D.parameterLayer_contactOrder_interpolation
+    hthree houtThree heq
+  have hfInterp := D.parameterLayer_contactOrder_interpolation
+    hthree houtThree hf
+  have hfpair : f 0 + f 1 = A.k := (A.coordinates f hf).1
+  change (F.highest.n - 1) * q =
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+        ((e 0 + e 1) - 1) at heInterp
+  change (F.highest.n - 1) * order =
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+        ((f 0 + f 1) - 1) at hfInterp
+  rw [hpair] at heInterp
+  rw [hfpair] at hfInterp
+  have hsame :
+      (F.highest.n - 1) * q = (F.highest.n - 1) * order :=
+    heInterp.trans hfInterp.symm
+  have hn1pos : 0 < F.highest.n - 1 := by
+    omega
+  have hq : q = order := Nat.mul_left_cancel hn1pos hsame
+  rw [hq] at heq
+  exact heq
 
 end QsOtherFacetPrLeftVParameterAffineLayerData
 
