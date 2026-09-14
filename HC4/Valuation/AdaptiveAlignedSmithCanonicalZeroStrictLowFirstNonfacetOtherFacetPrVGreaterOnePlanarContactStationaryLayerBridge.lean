@@ -156,6 +156,7 @@ theorem coefficientProfile_eq_stationaryCarrierProfile_coeff
         rcases F.support_staircase_classification hthree houtThree he with
           ⟨j, _hj, hk, _hjle, _hzero, _hlocked⟩
         simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_pair] using hk
+      have hkle : A.k ≤ F.highest.n := A.k_le_highest
       have hpair : e 0 + e 1 = A.k := by
         omega
       have heLayer := A.layer_mem_of_carrier_mem_of_pair_eq
