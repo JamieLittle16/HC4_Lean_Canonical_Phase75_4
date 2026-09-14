@@ -167,10 +167,12 @@ def twoFunctionCarrier
 set_option maxHeartbeats 2000000
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
-the abstract matrix used in `TwoFunctionEulerHessian`. -/
+the abstract matrix used in `TwoFunctionEulerHessian`, in the non-unit
+positive-exponent regime used by the A19 branch. -/
 theorem eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
-    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
+    (a b : K) (P Q : Polynomial K) :
     eulerScaledHessian (twoFunctionCarrier V ell a b P Q) =
       twoFunctionEulerHessianMatrix
         V ell
@@ -184,18 +186,41 @@ theorem eulerScaledHessian_twoFunctionCarrier
         (polynomialLift (twoFunctionY (K := K) V) Q.derivative.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative) := by
-  apply Matrix.ext
-  intro i j
-  fin_cases i <;> fin_cases j <;>
-    simp [eulerScaledHessian_apply, twoFunctionCarrier,
-      twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
-      twoFunctionY, twoFunctionH] <;>
-    ring
+  cases V with
+  | zero => omega
+  | succ V =>
+      cases V with
+      | zero => omega
+      | succ V =>
+          cases ell with
+          | zero => omega
+          | succ ell =>
+              cases ell with
+              | zero =>
+                  apply Matrix.ext
+                  intro i j
+                  fin_cases i <;> fin_cases j <;>
+                    simp [eulerScaledHessian_apply, twoFunctionCarrier,
+                      twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
+                      twoFunctionY, twoFunctionH, Nat.mul_succ,
+                      pow_add, pow_succ] <;>
+                    ring
+              | succ ell =>
+                  apply Matrix.ext
+                  intro i j
+                  fin_cases i <;> fin_cases j <;>
+                    simp [eulerScaledHessian_apply, twoFunctionCarrier,
+                      twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
+                      twoFunctionY, twoFunctionH, Nat.mul_succ,
+                      pow_add, pow_succ] <;>
+                    ring
 
-/-- Determinant factorisation for the **actual** four-variable carrier. -/
+/-- Determinant factorisation for the **actual** four-variable carrier in the
+same non-unit positive-exponent regime. -/
 theorem det_eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
-    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
+    (a b : K) (P Q : Polynomial K) :
     (eulerScaledHessian (twoFunctionCarrier V ell a b P Q)).det =
       (V : MvPolynomial (Fin 4) K) *
         (ell : MvPolynomial (Fin 4) K) *
@@ -225,7 +250,7 @@ theorem det_eulerScaledHessian_twoFunctionCarrier
           (polynomialLift (twoFunctionY (K := K) V) Q.derivative.derivative)
           (polynomialLift (twoFunctionY (K := K) V) P.derivative)
           (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative) := by
-  rw [eulerScaledHessian_twoFunctionCarrier]
+  rw [eulerScaledHessian_twoFunctionCarrier V ell hV hell]
   exact det_twoFunctionEulerHessianMatrix
     V ell
     (MvPolynomial.X (0 : Fin 4))
