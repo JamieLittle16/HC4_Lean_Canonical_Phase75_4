@@ -33,6 +33,12 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 namespace QsOtherFacetPrLeftVPlanarContactReesData
 
+/-- Local alias for the state-free rank-three quotient coordinate.  Keeping it
+in the live planar-contact namespace prevents Lean from creating an accidental
+auto-implicit when later A19 adapters use the unqualified name. -/
+abbrev rankThreeQuotientCoordinate :=
+  HC4.Polynomial.rankThreeQuotientCoordinate
+
 /-- The locked special fibre is supported on its literal length-one
 rank-three endpoint segment. -/
 theorem specialFiber_supportedRankThreeLine
