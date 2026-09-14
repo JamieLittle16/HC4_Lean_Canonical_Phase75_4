@@ -70,11 +70,20 @@ theorem cancel_contactFamily_activeDet
       (((permutedFamilyHessianFourBlock
           qsPrSuperfaceSchurPermutation D.family).activeDet * B).coeff n) = 0) :
     B = 0 := by
-  apply polynomial_eq_zero_of_constant_pivot
-    (permutedFamilyHessianFourBlock
-      qsPrSuperfaceSchurPermutation D.family).activeDet B
-  · exact D.contactFamily_activeDet_coeff_zero_ne_zero hthree houtThree
-  · exact hprod
+  let A := (permutedFamilyHessianFourBlock
+    qsPrSuperfaceSchurPermutation D.family).activeDet
+  have hA0 : A.coeff 0 ≠ 0 := by
+    simpa [A] using D.contactFamily_activeDet_coeff_zero_ne_zero hthree houtThree
+  have hAB : A * B = 0 := by
+    apply Polynomial.ext
+    intro n
+    simpa [A] using hprod n
+  have hA : A ≠ 0 := by
+    intro hzero
+    apply hA0
+    rw [hzero]
+    simp
+  exact (mul_eq_zero.mp hAB).resolve_left hA
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
