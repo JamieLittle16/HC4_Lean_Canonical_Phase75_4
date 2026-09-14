@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8155**.
+Distinct declaration spellings indexed: **8159**.
 
 ## Repeated declaration spellings
 
@@ -5455,6 +5455,7 @@ Distinct declaration spellings indexed: **8155**.
 - `mvEuler_complementaryLineTerm` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `mvEuler_monomial_general` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `mvEuler_mul_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_one_twoFunctionCarrier_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionH_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionH_pow_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_one_twoFunctionY` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
@@ -5463,14 +5464,17 @@ Distinct declaration spellings indexed: **8155**.
 - `mvEuler_rankThreeLineTerm` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `mvEuler_rankThreeVerticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
 - `mvEuler_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
+- `mvEuler_three_twoFunctionCarrier_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_three_twoFunctionH` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_three_twoFunctionH_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_three_twoFunctionH_pow_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_three_twoFunctionY` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_three_twoFunctionY_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_two_twoFunctionCarrier_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_two_twoFunctionH` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_two_twoFunctionH_pow_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_two_twoFunctionY_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
+- `mvEuler_zero_twoFunctionCarrier_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_zero_twoFunctionH_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_zero_twoFunctionH_pow_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `mvEuler_zero_twoFunctionY_local` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
