@@ -90,6 +90,11 @@ Keeping this explicit avoids simp loops between constant embeddings and
     polynomialLift t (p - q) = polynomialLift t p - polynomialLift t q := by
   simp [polynomialLift, Polynomial.eval₂_sub]
 
+@[simp] theorem polynomialLift_neg
+    (t : MvPolynomial (Fin 4) K) (p : Polynomial K) :
+    polynomialLift t (-p) = -polynomialLift t p := by
+  simp [polynomialLift]
+
 @[simp] theorem polynomialLift_mul
     (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
     polynomialLift t (p * q) = polynomialLift t p * polynomialLift t q := by
@@ -191,7 +196,7 @@ theorem twoFunctionEulerFactorB_eq_xBx_add_zBz
         MvPolynomial.X (2 : Fin 4) * twoFunctionConcreteBz V ell a b P Q := by
   have hC2 :
       (MvPolynomial.C (2 : K) : MvPolynomial (Fin 4) K) = 2 := by
-    rw [MvPolynomial.C_eq_coe_nat]
+    norm_num
   simpa [twoFunctionEulerFactorB, twoFunctionConcreteBx,
     twoFunctionConcreteBz, hC2]
 
