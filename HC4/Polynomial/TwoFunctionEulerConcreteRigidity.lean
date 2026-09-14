@@ -58,6 +58,11 @@ not depend on large `eval₂` simplification. -/
     polynomialLift t (Polynomial.C c) = MvPolynomial.C c := by
   simp [polynomialLift]
 
+@[simp] theorem polynomialLift_one
+    (t : MvPolynomial (Fin 4) K) :
+    polynomialLift t (1 : Polynomial K) = 1 := by
+  simp [polynomialLift]
+
 @[simp] theorem polynomialLift_X
     (t : MvPolynomial (Fin 4) K) :
     polynomialLift t Polynomial.X = t := by
@@ -67,6 +72,18 @@ not depend on large `eval₂` simplification. -/
     (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
     polynomialLift t (p + q) = polynomialLift t p + polynomialLift t q := by
   simp [polynomialLift, Polynomial.eval₂_add]
+
+/-- Directed normalisation of natural-number constants through the lift.
+Keeping this explicit avoids simp loops between constant embeddings and
+`map_natCast` in the pinned mathlib. -/
+@[simp] theorem polynomialLift_natCast
+    (t : MvPolynomial (Fin 4) K) (n : ℕ) :
+    polynomialLift t (n : Polynomial K) =
+      (n : MvPolynomial (Fin 4) K) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+      rw [Nat.cast_succ, Nat.cast_succ, polynomialLift_add, ih, polynomialLift_one]
 
 @[simp] theorem polynomialLift_sub
     (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
@@ -174,10 +191,9 @@ theorem twoFunctionEulerFactorB_eq_xBx_add_zBz
         MvPolynomial.X (2 : Fin 4) * twoFunctionConcreteBz V ell a b P Q := by
   have hC2 :
       (MvPolynomial.C (2 : K) : MvPolynomial (Fin 4) K) = 2 := by
-    norm_num
-  simp [twoFunctionEulerFactorB, twoFunctionConcreteBx,
+    rw [MvPolynomial.C_eq_coe_nat]
+  simpa [twoFunctionEulerFactorB, twoFunctionConcreteBx,
     twoFunctionConcreteBz, hC2]
-  ring
 
 /-- Differentiation in `x` reads off the `Bx` coefficient exactly. -/
 theorem pderiv_zero_twoFunctionEulerFactorB
