@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineCoordinates
 import HC4.Polynomial.RankThreeAffineMomentRealisation
 import Mathlib.Tactic
 
@@ -69,7 +70,6 @@ theorem exists_layerExponent_of_coefficientProfile_mem
   by_contra hnone
   have hzero : A.coefficientProfile.coeff n = 0 := by
     unfold coefficientProfile
-    dsimp only [L]
     rw [Polynomial.finset_sum_coeff]
     apply Finset.sum_eq_zero
     intro e he
@@ -185,8 +185,10 @@ theorem affineLineData_polynomial_eq_layer
         have hn0 : L.exponent n (0 : Fin 4) = n := by
           have hz := L.exponent_zero_eq hn
           simpa using hz
-        rw [hn0] at h0
-        exact hnd h0
+        have h0' : L.exponent n (0 : Fin 4) = d (0 : Fin 4) := by
+          simpa using h0
+        rw [hn0] at h0'
+        exact hnd h0'
       rw [L.term_eq_monomial]
       simp [hne]
     · intro hnot
