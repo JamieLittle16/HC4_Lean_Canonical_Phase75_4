@@ -858,6 +858,8 @@ human architecture guide.
 - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.WeightedInitial`
   - `HC4.Toric.Facets`
+- `HC4.Polynomial.Hessian`
+  - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.DeterminantWeight`
 - `HC4.Polynomial.LineSupportedHessianExtremal`
@@ -965,7 +967,7 @@ human architecture guide.
 - `HC4.Polynomial.TwoFunctionEulerFactorSeries`
   - `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `HC4.Polynomial.TwoFunctionEulerHessian`
-  - _(no local imports)_
+  - `HC4.Polynomial.Hessian`
 - `HC4.Polynomial.TwoFunctionEulerRigidity`
   - `HC4.Polynomial.TwoFunctionEulerHessian`
 - `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
