@@ -83,7 +83,7 @@ theorem coeff_stationaryDepthEuler
   have h1 : (e 1 : Polynomial K) = Polynomial.C (e 1 : K) :=
     (map_natCast (Polynomial.C : K →+* Polynomial K) (e 1)).symm
   rw [h0, h1]
-  rw [← Polynomial.C_sub, ← Polynomial.C_sub]
+  simp only [map_sub]
   ring
 
 /-- Falling second stationary-depth operator `M(M-1)`. -/
@@ -117,8 +117,7 @@ theorem coeff_stationaryDepthSecondEuler
         (Polynomial.C
             ((F.highest.n : K) - (e 0 : K) - (e 1 : K)) - 1) *
         MvPolynomial.coeff e Q := by
-  rw [stationaryDepthSecondEuler, MvPolynomial.coeff_sub,
-    D.coeff_stationaryDepthEuler, D.coeff_stationaryDepthEuler,
+  simp only [stationaryDepthSecondEuler, MvPolynomial.coeff_sub,
     D.coeff_stationaryDepthEuler]
   ring
 
