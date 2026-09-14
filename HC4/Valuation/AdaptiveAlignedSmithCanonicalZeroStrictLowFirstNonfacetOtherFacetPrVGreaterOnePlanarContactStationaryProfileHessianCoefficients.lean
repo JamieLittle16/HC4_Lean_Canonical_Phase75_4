@@ -73,33 +73,42 @@ private theorem stationaryParameterSecondEuler_X_pow_mul_C
           ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a)) =
       Polynomial.C ((q : K) * ((q : K) - 1)) *
         ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a) := by
-  cases q with
-  | zero => simp
-  | succ q =>
-      cases q with
-      | zero => simp
-      | succ q =>
-          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
-          simp only [mul_zero, add_zero]
-          rw [Polynomial.derivative_X_pow_succ]
-          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
-          simp only [mul_zero, add_zero]
-          rw [Polynomial.derivative_mul, Polynomial.derivative_C]
-          simp only [zero_mul, zero_add]
-          rw [Polynomial.derivative_X_pow_succ]
-          simp only [Nat.cast_add, Nat.cast_one]
-          rw [pow_succ, pow_succ]
-          have hscalar :
-              ((2 : K) + (q : K)) * (1 + (q : K)) =
-                2 + (q : K) * 3 + (q : K) ^ 2 := by
-            ring
-          have hC :
-              Polynomial.C ((2 : K) + (q : K)) *
-                  Polynomial.C ((1 : K) + (q : K)) =
-                Polynomial.C (2 + (q : K) * 3 + (q : K) ^ 2) := by
-            rw [← Polynomial.C_mul, hscalar]
-          rw [hC]
-          ring
+  let p : Polynomial K :=
+    (Polynomial.X : Polynomial K) ^ q * Polynomial.C a
+  have hEuler :
+      Polynomial.X * Polynomial.derivative p =
+        Polynomial.C (q : K) * p := by
+    simpa [p] using stationaryParameterEuler_X_pow_mul_C q a
+  have hDeriv := congrArg Polynomial.derivative hEuler
+  have hDeriv' :
+      Polynomial.derivative p +
+          Polynomial.X * Polynomial.derivative (Polynomial.derivative p) =
+        Polynomial.C (q : K) * Polynomial.derivative p := by
+    simpa [Polynomial.derivative_mul, Polynomial.derivative_X,
+      Polynomial.derivative_C] using hDeriv
+  have hSecond :
+      Polynomial.X * Polynomial.derivative (Polynomial.derivative p) =
+        (Polynomial.C (q : K) - 1) * Polynomial.derivative p := by
+    linear_combination hDeriv'
+  change Polynomial.X ^ 2 * Polynomial.derivative (Polynomial.derivative p) =
+    Polynomial.C ((q : K) * ((q : K) - 1)) * p
+  calc
+    Polynomial.X ^ 2 * Polynomial.derivative (Polynomial.derivative p) =
+        Polynomial.X *
+          (Polynomial.X * Polynomial.derivative (Polynomial.derivative p)) := by
+      ring
+    _ = Polynomial.X *
+          ((Polynomial.C (q : K) - 1) * Polynomial.derivative p) := by
+      rw [hSecond]
+    _ = (Polynomial.C (q : K) - 1) *
+          (Polynomial.X * Polynomial.derivative p) := by
+      ring
+    _ = (Polynomial.C (q : K) - 1) *
+          (Polynomial.C (q : K) * p) := by
+      rw [hEuler]
+    _ = Polynomial.C ((q : K) * ((q : K) - 1)) * p := by
+      rw [Polynomial.C_mul, Polynomial.C_sub, Polynomial.C_1]
+      ring
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
