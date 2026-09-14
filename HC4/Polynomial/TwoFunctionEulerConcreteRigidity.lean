@@ -32,6 +32,11 @@ def twoFunctionYSpecialisation :
   MvPolynomial.eval₂Hom Polynomial.C
     ![(1 : Polynomial K), Polynomial.X, 0, 1]
 
+@[simp] theorem twoFunctionYSpecialisation_C (c : K) :
+    twoFunctionYSpecialisation (K := K) (MvPolynomial.C c) =
+      Polynomial.C c := by
+  simp [twoFunctionYSpecialisation]
+
 @[simp] theorem twoFunctionYSpecialisation_Y (V : ℕ) :
     twoFunctionYSpecialisation (K := K) (twoFunctionY (K := K) V) =
       Polynomial.X := by
@@ -40,6 +45,43 @@ def twoFunctionYSpecialisation :
 @[simp] theorem twoFunctionYSpecialisation_H (V : ℕ) :
     twoFunctionYSpecialisation (K := K) (twoFunctionH (K := K) V) = 0 := by
   simp [twoFunctionYSpecialisation, twoFunctionH]
+
+/-- Small homomorphism lemmas kept explicit so later decomposition proofs do
+not depend on large `eval₂` simplification. -/
+@[simp] theorem polynomialLift_zero
+    (t : MvPolynomial (Fin 4) K) :
+    polynomialLift t (0 : Polynomial K) = 0 := by
+  simp [polynomialLift]
+
+@[simp] theorem polynomialLift_C
+    (t : MvPolynomial (Fin 4) K) (c : K) :
+    polynomialLift t (Polynomial.C c) = MvPolynomial.C c := by
+  simp [polynomialLift]
+
+@[simp] theorem polynomialLift_X
+    (t : MvPolynomial (Fin 4) K) :
+    polynomialLift t Polynomial.X = t := by
+  simp [polynomialLift]
+
+@[simp] theorem polynomialLift_add
+    (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
+    polynomialLift t (p + q) = polynomialLift t p + polynomialLift t q := by
+  simp [polynomialLift, Polynomial.eval₂_add]
+
+@[simp] theorem polynomialLift_sub
+    (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
+    polynomialLift t (p - q) = polynomialLift t p - polynomialLift t q := by
+  simp [polynomialLift, Polynomial.eval₂_sub]
+
+@[simp] theorem polynomialLift_mul
+    (t : MvPolynomial (Fin 4) K) (p q : Polynomial K) :
+    polynomialLift t (p * q) = polynomialLift t p * polynomialLift t q := by
+  simp [polynomialLift, Polynomial.eval₂_mul]
+
+@[simp] theorem polynomialLift_pow
+    (t : MvPolynomial (Fin 4) K) (p : Polynomial K) (n : ℕ) :
+    polynomialLift t (p ^ n) = polynomialLift t p ^ n := by
+  simp [polynomialLift, Polynomial.eval₂_pow]
 
 /-- The `Y`-lift is split by the honest specialisation. -/
 @[simp] theorem twoFunctionYSpecialisation_polynomialLift
@@ -58,6 +100,21 @@ theorem polynomial_eq_zero_of_twoFunctionY_lift_eq_zero
     p = 0 := by
   have hs := congrArg (twoFunctionYSpecialisation (K := K)) h
   simpa using hs
+
+@[simp] theorem pderiv_zero_twoFunctionY (V : ℕ) :
+    MvPolynomial.pderiv (0 : Fin 4) (twoFunctionY (K := K) V) = 0 := by
+  simp [twoFunctionY, MvPolynomial.pderiv_mul, MvPolynomial.pderiv_pow]
+
+@[simp] theorem pderiv_zero_twoFunctionH (V : ℕ) :
+    MvPolynomial.pderiv (0 : Fin 4) (twoFunctionH (K := K) V) = 0 := by
+  simp [twoFunctionH, MvPolynomial.pderiv_mul, MvPolynomial.pderiv_pow]
+
+@[simp] theorem pderiv_zero_polynomialLift_twoFunctionY
+    (V : ℕ) (p : Polynomial K) :
+    MvPolynomial.pderiv (0 : Fin 4)
+        (polynomialLift (twoFunctionY (K := K) V) p) = 0 := by
+  rw [pderiv_polynomialLift]
+  simp
 
 /-- The coefficient of `x` in the concrete second Euler factor. -/
 def twoFunctionConcreteBx
@@ -85,6 +142,18 @@ def twoFunctionConcreteBz
         MvPolynomial.C ((ell : K) + 1) * H ^ ell * q1 +
     MvPolynomial.C b ^ 2 * MvPolynomial.C (ell : K) * H ^ ell * p2
 
+@[simp] theorem pderiv_zero_twoFunctionConcreteBx
+    (V ell : ℕ) (b : K) (Q : Polynomial K) :
+    MvPolynomial.pderiv (0 : Fin 4) (twoFunctionConcreteBx V ell b Q) = 0 := by
+  simp [twoFunctionConcreteBx, MvPolynomial.pderiv_mul,
+    MvPolynomial.pderiv_pow, pderiv_polynomialLift]
+
+@[simp] theorem pderiv_zero_twoFunctionConcreteBz
+    (V ell : ℕ) (a b : K) (P Q : Polynomial K) :
+    MvPolynomial.pderiv (0 : Fin 4) (twoFunctionConcreteBz V ell a b P Q) = 0 := by
+  simp [twoFunctionConcreteBz, MvPolynomial.pderiv_mul,
+    MvPolynomial.pderiv_pow, pderiv_polynomialLift]
+
 /-- The abstract concrete `B` factor is literally linear in `x,z` with the
 two coefficients above. -/
 theorem twoFunctionEulerFactorB_eq_xBx_add_zBz
@@ -103,8 +172,11 @@ theorem twoFunctionEulerFactorB_eq_xBx_add_zBz
         (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative) =
       MvPolynomial.X (0 : Fin 4) * twoFunctionConcreteBx V ell b Q +
         MvPolynomial.X (2 : Fin 4) * twoFunctionConcreteBz V ell a b P Q := by
+  have hC2 :
+      (MvPolynomial.C (2 : K) : MvPolynomial (Fin 4) K) = 2 := by
+    norm_num
   simp [twoFunctionEulerFactorB, twoFunctionConcreteBx,
-    twoFunctionConcreteBz]
+    twoFunctionConcreteBz, hC2]
   ring
 
 /-- Differentiation in `x` reads off the `Bx` coefficient exactly. -/
@@ -125,9 +197,7 @@ theorem pderiv_zero_twoFunctionEulerFactorB
         (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative)) =
       twoFunctionConcreteBx V ell b Q := by
   rw [twoFunctionEulerFactorB_eq_xBx_add_zBz]
-  simp [twoFunctionConcreteBx, twoFunctionConcreteBz,
-    twoFunctionY, twoFunctionH, polynomialLift,
-    MvPolynomial.pderiv_mul, MvPolynomial.pderiv_pow]
+  simp [MvPolynomial.pderiv_mul]
 
 /-- A zero concrete `B` factor forces its `x` coefficient to vanish. -/
 theorem twoFunctionConcreteBx_eq_zero_of_factorB_eq_zero
@@ -171,7 +241,10 @@ theorem twoFunctionConcreteBz_eq_zero_of_factorB_eq_zero
     V ell a b P Q hB
   rw [twoFunctionEulerFactorB_eq_xBx_add_zBz, hBx] at hB
   simp only [mul_zero, zero_add] at hB
-  exact (mul_eq_zero.mp hB).resolve_left MvPolynomial.X_ne_zero
+  have hX2 :
+      (MvPolynomial.X (2 : Fin 4) : MvPolynomial (Fin 4) K) ≠ 0 :=
+    MvPolynomial.X_ne_zero _
+  exact (mul_eq_zero.mp hB).resolve_left hX2
 
 /-- The constant `H` coefficient equation of `Bx`. -/
 theorem twoFunctionConcreteBx_constant_eq_zero
@@ -199,17 +272,23 @@ theorem twoFunctionConcreteBx_top_eq_zero
         polynomialLift (twoFunctionY (K := K) V) f +
           twoFunctionH (K := K) V ^ ell *
             polynomialLift (twoFunctionY (K := K) V) g := by
-    simp [twoFunctionConcreteBx, f, g, polynomialLift]
+    simp [twoFunctionConcreteBx, f, g]
     ring
   have hprod :
       twoFunctionH (K := K) V ^ ell *
           polynomialLift (twoFunctionY (K := K) V) g = 0 := by
     rw [hdecomp] at hBx
     rw [hf] at hBx
-    simpa using hBx
+    simpa only [polynomialLift_zero, zero_add] using hBx
+  have hX2 :
+      (MvPolynomial.X (2 : Fin 4) : MvPolynomial (Fin 4) K) ≠ 0 :=
+    MvPolynomial.X_ne_zero _
+  have hX3 :
+      (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ≠ 0 :=
+    MvPolynomial.X_ne_zero _
   have hHne : twoFunctionH (K := K) V ≠ 0 := by
-    apply mul_ne_zero MvPolynomial.X_ne_zero
-    exact pow_ne_zero _ MvPolynomial.X_ne_zero
+    unfold twoFunctionH
+    exact mul_ne_zero hX2 (pow_ne_zero _ hX3)
   have hglift : polynomialLift (twoFunctionY (K := K) V) g = 0 :=
     (mul_eq_zero.mp hprod).resolve_left (pow_ne_zero ell hHne)
   have hg : g = 0 :=
@@ -251,17 +330,23 @@ theorem twoFunctionConcreteBz_top_eq_zero
         polynomialLift (twoFunctionY (K := K) V) f +
           twoFunctionH (K := K) V ^ ell *
             polynomialLift (twoFunctionY (K := K) V) g := by
-    simp [twoFunctionConcreteBz, f, g, polynomialLift]
+    simp [twoFunctionConcreteBz, f, g]
     ring
   have hprod :
       twoFunctionH (K := K) V ^ ell *
           polynomialLift (twoFunctionY (K := K) V) g = 0 := by
     rw [hdecomp] at hBz
     rw [hf] at hBz
-    simpa using hBz
+    simpa only [polynomialLift_zero, zero_add] using hBz
+  have hX2 :
+      (MvPolynomial.X (2 : Fin 4) : MvPolynomial (Fin 4) K) ≠ 0 :=
+    MvPolynomial.X_ne_zero _
+  have hX3 :
+      (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) ≠ 0 :=
+    MvPolynomial.X_ne_zero _
   have hHne : twoFunctionH (K := K) V ≠ 0 := by
-    apply mul_ne_zero MvPolynomial.X_ne_zero
-    exact pow_ne_zero _ MvPolynomial.X_ne_zero
+    unfold twoFunctionH
+    exact mul_ne_zero hX2 (pow_ne_zero _ hX3)
   have hglift : polynomialLift (twoFunctionY (K := K) V) g = 0 :=
     (mul_eq_zero.mp hprod).resolve_left (pow_ne_zero ell hHne)
   have hg : g = 0 :=
