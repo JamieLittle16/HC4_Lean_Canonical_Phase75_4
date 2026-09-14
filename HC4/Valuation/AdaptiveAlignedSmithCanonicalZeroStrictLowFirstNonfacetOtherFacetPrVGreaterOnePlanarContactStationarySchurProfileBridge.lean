@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge
 import HC4.Valuation.PermutedPolynomialHessianFourBlock
 import Mathlib.Tactic
 
@@ -20,6 +21,13 @@ parameter-first image has nonzero constant parameter coefficient.  The pair
 weighted-Euler shear does not change the active block.  Hence the sheared
 active determinant is nonzero and can be cancelled without localization or
 division.
+
+Finally, move the globally vanishing sheared Schur determinant through the
+canonical parameter-first equivalence and the already existing rank-three line
+specialisation.  This lands the zero determinant in exactly the integral ring
+`Polynomial (Polynomial K)` occupied by the stationary carrier profile.  The
+remaining bridge can therefore be stated as a literal polynomial identity in
+one ring, with no representation coercions left.
 -/
 
 namespace HC4.Valuation
@@ -123,6 +131,38 @@ theorem cancel_stationaryPairWeightedEulerShear_activeDet
     B = 0 := by
   exact (mul_eq_zero.mp hprod).resolve_left
     (D.stationaryPairWeightedEulerShear_activeDet_ne_zero hthree houtThree)
+
+/-- The sheared stationary Schur determinant, with the family parameter moved
+outermost and the four source variables specialised to the canonical
+rank-three line.  Its target ring is exactly the ring of the integral
+stationary carrier profile. -/
+noncomputable def specialisedStationarySchurDet
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F) :
+    Polynomial (Polynomial K) :=
+  Polynomial.map
+    (HC4.Polynomial.rankThreeLineSpecialisation (K := K))
+    (parameterFirstEquiv K D.stationaryPairWeightedEulerShear.schurDetCore)
+
+/-- Global stationary Schur singularity survives the exact representation
+change and rank-three line specialisation. -/
+theorem specialisedStationarySchurDet_eq_zero
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F) :
+    D.specialisedStationarySchurDet = 0 := by
+  unfold specialisedStationarySchurDet
+  rw [D.stationaryPairWeightedEulerShear_schurDetCore_eq_zero]
+  simp
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
