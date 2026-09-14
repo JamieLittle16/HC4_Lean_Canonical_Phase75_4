@@ -95,7 +95,8 @@ theorem exists_parameterLayer_affineCoordinates
   have hsecondZ := hstair.2
   simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    one_mul] at hsecondZ
   rw [hpairNat, hfirstNat] at hsecondZ
   have hsecond : F.V * f 0 + f 3 = F.V * (k + j) := by
     have hsecondZ' :
