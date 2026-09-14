@@ -109,7 +109,7 @@ theorem stationaryRamifiedFamily_wallEulerRow
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
     by_cases hi0 : i = (0 : Fin 4)
     · subst i
-      rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      rw [hnat (e 0), hnat (e 1), hnat (e 2)]
       simp only [map_add, map_sub, map_mul, map_one,
         if_true,
         if_neg (by decide : (0 : Fin 4) ≠ 1),
@@ -119,7 +119,7 @@ theorem stationaryRamifiedFamily_wallEulerRow
           (Polynomial.C (e 0 : K)) * hP
     · by_cases hi1 : i = (1 : Fin 4)
       · subst i
-        rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+        rw [hnat (e 0), hnat (e 1), hnat (e 2)]
         simp only [map_add, map_sub, map_mul, map_one,
           if_neg (by decide : (1 : Fin 4) ≠ 0), if_true,
           if_neg (by decide : (1 : Fin 4) ≠ 2)] at hP ⊢
@@ -128,7 +128,7 @@ theorem stationaryRamifiedFamily_wallEulerRow
             (Polynomial.C (e 1 : K)) * hP
       · by_cases hi2 : i = (2 : Fin 4)
         · subst i
-          rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+          rw [hnat (e 0), hnat (e 1), hnat (e 2)]
           simp only [map_add, map_sub, map_mul, map_one,
             if_neg (by decide : (2 : Fin 4) ≠ 0),
             if_neg (by decide : (2 : Fin 4) ≠ 1), if_true] at hP ⊢
@@ -136,16 +136,20 @@ theorem stationaryRamifiedFamily_wallEulerRow
             (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
               (Polynomial.C (e 2 : K)) * hP
         · have hi3 : i = (3 : Fin 4) := by
-            fin_cases i <;> simp_all
+            fin_cases i
+            · exact (hi0 rfl).elim
+            · exact (hi1 rfl).elim
+            · exact (hi2 rfl).elim
+            · rfl
           subst i
-          rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+          rw [hnat (e 0), hnat (e 1), hnat (e 2)]
           simp only [map_add, map_sub, map_mul, map_one,
             if_neg (by decide : (3 : Fin 4) ≠ 0),
             if_neg (by decide : (3 : Fin 4) ≠ 1),
             if_neg (by decide : (3 : Fin 4) ≠ 2)] at hP ⊢
           linear_combination
             (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
-              (Polynomial.C (e 3 : K)) * hP
+              (e 3 : Polynomial K) * hP
   · have hzero := D.stationaryRamifiedFamily_coeff_eq_zero_of_not_carrier_mem he
     rw [hzero]
     simp
@@ -225,7 +229,11 @@ theorem stationaryRamifiedFamily_curveEulerRow
             (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
               (Polynomial.C (e 2 : K)) * hP
         · have hi3 : i = (3 : Fin 4) := by
-            fin_cases i <;> simp_all
+            fin_cases i
+            · exact (hi0 rfl).elim
+            · exact (hi1 rfl).elim
+            · exact (hi2 rfl).elim
+            · rfl
           subst i
           rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
           simp only [map_add, map_sub, map_mul, map_one, map_neg,
