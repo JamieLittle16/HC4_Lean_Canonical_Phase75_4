@@ -85,7 +85,12 @@ theorem parameterLayer_pair_fiber
           ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) =
         (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
           ((rankThreeQuotientCoordinate 1 F.V f).pair - 1) := by
-    omega
+    calc
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) =
+        (F.highest.n - 1) * q := heInterp.symm
+      _ = (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          ((rankThreeQuotientCoordinate 1 F.V f).pair - 1) := hfInterp
   have hfactor :
       0 < (F.V + 1) * (F.locked.ell + 1 - F.highest.n) := by
     exact Nat.mul_pos (by omega)
