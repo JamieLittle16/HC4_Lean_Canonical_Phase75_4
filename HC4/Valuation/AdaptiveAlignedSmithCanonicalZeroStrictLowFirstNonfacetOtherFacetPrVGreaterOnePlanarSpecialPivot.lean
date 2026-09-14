@@ -150,12 +150,13 @@ theorem specialFiber_hessianPrincipalMinor_two_three_ne_zero
     (C.ray.outsideExponent 3)
     1
     (polynomialFamilySpecialFiber D.family)
+  have hVpos : 0 < F.V := lt_trans (by decide : 0 < 1) F.V_gt_one
   have hout2 : 0 < C.ray.outsideExponent 2 := by
     rw [F.locked.outside_two]
     exact F.locked.ell_pos
   have hout3 : 0 < C.ray.outsideExponent 3 := by
     rw [F.locked.outside_three]
-    exact Nat.mul_pos F.locked.ell_pos (by omega : 0 < F.V)
+    exact Nat.mul_pos F.locked.ell_pos hVpos
   apply HC4.Polynomial.hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero
     (K := K)
     (D.specialFiber_supportedRankThreeLine hthree houtThree)
@@ -163,6 +164,8 @@ theorem specialFiber_hessianPrincipalMinor_two_three_ne_zero
   dsimp only [phi]
   exact HC4.Polynomial.weightedRankThreeEndpointActiveMinor_two_three_ne_zero
     (K := K)
+    (R := C.ray.outsideExponent 2)
+    (S := C.ray.outsideExponent 3)
     (C.ray.facetExponent 1 : K)
     (C.ray.facetExponent 2 : K)
     (C.ray.facetExponent 3 : K)
