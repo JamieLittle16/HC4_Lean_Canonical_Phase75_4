@@ -19,7 +19,7 @@ and
 
 These are denominator-free integer coordinate changes.  The first follows by
 combining stationary weighted Euler with the monomial-curve equation; the
-second is `-V * wall + (n-1) * curve`.  They are the exact source-coordinate
+second is `V * wall - (n-1) * curve`.  They are the exact source-coordinate
 bridge needed by the final cleared-Schur/profile determinant comparison.
 -/
 
@@ -86,17 +86,10 @@ theorem stationaryRamifiedFamily_depthActiveEuler
               D.stationaryRamifiedFamily) := by
   have hw := D.stationaryRamifiedFamily_wallEuler hthree houtThree
   have hc := D.stationaryRamifiedFamily_curveEuler hthree houtThree
-  have hn1 :
-      (MvPolynomial.C (Polynomial.C ((F.highest.n : K) - 1)) :
-        MvPolynomial (Fin 4) (Polynomial K)) =
-        MvPolynomial.C (Polynomial.C (F.highest.n : K)) - 1 := by
-    simp only [map_sub, map_one]
   unfold stationaryDepthEuler
-  rw [hn1]
-  simp only [map_add, map_sub, map_mul, map_one] at hw hc ⊢
   linear_combination
-    -(MvPolynomial.C (Polynomial.C (F.V : K))) * hw +
-      (MvPolynomial.C (Polynomial.C (F.highest.n : K)) - 1) * hc
+    MvPolynomial.C (Polynomial.C (F.V : K)) * hw -
+      MvPolynomial.C (Polynomial.C ((F.highest.n : K) - 1)) * hc
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
