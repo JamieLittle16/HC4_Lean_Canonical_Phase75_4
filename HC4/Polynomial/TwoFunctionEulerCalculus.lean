@@ -90,9 +90,23 @@ theorem mvEuler_three_twoFunctionY
       rw [← pow_succ']
       congr 1
       omega
-    rw [hpow]
-    simp [Algebra.smul_def]
-    ring
+    change
+      (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) *
+          (MvPolynomial.X (1 : Fin 4) *
+            ((V : MvPolynomial (Fin 4) K) *
+              MvPolynomial.X (3 : Fin 4) ^ (V - 1))) =
+        (V : K) •
+          (MvPolynomial.X (1 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ V)
+    calc
+      _ = (V : MvPolynomial (Fin 4) K) * MvPolynomial.X (1 : Fin 4) *
+          (MvPolynomial.X (3 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ (V - 1)) := by
+            ring
+      _ = (V : MvPolynomial (Fin 4) K) * MvPolynomial.X (1 : Fin 4) *
+          MvPolynomial.X (3 : Fin 4) ^ V := by rw [hpow]
+      _ = (V : K) •
+          (MvPolynomial.X (1 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ V) := by
+            simp [Algebra.smul_def]
+            ring
 
 /-- `H` has Euler weight one in the `z` coordinate. -/
 theorem mvEuler_two_twoFunctionH
@@ -117,9 +131,23 @@ theorem mvEuler_three_twoFunctionH
       rw [← pow_succ']
       congr 1
       omega
-    rw [hpow]
-    simp [Algebra.smul_def]
-    ring
+    change
+      (MvPolynomial.X (3 : Fin 4) : MvPolynomial (Fin 4) K) *
+          (MvPolynomial.X (2 : Fin 4) *
+            ((V : MvPolynomial (Fin 4) K) *
+              MvPolynomial.X (3 : Fin 4) ^ (V - 1))) =
+        (V : K) •
+          (MvPolynomial.X (2 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ V)
+    calc
+      _ = (V : MvPolynomial (Fin 4) K) * MvPolynomial.X (2 : Fin 4) *
+          (MvPolynomial.X (3 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ (V - 1)) := by
+            ring
+      _ = (V : MvPolynomial (Fin 4) K) * MvPolynomial.X (2 : Fin 4) *
+          MvPolynomial.X (3 : Fin 4) ^ V := by rw [hpow]
+      _ = (V : K) •
+          (MvPolynomial.X (2 : Fin 4) * MvPolynomial.X (3 : Fin 4) ^ V) := by
+            simp [Algebra.smul_def]
+            ring
 
 /-- The actual four-variable no-singleton carrier from the paper argument:
 
@@ -135,6 +163,8 @@ def twoFunctionCarrier
       (polynomialLift Y Q + MvPolynomial.C b * H ^ ell) +
     MvPolynomial.X (2 : Fin 4) *
       (polynomialLift Y P + MvPolynomial.C a * H ^ ell * Y)
+
+set_option maxHeartbeats 2000000
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
 the abstract matrix used in `TwoFunctionEulerHessian`. -/
@@ -154,14 +184,13 @@ theorem eulerScaledHessian_twoFunctionCarrier
         (polynomialLift (twoFunctionY (K := K) V) Q.derivative.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative)
         (polynomialLift (twoFunctionY (K := K) V) P.derivative.derivative) := by
-  set_option maxHeartbeats 2000000 in
-    apply Matrix.ext
-    intro i j
-    fin_cases i <;> fin_cases j <;>
-      simp [eulerScaledHessian_apply, twoFunctionCarrier,
-        twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
-        twoFunctionY, twoFunctionH] <;>
-      ring
+  apply Matrix.ext
+  intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp [eulerScaledHessian_apply, twoFunctionCarrier,
+      twoFunctionEulerHessianMatrix, pderiv_polynomialLift,
+      twoFunctionY, twoFunctionH] <;>
+    ring
 
 /-- Determinant factorisation for the **actual** four-variable carrier. -/
 theorem det_eulerScaledHessian_twoFunctionCarrier
