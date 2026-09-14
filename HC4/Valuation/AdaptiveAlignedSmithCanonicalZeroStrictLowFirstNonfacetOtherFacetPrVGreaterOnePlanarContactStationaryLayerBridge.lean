@@ -1,4 +1,4 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileEndpoints
 
 /-!
@@ -115,6 +115,57 @@ theorem layer_mem_of_carrier_mem_of_pair_eq
   have hq : q = order := Nat.mul_left_cancel hn1pos hsame
   rw [hq] at heq
   exact heq
+
+/-- **Whole-profile identification for one exact contact layer.**  The honest
+univariate affine profile of a nonzero contact layer is literally the
+stationary carrier coefficient at distance `n-k` from the primitive highest
+pair. -/
+theorem coefficientProfile_eq_stationaryCarrierProfile_coeff
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    {D : QsOtherFacetPrLeftVPlanarContactReesData F}
+    {order : ℕ}
+    (A : QsOtherFacetPrLeftVParameterAffineLayerData D order)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    A.coefficientProfile =
+      F.stationaryCarrierProfile.coeff (F.highest.n - A.k) := by
+  classical
+  ext t
+  by_cases ht : t ∈ A.coefficientProfile.support
+  · rcases A.exists_layerExponent_of_coefficientProfile_mem ht with
+      ⟨e, he, he0⟩
+    have hcoeff := A.coeff_coefficientProfile_eq_stationaryCarrierProfile
+      hthree houtThree he
+    simpa [he0] using hcoeff
+  · have hleft : A.coefficientProfile.coeff t = 0 :=
+      Polynomial.notMem_support_iff.mp ht
+    rw [hleft]
+    rw [F.coeff_stationaryCarrierProfile, Polynomial.finset_sum_coeff]
+    apply Finset.sum_eq_zero
+    intro e he
+    by_cases houter :
+        F.highest.n - (e 0 + e 1) = F.highest.n - A.k
+    · have hele : e 0 + e 1 ≤ F.highest.n := by
+        rcases F.support_staircase_classification hthree houtThree he with
+          ⟨j, _hj, hk, _hjle, _hzero, _hlocked⟩
+        simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_pair] using hk
+      have hpair : e 0 + e 1 = A.k := by
+        omega
+      have heLayer := A.layer_mem_of_carrier_mem_of_pair_eq
+        hthree houtThree he hpair
+      have heProfile : e 0 ∈ A.coefficientProfile.support :=
+        A.coefficientProfile_mem_of_layer_mem heLayer
+      have hzero : e 0 ≠ t := by
+        intro h
+        apply ht
+        simpa [h] using heProfile
+      simp [houter, Polynomial.coeff_monomial, hzero]
+    · simp [houter]
 
 end QsOtherFacetPrLeftVParameterAffineLayerData
 
