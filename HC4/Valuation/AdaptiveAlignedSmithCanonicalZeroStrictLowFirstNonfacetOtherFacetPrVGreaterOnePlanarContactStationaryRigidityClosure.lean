@@ -7,6 +7,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryWeightedEuler
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryCarrierEuler
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurSingularity
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
 
 /-!
@@ -27,6 +28,8 @@ stationary ramification of the actual singular contact family, the surviving
 nonzero active pivot and globally vanishing cleared Schur determinant on that
 ramification, the exact stationary weighted-Euler identity relating the
 ramified parameter to the two complementary source directions, the two affine
-planar Euler equations lifted to the ramified family, and the original two
-exact affine Euler equations of the literal planar carrier.
+planar Euler equations lifted to the ramified family, the Euler-scaled
+stationary `2+2` Schur block and pair weighted-Euler shear with identically
+zero cleared determinant, and the original two exact affine Euler equations
+of the literal planar carrier.
 -/
