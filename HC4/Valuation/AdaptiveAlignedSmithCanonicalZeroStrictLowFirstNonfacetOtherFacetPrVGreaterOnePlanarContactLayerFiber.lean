@@ -103,7 +103,14 @@ theorem parameterLayer_pair_fiber
   have hfP := (D.parameterLayer_support_source_and_order hf).1
   have hePos := F.support_pair_pos hthree houtThree heP
   have hfPos := F.support_pair_pos hthree houtThree hfP
-  omega
+  calc
+    (rankThreeQuotientCoordinate 1 F.V e).pair =
+        ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) + 1 :=
+      (Nat.sub_add_cancel hePos).symm
+    _ = ((rankThreeQuotientCoordinate 1 F.V f).pair - 1) + 1 := by
+      rw [hsub]
+    _ = (rankThreeQuotientCoordinate 1 F.V f).pair :=
+      Nat.sub_add_cancel hfPos
 
 /-- Every exact planar-contact Rees layer is in fact a single full quotient
 fibre.  The retained pair-fibre injectivity of the two affine carrier
