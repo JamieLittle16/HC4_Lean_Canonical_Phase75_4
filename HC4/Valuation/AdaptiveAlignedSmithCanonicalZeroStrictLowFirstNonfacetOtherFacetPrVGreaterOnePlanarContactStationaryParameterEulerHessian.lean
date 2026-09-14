@@ -41,8 +41,7 @@ theorem familyParameterEuler_familyParameterEuler
   rw [coeff_familyParameterEuler, coeff_familyParameterEuler,
     coeff_familyParameterSecondEuler, MvPolynomial.coeff_add,
     coeff_familyParameterEuler]
-  simp only [Polynomial.derivative_mul, Polynomial.derivative_X,
-    one_mul, Polynomial.X_mul]
+  simp only [Polynomial.derivative_mul, Polynomial.derivative_X, one_mul]
   ring
 
 /-- The family parameter Euler operator is additive. -/
