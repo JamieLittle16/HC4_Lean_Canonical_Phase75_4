@@ -4,6 +4,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryWeightedEuler
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
 
 /-!
@@ -21,6 +22,8 @@ canonical stationary residual-to-no-interior adapter, the exact contact-layer
 coefficient bridge into the stationary profile, the whole specialised contact-
 family/stationary-profile coefficient bridge, the denominator-cleared
 stationary ramification of the actual singular contact family, the surviving
-nonzero active pivot on that ramification, and the two exact affine Euler
-equations of the literal planar carrier.
+nonzero active pivot on that ramification, the exact stationary weighted-Euler
+identity relating the ramified parameter to the two complementary source
+directions, and the two exact affine Euler equations of the literal planar
+carrier.
 -/
