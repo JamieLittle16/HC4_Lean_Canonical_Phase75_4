@@ -83,16 +83,16 @@ theorem exists_firstPositiveLayer_strictInterior_affineCoordinates
   have hsecondZ := hstair.2
   simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse] at hsecondZ
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    one_mul] at hsecondZ
   rw [hpairNat, hfirstNat] at hsecondZ
-  have hsumZ :
-      (k : ℤ) + ((j + 1 : ℕ) : ℤ) - 1 = ((k + j : ℕ) : ℤ) := by
-    push_cast
-    ring
-  rw [hsumZ] at hsecondZ
   have hsecond : F.V * e 0 + e 3 = F.V * (k + j) := by
-    apply Int.ofNat.inj
-    simpa only [Nat.cast_mul, Nat.cast_add] using hsecondZ
+    have hsecondZ' :
+        ((F.V * e 0 + e 3 : ℕ) : ℤ) =
+          ((F.V * (k + j) : ℕ) : ℤ) := by
+      push_cast at hsecondZ ⊢
+      nlinarith
+    exact_mod_cast hsecondZ'
   exact ⟨hpairNat, hfirstNat, hsecond, hcoeff⟩
 
 /-- Coordinatewise subtraction form used by the generic affine-line moment
