@@ -107,22 +107,24 @@ theorem stationaryRamifiedFamily_wallEulerRow
     have hnat (n : ℕ) :
         (n : Polynomial K) = Polynomial.C (n : K) :=
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
-    rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
-    simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
     fin_cases i
-    · simp only [if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2)]
+      simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 0 : K)) * hP
-    · simp only [if_false, if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2)]
+      simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 1 : K)) * hP
-    · simp only [if_false, if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2)]
+      simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 2 : K)) * hP
-    · simp only [if_false]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 3 : K)) * hP
@@ -173,22 +175,24 @@ theorem stationaryRamifiedFamily_curveEulerRow
     have hnat (n : ℕ) :
         (n : Polynomial K) = Polynomial.C (n : K) :=
       (map_natCast (Polynomial.C : K →+* Polynomial K) n).symm
-    rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
-    simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
     fin_cases i
-    · simp only [if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 0 : K)) * hP
-    · simp only [if_false, if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 1 : K)) * hP
-    · simp only [if_false, if_true]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 2 : K)) * hP
-    · simp only [if_false]
+    · rw [hnat (e 0), hnat (e 1), hnat (e 2), hnat (e 3)]
+      simp only [map_add, map_sub, map_mul, map_one, map_neg] at hP ⊢
       linear_combination
         (MvPolynomial.coeff e D.stationaryRamifiedFamily) *
           (Polynomial.C (e 3 : K)) * hP
