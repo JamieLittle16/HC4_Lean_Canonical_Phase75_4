@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8083**.
+Distinct declaration spellings indexed: **8087**.
 
 ## Repeated declaration spellings
 
@@ -6640,6 +6640,7 @@ Distinct declaration spellings indexed: **8083**.
 - `rankThreeLineSpecialisation_eulerScaledHessian_verticalTerm` — `theorem` in `HC4.Polynomial.RankThreeVerticalMomentRealisation`
 - `rankThreeLineSpecialisation_euler_det_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeLineSpecialisation_injective_of_u1_pos` — `theorem` in `HC4.Polynomial.RankThreeMvSubstitution`
+- `rankThreeLineSpecialisation_layer_eq_coefficientProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
 - `rankThreeLineSpecialisation_polynomial` — `theorem` in `HC4.Polynomial.RankThreeMvSubstitution`
 - `rankThreeLineSpecialisation_term` — `theorem` in `HC4.Polynomial.RankThreeMvSubstitution`
 - `rankThreeLineSpecialisation_verticalPolynomial` — `theorem` in `HC4.Polynomial.RankThreeVerticalLine`
@@ -7606,6 +7607,9 @@ Distinct declaration spellings indexed: **8083**.
 - `specialisedParameterFirstEulerHessian_det_coeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerMomentRealisation`
 - `specialisedParameterFirstEulerHessian_det_eq_zero` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `specialisedParameterFirstEulerHessian_hasGap` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `specialisedParameterFirstFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
+- `specialisedParameterFirstFamily_coeff_eq_coefficientProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
+- `specialisedParameterFirstFamily_coeff_eq_stationaryCarrierProfile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryFamilyBridge`
 - `squareCoefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareCoefficient_specialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareContactLevel_exactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
