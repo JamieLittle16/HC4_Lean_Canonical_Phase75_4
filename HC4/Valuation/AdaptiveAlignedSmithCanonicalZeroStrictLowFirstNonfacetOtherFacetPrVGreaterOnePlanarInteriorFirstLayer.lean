@@ -90,7 +90,11 @@ theorem exists_strictInterior_of_not_noStrictInterior
   · exact Or.inr hkn'
   exfalso
   apply hnone
-  exact ⟨e, he, by omega, by omega⟩
+  have hkgt : 1 < (rankThreeQuotientCoordinate 1 F.V e).pair :=
+    lt_of_le_of_ne hkpos (Ne.symm hk1)
+  have hklt : (rankThreeQuotientCoordinate 1 F.V e).pair < F.highest.n :=
+    lt_of_le_of_ne hkn hkn'
+  exact ⟨e, he, hkgt, hklt⟩
 
 /-- A strict-interior monomial has strictly positive planar-contact reverse
 order. -/
@@ -110,23 +114,30 @@ theorem reverseOrder_pos_of_strictInterior
       Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e := by
   have hinterp := F.contactOrder_interpolation hthree houtThree he
   rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e] at hinterp
-  have hn1 : 0 < F.highest.n - 1 := by omega
   have hsep := F.highest_n_lt_locked_height hthree houtThree
+  have hgap : 0 < F.locked.ell + 1 - F.highest.n :=
+    Nat.sub_pos_of_lt hsep
   have hB :
       0 < (F.V + 1) * (F.locked.ell + 1 - F.highest.n) :=
-    Nat.mul_pos (by omega) (by omega)
+    Nat.mul_pos (Nat.succ_pos F.V) hgap
   have hk1 :
-      0 < (rankThreeQuotientCoordinate 1 F.V e).pair - 1 := by omega
+      0 < (rankThreeQuotientCoordinate 1 F.V e).pair - 1 :=
+    Nat.sub_pos_of_lt hk
   by_contra hnot
   have hq0 :
       T.topFace.degree -
-        Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e = 0 := by omega
+        Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e = 0 :=
+    Nat.eq_zero_of_not_pos hnot
   rw [hq0] at hinterp
   have hrhs :
       0 < (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
         ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) :=
     Nat.mul_pos hB hk1
-  omega
+  have hrhs0 :
+      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          ((rankThreeQuotientCoordinate 1 F.V e).pair - 1) = 0 := by
+    simpa using hinterp.symm
+  exact (Nat.ne_of_gt hrhs) hrhs0
 
 /-- If strict-interior support exists, the least positive actual layer occurs
 strictly before the highest primitive pair. -/
@@ -201,12 +212,18 @@ theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior
     (F.support_staircase_classification hthree houtThree heP).choose_spec.2.1
   refine ⟨hkgt, ?_⟩
   by_contra hnotlt
+  have hnle :
+      F.highest.n ≤ (rankThreeQuotientCoordinate 1 F.V e).pair :=
+    Nat.le_of_not_gt hnotlt
   have hkeq :
-      (rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n := by omega
+      (rankThreeQuotientCoordinate 1 F.V e).pair = F.highest.n :=
+    Nat.le_antisymm hkn hnle
   have hinterp := F.contactOrder_interpolation hthree houtThree heP
   rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e,
     heOrder, hkeq] at hinterp
-  have hn1pos : 0 < F.highest.n - 1 := by omega
+  have hn1pos : 0 < F.highest.n - 1 := by
+    exact Nat.sub_pos_of_lt (show 1 < F.highest.n by
+      exact F.highest.n_two_le)
   have hEq :
       firstPositiveActualParameterOrder D.family D.hasPositiveLayer =
         D.highestOrder := by
@@ -216,8 +233,14 @@ theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior
             firstPositiveActualParameterOrder D.family D.hasPositiveLayer =
           (F.highest.n - 1) *
             ((F.V + 1) * (F.locked.ell + 1 - F.highest.n)) := by
-      simpa [Nat.mul_assoc] using hinterp
-    exact Nat.mul_left_cancel hsame
+      calc
+        (F.highest.n - 1) *
+            firstPositiveActualParameterOrder D.family D.hasPositiveLayer =
+          (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+            (F.highest.n - 1) := hinterp
+        _ = (F.highest.n - 1) *
+            ((F.V + 1) * (F.locked.ell + 1 - F.highest.n)) := by ring
+    exact Nat.mul_left_cancel hn1pos hsame
   rw [hEq] at hfirstlt
   exact (Nat.lt_irrefl _ hfirstlt)
 
@@ -259,17 +282,15 @@ theorem exists_firstPositiveLayer_strictInterior_coordinates
     ⟨j, hj, _hkn, hjell, hj0, hjellEq⟩
   let k := (rankThreeQuotientCoordinate 1 F.V e).pair
   have hjpos : 0 < j := by
-    by_contra h
-    have hjz : j = 0 := by omega
+    apply Nat.pos_of_ne_zero
+    intro hjz
     have hkN := hj0.mp hjz
-    dsimp [k] at hinterior
-    omega
+    exact (Nat.ne_of_lt hinterior.2) hkN
   have hjlt : j < F.locked.ell := by
-    by_contra h
-    have hjeq : j = F.locked.ell := by omega
+    apply lt_of_le_of_ne hjell
+    intro hjeq
     have hk1 := hjellEq.mp hjeq
-    dsimp [k] at hinterior
-    omega
+    exact (Nat.ne_of_gt hinterior.1) hk1
   exact ⟨e, k, j, he, rfl, hinterior.1, hinterior.2, hj, hjpos, hjlt⟩
 
 /-- Every supported exact layer coefficient is the literal carrier coefficient.
