@@ -119,12 +119,7 @@ theorem zeroLayer_support_eq_locked
       heP F.locked.facet_provenance.carrier_mem
       (heOrder.trans hfacetOrder.symm)
     have hpairNat : e 0 + e 1 = 1 := by
-      have hfacetPairNat :
-          (HC4.Polynomial.rankThreeQuotientCoordinate
-            1 F.V C.ray.facetExponent).pair = 1 := by
-        simp [HC4.Polynomial.rankThreeQuotientCoordinate,
-          F.locked.facet_zero, F.locked.facet_one]
-      simpa [HC4.Polynomial.rankThreeQuotientCoordinate, hfacetPairNat] using hpairEq
+      simpa [F.locked.facet_zero, F.locked.facet_one] using hpairEq
     have hpairE : qsOtherFacetPairDegree .pr e = (1 : ℤ) := by
       have hcast := congrArg (fun m : ℕ => (m : ℤ)) hpairNat
       simpa [qsOtherFacetPairDegree] using hcast
@@ -137,11 +132,11 @@ theorem zeroLayer_support_eq_locked
     have he0 : e 0 = 0 ∨ e 0 = 1 := by omega
     rcases he0 with he0 | he0
     · left
-      exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+      exact HC4.Polynomial.eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
         1 F.V e C.ray.facetExponent hqEF (by
           rw [he0, F.locked.facet_zero])
     · right
-      exact eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
+      exact HC4.Polynomial.eq_of_rankThreeQuotientCoordinate_eq_of_zeroCoordinate_eq
         1 F.V e C.ray.outsideExponent (hqEF.trans hqFacetOutside) (by
           rw [he0, F.locked.outside_zero])
   · intro he
