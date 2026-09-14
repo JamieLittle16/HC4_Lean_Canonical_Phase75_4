@@ -196,7 +196,7 @@ theorem twoFunctionEulerFactorB_eq_xBx_add_zBz
         MvPolynomial.X (2 : Fin 4) * twoFunctionConcreteBz V ell a b P Q := by
   have hC2 :
       (MvPolynomial.C (2 : K) : MvPolynomial (Fin 4) K) = 2 := by
-    norm_num
+    exact map_natCast (MvPolynomial.C : K →+* MvPolynomial (Fin 4) K) 2
   simpa [twoFunctionEulerFactorB, twoFunctionConcreteBx,
     twoFunctionConcreteBz, hC2]
 
