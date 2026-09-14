@@ -90,7 +90,7 @@ theorem stationaryRamifiedFamily_depthActiveEuler
   simp only [map_add, map_sub, map_mul, map_one] at hw hc ⊢
   linear_combination
     -(MvPolynomial.C (Polynomial.C (F.V : K))) * hw +
-      MvPolynomial.C (Polynomial.C ((F.highest.n : K) - 1)) * hc
+      (MvPolynomial.C (Polynomial.C (F.highest.n : K)) - 1) * hc
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
