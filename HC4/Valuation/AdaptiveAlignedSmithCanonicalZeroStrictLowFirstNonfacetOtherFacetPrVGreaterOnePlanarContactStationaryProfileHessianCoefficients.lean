@@ -41,6 +41,31 @@ private theorem stationaryParameterEuler_X_pow_mul_C
       simp only [Nat.cast_add, Nat.cast_one]
       ring
 
+private theorem stationaryParameterEuler_C_mul_X_pow_mul_C
+    (m : K) (q : ℕ) (a : K) :
+    Polynomial.X * Polynomial.derivative
+        (Polynomial.C m *
+          ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a)) =
+      Polynomial.C (q : K) * Polynomial.C m *
+        ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a) := by
+  rw [Polynomial.derivative_mul, Polynomial.derivative_C]
+  simp only [zero_mul, zero_add]
+  calc
+    Polynomial.X *
+          (Polynomial.C m * Polynomial.derivative
+            ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a)) =
+        Polynomial.C m *
+          (Polynomial.X * Polynomial.derivative
+            ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a)) := by
+      ring
+    _ = Polynomial.C m *
+          (Polynomial.C (q : K) *
+            ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a)) := by
+      rw [stationaryParameterEuler_X_pow_mul_C]
+    _ = Polynomial.C (q : K) * Polynomial.C m *
+          ((Polynomial.X : Polynomial K) ^ q * Polynomial.C a) := by
+      ring
+
 private theorem stationaryParameterSecondEuler_X_pow_mul_C
     (q : ℕ) (a : K) :
     Polynomial.X ^ 2 * Polynomial.derivative
@@ -64,7 +89,7 @@ private theorem stationaryParameterSecondEuler_X_pow_mul_C
           rw [Polynomial.derivative_X_pow_succ]
           simp only [Nat.cast_add, Nat.cast_one]
           rw [pow_succ, pow_succ]
-          ring
+          ring_nf
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -122,11 +147,8 @@ theorem stationaryProfileHessian01Family_coeff_of_carrier_mem
   dsimp
   rw [stationaryProfileHessian01Family, coeff_familyParameterEuler]
   rw [D.coeff_stationaryDepthEuler]
-  rw [Polynomial.derivative_mul, Polynomial.derivative_C]
-  simp only [zero_mul, zero_add]
   rw [D.coeff_stationaryRamifiedFamily_of_carrier_mem hthree houtThree he]
-  rw [stationaryParameterEuler_X_pow_mul_C]
-  ring
+  exact stationaryParameterEuler_C_mul_X_pow_mul_C _ _ _
 
 /-- Exact source coefficient of the stationary depth/depth Hessian entry. -/
 theorem stationaryProfileHessian11Family_coeff
