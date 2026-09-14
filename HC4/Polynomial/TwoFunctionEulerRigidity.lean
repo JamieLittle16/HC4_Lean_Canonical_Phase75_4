@@ -52,7 +52,8 @@ theorem twoFunction_factorB_coefficients_impossible
       (mul_eq_zero.mp hX0).resolve_right hQsq
     exact (mul_eq_zero.mp hleft).resolve_left hbC
   have hellSub : (ell : K) - 1 = 0 := by
-    exact Polynomial.C_injective hellSubC
+    apply Polynomial.C_injective
+    simpa using hellSubC
   have hellCast : (ell : K) = 1 := sub_eq_zero.mp hellSub
   have hellOne : ell = 1 := by exact_mod_cast hellCast
 
@@ -70,10 +71,13 @@ theorem twoFunction_factorB_coefficients_impossible
   subst ell
   norm_num at hZ0 hZell
 
+  have hQsqDeriv : (Q.derivative ^ 2).derivative = 0 := by
+    simp [Polynomial.derivative_pow, hQ2]
   have hZ0d := congrArg Polynomial.derivative hZ0
   simp only [Polynomial.derivative_sub, Polynomial.derivative_mul,
     Polynomial.derivative_C, Polynomial.derivative_X, hQ2,
-    zero_mul, mul_zero, add_zero, zero_add] at hZ0d
+    hQsqDeriv, zero_mul, mul_zero, add_zero, zero_add,
+    Polynomial.derivative_zero] at hZ0d
   ring_nf at hZ0d
 
   have hfact1 :
@@ -98,20 +102,36 @@ theorem twoFunction_factorB_coefficients_impossible
   have hfact4 :
       Polynomial.C b *
         (Polynomial.C b * P.derivative.derivative -
-          Polynomial.C 4 * Polynomial.C a * Q.derivative) = 0 := by
+          Polynomial.C (2 : K) * Polynomial.C (2 : K) *
+            Polynomial.C a * Q.derivative) = 0 := by
     linear_combination hZell
   have hrel4zero :
       Polynomial.C b * P.derivative.derivative -
-        Polynomial.C 4 * Polynomial.C a * Q.derivative = 0 :=
+        Polynomial.C (2 : K) * Polynomial.C (2 : K) *
+          Polynomial.C a * Q.derivative = 0 :=
     (mul_eq_zero.mp hfact4).resolve_left hbC
   have hrel4 :
       Polynomial.C b * P.derivative.derivative =
-        Polynomial.C 4 * Polynomial.C a * Q.derivative :=
+        Polynomial.C (2 : K) * Polynomial.C (2 : K) *
+          Polynomial.C a * Q.derivative :=
     sub_eq_zero.mp hrel4zero
 
+  have hthreeRaw :
+      (Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1) *
+          Polynomial.C a * Q.derivative = 0 := by
+    linear_combination hrel4 - hrel1
+  have hconst :
+      Polynomial.C (3 : K) =
+        Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1 := by
+    calc
+      Polynomial.C (3 : K) =
+          Polynomial.C ((2 : K) * 2 - 1) := by congr 1 <;> ring
+      _ = Polynomial.C (2 : K) * Polynomial.C (2 : K) - 1 := by
+        rw [map_sub, map_mul, map_one]
   have hthree :
       Polynomial.C (3 : K) * Polynomial.C a * Q.derivative = 0 := by
-    linear_combination hrel4 - hrel1
+    rw [hconst]
+    exact hthreeRaw
   have hthreeK : (3 : K) ≠ 0 := by norm_num
   have hthreeC : Polynomial.C (3 : K) ≠ (0 : Polynomial K) :=
     Polynomial.C_ne_zero.mpr hthreeK
