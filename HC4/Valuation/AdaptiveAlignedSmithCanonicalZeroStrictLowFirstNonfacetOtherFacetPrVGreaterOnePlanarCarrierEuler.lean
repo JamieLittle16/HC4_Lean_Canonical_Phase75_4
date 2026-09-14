@@ -69,7 +69,14 @@ theorem support_wallEuler_scalar
         ((F.highest.n : K) - 1) +
           (F.locked.ell : K) * (F.highest.n : K) := by
     exact_mod_cast hz
-  nlinarith [hk]
+  calc
+    (((F.highest.n : K) - 1) + (F.locked.ell : K)) * (e 0 : K) +
+          (F.locked.ell : K) * (e 1 : K) +
+          ((F.highest.n : K) - 1) * (e 2 : K) =
+        ((F.highest.n : K) - 1) * ((e 0 : K) + (e 2 : K)) +
+          (F.locked.ell : K) * ((e 0 : K) + (e 1 : K)) := by ring
+    _ = ((F.highest.n : K) - 1) +
+          (F.locked.ell : K) * (F.highest.n : K) := hk
 
 /-- The monomial-curve equation in source coordinates, cast to the ground
 field. -/
