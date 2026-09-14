@@ -8290,7 +8290,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
-- Declarations: `theorem specialFiber_supportedRankThreeLine`, `theorem specialFiber_lineCoefficient_one_ne_zero`, `theorem specialFiber_hessianPrincipalMinor_two_three_ne_zero`
+- Declarations: `abbrev rankThreeQuotientCoordinate`, `theorem specialFiber_supportedRankThreeLine`, `theorem specialFiber_lineCoefficient_one_ne_zero`, `theorem specialFiber_hessianPrincipalMinor_two_three_ne_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePrimitiveWallArithmetic`
 

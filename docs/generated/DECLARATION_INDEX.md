@@ -122,6 +122,7 @@ Distinct declaration spellings indexed: **8076**.
 - `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `rankThreeEtaDenominator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeEtaNumerator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
+- `rankThreeQuotientCoordinate` — `def` in `HC4.Polynomial.RankThreeQuotientFibers`, `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`
 - `rankThreeVertical_coeff_zero_ne_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankTwoProgress_or_closing` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
@@ -6653,7 +6654,7 @@ Distinct declaration spellings indexed: **8076**.
 - `rankThreePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreePolynomialMomentHessian_one_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - `rankThreePolynomialMoment_det_zero_of_hessianDeterminant_zero` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
-- `rankThreeQuotientCoordinate` — `def` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `rankThreeQuotientCoordinate` — `def` in `HC4.Polynomial.RankThreeQuotientFibers`, `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialPivot`
 - `rankThreeQuotientCoordinate_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `rankThreeQuotientCoordinate_eq_iff` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `rankThreeQuotientCoordinate_eq_of_primitive_step` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
