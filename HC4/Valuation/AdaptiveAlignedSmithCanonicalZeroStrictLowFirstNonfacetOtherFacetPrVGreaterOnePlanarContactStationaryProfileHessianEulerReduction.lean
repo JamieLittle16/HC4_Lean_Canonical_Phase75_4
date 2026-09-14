@@ -64,7 +64,8 @@ private theorem stationaryTotalDegree_mapped
     {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
     {R : QsOtherFacetContactQuadraticReesPackage C}
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R} :
-    MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) =
+    (MvPolynomial.C (Polynomial.C (F.stationaryTotalDegree : K)) :
+      MvPolynomial (Fin 4) (Polynomial K)) =
       MvPolynomial.C (Polynomial.C (F.stationaryWeight : K)) *
         (MvPolynomial.C (Polynomial.C (F.highest.n : K)) - 1) := by
   rw [stationaryTotalDegree_cast (K := K) (F := F)]
@@ -171,6 +172,8 @@ theorem familyParameterEuler_stationaryDepthEuler
   have h1 : (e 1 : Polynomial K) = Polynomial.C (e 1 : K) :=
     (map_natCast (Polynomial.C : K →+* Polynomial K) (e 1)).symm
   rw [h0, h1]
+  simp only [Polynomial.derivative_mul, Polynomial.derivative_C,
+    zero_mul, zero_add]
   have hC :
       Polynomial.C
           ((F.highest.n : K) - (e 0 : K) - (e 1 : K)) =
@@ -178,8 +181,6 @@ theorem familyParameterEuler_stationaryDepthEuler
           Polynomial.C (e 0 : K) - Polynomial.C (e 1 : K) := by
     rw [map_sub, map_sub]
   rw [hC]
-  simp only [Polynomial.derivative_mul, Polynomial.derivative_C,
-    zero_mul, zero_add]
   ring
 
 /-- **Stationary weighted binary Euler equation.** -/
@@ -255,8 +256,9 @@ theorem stationaryProfileHessian_parameterRow
     D.stationaryRamifiedFamily
   have hD := stationaryTotalDegree_mapped (K := K) (F := F)
   unfold stationaryProfileHessian00Family stationaryProfileHessian01Family
-  rw [hB, hD]
+  rw [hB]
   simp only [map_add, map_sub, map_mul, map_one] at hP ⊢
+  rw [hD]
   linear_combination hP
 
 /-- **First Euler reduction of the stationary profile determinant.** -/
