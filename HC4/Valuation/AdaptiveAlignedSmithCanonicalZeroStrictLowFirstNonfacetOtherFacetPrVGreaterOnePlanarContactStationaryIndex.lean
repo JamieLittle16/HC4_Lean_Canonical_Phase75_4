@@ -112,6 +112,7 @@ theorem two_le_stationaryWeight
     omega
   have hmul := Nat.mul_le_mul_left (F.V + 1) hdiff
   simp only [Nat.mul_one] at hmul
+  have hVgt : 1 < F.V := F.V_gt_one
   have hV : 3 ≤ F.V + 1 := by omega
   omega
 
@@ -143,7 +144,7 @@ theorem stationary_scaledOrder_eq
   have hinterp := D.parameterLayer_contactOrder_interpolation
     hthree houtThree he
   have hpair :
-      (rankThreeQuotientCoordinate 1 F.V e).pair = A.k := by
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = A.k := by
     change e 0 + e 1 = A.k
     exact (A.coordinates e he).1
   rw [hpair] at hinterp
@@ -175,6 +176,7 @@ theorem stationaryIndex_mul_weight_le_totalDegree
     (A : QsOtherFacetPrLeftVParameterAffineLayerData D order) :
     F.stationaryIndex A.k * F.stationaryWeight ≤
       F.stationaryTotalDegree := by
+  have hkpos : 1 ≤ A.k := A.k_pos
   have hindex : F.highest.n - A.k ≤ F.highest.n - 1 := by
     omega
   have hmul := Nat.mul_le_mul_right F.stationaryWeight hindex
