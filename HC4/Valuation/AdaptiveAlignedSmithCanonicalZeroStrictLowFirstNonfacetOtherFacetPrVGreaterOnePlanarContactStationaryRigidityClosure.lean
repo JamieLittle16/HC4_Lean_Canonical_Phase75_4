@@ -11,6 +11,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurSingularity
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianEulerReduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
@@ -36,8 +37,9 @@ ramified parameter to the two complementary source directions, the two affine
 planar Euler equations and their falling Hessian rows lifted to the ramified
 family, the falling stationary parameter row, the Euler-scaled stationary
 `2+2` Schur block and pair weighted-Euler shear with identically zero cleared
-determinant, the honest stationary parameter/depth Hessian family, the
-coefficientwise and canonical integral stationary profile-Hessian closures to
-the already-verified no-interior/two-function contradiction, and the original
-two exact affine Euler equations of the literal planar carrier.
+determinant, the honest stationary parameter/depth Hessian family and its
+weighted-binary Euler reduction, the coefficientwise and canonical integral
+stationary profile-Hessian closures to the already-verified no-interior/two-
+function contradiction, and the original two exact affine Euler equations of
+the literal planar carrier.
 -/
