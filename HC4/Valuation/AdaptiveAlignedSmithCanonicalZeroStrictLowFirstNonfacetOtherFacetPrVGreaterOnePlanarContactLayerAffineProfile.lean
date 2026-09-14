@@ -115,19 +115,19 @@ theorem eq_of_zeroCoordinate_eq
       calc
         e 0 + e 1 = A.k := he1
         _ = f 0 + f 1 := hf1.symm
-        _ = e 0 + f 1 := by rw [hzero]
+        _ = e 0 + f 1 := by rw [← hzero]
     exact Nat.add_left_cancel hsum
   · have hsum : e 0 + e 2 = e 0 + f 2 := by
       calc
         e 0 + e 2 = A.j + 1 := he2
         _ = f 0 + f 2 := hf2.symm
-        _ = e 0 + f 2 := by rw [hzero]
+        _ = e 0 + f 2 := by rw [← hzero]
     exact Nat.add_left_cancel hsum
   · have hsum : F.V * e 0 + e 3 = F.V * e 0 + f 3 := by
       calc
         F.V * e 0 + e 3 = F.V * (A.k + A.j) := he3
         _ = F.V * f 0 + f 3 := hf3.symm
-        _ = F.V * e 0 + f 3 := by rw [hzero]
+        _ = F.V * e 0 + f 3 := by rw [← hzero]
     exact Nat.add_left_cancel hsum
 
 /-- Honest one-variable coefficient profile of an arbitrary exact affine
