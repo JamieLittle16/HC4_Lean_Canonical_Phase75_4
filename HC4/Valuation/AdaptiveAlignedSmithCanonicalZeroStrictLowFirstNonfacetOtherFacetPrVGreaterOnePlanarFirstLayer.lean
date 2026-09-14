@@ -82,10 +82,8 @@ theorem parameterLayer_support_source_and_order
         T.topFace.degree -
             Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e = q
   · exact hcond
-  · exfalso
-    apply hc
-    rw [hformula]
-    simp [hcond]
+  · simp only [if_neg hcond] at hformula
+    exact (hc hformula).elim
 
 /-- Equal exact parameter order on two actual staircase monomials forces equal
 pair degree. -/
@@ -126,7 +124,7 @@ theorem pair_eq_of_reverseOrder_eq
   have hsub :
       (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1 =
         (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).pair - 1 :=
-    Nat.mul_left_cancel hmul
+    Nat.mul_left_cancel hBpos hmul
   have hepos := F.support_pair_pos hthree houtThree he
   have hfpos := F.support_pair_pos hthree houtThree hf
   omega
@@ -175,14 +173,18 @@ theorem firstPositiveLayer_pair_gt_one
   have hinterp := F.contactOrder_interpolation hthree houtThree heP
   rw [← D.reverseOrder_eq_quotientContactOrder hthree houtThree e, heq] at hinterp
   have hqpos := firstPositiveActualParameterOrder_pos D.family D.hasPositiveLayer
+  have hn2 := F.highest.n_two_le
   have hnpos : 0 < F.highest.n - 1 := by omega
   have hkpos := F.support_pair_pos hthree houtThree heP
   by_contra hnot
   have hk1 : (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair = 1 := by
     omega
   rw [hk1] at hinterp
-  simp at hinterp
-  exact (Nat.mul_pos hnpos hqpos).ne' hinterp
+  have hinterp0 :
+      (F.highest.n - 1) *
+          firstPositiveActualParameterOrder D.family D.hasPositiveLayer = 0 := by
+    simpa only [Nat.sub_self, Nat.mul_zero] using hinterp
+  exact (Nat.ne_of_gt (Nat.mul_pos hnpos hqpos)) hinterp0
 
 /-- A strict-interior carrier point has parameter order strictly below the
 highest primitive pair. -/
@@ -209,28 +211,39 @@ theorem reverseOrder_lt_highest_of_pair_lt_highest
     have hsep := F.highest_n_lt_locked_height hthree houtThree
     exact Nat.mul_pos (by omega) (by omega)
   have hkpos := F.support_pair_pos hthree houtThree he
+  have hn2 := F.highest.n_two_le
   have hn1pos : 0 < F.highest.n - 1 := by omega
   unfold highestOrder
   have htarget :
       (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1 <
         F.highest.n - 1 := by
     omega
+  have hBmulLt := Nat.mul_lt_mul_of_pos_left htarget hBpos
+  have hscaledLt :
+      (F.highest.n - 1) *
+          (T.topFace.degree -
+            Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e) <
+        (F.highest.n - 1) *
+          ((F.V + 1) * (F.locked.ell + 1 - F.highest.n)) := by
+    calc
+      (F.highest.n - 1) *
+          (T.topFace.degree -
+            Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e) =
+        (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) := hinterp
+      _ < (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
+          (F.highest.n - 1) := hBmulLt
+      _ = (F.highest.n - 1) *
+          ((F.V + 1) * (F.locked.ell + 1 - F.highest.n)) := by
+        simp [Nat.mul_comm]
   by_contra hnot
   have hge :
       (F.V + 1) * (F.locked.ell + 1 - F.highest.n) ≤
         T.topFace.degree -
           Finsupp.weight (qsIntegralContactWeight (F.V + 1)) e := by
     omega
-  have hmulGe := Nat.mul_le_mul_left (F.highest.n - 1) hge
-  rw [hinterp] at hmulGe
-  have hmulGe' :
-      (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-          (F.highest.n - 1) ≤
-        (F.V + 1) * (F.locked.ell + 1 - F.highest.n) *
-          ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).pair - 1) := by
-    simpa [Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc] using hmulGe
-  have hmulLt := Nat.mul_lt_mul_of_pos_left htarget hBpos
-  exact (not_lt_of_ge hmulGe') hmulLt
+  have hscaledGe := Nat.mul_le_mul_left (F.highest.n - 1) hge
+  exact (not_lt_of_ge hscaledGe) hscaledLt
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
