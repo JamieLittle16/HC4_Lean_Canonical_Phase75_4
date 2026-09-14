@@ -135,9 +135,11 @@ theorem firstPositiveLayer_affine_cast
     linear_combination hpairK
   · simp [HC4.Polynomial.rankThreeLogBaseExponent,
       HC4.Polynomial.rankThreeLogDirection]
+    push_cast at hfirstK
     linear_combination hfirstK
   · simp [HC4.Polynomial.rankThreeLogBaseExponent,
       HC4.Polynomial.rankThreeLogDirection]
+    push_cast at hsecondK
     linear_combination hsecondK
 
 end QsOtherFacetPrLeftVPlanarContactReesData
