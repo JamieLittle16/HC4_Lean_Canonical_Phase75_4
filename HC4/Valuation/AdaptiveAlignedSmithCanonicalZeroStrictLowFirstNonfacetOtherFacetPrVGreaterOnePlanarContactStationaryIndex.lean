@@ -157,10 +157,19 @@ theorem stationary_scaledOrder_eq
         F.stationaryWeight * (F.highest.n - A.k) +
           F.stationaryWeight * (A.k - 1) := by
     rw [hdecomp, Nat.mul_add]
-  unfold QsOtherFacetPrLeftVContactFrontierData.stationaryTotalDegree
-    QsOtherFacetPrLeftVContactFrontierData.stationaryIndex
-    QsOtherFacetPrLeftVContactFrontierData.stationaryWeight at *
-  omega
+  have hcontact :
+      (F.highest.n - 1) * order =
+        F.stationaryWeight * (A.k - 1) := by
+    simpa [QsOtherFacetPrLeftVContactFrontierData.stationaryWeight] using hinterp
+  calc
+    (F.highest.n - 1) * order =
+        F.stationaryWeight * (A.k - 1) := hcontact
+    _ = F.stationaryTotalDegree -
+        F.stationaryWeight * F.stationaryIndex A.k := by
+      unfold QsOtherFacetPrLeftVContactFrontierData.stationaryTotalDegree
+        QsOtherFacetPrLeftVContactFrontierData.stationaryIndex
+      rw [hmul]
+      simp
 
 /-- Every actual stationary index lies inside the finite weighted support
 interval `m*r <= D`. -/
