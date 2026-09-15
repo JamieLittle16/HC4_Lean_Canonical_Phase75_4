@@ -3706,6 +3706,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeMvSubstitution`
   - `HC4.Valuation.ParameterFirstLayerBridge`
   - `HC4.Valuation.ParameterGapDualJet`
+- `HC4.Valuation.PlanarHighestFirstVariationBridge`
+  - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+  - `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.GeometricAssemblyEntry`
 - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8212**.
+Distinct declaration spellings indexed: **8213**.
 
 ## Repeated declaration spellings
 
@@ -2911,6 +2911,7 @@ Distinct declaration spellings indexed: **8212**.
 - `affineLineData_polynomial_eq_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `affineTwoRootEulerOperator_eq_zero_of_firstActual_highest_moment_identification` — `theorem` in `HC4.Valuation.PlanarHighestFirstVariationBridge`
 - `affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `affineTwoRootEulerOperator_eq_zero_of_highestParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
