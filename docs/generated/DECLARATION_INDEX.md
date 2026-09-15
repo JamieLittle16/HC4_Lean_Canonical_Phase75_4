@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8241**.
+Distinct declaration spellings indexed: **8244**.
 
 ## Repeated declaration spellings
 
@@ -2799,6 +2799,7 @@ Distinct declaration spellings indexed: **8241**.
 - `X_pow_dvd_translate_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `X_pow_mul_mul_X_pow_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `X_pow_mul_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
+- `X_sub_C_pow_dvd_of_X_pow_dvd_translate` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
 - `X_sub_one_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_sub_one_dvd_longitudinalCoefficient_single_of_collision` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_two_mul_H_pow_mul_Y_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
@@ -5380,6 +5381,8 @@ Distinct declaration spellings indexed: **8241**.
 - `lowNegativeSecond_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `lowerRoot_sum_le_natDegree_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
+- `lowerRoots_eq_one_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
 - `made` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
 - `map` — `def` in `HC4.Newton.GeneralFourBlockSchur`
 - `mapCoeffs` — `def` in `HC4.Toric.CoefficientDescent`

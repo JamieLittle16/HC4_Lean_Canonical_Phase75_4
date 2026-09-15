@@ -795,6 +795,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
 - `HC4.Polynomial.AffineEulerTwoRootDegree`
   - `HC4.Polynomial.AffineEulerTwoRootRigidity`
+- `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
+  - `HC4.Polynomial.AffineEulerTwoRootDegree`
 - `HC4.Polynomial.AffineEulerTwoRootRigidity`
   - `HC4.Polynomial.AutonomousODETranslation`
 - `HC4.Polynomial.AutonomousODEPoleOrder`
