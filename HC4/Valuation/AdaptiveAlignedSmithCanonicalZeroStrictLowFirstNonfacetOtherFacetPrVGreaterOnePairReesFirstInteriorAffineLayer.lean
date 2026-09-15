@@ -91,12 +91,20 @@ private theorem firstPositiveLayer_coordinates_relative
   let q := firstPositiveActualParameterOrder D.family D.positiveLayer
   have heFilter :
       e ∈ P.carrier.support ∧ F.highest.n - (e 0 + e 1) = q := by
-    have hs := D.parameterLayer_support q
+    have hs :
+        (familyParameterLayer D.family q).support =
+          P.carrier.support.filter fun a =>
+            qsPrPairNatWeight a + q = F.highest.n :=
+      D.parameterLayer_support q
     rw [hs] at he
     exact Finset.mem_filter.mp he
   have hfFilter :
       f ∈ P.carrier.support ∧ F.highest.n - (f 0 + f 1) = q := by
-    have hs := D.parameterLayer_support q
+    have hs :
+        (familyParameterLayer D.family q).support =
+          P.carrier.support.filter fun a =>
+            qsPrPairNatWeight a + q = F.highest.n :=
+      D.parameterLayer_support q
     rw [hs] at hf
     exact Finset.mem_filter.mp hf
   rcases F.support_staircase_classification hthree houtThree heFilter.1 with
@@ -160,7 +168,11 @@ theorem exists_of_not_noStrictInterior
   rcases MvPolynomial.support_nonempty.mpr hLne with ⟨e, he⟩
   have heInterior :=
     D.firstPositiveLayer_pair_strictInterior_left F hthree houtThree hnot e he
-  have hsupport := D.parameterLayer_support q
+  have hsupport :
+      (familyParameterLayer D.family q).support =
+        P.carrier.support.filter fun a =>
+          qsPrPairNatWeight a + q = F.highest.n :=
+    D.parameterLayer_support q
   have heFilter :
       e ∈ P.carrier.support ∧ F.highest.n - (e 0 + e 1) = q := by
     rw [hsupport] at he
@@ -205,7 +217,11 @@ theorem exists_of_not_noStrictInterior
       intro f hf
       have hfFilter :
           f ∈ P.carrier.support ∧ F.highest.n - (f 0 + f 1) = q := by
-        have hs := D.parameterLayer_support q
+        have hs :
+            (familyParameterLayer D.family q).support =
+              P.carrier.support.filter fun a =>
+                qsPrPairNatWeight a + q = F.highest.n :=
+          D.parameterLayer_support q
         rw [hs] at hf
         exact Finset.mem_filter.mp hf
       rw [D.parameterLayer_coeff]
