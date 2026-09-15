@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestFirstVariation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHullExposure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure
 import Mathlib.Tactic
 
 /-!
@@ -10,11 +11,11 @@ Nonzero coefficients of the actual stationary carrier profile provide the
 bounds needed to add naturally truncated reverse orders. No determinant
 vanishing assumption is used.
 
-The pair-Rees highest-end first-variation module and the current finite-
-staircase lower-hull exposure are also imported here as rooted CI anchors while
-the final V>1 closure is assembled.  This ensures the source-honest endpoint
-and multi-fibre chains are elaborated by `lake build HC4` rather than merely
-existing as unimported source.
+The pair-Rees highest-end first-variation module, the current finite-staircase
+lower-hull exposure, and the cross-roof terminal composition are also imported
+here as rooted CI anchors while the final V>1 closure is assembled.  This
+ensures the source-honest endpoint and multi-fibre chains are elaborated by
+`lake build HC4` rather than merely existing as unimported source.
 -/
 
 namespace HC4.Valuation
