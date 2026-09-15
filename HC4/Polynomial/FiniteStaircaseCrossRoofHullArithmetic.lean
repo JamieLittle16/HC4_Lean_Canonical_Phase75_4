@@ -65,8 +65,8 @@ theorem zeroLongitudinal_not_positive_lowerHull
   have hBZ : (0 : ℤ) < (B : ℤ) := by exact_mod_cast hB
   have haZ : (0 : ℤ) < (a : ℤ) := by exact_mod_cast ha
   have hbZ : (0 : ℤ) < (b : ℤ) := by exact_mod_cast hb
-  have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < n by omega)
+  have hnZ : (2 : ℤ) ≤ (n : ℤ) := by exact_mod_cast hn
+  have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by omega
   have hellZ : (0 : ℤ) < (ell : ℤ) := by exact_mod_cast hell
 
   have hAa :
@@ -144,8 +144,8 @@ theorem crossRoof_pair_lt_of_roof_signs
       ((n : ℤ) - 1) * ((jLo : ℤ) - (jHi : ℤ)) =
         (ell : ℤ) * ((kHi : ℤ) - (kLo : ℤ)) := by
     nlinarith [hLo, hHi]
-  have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < n by omega)
+  have hnZ : (2 : ℤ) ≤ (n : ℤ) := by exact_mod_cast hn
+  have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by omega
   have hj : jLo ≤ jHi := by
     have hjZ : (jLo : ℤ) ≤ (jHi : ℤ) := by
       nlinarith [hdiff, hrightNonpos]
