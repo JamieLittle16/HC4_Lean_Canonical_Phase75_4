@@ -140,7 +140,8 @@ theorem exists_of_not_noStrictInterior
         omega
       have hpairZ :
           qsOtherFacetPairDegree .pr f = qsOtherFacetPairDegree .pr e := by
-        simp [qsOtherFacetPairDegree, hpairNat, k]
+        simp only [qsOtherFacetPairDegree]
+        exact_mod_cast hpairNat
       have hfiber := F.quotient.pair_fiber hfFilter.1 heFilter.1 hpairZ
       have hfirstQ := congrArg
         HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hfiber
@@ -172,7 +173,11 @@ theorem exists_of_not_noStrictInterior
         rw [hs] at hf
         exact Finset.mem_filter.mp hf
       rw [D.parameterLayer_coeff]
-      simp [hfFilter]
+      have hq :
+          F.highest.n - (f 0 + f 1) =
+            firstPositiveActualParameterOrder D.family D.positiveLayer := by
+        simpa [q] using hfFilter.2
+      simp [hfFilter.1, hq]
   }⟩
 
 /-- Coordinate `0` is injective on the selected pair-Rees layer. -/
@@ -197,12 +202,23 @@ theorem eq_of_zeroCoordinate_eq
   intro i
   fin_cases i
   · exact hzero
-  · omega
-  · omega
+  · have hsum : e 0 + e 1 = e 0 + f 1 := by
+      calc
+        e 0 + e 1 = A.k := he1
+        _ = f 0 + f 1 := hf1.symm
+        _ = e 0 + f 1 := by rw [hzero]
+    exact Nat.add_left_cancel hsum
+  · have hsum : e 0 + e 2 = e 0 + f 2 := by
+      calc
+        e 0 + e 2 = A.j + 1 := he2
+        _ = f 0 + f 2 := hf2.symm
+        _ = e 0 + f 2 := by rw [hzero]
+    exact Nat.add_left_cancel hsum
   · have hsum : F.V * e 0 + e 3 = F.V * e 0 + f 3 := by
       calc
         F.V * e 0 + e 3 = F.V * (A.k + A.j) := he3
         _ = F.V * f 0 + f 3 := hf3.symm
+        _ = F.V * e 0 + f 3 := by rw [hzero]
     exact Nat.add_left_cancel hsum
 
 /-- Honest one-variable coefficient profile of the selected pair-Rees layer. -/
