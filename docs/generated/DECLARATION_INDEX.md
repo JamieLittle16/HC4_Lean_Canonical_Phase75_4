@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8331**.
+Distinct declaration spellings indexed: **8335**.
 
 ## Repeated declaration spellings
 
@@ -5018,6 +5018,7 @@ Distinct declaration spellings indexed: **8331**.
 - `highestOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `highestParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `highestSlice_cross_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
+- `highestUpperPureModeSecondJet` — `def` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `highest_affineTwoRootEulerOperator_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseEndpointEuler`
 - `highest_pairLevel_eq_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `highest_pairLevel_eq_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
@@ -5321,6 +5322,7 @@ Distinct declaration spellings indexed: **8331**.
 - `lockedLayer_eq_locked_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_support_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
+- `lockedLowerPureModeSecondJet` — `def` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `lockedParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `lockedRay_affine_line_natDegree_eq_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `lockedRay_affine_line_support_eq_zero_one` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
@@ -7659,6 +7661,8 @@ Distinct declaration spellings indexed: **8331**.
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `snd_det_upperPureLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `snd_snd_det_highestUpperPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
+- `snd_snd_det_lockedLowerPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
