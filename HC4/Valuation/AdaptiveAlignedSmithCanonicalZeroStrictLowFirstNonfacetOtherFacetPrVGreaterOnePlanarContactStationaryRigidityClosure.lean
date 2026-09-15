@@ -18,18 +18,18 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstVariation
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestTwoMode
 
 /-!
 # A19 rooted stationary rigidity compatibility seam
 
-This module intentionally contains no mathematical declarations.  The former
+This module intentionally contains no mathematical declarations. The former
 `StationaryRigidityClosure` implementation was removed because its theorem was
 a duplicate of the canonical theorem now living in
 `...PlanarContactStationaryRigidity`.
 
 `HC4.lean` still roots this historical module path, so keep it as a thin import
-seam until the root inventory is next reorganised.  Rooting these imports here
+seam until the root inventory is next reorganised. Rooting these imports here
 also ensures CI checks the source-honest planar binary Schur singularity, the
 canonical stationary residual-to-no-interior adapter, the exact contact-layer
 coefficient bridge into the stationary profile, the whole specialised contact-
@@ -47,7 +47,8 @@ source-coefficient bridge and weighted-binary Euler reduction, the denominator-
 free source-coordinate representatives of stationary parameter and depth, the
 coefficientwise and canonical integral stationary profile-Hessian closures to
 the already-verified no-interior/two-function contradiction, the original
-two exact affine Euler equations of the literal planar carrier, and the
-highest-oriented pair-Rees endpoint variation adapter used to constrain the
-highest surviving strict-interior staircase fibre.
+two exact affine Euler equations of the literal planar carrier, and both the
+highest-oriented pair-Rees endpoint variation adapter and its nonzero
+translated two-mode normal form used to constrain the highest surviving
+strict-interior staircase fibre.
 -/
