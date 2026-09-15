@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8428**.
+Distinct declaration spellings indexed: **8435**.
 
 ## Repeated declaration spellings
 
@@ -3927,6 +3927,10 @@ Distinct declaration spellings indexed: **8428**.
 - `crossFacetSlope_le_iff_cross` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacetWeight` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacet_singularBoundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
+- `crossRoof_fixed_w_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `crossRoof_fixed_w_iff_ordinaryDegree` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `crossRoof_fixed_x_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `crossRoof_residual_sum` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `cross_relation_of_oneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `cross_relation_of_weightedOneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `cubicAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -5713,6 +5717,8 @@ Distinct declaration spellings indexed: **8428**.
 - `noWall_unramifiedSmith_commonFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`
 - `no_certifiedRamifiedRawDefectSpend_of_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
 - `no_common_positive_r_s_support` — `theorem` in `HC4.Toric.SupportIntersection`
+- `no_crossRoof_fixed_w_terminal_degree_relation` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `no_crossRoof_fixed_x_and_fixed_w` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_presentedTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_reachableTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableHC4Reduction`
@@ -7886,6 +7892,7 @@ Distinct declaration spellings indexed: **8428**.
 - `squareGeometry_of_detCore_eq_zero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareGeometry_of_rankOneRelation` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `staircaseLogDirection` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `staircase_heightDrop_gt_pairGain` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `standardActualHessianMatrix` — `def` in `HC4.Newton.TerminalScalarGradient`
 - `standardActualHessian_vecMul_injective` — `theorem` in `HC4.Newton.TerminalScalarGradient`
 - `standardBasePoint` — `def` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
