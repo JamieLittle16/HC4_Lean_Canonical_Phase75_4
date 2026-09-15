@@ -94,7 +94,7 @@ private theorem firstPositiveLayer_coordinates_relative
     have hs :
         (familyParameterLayer D.family q).support =
           P.carrier.support.filter fun a =>
-            qsPrPairNatWeight a + q = F.highest.n :=
+            F.highest.n - (a 0 + a 1) = q :=
       D.parameterLayer_support q
     rw [hs] at he
     exact Finset.mem_filter.mp he
@@ -103,7 +103,7 @@ private theorem firstPositiveLayer_coordinates_relative
     have hs :
         (familyParameterLayer D.family q).support =
           P.carrier.support.filter fun a =>
-            qsPrPairNatWeight a + q = F.highest.n :=
+            F.highest.n - (a 0 + a 1) = q :=
       D.parameterLayer_support q
     rw [hs] at hf
     exact Finset.mem_filter.mp hf
@@ -171,7 +171,7 @@ theorem exists_of_not_noStrictInterior
   have hsupport :
       (familyParameterLayer D.family q).support =
         P.carrier.support.filter fun a =>
-          qsPrPairNatWeight a + q = F.highest.n :=
+          F.highest.n - (a 0 + a 1) = q :=
     D.parameterLayer_support q
   have heFilter :
       e ∈ P.carrier.support ∧ F.highest.n - (e 0 + e 1) = q := by
@@ -220,7 +220,7 @@ theorem exists_of_not_noStrictInterior
         have hs :
             (familyParameterLayer D.family q).support =
               P.carrier.support.filter fun a =>
-                qsPrPairNatWeight a + q = F.highest.n :=
+                F.highest.n - (a 0 + a 1) = q :=
           D.parameterLayer_support q
         rw [hs] at hf
         exact Finset.mem_filter.mp hf
