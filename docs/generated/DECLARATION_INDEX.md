@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8437**.
+Distinct declaration spellings indexed: **8443**.
 
 ## Repeated declaration spellings
 
@@ -3499,6 +3499,7 @@ Distinct declaration spellings indexed: **8437**.
 - `codimensionTwoDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `codimensionTwoLowerEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoLowerEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
+- `codimensionTwoNonhomogeneousDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoPrimitivePair_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoSTSpecialisation` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
@@ -3655,6 +3656,7 @@ Distinct declaration spellings indexed: **8437**.
 - `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_leftZero_baseOne` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_t_det_codimensionTwoDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `coeff_s_t_det_codimensionTwoNonhomogeneousDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `coeff_s_t_det_codimensionTwoWeightedDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_single_zero_killBinaryTransverseLinear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `coeff_smithScalarLevelDegreeComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -5680,6 +5682,7 @@ Distinct declaration spellings indexed: **8437**.
 - `negative_character_normal_form` — `theorem` in `HC4.Toric.CharacterSupport`
 - `negative_constant_character_support` — `theorem` in `HC4.Toric.CharacterSupport`
 - `nestedC` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `nestedCnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `nestedCoefficientHom` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
 - `nestedCw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
@@ -7313,6 +7316,7 @@ Distinct declaration spellings indexed: **8437**.
 - `sProjectedSupport_unique_preimage` — `theorem` in `HC4.Toric.BranchCoordinates`
 - `sValue` — `def` in `HC4.ClassifiedFamilies.TriangularInverse`
 - `sVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `sVarnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `sVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `sameScale_or_rankTwoProgress_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`
 - `same_sign_of_positive_weight_cross_relation` — `theorem` in `HC4.Polynomial.RankThreePencils`
@@ -7576,6 +7580,7 @@ Distinct declaration spellings indexed: **8437**.
 - `single_one_eq_iff` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `singularFirstKernelBreakData_of_kernelRow` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
+- `singular_codimensionTwoNonhomogeneousDeparturePencil_forces_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `singular_codimensionTwoTrinomial_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `singular_codimensionTwoWeightedDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
 - `slice_finSuccEquiv_eq_longitudinalMonomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
@@ -8174,6 +8179,7 @@ Distinct declaration spellings indexed: **8437**.
 - `symmetricTargetGrade_exponent_cases_of_noWLinear` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `symmetricTargetGrade_of_separatorDelta_one_one_nonpositive` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `tVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
+- `tVarnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `tVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `tail` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `tailActive` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
