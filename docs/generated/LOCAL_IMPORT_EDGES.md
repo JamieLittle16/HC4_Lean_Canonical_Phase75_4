@@ -862,6 +862,10 @@ human architecture guide.
   - `HC4.Polynomial.WeightedInitial`
 - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
+  - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
+  - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+  - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
   - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`

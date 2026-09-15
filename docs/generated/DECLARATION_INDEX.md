@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8329**.
+Distinct declaration spellings indexed: **8331**.
 
 ## Repeated declaration spellings
 
@@ -4247,6 +4247,8 @@ Distinct declaration spellings indexed: **8329**.
 - `eval_translatePolynomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_transverseSourceShearHom_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `eval_transverseSourceShearVariable_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `eval_two_mul_highestBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
+- `eval_two_mul_lockedBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
 - `eval_two_mul_rankThreeAffineMoment_of_translate_eq_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_zero_derivative_rankThreeEtaNumeratorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `eval_zero_pderiv_eq_linearCoeff` — `theorem` in `HC4.Newton.TerminalPositiveWeightLinearBlocks`
