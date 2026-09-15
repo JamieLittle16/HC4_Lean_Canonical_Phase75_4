@@ -51,11 +51,6 @@ theorem lockedLayer_support_eq
   constructor
   · rintro ⟨he, hgap⟩
     have hpairNat : e 0 + e 1 = 1 := by
-      have hle : e 0 + e 1 ≤ F.highest.n := by
-        rcases F.support_staircase_classification
-            (by exact F.hthree) (by exact F.houtThree) he with
-          ⟨_j, _hj, hk, _hjle, _h0, _h1⟩
-        simpa [rankThreeQuotientCoordinate] using hk
       omega
     have hpair : (rankThreeQuotientCoordinate 1 F.V e).pair = 1 := by
       simpa [rankThreeQuotientCoordinate] using hpairNat
