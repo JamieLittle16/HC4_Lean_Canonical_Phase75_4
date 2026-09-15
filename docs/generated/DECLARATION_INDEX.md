@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8278**.
+Distinct declaration spellings indexed: **8281**.
 
 ## Repeated declaration spellings
 
@@ -3646,6 +3646,7 @@ Distinct declaration spellings indexed: **8278**.
 - `coeff_stationaryDepthSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
 - `coeff_stationaryRamifiedFamily_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `coeff_sub_own_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `coeff_swap_rankThreeLineSpecialisation_eq_parameterLayer` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
 - `coeff_three_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
@@ -4476,6 +4477,7 @@ Distinct declaration spellings indexed: **8278**.
 - `familyParameterLayerOrders_nonempty_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_C_X_pow_mul_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`
 - `familyParameterLayer_C_X_pow_mul_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `familyParameterLayer_add` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
 - `familyParameterLayer_add_exact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_coeff` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
@@ -4488,6 +4490,7 @@ Distinct declaration spellings indexed: **8278**.
 - `familyParameterLayer_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `familyParameterLayer_hessian_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_map_C_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurProfileBridge`
+- `familyParameterLayer_monomial` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
 - `familyParameterLayer_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalContactLayer`
 - `familyParameterLayer_ne_zero_of_mem` — `theorem` in `HC4.Valuation.ActualParameterLayer`
 - `familyParameterLayer_pderiv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
