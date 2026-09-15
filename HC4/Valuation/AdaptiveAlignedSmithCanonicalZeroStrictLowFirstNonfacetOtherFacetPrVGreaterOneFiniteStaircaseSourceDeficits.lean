@@ -52,7 +52,6 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_deficit_wall
       (F.locked.ell : ℤ) *
         ((F.highest.n : ℤ) - (e 0 : ℤ) - (e 1 : ℤ)) := by
   have h := (F.support_staircase_equations hthree houtThree he).1
-  dsimp only at h
   simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair,
     HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
     one_mul] at h
@@ -99,6 +98,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq
   have hcoef :
       (0 : ℤ) <
         ((F.highest.n : ℤ) - 1) + (F.locked.ell : ℤ) := by
+    have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
     have hn : (1 : ℤ) < (F.highest.n : ℤ) := by
       exact_mod_cast (show 1 < F.highest.n by omega)
     have hell : (0 : ℤ) < (F.locked.ell : ℤ) := by
@@ -112,7 +112,6 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq
 
   have hes := (F.support_staircase_equations hthree houtThree he).2
   have hfs := (F.support_staircase_equations hthree houtThree hf).2
-  dsimp only at hes hfs
   simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
     HC4.Polynomial.rankThreeQuotientCoordinate_pair,
     HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
