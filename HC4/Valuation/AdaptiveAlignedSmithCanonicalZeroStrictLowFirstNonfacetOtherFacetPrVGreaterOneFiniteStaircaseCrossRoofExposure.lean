@@ -215,7 +215,7 @@ theorem exists_zRoof_on_face
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 2 : ℤ) ≤
           (D.edge 1 : ℤ) * (F.locked.ell : ℤ) := by
       rw [hgapCast]
-      nlinarith [hcost, hlockedRaw]
+      nlinarith only [hcost, hlockedRaw]
     have hhighest :
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 2 : ℤ) ≤
           (D.gap : ℤ) * ((F.highest.n : ℤ) - 1) := by
@@ -224,7 +224,7 @@ theorem exists_zRoof_on_face
       have hcast : ((F.highest.n - 1 : ℕ) : ℤ) =
           (F.highest.n : ℤ) - 1 := by rw [Nat.cast_sub hn1]; norm_num
       rw [hcast] at hhighestRaw
-      nlinarith [hcost, hhighestRaw]
+      nlinarith only [hcost, hhighestRaw]
 
     exact HC4.Polynomial.zeroLongitudinal_not_positive_lowerHull
       (n := F.highest.n) (ell := F.locked.ell)
@@ -233,27 +233,25 @@ theorem exists_zRoof_on_face
       D.gap_pos D.edge_one_pos hwall hlocked hhighest
 
   have hd3pos : 0 < d 3 := by
-    by_contra hnot
-    have hd3 : d 3 = 0 := Nat.eq_zero_of_not_pos hnot
-    have hs := (F.support_staircase_equations hthree houtThree hdP).2
-    dsimp only at hs
+    have hcurve := (F.support_staircase_equations hthree houtThree hdP).2
     simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
       HC4.Polynomial.rankThreeQuotientCoordinate_pair,
       HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-      one_mul] at hs
-    push_cast at hs
-    rw [hd3] at hs
-    norm_num at hs
-    have hV : (0 : ℤ) < (F.V : ℤ) := by
-      exact_mod_cast (show 0 < F.V by omega)
-    have hsum :
-        (0 : ℤ) < (d 0 : ℤ) + (d 1 : ℤ) + (d 2 : ℤ) - 1 := by
-      exact_mod_cast (show 1 < d 0 + d 1 + d 2 by omega)
-    have hprod :
-        (0 : ℤ) < (F.V : ℤ) *
-          ((d 0 : ℤ) + (d 1 : ℤ) + (d 2 : ℤ) - 1) :=
-      mul_pos hV hsum
-    nlinarith [hs]
+      one_mul] at hcurve
+    push_cast at hcurve
+    by_contra hnot
+    have hd3 : d 3 = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hd3] at hcurve
+    norm_num at hcurve
+    have hVpos : 0 < F.V := by
+      have hVgt := F.V_gt_one
+      omega
+    have hd0Z : (0 : ℤ) < (d 0 : ℤ) := by exact_mod_cast hd0pos
+    have hd1Z : (0 : ℤ) < (d 1 : ℤ) := by exact_mod_cast hd1pos
+    have hd2Z : (0 : ℤ) < (d 2 : ℤ) := by exact_mod_cast hd2pos
+    rcases hcurve with hcurve | hVzero
+    · nlinarith only [hcurve, hd0Z, hd1Z, hd2Z]
+    · exact (Nat.ne_of_gt hVpos) hVzero
 
   have hpos : ∀ i : Fin 4, 0 < d i := by
     intro i
@@ -284,7 +282,7 @@ theorem exists_zRoof_on_face
     have hfactor :
         (D.edge 1 : ℤ) * ((q 2 : ℤ) - (d 2 : ℤ)) = 0 := by
       have hq1Z : (q 1 : ℤ) = (d 1 : ℤ) := by exact_mod_cast hq1
-      nlinarith [hqCost, hdCost]
+      nlinarith only [hqCost, hdCost, hq1Z]
     have hq2Z : (q 2 : ℤ) = (d 2 : ℤ) := by
       have hz := (mul_eq_zero.mp hfactor).resolve_left hBne
       linarith
