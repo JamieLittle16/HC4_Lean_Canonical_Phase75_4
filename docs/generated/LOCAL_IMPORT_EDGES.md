@@ -894,6 +894,8 @@ human architecture guide.
 - `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
   - `HC4.Polynomial.HeterogeneousTopCoefficient`
   - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
+  - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
   - `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
   - `HC4.Valuation.ParameterGapSecondJet`

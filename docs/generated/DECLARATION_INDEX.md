@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8395**.
+Distinct declaration spellings indexed: **8399**.
 
 ## Repeated declaration spellings
 
@@ -4001,6 +4001,7 @@ Distinct declaration spellings indexed: **8395**.
 - `det_oneFiberReflectedThreeLayerMomentPencil_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `det_oneZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.OneZeroBlockDeterminant`
 - `det_oneZeroRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
+- `det_parameterThreeLayerMatrix_eval_eq_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `det_planarJacobianMatrixAt` — `theorem` in `HC4.PlanarJacobianEvaluation`
 - `det_primitiveBinomialHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `det_primitiveBinomialScaledHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
@@ -4213,6 +4214,7 @@ Distinct declaration spellings indexed: **8395**.
 - `eulerScaledHessian_sum` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `eulerScaledHessian_twoFunctionCarrier` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `eulerScaledHessian_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryEulerSchurTransport`
+- `evalPolynomialMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `eval_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_allSourceSignHom_neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -5476,6 +5478,7 @@ Distinct declaration spellings indexed: **8395**.
 - `map_evalOne_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_exposedFace_equiv` — `theorem` in `HC4.Newton.Equivariance`
+- `map_parameterThreeLayerMatrix_eval` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `mathlibWeightedHomogeneous_to_integral` — `theorem` in `HC4.Newton.TerminalPermutedGradient`
 - `matrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `matrix4_det_ne_zero_exists_entry_ne_zero` — `theorem` in `HC4.Newton.TerminalQuadraticHessian`
@@ -7721,6 +7724,7 @@ Distinct declaration spellings indexed: **8395**.
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `snd_snd_det_middleHighestSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_snd_det_middleLockedSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `snd_snd_det_secondVariationJetMatrix_eval_eq_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `snd_snd_det_secondVariationTopMatrix_eq_zero_of_threeLayer_det_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `snd_snd_mul_four_secondVariationTopEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
