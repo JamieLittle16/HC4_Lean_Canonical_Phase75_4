@@ -1117,6 +1117,9 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.RationalRigidity.FinitePreimage`
   - `HC4.RationalRigidity.ChartCertificates`
+- `HC4.RationalRigidity.FiniteStaircaseCrossRoofMirrorTerminal`
+  - `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`
+  - `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`
 - `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`
   - `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
   - `HC4.RationalRigidity.RankThreeHighestDirectionRelation`

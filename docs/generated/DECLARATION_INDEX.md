@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8444**.
+Distinct declaration spellings indexed: **8446**.
 
 ## Repeated declaration spellings
 
@@ -4618,6 +4618,7 @@ Distinct declaration spellings indexed: **8444**.
 - `finiteIntegralRescaledTilt_gt_of_rational_gt` — `theorem` in `HC4.Newton.SmithPoleMinimality`
 - `finiteIntegralTilt_gt_minimum` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `finiteStaircase_crossRoof_highResidual_eq_one` — `theorem` in `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`
+- `finiteStaircase_crossRoof_lowResidual_eq_one` — `theorem` in `HC4.RationalRigidity.FiniteStaircaseCrossRoofMirrorTerminal`
 - `finiteSupportBoundaryStrata` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `finiteSupportTilt_strictly_raises_minimum` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `finiteTargetValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
@@ -5725,6 +5726,7 @@ Distinct declaration spellings indexed: **8444**.
 - `no_crossRoof_fixed_w_mirror_terminal_degree_relation` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`
 - `no_crossRoof_fixed_w_terminal_degree_relation` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `no_crossRoof_fixed_x_and_fixed_w` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `no_crossRoof_unit_residuals` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_presentedTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_reachableTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableHC4Reduction`
