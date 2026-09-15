@@ -896,6 +896,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
   - _(no local imports)_
+- `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
+  - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`

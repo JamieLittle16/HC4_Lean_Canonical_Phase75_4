@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8180**.
+Distinct declaration spellings indexed: **8184**.
 
 ## Repeated declaration spellings
 
@@ -2913,6 +2913,7 @@ Distinct declaration spellings indexed: **8180**.
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `affineTwoRootEulerOperator_eq_zero_of_primitiveHighestParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `affineTwoRoot_degreeOne_primitive` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
@@ -6280,6 +6281,8 @@ Distinct declaration spellings indexed: **8180**.
 - `primitiveBinomial_coefficients_zero_of_affineMoment_det_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomial_endpoint_orientation_of_affineMoment_det_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `primitiveBinomial_endpoint_orientation_of_coefficients_zero` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
+- `primitiveHighestBinomialMomentHessian` — `def` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
+- `primitiveHighestParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `primitiveZeroSmithSource_departureFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `primitiveZeroSmithSource_losslessFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `primitiveZeroSmithSource_mem_specialFiber` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
@@ -7529,6 +7532,7 @@ Distinct declaration spellings indexed: **8180**.
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
+- `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
