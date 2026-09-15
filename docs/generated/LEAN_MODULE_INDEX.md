@@ -2362,7 +2362,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
-- Declarations: `theorem staircase_source_deficit_chord_identity`, `theorem zeroLongitudinal_not_positive_lowerHull`
+- Declarations: `theorem staircase_source_deficit_chord_identity`, `theorem zeroLongitudinal_not_positive_lowerHull`, `theorem crossRoof_pair_lt_of_roof_signs`
 
 ### `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`
 

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8471**.
+Distinct declaration spellings indexed: **8472**.
 
 ## Repeated declaration spellings
 
@@ -3941,6 +3941,7 @@ Distinct declaration spellings indexed: **8471**.
 - `crossRoof_fixed_w_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `crossRoof_fixed_w_iff_ordinaryDegree` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `crossRoof_fixed_x_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
+- `crossRoof_pair_lt_of_roof_signs` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
 - `crossRoof_residual_sum` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `cross_relation_of_oneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `cross_relation_of_weightedOneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
