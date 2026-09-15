@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8287**.
+Distinct declaration spellings indexed: **8288**.
 
 ## Repeated declaration spellings
 
@@ -33,6 +33,7 @@ Distinct declaration spellings indexed: **8287**.
 - `contactCoefficient_specialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `defect` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `degree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`, `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `determinant` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `determinantCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
 - `determinantCore_coeff_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
@@ -3952,7 +3953,7 @@ Distinct declaration spellings indexed: **8287**.
 - `det_elementaryShearMatrices` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `det_eq_normalizationFactor_mul_det` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
-- `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `det_eulerScaledHessian_eq_coordinate_square_mul_hessianDeterminant_commRing` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`, `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `det_eulerScaledHessian_twoFunctionCarrier` — `theorem` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `det_exponentHessianCore` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `det_exponentHessianCore_ne_zero` — `theorem` in `HC4.Polynomial.MonomialHessian`
@@ -3981,6 +3982,7 @@ Distinct declaration spellings indexed: **8287**.
 - `det_rigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_shiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_sparseRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
+- `det_swappedRankThreeEulerHessian_eq_zero_of_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `det_transverseSourceShearMatrices` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `det_twoFunctionEulerHessianMatrix` — `theorem` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `det_twoZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.TwoZeroBlockDeterminant`

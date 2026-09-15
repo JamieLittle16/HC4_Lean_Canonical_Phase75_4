@@ -3805,6 +3805,9 @@ human architecture guide.
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
+- `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
+  - `HC4.Polynomial.ComplementaryMvMomentRealisation`
+  - `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
