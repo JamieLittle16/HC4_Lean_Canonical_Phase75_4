@@ -120,6 +120,10 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
   rcases F.highest_zRoof_mem with
     ⟨hHmem, _hH0, hH1, hH2, _hH3⟩
 
+  have hn1pos : 0 < F.highest.n - 1 := by
+    have hn2 := F.highest.n_two_le
+    omega
+
   have hpmin : ∀ x ∈ P.carrier.support, (0 : ℤ) ≤ p x := by
     intro x hx
     dsimp [p]
@@ -133,7 +137,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
     refine ⟨F.highest.e1, hHmem, ?_⟩
     dsimp [p]
     rw [hH1]
-    exact_mod_cast (show 0 < F.highest.n - 1 by omega)
+    exact_mod_cast hn1pos
 
   rcases HC4.Newton.exists_exposed_ratio_wall_from_min_fiber
       P.carrier.support p s 0 hpmin hbase hexit with
@@ -157,7 +161,6 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
   simp only [HC4.Newton.ratioWallWeight] at hHle
   norm_num at hHle
 
-  have hn1pos : 0 < F.highest.n - 1 := by omega
   have ha2lt : a 2 < b 2 := by
     by_contra hnot
     have hge : b 2 ≤ a 2 := Nat.le_of_not_gt hnot
@@ -258,16 +261,14 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
     have hHbound := hbound hHmem
     have hlockedMin :
         A * d 1 + B * d 2 ≤ B * F.locked.ell := by
-      dsimp [w, level, finiteStaircaseLowerHullLevel] at
-        hdLevel hLbound
+      dsimp [w, level, finiteStaircaseLowerHullLevel] at hdLevel hLbound
       rw [weight_finiteStaircaseLowerHullWeight] at hdLevel hLbound
       rw [hL1, hL2] at hLbound
       push_cast at hdLevel hLbound
       nlinarith
     have hhighestMin :
         A * d 1 + B * d 2 ≤ A * (F.highest.n - 1) := by
-      dsimp [w, level, finiteStaircaseLowerHullLevel] at
-        hdLevel hHbound
+      dsimp [w, level, finiteStaircaseLowerHullLevel] at hdLevel hHbound
       rw [weight_finiteStaircaseLowerHullWeight] at hdLevel hHbound
       rw [hH1, hH2] at hHbound
       push_cast at hdLevel hHbound
@@ -369,10 +370,16 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
   have hz1pos : 0 < z 1 := by
     by_contra hnot
     have hz1 : z 1 = 0 := Nat.eq_zero_of_not_pos hnot
-    have hzb : z = b :=
-      F.support_eq_of_deficits_eq hthree houtThree hzP hbP hz1 hb2zero
-    subst z
-    exact hb2zero hz2
+    have hpz : p z = 0 := by
+      dsimp [p]
+      rw [hz1]
+      norm_num
+    have hsle := hbmax z hzP hpz
+    dsimp [s] at hsle
+    rw [hz2] at hsle
+    norm_num at hsle
+    have hb2Z : (0 : ℤ) < (b 2 : ℤ) := by exact_mod_cast hb2pos
+    nlinarith
 
   exact Or.inr ⟨A, B, b, z, hA, hB,
     hbP, hb1, hb2pos, hzP, hz1pos, hz2,
