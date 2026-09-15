@@ -2792,6 +2792,13 @@ human architecture guide.
   - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberLeading`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleImpossible`
+  - `HC4.Polynomial.FiniteStaircaseEndpointCrossScaled`
+  - `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
+  - `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateEvaluation`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberCentral`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
+  - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleLowerImpossible`
   - `HC4.Newton.MixedDegreeWallRefinement`
   - `HC4.Polynomial.MonomialHessian`
