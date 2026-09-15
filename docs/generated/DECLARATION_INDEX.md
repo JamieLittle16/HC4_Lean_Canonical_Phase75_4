@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8366**.
+Distinct declaration spellings indexed: **8368**.
 
 ## Repeated declaration spellings
 
@@ -5966,6 +5966,7 @@ Distinct declaration spellings indexed: **8366**.
 - `parameterSecondEuler_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`
 - `parameterSecondEuler_X_pow_mul_C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryParameterEulerIdentity`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedEuler`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `parameterSecondEuler_coeff_binaryHomogenizedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `parameterThreeLayerMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `parent_support_degree_ge_three` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `pderiv_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `pderiv_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -7693,6 +7694,7 @@ Distinct declaration spellings indexed: **8366**.
 - `snd_snd_det_highestUpperPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_lockedLowerPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
+- `snd_snd_det_secondVariationTopMatrix_eq_zero_of_threeLayer_det_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `snd_snd_mul_four_secondVariationTopEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
