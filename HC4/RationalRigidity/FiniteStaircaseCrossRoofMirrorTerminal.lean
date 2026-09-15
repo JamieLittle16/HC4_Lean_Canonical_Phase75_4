@@ -57,13 +57,13 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
         (jHi + 1 : K) (v : K) ((V * (kHi - 1) : ℕ) : K) 1
         (((kLo : K) - ((jHi + 1 : ℕ) : K)) / (q : K))
         (-((v : K) / (q : K)))
-        ((V : K) * ((jLo : K) - ((kHi : K) - 1)) / (q : K))) :
+        ((V : K) * (((jLo : K) - ((kHi : K) - 1)) / (q : K)))) :
     q = 1 := by
   let Q : K :=
     (((kLo : K) - ((jHi + 1 : ℕ) : K)) / (q : K))
   let R : K := -((v : K) / (q : K))
   let S : K :=
-    (V : K) * ((jLo : K) - ((kHi : K) - 1)) / (q : K)
+    (V : K) * (((jLo : K) - ((kHi : K) - 1)) / (q : K))
 
   have hqK0 : (q : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hqpos)
   have hvK0 : (v : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hvpos)
@@ -109,7 +109,8 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
     have hnum : (jLo : K) - ((kHi : K) - 1) = 0 := by
       have h := (div_eq_zero_iff).mp hfrac
       exact h.resolve_right hqK0
-    have hcast : (kHi : K) = (jLo : K) + 1 := by linear_combination hnum
+    have hcast : (kHi : K) = (jLo : K) + 1 := by
+      linear_combination -hnum
     exact_mod_cast hcast
 
   have hsum_zero_fixedW : 1 + Q + R + S = 0 → kHi = jLo + 1 := by
@@ -118,6 +119,7 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
     dsimp [Q, R, S] at hscaled
     field_simp [hqK0] at hscaled
     rw [hqK, hvK] at hscaled
+    push_cast at hscaled
     have hfactor :
         ((V : K) + 1) * ((jLo : K) - (kHi : K) + 1) = 0 := by
       linear_combination hscaled
@@ -127,7 +129,8 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
       simpa [Nat.cast_add] using hcast
     have hlast : (jLo : K) - (kHi : K) + 1 = 0 :=
       (mul_eq_zero.mp hfactor).resolve_left hVp1
-    have hcast : (kHi : K) = (jLo : K) + 1 := by linear_combination hlast
+    have hcast : (kHi : K) = (jLo : K) + 1 := by
+      linear_combination -hlast
     exact_mod_cast hcast
 
   have himpossible_fixedW : kHi = jLo + 1 → False := by
@@ -144,6 +147,7 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
         rw [hqK, hvK]
         have hwK : (kHi : K) = (jLo : K) + 1 := by exact_mod_cast hw
         rw [hwK]
+        push_cast
         ring
       rw [hformula]
       exact div_ne_zero hvK0 hqK0
@@ -153,6 +157,7 @@ theorem finiteStaircase_crossRoof_lowResidual_eq_one
       rw [hqK, hvK]
       have hwK : (kHi : K) = (jLo : K) + 1 := by exact_mod_cast hw
       rw [hwK]
+      push_cast
       ring
     have hS : S = 0 := by
       dsimp [S]
