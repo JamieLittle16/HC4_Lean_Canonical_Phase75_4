@@ -69,7 +69,6 @@ theorem oneFiberThreeLayerMomentPencil_hasGap
       (oneFiberThreeLayerMomentPencil F Alo i j) := by
   intro r hrpos hrlt
   have hqpos : 0 < F.highest.n - Alo.k := by omega
-  have hqN : F.highest.n - Alo.k < F.highest.n - 1 := by omega
   have hr0 : r ≠ 0 := Nat.ne_of_gt hrpos
   have hrq : r ≠ F.highest.n - Alo.k := by omega
   have hrN : r ≠ F.highest.n - 1 := by omega
@@ -109,7 +108,7 @@ theorem matrixParameterGapSecondJet_oneFiberThreeLayer
     let C2 := oneFiberSecondOrderMomentMatrix F Alo
     matrixParameterGapSecondJet (R := Polynomial K) (by omega : 0 < q)
         (oneFiberThreeLayerMomentPencil F Alo)
-        (D.oneFiberThreeLayerMomentPencil_hasGap F Alo) =
+        (oneFiberThreeLayerMomentPencil_hasGap F Alo) =
       secondVariationJetMatrix A B C2 := by
   let q := F.highest.n - Alo.k
   let A := highestBinomialMomentHessian F.V F.highest.n
