@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8246**.
+Distinct declaration spellings indexed: **8249**.
 
 ## Repeated declaration spellings
 
@@ -2328,7 +2328,10 @@ Distinct declaration spellings indexed: **8246**.
 - `QsOtherFacetPrLeftVContactFrontierData.locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_degree_pairs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseEndpointEuler`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonTranslatedProfile_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_endpointRoots_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberRoot`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_mode_k_of_j_eq_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_mode_k_pred_of_j_add_two_eq_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_three_diagonals` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrLeftVContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `QsOtherFacetPrLeftVContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
