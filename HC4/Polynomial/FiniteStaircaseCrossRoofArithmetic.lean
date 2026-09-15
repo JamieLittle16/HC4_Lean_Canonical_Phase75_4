@@ -158,6 +158,32 @@ theorem no_crossRoof_fixed_w_terminal_degree_relation
   have hkLo : kLo ≤ jLo + 1 := by omega
   omega
 
+/-- **The two unit cross-roof residuals are impossible on the live staircase.**
+
+This packages the final multi-fibre arithmetic: the residual sum would be two,
+while strict staircase steepness makes the height drop strictly larger than
+the positive pair gain, forcing the same sum to be at least three. -/
+theorem no_crossRoof_unit_residuals
+    {n ell kLo jLo kHi jHi q v : ℕ}
+    (hn : 2 ≤ n) (hnell : n ≤ ell)
+    (hk : kLo < kHi)
+    (hLo :
+      ((n : ℤ) - 1) * (jLo : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - (kLo : ℤ)))
+    (hHi :
+      ((n : ℤ) - 1) * (jHi : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - (kHi : ℤ)))
+    (hq : q = jLo + 1 - kLo)
+    (hv : v = kHi - jHi - 1)
+    (hqpos : 0 < q) (hvpos : 0 < v)
+    (hqone : q = 1) (hvone : v = 1) : False := by
+  have hdrop := staircase_heightDrop_gt_pairGain
+    hn hnell hk hLo hHi
+  have hj : jHi ≤ jLo := by omega
+  have hsum := crossRoof_residual_sum
+    (Nat.le_of_lt hk) hj hq hv hqpos hvpos
+  omega
+
 end
 
 end HC4.Polynomial
