@@ -149,21 +149,24 @@ noncomputable def affineLineData
             (A.exponentAt n 3 : K) =
           (F.V : K) * ((A.k + A.j : ℕ) : K) := by
       exact_mod_cast hsecond
+    have h1K :
+        (A.exponentAt n 1 : K) = (A.k : K) - (n : K) := by
+      linear_combination hpairK - hzeroK
+    push_cast at hfirstK
+    have h2K :
+        (A.exponentAt n 2 : K) = (A.j : K) + 1 - (n : K) := by
+      linear_combination hfirstK - hzeroK
+    push_cast at hsecondK
+    have h3K :
+        (A.exponentAt n 3 : K) =
+          (F.V : K) * ((A.k : K) + (A.j : K)) -
+            (F.V : K) * (n : K) := by
+      linear_combination hsecondK - (F.V : K) * hzeroK
     funext i
-    fin_cases i
-    · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hzeroK]
-    · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hzeroK]
-      linear_combination hpairK
-    · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hzeroK]
-      push_cast at hfirstK
-      linear_combination hfirstK
-    · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hzeroK]
-      push_cast at hsecondK
-      linear_combination hsecondK
+    fin_cases i <;>
+      simp [HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection,
+        hzeroK, h1K, h2K, h3K] <;> ring
 
 /-- The affine-line polynomial is literally the selected pair-Rees layer. -/
 theorem affineLineData_polynomial_eq_layer
