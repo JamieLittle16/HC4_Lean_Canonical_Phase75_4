@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8456**.
+Distinct declaration spellings indexed: **8471**.
 
 ## Repeated declaration spellings
 
@@ -3906,6 +3906,7 @@ Distinct declaration spellings indexed: **8456**.
 - `coordinate_le_ordinaryDegree4` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `coordinate_pos_of_not_mvExponentOnBoundary` — `theorem` in `HC4.Polynomial.FourExponent`
 - `corrected_profile_rows` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
+- `cost_eq_of_mem_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledAlignedSmithWall_impossible_of_noPrimitive` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
@@ -4164,6 +4165,8 @@ Distinct declaration spellings indexed: **8456**.
 - `earlySchur_positiveTransverseSourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyInterface`
 - `earlySchur_rankTwoGeometry_or_constantLineRS2Preassembly` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalEarlySchurRankTwoGeometry`
 - `earlySchur_rankTwoMacro_or_constantLineRS2Preassembly` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurPreassemblyClosure`
+- `edge_mem_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
+- `edge_weight_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `elementaryShearHom` — `def` in `HC4.Valuation.PointedShearContinuation`
 - `elementaryShearHom_isHomogeneous` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `elementaryShearHom_preservesHessianDefect` — `theorem` in `HC4.Valuation.PointedShearContinuation`
@@ -4451,11 +4454,13 @@ Distinct declaration spellings indexed: **8456**.
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `exists_source_zRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `exists_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `exists_topKernelReverseRees_parameterFirstHessian_row_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `exists_transverseAlignedSquare_of_kernelFresh` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `exists_twoEndpointResidual_natDegree_lt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `exists_two_sided_inverse_of_classified_polynomial` — `theorem` in `HC4.MainAssembly`
+- `exists_zRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `exists_zeroCoordinate_coordinateMax` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `exists_zeroSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `exists_zeroSmithSource_minimalOrder` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
@@ -4504,10 +4509,13 @@ Distinct declaration spellings indexed: **8456**.
 - `extremalPair_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_pairReesOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_reflectedOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
+- `face` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `face_balanced_of_specialFiber_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
+- `face_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `face_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_support_ordinaryDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
+- `face_support_subset` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `facetGradient` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `facetGradientEquiv` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `facetGradient_bijective` — `theorem` in `HC4.ClassifiedFamilies.FacetAssembly`
@@ -4858,6 +4866,7 @@ Distinct declaration spellings indexed: **8456**.
 - `fullVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
+- `gap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `generalSurvivingSmithFaceShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `generalSurvivingSmithGradeShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `genuineCoefficientWall_specialFiber_has_negativeGrade` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
@@ -5337,6 +5346,7 @@ Distinct declaration spellings indexed: **8456**.
 - `left_highest_quotient_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactOrders`
 - `left_locked_quotient_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactOrders`
 - `left_staircase_equations_of_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseSupport`
+- `level` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `lexDominates` — `def` in `HC4.Newton.LexicographicRefinement`
 - `lexDominates_of_scaledWeight_le` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `lexInitialForm` — `def` in `HC4.Newton.LexicographicInitialForm`
@@ -5358,6 +5368,8 @@ Distinct declaration spellings indexed: **8456**.
 - `linearSource_eq_zero_of_clearedFactor` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `literalConstantSourceDirection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `literalSpecialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+- `lo_mem_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
+- `lo_weight_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `localRestartClassification` — `theorem` in `HC4.Newton.RestartClassification`
 - `lockedBinomialAffineFactor` — `def` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialAffineFactor_comp_normalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
@@ -8512,14 +8524,17 @@ Distinct declaration spellings indexed: **8456**.
 - `wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberRoot`
 - `wall_row` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `wedgeShift_le_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `weight_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`
 - `weight_binaryFirstContactWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `weight_binarySingleCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `weight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `weight_coordinateMaxNatWeight` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `weight_coordinateMaxWeight` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `weight_crossFacetWeight` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `weight_cross_relation_of_invariant_endpoints` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `weight_directClosingTransverseComplementWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
+- `weight_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `weight_eq_degree_of_secondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_eq_zero_of_rightPoint_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_eq_zero_or_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
