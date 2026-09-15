@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestFirstVariation
 import Mathlib.Tactic
 
 /-!
@@ -7,6 +8,11 @@ import Mathlib.Tactic
 Nonzero coefficients of the actual stationary carrier profile provide the
 bounds needed to add naturally truncated reverse orders. No determinant
 vanishing assumption is used.
+
+The pair-Rees highest-end first-variation module is also imported here as a
+rooted CI anchor while the final V>1 closure is assembled.  This ensures the
+new source-honest dual endpoint chain is elaborated by `lake build HC4` rather
+than merely existing as unimported source.
 -/
 
 namespace HC4.Valuation
