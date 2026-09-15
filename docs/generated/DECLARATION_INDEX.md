@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8346**.
+Distinct declaration spellings indexed: **8348**.
 
 ## Repeated declaration spellings
 
@@ -3592,11 +3592,13 @@ Distinct declaration spellings indexed: **8346**.
 - `coeff_m_logarithmicEtaNumerator_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_logarithmicEtaOverRhoDenominator_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_sq_eulerDerivative_local_form` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
+- `coeff_mul_at_degree_bounds` — `theorem` in `HC4.Polynomial.HeterogeneousTopCoefficient`
 - `coeff_mul_at_gap_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `coeff_mul_at_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `coeff_mul_at_twice_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `coeff_mul_eq_constant_mul_of_right_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mul_eq_zero_of_right_vanishes_through` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `coeff_mul_four_at_degree_bounds` — `theorem` in `HC4.Polynomial.HeterogeneousTopCoefficient`
 - `coeff_mvEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryLongitudinalHessianCoefficients`
 - `coeff_n_mul_d_shiftedEuler_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_n_mul_e_add_two_shiftedEta_mul_phi_pow_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`

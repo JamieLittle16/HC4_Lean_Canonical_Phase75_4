@@ -896,6 +896,8 @@ human architecture guide.
   - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.DeterminantWeight`
+- `HC4.Polynomial.HeterogeneousTopCoefficient`
+  - _(no local imports)_
 - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.AffineEulerTwoRootRigidity`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
