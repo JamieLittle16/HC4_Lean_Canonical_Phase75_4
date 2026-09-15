@@ -18,6 +18,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstVariation
 
 /-!
 # A19 rooted stationary rigidity compatibility seam
@@ -45,6 +46,8 @@ interface, the honest stationary parameter/depth Hessian family and its exact
 source-coefficient bridge and weighted-binary Euler reduction, the denominator-
 free source-coordinate representatives of stationary parameter and depth, the
 coefficientwise and canonical integral stationary profile-Hessian closures to
-the already-verified no-interior/two-function contradiction, and the original
-two exact affine Euler equations of the literal planar carrier.
+the already-verified no-interior/two-function contradiction, the original
+two exact affine Euler equations of the literal planar carrier, and the
+highest-oriented pair-Rees endpoint variation adapter used to constrain the
+highest surviving strict-interior staircase fibre.
 -/
