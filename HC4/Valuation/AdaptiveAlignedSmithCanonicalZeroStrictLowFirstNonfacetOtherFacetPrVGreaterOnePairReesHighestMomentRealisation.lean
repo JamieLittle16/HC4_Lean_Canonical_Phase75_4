@@ -94,7 +94,7 @@ theorem zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left
         rw [Polynomial.coeff_C]
         simp [hm0]
       have hX : (Polynomial.X : Polynomial K).coeff m = 0 := by
-        rw [show (Polynomial.X : Polynomial K) = Polynomial.X ^ 1 by simp]
+        rw [← pow_one (Polynomial.X : Polynomial K)]
         rw [Polynomial.coeff_X_pow]
         simp [hm1]
       simp [phi, hC, hX]
