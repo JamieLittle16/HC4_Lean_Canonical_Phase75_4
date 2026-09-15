@@ -2332,7 +2332,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: none
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`
-- Declarations: `theorem staircase_heightDrop_gt_pairGain`, `theorem crossRoof_residual_sum`, `theorem crossRoof_fixed_x_iff`, `theorem crossRoof_fixed_w_iff`, `theorem crossRoof_fixed_w_iff_ordinaryDegree`, `theorem no_crossRoof_fixed_x_and_fixed_w`, `theorem no_crossRoof_fixed_w_terminal_degree_relation`
+- Declarations: `theorem staircase_heightDrop_gt_pairGain`, `theorem crossRoof_residual_sum`, `theorem centralRoof_residuals_two_le`, `theorem crossRoof_fixed_x_iff`, `theorem crossRoof_fixed_w_iff`, `theorem crossRoof_fixed_w_iff_ordinaryDegree`, `theorem no_crossRoof_fixed_x_and_fixed_w`, `theorem no_crossRoof_fixed_w_terminal_degree_relation`
 
 ### `HC4.Polynomial.FiniteStaircaseEndpointCrossScaled`
 
