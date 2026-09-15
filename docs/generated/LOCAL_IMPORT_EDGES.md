@@ -872,8 +872,12 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeAffineMomentDegree`
 - `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
   - `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `HC4.Polynomial.FiniteStaircaseMiddleGapArithmetic`
+  - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircaseMiddleModeCore`
   - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
+- `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointRigidity`
+  - `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `HC4.Polynomial.FiniteStaircaseModeLeading`
   - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
