@@ -866,6 +866,10 @@ human architecture guide.
   - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
+  - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+  - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+  - `HC4.Polynomial.RankThreeAffineMomentDegree`
 - `HC4.Polynomial.FiniteStaircaseModeLeading`
   - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
@@ -949,6 +953,8 @@ human architecture guide.
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
+- `HC4.Polynomial.RankThreeAffineMomentDegree`
+  - `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeFractionMomentBridge`

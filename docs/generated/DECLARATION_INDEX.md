@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8357**.
+Distinct declaration spellings indexed: **8361**.
 
 ## Repeated declaration spellings
 
@@ -5029,6 +5029,7 @@ Distinct declaration spellings indexed: **8357**.
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `highestBinomialMomentHessian` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+- `highestBinomialMomentHessian_natDegree_le_one` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
 - `highestDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `highestOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `highestParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
@@ -5333,6 +5334,7 @@ Distinct declaration spellings indexed: **8357**.
 - `lockedBinomialFirstVariationEulerResidual_eq_derivative_form` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialFirstVariationEulerResidual_normalized_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `lockedBinomialMomentHessian_natDegree_le_one` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
 - `lockedDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `lockedLayer_eq_locked_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
@@ -5891,6 +5893,7 @@ Distinct declaration spellings indexed: **8357**.
 - `parallelStaircaseExponentAt` — `def` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `parallelStaircaseMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `parallelStaircaseMomentHessian_monomial_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
+- `parallelStaircaseMomentHessian_natDegree_le` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentDegree`
 - `parameterConstantCoeffFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_schurA` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
@@ -6767,6 +6770,7 @@ Distinct declaration spellings indexed: **8357**.
 - `rankThreeAffinePolynomialMomentHessian` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `rankThreeAffinePolynomialMomentHessian_natDegree_le` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentDegree`
 - `rankThreeAffineRawMomentEntry` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffineRawMomentEntry_eq_moment` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffineTerminal_normalForm` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
