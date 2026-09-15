@@ -90,11 +90,21 @@ theorem zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left
       · exact Or.inr hm1
       exfalso
       apply hm
-      simp [phi, hm0, hm1]
+      simp only [phi, Polynomial.coeff_add, Polynomial.coeff_C_mul]
+      rw [Polynomial.coeff_C_of_ne_zero hm0,
+        Polynomial.coeff_X_of_ne_one hm1]
+      simp
     · intro hm
       rcases hm with rfl | rfl
       · simp [phi, hc]
       · simp [phi, hd]
+
+  have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
+  have hn1 : 1 ≤ F.highest.n := by omega
+  have hcast_n_sub_one :
+      ((F.highest.n - 1 : ℕ) : K) = (F.highest.n : K) - 1 := by
+    rw [Nat.cast_sub hn1]
+    norm_num
 
   let exponent : ℕ → (Fin 4 →₀ ℕ) := fun m =>
     if m = 0 then e0 else e1
@@ -122,7 +132,7 @@ theorem zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left
             HC4.Polynomial.rankThreeLogDirection,
             F.highest.e1_zero, F.highest.e1_one,
             F.highest.e1_two, F.highest.e1_three,
-            F.highest_V_eq] <;> ring
+            F.highest_V_eq, hcast_n_sub_one] <;> ring
   }
 
   have hLpoly :
@@ -142,8 +152,10 @@ theorem zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left
         MvPolynomial.monomial e0 c + MvPolynomial.monomial e1 d := by
     have hsum := MvPolynomial.as_sum S.slice
     rw [F.highest.slice_support_eq] at hsum
-    dsimp [e0, e1, c, d]
-    simpa [Finset.sum_insert, he01] using hsum
+    have hnot : e0 ∉ ({e1} : Finset (Fin 4 →₀ ℕ)) := by
+      simpa using he01
+    rw [Finset.sum_insert hnot, Finset.sum_singleton] at hsum
+    simpa [e0, e1, c, d] using hsum
 
   have hpoly : L.polynomial = S.slice :=
     hLpoly.trans hslice.symm
