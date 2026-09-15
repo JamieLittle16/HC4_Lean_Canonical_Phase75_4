@@ -51,7 +51,7 @@ theorem exists_firstPositiveLayer_highestTranslatedTwoMode_nonzero
       let d : K :=
         MvPolynomial.coeff F.highest.e1 S.slice *
           ((F.highest.n - 1 : ℕ) : K)
-      let alpha : K := -(c / d)
+      let alpha : K := -c / d
       let psi := HC4.Polynomial.translatePolynomial alpha A.coefficientProfile
       psi.support ⊆ {A.j, A.j + 1} ∧
         (psi.coeff A.j ≠ 0 ∨ psi.coeff (A.j + 1) ≠ 0) := by
@@ -64,7 +64,7 @@ theorem exists_firstPositiveLayer_highestTranslatedTwoMode_nonzero
   let d : K :=
     MvPolynomial.coeff F.highest.e1 S.slice *
       ((F.highest.n - 1 : ℕ) : K)
-  let alpha : K := -(c / d)
+  let alpha : K := -c / d
   let psi : Polynomial K :=
     HC4.Polynomial.translatePolynomial alpha A.coefficientProfile
   have he1S : F.highest.e1 ∈ S.slice.support := by
