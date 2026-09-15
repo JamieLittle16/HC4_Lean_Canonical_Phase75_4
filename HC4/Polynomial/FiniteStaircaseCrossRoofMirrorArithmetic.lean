@@ -1,4 +1,4 @@
-import HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic
+import HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic
 import Mathlib.Tactic
 
 /-!
