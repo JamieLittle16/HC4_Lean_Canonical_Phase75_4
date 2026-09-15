@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8435**.
+Distinct declaration spellings indexed: **8436**.
 
 ## Repeated declaration spellings
 
@@ -4614,6 +4614,7 @@ Distinct declaration spellings indexed: **8435**.
 - `finiteIntegralRescaledTilt_cast` — `theorem` in `HC4.Newton.SmithPoleMinimality`
 - `finiteIntegralRescaledTilt_gt_of_rational_gt` — `theorem` in `HC4.Newton.SmithPoleMinimality`
 - `finiteIntegralTilt_gt_minimum` — `theorem` in `HC4.Newton.FiniteValuationTilt`
+- `finiteStaircase_crossRoof_highResidual_eq_one` — `theorem` in `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`
 - `finiteSupportBoundaryStrata` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `finiteSupportTilt_strictly_raises_minimum` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `finiteTargetValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
