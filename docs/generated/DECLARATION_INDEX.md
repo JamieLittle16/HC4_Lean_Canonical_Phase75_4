@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8479**.
+Distinct declaration spellings indexed: **8480**.
 
 ## Repeated declaration spellings
 
@@ -2380,6 +2380,7 @@ Distinct declaration spellings indexed: **8479**.
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_contactDeficit_identity` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlope`
 - `QsOtherFacetPrLeftVExposedCrossRoofData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofSourceData`
+- `QsOtherFacetPrLeftVExposedCrossRoofData.impossible_of_terminalCertificates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure`
 - `QsOtherFacetPrLeftVFirstInteriorAffineLayerData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `QsOtherFacetPrLeftVFirstInteriorAffineLayerData.exists_carrierExponent_of_profile_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleTop`
 - `QsOtherFacetPrLeftVFourTermCarrierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFourTermCarrier`
