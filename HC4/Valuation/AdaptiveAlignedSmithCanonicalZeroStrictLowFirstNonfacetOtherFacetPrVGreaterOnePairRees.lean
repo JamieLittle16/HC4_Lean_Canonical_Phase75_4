@@ -48,9 +48,11 @@ def qsPrPairNatWeight : Fin 4 → ℕ := ![1, 1, 0, 0]
 by the planar carrier. -/
 theorem cast_qsPrPairNatWeight_eq_pairWeight :
     (fun i : Fin 4 => (qsPrPairNatWeight i : ℤ)) =
-      qsOtherFacetPairWeight .pr := by
+      AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.qsOtherFacetPairWeight .pr := by
   funext i
-  fin_cases i <;> simp [qsPrPairNatWeight, qsOtherFacetPairWeight]
+  fin_cases i <;>
+    simp [qsPrPairNatWeight,
+      AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.qsOtherFacetPairWeight]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
@@ -126,8 +128,7 @@ private theorem highest_pairLevel_eq_left
     rw [F.highest.slice_support_eq]
     simp
   have hp := (S.support_parent_and_pairLevel he0S).2
-  rw [F.highest.e0_zero, F.highest.e0_one] at hp
-  simpa [qsOtherFacetPairDegree] using hp.symm
+  simpa [qsOtherFacetPairDegree, F.highest.e0_zero, F.highest.e0_one] using hp.symm
 
 private theorem highest_pairLevel_eq_right
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -141,8 +142,7 @@ private theorem highest_pairLevel_eq_right
     rw [F.highest.slice_support_eq]
     simp
   have hp := (S.support_parent_and_pairLevel he0S).2
-  rw [F.highest.e0_zero, F.highest.e0_one] at hp
-  simpa [qsOtherFacetPairDegree] using hp.symm
+  simpa [qsOtherFacetPairDegree, F.highest.e0_zero, F.highest.e0_one] using hp.symm
 
 private theorem pair_rees_specialFiber_eq_slice
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -178,8 +178,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.pairRees
     intro e he
     have hc := F.support_staircase_classification hthree houtThree he
     rcases hc with ⟨j, _hj, hkN, _hjell, _hj0, _hjellEq⟩
-    simpa [n, weight_qsPrPairNatWeight,
-      rankThreeQuotientCoordinate] using hkN
+    simpa [n, HC4.Polynomial.rankThreeQuotientCoordinate] using hkN
   let Q := reverseWeightedReesFamily qsPrPairNatWeight n P.carrier hbound
   have hspecial : polynomialFamilySpecialFiber Q = S.slice := by
     dsimp [Q]
@@ -193,7 +192,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.pairRees
     let e := C.ray.facetExponent
     have he : e ∈ P.carrier.support := F.locked.facet_provenance.carrier_mem
     have hpair : e 0 + e 1 = 1 := by
-      simp [e, F.locked.facet_zero, F.locked.facet_one]
+      dsimp [e]
+      rw [F.locked.facet_zero, F.locked.facet_one]
+      omega
     have hn : 0 < n - 1 := by
       dsimp [n]
       omega
@@ -201,7 +202,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.pairRees
         (MvPolynomial.coeff e Q).coeff (n - 1) ≠ 0 := by
       dsimp [Q]
       rw [reverseWeightedReesFamily_coeff]
-      simp only [weight_qsPrPairNatWeight, he, if_true, hpair]
+      simp only [weight_qsPrPairNatWeight, he, if_true]
+      rw [hpair]
       rw [Polynomial.coeff_mul_C, Polynomial.coeff_X_pow]
       simp [MvPolynomial.mem_support_iff.mp he]
     have hmem : n - 1 ∈ familyParameterLayerOrders Q :=
@@ -210,7 +212,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.pairRees
           dsimp [Q]
           apply MvPolynomial.mem_support_iff.mpr
           rw [reverseWeightedReesFamily_coeff]
-          simp only [he, if_true, hpair]
+          simp only [weight_qsPrPairNatWeight, he, if_true]
+          rw [hpair]
           exact mul_ne_zero (pow_ne_zero _ Polynomial.X_ne_zero)
             (Polynomial.C_ne_zero.mpr (MvPolynomial.mem_support_iff.mp he)),
           hcoeff⟩
@@ -244,8 +247,7 @@ theorem QsOtherFacetPrRightVContactFrontierData.pairRees
     intro e he
     have hc := F.support_staircase_classification hthree houtThree he
     rcases hc with ⟨j, _hj, hkN, _hjell, _hj0, _hjellEq⟩
-    simpa [n, weight_qsPrPairNatWeight,
-      rankThreeQuotientCoordinate] using hkN
+    simpa [n, HC4.Polynomial.rankThreeQuotientCoordinate] using hkN
   let Q := reverseWeightedReesFamily qsPrPairNatWeight n P.carrier hbound
   have hspecial : polynomialFamilySpecialFiber Q = S.slice := by
     dsimp [Q]
@@ -259,7 +261,9 @@ theorem QsOtherFacetPrRightVContactFrontierData.pairRees
     let e := C.ray.facetExponent
     have he : e ∈ P.carrier.support := F.locked.facet_provenance.carrier_mem
     have hpair : e 0 + e 1 = 1 := by
-      simp [e, F.locked.facet_zero, F.locked.facet_one]
+      dsimp [e]
+      rw [F.locked.facet_zero, F.locked.facet_one]
+      omega
     have hn : 0 < n - 1 := by
       dsimp [n]
       omega
@@ -267,7 +271,8 @@ theorem QsOtherFacetPrRightVContactFrontierData.pairRees
         (MvPolynomial.coeff e Q).coeff (n - 1) ≠ 0 := by
       dsimp [Q]
       rw [reverseWeightedReesFamily_coeff]
-      simp only [weight_qsPrPairNatWeight, he, if_true, hpair]
+      simp only [weight_qsPrPairNatWeight, he, if_true]
+      rw [hpair]
       rw [Polynomial.coeff_mul_C, Polynomial.coeff_X_pow]
       simp [MvPolynomial.mem_support_iff.mp he]
     have hmem : n - 1 ∈ familyParameterLayerOrders Q :=
@@ -276,7 +281,8 @@ theorem QsOtherFacetPrRightVContactFrontierData.pairRees
           dsimp [Q]
           apply MvPolynomial.mem_support_iff.mpr
           rw [reverseWeightedReesFamily_coeff]
-          simp only [he, if_true, hpair]
+          simp only [weight_qsPrPairNatWeight, he, if_true]
+          rw [hpair]
           exact mul_ne_zero (pow_ne_zero _ Polynomial.X_ne_zero)
             (Polynomial.C_ne_zero.mpr (MvPolynomial.mem_support_iff.mp he)),
           hcoeff⟩
