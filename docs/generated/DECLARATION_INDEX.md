@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8218**.
+Distinct declaration spellings indexed: **8219**.
 
 ## Repeated declaration spellings
 
@@ -5591,6 +5591,7 @@ Distinct declaration spellings indexed: **8218**.
 - `no_firstActualLayer_wholeFamilyContact_of_overlap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `no_infinite_strictRepairChain` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `no_laurent_weight_relation_of_nonexceptional` — `theorem` in `HC4.Toric.FourSidedCharacter`
+- `no_left_staircase_unit_transition` — `theorem` in `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
 - `no_negativeSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `no_positive_admissible_of_maximalIntegralKernelSlope_eq_zero` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `no_quadraticAutonomous_positive_reciprocal` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`

@@ -858,6 +858,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedInitial`
 - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
+  - _(no local imports)_
 - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.WeightedInitial`
   - `HC4.Toric.Facets`
@@ -2693,6 +2695,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorAffineLayer`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstVariation`
+  - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestMomentRealisation`
   - `HC4.Valuation.PlanarHighestFirstVariationBridge`
