@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8348**.
+Distinct declaration spellings indexed: **8357**.
 
 ## Repeated declaration spellings
 
@@ -3672,6 +3672,8 @@ Distinct declaration spellings indexed: **8348**.
 - `coeff_three_rankThree_raw_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
 - `coeff_three_weightedRankThreeEndpointPencil_three_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `coeff_three_weightedRankThreeEndpointPencil_two_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
+- `coeff_top_snd_snd_det_secondVariationJetMatrix` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `coeff_top_snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_twoRootEulerOperator` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
@@ -5619,6 +5621,7 @@ Distinct declaration spellings indexed: **8348**.
 - `natDegree_le_succ_of_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `natDegree_le_two_of_polynomialAutonomousLogODE_after_translation` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `natDegree_le_two_of_shiftedPolynomialAutonomousLogODE` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
+- `natDegree_mul_four_le` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `natDegree_ne_zero_of_coeff_ne_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `natDegree_stationaryCarrierProfile_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `natDegree_sub_leadingMonomial_le_pred` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
@@ -7396,6 +7399,10 @@ Distinct declaration spellings indexed: **8348**.
 - `secondPivotSwap02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
 - `secondThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `secondThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+- `secondVariationJetEntry` — `def` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `secondVariationJetMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `secondVariationTopEntry` — `def` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `secondVariationTopMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `secondZero_or_rightPoint_negativeAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`
 - `second_zeroSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `sectionCoordinateParameterOrder` — `def` in `HC4.Valuation.AlignedSmithFirstStop`
@@ -7677,6 +7684,8 @@ Distinct declaration spellings indexed: **8348**.
 - `snd_snd_det_highestUpperPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_lockedLowerPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
+- `snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `snd_snd_mul_four_secondVariationTopEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
