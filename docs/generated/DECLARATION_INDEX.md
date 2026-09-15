@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8311**.
+Distinct declaration spellings indexed: **8315**.
 
 ## Repeated declaration spellings
 
@@ -3652,6 +3652,7 @@ Distinct declaration spellings indexed: **8311**.
 - `coeff_swap_rankThreeLineSpecialisation_eq_parameterLayer` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
 - `coeff_swap_rankThreeLineSpecialisation_eulerScaledHessian` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `coeff_swappedRankThreeEulerHessian` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
+- `coeff_three_det_linearMatrixPencil_eq_coeff_one_reverse` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `coeff_three_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
@@ -5287,6 +5288,8 @@ Distinct declaration spellings indexed: **8311**.
 - `linearForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
+- `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
+- `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearPowerProfile` — `def` in `HC4.Newton.LinearPowerRecurrence`
 - `linearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
 - `linearPowerScalar` — `def` in `HC4.Newton.LinearPowerRecurrenceClassification`
@@ -7023,6 +7026,7 @@ Distinct declaration spellings indexed: **8311**.
 - `refine_exposed_face` — `theorem` in `HC4.Newton.ExposedFaces`
 - `refine_exposed_face_membership` — `theorem` in `HC4.Newton.ExposedFaces`
 - `reflectMatrix` — `def` in `HC4.Polynomial.MatrixPolynomialReflect`
+- `reflectMatrix_one_linearMatrixPencil` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `reflect_finset_prod_uniform` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_finset_sum` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`

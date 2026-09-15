@@ -898,6 +898,8 @@ human architecture guide.
   - `HC4.Polynomial.ComplementaryFractionBridge`
 - `HC4.Polynomial.LogarithmicInitialSlope`
   - `HC4.Polynomial.AutonomousODEReconstruction`
+- `HC4.Polynomial.MatrixPolynomialCubicReflection`
+  - `HC4.Polynomial.MatrixPolynomialReflect`
 - `HC4.Polynomial.MatrixPolynomialReflect`
   - _(no local imports)_
 - `HC4.Polynomial.MaximalHessianInitial`
