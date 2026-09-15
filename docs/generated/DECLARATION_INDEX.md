@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8273**.
+Distinct declaration spellings indexed: **8275**.
 
 ## Repeated declaration spellings
 
@@ -2318,6 +2318,8 @@ Distinct declaration spellings indexed: **8273**.
 - `QsOtherFacetPrLeftVContactFrontierData.NoStrictInteriorSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneNoInteriorSupport`
 - `QsOtherFacetPrLeftVContactFrontierData.contactOrder_eq_of_staircase_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseContactOrder`
 - `QsOtherFacetPrLeftVContactFrontierData.contactOrder_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseContactOrder`
+- `QsOtherFacetPrLeftVContactFrontierData.eq_highest_of_support_pair_eq_n` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneEndpointFibers`
+- `QsOtherFacetPrLeftVContactFrontierData.eq_locked_of_support_pair_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneEndpointFibers`
 - `QsOtherFacetPrLeftVContactFrontierData.exists_pairReesFirstInterior_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestFirstVariation`
 - `QsOtherFacetPrLeftVContactFrontierData.fourTermCarrierData_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFourTermCarrier`
 - `QsOtherFacetPrLeftVContactFrontierData.highest_e0_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
