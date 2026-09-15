@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8390**.
+Distinct declaration spellings indexed: **8392**.
 
 ## Repeated declaration spellings
 
@@ -161,6 +161,7 @@ Distinct declaration spellings indexed: **8390**.
 - `toClockLeft` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `toClockRight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`, `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
 - `transverseReesDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `weight_eq_degree_of_secondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -4270,6 +4271,7 @@ Distinct declaration spellings indexed: **8390**.
 - `eval_transverseSourceShearVariable_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `eval_two_mul_highestBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
 - `eval_two_mul_lockedBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
+- `eval_two_mul_parallelStaircaseMoment_of_translate_eq_middleTwoMode` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`
 - `eval_two_mul_rankThreeAffineMoment_of_translate_eq_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_zero_derivative_rankThreeEtaNumeratorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `eval_zero_pderiv_eq_linearCoeff` — `theorem` in `HC4.Newton.TerminalPositiveWeightLinearBlocks`
@@ -6791,6 +6793,7 @@ Distinct declaration spellings indexed: **8390**.
 - `rankThreeAffineMomentHessian_monomial_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `rankThreeAffineMoment_eq_primitiveBinomialScaledPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `rankThreeAffinePolynomialMomentHessian` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
+- `rankThreeAffinePolynomialMomentHessian_add` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`
 - `rankThreeAffinePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeBinomialPencilBridge`
 - `rankThreeAffinePolynomialMomentHessian_natDegree_le` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentDegree`
@@ -8285,7 +8288,7 @@ Distinct declaration spellings indexed: **8390**.
 - `translatePolynomial_affineEulerLinear_root` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `translatePolynomial_injective` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `translatePolynomial_neg_comp` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
-- `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
+- `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`, `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
 - `translated_support_subset_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `transportPlanarRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `transportWSquareRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`

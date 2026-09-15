@@ -899,6 +899,9 @@ human architecture guide.
   - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - _(no local imports)_
+- `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`
+  - `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+  - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
   - `HC4.Polynomial.AutonomousODETranslation`
   - `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
