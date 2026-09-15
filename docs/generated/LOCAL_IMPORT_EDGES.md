@@ -904,6 +904,9 @@ human architecture guide.
   - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
   - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
+- `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
+  - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
+  - `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
   - `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
   - `HC4.Valuation.ParameterGapSecondJet`
@@ -3878,6 +3881,8 @@ human architecture guide.
   - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Valuation.ParameterGapDualJet`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
+- `HC4.Valuation.ParameterGapIntermediateDualJet`
+  - `HC4.Valuation.ParameterGapDualJet`
 - `HC4.Valuation.ParameterGapSecondJet`
   - `HC4.Valuation.ParameterGapDualJet`
 - `HC4.Valuation.ParameterRamification`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8405**.
+Distinct declaration spellings indexed: **8411**.
 
 ## Repeated declaration spellings
 
@@ -3600,6 +3600,7 @@ Distinct declaration spellings indexed: **8405**.
 - `coeff_mul_at_degree_bounds` — `theorem` in `HC4.Polynomial.HeterogeneousTopCoefficient`
 - `coeff_mul_at_gap_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `coeff_mul_at_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
+- `coeff_mul_at_intermediate_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `coeff_mul_at_twice_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `coeff_mul_eq_constant_mul_of_right_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mul_eq_zero_of_right_vanishes_through` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
@@ -4157,6 +4158,7 @@ Distinct declaration spellings indexed: **8405**.
 - `elementaryShearVariable_isHomogeneous_one` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `elementaryUnshearSection` — `def` in `HC4.Valuation.PointedShearContinuation`
 - `eliminate_unit_polynomial_denominator` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
+- `endpointDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
 - `endpointResidualNormalForm_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `endpointResidual_eval_one_ne_zero_or_extraFactor` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `endpoint_three_scalar_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
@@ -5486,6 +5488,7 @@ Distinct declaration spellings indexed: **8405**.
 - `matrix4_det_ne_zero_exists_permutation_entries_ne_zero` — `theorem` in `HC4.Newton.TerminalWeightPermutation`
 - `matrix4_det_ne_zero_row_exists_entry` — `theorem` in `HC4.Newton.TerminalCenteredWeights`
 - `matrixParameterGapDualJet` — `def` in `HC4.Valuation.ParameterGapDualJet`
+- `matrixParameterGapIntermediateDualJet` — `def` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `matrixParameterGapSecondJet` — `def` in `HC4.Valuation.ParameterGapSecondJet`
 - `matrixParameterGapSecondJet_oneFiberThreeLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberSecondJet`
 - `matrixToParameterGap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
@@ -5960,6 +5963,7 @@ Distinct declaration spellings indexed: **8405**.
 - `parameterFirstHessian_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `parameterFirstHessian_symmetric` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `parameterGapDualJet` — `def` in `HC4.Valuation.ParameterGapDualJet`
+- `parameterGapIntermediateDualJet` — `def` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `parameterGapJet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapJet_fst` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `parameterGapJet_mapMatrix_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
@@ -7716,11 +7720,13 @@ Distinct declaration spellings indexed: **8405**.
 - `smithTwoExtremeBalance_forces_target_grades` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smithTwoExtremeBalance_nat_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
+- `snd_det_endpointDualPencil_eq_zero_of_threeLayer_det_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
 - `snd_det_highestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `snd_det_lockedHighestDoubleRootDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `snd_det_lowerPureHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
+- `snd_det_matrixParameterGapIntermediateDualJet` — `theorem` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `snd_det_middleUpperHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_middleUpperLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
