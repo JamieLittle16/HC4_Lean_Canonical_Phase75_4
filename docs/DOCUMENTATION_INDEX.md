@@ -8,18 +8,20 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-15_HC4_PAIR_REES_FINAL_CLOSURE.md`
+### `HANDOFF_2026-09-15_HC4_FINAL_MULTIFIBER_CLOSURE.md`
 
 This is the preferred context handoff for starting a new session on the live
 unrestricted-HC4 closure.
 
-It records the current green pair-Rees checkpoint, the Lean-verified locked
-and highest endpoint equations, the formal obstruction to the older generic
-stationary determinant bridge, the exact remaining finite-staircase coupling
-obligation, and the symmetry/unit/facet/global assembly that follows it.
+It records the current green finite-staircase checkpoint after the **complete
+one-fibre elimination**, the strict multi-fibre extremal separation, the new
+state-free cross-roof arithmetic and terminal rigidity theorem, the exact
+remaining source-honest exposed-roof adapter, and the symmetry/unit/facet/global
+assembly that follows it.
 
 For **current implementation status and TODO order**, this handoff supersedes
-the 12 September handoff and the earlier 15 September stationary handoff.
+the earlier 15 September pair-Rees and stationary handoffs and the 12 September
+paper handoff.
 
 ## Core architectural documents
 
@@ -61,7 +63,7 @@ These own exhaustive inventory, not mathematical status.
 
 Owns the completed paper-level line-supported Hessian recurrence/rational-map
 argument. It is an independent mathematical reference, not the first Lean
-implementation target after the new pair-Rees endpoint work.
+implementation target after the new cross-roof terminal work.
 
 ### `HANDOFF_2026-09-12_HC4_PAPER_CLOSURE.md`
 
@@ -85,17 +87,26 @@ first variation + staircase arithmetic -> degree <= 1.
 ### `STATIONARY_DETERMINANT_COMPARISON_AUDIT_2026-09-15.md`
 
 Reference for the failed generic stationary source/profile determinant
-comparison. The current pair-Rees handoff explains the replacement route.
+comparison. The current multi-fibre handoff explains the replacement route.
 
 ## Superseded handoffs
+
+### `HANDOFF_2026-09-15_HC4_PAIR_REES_FINAL_CLOSURE.md`
+
+Important immediately preceding checkpoint. It owns the detailed history of the
+locked/contact and highest/pair-Rees constructions, but its principal open
+“finite-staircase recurrence” task has now been superseded: the complete
+one-fibre branch is Lean-verified impossible, surviving strict interior is
+genuinely multi-fibre, and the live route is the exposed cross-roof terminal
+adapter documented in `HANDOFF_2026-09-15_HC4_FINAL_MULTIFIBER_CLOSURE.md`.
 
 ### `HANDOFF_2026-09-15_HC4_FINAL_LEAN_CLOSURE.md`
 
 Important historical checkpoint for the stationary machinery. Its proposed
 generic source/profile determinant bridge was subsequently shown to be false
 in that generality and has been replaced by the endpoint-sensitive pair-Rees
-route. Do not use its Route A/Commit A--D stationary determinant plan as the
-current TODO.
+and finite-staircase route. Do not use its Route A/Commit A--D stationary
+determinant plan as the current TODO.
 
 ### `HANDOFF_2026-09-12_HC4_PAPER_CLOSURE.md`
 
@@ -150,15 +161,17 @@ the context makes clear whether this means paper or Lean.
 
 ## Current one-line status
 
-As of the green checkpoint `e121f5c206443ff6345b00c2bf2a8b581ae1c831`
-(Lean CI #2318):
+As of the proof checkpoint
+`8ea4cd66ec07f00dd2b6597dd3e551afe1cf0b66` (reported clean/root green):
 
 > the unrestricted entry/termination architecture, A19.55 codimension-two
-> geometry branch, rank-three planar/staircase infrastructure, and both honest
-> endpoint first-variation equations are Lean verified; the principal remaining
-> local mathematical gap is the finite-staircase coupling that forces
-> `NoStrictInteriorSupport`, after which the left non-unit two-function
-> contradiction is already formal and the remaining work is symmetry/unit/facet
-> wrappers plus the final existing-architecture splice.
+> geometry branch, rank-three planar/staircase infrastructure, both honest
+> endpoint Rees equations, the full coincident-extrema/one-fibre elimination,
+> strict multi-fibre extremal separation, and the hard state-free cross-roof
+> terminal algebra are Lean verified. The principal remaining local seam is the
+> source-honest exposed-roof transition for the genuine multi-fibre staircase
+> plus its mirrored residual; once that gives `NoStrictInteriorSupport`, the
+> left non-unit contradiction is already formal. Remaining work then consists
+> of right/unit/facet wrappers and the final existing-architecture splice.
 
 This is not yet a claim that unrestricted HC4 has been proved.
