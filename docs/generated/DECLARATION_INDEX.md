@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8231**.
+Distinct declaration spellings indexed: **8235**.
 
 ## Repeated declaration spellings
 
@@ -69,6 +69,7 @@ Distinct declaration spellings indexed: **8231**.
 - `firstPositiveEntryOrder` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_mem` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `firstPositiveEntryOrder_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `firstPositiveLayer_support_eq_pairFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`
 - `firstPotential` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstSchurData` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `four_mul_le_defect_of_commonParameterFactor` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`, `theorem` in `HC4.Valuation.CommonParameterFactorGeneralDefect`
@@ -2328,6 +2329,9 @@ Distinct declaration spellings indexed: **8231**.
 - `QsOtherFacetPrLeftVContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `QsOtherFacetPrLeftVContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLeftVContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
+- `QsOtherFacetPrLeftVContactFrontierData.selectedInteriorLayers_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`
+- `QsOtherFacetPrLeftVContactFrontierData.selectedInteriorProfiles_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`
+- `QsOtherFacetPrLeftVContactFrontierData.selectedInterior_j_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`
 - `QsOtherFacetPrLeftVContactFrontierData.staircase_contact_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`
 - `QsOtherFacetPrLeftVContactFrontierData.strictInterior_pair_between` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `QsOtherFacetPrLeftVContactFrontierData.strictInterior_pair_eq_of_extrema_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
@@ -4676,6 +4680,7 @@ Distinct declaration spellings indexed: **8231**.
 - `firstPositiveLayer_pair_strictInterior_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInterior`
 - `firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `firstPositiveLayer_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
+- `firstPositiveLayer_support_eq_pairFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiber`
 - `firstPositiveOrder_lt_highest_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `firstPositiveParameterOrder` — `def` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `firstPositiveParameterOrder_le` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
