@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestMomentRealisation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation
 import HC4.Valuation.PlanarHighestFirstVariationBridge
+import HC4.Polynomial.FiniteStaircaseTransitionArithmetic
 import Mathlib.Tactic
 
 /-!
@@ -11,8 +12,8 @@ Under failure of `NoStrictInteriorSupport`, its least positive actual layer is
 the highest surviving strict-interior staircase fibre.
 
 The preceding source-honest adapters identify the zero layer with the literal
-primitive highest binomial moment Hessian and the first positive layer with
-the literal parallel-staircase moment Hessian.  The generic highest-end
+primitive highest binomial moment Hessian and the first positive layer with the
+literal parallel-staircase moment Hessian.  The generic highest-end
 parameter-gap dual-jet bridge therefore gives the affine two-root Euler
 equation with roots `j,j+1` for that actual source profile.
 -/
