@@ -870,6 +870,8 @@ human architecture guide.
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
   - `HC4.Polynomial.RankThreeAffineMomentDegree`
+- `HC4.Polynomial.FiniteStaircaseMiddleModeCore`
+  - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `HC4.Polynomial.FiniteStaircaseModeLeading`
   - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
@@ -2747,6 +2749,12 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberLeading`
   - `HC4.Polynomial.FiniteStaircaseModeLeading`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberLowerImpossible`
+  - `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
+  - `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
+  - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberLeading`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
