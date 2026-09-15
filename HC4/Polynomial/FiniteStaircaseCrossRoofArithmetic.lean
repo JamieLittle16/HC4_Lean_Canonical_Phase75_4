@@ -79,6 +79,23 @@ theorem crossRoof_residual_sum
   have hjHi : jHi + 1 ≤ kHi := by omega
   omega
 
+/-- At a genuine central roof intersection `jMid + 1 = kMid`, any lower
+`y = 0` roof residual and any higher `z = 0` roof residual are at least two.
+Indeed each residual is the sum of a positive pair-degree displacement and a
+positive staircase-height displacement from the central fibre.  This is the
+arithmetic input for the codimension-two mixed-Hessian obstruction. -/
+theorem centralRoof_residuals_two_le
+    {kLo jLo kMid jMid kHi jHi q v : ℕ}
+    (hkLoMid : kLo < kMid)
+    (hkMidHi : kMid < kHi)
+    (hjHiMid : jHi < jMid)
+    (hjMidLo : jMid < jLo)
+    (hcentral : jMid + 1 = kMid)
+    (hq : q = jLo + 1 - kLo)
+    (hv : v = kHi - jHi - 1) :
+    2 ≤ q ∧ 2 ≤ v := by
+  omega
+
 /-- Constant source `x` along a cross-roof segment is exactly the equality
 `q = heightDrop`. -/
 theorem crossRoof_fixed_x_iff
