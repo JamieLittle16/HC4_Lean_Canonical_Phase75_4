@@ -134,7 +134,8 @@ theorem crossRoof_pair_lt_of_roof_signs
     kLo < kHi := by
   by_contra hnot
   have hk : kHi ≤ kLo := Nat.le_of_not_gt hnot
-  have hkZ : (kHi : ℤ) - (kLo : ℤ) ≤ 0 := by exact_mod_cast (Nat.sub_nonpos.mpr hk)
+  have hkCast : (kHi : ℤ) ≤ (kLo : ℤ) := by exact_mod_cast hk
+  have hkZ : (kHi : ℤ) - (kLo : ℤ) ≤ 0 := sub_nonpos.mpr hkCast
   have hellZ : (0 : ℤ) ≤ (ell : ℤ) := by positivity
   have hrightNonpos :
       (ell : ℤ) * ((kHi : ℤ) - (kLo : ℤ)) ≤ 0 :=
