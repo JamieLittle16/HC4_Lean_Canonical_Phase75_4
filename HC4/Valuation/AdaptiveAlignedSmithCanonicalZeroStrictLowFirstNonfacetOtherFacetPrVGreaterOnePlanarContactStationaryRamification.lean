@@ -158,6 +158,47 @@ theorem coeff_stationaryRamifiedFamily_of_carrier_mem
   rw [D.stationary_scaledOrder_eq_of_carrier_mem hthree houtThree he]
   exact Or.inl rfl
 
+/-- **Exact stationary ramified parameter layer.**  Every source exponent
+appears in exactly the parameter layer dictated by its stationary pair depth;
+o off-carrier exponent is introduced by ramification.  This is the whole-layer
+form needed by the final stationary determinant extraction. -/
+theorem stationaryRamifiedFamily_parameterLayer_coeff
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (q : ℕ) (e : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff e
+        (familyParameterLayer D.stationaryRamifiedFamily q) =
+      if e ∈ P.carrier.support ∧
+          F.stationaryTotalDegree -
+              F.stationaryWeight * (F.highest.n - (e 0 + e 1)) = q then
+        MvPolynomial.coeff e P.carrier
+      else 0 := by
+  rw [familyParameterLayer_coeff]
+  by_cases he : e ∈ P.carrier.support
+  · rw [D.coeff_stationaryRamifiedFamily_of_carrier_mem hthree houtThree he]
+    simp only [Polynomial.coeff_mul_C, Polynomial.coeff_X_pow]
+    by_cases hq :
+        F.stationaryTotalDegree -
+            F.stationaryWeight * (F.highest.n - (e 0 + e 1)) = q
+    · simp [he, hq]
+    · simp [he, hq, Ne.symm hq]
+  · have hcoeff : MvPolynomial.coeff e D.stationaryRamifiedFamily = 0 := by
+      unfold stationaryRamifiedFamily parameterRamificationFamily
+      rw [MvPolynomial.coeff_map]
+      unfold QsOtherFacetPrLeftVPlanarContactReesData.family
+      rw [reverseWeightedReesFamily_coeff]
+      rw [if_neg he]
+      simp
+    rw [hcoeff]
+    simp [he]
+
 end QsOtherFacetPrLeftVPlanarContactReesData
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
