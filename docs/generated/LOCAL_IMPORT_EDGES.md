@@ -778,6 +778,7 @@ human architecture guide.
   - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.HessianDeterminant`
+  - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LogHessianMoments`
   - `HC4.Polynomial.LogarithmicInitialSlope`
   - `HC4.Polynomial.MaximalHessianInitial`

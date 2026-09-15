@@ -211,7 +211,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial.lean`
 - Purpose: (no module-doc heading)
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.WeightedInitial`, `HC4.Polynomial.DerivativeWeight`, `HC4.Polynomial.DeterminantWeight`, `HC4.Polynomial.HessianDeterminant`, `HC4.Polynomial.WeightBounds`, `HC4.Polynomial.DerivativeBounds`, `HC4.Polynomial.TopProduct`, `HC4.Polynomial.MaximalHessianInitial`, `HC4.Polynomial.FourExponent`, `HC4.Polynomial.MonomialHessian`, `HC4.Polynomial.RankThreePencils`, `HC4.Polynomial.RankThreeLinearCoefficient`, `HC4.Polynomial.AutonomousODEReconstruction`, `HC4.Polynomial.RankThreeLogHessian`, `HC4.Polynomial.ComplementaryLogHessian`, `HC4.Polynomial.LogarithmicInitialSlope`, `HC4.Polynomial.ComplementaryEdgeAssembly`, `HC4.Polynomial.ComplementaryFractionBridge`, `HC4.Polynomial.LogHessianMoments`, `HC4.Polynomial.ComplementaryMvSubstitution`, `HC4.Polynomial.ComplementaryMvMomentRealisation`, `HC4.Polynomial.ComplementaryEdgeRigidity`, `HC4.Polynomial.AutonomousODEQuadraticRigidity`, `HC4.Polynomial.AutonomousODEPoleOrder`, `HC4.Polynomial.AutonomousODEPolynomialDegree`, `HC4.Polynomial.AutonomousODETranslation`, `HC4.Polynomial.RankThreeFractionBridge`, `HC4.Polynomial.BinarySchurProjectiveMotion`
+- Local imports: `HC4.Polynomial.WeightedInitial`, `HC4.Polynomial.DerivativeWeight`, `HC4.Polynomial.DeterminantWeight`, `HC4.Polynomial.HessianDeterminant`, `HC4.Polynomial.WeightBounds`, `HC4.Polynomial.DerivativeBounds`, `HC4.Polynomial.TopProduct`, `HC4.Polynomial.MaximalHessianInitial`, `HC4.Polynomial.FourExponent`, `HC4.Polynomial.MonomialHessian`, `HC4.Polynomial.RankThreePencils`, `HC4.Polynomial.RankThreeLinearCoefficient`, `HC4.Polynomial.AutonomousODEReconstruction`, `HC4.Polynomial.RankThreeLogHessian`, `HC4.Polynomial.ComplementaryLogHessian`, `HC4.Polynomial.LogarithmicInitialSlope`, `HC4.Polynomial.ComplementaryEdgeAssembly`, `HC4.Polynomial.ComplementaryFractionBridge`, `HC4.Polynomial.LogHessianMoments`, `HC4.Polynomial.ComplementaryMvSubstitution`, `HC4.Polynomial.ComplementaryMvMomentRealisation`, `HC4.Polynomial.ComplementaryEdgeRigidity`, `HC4.Polynomial.AutonomousODEQuadraticRigidity`, `HC4.Polynomial.AutonomousODEPoleOrder`, `HC4.Polynomial.AutonomousODEPolynomialDegree`, `HC4.Polynomial.AutonomousODETranslation`, `HC4.Polynomial.RankThreeFractionBridge`, `HC4.Polynomial.BinarySchurProjectiveMotion`, `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - External imports: none
 - Imported by local modules: `HC4`
 - Declarations: none detected
@@ -2341,7 +2341,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.AffineEulerTwoRootRigidity`, `HC4.Polynomial.RankThreeAffineMomentRealisation`, `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - External imports: `Mathlib.Algebra.DualNumber`, `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Polynomial`
 - Declarations: `def highestBinomialMomentHessian`, `def highestParallelFirstVariationDualPencil`, `theorem snd_det_highestParallelFirstVariationDualPencil`, `theorem affineTwoRootEulerOperator_eq_zero_of_highestParallel_snd_det_eq_zero`
 
 ### `HC4.Polynomial.LineSupportedHessianExtremal`
