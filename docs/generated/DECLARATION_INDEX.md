@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8238**.
+Distinct declaration spellings indexed: **8239**.
 
 ## Repeated declaration spellings
 
@@ -5539,6 +5539,7 @@ Distinct declaration spellings indexed: **8238**.
 - `natCast_hasNoPositiveParameterCoeffBelow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `natCast_mul_pred` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `natDegree_binaryStaircaseProfileSecondEuler_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
+- `natDegree_eq_root_or_succ_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDegree`
 - `natDegree_eulerDerivative_eq_of_pos` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
 - `natDegree_eulerDerivative_eulerDerivative_le` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `natDegree_eulerDerivative_le` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
