@@ -867,6 +867,8 @@ human architecture guide.
   - `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
 - `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
   - `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `HC4.Polynomial.FiniteStaircaseEndpointCrossVariationScaled`
+  - `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
 - `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
   - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
@@ -916,6 +918,9 @@ human architecture guide.
 - `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
   - `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
   - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.FiniteStaircaseThreeLayerSeparatedVariation`
+  - `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
+  - `HC4.Valuation.SeparatedParameterDualJet`
 - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`

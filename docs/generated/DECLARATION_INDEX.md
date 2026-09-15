@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8420**.
+Distinct declaration spellings indexed: **8424**.
 
 ## Repeated declaration spellings
 
@@ -7399,6 +7399,7 @@ Distinct declaration spellings indexed: **8420**.
 - `scaledInitialForm` — `def` in `HC4.Newton.LexicographicInitialForm`
 - `scaledInitialForm_eq_iteratedInitialForm` — `theorem` in `HC4.Newton.IteratedRefinement`
 - `scaledInitialForm_eq_lexInitialForm` — `theorem` in `HC4.Newton.LexicographicInitialForm`
+- `scaledLockedHighestDoubleRootDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseEndpointCrossVariationScaled`
 - `scaledMaxima_eq_lexMaxima` — `theorem` in `HC4.Newton.LexicographicRefinement`
 - `scaledSupportFilter_eq_lexSupportFilter` — `theorem` in `HC4.Newton.LexicographicInitialForm`
 - `scaledWeight` — `def` in `HC4.Newton.LexicographicRefinement`
@@ -7739,6 +7740,8 @@ Distinct declaration spellings indexed: **8420**.
 - `snd_det_middleUpperHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_middleUpperLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
+- `snd_det_scaledLockedHighestDoubleRootDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointCrossVariationScaled`
+- `snd_det_terminalFirstVariation_eval_eq_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerSeparatedVariation`
 - `snd_det_upperPureLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_snd_det_highestUpperPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_lockedLowerPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
@@ -8211,6 +8214,7 @@ Distinct declaration spellings indexed: **8420**.
 - `terminalDirectRankJump_injective_or_residual` — `theorem` in `HC4.Newton.TerminalDirectRankJumpReduction`
 - `terminalExposedBoundary_rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectBalanceFreeBoundaryFrontier`
 - `terminalExposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectBalanceFreeBoundaryFrontier`
+- `terminalFirstVariationDualMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerSeparatedVariation`
 - `terminalFourCoordinate` — `def` in `HC4.Newton.TerminalQuadraticHessian`
 - `terminalPermutePoint` — `def` in `HC4.Newton.TerminalCoordinatePermutation`
 - `terminalPermutePoint_injective` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
