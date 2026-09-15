@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8254**.
+Distinct declaration spellings indexed: **8258**.
 
 ## Repeated declaration spellings
 
@@ -3059,6 +3059,7 @@ Distinct declaration spellings indexed: **8254**.
 - `avoids` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `axisRestriction_derivative_eval_one_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `axisRestriction_derivative_eval_zero_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `balanced_distance_of_resonance` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `balanced_iff_normal_form` — `theorem` in `HC4.Toric.InvariantSemigroup`
 - `balanced_on_pr_normal_form` — `theorem` in `HC4.Toric.Facets`
 - `balanced_on_qs_normal_form` — `theorem` in `HC4.Toric.Facets`
@@ -5620,6 +5621,8 @@ Distinct declaration spellings indexed: **8254**.
 - `no_infinite_strictRepairChain` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `no_laurent_weight_relation_of_nonexceptional` — `theorem` in `HC4.Toric.FourSidedCharacter`
 - `no_left_staircase_unit_transition` — `theorem` in `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
+- `no_lower_oneFiber_balanced_resonance` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
+- `no_middle_oneFiber_balanced_resonance` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `no_negativeSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `no_positive_admissible_of_maximalIntegralKernelSlope_eq_zero` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `no_quadraticAutonomous_positive_reciprocal` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
@@ -8301,6 +8304,7 @@ Distinct declaration spellings indexed: **8254**.
 - `unramified` — `def` in `HC4.Valuation.ScaledDefect`
 - `upperBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `upperBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `upper_oneFiber_balanced_resonance_shape` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `vecMul_injective_of_det_ne_zero` — `theorem` in `HC4.PlanarDoublingInjectivity`
 - `vectorHessianCore` — `def` in `HC4.Polynomial.RankThreePencils`
 - `wSquareRigid_exactResidual_exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalDirectResidualClosure`

@@ -862,6 +862,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedInitial`
 - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
+  - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - _(no local imports)_
 - `HC4.Polynomial.FourExponent`
