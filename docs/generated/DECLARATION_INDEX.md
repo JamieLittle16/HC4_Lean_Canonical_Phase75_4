@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8308**.
+Distinct declaration spellings indexed: **8311**.
 
 ## Repeated declaration spellings
 
@@ -112,6 +112,7 @@ Distinct declaration spellings indexed: **8308**.
 - `ofSymmetricMatrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `offDiag_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_coeff_firstOrder_ne_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `oneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `opening_repair_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `ordinaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`, `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
@@ -3974,6 +3975,7 @@ Distinct declaration spellings indexed: **8308**.
 - `det_normalizedHessianCongruence_of_conformal` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_normalizedShiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_oneFiberReflectedEulerHessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `det_oneFiberReflectedThreeLayerMomentPencil_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `det_oneZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.OneZeroBlockDeterminant`
 - `det_oneZeroRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `det_planarJacobianMatrixAt` — `theorem` in `HC4.PlanarJacobianEvaluation`
@@ -5794,8 +5796,9 @@ Distinct declaration spellings indexed: **8308**.
 - `oneFiberReflectedEuler_coeff_highest` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `oneFiberReflectedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `oneFiberReflectedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `oneFiberReflectedThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `oneFiberThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
-- `oneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `oneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `oneFiber_swappedEuler_coeff_eq_zero_of_other` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
@@ -7022,6 +7025,7 @@ Distinct declaration spellings indexed: **8308**.
 - `reflectMatrix` — `def` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_finset_prod_uniform` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_finset_sum` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
+- `reflect_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `relations_order2031` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `relations_order2130` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `relations_swap23` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
