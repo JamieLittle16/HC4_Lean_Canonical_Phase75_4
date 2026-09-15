@@ -40,8 +40,10 @@ theorem staircase_heightDrop_gt_pairGain
       ((n : ℤ) - 1) * (jHi : ℤ) =
         (ell : ℤ) * ((n : ℤ) - (kHi : ℤ))) :
     kHi - kLo < jLo - jHi := by
+  have hnZ : (2 : ℤ) ≤ (n : ℤ) := by
+    exact_mod_cast hn
   have hn1pos : (0 : ℤ) < (n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < n by omega)
+    omega
   have hellgt : (n : ℤ) - 1 < (ell : ℤ) := by
     have hnellZ : (n : ℤ) ≤ (ell : ℤ) := by exact_mod_cast hnell
     omega
@@ -117,14 +119,42 @@ theorem crossRoof_fixed_w_iff
   have hkLo : kLo ≤ jLo + 1 := by omega
   constructor <;> intro h <;> omega
 
-/-- On staircase exponents, fixed `w` is also exactly ordinary-degree
-preservation between a falling-roof point and a rising-roof point. -/
+/-- On genuine cross-roof exponents, fixed `w` is also exactly ordinary-degree
+preservation between the falling-roof and rising-roof points.  The two bound
+hypotheses are the subtraction-safety conditions supplied by positivity of the
+cross-roof residuals. -/
 theorem crossRoof_fixed_w_iff_ordinaryDegree
-    {V kLo jLo kHi jHi : ℕ} :
+    {V kLo jLo kHi jHi : ℕ}
+    (hkLo : kLo ≤ jLo + 1)
+    (hjHi : jHi + 1 ≤ kHi) :
     V * jLo + kLo + (jLo + 1 - kLo) =
         V * (kHi - 1) + (jHi + 1) + (kHi - jHi - 1) ↔
       kHi = jLo + 1 := by
-  omega
+  constructor
+  · intro h
+    have hcore :
+        V * jLo + (jLo + 1) = V * (kHi - 1) + kHi := by
+      omega
+    have hkHiPos : 0 < kHi := by omega
+    have hkHiSplit : kHi = (kHi - 1) + 1 := by omega
+    have hfacPlus :
+        (V + 1) * jLo + 1 = (V + 1) * (kHi - 1) + 1 := by
+      calc
+        (V + 1) * jLo + 1 = V * jLo + (jLo + 1) := by ring
+        _ = V * (kHi - 1) + kHi := hcore
+        _ = V * (kHi - 1) + ((kHi - 1) + 1) := by rw [← hkHiSplit]
+        _ = (V + 1) * (kHi - 1) + 1 := by ring
+    have hfac : (V + 1) * jLo = (V + 1) * (kHi - 1) :=
+      Nat.add_right_cancel hfacPlus
+    have hV : 0 < V + 1 := by omega
+    have hj : jLo = kHi - 1 := Nat.mul_left_cancel hV hfac
+    omega
+  · intro hw
+    subst kHi
+    have hcore :
+        V * jLo + (jLo + 1) = V * (jLo + 1 - 1) + (jLo + 1) := by
+      simp
+    omega
 
 /-- The fixed-`x` and fixed-`w` exceptional directions cannot occur together
 on two distinct live staircase fibres. -/
