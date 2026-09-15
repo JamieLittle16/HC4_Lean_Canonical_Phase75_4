@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8208**.
+Distinct declaration spellings indexed: **8212**.
 
 ## Repeated declaration spellings
 
@@ -2912,6 +2912,7 @@ Distinct declaration spellings indexed: **8208**.
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `affineTwoRootEulerOperator_eq_zero_of_highestParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `affineTwoRootEulerOperator_eq_zero_of_lockedParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `affineTwoRootEulerOperator_eq_zero_of_primitiveHighestParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `affineTwoRoot_degreeOne_primitive` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
@@ -4948,7 +4949,9 @@ Distinct declaration spellings indexed: **8208**.
 - `hessian_zero_zero_initialForm_zero_ne_zero_of_axisRestriction_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `highestBinomialMomentHessian` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `highestOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
+- `highestParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `highestSlice_cross_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
 - `highest_pairLevel_eq_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `highest_pairLevel_eq_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
@@ -7539,6 +7542,7 @@ Distinct declaration spellings indexed: **8208**.
 - `smithTwoExtremeBalance_forces_target_grades` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smithTwoExtremeBalance_nat_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
+- `snd_det_highestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`

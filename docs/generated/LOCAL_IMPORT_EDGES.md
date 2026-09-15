@@ -864,6 +864,10 @@ human architecture guide.
   - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.DeterminantWeight`
+- `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+  - `HC4.Polynomial.AffineEulerTwoRootRigidity`
+  - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+  - `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `HC4.Polynomial.LineSupportedHessianExtremal`
   - `HC4.Polynomial.MonomialHessian`
 - `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
