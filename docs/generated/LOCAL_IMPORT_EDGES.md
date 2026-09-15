@@ -1002,6 +1002,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeFractionMomentBridge`
+- `HC4.Polynomial.RankThreeAffineSupportRealisation`
+  - `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
