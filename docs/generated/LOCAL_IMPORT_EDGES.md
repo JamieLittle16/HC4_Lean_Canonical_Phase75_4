@@ -866,6 +866,8 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
   - `HC4.Polynomial.MonomialHessian`
+- `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
+  - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
   - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`

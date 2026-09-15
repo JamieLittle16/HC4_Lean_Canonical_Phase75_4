@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8267**.
+Distinct declaration spellings indexed: **8271**.
 
 ## Repeated declaration spellings
 
@@ -5397,6 +5397,7 @@ Distinct declaration spellings indexed: **8267**.
 - `lowNegativeSecond_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `lowerPureMode_parallelStaircaseMomentHessian_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `lowerRoot_sum_le_natDegree_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
 - `lowerRoots_eq_one_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
 - `made` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
@@ -5824,6 +5825,7 @@ Distinct declaration spellings indexed: **8267**.
 - `pair_rees_specialFiber_eq_slice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `parallelStaircaseExponentAt` — `def` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `parallelStaircaseMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `parallelStaircaseMomentHessian_monomial_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `parameterConstantCoeffFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_schurA` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
@@ -6693,6 +6695,7 @@ Distinct declaration spellings indexed: **8267**.
 - `rankOne_to_rankTwo_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThreeAffineFractionMomentDetZero_of_polynomialMoment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffineLine_topExponent_on_boundary_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTopBoundary`
+- `rankThreeAffineMomentHessian_monomial_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `rankThreeAffineMoment_eq_primitiveBinomialScaledPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `rankThreeAffinePolynomialMomentHessian` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffinePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
@@ -8313,6 +8316,7 @@ Distinct declaration spellings indexed: **8267**.
 - `unramified` — `def` in `HC4.Valuation.ScaledDefect`
 - `upperBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `upperBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `upperPureMode_parallelStaircaseMomentHessian_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `upper_oneFiber_balanced_resonance_shape` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `vecMul_injective_of_det_ne_zero` — `theorem` in `HC4.PlanarDoublingInjectivity`
 - `vectorHessianCore` — `def` in `HC4.Polynomial.RankThreePencils`
