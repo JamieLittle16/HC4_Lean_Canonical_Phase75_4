@@ -124,13 +124,9 @@ theorem exposedCrossRoofData
     have hv0 : hi 1 = 0 := Nat.eq_zero_of_not_pos hnot
     rw [hv0] at hcostHi
     norm_num at hcostHi
-    have hgapZ : (0 : ℤ) < (D.gap : ℤ) := by
-      exact_mod_cast D.gap_pos
-    have hBz : (0 : ℤ) < (D.edge 1 : ℤ) := by
-      exact_mod_cast D.edge_one_pos
-    have hqz : (0 : ℤ) < (D.lo 2 : ℤ) := by
-      exact_mod_cast D.lo_two_pos
-    nlinarith
+    rcases hcostHi with hEdgeZero | hLoTwoZero
+    · exact (Nat.ne_of_gt D.edge_one_pos) hEdgeZero
+    · exact (Nat.ne_of_gt D.lo_two_pos) hLoTwoZero
 
   have hkHiPos : 0 < kHi := by
     dsimp [kHi]
@@ -147,25 +143,37 @@ theorem exposedCrossRoofData
   have hwallLo :
       ((F.highest.n : ℤ) - 1) * (jLo : ℤ) =
         (F.locked.ell : ℤ) * ((F.highest.n : ℤ) - (kLo : ℤ)) := by
-    have hkLoEq : (kLo : ℤ) = (D.lo 0 : ℤ) := rfl
+    have hfirstSumZ :
+        (D.lo 0 : ℤ) + (D.lo 2 : ℤ) = (jLo : ℤ) + 1 := by
+      exact_mod_cast hloFirstNat
     have hfirstZ :
         (D.lo 0 : ℤ) + (D.lo 2 : ℤ) - 1 = (jLo : ℤ) := by
-      exact_mod_cast (show D.lo 0 + D.lo 2 - 1 = jLo by omega)
+      linarith only [hfirstSumZ]
     rw [D.lo_one_zero] at hwallLoRaw
     norm_num at hwallLoRaw
-    dsimp [kLo]
-    nlinarith [hwallLoRaw, hfirstZ]
+    rw [hfirstZ] at hwallLoRaw
+    simpa [kLo] using hwallLoRaw
 
   have hwallHiRaw := F.support_deficit_wall hthree houtThree hiP
   have hwallHi :
       ((F.highest.n : ℤ) - 1) * (jHi : ℤ) =
         (F.locked.ell : ℤ) * ((F.highest.n : ℤ) - (kHi : ℤ)) := by
-    have hhi0Z : (hi 0 : ℤ) = (jHi : ℤ) + 1 := by exact_mod_cast hhiFirstNat
+    have hhi0Z : (hi 0 : ℤ) = (jHi : ℤ) + 1 := by
+      exact_mod_cast hhiFirstNat
+    have hkHiZ : (kHi : ℤ) = (hi 0 : ℤ) + (hi 1 : ℤ) := by
+      dsimp [kHi]
+      push_cast
+      ring
+    have hleft : (hi 0 : ℤ) - 1 = (jHi : ℤ) := by
+      linarith only [hhi0Z]
+    have hright :
+        (F.highest.n : ℤ) - (hi 0 : ℤ) - (hi 1 : ℤ) =
+          (F.highest.n : ℤ) - (kHi : ℤ) := by
+      linarith only [hkHiZ]
     rw [hi2] at hwallHiRaw
     norm_num at hwallHiRaw
-    dsimp [kHi]
-    push_cast
-    nlinarith [hwallHiRaw, hhi0Z]
+    rw [hleft, hright] at hwallHiRaw
+    exact hwallHiRaw
 
   have hklt : kLo < kHi :=
     HC4.Polynomial.crossRoof_pair_lt_of_roof_signs
@@ -266,9 +274,10 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposedCrossRoof
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     (∃ e ∈ P.carrier.support, e 1 = 0 ∧ e 2 = 0) ∨
       Nonempty (QsOtherFacetPrLeftVExposedCrossRoofData F) := by
-  rcases F.central_or_lowerHull hthree houtThree with hcentral | ⟨D⟩
+  rcases F.central_or_lowerHull hthree houtThree with hcentral | hD
   · exact Or.inl hcentral
-  · exact Or.inr (D.exposedCrossRoofData hthree houtThree)
+  · rcases hD with ⟨D⟩
+    exact Or.inr (D.exposedCrossRoofData hthree houtThree)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
