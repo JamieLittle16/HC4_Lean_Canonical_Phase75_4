@@ -8300,7 +8300,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryLayerBridge`, `HC4.Valuation.ParameterRamification`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianCoefficients`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidityClosure`
-- Declarations: `def stationaryRamifiedFamily`, `theorem stationaryRamifiedFamily_hessianDeterminant_eq_zero`, `theorem stationary_scaledOrder_eq_of_carrier_mem`, `theorem coeff_stationaryRamifiedFamily_of_carrier_mem`
+- Declarations: `def stationaryRamifiedFamily`, `theorem stationaryRamifiedFamily_hessianDeterminant_eq_zero`, `theorem stationary_scaledOrder_eq_of_carrier_mem`, `theorem coeff_stationaryRamifiedFamily_of_carrier_mem`, `theorem stationaryRamifiedFamily_parameterLayer_coeff`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 
