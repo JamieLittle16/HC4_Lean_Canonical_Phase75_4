@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8338**.
+Distinct declaration spellings indexed: **8340**.
 
 ## Repeated declaration spellings
 
@@ -3579,6 +3579,7 @@ Distinct declaration spellings indexed: **8338**.
 - `coeff_longitudinalCoefficientPolynomial` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_longitudinalCoefficientPolynomialAt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_longitudinalCoefficientPolynomialAt_eq_sourceCoeff` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `coeff_lowerMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircaseModeLeading`
 - `coeff_lowerPureMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_lt_local_correction_zero` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_eulerDerivative_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
@@ -3680,6 +3681,7 @@ Distinct declaration spellings indexed: **8338**.
 - `coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointPencil_mul` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `coeff_upperMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircaseModeLeading`
 - `coeff_upperPureMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_weightedTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `coeff_zero_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`

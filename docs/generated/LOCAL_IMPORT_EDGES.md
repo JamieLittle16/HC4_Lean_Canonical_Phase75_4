@@ -866,6 +866,8 @@ human architecture guide.
   - `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `HC4.Polynomial.FiniteStaircaseModeLeading`
+  - `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
   - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
