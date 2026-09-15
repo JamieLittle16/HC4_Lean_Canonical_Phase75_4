@@ -90,7 +90,14 @@ theorem zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left
       · exact Or.inr hm1
       exfalso
       apply hm
-      simp [phi, hm0, hm1]
+      have hC : (Polynomial.C c : Polynomial K).coeff m = 0 := by
+        rw [Polynomial.coeff_C]
+        simp [hm0]
+      have hX : (Polynomial.X : Polynomial K).coeff m = 0 := by
+        rw [show (Polynomial.X : Polynomial K) = Polynomial.X ^ 1 by simp]
+        rw [Polynomial.coeff_X_pow]
+        simp [hm1]
+      simp [phi, hC, hX]
     · intro hm
       rcases hm with rfl | rfl
       · simp [phi, hc]
