@@ -46,6 +46,7 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
@@ -139,6 +140,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetHighestPairSlice`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidityClosure`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
@@ -953,6 +955,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
+  - _(no local imports)_
 - `HC4.Polynomial.TopProduct`
   - `HC4.Polynomial.DerivativeBounds`
 - `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
@@ -2771,6 +2775,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryCarrierEuler`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryLayerBridge`
   - `HC4.Valuation.ParameterRamification`
