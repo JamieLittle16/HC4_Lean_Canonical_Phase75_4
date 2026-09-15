@@ -79,7 +79,7 @@ theorem exists_layerExponent_of_coefficientProfile_mem
       intro h
       apply hnone
       exact ⟨e, by simpa [L] using he, h⟩
-    simp [Polynomial.coeff_monomial, hne, Ne.symm hne]
+    simp [Polynomial.coeff_monomial, hne]
   exact (Polynomial.mem_support_iff.mp hn) hzero
 
 /-- Canonical source exponent over a supported coefficient-profile index. -/
@@ -135,6 +135,8 @@ noncomputable def affineLineData
     intro n hn
     have hs := A.exponentAt_spec hn
     rcases A.coordinates (A.exponentAt n) hs.1 with ⟨hpair, hfirst, hsecond⟩
+    have hzeroK : (A.exponentAt n 0 : K) = (n : K) := by
+      exact_mod_cast hs.2
     have hpairK :
         (A.exponentAt n 0 : K) + (A.exponentAt n 1 : K) = (A.k : K) := by
       exact_mod_cast hpair
@@ -150,16 +152,16 @@ noncomputable def affineLineData
     funext i
     fin_cases i
     · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hs.2]
+        HC4.Polynomial.rankThreeLogDirection, hzeroK]
     · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hs.2]
+        HC4.Polynomial.rankThreeLogDirection, hzeroK]
       linear_combination hpairK
     · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hs.2]
+        HC4.Polynomial.rankThreeLogDirection, hzeroK]
       push_cast at hfirstK
       linear_combination hfirstK
     · simp [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection, hs.2]
+        HC4.Polynomial.rankThreeLogDirection, hzeroK]
       push_cast at hsecondK
       linear_combination hsecondK
 
@@ -203,12 +205,16 @@ theorem affineLineData_polynomial_eq_layer
     · intro n hn hnd
       have hne : L.exponent n ≠ d := by
         intro heq
-        have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e (0 : Fin 4)) heq
+        have h0 : L.exponent n (0 : Fin 4) = d 0 :=
+          congrArg (fun e : Fin 4 →₀ ℕ => e (0 : Fin 4)) heq
         have hn0 : L.exponent n (0 : Fin 4) = n := by
           change A.exponentAt n (0 : Fin 4) = n
           exact (A.exponentAt_spec hn).2
-        rw [hn0] at h0
-        exact hnd h0
+        have hnd0 : n = d 0 := by
+          calc
+            n = L.exponent n (0 : Fin 4) := hn0.symm
+            _ = d 0 := h0
+        exact hnd hnd0
       rw [L.term_eq_monomial]
       simp [hne]
     · intro hnot
