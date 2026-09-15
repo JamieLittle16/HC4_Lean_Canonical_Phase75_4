@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8261**.
+Distinct declaration spellings indexed: **8267**.
 
 ## Repeated declaration spellings
 
@@ -3574,6 +3574,7 @@ Distinct declaration spellings indexed: **8261**.
 - `coeff_longitudinalCoefficientPolynomial` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_longitudinalCoefficientPolynomialAt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_longitudinalCoefficientPolynomialAt_eq_sourceCoeff` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `coeff_lowerPureMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_lt_local_correction_zero` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_eulerDerivative_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
 - `coeff_m_logarithmicEtaNumerator_local_form` — `theorem` in `HC4.Polynomial.LogarithmicInitialSlope`
@@ -3594,11 +3595,14 @@ Distinct declaration spellings indexed: **8261**.
 - `coeff_one_complementaryEtaNumerator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_one_det_rankThreePencilPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `coeff_one_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
+- `coeff_one_highestBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
+- `coeff_one_lockedBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_S_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
 - `coeff_one_taylor_one_twoEndpointResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_order_determinant` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `coeff_parallelStaircaseMomentHessian_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_pderiv_backport` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
 - `coeff_pderiv_commRing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `coeff_pderiv_commSemiring` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
@@ -3666,6 +3670,7 @@ Distinct declaration spellings indexed: **8261**.
 - `coeff_two_weightedRankThreeEndpointActiveMinor_two_three_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_weightedRankThreeEndpointPencil_mul` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `coeff_upperPureMode_parallelStaircase` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_weightedTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`
 - `coeff_zero_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
@@ -5817,6 +5822,7 @@ Distinct declaration spellings indexed: **8261**.
 - `pair_ge_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `pair_le_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `pair_rees_specialFiber_eq_slice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
+- `parallelStaircaseExponentAt` — `def` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `parallelStaircaseMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `parameterConstantCoeffFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `parameterConstantCoeffFourBlock_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
