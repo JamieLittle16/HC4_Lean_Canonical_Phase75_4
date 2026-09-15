@@ -203,8 +203,6 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
   have haLevel : Finsupp.weight w a = level := by
     dsimp [w, level, finiteStaircaseLowerHullLevel]
     rw [weight_finiteStaircaseLowerHullWeight, hAK, hBK]
-    have hle : a 2 ≤ b 2 := Nat.le_of_lt ha2lt
-    rw [← Nat.cast_sub hle]
     ring
 
   have hbG : b ∈ G.support := by
@@ -265,14 +263,14 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
       rw [weight_finiteStaircaseLowerHullWeight] at hdLevel hLbound
       rw [hL1, hL2] at hLbound
       push_cast at hdLevel hLbound
-      nlinarith
+      nlinarith only [hdLevel, hLbound]
     have hhighestMin :
         A * d 1 + B * d 2 ≤ A * (F.highest.n - 1) := by
       dsimp [w, level, finiteStaircaseLowerHullLevel] at hdLevel hHbound
       rw [weight_finiteStaircaseLowerHullWeight] at hdLevel hHbound
       rw [hH1, hH2] at hHbound
       push_cast at hdLevel hHbound
-      nlinarith
+      nlinarith only [hdLevel, hHbound]
 
     have hd0pos : 0 < d 0 := by
       by_contra hnot
@@ -284,7 +282,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
           ((F.highest.n : ℤ) - 1) * ((d 2 : ℤ) - 1) =
             (F.locked.ell : ℤ) *
               ((F.highest.n : ℤ) - (d 1 : ℤ)) := by
-        nlinarith [hwall0]
+        nlinarith only [hwall0]
       exact HC4.Polynomial.zeroLongitudinal_not_positive_lowerHull
         F.highest.n_two_le F.locked.ell_pos hd1pos hd2pos hA hB
         hwall
@@ -314,7 +312,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
       have hd0Z : (0 : ℤ) < (d 0 : ℤ) := by exact_mod_cast hd0pos
       have hd1Z : (0 : ℤ) < (d 1 : ℤ) := by exact_mod_cast hd1pos
       have hd2Z : (0 : ℤ) < (d 2 : ℤ) := by exact_mod_cast hd2pos
-      nlinarith [hcurve]
+      nlinarith only [hcurve, hVZ, hd0Z, hd1Z, hd2Z]
 
     have hd2face : ∀ q ∈ D2.face.support, q = d := by
       intro q hq
@@ -382,7 +380,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
     rw [hz2] at hsle
     norm_num at hsle
     have hb2Z : (0 : ℤ) < (b 2 : ℤ) := by exact_mod_cast hb2pos
-    nlinarith
+    nlinarith only [hsle, hb2Z]
 
   exact Or.inr ⟨A, B, b, z, hA, hB,
     hbP, hb1, hb2pos, hzP, hz1pos, hz2,
