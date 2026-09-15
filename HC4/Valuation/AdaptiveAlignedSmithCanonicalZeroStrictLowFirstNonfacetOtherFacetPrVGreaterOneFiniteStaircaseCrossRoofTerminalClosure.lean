@@ -55,7 +55,7 @@ theorem QsOtherFacetPrLeftVExposedCrossRoofData.impossible_of_terminalCertificat
       HasRankThreePolynomialTerminalCertificate
         (phi := phiHi)
         (E.kLo : K) (E.q : K) ((F.V * E.jLo : ℕ) : K) 1
-        (((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K)
+        ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
         (-((E.q : K) / (E.v : K)))
         ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K)))
     (hdegLo : phiLo.natDegree = E.q)
