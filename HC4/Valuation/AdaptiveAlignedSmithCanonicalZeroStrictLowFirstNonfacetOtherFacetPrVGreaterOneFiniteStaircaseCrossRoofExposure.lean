@@ -214,17 +214,27 @@ theorem exists_zRoof_on_face
     have hlocked :
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 2 : ℤ) ≤
           (D.edge 1 : ℤ) * (F.locked.ell : ℤ) := by
-      rw [hgapCast]
-      nlinarith only [hcost, hlockedRaw]
+      rw [hgapCast] at hcost ⊢
+      calc
+        ((D.lo 2 : ℤ) - (D.edge 2 : ℤ)) * (d 1 : ℤ) +
+            (D.edge 1 : ℤ) * (d 2 : ℤ) =
+          (D.edge 1 : ℤ) * (D.lo 2 : ℤ) := hcost
+        _ ≤ (D.edge 1 : ℤ) * (F.locked.ell : ℤ) := hlockedRaw
     have hhighest :
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 2 : ℤ) ≤
           (D.gap : ℤ) * ((F.highest.n : ℤ) - 1) := by
-      rw [hgapCast]
+      rw [hgapCast] at hcost ⊢
+      have hn2 := F.highest.n_two_le
       have hn1 : 1 ≤ F.highest.n := by omega
       have hcast : ((F.highest.n - 1 : ℕ) : ℤ) =
           (F.highest.n : ℤ) - 1 := by rw [Nat.cast_sub hn1]; norm_num
       rw [hcast] at hhighestRaw
-      nlinarith only [hcost, hhighestRaw]
+      calc
+        ((D.lo 2 : ℤ) - (D.edge 2 : ℤ)) * (d 1 : ℤ) +
+            (D.edge 1 : ℤ) * (d 2 : ℤ) =
+          (D.edge 1 : ℤ) * (D.lo 2 : ℤ) := hcost
+        _ ≤ ((D.lo 2 : ℤ) - (D.edge 2 : ℤ)) *
+            ((F.highest.n : ℤ) - 1) := hhighestRaw
 
     exact HC4.Polynomial.zeroLongitudinal_not_positive_lowerHull
       (n := F.highest.n) (ell := F.locked.ell)
