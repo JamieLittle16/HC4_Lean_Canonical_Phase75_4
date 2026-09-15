@@ -96,10 +96,11 @@ theorem exists_exposed_ratio_wall_from_min_fiber
         exact_mod_cast hcrossQ
       dsimp [ratioWallWeight]
       nlinarith [hcrossZ]
-    · have hsx : s x ≤ s b := hbmax' x hxS hpx
+    · have hxp : p x = p₀ := hpx.symm
+      have hsx : s x ≤ s b := hbmax' x hxS hxp
       have hpa : 0 < p a - p₀ := sub_pos.mpr hap
       dsimp [ratioWallWeight]
-      rw [hpx]
+      rw [hxp]
       nlinarith
 
   let G : Set α :=
