@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8376**.
+Distinct declaration spellings indexed: **8377**.
 
 ## Repeated declaration spellings
 
@@ -5128,6 +5128,7 @@ Distinct declaration spellings indexed: **8376**.
 - `initialForm_directionalSecondDerivative_eq_component` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_directionalSecondDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
 - `initialForm_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
+- `initialForm_eq_monomial_of_unique_max` — `theorem` in `HC4.Polynomial.UniqueMaximalInitialMonomial`
 - `initialForm_eq_of_exposedSupport_and_coeff` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `initialForm_eq_self_of_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_eq_zero_of_isWeightLE` — `theorem` in `HC4.Polynomial.WeightBounds`

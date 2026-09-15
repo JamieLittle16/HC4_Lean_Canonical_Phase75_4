@@ -1036,6 +1036,8 @@ human architecture guide.
   - `HC4.Polynomial.TwoFunctionEulerHessian`
 - `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
   - _(no local imports)_
+- `HC4.Polynomial.UniqueMaximalInitialMonomial`
+  - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Polynomial.WeightBounds`
   - `HC4.Polynomial.WeightedInitial`
 - `HC4.Polynomial.WeightedInitial`
