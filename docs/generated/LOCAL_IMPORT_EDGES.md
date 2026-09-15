@@ -876,6 +876,8 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Polynomial.FiniteStaircaseMiddleModeCore`
   - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
+- `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointNatRigidity`
+  - `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointRigidity`
 - `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointRigidity`
   - `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `HC4.Polynomial.FiniteStaircaseModeLeading`

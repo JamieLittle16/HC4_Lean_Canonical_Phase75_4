@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8402**.
+Distinct declaration spellings indexed: **8403**.
 
 ## Repeated declaration spellings
 
@@ -5535,6 +5535,7 @@ Distinct declaration spellings indexed: **8402**.
 - `middleLockedSecondJet` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middleLowerDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middleLowerMode_eq_zero_of_twoEndpoint_secondVariations` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointRigidity`
+- `middleLowerMode_eq_zero_of_twoEndpoint_secondVariations_nat` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleTwoEndpointNatRigidity`
 - `middleTwoModeDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middleUpperDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middleUpperHighestReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
