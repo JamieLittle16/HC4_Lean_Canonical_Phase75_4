@@ -3783,6 +3783,8 @@ human architecture guide.
   - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Valuation.ParameterGapDualJet`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
+- `HC4.Valuation.ParameterGapSecondJet`
+  - `HC4.Valuation.ParameterGapDualJet`
 - `HC4.Valuation.ParameterRamification`
   - `HC4.Newton.SmithPoleMinimality`
   - `HC4.Valuation.SmithConformalCovariance`
