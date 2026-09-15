@@ -98,7 +98,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_lowerHull
       refine ⟨F.highest.e1, hHmem, ?_⟩
       dsimp [p]
       rw [hH1]
-      exact_mod_cast (show 0 < F.highest.n - 1 by omega)
+      have hn1 : 1 < F.highest.n :=
+        lt_of_lt_of_le Nat.one_lt_two F.highest.n_two_le
+      exact_mod_cast (Nat.sub_pos_of_lt hn1)
 
     rcases HC4.Newton.exists_exposed_ratio_wall_from_min_fiber
         P.carrier.support p s 0 hpmin hbase hexit with
@@ -128,7 +130,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_lowerHull
 
     have hH1pos : 0 < F.highest.e1 1 := by
       rw [hH1]
-      omega
+      have hn1 : 1 < F.highest.n :=
+        lt_of_lt_of_le Nat.one_lt_two F.highest.n_two_le
+      exact Nat.sub_pos_of_lt hn1
     have hb2Zpos : (0 : ℤ) < (b 2 : ℤ) := by exact_mod_cast hb2pos
     have ha1Zpos : (0 : ℤ) < (a 1 : ℤ) := by exact_mod_cast ha1pos
     have hH1Zpos : (0 : ℤ) < (F.highest.e1 1 : ℤ) := by
