@@ -157,8 +157,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
 
   have hHle := hface.weight_le (by simpa using hHmem)
   dsimp [p, s] at hHle
-  rw [hH1, hH2] at hHle
   simp only [HC4.Newton.ratioWallWeight] at hHle
+  rw [hH1, hH2] at hHle
   norm_num at hHle
 
   have ha2lt : a 2 < b 2 := by
@@ -306,8 +306,11 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
       have hd3 : d 3 = 0 := Nat.eq_zero_of_not_pos hnot
       rw [hd3] at hcurve
       norm_num at hcurve
+      have hVpos : 0 < F.V := by
+        have hVgt := F.V_gt_one
+        omega
       have hVZ : (0 : ℤ) < (F.V : ℤ) := by
-        exact_mod_cast (show 0 < F.V by omega)
+        exact_mod_cast hVpos
       have hd0Z : (0 : ℤ) < (d 0 : ℤ) := by exact_mod_cast hd0pos
       have hd1Z : (0 : ℤ) < (d 1 : ℤ) := by exact_mod_cast hd1pos
       have hd2Z : (0 : ℤ) < (d 2 : ℤ) := by exact_mod_cast hd2pos
