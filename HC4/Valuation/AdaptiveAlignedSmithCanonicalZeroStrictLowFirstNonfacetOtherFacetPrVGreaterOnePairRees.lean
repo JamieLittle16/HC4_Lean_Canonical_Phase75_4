@@ -157,7 +157,7 @@ private theorem pair_rees_specialFiber_eq_slice
       S.slice := by
   rw [polynomialFamilySpecialFiber_reverseWeightedReesFamily]
   rw [cast_qsPrPairNatWeight_eq_pairWeight]
-  rw [hlevel]
+  rw [← hlevel]
   exact S.slice_eq_initialForm.symm
 
 /-- Build the pair-Rees package in the left `(1,V)` orientation. -/
@@ -194,9 +194,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.pairRees
     have hpair : e 0 + e 1 = 1 := by
       dsimp [e]
       rw [F.locked.facet_zero, F.locked.facet_one]
-      omega
+    have htwo : 2 ≤ n := by
+      simpa [n] using F.highest.n_two_le
     have hn : 0 < n - 1 := by
-      dsimp [n]
       omega
     have hcoeff :
         (MvPolynomial.coeff e Q).coeff (n - 1) ≠ 0 := by
@@ -263,9 +263,9 @@ theorem QsOtherFacetPrRightVContactFrontierData.pairRees
     have hpair : e 0 + e 1 = 1 := by
       dsimp [e]
       rw [F.locked.facet_zero, F.locked.facet_one]
-      omega
+    have htwo : 2 ≤ n := by
+      simpa [n] using F.highest.n_two_le
     have hn : 0 < n - 1 := by
-      dsimp [n]
       omega
     have hcoeff :
         (MvPolynomial.coeff e Q).coeff (n - 1) ≠ 0 := by
