@@ -118,6 +118,39 @@ theorem zeroLongitudinal_not_positive_lowerHull
 
   nlinarith [hwall, hchordLe]
 
+/-- A positive `y=0` roof defect and a positive `z=0` roof defect can only
+occur in increasing pair-degree order along the live staircase. -/
+theorem crossRoof_pair_lt_of_roof_signs
+    {n ell kLo jLo kHi jHi : ℕ}
+    (hn : 2 ≤ n) (hell : 0 < ell)
+    (hLo :
+      ((n : ℤ) - 1) * (jLo : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - (kLo : ℤ)))
+    (hHi :
+      ((n : ℤ) - 1) * (jHi : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - (kHi : ℤ)))
+    (hLoRoof : kLo < jLo + 1)
+    (hHiRoof : jHi + 1 < kHi) :
+    kLo < kHi := by
+  by_contra hnot
+  have hk : kHi ≤ kLo := Nat.le_of_not_gt hnot
+  have hkZ : (kHi : ℤ) - (kLo : ℤ) ≤ 0 := by exact_mod_cast (Nat.sub_nonpos.mpr hk)
+  have hellZ : (0 : ℤ) ≤ (ell : ℤ) := by positivity
+  have hrightNonpos :
+      (ell : ℤ) * ((kHi : ℤ) - (kLo : ℤ)) ≤ 0 :=
+    mul_nonpos_of_nonneg_of_nonpos hellZ hkZ
+  have hdiff :
+      ((n : ℤ) - 1) * ((jLo : ℤ) - (jHi : ℤ)) =
+        (ell : ℤ) * ((kHi : ℤ) - (kLo : ℤ)) := by
+    nlinarith [hLo, hHi]
+  have hn1Z : (0 : ℤ) < (n : ℤ) - 1 := by
+    exact_mod_cast (show 1 < n by omega)
+  have hj : jLo ≤ jHi := by
+    have hjZ : (jLo : ℤ) ≤ (jHi : ℤ) := by
+      nlinarith [hdiff, hrightNonpos]
+    exact_mod_cast hjZ
+  omega
+
 end
 
 end HC4.Polynomial
