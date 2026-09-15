@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8258**.
+Distinct declaration spellings indexed: **8261**.
 
 ## Repeated declaration spellings
 
@@ -3949,11 +3949,13 @@ Distinct declaration spellings indexed: **8258**.
 - `det_exponentHessianMinor3` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `det_hessianCongruence` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_hessianCongruence_of_det_one` — `theorem` in `HC4.Valuation.LinearCovariance`
+- `det_highestUpperPureMode_pencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `det_hyperbolicFour` — `theorem` in `HC4.MongeAmpere.HyperbolicBase`
 - `det_hyperbolicFour_one` — `theorem` in `HC4.MongeAmpere.HyperbolicBase`
 - `det_hyperbolicPlane` — `theorem` in `HC4.MongeAmpere.HyperbolicBase`
 - `det_integralRigidMatrixNormalization_eq_X_pow_sub` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_lineMomentHessian` — `theorem` in `HC4.Polynomial.LogHessianMoments`
+- `det_lockedLowerPureMode_pencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `det_lowerBlockUnitriangular` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `det_lower_mul_upper` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `det_normalizedHessianCongruence` — `theorem` in `HC4.Valuation.LinearCovariance`
@@ -4507,6 +4509,7 @@ Distinct declaration spellings indexed: **8258**.
 - `family_originHessian_det_eq_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `family_originHessian_entry_hasGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `fibre` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `fieldExponentHessianCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `fin4_adaptiveSmithInflateSection_monomialProduct` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `fin4_distinct_01` — `theorem` in `HC4.Newton.RigidPacketEvaluatedHessianChart`
 - `fin4_distinct_02` — `theorem` in `HC4.Newton.RigidPacketEvaluatedHessianChart`
