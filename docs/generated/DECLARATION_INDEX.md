@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8419**.
+Distinct declaration spellings indexed: **8420**.
 
 ## Repeated declaration spellings
 
@@ -5547,6 +5547,7 @@ Distinct declaration spellings indexed: **8419**.
 - `middleUpperHighestReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middleUpperLockedReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middle_oneFiber_k_three_le_of_wall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleLowerImpossible`
+- `middle_pairGap_lt_lockedGap` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleGapArithmetic`
 - `middle_pairGap_ne_lockedGap` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleGapArithmetic`
 - `min_three_eq_one_or_two_or_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionTransport`
 - `minimalAdaptiveFamilyParameterOrder` — `def` in `HC4.Valuation.StrictSmithPostTransformFace`

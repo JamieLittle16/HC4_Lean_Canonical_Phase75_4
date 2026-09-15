@@ -2382,7 +2382,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: none
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem middle_pairGap_ne_lockedGap`
+- Declarations: `theorem middle_pairGap_lt_lockedGap`, `theorem middle_pairGap_ne_lockedGap`
 
 ### `HC4.Polynomial.FiniteStaircaseMiddleModeCore`
 
