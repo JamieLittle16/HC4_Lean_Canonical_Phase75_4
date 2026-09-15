@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8403**.
+Distinct declaration spellings indexed: **8405**.
 
 ## Repeated declaration spellings
 
@@ -5347,6 +5347,7 @@ Distinct declaration spellings indexed: **8403**.
 - `lockedBinomialMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `lockedBinomialMomentHessian_natDegree_le_one` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
 - `lockedDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `lockedHighestDoubleRootDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
 - `lockedLayer_eq_locked_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_support_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
@@ -7716,6 +7717,7 @@ Distinct declaration spellings indexed: **8403**.
 - `smithTwoExtremeBalance_nat_product_eq_one` — `theorem` in `HC4.Newton.SmithExtremeBalance`
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
 - `snd_det_highestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+- `snd_det_lockedHighestDoubleRootDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `snd_det_lowerPureHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
