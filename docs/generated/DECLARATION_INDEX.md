@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8443**.
+Distinct declaration spellings indexed: **8444**.
 
 ## Repeated declaration spellings
 
@@ -5722,6 +5722,7 @@ Distinct declaration spellings indexed: **8443**.
 - `noWall_unramifiedSmith_commonFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`
 - `no_certifiedRamifiedRawDefectSpend_of_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
 - `no_common_positive_r_s_support` — `theorem` in `HC4.Toric.SupportIntersection`
+- `no_crossRoof_fixed_w_mirror_terminal_degree_relation` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`
 - `no_crossRoof_fixed_w_terminal_degree_relation` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `no_crossRoof_fixed_x_and_fixed_w` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `no_distinct_exactGradientCollision_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`

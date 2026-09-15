@@ -866,6 +866,8 @@ human architecture guide.
   - `HC4.Polynomial.DerivativeWeight`
 - `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
   - _(no local imports)_
+- `HC4.Polynomial.FiniteStaircaseCrossRoofMirrorArithmetic`
+  - `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `HC4.Polynomial.FiniteStaircaseEndpointCrossScaled`
   - `HC4.Polynomial.FiniteStaircaseEndpointCrossVariation`
   - `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
