@@ -870,6 +870,8 @@ human architecture guide.
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
   - `HC4.Polynomial.RankThreeAffineMomentDegree`
+- `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+  - `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `HC4.Polynomial.FiniteStaircaseMiddleModeCore`
   - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `HC4.Polynomial.FiniteStaircaseModeLeading`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8379**.
+Distinct declaration spellings indexed: **8390**.
 
 ## Repeated declaration spellings
 
@@ -5526,6 +5526,13 @@ Distinct declaration spellings indexed: **8379**.
 - `mem_strictSymmetricSmithTransformedFamily_support_imp_source_support` — `theorem` in `HC4.Valuation.StrictSmithFirstContactMinimum`
 - `mem_support_of_mem_constantPolynomialFamily_support` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `mem_zeroSmithSourceSupport` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
+- `middleHighestSecondJet` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleLockedSecondJet` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleLowerDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleTwoModeDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleUpperDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleUpperHighestReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `middleUpperLockedReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `middle_oneFiber_k_three_le_of_wall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleLowerImpossible`
 - `min_three_eq_one_or_two_or_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionTransport`
 - `minimalAdaptiveFamilyParameterOrder` — `def` in `HC4.Valuation.StrictSmithPostTransformFace`
@@ -7699,11 +7706,15 @@ Distinct declaration spellings indexed: **8379**.
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
 - `snd_det_lowerPureHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
+- `snd_det_middleUpperHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `snd_det_middleUpperLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `snd_det_upperPureLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_snd_det_highestUpperPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_lockedLowerPureModeSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
+- `snd_snd_det_middleHighestSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `snd_snd_det_middleLockedSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_snd_det_secondVariationTopMatrix_eq_zero_of_threeLayer_det_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `snd_snd_mul_four_secondVariationTopEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
