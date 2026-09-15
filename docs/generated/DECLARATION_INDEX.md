@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8424**.
+Distinct declaration spellings indexed: **8428**.
 
 ## Repeated declaration spellings
 
@@ -4485,6 +4485,10 @@ Distinct declaration spellings indexed: **8424**.
 - `extraction_hessian_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
 - `extraction_pderiv_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `extraction_ratio_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
+- `extremalPair_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
+- `extremalPair_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
+- `extremal_pairReesOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
+- `extremal_reflectedOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `face_balanced_of_specialFiber_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
 - `face_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
