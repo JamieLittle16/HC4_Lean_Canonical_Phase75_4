@@ -117,9 +117,8 @@ theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq
     HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
     one_mul] at hes hfs
   push_cast at hes hfs
+  rw [h0Z, h1Z, h2Z] at hes
   have h3Z : (e 3 : ℤ) = (f 3 : ℤ) := by
-    have hV : (0 : ℤ) < (F.V : ℤ) := by
-      exact_mod_cast (show 0 < F.V by omega)
     nlinarith [hes, hfs]
   have h3 : e 3 = f 3 := by exact_mod_cast h3Z
 
