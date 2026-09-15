@@ -198,9 +198,9 @@ theorem exposedCrossRoofData
       exact_mod_cast hloFirstNat
     rw [D.lo_one_zero] at hs
     norm_num at hs
-    have hthreeZ : (D.lo 3 : ℤ) = (F.V * jLo : ℕ) := by
-      push_cast
-      nlinarith [hs, hfirstZ]
+    have hthreeZ :
+        (D.lo 3 : ℤ) = (F.V : ℤ) * (jLo : ℤ) := by
+      linear_combination hs + (F.V : ℤ) * hfirstZ
     exact_mod_cast hthreeZ
 
   have hhiThree : hi 3 = F.V * (kHi - 1) := by
@@ -210,7 +210,6 @@ theorem exposedCrossRoofData
       HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
       one_mul] at hs
     push_cast at hs
-    have hhi0Z : (hi 0 : ℤ) = (jHi : ℤ) + 1 := by exact_mod_cast hhiFirstNat
     have hkHiZ : (kHi : ℤ) = (hi 0 : ℤ) + (hi 1 : ℤ) := by
       dsimp [kHi]
     have hkHiOne : 1 ≤ kHi := by omega
@@ -219,9 +218,12 @@ theorem exposedCrossRoofData
       norm_num
     rw [hi2] at hs
     norm_num at hs
+    have hthreeLinear :
+        (hi 3 : ℤ) = (F.V : ℤ) * ((kHi : ℤ) - 1) := by
+      linear_combination hs - (F.V : ℤ) * hkHiZ
     have hthreeZ : (hi 3 : ℤ) = ((F.V * (kHi - 1) : ℕ) : ℤ) := by
       rw [Nat.cast_mul, hsubCast]
-      nlinarith [hs, hhi0Z, hkHiZ]
+      exact hthreeLinear
     exact_mod_cast hthreeZ
 
   exact ⟨{
