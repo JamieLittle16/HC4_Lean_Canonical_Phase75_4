@@ -8459,7 +8459,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Polynomial.UniqueMaximalInitialMonomial`, `HC4.Polynomial.MonomialHessian`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder`
 - Declarations: `def finiteStaircaseLowerHullWeight`, `def finiteStaircaseLowerHullLevel`, `theorem weight_finiteStaircaseLowerHullWeight`, `theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
@@ -9117,7 +9117,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder.lean`
 - Purpose: Exact stationary convolution orders
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestFirstVariation`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestFirstVariation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHullExposure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `theorem stationary_profileIndex_weight_le`, `theorem stationary_profileOrder_add`
