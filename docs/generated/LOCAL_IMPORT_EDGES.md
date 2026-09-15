@@ -877,6 +877,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeLogHessian`
 - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - _(no local imports)_
+- `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
+  - `HC4.Polynomial.AutonomousODETranslation`
+  - `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+  - `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `HC4.Polynomial.FourExponent`
   - `HC4.Polynomial.WeightedInitial`
   - `HC4.Toric.Facets`

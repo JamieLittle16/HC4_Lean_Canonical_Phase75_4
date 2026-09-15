@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8324**.
+Distinct declaration spellings indexed: **8329**.
 
 ## Repeated declaration spellings
 
@@ -4196,11 +4196,13 @@ Distinct declaration spellings indexed: **8324**.
 - `eval_allSourceSignHom_neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `eval_at_infinity_eq_zero_of_autonomous_ratFunc_identity` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `eval_denominator_ne_zero_of_isCoprime_sub_eval_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `eval_derivatives_two_mul_of_translate_eq_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_elementaryShearHom_unshear` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `eval_elementaryShearVariable_unshear` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `eval_eq_of_pderiv_eq_zero` — `theorem` in `HC4.Newton.TerminalOneZeroAmbientDecoupling`
 - `eval_eq_of_strictlyLowerWeightSupport` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `eval_eq_of_support_transverseDegree_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
+- `eval_eulerMoments_two_mul_of_translate_eq_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_finCons_zero_eq_longitudinalAxisRestriction` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `eval_fourUnitSourceInflateFamily_constantSection` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `eval_fourVariableLinearPart` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
@@ -4235,14 +4237,17 @@ Distinct declaration spellings indexed: **8324**.
 - `eval_pderiv_zero_finCons_zero_eq_eval_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `eval_polynomialFamilyTranslationHom_difference` — `theorem` in `HC4.Valuation.MovingCollisionRecentering`
 - `eval_projectiveWedge` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRS2LiftRepair`
+- `eval_rankThreeAffinePolynomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_rankThreeEtaDenominatorPolynomial` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
 - `eval_rankThreeEtaNumeratorPolynomial` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
 - `eval_rename_standardZeroPair` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `eval_rename_standardZeroPair_at` — `theorem` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
 - `eval_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `eval_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
+- `eval_translatePolynomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_transverseSourceShearHom_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `eval_transverseSourceShearVariable_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `eval_two_mul_rankThreeAffineMoment_of_translate_eq_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_zero_derivative_rankThreeEtaNumeratorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `eval_zero_pderiv_eq_linearCoeff` — `theorem` in `HC4.Newton.TerminalPositiveWeightLinearBlocks`
 - `eval_zero_rankThreeEtaDenominatorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
