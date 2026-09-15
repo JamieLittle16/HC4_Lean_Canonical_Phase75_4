@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8288**.
+Distinct declaration spellings indexed: **8294**.
 
 ## Repeated declaration spellings
 
@@ -5786,6 +5786,11 @@ Distinct declaration spellings indexed: **8288**.
 - `on_q_ray_of_rq_qs` — `theorem` in `HC4.Toric.BoundaryGeometry`
 - `on_r_ray_of_pr_rq` — `theorem` in `HC4.Toric.BoundaryGeometry`
 - `on_s_ray_of_qs_sp` — `theorem` in `HC4.Toric.BoundaryGeometry`
+- `oneFiberThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiber_swappedEuler_coeff_eq_zero_of_other` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiber_swappedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneStepSmith_sectionDivisibility_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneStepSmith_sectionSpecialPoint_eq_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneZeroFibrePoint` — `def` in `HC4.Newton.TerminalOneZeroEndpoint`
@@ -8015,6 +8020,7 @@ Distinct declaration spellings indexed: **8288**.
 - `swap02_activeDet_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_matrix_mulVec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
+- `swappedEuler_eq_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `swappedRankThreeEulerHessian` — `def` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `symmetricMinimalSpecialFiber_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `symmetricQuadraticSubface_exists_homogeneousCollisionFibre` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
