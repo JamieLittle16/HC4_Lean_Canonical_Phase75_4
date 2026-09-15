@@ -77,6 +77,8 @@ theorem exists_firstPositiveLayer_highestEulerEquation_left
   have hd : d ≠ 0 := by
     dsimp [d]
     exact MvPolynomial.mem_support_iff.mp he1S
+  have hVpos : 0 < F.V :=
+    lt_trans (Nat.zero_lt_succ 0) F.V_gt_one
   have hzero :=
     D.zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left F
   have hfirst := A.specialisedEulerHessian_eq_parallelStaircaseMomentHessian
@@ -84,7 +86,7 @@ theorem exists_firstPositiveLayer_highestEulerEquation_left
     affineTwoRootEulerOperator_eq_zero_of_firstActual_highest_moment_identification
       D.family D.positiveLayer D.hessian_zero
       F.V F.highest.n A.k A.j
-      (by omega : 0 < F.V) F.highest.n_two_le
+      hVpos F.highest.n_two_le
       c d hc hd A.coefficientProfile
       (by simpa [c, d] using hzero) hfirst
   exact ⟨A, A.k_gt_one, A.k_lt_highest, A.j_pos, A.j_lt_locked,
