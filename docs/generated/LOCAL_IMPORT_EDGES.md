@@ -4011,6 +4011,8 @@ human architecture guide.
   - `HC4.Valuation.CanonicalAdaptiveSmithWall`
 - `HC4.Valuation.ScaledDefect`
   - _(no local imports)_
+- `HC4.Valuation.SeparatedParameterDualJet`
+  - `HC4.Valuation.ParameterGapDualJet`
 - `HC4.Valuation.SeparatedRightWallScaleDescent`
   - `HC4.Valuation.ExactKernelDefectDrop`
   - `HC4.Valuation.PointedShearContinuation`

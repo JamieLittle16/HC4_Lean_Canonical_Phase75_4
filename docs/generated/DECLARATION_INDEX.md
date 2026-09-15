@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8415**.
+Distinct declaration spellings indexed: **8419**.
 
 ## Repeated declaration spellings
 
@@ -3601,6 +3601,7 @@ Distinct declaration spellings indexed: **8415**.
 - `coeff_mul_at_gap_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `coeff_mul_at_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `coeff_mul_at_intermediate_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapIntermediateDualJet`
+- `coeff_mul_at_separated_endpoint_commRing` — `theorem` in `HC4.Valuation.SeparatedParameterDualJet`
 - `coeff_mul_at_twice_gap_endpoint_commRing` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `coeff_mul_eq_constant_mul_of_right_vanishes_below` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_mul_eq_zero_of_right_vanishes_through` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
@@ -5491,6 +5492,7 @@ Distinct declaration spellings indexed: **8415**.
 - `matrixParameterGapIntermediateDualJet` — `def` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `matrixParameterGapSecondJet` — `def` in `HC4.Valuation.ParameterGapSecondJet`
 - `matrixParameterGapSecondJet_oneFiberThreeLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberSecondJet`
+- `matrixSeparatedParameterDualJet` — `def` in `HC4.Valuation.SeparatedParameterDualJet`
 - `matrixToParameterGap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `matrixToParameterGapCommRing` — `def` in `HC4.Valuation.ParameterGapDualJet`
 - `matrixToParameterGap_coe` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
@@ -7481,6 +7483,7 @@ Distinct declaration spellings indexed: **8415**.
 - `selected_contact_level` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `selected_contact_outside_le` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `separatedBinomialODE_iff_expanded` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
+- `separatedParameterDualJet` — `def` in `HC4.Valuation.SeparatedParameterDualJet`
 - `separatedRightSectionWall_commonParameterFactor_ten` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `separatedRightSectionWall_hasHessianDefect_twenty_mul_sub_two` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `separatedRightSectionWall_isHomogeneous_after_factor_ten` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
@@ -7731,6 +7734,7 @@ Distinct declaration spellings indexed: **8415**.
 - `snd_det_lowerPureHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `snd_det_matrixParameterGapIntermediateDualJet` — `theorem` in `HC4.Valuation.ParameterGapIntermediateDualJet`
+- `snd_det_matrixSeparatedParameterDualJet` — `theorem` in `HC4.Valuation.SeparatedParameterDualJet`
 - `snd_det_middleUpperHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_middleUpperLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
