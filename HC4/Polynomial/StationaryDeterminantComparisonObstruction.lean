@@ -40,19 +40,24 @@ theorem sourceCore_entry (i j : Fin 4) :
 theorem carrier_equations :
     (∑ i : Fin 4, wall i * exponent i) = 14 ∧
     (∑ i : Fin 4, curve i * exponent i) = 2 := by
-  norm_num [wall, curve, exponent, Fin.sum_univ_four] <;> decide
+  norm_num [wall, curve, exponent, Fin.sum_univ_four,
+    Matrix.cons_val_two, Matrix.cons_val_three]
 
 /-- The falling wall Hessian row is satisfied. -/
 theorem wall_row (i : Fin 4) :
     (∑ j : Fin 4, sourceCore i j * wall j) =
       (14 - wall i) * exponent i := by
-  fin_cases i <;> norm_num [sourceCore, wall, exponent, Fin.sum_univ_four] <;> decide
+  fin_cases i <;>
+    norm_num [sourceCore, wall, exponent, Fin.sum_univ_four,
+      Matrix.cons_val_two, Matrix.cons_val_three]
 
 /-- The falling curve Hessian row is satisfied. -/
 theorem curve_row (i : Fin 4) :
     (∑ j : Fin 4, sourceCore i j * curve j) =
       (2 - curve i) * exponent i := by
-  fin_cases i <;> norm_num [sourceCore, curve, exponent, Fin.sum_univ_four] <;> decide
+  fin_cases i <;>
+    norm_num [sourceCore, curve, exponent, Fin.sum_univ_four,
+      Matrix.cons_val_two, Matrix.cons_val_three]
 
 /-- Singularity and a nonzero active pivot coexist with nonzero profile
 Hessian determinant, even with the corrected falling diagonal. -/
