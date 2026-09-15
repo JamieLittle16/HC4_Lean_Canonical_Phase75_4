@@ -63,6 +63,81 @@ structure QsOtherFacetPrPairFirstInteriorAffineLayerData
 
 namespace QsOtherFacetPrPairFirstInteriorAffineLayerData
 
+/-- Two monomials in the first positive pair-Rees layer lie in the same exact
+quotient-staircase fibre.  This is split out of the package constructor so the
+large support/classification calculation has its own heartbeat budget. -/
+private theorem firstPositiveLayer_coordinates_relative
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    (F : QsOtherFacetPrLeftVContactFrontierData C P S R)
+    (D : QsOtherFacetPrPairReesData C P S F.highest.n)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e f : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.positiveLayer)).support)
+    (hf : f ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.positiveLayer)).support)
+    {j : ℕ}
+    (hj :
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V e).firstTransverse =
+        j + 1) :
+    f 0 + f 1 = e 0 + e 1 ∧
+      f 0 + f 2 = j + 1 ∧
+      F.V * f 0 + f 3 = F.V * ((e 0 + e 1) + j) := by
+  let q := firstPositiveActualParameterOrder D.family D.positiveLayer
+  have heFilter :
+      e ∈ P.carrier.support ∧ F.highest.n - (e 0 + e 1) = q := by
+    have hs := D.parameterLayer_support q
+    rw [hs] at he
+    exact Finset.mem_filter.mp he
+  have hfFilter :
+      f ∈ P.carrier.support ∧ F.highest.n - (f 0 + f 1) = q := by
+    have hs := D.parameterLayer_support q
+    rw [hs] at hf
+    exact Finset.mem_filter.mp hf
+  rcases F.support_staircase_classification hthree houtThree heFilter.1 with
+    ⟨_je, _hje, heN, _hjelle, _hjzeroe, _hjlockede⟩
+  rcases F.support_staircase_classification hthree houtThree hfFilter.1 with
+    ⟨_jf, _hjf, hfN, _hjellf, _hjzerof, _hjlockedf⟩
+  have hpairNat : f 0 + f 1 = e 0 + e 1 := by
+    have heN' : e 0 + e 1 ≤ F.highest.n := by
+      simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using heN
+    have hfN' : f 0 + f 1 ≤ F.highest.n := by
+      simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hfN
+    omega
+  have hpairZ :
+      qsOtherFacetPairDegree .pr f = qsOtherFacetPairDegree .pr e := by
+    simp only [qsOtherFacetPairDegree]
+    exact_mod_cast hpairNat
+  have hfiber := F.quotient.pair_fiber hfFilter.1 heFilter.1 hpairZ
+  have hfirstQ := congrArg
+    HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hfiber
+  have hfirst : f 0 + f 2 = j + 1 := by
+    have hq :
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).firstTransverse =
+          j + 1 := hfirstQ.trans hj
+    simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hq
+  have hstair := F.support_staircase_equations hthree houtThree hfFilter.1
+  have hsecondZ := hstair.2
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    one_mul] at hsecondZ
+  rw [hpairNat, hfirst] at hsecondZ
+  have hsecond :
+      F.V * f 0 + f 3 = F.V * ((e 0 + e 1) + j) := by
+    have hsecondZ' :
+        ((F.V * f 0 + f 3 : ℕ) : ℤ) =
+          ((F.V * ((e 0 + e 1) + j) : ℕ) : ℤ) := by
+      push_cast at hsecondZ ⊢
+      nlinarith
+    exact_mod_cast hsecondZ'
+  exact ⟨hpairNat, hfirst, hsecond⟩
+
 /-- Failure of endpoint-only support canonically produces the affine package
 for the first positive pair-Rees layer. -/
 theorem exists_of_not_noStrictInterior
@@ -123,48 +198,9 @@ theorem exists_of_not_noStrictInterior
     j_lt_locked := hjlt
     coordinates := by
       intro f hf
-      have hfFilter :
-          f ∈ P.carrier.support ∧ F.highest.n - (f 0 + f 1) = q := by
-        have hs := D.parameterLayer_support q
-        rw [hs] at hf
-        exact Finset.mem_filter.mp hf
-      rcases F.support_staircase_classification hthree houtThree hfFilter.1 with
-        ⟨jf, hjf, hfN, _hjfell, _hjfzero, _hjflocked⟩
-      have hpairNat : f 0 + f 1 = k := by
-        have heN : e 0 + e 1 ≤ F.highest.n := by
-          simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hkN
-        have hfN' : f 0 + f 1 ≤ F.highest.n := by
-          simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hfN
-        have heq : F.highest.n - k = q := by simpa [k] using heFilter.2
-        have hfq : F.highest.n - (f 0 + f 1) = q := hfFilter.2
-        omega
-      have hpairZ :
-          qsOtherFacetPairDegree .pr f = qsOtherFacetPairDegree .pr e := by
-        simp only [qsOtherFacetPairDegree]
-        exact_mod_cast hpairNat
-      have hfiber := F.quotient.pair_fiber hfFilter.1 heFilter.1 hpairZ
-      have hfirstQ := congrArg
-        HC4.Polynomial.RankThreeQuotientCoordinate.firstTransverse hfiber
-      have hfirst : f 0 + f 2 = j + 1 := by
-        have hq :
-            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V f).firstTransverse =
-              j + 1 := hfirstQ.trans hj
-        simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hq
-      have hstair := F.support_staircase_equations hthree houtThree hfFilter.1
-      have hsecondZ := hstair.2
-      simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
-        HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-        HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-        one_mul] at hsecondZ
-      rw [hpairNat, hfirst] at hsecondZ
-      have hsecond : F.V * f 0 + f 3 = F.V * (k + j) := by
-        have hsecondZ' :
-            ((F.V * f 0 + f 3 : ℕ) : ℤ) =
-              ((F.V * (k + j) : ℕ) : ℤ) := by
-          push_cast at hsecondZ ⊢
-          nlinarith
-        exact_mod_cast hsecondZ'
-      exact ⟨hpairNat, hfirst, hsecond⟩
+      have hcoords := firstPositiveLayer_coordinates_relative
+        F D hthree houtThree he hf hj
+      simpa [k] using hcoords
     coefficient_eq_carrier := by
       intro f hf
       have hfFilter :
