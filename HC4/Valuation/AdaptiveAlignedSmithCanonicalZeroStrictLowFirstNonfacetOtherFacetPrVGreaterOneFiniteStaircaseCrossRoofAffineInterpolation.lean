@@ -102,14 +102,19 @@ theorem face_zero_interpolation
         (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
     have hell : (0 : ℤ) < (F.locked.ell : ℤ) := by
       exact_mod_cast F.locked.ell_pos
-    have hn : (1 : ℤ) < (F.highest.n : ℤ) := by
-      exact_mod_cast (show 1 < F.highest.n by omega)
-    omega
+    have hn2 : (2 : ℤ) ≤ (F.highest.n : ℤ) := by
+      exact_mod_cast F.highest.n_two_le
+    nlinarith only [hell, hn2]
+  have hjHiSucc :
+      (((E.jHi + 1 : ℕ) : ℤ)) = (E.jHi : ℤ) + 1 := by
+    push_cast
+    ring
   have hfactor :
       ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
         ((E.v : ℤ) * ((e 0 : ℤ) - (E.kLo : ℤ)) -
           (e 1 : ℤ) *
             (((E.jHi + 1 : ℕ) : ℤ) - (E.kLo : ℤ))) = 0 := by
+    rw [hjHiSucc]
     linear_combination
       (E.v : ℤ) * hec -
       (E.v : ℤ) * hloc -
@@ -136,6 +141,11 @@ theorem face_three_interpolation
   rw [E.hull.lo_one_zero, E.lo_zero, E.lo_two] at hloc
   rw [E.hi_zero, E.hi_one, E.hi_two_zero] at hhic
   norm_num at hloc hhic
+  have hjHiSucc :
+      (((E.jHi + 1 : ℕ) : ℤ)) = (E.jHi : ℤ) + 1 := by
+    push_cast
+    ring
+  rw [hjHiSucc] at hzero
   linear_combination
     (E.v : ℤ) * hec -
     (E.v : ℤ) * hloc -
