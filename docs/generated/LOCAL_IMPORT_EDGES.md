@@ -369,6 +369,8 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Newton.ExposedBalancedBoundaryStratum`
   - `HC4.Polynomial.MaximalHessianInitial`
+- `HC4.Newton.FiniteSupportLowerHullExposure`
+  - `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
   - `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `HC4.Newton.FiniteSupportQuadraticClockRefinement`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8448**.
+Distinct declaration spellings indexed: **8449**.
 
 ## Repeated declaration spellings
 
@@ -4357,6 +4357,7 @@ Distinct declaration spellings indexed: **8448**.
 - `exists_exactRankOneSchurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`
 - `exists_exposed_nonlinear_balanced_monomial` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
+- `exists_exposed_ratio_wall_from_min_fiber` — `theorem` in `HC4.Newton.FiniteSupportLowerHullExposure`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
