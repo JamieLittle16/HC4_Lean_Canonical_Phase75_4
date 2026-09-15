@@ -33,15 +33,16 @@ theorem initialForm_eq_monomial_of_unique_max
   · subst e
     rw [hdw]
     simp
-  · have hnotTop : Finsupp.weight w e ≠ m ∨ e ∉ p.support := by
+  · have hde : d ≠ e := Ne.symm hed
+    have hnotTop : Finsupp.weight w e ≠ m ∨ e ∉ p.support := by
       by_contra h
       push_neg at h
       exact hed (huniq e h.2 h.1)
     rcases hnotTop with hweight | hsupp
-    · simp [hweight, MvPolynomial.coeff_monomial, hed]
+    · simp [hweight, MvPolynomial.coeff_monomial, hde]
     · have hcoeff : MvPolynomial.coeff e p = 0 :=
         MvPolynomial.notMem_support_iff.mp hsupp
-      simp [hcoeff, MvPolynomial.coeff_monomial, hed]
+      simp [hcoeff, MvPolynomial.coeff_monomial, hde]
 
 end
 
