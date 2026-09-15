@@ -289,12 +289,10 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
         (by exact_mod_cast hlockedMin)
         (by
           have hn1 : 1 ≤ F.highest.n := by omega
-          rw [Nat.cast_sub hn1]
           exact_mod_cast hhighestMin)
 
     have hd3pos : 0 < d 3 := by
       have hcurve := (F.support_staircase_equations hthree houtThree hdP).2
-      dsimp only at hcurve
       simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
         HC4.Polynomial.rankThreeQuotientCoordinate_pair,
         HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
@@ -331,7 +329,15 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
 
     let c : K := MvPolynomial.coeff d D2.face
     have hc : c ≠ 0 := by
-      dsimp [c, d]
+      dsimp [c]
+      have hcoeff :
+          MvPolynomial.coeff d D2.face = MvPolynomial.coeff d D1.face := by
+        rw [D2.face_eq, HC4.Polynomial.coeff_initialForm,
+          HC4.Newton.weight_coordinateMaxWeight]
+        have hd2coord : d (2 : Fin 4) = D2.level := by
+          simpa [d] using D2.witness_coordinate
+        simp [hd2coord]
+      rw [hcoeff]
       exact MvPolynomial.mem_support_iff.mp D2.witness_mem
 
     have hmono : D2.face = MvPolynomial.monomial d c := by
