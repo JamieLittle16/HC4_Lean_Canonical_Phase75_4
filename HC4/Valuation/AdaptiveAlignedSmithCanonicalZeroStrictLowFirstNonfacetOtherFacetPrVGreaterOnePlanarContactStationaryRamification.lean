@@ -160,7 +160,7 @@ theorem coeff_stationaryRamifiedFamily_of_carrier_mem
 
 /-- **Exact stationary ramified parameter layer.**  Every source exponent
 appears in exactly the parameter layer dictated by its stationary pair depth;
-o off-carrier exponent is introduced by ramification.  This is the whole-layer
+no off-carrier exponent is introduced by ramification.  This is the whole-layer
 form needed by the final stationary determinant extraction. -/
 theorem stationaryRamifiedFamily_parameterLayer_coeff
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -198,6 +198,37 @@ theorem stationaryRamifiedFamily_parameterLayer_coeff
       simp
     rw [hcoeff]
     simp [he]
+
+/-- The support of an exact stationary parameter layer is the literal carrier
+support filtered by the stationary weighted order. -/
+theorem stationaryRamifiedFamily_parameterLayer_support
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
+    (D : QsOtherFacetPrLeftVPlanarContactReesData F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (q : ℕ) :
+    (familyParameterLayer D.stationaryRamifiedFamily q).support =
+      P.carrier.support.filter fun e =>
+        F.stationaryTotalDegree -
+            F.stationaryWeight * (F.highest.n - (e 0 + e 1)) = q := by
+  ext e
+  rw [MvPolynomial.mem_support_iff]
+  rw [D.stationaryRamifiedFamily_parameterLayer_coeff hthree houtThree q e]
+  simp only [Finset.mem_filter]
+  by_cases he : e ∈ P.carrier.support
+  · have hc : MvPolynomial.coeff e P.carrier ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp he
+    by_cases hq :
+        F.stationaryTotalDegree -
+            F.stationaryWeight * (F.highest.n - (e 0 + e 1)) = q
+    · simp [he, hq, hc]
+    · simp [he, hq]
+  · simp [he]
 
 end QsOtherFacetPrLeftVPlanarContactReesData
 
