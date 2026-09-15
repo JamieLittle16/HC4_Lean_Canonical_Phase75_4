@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8365**.
+Distinct declaration spellings indexed: **8366**.
 
 ## Repeated declaration spellings
 
@@ -5841,6 +5841,7 @@ Distinct declaration spellings indexed: **8365**.
 - `oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiber_upper_diagonal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberUpperImpossible`
 - `oneStepSmith_sectionDivisibility_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneStepSmith_sectionSpecialPoint_eq_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneZeroFibrePoint` — `def` in `HC4.Newton.TerminalOneZeroEndpoint`
