@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8449**.
+Distinct declaration spellings indexed: **8454**.
 
 ## Repeated declaration spellings
 
@@ -2330,9 +2330,11 @@ Distinct declaration spellings indexed: **8449**.
 - `QsOtherFacetPrLeftVContactFrontierData.highest_e0_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.highest_e1_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `QsOtherFacetPrLeftVContactFrontierData.highest_zRoof_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrLeftVContactFrontierData.impossible_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
+- `QsOtherFacetPrLeftVContactFrontierData.locked_yRoof_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_degree_pairs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseEndpointEuler`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonTranslatedProfile_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
@@ -2360,7 +2362,10 @@ Distinct declaration spellings indexed: **8449**.
 - `QsOtherFacetPrLeftVContactFrontierData.strictInterior_pair_between` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `QsOtherFacetPrLeftVContactFrontierData.strictInterior_pair_eq_of_extrema_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `QsOtherFacetPrLeftVContactFrontierData.strictInterior_quotient_eq_of_extrema_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
+- `QsOtherFacetPrLeftVContactFrontierData.support_deficit_chord` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
+- `QsOtherFacetPrLeftVContactFrontierData.support_deficit_wall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrLeftVContactFrontierData.support_eq_locked_highest_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneNoInteriorSupport`
+- `QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrLeftVContactFrontierData.support_pair_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseClassification`
 - `QsOtherFacetPrLeftVContactFrontierData.support_quotient_eq_of_pair_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseInterface`
 - `QsOtherFacetPrLeftVContactFrontierData.support_staircase_bounds_of_pair_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseBounds`
