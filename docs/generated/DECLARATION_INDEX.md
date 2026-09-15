@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8249**.
+Distinct declaration spellings indexed: **8254**.
 
 ## Repeated declaration spellings
 
@@ -2333,6 +2333,9 @@ Distinct declaration spellings indexed: **8249**.
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_mode_k_of_j_eq_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_mode_k_pred_of_j_add_two_eq_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_three_diagonals` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_translatedProfile_eq_middle_twoMode` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_translatedProfile_eq_mode_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
+- `QsOtherFacetPrLeftVContactFrontierData.oneFiber_translatedProfile_eq_mode_k_pred` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
 - `QsOtherFacetPrLeftVContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `QsOtherFacetPrLeftVContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `QsOtherFacetPrLeftVContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
@@ -6183,7 +6186,9 @@ Distinct declaration spellings indexed: **8249**.
 - `polynomial_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `polynomial_eq_coeff_zero_add_coeff_one_mul_X_of_support_zero_one` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
+- `polynomial_eq_monomial_of_nonzero_support_singleton` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
 - `polynomial_eq_of_surjective_eval` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `polynomial_eq_two_monomials_of_support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModeNormalForm`
 - `polynomial_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_eq_zero_of_constant_pivot_of_natDegree_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
 - `polynomial_eq_zero_of_twoFunctionY_lift_eq_zero` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
