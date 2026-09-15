@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8335**.
+Distinct declaration spellings indexed: **8338**.
 
 ## Repeated declaration spellings
 
@@ -3528,6 +3528,7 @@ Distinct declaration spellings indexed: **8335**.
 - `coeff_binaryStaircaseProfileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileHessianCoefficients`
 - `coeff_binaryStaircaseProfileResidual_eq_zero_of_two_mul_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `coeff_binaryStaircaseProfileSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
+- `coeff_card_mul_top_det_polynomialMatrix` — `theorem` in `HC4.Polynomial.MatrixPolynomialTopCoefficient`
 - `coeff_carrierProfileHessian00` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `coeff_carrierProfileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `coeff_carrierProfileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
@@ -3684,9 +3685,11 @@ Distinct declaration spellings indexed: **8335**.
 - `coeff_zero_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_zero_binomialODEModel` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
+- `coeff_zero_det_polynomialMatrix` — `theorem` in `HC4.Polynomial.MatrixPolynomialTopCoefficient`
 - `coeff_zero_positiveParameterRemainder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `coeff_zero_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_zero_rankThreeLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
+- `coeff_zero_reflect` — `theorem` in `HC4.Polynomial.MatrixPolynomialTopCoefficient`
 - `coeff_zero_shiftedEulerCore` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_zero_taylor_one_twoEndpointResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_zero_twoFunctionFactorBxSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`

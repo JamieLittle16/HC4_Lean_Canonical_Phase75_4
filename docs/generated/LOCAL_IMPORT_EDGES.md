@@ -915,6 +915,8 @@ human architecture guide.
   - `HC4.Polynomial.MatrixPolynomialReflect`
 - `HC4.Polynomial.MatrixPolynomialReflect`
   - _(no local imports)_
+- `HC4.Polynomial.MatrixPolynomialTopCoefficient`
+  - `HC4.Polynomial.MatrixPolynomialReflect`
 - `HC4.Polynomial.MaximalHessianInitial`
   - `HC4.Polynomial.HessianDeterminant`
   - `HC4.Polynomial.TopProduct`
