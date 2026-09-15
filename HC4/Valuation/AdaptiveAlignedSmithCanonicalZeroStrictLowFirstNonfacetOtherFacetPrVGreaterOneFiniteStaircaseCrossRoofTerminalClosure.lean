@@ -76,6 +76,15 @@ theorem QsOtherFacetPrLeftVExposedCrossRoofData.impossible_of_terminalCertificat
     have hVgt := F.V_gt_one
     omega
 
+  have hcertHi' :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phiHi)
+        (E.kLo : K) (E.q : K) ((F.V * E.jLo : ℕ) : K) 1
+        ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
+        (-((E.q : K) / (E.v : K)))
+        ((F.V : K) * ((((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K))) := by
+    simpa [div_eq_mul_inv, mul_assoc] using hcertHi
+
   have hvone : E.v = 1 :=
     finiteStaircase_crossRoof_highResidual_eq_one
       (K := K)
@@ -83,7 +92,17 @@ theorem QsOtherFacetPrLeftVExposedCrossRoofData.impossible_of_terminalCertificat
       E.kLo_pos E.jLo_pos E.pair_lt
       E.wall_lo E.wall_hi
       E.q_eq E.q_pos E.v_eq E.v_pos
-      hdegHi hzeroHi hcertHi
+      hdegHi hzeroHi hcertHi'
+
+  have hcertLo' :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phiLo)
+        (E.jHi + 1 : K) (E.v : K)
+        ((F.V * (E.kHi - 1) : ℕ) : K) 1
+        (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K))
+        (-((E.v : K) / (E.q : K)))
+        ((F.V : K) * (((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))) := by
+    simpa [Nat.cast_add, div_eq_mul_inv, mul_assoc] using hcertLo
 
   have hqone : E.q = 1 :=
     finiteStaircase_crossRoof_lowResidual_eq_one
@@ -92,7 +111,7 @@ theorem QsOtherFacetPrLeftVExposedCrossRoofData.impossible_of_terminalCertificat
       E.kLo_pos E.pair_lt
       E.wall_lo E.wall_hi
       E.q_eq E.q_pos E.v_eq E.v_pos
-      hdegLo hzeroLo hcertLo
+      hdegLo hzeroLo hcertLo'
 
   exact HC4.Polynomial.no_crossRoof_unit_residuals
     F.highest.n_two_le hnell E.pair_lt
