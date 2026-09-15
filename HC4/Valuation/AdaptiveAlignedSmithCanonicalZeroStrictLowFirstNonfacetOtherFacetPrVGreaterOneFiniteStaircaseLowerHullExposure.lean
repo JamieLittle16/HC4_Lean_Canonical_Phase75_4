@@ -305,12 +305,12 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_or_exposed_crossRoof
       have hVpos : 0 < F.V := by
         have hVgt := F.V_gt_one
         omega
-      have hVZ : (0 : ℤ) < (F.V : ℤ) := by
-        exact_mod_cast hVpos
       have hd0Z : (0 : ℤ) < (d 0 : ℤ) := by exact_mod_cast hd0pos
       have hd1Z : (0 : ℤ) < (d 1 : ℤ) := by exact_mod_cast hd1pos
       have hd2Z : (0 : ℤ) < (d 2 : ℤ) := by exact_mod_cast hd2pos
-      nlinarith only [hcurve, hVZ, hd0Z, hd1Z, hd2Z]
+      rcases hcurve with hcurve | hVzero
+      · nlinarith only [hcurve, hd0Z, hd1Z, hd2Z]
+      · exact (Nat.ne_of_gt hVpos) hVzero
 
     have hd2face : ∀ q ∈ D2.face.support, q = d := by
       intro q hq
