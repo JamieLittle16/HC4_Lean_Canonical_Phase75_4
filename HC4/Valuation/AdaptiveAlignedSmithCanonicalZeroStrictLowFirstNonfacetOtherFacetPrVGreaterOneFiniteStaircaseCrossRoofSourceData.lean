@@ -162,8 +162,6 @@ theorem exposedCrossRoofData
       exact_mod_cast hhiFirstNat
     have hkHiZ : (kHi : ℤ) = (hi 0 : ℤ) + (hi 1 : ℤ) := by
       dsimp [kHi]
-      push_cast
-      ring
     have hleft : (hi 0 : ℤ) - 1 = (jHi : ℤ) := by
       linarith only [hhi0Z]
     have hright :
@@ -190,7 +188,6 @@ theorem exposedCrossRoofData
 
   have hloThree : D.lo 3 = F.V * jLo := by
     have hs := (F.support_staircase_equations hthree houtThree D.lo_mem).2
-    dsimp only at hs
     simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
       HC4.Polynomial.rankThreeQuotientCoordinate_pair,
       HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
@@ -208,7 +205,6 @@ theorem exposedCrossRoofData
 
   have hhiThree : hi 3 = F.V * (kHi - 1) := by
     have hs := (F.support_staircase_equations hthree houtThree hiP).2
-    dsimp only at hs
     simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
       HC4.Polynomial.rankThreeQuotientCoordinate_pair,
       HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
