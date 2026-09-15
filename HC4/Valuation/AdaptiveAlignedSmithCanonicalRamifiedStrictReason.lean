@@ -51,6 +51,24 @@ def ScaleAwareAdaptiveGeometricRestartState.canonicalOuterKey
     AdaptiveAlignedSmithCanonicalOuterKey :=
   (RR.rank s.repair, s.sourceComplexity)
 
+/-- A concrete, nondependent view of the nested fixed-scale lexicographic
+order.  Isolating this arithmetic split avoids dependent elimination on state
+projections in the global reason classifier. -/
+theorem FixedScaleEpisodeKey.lt_cases
+    {d₁ r₁ c₁ d₂ r₂ c₂ : ℕ}
+    (h : FixedScaleEpisodeKey.Lt
+      (d₁, (r₁, c₁)) (d₂, (r₂, c₂))) :
+    d₁ < d₂ ∨
+      (d₁ = d₂ ∧
+        (r₁ < r₂ ∨ (r₁ = r₂ ∧ c₁ < c₂))) := by
+  unfold FixedScaleEpisodeKey.Lt at h
+  rw [Prod.lex_def] at h
+  rcases h with hraw | ⟨hdefEq, htail⟩
+  · exact Or.inl hraw
+  · refine Or.inr ⟨hdefEq, ?_⟩
+    rw [Prod.lex_def] at htail
+    exact htail
+
 /-- A ramified strict macro either gives scale-insensitive outer progress or
 is genuinely a ramified raw-defect spend.  The latter is intentionally kept
 separate for the A18.4.39 first-contact termination argument. -/
@@ -85,12 +103,20 @@ theorem AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro.reason
   cases D with
   | mk outer target hmove hprogress =>
       rcases hmove with ⟨hmove⟩
-      have hlex := hprogress.progress
-      unfold CertifiedFixedScaleEpisodeProgress FixedScaleEpisodeProgress at hlex
-      simp only [ScaleAwareAdaptiveGeometricRestartState.fixedScaleEpisodeKey] at hlex
-      cases hlex with
-      | left hraw =>
-          apply .rawSpend target
+      have hcases :
+          target.rawDefect < outer.rawDefect ∨
+            (target.rawDefect = outer.rawDefect ∧
+              (RR.rank target.repair < RR.rank outer.repair ∨
+                (RR.rank target.repair = RR.rank outer.repair ∧
+                  target.sourceComplexity < outer.sourceComplexity))) := by
+        apply FixedScaleEpisodeKey.lt_cases
+        simpa [FixedScaleEpisodeProgress,
+          ScaleAwareAdaptiveGeometricRestartState.fixedScaleEpisodeKey] using
+          hprogress.progress
+      rcases hcases with hraw | ⟨_hrawEq, hrepair | ⟨hrankEq, hsource⟩⟩
+      · have hspend :
+            AdaptiveAlignedSmithBlockerClockProvenance.HasCertifiedRamifiedRawDefectSpend
+              target source := by
           change Nonempty (CertifiedRamifiedRawDefectSpend target source)
           refine ⟨{
             ramification := hmove.ramification
@@ -104,24 +130,30 @@ theorem AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro.reason
           · calc
               target.rawDefect < outer.rawDefect := hraw
               _ = hmove.ramification * source.rawDefect := hmove.raw_eq
-      | right htail =>
-          cases htail with
-          | left hrepair =>
-              apply .outerProgress target
-              unfold AdaptiveAlignedSmithCanonicalOuterKey.Lt
-              unfold ScaleAwareAdaptiveGeometricRestartState.canonicalOuterKey
-              apply Prod.Lex.left
-              calc
-                RR.rank target.repair < RR.rank outer.repair := hrepair
-                _ = RR.rank source.repair := by rw [hmove.repair_eq]
-          | right hsource =>
-              apply .outerProgress target
-              unfold AdaptiveAlignedSmithCanonicalOuterKey.Lt
-              unfold ScaleAwareAdaptiveGeometricRestartState.canonicalOuterKey
-              apply Prod.Lex.right (RR.rank source.repair)
-              calc
-                target.sourceComplexity < outer.sourceComplexity := hsource
-                _ = source.sourceComplexity := hmove.sourceComplexity_eq
+        exact AdaptiveAlignedSmithCanonicalRamifiedStrictReason.rawSpend
+          target hspend
+      · exact AdaptiveAlignedSmithCanonicalRamifiedStrictReason.outerProgress
+          target (by
+            unfold AdaptiveAlignedSmithCanonicalOuterKey.Lt
+            unfold ScaleAwareAdaptiveGeometricRestartState.canonicalOuterKey
+            apply Prod.Lex.left
+            calc
+              RR.rank target.repair < RR.rank outer.repair := hrepair
+              _ = RR.rank source.repair := by rw [hmove.repair_eq])
+      · have hrankSource :
+            RR.rank target.repair = RR.rank source.repair := by
+          calc
+            RR.rank target.repair = RR.rank outer.repair := hrankEq
+            _ = RR.rank source.repair := by rw [hmove.repair_eq]
+        exact AdaptiveAlignedSmithCanonicalRamifiedStrictReason.outerProgress
+          target (by
+            unfold AdaptiveAlignedSmithCanonicalOuterKey.Lt
+            unfold ScaleAwareAdaptiveGeometricRestartState.canonicalOuterKey
+            rw [hrankSource]
+            apply Prod.Lex.right
+            calc
+              target.sourceComplexity < outer.sourceComplexity := hsource
+              _ = source.sourceComplexity := hmove.sourceComplexity_eq)
 
 end
 
