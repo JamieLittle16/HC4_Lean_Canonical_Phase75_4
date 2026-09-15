@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8315**.
+Distinct declaration spellings indexed: **8324**.
 
 ## Repeated declaration spellings
 
@@ -5007,6 +5007,7 @@ Distinct declaration spellings indexed: **8315**.
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `highestBinomialMomentHessian` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
+- `highestDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `highestOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactRees`
 - `highestParallelFirstVariationDualPencil` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `highestSlice_cross_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarAffineRR`
@@ -5309,6 +5310,7 @@ Distinct declaration spellings indexed: **8315**.
 - `lockedBinomialFirstVariationEulerResidual_eq_derivative_form` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialFirstVariationEulerResidual_normalized_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `lockedBinomialMomentHessian` — `def` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `lockedDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `lockedLayer_eq_locked_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
 - `lockedLayer_support_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesLockedMomentRealisation`
@@ -5421,6 +5423,8 @@ Distinct declaration spellings indexed: **8315**.
 - `lowNegativeSecond_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `lowerPureDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `lowerPureHighestReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `lowerPureMode_parallelStaircaseMomentHessian_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `lowerRoot_sum_le_natDegree_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
 - `lowerRoots_eq_one_of_distinct_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootDistinctRoots`
@@ -7644,8 +7648,10 @@ Distinct declaration spellings indexed: **8315**.
 - `smulLinearPowerProfile_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.LinearPowerRecurrence`
 - `snd_det_highestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
 - `snd_det_lockedParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `snd_det_lowerPureHighestReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_det_matrixParameterGapDualJet` — `theorem` in `HC4.Valuation.ParameterGapDualJet`
 - `snd_det_primitiveHighestParallelFirstVariationDualPencil` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
+- `snd_det_upperPureLockedReverseDualPencil` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
@@ -7776,6 +7782,7 @@ Distinct declaration spellings indexed: **8315**.
 - `squareExponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareGeometry_of_detCore_eq_zero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareGeometry_of_rankOneRelation` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
+- `staircaseLogDirection` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `standardActualHessianMatrix` — `def` in `HC4.Newton.TerminalScalarGradient`
 - `standardActualHessian_vecMul_injective` — `theorem` in `HC4.Newton.TerminalScalarGradient`
 - `standardBasePoint` — `def` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
@@ -8362,6 +8369,8 @@ Distinct declaration spellings indexed: **8315**.
 - `unramified` — `def` in `HC4.Valuation.ScaledDefect`
 - `upperBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `upperBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
+- `upperPureDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+- `upperPureLockedReverseDualPencil` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `upperPureMode_parallelStaircaseMomentHessian_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `upper_oneFiber_balanced_resonance_shape` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `vecMul_injective_of_det_ne_zero` — `theorem` in `HC4.PlanarDoublingInjectivity`

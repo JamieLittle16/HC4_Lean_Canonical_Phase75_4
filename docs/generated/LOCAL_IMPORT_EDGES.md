@@ -872,6 +872,9 @@ human architecture guide.
   - `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
+  - `HC4.Polynomial.LogHessianMoments`
+  - `HC4.Polynomial.RankThreeLogHessian`
 - `HC4.Polynomial.FiniteStaircaseTransitionArithmetic`
   - _(no local imports)_
 - `HC4.Polynomial.FourExponent`
