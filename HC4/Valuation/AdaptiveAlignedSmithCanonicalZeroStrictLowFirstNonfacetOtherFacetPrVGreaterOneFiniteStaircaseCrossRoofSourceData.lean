@@ -213,8 +213,6 @@ theorem exposedCrossRoofData
     have hhi0Z : (hi 0 : ℤ) = (jHi : ℤ) + 1 := by exact_mod_cast hhiFirstNat
     have hkHiZ : (kHi : ℤ) = (hi 0 : ℤ) + (hi 1 : ℤ) := by
       dsimp [kHi]
-      push_cast
-      ring
     have hkHiOne : 1 ≤ kHi := by omega
     have hsubCast : ((kHi - 1 : ℕ) : ℤ) = (kHi : ℤ) - 1 := by
       rw [Nat.cast_sub hkHiOne]
