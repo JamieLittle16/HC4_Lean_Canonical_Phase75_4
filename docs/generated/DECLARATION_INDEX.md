@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8298**.
+Distinct declaration spellings indexed: **8304**.
 
 ## Repeated declaration spellings
 
@@ -3972,6 +3972,7 @@ Distinct declaration spellings indexed: **8298**.
 - `det_normalizedHessianCongruence` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_normalizedHessianCongruence_of_conformal` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_normalizedShiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `det_oneFiberReflectedEulerHessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `det_oneZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.OneZeroBlockDeterminant`
 - `det_oneZeroRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `det_planarJacobianMatrixAt` — `theorem` in `HC4.PlanarJacobianEvaluation`
@@ -5787,7 +5788,12 @@ Distinct declaration spellings indexed: **8298**.
 - `on_q_ray_of_rq_qs` — `theorem` in `HC4.Toric.BoundaryGeometry`
 - `on_r_ray_of_pr_rq` — `theorem` in `HC4.Toric.BoundaryGeometry`
 - `on_s_ray_of_qs_sp` — `theorem` in `HC4.Toric.BoundaryGeometry`
+- `oneFiberReflectedEulerHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `oneFiberReflectedEuler_coeff_highest` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `oneFiberReflectedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
+- `oneFiberReflectedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `oneFiberThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
+- `oneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `oneFiber_swappedEuler_coeff_eq_zero_of_other` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
