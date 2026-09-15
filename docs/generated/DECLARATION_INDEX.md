@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8281**.
+Distinct declaration spellings indexed: **8287**.
 
 ## Repeated declaration spellings
 
@@ -3647,6 +3647,8 @@ Distinct declaration spellings indexed: **8281**.
 - `coeff_stationaryRamifiedFamily_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `coeff_sub_own_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `coeff_swap_rankThreeLineSpecialisation_eq_parameterLayer` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
+- `coeff_swap_rankThreeLineSpecialisation_eulerScaledHessian` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
+- `coeff_swappedRankThreeEulerHessian` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `coeff_three_rankThreeEtaDenominatorPolynomial_unit` — `theorem` in `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
@@ -4477,6 +4479,8 @@ Distinct declaration spellings indexed: **8281**.
 - `familyParameterLayerOrders_nonempty_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_C_X_pow_mul_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryDeterminantCancellation`
 - `familyParameterLayer_C_X_pow_mul_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `familyParameterLayer_X_mul` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
+- `familyParameterLayer_X_mul_X_mul` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `familyParameterLayer_add` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationParameterSwap`
 - `familyParameterLayer_add_exact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_coeff` — `theorem` in `HC4.Valuation.ActualParameterLayer`
@@ -4485,6 +4489,7 @@ Distinct declaration spellings indexed: **8281**.
 - `familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `familyParameterLayer_eulerScaledHessian_apply` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `familyParameterLayer_familyParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_familyParameterSecondEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyParameterEuler`
 - `familyParameterLayer_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
@@ -8008,6 +8013,7 @@ Distinct declaration spellings indexed: **8281**.
 - `swap02_activeDet_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_matrix_mulVec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
+- `swappedRankThreeEulerHessian` — `def` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `symmetricMinimalSpecialFiber_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `symmetricQuadraticSubface_exists_homogeneousCollisionFibre` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `symmetricSmithPoleMinimal_exists_nonpositive_face_grade` — `theorem` in `HC4.Newton.SymmetricSmithMinimality`
