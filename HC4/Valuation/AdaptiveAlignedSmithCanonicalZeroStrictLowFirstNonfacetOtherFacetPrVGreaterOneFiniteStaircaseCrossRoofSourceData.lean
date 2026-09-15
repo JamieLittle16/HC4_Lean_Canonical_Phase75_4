@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseClassification
 import Mathlib.Tactic
 
 /-!
@@ -39,7 +40,12 @@ structure QsOtherFacetPrLeftVExposedCrossRoofData
   hi : Fin 4 →₀ ℕ
   hi_mem_face : hi ∈ hull.face.support
   hi_two_zero : hi 2 = 0
-  kLo jLo kHi jHi q v : ℕ
+  kLo : ℕ
+  jLo : ℕ
+  kHi : ℕ
+  jHi : ℕ
+  q : ℕ
+  v : ℕ
   lo_zero : hull.lo 0 = kLo
   lo_two : hull.lo 2 = q
   lo_three : hull.lo 3 = F.V * jLo
