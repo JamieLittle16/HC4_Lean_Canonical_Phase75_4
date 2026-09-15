@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8377**.
+Distinct declaration spellings indexed: **8379**.
 
 ## Repeated declaration spellings
 
@@ -5526,6 +5526,7 @@ Distinct declaration spellings indexed: **8377**.
 - `mem_strictSymmetricSmithTransformedFamily_support_imp_source_support` — `theorem` in `HC4.Valuation.StrictSmithFirstContactMinimum`
 - `mem_support_of_mem_constantPolynomialFamily_support` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `mem_zeroSmithSourceSupport` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
+- `middle_oneFiber_k_three_le_of_wall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleLowerImpossible`
 - `min_three_eq_one_or_two_or_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSectionTransport`
 - `minimalAdaptiveFamilyParameterOrder` — `def` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `minimalAdaptiveFamilyParameterOrder_commonFactor` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
@@ -5844,6 +5845,7 @@ Distinct declaration spellings indexed: **8377**.
 - `oneFiberThreeLayerMomentPencil_hasGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberSecondJet`
 - `oneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `oneFiber_lower_diagonal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberLowerImpossible`
+- `oneFiber_middle_lower_degree_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleLowerImpossible`
 - `oneFiber_pairGap_pos_lt_terminal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberSecondJet`
 - `oneFiber_swappedEuler_coeff_eq_zero_of_other` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
