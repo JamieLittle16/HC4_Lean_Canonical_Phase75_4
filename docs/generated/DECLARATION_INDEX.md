@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8178**.
+Distinct declaration spellings indexed: **8180**.
 
 ## Repeated declaration spellings
 
@@ -7766,6 +7766,8 @@ Distinct declaration spellings indexed: **8178**.
 - `stationaryIntegralProfileHessian01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`
 - `stationaryIntegralProfileHessian11` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`
 - `stationaryIntegralProfileHessianDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`
+- `stationaryIntegralProfileHessianDet_eq_binaryStaircaseProfileResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryResidualBridge`
+- `stationaryIntegralProfileHessianDet_eq_zero_iff_residual_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryResidualBridge`
 - `stationaryIntegralProfileSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`
 - `stationaryPairWeightedEulerShear` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
 - `stationaryPairWeightedEulerShear_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
