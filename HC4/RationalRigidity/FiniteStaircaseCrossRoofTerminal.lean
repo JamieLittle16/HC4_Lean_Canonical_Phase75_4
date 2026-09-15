@@ -66,15 +66,15 @@ theorem finiteStaircase_crossRoof_highResidual_eq_one
       HasRankThreePolynomialTerminalCertificate
         (phi := phi)
         (kLo : K) (q : K) ((V * jLo : ℕ) : K) 1
-        (((jHi + 1 : ℕ) : K) - (kLo : K)) / (v : K)
+        ((((jHi + 1 : ℕ) : K) - (kLo : K)) / (v : K))
         (-((q : K) / (v : K)))
-        ((V : K) * (((kHi : K) - 1) - (jLo : K)) / (v : K))) :
+        ((V : K) * ((((kHi : K) - 1) - (jLo : K)) / (v : K)))) :
     v = 1 := by
   let Q : K :=
     ((((jHi + 1 : ℕ) : K) - (kLo : K)) / (v : K))
   let R : K := -((q : K) / (v : K))
   let S : K :=
-    (V : K) * (((kHi : K) - 1) - (jLo : K)) / (v : K)
+    (V : K) * ((((kHi : K) - 1) - (jLo : K)) / (v : K))
 
   have hvK : (v : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hvpos)
   have hqK0 : (q : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hqpos)
@@ -126,6 +126,7 @@ theorem finiteStaircase_crossRoof_highResidual_eq_one
     dsimp [Q, R, S] at hscaled
     field_simp [hvK] at hscaled
     rw [hqK, hvK_eq] at hscaled
+    push_cast at hscaled
     have hfactor :
         ((V : K) + 1) * ((kHi : K) - (jLo : K) - 1) = 0 := by
       linear_combination hscaled
@@ -152,6 +153,7 @@ theorem finiteStaircase_crossRoof_highResidual_eq_one
         rw [hqK, hvK_eq]
         have hwK : (kHi : K) = (jLo : K) + 1 := by exact_mod_cast hw
         rw [hwK]
+        push_cast
         ring
       rw [hformula]
       exact div_ne_zero hqK0 hvK
@@ -161,6 +163,7 @@ theorem finiteStaircase_crossRoof_highResidual_eq_one
       rw [hqK, hvK_eq]
       have hwK : (kHi : K) = (jLo : K) + 1 := by exact_mod_cast hw
       rw [hwK]
+      push_cast
       ring
     have hS : S = 0 := by
       dsimp [S]
