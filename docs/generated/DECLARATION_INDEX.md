@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8559**.
+Distinct declaration spellings indexed: **8565**.
 
 ## Repeated declaration spellings
 
@@ -2485,11 +2485,15 @@ Distinct declaration spellings indexed: **8559**.
 - `QsOtherFacetPrUnitEndpointOrientationData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointOrientation`
 - `QsOtherFacetPrUnitEndpointOrientationData.sameOrientation_normalForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointNormalization`
 - `QsOtherFacetPrUnitLeftContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
+- `QsOtherFacetPrUnitLeftContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `QsOtherFacetPrUnitLeftContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `QsOtherFacetPrUnitLeftContactFrontierData.support_staircase_equations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseSupport`
+- `QsOtherFacetPrUnitLeftContactFrontierData.topFace_degree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `QsOtherFacetPrUnitRightContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
+- `QsOtherFacetPrUnitRightContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `QsOtherFacetPrUnitRightContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `QsOtherFacetPrUnitRightContactFrontierData.support_staircase_equations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseSupport`
+- `QsOtherFacetPrUnitRightContactFrontierData.topFace_degree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -8632,6 +8636,8 @@ Distinct declaration spellings indexed: **8559**.
 - `unitTransverseInflateRingHom_injective` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryInflationInjective`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unit_denominator_of_reduced_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
+- `unit_highest_weight_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
+- `unit_highest_weight_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `unit_pr_final_skew_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `unit_weight_explicit_fin4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `unmarkedCoefficient_X_dvd_of_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
