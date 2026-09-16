@@ -163,16 +163,17 @@ theorem highTerminalCertificate
     change HC4.Polynomial.hessianDeterminant
       (E.highSupportData hthree houtThree).affineLineData.polynomial = 0
     exact E.highAffineLine_hessian_zero hthree houtThree
-  exact hasRankThreePolynomialTerminalCertificate_of_affine_line
-    (K := K)
-    (A := E.kLo) (B := E.q) (C := F.V * E.jLo) (u1 := 1)
-    (q := ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K)))
-    (r := -((E.q : K) / (E.v : K)))
-    (s := ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K)))
-    (phi := D.coefficientProfile)
-    D.affineLineData
-    E.kLo_pos E.q_pos hC (by norm_num)
-    hdeg hzero hdet
+  simpa only [Nat.cast_one] using
+    (hasRankThreePolynomialTerminalCertificate_of_affine_line
+      (K := K)
+      (A := E.kLo) (B := E.q) (C := F.V * E.jLo) (u1 := 1)
+      (q := ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K)))
+      (r := -((E.q : K) / (E.v : K)))
+      (s := ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K)))
+      (phi := D.coefficientProfile)
+      D.affineLineData
+      E.kLo_pos E.q_pos hC (by norm_num)
+      hdeg hzero hdet)
 
 /-- Reverse affine-line terminal certificate, retaining the literal high roof
 as its positive rank-three base endpoint. -/
@@ -197,7 +198,7 @@ theorem lowTerminalCertificate
     ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))
   have hVgt : 1 < F.V := F.V_gt_one
   have hV : 0 < F.V := by omega
-  have hkLoOne : 1 ≤ E.kLo := by omega
+  have hkLoOne : 1 ≤ E.kLo := E.kLo_pos
   have hOneLtKHi : 1 < E.kHi := lt_of_le_of_lt hkLoOne E.pair_lt
   have hkHiSub : 0 < E.kHi - 1 := Nat.sub_pos_of_lt hOneLtKHi
   have hC : 0 < F.V * (E.kHi - 1) := Nat.mul_pos hV hkHiSub
@@ -215,16 +216,17 @@ theorem lowTerminalCertificate
     change HC4.Polynomial.hessianDeterminant
       (E.lowSupportData hthree houtThree).affineLineData.polynomial = 0
     exact E.lowAffineLine_hessian_zero hthree houtThree
-  exact hasRankThreePolynomialTerminalCertificate_of_affine_line
-    (K := K)
-    (A := E.jHi + 1) (B := E.v) (C := F.V * (E.kHi - 1)) (u1 := 1)
-    (q := (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K)))
-    (r := -((E.v : K) / (E.q : K)))
-    (s := ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K)))
-    (phi := D.coefficientProfile)
-    D.affineLineData
-    (Nat.succ_pos E.jHi) E.v_pos hC (by norm_num)
-    hdeg hzero hdet
+  simpa only [Nat.cast_one] using
+    (hasRankThreePolynomialTerminalCertificate_of_affine_line
+      (K := K)
+      (A := E.jHi + 1) (B := E.v) (C := F.V * (E.kHi - 1)) (u1 := 1)
+      (q := (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K)))
+      (r := -((E.v : K) / (E.q : K)))
+      (s := ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K)))
+      (phi := D.coefficientProfile)
+      D.affineLineData
+      (Nat.succ_pos E.jHi) E.v_pos hC (by norm_num)
+      hdeg hzero hdet)
 
 /-- **The actual exposed cross-roof source face is impossible.**
 
