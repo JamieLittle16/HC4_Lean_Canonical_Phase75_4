@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8513**.
+Distinct declaration spellings indexed: **8518**.
 
 ## Repeated declaration spellings
 
@@ -2867,6 +2867,8 @@ Distinct declaration spellings indexed: **8513**.
 - `active_swap12_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `active_swap13_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
+- `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+- `actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - `adaptiveAlignedEndpointHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFamilyHessianFourBlock`
 - `adaptiveAlignedEndpointHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFamilyHessianFourBlock`
 - `adaptiveAlignedEndpointHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFamilyHessianFourBlock`
@@ -3447,6 +3449,7 @@ Distinct declaration spellings indexed: **8513**.
 - `carrierProfile_fraction_staircaseResidual_eq_zero_of_hessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileResidual`
 - `carrier_curveEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `carrier_equations` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
+- `carrier_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - `carrier_wallEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
@@ -6496,6 +6499,7 @@ Distinct declaration spellings indexed: **8513**.
 - `presentedState_zeroSourceJet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalZeroJet`
 - `presented_rawDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `presented_rawDefect_eq_zero_of_source_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
+- `presented_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - `preterminalBinaryFirstDeparture_of_linearDet_zero` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `preterminalCertificate` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminalRankOneRepairState` — `def` in `HC4.Newton.MixedDepartureAdapter`
@@ -7444,6 +7448,7 @@ Distinct declaration spellings indexed: **8513**.
 - `scaleAwareFiniteHessian_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `scaleAwareHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
 - `scaleAwareHessianFourBlock_activeDet_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
+- `scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - `scaleAwareHessianFourBlock_activeDet_coeff_zero_finite` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `scaleAwareHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
 - `scaleAwareHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
