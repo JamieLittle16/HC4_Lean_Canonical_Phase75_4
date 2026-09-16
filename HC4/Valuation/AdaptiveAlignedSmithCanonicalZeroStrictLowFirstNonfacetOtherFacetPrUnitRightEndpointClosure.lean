@@ -32,6 +32,22 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 private noncomputable def unitSwap23 : Equiv.Perm (Fin 4) :=
   Equiv.swap 2 3
 
+private theorem swap23_zero :
+    (Equiv.swap (2 : Fin 4) 3) 0 = 0 := by
+  decide
+
+private theorem swap23_one :
+    (Equiv.swap (2 : Fin 4) 3) 1 = 1 := by
+  decide
+
+private theorem swap23_two :
+    (Equiv.swap (2 : Fin 4) 3) 2 = 3 := by
+  decide
+
+private theorem swap23_three :
+    (Equiv.swap (2 : Fin 4) 3) 3 = 2 := by
+  decide
+
 private theorem unitRight_locked_facet_swap_eq_twoFunctionExponent
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -43,11 +59,12 @@ private theorem unitRight_locked_facet_swap_eq_twoFunctionExponent
       HC4.Polynomial.twoFunctionLockedFacetExponent 1 F.locked.ell := by
   ext i
   fin_cases i <;>
-    simp [unitSwap23, HC4.Polynomial.twoFunctionLockedFacetExponent,
+    simp [unitSwap23, swap23_zero, swap23_one, swap23_two, swap23_three,
+      HC4.Polynomial.twoFunctionLockedFacetExponent,
       HC4.Polynomial.twoFunctionHExponent,
       HC4.Polynomial.twoFunctionYExponent,
       F.locked.facet_zero, F.locked.facet_one,
-      F.locked.facet_two, F.locked.facet_three] <;> ring
+      F.locked.facet_two, F.locked.facet_three] <;> omega
 
 private theorem unitRight_locked_outside_swap_eq_twoFunctionExponent
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -60,10 +77,11 @@ private theorem unitRight_locked_outside_swap_eq_twoFunctionExponent
       HC4.Polynomial.twoFunctionLockedOutsideExponent 1 F.locked.ell := by
   ext i
   fin_cases i <;>
-    simp [unitSwap23, HC4.Polynomial.twoFunctionLockedOutsideExponent,
+    simp [unitSwap23, swap23_zero, swap23_one, swap23_two, swap23_three,
+      HC4.Polynomial.twoFunctionLockedOutsideExponent,
       HC4.Polynomial.twoFunctionHExponent,
       F.locked.outside_zero, F.locked.outside_one,
-      F.locked.outside_two, F.locked.outside_three] <;> ring
+      F.locked.outside_two, F.locked.outside_three] <;> omega
 
 private theorem unitRight_highest_e0_swap_eq_twoFunctionExponent
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -76,11 +94,12 @@ private theorem unitRight_highest_e0_swap_eq_twoFunctionExponent
       HC4.Polynomial.twoFunctionHighestZExponent 1 F.highest.n := by
   ext i
   fin_cases i <;>
-    simp [unitSwap23, HC4.Polynomial.twoFunctionHighestZExponent,
+    simp [unitSwap23, swap23_zero, swap23_one, swap23_two, swap23_three,
+      HC4.Polynomial.twoFunctionHighestZExponent,
       HC4.Polynomial.twoFunctionYExponent,
       F.highest.e0_zero, F.highest.e0_one,
       F.highest.e0_two, F.highest.e0_three,
-      F.highest_V_eq_one] <;> ring
+      F.highest_V_eq_one] <;> omega
 
 private theorem unitRight_highest_e1_swap_eq_twoFunctionExponent
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -93,11 +112,12 @@ private theorem unitRight_highest_e1_swap_eq_twoFunctionExponent
       HC4.Polynomial.twoFunctionHighestXExponent 1 F.highest.n := by
   ext i
   fin_cases i <;>
-    simp [unitSwap23, HC4.Polynomial.twoFunctionHighestXExponent,
+    simp [unitSwap23, swap23_zero, swap23_one, swap23_two, swap23_three,
+      HC4.Polynomial.twoFunctionHighestXExponent,
       HC4.Polynomial.twoFunctionYExponent,
       F.highest.e1_zero, F.highest.e1_one,
       F.highest.e1_two, F.highest.e1_three,
-      F.highest_V_eq_one] <;> ring
+      F.highest_V_eq_one] <;> omega
 
 /-- The endpoint-only right unit branch is the transverse rename of the
 existing concrete two-function carrier, hence is impossible. -/
