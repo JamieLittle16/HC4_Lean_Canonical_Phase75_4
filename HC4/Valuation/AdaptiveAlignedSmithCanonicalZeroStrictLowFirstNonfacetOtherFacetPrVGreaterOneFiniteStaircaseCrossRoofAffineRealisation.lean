@@ -67,6 +67,15 @@ private def crossRoofLowPerm : Equiv.Perm (Fin 4) :=
 @[simp] private theorem crossRoofHighPerm_three :
     crossRoofHighPerm (3 : Fin 4) = 3 := by decide
 
+@[simp] private theorem crossRoofHighPerm_symm_zero :
+    crossRoofHighPerm.symm (0 : Fin 4) = 1 := by decide
+@[simp] private theorem crossRoofHighPerm_symm_one :
+    crossRoofHighPerm.symm (1 : Fin 4) = 0 := by decide
+@[simp] private theorem crossRoofHighPerm_symm_two :
+    crossRoofHighPerm.symm (2 : Fin 4) = 2 := by decide
+@[simp] private theorem crossRoofHighPerm_symm_three :
+    crossRoofHighPerm.symm (3 : Fin 4) = 3 := by decide
+
 @[simp] private theorem crossRoofLowPerm_zero :
     crossRoofLowPerm (0 : Fin 4) = 1 := by decide
 @[simp] private theorem crossRoofLowPerm_one :
@@ -195,40 +204,28 @@ noncomputable def highSupportData
       rw [Nat.cast_sub hkHiOne]
       norm_num
 
-    have hmap0 :
-        (Finsupp.mapDomain crossRoofHighPerm e0) (0 : Fin 4) = e0 1 := by
-      simp [Finsupp.mapDomain_equiv_apply, crossRoofHighPerm]
-    have hmap1 :
-        (Finsupp.mapDomain crossRoofHighPerm e0) (1 : Fin 4) = e0 0 := by
-      simp [Finsupp.mapDomain_equiv_apply, crossRoofHighPerm]
-    have hmap2 :
-        (Finsupp.mapDomain crossRoofHighPerm e0) (2 : Fin 4) = e0 2 := by
-      simp [Finsupp.mapDomain_equiv_apply, crossRoofHighPerm]
-    have hmap3 :
-        (Finsupp.mapDomain crossRoofHighPerm e0) (3 : Fin 4) = e0 3 := by
-      simp [Finsupp.mapDomain_equiv_apply, crossRoofHighPerm]
-
     funext i
     fin_cases i
-    · simp [crossRoofHighPerm,
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofHighPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
-    · rw [hmap1, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofHighPerm_symm_one, crossRoofHighPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       field_simp [hvK]
       linear_combination hzeroK
-    · rw [hmap2, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofHighPerm_symm_two, crossRoofHighPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       field_simp [hvK]
       linear_combination hcrossK
-    · rw [hmap3, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofHighPerm_symm_three, crossRoofHighPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       rw [Nat.cast_mul, Nat.cast_mul, hkHiSubK] at hthreeK
       field_simp [hvK]
       linear_combination hthreeK
@@ -323,44 +320,27 @@ noncomputable def lowSupportData
       rw [Nat.cast_sub hkHiOne]
       norm_num
 
-    have hmap0 :
-        (Finsupp.mapDomain crossRoofLowPerm e0) (0 : Fin 4) = e0 2 := by
-      simpa only [Finsupp.mapDomain_equiv_apply,
-        crossRoofLowPerm_symm_zero]
-    have hmap1 :
-        (Finsupp.mapDomain crossRoofLowPerm e0) (1 : Fin 4) = e0 0 := by
-      simpa only [Finsupp.mapDomain_equiv_apply,
-        crossRoofLowPerm_symm_one]
-    have hmap2 :
-        (Finsupp.mapDomain crossRoofLowPerm e0) (2 : Fin 4) = e0 1 := by
-      simpa only [Finsupp.mapDomain_equiv_apply,
-        crossRoofLowPerm_symm_two]
-    have hmap3 :
-        (Finsupp.mapDomain crossRoofLowPerm e0) (3 : Fin 4) = e0 3 := by
-      simpa only [Finsupp.mapDomain_equiv_apply,
-        crossRoofLowPerm_symm_three]
-
     funext i
     fin_cases i
     · simp [Finsupp.mapDomain_equiv_apply, crossRoofLowPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
-    · rw [hmap1, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofLowPerm_symm_one, crossRoofLowPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       field_simp [hqK]
       linear_combination hrevZeroK
-    · rw [hmap2, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofLowPerm_symm_two, crossRoofLowPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       field_simp [hqK]
       linear_combination hrevOneK
-    · rw [hmap3, hmap0]
-      simp only [HC4.Polynomial.rankThreeLogBaseExponent,
-        HC4.Polynomial.rankThreeLogDirection,
-        Matrix.cons_val_zero, Matrix.cons_val_one]
+    · simp [Finsupp.mapDomain_equiv_apply,
+        crossRoofLowPerm_symm_three, crossRoofLowPerm_symm_zero,
+        HC4.Polynomial.rankThreeLogBaseExponent,
+        HC4.Polynomial.rankThreeLogDirection]
       rw [Nat.cast_mul, Nat.cast_mul, hkHiSubK] at hrevThreeK
       field_simp [hqK]
       linear_combination hrevThreeK
