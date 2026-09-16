@@ -127,9 +127,9 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.twoFunctionCarrierData_of_noSt
   have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
   have hFO : C.ray.facetExponent ≠ C.ray.outsideExponent := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
-    rw [F.locked.facet_zero, F.locked.outside_zero] at h0
-    omega
+    have h0 : C.ray.facetExponent 0 = C.ray.outsideExponent 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    simp [F.locked.facet_zero, F.locked.outside_zero] at h0
   have hFH0 : C.ray.facetExponent ≠ F.highest.e0 := by
     intro h
     have hpdeg := congrArg (fun e : Fin 4 →₀ ℕ => e 0 + e 1) h
@@ -156,9 +156,9 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.twoFunctionCarrierData_of_noSt
     omega
   have hH01 : F.highest.e0 ≠ F.highest.e1 := by
     intro h
-    have h0 := congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
-    rw [F.highest.e0_zero, F.highest.e1_zero] at h0
-    omega
+    have h0 : F.highest.e0 0 = F.highest.e1 0 := by
+      simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 0) h
+    simp [F.highest.e0_zero, F.highest.e1_zero] at h0
   have hsupp := F.support_eq_locked_highest_of_noStrictInterior hno
   have hsum := MvPolynomial.as_sum P.carrier
   rw [hsupp] at hsum
