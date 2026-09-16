@@ -37,7 +37,18 @@ theorem eval_one_hessianPrincipalMinor_monomial
   have hjj := congrFun (congrFun hh j) j
   have hij := congrFun (congrFun hh i) j
   have hji := congrFun (congrFun hh j) i
-  simp only [Matrix.map_apply, smul_eq_mul] at hii hjj hij hji
+  change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
+      (hessian (MvPolynomial.monomial d c) i i) =
+        (c • exponentHessianCore (K := K) d) i i at hii
+  change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
+      (hessian (MvPolynomial.monomial d c) j j) =
+        (c • exponentHessianCore (K := K) d) j j at hjj
+  change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
+      (hessian (MvPolynomial.monomial d c) i j) =
+        (c • exponentHessianCore (K := K) d) i j at hij
+  change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
+      (hessian (MvPolynomial.monomial d c) j i) =
+        (c • exponentHessianCore (K := K) d) j i at hji
   simp only [map_sub, map_mul]
   rw [hii, hjj, hij, hji]
   by_cases hijEq : i = j
@@ -70,7 +81,11 @@ theorem hessianPrincipalMinor_monomial_ne_zero_of_two_positive
   have hsumNat : 1 < d i + d j := by omega
   have hlast : 1 - (d i : K) - (d j : K) ≠ 0 := by
     intro hz
-    have heq : (d i : K) + (d j : K) = 1 := by linear_combination hz
+    have heq : (d i : K) + (d j : K) = 1 := by
+      calc
+        (d i : K) + (d j : K) =
+            1 - (1 - (d i : K) - (d j : K)) := by ring
+        _ = 1 := by rw [hz]; ring
     have hnat : d i + d j = 1 := by exact_mod_cast heq
     omega
   exact (mul_ne_zero hci hlast) heval
