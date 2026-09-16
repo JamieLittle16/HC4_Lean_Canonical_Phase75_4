@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8553**.
+Distinct declaration spellings indexed: **8557**.
 
 ## Repeated declaration spellings
 
@@ -2485,7 +2485,9 @@ Distinct declaration spellings indexed: **8553**.
 - `QsOtherFacetPrUnitEndpointOrientationData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointOrientation`
 - `QsOtherFacetPrUnitEndpointOrientationData.sameOrientation_normalForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointNormalization`
 - `QsOtherFacetPrUnitLeftContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
+- `QsOtherFacetPrUnitLeftContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `QsOtherFacetPrUnitRightContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
+- `QsOtherFacetPrUnitRightContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `QsOtherFacetRayFirstActualLayerPackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstActualLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.firstHessianLayerPackage` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFirstHessianLayer`
 - `QsOtherFacetRayFirstActualLayerPackage.relativeFirstDeformation_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayRelativeFirstDeformation`
@@ -8628,6 +8630,8 @@ Distinct declaration spellings indexed: **8553**.
 - `unitTransverseInflateRingHom_injective` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryInflationInjective`
 - `unit_denominator_of_coprime_dvd` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `unit_denominator_of_reduced_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
+- `unit_pr_final_skew_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
+- `unit_weight_explicit_fin4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 - `unmarkedCoefficient_X_dvd_of_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `unramified` — `def` in `HC4.Valuation.ScaledDefect`
 - `upperBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
