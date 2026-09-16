@@ -216,7 +216,7 @@ theorem impossible
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) : False := by
   have hsep := F.highest_n_lt_locked_height hthree houtThree
-  have hnell : F.highest.n ≤ F.locked.ell := Nat.le_of_lt hsep
+  have hnell : F.highest.n ≤ F.locked.ell := Nat.lt_succ_iff.mp hsep
   have hVgt := F.V_gt_one
   have hV : 0 < F.V := by omega
 
