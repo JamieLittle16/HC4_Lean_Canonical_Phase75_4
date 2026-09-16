@@ -369,11 +369,12 @@ private theorem mvEuler_three_twoFunctionCarrier_local
 set_option maxHeartbeats 2000000
 
 /-- The Euler-scaled Hessian of the concrete two-function carrier is exactly
-the abstract matrix used in `TwoFunctionEulerHessian`, in the non-unit
-positive-exponent regime used by the A19 branch. -/
+the abstract matrix used in `TwoFunctionEulerHessian` for every positive
+quotient exponent.  The proof itself is algebraic and only the positivity
+interface is retained for the downstream nondegeneracy step. -/
 theorem eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
-    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
+    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
     (a b : K) (P Q : Polynomial K) :
     eulerScaledHessian (twoFunctionCarrier V ell a b P Q) =
       twoFunctionEulerHessianMatrix
@@ -405,11 +406,11 @@ theorem eulerScaledHessian_twoFunctionCarrier
       mvEuler_three_twoFunctionH_pow_local] <;>
     ring
 
-/-- Determinant factorisation for the **actual** four-variable carrier in the
-same non-unit positive-exponent regime. -/
+/-- Determinant factorisation for the actual four-variable carrier for every
+positive quotient exponent. -/
 theorem det_eulerScaledHessian_twoFunctionCarrier
     {K : Type*} [CommRing K]
-    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
+    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
     (a b : K) (P Q : Polynomial K) :
     (eulerScaledHessian (twoFunctionCarrier V ell a b P Q)).det =
       (V : MvPolynomial (Fin 4) K) *
