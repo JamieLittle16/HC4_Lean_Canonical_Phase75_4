@@ -8440,7 +8440,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInterior`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `structure QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData`, `theorem firstPositiveLayer_coordinates_relative`, `theorem exists_of_not_noStrictInterior`
+- Declarations: `structure QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData`, `theorem firstPositiveLayer_coordinates_relative`, `theorem exists_of_not_noStrictInterior`, `theorem eq_of_zeroCoordinate_eq`, `def coefficientProfile`, `theorem coeff_coefficientProfile_of_mem`, `theorem coefficientProfile_ne_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
 
