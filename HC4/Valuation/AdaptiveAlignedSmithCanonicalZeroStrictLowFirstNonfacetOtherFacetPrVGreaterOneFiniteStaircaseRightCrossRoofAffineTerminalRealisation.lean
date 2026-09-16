@@ -131,6 +131,7 @@ theorem highTerminalCertificate
     ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
     (-((E.q : K) / (E.v : K)))
     ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K))
+  have hVgt := F.V_gt_one
   have hV : 0 < F.V := by omega
   have hC : 0 < F.V * E.jLo := Nat.mul_pos hV E.jLo_pos
   have hdegEq : D.coefficientProfile.natDegree = E.v := by
@@ -178,6 +179,7 @@ theorem lowTerminalCertificate
     (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K))
     (-((E.v : K) / (E.q : K)))
     ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))
+  have hVgt := F.V_gt_one
   have hV : 0 < F.V := by omega
   have hkLoOne : 1 ≤ E.kLo := E.kLo_pos
   have hOneLtKHi : 1 < E.kHi := lt_of_le_of_lt hkLoOne E.pair_lt
@@ -213,9 +215,9 @@ theorem impossible
     (E : QsOtherFacetPrRightVExposedCrossRoofData F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) : False := by
-  have hnell : F.highest.n ≤ F.locked.ell := by
-    have hsep := F.highest_n_lt_locked_height hthree houtThree
-    omega
+  have hsep := F.highest_n_lt_locked_height hthree houtThree
+  have hnell : F.highest.n ≤ F.locked.ell := Nat.le_of_lt hsep
+  have hVgt := F.V_gt_one
   have hV : 0 < F.V := by omega
 
   have hcertHi :
