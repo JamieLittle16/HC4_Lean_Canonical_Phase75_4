@@ -66,6 +66,7 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_coordinateMax_face_rankTw
 
   have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
     exact_mod_cast F.locked.ell_pos
+  have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
   have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
     exact_mod_cast (show 1 < F.highest.n by omega)
   have hnOneZ : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by
@@ -174,24 +175,28 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_coordinateMax_face_rankTw
       (HC4.Newton.coordinateMaxWeight (0 : Fin 4)) (D.level : ℤ)
       P.carrier c hc hcWeight D.weight_bound huniqWeight
 
-  have hcPair := F.support_pair_pos hthree houtThree hc
-  have hc0One : 1 ≤ c 0 := by
-    simpa only [HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-      hc1, Nat.add_zero] using hcPair
-
   have hcWall := F.support_deficit_wall hthree houtThree hc
   rw [hc1, hc2] at hcWall
   norm_num at hcWall
+  have hprodPos :
+      (0 : ℤ) <
+        (F.locked.ell : ℤ) * ((F.highest.n : ℤ) - 1) :=
+    mul_pos hellZ hnOneZ
   have hc0GtOne : 1 < c 0 := by
     by_contra hnot
-    have hc0Eq : c 0 = 1 := by omega
-    rw [hc0Eq] at hcWall
-    norm_num at hcWall
-    have hprodPos :
-        (0 : ℤ) <
-          (F.locked.ell : ℤ) * ((F.highest.n : ℤ) - 1) :=
-      mul_pos hellZ hnOneZ
-    nlinarith only [hcWall, hprodPos]
+    have hc0Le : c 0 ≤ 1 := by omega
+    rcases Nat.eq_zero_or_pos (c 0) with hc0Zero | hc0PosNat
+    · rw [hc0Zero] at hcWall
+      norm_num at hcWall
+      have hnPosZ : (0 : ℤ) < (F.highest.n : ℤ) := by omega
+      have hrightPos :
+          (0 : ℤ) < (F.locked.ell : ℤ) * (F.highest.n : ℤ) :=
+        mul_pos hellZ hnPosZ
+      nlinarith only [hcWall, hnOneZ, hrightPos]
+    · have hc0Eq : c 0 = 1 := by omega
+      rw [hc0Eq] at hcWall
+      norm_num at hcWall
+      nlinarith only [hcWall, hprodPos]
   have hc0Pos : 0 < c 0 := by omega
 
   have hcurve := (F.support_staircase_equations hthree houtThree hc).2
