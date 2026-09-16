@@ -204,6 +204,121 @@ theorem exists_of_not_noStrictInterior
       simp [hfFilter.1, hq]
   }⟩
 
+/-- Coordinate `0` is injective on the selected unit pair-Rees layer. -/
+theorem eq_of_zeroCoordinate_eq
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrUnitLeftContactFrontierData C P S R}
+    {D : QsOtherFacetPrPairReesData C P S F.highest.n}
+    (A : QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData F D)
+    {e f : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.positiveLayer)).support)
+    (hf : f ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.positiveLayer)).support)
+    (hzero : e 0 = f 0) : e = f := by
+  rcases A.coordinates e he with ⟨he1, he2, he3⟩
+  rcases A.coordinates f hf with ⟨hf1, hf2, hf3⟩
+  apply Finsupp.ext
+  intro i
+  fin_cases i
+  · exact hzero
+  · have hsum : e 0 + e 1 = e 0 + f 1 := by
+      calc
+        e 0 + e 1 = A.k := he1
+        _ = f 0 + f 1 := hf1.symm
+        _ = e 0 + f 1 := by rw [hzero]
+    exact Nat.add_left_cancel hsum
+  · have hsum : e 0 + e 2 = e 0 + f 2 := by
+      calc
+        e 0 + e 2 = A.j + 1 := he2
+        _ = f 0 + f 2 := hf2.symm
+        _ = e 0 + f 2 := by rw [hzero]
+    exact Nat.add_left_cancel hsum
+  · have hsum : e 0 + e 3 = e 0 + f 3 := by
+      calc
+        e 0 + e 3 = A.k + A.j := he3
+        _ = f 0 + f 3 := hf3.symm
+        _ = e 0 + f 3 := by rw [hzero]
+    exact Nat.add_left_cancel hsum
+
+/-- Honest one-variable coefficient profile of the selected unit pair-Rees layer. -/
+noncomputable def coefficientProfile
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrUnitLeftContactFrontierData C P S R}
+    {D : QsOtherFacetPrPairReesData C P S F.highest.n}
+    (_A : QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData F D) : Polynomial K :=
+  let L := familyParameterLayer D.family
+    (firstPositiveActualParameterOrder D.family D.positiveLayer)
+  ∑ e ∈ L.support, Polynomial.monomial (e 0) (MvPolynomial.coeff e L)
+
+/-- The profile retains each selected unit-layer coefficient literally. -/
+theorem coeff_coefficientProfile_of_mem
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrUnitLeftContactFrontierData C P S R}
+    {D : QsOtherFacetPrPairReesData C P S F.highest.n}
+    (A : QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData F D)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ (familyParameterLayer D.family
+      (firstPositiveActualParameterOrder D.family D.positiveLayer)).support) :
+    A.coefficientProfile.coeff (e 0) =
+      MvPolynomial.coeff e (familyParameterLayer D.family
+        (firstPositiveActualParameterOrder D.family D.positiveLayer)) := by
+  classical
+  let L := familyParameterLayer D.family
+    (firstPositiveActualParameterOrder D.family D.positiveLayer)
+  change
+    (∑ f ∈ L.support,
+      Polynomial.monomial (f 0) (MvPolynomial.coeff f L)).coeff (e 0) =
+      MvPolynomial.coeff e L
+  rw [Polynomial.finset_sum_coeff]
+  rw [Finset.sum_eq_single e]
+  · simp
+  · intro f hf hfe
+    have hz : f 0 ≠ e 0 := by
+      intro hcoord
+      apply hfe
+      exact A.eq_of_zeroCoordinate_eq hf he hcoord
+    simp [Polynomial.coeff_monomial, hz]
+  · intro hnot
+    exact (hnot he).elim
+
+/-- The extracted first unit pair-Rees profile is nonzero. -/
+theorem coefficientProfile_ne_zero
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    {S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P}
+    {R : QsOtherFacetContactQuadraticReesPackage C}
+    {F : QsOtherFacetPrUnitLeftContactFrontierData C P S R}
+    {D : QsOtherFacetPrPairReesData C P S F.highest.n}
+    (A : QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData F D) :
+    A.coefficientProfile ≠ 0 := by
+  let L := familyParameterLayer D.family
+    (firstPositiveActualParameterOrder D.family D.positiveLayer)
+  have hL : L ≠ 0 := by
+    dsimp [L]
+    exact firstPositiveActualParameterLayer_ne_zero D.family D.positiveLayer
+  rcases MvPolynomial.support_nonempty.mpr hL with ⟨e, he⟩
+  have hc : MvPolynomial.coeff e L ≠ 0 := MvPolynomial.mem_support_iff.mp he
+  intro hz
+  have hpz : A.coefficientProfile.coeff (e 0) = 0 := by
+    simpa using congrArg (fun p : Polynomial K => p.coeff (e 0)) hz
+  have hp := A.coeff_coefficientProfile_of_mem (e := e) (by simpa [L] using he)
+  rw [hp] at hpz
+  exact hc (by simpa [L] using hpz)
+
 end QsOtherFacetPrUnitLeftPairFirstInteriorAffineLayerData
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
