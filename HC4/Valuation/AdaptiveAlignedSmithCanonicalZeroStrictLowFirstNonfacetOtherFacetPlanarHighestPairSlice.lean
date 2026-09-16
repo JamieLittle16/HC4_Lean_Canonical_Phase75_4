@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier
 import HC4.Polynomial.MaximalSingularInitial
+import HC4.Polynomial.MonomialHessian
 import Mathlib.Tactic
 
 /-!
@@ -115,6 +116,47 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.coeff_eq_source_of_mem
   rw [S.slice_eq_initialForm, HC4.Polynomial.coeff_initialForm,
     finsupp_weight_qsOtherFacetPairWeight, if_pos hpair,
     P.carrier_eq_initialForm, HC4.Polynomial.coeff_initialForm, if_pos hfinal]
+
+/-- A singleton highest pair slice cannot be an interior monomial.  Thus its
+unique exponent omits at least one coordinate.  This is the literal-monomial
+exit needed by the singleton branch; the remaining boundary case can be handed
+to the existing facet/vertical machinery. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.singleton_on_boundary
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs}
+    {next : ToricFacet} {P : QsOtherFacetPlanarCarrierPackage C next}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C next P)
+    {d : Fin 4 →₀ ℕ}
+    (hsupp : S.slice.support = {d}) :
+    HC4.Polynomial.MvExponentOnBoundary d := by
+  classical
+  have hdmem : d ∈ S.slice.support := by
+    rw [hsupp]
+    simp
+  have hc : MvPolynomial.coeff d S.slice ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hdmem
+  have hsum := MvPolynomial.as_sum S.slice
+  rw [hsupp] at hsum
+  have hmono :
+      S.slice = MvPolynomial.monomial d (MvPolynomial.coeff d S.slice) := by
+    simpa using hsum
+  by_contra hboundary
+  have hpos : ∀ i : Fin 4, 0 < d i :=
+    HC4.Polynomial.coordinate_pos_of_not_mvExponentOnBoundary hboundary
+  have h0 := hpos (0 : Fin 4)
+  have h1 := hpos (1 : Fin 4)
+  have h2 := hpos (2 : Fin 4)
+  have h3 := hpos (3 : Fin 4)
+  have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+    simp [HC4.Polynomial.ordinaryDegree4]
+    omega
+  have hne := HC4.Polynomial.hessianDeterminant_monomial_ne_zero
+    hc hpos hdeg
+  have hz :
+      HC4.Polynomial.hessianDeterminant
+        (MvPolynomial.monomial d (MvPolynomial.coeff d S.slice)) = 0 := by
+    rw [← hmono]
+    exact S.hessian_zero
+  exact hne hz
 
 /-- **Highest pair slice.** -/
 theorem QsOtherFacetPlanarCarrierPackage.highestPairSlice
