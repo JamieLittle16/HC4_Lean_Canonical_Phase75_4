@@ -196,7 +196,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_coordinateMax_face_rankTw
     · have hc0Eq : c 0 = 1 := by omega
       rw [hc0Eq] at hcWall
       norm_num at hcWall
-      nlinarith only [hcWall, hprodPos]
+      rcases hcWall with hellZero | hnOneZero
+      · exact (Nat.ne_of_gt F.locked.ell_pos) hellZero
+      · exact (ne_of_gt hnOneZ) hnOneZero
   have hc0Pos : 0 < c 0 := by omega
 
   have hcurve := (F.support_staircase_equations hthree houtThree hc).2
@@ -211,10 +213,13 @@ theorem QsOtherFacetPrLeftVContactFrontierData.central_coordinateMax_face_rankTw
       (c 3 : ℤ) =
         (F.V : ℤ) * ((c 0 : ℤ) - 1) := by
     nlinarith only [hcurve]
-  have hVPos : 0 < F.V := by omega
+  have hVPos : 0 < F.V :=
+    lt_trans Nat.zero_lt_one F.V_gt_one
   have hVZ : (0 : ℤ) < (F.V : ℤ) := by exact_mod_cast hVPos
-  have hc0MinusOneZ : (0 : ℤ) < (c 0 : ℤ) - 1 := by
+  have hc0GtOneZ : (1 : ℤ) < (c 0 : ℤ) := by
     exact_mod_cast hc0GtOne
+  have hc0MinusOneZ : (0 : ℤ) < (c 0 : ℤ) - 1 := by
+    omega
   have hc3ZPos : (0 : ℤ) < (c 3 : ℤ) := by
     rw [hc3Z]
     exact mul_pos hVZ hc0MinusOneZ
