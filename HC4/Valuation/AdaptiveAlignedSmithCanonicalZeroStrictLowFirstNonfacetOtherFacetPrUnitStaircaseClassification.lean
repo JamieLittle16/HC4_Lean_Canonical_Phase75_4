@@ -46,6 +46,10 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.support_pair_pos
   let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
+  have hcurve :
+      (q.secondTransverse : ℤ) =
+        (q.pair : ℤ) + (q.firstTransverse : ℤ) - 1 := by
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate] using hs.2
   have hsource := P.support_source he
   have hbound := R.source_weight_le hsource
   have hweight := F.quotient.contactWeight_eq_quotientSum
@@ -60,7 +64,7 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.support_pair_pos
     q.pair q.firstTransverse q.secondTransverse
     F.locked.ell_pos F.highest.n_two_le
     (F.highest_n_lt_locked_height hthree houtThree)
-    hs.1 (by simpa using hs.2) hcontact
+    hs.1 hcurve hcontact
 
 /-- Right unit orientation: every actual carrier point has positive pair
 degree. -/
@@ -78,6 +82,10 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.support_pair_pos
   let q := HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e
   have hs := F.support_staircase_equations hthree houtThree he
   dsimp only at hs
+  have hcurve :
+      (q.firstTransverse : ℤ) =
+        (q.pair : ℤ) + (q.secondTransverse : ℤ) - 1 := by
+    simpa [q, HC4.Polynomial.rankThreeQuotientCoordinate] using hs.2
   have hsource := P.support_source he
   have hbound := R.source_weight_le hsource
   have hweight := F.quotient.contactWeight_eq_quotientSum
@@ -93,7 +101,7 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.support_pair_pos
     q.pair q.secondTransverse q.firstTransverse
     F.locked.ell_pos F.highest.n_two_le
     (F.highest_n_lt_locked_height hthree houtThree)
-    hs.1 (by simpa using hs.2) hcontact
+    hs.1 hcurve hcontact
 
 /-- Left unit orientation: exhaustive endpoint/interior quotient
 classification for an arbitrary actual carrier monomial. -/
