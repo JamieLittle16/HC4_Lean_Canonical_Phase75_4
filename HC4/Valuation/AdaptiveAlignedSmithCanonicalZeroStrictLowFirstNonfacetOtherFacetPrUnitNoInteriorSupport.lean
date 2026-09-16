@@ -108,6 +108,7 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.support_eq_locked_highest_of_n
     · have hpairNat : e 0 + e 1 = 1 := by
         simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hlocked
       have hpairE : qsOtherFacetPairDegree .pr e = (1 : ℤ) := by
+        simp [qsOtherFacetPairDegree]
         exact_mod_cast hpairNat
       have hpairF :
           qsOtherFacetPairDegree .pr C.ray.facetExponent = (1 : ℤ) := by
@@ -145,6 +146,7 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.support_eq_locked_highest_of_n
         simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hhighest
       have hpairE :
           qsOtherFacetPairDegree .pr e = (F.highest.n : ℤ) := by
+        simp [qsOtherFacetPairDegree]
         exact_mod_cast hpairNat
       have hweight :
           Finsupp.weight (qsOtherFacetPairWeight .pr) e = S.pairLevel := by
@@ -191,6 +193,7 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.support_eq_locked_highest_of_
     · have hpairNat : e 0 + e 1 = 1 := by
         simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hlocked
       have hpairE : qsOtherFacetPairDegree .pr e = (1 : ℤ) := by
+        simp [qsOtherFacetPairDegree]
         exact_mod_cast hpairNat
       have hpairF :
           qsOtherFacetPairDegree .pr C.ray.facetExponent = (1 : ℤ) := by
@@ -228,6 +231,7 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.support_eq_locked_highest_of_
         simpa [HC4.Polynomial.rankThreeQuotientCoordinate] using hhighest
       have hpairE :
           qsOtherFacetPairDegree .pr e = (F.highest.n : ℤ) := by
+        simp [qsOtherFacetPairDegree]
         exact_mod_cast hpairNat
       have hweight :
           Finsupp.weight (qsOtherFacetPairWeight .pr) e = S.pairLevel := by
