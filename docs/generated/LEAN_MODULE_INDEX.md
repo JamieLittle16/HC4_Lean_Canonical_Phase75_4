@@ -8237,7 +8237,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly.lean`
 - Purpose: A19 nontrivial PR assembly after the left finite-staircase closure
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedCarrier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedCarrier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_left_closure`
@@ -8799,7 +8799,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineInterpolation`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
 - Declarations: `def rightCrossRoofHighPerm`, `def rightCrossRoofLowPerm`, `def highFace`, `def lowFace`, `theorem coefficientProfile_natDegree_eq_of_bound_endpoint`, `def highSupportData`, `def lowSupportData`, `theorem highProfile_natDegree`, `theorem lowProfile_natDegree`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
@@ -8809,7 +8809,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.FiniteStaircaseCrossRoofMirrorTerminal`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`
 - Declarations: `def terminalHighPerm`, `def terminalLowPerm`, `theorem highProfile_coeff_zero_ne`, `theorem lowProfile_coeff_zero_ne`, `theorem highAffineLine_hessian_zero`, `theorem lowAffineLine_hessian_zero`, `theorem highTerminalCertificate`, `theorem lowTerminalCertificate`, `theorem impossible`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
@@ -8819,7 +8819,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightLowerHull`, `HC4.Newton.FiniteSupportExposedVertex`, `HC4.Polynomial.MonomialHessian`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofSourceData`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofSourceData`
 - Declarations: `def gap`, `def weight`, `def level`, `def face`, `theorem weight_eq`, `theorem weight_bound`, `theorem lo_weight_eq`, `theorem edge_weight_eq`, `theorem lo_mem_face`, `theorem edge_mem_face`, `theorem face_support_subset`, `theorem cost_eq_of_mem_face`, `theorem face_hessian_zero`, `theorem exists_wRoof_on_face`, `theorem exists_source_wRoof_on_face`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofSourceData`
