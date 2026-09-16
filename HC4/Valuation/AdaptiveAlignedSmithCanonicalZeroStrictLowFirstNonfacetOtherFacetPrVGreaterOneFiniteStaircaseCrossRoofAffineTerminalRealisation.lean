@@ -140,20 +140,39 @@ theorem highTerminalCertificate
       (-((E.q : K) / (E.v : K)))
       ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K)) := by
   let D := E.highSupportData hthree houtThree
+  change HasRankThreePolynomialTerminalCertificate
+    (phi := D.coefficientProfile)
+    (E.kLo : K) (E.q : K) ((F.V * E.jLo : ℕ) : K) 1
+    ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
+    (-((E.q : K) / (E.v : K)))
+    ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K))
   have hVgt : 1 < F.V := F.V_gt_one
   have hV : 0 < F.V := by omega
   have hC : 0 < F.V * E.jLo := Nat.mul_pos hV E.jLo_pos
   have hdegEq : D.coefficientProfile.natDegree = E.v := by
-    simpa [D] using E.highProfile_natDegree hthree houtThree
+    change (E.highSupportData hthree houtThree).coefficientProfile.natDegree = E.v
+    exact E.highProfile_natDegree hthree houtThree
   have hdeg : 0 < D.coefficientProfile.natDegree := by
     rw [hdegEq]
     exact E.v_pos
+  have hzero : D.coefficientProfile.coeff 0 ≠ 0 := by
+    change (E.highSupportData hthree houtThree).coefficientProfile.coeff 0 ≠ 0
+    exact E.highProfile_coeff_zero_ne hthree houtThree
+  have hdet :
+      HC4.Polynomial.hessianDeterminant D.affineLineData.polynomial = 0 := by
+    change HC4.Polynomial.hessianDeterminant
+      (E.highSupportData hthree houtThree).affineLineData.polynomial = 0
+    exact E.highAffineLine_hessian_zero hthree houtThree
   exact hasRankThreePolynomialTerminalCertificate_of_affine_line
+    (K := K)
+    (A := E.kLo) (B := E.q) (C := F.V * E.jLo) (u1 := 1)
+    (q := ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K)))
+    (r := -((E.q : K) / (E.v : K)))
+    (s := ((F.V : K) * (((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K)))
+    (phi := D.coefficientProfile)
     D.affineLineData
     E.kLo_pos E.q_pos hC (by norm_num)
-    hdeg
-    (by simpa [D] using E.highProfile_coeff_zero_ne hthree houtThree)
-    (by simpa [D] using E.highAffineLine_hessian_zero hthree houtThree)
+    hdeg hzero hdet
 
 /-- Reverse affine-line terminal certificate, retaining the literal high roof
 as its positive rank-three base endpoint. -/
@@ -169,22 +188,43 @@ theorem lowTerminalCertificate
       (-((E.v : K) / (E.q : K)))
       ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K)) := by
   let D := E.lowSupportData hthree houtThree
+  change HasRankThreePolynomialTerminalCertificate
+    (phi := D.coefficientProfile)
+    ((E.jHi + 1 : ℕ) : K) (E.v : K)
+    ((F.V * (E.kHi - 1) : ℕ) : K) 1
+    (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K))
+    (-((E.v : K) / (E.q : K)))
+    ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))
   have hVgt : 1 < F.V := F.V_gt_one
   have hV : 0 < F.V := by omega
-  have hkHiPos : 0 < E.kHi := lt_trans E.kLo_pos E.pair_lt
-  have hkHiSub : 0 < E.kHi - 1 := by omega
+  have hkLoOne : 1 ≤ E.kLo := by omega
+  have hOneLtKHi : 1 < E.kHi := lt_of_le_of_lt hkLoOne E.pair_lt
+  have hkHiSub : 0 < E.kHi - 1 := Nat.sub_pos_of_lt hOneLtKHi
   have hC : 0 < F.V * (E.kHi - 1) := Nat.mul_pos hV hkHiSub
   have hdegEq : D.coefficientProfile.natDegree = E.q := by
-    simpa [D] using E.lowProfile_natDegree hthree houtThree
+    change (E.lowSupportData hthree houtThree).coefficientProfile.natDegree = E.q
+    exact E.lowProfile_natDegree hthree houtThree
   have hdeg : 0 < D.coefficientProfile.natDegree := by
     rw [hdegEq]
     exact E.q_pos
+  have hzero : D.coefficientProfile.coeff 0 ≠ 0 := by
+    change (E.lowSupportData hthree houtThree).coefficientProfile.coeff 0 ≠ 0
+    exact E.lowProfile_coeff_zero_ne hthree houtThree
+  have hdet :
+      HC4.Polynomial.hessianDeterminant D.affineLineData.polynomial = 0 := by
+    change HC4.Polynomial.hessianDeterminant
+      (E.lowSupportData hthree houtThree).affineLineData.polynomial = 0
+    exact E.lowAffineLine_hessian_zero hthree houtThree
   exact hasRankThreePolynomialTerminalCertificate_of_affine_line
+    (K := K)
+    (A := E.jHi + 1) (B := E.v) (C := F.V * (E.kHi - 1)) (u1 := 1)
+    (q := (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K)))
+    (r := -((E.v : K) / (E.q : K)))
+    (s := ((F.V : K) * ((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K)))
+    (phi := D.coefficientProfile)
     D.affineLineData
     (Nat.succ_pos E.jHi) E.v_pos hC (by norm_num)
-    hdeg
-    (by simpa [D] using E.lowProfile_coeff_zero_ne hthree houtThree)
-    (by simpa [D] using E.lowAffineLine_hessian_zero hthree houtThree)
+    hdeg hzero hdet
 
 /-- **The actual exposed cross-roof source face is impossible.**
 
