@@ -218,7 +218,6 @@ noncomputable def highSupportData
         crossRoofHighPerm_symm_one, crossRoofHighPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
-      rw [hjHiSuccK]
       field_simp [hvK]
       linear_combination hzeroK
     · simp [Finsupp.mapDomain_equiv_apply,
@@ -338,7 +337,6 @@ noncomputable def lowSupportData
         crossRoofLowPerm_symm_one, crossRoofLowPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
-      rw [hjHiSuccK]
       field_simp [hqK]
       linear_combination hrevZeroK
     · simp [Finsupp.mapDomain_equiv_apply,
