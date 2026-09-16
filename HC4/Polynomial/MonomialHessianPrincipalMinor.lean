@@ -6,7 +6,7 @@ import Mathlib.Tactic
 # Principal Hessian minors of a monomial
 
 For a monomial `c x^d`, evaluation at the all-ones point turns a principal
-`2 x 2` Hessian minor in coordinates `i,j` into
+`2 x 2` Hessian minor in distinct coordinates `i,j` into
 
     c^2 * d_i * d_j * (1 - d_i - d_j).
 
@@ -23,10 +23,12 @@ open MvPolynomial
 
 noncomputable section
 
-/-- Evaluation at one of a monomial principal Hessian minor. -/
+/-- Evaluation at one of a monomial principal Hessian minor in two distinct
+coordinates. -/
 theorem eval_one_hessianPrincipalMinor_monomial
     {K : Type*} [CommRing K]
-    (d : Fin 4 →₀ ℕ) (c : K) (i j : Fin 4) :
+    (d : Fin 4 →₀ ℕ) (c : K) (i j : Fin 4)
+    (hij : i ≠ j) :
     MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
         (hessianPrincipalMinor (MvPolynomial.monomial d c) i j) =
       c ^ 2 * (d i : K) * (d j : K) *
@@ -35,7 +37,7 @@ theorem eval_one_hessianPrincipalMinor_monomial
   have hh := eval_one_hessian_monomial (K := K) d c
   have hii := congrFun (congrFun hh i) i
   have hjj := congrFun (congrFun hh j) j
-  have hij := congrFun (congrFun hh i) j
+  have hij' := congrFun (congrFun hh i) j
   have hji := congrFun (congrFun hh j) i
   change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
       (hessian (MvPolynomial.monomial d c) i i) =
@@ -45,17 +47,14 @@ theorem eval_one_hessianPrincipalMinor_monomial
         (c • exponentHessianCore (K := K) d) j j at hjj
   change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
       (hessian (MvPolynomial.monomial d c) i j) =
-        (c • exponentHessianCore (K := K) d) i j at hij
+        (c • exponentHessianCore (K := K) d) i j at hij'
   change MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
       (hessian (MvPolynomial.monomial d c) j i) =
         (c • exponentHessianCore (K := K) d) j i at hji
   simp only [map_sub, map_mul]
-  rw [hii, hjj, hij, hji]
-  by_cases hijEq : i = j
-  · subst j
-    simp [exponentHessianCore]
-  · simp [exponentHessianCore, hijEq, Ne.symm hijEq]
-    ring
+  rw [hii, hjj, hij', hji]
+  simp [exponentHessianCore, hij, Ne.symm hij]
+  ring
 
 /-- Any two distinct positive exponent coordinates of a nonzero monomial give
 a nonzero principal `2 x 2` Hessian minor in characteristic zero. -/
@@ -70,7 +69,7 @@ theorem hessianPrincipalMinor_monomial_ne_zero_of_two_positive
   intro hzero
   have heval := congrArg
     (MvPolynomial.eval (fun _ : Fin 4 => (1 : K))) hzero
-  rw [eval_one_hessianPrincipalMinor_monomial] at heval
+  rw [eval_one_hessianPrincipalMinor_monomial (K := K) d c i j hij] at heval
   simp only [map_zero] at heval
   have hci : c ^ 2 * (d i : K) * (d j : K) ≠ 0 := by
     apply mul_ne_zero
