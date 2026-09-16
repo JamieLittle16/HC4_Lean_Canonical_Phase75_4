@@ -8,30 +8,51 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`
+### `HANDOFF_2026-09-16_HC4_FRESH_CONTEXT_FINAL_SPRINT.md`
 
-This is the preferred context handoff for starting a new session on the live
-unrestricted-HC4 closure.
+This is the preferred and authoritative context handoff for starting a new
+session on the live unrestricted-HC4 closure.
 
-Its certified code baseline is
+It freezes the two newest certified local closures:
 
 ```text
-cf53735baedb4555df9d8a1c6c63cef7cc17fdec
+right endpoint-only V=1 mirror
+  commit 9db159b2346736518e0c43138feef954cd39c049
+  Lean CI 35149023096
+
+interior singleton highest-slice exclusion
+  commit 8ca83aa9f6e5a8212eda02fe54458aa16984d902
+  Lean CI 35154902934
 ```
 
-with Lean CI run `35139954849` green through the full build, theorem-axiom
-audit, negative control, and proof-escape-hatch audit.
+Both passed the root build, theorem-axiom audit, negative control, and proof
+escape-hatch audit. In particular, the singleton theorem now proves that a
+singleton highest pair slice must lie on a coordinate boundary.
 
-It records the now-complete left and right non-unit finite-staircase closures,
-the compiled unit endpoint/contact/staircase/pair-Rees stack, the endpoint-only
-left unit contradiction, the remaining unit strict-interior and singleton
-adapters, and the shortest assembly path through `.pr`, `.sp/.rq`, the
-presented-terminal resolver, and the existing public unrestricted HC4
-reduction.
+The current critical path is therefore:
 
-For **current implementation status and TODO order**, this handoff supersedes
-the earlier 16 September final-assembly handoff, both 15 September handoffs,
-and the 12 September paper handoff.
+```text
+boundary singleton adapter
+  -> unit strict-interior finite-staircase closure
+  -> complete .pr
+  -> .sp/.rq by permutation covariance
+  -> A19 terminal splice
+  -> presented-terminal resolver
+  -> public unrestricted HC4 theorem
+  -> final root certification
+```
+
+For **current implementation status and TODO order**, this fresh-context
+handoff supersedes `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`, the
+earlier 16 September final-assembly handoff, both 15 September handoffs, and
+the 12 September paper handoff.
+
+### `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`
+
+This remains valuable historical provenance for the finite-staircase and
+public-closure architecture, but its live TODO is stale: the right endpoint
+mirror and the interior-singleton obstruction recorded there have since been
+closed and certified. Do not use it as the primary continuation point.
 
 ## Core architectural documents
 
@@ -89,7 +110,7 @@ been fully closed.
 
 Owns detailed provenance for the right `(V,1)`, `V>1` mirror and the earlier
 final-assembly architecture. Its status table is superseded by the current
-last-mile handoff.
+fresh-context handoff.
 
 ### `LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md`
 
@@ -177,19 +198,20 @@ the context makes clear whether this means paper or Lean.
 
 ## Current one-line status
 
-As of the certified proof checkpoint
-`cf53735baedb4555df9d8a1c6c63cef7cc17fdec`:
+As of the certified singleton checkpoint
+`8ca83aa9f6e5a8212eda02fe54458aa16984d902` (Lean CI `35154902934`), with the
+right unit endpoint already certified at `9db159b2346736518e0c43138feef954cd39c049`:
 
 > the unrestricted entry and finite rank-one termination architecture, A19.55
 > codimension-two geometry, lower-`.qs` other-facet reduction, source-honest
 > planar/highest-slice stack, both left and right `V>1` finite-staircase
 > closures, actual presented rank-two chart lifting, and the unit
-> endpoint/contact/staircase/pair-Rees infrastructure are Lean verified. The
-> endpoint-only left `V=1` unit branch is also contradictory in Lean. The
-> principal remaining local seams are the right endpoint-only unit mirror, the
-> surviving strict-interior unit staircase, and the singleton highest-slice
-> adapter. After those, the remaining work is predominantly `.pr` parent
-> assembly, `.sp/.rq` permutation transport, the existing-architecture
-> terminal-resolver splice, and the public unrestricted HC4 theorem.
+> endpoint/contact/staircase/pair-Rees infrastructure are Lean verified. Both
+> endpoint-only `V=1` unit branches are now contradictory in Lean, and a
+> singleton highest pair slice is Lean-verified to lie on a coordinate
+> boundary. The principal remaining local seam is the boundary-singleton
+> adapter feeding the surviving strict-interior unit staircase. After that,
+> the expected path is `.pr` parent assembly, `.sp/.rq` permutation transport,
+> the terminal-resolver splice, and the public unrestricted HC4 theorem.
 
 This is not yet a claim that unrestricted HC4 has been proved.
