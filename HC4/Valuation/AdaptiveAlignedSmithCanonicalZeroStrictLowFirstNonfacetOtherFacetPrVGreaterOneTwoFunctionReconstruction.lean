@@ -159,7 +159,9 @@ theorem QsOtherFacetPrLeftVContactFrontierData.twoFunctionCarrierData_of_noStric
   exact ⟨{
     V := F.V
     ell := F.locked.ell
-    V_pos := by omega
+    V_pos := by
+      have hVgt := F.V_gt_one
+      omega
     ell_pos := F.locked.ell_pos
     a := D.a
     b := D.b
