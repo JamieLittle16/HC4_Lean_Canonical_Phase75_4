@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8601**.
+Distinct declaration spellings indexed: **8602**.
 
 ## Repeated declaration spellings
 
@@ -4482,6 +4482,7 @@ Distinct declaration spellings indexed: **8601**.
 - `exists_firstInteriorAffineLayer_translated_support_twoMode` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorTwoMode`
 - `exists_firstInteriorAffineLayer_translated_support_twoMode_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorTwoModeNonzero`
 - `exists_firstPositiveLayer_highestEulerEquation_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstVariation`
+- `exists_firstPositiveLayer_highestEulerEquation_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstVariation`
 - `exists_firstPositiveLayer_highestTranslatedTwoMode_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestTwoMode`
 - `exists_firstPositiveLayer_strictInterior_affineCoordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineCoordinates`
 - `exists_firstPositiveLayer_strictInterior_coordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
