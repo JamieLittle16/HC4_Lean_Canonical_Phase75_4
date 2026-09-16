@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8493**.
+Distinct declaration spellings indexed: **8502**.
 
 ## Repeated declaration spellings
 
@@ -3738,6 +3738,7 @@ Distinct declaration spellings indexed: **8493**.
 - `coefficientProfile_eq_stationaryCarrierProfile_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryLayerBridge`
 - `coefficientProfile_mem_of_layer_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `coefficientProfile_mem_of_mem` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
+- `coefficientProfile_natDegree_eq_of_bound_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `coefficientProfile_natDegree_le_j_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorTwoMode`
 - `coefficientProfile_natDegree_le_k` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorTwoMode`
 - `coefficientProfile_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorAffineLayer`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
@@ -3946,6 +3947,8 @@ Distinct declaration spellings indexed: **8493**.
 - `crossFacetSlope_le_iff_cross` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacetWeight` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacet_singularBoundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
+- `crossRoofHighPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
+- `crossRoofLowPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `crossRoof_fixed_w_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `crossRoof_fixed_w_iff_ordinaryDegree` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `crossRoof_fixed_x_iff` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
@@ -5090,6 +5093,9 @@ Distinct declaration spellings indexed: **8493**.
 - `hessian_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `hessian_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `hessian_zero_zero_initialForm_zero_ne_zero_of_axisRestriction_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `highFace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
+- `highProfile_natDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
+- `highSupportData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `higherAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `higherTransverseSupport_impossible_of_axisPivot_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `highestBinomialMomentHessian` — `def` in `HC4.Polynomial.HighestBinomialParallelFirstVariation`
@@ -5510,12 +5516,15 @@ Distinct declaration spellings indexed: **8493**.
 - `losslessFrontier_supplies_compactFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `lowDegreeTame_or_exists_omittedQuadraticSquare` — `theorem` in `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
 - `lowDegree_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
+- `lowFace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `lowNegativeFirst_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
 - `lowNegativeFirst_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
 - `lowNegativeFirst_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 - `lowNegativeSecond_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
 - `lowNegativeSecond_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
 - `lowNegativeSecond_sourceSupport_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
+- `lowProfile_natDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
+- `lowSupportData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `lowerBlockUnitriangular` — `def` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerBlockUnitriangular_det_one` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `lowerPureDoubleRootMomentCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
