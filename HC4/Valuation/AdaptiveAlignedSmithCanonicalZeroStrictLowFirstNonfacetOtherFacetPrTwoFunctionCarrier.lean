@@ -85,7 +85,7 @@ theorem impossible
     (D : QsOtherFacetPrTwoFunctionCarrierData C P) :
     False := by
   apply HC4.Polynomial.twoFunctionCarrier_hessian_impossible
-    D.V D.ell D.V_gt_one D.ell_pos
+    D.V D.ell D.V_pos D.ell_pos
     D.a D.b D.a_ne D.b_ne
     D.Ppoly D.Qpoly D.Qpoly_derivative_ne
   rw [← D.carrier_eq]
