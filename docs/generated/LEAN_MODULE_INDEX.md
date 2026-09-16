@@ -8450,7 +8450,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`, `HC4.Newton.TerminalCoordinatePermutation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`
-- Declarations: `def unitSwap23`, `theorem unitRight_locked_facet_swap_eq_twoFunctionExponent`, `theorem unitRight_locked_outside_swap_eq_twoFunctionExponent`, `theorem unitRight_highest_e0_swap_eq_twoFunctionExponent`, `theorem unitRight_highest_e1_swap_eq_twoFunctionExponent`, `theorem QsOtherFacetPrUnitRightContactFrontierData.impossible_of_noStrictInterior`
+- Declarations: `def unitSwap23`, `theorem swap23_zero`, `theorem swap23_one`, `theorem swap23_two`, `theorem swap23_three`, `theorem unitRight_locked_facet_swap_eq_twoFunctionExponent`, `theorem unitRight_locked_outside_swap_eq_twoFunctionExponent`, `theorem unitRight_highest_e0_swap_eq_twoFunctionExponent`, `theorem unitRight_highest_e1_swap_eq_twoFunctionExponent`, `theorem QsOtherFacetPrUnitRightContactFrontierData.impossible_of_noStrictInterior`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseClassification`
 

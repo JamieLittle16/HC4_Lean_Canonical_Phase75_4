@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8594**.
+Distinct declaration spellings indexed: **8598**.
 
 ## Repeated declaration spellings
 
@@ -8330,6 +8330,10 @@ Distinct declaration spellings indexed: **8594**.
 - `swap02_activeDet_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianRankOneRelations`
 - `swap02_matrix_mulVec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
+- `swap23_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
+- `swap23_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
+- `swap23_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
+- `swap23_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
 - `swappedEuler_eq_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `swappedRankThreeEulerHessian` — `def` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `symmetricMinimalSpecialFiber_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
