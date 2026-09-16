@@ -183,6 +183,10 @@ noncomputable def highSupportData
           (e0 1 : K) *
             (((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) := by
       exact_mod_cast hzeroZ
+    have hjHiSuccK :
+        (((E.jHi + 1 : ℕ) : K)) = (E.jHi : K) + 1 := by
+      norm_num
+    rw [hjHiSuccK] at hzeroK
 
     have hcrossZ := E.face_cross_relation he0
     have hcrossK :
@@ -214,6 +218,7 @@ noncomputable def highSupportData
         crossRoofHighPerm_symm_one, crossRoofHighPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
+      rw [hjHiSuccK]
       field_simp [hvK]
       linear_combination hzeroK
     · simp [Finsupp.mapDomain_equiv_apply,
@@ -273,6 +278,9 @@ noncomputable def lowSupportData
       exact_mod_cast (Nat.ne_of_gt E.q_pos)
     have hkHiPos : 0 < E.kHi := lt_trans E.kLo_pos E.pair_lt
     have hkHiOne : 1 ≤ E.kHi := by omega
+    have hjHiSuccK :
+        (((E.jHi + 1 : ℕ) : K)) = (E.jHi : K) + 1 := by
+      norm_num
 
     have hzeroZ := E.face_zero_interpolation hthree houtThree he0
     have hcrossZ := E.face_cross_relation he0
@@ -304,6 +312,7 @@ noncomputable def lowSupportData
           (e0 2 : K) *
             ((E.kLo : K) - (((E.jHi + 1 : ℕ) : K))) := by
       exact_mod_cast hrevZeroZ
+    rw [hjHiSuccK] at hrevZeroK
     have hrevOneK :
         (E.q : K) * ((e0 1 : K) - (E.v : K)) =
           (e0 2 : K) * (-(E.v : K)) := by
@@ -329,6 +338,7 @@ noncomputable def lowSupportData
         crossRoofLowPerm_symm_one, crossRoofLowPerm_symm_zero,
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
+      rw [hjHiSuccK]
       field_simp [hqK]
       linear_combination hrevZeroK
     · simp [Finsupp.mapDomain_equiv_apply,
@@ -342,6 +352,7 @@ noncomputable def lowSupportData
         HC4.Polynomial.rankThreeLogBaseExponent,
         HC4.Polynomial.rankThreeLogDirection]
       rw [Nat.cast_mul, Nat.cast_mul, hkHiSubK] at hrevThreeK
+      rw [hkHiSubK]
       field_simp [hqK]
       linear_combination hrevThreeK
 
