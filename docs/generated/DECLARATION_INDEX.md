@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8600**.
+Distinct declaration spellings indexed: **8601**.
 
 ## Repeated declaration spellings
 
@@ -8774,6 +8774,7 @@ Distinct declaration spellings indexed: **8600**.
 - `zeroJetNormalizedSpecialFiber_valueAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `zeroLayer_locked_coefficients` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestMomentRealisation`
+- `zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesHighestMomentRealisation`
 - `zeroLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarLockedMomentRealisation`
 - `zeroLayer_support_eq_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `zeroLongitudinal_not_positive_lowerHull` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
