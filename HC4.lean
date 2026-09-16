@@ -239,3 +239,8 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 -- an actual rank-two Hessian chart on the represented state, then into the
 -- existing rank-two-to-rank-three geometry consumer.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo
+
+-- Collapse the nontrivial PR normalized frontier by consuming the complete
+-- left `(1,V)`, `V>1` finite-staircase branch into retained actual rank-two
+-- geometry.  Only the unit and swapped-right orientations remain locally.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly
