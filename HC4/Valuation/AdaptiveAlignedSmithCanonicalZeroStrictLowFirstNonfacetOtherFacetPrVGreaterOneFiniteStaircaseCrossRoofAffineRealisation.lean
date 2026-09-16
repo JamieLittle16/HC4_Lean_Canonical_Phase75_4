@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure
 import HC4.Newton.TerminalCoordinatePermutation
+import HC4.Polynomial.RankThreeAffineSupportRealisation
 import HC4.RationalRigidity.RankThreeAffineLineTerminal
 import Mathlib.Tactic
 
