@@ -71,6 +71,7 @@ private theorem highestLeft_V_eq_one
     (H : QsOtherFacetPrHighestSliceLeftSourceData C P S R)
     (Q : QsOtherFacetPrQuotientCarrierData C P 1 1) :
     H.V = 1 := by
+  have hnTwo : 2 ≤ H.n := H.n_two_le
   have hpair :
       qsOtherFacetPairDegree .pr H.e0 = qsOtherFacetPairDegree .pr H.e1 := by
     simp [qsOtherFacetPairDegree, H.e0_zero, H.e0_one,
@@ -95,6 +96,7 @@ private theorem highestRight_V_eq_one
     (H : QsOtherFacetPrHighestSliceRightSourceData C P S R)
     (Q : QsOtherFacetPrQuotientCarrierData C P 1 1) :
     H.V = 1 := by
+  have hnTwo : 2 ≤ H.n := H.n_two_le
   have hpair :
       qsOtherFacetPairDegree .pr H.e0 = qsOtherFacetPairDegree .pr H.e1 := by
     simp [qsOtherFacetPairDegree, H.e0_zero, H.e0_one,
