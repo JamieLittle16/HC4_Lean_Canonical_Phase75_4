@@ -18,3 +18,4 @@ import HC4.RationalRigidity.LogarithmicInfinityCertificate
 
 import HC4.RationalRigidity.ClearedInfinityEvaluation
 import HC4.RationalRigidity.RankThreeInfinityAssembly
+import HC4.RationalRigidity.LineSupportedHessianRigidity
