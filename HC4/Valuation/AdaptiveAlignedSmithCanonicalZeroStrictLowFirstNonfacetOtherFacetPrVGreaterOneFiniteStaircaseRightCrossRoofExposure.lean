@@ -113,7 +113,7 @@ theorem lo_mem_face (D : QsOtherFacetPrRightVLowerHullData F) :
   rw [if_pos D.lo_weight_eq]
   exact MvPolynomial.mem_support_iff.mp D.lo_mem
 
-/-- Leaving-point membership in the exact mirrored face. -/
+/-- Leaving-point membership in the exact face. -/
 theorem edge_mem_face (D : QsOtherFacetPrRightVLowerHullData F) :
     D.edge ∈ D.face.support := by
   apply MvPolynomial.mem_support_iff.mpr
@@ -214,6 +214,7 @@ theorem exists_wRoof_on_face
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 3 : ℤ) ≤
           (D.gap : ℤ) * ((F.highest.n : ℤ) - 1) := by
       rw [hgapCast] at hcost ⊢
+      have hn2 := F.highest.n_two_le
       have hn1 : 1 ≤ F.highest.n := by omega
       have hcast : ((F.highest.n - 1 : ℕ) : ℤ) =
           (F.highest.n : ℤ) - 1 := by rw [Nat.cast_sub hn1]; norm_num
