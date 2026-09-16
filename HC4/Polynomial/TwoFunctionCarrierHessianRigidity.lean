@@ -80,9 +80,11 @@ theorem twoFunctionEulerFactorA_ne_zero
     simpa [hell.ne'] using hs
   exact (mul_ne_zero Polynomial.X_ne_zero hQ1) hXQ
 
-/-- **Complete two-function carrier contradiction.** -/
+/-- **Complete two-function carrier contradiction.**  Positivity of the
+quotient exponent is sufficient; the former `1 < V` restriction was not used
+by the Euler-Hessian calculation and excluded the genuine unit branch. -/
 theorem twoFunctionCarrier_hessian_impossible
-    (V ell : ℕ) (hV : 1 < V) (hell : 0 < ell)
+    (V ell : ℕ) (hV : 0 < V) (hell : 0 < ell)
     (a b : K) (ha : a ≠ 0) (hb : b ≠ 0)
     (P Q : Polynomial K) (hQ1 : Q.derivative ≠ 0)
     (hdet : hessianDeterminant (twoFunctionCarrier V ell a b P Q) = 0) :
@@ -109,7 +111,7 @@ theorem twoFunctionCarrier_hessian_impossible
 
   rw [det_eulerScaledHessian_twoFunctionCarrier V ell hV hell] at hscaled
 
-  have hVpos : 0 < V := by omega
+  have hVpos : 0 < V := hV
   have hV0 : (V : R) ≠ 0 := by
     exact Nat.cast_ne_zero.mpr (Nat.ne_of_gt hVpos)
   have hell0 : (ell : R) ≠ 0 := by
