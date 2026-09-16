@@ -261,6 +261,8 @@ noncomputable def lowSupportData
     subst e
     have hqK : (E.q : K) ≠ 0 := by
       exact_mod_cast (Nat.ne_of_gt E.q_pos)
+    have hvZ : (E.v : ℤ) ≠ 0 := by
+      exact_mod_cast (Nat.ne_of_gt E.v_pos)
     have hkHiPos : 0 < E.kHi := lt_trans E.kLo_pos E.pair_lt
     have hkHiOne : 1 ≤ E.kHi := by omega
     have hjHiSuccK :
@@ -272,23 +274,56 @@ noncomputable def lowSupportData
     have htwoZ := E.face_two_interpolation hthree houtThree he0
     rw [E.lo_two, E.hi_two] at htwoZ
 
+    have hrevZeroMul :
+        (E.v : ℤ) *
+            ((E.q : ℤ) *
+                ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) -
+              (e0 3 : ℤ) *
+                ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ)))) = 0 := by
+      linear_combination
+        (E.q : ℤ) * hzeroZ +
+          ((((E.jHi + 1 : ℕ) : ℤ)) - (E.kLo : ℤ)) * hcrossZ
+    have hrevZeroDiff :
+        (E.q : ℤ) *
+              ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) -
+            (e0 3 : ℤ) *
+              ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) = 0 := by
+      exact (mul_eq_zero.mp hrevZeroMul).resolve_left hvZ
     have hrevZeroZ :
         (E.q : ℤ) *
             ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) =
           (e0 3 : ℤ) *
             ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) := by
-      nlinarith [hzeroZ, hcrossZ]
+      linarith [hrevZeroDiff]
     have hrevOneZ :
         (E.q : ℤ) * ((e0 1 : ℤ) - (E.v : ℤ)) =
           (e0 3 : ℤ) * (-(E.v : ℤ)) := by
       nlinarith [hcrossZ]
+    have hrevTwoMul :
+        (E.v : ℤ) *
+            ((E.q : ℤ) *
+                ((e0 2 : ℤ) - ((F.V * (E.kHi - 1) : ℕ) : ℤ)) -
+              (e0 3 : ℤ) *
+                (((F.V * E.jLo : ℕ) : ℤ) -
+                  ((F.V * (E.kHi - 1) : ℕ) : ℤ))) = 0 := by
+      linear_combination
+        (E.q : ℤ) * htwoZ +
+          (((F.V * (E.kHi - 1) : ℕ) : ℤ) -
+            ((F.V * E.jLo : ℕ) : ℤ)) * hcrossZ
+    have hrevTwoDiff :
+        (E.q : ℤ) *
+              ((e0 2 : ℤ) - ((F.V * (E.kHi - 1) : ℕ) : ℤ)) -
+            (e0 3 : ℤ) *
+              (((F.V * E.jLo : ℕ) : ℤ) -
+                ((F.V * (E.kHi - 1) : ℕ) : ℤ)) = 0 := by
+      exact (mul_eq_zero.mp hrevTwoMul).resolve_left hvZ
     have hrevTwoZ :
         (E.q : ℤ) *
             ((e0 2 : ℤ) - ((F.V * (E.kHi - 1) : ℕ) : ℤ)) =
           (e0 3 : ℤ) *
             (((F.V * E.jLo : ℕ) : ℤ) -
               ((F.V * (E.kHi - 1) : ℕ) : ℤ)) := by
-      nlinarith [htwoZ, hcrossZ]
+      linarith [hrevTwoDiff]
 
     have hrevZeroK :
         (E.q : K) *
