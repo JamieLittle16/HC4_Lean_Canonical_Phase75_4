@@ -85,7 +85,13 @@ private theorem highestLeft_V_eq_one
     H.e0_zero, H.e0_three, H.e1_zero, H.e1_three] at hs
   have hn : H.n = (H.n - 1) + 1 := by omega
   rw [hn, Nat.mul_add] at hs
-  omega
+  have hnPred : H.n - 1 + 1 - 1 = H.n - 1 := by omega
+  rw [hnPred] at hs
+  have hnPredPos : (0 : ℤ) < (H.n - 1 : ℕ) := by
+    exact_mod_cast (show 0 < H.n - 1 by omega)
+  have hVz : (H.V : ℤ) = 1 := by
+    nlinarith [hs, hnPredPos]
+  exact_mod_cast hVz
 
 private theorem highestRight_V_eq_one
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
@@ -110,7 +116,13 @@ private theorem highestRight_V_eq_one
     H.e0_zero, H.e0_two, H.e1_zero, H.e1_two] at hr
   have hn : H.n = (H.n - 1) + 1 := by omega
   rw [hn, Nat.mul_add] at hr
-  omega
+  have hnPred : H.n - 1 + 1 - 1 = H.n - 1 := by omega
+  rw [hnPred] at hr
+  have hnPredPos : (0 : ℤ) < (H.n - 1 : ℕ) := by
+    exact_mod_cast (show 0 < H.n - 1 by omega)
+  have hVz : (H.V : ℤ) = 1 := by
+    nlinarith [hr, hnPredPos]
+  exact_mod_cast hVz
 
 private theorem lockedLeft_V_eq_one
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
