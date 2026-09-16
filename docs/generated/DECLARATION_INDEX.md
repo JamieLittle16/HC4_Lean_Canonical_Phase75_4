@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8546**.
+Distinct declaration spellings indexed: **8545**.
 
 ## Repeated declaration spellings
 
@@ -2881,7 +2881,6 @@ Distinct declaration spellings indexed: **8546**.
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TwoChartCover` — `def` in `HC4.RationalRigidity.ChartCertificates`
-- `V_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrTwoFunctionCarrier`
 - `X_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_dvd_longitudinalCoefficient_single_of_zeroGradient` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`

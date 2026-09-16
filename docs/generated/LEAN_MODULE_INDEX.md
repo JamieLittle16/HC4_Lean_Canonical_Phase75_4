@@ -8350,7 +8350,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrCarrierReconstruction`, `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
-- Declarations: `structure QsOtherFacetPrTwoFunctionCarrierData`, `theorem V_pos`, `theorem impossible`
+- Declarations: `structure QsOtherFacetPrTwoFunctionCarrierData`, `theorem impossible`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointOrientation`
 
