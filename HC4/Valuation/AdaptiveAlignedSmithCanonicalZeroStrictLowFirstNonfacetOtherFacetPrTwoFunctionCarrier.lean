@@ -13,7 +13,7 @@ A `QsOtherFacetPrTwoFunctionCarrierData` records exactly the data that the
 remaining support reconstruction has to produce from the normalized planar
 carrier:
 
-* the non-unit quotient slope `V > 1`;
+* a positive quotient slope `V > 0`;
 * a positive locked-ray endpoint exponent `ell`;
 * the two nonzero source coefficients `a,b`;
 * one-variable polynomials `P,Q`, with `Q` genuinely nonlinear in the sense
@@ -23,7 +23,9 @@ carrier:
 
 No clock is identified here.  Once this package exists, the already-verified
 positive-defect carrier equation `hessianDeterminant carrier = 0` is enough to
-invoke `twoFunctionCarrier_hessian_impossible` directly.
+invoke `twoFunctionCarrier_hessian_impossible` directly.  Positivity, rather
+than `1 < V`, is deliberate: the state-free determinant theorem is valid at
+the genuine unit endpoint `V = 1` as well.
 -/
 
 namespace HC4.Valuation
@@ -51,7 +53,7 @@ structure QsOtherFacetPrTwoFunctionCarrierData
     (P : QsOtherFacetPlanarCarrierPackage C .pr) where
   V : ℕ
   ell : ℕ
-  V_gt_one : 1 < V
+  V_pos : 0 < V
   ell_pos : 0 < ell
   a : K
   b : K
@@ -66,18 +68,10 @@ structure QsOtherFacetPrTwoFunctionCarrierData
 
 namespace QsOtherFacetPrTwoFunctionCarrierData
 
-/-- The non-unit quotient parameter is in particular positive. -/
-theorem V_pos
-    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
-      T .qs}
-    {P : QsOtherFacetPlanarCarrierPackage C .pr}
-    (D : QsOtherFacetPrTwoFunctionCarrierData C P) :
-    0 < D.V := by
-  exact lt_trans Nat.zero_lt_one D.V_gt_one
-
-/-- **Standard non-unit PR carrier endpoint.**  Once source reconstruction has
+/-- **PR two-function carrier endpoint.**  Once source reconstruction has
 produced the literal two-function carrier package, the branch is impossible.
-All Hessian algebra is delegated to the existing state-free theorem. -/
+All Hessian algebra is delegated to the existing state-free theorem.  This
+includes the unit value `V = 1`. -/
 theorem impossible
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
