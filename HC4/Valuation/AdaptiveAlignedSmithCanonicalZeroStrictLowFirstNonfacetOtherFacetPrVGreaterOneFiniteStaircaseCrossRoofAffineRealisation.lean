@@ -94,7 +94,7 @@ at the bound determines the exact degree of the extracted coefficient profile. -
 private theorem coefficientProfile_natDegree_eq_of_bound_endpoint
     {G : MvPolynomial (Fin 4) K}
     {A B C0 : ℕ} {q r s : K}
-    (D : RankThreeAffineSupportData G A B C0 q r s)
+    (D : HC4.Polynomial.RankThreeAffineSupportData G A B C0 q r s)
     (M : ℕ)
     (hbound : ∀ e ∈ G.support, e 0 ≤ M)
     {eM : Fin 4 →₀ ℕ}
@@ -121,7 +121,7 @@ noncomputable def highSupportData
     (E : QsOtherFacetPrLeftVExposedCrossRoofData F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    RankThreeAffineSupportData
+    HC4.Polynomial.RankThreeAffineSupportData
       (highFace E)
       E.kLo E.q (F.V * E.jLo)
       ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
@@ -211,7 +211,7 @@ noncomputable def lowSupportData
     (E : QsOtherFacetPrLeftVExposedCrossRoofData F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    RankThreeAffineSupportData
+    HC4.Polynomial.RankThreeAffineSupportData
       (lowFace E)
       (E.jHi + 1) E.v (F.V * (E.kHi - 1))
       (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K))
