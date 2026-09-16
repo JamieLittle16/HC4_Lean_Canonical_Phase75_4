@@ -2901,7 +2901,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeAffineLineRealisation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineCoordinates`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineCoordinates`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - Declarations: `structure RankThreeAffineSupportData`, `def coefficientProfile`, `theorem coeff_coefficientProfile_of_mem`, `theorem coefficientProfile_mem_of_mem`, `theorem exists_exponent_of_coefficientProfile_mem`, `def exponentAt`, `theorem exponentAt_spec`, `def affineLineData`, `theorem affineLineData_polynomial_eq`, `theorem coeff_zero_ne_zero_of_mem_zero`
 
 ### `HC4.Polynomial.RankThreeBinomialPencilBridge`
@@ -8417,7 +8417,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation.lean`
 - Purpose: Source-honest affine realisation of the exposed cross-roof face
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`
 - Declarations: `def crossRoofHighPerm`, `def crossRoofLowPerm`, `def highFace`, `def lowFace`, `theorem coefficientProfile_natDegree_eq_of_bound_endpoint`, `def highSupportData`, `def lowSupportData`, `theorem highProfile_natDegree`, `theorem lowProfile_natDegree`
