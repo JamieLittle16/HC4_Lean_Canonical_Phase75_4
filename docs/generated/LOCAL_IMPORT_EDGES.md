@@ -2785,6 +2785,10 @@ human architecture guide.
   - `HC4.Newton.TerminalCoordinatePermutation`
   - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofTerminalClosure`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`
+  - `HC4.Newton.TerminalCoordinatePermutation`
+  - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
   - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Polynomial.MonomialHessian`
