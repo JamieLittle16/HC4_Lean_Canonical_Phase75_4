@@ -234,3 +234,8 @@ import HC4.Polynomial.StationaryDeterminantComparisonObstruction
 
 -- Source-honest finite-staircase cross-roof terminal closure.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation
+
+-- Central finite-staircase alternative: lift the exact central source face to
+-- an actual rank-two Hessian chart on the represented state, then into the
+-- existing rank-two-to-rank-three geometry consumer.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo
