@@ -139,7 +139,7 @@ theorem firstPositiveLayer_support_eq_pairFiber
   have hq : F.highest.n - A.k = q := by
     rw [← haPairNat]
     exact haFilter.2
-  have hAkN : A.k ≤ F.highest.n := by omega
+  have hAkN : A.k ≤ F.highest.n := Nat.le_of_lt A.k_lt_highest
 
   rw [D.parameterLayer_support q]
   ext e
@@ -147,6 +147,7 @@ theorem firstPositiveLayer_support_eq_pairFiber
   constructor
   · intro he
     refine ⟨he.1, ?_⟩
+    have heOrder : F.highest.n - (e 0 + e 1) = q := he.2
     have heN : e 0 + e 1 ≤ F.highest.n := by
       rcases F.support_staircase_classification hthree houtThree he.1 with
         ⟨_j, _hj, hk, _hjle, _hzero, _hlocked⟩
@@ -205,10 +206,12 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorLayers_eq_of_k
       apply he
       rw [hsupp]
       exact h
-    have hlo : MvPolynomial.coeff e Llo = 0 :=
-      MvPolynomial.notMem_support_iff.mp he
-    have hhi : MvPolynomial.coeff e Lhi = 0 :=
-      MvPolynomial.notMem_support_iff.mp hehi
+    have hlo : MvPolynomial.coeff e Llo = 0 := by
+      by_contra hne
+      exact he (MvPolynomial.mem_support_iff.mpr hne)
+    have hhi : MvPolynomial.coeff e Lhi = 0 := by
+      by_contra hne
+      exact hehi (MvPolynomial.mem_support_iff.mpr hne)
     simpa [Llo, Lhi] using hlo.trans hhi.symm
 
 /-- Coincident unit extremal pair degrees force the two staircase heights to
