@@ -47,9 +47,14 @@ noncomputable def QsOtherFacetPrUnitLeftContactFrontierData.central_actualRankTw
     (hc2 : c 2 = 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
       T.terminal.blocker.presented := by
-  rcases F.central_coordinateMax_face_rankTwo
-      hthree houtThree hc hc1 hc2 with
-    ⟨D, _hlevel, _hmono, _hdet, hminor⟩
+  let hcentral := F.central_coordinateMax_face_rankTwo
+      hthree houtThree hc hc1 hc2
+  let D := Classical.choose hcentral
+  have hspec := Classical.choose_spec hcentral
+  have hminor :
+      HC4.Polynomial.hessianPrincipalMinor
+        D.face (0 : Fin 4) (3 : Fin 4) ≠ 0 :=
+    hspec.2.2.2
 
   have hcarrier :
       HC4.Polynomial.hessianPrincipalMinor
