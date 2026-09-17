@@ -53,8 +53,10 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.central_coordinateMax_face_ran
 
   have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
     exact_mod_cast F.locked.ell_pos
+  have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+  have hnNat : 1 < F.highest.n := by omega
   have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
-    exact_mod_cast (show 1 < F.highest.n by omega)
+    exact_mod_cast hnNat
   have hnOneZ : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by omega
   have hcoefZ :
       (0 : ℤ) < (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
