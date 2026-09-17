@@ -71,7 +71,7 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_degree_
     dlo (Alo.k - 1) Alo.coefficientProfile hdlo hphi
     (by simpa [dlo] using hlo)
   have hkpred : (Alo.k - 1) + 1 = Alo.k := by
-    omega
+    exact Nat.sub_add_cancel (Nat.le_of_lt Alo.k_gt_one)
   have hloDegree' :
       Alo.coefficientProfile.natDegree = Alo.k - 1 ∨
         Alo.coefficientProfile.natDegree = Alo.k := by
@@ -85,8 +85,10 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_degree_
     simp
   have he1ne : MvPolynomial.coeff F.highest.e1 S.slice ≠ 0 :=
     MvPolynomial.mem_support_iff.mp he1S
-  have hnsub : F.highest.n - 1 ≠ 0 := by
-    omega
+  have hn_gt_one : 1 < F.highest.n :=
+    lt_trans Ahi.k_gt_one Ahi.k_lt_highest
+  have hnsub : F.highest.n - 1 ≠ 0 :=
+    Nat.ne_of_gt (Nat.sub_pos_of_lt hn_gt_one)
   have hnsubK : ((F.highest.n - 1 : ℕ) : K) ≠ 0 :=
     Nat.cast_ne_zero.mpr hnsub
   have hdhi : dhi ≠ 0 := by
@@ -118,6 +120,7 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_three_diagonals
     Alo.j + 2 = Alo.k ∨ Alo.j + 1 = Alo.k ∨ Alo.j = Alo.k := by
   rcases F.oneFiber_commonProfile_degree_pairs
       Alo Ahi hthree houtThree hext with ⟨hlo, hhi⟩
+  have hkone : 1 ≤ Alo.k := Nat.le_of_lt Alo.k_gt_one
   rcases hlo with hlo | hlo <;> rcases hhi with hhi | hhi
   · right
     left
