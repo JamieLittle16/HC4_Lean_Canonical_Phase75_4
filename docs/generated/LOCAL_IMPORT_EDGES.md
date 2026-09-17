@@ -1938,6 +1938,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRelativeFirstContactReduction`

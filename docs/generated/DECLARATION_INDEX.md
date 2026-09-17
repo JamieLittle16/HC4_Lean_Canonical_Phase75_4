@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8727**.
+Distinct declaration spellings indexed: **8730**.
 
 ## Repeated declaration spellings
 
@@ -767,6 +767,7 @@ Distinct declaration spellings indexed: **8727**.
 - `AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress_from_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress_of_reachedRankThree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact_of_coreProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroBlockerCoreReduction`
@@ -794,6 +795,7 @@ Distinct declaration spellings indexed: **8727**.
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedPresentedRankThree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedPrimitiveRankThree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPrimitiveRankThreeTerminal`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedRankThree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace`
+- `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedRankThree_eq_or_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedRankThree_repair_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTerminationTrace`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedSingularCarrier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSingularCarrier`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedSpecialFiberCollision` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
@@ -3093,6 +3095,7 @@ Distinct declaration spellings indexed: **8727**.
 - `adaptiveAlignedRightRecenteredSpecialHessian_hasRankOneCoreRelations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `adaptiveAlignedRightRecenteredSpecialHessian_principal_zero_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
 - `adaptiveAlignedRightRecenteredSpecialHessian_rankOneRelations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
+- `adaptiveAlignedSmithCanonicalGlobalMacroProgress_trans` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
 - `adaptiveAlignedSmithCanonicalGlobalMacroProgress_wellFounded` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
 - `adaptiveAlignedSmithEndpoint_zeroLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithEndpoint`
 - `adaptiveAlignedSmithEndpoint_zeroLeft_withZeroSourceJet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClassifierDispatcher`
