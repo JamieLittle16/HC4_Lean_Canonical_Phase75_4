@@ -8,81 +8,86 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-17_HC4_UNIT_FINITE_STAIRCASE_FINAL_CLOSURE.md`
+### `HANDOFF_2026-09-17_HC4_FINAL_GLOBAL_ASSEMBLY.md`
 
-This is the preferred and authoritative fresh-context handoff for the live
+This is now the preferred and authoritative fresh-context handoff for the live
 unrestricted-HC4 final sprint.
 
-Its authoritative certified **code** checkpoint is:
+Its source checkpoint when written is:
 
 ```text
-commit e2783035171d173516a33448615f6cccd4ec9feb
-message: Add unit finite-staircase extremal fibers
-Lean CI: 35237635579
+PR #34
+branch final-assembly/a18-4-42-termination-frontier
+head cd9b24560468722ff538d2e85626f5af5d5c6336
 ```
 
-That exact code checkpoint passed:
+The user reports that this proof head compiles cleanly. The key substantive
+shortcut was introduced at:
 
 ```text
-Build HC4
-Axiom audit
-Proof-complete branch negative control
-Escape-hatch audit
+3a7b2848e587156cccc9115e606743c2f6338055
+HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress.lean
 ```
 
-The branch may have generated-inventory or documentation commits above that
-code commit. Re-pin PR #34 at the beginning of a fresh session and distinguish
-the current branch head from the last exact-head certified proof checkpoint.
-
-The 17 September handoff records the newest unit finite-staircase progress as
-**LEAN VERIFIED**:
+The authoritative local endpoint is now:
 
 ```text
-exact low/contact selected carrier fibre
-exact high/pair-Rees selected carrier fibre
-same-k selected multivariate layer equality
-same-k staircase-height equality
-same-k one-variable profile equality
-common nonzero profile satisfying both endpoint Euler equations
-same-k degree trichotomy:
-    j + 2 = k  OR  j + 1 = k  OR  j = k
-low selector = least strict-interior pair fibre
-high selector = greatest strict-interior pair fibre
+strict-low reached state
+  + repair = rankOneRepairState 0
+  + rawDefect = 0
+        |
+        v
+existing zero-defect rank-two geometry
+        |
+        v
+AdaptiveAlignedSmithCanonicalGlobalMacroProgress
+        |
+        v
+rank-one Rees strict-low "terminal" has a global successor
 ```
 
-The current critical path is therefore:
+In exact source this is exposed by:
 
 ```text
-prove Alo.k <= Ahi.k from the certified extrema
-  -> equal-k unit one-fibre contradiction
-       (port/factor nonunit lower/middle/upper diagonal closures)
-  -> strict-k unit multi-fibre contradiction
-       (port/specialize nonunit extrema/cross-roof closure)
-  -> unit finite-staircase closure
-  -> existing endpoint/no-interior + right-orientation transport
-  -> complete .pr parent assembly
-  -> .sp/.rq by existing permutation covariance
-  -> existing other-facet / A19 / global splice
-  -> public unrestricted HC4 theorem
-  -> exact-head full certification
+AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData.exists_globalProgress
+AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress
 ```
 
-For **current implementation status and TODO order**, this 17 September handoff
-supersedes all earlier dated handoffs.
+The remaining critical path is therefore global assembly:
+
+```text
+locate exact existing no-successor/global-terminal interface
+  -> contradict it with RankOneReesReducedTrace.exists_globalProgress
+  -> splice through existing rank-one Rees final outcome
+  -> splice through existing reachable-terminal impossibility assembly
+  -> consume existing unrestricted gradient-injectivity/HC4 entry theorem
+  -> expose public/root unrestricted HC4 theorem
+  -> exact-head Build HC4 + axiom + negative-control + escape-hatch audits
+```
+
+The residual local `qs` codimension-two and literal `x₀²` leaves are **not on
+the live critical path** unless an exact state-interface mismatch in the global
+splice proves otherwise. Do not reopen them by default.
+
+For current implementation status and TODO order, this handoff supersedes all
+earlier dated handoffs.
+
+### `HANDOFF_2026-09-17_HC4_UNIT_FINITE_STAIRCASE_FINAL_CLOSURE.md`
+
+This is now historical provenance for the unit finite-staircase phase. Its
+former local TODO has been overtaken by the strict-low zero-defect global
+progress shortcut. Use it when tracing the local algebra, not as the fresh
+context continuation point.
 
 ### `HANDOFF_2026-09-16_HC4_FRESH_CONTEXT_FINAL_SPRINT.md`
 
-This remains useful historical provenance for the route into the unit branch,
-but its live TODO is now stale. In particular, the boundary-singleton seam and
-the earlier informal two-fibre framing have been overtaken by the certified
-unit finite-staircase one-fibre/extrema infrastructure. Do not use it as the
-primary continuation point.
+Historical provenance for the route into the unit branch. Its live TODO is
+stale.
 
 ### `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`
 
-This remains valuable historical provenance for finite-staircase and
-public-closure architecture, but its live TODO predates the certified unit
-one-fibre and extremal-fibre work.
+Historical provenance for finite-staircase and public-closure architecture.
+Its live TODO predates the current global-progress shortcut.
 
 ## Core architectural documents
 
@@ -90,7 +95,7 @@ one-fibre and extremal-fibre work.
 
 Owns the broader repository-level status ledger. It may lag the newest handoff
 during the active final sprint; when that happens, the dated current handoff
-above wins for the live local TODO.
+above wins for the live TODO.
 
 ### `PROOF_ARCHITECTURE.md`
 
@@ -125,32 +130,32 @@ These own exhaustive inventory, not mathematical status.
 
 Owns detailed paper mathematics for the full two-function Hessian, the
 singleton/developable fallback, and the original `V=1` endpoint analysis. Use
-it for mathematics, not current implementation status. Several of its former
-open tasks have since landed in Lean.
+it for mathematics, not current implementation status. Many of its former open
+tasks have since landed in Lean.
 
 ### `HANDOFF_2026-09-15_HC4_PAIR_REES_FINAL_CLOSURE.md`
 
 Owns detailed provenance of the locked/contact and highest/pair-Rees
-first-variation constructions and, importantly, the warning that the two
-endpoint first variations alone do not eliminate all interior staircase
-fibres. Its TODO is historical because the nonunit finite staircase is closed
-and the unit branch now has a certified common-profile degree trichotomy.
+first-variation constructions and the warning that two endpoint first
+variations alone do not eliminate every interior staircase fibre. Its TODO is
+historical.
 
 ### `HANDOFF_2026-09-16_HC4_FINAL_ASSEMBLY.md`
 
-Owns detailed provenance for the right `(V,1)`, `V>1` mirror and earlier
+Owns detailed provenance for the right `(V,1)`, `V>1` mirror and an earlier
 final-assembly architecture. Its status table is superseded by the current
-17 September handoff.
+17 September global-assembly handoff.
 
 ### `LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md`
 
 Owns the completed paper-level line-supported Hessian recurrence/rational-map
-argument. The relevant primitive highest-slice rigidity is already formalized.
+argument. The relevant primitive highest-slice rigidity is formalized.
 
 ### `FILTERED_FIRST_KERNEL_BREAK_LEMMA.md`
 
 Owns the state-free algebra behind the A19.55 same-carrier codimension-two
-branch. That branch has a Lean-verified geometry-bearing local closure.
+branch. That branch remains useful verified infrastructure but is not the live
+terminal contradiction route.
 
 ### `A1_FIRST_INTERIOR_ADAPTER_AUDIT_2026-09-13.md`
 
@@ -160,8 +165,9 @@ Prohibition/reference document for the false shortcut
 first variation + staircase arithmetic -> degree <= 1.
 ```
 
-The valid live replacement in the equal-fibre unit branch is the certified
-three-way affine-two-root degree trichotomy.
+The counterexample discipline recorded there remains binding. In particular,
+do not revive a generic degree-`≤ 1` shortcut; `φ=(5+4T)^2` remains a known
+obstruction to the old argument.
 
 ### `STATIONARY_DETERMINANT_COMPARISON_AUDIT_2026-09-15.md`
 
@@ -173,14 +179,13 @@ comparison. Do not revive that implication in the final proof.
 ### `HANDOFF_2026-09-15_HC4_FINAL_MULTIFIBER_CLOSURE.md`
 
 Historical checkpoint from before the exposed cross-roof and mirrored nonunit
-finite-staircase branches were completed. Use its mathematics only when it
-matches the live verified declarations.
+finite-staircase branches were completed.
 
 ### `HANDOFF_2026-09-15_HC4_FINAL_LEAN_CLOSURE.md`
 
 Historical checkpoint for stationary machinery. Its proposed generic
 source/profile determinant bridge was subsequently shown false in that
-generality and replaced by source-honest finite-staircase work.
+generality and replaced by source-honest work.
 
 ### `HANDOFF_2026-09-11_HC4_FINAL_CLOSURE.md`
 
@@ -191,8 +196,7 @@ Historical source/contact/ray provenance checkpoint.
 ### ray-Schur / Rees obstruction notes
 
 The proved auxiliary `.pr` ray clock, exact clock mismatch, weight bounds and
-countertests remain important. The current architecture preserves their main
-lesson:
+countertests remain important. Preserve their main lesson:
 
 ```text
 auxiliary ray clock != zero blocker clock.
@@ -202,15 +206,29 @@ They are not the direct final terminal contradiction path.
 
 ### older JC2 closure plans
 
-Generic two-zero projection is indeed full JC2. The current A19.55 branches
-retain stronger provenance and close through source-honest geometry instead.
-JC2 modules remain valid reusable infrastructure but are not the live
-unrestricted closure plan.
+Generic two-zero projection is indeed full JC2. The current unrestricted route
+does not need it: the reached strict-low state itself gives source-honest
+zero-defect rank-two global progress. JC2 modules remain reusable historical
+infrastructure but are not the live closure plan.
 
 ### historical phase/status files
 
 Files named `FORMALISATION_STATUS_PHASE*`, `PHASE*.md`, old handoffs and similar
 notes record real development history. They are not current proof ledgers.
+
+## Hard rules for the final sprint
+
+- do not identify auxiliary Rees clocks with the zero-defect blocker;
+- do not use naked `withRepairOnly` progress as the contradiction;
+- do not collapse the remaining assembly to generic JC2;
+- do not invent a second termination measure: reuse raw-defect
+  `rankOneTerminationTrace`;
+- do not infer superface singularity from a smaller ray;
+- do not use a four-monomial cross-ratio equation as a contradiction by itself;
+- do not reopen the retired `qs` codimension-two / literal-square leaves unless
+  an exact global state-interface mismatch proves they are needed;
+- search current branch source and generated indexes before adding new generic
+  infrastructure.
 
 ## Status vocabulary
 
@@ -231,19 +249,15 @@ the context makes clear whether this means paper or Lean.
 
 ## Current one-line status
 
-As of certified code checkpoint
-`e2783035171d173516a33448615f6cccd4ec9feb` (Lean CI `35237635579`):
+As of the current clean source checkpoint reported on 17 September 2026:
 
-> the unrestricted entry and finite rank-one termination architecture, A19.55
-> geometry, source-honest other-facet/highest-slice stack, both nonunit
-> finite-staircase orientations, unit endpoint/contact/pair-Rees machinery,
-> exact unit equal-fibre layer/profile identification, common dual endpoint
-> Euler law, unit one-fibre degree trichotomy, and least/greatest unit
-> strict-interior selector theorems are Lean verified. The principal remaining
-> local mathematics is to eliminate the equal-fibre three diagonal cases and
-> the strictly separated unit multi-fibre case using the already-verified
-> nonunit finite-staircase closure as the template. Then the remaining work is
-> unit endpoint/right-orientation packaging and the existing `.pr` ->
-> `.sp/.rq` -> A19/global assembly splice.
+> the difficult local strict-low mathematics now has a Lean-verified,
+> source-honest escape to genuine global macro progress on the reached
+> raw-defect-zero state. The residual local `qs` leaves are no longer the live
+> blocker. The remaining work is to connect that progress witness to the
+> existing global-terminal/no-successor interface, propagate the contradiction
+> through the existing rank-one termination and reachable-terminal assembly,
+> expose the unrestricted root theorem, and pass the final exact-head audit
+> suite.
 
 This is **not yet a claim that unrestricted HC4 has been proved**.
