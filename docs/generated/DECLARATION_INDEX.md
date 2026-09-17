@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8654**.
+Distinct declaration spellings indexed: **8655**.
 
 ## Repeated declaration spellings
 
@@ -2512,6 +2512,7 @@ Distinct declaration spellings indexed: **8654**.
 - `QsOtherFacetPrUnitEndpointOrientationData.sameOrientation_normalForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointNormalization`
 - `QsOtherFacetPrUnitLeftContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
 - `QsOtherFacetPrUnitLeftContactFrontierData.NoStrictInteriorSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitNoInteriorSupport`
+- `QsOtherFacetPrUnitLeftContactFrontierData.central_coordinateMax_face_rankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralRankTwo`
 - `QsOtherFacetPrUnitLeftContactFrontierData.contactOrder_eq_of_staircase_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`
 - `QsOtherFacetPrUnitLeftContactFrontierData.contactOrder_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`
 - `QsOtherFacetPrUnitLeftContactFrontierData.eq_locked_of_support_pair_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesLockedMomentRealisation`
