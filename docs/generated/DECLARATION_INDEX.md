@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8611**.
+Distinct declaration spellings indexed: **8613**.
 
 ## Repeated declaration spellings
 
@@ -2513,7 +2513,9 @@ Distinct declaration spellings indexed: **8611**.
 - `QsOtherFacetPrUnitLeftContactFrontierData.contactOrder_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`
 - `QsOtherFacetPrUnitLeftContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
 - `QsOtherFacetPrUnitLeftContactFrontierData.impossible_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
+- `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_degree_pairs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseEndpointEuler`
+- `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_three_diagonals` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrUnitLeftContactFrontierData.pairRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairRees`
 - `QsOtherFacetPrUnitLeftContactFrontierData.planarContactRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactRees`
 - `QsOtherFacetPrUnitLeftContactFrontierData.quotient_affine_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitQuotientInterpolation`
