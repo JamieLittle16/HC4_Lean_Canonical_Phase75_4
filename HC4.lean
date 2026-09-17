@@ -244,3 +244,8 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 -- left `(1,V)`, `V>1` finite-staircase branch into retained actual rank-two
 -- geometry.  Only the unit and swapped-right orientations remain locally.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly
+
+-- Producer-free zero-strict-low rank-one Rees traces already admit honest
+-- global macro progress. Root this final global/local boundary so CI elaborates
+-- the shortcut and its genuine no-successor contradiction adapter.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress
