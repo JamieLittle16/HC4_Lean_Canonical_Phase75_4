@@ -124,6 +124,7 @@ theorem pair_eq_of_reverseOrder_eq
         2 * (F.locked.ell + 1 - F.highest.n) *
           ((rankThreeQuotientCoordinate 1 1 f).pair - 1) := by
     rw [← heq, ← hfq]
+  simp only [rankThreeQuotientCoordinate] at hmul ⊢
   have hsub := Nat.mul_left_cancel hBpos hmul
   have hepos := F.support_pair_pos hthree houtThree he
   have hfpos := F.support_pair_pos hthree houtThree hf
@@ -255,7 +256,8 @@ theorem reverseOrder_lt_highest_of_pair_lt_highest
     exact Nat.mul_pos (by omega)
       (Nat.sub_pos_of_lt (F.highest_n_lt_locked_height hthree houtThree))
   have hkpos := F.support_pair_pos hthree houtThree he
-  have hn1pos : 0 < F.highest.n - 1 := by omega
+  have hn1pos : 0 < F.highest.n - 1 :=
+    Nat.sub_pos_of_lt F.highest.n_two_le
   unfold highestOrder
   have htarget : (rankThreeQuotientCoordinate 1 1 e).pair - 1 <
       F.highest.n - 1 := by omega
@@ -298,14 +300,24 @@ theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior
     have hqpos := firstPositiveActualParameterOrder_pos D.family D.hasPositiveLayer
     have hkpos := F.support_pair_pos hthree houtThree heP
     by_contra hnotgt
-    have hk1 : (rankThreeQuotientCoordinate 1 1 e).pair = 1 := by omega
+    have hnotgt' :
+        ¬ 1 < (HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e).pair := by
+      simpa only [rankThreeQuotientCoordinate] using hnotgt
+    have hk1 : (HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e).pair = 1 := by
+      omega
     rw [hk1] at hinterp
-    simpa using (Nat.ne_of_gt (Nat.mul_pos (by omega : 0 < F.highest.n - 1) hqpos))
-      (by simpa using hinterp)
+    simpa using
+      (Nat.ne_of_gt (Nat.mul_pos (Nat.sub_pos_of_lt F.highest.n_two_le) hqpos))
+        (by simpa using hinterp)
   have hkn := (F.support_staircase_classification hthree houtThree heP).choose_spec.2.1
   refine ⟨hkgt, ?_⟩
   by_contra hnotlt
-  have hkeq : (rankThreeQuotientCoordinate 1 1 e).pair = F.highest.n := by omega
+  have hnotlt' :
+      ¬ (HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e).pair < F.highest.n := by
+    simpa only [rankThreeQuotientCoordinate] using hnotlt
+  have hkeq :
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 1 e).pair = F.highest.n := by
+    omega
   have hinterp := F.contactOrder_interpolation hthree houtThree heP
   rw [← D.reverseOrder_eq_quotientContactOrder e, heOrder, hkeq] at hinterp
   have hsame :
@@ -315,7 +327,7 @@ theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior
     calc
       _ = 2 * (F.locked.ell + 1 - F.highest.n) * (F.highest.n - 1) := hinterp
       _ = _ := by ring
-  have hEq := Nat.mul_left_cancel (show 0 < F.highest.n - 1 by omega) hsame
+  have hEq := Nat.mul_left_cancel (Nat.sub_pos_of_lt F.highest.n_two_le) hsame
   rcases D.exists_strictInterior_of_not_noStrictInterior hthree houtThree hnot with
     ⟨a, ha, _hagt, halt⟩
   let qa := T.topFace.degree - Finsupp.weight (qsIntegralContactWeight 2) a
@@ -339,7 +351,7 @@ theorem firstPositiveLayer_pair_strictInterior_of_not_noStrictInterior
   have hqalt : qa < D.highestOrder := by
     dsimp [qa]
     exact D.reverseOrder_lt_highest_of_pair_lt_highest hthree houtThree ha halt
-  rw [hEq] at hqalt
+  rw [← hEq] at hqalt
   exact (not_lt_of_ge hfirstle) hqalt
 
 /-- The first positive contact layer has shared strict-interior staircase
@@ -392,7 +404,6 @@ theorem exists_firstPositiveLayer_strictInterior_fiber
   have hq := D.firstPositiveLayer_quotient_fiber hthree houtThree hf he
   refine ⟨?_, ?_, D.parameterLayer_coeff_eq_carrier_of_mem hf⟩
   · rw [hq]
-    rfl
   · rw [hq, hj]
 
 end QsOtherFacetPrUnitLeftPlanarContactReesData
