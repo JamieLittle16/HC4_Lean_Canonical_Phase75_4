@@ -207,11 +207,9 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorLayers_eq_of_k
       rw [hsupp]
       exact h
     have hlo : MvPolynomial.coeff e Llo = 0 := by
-      rw [← MvPolynomial.notMem_support_iff]
-      exact he
+      exact (MvPolynomial.notMem_support_iff e).mp he
     have hhi : MvPolynomial.coeff e Lhi = 0 := by
-      rw [← MvPolynomial.notMem_support_iff]
-      exact hehi
+      exact (MvPolynomial.notMem_support_iff e).mp hehi
     simpa [Llo, Lhi] using hlo.trans hhi.symm
 
 /-- Coincident unit extremal pair degrees force the two staircase heights to
