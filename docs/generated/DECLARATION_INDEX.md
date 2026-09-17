@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8638**.
+Distinct declaration spellings indexed: **8642**.
 
 ## Repeated declaration spellings
 
@@ -4177,6 +4177,7 @@ Distinct declaration spellings indexed: **8638**.
 - `det_transverseSourceShearMatrices` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `det_twoFunctionEulerHessianMatrix` — `theorem` in `HC4.Polynomial.TwoFunctionEulerHessian`
 - `det_twoZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.TwoZeroBlockDeterminant`
+- `det_unitLeftOneFiberReflectedThreeLayerMomentPencil_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
 - `det_upperBlockUnitriangular` — `theorem` in `HC4.LinearAlgebra.UnitriangularBlock`
 - `det_weightedFirstZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
 - `det_weightedFourthZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
@@ -7336,6 +7337,7 @@ Distinct declaration spellings indexed: **8638**.
 - `reflect_finset_prod_uniform` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_finset_sum` — `theorem` in `HC4.Polynomial.MatrixPolynomialReflect`
 - `reflect_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
+- `reflect_unitLeftOneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
 - `relations_order2031` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `relations_order2130` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `relations_swap23` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
@@ -8697,9 +8699,11 @@ Distinct declaration spellings indexed: **8638**.
 - `unitKernelDeflateSection_eq_zero_of_eq_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_of_ne` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitLeftOneFiberReflectedThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
 - `unitLeftOneFiberSecondOrderMomentMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
 - `unitLeftOneFiberThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `unitLeftOneFiberThreeLayerMomentPencil_hasGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
+- `unitLeftOneFiberThreeLayerMomentPencil_natDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
 - `unitLeft_highest_e0_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
 - `unitLeft_highest_e1_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
 - `unitLeft_locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`

@@ -2837,6 +2837,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesHighestMomentRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesLockedMomentRealisation`
   - `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
+  - `HC4.Polynomial.MatrixPolynomialReflect`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
+  - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberUpperImpossible`
   - `HC4.Polynomial.FiniteStaircaseEndpointMomentDegree`
   - `HC4.Polynomial.FiniteStaircasePureModeSecondVariation`
