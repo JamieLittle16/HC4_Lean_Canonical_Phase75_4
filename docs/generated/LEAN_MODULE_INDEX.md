@@ -8409,7 +8409,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairRees`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInterior`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInterior`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactRees`
 - Declarations: `def QsOtherFacetPrUnitLeftContactFrontierData.NoStrictInteriorSupport`, `def QsOtherFacetPrUnitRightContactFrontierData.NoStrictInteriorSupport`, `theorem unit_left_highest_pairLevel_eq`, `theorem unit_right_highest_pairLevel_eq`, `theorem QsOtherFacetPrUnitLeftContactFrontierData.support_eq_locked_highest_of_noStrictInterior`, `theorem QsOtherFacetPrUnitRightContactFrontierData.support_eq_locked_highest_of_noStrictInterior`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairRees`
@@ -8487,10 +8487,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactRees.lean`
 - Purpose: A19 singular locked-side contact Rees for the unit PR carrier
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`, `HC4.Valuation.SingularBoundedReverseWeightedRees`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitNoInteriorSupport`, `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`
-- Declarations: `structure QsOtherFacetPrUnitLeftPlanarContactReesData`, `def family`, `def highestOrder`, `theorem QsOtherFacetPrUnitLeftContactFrontierData.planarContactRees`
+- Declarations: `structure QsOtherFacetPrUnitLeftPlanarContactReesData`, `abbrev rankThreeQuotientCoordinate`, `def family`, `def highestOrder`, `theorem QsOtherFacetPrUnitLeftContactFrontierData.planarContactRees`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorAffineLayer`
 
