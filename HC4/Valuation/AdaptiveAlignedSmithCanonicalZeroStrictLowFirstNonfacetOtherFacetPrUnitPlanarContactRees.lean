@@ -82,12 +82,14 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.planarContactRees
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     Nonempty (QsOtherFacetPrUnitLeftPlanarContactReesData F) := by
+  have hgap := F.quotient.contactGap_eq_sum R hthree houtThree
   have hbound : HasReverseWeightBound
       (qsIntegralContactWeight 2) T.topFace.degree P.carrier := by
     intro e he
     rw [qsIntegralContactWeight_finsupp]
     have hs := R.source_weight_le (P.support_source he)
-    simpa using hs
+    rw [hgap] at hs
+    simpa [Nat.add_comm, Nat.add_left_comm, Nat.add_assoc] using hs
   let Q := reverseWeightedReesFamily
     (qsIntegralContactWeight 2) T.topFace.degree P.carrier hbound
   have hzero : HC4.Polynomial.hessianDeterminant Q = 0 := by
