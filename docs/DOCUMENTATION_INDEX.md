@@ -1,6 +1,6 @@
 # HC4 documentation index
 
-**Authoritative map: 16 September 2026.**
+**Authoritative map: 17 September 2026.**
 
 The HC4 repository contains many historical phase notes. They are useful for
 provenance, but they must not be treated as simultaneous current TODO lists.
@@ -8,51 +8,81 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-16_HC4_FRESH_CONTEXT_FINAL_SPRINT.md`
+### `HANDOFF_2026-09-17_HC4_UNIT_FINITE_STAIRCASE_FINAL_CLOSURE.md`
 
-This is the preferred and authoritative context handoff for starting a new
-session on the live unrestricted-HC4 closure.
+This is the preferred and authoritative fresh-context handoff for the live
+unrestricted-HC4 final sprint.
 
-It freezes the two newest certified local closures:
+Its authoritative certified **code** checkpoint is:
 
 ```text
-right endpoint-only V=1 mirror
-  commit 9db159b2346736518e0c43138feef954cd39c049
-  Lean CI 35149023096
-
-interior singleton highest-slice exclusion
-  commit 8ca83aa9f6e5a8212eda02fe54458aa16984d902
-  Lean CI 35154902934
+commit e2783035171d173516a33448615f6cccd4ec9feb
+message: Add unit finite-staircase extremal fibers
+Lean CI: 35237635579
 ```
 
-Both passed the root build, theorem-axiom audit, negative control, and proof
-escape-hatch audit. In particular, the singleton theorem now proves that a
-singleton highest pair slice must lie on a coordinate boundary.
+That exact code checkpoint passed:
+
+```text
+Build HC4
+Axiom audit
+Proof-complete branch negative control
+Escape-hatch audit
+```
+
+The branch may have generated-inventory or documentation commits above that
+code commit. Re-pin PR #34 at the beginning of a fresh session and distinguish
+the current branch head from the last exact-head certified proof checkpoint.
+
+The 17 September handoff records the newest unit finite-staircase progress as
+**LEAN VERIFIED**:
+
+```text
+exact low/contact selected carrier fibre
+exact high/pair-Rees selected carrier fibre
+same-k selected multivariate layer equality
+same-k staircase-height equality
+same-k one-variable profile equality
+common nonzero profile satisfying both endpoint Euler equations
+same-k degree trichotomy:
+    j + 2 = k  OR  j + 1 = k  OR  j = k
+low selector = least strict-interior pair fibre
+high selector = greatest strict-interior pair fibre
+```
 
 The current critical path is therefore:
 
 ```text
-boundary singleton adapter
-  -> unit strict-interior finite-staircase closure
-  -> complete .pr
-  -> .sp/.rq by permutation covariance
-  -> A19 terminal splice
-  -> presented-terminal resolver
+prove Alo.k <= Ahi.k from the certified extrema
+  -> equal-k unit one-fibre contradiction
+       (port/factor nonunit lower/middle/upper diagonal closures)
+  -> strict-k unit multi-fibre contradiction
+       (port/specialize nonunit extrema/cross-roof closure)
+  -> unit finite-staircase closure
+  -> existing endpoint/no-interior + right-orientation transport
+  -> complete .pr parent assembly
+  -> .sp/.rq by existing permutation covariance
+  -> existing other-facet / A19 / global splice
   -> public unrestricted HC4 theorem
-  -> final root certification
+  -> exact-head full certification
 ```
 
-For **current implementation status and TODO order**, this fresh-context
-handoff supersedes `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`, the
-earlier 16 September final-assembly handoff, both 15 September handoffs, and
-the 12 September paper handoff.
+For **current implementation status and TODO order**, this 17 September handoff
+supersedes all earlier dated handoffs.
+
+### `HANDOFF_2026-09-16_HC4_FRESH_CONTEXT_FINAL_SPRINT.md`
+
+This remains useful historical provenance for the route into the unit branch,
+but its live TODO is now stale. In particular, the boundary-singleton seam and
+the earlier informal two-fibre framing have been overtaken by the certified
+unit finite-staircase one-fibre/extrema infrastructure. Do not use it as the
+primary continuation point.
 
 ### `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`
 
-This remains valuable historical provenance for the finite-staircase and
-public-closure architecture, but its live TODO is stale: the right endpoint
-mirror and the interior-singleton obstruction recorded there have since been
-closed and certified. Do not use it as the primary continuation point.
+This remains valuable historical provenance for finite-staircase and
+public-closure architecture, but its live TODO predates the certified unit
+one-fibre and extremal-fibre work.
 
 ## Core architectural documents
 
@@ -100,17 +130,17 @@ open tasks have since landed in Lean.
 
 ### `HANDOFF_2026-09-15_HC4_PAIR_REES_FINAL_CLOSURE.md`
 
-Owns the detailed provenance of the locked/contact and highest/pair-Rees
+Owns detailed provenance of the locked/contact and highest/pair-Rees
 first-variation constructions and, importantly, the warning that the two
 endpoint first variations alone do not eliminate all interior staircase
-fibres. Its TODO is historical because the non-unit finite staircase has since
-been fully closed.
+fibres. Its TODO is historical because the nonunit finite staircase is closed
+and the unit branch now has a certified common-profile degree trichotomy.
 
 ### `HANDOFF_2026-09-16_HC4_FINAL_ASSEMBLY.md`
 
-Owns detailed provenance for the right `(V,1)`, `V>1` mirror and the earlier
+Owns detailed provenance for the right `(V,1)`, `V>1` mirror and earlier
 final-assembly architecture. Its status table is superseded by the current
-fresh-context handoff.
+17 September handoff.
 
 ### `LINE_SUPPORTED_HESSIAN_RECURRENCE_CLOSURE.md`
 
@@ -120,7 +150,7 @@ argument. The relevant primitive highest-slice rigidity is already formalized.
 ### `FILTERED_FIRST_KERNEL_BREAK_LEMMA.md`
 
 Owns the state-free algebra behind the A19.55 same-carrier codimension-two
-branch. That branch now has a Lean-verified geometry-bearing local closure.
+branch. That branch has a Lean-verified geometry-bearing local closure.
 
 ### `A1_FIRST_INTERIOR_ADAPTER_AUDIT_2026-09-13.md`
 
@@ -129,6 +159,9 @@ Prohibition/reference document for the false shortcut
 ```text
 first variation + staircase arithmetic -> degree <= 1.
 ```
+
+The valid live replacement in the equal-fibre unit branch is the certified
+three-way affine-two-root degree trichotomy.
 
 ### `STATIONARY_DETERMINANT_COMPARISON_AUDIT_2026-09-15.md`
 
@@ -139,13 +172,13 @@ comparison. Do not revive that implication in the final proof.
 
 ### `HANDOFF_2026-09-15_HC4_FINAL_MULTIFIBER_CLOSURE.md`
 
-Historical checkpoint from before the exposed cross-roof and mirrored
-finite-staircase branches were completed. Do not use its source-honest
-exposed-roof adapter as the current TODO.
+Historical checkpoint from before the exposed cross-roof and mirrored nonunit
+finite-staircase branches were completed. Use its mathematics only when it
+matches the live verified declarations.
 
 ### `HANDOFF_2026-09-15_HC4_FINAL_LEAN_CLOSURE.md`
 
-Historical checkpoint for the stationary machinery. Its proposed generic
+Historical checkpoint for stationary machinery. Its proposed generic
 source/profile determinant bridge was subsequently shown false in that
 generality and replaced by source-honest finite-staircase work.
 
@@ -198,20 +231,19 @@ the context makes clear whether this means paper or Lean.
 
 ## Current one-line status
 
-As of the certified singleton checkpoint
-`8ca83aa9f6e5a8212eda02fe54458aa16984d902` (Lean CI `35154902934`), with the
-right unit endpoint already certified at `9db159b2346736518e0c43138feef954cd39c049`:
+As of certified code checkpoint
+`e2783035171d173516a33448615f6cccd4ec9feb` (Lean CI `35237635579`):
 
 > the unrestricted entry and finite rank-one termination architecture, A19.55
-> codimension-two geometry, lower-`.qs` other-facet reduction, source-honest
-> planar/highest-slice stack, both left and right `V>1` finite-staircase
-> closures, actual presented rank-two chart lifting, and the unit
-> endpoint/contact/staircase/pair-Rees infrastructure are Lean verified. Both
-> endpoint-only `V=1` unit branches are now contradictory in Lean, and a
-> singleton highest pair slice is Lean-verified to lie on a coordinate
-> boundary. The principal remaining local seam is the boundary-singleton
-> adapter feeding the surviving strict-interior unit staircase. After that,
-> the expected path is `.pr` parent assembly, `.sp/.rq` permutation transport,
-> the terminal-resolver splice, and the public unrestricted HC4 theorem.
+> geometry, source-honest other-facet/highest-slice stack, both nonunit
+> finite-staircase orientations, unit endpoint/contact/pair-Rees machinery,
+> exact unit equal-fibre layer/profile identification, common dual endpoint
+> Euler law, unit one-fibre degree trichotomy, and least/greatest unit
+> strict-interior selector theorems are Lean verified. The principal remaining
+> local mathematics is to eliminate the equal-fibre three diagonal cases and
+> the strictly separated unit multi-fibre case using the already-verified
+> nonunit finite-staircase closure as the template. Then the remaining work is
+> unit endpoint/right-orientation packaging and the existing `.pr` ->
+> `.sp/.rq` -> A19/global assembly splice.
 
-This is not yet a claim that unrestricted HC4 has been proved.
+This is **not yet a claim that unrestricted HC4 has been proved**.
