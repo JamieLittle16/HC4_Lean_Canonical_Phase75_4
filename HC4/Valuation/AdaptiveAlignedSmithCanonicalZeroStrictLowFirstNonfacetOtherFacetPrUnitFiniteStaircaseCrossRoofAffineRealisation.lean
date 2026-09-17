@@ -264,23 +264,55 @@ noncomputable def lowSupportData
     have hcrossZ := E.face_cross_relation he0
     have hthreeZ := E.face_three_interpolation hthree houtThree he0
     rw [E.lo_three, E.hi_three] at hthreeZ
+    have hvZ : (E.v : ℤ) ≠ 0 := by
+      exact_mod_cast (Nat.ne_of_gt E.v_pos)
 
+    have hrevZeroScaled :
+        (E.v : ℤ) *
+            ((E.q : ℤ) *
+                ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) -
+              (e0 2 : ℤ) *
+                ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ)))) = 0 := by
+      linear_combination
+        (E.q : ℤ) * hzeroZ +
+          ((((E.jHi + 1 : ℕ) : ℤ) - (E.kLo : ℤ))) * hcrossZ
+    have hrevZeroDiff :
+        (E.q : ℤ) *
+            ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) -
+          (e0 2 : ℤ) *
+            ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) = 0 :=
+      (mul_eq_zero.mp hrevZeroScaled).resolve_left hvZ
     have hrevZeroZ :
         (E.q : ℤ) *
             ((e0 0 : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) =
           (e0 2 : ℤ) *
-            ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) := by
-      nlinarith [hzeroZ, hcrossZ]
+            ((E.kLo : ℤ) - (((E.jHi + 1 : ℕ) : ℤ))) :=
+      sub_eq_zero.mp hrevZeroDiff
     have hrevOneZ :
         (E.q : ℤ) * ((e0 1 : ℤ) - (E.v : ℤ)) =
           (e0 2 : ℤ) * (-(E.v : ℤ)) := by
       nlinarith [hcrossZ]
+    have hrevThreeScaled :
+        (E.v : ℤ) *
+            ((E.q : ℤ) *
+                ((e0 3 : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) -
+              (e0 2 : ℤ) *
+                ((E.jLo : ℤ) - ((E.kHi - 1 : ℕ) : ℤ))) = 0 := by
+      linear_combination
+        (E.q : ℤ) * hthreeZ +
+          ((((E.kHi - 1 : ℕ) : ℤ) - (E.jLo : ℤ))) * hcrossZ
+    have hrevThreeDiff :
+        (E.q : ℤ) *
+            ((e0 3 : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) -
+          (e0 2 : ℤ) *
+            ((E.jLo : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) = 0 :=
+      (mul_eq_zero.mp hrevThreeScaled).resolve_left hvZ
     have hrevThreeZ :
         (E.q : ℤ) *
             ((e0 3 : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) =
           (e0 2 : ℤ) *
-            ((E.jLo : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) := by
-      nlinarith [hthreeZ, hcrossZ]
+            ((E.jLo : ℤ) - ((E.kHi - 1 : ℕ) : ℤ)) :=
+      sub_eq_zero.mp hrevThreeDiff
 
     have hrevZeroK :
         (E.q : K) *
