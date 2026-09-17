@@ -10760,7 +10760,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem exists_globalProgress`, `theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress`
+- Declarations: `theorem exists_globalProgress`, `theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress`, `theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_no_globalProgress`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
 

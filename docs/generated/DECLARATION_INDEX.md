@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8726**.
+Distinct declaration spellings indexed: **8727**.
 
 ## Repeated declaration spellings
 
@@ -776,6 +776,7 @@ Distinct declaration spellings indexed: **8726**.
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_zeroStrictLowTerminal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.honestFirstContact_of_no_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.honestFirstContact_of_no_globalProgress_of_coreProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroBlockerCoreReduction`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_no_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_resolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.losslessTerminalData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
