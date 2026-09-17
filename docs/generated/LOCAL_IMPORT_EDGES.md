@@ -3546,6 +3546,11 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
   - `HC4.Valuation.ReverseReesAssociatedGraded`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
+  - `HC4.Polynomial.MonomialHessian`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
+  - `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+  - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
   - `HC4.Polynomial.UniqueMaximalInitialMonomial`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
