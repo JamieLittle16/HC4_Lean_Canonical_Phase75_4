@@ -83,8 +83,10 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.support_eq_of_deficits_eq
   have hfw := F.support_deficit_wall hthree houtThree hf
   have hcoef :
       (0 : ℤ) < ((F.highest.n : ℤ) - 1) + (F.locked.ell : ℤ) := by
+    have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+    have hnNat : 1 < F.highest.n := by omega
     have hn : (1 : ℤ) < (F.highest.n : ℤ) := by
-      exact_mod_cast (show 1 < F.highest.n by omega)
+      exact_mod_cast hnNat
     have hell : (0 : ℤ) < (F.locked.ell : ℤ) := by
       exact_mod_cast F.locked.ell_pos
     omega
