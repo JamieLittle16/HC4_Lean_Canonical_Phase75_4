@@ -69,6 +69,24 @@ theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgre
   · rcases hterminal with ⟨Z⟩
     exact Z.exists_globalProgress
 
+/-- A producer-free rank-one Rees reduced trace cannot end at a state carrying
+an honest global no-successor certificate.  This is the thin global-terminal
+adapter needed by final assembly: no local terminal notion is identified with
+global terminality; the contradiction is used only when the genuine
+`GlobalMacroProgress` no-successor predicate is supplied explicitly. -/
+theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.impossible_of_no_globalProgress
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace
+      canonicalAdaptiveAlignedSmithRepairRanking 0 source)
+    (hsrepair : source.repair = rankOneRepairState 0)
+    (hterminal :
+      ∀ target : ScaleAwareAdaptiveGeometricRestartState (K := K),
+        ¬ AdaptiveAlignedSmithCanonicalGlobalMacroProgress
+          target T.trace.reachedRankThree.state) :
+    False := by
+  obtain ⟨target, hprogress⟩ := T.exists_globalProgress hsrepair
+  exact hterminal target hprogress
+
 end
 
 end HC4.Valuation
