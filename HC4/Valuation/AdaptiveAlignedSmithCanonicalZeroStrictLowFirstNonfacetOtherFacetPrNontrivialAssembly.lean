@@ -15,6 +15,8 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiber
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseEndpointEuler
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberDegree
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier
@@ -28,19 +30,19 @@ import Mathlib.Tactic
 # A19 nontrivial PR assembly after the finite-staircase closures
 
 For a nontrivial highest pair slice on the `.pr` other-facet branch, the
-already-verified normalized-carrier frontier has exactly three possibilities:
+normalized-carrier frontier has exactly three quotient possibilities:
 
 * the symmetric unit direction `(1,1)`;
 * the left non-unit direction `(1,V)`, `V>1`; or
 * the transverse-swapped right non-unit direction `(V,1)`, `V>1`.
 
-The finite-staircase closure consumes both non-unit directions.  In each case,
-the exposed cross-roof alternative is contradictory, while the central
-alternative lifts to an actual rank-two Hessian chart on the represented
-presented state.
+The non-unit finite-staircase closures consume the two latter directions.  The
+unit finite-staircase closures now consume both transverse orientations of the
+remaining `(1,1)` quotient as well.  Every surviving nontrivial `.pr` branch
+therefore carries an actual rank-two Hessian chart on the represented state.
 
-Thus the remaining nontrivial `.pr` assembly has only the unit branch or
-retained actual rank-two geometry.  No repair-only progress is asserted here.
+No repair-only progress is asserted here and no auxiliary Rees clock is
+identified with the zero blocker.
 -/
 
 namespace HC4.Valuation
@@ -58,9 +60,7 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 
-/-- **Consume the left `(1,V)`, `V>1` branch of the normalized `.pr`
-frontier.**  The same honest contact-Rees package is retained for the two
-remaining quotient orientations. -/
+/-- Consume the left `(1,V)`, `V>1` branch of the normalized `.pr` frontier. -/
 theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_left_closure
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -93,10 +93,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_left_closu
         S.pr_rightV_contactFrontier
           R hV Q hthree houtThree hnontrivial)
 
-/-- **Consume both non-unit finite-staircase directions.**  After the left and
-right closures, a nontrivial `.pr` highest slice is either the symmetric unit
-quotient `(1,1)` or it already carries an actual rank-two Hessian chart on the
-represented state. -/
+/-- Consume both non-unit finite-staircase directions. -/
 theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_nonunit_closure
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs}
@@ -118,6 +115,33 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_nonunit_cl
     · rcases hright with ⟨F⟩
       exact ⟨R, Or.inr (F.actualRankTwoHessianChart hthree houtThree)⟩
     · exact ⟨R, Or.inr hrank⟩
+
+/-- **Complete nontrivial `.pr` finite-staircase closure.**  The remaining
+unit quotient is normalized to one of its two source-honest transverse
+orientations; the left and right unit closures both yield the same retained
+actual rank-two Hessian chart type. -/
+theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_actualRankTwoHessianChart
+    {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs}
+    {P : QsOtherFacetPlanarCarrierPackage C .pr}
+    (S : QsOtherFacetPlanarHighestPairSlicePackage C .pr P)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (hnontrivial :
+      ∃ a ∈ S.slice.support, ∃ b ∈ S.slice.support, a ≠ b) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+        T.terminal.blocker.presented) := by
+  rcases S.pr_nontrivial_after_nonunit_closure
+      hthree houtThree hnontrivial with ⟨R, hunit | hrank⟩
+  · rcases hunit with ⟨Q⟩
+    rcases S.pr_unitContactFrontier R Q hthree houtThree hnontrivial with
+      hleft | hright
+    · rcases hleft with ⟨F⟩
+      exact F.actualRankTwoHessianChart hthree houtThree
+    · rcases hright with ⟨F⟩
+      exact F.actualRankTwoHessianChart hthree houtThree
+  · exact hrank
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
