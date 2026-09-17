@@ -37,8 +37,10 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.central_coordinateMax_face_ra
   have hPne : P.carrier ≠ 0 := MvPolynomial.support_nonempty.mp ⟨c, hc⟩
   let D := HC4.Newton.coordinateMaxInitialData P.carrier hPne (0 : Fin 4)
   have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by exact_mod_cast F.locked.ell_pos
-  have hnOneZ : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < F.highest.n by omega)
+  have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+  have hnNat : 1 < F.highest.n := by omega
+  have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by exact_mod_cast hnNat
+  have hnOneZ : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by omega
   have hcoefZ : (0 : ℤ) < (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
     omega
   have hcChord := F.support_deficit_chord hthree houtThree hc
@@ -142,9 +144,10 @@ theorem QsOtherFacetPrUnitRightContactFrontierData.central_coordinateMax_face_ra
   rw [hc1, hc3] at hcurve
   norm_num at hcurve
   have hc2Z : (c 2 : ℤ) = (c 0 : ℤ) - 1 := by nlinarith only [hcurve]
+  have hc0GtOneZ : (1 : ℤ) < (c 0 : ℤ) := by exact_mod_cast hc0GtOne
   have hc2ZPos : (0 : ℤ) < (c 2 : ℤ) := by
     rw [hc2Z]
-    exact_mod_cast Nat.sub_pos_of_lt hc0GtOne
+    omega
   have hc2Pos : 0 < c 2 := by exact_mod_cast hc2ZPos
 
   have hcoeff : MvPolynomial.coeff c P.carrier ≠ 0 := MvPolynomial.mem_support_iff.mp hc
