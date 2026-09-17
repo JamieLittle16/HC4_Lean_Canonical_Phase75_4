@@ -78,15 +78,17 @@ theorem exists_of_not_noStrictInterior
       intro e he
       rcases hall e he with ⟨hpair, hfirst, _hcoeff⟩
       have hpairNat : e 0 + e 1 = k := by
-        simpa [rankThreeQuotientCoordinate] using hpair
+        simpa [QsOtherFacetPrUnitLeftPlanarContactReesData.rankThreeQuotientCoordinate,
+          HC4.Polynomial.rankThreeQuotientCoordinate] using hpair
       have hfirstNat : e 0 + e 2 = j + 1 := by
-        simpa [rankThreeQuotientCoordinate] using hfirst
+        simpa [QsOtherFacetPrUnitLeftPlanarContactReesData.rankThreeQuotientCoordinate,
+          HC4.Polynomial.rankThreeQuotientCoordinate] using hfirst
       have heP := (D.parameterLayer_support_source_and_order he).1
       have hs := F.support_staircase_equations hthree houtThree heP
       have hsecondZ := hs.2
-      simp only [rankThreeQuotientCoordinate_secondTransverse,
-        rankThreeQuotientCoordinate_pair,
-        rankThreeQuotientCoordinate_firstTransverse, one_mul] at hsecondZ
+      simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+        HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+        HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse, one_mul] at hsecondZ
       rw [hpairNat, hfirstNat] at hsecondZ
       have hsecondZ' : ((e 0 + e 3 : ℕ) : ℤ) = ((k + j : ℕ) : ℤ) := by
         push_cast at hsecondZ ⊢
@@ -114,13 +116,25 @@ theorem eq_of_zeroCoordinate_eq
     (hzero : e 0 = f 0) : e = f := by
   rcases A.coordinates e he with ⟨he1, he2, he3⟩
   rcases A.coordinates f hf with ⟨hf1, hf2, hf3⟩
+  have h1sum : e 0 + e 1 = f 0 + f 1 := he1.trans hf1.symm
+  have h2sum : e 0 + e 2 = f 0 + f 2 := he2.trans hf2.symm
+  have h3sum : e 0 + e 3 = f 0 + f 3 := he3.trans hf3.symm
+  have h1 : e 1 = f 1 := by
+    rw [hzero] at h1sum
+    exact Nat.add_left_cancel h1sum
+  have h2 : e 2 = f 2 := by
+    rw [hzero] at h2sum
+    exact Nat.add_left_cancel h2sum
+  have h3 : e 3 = f 3 := by
+    rw [hzero] at h3sum
+    exact Nat.add_left_cancel h3sum
   apply Finsupp.ext
   intro i
   fin_cases i
   · exact hzero
-  · omega
-  · omega
-  · omega
+  · exact h1
+  · exact h2
+  · exact h3
 
 noncomputable def coefficientProfile
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData T .qs}
