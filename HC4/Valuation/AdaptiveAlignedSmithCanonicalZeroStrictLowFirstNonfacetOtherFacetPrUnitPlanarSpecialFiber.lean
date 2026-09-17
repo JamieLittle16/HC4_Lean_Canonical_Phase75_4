@@ -40,7 +40,7 @@ theorem locked_facet_reverseOrder_eq_zero
     T.topFace.degree -
         Finsupp.weight (qsIntegralContactWeight 2) C.ray.facetExponent = 0 := by
   rw [D.reverseOrder_eq_quotientContactOrder]
-  rw [F.locked_contactOrder, F.topFace_degree_eq hthree houtThree]
+  rw [F.locked_contactOrder, F.topFace_degree_eq]
   simp
 
 /-- The locked outside endpoint has the same zero reverse order. -/
@@ -227,7 +227,7 @@ theorem specialFiber_eq_locked_pair
           (MvPolynomial.coeff C.ray.facetExponent P.carrier) +
         MvPolynomial.monomial C.ray.outsideExponent
           (MvPolynomial.coeff C.ray.outsideExponent P.carrier) := by
-      simp [Finset.sum_insert, hne, Ne.symm hne, hcoeff.1, hcoeff.2]
+      simp [Finset.sum_insert, hne, hcoeff.1, hcoeff.2]
 
 end QsOtherFacetPrUnitLeftPlanarContactReesData
 
