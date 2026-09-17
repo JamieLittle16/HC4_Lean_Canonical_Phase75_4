@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8702**.
+Distinct declaration spellings indexed: **8705**.
 
 ## Repeated declaration spellings
 
@@ -135,7 +135,9 @@ Distinct declaration spellings indexed: **8702**.
 - `integralWeight_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `lemma` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `kernelDiagonal_coeff_order_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
-- `kernelLastBlock_activeDiagonal_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `kernelLastBlock_activeDiagonal_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `leftPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -5280,6 +5282,7 @@ Distinct declaration spellings indexed: **8702**.
 - `hessian_kernelInflateHom_entry` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessian_linearPower_mulVec_rigidTopKernelDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `hessian_monomial_diagonal_ne_zero_of_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `hessian_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `hessian_parameterRamificationFamily_entry` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -5540,9 +5543,9 @@ Distinct declaration spellings indexed: **8702**.
 - `kernelInflateHom_unit_hasHessianDefect_add_two` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `kernelInflateVariable` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflate_integralKernelBlowupFamily_eq` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
-- `kernelLastBlock_activeDiagonal_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
-- `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
-- `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastBlock_activeDiagonal_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
@@ -7457,6 +7460,7 @@ Distinct declaration spellings indexed: **8702**.
 - `reverseReesFamily_defect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`
 - `reverseReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`
 - `reverseReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
+- `reverseReesFamily_layer_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`
 - `reverseReesFamily_layer_zero_eq_child` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `reverseReesFamily_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`
 - `reverseReesSchurALoss` — `def` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
@@ -7868,6 +7872,7 @@ Distinct declaration spellings indexed: **8702**.
 - `signedRightRecentered_specialFiber_free` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedKernelFirstContact`
 - `singleCoordinate_initialForm_eq_monomial_of_contactFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `single_one_eq_iff` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
+- `singleton_firstBreakRankTwoOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`
 - `singularFirstKernelBreakData_of_kernelRow` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 - `singular_codimensionTwoNonhomogeneousDeparturePencil_forces_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
