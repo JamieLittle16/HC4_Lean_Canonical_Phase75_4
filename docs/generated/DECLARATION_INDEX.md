@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8730**.
+Distinct declaration spellings indexed: **8733**.
 
 ## Repeated declaration spellings
 
@@ -593,7 +593,9 @@ Distinct declaration spellings indexed: **8730**.
 - `AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwoProgress.toRamifiedStrictMacro` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingWallClosure`
 - `AdaptiveAlignedSmithCanonicalGlobalSurvivingTraceReductionOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingTraceReduction`
 - `AdaptiveAlignedSmithCanonicalGlobalTerminationFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalTerminationFrontier`
+- `AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankThreeProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoContinuation`
 - `AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankTwoProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
+- `AdaptiveAlignedSmithCanonicalGlobalZeroDefectRankTwoProgress.toRankThreeProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoContinuation`
 - `AdaptiveAlignedSmithCanonicalGlobalZeroDefectReentryData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSoundAssemblyFrontier`
 - `AdaptiveAlignedSmithCanonicalGlobalZeroSchurRankTwoGeometry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `AdaptiveAlignedSmithCanonicalGlobalZeroSchurRankTwoGeometry.toPointedPresentation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPointedRankTwoPresentation`
@@ -2985,6 +2987,7 @@ Distinct declaration spellings indexed: **8730**.
 - `ScaleAwareAdaptiveGeometricRestartState.withRepairOnly` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockStationaryEndgame`
 - `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_completeRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
 - `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_exactActiveFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
+- `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankThreeProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoContinuation`
 - `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_globalRankTwoProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_ordinaryInitial_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFace`
 - `ScaleAwareAdaptiveGeometricRestartState.zeroDefect_rankTwoGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`

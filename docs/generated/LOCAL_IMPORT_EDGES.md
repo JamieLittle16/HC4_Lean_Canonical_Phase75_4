@@ -2327,6 +2327,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoContinuation`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
   - `HC4.Newton.GeneralFourBlockSchur`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
