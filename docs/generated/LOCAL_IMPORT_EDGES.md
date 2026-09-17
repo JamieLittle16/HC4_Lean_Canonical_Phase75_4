@@ -2671,6 +2671,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRankThreeDegreeGap`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`

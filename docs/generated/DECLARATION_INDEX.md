@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8707**.
+Distinct declaration spellings indexed: **8711**.
 
 ## Repeated declaration spellings
 
@@ -6700,6 +6700,7 @@ Distinct declaration spellings indexed: **8707**.
 - `prVGreaterOne_wallSlope_pair_eq_of_height_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseInterface`
 - `prVGreaterOne_wallSlope_pair_lt_iff_height_gt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseInterface`
 - `prVGreaterOne_wallSlope_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneWallSlopeConsequences`
+- `pr_actualRankTwoChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `pr_contact_longitudinal_coeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineCarrier`
 - `pr_contact_mixedDet_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineHessian`
 - `pr_contact_pair_hessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrAffineHessian`
@@ -6893,6 +6894,7 @@ Distinct declaration spellings indexed: **8707**.
 - `qs_ray_degreeOne_terminalCertificate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_directionSum_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_ray_facet_degree_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
+- `qs_ray_otherFacet_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `qs_ray_otherFacet_contactQuadraticRees_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`
 - `qs_ray_otherFacet_contactRees_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRees`
 - `qs_ray_otherFacet_integral_locked_source_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetIntegralLockedFrontier`
@@ -7585,6 +7587,7 @@ Distinct declaration spellings indexed: **8707**.
 - `rigidTopPairTangentExpression` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - `rigidTopTransverseIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `rigid_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
+- `rq_actualRankTwoChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `rq_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `sBranch` — `def` in `HC4.Toric.InvariantSemigroup`
 - `sBranch_as_generators` — `theorem` in `HC4.Toric.InvariantSemigroup`
@@ -8103,6 +8106,7 @@ Distinct declaration spellings indexed: **8707**.
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `sp_actualRankTwoChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `sp_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `sparseOnPQCone_mapCoeffs_iff` — `theorem` in `HC4.Toric.CoefficientDescent`
 - `sparseOnRLevel_mapCoeffs_iff` — `theorem` in `HC4.Toric.CoefficientDescent`
