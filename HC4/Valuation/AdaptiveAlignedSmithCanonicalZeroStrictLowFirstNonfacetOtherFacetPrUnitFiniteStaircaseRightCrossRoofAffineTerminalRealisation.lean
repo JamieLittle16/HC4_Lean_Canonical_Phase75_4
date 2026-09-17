@@ -187,7 +187,8 @@ theorem impossible
       E.kLo_pos E.jLo_pos E.pair_lt E.wall_lo E.wall_hi
       E.q_eq E.q_pos E.v_eq E.v_pos
       (E.highProfile_natDegree hthree houtThree)
-      (E.highProfile_coeff_zero_ne hthree houtThree) hcertHi'
+      (E.highProfile_coeff_zero_ne hthree houtThree)
+      (by simpa only [Nat.cast_one] using hcertHi')
   have hcertLo' :
       HasRankThreePolynomialTerminalCertificate
         (phi := (E.lowSupportData hthree houtThree).coefficientProfile)
@@ -202,7 +203,8 @@ theorem impossible
       E.kLo_pos E.pair_lt E.wall_lo E.wall_hi
       E.q_eq E.q_pos E.v_eq E.v_pos
       (E.lowProfile_natDegree hthree houtThree)
-      (E.lowProfile_coeff_zero_ne hthree houtThree) hcertLo'
+      (E.lowProfile_coeff_zero_ne hthree houtThree)
+      (by simpa only [Nat.cast_one] using hcertLo')
   exact HC4.Polynomial.no_crossRoof_unit_residuals
     F.highest.n_two_le hnell E.pair_lt E.wall_lo E.wall_hi
     E.q_eq E.v_eq E.q_pos E.v_pos hqone hvone
