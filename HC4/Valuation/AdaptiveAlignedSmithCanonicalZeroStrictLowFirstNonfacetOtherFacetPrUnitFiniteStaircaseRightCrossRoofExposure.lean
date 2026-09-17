@@ -185,6 +185,7 @@ theorem exists_wRoof_on_face
         (D.gap : ℤ) * (d 1 : ℤ) + (D.edge 1 : ℤ) * (d 3 : ℤ) ≤
           (D.gap : ℤ) * ((F.highest.n : ℤ) - 1) := by
       rw [hgapCast] at hcost ⊢
+      have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
       have hn1 : 1 ≤ F.highest.n := by omega
       have hcast : ((F.highest.n - 1 : ℕ) : ℤ) = (F.highest.n : ℤ) - 1 := by
         rw [Nat.cast_sub hn1]
