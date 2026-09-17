@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8649**.
+Distinct declaration spellings indexed: **8654**.
 
 ## Repeated declaration spellings
 
@@ -2516,7 +2516,9 @@ Distinct declaration spellings indexed: **8649**.
 - `QsOtherFacetPrUnitLeftContactFrontierData.contactOrder_interpolation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder`
 - `QsOtherFacetPrUnitLeftContactFrontierData.eq_locked_of_support_pair_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesLockedMomentRealisation`
 - `QsOtherFacetPrUnitLeftContactFrontierData.highest_n_lt_locked_height` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactSeparation`
+- `QsOtherFacetPrUnitLeftContactFrontierData.highest_zRoof_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrUnitLeftContactFrontierData.impossible_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
+- `QsOtherFacetPrUnitLeftContactFrontierData.locked_yRoof_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_degree_pairs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_commonProfile_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseEndpointEuler`
 - `QsOtherFacetPrUnitLeftContactFrontierData.oneFiber_endpointRoots_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberRoot`
@@ -2533,7 +2535,10 @@ Distinct declaration spellings indexed: **8649**.
 - `QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorLayers_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiber`
 - `QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorProfiles_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiber`
 - `QsOtherFacetPrUnitLeftContactFrontierData.selectedInterior_j_eq_of_k_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiber`
+- `QsOtherFacetPrUnitLeftContactFrontierData.support_deficit_chord` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseSourceDeficits`
+- `QsOtherFacetPrUnitLeftContactFrontierData.support_deficit_wall` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrUnitLeftContactFrontierData.support_eq_locked_highest_of_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitNoInteriorSupport`
+- `QsOtherFacetPrUnitLeftContactFrontierData.support_eq_of_deficits_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseSourceDeficits`
 - `QsOtherFacetPrUnitLeftContactFrontierData.support_pair_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseClassification`
 - `QsOtherFacetPrUnitLeftContactFrontierData.support_staircase_classification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseClassification`
 - `QsOtherFacetPrUnitLeftContactFrontierData.support_staircase_equations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseSupport`
