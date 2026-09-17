@@ -61,7 +61,7 @@ theorem locked_affineTwoRootEulerOperator_eq_zero
   have hode := affineTwoRootEulerOperator_eq_zero_of_firstActual_moment_identification
     D.family D.hasPositiveLayer D.hessian_zero
     1 F.locked.ell A.k A.j
-    (by norm_num : 0 < (1 : ℕ)) F.locked.ell_pos (by omega)
+    (by norm_num : 0 < (1 : ℕ)) F.locked.ell_pos (le_of_lt A.k_gt_one)
     a b ha hb A.coefficientProfile hzero hfirst
   simpa [a, b] using hode
 
