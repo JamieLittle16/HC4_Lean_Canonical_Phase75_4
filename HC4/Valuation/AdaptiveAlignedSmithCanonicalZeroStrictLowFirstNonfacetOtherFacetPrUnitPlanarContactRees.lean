@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitStaircaseContactOrder
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitNoInteriorSupport
 import HC4.Valuation.SingularBoundedReverseWeightedRees
 import Mathlib.Tactic
 
@@ -45,6 +46,12 @@ structure QsOtherFacetPrUnitLeftPlanarContactReesData
         (qsIntegralContactWeight 2) T.topFace.degree P.carrier bound)
 
 namespace QsOtherFacetPrUnitLeftPlanarContactReesData
+
+/-- Namespace-local compatibility alias used by the unit first-interior layer. -/
+abbrev rankThreeQuotientCoordinate
+    (alpha beta : ℕ) (e : Fin 4 →₀ ℕ) :
+    HC4.Polynomial.RankThreeQuotientCoordinate :=
+  HC4.Polynomial.rankThreeQuotientCoordinate alpha beta e
 
 noncomputable def family
     {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
