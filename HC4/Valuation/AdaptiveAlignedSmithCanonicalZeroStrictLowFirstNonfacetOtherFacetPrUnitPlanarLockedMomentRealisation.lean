@@ -67,7 +67,14 @@ theorem zeroLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian
       · exact Or.inr hn1
       exfalso
       apply hn
-      simp [phi, hn0, hn1]
+      have hC : (Polynomial.C a : Polynomial K).coeff n = 0 := by
+        rw [Polynomial.coeff_C]
+        simp [hn0]
+      have hX : (Polynomial.X : Polynomial K).coeff n = 0 := by
+        rw [← pow_one (Polynomial.X : Polynomial K)]
+        rw [Polynomial.coeff_X_pow]
+        simp [hn1]
+      simp [phi, hC, hX]
     · intro hn
       rcases hn with rfl | rfl
       · simp [phi, ha]
