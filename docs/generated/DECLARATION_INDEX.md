@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8633**.
+Distinct declaration spellings indexed: **8637**.
 
 ## Repeated declaration spellings
 
@@ -5711,6 +5711,7 @@ Distinct declaration spellings indexed: **8633**.
 - `matrixParameterGapIntermediateDualJet` — `def` in `HC4.Valuation.ParameterGapIntermediateDualJet`
 - `matrixParameterGapSecondJet` — `def` in `HC4.Valuation.ParameterGapSecondJet`
 - `matrixParameterGapSecondJet_oneFiberThreeLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberSecondJet`
+- `matrixParameterGapSecondJet_unitLeftOneFiberThreeLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
 - `matrixSeparatedParameterDualJet` — `def` in `HC4.Valuation.SeparatedParameterDualJet`
 - `matrixToParameterGap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
 - `matrixToParameterGapCommRing` — `def` in `HC4.Valuation.ParameterGapDualJet`
@@ -8696,11 +8697,14 @@ Distinct declaration spellings indexed: **8633**.
 - `unitKernelDeflateSection_eq_zero_of_eq_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_of_ne` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitLeftOneFiberSecondOrderMomentMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
 - `unitLeftOneFiberThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
+- `unitLeftOneFiberThreeLayerMomentPencil_hasGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
 - `unitLeft_highest_e0_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
 - `unitLeft_highest_e1_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
 - `unitLeft_locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
 - `unitLeft_locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointClosure`
+- `unitLeft_oneFiber_pairGap_pos_lt_terminal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
 - `unitLeft_oneFiber_swappedEuler_coeff_eq_zero_of_other` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `unitLeft_oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `unitLeft_oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
