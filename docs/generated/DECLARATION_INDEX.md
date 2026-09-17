@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8637**.
+Distinct declaration spellings indexed: **8638**.
 
 ## Repeated declaration spellings
 
@@ -8709,6 +8709,7 @@ Distinct declaration spellings indexed: **8637**.
 - `unitLeft_oneFiber_swappedEuler_coeff_interior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `unitLeft_oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `unitLeft_oneFiber_swappedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
+- `unitLeft_oneFiber_upper_diagonal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberUpperImpossible`
 - `unitRight_highest_e0_swap_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
 - `unitRight_highest_e1_swap_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
 - `unitRight_locked_facet_swap_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitRightEndpointClosure`
