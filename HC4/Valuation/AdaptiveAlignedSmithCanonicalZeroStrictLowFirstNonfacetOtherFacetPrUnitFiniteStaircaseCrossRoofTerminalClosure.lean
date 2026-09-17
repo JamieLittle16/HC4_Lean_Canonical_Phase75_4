@@ -73,7 +73,7 @@ theorem QsOtherFacetPrUnitLeftExposedCrossRoofData.impossible_of_terminalCertifi
         (E.kLo : K) (E.q : K) (((1 : ℕ) * E.jLo : ℕ) : K) 1
         ((((E.jHi + 1 : ℕ) : K) - (E.kLo : K)) / (E.v : K))
         (-((E.q : K) / (E.v : K)))
-        ((1 : K) * ((((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K))) := by
+        (((1 : ℕ) : K) * ((((E.kHi : K) - 1) - (E.jLo : K)) / (E.v : K))) := by
     simpa using hcertHi
 
   have hvone : E.v = 1 :=
@@ -92,7 +92,7 @@ theorem QsOtherFacetPrUnitLeftExposedCrossRoofData.impossible_of_terminalCertifi
         (((1 : ℕ) * (E.kHi - 1) : ℕ) : K) 1
         (((E.kLo : K) - ((E.jHi + 1 : ℕ) : K)) / (E.q : K))
         (-((E.v : K) / (E.q : K)))
-        ((1 : K) * (((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))) := by
+        (((1 : ℕ) : K) * (((E.jLo : K) - ((E.kHi : K) - 1)) / (E.q : K))) := by
     simpa [Nat.cast_add] using hcertLo
 
   have hqone : E.q = 1 :=
