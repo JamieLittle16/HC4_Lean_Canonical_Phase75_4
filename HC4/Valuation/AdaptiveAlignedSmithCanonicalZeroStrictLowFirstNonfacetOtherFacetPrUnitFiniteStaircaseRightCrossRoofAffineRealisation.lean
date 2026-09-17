@@ -108,6 +108,7 @@ noncomputable def highSupportData
     rcases Finset.mem_image.mp he with ⟨e0, he0, heq⟩
     subst e
     have hvK : (E.v : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt E.v_pos)
+    have hkHiPos : 0 < E.kHi := lt_trans E.kLo_pos E.pair_lt
     have hkHiOne : 1 ≤ E.kHi := by omega
     have hzeroZ := E.face_zero_interpolation hthree houtThree he0
     have hzeroK :
@@ -185,6 +186,7 @@ noncomputable def lowSupportData
     subst e
     have hqK : (E.q : K) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt E.q_pos)
     have hvZ : (E.v : ℤ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt E.v_pos)
+    have hkHiPos : 0 < E.kHi := lt_trans E.kLo_pos E.pair_lt
     have hkHiOne : 1 ≤ E.kHi := by omega
     have hjHiSuccK : (((E.jHi + 1 : ℕ) : K)) = (E.jHi : K) + 1 := by norm_num
     have hzeroZ := E.face_zero_interpolation hthree houtThree he0
