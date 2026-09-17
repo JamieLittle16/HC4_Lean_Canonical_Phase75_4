@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8676**.
+Distinct declaration spellings indexed: **8677**.
 
 ## Repeated declaration spellings
 
@@ -2573,6 +2573,7 @@ Distinct declaration spellings indexed: **8676**.
 - `QsOtherFacetPrUnitRightCentralRankTwoGeometry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`
 - `QsOtherFacetPrUnitRightContactFrontierData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
 - `QsOtherFacetPrUnitRightContactFrontierData.NoStrictInteriorSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitNoInteriorSupport`
+- `QsOtherFacetPrUnitRightContactFrontierData.actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightClosure`
 - `QsOtherFacetPrUnitRightContactFrontierData.centralRankTwoGeometry_of_point` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`
 - `QsOtherFacetPrUnitRightContactFrontierData.central_actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`
 - `QsOtherFacetPrUnitRightContactFrontierData.central_coordinateMax_face_rankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralRankTwo`
