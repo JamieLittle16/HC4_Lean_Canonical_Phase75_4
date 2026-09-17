@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8679**.
+Distinct declaration spellings indexed: **8687**.
 
 ## Repeated declaration spellings
 
@@ -2387,10 +2387,12 @@ Distinct declaration spellings indexed: **8679**.
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_primitive_pair_is_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_quotient_eq_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_rightV_contactFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`
+- `QsOtherFacetPlanarHighestPairSlicePackage.pr_singleton_actualRankTwo_or_pureAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_unitContactFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitContactFrontier`
 - `QsOtherFacetPlanarHighestPairSlicePackage.pr_unitEndpointOrientation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitEndpointOrientation`
 - `QsOtherFacetPlanarHighestPairSlicePackage.primitive_of_nontrivial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarPrimitiveSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.singleton_on_boundary` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
+- `QsOtherFacetPlanarHighestPairSlicePackage.singleton_sourceMinor_of_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_affine_levels` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_difference_parallel_ray` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
 - `QsOtherFacetPlanarHighestPairSlicePackage.support_parent_and_pairLevel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarHighestPairSlice`
@@ -3040,6 +3042,11 @@ Distinct declaration spellings indexed: **8679**.
 - `active_swap13_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
+- `actualRankTwoChart01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
+- `actualRankTwoChart02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
+- `actualRankTwoChart03` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
+- `actualRankTwoChart12` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
+- `actualRankTwoChart13` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
 - `adaptiveAlignedEndpointHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFamilyHessianFourBlock`
 - `adaptiveAlignedEndpointHessianFourBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFamilyHessianFourBlock`
@@ -6890,6 +6897,7 @@ Distinct declaration spellings indexed: **8679**.
 - `qs_ray_outside_degree_lt_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_outside_transverse_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_outside_zeroCoordinate_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeOnePencil`
+- `qs_ray_pr_actualRankTwo_or_pureAxisHighestSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `qs_ray_pr_actualRankTwo_or_singletonHighestSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `qs_ray_pr_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActivePivot`
 - `qs_ray_pr_eulerScaledHessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetEulerPivot`

@@ -2811,7 +2811,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.55`
 - Local imports: `HC4.Polynomial.MonomialHessian`, `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralRankTwo`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralRankTwo`
 - Declarations: `theorem eval_one_hessianPrincipalMinor_monomial`, `theorem hessianPrincipalMinor_monomial_ne_zero_of_two_positive`
 
 ### `HC4.Polynomial.NestedPolynomialPowerInflation`
@@ -8205,12 +8205,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure.lean`
-- Purpose: Collapse the `.pr` highest-slice branch to a boundary singleton
+- Purpose: Collapse the `.pr` highest-slice branch to a pure-axis singleton
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`, `HC4.Polynomial.MonomialHessianPrincipalMinor`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem qs_ray_pr_actualRankTwo_or_singletonHighestSlice`
+- Declarations: `theorem QsOtherFacetPlanarHighestPairSlicePackage.singleton_sourceMinor_of_two_positive`, `def actualRankTwoChart01`, `def actualRankTwoChart02`, `def actualRankTwoChart03`, `def actualRankTwoChart12`, `def actualRankTwoChart13`, `theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_singleton_actualRankTwo_or_pureAxis`, `theorem qs_ray_pr_actualRankTwo_or_pureAxisHighestSlice`, `theorem qs_ray_pr_actualRankTwo_or_singletonHighestSlice`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceNormalForm`
 
@@ -13449,7 +13449,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.117`, `A19.118`
 - Local imports: `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`, `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`
 - Declarations: `theorem initialForm_hessianPrincipalMinor_eq`, `theorem hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero`
 
 ### `HC4.Valuation.ZeroGradientNormalization`
