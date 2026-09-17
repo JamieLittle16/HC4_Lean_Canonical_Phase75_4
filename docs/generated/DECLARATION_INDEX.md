@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8614**.
+Distinct declaration spellings indexed: **8615**.
 
 ## Repeated declaration spellings
 
@@ -4648,6 +4648,7 @@ Distinct declaration spellings indexed: **8614**.
 - `extraction_pderiv_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `extraction_ratio_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerAxis`
 - `extremalPair_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
+- `extremalPair_le_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOrder`
 - `extremalPair_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_pairReesOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_reflectedOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
