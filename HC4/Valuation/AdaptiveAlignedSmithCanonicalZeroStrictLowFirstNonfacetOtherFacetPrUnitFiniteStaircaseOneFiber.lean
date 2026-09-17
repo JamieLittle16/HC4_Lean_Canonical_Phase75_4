@@ -44,8 +44,8 @@ theorem firstPositiveLayer_support_eq_pairFiber
     {F : QsOtherFacetPrUnitLeftContactFrontierData C P S R}
     {D : QsOtherFacetPrUnitLeftPlanarContactReesData F}
     (A : QsOtherFacetPrUnitLeftFirstInteriorAffineLayerData D)
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (_hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (_houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     (familyParameterLayer D.family
       (firstPositiveActualParameterOrder D.family D.hasPositiveLayer)).support =
       P.carrier.support.filter fun e =>
@@ -198,8 +198,8 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorLayers_eq_of_k
   · have hehi : e ∈ Lhi.support := by
       rw [← hsupp]
       exact he
-    have hlo := Alo.coefficient_eq_carrier (by simpa [Llo] using he)
-    have hhi := Ahi.coefficient_eq_carrier (by simpa [Lhi] using hehi)
+    have hlo := Alo.coefficient_eq_carrier e (by simpa [Llo] using he)
+    have hhi := Ahi.coefficient_eq_carrier e (by simpa [Lhi] using hehi)
     simpa [Llo, Lhi] using hlo.trans hhi.symm
   · have hehi : e ∉ Lhi.support := by
       intro h
@@ -207,9 +207,9 @@ theorem QsOtherFacetPrUnitLeftContactFrontierData.selectedInteriorLayers_eq_of_k
       rw [hsupp]
       exact h
     have hlo : MvPolynomial.coeff e Llo = 0 := by
-      exact (MvPolynomial.notMem_support_iff e).mp he
+      exact MvPolynomial.notMem_support_iff.mp he
     have hhi : MvPolynomial.coeff e Lhi = 0 := by
-      exact (MvPolynomial.notMem_support_iff e).mp hehi
+      exact MvPolynomial.notMem_support_iff.mp hehi
     simpa [Llo, Lhi] using hlo.trans hhi.symm
 
 /-- Coincident unit extremal pair degrees force the two staircase heights to
