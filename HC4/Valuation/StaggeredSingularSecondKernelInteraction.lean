@@ -248,6 +248,7 @@ theorem kernelDiagonal_coeff_secondInteraction_ne_zero
     E.block.z.coeff
         (2 * E.kernelOrder - E.activeOrder) ≠ 0 := by
   let k := 2 * E.kernelOrder - E.activeOrder
+  have hactiveLt : E.activeOrder < E.kernelOrder := E.active_lt_kernel
   have hqle : E.activeOrder ≤ 2 * E.kernelOrder := by omega
   have hsum : E.activeOrder + k = 2 * E.kernelOrder := by
     dsimp [k]
