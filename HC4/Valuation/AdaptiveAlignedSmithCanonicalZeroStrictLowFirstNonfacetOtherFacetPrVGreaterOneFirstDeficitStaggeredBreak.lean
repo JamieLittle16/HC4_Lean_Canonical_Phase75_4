@@ -470,6 +470,115 @@ theorem firstDeficit_exists_staggeredRankTwoMinor
   rcases G.firstDeficit_staggeredFirstKernelBreak hthree houtThree with ⟨E⟩
   exact ⟨E, E.exists_nonzero_principalMinor_at_kernelOrder⟩
 
+
+/-- In the left orientation, the diagonal coefficient of the still-missing
+coordinate vanishes at the exact opposite-opening order.  This is the
+source-facing form of the generic staggered diagonal cancellation, with the
+actual opposite monomial and its order retained. -/
+theorem firstDeficitLeftStaggeredBlock_kernelDiagonal_eq_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {first opposite : Fin 4 →₀ ℕ}
+    (hfirst : first ∈ G.firstDeficitLayer.support)
+    (hfirst1 : first 1 = G.firstDeficitOrder)
+    (hfirst2 : first 2 = 0)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
+    (hop : opposite ∈ P.carrier.support)
+    (hop2 : 0 < opposite 2)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
+    (hminimal :
+      ∀ f ∈ P.carrier.support, 0 < f 2 →
+        opposite 1 + opposite 2 ≤ f 1 + f 2) :
+    G.firstDeficitLeftStaggeredBlock.z.coeff
+        (opposite 1 + opposite 2) = 0 := by
+  have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  let E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K) := {
+    block := G.firstDeficitLeftStaggeredBlock
+    activeOrder := G.firstDeficitOrder
+    kernelOrder := opposite 1 + opposite 2
+    activeOrder_pos := G.firstDeficitOrder_pos
+    active_lt_kernel := hstrict
+    active_lower_zero :=
+      G.firstDeficitLeftStaggeredBlock_active_lower_zero hthree houtThree
+    active_coeff_ne_zero := by
+      rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq]
+      exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
+        hthree houtThree hfirst hfirst1 hfirst2 huniq
+    q_lower_zero := by
+      intro n hn
+      exact G.leftBlock_q_coeff_eq_zero_before hminimal hn
+    s_lower_zero := by
+      intro n hn
+      exact G.leftBlock_s_coeff_eq_zero_before hminimal hn
+    y_lower_zero := by
+      intro n hn
+      exact G.leftBlock_y_coeff_eq_zero_before hminimal hn
+    z_lower_zero := by
+      intro n hn
+      exact G.leftBlock_z_coeff_eq_zero_before hminimal hn
+    determinantCore_eq_zero :=
+      G.firstDeficitLeftStaggeredBlock_determinantCore_eq_zero
+    kernel_break :=
+      G.firstDeficitLeftStaggeredBlock_kernel_break
+        hop hop2 hstrict hfirstTwo
+  }
+  exact E.kernelDiagonal_coeff_kernelOrder_eq_zero
+
+/-- Right-oriented source-facing diagonal cancellation at the selected
+opposite-opening order. -/
+theorem firstDeficitRightStaggeredBlock_kernelDiagonal_eq_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {first opposite : Fin 4 →₀ ℕ}
+    (hfirst : first ∈ G.firstDeficitLayer.support)
+    (hfirst1 : first 1 = 0)
+    (hfirst2 : first 2 = G.firstDeficitOrder)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
+    (hop : opposite ∈ P.carrier.support)
+    (hop1 : 0 < opposite 1)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
+    (hminimal :
+      ∀ f ∈ P.carrier.support, 0 < f 1 →
+        opposite 1 + opposite 2 ≤ f 1 + f 2) :
+    G.firstDeficitRightStaggeredBlock.z.coeff
+        (opposite 1 + opposite 2) = 0 := by
+  have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  let E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K) := {
+    block := G.firstDeficitRightStaggeredBlock
+    activeOrder := G.firstDeficitOrder
+    kernelOrder := opposite 1 + opposite 2
+    activeOrder_pos := G.firstDeficitOrder_pos
+    active_lt_kernel := hstrict
+    active_lower_zero :=
+      G.firstDeficitRightStaggeredBlock_active_lower_zero hthree houtThree
+    active_coeff_ne_zero := by
+      rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
+      exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
+        hthree houtThree hfirst hfirst1 hfirst2 huniq
+    q_lower_zero := by
+      intro n hn
+      exact G.rightBlock_q_coeff_eq_zero_before hminimal hn
+    s_lower_zero := by
+      intro n hn
+      exact G.rightBlock_s_coeff_eq_zero_before hminimal hn
+    y_lower_zero := by
+      intro n hn
+      exact G.rightBlock_y_coeff_eq_zero_before hminimal hn
+    z_lower_zero := by
+      intro n hn
+      exact G.rightBlock_z_coeff_eq_zero_before hminimal hn
+    determinantCore_eq_zero :=
+      G.firstDeficitRightStaggeredBlock_determinantCore_eq_zero
+    kernel_break :=
+      G.firstDeficitRightStaggeredBlock_kernel_break
+        hop hop1 hstrict hfirstTwo
+  }
+  exact E.kernelDiagonal_coeff_kernelOrder_eq_zero
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
