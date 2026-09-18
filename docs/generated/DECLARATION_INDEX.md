@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8759**.
+Distinct declaration spellings indexed: **8768**.
 
 ## Repeated declaration spellings
 
@@ -3373,6 +3373,7 @@ Distinct declaration spellings indexed: **8759**.
 - `binaryHessianDetCross_eq_directional_of_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryHessianDetCross_linearPower_factor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `binaryHessianDetCross_nextComponent_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
+- `binaryHessianDet_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `binaryHessianDet_mul_c0_sq_eq_neg_sq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `binaryHessianDet_mul_c1_sq_eq_neg_sq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `binaryHessianDet_ne_zero_of_transverse_sq_zero_of_transverse_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
@@ -3664,6 +3665,8 @@ Distinct declaration spellings indexed: **8759**.
 - `carrier_wallEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `cast_qsPrPairNatWeight_eq_pairWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
+- `centralDeficitBinarySpecialisation` — `def` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `centralDeficitBinarySpecialisation_monomial` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hasPositiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
@@ -5328,6 +5331,8 @@ Distinct declaration spellings indexed: **8759**.
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_monomial_diagonal_ne_zero_of_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `hessian_one_one_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `hessian_one_zero_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `hessian_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `hessian_parameterRamificationFamily_entry` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `hessian_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
@@ -5345,6 +5350,8 @@ Distinct declaration spellings indexed: **8759**.
 - `hessian_zeroDefectConstantParameterFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
 - `hessian_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `hessian_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
+- `hessian_zero_one_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `hessian_zero_zero_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `hessian_zero_zero_initialForm_zero_ne_zero_of_axisRestriction_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `highAffineLine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
 - `highFace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`
@@ -6371,6 +6378,7 @@ Distinct declaration spellings indexed: **8759**.
 - `pderiv_numeral` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `pderiv_one_binaryLinearFormTransverseDeriv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `pderiv_one_binarySourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `pderiv_one_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `pderiv_one_ne_zero_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `pderiv_one_oneZeroFibreSpecialise` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `pderiv_one_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
@@ -6406,6 +6414,7 @@ Distinct declaration spellings indexed: **8759**.
 - `pderiv_two_zero_rankTwoAxis` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `pderiv_zero_binaryLinearFormTransverseDeriv` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreNextLayerCurvature`
 - `pderiv_zero_binarySourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `pderiv_zero_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `pderiv_zero_elementaryShearHom` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `pderiv_zero_longitudinalExponent_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseEquation`
 - `pderiv_zero_ne_zero_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`

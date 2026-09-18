@@ -821,6 +821,9 @@ human architecture guide.
   - `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `HC4.Polynomial.BinarySchurProjectiveMotion`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+  - `HC4.Newton.PreterminalFirstDeparture`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
 - `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
   - `HC4.Polynomial.RankThreePencils`
 - `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
