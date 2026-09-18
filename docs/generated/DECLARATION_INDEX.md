@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8758**.
+Distinct declaration spellings indexed: **8759**.
 
 ## Repeated declaration spellings
 
@@ -5560,6 +5560,7 @@ Distinct declaration spellings indexed: **8758**.
 - `iteratedInitialForm` — `def` in `HC4.Newton.IteratedRefinement`
 - `iteratedInitialForm_eq_lexInitialForm` — `theorem` in `HC4.Newton.IteratedRefinement`
 - `joint_or_separated_of_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
+- `kernelBlock_det_eq_zero_of_polynomialMatrix_gap` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlock_det_eq_zero_of_secondVariation_eq_zero` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlowupSection` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelBlowupSection_apply_kernel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
