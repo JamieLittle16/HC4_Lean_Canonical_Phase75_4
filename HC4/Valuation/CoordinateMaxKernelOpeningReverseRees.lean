@@ -166,10 +166,19 @@ theorem exists_parameterFirstHessian_kernelRow_ne_zero
           (MvPolynomial.map (Polynomial.evalRingHom (1 : K))
             D.reverseReesFamily)
           D.kernelCoordinate i = 0 := by
-    rw [HC4.Polynomial.hessian_apply]
-    simp [MvPolynomial.pderiv_map, hfamilyEntry,
-      HC4.Polynomial.hessian_apply]
+    have hmap :=
+      congrArg
+        (MvPolynomial.map (Polynomial.evalRingHom (1 : K)))
+        hfamilyEntry
+    simpa [HC4.Polynomial.hessian_apply,
+      MvPolynomial.pderiv_map] using hmap
 
+  change
+    HC4.Polynomial.hessian
+        (MvPolynomial.map (Polynomial.evalRingHom (1 : K))
+          D.reverseReesFamily)
+        D.kernelCoordinate i =
+      HC4.Polynomial.hessian D.parent D.kernelCoordinate i at hrecovered
   rw [hleft] at hrecovered
   exact hi hrecovered.symm
 
