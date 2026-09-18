@@ -139,7 +139,7 @@ theorem firstDeficitRightStaggeredBlock_active_lower_zero
     rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
     exact G.firstDeficitRightActiveHessian_det_gap n hnpos hn
 
-private theorem leftBlock_q_coeff_eq_zero_before
+theorem leftBlock_q_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -158,7 +158,7 @@ private theorem leftBlock_q_coeff_eq_zero_before
     firstDeficitLeftStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem leftBlock_s_coeff_eq_zero_before
+theorem leftBlock_s_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -177,7 +177,7 @@ private theorem leftBlock_s_coeff_eq_zero_before
     firstDeficitLeftStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem leftBlock_y_coeff_eq_zero_before
+theorem leftBlock_y_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -196,7 +196,7 @@ private theorem leftBlock_y_coeff_eq_zero_before
     firstDeficitLeftStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem leftBlock_z_coeff_eq_zero_before
+theorem leftBlock_z_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -210,7 +210,7 @@ private theorem leftBlock_z_coeff_eq_zero_before
     firstDeficitLeftStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hrow
 
-private theorem rightBlock_q_coeff_eq_zero_before
+theorem rightBlock_q_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
@@ -229,7 +229,7 @@ private theorem rightBlock_q_coeff_eq_zero_before
     firstDeficitRightStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem rightBlock_s_coeff_eq_zero_before
+theorem rightBlock_s_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
@@ -248,7 +248,7 @@ private theorem rightBlock_s_coeff_eq_zero_before
     firstDeficitRightStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem rightBlock_y_coeff_eq_zero_before
+theorem rightBlock_y_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
@@ -267,7 +267,7 @@ private theorem rightBlock_y_coeff_eq_zero_before
     firstDeficitRightStaggeredMatrix,
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
-private theorem rightBlock_z_coeff_eq_zero_before
+theorem rightBlock_z_coeff_eq_zero_before
     {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
