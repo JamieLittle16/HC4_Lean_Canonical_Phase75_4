@@ -1,15 +1,13 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite
 import Mathlib.Tactic
 
 /-!
 # Exact source shape of the least opposite-opening layer
 
-The staggered first-kernel-break theorem forces the pure Hessian coefficient in
-the still-missing coordinate to vanish at the least opposite-opening order
-\`j\`.  Because the opening monomial genuinely uses that coordinate, characteristic
-zero then forces its missing exponent to be exactly one.
+`FirstDeficitPrimitiveOppositeOpening` already proves that the selected least
+later opening uses the missing source coordinate to exponent exactly one.
 
-The same diagonal vanishing applies to every monomial in the exact \`j\)-layer:
+The staggered diagonal cancellation applies to every monomial in the exact \`j\)-layer:
 no exponent there can use the missing coordinate twice.  Since total-deficit
 order is exactly \`j\`, the only possible deficit pairs are the selected
 opposite point and the adjacent axis point.  The already-verified
@@ -108,78 +106,6 @@ private theorem rightOppositeLayer_secondDerivative_eq_zero
   rw [parameterFirstHessian_coeff] at hz'
   simpa [HC4.Polynomial.hessian_apply] using hz'
 
-/-- In the left orientation the selected least opposite-opening source
-monomial is linear in the missing coordinate. -/
-theorem firstDeficitLeftOpposite_missing_eq_one
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
-    {first opposite : Fin 4 →₀ ℕ}
-    (hfirst : first ∈ G.firstDeficitLayer.support)
-    (hfirst1 : first 1 = G.firstDeficitOrder)
-    (hfirst2 : first 2 = 0)
-    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
-    (hop : opposite ∈ P.carrier.support)
-    (hop2 : 0 < opposite 2)
-    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
-    (hminimal :
-      ∀ f ∈ P.carrier.support, 0 < f 2 →
-        opposite 1 + opposite 2 ≤ f 1 + f 2) :
-    opposite 2 = 1 := by
-  have hsecond :=
-    G.leftOppositeLayer_secondDerivative_eq_zero
-      hthree houtThree hfirst hfirst1 hfirst2 huniq
-      hop hop2 hstrict hminimal
-  have hopLayer :
-      opposite ∈
-        (familyParameterLayer P.centralDeficitFamily
-          (opposite 1 + opposite 2)).support := by
-    rw [P.centralDeficitFamily_layer_mem_iff]
-    exact ⟨hop, rfl⟩
-  by_contra hne
-  have htwo : 2 ≤ opposite 2 := by omega
-  exact
-    (HC4.Valuation.pderiv_pderiv_ne_zero_of_support_exponent_ge_two
-      (2 : Fin 4)
-      (familyParameterLayer P.centralDeficitFamily
-        (opposite 1 + opposite 2))
-      opposite hopLayer htwo) hsecond
-
-/-- Right-oriented mirror: the selected opposite monomial is linear in source
-coordinate \`1\`. -/
-theorem firstDeficitRightOpposite_missing_eq_one
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
-    {first opposite : Fin 4 →₀ ℕ}
-    (hfirst : first ∈ G.firstDeficitLayer.support)
-    (hfirst1 : first 1 = 0)
-    (hfirst2 : first 2 = G.firstDeficitOrder)
-    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
-    (hop : opposite ∈ P.carrier.support)
-    (hop1 : 0 < opposite 1)
-    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
-    (hminimal :
-      ∀ f ∈ P.carrier.support, 0 < f 1 →
-        opposite 1 + opposite 2 ≤ f 1 + f 2) :
-    opposite 1 = 1 := by
-  have hsecond :=
-    G.rightOppositeLayer_secondDerivative_eq_zero
-      hthree houtThree hfirst hfirst1 hfirst2 huniq
-      hop hop1 hstrict hminimal
-  have hopLayer :
-      opposite ∈
-        (familyParameterLayer P.centralDeficitFamily
-          (opposite 1 + opposite 2)).support := by
-    rw [P.centralDeficitFamily_layer_mem_iff]
-    exact ⟨hop, rfl⟩
-  by_contra hne
-  have htwo : 2 ≤ opposite 1 := by omega
-  exact
-    (HC4.Valuation.pderiv_pderiv_ne_zero_of_support_exponent_ge_two
-      (1 : Fin 4)
-      (familyParameterLayer P.centralDeficitFamily
-        (opposite 1 + opposite 2))
-      opposite hopLayer htwo) hsecond
-
 /-- The complete least opposite layer is a singleton in the left orientation. -/
 theorem firstDeficitLeftOpposite_layer_singleton
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -190,7 +116,7 @@ theorem firstDeficitLeftOpposite_layer_singleton
     (hfirst2 : first 2 = 0)
     (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
     (hop : opposite ∈ P.carrier.support)
-    (hop2 : 0 < opposite 2)
+    (hop2one : opposite 2 = 1)
     (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -198,12 +124,9 @@ theorem firstDeficitLeftOpposite_layer_singleton
     ∀ f ∈ (familyParameterLayer P.centralDeficitFamily
         (opposite 1 + opposite 2)).support,
       f = opposite := by
+  have hop2 : 0 < opposite 2 := by omega
   have hsecond :=
     G.leftOppositeLayer_secondDerivative_eq_zero
-      hthree houtThree hfirst hfirst1 hfirst2 huniq
-      hop hop2 hstrict hminimal
-  have hop2one :=
-    G.firstDeficitLeftOpposite_missing_eq_one
       hthree houtThree hfirst hfirst1 hfirst2 huniq
       hop hop2 hstrict hminimal
   intro f hf
@@ -243,7 +166,7 @@ theorem firstDeficitRightOpposite_layer_singleton
     (hfirst2 : first 2 = G.firstDeficitOrder)
     (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
     (hop : opposite ∈ P.carrier.support)
-    (hop1 : 0 < opposite 1)
+    (hop1one : opposite 1 = 1)
     (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
@@ -251,12 +174,9 @@ theorem firstDeficitRightOpposite_layer_singleton
     ∀ f ∈ (familyParameterLayer P.centralDeficitFamily
         (opposite 1 + opposite 2)).support,
       f = opposite := by
+  have hop1 : 0 < opposite 1 := by omega
   have hsecond :=
     G.rightOppositeLayer_secondDerivative_eq_zero
-      hthree houtThree hfirst hfirst1 hfirst2 huniq
-      hop hop1 hstrict hminimal
-  have hop1one :=
-    G.firstDeficitRightOpposite_missing_eq_one
       hthree houtThree hfirst hfirst1 hfirst2 huniq
       hop hop1 hstrict hminimal
   intro f hf
@@ -296,7 +216,7 @@ theorem firstDeficitLeftOpposite_layer_eq_monomial
     (hfirst2 : first 2 = 0)
     (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
     (hop : opposite ∈ P.carrier.support)
-    (hop2 : 0 < opposite 2)
+    (hop2one : opposite 2 = 1)
     (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
@@ -326,7 +246,7 @@ theorem firstDeficitLeftOpposite_layer_eq_monomial
         MvPolynomial.mem_support_iff.mpr hf
       exact hfo (G.firstDeficitLeftOpposite_layer_singleton
         hthree houtThree hfirst hfirst1 hfirst2 huniq
-        hop hop2 hstrict hminimal f hfmem)
+        hop hop2one hstrict hminimal f hfmem)
     rw [hf0, MvPolynomial.coeff_monomial]
     simp [hfo, Ne.symm hfo]
 
@@ -340,7 +260,7 @@ theorem firstDeficitRightOpposite_layer_eq_monomial
     (hfirst2 : first 2 = G.firstDeficitOrder)
     (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
     (hop : opposite ∈ P.carrier.support)
-    (hop1 : 0 < opposite 1)
+    (hop1one : opposite 1 = 1)
     (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
@@ -370,7 +290,7 @@ theorem firstDeficitRightOpposite_layer_eq_monomial
         MvPolynomial.mem_support_iff.mpr hf
       exact hfo (G.firstDeficitRightOpposite_layer_singleton
         hthree houtThree hfirst hfirst1 hfirst2 huniq
-        hop hop1 hstrict hminimal f hfmem)
+        hop hop1one hstrict hminimal f hfmem)
     rw [hf0, MvPolynomial.coeff_monomial]
     simp [hfo, Ne.symm hfo]
 
@@ -420,28 +340,22 @@ theorem firstDeficit_oppositeLayerGeometry
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.FirstDeficitOppositeLayerGeometry := by
-  rcases G.firstDeficit_oppositeOpening hthree houtThree with ⟨O⟩
+  rcases G.firstDeficit_primitiveOppositeOpening hthree houtThree with ⟨O⟩
   cases O with
-  | left first opposite hfirst hfirst1 hfirst2 huniq hop hop2 hstrict hminimal =>
-      have hop2one :=
-        G.firstDeficitLeftOpposite_missing_eq_one
-          hthree houtThree hfirst hfirst1 hfirst2 huniq
-          hop hop2 hstrict hminimal
+  | left first opposite hfirst hfirst1 hfirst2 huniq
+      hop hop2one hstrict hminimal =>
       rcases G.firstDeficitLeftOpposite_layer_eq_monomial
           hthree houtThree hfirst hfirst1 hfirst2 huniq
-          hop hop2 hstrict hminimal with
+          hop hop2one hstrict hminimal with
         ⟨B, hB, hlayer⟩
       exact .left first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop2one
         hstrict hminimal hB hlayer
-  | right first opposite hfirst hfirst1 hfirst2 huniq hop hop1 hstrict hminimal =>
-      have hop1one :=
-        G.firstDeficitRightOpposite_missing_eq_one
-          hthree houtThree hfirst hfirst1 hfirst2 huniq
-          hop hop1 hstrict hminimal
+  | right first opposite hfirst hfirst1 hfirst2 huniq
+      hop hop1one hstrict hminimal =>
       rcases G.firstDeficitRightOpposite_layer_eq_monomial
           hthree houtThree hfirst hfirst1 hfirst2 huniq
-          hop hop1 hstrict hminimal with
+          hop hop1one hstrict hminimal with
         ⟨B, hB, hlayer⟩
       exact .right first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop1one
