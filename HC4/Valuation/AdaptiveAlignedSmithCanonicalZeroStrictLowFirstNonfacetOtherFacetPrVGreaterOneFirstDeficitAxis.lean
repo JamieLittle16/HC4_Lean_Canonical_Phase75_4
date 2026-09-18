@@ -67,7 +67,7 @@ theorem firstDeficitBinaryFace_support_lifts
               MvPolynomial.monomial e
                 (MvPolynomial.coeff e G.firstDeficitLayer)) := by
             exact congrArg
-              (HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)) has.symm
+              (HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)) has
       _ = _ := by
         simp only [map_sum, HC4.Polynomial.centralDeficitBinarySpecialisation_monomial_eq]
   have hdSum :
@@ -82,7 +82,7 @@ theorem firstDeficitBinaryFace_support_lifts
   rw [MvPolynomial.coeff_monomial] at hc
   split at hc
   · next hEq =>
-      exact ⟨e, he, hEq.symm⟩
+      exact ⟨e, he, hEq⟩
   · exact (hc rfl).elim
 
 /-- Adjacent binary deficit exponents cannot both occur in the first face. -/
