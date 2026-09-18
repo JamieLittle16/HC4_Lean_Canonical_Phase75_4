@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8867**.
+Distinct declaration spellings indexed: **8866**.
 
 ## Repeated declaration spellings
 
@@ -5355,7 +5355,6 @@ Distinct declaration spellings indexed: **8867**.
 - `hessianDeterminant_finTwo_eq_binaryDirectionalHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
 - `hessianDeterminant_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `hessianDeterminant_initialForm_eq_zero_of_eq_zero` — `theorem` in `HC4.Polynomial.MaximalHessianInitial`
-- `hessianDeterminant_integralKernelBlowup_eq_zero` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessianDeterminant_integralKernelBlowup_factor` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessianDeterminant_integralSmithConformalFamily` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
