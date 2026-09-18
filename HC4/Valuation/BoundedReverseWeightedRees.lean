@@ -97,6 +97,41 @@ theorem reverseWeightedReesFamily_parameterLayer_zero_coeff
       simp [heq, hne]
   · simp [hd]
 
+/-- No reverse-Rees parameter layer can occur above the chosen level
+`D`. -/
+theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (hDn : D < n) :
+    familyParameterLayer (reverseWeightedReesFamily w D F h) n = 0 := by
+  ext d
+  rw [reverseWeightedReesFamily_parameterLayer_coeff]
+  by_cases hd : d ∈ F.support
+  · have hle := h d hd
+    have hneq : D - Finsupp.weight w d ≠ n := by
+      omega
+    simp [hd, hneq]
+  · simp [hd]
+
+/-- A nonzero reverse-Rees parameter layer necessarily lies at order at most
+`D`, and hence is exactly the corresponding source weight component. -/
+theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F)
+    (hne :
+      familyParameterLayer (reverseWeightedReesFamily w D F h) n ≠ 0) :
+    n ≤ D ∧
+      familyParameterLayer (reverseWeightedReesFamily w D F h) n =
+        initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
+  have hn : n ≤ D := by
+    by_contra hnot
+    have hDn : D < n := by omega
+    exact hne
+      (reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
+        w D n F h hDn)
+  exact ⟨hn,
+    reverseWeightedReesFamily_parameterLayer_eq_initialForm
+      w D n F h hn⟩
+
 /-- Every bounded reverse-Rees parameter layer is exactly the source
 weight component at complementary level `D - n`.
 
