@@ -67,6 +67,37 @@ theorem exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
       i (MvPolynomial.pderiv i Q) hfirstSupport
   exact hsecond hzero
 
+/-- A supported exponent at least three in one coordinate forces the third
+pure derivative in that coordinate to be nonzero. -/
+theorem pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
+    (i : Fin 4)
+    (Q : MvPolynomial (Fin 4) K)
+    (d : Fin 4 →₀ ℕ)
+    (hd : d ∈ Q.support)
+    (hd3 : 3 ≤ d i) :
+    MvPolynomial.pderiv i
+      (MvPolynomial.pderiv i (MvPolynomial.pderiv i Q)) ≠ 0 := by
+  let d₁ : Fin 4 →₀ ℕ := d - Finsupp.single i 1
+  have hdi : d i ≠ 0 := by omega
+  have hadd : d₁ + Finsupp.single i 1 = d := by
+    dsimp [d₁]
+    exact Finsupp.sub_add_single_one_cancel hdi
+  have hdne : MvPolynomial.coeff d Q ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  have hd₁coeff :
+      MvPolynomial.coeff d₁ (MvPolynomial.pderiv i Q) ≠ 0 := by
+    rw [coeff_pderiv_backport, hadd]
+    apply mul_ne_zero hdne
+    exact_mod_cast Nat.succ_ne_zero (d₁ i)
+  have hd₁mem :
+      d₁ ∈ (MvPolynomial.pderiv i Q).support :=
+    MvPolynomial.mem_support_iff.mpr hd₁coeff
+  have hd₁i : d₁ i = d i - 1 := by
+    simp [d₁]
+  have hd₁two : 2 ≤ d₁ i := by omega
+  exact pderiv_pderiv_ne_zero_of_support_exponent_ge_two
+    (K := K) i (MvPolynomial.pderiv i Q) d₁ hd₁mem hd₁two
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -338,6 +369,235 @@ theorem firstDeficit_secondSourceLayerGeometry
         hop hop1 hB (by simpa [j] using hlayer)
         (by simpa [q, j] using hstrict)
         hsource.1 hsource.2 hsecond1 heqSource'
+
+/-- Exact reflected second-layer deficit geometry forced by the
+second-interaction Hessian identity. -/
+inductive FirstDeficitReflectedSecondLayerGeometry : Prop
+  | left
+      (first opposite second : Fin 4 →₀ ℕ)
+      (q j k : ℕ)
+      (q_eq : q = G.firstDeficitOrder)
+      (j_eq : j = opposite 1 + opposite 2)
+      (k_eq : k = 2 * j - q)
+      (first_mem : first ∈ G.firstDeficitLayer.support)
+      (first_one : first 1 = q)
+      (first_two : first 2 = 0)
+      (opposite_mem : opposite ∈ P.carrier.support)
+      (opposite_two : opposite 2 = 1)
+      (q_lt_j : q < j)
+      (second_mem : second ∈ P.carrier.support)
+      (second_order : second 1 + second 2 = k)
+      (second_two : second 2 = 2)
+      (reflected_one : q + second 1 = 2 * opposite 1)
+  | right
+      (first opposite second : Fin 4 →₀ ℕ)
+      (q j k : ℕ)
+      (q_eq : q = G.firstDeficitOrder)
+      (j_eq : j = opposite 1 + opposite 2)
+      (k_eq : k = 2 * j - q)
+      (first_mem : first ∈ G.firstDeficitLayer.support)
+      (first_one : first 1 = 0)
+      (first_two : first 2 = q)
+      (opposite_mem : opposite ∈ P.carrier.support)
+      (opposite_one : opposite 1 = 1)
+      (q_lt_j : q < j)
+      (second_mem : second ∈ P.carrier.support)
+      (second_order : second 1 + second 2 = k)
+      (second_one : second 1 = 2)
+      (reflected_two : q + second 2 = 2 * opposite 2)
+
+/-- **Exact reflected deficit layer.**
+
+Differentiating the second-interaction identity once more in the missing
+coordinate shows that the third pure derivative of the forced second layer
+vanishes.  Hence its missing-coordinate exponent is at most two; the existing
+second-derivative witness gives the reverse inequality. -/
+theorem firstDeficit_reflectedSecondLayerGeometry
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.FirstDeficitReflectedSecondLayerGeometry := by
+  rcases G.firstDeficit_secondSourceLayerGeometry hthree houtThree with O
+  cases O with
+  | left first opposite second B q j k hq hj hk
+      hfirst hfirst1 hfirst2 huniq hop hop2 hB hlayer hqj
+      hsecond hsecondOrder hsecond2 hid =>
+      have hfirstKernel :
+          MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer = 0 := by
+        apply pderiv_eq_zero_of_all_supported_exponents_zero
+        intro d hd
+        rw [huniq d hd, hfirst2]
+      have hA0 :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1) = 0 := by
+        simp only [HC4.Polynomial.hessian_apply]
+        calc
+          MvPolynomial.pderiv (2 : Fin 4)
+              (MvPolynomial.pderiv (1 : Fin 4)
+                (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)) =
+            MvPolynomial.pderiv (1 : Fin 4)
+              (MvPolynomial.pderiv (1 : Fin 4)
+                (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)) := by
+                  rw [pderiv_comm_commRing
+                    (2 : Fin 4) (1 : Fin 4)
+                    (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)]
+                  rw [pderiv_comm_commRing
+                    (2 : Fin 4) (1 : Fin 4) G.firstDeficitLayer]
+          _ = 0 := by rw [hfirstKernel]; simp
+      have hOppSecond :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily j)) = 0 := by
+        rw [hlayer]
+        simp [MvPolynomial.pderiv_monomial, hop2]
+      have hS0 :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (1 : Fin 4) 2) = 0 := by
+        simp only [HC4.Polynomial.hessian_apply]
+        rw [pderiv_comm_commRing
+          (2 : Fin 4) (1 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily j)]
+        rw [pderiv_comm_commRing
+          (2 : Fin 4) (1 : Fin 4)
+          (MvPolynomial.pderiv (2 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily j))]
+        rw [hOppSecond]
+        simp
+      have hqTwo : 2 ≤ q := by
+        rw [hq]
+        exact firstDeficitOrder_two_le G hthree houtThree
+      have hAne :
+          HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 ≠ 0 := by
+        simpa [HC4.Polynomial.hessian_apply] using
+          (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
+            (K := K) (1 : Fin 4) G.firstDeficitLayer first
+            hfirst (by omega : 2 ≤ first 1))
+      have hdiff := congrArg
+        (MvPolynomial.pderiv (2 : Fin 4)) hid
+      simp only [MvPolynomial.pderiv_mul, hA0, hS0,
+        zero_mul, zero_add, mul_zero, add_zero] at hdiff
+      have hthirdHessian :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily k)
+              (2 : Fin 4) 2) = 0 :=
+        (mul_eq_zero.mp hdiff).resolve_left hAne
+      have hthird :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4)
+              (MvPolynomial.pderiv (2 : Fin 4)
+                (familyParameterLayer P.centralDeficitFamily k))) = 0 := by
+        simpa [HC4.Polynomial.hessian_apply] using hthirdHessian
+      have hsecondLayer :
+          second ∈
+            (familyParameterLayer P.centralDeficitFamily k).support := by
+        rw [P.centralDeficitFamily_layer_mem_iff]
+        exact ⟨hsecond, hsecondOrder⟩
+      have hsecondLe : second 2 ≤ 2 := by
+        by_contra hnot
+        have hthreeExp : 3 ≤ second 2 := by omega
+        exact
+          (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
+            (K := K) (2 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily k)
+            second hsecondLayer hthreeExp) hthird
+      have hsecondEq : second 2 = 2 := by omega
+      have hreflect : q + second 1 = 2 * opposite 1 := by
+        omega
+      exact .left first opposite second q j k
+        hq hj hk hfirst hfirst1 hfirst2 hop hop2 hqj
+        hsecond hsecondOrder hsecondEq hreflect
+  | right first opposite second B q j k hq hj hk
+      hfirst hfirst1 hfirst2 huniq hop hop1 hB hlayer hqj
+      hsecond hsecondOrder hsecond1 hid =>
+      have hfirstKernel :
+          MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer = 0 := by
+        apply pderiv_eq_zero_of_all_supported_exponents_zero
+        intro d hd
+        rw [huniq d hd, hfirst1]
+      have hA0 :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2) = 0 := by
+        simp only [HC4.Polynomial.hessian_apply]
+        calc
+          MvPolynomial.pderiv (1 : Fin 4)
+              (MvPolynomial.pderiv (2 : Fin 4)
+                (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)) =
+            MvPolynomial.pderiv (2 : Fin 4)
+              (MvPolynomial.pderiv (2 : Fin 4)
+                (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)) := by
+                  rw [pderiv_comm_commRing
+                    (1 : Fin 4) (2 : Fin 4)
+                    (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)]
+                  rw [pderiv_comm_commRing
+                    (1 : Fin 4) (2 : Fin 4) G.firstDeficitLayer]
+          _ = 0 := by rw [hfirstKernel]; simp
+      have hOppSecond :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily j)) = 0 := by
+        rw [hlayer]
+        simp [MvPolynomial.pderiv_monomial, hop1]
+      have hS0 :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (2 : Fin 4) 1) = 0 := by
+        simp only [HC4.Polynomial.hessian_apply]
+        rw [pderiv_comm_commRing
+          (1 : Fin 4) (2 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily j)]
+        rw [pderiv_comm_commRing
+          (1 : Fin 4) (2 : Fin 4)
+          (MvPolynomial.pderiv (1 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily j))]
+        rw [hOppSecond]
+        simp
+      have hqTwo : 2 ≤ q := by
+        rw [hq]
+        exact firstDeficitOrder_two_le G hthree houtThree
+      have hAne :
+          HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 ≠ 0 := by
+        simpa [HC4.Polynomial.hessian_apply] using
+          (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
+            (K := K) (2 : Fin 4) G.firstDeficitLayer first
+            hfirst (by omega : 2 ≤ first 2))
+      have hdiff := congrArg
+        (MvPolynomial.pderiv (1 : Fin 4)) hid
+      simp only [MvPolynomial.pderiv_mul, hA0, hS0,
+        zero_mul, zero_add, mul_zero, add_zero] at hdiff
+      have hthirdHessian :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily k)
+              (1 : Fin 4) 1) = 0 :=
+        (mul_eq_zero.mp hdiff).resolve_left hAne
+      have hthird :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4)
+              (MvPolynomial.pderiv (1 : Fin 4)
+                (familyParameterLayer P.centralDeficitFamily k))) = 0 := by
+        simpa [HC4.Polynomial.hessian_apply] using hthirdHessian
+      have hsecondLayer :
+          second ∈
+            (familyParameterLayer P.centralDeficitFamily k).support := by
+        rw [P.centralDeficitFamily_layer_mem_iff]
+        exact ⟨hsecond, hsecondOrder⟩
+      have hsecondLe : second 1 ≤ 2 := by
+        by_contra hnot
+        have hthreeExp : 3 ≤ second 1 := by omega
+        exact
+          (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
+            (K := K) (1 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily k)
+            second hsecondLayer hthreeExp) hthird
+      have hsecondEq : second 1 = 2 := by omega
+      have hreflect : q + second 2 = 2 * opposite 2 := by
+        omega
+      exact .right first opposite second q j k
+        hq hj hk hfirst hfirst1 hfirst2 hop hop1 hqj
+        hsecond hsecondOrder hsecondEq hreflect
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
