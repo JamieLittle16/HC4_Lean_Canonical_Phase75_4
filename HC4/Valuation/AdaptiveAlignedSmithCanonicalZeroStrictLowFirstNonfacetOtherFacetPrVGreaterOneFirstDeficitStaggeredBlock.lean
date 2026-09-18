@@ -179,13 +179,16 @@ theorem firstDeficitLeftStaggeredBlock_activeThree_eq :
       G.firstDeficitLeftActiveHessian.det := by
   rw [firstKernelBreakActiveThreeDet_eq_submatrix_det,
     G.firstDeficitLeftStaggeredBlock_matrix]
-  congr 1
-  ext i j
-  unfold firstDeficitLeftStaggeredMatrix
-    firstDeficitLeftActiveHessian
-  fin_cases i <;> fin_cases j <;>
-    simp [firstDeficitLeftActiveIndex,
-      firstDeficitLeftStaggeredPerm]
+  have hmatrix :
+      G.firstDeficitLeftStaggeredMatrix.submatrix
+          Fin.castSucc Fin.castSucc =
+        G.firstDeficitLeftActiveHessian := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [firstDeficitLeftStaggeredMatrix,
+        firstDeficitLeftActiveHessian,
+        firstDeficitLeftActiveIndex]
+  exact congrArg Matrix.det hmatrix
 
 /-- Symmetric active-three identification for coordinates `0,2,3`. -/
 theorem firstDeficitRightStaggeredBlock_activeThree_eq :
@@ -193,13 +196,16 @@ theorem firstDeficitRightStaggeredBlock_activeThree_eq :
       G.firstDeficitRightActiveHessian.det := by
   rw [firstKernelBreakActiveThreeDet_eq_submatrix_det,
     G.firstDeficitRightStaggeredBlock_matrix]
-  congr 1
-  ext i j
-  unfold firstDeficitRightStaggeredMatrix
-    firstDeficitRightActiveHessian
-  fin_cases i <;> fin_cases j <;>
-    simp [firstDeficitRightActiveIndex,
-      firstDeficitRightStaggeredPerm]
+  have hmatrix :
+      G.firstDeficitRightStaggeredMatrix.submatrix
+          Fin.castSucc Fin.castSucc =
+        G.firstDeficitRightActiveHessian := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [firstDeficitRightStaggeredMatrix,
+        firstDeficitRightActiveHessian,
+        firstDeficitRightActiveIndex]
+  exact congrArg Matrix.det hmatrix
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
