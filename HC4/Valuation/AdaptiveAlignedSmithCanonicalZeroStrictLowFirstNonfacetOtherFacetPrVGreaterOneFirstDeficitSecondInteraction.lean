@@ -230,7 +230,8 @@ theorem firstDeficit_secondInteractionGeometry
         simp only [Matrix.submatrix_apply]
         simp [firstDeficitLeftStaggeredPerm]
         repeat' rw [parameterFirstHessian_coeff]
-        rw [G.layer_zero_eq_exposure hthree houtThree]
+        rw [centralDeficitFamily_layer_zero_eq G hthree houtThree,
+          G.exposure_face_eq]
         rfl
       rw [hactiveFactor] at hinteractionG
       rw [mul_assoc] at hinteractionG
@@ -304,7 +305,8 @@ theorem firstDeficit_secondInteractionGeometry
         simp only [Matrix.submatrix_apply]
         simp [firstDeficitRightStaggeredPerm]
         repeat' rw [parameterFirstHessian_coeff]
-        rw [G.layer_zero_eq_exposure hthree houtThree]
+        rw [centralDeficitFamily_layer_zero_eq G hthree houtThree,
+          G.exposure_face_eq]
         rfl
       rw [hactiveFactor] at hinteractionG
       rw [mul_assoc] at hinteractionG
