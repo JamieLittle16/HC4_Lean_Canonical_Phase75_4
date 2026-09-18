@@ -8,61 +8,107 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-18_HC4_FIRST_DEFICIT_STAGGERED_BREAK.md`
+### `HANDOFF_2026-09-18_HC4_GREEN_SHORTCUT_FINAL_CLOSURE.md`
 
 This is the preferred fresh-context handoff for the live unrestricted-HC4
 closure.
 
-Its substantive source checkpoint is:
+Certified substantive code checkpoint:
 
 ```text
 PR #34
 branch final-assembly/a18-4-42-termination-frontier
-head f735921c6f994f1854e155056d55332de62ee165
-Lean CI run 35339770347 / #3013
+head 3de2689ad2b50003deab6433e1b521be259e6622
+Lean CI run 35399193381 / #3146
+Build HC4                              PASS
+Axiom audit                            PASS
+Negative control                       PASS
+Escape-hatch audit                     PASS
 ```
 
-The handoff records the provenance-rich replacement for the older
-repair-bookkeeping endpoint.  The live source chain now reaches:
+The handoff itself was added in documentation-only commit:
 
 ```text
-central source monomial
-  -> honest total-deficit Rees family
-  -> first positive binary Hessian-singular layer
-  -> homogeneous linear power
-  -> adjacent-deficit exclusion
-  -> pure-axis singleton source layer
-  -> honest rank-three roof at first deficit order q
-  -> least later opening of the missing coordinate at order j > q
-  -> firstDeficit_oppositeOpening
+53608f17b17af5e2a0c04c31eff99967c5d35037
 ```
 
-The immediate next task is a thin source-facing adapter from
-`FirstDeficitOppositeOpening` plus the existing rank-three roof coefficient
-to the already-written generic
-`StaggeredSingularFirstKernelBreakFourBlockData`.  Its theorem
-`exists_nonzero_principalMinor_at_kernelOrder` should then give honest later
-rank-two Hessian geometry without identifying clocks or manufacturing a
-singular sparse subpencil.
+CI #3147 on that documentation head was still running when this index entry
+was written, so `3de2689...` remains the certified substantive code anchor.
 
-The handoff also records the recent kernel-inflation duplicate/interface
-regressions and their repairs.  Check the exact-head CI status before promoting
-newly landed files from SOURCE-LANDED to LEAN VERIFIED.
+The live proof route has advanced substantially beyond the earlier
+first-deficit handoff.  In particular the rooted source-pivot shortcut now
+contains:
+
+```text
+qs lower-ray / other-facet rank-three endpoint
+  -> represented-source principal Hessian minor
+  -> AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+```
+
+and the lower-ray pure-endpoint first-break route now has the generic
+whole-family reverse-Rees Hessian-minor lift:
+
+```text
+whole-family first-break principal minor
+  -> represented-source principal Hessian minor
+  -> actual rank-two chart.
+```
+
+The only endpoint first-break residue is the exact breaking-layer proposition
+
+```lean
+LayerMinorAtFirstBreak
+```
+
+but **do not automatically attack that first**.  Raw-defect-zero states already
+carry generic exact-active and complete rank-three Hessian geometry.  The first
+task in a fresh context is therefore to audit for a terminal-facing consumer
+of:
+
+```lean
+AdaptiveAlignedSmithCanonicalActualRankThreeGeometry
+AdaptiveAlignedSmithCanonicalExactActiveRankThreeGeometry
+AdaptiveAlignedSmithCanonicalCompleteSourceRankThreeGeometry
+```
+
+If such a consumer already closes a reachable presented terminal, use it and
+skip unnecessary local branch work.
+
+If no such consumer exists, the preferred local fallback is to close
+`LayerMinorAtFirstBreak` by proving that an exact bounded reverse-Rees
+parameter layer is the weighted initial form of the represented source at the
+corresponding level, then apply the existing weighted-initial-form Hessian
+principal-minor lift.
+
+The public final reducer is already present:
+
+```lean
+gradient_injective_of_hessianDeterminant_one_of_reachablePresentedTerminal_impossible
+```
+
+so the final logical theorem remains impossibility of the **actually reachable**
+complexity-zero presented terminal carrying inherited
+`state.repair = rankOneRepairState 0`.
+
+### `HANDOFF_2026-09-18_HC4_FIRST_DEFICIT_STAGGERED_BREAK.md`
+
+Historical provenance for the source-honest first-deficit / staggered-break
+development.  Its former live continuation point has been overtaken by the
+rooted source-pivot and reverse-Rees Hessian-minor shortcuts.  Keep it for the
+verified local algebra and provenance discipline, not as the fresh-context
+TODO.
 
 ### `HANDOFF_2026-09-17_HC4_FINAL_GLOBAL_ASSEMBLY.md`
 
-Historical provenance for the zero-defect global-progress shortcut.  Its
-global-successor path remains valid infrastructure, but it is not by itself a
-terminal contradiction: `rankThreeRepairState 0` cannot be declared
-impossible merely from repair bookkeeping.  The 18 September handoff owns the
-live continuation point.
+Historical provenance for the zero-defect global-progress route.  Its
+global-successor theorems remain valid infrastructure, but a presented
+rank-three terminal does not itself carry a no-global-successor certificate,
+so global progress alone is not the final contradiction.
 
 ### `HANDOFF_2026-09-17_HC4_UNIT_FINITE_STAIRCASE_FINAL_CLOSURE.md`
 
-This is now historical provenance for the unit finite-staircase phase. Its
-former local TODO has been overtaken by the strict-low zero-defect global
-progress shortcut. Use it when tracing the local algebra, not as the fresh
-context continuation point.
+Historical provenance for the unit finite-staircase phase.  Do not treat its
+former local TODO as current.
 
 ### `HANDOFF_2026-09-16_HC4_FRESH_CONTEXT_FINAL_SPRINT.md`
 
@@ -72,7 +118,7 @@ stale.
 ### `HANDOFF_2026-09-16_HC4_LAST_MILE_PUBLIC_CLOSURE.md`
 
 Historical provenance for finite-staircase and public-closure architecture.
-Its live TODO predates the current global-progress shortcut.
+Its live TODO predates the current source-pivot / source-minor shortcut.
 
 ## Core architectural documents
 
@@ -234,15 +280,16 @@ the context makes clear whether this means paper or Lean.
 
 ## Current one-line status
 
-As of the current clean source checkpoint reported on 17 September 2026:
+At the certified code checkpoint `3de2689...` on 18 September 2026:
 
-> the difficult local strict-low mathematics now has a Lean-verified,
-> source-honest escape to genuine global macro progress on the reached
-> raw-defect-zero state. The residual local `qs` leaves are no longer the live
-> blocker. The remaining work is to connect that progress witness to the
-> existing global-terminal/no-successor interface, propagate the contradiction
-> through the existing rank-one termination and reachable-terminal assembly,
-> expose the unrestricted root theorem, and pass the final exact-head audit
-> suite.
+> the cyclic source-pivot shortcut and whole-family reverse-Rees Hessian-minor
+> lift are Lean verified and rooted, and the endpoint first-break residue has
+> collapsed to one exact-layer minor case.  However generic raw-zero
+> exact-active/rank-three geometry already exists, so the fastest next move is
+> to identify or build the **terminal-facing consumer** of that geometry.  If no
+> such consumer exists, close `LayerMinorAtFirstBreak` by exact-layer
+> weighted-initial-form transport, finish any genuinely necessary facet
+> assembly, prove reachable presented-terminal impossibility, and instantiate
+> the already-verified public HC4 reducer.
 
 This is **not yet a claim that unrestricted HC4 has been proved**.
