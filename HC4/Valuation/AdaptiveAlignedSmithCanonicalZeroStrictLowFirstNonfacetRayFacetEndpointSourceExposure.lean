@@ -90,7 +90,10 @@ theorem qs_ray_facetEndpoint_degree_eq_topFace
         ((C.scale * T.topFace.degree : ℕ) : ℤ) := by
     simpa [HC4.Polynomial.facetOmittedCoordinate] using hcontact
   unfold HC4.Newton.scaledContactExponentWeight at hcontact'
-  rw [C.ray.facet_coordinate_zero] at hcontact'
+  have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := by
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using
+      C.ray.facet_coordinate_zero
+  rw [hfacet0] at hcontact'
   simp only [Nat.cast_zero, mul_zero, add_zero] at hcontact'
   have hscale : (0 : ℤ) < (C.scale : ℤ) := by
     exact_mod_cast C.scale_pos
@@ -119,8 +122,14 @@ theorem qs_ray_facetEndpoint_mem_topFace
         (T.topFace.degree : ℤ) := by
     rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
     exact_mod_cast C.qs_ray_facetEndpoint_degree_eq_topFace
-  rw [if_pos hw]
-  exact MvPolynomial.mem_support_iff.mp (by simpa [F] using hdF)
+  split_ifs with hweight
+  · exact MvPolynomial.mem_support_iff.mp (by simpa [F] using hdF)
+  · exfalso
+    apply hweight
+    change
+      Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) C.ray.facetExponent =
+        (T.topFace.degree : ℤ)
+    exact hw
 
 /-- **Positive direct endpoint exposure.**  The maximal ordinary top-face
 weight is used as the positive primary exposure and the exact direct-ray weight
@@ -144,6 +153,18 @@ theorem exists_qs_ray_facetEndpoint_sourceExposure
     rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
     exact_mod_cast T.topFace.maximal e (by simpa [F] using he)
 
+  have hTopFaceEq :
+      T.topFace.face =
+        HC4.Polynomial.initialForm wTop (D : ℤ) F := by
+    have h := T.topFace.face_eq
+    change
+      T.topFace.face =
+        HC4.Polynomial.initialForm
+          (fun _ : Fin 4 => (1 : ℤ))
+          (T.topFace.degree : ℤ)
+          (polynomialFamilySpecialFiber
+            T.terminal.blocker.presented.family) at h
+    simpa [F, D, wTop] using h
   have hTop :
       HC4.Newton.IsExposedFace
         (↑F.support : Set (Fin 4 →₀ ℕ))
@@ -151,8 +172,8 @@ theorem exists_qs_ray_facetEndpoint_sourceExposure
         (fun e => Finsupp.weight wTop e) (D : ℤ) := by
     have h := HC4.Newton.initialForm_support_isExposedFace
       wTop (D : ℤ) F hTopBound
-    rw [← T.topFace.face_eq] at h
-    simpa [F, D, wTop] using h
+    rw [← hTopFaceEq] at h
+    exact h
 
   have hEndpoint :
       HC4.Newton.IsExposedFace
@@ -239,8 +260,10 @@ theorem exists_qs_ray_facetEndpoint_sourceExposure
         Finsupp.weight finalWeight e = finalLevel →
           e = C.ray.facetExponent := by
     intro e he hew
-    have hmem := hface'.mem_iff.mpr ⟨(by simpa using he), hew⟩
-    simpa using hmem
+    have hmem :
+        e ∈ ({C.ray.facetExponent} : Set (Fin 4 →₀ ℕ)) :=
+      hface'.mem_iff.mpr ⟨(by simpa using he), hew⟩
+    simpa only [Set.mem_singleton_iff] using hmem
   have hinit :
       HC4.Polynomial.initialForm finalWeight finalLevel F =
         MvPolynomial.monomial C.ray.facetExponent
