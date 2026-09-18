@@ -32,7 +32,8 @@ open MvPolynomial
 
 noncomputable section
 
-variable {K : Type*} [Field K] [CharZero K]
+universe u
+variable {K : Type u} [Field K] [CharZero K]
 
 /-- One exact coordinate-maximal extraction at which a coordinate kernel first
 appears. -/
@@ -63,7 +64,7 @@ structure CanonicalCoordinateMaxKernelOpeningData
 finds a coordinate kernel on the original singular source, or retains the
 first exact coordinate-max step at which that kernel appears. -/
 inductive CanonicalCodimensionTwoKernelOutcome
-    (F : MvPolynomial (Fin 4) K) : Type
+    (F : MvPolynomial (Fin 4) K) : Type (u + 1)
   | topKernel
       (kernelCoordinate : Fin 4)
       (kernel_eq_zero : MvPolynomial.pderiv kernelCoordinate F = 0)
