@@ -132,6 +132,61 @@ theorem firstDeficitLayer_singleton_axis
       hthree houtThree hfData.1 heData.1
       (by omega) (by omega)
 
+/-- Literal monomial form of the first positive total-deficit source layer.
+
+This keeps the honest source coefficient together with the axis exponent, so
+later Hessian coefficient calculations do not have to reconstruct singleton
+support again. -/
+theorem firstDeficitLayer_eq_monomial_axis
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (∃ (e : Fin 4 →₀ ℕ) (A : K),
+        A ≠ 0 ∧
+        G.firstDeficitLayer = MvPolynomial.monomial e A ∧
+        e 1 = G.firstDeficitOrder ∧ e 2 = 0) ∨
+      (∃ (e : Fin 4 →₀ ℕ) (A : K),
+        A ≠ 0 ∧
+        G.firstDeficitLayer = MvPolynomial.monomial e A ∧
+        e 1 = 0 ∧ e 2 = G.firstDeficitOrder) := by
+  rcases G.firstDeficitLayer_singleton_axis hthree houtThree with
+    hleft | hright
+  · rcases hleft with ⟨e, he, he1, he2, huniq⟩
+    let A := MvPolynomial.coeff e G.firstDeficitLayer
+    have hA : A ≠ 0 := MvPolynomial.mem_support_iff.mp he
+    have hmono :
+        G.firstDeficitLayer = MvPolynomial.monomial e A := by
+      apply MvPolynomial.ext
+      intro f
+      by_cases hfe : f = e
+      · subst f
+        simp [A]
+      · have hf0 : MvPolynomial.coeff f G.firstDeficitLayer = 0 := by
+          by_contra hf
+          have hfmem : f ∈ G.firstDeficitLayer.support :=
+            MvPolynomial.mem_support_iff.mpr hf
+          exact hfe (huniq f hfmem)
+        rw [hf0]
+        simp [hfe]
+    exact Or.inl ⟨e, A, hA, hmono, he1, he2⟩
+  · rcases hright with ⟨e, he, he1, he2, huniq⟩
+    let A := MvPolynomial.coeff e G.firstDeficitLayer
+    have hA : A ≠ 0 := MvPolynomial.mem_support_iff.mp he
+    have hmono :
+        G.firstDeficitLayer = MvPolynomial.monomial e A := by
+      apply MvPolynomial.ext
+      intro f
+      by_cases hfe : f = e
+      · subst f
+        simp [A]
+      · have hf0 : MvPolynomial.coeff f G.firstDeficitLayer = 0 := by
+          by_contra hf
+          have hfmem : f ∈ G.firstDeficitLayer.support :=
+            MvPolynomial.mem_support_iff.mpr hf
+          exact hfe (huniq f hfmem)
+        rw [hf0]
+        simp [hfe]
+    exact Or.inr ⟨e, A, hA, hmono, he1, he2⟩
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
