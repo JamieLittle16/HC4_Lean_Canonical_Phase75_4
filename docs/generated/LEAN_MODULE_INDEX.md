@@ -10790,7 +10790,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`, `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square`, `def LayerMinorAtFirstBreak`, `theorem familyMinor0_eq`, `theorem familyMinor1_eq`, `theorem familyMinor2_eq`, `theorem sourceMinor0_of_familyMinor`, `theorem sourceMinor1_of_familyMinor`, `theorem sourceMinor2_of_familyMinor`, `def actualRankTwoChart0`, `def actualRankTwoChart1`, `def actualRankTwoChart2`, `theorem actualRankTwo_or_layerMinor`
+- Declarations: `theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square`, `theorem hessianPrincipalMinor_eq_square`, `def LayerMinorAtFirstBreak`, `def ExactSourceWeightLayerMinorAtFirstBreak`, `theorem layerMinor0_eq`, `theorem layerMinor1_eq`, `theorem layerMinor2_eq`, `theorem intentionally`, `theorem layerMinorAtFirstBreak_exactSourceWeightComponent`, `theorem familyMinor0_eq`, `theorem familyMinor1_eq`, `theorem familyMinor2_eq`, `theorem sourceMinor0_of_familyMinor`, `theorem sourceMinor1_of_familyMinor`, `theorem sourceMinor2_of_familyMinor`, `def actualRankTwoChart0`, `def actualRankTwoChart1`, `def actualRankTwoChart2`, `theorem actualRankTwo_or_layerMinor`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
 
