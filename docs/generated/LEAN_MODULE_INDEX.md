@@ -9757,10 +9757,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer.lean`
 - Purpose: Exact source shape of the least opposite-opening layer
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem leftOppositeLayer_secondDerivative_eq_zero`, `theorem rightOppositeLayer_secondDerivative_eq_zero`, `theorem firstDeficitLeftOpposite_missing_eq_one`, `theorem firstDeficitRightOpposite_missing_eq_one`, `theorem firstDeficitLeftOpposite_layer_singleton`, `theorem firstDeficitRightOpposite_layer_singleton`, `theorem firstDeficitLeftOpposite_layer_eq_monomial`, `theorem firstDeficitRightOpposite_layer_eq_monomial`, `inductive FirstDeficitOppositeLayerGeometry`, `theorem firstDeficit_oppositeLayerGeometry`
+- Declarations: `theorem leftOppositeLayer_secondDerivative_eq_zero`, `theorem rightOppositeLayer_secondDerivative_eq_zero`, `theorem firstDeficitLeftOpposite_layer_singleton`, `theorem firstDeficitRightOpposite_layer_singleton`, `theorem firstDeficitLeftOpposite_layer_eq_monomial`, `theorem firstDeficitRightOpposite_layer_eq_monomial`, `inductive FirstDeficitOppositeLayerGeometry`, `theorem firstDeficit_oppositeLayerGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 
@@ -9779,7 +9779,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`
 - Declarations: `inductive FirstDeficitPrimitiveOppositeOpening`, `theorem left_opposite_two_eq_one`, `theorem right_opposite_one_eq_one`, `theorem firstDeficit_primitiveOppositeOpening`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
@@ -9829,7 +9829,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredSource`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
 - Declarations: `theorem coeff_zero_det_fin_three`, `theorem firstDeficitLeftStaggeredBlock_active_coeff_zero`, `theorem firstDeficitRightStaggeredBlock_active_coeff_zero`, `theorem firstDeficitLeftStaggeredBlock_active_lower_zero`, `theorem firstDeficitRightStaggeredBlock_active_lower_zero`, `theorem leftBlock_q_coeff_eq_zero_before`, `theorem leftBlock_s_coeff_eq_zero_before`, `theorem leftBlock_y_coeff_eq_zero_before`, `theorem leftBlock_z_coeff_eq_zero_before`, `theorem rightBlock_q_coeff_eq_zero_before`, `theorem rightBlock_s_coeff_eq_zero_before`, `theorem rightBlock_y_coeff_eq_zero_before`, `theorem rightBlock_z_coeff_eq_zero_before`, `theorem firstDeficitLeftStaggeredBlock_kernel_break`, `theorem firstDeficitRightStaggeredBlock_kernel_break`, `theorem firstDeficit_staggeredFirstKernelBreak`, `theorem firstDeficit_exists_staggeredRankTwoMinor`, `theorem firstDeficitLeftStaggeredBlock_kernelDiagonal_eq_zero`, `theorem firstDeficitRightStaggeredBlock_kernelDiagonal_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredSource`
