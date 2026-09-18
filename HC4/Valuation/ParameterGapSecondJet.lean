@@ -220,10 +220,13 @@ theorem snd_snd_det_matrixParameterGapSecondJet
     TrivSqZeroExt.snd
       (TrivSqZeroExt.snd (matrixParameterGapSecondJet hj M hM).det) =
       2 * M.det.coeff (2 * j) := by
-  let J := parameterGapSecondJet (R := R) j hj
-  let G := matrixToParameterGapCommRing M hM
+  let J : parameterGapSubring (R := R) j →+*
+      DualNumber (DualNumber R) :=
+    parameterGapSecondJet (R := R) j hj
+  let G : Matrix (Fin 4) (Fin 4) (parameterGapSubring (R := R) j) :=
+    matrixToParameterGapCommRing M hM
   have hmap : J G.det = (J.mapMatrix G).det := by
-    simpa using J.map_det G
+    exact J.map_det G
   have hsub := (parameterGapSubring (R := R) j).subtype.map_det G
   have hmatrix :
       (parameterGapSubring (R := R) j).subtype.mapMatrix G = M := by
