@@ -48,109 +48,12 @@ open HC4.Newton
 
 variable {K : Type*} [Field K]
 
-/-! ## Coefficients and injectivity of kernel inflation -/
+/-! ## Zero determinant preservation -/
 
-/-- Kernel inflation acts diagonally on a single source monomial. -/
-theorem kernelInflateHom_monomial
-    (kernel : Fin 4)
-    (slope : ℕ)
-    (d : Fin 4 →₀ ℕ)
-    (c : Polynomial K) :
-    kernelInflateHom (K := K) kernel slope
-        (MvPolynomial.monomial d c) =
-      MvPolynomial.monomial d
-        (kernelCoefficientTauPower
-          (K := K) kernel slope d * c) := by
-  apply MvPolynomial.funext
-  intro a
-  rw [eval_kernelInflateHom]
-  simp only [MvPolynomial.eval_monomial]
-  rw [Finsupp.prod_fintype
-    d
-    (fun n e =>
-      kernelBlowupSection kernel slope a n ^ e)
-    (by
-      intro i
-      simp)]
-  rw [Finsupp.prod_fintype
-    d
-    (fun n e => a n ^ e)
-    (by
-      intro i
-      simp)]
-  rw [fin4_kernelBlowupSection_monomialProduct]
-  ring
-
-/-- **Coefficient formula for kernel inflation.**
-
-Kernel inflation preserves the source exponent `d` and multiplies its
-coefficient by exactly the expected power of the parameter. -/
-theorem coeff_kernelInflateHom
-    (kernel : Fin 4)
-    (slope : ℕ)
-    (Q : MvPolynomial (Fin 4) (Polynomial K))
-    (d : Fin 4 →₀ ℕ) :
-    MvPolynomial.coeff d
-        (kernelInflateHom (K := K) kernel slope Q) =
-      kernelCoefficientTauPower
-          (K := K) kernel slope d *
-        MvPolynomial.coeff d Q := by
-  refine
-    MvPolynomial.induction_on'
-      (P := fun Q =>
-        MvPolynomial.coeff d
-            (kernelInflateHom (K := K) kernel slope Q) =
-          kernelCoefficientTauPower
-              (K := K) kernel slope d *
-            MvPolynomial.coeff d Q)
-      Q ?_ ?_
-  · intro u c
-    rw [kernelInflateHom_monomial]
-    by_cases hud : u = d
-    · subst u
-      simp
-    · have hdu : d ≠ u := Ne.symm hud
-      simp [MvPolynomial.coeff_monomial, hud, hdu]
-  · intro p q hp hq
-    simp only [map_add, MvPolynomial.coeff_add]
-    rw [hp, hq]
-    ring
-
-/-- **Kernel inflation is injective.**
-
-No source monomials are merged, and every diagonal coefficient multiplier
-is a nonzero power of `tau`. -/
-theorem kernelInflateHom_injective
-    (kernel : Fin 4)
-    (slope : ℕ) :
-    Function.Injective
-      (kernelInflateHom (K := K) kernel slope) := by
-  intro P Q hPQ
-  apply MvPolynomial.ext
-  intro d
-  have hcoeff :=
-    congrArg (MvPolynomial.coeff d) hPQ
-  rw [
-    coeff_kernelInflateHom,
-    coeff_kernelInflateHom] at hcoeff
-  let u : Polynomial K :=
-    kernelCoefficientTauPower
-      (K := K) kernel slope d
-  have hu : u ≠ 0 := by
-    unfold u kernelCoefficientTauPower
-    exact
-      pow_ne_zero
-        (slope * d kernel)
-        Polynomial.X_ne_zero
-  have hz :
-      u *
-        (MvPolynomial.coeff d P -
-          MvPolynomial.coeff d Q) = 0 := by
-    rw [mul_sub, hcoeff, sub_self]
-  rcases mul_eq_zero.mp hz with hzero | hsub
-  · exact False.elim (hu hzero)
-  · exact sub_eq_zero.mp hsub
-
+The coefficientwise monomial formula and injectivity of `kernelInflateHom`
+are canonical infrastructure from `KernelInflationHessianDefect`; reuse them
+here rather than redeclaring a second copy.
+-/
 
 /-- **Integral kernel blow-up preserves identically singular Hessian families.**
 
