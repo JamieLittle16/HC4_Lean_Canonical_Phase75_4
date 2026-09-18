@@ -239,7 +239,7 @@ theorem firstDeficitLeftOpposite_layer_eq_monomial
   intro f
   by_cases hfo : f = opposite
   · subst f
-    simp [B]
+    simp [B, L]
   · have hf0 : MvPolynomial.coeff f L = 0 := by
       by_contra hf
       have hfmem : f ∈ L.support :=
@@ -248,7 +248,7 @@ theorem firstDeficitLeftOpposite_layer_eq_monomial
         hthree houtThree hfirst hfirst1 hfirst2 huniq
         hop hop2one hstrict hminimal f hfmem)
     rw [hf0, MvPolynomial.coeff_monomial]
-    simp [hfo, Ne.symm hfo]
+    simp [Ne.symm hfo]
 
 /-- Literal monomial reconstruction of the right least opposite layer. -/
 theorem firstDeficitRightOpposite_layer_eq_monomial
@@ -283,7 +283,7 @@ theorem firstDeficitRightOpposite_layer_eq_monomial
   intro f
   by_cases hfo : f = opposite
   · subst f
-    simp [B]
+    simp [B, L]
   · have hf0 : MvPolynomial.coeff f L = 0 := by
       by_contra hf
       have hfmem : f ∈ L.support :=
@@ -292,7 +292,7 @@ theorem firstDeficitRightOpposite_layer_eq_monomial
         hthree houtThree hfirst hfirst1 hfirst2 huniq
         hop hop1one hstrict hminimal f hfmem)
     rw [hf0, MvPolynomial.coeff_monomial]
-    simp [hfo, Ne.symm hfo]
+    simp [Ne.symm hfo]
 
 /-- In the left orientation the exact opposite layer opens the specific
 mixed Hessian entry between the first-deficit axis and the missing coordinate. -/
