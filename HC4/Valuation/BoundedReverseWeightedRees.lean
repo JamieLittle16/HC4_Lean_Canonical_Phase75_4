@@ -112,26 +112,6 @@ theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
     simp [hd, hneq]
   · simp [hd]
 
-/-- A nonzero reverse-Rees parameter layer necessarily lies at order at most
-`D`, and hence is exactly the corresponding source weight component. -/
-theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
-    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
-    (h : HasReverseWeightBound w D F)
-    (hne :
-      familyParameterLayer (reverseWeightedReesFamily w D F h) n ≠ 0) :
-    n ≤ D ∧
-      familyParameterLayer (reverseWeightedReesFamily w D F h) n =
-        initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
-  have hn : n ≤ D := by
-    by_contra hnot
-    have hDn : D < n := by omega
-    exact hne
-      (reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
-        w D n F h hDn)
-  exact ⟨hn,
-    reverseWeightedReesFamily_parameterLayer_eq_initialForm
-      w D n F h hn⟩
-
 /-- Every bounded reverse-Rees parameter layer is exactly the source
 weight component at complementary level `D - n`.
 
@@ -160,7 +140,9 @@ theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
     by_cases heq : D - Finsupp.weight w d = n
     · have hweight : Finsupp.weight w d = D - n := by
         omega
-      simp [heq, hweight]
+      have hsub : D - (D - n) = n := by
+        omega
+      simp [hweight, hsub]
     · have hweight : Finsupp.weight w d ≠ D - n := by
         intro hweight
         apply heq
@@ -172,6 +154,26 @@ theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
   · have hcoeff : MvPolynomial.coeff d F = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
     simp [hd, hcoeff]
+
+/-- A nonzero reverse-Rees parameter layer necessarily lies at order at most
+`D`, and hence is exactly the corresponding source weight component. -/
+theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F)
+    (hne :
+      familyParameterLayer (reverseWeightedReesFamily w D F h) n ≠ 0) :
+    n ≤ D ∧
+      familyParameterLayer (reverseWeightedReesFamily w D F h) n =
+        initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
+  have hn : n ≤ D := by
+    by_contra hnot
+    have hDn : D < n := by omega
+    exact hne
+      (reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
+        w D n F h hDn)
+  exact ⟨hn,
+    reverseWeightedReesFamily_parameterLayer_eq_initialForm
+      w D n F h hn⟩
 
 /-- The special fibre of the reverse Rees family is exactly its zero
 parameter layer. -/
