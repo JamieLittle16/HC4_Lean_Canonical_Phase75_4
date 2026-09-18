@@ -44,7 +44,7 @@ theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo_or_quadraticSquare
           T.terminal.blocker.presented) ∨
       (∃ d ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support,
-        ordinaryDegree4 d = 2 ∧
+        HC4.Polynomial.ordinaryDegree4 d = 2 ∧
         d (0 : Fin 4) = 2 ∧
         ∀ i : Fin 4, i ≠ (0 : Fin 4) → d i = 0) := by
   rcases T.qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare
