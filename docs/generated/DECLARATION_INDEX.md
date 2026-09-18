@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8941**.
+Distinct declaration spellings indexed: **8942**.
 
 ## Repeated declaration spellings
 
@@ -4259,6 +4259,7 @@ Distinct declaration spellings indexed: **8941**.
 - `derivative_binaryAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `derivative_comp_lockedBinomialAffineNormalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `derivative_det_rankThreePencilPolynomial_eval_zero` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
+- `derivative_det_rankTwoToRankThreeRoofPencil_eval_zero` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `derivative_fourAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `derivative_monomial_eval_neg_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity`
 - `derivative_sourceAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
