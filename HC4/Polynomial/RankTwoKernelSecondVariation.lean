@@ -81,6 +81,30 @@ theorem snd_snd_det_rankTwoZeroKernelSecondVariation
     Matrix.det_fin_three, Fin.succAbove, DualNumber.snd_mul]
   ring
 
+
+/-- Domain-level cancellation form of the rank-two second variation.  This is
+the version used when the coefficient ring is itself a multivariate
+polynomial ring. -/
+theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero_domain
+    {R : Type*} [CommRing R] [NoZeroDivisors R]
+    {a b c d : R}
+    (B C : Matrix (Fin 4) (Fin 4) R)
+    (htwo : (2 : R) ≠ 0)
+    (hactive : a * d - b * c ≠ 0)
+    (hzero :
+      TrivSqZeroExt.snd
+          (TrivSqZeroExt.snd
+            (rankTwoZeroKernelSecondVariation a b c d B C).det) = 0) :
+    B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0 := by
+  rw [snd_snd_det_rankTwoZeroKernelSecondVariation] at hzero
+  have hfactor : 2 * (a * d - b * c) ≠ 0 :=
+    mul_ne_zero htwo hactive
+  have hprod :
+      (2 * (a * d - b * c)) *
+          (B 1 1 * B 2 2 - B 1 2 * B 2 1) = 0 := by
+    simpa [mul_assoc] using hzero
+  exact (mul_eq_zero.mp hprod).resolve_left hfactor
+
 /-- If the complete second determinant variation vanishes and the active
 constant minor is nonzero, then the first layer has singular binary kernel
 block. -/
@@ -105,6 +129,50 @@ theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero
     simpa [mul_assoc] using hzero
   exact (mul_eq_zero.mp hprod).resolve_left hfactor
 
+
+
+/-- Domain-level polynomial-matrix gap bridge.  It differs from the field
+version only in making the cancellation hypotheses explicit. -/
+theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap_domain
+    {R : Type*} [CommRing R] [NoZeroDivisors R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 4) (Fin 4) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoZeroKernelBase a b c d r s)
+    (htwo : (2 : R) ≠ 0)
+    (hactive : a * d - b * c ≠ 0)
+    (hdet : M.det = 0) :
+    let B : Matrix (Fin 4) (Fin 4) R :=
+      fun r s => (M r s).coeff j
+    B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0 := by
+  let B : Matrix (Fin 4) (Fin 4) R :=
+    fun r s => (M r s).coeff j
+  let C : Matrix (Fin 4) (Fin 4) R :=
+    fun r s => (M r s).coeff (2 * j)
+  change B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0
+  have hjet :
+      HC4.Valuation.matrixParameterGapSecondJet hj M hgap =
+        rankTwoZeroKernelSecondVariation a b c d B C := by
+    apply Matrix.ext
+    intro r s
+    rw [HC4.Valuation.matrixParameterGapSecondJet_apply]
+    simp [rankTwoZeroKernelSecondVariation, rankTwoSecondVariationEntry,
+      B, C, hbase]
+  have hbridge :=
+    HC4.Valuation.snd_snd_det_matrixParameterGapSecondJet
+      (R := R) hj M hgap
+  have hzero :
+      TrivSqZeroExt.snd
+          (TrivSqZeroExt.snd
+            (HC4.Valuation.matrixParameterGapSecondJet hj M hgap).det) = 0 := by
+    rw [hbridge, hdet]
+    simp
+  rw [hjet] at hzero
+  exact kernelBlock_det_eq_zero_of_secondVariation_eq_zero_domain
+    B C htwo hactive hzero
 
 /-- **Polynomial-family bridge for the rank-two second variation.**
 
