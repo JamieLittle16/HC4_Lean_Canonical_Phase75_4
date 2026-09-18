@@ -45,8 +45,9 @@ theorem exists_fourBlockKernelRowBreakAt
 /-- Least parameter order at which some kernel-row entry is nonzero. -/
 noncomputable def firstFourBlockKernelRowBreakOrder
     (B : GeneralFourBlock (Polynomial R))
-    (hrow : B.q ≠ 0 ∨ B.s ≠ 0 ∨ B.y ≠ 0 ∨ B.z ≠ 0) : ℕ :=
-  Nat.find (exists_fourBlockKernelRowBreakAt B hrow)
+    (hrow : B.q ≠ 0 ∨ B.s ≠ 0 ∨ B.y ≠ 0 ∨ B.z ≠ 0) : ℕ := by
+  classical
+  exact Nat.find (exists_fourBlockKernelRowBreakAt B hrow)
 
 /-- The least selected order really breaks the row. -/
 theorem firstFourBlockKernelRowBreakOrder_spec
@@ -54,6 +55,8 @@ theorem firstFourBlockKernelRowBreakOrder_spec
     (hrow : B.q ≠ 0 ∨ B.s ≠ 0 ∨ B.y ≠ 0 ∨ B.z ≠ 0) :
     fourBlockKernelRowBreakAt B
       (firstFourBlockKernelRowBreakOrder B hrow) := by
+  classical
+  unfold firstFourBlockKernelRowBreakOrder
   exact Nat.find_spec (exists_fourBlockKernelRowBreakAt B hrow)
 
 /-- Every strictly lower coefficient of every kernel-row entry vanishes. -/
@@ -66,9 +69,11 @@ theorem firstFourBlockKernelRowBreakOrder_lower_zero
       B.s.coeff n = 0 ∧
       B.y.coeff n = 0 ∧
       B.z.coeff n = 0 := by
+  classical
+  unfold firstFourBlockKernelRowBreakOrder at hn
   have hnot : ¬ fourBlockKernelRowBreakAt B n :=
     Nat.find_min (exists_fourBlockKernelRowBreakAt B hrow) hn
-  push_neg at hnot
+  simp only [fourBlockKernelRowBreakAt, not_or, not_not] at hnot
   exact hnot
 
 /-- If the constant kernel row is zero, the first break order is positive. -/
