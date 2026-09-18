@@ -53,7 +53,8 @@ private theorem centralParameterHessian_coeff_zero
     (parameterFirstHessian P.centralDeficitFamily i j).coeff 0 =
       HC4.Polynomial.hessian G.exposure.face i j := by
   rw [parameterFirstHessian_coeff,
-    centralDeficitFamily_layer_zero_eq G hthree houtThree]
+    centralDeficitFamily_layer_zero_eq G hthree houtThree,
+    G.exposure_face_eq]
 
 private theorem left_base_b_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
