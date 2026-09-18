@@ -221,6 +221,28 @@ theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
     (mul_eq_zero.mp hzero).resolve_left hactive
   exact hB
 
+
+/-- **Nonzero first roof diagonal forces a genuine rank-three minor.**
+
+This is the contrapositive form used by the source-facing central staircase
+adapter.  Higher parameter layers remain completely arbitrary. -/
+theorem polynomialMatrix3_gap_det_ne_zero_of_middleDiagonal
+    {R : Type*} [CommRing R] [IsDomain R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
+    (hactive : a * d - b * c ≠ 0)
+    (hdiag : (M 1 1).coeff j ≠ 0) :
+    M.det ≠ 0 := by
+  intro hdet
+  exact hdiag
+    (middleDiagonal_eq_zero_of_polynomialMatrix3_gap
+      hj M hgap a b c d hbase hactive hdet)
+
 end
 
 end HC4.Polynomial
