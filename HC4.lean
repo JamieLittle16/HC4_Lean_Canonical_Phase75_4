@@ -276,3 +276,5 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure
 
 
 import HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor
+
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift
