@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8733**.
+Distinct declaration spellings indexed: **8736**.
 
 ## Repeated declaration spellings
 
@@ -3729,6 +3729,8 @@ Distinct declaration spellings indexed: **8733**.
 - `codimensionTwoLowerEndpointForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoLowerEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoNonhomogeneousDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
+- `codimensionTwoNonhomogeneousJointPencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
+- `codimensionTwoNonhomogeneousJointPencil_not_singular` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
 - `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoPrimitivePair_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoSTSpecialisation` — `def` in `HC4.Polynomial.CodimensionTwoTrinomialEulerBridge`
@@ -3916,6 +3918,7 @@ Distinct declaration spellings indexed: **8733**.
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_twoRootEulerOperator` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
+- `coeff_two_det_codimensionTwoNonhomogeneousJointPencil` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
 - `coeff_two_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_two_mul_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `coeff_two_n_shiftedEtaNumerator_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`

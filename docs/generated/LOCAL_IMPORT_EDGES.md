@@ -823,6 +823,8 @@ human architecture guide.
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
   - `HC4.Polynomial.RankThreePencils`
+- `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
+  - `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
   - `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
