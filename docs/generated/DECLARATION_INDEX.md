@@ -216,6 +216,7 @@ Distinct declaration spellings indexed: **8973**.
 - `reverseReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`
 - `reverseReesFamily_layer_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
 - `reverseReesFamily_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
+- `reverseWeightedReesFamily_parameterLayer_eq_initialForm` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`, `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `rightCrossRoofHighPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`
 - `rightCrossRoofLowPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`
 - `rightPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -7738,7 +7739,7 @@ Distinct declaration spellings indexed: **8973**.
 - `reverseWeightedReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
-- `reverseWeightedReesFamily_parameterLayer_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
+- `reverseWeightedReesFamily_parameterLayer_eq_initialForm` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`, `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
