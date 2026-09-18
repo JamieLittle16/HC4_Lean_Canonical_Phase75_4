@@ -226,7 +226,8 @@ theorem snd_snd_det_matrixParameterGapSecondJet
   let G : Matrix (Fin 4) (Fin 4) (parameterGapSubring (R := R) j) :=
     matrixToParameterGapCommRing M hM
   have hmap : J G.det = (J.mapMatrix G).det := by
-    exact J.map_det G
+    classical
+    simp [Matrix.det_apply]
   have hsub := (parameterGapSubring (R := R) j).subtype.map_det G
   have hmatrix :
       (parameterGapSubring (R := R) j).subtype.mapMatrix G = M := by
