@@ -3182,7 +3182,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreePencils`, `HC4.Valuation.ParameterGapDualJet`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def vectorHessianCore3`, `def rankTwoToRankThreeRoofPencil`, `theorem coeff_one_det_rankTwoToRankThreeRoofPencil`, `theorem rankTwoToRankThreeRoofPencil_det_ne_zero`, `def matrix3ToParameterGap`, `def matrix3ParameterGapDualJet`, `theorem snd_det_matrix3ParameterGapDualJet`, `def rankTwoRoofZeroKernelBase`, `def rankTwoRoofFirstJet`, `theorem snd_det_rankTwoRoofFirstJet`, `theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap`
+- Declarations: `def vectorHessianCore3`, `def rankTwoToRankThreeRoofPencil`, `theorem coeff_one_det_rankTwoToRankThreeRoofPencil`, `theorem rankTwoToRankThreeRoofPencil_det_ne_zero`, `def matrix3ToParameterGap`, `def matrix3ParameterGapDualJet`, `theorem snd_det_matrix3ParameterGapDualJet`, `def rankTwoRoofZeroKernelBase`, `def rankTwoRoofFirstJet`, `theorem snd_det_rankTwoRoofFirstJet`, `theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap`, `theorem polynomialMatrix3_gap_det_ne_zero_of_middleDiagonal`
 
 ### `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 
