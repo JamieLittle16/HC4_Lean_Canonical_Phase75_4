@@ -221,7 +221,9 @@ variable
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
 /-- Layer zero of the total-deficit family is literally the central monomial. -/
-theorem centralDeficitFamily_layer_zero_eq :
+theorem centralDeficitFamily_layer_zero_eq
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     familyParameterLayer P.centralDeficitFamily 0 =
       MvPolynomial.monomial G.central
         (MvPolynomial.coeff G.central P.carrier) := by
@@ -247,8 +249,7 @@ theorem centralDeficitFamily_layer_zero_eq :
       have h2 : e 2 = 0 := by omega
       apply he
       exact F.support_eq_of_deficits_eq
-        (by assumption) (by assumption)
-        hmem.1 G.central_mem
+        hthree houtThree hmem.1 G.central_mem
         (by simpa [G.central_one_zero] using h1)
         (by simpa [G.central_two_zero] using h2)
     have hz :
