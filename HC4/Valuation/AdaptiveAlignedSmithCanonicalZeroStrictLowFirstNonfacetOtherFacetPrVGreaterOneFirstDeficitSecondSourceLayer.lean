@@ -195,6 +195,17 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
       (second_mem : second ∈ P.carrier.support)
       (second_order : second 1 + second 2 = k)
       (second_two_ge : 2 ≤ second 2)
+      (hessian_identity :
+        HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 *
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily k)
+              (2 : Fin 4) 2 =
+          HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (1 : Fin 4) 2 *
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (1 : Fin 4) 2)
   | right
       (first opposite second : Fin 4 →₀ ℕ)
       (q j k : ℕ)
@@ -210,6 +221,17 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
       (second_mem : second ∈ P.carrier.support)
       (second_order : second 1 + second 2 = k)
       (second_one_ge : 2 ≤ second 1)
+      (hessian_identity :
+        HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 *
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily k)
+              (1 : Fin 4) 1 =
+          HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (2 : Fin 4) 1 *
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily j)
+              (2 : Fin 4) 1)
 
 /-- **Second interaction -> honest source layer.**
 
@@ -223,7 +245,7 @@ theorem firstDeficit_secondSourceLayerGeometry
   rcases G.firstDeficit_secondInteractionGeometry hthree houtThree with O
   cases O with
   | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
-      hstrict hminimal hB hlayer hmixed hz _heq =>
+      hstrict hminimal hB hlayer hmixed hz heq =>
       let q := G.firstDeficitOrder
       let j := opposite 1 + opposite 2
       let k := 2 * j - q
@@ -241,13 +263,29 @@ theorem firstDeficit_secondSourceLayerGeometry
         ⟨second, hsecondLayer, hsecond2⟩
       have hsource :=
         (P.centralDeficitFamily_layer_mem_iff k second).1 hsecondLayer
+      have heqSource := heq
+      rw [G.firstDeficitLeftStaggeredBlock_d_coeff,
+        G.firstDeficitLeftStaggeredBlock_z_coeff,
+        G.firstDeficitLeftStaggeredBlock_s_coeff] at heqSource
+      have heqSource' :
+          HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily k)
+                (2 : Fin 4) 2 =
+            HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily j)
+                (1 : Fin 4) 2 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily j)
+                (1 : Fin 4) 2 := by
+        simpa [q, j, k, firstDeficitLayer] using heqSource
       exact .left first opposite second q j k
         rfl rfl rfl hfirst
         (by simpa [q] using hfirst1) hfirst2
         hop hop2 (by simpa [q, j] using hstrict)
-        hsource.1 hsource.2 hsecond2
+        hsource.1 hsource.2 hsecond2 heqSource'
   | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
-      hstrict hminimal hB hlayer hmixed hz _heq =>
+      hstrict hminimal hB hlayer hmixed hz heq =>
       let q := G.firstDeficitOrder
       let j := opposite 1 + opposite 2
       let k := 2 * j - q
@@ -265,11 +303,27 @@ theorem firstDeficit_secondSourceLayerGeometry
         ⟨second, hsecondLayer, hsecond1⟩
       have hsource :=
         (P.centralDeficitFamily_layer_mem_iff k second).1 hsecondLayer
+      have heqSource := heq
+      rw [G.firstDeficitRightStaggeredBlock_d_coeff,
+        G.firstDeficitRightStaggeredBlock_z_coeff,
+        G.firstDeficitRightStaggeredBlock_s_coeff] at heqSource
+      have heqSource' :
+          HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily k)
+                (1 : Fin 4) 1 =
+            HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily j)
+                (2 : Fin 4) 1 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily j)
+                (2 : Fin 4) 1 := by
+        simpa [q, j, k, firstDeficitLayer] using heqSource
       exact .right first opposite second q j k
         rfl rfl rfl hfirst hfirst1
         (by simpa [q] using hfirst2)
         hop hop1 (by simpa [q, j] using hstrict)
-        hsource.1 hsource.2 hsecond1
+        hsource.1 hsource.2 hsecond1 heqSource'
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
