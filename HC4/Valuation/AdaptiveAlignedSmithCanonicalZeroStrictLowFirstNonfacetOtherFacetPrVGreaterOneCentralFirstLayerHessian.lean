@@ -60,7 +60,7 @@ noncomputable def firstDeficitLayer : MvPolynomial (Fin 4) K :=
   familyParameterLayer P.centralDeficitFamily G.firstDeficitOrder
 
 noncomputable def firstDeficitBinaryFace : MvPolynomial (Fin 2) K :=
-  centralDeficitBinarySpecialisation (K := K) G.firstDeficitLayer
+  HC4.Polynomial.centralDeficitBinarySpecialisation (K := K) G.firstDeficitLayer
 
 theorem firstDeficitOrder_pos :
     0 < G.firstDeficitOrder := by
@@ -86,7 +86,7 @@ theorem firstDeficitLayer_deficit_injective
     (he : e ∈ G.firstDeficitLayer.support)
     (hf : f ∈ G.firstDeficitLayer.support)
     (hproj :
-      binaryDeficitExponent f = binaryDeficitExponent e) :
+      HC4.Polynomial.binaryDeficitExponent f = HC4.Polynomial.binaryDeficitExponent e) :
     f = e := by
   have hec := (G.firstDeficitLayer_support he).1
   have hfc := (G.firstDeficitLayer_support hf).1
@@ -99,7 +99,7 @@ theorem firstDeficitBinaryFace_ne_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.firstDeficitBinaryFace ≠ 0 := by
-  exact centralDeficitBinarySpecialisation_ne_zero_of_injective
+  exact HC4.Polynomial.centralDeficitBinarySpecialisation_ne_zero_of_injective
     G.firstDeficitLayer G.firstDeficitLayer_ne_zero
     (by
       intro e he f hf hproj
@@ -108,7 +108,7 @@ theorem firstDeficitBinaryFace_ne_zero
 
 theorem firstDeficitBinaryFace_isHomogeneous :
     G.firstDeficitBinaryFace.IsHomogeneous G.firstDeficitOrder := by
-  apply centralDeficitBinarySpecialisation_isHomogeneous
+  apply HC4.Polynomial.centralDeficitBinarySpecialisation_isHomogeneous
   intro e he
   exact (G.firstDeficitLayer_support he).2
 
@@ -117,23 +117,23 @@ noncomputable def binaryParameterHessian :
     Matrix (Fin 4) (Fin 4)
       (Polynomial (MvPolynomial (Fin 2) K)) :=
   (Polynomial.mapRingHom
-      (centralDeficitBinarySpecialisation (K := K))).mapMatrix
+      (HC4.Polynomial.centralDeficitBinarySpecialisation (K := K))).mapMatrix
     (parameterFirstHessian P.centralDeficitFamily)
 
 theorem binaryParameterHessian_coeff
     (n : ℕ) (i j : Fin 4) :
     (G.binaryParameterHessian i j).coeff n =
-      centralDeficitBinarySpecialisation (K := K)
+      HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian
           (familyParameterLayer P.centralDeficitFamily n) i j) := by
   change
     ((parameterFirstHessian P.centralDeficitFamily i j).map
-      (centralDeficitBinarySpecialisation (K := K))).coeff n = _
+      (HC4.Polynomial.centralDeficitBinarySpecialisation (K := K))).coeff n = _
   rw [Polynomial.coeff_map, parameterFirstHessian_coeff]
 
 theorem binaryParameterHessian_det_zero :
     G.binaryParameterHessian.det = 0 := by
-  let phi := centralDeficitBinarySpecialisation (K := K)
+  let phi := HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)
   let Phi := Polynomial.mapRingHom phi
   have hdet0 :
       (parameterFirstHessian P.centralDeficitFamily).det = 0 := by
@@ -170,14 +170,38 @@ theorem central_active_exponents_pos :
     have h0 : G.central 0 = 0 := Nat.eq_zero_of_not_pos hnot
     apply hminor
     unfold HC4.Polynomial.hessianPrincipalMinor
-    simp [HC4.Polynomial.hessian_apply,
-      MvPolynomial.pderiv_monomial, h0]
+    have hp0 :
+        MvPolynomial.pderiv (0 : Fin 4)
+            (MvPolynomial.monomial G.central
+              (MvPolynomial.coeff G.central P.carrier)) = 0 := by
+      simp [MvPolynomial.pderiv_monomial, h0]
+    simp only [HC4.Polynomial.hessian_apply]
+    rw [hp0]
+    simp
   · by_contra hnot
     have h3 : G.central 3 = 0 := Nat.eq_zero_of_not_pos hnot
     apply hminor
     unfold HC4.Polynomial.hessianPrincipalMinor
-    simp [HC4.Polynomial.hessian_apply,
-      MvPolynomial.pderiv_monomial, h3]
+    have hp3 :
+        MvPolynomial.pderiv (3 : Fin 4)
+            (MvPolynomial.monomial G.central
+              (MvPolynomial.coeff G.central P.carrier)) = 0 := by
+      simp [MvPolynomial.pderiv_monomial, h3]
+    simp only [HC4.Polynomial.hessian_apply]
+    have hcomm03 :
+        MvPolynomial.pderiv (0 : Fin 4)
+            (MvPolynomial.pderiv (3 : Fin 4)
+              (MvPolynomial.monomial G.central
+                (MvPolynomial.coeff G.central P.carrier))) =
+          MvPolynomial.pderiv (3 : Fin 4)
+            (MvPolynomial.pderiv (0 : Fin 4)
+              (MvPolynomial.monomial G.central
+                (MvPolynomial.coeff G.central P.carrier))) := by
+      exact MvPolynomial.pderiv_comm _ _ _
+    rw [hp3] at hcomm03
+    simp at hcomm03
+    rw [hp3]
+    simp [hcomm03]
 
 noncomputable def centralBinaryCore :
     Matrix (Fin 4) (Fin 4) (MvPolynomial (Fin 2) K) :=
@@ -211,7 +235,7 @@ theorem centralBinaryCore_activeDet_ne_zero :
       1 - (G.central 0 : K) - (G.central 3 : K) ≠ 0 := by
     intro h
     have heq : (G.central 0 : K) + (G.central 3 : K) = 1 := by
-      linear_combination h
+      linear_combination -h
     have hnat : G.central 0 + G.central 3 = 1 := by
       exact_mod_cast heq
     omega
@@ -242,7 +266,7 @@ theorem binaryParameterHessian_coeff_zero
   rw [G.binaryParameterHessian_coeff]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
   have hcore :=
-    centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
+    HC4.Polynomial.centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
       (K := K) G.central (MvPolynomial.coeff G.central P.carrier)
       G.central_one_zero G.central_two_zero
   exact congrFun (congrFun hcore i) j
@@ -266,7 +290,7 @@ theorem firstDeficitBinaryFace_hessian_zero
     rw [G.centralBinaryCore_eq_rankTwoBase] at h0
     exact h0
   have hkernel :=
-    kernelBlock_det_eq_zero_of_polynomialMatrix_gap_domain
+    HC4.Polynomial.kernelBlock_det_eq_zero_of_polynomialMatrix_gap_domain
       G.firstDeficitOrder_pos G.binaryParameterHessian
       (fun i j => G.binaryParameterHessian_gap i j)
       (G.centralBinaryCore 0 0) (G.centralBinaryCore 0 3)
@@ -281,7 +305,7 @@ theorem firstDeficitBinaryFace_hessian_zero
   have hB :
       ∀ i j,
         B i j =
-          centralDeficitBinarySpecialisation (K := K)
+          HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)
             (HC4.Polynomial.hessian G.firstDeficitLayer i j) := by
     intro i j
     dsimp [B]
@@ -291,10 +315,10 @@ theorem firstDeficitBinaryFace_hessian_zero
   unfold binaryDirectionalHessianDet directionalSecondDerivative
     directionalMixedDerivative
   simp only [← HC4.Polynomial.hessian_apply]
-  rw [hessian_zero_zero_centralDeficitBinarySpecialisation,
-    hessian_one_one_centralDeficitBinarySpecialisation,
-    hessian_zero_one_centralDeficitBinarySpecialisation,
-    hessian_one_zero_centralDeficitBinarySpecialisation]
+  rw [HC4.Polynomial.hessian_zero_zero_centralDeficitBinarySpecialisation,
+    HC4.Polynomial.hessian_one_one_centralDeficitBinarySpecialisation,
+    HC4.Polynomial.hessian_zero_one_centralDeficitBinarySpecialisation,
+    HC4.Polynomial.hessian_one_zero_centralDeficitBinarySpecialisation]
   simpa [hB] using hkernel
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
