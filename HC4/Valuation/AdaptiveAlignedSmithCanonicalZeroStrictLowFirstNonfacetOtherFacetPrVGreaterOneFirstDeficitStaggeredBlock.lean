@@ -164,52 +164,42 @@ theorem firstDeficitRightStaggeredBlock_determinantCore_eq_zero :
         P.centralDeficitFamily_hessian_zero]
       simp
 
+private theorem firstKernelBreakActiveThreeDet_eq_submatrix_det
+    (H : GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K))) :
+    firstKernelBreakActiveThreeDet H =
+      (H.matrix.submatrix Fin.castSucc Fin.castSucc).det := by
+  unfold firstKernelBreakActiveThreeDet GeneralFourBlock.matrix
+  simp [Matrix.det_fin_three]
+  ring
+
 /-- The active-three determinant of the left staggered block is exactly the
 already-certified source roof determinant on coordinates `0,1,3`. -/
 theorem firstDeficitLeftStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitLeftStaggeredBlock =
       G.firstDeficitLeftActiveHessian.det := by
-  unfold firstKernelBreakActiveThreeDet
-    firstDeficitLeftStaggeredBlock
-    firstDeficitLeftStaggeredMatrix
+  rw [firstKernelBreakActiveThreeDet_eq_submatrix_det,
+    G.firstDeficitLeftStaggeredBlock_matrix]
+  congr 1
+  ext i j
+  unfold firstDeficitLeftStaggeredMatrix
     firstDeficitLeftActiveHessian
-    firstDeficitLeftActiveIndex
-    GeneralFourBlock.ofSymmetricMatrix
-  simp [Matrix.det_fin_three,
-    firstDeficitLeftStaggeredPerm_zero,
-    firstDeficitLeftStaggeredPerm_one,
-    firstDeficitLeftStaggeredPerm_two,
-    firstDeficitLeftStaggeredPerm_three]
-  rw [parameterFirstHessian_symmetric
-      P.centralDeficitFamily (1 : Fin 4) 0,
-    parameterFirstHessian_symmetric
-      P.centralDeficitFamily (3 : Fin 4) 1,
-    parameterFirstHessian_symmetric
-      P.centralDeficitFamily (3 : Fin 4) 0]
-  ring
+  fin_cases i <;> fin_cases j <;>
+    simp [firstDeficitLeftActiveIndex,
+      firstDeficitLeftStaggeredPerm]
 
 /-- Symmetric active-three identification for coordinates `0,2,3`. -/
 theorem firstDeficitRightStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitRightStaggeredBlock =
       G.firstDeficitRightActiveHessian.det := by
-  unfold firstKernelBreakActiveThreeDet
-    firstDeficitRightStaggeredBlock
-    firstDeficitRightStaggeredMatrix
+  rw [firstKernelBreakActiveThreeDet_eq_submatrix_det,
+    G.firstDeficitRightStaggeredBlock_matrix]
+  congr 1
+  ext i j
+  unfold firstDeficitRightStaggeredMatrix
     firstDeficitRightActiveHessian
-    firstDeficitRightActiveIndex
-    GeneralFourBlock.ofSymmetricMatrix
-  simp [Matrix.det_fin_three,
-    firstDeficitRightStaggeredPerm_zero,
-    firstDeficitRightStaggeredPerm_one,
-    firstDeficitRightStaggeredPerm_two,
-    firstDeficitRightStaggeredPerm_three]
-  rw [parameterFirstHessian_symmetric
-      P.centralDeficitFamily (2 : Fin 4) 0,
-    parameterFirstHessian_symmetric
-      P.centralDeficitFamily (3 : Fin 4) 2,
-    parameterFirstHessian_symmetric
-      P.centralDeficitFamily (3 : Fin 4) 0]
-  ring
+  fin_cases i <;> fin_cases j <;>
+    simp [firstDeficitRightActiveIndex,
+      firstDeficitRightStaggeredPerm]
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
