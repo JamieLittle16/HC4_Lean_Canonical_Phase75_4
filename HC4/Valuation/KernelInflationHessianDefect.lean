@@ -168,9 +168,9 @@ theorem coeff_kernelInflateHom
       MvPolynomial.coeff d Q *
         (Polynomial.X ^ slope) ^ d kernel := by
   classical
-  rw [Q.as_sum, map_sum, MvPolynomial.coeff_sum]
   by_cases hd : d ∈ Q.support
-  · rw [Finset.sum_eq_single d]
+  · rw [Q.as_sum, map_sum, MvPolynomial.coeff_sum]
+    rw [Finset.sum_eq_single d]
     · rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
       simp
     · intro e he hed
@@ -179,13 +179,8 @@ theorem coeff_kernelInflateHom
     · exact fun h => (h hd).elim
   · have hcoeff : MvPolynomial.coeff d Q = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
-    have hsumcoeff :
-        MvPolynomial.coeff d
-          (∑ v ∈ Q.support,
-            MvPolynomial.monomial v (MvPolynomial.coeff v Q)) = 0 := by
-      rw [← Q.as_sum]
-      exact hcoeff
-    rw [hsumcoeff, zero_mul]
+    rw [hcoeff, zero_mul]
+    rw [Q.as_sum, map_sum, MvPolynomial.coeff_sum]
     apply Finset.sum_eq_zero
     intro e he
     rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
