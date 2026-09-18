@@ -170,7 +170,7 @@ private theorem right_base_outer_minor_ne_zero
   simpa [HC4.Polynomial.hessianPrincipalMinor] using
     G.exposure_rankTwo_minor
 
-private noncomputable def leftSecondInteractionData
+private theorem exists_leftSecondInteractionData
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {first opposite : Fin 4 →₀ ℕ}
@@ -184,11 +184,14 @@ private noncomputable def leftSecondInteractionData
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
         opposite 1 + opposite 2 ≤ f 1 + f 2) :
-    StaggeredSingularFirstKernelBreakFourBlockData
-      (MvPolynomial (Fin 4) K) := by
+    ∃ E : StaggeredSingularFirstKernelBreakFourBlockData
+        (MvPolynomial (Fin 4) K),
+      E.block = G.firstDeficitLeftStaggeredBlock ∧
+      E.activeOrder = G.firstDeficitOrder ∧
+      E.kernelOrder = opposite 1 + opposite 2 := by
   have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
     firstDeficitOrder_two_le G hthree houtThree
-  refine {
+  refine ⟨{
     block := G.firstDeficitLeftStaggeredBlock
     activeOrder := G.firstDeficitOrder
     kernelOrder := opposite 1 + opposite 2
@@ -206,7 +209,7 @@ private noncomputable def leftSecondInteractionData
     kernel_break :=
       G.firstDeficitLeftStaggeredBlock_kernel_break
         hop hop2 hstrict hfirstTwo
-  }
+  }, rfl, rfl, rfl⟩
   · rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq]
     exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
       hthree houtThree hfirst hfirst1 hfirst2 huniq
@@ -219,7 +222,7 @@ private noncomputable def leftSecondInteractionData
   · intro n hn
     exact G.leftBlock_z_coeff_eq_zero_before hminimal hn
 
-private noncomputable def rightSecondInteractionData
+private theorem exists_rightSecondInteractionData
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {first opposite : Fin 4 →₀ ℕ}
@@ -233,11 +236,14 @@ private noncomputable def rightSecondInteractionData
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
         opposite 1 + opposite 2 ≤ f 1 + f 2) :
-    StaggeredSingularFirstKernelBreakFourBlockData
-      (MvPolynomial (Fin 4) K) := by
+    ∃ E : StaggeredSingularFirstKernelBreakFourBlockData
+        (MvPolynomial (Fin 4) K),
+      E.block = G.firstDeficitRightStaggeredBlock ∧
+      E.activeOrder = G.firstDeficitOrder ∧
+      E.kernelOrder = opposite 1 + opposite 2 := by
   have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
     firstDeficitOrder_two_le G hthree houtThree
-  refine {
+  refine ⟨{
     block := G.firstDeficitRightStaggeredBlock
     activeOrder := G.firstDeficitOrder
     kernelOrder := opposite 1 + opposite 2
@@ -255,7 +261,7 @@ private noncomputable def rightSecondInteractionData
     kernel_break :=
       G.firstDeficitRightStaggeredBlock_kernel_break
         hop hop1 hstrict hfirstTwo
-  }
+  }, rfl, rfl, rfl⟩
   · rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
     exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
       hthree houtThree hfirst hfirst1 hfirst2 huniq
@@ -329,50 +335,68 @@ theorem firstDeficit_secondInteractionGeometry
   cases O with
   | left first opposite B hfirst hfirst1 hfirst2 huniq
       hop hop2 hstrict hminimal hB hlayer hmixed =>
-      let E := G.leftSecondInteractionData
-        hthree houtThree hfirst hfirst1 hfirst2 huniq
-        hop (by omega) hstrict hminimal
+      rcases G.exists_leftSecondInteractionData
+          hthree houtThree hfirst hfirst1 hfirst2 huniq
+          hop (by omega) hstrict hminimal with
+        ⟨E, hblock, hactive, hkernel⟩
+      have hb0 : E.block.b.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.left_base_b_zero hthree houtThree
+      have hd0 : E.block.d.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.left_base_d_zero hthree houtThree
+      have hr0 : E.block.r.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.left_base_r_zero hthree houtThree
+      have houter :
+          E.block.a.coeff 0 * E.block.x.coeff 0 -
+              E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
+        rw [hblock]
+        exact G.left_base_outer_minor_ne_zero hthree houtThree
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
-        change G.firstDeficitLeftStaggeredBlock.s.coeff
-          (opposite 1 + opposite 2) ≠ 0
+        rw [hblock, hkernel]
         exact hmixed
       have hz :=
         E.kernelDiagonal_coeff_secondInteraction_ne_zero
-          (G.left_base_b_zero hthree houtThree)
-          (G.left_base_d_zero hthree houtThree)
-          (G.left_base_r_zero hthree houtThree)
-          (G.left_base_outer_minor_ne_zero hthree houtThree)
-          hsj
+          hb0 hd0 hr0 houter hsj
       have hz' :
           G.firstDeficitLeftStaggeredBlock.z.coeff
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
-        change E.block.z.coeff
-          (2 * E.kernelOrder - E.activeOrder) ≠ 0
+        rw [← hblock, ← hkernel, ← hactive]
         exact hz
       exact .left first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop2
         hstrict hminimal hB hlayer hmixed hz'
   | right first opposite B hfirst hfirst1 hfirst2 huniq
       hop hop1 hstrict hminimal hB hlayer hmixed =>
-      let E := G.rightSecondInteractionData
-        hthree houtThree hfirst hfirst1 hfirst2 huniq
-        hop (by omega) hstrict hminimal
+      rcases G.exists_rightSecondInteractionData
+          hthree houtThree hfirst hfirst1 hfirst2 huniq
+          hop (by omega) hstrict hminimal with
+        ⟨E, hblock, hactive, hkernel⟩
+      have hb0 : E.block.b.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.right_base_b_zero hthree houtThree
+      have hd0 : E.block.d.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.right_base_d_zero hthree houtThree
+      have hr0 : E.block.r.coeff 0 = 0 := by
+        rw [hblock]
+        exact G.right_base_r_zero hthree houtThree
+      have houter :
+          E.block.a.coeff 0 * E.block.x.coeff 0 -
+              E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
+        rw [hblock]
+        exact G.right_base_outer_minor_ne_zero hthree houtThree
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
-        change G.firstDeficitRightStaggeredBlock.s.coeff
-          (opposite 1 + opposite 2) ≠ 0
+        rw [hblock, hkernel]
         exact hmixed
       have hz :=
         E.kernelDiagonal_coeff_secondInteraction_ne_zero
-          (G.right_base_b_zero hthree houtThree)
-          (G.right_base_d_zero hthree houtThree)
-          (G.right_base_r_zero hthree houtThree)
-          (G.right_base_outer_minor_ne_zero hthree houtThree)
-          hsj
+          hb0 hd0 hr0 houter hsj
       have hz' :
           G.firstDeficitRightStaggeredBlock.z.coeff
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
-        change E.block.z.coeff
-          (2 * E.kernelOrder - E.activeOrder) ≠ 0
+        rw [← hblock, ← hkernel, ← hactive]
         exact hz
       exact .right first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop1
