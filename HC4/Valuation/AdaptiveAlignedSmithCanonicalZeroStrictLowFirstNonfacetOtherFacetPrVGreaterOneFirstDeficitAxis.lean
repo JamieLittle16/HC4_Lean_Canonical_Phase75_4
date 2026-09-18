@@ -51,29 +51,29 @@ theorem firstDeficitBinaryFace_support_lifts
     (hd : d ∈ G.firstDeficitBinaryFace.support) :
     ∃ e : Fin 4 →₀ ℕ,
       e ∈ G.firstDeficitLayer.support ∧
-      binaryDeficitExponent e = d := by
+      HC4.Polynomial.binaryDeficitExponent e = d := by
   classical
   have hsum :
       G.firstDeficitBinaryFace =
         ∑ e ∈ G.firstDeficitLayer.support,
-          MvPolynomial.monomial (binaryDeficitExponent e)
+          MvPolynomial.monomial (HC4.Polynomial.binaryDeficitExponent e)
             (MvPolynomial.coeff e G.firstDeficitLayer) := by
     unfold firstDeficitBinaryFace
     have has := MvPolynomial.as_sum G.firstDeficitLayer
     calc
-      centralDeficitBinarySpecialisation (K := K) G.firstDeficitLayer =
-          centralDeficitBinarySpecialisation (K := K)
+      HC4.Polynomial.centralDeficitBinarySpecialisation (K := K) G.firstDeficitLayer =
+          HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)
             (∑ e ∈ G.firstDeficitLayer.support,
               MvPolynomial.monomial e
                 (MvPolynomial.coeff e G.firstDeficitLayer)) := by
             exact congrArg
-              (centralDeficitBinarySpecialisation (K := K)) has.symm
+              (HC4.Polynomial.centralDeficitBinarySpecialisation (K := K)) has.symm
       _ = _ := by
-        simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
+        simp only [map_sum, HC4.Polynomial.centralDeficitBinarySpecialisation_monomial_eq]
   have hdSum :
       d ∈
         (∑ e ∈ G.firstDeficitLayer.support,
-          MvPolynomial.monomial (binaryDeficitExponent e)
+          MvPolynomial.monomial (HC4.Polynomial.binaryDeficitExponent e)
             (MvPolynomial.coeff e G.firstDeficitLayer)).support := by
     rwa [← hsum]
   have hdUnion := MvPolynomial.support_sum hdSum
@@ -105,11 +105,13 @@ theorem firstDeficitBinaryFace_no_adjacent
   have h2e := congrArg (fun q : Fin 2 →₀ ℕ => q (1 : Fin 2)) heq
   have h1g := congrArg (fun q : Fin 2 →₀ ℕ => q (0 : Fin 2)) hgeq
   have h2g := congrArg (fun q : Fin 2 →₀ ℕ => q (1 : Fin 2)) hgeq
+  have h1e' : e 1 = d 0 := by simpa using h1e
+  have h2e' : e 2 = d 1 := by simpa using h2e
+  have h1g' : g 1 = f 0 := by simpa using h1g
+  have h2g' : g 2 = f 1 := by simpa using h2g
   apply F.no_adjacent_deficits hthree houtThree heCarrier hgCarrier
-  · simpa using hf0.trans (by
-      rw [← h1e, ← h1g])
-  · simpa using hd1.trans (by
-      rw [← h2g, ← h2e])
+  · omega
+  · omega
 
 /-- Axis-support alternative for the first positive binary deficit face. -/
 theorem firstDeficitBinaryFace_axis_support
@@ -136,7 +138,7 @@ theorem firstDeficitBinaryFace_axis_support
     · right
       intro d hd
       have hdcoeff := MvPolynomial.mem_support_iff.mp hd
-      rw [hnormal, gradientRatioLinearForm_finTwo_eq, hc0] at hdcoeff
+      rw [hnormal, HC4.Polynomial.gradientRatioLinearForm_finTwo_eq, hc0] at hdcoeff
       simp only [MvPolynomial.C_zero, zero_mul, zero_add] at hdcoeff
       rw [MvPolynomial.coeff_C_mul] at hdcoeff
       by_contra hd0
@@ -158,7 +160,7 @@ theorem firstDeficitBinaryFace_axis_support
       · left
         intro d hd
         have hdcoeff := MvPolynomial.mem_support_iff.mp hd
-        rw [hnormal, gradientRatioLinearForm_finTwo_eq, hc1] at hdcoeff
+        rw [hnormal, HC4.Polynomial.gradientRatioLinearForm_finTwo_eq, hc1] at hdcoeff
         simp only [MvPolynomial.C_zero, zero_mul, add_zero] at hdcoeff
         rw [MvPolynomial.coeff_C_mul] at hdcoeff
         by_contra hd1
@@ -179,7 +181,7 @@ theorem firstDeficitBinaryFace_axis_support
       · obtain ⟨m, hDm⟩ : ∃ m : ℕ, D = m + 1 := by
           exact ⟨D - 1, by omega⟩
         have hsupp :=
-          pure_and_adjacent_mem_support_C_mul_linearPower
+          HC4.Polynomial.pure_and_adjacent_mem_support_C_mul_linearPower
             (a := a) (c := c) (m := m) ha hc0 hc1
         rw [← hDm, ← hnormal] at hsupp
         exact False.elim
@@ -202,8 +204,10 @@ theorem firstDeficitBinaryFace_axis_support
       · simp [Fin.sum_univ_two]
       · intro i
         simp
-    rw [hDone] at hdeg
-    rw [hdegSum] at hdeg
+    have hdeg' : d.degree = D := by
+      rw [Finsupp.degree_eq_weight_one]
+      simpa [D] using hdeg
+    rw [hdegSum, hDone] at hdeg'
     rcases Nat.eq_zero_or_pos (d 1) with hd1zero | hd1pos
     · left
       intro f hf
@@ -215,7 +219,10 @@ theorem firstDeficitBinaryFace_axis_support
         · simp [Fin.sum_univ_two]
         · intro i
           simp
-      rw [hDone, hfdegSum] at hfdeg
+      have hfdeg' : f.degree = D := by
+        rw [Finsupp.degree_eq_weight_one]
+        simpa [D] using hfdeg
+      rw [hfdegSum, hDone] at hfdeg'
       by_contra hf1
       have hf1pos : 0 < f 1 := Nat.pos_of_ne_zero hf1
       have hd0 : d 0 = 1 := by omega
@@ -233,7 +240,10 @@ theorem firstDeficitBinaryFace_axis_support
         · simp [Fin.sum_univ_two]
         · intro i
           simp
-      rw [hDone, hfdegSum] at hfdeg
+      have hfdeg' : f.degree = D := by
+        rw [Finsupp.degree_eq_weight_one]
+        simpa [D] using hfdeg
+      rw [hfdegSum, hDone] at hfdeg'
       by_contra hf0
       have hf0pos : 0 < f 0 := Nat.pos_of_ne_zero hf0
       have hd1 : d 1 = 1 := by omega
