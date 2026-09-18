@@ -72,8 +72,8 @@ private theorem eq_monomial_of_support_singleton
       exact hfe (huniq f hf)
     have hfzero : MvPolynomial.coeff f Q = 0 :=
       MvPolynomial.notMem_support_iff.mp hfnot
-    rw [hfzero]
-    simp [hfe]
+    rw [hfzero, MvPolynomial.coeff_monomial]
+    simp [hfe, Ne.symm hfe]
 
 private theorem hessian_monomial_diagonal_ne_zero_of_two_le
     {e : Fin 4 →₀ ℕ} {z : K} {i : Fin 4}
