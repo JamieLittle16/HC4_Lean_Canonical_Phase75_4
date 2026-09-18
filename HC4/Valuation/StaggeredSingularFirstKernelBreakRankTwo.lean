@@ -127,7 +127,8 @@ private theorem active_mul_kernelPair_coeff_zero
   apply coeff_mul_eq_zero_of_right_vanishes_through
   intro n hn
   apply coeff_kernelPair_eq_zero_before_double B C
-  · omega
+  · have hlt : E.activeOrder < E.kernelOrder := E.active_lt_kernel
+    omega
   · exact hB
   · exact hC
 
