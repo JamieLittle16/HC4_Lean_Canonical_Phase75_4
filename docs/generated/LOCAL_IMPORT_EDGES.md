@@ -46,8 +46,6 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
-  - `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
-  - `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
@@ -145,7 +143,6 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
-  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
