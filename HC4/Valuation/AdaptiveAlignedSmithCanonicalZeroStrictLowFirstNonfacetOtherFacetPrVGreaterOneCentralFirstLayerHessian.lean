@@ -194,7 +194,9 @@ theorem central_active_exponents_pos
     exact_mod_cast F.locked.ell_pos
   have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
   have hnOneZ : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < F.highest.n by omega)
+    have hnTwoZ : (2 : ℤ) ≤ (F.highest.n : ℤ) := by
+      exact_mod_cast hnTwo
+    omega
   have hcWall := F.support_deficit_wall hthree houtThree G.central_mem
   rw [G.central_one_zero, G.central_two_zero] at hcWall
   norm_num at hcWall
@@ -232,7 +234,9 @@ theorem central_active_exponents_pos
   have hVPos : 0 < F.V := lt_trans Nat.zero_lt_one F.V_gt_one
   have hVZ : (0 : ℤ) < (F.V : ℤ) := by exact_mod_cast hVPos
   have hc0MinusOneZ : (0 : ℤ) < (G.central 0 : ℤ) - 1 := by
-    exact_mod_cast hc0GtOne
+    have hc0GtOneZ : (1 : ℤ) < (G.central 0 : ℤ) := by
+      exact_mod_cast hc0GtOne
+    omega
   have hc3ZPos : (0 : ℤ) < (G.central 3 : ℤ) := by
     rw [hc3Z]
     exact mul_pos hVZ hc0MinusOneZ
@@ -292,14 +296,14 @@ theorem centralBinaryCore_activeDet_ne_zero
     · exact h0K
     · exact h3K
     · exact hlast
-  have hC :
-      (MvPolynomial.C
-        (z ^ 2 * (G.central 0 : K) * (G.central 3 : K) *
-          (1 - (G.central 0 : K) - (G.central 3 : K))) :
-        MvPolynomial (Fin 2) K) ≠ 0 :=
-    MvPolynomial.C_ne_zero.mpr hscalar
-  simpa [centralBinaryCore, HC4.Polynomial.exponentHessianCore, z,
-    G.central_one_zero, G.central_two_zero] using hC
+  intro hdet
+  have hcoeff := congrArg
+    (MvPolynomial.coeff (0 : Fin 2 →₀ ℕ)) hdet
+  simp [centralBinaryCore, HC4.Polynomial.exponentHessianCore, z,
+    G.central_one_zero, G.central_two_zero] at hcoeff
+  apply hscalar
+  ring_nf at hcoeff ⊢
+  exact hcoeff
 
 theorem binaryParameterHessian_coeff_zero
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
