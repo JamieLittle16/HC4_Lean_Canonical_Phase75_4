@@ -135,6 +135,85 @@ theorem eval_kernelInflateHom
       kernelInflateDerivativeCoefficient,
       kernelBlowupSection, hi]
 
+/-- Kernel inflation preserves a source monomial exponent and multiplies only
+its coefficient by the corresponding nonzero parameter power. -/
+theorem kernelInflateHom_monomial
+    (kernel : Fin 4)
+    (slope : ℕ)
+    (d : Fin 4 →₀ ℕ)
+    (a : Polynomial K) :
+    kernelInflateHom (K := K) kernel slope
+        (MvPolynomial.monomial d a) =
+      MvPolynomial.monomial d
+        (a * (Polynomial.X ^ slope) ^ d kernel) := by
+  classical
+  rw [kernelInflateHom, MvPolynomial.eval₂Hom_monomial]
+  rw [Finsupp.prod_fintype _ _ (by intro i; simp)]
+  rw [MvPolynomial.monomial_eq]
+  rw [Finsupp.prod_fintype _ _ (by intro i; simp)]
+  fin_cases kernel <;>
+    simp [kernelInflateVariable, kernelInflateDerivativeCoefficient,
+      Fin.prod_univ_four, mul_pow, map_pow] <;>
+    ring
+
+/-- Coefficient formula for kernel inflation.  Distinct source exponents never
+mix under the substitution. -/
+theorem coeff_kernelInflateHom
+    (kernel : Fin 4)
+    (slope : ℕ)
+    (Q : MvPolynomial (Fin 4) (Polynomial K))
+    (d : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff d
+        (kernelInflateHom (K := K) kernel slope Q) =
+      MvPolynomial.coeff d Q *
+        (Polynomial.X ^ slope) ^ d kernel := by
+  classical
+  rw [Q.as_sum, map_sum, MvPolynomial.coeff_sum]
+  by_cases hd : d ∈ Q.support
+  · rw [Finset.sum_eq_single d]
+    · rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
+      simp
+    · intro e he hed
+      rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
+      simp [hed]
+    · exact fun h => (h hd).elim
+  · have hcoeff : MvPolynomial.coeff d Q = 0 :=
+      MvPolynomial.notMem_support_iff.mp hd
+    rw [hcoeff, zero_mul]
+    apply Finset.sum_eq_zero
+    intro e he
+    rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
+    have hed : e ≠ d := by
+      intro h
+      subst e
+      exact hd he
+    simp [hed]
+
+/-- **Kernel inflation is injective.**  The substitution
+`X_kernel ↦ tau^slope * X_kernel` preserves every source exponent and
+multiplies its coefficient by a nonzero polynomial. -/
+theorem kernelInflateHom_injective
+    (kernel : Fin 4)
+    (slope : ℕ) :
+    Function.Injective
+      (kernelInflateHom (K := K) kernel slope) := by
+  intro P Q hPQ
+  apply MvPolynomial.ext
+  intro d
+  have hcoeff := congrArg (MvPolynomial.coeff d) hPQ
+  rw [coeff_kernelInflateHom, coeff_kernelInflateHom] at hcoeff
+  have hscale :
+      (Polynomial.X ^ slope : Polynomial K) ^ d kernel ≠ 0 := by
+    exact pow_ne_zero _ (pow_ne_zero _ Polynomial.X_ne_zero)
+  have hzero :
+      (MvPolynomial.coeff d P - MvPolynomial.coeff d Q) *
+          (Polynomial.X ^ slope) ^ d kernel = 0 := by
+    rw [sub_mul, hcoeff, sub_self]
+  have hdiff :
+      MvPolynomial.coeff d P - MvPolynomial.coeff d Q = 0 :=
+    (mul_eq_zero.mp hzero).resolve_right hscale
+  exact sub_eq_zero.mp hdiff
+
 /-- **Reinflation recovers the original family exactly.**
 
 This identifies the explicit quotient construction of Phase 93.52 with the
