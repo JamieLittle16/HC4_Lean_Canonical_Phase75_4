@@ -83,26 +83,30 @@ variable
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
 /-- Complete parameter-first source Hessian, reordered as `(0,1,3 | 2)`. -/
-noncomputable def firstDeficitLeftStaggeredMatrix :
+noncomputable def firstDeficitLeftStaggeredMatrix
+    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     Matrix (Fin 4) (Fin 4)
       (Polynomial (MvPolynomial (Fin 4) K)) :=
   (parameterFirstHessian P.centralDeficitFamily).submatrix
     firstDeficitLeftStaggeredPerm firstDeficitLeftStaggeredPerm
 
 /-- Complete parameter-first source Hessian, reordered as `(0,2,3 | 1)`. -/
-noncomputable def firstDeficitRightStaggeredMatrix :
+noncomputable def firstDeficitRightStaggeredMatrix
+    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     Matrix (Fin 4) (Fin 4)
       (Polynomial (MvPolynomial (Fin 4) K)) :=
   (parameterFirstHessian P.centralDeficitFamily).submatrix
     firstDeficitRightStaggeredPerm firstDeficitRightStaggeredPerm
 
 /-- Four-block attached to the left-axis first-deficit branch. -/
-noncomputable def firstDeficitLeftStaggeredBlock :
+noncomputable def firstDeficitLeftStaggeredBlock
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   GeneralFourBlock.ofSymmetricMatrix G.firstDeficitLeftStaggeredMatrix
 
 /-- Four-block attached to the right-axis first-deficit branch. -/
-noncomputable def firstDeficitRightStaggeredBlock :
+noncomputable def firstDeficitRightStaggeredBlock
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   GeneralFourBlock.ofSymmetricMatrix G.firstDeficitRightStaggeredMatrix
 
@@ -162,34 +166,34 @@ theorem firstDeficitRightStaggeredBlock_determinantCore_eq_zero :
 
 /-- The active-three determinant of the left staggered block is exactly the
 already-certified source roof determinant on coordinates `0,1,3`. -/
-set_option maxHeartbeats 1000000 in
 theorem firstDeficitLeftStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitLeftStaggeredBlock =
       G.firstDeficitLeftActiveHessian.det := by
-  unfold firstKernelBreakActiveThreeDet
-    firstDeficitLeftStaggeredBlock
-    firstDeficitLeftStaggeredMatrix
-    firstDeficitLeftActiveHessian
-    firstDeficitLeftActiveIndex
-    firstDeficitLeftStaggeredPerm
-    GeneralFourBlock.ofSymmetricMatrix
-  simp [Matrix.det_fin_three]
-  ring
+  set_option maxHeartbeats 1000000 in
+    unfold firstKernelBreakActiveThreeDet
+      firstDeficitLeftStaggeredBlock
+      firstDeficitLeftStaggeredMatrix
+      firstDeficitLeftActiveHessian
+      firstDeficitLeftActiveIndex
+      firstDeficitLeftStaggeredPerm
+      GeneralFourBlock.ofSymmetricMatrix
+    simp [Matrix.det_fin_three]
+    ring
 
 /-- Symmetric active-three identification for coordinates `0,2,3`. -/
-set_option maxHeartbeats 1000000 in
 theorem firstDeficitRightStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitRightStaggeredBlock =
       G.firstDeficitRightActiveHessian.det := by
-  unfold firstKernelBreakActiveThreeDet
-    firstDeficitRightStaggeredBlock
-    firstDeficitRightStaggeredMatrix
-    firstDeficitRightActiveHessian
-    firstDeficitRightActiveIndex
-    firstDeficitRightStaggeredPerm
-    GeneralFourBlock.ofSymmetricMatrix
-  simp [Matrix.det_fin_three]
-  ring
+  set_option maxHeartbeats 1000000 in
+    unfold firstKernelBreakActiveThreeDet
+      firstDeficitRightStaggeredBlock
+      firstDeficitRightStaggeredMatrix
+      firstDeficitRightActiveHessian
+      firstDeficitRightActiveIndex
+      firstDeficitRightStaggeredPerm
+      GeneralFourBlock.ofSymmetricMatrix
+    simp [Matrix.det_fin_three]
+    ring
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
