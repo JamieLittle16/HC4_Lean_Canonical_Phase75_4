@@ -274,3 +274,5 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure
 -- currently requires an additional Hessian identity not supplied by the
 -- verified SecondInteractionGeometry interface.
 
+
+import HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor
