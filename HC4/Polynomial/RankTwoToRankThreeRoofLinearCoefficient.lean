@@ -251,6 +251,64 @@ theorem coeff_det_polynomialMatrix3_gap
   rw [hjet, snd_det_rankTwoRoofFirstJet] at hcoeff
   simpa [B] using hcoeff.symm
 
+
+/-- A three-by-three polynomial matrix whose entries all have a parameter gap
+has determinant in the same parameter-gap subring. -/
+theorem matrix3_det_hasNoPositiveParameterCoeffBelow
+    {R : Type*} [CommRing R]
+    {j : ℕ}
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hM : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    HC4.Valuation.HasNoPositiveParameterCoeffBelow j M.det := by
+  let S : Subring (Polynomial R) :=
+    HC4.Valuation.parameterGapSubring (R := R) j
+  let H : Matrix (Fin 3) (Fin 3) S :=
+    fun r s => ⟨M r s, hM r s⟩
+  have hmatrix : S.subtype.mapMatrix H = M := by
+    ext r s
+    rfl
+  have hmap := S.subtype.map_det H
+  have hdet : M.det = S.subtype H.det := by
+    rw [← hmatrix]
+    exact hmap.symm
+  rw [hdet]
+  exact H.det.property
+
+/-- Exact leading coefficient of a three-by-three rank-two roof family at its
+first positive parameter layer. -/
+theorem coeff_det_polynomialMatrix3_gap
+    {R : Type*} [CommRing R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s) :
+    M.det.coeff j =
+      (a * d - b * c) * (M 1 1).coeff j := by
+  let B : Matrix (Fin 3) (Fin 3) R :=
+    fun r s => (M r s).coeff j
+  have hjet :
+      matrix3ParameterGapDualJet hj M hgap =
+        rankTwoRoofFirstJet a b c d B := by
+    ext r s
+    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
+      B, hbase]
+  calc
+    M.det.coeff j =
+        TrivSqZeroExt.snd
+          (matrix3ParameterGapDualJet hj M hgap).det := by
+      symm
+      exact snd_det_matrix3ParameterGapDualJet hj M hgap
+    _ =
+        TrivSqZeroExt.snd
+          (rankTwoRoofFirstJet a b c d B).det := by rw [hjet]
+    _ = (a * d - b * c) * B 1 1 :=
+      snd_det_rankTwoRoofFirstJet a b c d B
+    _ = (a * d - b * c) * (M 1 1).coeff j := rfl
+
 /-- **Nonzero first roof diagonal forces a genuine rank-three minor.**
 
 This is the contrapositive form used by the source-facing central staircase
