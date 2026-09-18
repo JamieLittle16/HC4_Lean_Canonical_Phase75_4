@@ -29,6 +29,9 @@ noncomputable section
 universe u
 variable {R : Type u} [CommRing R]
 
+set_option synthInstance.maxHeartbeats 200000
+set_option maxHeartbeats 1000000
+
 /-- At twice a positive gap order, only the two boundary terms and the middle
 `(j,j)` convolution survive. -/
 theorem coeff_mul_at_twice_gap_endpoint_commRing
@@ -46,7 +49,7 @@ theorem coeff_mul_at_twice_gap_endpoint_commRing
   have h0 : (0, 2 * j) ∈ s := by
     simp [s, Finset.mem_antidiagonal]
   have hjj : (j, j) ∈ s := by
-    simp [s, Finset.mem_antidiagonal]
+    simp [s, Finset.mem_antidiagonal, two_mul]
   have h2 : (2 * j, 0) ∈ s := by
     simp [s, Finset.mem_antidiagonal]
   have hne0j : (j, j) ≠ (0, 2 * j) := by
@@ -160,14 +163,16 @@ noncomputable def parameterGapSecondJet
     (p : parameterGapSubring (R := R) j) :
     TrivSqZeroExt.fst
       (TrivSqZeroExt.fst (parameterGapSecondJet (R := R) j hj p)) =
-      p.1.coeff 0 := by rfl
+      p.1.coeff 0 := by
+  simp [parameterGapSecondJet]
 
 @[simp] theorem parameterGapSecondJet_fst_snd
     (j : ℕ) (hj : 0 < j)
     (p : parameterGapSubring (R := R) j) :
     TrivSqZeroExt.snd
       (TrivSqZeroExt.fst (parameterGapSecondJet (R := R) j hj p)) =
-      p.1.coeff j := by rfl
+      p.1.coeff j := by
+  simp [parameterGapSecondJet]
 
 @[simp] theorem parameterGapSecondJet_snd_fst
     (j : ℕ) (hj : 0 < j)
@@ -181,7 +186,8 @@ noncomputable def parameterGapSecondJet
     (p : parameterGapSubring (R := R) j) :
     TrivSqZeroExt.snd
       (TrivSqZeroExt.snd (parameterGapSecondJet (R := R) j hj p)) =
-      2 * p.1.coeff (2 * j) := by rfl
+      2 * p.1.coeff (2 * j) := by
+  simp [parameterGapSecondJet]
 
 /-- Entrywise second-order gap jet of a polynomial matrix. -/
 noncomputable def matrixParameterGapSecondJet
@@ -200,7 +206,8 @@ noncomputable def matrixParameterGapSecondJet
     matrixParameterGapSecondJet hj M hM r s =
       (((M r s).coeff 0, (M r s).coeff j),
         ((M r s).coeff j, 2 * (M r s).coeff (2 * j))) := by
-  rfl
+  simp [matrixParameterGapSecondJet, parameterGapSecondJet,
+    matrixToParameterGapCommRing]
 
 /-- **Second determinant coefficient bridge.**  The doubly-nilpotent component
 of the determinant is twice the selected `2*j` coefficient. -/
