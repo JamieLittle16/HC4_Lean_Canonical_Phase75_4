@@ -3179,10 +3179,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankTwoToRankThreeRoofLinearCoefficient.lean`
 - Purpose: Linear coefficient opening a rank-two roof to rank three
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreePencils`
+- Local imports: `HC4.Polynomial.RankThreePencils`, `HC4.Valuation.ParameterGapDualJet`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def vectorHessianCore3`, `def rankTwoToRankThreeRoofPencil`, `theorem coeff_one_det_rankTwoToRankThreeRoofPencil`, `theorem rankTwoToRankThreeRoofPencil_det_ne_zero`
+- Declarations: `def vectorHessianCore3`, `def rankTwoToRankThreeRoofPencil`, `theorem coeff_one_det_rankTwoToRankThreeRoofPencil`, `theorem rankTwoToRankThreeRoofPencil_det_ne_zero`, `def matrix3ToParameterGap`, `def matrix3ParameterGapDualJet`, `theorem snd_det_matrix3ParameterGapDualJet`, `def rankTwoRoofZeroKernelBase`, `def rankTwoRoofFirstJet`, `theorem snd_det_rankTwoRoofFirstJet`, `theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap`
 
 ### `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 
@@ -13209,7 +13209,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - External imports: `Mathlib.Algebra.DualNumber`, `Mathlib.LinearAlgebra.Matrix.Determinant.Basic`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.ParameterGapIntermediateDualJet`, `HC4.Valuation.ParameterGapSecondJet`, `HC4.Valuation.PlanarContactFirstVariationBridge`, `HC4.Valuation.SeparatedParameterDualJet`
+- Imported by local modules: `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`, `HC4.Valuation.ParameterGapIntermediateDualJet`, `HC4.Valuation.ParameterGapSecondJet`, `HC4.Valuation.PlanarContactFirstVariationBridge`, `HC4.Valuation.SeparatedParameterDualJet`
 - Declarations: `theorem coeff_mul_at_gap_endpoint_commRing`, `def parameterGapDualJet`, `def matrixToParameterGapCommRing`, `def matrixParameterGapDualJet`, `theorem snd_det_matrixParameterGapDualJet`
 
 ### `HC4.Valuation.ParameterGapIntermediateDualJet`
