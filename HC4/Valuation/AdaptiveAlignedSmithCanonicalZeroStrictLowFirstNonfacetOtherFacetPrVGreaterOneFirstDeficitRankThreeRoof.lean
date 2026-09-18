@@ -116,7 +116,8 @@ private theorem hessian_monomial_diagonal_ne_zero_of_two_le
   simpa [HC4.Polynomial.exponentHessianCore] using hzright
 
 /-- Three-by-three parameter Hessian block on source coordinates `0,1,3`. -/
-noncomputable def firstDeficitLeftActiveHessian :
+noncomputable def firstDeficitLeftActiveHessian
+    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     Matrix (Fin 3) (Fin 3)
       (Polynomial (MvPolynomial (Fin 4) K)) :=
   fun i j =>
@@ -125,7 +126,8 @@ noncomputable def firstDeficitLeftActiveHessian :
       (firstDeficitLeftActiveIndex j)
 
 /-- Three-by-three parameter Hessian block on source coordinates `0,2,3`. -/
-noncomputable def firstDeficitRightActiveHessian :
+noncomputable def firstDeficitRightActiveHessian
+    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     Matrix (Fin 3) (Fin 3)
       (Polynomial (MvPolynomial (Fin 4) K)) :=
   fun i j =>
