@@ -3089,6 +3089,11 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoKernelSecondVariation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
   - `HC4.Valuation.ParameterFirstLayerBridge`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
+  - `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactOrders`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactInterpolation`

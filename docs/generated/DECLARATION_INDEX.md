@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8812**.
+Distinct declaration spellings indexed: **8815**.
 
 ## Repeated declaration spellings
 
@@ -95,6 +95,7 @@ Distinct declaration spellings indexed: **8812**.
 - `fibre` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `finsupp_weight_natWeight_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
 - `firstBreakRankTwoOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreakClosure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `firstDeficitOrder_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeparture` — `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstKernelOffender_active` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelOffender_not_candidateDivisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurOffenderDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -5015,10 +5016,12 @@ Distinct declaration spellings indexed: **8812**.
 - `firstContact_mvC_mul_mvC_div_cancel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`
 - `firstDeficitBinaryFace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitBinaryFace_axis_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
+- `firstDeficitBinaryFace_eq_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
 - `firstDeficitBinaryFace_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitBinaryFace_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitBinaryFace_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitBinaryFace_no_adjacent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
+- `firstDeficitBinaryFace_pureAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
 - `firstDeficitBinaryFace_support_lifts` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
 - `firstDeficitLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitLayer_axis_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
@@ -5027,9 +5030,10 @@ Distinct declaration spellings indexed: **8812**.
 - `firstDeficitLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitLayer_singleton_axis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeficitLayer_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `firstDeficitLinearPower_not_both_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
 - `firstDeficitOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
-- `firstDeficitOrder_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
+- `firstDeficitOrder_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeparture` — `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstDepartureBinaryDet` — `def` in `HC4.Newton.FirstDepartureBinaryHessian`
 - `firstDepartureBinaryDet_eq_neg_sq` — `theorem` in `HC4.Newton.FirstDepartureBinaryHessian`
