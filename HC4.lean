@@ -250,10 +250,10 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 -- the shortcut and its genuine no-successor contradiction adapter.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress
 
--- Root the source-honest central codimension-two second-variation closing chain.
-import HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture
-import HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture
+-- Root the source-honest central first-deficit/Hesse closing chain.
+-- The earlier direct codimension-two pencil and coordinate-max second-variation
+-- experiments are intentionally not rooted: the first-deficit route supersedes
+-- them and retains the complete source family.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton
