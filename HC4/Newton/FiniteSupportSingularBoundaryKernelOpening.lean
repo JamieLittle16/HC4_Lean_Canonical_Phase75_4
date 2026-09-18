@@ -87,9 +87,11 @@ noncomputable def exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOut
   let D2 := coordinateMaxInitialData D1.face D1.face_ne_zero (2 : Fin 4)
   have h2zero : hessianDeterminant D2.face = 0 := D2.hessian_zero h1zero
 
-  rcases
-      exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo
-        F hF hzero hnonlinear hcodim with ⟨i, hkernel⟩
+  let hex :=
+    exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo
+      F hF hzero hnonlinear hcodim
+  let i := Classical.choose hex
+  have hkernel := Classical.choose_spec hex
   let k : Fin 4 := Fin.castSucc i
 
   have hD2kernel : MvPolynomial.pderiv k D2.face = 0 := by
