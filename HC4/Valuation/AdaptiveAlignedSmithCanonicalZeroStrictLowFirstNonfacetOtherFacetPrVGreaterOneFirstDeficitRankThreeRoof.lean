@@ -258,16 +258,17 @@ theorem firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
     (G.firstDeficitLeftActiveHessian 0 0).coeff 0 *
           (G.firstDeficitLeftActiveHessian 2 2).coeff 0 -
         (G.firstDeficitLeftActiveHessian 0 2).coeff 0 *
-          (G.firstDeficitLeftActiveHessian 0 2).coeff 0 ≠ 0 := by
+          (G.firstDeficitLeftActiveHessian 2 0).coeff 0 ≠ 0 := by
   rw [G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree (0 : Fin 3) 0,
       G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree (2 : Fin 3) 2,
       G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
-        hthree houtThree (0 : Fin 3) 2]
+        hthree houtThree (0 : Fin 3) 2,
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (2 : Fin 3) 0]
   simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase,
-    HC4.Polynomial.hessianPrincipalMinor,
-    HC4.Polynomial.hessian_symmetric] using G.exposure_rankTwo_minor
+    HC4.Polynomial.hessianPrincipalMinor] using G.exposure_rankTwo_minor
 
 /-- Right active block has the same retained constant outer minor. -/
 theorem firstDeficitRightActiveHessian_base_outer_minor_ne_zero
@@ -276,16 +277,17 @@ theorem firstDeficitRightActiveHessian_base_outer_minor_ne_zero
     (G.firstDeficitRightActiveHessian 0 0).coeff 0 *
           (G.firstDeficitRightActiveHessian 2 2).coeff 0 -
         (G.firstDeficitRightActiveHessian 0 2).coeff 0 *
-          (G.firstDeficitRightActiveHessian 0 2).coeff 0 ≠ 0 := by
+          (G.firstDeficitRightActiveHessian 2 0).coeff 0 ≠ 0 := by
   rw [G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree (0 : Fin 3) 0,
       G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree (2 : Fin 3) 2,
       G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
-        hthree houtThree (0 : Fin 3) 2]
+        hthree houtThree (0 : Fin 3) 2,
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (2 : Fin 3) 0]
   simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase,
-    HC4.Polynomial.hessianPrincipalMinor,
-    HC4.Polynomial.hessian_symmetric] using G.exposure_rankTwo_minor
+    HC4.Polynomial.hessianPrincipalMinor] using G.exposure_rankTwo_minor
 
 /-- The left active roof determinant itself has no positive coefficient below
 the canonical first deficit order. -/
