@@ -2177,12 +2177,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
 
 - Path: `HC4/Polynomial/CodimensionTwoNonhomogeneousJointDeparture.lean`
-- Purpose: Nonhomogeneous codimension-two joint-departure obstruction
+- Purpose: Nonhomogeneous codimension-two joint-departure pencil
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
-- Declarations: `def codimensionTwoNonhomogeneousJointPencil`, `theorem coeff_two_det_codimensionTwoNonhomogeneousJointPencil`, `theorem codimensionTwoNonhomogeneousJointPencil_not_singular`
+- Declarations: `def codimensionTwoNonhomogeneousJointPencil`
 
 ### `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
 
@@ -9167,7 +9167,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees.lean`
 - Purpose: Source-honest total-deficit Rees family at the central staircase point
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`, `HC4.Valuation.SingularBoundedReverseWeightedRees`, `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`, `HC4.Valuation.ActualParameterLayer`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`, `HC4.Valuation.SingularBoundedReverseWeightedRees`, `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`, `HC4.Valuation.ActualParameterLayer`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - Declarations: `def QsOtherFacetPlanarCarrierPackage.centralDeficitWeight`, `def QsOtherFacetPlanarCarrierPackage.centralDeficitLevel`, `theorem support_finalWeight_eq_level`, `theorem finalWeight_toNat_cast`, `theorem finalWeight_toNat_pos`, `theorem finalLevel_toNat_cast`, `theorem centralDeficitWeight_add_deficits_eq_level`, `theorem centralDeficitWeight_bound`, `theorem centralDeficit_order_eq`, `def centralDeficitFamily`, `theorem centralDeficitFamily_layer_mem_iff`, `theorem centralDeficitFamily_hessian_zero`, `theorem centralDeficitFamily_layer_zero_eq`, `theorem centralDeficitFamily_hasPositiveActualLayer`
@@ -9719,7 +9719,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneStaircaseSupport`, `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`, `HC4.Newton.FiniteSupportLowerHullExposure`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHull`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHullExposure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightSourceDeficits`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHull`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseLowerHullExposure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightSourceDeficits`
 - Declarations: `theorem QsOtherFacetPrLeftVContactFrontierData.support_deficit_wall`, `theorem QsOtherFacetPrLeftVContactFrontierData.support_deficit_chord`, `theorem QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq`, `theorem QsOtherFacetPrLeftVContactFrontierData.locked_yRoof_mem`, `theorem QsOtherFacetPrLeftVContactFrontierData.highest_zRoof_mem`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`

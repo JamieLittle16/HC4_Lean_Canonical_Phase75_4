@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8813**.
+Distinct declaration spellings indexed: **8811**.
 
 ## Repeated declaration spellings
 
@@ -3764,7 +3764,6 @@ Distinct declaration spellings indexed: **8813**.
 - `codimensionTwoLowerEndpoint_directionalDerivative_zero` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
 - `codimensionTwoNonhomogeneousDeparturePencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `codimensionTwoNonhomogeneousJointPencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
-- `codimensionTwoNonhomogeneousJointPencil_not_singular` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
 - `codimensionTwoNonhomogeneousSeparatedPencil` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
 - `codimensionTwoNonhomogeneousSeparatedPencil_not_singular` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
 - `codimensionTwoPrimitivePairForm` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureKernel`
@@ -3956,7 +3955,6 @@ Distinct declaration spellings indexed: **8813**.
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_twoRootEulerOperator` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
-- `coeff_two_det_codimensionTwoNonhomogeneousJointPencil` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
 - `coeff_two_det_codimensionTwoNonhomogeneousSeparatedPencil` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
 - `coeff_two_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_two_mul_linear` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
