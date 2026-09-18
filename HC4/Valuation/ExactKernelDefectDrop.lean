@@ -151,6 +151,56 @@ theorem kernelInflateHom_injective
   · exact False.elim (hu hzero)
   · exact sub_eq_zero.mp hsub
 
+
+/-- **Integral kernel blow-up preserves identically singular Hessian families.**
+
+This zero-determinant corollary belongs here, after injectivity of kernel
+inflation has been established. From the reinflation factorisation, cancel the
+nonzero diagonal parameter factor and then use injectivity of inflation. -/
+theorem hessianDeterminant_integralKernelBlowup_eq_zero
+    (kernel : Fin 4)
+    (slope : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdiv :
+      HasIntegralKernelCoefficientDivisibility
+        kernel slope P)
+    (hzero : HC4.Polynomial.hessianDeterminant P = 0) :
+    HC4.Polynomial.hessianDeterminant
+        (integralKernelBlowupFamily
+          kernel slope P hdiv) = 0 := by
+  let Htilde :=
+    HC4.Polynomial.hessianDeterminant
+      (integralKernelBlowupFamily
+        kernel slope P hdiv)
+  have hfactor :=
+    hessianDeterminant_integralKernelBlowup_factor
+      kernel slope P hdiv
+  rw [hzero] at hfactor
+  have hbase :
+      (MvPolynomial.C
+          (Polynomial.X ^ slope) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2
+      (MvPolynomial.C_ne_zero.mpr
+        (pow_ne_zero slope Polynomial.X_ne_zero))
+  have hinflated :
+      kernelInflateHom (K := K) kernel slope Htilde = 0 := by
+    have hprod :
+        (MvPolynomial.C
+            (Polynomial.X ^ slope) :
+          MvPolynomial (Fin 4) (Polynomial K)) ^ 2 *
+          kernelInflateHom (K := K) kernel slope Htilde = 0 := by
+      simpa [Htilde] using hfactor.symm
+    exact (mul_eq_zero.mp hprod).resolve_left hbase
+  have himages :
+      kernelInflateHom (K := K) kernel slope Htilde =
+        kernelInflateHom (K := K) kernel slope 0 := by
+    simpa using hinflated
+  have htarget : Htilde = 0 :=
+    kernelInflateHom_injective
+      (K := K) kernel slope himages
+  simpa [Htilde] using htarget
+
 /-! ## The factorisation forces `2q <= Delta` -/
 
 /-- A pure source Hessian defect bounds every integral kernel slope by half
