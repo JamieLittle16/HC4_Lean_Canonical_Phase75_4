@@ -261,6 +261,7 @@ theorem activeCoeff_mul_kernelDiagonal_secondInteraction_eq_outer_mul_mixed_sq
         (E.block.s.coeff E.kernelOrder *
           E.block.s.coeff E.kernelOrder) := by
   let k := 2 * E.kernelOrder - E.activeOrder
+  have hactiveLt : E.activeOrder < E.kernelOrder := E.active_lt_kernel
   have hsum : E.activeOrder + k = 2 * E.kernelOrder := by
     dsimp [k]
     omega
