@@ -458,7 +458,9 @@ theorem firstDeficitLeftActiveHessian_det_coeff_first_eq
   unfold firstDeficitLeftActiveHessian
   simp [firstDeficitLeftActiveIndex]
   rw [parameterFirstHessian_coeff]
-  rfl
+  simp [a, b, c, d, firstDeficitLayer,
+    HC4.Polynomial.hessian_apply,
+    standardTwoZeroA, standardTwoZeroC]
 
 /-- Right-oriented exact leading active determinant coefficient. -/
 theorem firstDeficitRightActiveHessian_det_coeff_first_eq
@@ -489,7 +491,9 @@ theorem firstDeficitRightActiveHessian_det_coeff_first_eq
   unfold firstDeficitRightActiveHessian
   simp [firstDeficitRightActiveIndex]
   rw [parameterFirstHessian_coeff]
-  rfl
+  simp [a, b, c, d, firstDeficitLayer,
+    HC4.Polynomial.hessian_apply,
+    standardTwoZeroA, standardTwoZeroC]
 
 /-- Exact leading determinant coefficient in the left first-deficit
 orientation. -/
