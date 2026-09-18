@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8815**.
+Distinct declaration spellings indexed: **8819**.
 
 ## Repeated declaration spellings
 
@@ -3886,6 +3886,7 @@ Distinct declaration spellings indexed: **8815**.
 - `coeff_one_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_one_complementaryEtaNumerator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_one_det_rankThreePencilPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
+- `coeff_one_det_rankTwoToRankThreeRoofPencil` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `coeff_one_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_one_highestBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_one_lockedBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
@@ -7409,6 +7410,8 @@ Distinct declaration spellings indexed: **8815**.
 - `rankTwoSchurEntry_terminal_or_rankThreeExhaustion` — `theorem` in `HC4.Newton.RankTwoRepairTerminal`
 - `rankTwoSchurEntry_terminal_or_strictRepair` — `theorem` in `HC4.Newton.RankTwoRepairTerminal`
 - `rankTwoSecondVariationEntry` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `rankTwoToRankThreeRoofPencil` — `def` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
+- `rankTwoToRankThreeRoofPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `rankTwoZeroKernelBase` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `rankTwoZeroKernelSecondVariation` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `rankTwo_measure_succ_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
@@ -8956,6 +8959,7 @@ Distinct declaration spellings indexed: **8815**.
 - `upper_oneFiber_balanced_resonance_shape` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `vecMul_injective_of_det_ne_zero` — `theorem` in `HC4.PlanarDoublingInjectivity`
 - `vectorHessianCore` — `def` in `HC4.Polynomial.RankThreePencils`
+- `vectorHessianCore3` — `def` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `wSquareRigid_exactResidual_exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalDirectResidualClosure`
 - `wall` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberRoot`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberRoot`
