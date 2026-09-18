@@ -13010,7 +13010,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.KernelInflationHessianDefect`
 - External imports: `Mathlib.Algebra.Polynomial.Degree.Domain`, `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryInflationInjective`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBinaryHomogenization`, `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`, `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`, `HC4.Valuation.IntegralKernelSlopeExtraction`, `HC4.Valuation.RigidClosingFirstKernelStage`, `HC4.Valuation.RigidClosingZeroSlopeElimination`, `HC4.Valuation.SeparatedRightWallScaleDescent`
-- Declarations: `theorem kernelInflateHom_monomial`, `theorem coeff_kernelInflateHom`, `theorem kernelInflateHom_injective`, `theorem two_mul_slope_le_of_integralKernelBlowup`, `theorem kernelInflateHom_C`, `theorem integralKernelBlowup_hasHessianDefect_sub`, `theorem integralKernelBlowup_positiveKernelDefectDrop`, `theorem integralKernelBlowup_exactDefect_and_strictRestart`
+- Declarations: `theorem kernelInflateHom_monomial`, `theorem coeff_kernelInflateHom`, `theorem kernelInflateHom_injective`, `theorem hessianDeterminant_integralKernelBlowup_eq_zero`, `theorem two_mul_slope_le_of_integralKernelBlowup`, `theorem kernelInflateHom_C`, `theorem integralKernelBlowup_hasHessianDefect_sub`, `theorem integralKernelBlowup_positiveKernelDefectDrop`, `theorem integralKernelBlowup_exactDefect_and_strictRestart`
 
 ### `HC4.Valuation.FinalRestartAssembly`
 
