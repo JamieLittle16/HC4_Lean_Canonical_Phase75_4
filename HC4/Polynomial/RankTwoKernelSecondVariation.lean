@@ -115,7 +115,7 @@ theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero_domain
 constant minor is nonzero, then the first layer has singular binary kernel
 block. -/
 theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero
-    {K : Type*} [Field K]
+    {K : Type*} [Field K] [CharZero K]
     {a b c d : K}
     (B C : Matrix (Fin 4) (Fin 4) K)
     (hactive : a * d - b * c ≠ 0)
@@ -191,7 +191,7 @@ singular kernel block on coordinates \`1,2\`.
 The arbitrary \`2*j\` coefficient layer is retained: the preceding exact
 second-variation theorem proves that it cannot affect this conclusion. -/
 theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap
-    {K : Type*} [Field K]
+    {K : Type*} [Field K] [CharZero K]
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 4) (Fin 4) (Polynomial K))
     (hgap : ∀ r s,
