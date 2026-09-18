@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8771**.
+Distinct declaration spellings indexed: **8777**.
 
 ## Repeated declaration spellings
 
@@ -3330,6 +3330,8 @@ Distinct declaration spellings indexed: **8771**.
 - `binaryContactSlope` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryContactSlope_le_iff_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryCurvedNextLayer_forcesCompensator` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
+- `binaryDeficitExponent` — `def` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `binaryDeficitExponent_degree` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `binaryDirectionalDeriv` — `def` in `HC4.Newton.FixedKernelHessian`
 - `binaryDirectionalDeriv_affineRemainderSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyDirectionalRemainder`
 - `binaryDirectionalDeriv_eq_zero_of_exactPositiveDegree_of_independent` — `theorem` in `HC4.Newton.TransverseSupportRigidity`
@@ -3667,7 +3669,10 @@ Distinct declaration spellings indexed: **8771**.
 - `centeredTerminalWeight` — `def` in `HC4.Newton.TerminalCenteredWeights`
 - `centralDeficitBinarySpecialisation` — `def` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `centralDeficitBinarySpecialisation_isHomogeneous` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_monomial` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `centralDeficitBinarySpecialisation_monomial_eq` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `centralDeficitBinarySpecialisation_ne_zero_of_injective` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hasPositiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
@@ -3793,6 +3798,7 @@ Distinct declaration spellings indexed: **8771**.
 - `coeff_carrierProfileHessian01` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `coeff_carrierProfileHessian11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
 - `coeff_carrierProfileParameterEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessian`
+- `coeff_centralDeficitBinarySpecialisation_of_mem` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `coeff_clearedPolynomialSubstitution_top` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `coeff_coeff_C_X_pow_mul_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `coeff_coeff_fourOrdinaryReverseReesFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
