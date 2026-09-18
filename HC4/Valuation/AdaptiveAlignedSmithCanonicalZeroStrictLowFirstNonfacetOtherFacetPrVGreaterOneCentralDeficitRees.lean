@@ -269,7 +269,8 @@ theorem centralDeficitFamily_layer_zero_eq
     simp [hce]
 
 /-- The actual locked roof endpoint supplies a positive parameter layer. -/
-theorem centralDeficitFamily_hasPositiveActualLayer :
+theorem centralDeficitFamily_hasPositiveActualLayer
+    (_geometry : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     HasPositiveActualParameterLayer P.centralDeficitFamily := by
   rcases QsOtherFacetPrLeftVContactFrontierData.locked_yRoof_mem F with
     ⟨hmem, _h0, h1, h2, _h3⟩
