@@ -29,8 +29,8 @@ noncomputable section
 universe u
 variable {R : Type u} [CommRing R]
 
-set_option synthInstance.maxHeartbeats 200000
-set_option maxHeartbeats 1000000
+set_option synthInstance.maxHeartbeats 1000000
+set_option maxHeartbeats 4000000
 
 /-- At twice a positive gap order, only the two boundary terms and the middle
 `(j,j)` convolution survive. -/
@@ -157,16 +157,7 @@ noncomputable def parameterGapSecondJet
           TrivSqZeroExt.snd_mk]
         change 2 * (p.1 * q.1).coeff (2 * j) = _
         rw [hgap2]
-        simp only [TrivSqZeroExt.snd_add, TrivSqZeroExt.snd_mul,
-          TrivSqZeroExt.fst_mk, TrivSqZeroExt.snd_mk]
-        change
-          2 * ((p.1.coeff 0 * q.1.coeff (2 * j) +
-              p.1.coeff j * q.1.coeff j +
-              p.1.coeff (2 * j) * q.1.coeff 0)) =
-            p.1.coeff 0 * (2 * q.1.coeff (2 * j)) +
-              q.1.coeff j * p.1.coeff j +
-              p.1.coeff j * q.1.coeff j +
-              q.1.coeff 0 * (2 * p.1.coeff (2 * j))
+        simp [DualNumber.snd_mul]
         ring
 
 @[simp] theorem parameterGapSecondJet_fst_fst
@@ -222,8 +213,6 @@ noncomputable def matrixParameterGapSecondJet
 
 /-- **Second determinant coefficient bridge.**  The doubly-nilpotent component
 of the determinant is twice the selected `2*j` coefficient. -/
-set_option synthInstance.maxHeartbeats 1000000
-set_option maxHeartbeats 4000000
 theorem snd_snd_det_matrixParameterGapSecondJet
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 4) (Fin 4) (Polynomial R))
