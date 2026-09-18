@@ -290,6 +290,47 @@ theorem centralDeficitBinarySpecialisation_ne_zero_of_injective
   simp only [MvPolynomial.coeff_zero] at hcoeff
   exact hc hcoeff.symm
 
+/-- Every supported binary exponent in the central-deficit
+specialisation comes from an actual supported source exponent.  No injectivity
+hypothesis is needed for this direction. -/
+theorem exists_source_support_of_mem_centralDeficitBinarySpecialisation
+    (F : MvPolynomial (Fin 4) K)
+    {d : Fin 2 →₀ ℕ}
+    (hd :
+      d ∈ (centralDeficitBinarySpecialisation (K := K) F).support) :
+    ∃ e ∈ F.support, binaryDeficitExponent e = d := by
+  classical
+  have hsum :
+      centralDeficitBinarySpecialisation (K := K) F =
+        ∑ e ∈ F.support,
+          MvPolynomial.monomial (binaryDeficitExponent e)
+            (MvPolynomial.coeff e F) := by
+    have has := MvPolynomial.as_sum F
+    calc
+      centralDeficitBinarySpecialisation (K := K) F =
+          centralDeficitBinarySpecialisation (K := K)
+            (∑ e ∈ F.support,
+              MvPolynomial.monomial e (MvPolynomial.coeff e F)) := by
+            exact congrArg
+              (centralDeficitBinarySpecialisation (K := K)) has
+      _ = _ := by
+        simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
+  have hdSum :
+      d ∈
+        (∑ e ∈ F.support,
+          MvPolynomial.monomial (binaryDeficitExponent e)
+            (MvPolynomial.coeff e F)).support := by
+    rw [← hsum]
+    exact hd
+  have hdUnion := MvPolynomial.support_sum hdSum
+  rcases Finset.mem_biUnion.mp hdUnion with ⟨e, he, hde⟩
+  have hcoeff := MvPolynomial.mem_support_iff.mp hde
+  rw [MvPolynomial.coeff_monomial] at hcoeff
+  split at hcoeff
+  · next hEq =>
+      exact ⟨e, he, hEq⟩
+  · exact (hcoeff rfl).elim
+
 /-- A source layer of constant total deficit becomes a homogeneous binary
 polynomial of exactly that degree. -/
 theorem centralDeficitBinarySpecialisation_isHomogeneous
