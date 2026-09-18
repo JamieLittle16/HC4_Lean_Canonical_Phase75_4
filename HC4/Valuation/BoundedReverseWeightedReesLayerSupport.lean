@@ -37,18 +37,8 @@ theorem reverseWeightedReesFamily_parameterLayer_mem_iff
   · rw [if_neg hcond]
     exact ⟨fun hzero => (hzero rfl).elim, fun hpair => (hcond hpair).elim⟩
 
-/-- No reverse-Rees source layer can occur above the chosen level. -/
-theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt
-    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
-    (h : HasReverseWeightBound w D F)
-    (hDn : D < n) :
-    familyParameterLayer (reverseWeightedReesFamily w D F h) n = 0 := by
-  ext d
-  rw [reverseWeightedReesFamily_parameterLayer_coeff]
-  have hne : D - Finsupp.weight w d ≠ n := by
-    have hdrop : D - Finsupp.weight w d ≤ D := Nat.sub_le D _
-    omega
-  simp [hne]
+/- `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` is already
+exported by `BoundedReverseWeightedRees`; this file only adds support/order lemmas. -/
 
 /-- Every actual parameter exponent of a bounded reverse-Rees family is at
 most its source level. -/
