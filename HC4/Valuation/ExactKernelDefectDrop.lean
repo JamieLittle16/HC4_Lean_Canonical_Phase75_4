@@ -48,7 +48,7 @@ open HC4.Newton
 
 variable {K : Type*} [Field K]
 
-/-! ## Zero determinant preservation -/
+/-! ## Zero determinant preservation
 
 The coefficientwise monomial formula and injectivity of `kernelInflateHom`
 are canonical infrastructure from `KernelInflationHessianDefect`; reuse them
