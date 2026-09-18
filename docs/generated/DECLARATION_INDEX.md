@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8950**.
+Distinct declaration spellings indexed: **8951**.
 
 ## Repeated declaration spellings
 
@@ -3061,6 +3061,7 @@ Distinct declaration spellings indexed: **8950**.
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
+- `activeCoeff_mul_kernelDiagonal_secondInteraction_eq_outer_mul_mixed_sq` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `activeDet_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `activeDet_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
