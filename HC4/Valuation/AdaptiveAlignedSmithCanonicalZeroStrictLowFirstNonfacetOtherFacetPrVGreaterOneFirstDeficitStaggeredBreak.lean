@@ -390,6 +390,114 @@ theorem firstDeficitRightStaggeredBlock_kernel_break
       firstDeficitRightStaggeredMatrix,
       GeneralFourBlock.ofSymmetricMatrix] using hs
 
+/-- Exact left-oriented staggered certificate with source order projections exposed
+as equalities.  The theorem is opaque to downstream modules, avoiding
+reduction through the proof-carrying record. -/
+theorem exists_leftStaggeredBreakData
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {first opposite : Fin 4 →₀ ℕ}
+    (hfirst : first ∈ G.firstDeficitLayer.support)
+    (hfirst1 : first 1 = G.firstDeficitOrder)
+    (hfirst2 : first 2 = 0)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
+    (hop : opposite ∈ P.carrier.support)
+    (hop2 : 0 < opposite 2)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
+    (hminimal :
+      ∀ f ∈ P.carrier.support, 0 < f 2 →
+        opposite 1 + opposite 2 ≤ f 1 + f 2) :
+    ∃ E : StaggeredSingularFirstKernelBreakFourBlockData
+        (MvPolynomial (Fin 4) K),
+      E.block = G.firstDeficitLeftStaggeredBlock ∧
+      E.activeOrder = G.firstDeficitOrder ∧
+      E.kernelOrder = opposite 1 + opposite 2 := by
+  have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  refine ⟨{
+    block := G.firstDeficitLeftStaggeredBlock
+    activeOrder := G.firstDeficitOrder
+    kernelOrder := opposite 1 + opposite 2
+    activeOrder_pos := G.firstDeficitOrder_pos
+    active_lt_kernel := hstrict
+    active_lower_zero :=
+      G.firstDeficitLeftStaggeredBlock_active_lower_zero hthree houtThree
+    active_coeff_ne_zero := ?_
+    q_lower_zero := ?_
+    s_lower_zero := ?_
+    y_lower_zero := ?_
+    z_lower_zero := ?_
+    determinantCore_eq_zero :=
+      G.firstDeficitLeftStaggeredBlock_determinantCore_eq_zero
+    kernel_break :=
+      G.firstDeficitLeftStaggeredBlock_kernel_break
+        hop hop2 hstrict hfirstTwo
+  }, rfl, rfl, rfl⟩
+  · rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq]
+    exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
+      hthree houtThree hfirst hfirst1 hfirst2 huniq
+  · intro n hn
+    exact G.leftBlock_q_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.leftBlock_s_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.leftBlock_y_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.leftBlock_z_coeff_eq_zero_before hminimal hn
+
+/-- Right-oriented mirror of `exists_leftStaggeredBreakData`. -/
+theorem exists_rightStaggeredBreakData
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {first opposite : Fin 4 →₀ ℕ}
+    (hfirst : first ∈ G.firstDeficitLayer.support)
+    (hfirst1 : first 1 = 0)
+    (hfirst2 : first 2 = G.firstDeficitOrder)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = first)
+    (hop : opposite ∈ P.carrier.support)
+    (hop1 : 0 < opposite 1)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2)
+    (hminimal :
+      ∀ f ∈ P.carrier.support, 0 < f 1 →
+        opposite 1 + opposite 2 ≤ f 1 + f 2) :
+    ∃ E : StaggeredSingularFirstKernelBreakFourBlockData
+        (MvPolynomial (Fin 4) K),
+      E.block = G.firstDeficitRightStaggeredBlock ∧
+      E.activeOrder = G.firstDeficitOrder ∧
+      E.kernelOrder = opposite 1 + opposite 2 := by
+  have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  refine ⟨{
+    block := G.firstDeficitRightStaggeredBlock
+    activeOrder := G.firstDeficitOrder
+    kernelOrder := opposite 1 + opposite 2
+    activeOrder_pos := G.firstDeficitOrder_pos
+    active_lt_kernel := hstrict
+    active_lower_zero :=
+      G.firstDeficitRightStaggeredBlock_active_lower_zero hthree houtThree
+    active_coeff_ne_zero := ?_
+    q_lower_zero := ?_
+    s_lower_zero := ?_
+    y_lower_zero := ?_
+    z_lower_zero := ?_
+    determinantCore_eq_zero :=
+      G.firstDeficitRightStaggeredBlock_determinantCore_eq_zero
+    kernel_break :=
+      G.firstDeficitRightStaggeredBlock_kernel_break
+        hop hop1 hstrict hfirstTwo
+  }, rfl, rfl, rfl⟩
+  · rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
+    exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
+      hthree houtThree hfirst hfirst1 hfirst2 huniq
+  · intro n hn
+    exact G.rightBlock_q_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.rightBlock_s_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.rightBlock_y_coeff_eq_zero_before hminimal hn
+  · intro n hn
+    exact G.rightBlock_z_coeff_eq_zero_before hminimal hn
+
 /-- **Source-honest staggered first-kernel-break certificate.** -/
 theorem firstDeficit_staggeredFirstKernelBreak
     (geometry : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
