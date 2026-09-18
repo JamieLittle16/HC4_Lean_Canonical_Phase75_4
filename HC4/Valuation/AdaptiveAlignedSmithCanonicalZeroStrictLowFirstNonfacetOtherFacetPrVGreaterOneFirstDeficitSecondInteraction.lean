@@ -31,6 +31,52 @@ open HC4.Newton HC4.Polynomial HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+private theorem generalFourBlock_baseFacts_of_activeSubmatrix
+    {R : Type*} [CommRing R]
+    (H : GeneralFourBlock (Polynomial R))
+    (A : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hsub :
+      H.matrix.submatrix Fin.castSucc Fin.castSucc = A)
+    (hmiddle :
+      (A 0 1).coeff 0 = 0 ∧
+      (A 1 1).coeff 0 = 0 ∧
+      (A 1 2).coeff 0 = 0)
+    (houter :
+      (A 0 0).coeff 0 * (A 2 2).coeff 0 -
+        (A 0 2).coeff 0 * (A 0 2).coeff 0 ≠ 0) :
+    H.b.coeff 0 = 0 ∧
+      H.d.coeff 0 = 0 ∧
+      H.r.coeff 0 = 0 ∧
+      (H.a.coeff 0 * H.x.coeff 0 -
+        H.p.coeff 0 * H.p.coeff 0 ≠ 0) := by
+  have h01 := congrFun (congrFun hsub (0 : Fin 3)) (1 : Fin 3)
+  have h11 := congrFun (congrFun hsub (1 : Fin 3)) (1 : Fin 3)
+  have h12 := congrFun (congrFun hsub (1 : Fin 3)) (2 : Fin 3)
+  have h00 := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
+  have h02 := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
+  have h22 := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
+  have hb : H.b = A 0 1 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h01
+  have hd : H.d = A 1 1 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h11
+  have hr : H.r = A 1 2 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h12
+  have ha : H.a = A 0 0 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h00
+  have hp : H.p = A 0 2 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h02
+  have hx : H.x = A 2 2 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h22
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [hb]
+    exact hmiddle.1
+  · rw [hd]
+    exact hmiddle.2.1
+  · rw [hr]
+    exact hmiddle.2.2
+  · rw [ha, hp, hx]
+    exact houter
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -111,20 +157,35 @@ theorem firstDeficit_secondInteractionGeometry
           hthree houtThree hfirst hfirst1 hfirst2 huniq
           hop (by omega) hstrict hminimal with
         ⟨E, hblock, hactive, hkernel⟩
-      have hb0 : E.block.b.coeff 0 = 0 := by
+      have hsub :
+          E.block.matrix.submatrix Fin.castSucc Fin.castSucc =
+            G.firstDeficitLeftActiveHessian := by
         rw [hblock]
-        exact G.firstDeficitLeftStaggeredBlock_base_b_zero hthree houtThree
-      have hd0 : E.block.d.coeff 0 = 0 := by
-        rw [hblock]
-        exact G.firstDeficitLeftStaggeredBlock_base_d_zero hthree houtThree
-      have hr0 : E.block.r.coeff 0 = 0 := by
-        rw [hblock]
-        exact G.firstDeficitLeftStaggeredBlock_base_r_zero hthree houtThree
-      have houter :
-          E.block.a.coeff 0 * E.block.x.coeff 0 -
-              E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
-        rw [hblock]
-        exact G.firstDeficitLeftStaggeredBlock_base_outer_minor_ne_zero hthree houtThree
+        exact G.firstDeficitLeftStaggeredBlock_activeSubmatrix_eq
+      have hmiddle :=
+        G.firstDeficitLeftActiveHessian_base_middle_zero
+          hthree houtThree
+      have houterRaw :=
+        G.firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
+          hthree houtThree
+      have hsym :
+          (G.firstDeficitLeftActiveHessian 2 0).coeff 0 =
+            (G.firstDeficitLeftActiveHessian 0 2).coeff 0 := by
+        apply congrArg (fun p => p.coeff 0)
+        unfold firstDeficitLeftActiveHessian
+        exact parameterFirstHessian_symmetric
+          P.centralDeficitFamily 3 0
+      have houterActive :
+          (G.firstDeficitLeftActiveHessian 0 0).coeff 0 *
+                (G.firstDeficitLeftActiveHessian 2 2).coeff 0 -
+              (G.firstDeficitLeftActiveHessian 0 2).coeff 0 *
+                (G.firstDeficitLeftActiveHessian 0 2).coeff 0 ≠ 0 := by
+        rw [← hsym]
+        exact houterRaw
+      rcases generalFourBlock_baseFacts_of_activeSubmatrix
+          E.block G.firstDeficitLeftActiveHessian
+          hsub hmiddle houterActive with
+        ⟨hb0, hd0, hr0, houter⟩
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
         exact hmixed
@@ -145,20 +206,35 @@ theorem firstDeficit_secondInteractionGeometry
           hthree houtThree hfirst hfirst1 hfirst2 huniq
           hop (by omega) hstrict hminimal with
         ⟨E, hblock, hactive, hkernel⟩
-      have hb0 : E.block.b.coeff 0 = 0 := by
+      have hsub :
+          E.block.matrix.submatrix Fin.castSucc Fin.castSucc =
+            G.firstDeficitRightActiveHessian := by
         rw [hblock]
-        exact G.firstDeficitRightStaggeredBlock_base_b_zero hthree houtThree
-      have hd0 : E.block.d.coeff 0 = 0 := by
-        rw [hblock]
-        exact G.firstDeficitRightStaggeredBlock_base_d_zero hthree houtThree
-      have hr0 : E.block.r.coeff 0 = 0 := by
-        rw [hblock]
-        exact G.firstDeficitRightStaggeredBlock_base_r_zero hthree houtThree
-      have houter :
-          E.block.a.coeff 0 * E.block.x.coeff 0 -
-              E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
-        rw [hblock]
-        exact G.firstDeficitRightStaggeredBlock_base_outer_minor_ne_zero hthree houtThree
+        exact G.firstDeficitRightStaggeredBlock_activeSubmatrix_eq
+      have hmiddle :=
+        G.firstDeficitRightActiveHessian_base_middle_zero
+          hthree houtThree
+      have houterRaw :=
+        G.firstDeficitRightActiveHessian_base_outer_minor_ne_zero
+          hthree houtThree
+      have hsym :
+          (G.firstDeficitRightActiveHessian 2 0).coeff 0 =
+            (G.firstDeficitRightActiveHessian 0 2).coeff 0 := by
+        apply congrArg (fun p => p.coeff 0)
+        unfold firstDeficitRightActiveHessian
+        exact parameterFirstHessian_symmetric
+          P.centralDeficitFamily 3 0
+      have houterActive :
+          (G.firstDeficitRightActiveHessian 0 0).coeff 0 *
+                (G.firstDeficitRightActiveHessian 2 2).coeff 0 -
+              (G.firstDeficitRightActiveHessian 0 2).coeff 0 *
+                (G.firstDeficitRightActiveHessian 0 2).coeff 0 ≠ 0 := by
+        rw [← hsym]
+        exact houterRaw
+      rcases generalFourBlock_baseFacts_of_activeSubmatrix
+          E.block G.firstDeficitRightActiveHessian
+          hsub hmiddle houterActive with
+        ⟨hb0, hd0, hr0, houter⟩
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
         exact hmixed
