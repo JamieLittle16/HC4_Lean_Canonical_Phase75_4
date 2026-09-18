@@ -66,7 +66,10 @@ theorem firstDeficitLeftStaggeredBlock_active_coeff_zero
     coeff_zero_det_fin_three]
   apply Matrix.det_eq_zero_of_row_eq_zero (1 : Fin 3)
   intro j
-  unfold firstDeficitLeftActiveHessian
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitLeftActiveIndex (1 : Fin 3))
+      (firstDeficitLeftActiveIndex j)).coeff 0 = 0
   rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
   fin_cases j <;>
@@ -85,7 +88,10 @@ theorem firstDeficitRightStaggeredBlock_active_coeff_zero
     coeff_zero_det_fin_three]
   apply Matrix.det_eq_zero_of_row_eq_zero (1 : Fin 3)
   intro j
-  unfold firstDeficitRightActiveHessian
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitRightActiveIndex (1 : Fin 3))
+      (firstDeficitRightActiveIndex j)).coeff 0 = 0
   rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
   fin_cases j <;>
@@ -128,7 +134,7 @@ theorem firstDeficitRightStaggeredBlock_active_lower_zero
     exact G.firstDeficitRightActiveHessian_det_gap n hnpos hn
 
 private theorem leftBlock_q_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -147,7 +153,7 @@ private theorem leftBlock_q_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem leftBlock_s_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -166,7 +172,7 @@ private theorem leftBlock_s_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem leftBlock_y_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -185,7 +191,7 @@ private theorem leftBlock_y_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem leftBlock_z_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 2 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -199,7 +205,7 @@ private theorem leftBlock_z_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hrow
 
 private theorem rightBlock_q_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -218,7 +224,7 @@ private theorem rightBlock_q_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem rightBlock_s_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -237,7 +243,7 @@ private theorem rightBlock_s_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem rightBlock_y_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -256,7 +262,7 @@ private theorem rightBlock_y_coeff_eq_zero_before
     GeneralFourBlock.ofSymmetricMatrix] using hsym
 
 private theorem rightBlock_z_coeff_eq_zero_before
-    {first opposite : Fin 4 →₀ ℕ}
+    {opposite : Fin 4 →₀ ℕ}
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f 1 →
         opposite 1 + opposite 2 ≤ f 1 + f 2)
@@ -380,24 +386,25 @@ theorem firstDeficitRightStaggeredBlock_kernel_break
 
 /-- **Source-honest staggered first-kernel-break certificate.** -/
 theorem firstDeficit_staggeredFirstKernelBreak
+    (geometry : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     Nonempty
       (StaggeredSingularFirstKernelBreakFourBlockData
         (MvPolynomial (Fin 4) K)) := by
-  have hfirstTwo : 2 ≤ G.firstDeficitOrder :=
-    firstDeficitOrder_two_le G hthree houtThree
-  rcases G.firstDeficit_oppositeOpening hthree houtThree with ⟨O⟩
+  have hfirstTwo : 2 ≤ geometry.firstDeficitOrder :=
+    firstDeficitOrder_two_le geometry hthree houtThree
+  rcases geometry.firstDeficit_oppositeOpening hthree houtThree with ⟨O⟩
   cases O with
   | left first opposite hfirst hfirst1 hfirst2 huniq hop hop2 hstrict hminimal =>
       refine ⟨{
-        block := G.firstDeficitLeftStaggeredBlock
-        activeOrder := G.firstDeficitOrder
+        block := geometry.firstDeficitLeftStaggeredBlock
+        activeOrder := geometry.firstDeficitOrder
         kernelOrder := opposite 1 + opposite 2
-        activeOrder_pos := G.firstDeficitOrder_pos
+        activeOrder_pos := geometry.firstDeficitOrder_pos
         active_lt_kernel := hstrict
         active_lower_zero :=
-          G.firstDeficitLeftStaggeredBlock_active_lower_zero
+          geometry.firstDeficitLeftStaggeredBlock_active_lower_zero
             hthree houtThree
         active_coeff_ne_zero := ?_
         q_lower_zero := ?_
@@ -405,31 +412,31 @@ theorem firstDeficit_staggeredFirstKernelBreak
         y_lower_zero := ?_
         z_lower_zero := ?_
         determinantCore_eq_zero :=
-          G.firstDeficitLeftStaggeredBlock_determinantCore_eq_zero
+          geometry.firstDeficitLeftStaggeredBlock_determinantCore_eq_zero
         kernel_break :=
-          G.firstDeficitLeftStaggeredBlock_kernel_break
+          geometry.firstDeficitLeftStaggeredBlock_kernel_break
             hop hop2 hstrict hfirstTwo
       }⟩
-      · rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq]
-        exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
+      · rw [geometry.firstDeficitLeftStaggeredBlock_activeThree_eq]
+        exact geometry.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
           hthree houtThree hfirst hfirst1 hfirst2 huniq
       · intro n hn
-        exact G.leftBlock_q_coeff_eq_zero_before hminimal hn
+        exact geometry.leftBlock_q_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.leftBlock_s_coeff_eq_zero_before hminimal hn
+        exact geometry.leftBlock_s_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.leftBlock_y_coeff_eq_zero_before hminimal hn
+        exact geometry.leftBlock_y_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.leftBlock_z_coeff_eq_zero_before hminimal hn
+        exact geometry.leftBlock_z_coeff_eq_zero_before hminimal hn
   | right first opposite hfirst hfirst1 hfirst2 huniq hop hop1 hstrict hminimal =>
       refine ⟨{
-        block := G.firstDeficitRightStaggeredBlock
-        activeOrder := G.firstDeficitOrder
+        block := geometry.firstDeficitRightStaggeredBlock
+        activeOrder := geometry.firstDeficitOrder
         kernelOrder := opposite 1 + opposite 2
-        activeOrder_pos := G.firstDeficitOrder_pos
+        activeOrder_pos := geometry.firstDeficitOrder_pos
         active_lt_kernel := hstrict
         active_lower_zero :=
-          G.firstDeficitRightStaggeredBlock_active_lower_zero
+          geometry.firstDeficitRightStaggeredBlock_active_lower_zero
             hthree houtThree
         active_coeff_ne_zero := ?_
         q_lower_zero := ?_
@@ -437,26 +444,27 @@ theorem firstDeficit_staggeredFirstKernelBreak
         y_lower_zero := ?_
         z_lower_zero := ?_
         determinantCore_eq_zero :=
-          G.firstDeficitRightStaggeredBlock_determinantCore_eq_zero
+          geometry.firstDeficitRightStaggeredBlock_determinantCore_eq_zero
         kernel_break :=
-          G.firstDeficitRightStaggeredBlock_kernel_break
+          geometry.firstDeficitRightStaggeredBlock_kernel_break
             hop hop1 hstrict hfirstTwo
       }⟩
-      · rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
-        exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
+      · rw [geometry.firstDeficitRightStaggeredBlock_activeThree_eq]
+        exact geometry.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
           hthree houtThree hfirst hfirst1 hfirst2 huniq
       · intro n hn
-        exact G.rightBlock_q_coeff_eq_zero_before hminimal hn
+        exact geometry.rightBlock_q_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.rightBlock_s_coeff_eq_zero_before hminimal hn
+        exact geometry.rightBlock_s_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.rightBlock_y_coeff_eq_zero_before hminimal hn
+        exact geometry.rightBlock_y_coeff_eq_zero_before hminimal hn
       · intro n hn
-        exact G.rightBlock_z_coeff_eq_zero_before hminimal hn
+        exact geometry.rightBlock_z_coeff_eq_zero_before hminimal hn
 
 /-- The generic staggered theorem immediately forces a genuine nonzero
 principal two-by-two coefficient-layer minor at the later opening order. -/
 theorem firstDeficit_exists_staggeredRankTwoMinor
+    (geometry : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     ∃ E : StaggeredSingularFirstKernelBreakFourBlockData
@@ -467,7 +475,7 @@ theorem firstDeficit_exists_staggeredRankTwoMinor
           E.block.s.coeff E.kernelOrder * E.block.s.coeff E.kernelOrder ≠ 0) ∨
       (E.block.x.coeff E.kernelOrder * E.block.z.coeff E.kernelOrder -
           E.block.y.coeff E.kernelOrder * E.block.y.coeff E.kernelOrder ≠ 0) := by
-  rcases G.firstDeficit_staggeredFirstKernelBreak hthree houtThree with ⟨E⟩
+  rcases geometry.firstDeficit_staggeredFirstKernelBreak hthree houtThree with ⟨E⟩
   exact ⟨E, E.exists_nonzero_principalMinor_at_kernelOrder⟩
 
 
