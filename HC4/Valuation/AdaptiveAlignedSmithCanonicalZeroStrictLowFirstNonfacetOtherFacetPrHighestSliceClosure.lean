@@ -168,8 +168,9 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_singleton_actualRankTwo_or_
   have hpair := (S.support_parent_and_pairLevel hd).2
   have hlevel :
       (1 : ℤ) < (d 0 : ℤ) + (d 1 : ℤ) := by
-    rw [← hpair]
-    simpa [qsOtherFacetPairDegree] using S.pairLevel_gt_one
+    change (1 : ℤ) < qsOtherFacetPairDegree .pr d
+    rw [hpair]
+    exact S.pairLevel_gt_one
   by_cases h0 : 0 < d 0
   · by_cases h1 : 0 < d 1
     · have hm := S.singleton_sourceMinor_of_two_positive hsupp
@@ -276,8 +277,10 @@ theorem qs_ray_pr_actualRankTwo_or_singletonHighestSlice
   · rcases hpure with ⟨P, S, d, hsupp, hpure⟩
     refine Or.inr ⟨P, S, d, hsupp, ?_⟩
     rcases hpure with h0 | h1
-    · exact ⟨1, h0.2.1⟩
-    · exact ⟨0, h1.2.1⟩
+    · rw [HC4.Polynomial.mvExponentOnBoundary_iff_coordinate_zero]
+      exact Or.inr (Or.inl h0.2.1)
+    · rw [HC4.Polynomial.mvExponentOnBoundary_iff_coordinate_zero]
+      exact Or.inl h1.2.1
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
