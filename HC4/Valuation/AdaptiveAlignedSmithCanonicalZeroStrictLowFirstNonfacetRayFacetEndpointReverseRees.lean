@@ -58,7 +58,7 @@ theorem finsupp_weight_natWeight_cast
   push_cast
   apply Finsupp.sum_congr
   intro i hi
-  rw [E.natWeight_cast]
+  simpa using congrArg (fun z : ℤ => d i • z) (E.natWeight_cast i)
 
 /-- Natural reverse-Rees support bound. -/
 theorem hasReverseWeightBound
@@ -67,9 +67,11 @@ theorem hasReverseWeightBound
       (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
   intro d hd
   have hz := E.source_bound hd
-  have hw := E.finsupp_weight_natWeight_cast d
-  have hl := E.natLevel_cast
-  exact_mod_cast (show Finsupp.weight E.weight d ≤ E.level from hz)
+  have hzCast :
+      (Finsupp.weight E.natWeight d : ℤ) ≤ (E.natLevel : ℤ) := by
+    rw [E.finsupp_weight_natWeight_cast d, E.natLevel_cast]
+    exact hz
+  exact_mod_cast hzCast
 
 /-- Positive integer Hessian clock gives the natural covariance inequality. -/
 theorem hessianClock_nonneg
@@ -82,12 +84,16 @@ theorem hessianClock_nonneg
     apply Finset.sum_congr rfl
     intro i hi
     rw [E.natWeight_cast]
+  have hltZ :
+      ((2 * ∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) <
+        ((4 * E.natLevel : ℕ) : ℤ) := by
+    push_cast
+    rw [hsum, E.natLevel_cast]
+    linarith [E.hessianClock_pos]
   have hlt :
       2 * (∑ i : Fin 4, E.natWeight i : ℕ) < 4 * E.natLevel := by
-    exact_mod_cast (show
-      2 * ∑ i : Fin 4, E.weight i < 4 * E.level by
-        linarith [E.hessianClock_pos])
-  omega
+    exact_mod_cast hltZ
+  exact Nat.le_of_lt hlt
 
 /-- Honest bounded reverse-Rees family of the represented determinant-one
 source. -/
@@ -139,12 +145,16 @@ theorem reverseReesFamily_defect_pos
     apply Finset.sum_congr rfl
     intro i hi
     rw [E.natWeight_cast]
-  have hposZ :
-      (0 : ℤ) < 4 * (E.natLevel : ℤ) -
-        2 * (∑ i : Fin 4, E.natWeight i : ℕ) := by
-    rw [E.natLevel_cast, hsum]
-    exact E.hessianClock_pos
-  exact_mod_cast hposZ
+  have hltZ :
+      ((2 * ∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) <
+        ((4 * E.natLevel : ℕ) : ℤ) := by
+    push_cast
+    rw [hsum, E.natLevel_cast]
+    linarith [E.hessianClock_pos]
+  have hlt :
+      2 * (∑ i : Fin 4, E.natWeight i : ℕ) < 4 * E.natLevel := by
+    exact_mod_cast hltZ
+  exact Nat.sub_pos_iff_lt.mpr hlt
 
 end QsRayFacetEndpointSourceExposure
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
