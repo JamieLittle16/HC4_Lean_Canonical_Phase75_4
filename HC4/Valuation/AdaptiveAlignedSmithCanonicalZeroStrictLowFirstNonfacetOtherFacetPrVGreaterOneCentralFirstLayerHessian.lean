@@ -296,14 +296,23 @@ theorem centralBinaryCore_activeDet_ne_zero
     · exact h0K
     · exact h3K
     · exact hlast
-  intro hdet
-  have hcoeff := congrArg
-    (MvPolynomial.coeff (0 : Fin 2 →₀ ℕ)) hdet
-  simp [centralBinaryCore, HC4.Polynomial.exponentHessianCore, z,
-    G.central_one_zero, G.central_two_zero] at hcoeff
-  apply hscalar
-  ring_nf at hcoeff ⊢
-  exact hcoeff
+  have hformula :
+      centralBinaryCore G 0 0 * centralBinaryCore G 3 3 -
+          centralBinaryCore G 0 3 * centralBinaryCore G 3 0 =
+        (MvPolynomial.C z : MvPolynomial (Fin 2) K) ^ 2 *
+          MvPolynomial.C (G.central 0 : K) *
+          MvPolynomial.C (G.central 3 : K) *
+          (1 - MvPolynomial.C (G.central 0 : K) -
+            MvPolynomial.C (G.central 3 : K)) := by
+    simp [centralBinaryCore, HC4.Polynomial.exponentHessianCore, z,
+      G.central_one_zero, G.central_two_zero]
+    ring
+  rw [hformula]
+  repeat' apply mul_ne_zero
+  · exact pow_ne_zero 2 (MvPolynomial.C_ne_zero.mpr hz)
+  · exact MvPolynomial.C_ne_zero.mpr h0K
+  · exact MvPolynomial.C_ne_zero.mpr h3K
+  · exact MvPolynomial.C_ne_zero.mpr hlast
 
 theorem binaryParameterHessian_coeff_zero
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
