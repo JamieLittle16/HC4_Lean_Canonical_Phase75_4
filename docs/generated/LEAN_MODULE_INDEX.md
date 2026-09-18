@@ -12870,7 +12870,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.BoundedReverseWeightedRees`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayAllLayersPreclosing`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayHigherLongitudinalLayer`
-- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_mem_iff`, `theorem reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt`, `theorem reverseWeightedReesFamily_actualLayerOrder_le_level`
+- Declarations: `theorem reverseWeightedReesFamily_parameterLayer_mem_iff`, `theorem reverseWeightedReesFamily_actualLayerOrder_le_level`
 
 ### `HC4.Valuation.CanonicalAdaptiveSmithWall`
 
@@ -13510,7 +13510,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Valuation.AdaptiveSmithFourBlockCovariance`, `HC4.Polynomial.DerivativeWeight`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayExactSchurClock`, `HC4.Valuation.ReverseReesSchurAssociatedGraded`
-- Declarations: `theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq`, `theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`, `theorem reverseWeightedRees_schurA_normalization`, `theorem reverseWeightedRees_schurB_normalization`, `theorem reverseWeightedRees_schurC_normalization`
+- Declarations: `theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq`, `theorem reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm`, `theorem reverseWeightedRees_schurA_normalization`, `theorem reverseWeightedRees_schurB_normalization`, `theorem reverseWeightedRees_schurC_normalization`
 
 ### `HC4.Valuation.ReverseReesHessianParameterBudget`
 
