@@ -43,7 +43,7 @@ private theorem generalFourBlock_baseFacts_of_activeSubmatrix
       (A 1 2).coeff 0 = 0)
     (houter :
       (A 0 0).coeff 0 * (A 2 2).coeff 0 -
-        (A 0 2).coeff 0 * (A 0 2).coeff 0 ≠ 0) :
+        (A 0 2).coeff 0 * (A 2 0).coeff 0 ≠ 0) :
     H.b.coeff 0 = 0 ∧
       H.d.coeff 0 = 0 ∧
       H.r.coeff 0 = 0 ∧
@@ -54,6 +54,7 @@ private theorem generalFourBlock_baseFacts_of_activeSubmatrix
   have h12 := congrFun (congrFun hsub (1 : Fin 3)) (2 : Fin 3)
   have h00 := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
   have h02 := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
+  have h20 := congrFun (congrFun hsub (2 : Fin 3)) (0 : Fin 3)
   have h22 := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
   have hb : H.b = A 0 1 := by
     simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h01
@@ -63,8 +64,12 @@ private theorem generalFourBlock_baseFacts_of_activeSubmatrix
     simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h12
   have ha : H.a = A 0 0 := by
     simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h00
-  have hp : H.p = A 0 2 := by
+  have hp02 : H.p = A 0 2 := by
     simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h02
+  have hp20 : H.p = A 2 0 := by
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h20
+  have hA20 : A 2 0 = A 0 2 :=
+    hp20.symm.trans hp02
   have hx : H.x = A 2 2 := by
     simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h22
   refine ⟨?_, ?_, ?_, ?_⟩
@@ -74,8 +79,8 @@ private theorem generalFourBlock_baseFacts_of_activeSubmatrix
     exact hmiddle.2.1
   · rw [hr]
     exact hmiddle.2.2
-  · rw [ha, hp, hx]
-    exact houter
+  · rw [hA20] at houter
+    simpa [ha, hx, hp02] using houter
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
@@ -168,23 +173,9 @@ theorem firstDeficit_secondInteractionGeometry
       have houterRaw :=
         G.firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
           hthree houtThree
-      have hsym :
-          (G.firstDeficitLeftActiveHessian 2 0).coeff 0 =
-            (G.firstDeficitLeftActiveHessian 0 2).coeff 0 := by
-        apply congrArg (fun p => p.coeff 0)
-        unfold firstDeficitLeftActiveHessian
-        exact parameterFirstHessian_symmetric
-          P.centralDeficitFamily 3 0
-      have houterActive :
-          (G.firstDeficitLeftActiveHessian 0 0).coeff 0 *
-                (G.firstDeficitLeftActiveHessian 2 2).coeff 0 -
-              (G.firstDeficitLeftActiveHessian 0 2).coeff 0 *
-                (G.firstDeficitLeftActiveHessian 0 2).coeff 0 ≠ 0 := by
-        rw [← hsym]
-        exact houterRaw
       rcases generalFourBlock_baseFacts_of_activeSubmatrix
           E.block G.firstDeficitLeftActiveHessian
-          hsub hmiddle houterActive with
+          hsub hmiddle houterRaw with
         ⟨hb0, hd0, hr0, houter⟩
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
@@ -217,23 +208,9 @@ theorem firstDeficit_secondInteractionGeometry
       have houterRaw :=
         G.firstDeficitRightActiveHessian_base_outer_minor_ne_zero
           hthree houtThree
-      have hsym :
-          (G.firstDeficitRightActiveHessian 2 0).coeff 0 =
-            (G.firstDeficitRightActiveHessian 0 2).coeff 0 := by
-        apply congrArg (fun p => p.coeff 0)
-        unfold firstDeficitRightActiveHessian
-        exact parameterFirstHessian_symmetric
-          P.centralDeficitFamily 3 0
-      have houterActive :
-          (G.firstDeficitRightActiveHessian 0 0).coeff 0 *
-                (G.firstDeficitRightActiveHessian 2 2).coeff 0 -
-              (G.firstDeficitRightActiveHessian 0 2).coeff 0 *
-                (G.firstDeficitRightActiveHessian 0 2).coeff 0 ≠ 0 := by
-        rw [← hsym]
-        exact houterRaw
       rcases generalFourBlock_baseFacts_of_activeSubmatrix
           E.block G.firstDeficitRightActiveHessian
-          hsub hmiddle houterActive with
+          hsub hmiddle houterRaw with
         ⟨hb0, hd0, hr0, houter⟩
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
