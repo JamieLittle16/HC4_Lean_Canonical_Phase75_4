@@ -3152,7 +3152,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.ParameterGapSecondJet`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def rankTwoZeroKernelBase`, `def rankTwoSecondVariationEntry`, `def rankTwoZeroKernelSecondVariation`, `theorem snd_snd_det_rankTwoZeroKernelSecondVariation`, `theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero`, `theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap`
+- Declarations: `def rankTwoZeroKernelBase`, `def rankTwoSecondVariationEntry`, `def rankTwoZeroKernelSecondVariation`, `theorem snd_snd_det_rankTwoZeroKernelSecondVariation`, `theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero_domain`, `theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero`, `theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap_domain`, `theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap`
 
 ### `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 
