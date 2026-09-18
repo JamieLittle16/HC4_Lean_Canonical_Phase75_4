@@ -123,6 +123,14 @@ inductive FirstDeficitSecondInteractionGeometry : Prop
       (second_diagonal_ne_zero :
         G.firstDeficitLeftStaggeredBlock.z.coeff
           (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0)
+      (second_interaction_eq :
+        G.firstDeficitLeftStaggeredBlock.d.coeff G.firstDeficitOrder *
+            G.firstDeficitLeftStaggeredBlock.z.coeff
+              (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) =
+          G.firstDeficitLeftStaggeredBlock.s.coeff
+              (opposite 1 + opposite 2) *
+            G.firstDeficitLeftStaggeredBlock.s.coeff
+              (opposite 1 + opposite 2))
   | right
       (first opposite : Fin 4 →₀ ℕ) (B : K)
       (first_mem : first ∈ G.firstDeficitLayer.support)
@@ -147,6 +155,14 @@ inductive FirstDeficitSecondInteractionGeometry : Prop
       (second_diagonal_ne_zero :
         G.firstDeficitRightStaggeredBlock.z.coeff
           (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0)
+      (second_interaction_eq :
+        G.firstDeficitRightStaggeredBlock.d.coeff G.firstDeficitOrder *
+            G.firstDeficitRightStaggeredBlock.z.coeff
+              (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) =
+          G.firstDeficitRightStaggeredBlock.s.coeff
+              (opposite 1 + opposite 2) *
+            G.firstDeficitRightStaggeredBlock.s.coeff
+              (opposite 1 + opposite 2))
 
 /-- **Second source-honest interaction.**  The determinant forces the missing
 diagonal to open at exactly `2*j-q`. -/
@@ -188,9 +204,48 @@ theorem firstDeficit_secondInteractionGeometry
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
         rw [← hblock, ← hkernel, ← hactive]
         exact hz
+      have hinteraction :=
+        E.activeCoeff_mul_kernelDiagonal_secondInteraction_eq_outer_mul_mixed_sq
+          hb0 hd0 hr0
+      have hinteractionG := hinteraction
+      rw [hblock, hactive, hkernel] at hinteractionG
+      have houterG := houter
+      rw [hblock] at houterG
+      have hactiveFactor :
+          (firstKernelBreakActiveThreeDet
+              G.firstDeficitLeftStaggeredBlock).coeff
+              G.firstDeficitOrder =
+            (G.firstDeficitLeftStaggeredBlock.a.coeff 0 *
+                G.firstDeficitLeftStaggeredBlock.x.coeff 0 -
+              G.firstDeficitLeftStaggeredBlock.p.coeff 0 *
+                G.firstDeficitLeftStaggeredBlock.p.coeff 0) *
+              G.firstDeficitLeftStaggeredBlock.d.coeff
+                G.firstDeficitOrder := by
+        rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq,
+          G.firstDeficitLeftActiveHessian_det_coeff_first_eq
+            hthree houtThree]
+        unfold firstDeficitLeftStaggeredBlock
+          firstDeficitLeftStaggeredMatrix
+          GeneralFourBlock.ofSymmetricMatrix
+        simp only [Matrix.submatrix_apply]
+        simp [firstDeficitLeftStaggeredPerm]
+        repeat' rw [parameterFirstHessian_coeff]
+        rw [G.layer_zero_eq_exposure hthree houtThree]
+        rfl
+      rw [hactiveFactor] at hinteractionG
+      rw [mul_assoc] at hinteractionG
+      have heq :
+          G.firstDeficitLeftStaggeredBlock.d.coeff G.firstDeficitOrder *
+              G.firstDeficitLeftStaggeredBlock.z.coeff
+                (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) =
+            G.firstDeficitLeftStaggeredBlock.s.coeff
+                (opposite 1 + opposite 2) *
+              G.firstDeficitLeftStaggeredBlock.s.coeff
+                (opposite 1 + opposite 2) :=
+        mul_left_cancel₀ houterG hinteractionG
       exact .left first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop2
-        hstrict hminimal hB hlayer hmixed hz'
+        hstrict hminimal hB hlayer hmixed hz' heq
   | right first opposite B hfirst hfirst1 hfirst2 huniq
       hop hop1 hstrict hminimal hB hlayer hmixed =>
       rcases G.exists_rightStaggeredBreakData
@@ -223,9 +278,48 @@ theorem firstDeficit_secondInteractionGeometry
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
         rw [← hblock, ← hkernel, ← hactive]
         exact hz
+      have hinteraction :=
+        E.activeCoeff_mul_kernelDiagonal_secondInteraction_eq_outer_mul_mixed_sq
+          hb0 hd0 hr0
+      have hinteractionG := hinteraction
+      rw [hblock, hactive, hkernel] at hinteractionG
+      have houterG := houter
+      rw [hblock] at houterG
+      have hactiveFactor :
+          (firstKernelBreakActiveThreeDet
+              G.firstDeficitRightStaggeredBlock).coeff
+              G.firstDeficitOrder =
+            (G.firstDeficitRightStaggeredBlock.a.coeff 0 *
+                G.firstDeficitRightStaggeredBlock.x.coeff 0 -
+              G.firstDeficitRightStaggeredBlock.p.coeff 0 *
+                G.firstDeficitRightStaggeredBlock.p.coeff 0) *
+              G.firstDeficitRightStaggeredBlock.d.coeff
+                G.firstDeficitOrder := by
+        rw [G.firstDeficitRightStaggeredBlock_activeThree_eq,
+          G.firstDeficitRightActiveHessian_det_coeff_first_eq
+            hthree houtThree]
+        unfold firstDeficitRightStaggeredBlock
+          firstDeficitRightStaggeredMatrix
+          GeneralFourBlock.ofSymmetricMatrix
+        simp only [Matrix.submatrix_apply]
+        simp [firstDeficitRightStaggeredPerm]
+        repeat' rw [parameterFirstHessian_coeff]
+        rw [G.layer_zero_eq_exposure hthree houtThree]
+        rfl
+      rw [hactiveFactor] at hinteractionG
+      rw [mul_assoc] at hinteractionG
+      have heq :
+          G.firstDeficitRightStaggeredBlock.d.coeff G.firstDeficitOrder *
+              G.firstDeficitRightStaggeredBlock.z.coeff
+                (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) =
+            G.firstDeficitRightStaggeredBlock.s.coeff
+                (opposite 1 + opposite 2) *
+              G.firstDeficitRightStaggeredBlock.s.coeff
+                (opposite 1 + opposite 2) :=
+        mul_left_cancel₀ houterG hinteractionG
       exact .right first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop1
-        hstrict hminimal hB hlayer hmixed hz'
+        hstrict hminimal hB hlayer hmixed hz' heq
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
