@@ -9780,7 +9780,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`, `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
-- Declarations: `def firstDeficitLeftActiveIndex`, `def firstDeficitRightActiveIndex`, `theorem eq_monomial_of_support_singleton`, `theorem hessian_monomial_diagonal_ne_zero_of_two_le`, `def firstDeficitLeftActiveHessian`, `def firstDeficitRightActiveHessian`, `theorem leftActive_gap`, `theorem rightActive_gap`, `theorem layer_zero_eq_exposure`, `theorem firstDeficitLeftActiveHessian_det_ne_zero`, `theorem firstDeficitRightActiveHessian_det_ne_zero`, `theorem firstDeficit_activeRankThree`
+- Declarations: `def firstDeficitLeftActiveIndex`, `def firstDeficitRightActiveIndex`, `theorem eq_monomial_of_support_singleton`, `theorem hessian_monomial_diagonal_ne_zero_of_two_le`, `def firstDeficitLeftActiveHessian`, `def firstDeficitRightActiveHessian`, `theorem leftActive_gap`, `theorem rightActive_gap`, `theorem layer_zero_eq_exposure`, `theorem firstDeficitLeftActiveHessian_det_gap`, `theorem firstDeficitRightActiveHessian_det_gap`, `theorem firstDeficitLeftActiveHessian_det_ne_zero`, `theorem firstDeficitRightActiveHessian_det_ne_zero`, `theorem firstDeficit_activeRankThree`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 
