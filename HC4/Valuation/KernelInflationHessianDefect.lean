@@ -179,7 +179,13 @@ theorem coeff_kernelInflateHom
     · exact fun h => (h hd).elim
   · have hcoeff : MvPolynomial.coeff d Q = 0 :=
       MvPolynomial.notMem_support_iff.mp hd
-    rw [hcoeff, zero_mul]
+    have hsumcoeff :
+        MvPolynomial.coeff d
+          (∑ v ∈ Q.support,
+            MvPolynomial.monomial v (MvPolynomial.coeff v Q)) = 0 := by
+      rw [← Q.as_sum]
+      exact hcoeff
+    rw [hsumcoeff, zero_mul]
     apply Finset.sum_eq_zero
     intro e he
     rw [kernelInflateHom_monomial, MvPolynomial.coeff_monomial]
