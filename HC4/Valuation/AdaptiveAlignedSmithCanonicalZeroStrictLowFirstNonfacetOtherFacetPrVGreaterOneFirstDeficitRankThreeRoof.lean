@@ -296,6 +296,125 @@ theorem firstDeficitRightActiveHessian_det_ne_zero
   rw [parameterFirstHessian_coeff] at hzero
   exact hdiag (by simpa [firstDeficitLayer] using hzero)
 
+
+/-- Exact leading determinant coefficient in the left first-deficit
+orientation. -/
+theorem firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ G.firstDeficitLayer.support)
+    (he1 : e 1 = G.firstDeficitOrder)
+    (he2 : e 2 = 0)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = e) :
+    G.firstDeficitLeftActiveHessian.det.coeff G.firstDeficitOrder ≠ 0 := by
+  let H0 := HC4.Polynomial.hessian G.exposure.face
+  let a := H0 (0 : Fin 4) 0
+  let b := H0 (0 : Fin 4) 3
+  let c := H0 (3 : Fin 4) 0
+  let d := H0 (3 : Fin 4) 3
+  have hbase : ∀ r s,
+      (G.firstDeficitLeftActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c d r s := by
+    intro r s
+    unfold firstDeficitLeftActiveHessian
+    rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
+    dsimp [a, b, c, d, H0]
+    fin_cases r <;> fin_cases s <;>
+      simp [firstDeficitLeftActiveIndex,
+        HC4.Polynomial.rankTwoRoofZeroKernelBase,
+        G.exposure_face_eq, HC4.Polynomial.hessian_apply,
+        MvPolynomial.pderiv_monomial,
+        G.central_one_zero, G.central_two_zero]
+  have hactive : a * d - b * c ≠ 0 := by
+    dsimp [a, b, c, d, H0]
+    simpa [HC4.Polynomial.hessianPrincipalMinor] using
+      G.exposure_rankTwo_minor
+  let z := MvPolynomial.coeff e G.firstDeficitLayer
+  have hz : z ≠ 0 := MvPolynomial.mem_support_iff.mp he
+  have hmono :
+      G.firstDeficitLayer = MvPolynomial.monomial e z :=
+    eq_monomial_of_support_singleton G.firstDeficitLayer he huniq
+  have he1two : 2 ≤ e 1 := by
+    have hDtwo := firstDeficitOrder_two_le G hthree houtThree
+    omega
+  have hdiagSource :
+      HC4.Polynomial.hessian G.firstDeficitLayer
+        (1 : Fin 4) 1 ≠ 0 := by
+    rw [hmono]
+    exact hessian_monomial_diagonal_ne_zero_of_two_le hz he1two
+  have hdiag :
+      (G.firstDeficitLeftActiveHessian 1 1).coeff
+          G.firstDeficitOrder ≠ 0 := by
+    unfold firstDeficitLeftActiveHessian
+    simp [firstDeficitLeftActiveIndex]
+    rw [parameterFirstHessian_coeff]
+    simpa [firstDeficitLayer] using hdiagSource
+  exact HC4.Polynomial.coeff_det_polynomialMatrix3_gap_ne_zero
+    G.firstDeficitOrder_pos
+    G.firstDeficitLeftActiveHessian
+    (fun r s => G.leftActive_gap r s)
+    a b c d hbase hactive hdiag
+
+/-- Exact leading determinant coefficient in the right first-deficit
+orientation. -/
+theorem firstDeficitRightActiveHessian_det_coeff_first_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ G.firstDeficitLayer.support)
+    (he1 : e 1 = 0)
+    (he2 : e 2 = G.firstDeficitOrder)
+    (huniq : ∀ f ∈ G.firstDeficitLayer.support, f = e) :
+    G.firstDeficitRightActiveHessian.det.coeff G.firstDeficitOrder ≠ 0 := by
+  let H0 := HC4.Polynomial.hessian G.exposure.face
+  let a := H0 (0 : Fin 4) 0
+  let b := H0 (0 : Fin 4) 3
+  let c := H0 (3 : Fin 4) 0
+  let d := H0 (3 : Fin 4) 3
+  have hbase : ∀ r s,
+      (G.firstDeficitRightActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c d r s := by
+    intro r s
+    unfold firstDeficitRightActiveHessian
+    rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
+    dsimp [a, b, c, d, H0]
+    fin_cases r <;> fin_cases s <;>
+      simp [firstDeficitRightActiveIndex,
+        HC4.Polynomial.rankTwoRoofZeroKernelBase,
+        G.exposure_face_eq, HC4.Polynomial.hessian_apply,
+        MvPolynomial.pderiv_monomial,
+        G.central_one_zero, G.central_two_zero]
+  have hactive : a * d - b * c ≠ 0 := by
+    dsimp [a, b, c, d, H0]
+    simpa [HC4.Polynomial.hessianPrincipalMinor] using
+      G.exposure_rankTwo_minor
+  let z := MvPolynomial.coeff e G.firstDeficitLayer
+  have hz : z ≠ 0 := MvPolynomial.mem_support_iff.mp he
+  have hmono :
+      G.firstDeficitLayer = MvPolynomial.monomial e z :=
+    eq_monomial_of_support_singleton G.firstDeficitLayer he huniq
+  have he2two : 2 ≤ e 2 := by
+    have hDtwo := firstDeficitOrder_two_le G hthree houtThree
+    omega
+  have hdiagSource :
+      HC4.Polynomial.hessian G.firstDeficitLayer
+        (2 : Fin 4) 2 ≠ 0 := by
+    rw [hmono]
+    exact hessian_monomial_diagonal_ne_zero_of_two_le hz he2two
+  have hdiag :
+      (G.firstDeficitRightActiveHessian 1 1).coeff
+          G.firstDeficitOrder ≠ 0 := by
+    unfold firstDeficitRightActiveHessian
+    simp [firstDeficitRightActiveIndex]
+    rw [parameterFirstHessian_coeff]
+    simpa [firstDeficitLayer] using hdiagSource
+  exact HC4.Polynomial.coeff_det_polynomialMatrix3_gap_ne_zero
+    G.firstDeficitOrder_pos
+    G.firstDeficitRightActiveHessian
+    (fun r s => G.rightActive_gap r s)
+    a b c d hbase hactive hdiag
+
 /-- **Certified first-deficit rank-three roof alternative.** -/
 theorem firstDeficit_activeRankThree
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
