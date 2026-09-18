@@ -29,6 +29,12 @@ open HC4.Newton HC4.Polynomial HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/- This module unfolds the two-zero shorthand while also using generic Hessian
+notation.  Keep the reflexive pderiv↔shorthand simp aliases out of the
+automatic simp set to avoid the known loop. -/
+attribute [-simp] standardTwoZero_pderiv_two_eq_A
+attribute [-simp] standardTwoZero_pderiv_three_eq_C
+
 /-- Active coordinate order for the roof missing source coordinate `2`. -/
 def firstDeficitLeftActiveIndex : Fin 3 → Fin 4
   | 0 => 0
