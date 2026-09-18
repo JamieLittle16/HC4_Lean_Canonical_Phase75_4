@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8922**.
+Distinct declaration spellings indexed: **8928**.
 
 ## Repeated declaration spellings
 
@@ -3801,7 +3801,9 @@ Distinct declaration spellings indexed: **8922**.
 - `coeffYZ_eq_zero_of_axisSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeffZZ_eq_zero_of_ySquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPacketRigidity`
 - `coeff_M_rankThreeLineCoefficientPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
+- `coeff_active_mul_kernelPair_at_double` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `coeff_active_mul_kernelPair_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
+- `coeff_active_mul_kernelPair_eq_zero_before_double` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `coeff_adaptiveDiagonalExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveDiagonalExposure`
 - `coeff_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `coeff_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
@@ -4324,6 +4326,8 @@ Distinct declaration spellings indexed: **8922**.
 - `det_weightedThirdZeroRankThreeEndpointPencil` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `determinant` — `def` in `HC4.Newton.FirstSchurDeterminantOrder`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `determinantCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`
+- `determinantCore_coeff_doubleKernel_of_middleKernelBase` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
+- `determinantCore_coeff_eq_activeThree_mul_z_before_double` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `determinantCore_coeff_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `determinantCore_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockDeterminantCovariance`
 - `determinantCore_eq_activeThreeDet_mul_z_add_kernelPairs` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`
@@ -5704,8 +5708,10 @@ Distinct declaration spellings indexed: **8922**.
 - `kernelCoefficientQuotient_spec_of_mem` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelCoefficientTauPower` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelCoefficientTauPower_sub_single_of_ne` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
+- `kernelDiagonal_coeff_eq_zero_before_secondInteraction` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `kernelDiagonal_coeff_kernelOrder_eq_zero` — `theorem` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
 - `kernelDiagonal_coeff_order_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
+- `kernelDiagonal_coeff_secondInteraction_ne_zero` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `kernelExponent_dvd_denominatorClearingRamification` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelInflateDerivativeCoefficient` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom` — `def` in `HC4.Valuation.KernelInflationHessianDefect`

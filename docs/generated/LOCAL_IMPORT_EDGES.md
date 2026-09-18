@@ -4539,6 +4539,8 @@ human architecture guide.
   - `HC4.Valuation.FirstSchurDepartureBridge`
 - `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
   - `HC4.Valuation.SingularFirstKernelBreakRankTwo`
+- `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
+  - `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
 - `HC4.Valuation.StrictSmithConstantResidualRigidity`
   - `HC4.Newton.TerminalConformalWeight`
   - `HC4.Valuation.StrictSmithVisibleFirstContactRigidity`
