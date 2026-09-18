@@ -48,9 +48,9 @@ theorem firstDeficitLayer_binaryExponent_mem
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
     {e : Fin 4 →₀ ℕ}
     (he : e ∈ G.firstDeficitLayer.support) :
-    binaryDeficitExponent e ∈ G.firstDeficitBinaryFace.support := by
+    HC4.Polynomial.binaryDeficitExponent e ∈ G.firstDeficitBinaryFace.support := by
   have hcoeff :=
-    coeff_centralDeficitBinarySpecialisation_of_mem
+    HC4.Polynomial.coeff_centralDeficitBinarySpecialisation_of_mem
       G.firstDeficitLayer he
       (by
         intro f hf hproj
@@ -76,13 +76,13 @@ theorem firstDeficitLayer_axis_support
     intro e he
     have hmem := G.firstDeficitLayer_binaryExponent_mem
       hthree houtThree he
-    have h := hzero (binaryDeficitExponent e) hmem
+    have h := hzero (HC4.Polynomial.binaryDeficitExponent e) hmem
     simpa using h
   · right
     intro e he
     have hmem := G.firstDeficitLayer_binaryExponent_mem
       hthree houtThree he
-    have h := hone (binaryDeficitExponent e) hmem
+    have h := hone (HC4.Polynomial.binaryDeficitExponent e) hmem
     simpa using h
 
 /-- The first positive total-deficit order is genuinely nonlinear.  A
