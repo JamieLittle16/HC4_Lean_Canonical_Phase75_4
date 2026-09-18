@@ -132,7 +132,7 @@ theorem firstDeficitBinaryFace_axis_support
     have hdcoeff := MvPolynomial.mem_support_iff.mp hd
     rw [hnormal, HC4.Polynomial.gradientRatioLinearForm_finTwo_eq,
       hzeroOne.2] at hdcoeff
-    simp only [MvPolynomial.C_zero, zero_mul, add_zero] at hdcoeff
+    simp only [map_zero, zero_mul, add_zero] at hdcoeff
     rw [MvPolynomial.coeff_C_mul] at hdcoeff
     by_contra hd1
     have hneq :
@@ -154,7 +154,7 @@ theorem firstDeficitBinaryFace_axis_support
     have hdcoeff := MvPolynomial.mem_support_iff.mp hd
     rw [hnormal, HC4.Polynomial.gradientRatioLinearForm_finTwo_eq,
       hzeroZero.1] at hdcoeff
-    simp only [MvPolynomial.C_zero, zero_mul, zero_add] at hdcoeff
+    simp only [map_zero, zero_mul, zero_add] at hdcoeff
     rw [MvPolynomial.coeff_C_mul] at hdcoeff
     by_contra hd0
     have hneq :
