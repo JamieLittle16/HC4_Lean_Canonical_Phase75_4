@@ -222,6 +222,35 @@ theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
   exact hB
 
 
+/-- **Exact first nonzero roof-minor coefficient.**
+
+At a positive gap above a rank-two constant roof block, the selected
+determinant coefficient is the active constant minor times the middle
+diagonal of the first layer.  No later layer contributes. -/
+theorem coeff_det_polynomialMatrix3_gap
+    {R : Type*} [CommRing R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s) :
+    M.det.coeff j =
+      (a * d - b * c) * (M 1 1).coeff j := by
+  let B : Matrix (Fin 3) (Fin 3) R :=
+    fun r s => (M r s).coeff j
+  have hjet :
+      matrix3ParameterGapDualJet hj M hgap =
+        rankTwoRoofFirstJet a b c d B := by
+    ext r s
+    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
+      B, hbase]
+  have hcoeff :=
+    snd_det_matrix3ParameterGapDualJet hj M hgap
+  rw [hjet, snd_det_rankTwoRoofFirstJet] at hcoeff
+  simpa [B] using hcoeff.symm
+
 /-- **Nonzero first roof diagonal forces a genuine rank-three minor.**
 
 This is the contrapositive form used by the source-facing central staircase
