@@ -268,4 +268,9 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFr
 
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure
 
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer
+-- The experimental FirstDeficitSecondSourceLayer/reflected-recurrence module is
+-- intentionally unrooted here.  The source-pivot/QsRankTwoClosure route below
+-- supersedes it for unrestricted HC4, while the reflected-layer extension
+-- currently requires an additional Hessian identity not supplied by the
+-- verified SecondInteractionGeometry interface.
+
