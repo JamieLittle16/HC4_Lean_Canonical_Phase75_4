@@ -125,8 +125,8 @@ theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero
             (rankTwoZeroKernelSecondVariation a b c d B C).det) = 0) :
     B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0 := by
   rw [snd_snd_det_rankTwoZeroKernelSecondVariation] at hzero
-  have htwo : (2 : K) ≠ 0 := by
-    norm_num
+  have htwo : (2 : K) ≠ 0 :=
+    (Nat.cast_ne_zero).2 (by decide)
   have hfactor : 2 * (a * d - b * c) ≠ 0 :=
     mul_ne_zero htwo hactive
   have hprod :
