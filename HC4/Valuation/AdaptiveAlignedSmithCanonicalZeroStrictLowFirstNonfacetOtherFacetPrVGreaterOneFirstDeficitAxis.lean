@@ -59,13 +59,15 @@ theorem firstDeficitBinaryFace_support_lifts
           MvPolynomial.monomial (binaryDeficitExponent e)
             (MvPolynomial.coeff e G.firstDeficitLayer) := by
     unfold firstDeficitBinaryFace
+    have has := MvPolynomial.as_sum G.firstDeficitLayer
     calc
       centralDeficitBinarySpecialisation (K := K) G.firstDeficitLayer =
           centralDeficitBinarySpecialisation (K := K)
             (∑ e ∈ G.firstDeficitLayer.support,
               MvPolynomial.monomial e
                 (MvPolynomial.coeff e G.firstDeficitLayer)) := by
-            rw [MvPolynomial.as_sum G.firstDeficitLayer]
+            exact congrArg
+              (centralDeficitBinarySpecialisation (K := K)) has.symm
       _ = _ := by
         simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
   have hdSum :
@@ -192,7 +194,8 @@ theorem firstDeficitBinaryFace_axis_support
   · have hDone : D = 1 := by omega
     rcases MvPolynomial.support_nonempty.mpr
         (G.firstDeficitBinaryFace_ne_zero hthree houtThree) with ⟨d, hd⟩
-    have hdeg := G.firstDeficitBinaryFace_isHomogeneous hd
+    have hdeg := G.firstDeficitBinaryFace_isHomogeneous
+      (MvPolynomial.mem_support_iff.mp hd)
     have hdegSum : d.degree = d 0 + d 1 := by
       rw [Finsupp.degree_eq_weight_one, Finsupp.weight_apply,
         Finsupp.sum_fintype]
@@ -204,7 +207,8 @@ theorem firstDeficitBinaryFace_axis_support
     rcases Nat.eq_zero_or_pos (d 1) with hd1zero | hd1pos
     · left
       intro f hf
-      have hfdeg := G.firstDeficitBinaryFace_isHomogeneous hf
+      have hfdeg := G.firstDeficitBinaryFace_isHomogeneous
+        (MvPolynomial.mem_support_iff.mp hf)
       have hfdegSum : f.degree = f 0 + f 1 := by
         rw [Finsupp.degree_eq_weight_one, Finsupp.weight_apply,
           Finsupp.sum_fintype]
@@ -221,7 +225,8 @@ theorem firstDeficitBinaryFace_axis_support
     · right
       have hd0 : d 0 = 0 := by omega
       intro f hf
-      have hfdeg := G.firstDeficitBinaryFace_isHomogeneous hf
+      have hfdeg := G.firstDeficitBinaryFace_isHomogeneous
+        (MvPolynomial.mem_support_iff.mp hf)
       have hfdegSum : f.degree = f 0 + f 1 := by
         rw [Finsupp.degree_eq_weight_one, Finsupp.weight_apply,
           Finsupp.sum_fintype]
