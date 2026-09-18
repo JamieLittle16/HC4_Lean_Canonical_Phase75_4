@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8942**.
+Distinct declaration spellings indexed: **8943**.
 
 ## Repeated declaration spellings
 
@@ -5279,6 +5279,7 @@ Distinct declaration spellings indexed: **8942**.
 - `fullVector_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `gap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
+- `generalFourBlock_baseFacts_of_activeSubmatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `generalSurvivingSmithFaceShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `generalSurvivingSmithGradeShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `genuineCoefficientWall_specialFiber_has_negativeGrade` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
