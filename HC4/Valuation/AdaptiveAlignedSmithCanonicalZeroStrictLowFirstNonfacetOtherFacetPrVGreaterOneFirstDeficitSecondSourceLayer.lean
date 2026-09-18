@@ -160,7 +160,7 @@ theorem firstDeficit_secondSourceLayerGeometry
   rcases G.firstDeficit_secondInteractionGeometry hthree houtThree with O
   cases O with
   | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
-      hstrict hminimal hB hlayer hmixed hz =>
+      hstrict hminimal hB hlayer hmixed hz _heq =>
       let q := G.firstDeficitOrder
       let j := opposite 1 + opposite 2
       let k := 2 * j - q
@@ -184,7 +184,7 @@ theorem firstDeficit_secondSourceLayerGeometry
         hop hop2 (by simpa [q, j] using hstrict)
         hsource.1 hsource.2 hsecond2
   | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
-      hstrict hminimal hB hlayer hmixed hz =>
+      hstrict hminimal hB hlayer hmixed hz _heq =>
       let q := G.firstDeficitOrder
       let j := opposite 1 + opposite 2
       let k := 2 * j - q
