@@ -73,9 +73,12 @@ theorem firstDeficitLeftStaggeredBlock_active_coeff_zero
   rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
   fin_cases j <;>
-    simp [firstDeficitLeftActiveIndex,
+    simp [-standardTwoZero_pderiv_two_eq_A,
+      -standardTwoZero_pderiv_three_eq_C,
+      firstDeficitLeftActiveIndex,
       HC4.Polynomial.hessian_apply,
       MvPolynomial.pderiv_monomial,
+      standardTwoZeroA, standardTwoZeroC,
       G.central_one_zero, G.central_two_zero]
 
 /-- Symmetric zero constant coefficient in the right orientation. -/
@@ -95,9 +98,12 @@ theorem firstDeficitRightStaggeredBlock_active_coeff_zero
   rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
   fin_cases j <;>
-    simp [firstDeficitRightActiveIndex,
+    simp [-standardTwoZero_pderiv_two_eq_A,
+      -standardTwoZero_pderiv_three_eq_C,
+      firstDeficitRightActiveIndex,
       HC4.Polynomial.hessian_apply,
       MvPolynomial.pderiv_monomial,
+      standardTwoZeroA, standardTwoZeroC,
       G.central_one_zero, G.central_two_zero]
 
 /-- All active-three determinant coefficients below the first deficit order
