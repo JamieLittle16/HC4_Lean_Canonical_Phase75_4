@@ -1,6 +1,6 @@
 # HC4 documentation index
 
-**Authoritative map: 17 September 2026.**
+**Authoritative map: 18 September 2026.**
 
 The HC4 repository contains many historical phase notes. They are useful for
 provenance, but they must not be treated as simultaneous current TODO lists.
@@ -8,69 +8,54 @@ Use the ownership rules below.
 
 ## Current authoritative continuation point
 
-### `HANDOFF_2026-09-17_HC4_FINAL_GLOBAL_ASSEMBLY.md`
+### `HANDOFF_2026-09-18_HC4_FIRST_DEFICIT_STAGGERED_BREAK.md`
 
-This is now the preferred and authoritative fresh-context handoff for the live
-unrestricted-HC4 final sprint.
+This is the preferred fresh-context handoff for the live unrestricted-HC4
+closure.
 
-Its source checkpoint when written is:
+Its substantive source checkpoint is:
 
 ```text
 PR #34
 branch final-assembly/a18-4-42-termination-frontier
-head cd9b24560468722ff538d2e85626f5af5d5c6336
+head f735921c6f994f1854e155056d55332de62ee165
+Lean CI run 35339770347 / #3013
 ```
 
-The user reports that this proof head compiles cleanly. The key substantive
-shortcut was introduced at:
+The handoff records the provenance-rich replacement for the older
+repair-bookkeeping endpoint.  The live source chain now reaches:
 
 ```text
-3a7b2848e587156cccc9115e606743c2f6338055
-HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress.lean
+central source monomial
+  -> honest total-deficit Rees family
+  -> first positive binary Hessian-singular layer
+  -> homogeneous linear power
+  -> adjacent-deficit exclusion
+  -> pure-axis singleton source layer
+  -> honest rank-three roof at first deficit order q
+  -> least later opening of the missing coordinate at order j > q
+  -> firstDeficit_oppositeOpening
 ```
 
-The authoritative local endpoint is now:
+The immediate next task is a thin source-facing adapter from
+`FirstDeficitOppositeOpening` plus the existing rank-three roof coefficient
+to the already-written generic
+`StaggeredSingularFirstKernelBreakFourBlockData`.  Its theorem
+`exists_nonzero_principalMinor_at_kernelOrder` should then give honest later
+rank-two Hessian geometry without identifying clocks or manufacturing a
+singular sparse subpencil.
 
-```text
-strict-low reached state
-  + repair = rankOneRepairState 0
-  + rawDefect = 0
-        |
-        v
-existing zero-defect rank-two geometry
-        |
-        v
-AdaptiveAlignedSmithCanonicalGlobalMacroProgress
-        |
-        v
-rank-one Rees strict-low "terminal" has a global successor
-```
+The handoff also records the recent kernel-inflation duplicate/interface
+regressions and their repairs.  Check the exact-head CI status before promoting
+newly landed files from SOURCE-LANDED to LEAN VERIFIED.
 
-In exact source this is exposed by:
+### `HANDOFF_2026-09-17_HC4_FINAL_GLOBAL_ASSEMBLY.md`
 
-```text
-AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData.exists_globalProgress
-AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress
-```
-
-The remaining critical path is therefore global assembly:
-
-```text
-locate exact existing no-successor/global-terminal interface
-  -> contradict it with RankOneReesReducedTrace.exists_globalProgress
-  -> splice through existing rank-one Rees final outcome
-  -> splice through existing reachable-terminal impossibility assembly
-  -> consume existing unrestricted gradient-injectivity/HC4 entry theorem
-  -> expose public/root unrestricted HC4 theorem
-  -> exact-head Build HC4 + axiom + negative-control + escape-hatch audits
-```
-
-The residual local `qs` codimension-two and literal `x₀²` leaves are **not on
-the live critical path** unless an exact state-interface mismatch in the global
-splice proves otherwise. Do not reopen them by default.
-
-For current implementation status and TODO order, this handoff supersedes all
-earlier dated handoffs.
+Historical provenance for the zero-defect global-progress shortcut.  Its
+global-successor path remains valid infrastructure, but it is not by itself a
+terminal contradiction: `rankThreeRepairState 0` cannot be declared
+impossible merely from repair bookkeeping.  The 18 September handoff owns the
+live continuation point.
 
 ### `HANDOFF_2026-09-17_HC4_UNIT_FINITE_STAIRCASE_FINAL_CLOSURE.md`
 
