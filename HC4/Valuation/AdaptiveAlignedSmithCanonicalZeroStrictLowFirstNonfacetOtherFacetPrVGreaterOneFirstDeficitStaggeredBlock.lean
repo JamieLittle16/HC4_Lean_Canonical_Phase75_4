@@ -207,6 +207,108 @@ theorem firstDeficitRightStaggeredBlock_activeThree_eq :
         firstDeficitRightActiveIndex]
   exact congrArg Matrix.det hmatrix
 
+/-- Constant middle-row entries of the left staggered block, inherited
+from the already-certified active roof base. -/
+theorem firstDeficitLeftStaggeredBlock_base_b_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitLeftStaggeredBlock.b.coeff 0 = 0 := by
+  change (G.firstDeficitLeftActiveHessian 0 1).coeff 0 = 0
+  exact (G.firstDeficitLeftActiveHessian_base_middle_zero
+    hthree houtThree).1
+
+theorem firstDeficitLeftStaggeredBlock_base_d_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitLeftStaggeredBlock.d.coeff 0 = 0 := by
+  change (G.firstDeficitLeftActiveHessian 1 1).coeff 0 = 0
+  exact (G.firstDeficitLeftActiveHessian_base_middle_zero
+    hthree houtThree).2.1
+
+theorem firstDeficitLeftStaggeredBlock_base_r_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitLeftStaggeredBlock.r.coeff 0 = 0 := by
+  change (G.firstDeficitLeftActiveHessian 1 2).coeff 0 = 0
+  exact (G.firstDeficitLeftActiveHessian_base_middle_zero
+    hthree houtThree).2.2
+
+/-- Right-oriented middle-row base identities. -/
+theorem firstDeficitRightStaggeredBlock_base_b_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitRightStaggeredBlock.b.coeff 0 = 0 := by
+  change (G.firstDeficitRightActiveHessian 0 1).coeff 0 = 0
+  exact (G.firstDeficitRightActiveHessian_base_middle_zero
+    hthree houtThree).1
+
+theorem firstDeficitRightStaggeredBlock_base_d_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitRightStaggeredBlock.d.coeff 0 = 0 := by
+  change (G.firstDeficitRightActiveHessian 1 1).coeff 0 = 0
+  exact (G.firstDeficitRightActiveHessian_base_middle_zero
+    hthree houtThree).2.1
+
+theorem firstDeficitRightStaggeredBlock_base_r_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitRightStaggeredBlock.r.coeff 0 = 0 := by
+  change (G.firstDeficitRightActiveHessian 1 2).coeff 0 = 0
+  exact (G.firstDeficitRightActiveHessian_base_middle_zero
+    hthree houtThree).2.2
+
+/-- The staggered outer constant minor is the active roof outer minor. -/
+theorem firstDeficitLeftStaggeredBlock_base_outer_minor_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitLeftStaggeredBlock.a.coeff 0 *
+          G.firstDeficitLeftStaggeredBlock.x.coeff 0 -
+        G.firstDeficitLeftStaggeredBlock.p.coeff 0 *
+          G.firstDeficitLeftStaggeredBlock.p.coeff 0 ≠ 0 := by
+  change
+    (G.firstDeficitLeftActiveHessian 0 0).coeff 0 *
+          (G.firstDeficitLeftActiveHessian 2 2).coeff 0 -
+        (G.firstDeficitLeftActiveHessian 0 2).coeff 0 *
+          (G.firstDeficitLeftActiveHessian 0 2).coeff 0 ≠ 0
+  have houter :=
+    G.firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
+      hthree houtThree
+  have hsym :
+      (G.firstDeficitLeftActiveHessian 2 0).coeff 0 =
+        (G.firstDeficitLeftActiveHessian 0 2).coeff 0 := by
+    apply congrArg (fun p => p.coeff 0)
+    unfold firstDeficitLeftActiveHessian
+    exact parameterFirstHessian_symmetric
+      P.centralDeficitFamily 3 0
+  rw [hsym] at houter
+  exact houter
+
+theorem firstDeficitRightStaggeredBlock_base_outer_minor_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitRightStaggeredBlock.a.coeff 0 *
+          G.firstDeficitRightStaggeredBlock.x.coeff 0 -
+        G.firstDeficitRightStaggeredBlock.p.coeff 0 *
+          G.firstDeficitRightStaggeredBlock.p.coeff 0 ≠ 0 := by
+  change
+    (G.firstDeficitRightActiveHessian 0 0).coeff 0 *
+          (G.firstDeficitRightActiveHessian 2 2).coeff 0 -
+        (G.firstDeficitRightActiveHessian 0 2).coeff 0 *
+          (G.firstDeficitRightActiveHessian 0 2).coeff 0 ≠ 0
+  have houter :=
+    G.firstDeficitRightActiveHessian_base_outer_minor_ne_zero
+      hthree houtThree
+  have hsym :
+      (G.firstDeficitRightActiveHessian 2 0).coeff 0 =
+        (G.firstDeficitRightActiveHessian 0 2).coeff 0 := by
+    apply congrArg (fun p => p.coeff 0)
+    unfold firstDeficitRightActiveHessian
+    exact parameterFirstHessian_symmetric
+      P.centralDeficitFamily 3 0
+  rw [hsym] at houter
+  exact houter
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
