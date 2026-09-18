@@ -165,6 +165,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
