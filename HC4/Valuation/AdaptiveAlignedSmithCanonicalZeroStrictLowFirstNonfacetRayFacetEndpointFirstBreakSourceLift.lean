@@ -6,20 +6,12 @@ import Mathlib.Tactic
 /-!
 # Lift the whole-family endpoint first-break minor back to the represented source
 
-The pure-axis lower-ray endpoint produces an honest bounded reverse-Rees
-first-break packet.  Its generic rank-two outcome has two logically distinct
-constructors:
-
-* `familyMinor`: a coefficient of a principal minor of the whole reverse-Rees
-  Hessian is nonzero;
-* `layerMinor`: the principal minor formed from one exact parameter layer is
-  nonzero.
-
-Only the first constructor lifts directly to the represented source.  This
-file performs that lift through the exact parameter-first equivalence and the
-diagonal-inflation theorem in `ReverseWeightedReesHessianPrincipalMinor`.
-The layer-only constructor is retained explicitly; no cross-layer
-noncancellation is assumed.
+The pure-axis endpoint first-break has two genuinely different outcomes.
+A nonzero coefficient of a principal minor of the *whole* reverse-Rees family
+lifts back to the represented source by diagonal-inflation covariance.
+A principal minor formed only inside the exact breaking layer does not admit
+that inference without an extra noncancellation argument, so that case is
+retained explicitly.
 -/
 
 namespace HC4.Valuation
@@ -47,9 +39,10 @@ private theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square
       MvPolynomial.pderiv i (MvPolynomial.pderiv j P) =
         MvPolynomial.pderiv j (MvPolynomial.pderiv i P)
     exact pderiv_comm_commRing i j P
-  unfold HC4.Polynomial.hessianPrincipalMinor parameterFirstHessian
-  simp only [Matrix.map_apply, map_sub, map_mul]
+  unfold HC4.Polynomial.hessianPrincipalMinor
+  simp only [map_sub, map_mul]
   rw [hsym]
+  simp [parameterFirstHessian]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsRayFacetEndpointFirstBreakData
@@ -61,8 +54,7 @@ variable {C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetD
   T .qs}
 
 /-- The only endpoint first-break outcome not automatically liftable to the
-represented source: a nonzero principal minor formed inside the exact breaking
-parameter layer. -/
+represented source. -/
 def LayerMinorAtFirstBreak
     (D : QsRayFacetEndpointFirstBreakData C) : Prop :=
   let B := kernelLastFamilyHessianFourBlock
@@ -75,13 +67,14 @@ def LayerMinorAtFirstBreak
 
 private theorem familyMinor0_eq
     (D : QsRayFacetEndpointFirstBreakData C) :
-    let rho := kernelLastPerm D.kernelCoordinate
     let B := kernelLastFamilyHessianFourBlock
       D.exposure.reverseReesFamily D.kernelCoordinate
     B.a * B.z - B.q * B.q =
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 0) (rho 3)) := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 0)
+          (kernelLastPerm D.kernelCoordinate 3)) := by
   dsimp only
   unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     kernelLastParameterFirstHessian
@@ -94,13 +87,14 @@ private theorem familyMinor0_eq
 
 private theorem familyMinor1_eq
     (D : QsRayFacetEndpointFirstBreakData C) :
-    let rho := kernelLastPerm D.kernelCoordinate
     let B := kernelLastFamilyHessianFourBlock
       D.exposure.reverseReesFamily D.kernelCoordinate
     B.d * B.z - B.s * B.s =
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 1) (rho 3)) := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 1)
+          (kernelLastPerm D.kernelCoordinate 3)) := by
   dsimp only
   unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     kernelLastParameterFirstHessian
@@ -113,13 +107,14 @@ private theorem familyMinor1_eq
 
 private theorem familyMinor2_eq
     (D : QsRayFacetEndpointFirstBreakData C) :
-    let rho := kernelLastPerm D.kernelCoordinate
     let B := kernelLastFamilyHessianFourBlock
       D.exposure.reverseReesFamily D.kernelCoordinate
     B.x * B.z - B.y * B.y =
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 2) (rho 3)) := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 2)
+          (kernelLastPerm D.kernelCoordinate 3)) := by
   dsimp only
   unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
     kernelLastParameterFirstHessian
@@ -134,186 +129,231 @@ private theorem sourceMinor0_of_familyMinor
     (D : QsRayFacetEndpointFirstBreakData C)
     {j : ℕ}
     (h :
-      let B := kernelLastFamilyHessianFourBlock
-        D.exposure.reverseReesFamily D.kernelCoordinate
-      (B.a * B.z - B.q * B.q).coeff j ≠ 0) :
-    let rho := kernelLastPerm D.kernelCoordinate
+      ((kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).a *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).z -
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).q *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).q).coeff j ≠ 0) :
     HC4.Polynomial.hessianPrincipalMinor
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-        (rho 0) (rho 3) ≠ 0 := by
-  let rho := kernelLastPerm D.kernelCoordinate
+        (kernelLastPerm D.kernelCoordinate 0) D.kernelCoordinate ≠ 0 := by
   let B := kernelLastFamilyHessianFourBlock
     D.exposure.reverseReesFamily D.kernelCoordinate
   have hpoly : B.a * B.z - B.q * B.q ≠ 0 := by
     intro hz
     apply h
-    dsimp only [B]
+    change (B.a * B.z - B.q * B.q).coeff j ≠ 0
     rw [hz]
     simp
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 0) (rho 3)) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 0)
+          (kernelLastPerm D.kernelCoordinate 3)) ≠ 0 := by
     rw [← D.familyMinor0_eq]
     exact hpoly
   have hfamily :
       HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 0) (rho 3) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 0)
+          (kernelLastPerm D.kernelCoordinate 3) ≠ 0 := by
     intro hz
     apply hparam
     rw [hz]
     simp
-  dsimp only [rho]
-  apply reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
-    D.exposure.natWeight D.exposure.natLevel
-    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    D.exposure.hasReverseWeightBound
-    (kernelLastPerm D.kernelCoordinate 0)
-    (kernelLastPerm D.kernelCoordinate 3)
-  simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily
+  have hlift :=
+    reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
+      D.exposure.natWeight D.exposure.natLevel
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      D.exposure.hasReverseWeightBound
+      (kernelLastPerm D.kernelCoordinate 0)
+      (kernelLastPerm D.kernelCoordinate 3)
+      (by
+        simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily)
+  simpa only [kernelLastPerm_last] using hlift
 
 private theorem sourceMinor1_of_familyMinor
     (D : QsRayFacetEndpointFirstBreakData C)
     {j : ℕ}
     (h :
-      let B := kernelLastFamilyHessianFourBlock
-        D.exposure.reverseReesFamily D.kernelCoordinate
-      (B.d * B.z - B.s * B.s).coeff j ≠ 0) :
-    let rho := kernelLastPerm D.kernelCoordinate
+      ((kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).d *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).z -
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).s *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).s).coeff j ≠ 0) :
     HC4.Polynomial.hessianPrincipalMinor
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-        (rho 1) (rho 3) ≠ 0 := by
-  let rho := kernelLastPerm D.kernelCoordinate
+        (kernelLastPerm D.kernelCoordinate 1) D.kernelCoordinate ≠ 0 := by
   let B := kernelLastFamilyHessianFourBlock
     D.exposure.reverseReesFamily D.kernelCoordinate
   have hpoly : B.d * B.z - B.s * B.s ≠ 0 := by
     intro hz
     apply h
-    dsimp only [B]
+    change (B.d * B.z - B.s * B.s).coeff j ≠ 0
     rw [hz]
     simp
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 1) (rho 3)) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 1)
+          (kernelLastPerm D.kernelCoordinate 3)) ≠ 0 := by
     rw [← D.familyMinor1_eq]
     exact hpoly
   have hfamily :
       HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 1) (rho 3) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 1)
+          (kernelLastPerm D.kernelCoordinate 3) ≠ 0 := by
     intro hz
     apply hparam
     rw [hz]
     simp
-  dsimp only [rho]
-  apply reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
-    D.exposure.natWeight D.exposure.natLevel
-    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    D.exposure.hasReverseWeightBound
-    (kernelLastPerm D.kernelCoordinate 1)
-    (kernelLastPerm D.kernelCoordinate 3)
-  simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily
+  have hlift :=
+    reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
+      D.exposure.natWeight D.exposure.natLevel
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      D.exposure.hasReverseWeightBound
+      (kernelLastPerm D.kernelCoordinate 1)
+      (kernelLastPerm D.kernelCoordinate 3)
+      (by
+        simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily)
+  simpa only [kernelLastPerm_last] using hlift
 
 private theorem sourceMinor2_of_familyMinor
     (D : QsRayFacetEndpointFirstBreakData C)
     {j : ℕ}
     (h :
-      let B := kernelLastFamilyHessianFourBlock
-        D.exposure.reverseReesFamily D.kernelCoordinate
-      (B.x * B.z - B.y * B.y).coeff j ≠ 0) :
-    let rho := kernelLastPerm D.kernelCoordinate
+      ((kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).x *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).z -
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).y *
+        (kernelLastFamilyHessianFourBlock
+          D.exposure.reverseReesFamily D.kernelCoordinate).y).coeff j ≠ 0) :
     HC4.Polynomial.hessianPrincipalMinor
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-        (rho 2) (rho 3) ≠ 0 := by
-  let rho := kernelLastPerm D.kernelCoordinate
+        (kernelLastPerm D.kernelCoordinate 2) D.kernelCoordinate ≠ 0 := by
   let B := kernelLastFamilyHessianFourBlock
     D.exposure.reverseReesFamily D.kernelCoordinate
   have hpoly : B.x * B.z - B.y * B.y ≠ 0 := by
     intro hz
     apply h
-    dsimp only [B]
+    change (B.x * B.z - B.y * B.y).coeff j ≠ 0
     rw [hz]
     simp
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 2) (rho 3)) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 2)
+          (kernelLastPerm D.kernelCoordinate 3)) ≠ 0 := by
     rw [← D.familyMinor2_eq]
     exact hpoly
   have hfamily :
       HC4.Polynomial.hessianPrincipalMinor
-          D.exposure.reverseReesFamily (rho 2) (rho 3) ≠ 0 := by
+          D.exposure.reverseReesFamily
+          (kernelLastPerm D.kernelCoordinate 2)
+          (kernelLastPerm D.kernelCoordinate 3) ≠ 0 := by
     intro hz
     apply hparam
     rw [hz]
     simp
-  dsimp only [rho]
-  apply reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
-    D.exposure.natWeight D.exposure.natLevel
-    (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-    D.exposure.hasReverseWeightBound
-    (kernelLastPerm D.kernelCoordinate 2)
-    (kernelLastPerm D.kernelCoordinate 3)
-  simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily
+  have hlift :=
+    reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
+      D.exposure.natWeight D.exposure.natLevel
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      D.exposure.hasReverseWeightBound
+      (kernelLastPerm D.kernelCoordinate 2)
+      (kernelLastPerm D.kernelCoordinate 3)
+      (by
+        simpa [QsRayFacetEndpointSourceExposure.reverseReesFamily] using hfamily)
+  simpa only [kernelLastPerm_last] using hlift
 
 private noncomputable def actualRankTwoChart0
     (D : QsRayFacetEndpointFirstBreakData C)
     (hminor :
-      let rho := kernelLastPerm D.kernelCoordinate
       HC4.Polynomial.hessianPrincipalMinor
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-          (rho 0) (rho 3) ≠ 0) :
+          (kernelLastPerm D.kernelCoordinate 0) D.kernelCoordinate ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
       T.terminal.blocker.presented := by
   let rho := kernelLastPerm D.kernelCoordinate
   let sigma : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
   let pi : Equiv.Perm (Fin 4) := sigma.trans rho
+  have hs0 : sigma 0 = (0 : Fin 4) := by native_decide
+  have hs1 : sigma 1 = (3 : Fin 4) := by native_decide
   refine {
     permutation := pi
     activeDet_coeff_zero_ne_zero := ?_
   }
   rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  simpa [pi, sigma, rho] using hminor
+  change
+    HC4.Polynomial.hessianPrincipalMinor
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      (rho (sigma 0)) (rho (sigma 1)) ≠ 0
+  rw [hs0, hs1]
+  simpa only [kernelLastPerm_last] using hminor
 
 private noncomputable def actualRankTwoChart1
     (D : QsRayFacetEndpointFirstBreakData C)
     (hminor :
-      let rho := kernelLastPerm D.kernelCoordinate
       HC4.Polynomial.hessianPrincipalMinor
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-          (rho 1) (rho 3) ≠ 0) :
+          (kernelLastPerm D.kernelCoordinate 1) D.kernelCoordinate ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
       T.terminal.blocker.presented := by
   let rho := kernelLastPerm D.kernelCoordinate
   let sigma : Equiv.Perm (Fin 4) :=
     (Equiv.swap (1 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 1)
   let pi : Equiv.Perm (Fin 4) := sigma.trans rho
+  have hs0 : sigma 0 = (1 : Fin 4) := by native_decide
+  have hs1 : sigma 1 = (3 : Fin 4) := by native_decide
   refine {
     permutation := pi
     activeDet_coeff_zero_ne_zero := ?_
   }
   rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  simpa [pi, sigma, rho] using hminor
+  change
+    HC4.Polynomial.hessianPrincipalMinor
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      (rho (sigma 0)) (rho (sigma 1)) ≠ 0
+  rw [hs0, hs1]
+  simpa only [kernelLastPerm_last] using hminor
 
 private noncomputable def actualRankTwoChart2
     (D : QsRayFacetEndpointFirstBreakData C)
     (hminor :
-      let rho := kernelLastPerm D.kernelCoordinate
       HC4.Polynomial.hessianPrincipalMinor
           (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
-          (rho 2) (rho 3) ≠ 0) :
+          (kernelLastPerm D.kernelCoordinate 2) D.kernelCoordinate ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
       T.terminal.blocker.presented := by
   let rho := kernelLastPerm D.kernelCoordinate
   let sigma : Equiv.Perm (Fin 4) :=
     (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 3)
   let pi : Equiv.Perm (Fin 4) := sigma.trans rho
+  have hs0 : sigma 0 = (2 : Fin 4) := by native_decide
+  have hs1 : sigma 1 = (3 : Fin 4) := by native_decide
   refine {
     permutation := pi
     activeDet_coeff_zero_ne_zero := ?_
   }
   rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  simpa [pi, sigma, rho] using hminor
+  change
+    HC4.Polynomial.hessianPrincipalMinor
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      (rho (sigma 0)) (rho (sigma 1)) ≠ 0
+  rw [hs0, hs1]
+  simpa only [kernelLastPerm_last] using hminor
 
 /-- **Endpoint first-break refinement.**  A whole-family first-break minor
 already gives an actual rank-two chart on the represented source.  The only
