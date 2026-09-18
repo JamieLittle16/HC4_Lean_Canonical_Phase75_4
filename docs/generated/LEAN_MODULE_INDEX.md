@@ -2187,12 +2187,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture`
 
 - Path: `HC4/Polynomial/CodimensionTwoNonhomogeneousSeparatedDeparture.lean`
-- Purpose: Nonhomogeneous codimension-two separated-departure obstruction
+- Purpose: Nonhomogeneous codimension-two separated-departure pencil
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture`
-- External imports: `Mathlib.Tactic`
+- External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `def codimensionTwoNonhomogeneousSeparatedPencil`, `theorem coeff_two_det_codimensionTwoNonhomogeneousSeparatedPencil`, `theorem codimensionTwoNonhomogeneousSeparatedPencil_not_singular`
+- Declarations: `def codimensionTwoNonhomogeneousSeparatedPencil`
 
 ### `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 
