@@ -132,11 +132,11 @@ theorem hessian_zero_one_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 1 2) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [pderiv_comm_commRing (1 : Fin 2) (0 : Fin 2)
+  rw [pderiv_comm_backport (1 : Fin 2) (0 : Fin 2)
       (centralDeficitBinarySpecialisation (K := K) F)]
   rw [pderiv_zero_centralDeficitBinarySpecialisation,
     pderiv_one_centralDeficitBinarySpecialisation]
-  rw [pderiv_comm_commRing (1 : Fin 4) (2 : Fin 4) F]
+  rw [pderiv_comm_backport (1 : Fin 4) (2 : Fin 4) F]
 
 /-- Companion mixed entry. -/
 theorem hessian_one_zero_centralDeficitBinarySpecialisation
@@ -159,7 +159,8 @@ theorem binaryHessianDet_centralDeficitBinarySpecialisation
             HC4.Polynomial.hessian F 2 2 -
           HC4.Polynomial.hessian F 1 2 *
             HC4.Polynomial.hessian F 2 1) := by
-  unfold binaryDirectionalHessianDet
+  unfold binaryDirectionalHessianDet directionalSecondDerivative
+    directionalMixedDerivative
   simp only [← HC4.Polynomial.hessian_apply]
   rw [hessian_zero_zero_centralDeficitBinarySpecialisation,
     hessian_one_one_centralDeficitBinarySpecialisation,
