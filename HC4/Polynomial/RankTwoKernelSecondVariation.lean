@@ -33,6 +33,13 @@ open scoped Matrix
 
 noncomputable section
 
+-- Nested dual numbers are used only for a fixed finite 4x4 calculation.
+-- Give typeclass synthesis enough room once, rather than around individual
+-- declarations.
+set_option synthInstance.maxHeartbeats 1000000
+set_option maxHeartbeats 5000000
+
+
 /-- A four-by-four matrix supported on the active coordinate pair `0,3`. -/
 def rankTwoZeroKernelBase
     {R : Type*} [CommRing R]
@@ -64,7 +71,6 @@ def rankTwoZeroKernelSecondVariation
 
 No symmetry hypothesis is needed.  The correction layer `C` and every
 first-layer entry outside the kernel coordinates disappear identically. -/
-set_option maxHeartbeats 5000000 in
 theorem snd_snd_det_rankTwoZeroKernelSecondVariation
     {R : Type*} [CommRing R]
     (a b c d : R)
