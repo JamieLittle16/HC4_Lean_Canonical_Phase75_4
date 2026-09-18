@@ -82,6 +82,69 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+/-- Left active-middle entry is the honest `(1,1)` Hessian entry of
+the exact total-deficit layer. -/
+theorem firstDeficitLeftStaggeredBlock_d_coeff
+    (n : ℕ) :
+    G.firstDeficitLeftStaggeredBlock.d.coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1 := by
+  unfold firstDeficitLeftStaggeredBlock
+    firstDeficitLeftStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitLeftStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply]
+
+/-- Left mixed entry is the honest `(1,2)` Hessian entry of the exact
+total-deficit layer. -/
+theorem firstDeficitLeftStaggeredBlock_s_coeff
+    (n : ℕ) :
+    G.firstDeficitLeftStaggeredBlock.s.coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 2 := by
+  unfold firstDeficitLeftStaggeredBlock
+    firstDeficitLeftStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitLeftStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply]
+
+/-- Right active-middle entry is the honest `(2,2)` Hessian entry. -/
+theorem firstDeficitRightStaggeredBlock_d_coeff
+    (n : ℕ) :
+    G.firstDeficitRightStaggeredBlock.d.coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2 := by
+  unfold firstDeficitRightStaggeredBlock
+    firstDeficitRightStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitRightStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simp [-standardTwoZero_pderiv_two_eq_A,
+    HC4.Polynomial.hessian_apply, standardTwoZeroA]
+
+/-- Right mixed entry is the honest `(2,1)` Hessian entry. -/
+theorem firstDeficitRightStaggeredBlock_s_coeff
+    (n : ℕ) :
+    G.firstDeficitRightStaggeredBlock.s.coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 1 := by
+  unfold firstDeficitRightStaggeredBlock
+    firstDeficitRightStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitRightStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply]
+
 /-- The left staggered missing diagonal is literally the `(2,2)` Hessian
 entry of the exact total-deficit source layer. -/
 theorem firstDeficitLeftStaggeredBlock_z_coeff
