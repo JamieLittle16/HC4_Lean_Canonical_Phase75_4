@@ -69,6 +69,7 @@ theorem kernelLastBlock_kernelRow_ne_zero
       (permutedFamilyHessianFourBlock_determinantCore_eq_X_pow
         (kernelLastPerm k) E.reverseReesFamily
         E.reverseReesFamily_hasHessianDefect)
+  change B.q ≠ 0 ∨ B.s ≠ 0 ∨ B.y ≠ 0 ∨ B.z ≠ 0
   by_contra hnot
   push_neg at hnot
   have hdet0 : B.determinantCore = 0 := by
