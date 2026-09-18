@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8811**.
+Distinct declaration spellings indexed: **8812**.
 
 ## Repeated declaration spellings
 
@@ -4724,6 +4724,7 @@ Distinct declaration spellings indexed: **8811**.
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `exists_source_support_of_mem_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `exists_source_wRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `exists_source_zRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `exists_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
