@@ -214,6 +214,7 @@ noncomputable def matrixParameterGapSecondJet
 
 /-- **Second determinant coefficient bridge.**  The doubly-nilpotent component
 of the determinant is twice the selected `2*j` coefficient. -/
+set_option synthInstance.maxHeartbeats 1000000 in
 set_option maxHeartbeats 4000000 in
 theorem snd_snd_det_matrixParameterGapSecondJet
     {j : ℕ} (hj : 0 < j)
@@ -224,7 +225,8 @@ theorem snd_snd_det_matrixParameterGapSecondJet
       2 * M.det.coeff (2 * j) := by
   let J := parameterGapSecondJet (R := R) j hj
   let G := matrixToParameterGapCommRing M hM
-  have hmap : J G.det = (J.mapMatrix G).det := J.map_det G
+  have hmap : J G.det = (J.mapMatrix G).det := by
+    exact RingHom.map_det J G
   have hsub := (parameterGapSubring (R := R) j).subtype.map_det G
   have hmatrix :
       (parameterGapSubring (R := R) j).subtype.mapMatrix G = M := by
