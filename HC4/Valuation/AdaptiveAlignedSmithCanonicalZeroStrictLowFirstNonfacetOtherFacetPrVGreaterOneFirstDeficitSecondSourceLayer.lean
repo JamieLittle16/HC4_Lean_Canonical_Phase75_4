@@ -182,6 +182,7 @@ theorem firstDeficitRightStaggeredBlock_z_coeff
 inductive FirstDeficitSecondSourceLayerGeometry : Prop
   | left
       (first opposite second : Fin 4 →₀ ℕ)
+      (B : K)
       (q j k : ℕ)
       (q_eq : q = G.firstDeficitOrder)
       (j_eq : j = opposite 1 + opposite 2)
@@ -189,8 +190,13 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
       (first_mem : first ∈ G.firstDeficitLayer.support)
       (first_one : first 1 = q)
       (first_two : first 2 = 0)
+      (first_unique : ∀ f ∈ G.firstDeficitLayer.support, f = first)
       (opposite_mem : opposite ∈ P.carrier.support)
       (opposite_two : opposite 2 = 1)
+      (opposite_coefficient_ne_zero : B ≠ 0)
+      (opposite_layer_eq :
+        familyParameterLayer P.centralDeficitFamily j =
+          MvPolynomial.monomial opposite B)
       (q_lt_j : q < j)
       (second_mem : second ∈ P.carrier.support)
       (second_order : second 1 + second 2 = k)
@@ -208,6 +214,7 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
               (1 : Fin 4) 2)
   | right
       (first opposite second : Fin 4 →₀ ℕ)
+      (B : K)
       (q j k : ℕ)
       (q_eq : q = G.firstDeficitOrder)
       (j_eq : j = opposite 1 + opposite 2)
@@ -215,8 +222,13 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
       (first_mem : first ∈ G.firstDeficitLayer.support)
       (first_one : first 1 = 0)
       (first_two : first 2 = q)
+      (first_unique : ∀ f ∈ G.firstDeficitLayer.support, f = first)
       (opposite_mem : opposite ∈ P.carrier.support)
       (opposite_one : opposite 1 = 1)
+      (opposite_coefficient_ne_zero : B ≠ 0)
+      (opposite_layer_eq :
+        familyParameterLayer P.centralDeficitFamily j =
+          MvPolynomial.monomial opposite B)
       (q_lt_j : q < j)
       (second_mem : second ∈ P.carrier.support)
       (second_order : second 1 + second 2 = k)
@@ -279,10 +291,11 @@ theorem firstDeficit_secondSourceLayerGeometry
                 (familyParameterLayer P.centralDeficitFamily j)
                 (1 : Fin 4) 2 := by
         simpa [q, j, k, firstDeficitLayer] using heqSource
-      exact .left first opposite second q j k
+      exact .left first opposite second B q j k
         rfl rfl rfl hfirst
-        (by simpa [q] using hfirst1) hfirst2
-        hop hop2 (by simpa [q, j] using hstrict)
+        (by simpa [q] using hfirst1) hfirst2 huniq
+        hop hop2 hB (by simpa [j] using hlayer)
+        (by simpa [q, j] using hstrict)
         hsource.1 hsource.2 hsecond2 heqSource'
   | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
       hstrict hminimal hB hlayer hmixed hz heq =>
@@ -319,10 +332,11 @@ theorem firstDeficit_secondSourceLayerGeometry
                 (familyParameterLayer P.centralDeficitFamily j)
                 (2 : Fin 4) 1 := by
         simpa [q, j, k, firstDeficitLayer] using heqSource
-      exact .right first opposite second q j k
+      exact .right first opposite second B q j k
         rfl rfl rfl hfirst hfirst1
-        (by simpa [q] using hfirst2)
-        hop hop1 (by simpa [q, j] using hstrict)
+        (by simpa [q] using hfirst2) huniq
+        hop hop1 hB (by simpa [j] using hlayer)
+        (by simpa [q, j] using hstrict)
         hsource.1 hsource.2 hsecond1 heqSource'
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
