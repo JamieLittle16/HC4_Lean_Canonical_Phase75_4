@@ -53,15 +53,17 @@ def rankTwoToRankThreeRoofPencil
         Polynomial.C (vectorHessianCore3 (K := K) ![a, D, b] i j)
 
 /-- **Exact linear determinant coefficient for the roof opening.** -/
-set_option maxHeartbeats 2000000 in
 theorem coeff_one_det_rankTwoToRankThreeRoofPencil
     {K : Type*} [CommRing K]
     (p r a D b C A : K) :
     (rankTwoToRankThreeRoofPencil p r a D b C A).det.coeff 1 =
       A * C ^ 2 * D * (D - 1) * p * r * (1 - p - r) := by
-  simp [rankTwoToRankThreeRoofPencil, vectorHessianCore3,
-    Matrix.det_fin_three]
-  ring
+  set_option maxHeartbeats 2000000 in
+    simp [rankTwoToRankThreeRoofPencil, vectorHessianCore3,
+      Matrix.det_fin_three]
+    ring_nf
+    simp [Polynomial.coeff_X_pow]
+    ring
 
 /-- A genuine nonprimitive axis opening makes the three-coordinate roof
 Hessian determinant nonzero. -/
@@ -220,36 +222,6 @@ theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
   have hB : B 1 1 = 0 :=
     (mul_eq_zero.mp hzero).resolve_left hactive
   exact hB
-
-
-/-- **Exact first nonzero roof-minor coefficient.**
-
-At a positive gap above a rank-two constant roof block, the selected
-determinant coefficient is the active constant minor times the middle
-diagonal of the first layer.  No later layer contributes. -/
-theorem coeff_det_polynomialMatrix3_gap
-    {R : Type*} [CommRing R]
-    {j : ℕ} (hj : 0 < j)
-    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hgap : ∀ r s,
-      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
-    (a b c d : R)
-    (hbase : ∀ r s,
-      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s) :
-    M.det.coeff j =
-      (a * d - b * c) * (M 1 1).coeff j := by
-  let B : Matrix (Fin 3) (Fin 3) R :=
-    fun r s => (M r s).coeff j
-  have hjet :
-      matrix3ParameterGapDualJet hj M hgap =
-        rankTwoRoofFirstJet a b c d B := by
-    ext r s
-    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
-      B, hbase]
-  have hcoeff :=
-    snd_det_matrix3ParameterGapDualJet hj M hgap
-  rw [hjet, snd_det_rankTwoRoofFirstJet] at hcoeff
-  simpa [B] using hcoeff.symm
 
 
 /-- A three-by-three polynomial matrix whose entries all have a parameter gap
