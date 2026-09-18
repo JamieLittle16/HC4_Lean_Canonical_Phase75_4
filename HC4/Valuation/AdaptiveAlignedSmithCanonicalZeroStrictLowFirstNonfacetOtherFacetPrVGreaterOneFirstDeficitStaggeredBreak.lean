@@ -135,7 +135,7 @@ private theorem leftBlock_q_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitLeftStaggeredBlock.q.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 0 2).coeff n = 0 := by
@@ -154,7 +154,7 @@ private theorem leftBlock_s_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitLeftStaggeredBlock.s.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 1 2).coeff n = 0 := by
@@ -173,7 +173,7 @@ private theorem leftBlock_y_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitLeftStaggeredBlock.y.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 3 2).coeff n = 0 := by
@@ -192,7 +192,7 @@ private theorem leftBlock_z_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitLeftStaggeredBlock.z.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
   simpa [firstDeficitLeftStaggeredBlock,
     firstDeficitLeftStaggeredMatrix,
@@ -206,7 +206,7 @@ private theorem rightBlock_q_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitRightStaggeredBlock.q.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 0 1).coeff n = 0 := by
@@ -225,7 +225,7 @@ private theorem rightBlock_s_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitRightStaggeredBlock.s.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 2 1).coeff n = 0 := by
@@ -244,7 +244,7 @@ private theorem rightBlock_y_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitRightStaggeredBlock.y.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
   have hsym :
       (parameterFirstHessian P.centralDeficitFamily 3 1).coeff n = 0 := by
@@ -263,7 +263,7 @@ private theorem rightBlock_z_coeff_eq_zero_before
     {n : ℕ} (hn : n < opposite 1 + opposite 2) :
     G.firstDeficitRightStaggeredBlock.z.coeff n = 0 := by
   have hrow :=
-    G.missingHessianRow_coeff_eq_zero_of_lt
+    missingHessianRow_coeff_eq_zero_of_lt
       (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
   simpa [firstDeficitRightStaggeredBlock,
     firstDeficitRightStaggeredMatrix,
