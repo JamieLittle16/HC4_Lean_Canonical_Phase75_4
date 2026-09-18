@@ -427,6 +427,70 @@ theorem firstDeficitRightActiveHessian_det_ne_zero
   exact hdiag (by simpa [firstDeficitLayer] using hzero)
 
 
+/-- Exact leading active determinant coefficient in the left orientation.
+The rank-two constant outer minor multiplies the honest `(1,1)` Hessian
+entry of the first positive total-deficit source layer. -/
+theorem firstDeficitLeftActiveHessian_det_coeff_first_eq
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitLeftActiveHessian.det.coeff G.firstDeficitOrder =
+      (HC4.Polynomial.hessian G.exposure.face 0 0 *
+          HC4.Polynomial.hessian G.exposure.face 3 3 -
+        HC4.Polynomial.hessian G.exposure.face 0 3 *
+          HC4.Polynomial.hessian G.exposure.face 3 0) *
+        HC4.Polynomial.hessian G.firstDeficitLayer 1 1 := by
+  let a := HC4.Polynomial.hessian G.exposure.face (0 : Fin 4) 0
+  let b := HC4.Polynomial.hessian G.exposure.face (0 : Fin 4) 3
+  let c := HC4.Polynomial.hessian G.exposure.face (3 : Fin 4) 0
+  let d := HC4.Polynomial.hessian G.exposure.face (3 : Fin 4) 3
+  have hbase : ∀ r s : Fin 3,
+      (G.firstDeficitLeftActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c d r s := by
+    intro r s
+    simpa [a, b, c, d] using
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree r s
+  rw [HC4.Polynomial.coeff_det_polynomialMatrix3_gap
+      G.firstDeficitOrder_pos
+      G.firstDeficitLeftActiveHessian
+      (fun r s => G.leftActive_gap r s)
+      a b c d hbase]
+  unfold firstDeficitLeftActiveHessian
+  simp [firstDeficitLeftActiveIndex]
+  rw [parameterFirstHessian_coeff]
+  rfl
+
+/-- Right-oriented exact leading active determinant coefficient. -/
+theorem firstDeficitRightActiveHessian_det_coeff_first_eq
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.firstDeficitRightActiveHessian.det.coeff G.firstDeficitOrder =
+      (HC4.Polynomial.hessian G.exposure.face 0 0 *
+          HC4.Polynomial.hessian G.exposure.face 3 3 -
+        HC4.Polynomial.hessian G.exposure.face 0 3 *
+          HC4.Polynomial.hessian G.exposure.face 3 0) *
+        HC4.Polynomial.hessian G.firstDeficitLayer 2 2 := by
+  let a := HC4.Polynomial.hessian G.exposure.face (0 : Fin 4) 0
+  let b := HC4.Polynomial.hessian G.exposure.face (0 : Fin 4) 3
+  let c := HC4.Polynomial.hessian G.exposure.face (3 : Fin 4) 0
+  let d := HC4.Polynomial.hessian G.exposure.face (3 : Fin 4) 3
+  have hbase : ∀ r s : Fin 3,
+      (G.firstDeficitRightActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c d r s := by
+    intro r s
+    simpa [a, b, c, d] using
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree r s
+  rw [HC4.Polynomial.coeff_det_polynomialMatrix3_gap
+      G.firstDeficitOrder_pos
+      G.firstDeficitRightActiveHessian
+      (fun r s => G.rightActive_gap r s)
+      a b c d hbase]
+  unfold firstDeficitRightActiveHessian
+  simp [firstDeficitRightActiveIndex]
+  rw [parameterFirstHessian_coeff]
+  rfl
+
 /-- Exact leading determinant coefficient in the left first-deficit
 orientation. -/
 theorem firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
