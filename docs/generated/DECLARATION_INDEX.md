@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8829**.
+Distinct declaration spellings indexed: **8841**.
 
 ## Repeated declaration spellings
 
@@ -3402,6 +3402,7 @@ Distinct declaration spellings indexed: **8829**.
 - `binaryLinearFormTransverseDeriv_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `binaryLinearFormTransverseDeriv_sq_expand` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `binaryLinearPower_cross_zero_implies_transverse_sq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
+- `binaryLinearPower_hessian_diag_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `binaryMaximalLayer_residualFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`
 - `binaryMonomial_zeroHessian_forces_otherExponent_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `binaryOrdinaryDegreeComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
@@ -5033,9 +5034,16 @@ Distinct declaration spellings indexed: **8829**.
 - `firstDeficitLayer_singleton_axis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeficitLayer_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitLinearPower_not_both_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
+- `firstDeficitOneRoofHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `firstDeficitOneRoofHessian_det_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `firstDeficitOneRoofIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `firstDeficitOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
+- `firstDeficitTwoRoofHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `firstDeficitTwoRoofHessian_det_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `firstDeficitTwoRoofIndex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `firstDeficit_rankThree_roof` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `firstDeparture` — `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstDepartureBinaryDet` — `def` in `HC4.Newton.FirstDepartureBinaryHessian`
 - `firstDepartureBinaryDet_eq_neg_sq` — `theorem` in `HC4.Newton.FirstDepartureBinaryHessian`
@@ -6280,6 +6288,8 @@ Distinct declaration spellings indexed: **8829**.
 - `oneFiber_swappedEuler_coeff_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_swappedEuler_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `oneFiber_upper_diagonal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberUpperImpossible`
+- `oneRoof_base` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `oneRoof_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `oneStepSmith_sectionDivisibility_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneStepSmith_sectionSpecialPoint_eq_of_transverseSpecial_zero` — `theorem` in `HC4.Valuation.CanonicalSmithDefectExposureCollision`
 - `oneZeroFibrePoint` — `def` in `HC4.Newton.TerminalOneZeroEndpoint`
@@ -8899,6 +8909,8 @@ Distinct declaration spellings indexed: **8829**.
 - `twoFunction_concrete_factorB_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
 - `twoFunction_factorB_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerRigidity`
 - `twoFunction_factorB_series_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
+- `twoRoof_base` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
+- `twoRoof_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `twoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoRootEulerOperator_derivative_form` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoRootEulerOperator_support_subset` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
