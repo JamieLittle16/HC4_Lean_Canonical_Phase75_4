@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8801**.
+Distinct declaration spellings indexed: **8802**.
 
 ## Repeated declaration spellings
 
@@ -2454,6 +2454,7 @@ Distinct declaration spellings indexed: **8801**.
 - `QsOtherFacetPrLeftVContactFrontierData.locked_facet_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_outside_eq_twoFunctionExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneTwoFunctionReconstruction`
 - `QsOtherFacetPrLeftVContactFrontierData.locked_yRoof_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits`
+- `QsOtherFacetPrLeftVContactFrontierData.no_adjacent_deficits` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_degree_pairs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberDegree`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonProfile_dualEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseEndpointEuler`
 - `QsOtherFacetPrLeftVContactFrontierData.oneFiber_commonTranslatedProfile_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberModes`
