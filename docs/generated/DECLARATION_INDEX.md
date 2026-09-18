@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8942**.
+Distinct declaration spellings indexed: **8943**.
 
 ## Repeated declaration spellings
 
@@ -5140,6 +5140,7 @@ Distinct declaration spellings indexed: **8942**.
 - `firstKernelBlowup_specialPoints_ne` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBlowup_terminalDefect_of_exactClosure` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelBreakActiveThreeDet` — `def` in `HC4.Valuation.FirstKernelBreakRankTwo`
+- `firstKernelBreakActiveThreeDet_eq_submatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstKernelOffender_active` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelOffender_maximalSlope_lt_firstOrder` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstKernelOffender_not_candidateDivisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurOffenderDispatcher`, `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
