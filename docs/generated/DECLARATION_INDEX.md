@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8957**.
+Distinct declaration spellings indexed: **8961**.
 
 ## Repeated declaration spellings
 
@@ -5454,6 +5454,9 @@ Distinct declaration spellings indexed: **8957**.
 - `hessianMonomialContributionAt` — `def` in `HC4.Newton.TerminalActualHessian`
 - `hessianMonomialContributionAt_origin_ne_zero_exponent_eq` — `theorem` in `HC4.Newton.TerminalActualHessian`
 - `hessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `hessianPrincipalMinor_C_mul` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
+- `hessianPrincipalMinor_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
+- `hessianPrincipalMinor_constantPolynomialFamily` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `hessianPrincipalMinor_monomial_ne_zero_of_two_positive` — `theorem` in `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - `hessianPrincipalMinor_ne_zero_of_crossFacetRay` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
@@ -7730,6 +7733,7 @@ Distinct declaration spellings indexed: **8957**.
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_familyParameterLayer_schurB_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_familyParameterLayer_schurC_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
