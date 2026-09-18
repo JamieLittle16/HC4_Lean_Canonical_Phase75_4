@@ -97,6 +97,47 @@ theorem reverseWeightedReesFamily_parameterLayer_zero_coeff
       simp [heq, hne]
   · simp [hd]
 
+/-- Every bounded reverse-Rees parameter layer is exactly the source
+weight component at complementary level `D - n`.
+
+This is deliberately an exact-component statement, not a maximal-initial-form
+statement: for `n > 0`, higher source-weight components may still be present.
+That distinction is essential when transporting nonlinear Hessian expressions,
+since different parameter layers can cancel in the whole source. -/
+theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
+    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F) (hn : n ≤ D) :
+    familyParameterLayer (reverseWeightedReesFamily w D F h) n =
+      initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
+  ext d
+  rw [reverseWeightedReesFamily_parameterLayer_coeff,
+    HC4.Polynomial.coeff_initialForm]
+  have hcast :
+      Finsupp.weight (fun i => (w i : ℤ)) d =
+        (Finsupp.weight w d : ℤ) := by
+    rw [Finsupp.weight_apply, Finsupp.weight_apply]
+    push_cast
+    rfl
+  rw [hcast]
+  by_cases hd : d ∈ F.support
+  · have hle := h d hd
+    simp only [hd, true_and]
+    by_cases heq : D - Finsupp.weight w d = n
+    · have hweight : Finsupp.weight w d = D - n := by
+        omega
+      simp [heq, hweight]
+    · have hweight : Finsupp.weight w d ≠ D - n := by
+        intro hweight
+        apply heq
+        omega
+      have hweightZ :
+          (Finsupp.weight w d : ℤ) ≠ ((D - n : ℕ) : ℤ) := by
+        exact_mod_cast hweight
+      simp [heq, hweightZ]
+  · have hcoeff : MvPolynomial.coeff d F = 0 :=
+      MvPolynomial.notMem_support_iff.mp hd
+    simp [hd, hcoeff]
+
 /-- The special fibre of the reverse Rees family is exactly its zero
 parameter layer. -/
 theorem polynomialFamilySpecialFiber_reverseWeightedReesFamily_eq_layer_zero
