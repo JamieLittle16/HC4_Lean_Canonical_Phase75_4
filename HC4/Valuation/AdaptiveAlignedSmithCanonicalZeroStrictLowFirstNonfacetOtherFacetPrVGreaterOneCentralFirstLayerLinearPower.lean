@@ -112,18 +112,20 @@ theorem firstDeficitLinearPower_not_both_nonzero
   have hqm : q = m + 1 := by
     dsimp [m]
     omega
+  have horder : firstDeficitOrder G = m + 1 := by
+    simpa [q] using hqm
   have hsupp :=
     HC4.Polynomial.pure_and_adjacent_mem_support_C_mul_linearPower
       (a := a) (c := c) (m := m) ha hc0 hc1
   have hpure :
       HC4.Polynomial.binaryPureZeroExponent q ∈
         (firstDeficitBinaryFace G).support := by
-    rw [hface, hqm]
-    simpa using hsupp.1
+    rw [hface, horder, hqm]
+    exact hsupp.1
   have hadj :
       HC4.Polynomial.binaryAdjacentZeroOneExponent m ∈
         (firstDeficitBinaryFace G).support := by
-    rw [hface, hqm]
+    rw [hface, horder]
     exact hsupp.2
 
   rcases
@@ -148,8 +150,25 @@ theorem firstDeficitLinearPower_not_both_nonzero
     HC4.Polynomial.binaryPureZeroExponent_zero_apply,
     HC4.Polynomial.binaryPureZeroExponent_one_apply,
     HC4.Polynomial.binaryAdjacentZeroOneExponent_zero_apply,
-    HC4.Polynomial.binaryAdjacentZeroOneExponent_one_apply] at
-      hf1 hf2 he1 he2
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_one_apply] at hf1
+  simp only [HC4.Polynomial.binaryDeficitExponent_zero,
+    HC4.Polynomial.binaryDeficitExponent_one,
+    HC4.Polynomial.binaryPureZeroExponent_zero_apply,
+    HC4.Polynomial.binaryPureZeroExponent_one_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_zero_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_one_apply] at hf2
+  simp only [HC4.Polynomial.binaryDeficitExponent_zero,
+    HC4.Polynomial.binaryDeficitExponent_one,
+    HC4.Polynomial.binaryPureZeroExponent_zero_apply,
+    HC4.Polynomial.binaryPureZeroExponent_one_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_zero_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_one_apply] at he1
+  simp only [HC4.Polynomial.binaryDeficitExponent_zero,
+    HC4.Polynomial.binaryDeficitExponent_one,
+    HC4.Polynomial.binaryPureZeroExponent_zero_apply,
+    HC4.Polynomial.binaryPureZeroExponent_one_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_zero_apply,
+    HC4.Polynomial.binaryAdjacentZeroOneExponent_one_apply] at he2
 
   have hfCarrier := (firstDeficitLayer_support G hf).1
   have heCarrier := (firstDeficitLayer_support G he).1
@@ -183,8 +202,10 @@ theorem firstDeficitBinaryFace_pureAxis
   · have hc1 : c 1 ≠ 0 := by
       intro hc1
       apply firstDeficitBinaryFace_ne_zero G hthree houtThree
+      have hqne : firstDeficitOrder G ≠ 0 :=
+        Nat.ne_of_gt (firstDeficitOrder_pos G)
       rw [hface, HC4.Polynomial.gradientRatioLinearForm_finTwo_eq]
-      simp [hc0, hc1, firstDeficitOrder_pos G]
+      simp [hc0, hc1, hqne]
     exact ⟨a, c, hface, ha, Or.inr ⟨hc0, hc1⟩⟩
   · by_cases hc1 : c 1 = 0
     · exact ⟨a, c, hface, ha, Or.inl ⟨hc0, hc1⟩⟩
