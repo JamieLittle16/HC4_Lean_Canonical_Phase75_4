@@ -1062,6 +1062,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.RankTwoKernelSecondVariation`
+  - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - _(no local imports)_
 - `HC4.Polynomial.TopProduct`

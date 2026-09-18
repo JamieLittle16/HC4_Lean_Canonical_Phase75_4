@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8739**.
+Distinct declaration spellings indexed: **8744**.
 
 ## Repeated declaration spellings
 
@@ -5547,6 +5547,7 @@ Distinct declaration spellings indexed: **8739**.
 - `iteratedInitialForm` — `def` in `HC4.Newton.IteratedRefinement`
 - `iteratedInitialForm_eq_lexInitialForm` — `theorem` in `HC4.Newton.IteratedRefinement`
 - `joint_or_separated_of_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
+- `kernelBlock_det_eq_zero_of_secondVariation_eq_zero` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlowupSection` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelBlowupSection_apply_kernel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `kernelBlowupSection_apply_of_ne` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
@@ -7337,6 +7338,9 @@ Distinct declaration spellings indexed: **8739**.
 - `rankTwoSchurEntry_hasRepairOrTerminal` — `theorem` in `HC4.Newton.RestartClassification`
 - `rankTwoSchurEntry_terminal_or_rankThreeExhaustion` — `theorem` in `HC4.Newton.RankTwoRepairTerminal`
 - `rankTwoSchurEntry_terminal_or_strictRepair` — `theorem` in `HC4.Newton.RankTwoRepairTerminal`
+- `rankTwoSecondVariationEntry` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `rankTwoZeroKernelBase` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `rankTwoZeroKernelSecondVariation` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `rankTwo_measure_succ_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankTwo_repairProgress_complexityDrop_or_rankThree` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankTwo_to_rankThree_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
@@ -8106,6 +8110,7 @@ Distinct declaration spellings indexed: **8739**.
 - `snd_snd_det_matrixParameterGapSecondJet` — `theorem` in `HC4.Valuation.ParameterGapSecondJet`
 - `snd_snd_det_middleHighestSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
 - `snd_snd_det_middleLockedSecondJet` — `theorem` in `HC4.Polynomial.FiniteStaircaseMiddleDoubleRootVariation`
+- `snd_snd_det_rankTwoZeroKernelSecondVariation` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `snd_snd_det_secondVariationJetMatrix_eval_eq_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `snd_snd_det_secondVariationTopMatrix_eq_zero_of_threeLayer_det_zero` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerSecondVariation`
 - `snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
