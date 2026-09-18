@@ -167,6 +167,126 @@ private theorem layer_zero_eq_exposure
     G.exposure_face_eq]
 
 
+/-- Exact constant layer of the left active three-by-three roof block. -/
+theorem firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (r s : Fin 3) :
+    (G.firstDeficitLeftActiveHessian r s).coeff 0 =
+      HC4.Polynomial.rankTwoRoofZeroKernelBase
+        (HC4.Polynomial.hessian G.exposure.face 0 0)
+        (HC4.Polynomial.hessian G.exposure.face 0 3)
+        (HC4.Polynomial.hessian G.exposure.face 3 0)
+        (HC4.Polynomial.hessian G.exposure.face 3 3) r s := by
+  unfold firstDeficitLeftActiveHessian
+  rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
+  fin_cases r <;> fin_cases s <;>
+    simp [-standardTwoZero_pderiv_two_eq_A,
+      -standardTwoZero_pderiv_three_eq_C,
+      firstDeficitLeftActiveIndex,
+      HC4.Polynomial.rankTwoRoofZeroKernelBase,
+      G.exposure_face_eq, HC4.Polynomial.hessian_apply,
+      MvPolynomial.pderiv_monomial,
+      standardTwoZeroA, standardTwoZeroC,
+      G.central_one_zero, G.central_two_zero]
+
+/-- Exact constant layer of the right active three-by-three roof block. -/
+theorem firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (r s : Fin 3) :
+    (G.firstDeficitRightActiveHessian r s).coeff 0 =
+      HC4.Polynomial.rankTwoRoofZeroKernelBase
+        (HC4.Polynomial.hessian G.exposure.face 0 0)
+        (HC4.Polynomial.hessian G.exposure.face 0 3)
+        (HC4.Polynomial.hessian G.exposure.face 3 0)
+        (HC4.Polynomial.hessian G.exposure.face 3 3) r s := by
+  unfold firstDeficitRightActiveHessian
+  rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
+  fin_cases r <;> fin_cases s <;>
+    simp [-standardTwoZero_pderiv_two_eq_A,
+      -standardTwoZero_pderiv_three_eq_C,
+      firstDeficitRightActiveIndex,
+      HC4.Polynomial.rankTwoRoofZeroKernelBase,
+      G.exposure_face_eq, HC4.Polynomial.hessian_apply,
+      MvPolynomial.pderiv_monomial,
+      standardTwoZeroA, standardTwoZeroC,
+      G.central_one_zero, G.central_two_zero]
+
+/-- The left active block has zero constant middle row/column. -/
+theorem firstDeficitLeftActiveHessian_base_middle_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.firstDeficitLeftActiveHessian 0 1).coeff 0 = 0 ∧
+    (G.firstDeficitLeftActiveHessian 1 1).coeff 0 = 0 ∧
+    (G.firstDeficitLeftActiveHessian 1 2).coeff 0 = 0 := by
+  constructor
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 1
+  constructor
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (1 : Fin 3) 1
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (1 : Fin 3) 2
+
+/-- Right active block has zero constant middle row/column. -/
+theorem firstDeficitRightActiveHessian_base_middle_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.firstDeficitRightActiveHessian 0 1).coeff 0 = 0 ∧
+    (G.firstDeficitRightActiveHessian 1 1).coeff 0 = 0 ∧
+    (G.firstDeficitRightActiveHessian 1 2).coeff 0 = 0 := by
+  constructor
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 1
+  constructor
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (1 : Fin 3) 1
+  · simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (1 : Fin 3) 2
+
+/-- The constant outer minor of the left active block is the retained central minor. -/
+theorem firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.firstDeficitLeftActiveHessian 0 0).coeff 0 *
+          (G.firstDeficitLeftActiveHessian 2 2).coeff 0 -
+        (G.firstDeficitLeftActiveHessian 0 2).coeff 0 *
+          (G.firstDeficitLeftActiveHessian 0 2).coeff 0 ≠ 0 := by
+  rw [G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 0,
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (2 : Fin 3) 2,
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 2]
+  simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase,
+    HC4.Polynomial.hessianPrincipalMinor,
+    HC4.Polynomial.hessian_symmetric] using G.exposure_rankTwo_minor
+
+/-- Right active block has the same retained constant outer minor. -/
+theorem firstDeficitRightActiveHessian_base_outer_minor_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.firstDeficitRightActiveHessian 0 0).coeff 0 *
+          (G.firstDeficitRightActiveHessian 2 2).coeff 0 -
+        (G.firstDeficitRightActiveHessian 0 2).coeff 0 *
+          (G.firstDeficitRightActiveHessian 0 2).coeff 0 ≠ 0 := by
+  rw [G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 0,
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (2 : Fin 3) 2,
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree (0 : Fin 3) 2]
+  simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase,
+    HC4.Polynomial.hessianPrincipalMinor,
+    HC4.Polynomial.hessian_symmetric] using G.exposure_rankTwo_minor
+
 /-- The left active roof determinant itself has no positive coefficient below
 the canonical first deficit order. -/
 theorem firstDeficitLeftActiveHessian_det_gap :
