@@ -172,7 +172,7 @@ theorem firstDeficitOneRoofHessian_det_ne_zero
       HC4.Polynomial.hessian (firstDeficitBinaryFace G)
         (0 : Fin 2) 0 ≠ 0 := by
     rw [hface]
-    exact G.binaryLinearPower_hessian_diag_ne_zero
+    exact binaryLinearPower_hessian_diag_ne_zero
       (firstDeficitOrder_two_le G hthree houtThree) ha hc0
   have hdiag :
       (G.firstDeficitOneRoofHessian 1 1).coeff
@@ -211,7 +211,7 @@ theorem firstDeficitTwoRoofHessian_det_ne_zero
       HC4.Polynomial.hessian (firstDeficitBinaryFace G)
         (1 : Fin 2) 1 ≠ 0 := by
     rw [hface]
-    exact G.binaryLinearPower_hessian_diag_ne_zero
+    exact binaryLinearPower_hessian_diag_ne_zero
       (firstDeficitOrder_two_le G hthree houtThree) ha hc1
   have hdiag :
       (G.firstDeficitTwoRoofHessian 1 1).coeff
