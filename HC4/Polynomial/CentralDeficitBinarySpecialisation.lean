@@ -1,4 +1,5 @@
 import HC4.Newton.PreterminalFirstDeparture
+import HC4.Polynomial.MonomialHessian
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous
 import Mathlib.Tactic
 
@@ -76,7 +77,7 @@ theorem pderiv_zero_centralDeficitBinarySpecialisation
   · intro z
     simp [centralDeficitBinarySpecialisation]
   · intro P Q hP hQ
-    simp [hP, hQ]
+    simpa only [map_add, hP, hQ]
   · intro P i hP
     simp only [map_mul, MvPolynomial.pderiv_mul, map_add, hP]
     fin_cases i <;>
@@ -94,7 +95,7 @@ theorem pderiv_one_centralDeficitBinarySpecialisation
   · intro z
     simp [centralDeficitBinarySpecialisation]
   · intro P Q hP hQ
-    simp [hP, hQ]
+    simpa only [map_add, hP, hQ]
   · intro P i hP
     simp only [map_mul, MvPolynomial.pderiv_mul, map_add, hP]
     fin_cases i <;>
@@ -131,8 +132,10 @@ theorem hessian_zero_one_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 1 2) := by
   simp only [HC4.Polynomial.hessian_apply]
+  rw [HC4.Newton.pderiv_comm_backport (0 : Fin 2) 1]
   rw [pderiv_one_centralDeficitBinarySpecialisation,
     pderiv_zero_centralDeficitBinarySpecialisation]
+  rw [HC4.Newton.pderiv_comm_backport (1 : Fin 4) 2]
 
 /-- Companion mixed entry. -/
 theorem hessian_one_zero_centralDeficitBinarySpecialisation
@@ -142,8 +145,10 @@ theorem hessian_one_zero_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 2 1) := by
   simp only [HC4.Polynomial.hessian_apply]
+  rw [HC4.Newton.pderiv_comm_backport (1 : Fin 2) 0]
   rw [pderiv_zero_centralDeficitBinarySpecialisation,
     pderiv_one_centralDeficitBinarySpecialisation]
+  rw [HC4.Newton.pderiv_comm_backport (2 : Fin 4) 1]
 
 /-- **Exact binary Hessian transport.** -/
 theorem binaryHessianDet_centralDeficitBinarySpecialisation
@@ -161,7 +166,7 @@ theorem binaryHessianDet_centralDeficitBinarySpecialisation
     hessian_one_one_centralDeficitBinarySpecialisation,
     hessian_zero_one_centralDeficitBinarySpecialisation,
     hessian_one_zero_centralDeficitBinarySpecialisation]
-  simp
+  simp only [map_sub, map_mul]
 
 /-- Exact image of one source monomial. -/
 theorem centralDeficitBinarySpecialisation_monomial
@@ -171,6 +176,7 @@ theorem centralDeficitBinarySpecialisation_monomial
       MvPolynomial.C z *
         (MvPolynomial.X (0 : Fin 2)) ^ e 1 *
         (MvPolynomial.X (1 : Fin 2)) ^ e 2 := by
+  unfold centralDeficitBinarySpecialisation
   rw [MvPolynomial.eval₂Hom_monomial]
   rw [Finsupp.prod_fintype]
   · rw [Fin.prod_univ_four]
@@ -212,30 +218,13 @@ theorem centralDeficitBinarySpecialisation_monomial_eq
         (MvPolynomial.monomial e z) =
       MvPolynomial.monomial (binaryDeficitExponent e) z := by
   rw [centralDeficitBinarySpecialisation_monomial]
-  apply MvPolynomial.ext
-  intro d
-  rw [MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial]
-  by_cases hd : binaryDeficitExponent e = d
-  · subst d
-    simp [binaryDeficitExponent, MvPolynomial.coeff_C_mul,
-      MvPolynomial.coeff_mul, Finsupp.single_apply]
-  · have hne : d ≠ binaryDeficitExponent e := Ne.symm hd
-    rw [if_neg hd]
-    classical
-    simp only [MvPolynomial.coeff_mul]
-    rw [Finset.sum_eq_zero]
-    intro x hx
-    rcases Finset.mem_antidiagonal.mp hx with hsum
-    by_cases hx0 : x.1 = Finsupp.single (0 : Fin 2) (e 1)
-    · subst x.1
-      have hx1 : x.2 ≠ Finsupp.single (1 : Fin 2) (e 2) := by
-        intro heq
-        apply hne
-        rw [← hsum, heq]
-        ext i
-        fin_cases i <;> simp [binaryDeficitExponent, Finsupp.single_apply]
-      simp [hx1]
-    · simp [hx0]
+  rw [MvPolynomial.monomial_eq]
+  rw [Finsupp.prod_fintype]
+  · rw [Fin.prod_univ_two]
+    simp [binaryDeficitExponent, Finsupp.single_apply,
+      mul_assoc, mul_left_comm, mul_comm]
+  · intro i
+    simp
 
 /-- Coefficient preservation under an injective deficit projection. -/
 theorem coeff_centralDeficitBinarySpecialisation_of_mem
@@ -254,12 +243,14 @@ theorem coeff_centralDeficitBinarySpecialisation_of_mem
         ∑ f ∈ F.support,
           MvPolynomial.monomial (binaryDeficitExponent f)
             (MvPolynomial.coeff f F) := by
+    have has := MvPolynomial.as_sum F
     calc
       centralDeficitBinarySpecialisation (K := K) F =
           centralDeficitBinarySpecialisation (K := K)
             (∑ f ∈ F.support,
               MvPolynomial.monomial f (MvPolynomial.coeff f F)) := by
-            rw [MvPolynomial.as_sum F]
+            exact congrArg
+              (centralDeficitBinarySpecialisation (K := K)) has.symm
       _ = _ := by
         simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
   rw [hsum, MvPolynomial.coeff_sum]
@@ -307,19 +298,22 @@ theorem centralDeficitBinarySpecialisation_isHomogeneous
         ∑ e ∈ F.support,
           MvPolynomial.monomial (binaryDeficitExponent e)
             (MvPolynomial.coeff e F) := by
+    have has := MvPolynomial.as_sum F
     calc
       centralDeficitBinarySpecialisation (K := K) F =
           centralDeficitBinarySpecialisation (K := K)
             (∑ e ∈ F.support,
               MvPolynomial.monomial e (MvPolynomial.coeff e F)) := by
-            rw [MvPolynomial.as_sum F]
+            exact congrArg
+              (centralDeficitBinarySpecialisation (K := K)) has.symm
       _ = _ := by
         simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
   have hdSum : d ∈
       (∑ e ∈ F.support,
         MvPolynomial.monomial (binaryDeficitExponent e)
           (MvPolynomial.coeff e F)).support := by
-    rwa [← hsum]
+    rw [← hsum]
+    exact MvPolynomial.mem_support_iff.mpr hd
   have hdUnion := MvPolynomial.support_sum hdSum
   rcases Finset.mem_biUnion.mp hdUnion with ⟨e, he, hde⟩
   have hcoeff := MvPolynomial.mem_support_iff.mp hde
@@ -328,7 +322,6 @@ theorem centralDeficitBinarySpecialisation_isHomogeneous
   · next hEq =>
       have hdEq : d = binaryDeficitExponent e := hEq.symm
       subst d
-      rw [Finsupp.degree_eq_weight_one] at binaryDeficitExponent_degree
       have hdegree := binaryDeficitExponent_degree e
       rw [Finsupp.degree_eq_weight_one] at hdegree
       exact hdegree.trans (hdeg e he)
@@ -350,8 +343,8 @@ theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
     simp [HC4.Polynomial.hessian_apply,
       MvPolynomial.pderiv_monomial,
       centralDeficitBinarySpecialisation_monomial,
-      exponentHessianCore, h1, h2,
-      Finsupp.single_apply, natCast_mul_pred] <;> ring
+      HC4.Polynomial.exponentHessianCore, h1, h2,
+      Finsupp.single_apply, HC4.Polynomial.natCast_mul_pred] <;> ring
 
 end
 
