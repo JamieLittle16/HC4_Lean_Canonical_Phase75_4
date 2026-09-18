@@ -96,6 +96,8 @@ theorem firstDeficitLeftStaggeredBlock_z_coeff
   simp only [Matrix.submatrix_apply]
   simp [firstDeficitLeftStaggeredPerm]
   rw [parameterFirstHessian_coeff]
+  simp [-standardTwoZero_pderiv_two_eq_A,
+    HC4.Polynomial.hessian_apply, standardTwoZeroA]
 
 /-- Right-oriented mirror: the missing diagonal is the `(1,1)` Hessian
 entry of the exact source layer. -/
@@ -111,6 +113,7 @@ theorem firstDeficitRightStaggeredBlock_z_coeff
   simp only [Matrix.submatrix_apply]
   simp [firstDeficitRightStaggeredPerm]
   rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply]
 
 /-- Provenance-rich source monomial forced at the second interaction order. -/
 inductive FirstDeficitSecondSourceLayerGeometry : Prop
