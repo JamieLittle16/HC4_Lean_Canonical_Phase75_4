@@ -9820,7 +9820,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`, `HC4.Newton.TerminalTwoZeroSupport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero`, `theorem firstDeficitLeftStaggeredBlock_z_coeff`, `theorem firstDeficitRightStaggeredBlock_z_coeff`, `inductive FirstDeficitSecondSourceLayerGeometry`, `theorem firstDeficit_secondSourceLayerGeometry`
+- Declarations: `theorem exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero`, `theorem firstDeficitLeftStaggeredBlock_d_coeff`, `theorem firstDeficitLeftStaggeredBlock_s_coeff`, `theorem firstDeficitRightStaggeredBlock_d_coeff`, `theorem firstDeficitRightStaggeredBlock_s_coeff`, `theorem firstDeficitLeftStaggeredBlock_z_coeff`, `theorem firstDeficitRightStaggeredBlock_z_coeff`, `inductive FirstDeficitSecondSourceLayerGeometry`, `theorem firstDeficit_secondSourceLayerGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 
