@@ -227,6 +227,8 @@ theorem kernelDiagonal_coeff_eq_zero_before_secondInteraction
           · exact ih n hn (lt_trans hn hsBound)
         have hactiveLt : E.activeOrder < E.kernelOrder :=
           E.active_lt_kernel
+        have hactiveLt : E.activeOrder < E.kernelOrder :=
+          E.active_lt_kernel
         have hdegree :
             E.activeOrder + s < 2 * E.kernelOrder := by
           omega
