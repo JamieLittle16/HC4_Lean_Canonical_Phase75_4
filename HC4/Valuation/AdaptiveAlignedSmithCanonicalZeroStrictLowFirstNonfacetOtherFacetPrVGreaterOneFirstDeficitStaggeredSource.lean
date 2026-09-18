@@ -50,7 +50,6 @@ variable
 /-- Minimality of an opposite opening makes every earlier exact source layer
 independent of the missing coordinate. -/
 theorem missingPderiv_firstDeficitLayer_eq_zero_of_lt
-    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (missing : Fin 4) (j : ℕ)
     (hminimal :
       ∀ f ∈ P.carrier.support, 0 < f missing →
@@ -83,13 +82,12 @@ theorem missingHessianRow_coeff_eq_zero_of_lt
   rw [parameterFirstHessian_coeff]
   have hpd :=
     missingPderiv_firstDeficitLayer_eq_zero_of_lt
-      G missing j hminimal hn
+      missing j hminimal hn
   simp [HC4.Polynomial.hessian_apply, hpd]
 
 /-- The selected opposite source monomial makes the missing first derivative
 of its exact parameter layer nonzero. -/
 theorem missingPderiv_firstDeficitLayer_ne_zero_at
-    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (missing : Fin 4)
     {opposite : Fin 4 →₀ ℕ}
     (hop : opposite ∈ P.carrier.support)
@@ -120,7 +118,6 @@ theorem missingPderiv_firstDeficitLayer_ne_zero_at
 /-- Every monomial of an exact total-deficit layer of order at least three is
 nonlinear in ordinary source degree. -/
 theorem centralDeficitLayer_support_degree_ge_three
-    (_G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (j : ℕ) (hj : 3 ≤ j) :
     ∀ d ∈ (familyParameterLayer P.centralDeficitFamily j).support,
       3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
@@ -151,11 +148,11 @@ theorem exists_missingHessianRow_coeff_ne_zero_at
         (familyParameterLayer P.centralDeficitFamily j) ≠ 0 := by
     simpa [j] using
       missingPderiv_firstDeficitLayer_ne_zero_at
-        G missing hop hpos
+        missing hop hpos
   have hdegree :
       ∀ d ∈ (familyParameterLayer P.centralDeficitFamily j).support,
         3 ≤ HC4.Polynomial.ordinaryDegree4 d :=
-    centralDeficitLayer_support_degree_ge_three G j hj
+    centralDeficitLayer_support_degree_ge_three j hj
   rcases
       HC4.Polynomial.exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three
         missing
