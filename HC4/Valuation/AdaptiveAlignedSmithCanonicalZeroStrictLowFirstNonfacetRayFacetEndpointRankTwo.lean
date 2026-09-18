@@ -81,6 +81,7 @@ theorem qs_ray_facetEndpoint_unique_zeroCoordinate
   apply Finsupp.ext
   intro k
   have hprop := C.ray.affine_proportional e he k
+  simp only [HC4.Polynomial.facetOmittedCoordinate] at hprop
   have hout0 :
       (C.ray.outsideExponent (0 : Fin 4) : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt C.ray.outside_coordinate_pos)
@@ -102,7 +103,10 @@ theorem qs_ray_facetEndpoint_initialForm_eq_monomial
         (MvPolynomial.coeff C.ray.facetExponent C.ray.face) := by
   apply HC4.Polynomial.initialForm_eq_monomial_of_unique_max
   · exact C.ray.facet_mem_face
-  · rw [qsRayFacetEndpointWeight_finsupp, C.ray.facet_coordinate_zero]
+  · have hfacet0 : C.ray.facetExponent (0 : Fin 4) = 0 := by
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using
+        C.ray.facet_coordinate_zero
+    rw [qsRayFacetEndpointWeight_finsupp, hfacet0]
     simp
   · intro e he
     rw [qsRayFacetEndpointWeight_finsupp]
@@ -141,7 +145,7 @@ theorem qs_ray_facetEndpoint_sourceMinor_of_two_positive
     omega
   have hray :
       HC4.Polynomial.hessianPrincipalMinor C.ray.face i j ≠ 0 := by
-    apply HC4.Polynomial.hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+    apply HC4.Valuation.hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       hrayBound i j
     rw [C.qs_ray_facetEndpoint_initialForm_eq_monomial]
     exact hmono
@@ -152,7 +156,7 @@ theorem qs_ray_facetEndpoint_sourceMinor_of_two_positive
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
     intro e he
     exact hface.weight_le (by simpa using he)
-  apply HC4.Polynomial.hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+  apply HC4.Valuation.hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
     hsourceBound i j
   rw [hinitial]
   exact hray
