@@ -9179,7 +9179,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`, `HC4.Valuation.ParameterFirstLayerBridge`, `HC4.Polynomial.RankTwoKernelSecondVariation`, `HC4.Polynomial.CentralDeficitBinarySpecialisation`, `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
 - Declarations: `def firstDeficitOrder`, `def firstDeficitLayer`, `def firstDeficitBinaryFace`, `theorem firstDeficitOrder_pos`, `theorem firstDeficitLayer_ne_zero`, `theorem firstDeficitLayer_support`, `theorem firstDeficitLayer_deficit_injective`, `theorem firstDeficitBinaryFace_ne_zero`, `theorem firstDeficitBinaryFace_isHomogeneous`, `def binaryParameterHessian`, `theorem binaryParameterHessian_coeff`, `theorem binaryParameterHessian_det_zero`, `theorem binaryParameterHessian_gap`, `theorem central_active_exponents_pos`, `def centralBinaryCore`, `theorem centralBinaryCore_eq_rankTwoBase`, `theorem centralBinaryCore_activeDet_ne_zero`, `theorem binaryParameterHessian_coeff_zero`, `theorem firstDeficitBinaryFace_hessian_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`
@@ -9189,7 +9189,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`, `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
 - Declarations: `theorem firstDeficitOrder_two_le`, `theorem firstDeficitBinaryFace_eq_linearPower`, `theorem firstDeficitLinearPower_not_both_nonzero`, `theorem firstDeficitBinaryFace_pureAxis`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier`
@@ -9737,7 +9737,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis.lean`
 - Purpose: The first positive total-deficit layer is an axis layer
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`, `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerLinearPower`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneAdjacentDeficit`, `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - Declarations: `theorem firstDeficitBinaryFace_support_lifts`, `theorem firstDeficitBinaryFace_no_adjacent`, `theorem firstDeficitBinaryFace_axis_support`
