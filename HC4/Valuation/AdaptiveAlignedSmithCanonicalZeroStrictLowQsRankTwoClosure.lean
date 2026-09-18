@@ -48,7 +48,8 @@ inductive QsRankThreeRankTwoClosure
   | facetEndpointFirstBreak
       (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
         (K := K) T .qs)
-      (D : Nonempty (QsRayFacetEndpointFirstBreakData C))
+      (D : Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData C))
   | quadraticSquare
       (d : Fin 4 →₀ ℕ)
       (mem : d ∈ (polynomialFamilySpecialFiber
