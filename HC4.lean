@@ -249,3 +249,9 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 -- global macro progress. Root this final global/local boundary so CI elaborates
 -- the shortcut and its genuine no-successor contradiction adapter.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress
+
+-- Root the source-honest central codimension-two second-variation closing chain.
+import HC4.Polynomial.CodimensionTwoNonhomogeneousJointDeparture
+import HC4.Polynomial.CodimensionTwoNonhomogeneousSeparatedDeparture
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation
