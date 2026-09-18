@@ -96,6 +96,13 @@ theorem reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero
   have hminorEq := congrArg
     (fun R : MvPolynomial (Fin 4) (Polynomial K) =>
       HC4.Polynomial.hessianPrincipalMinor R i j) hnorm
+  change
+    HC4.Polynomial.hessianPrincipalMinor
+        (adaptiveSmithInflateHom w
+          (reverseWeightedReesFamily w D F hbound)) i j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (MvPolynomial.C (Polynomial.X ^ D) *
+          constantPolynomialFamily F) i j at hminorEq
   rw [hessianPrincipalMinor_adaptiveSmithInflateHom,
     hessianPrincipalMinor_C_mul,
     hessianPrincipalMinor_constantPolynomialFamily,
