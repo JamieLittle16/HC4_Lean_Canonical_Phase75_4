@@ -309,6 +309,24 @@ theorem coeff_det_polynomialMatrix3_gap
       snd_det_rankTwoRoofFirstJet a b c d B
     _ = (a * d - b * c) * (M 1 1).coeff j := rfl
 
+
+/-- Nonzero active base minor and nonzero first roof diagonal make the exact
+leading determinant coefficient nonzero. -/
+theorem coeff_det_polynomialMatrix3_gap_ne_zero
+    {R : Type*} [CommRing R] [NoZeroDivisors R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
+    (hactive : a * d - b * c ≠ 0)
+    (hdiag : (M 1 1).coeff j ≠ 0) :
+    M.det.coeff j ≠ 0 := by
+  rw [coeff_det_polynomialMatrix3_gap hj M hgap a b c d hbase]
+  exact mul_ne_zero hactive hdiag
+
 /-- **Nonzero first roof diagonal forces a genuine rank-three minor.**
 
 This is the contrapositive form used by the source-facing central staircase
