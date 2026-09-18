@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8866**.
+Distinct declaration spellings indexed: **8867**.
 
 ## Repeated declaration spellings
 
@@ -30,6 +30,7 @@ Distinct declaration spellings indexed: **8866**.
 - `chart_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalGeometryCarryingRankTwoFrontier`
 - `closing_transverse_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `coeff_coefficientProfile_of_mem` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorAffineLayer`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorAffineLayer`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorAffineLayer`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
+- `coeff_det_polynomialMatrix3_gap` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`, `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `coefficientProfile` — `def` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorAffineLayer`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorAffineLayer`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorAffineLayer`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineLayer`
 - `coefficientProfile_mem_of_layer_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `coefficientProfile_natDegree_eq_of_bound_endpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineRealisation`
@@ -3832,7 +3833,7 @@ Distinct declaration spellings indexed: **8866**.
 - `coeff_complementaryPolynomialMomentHessian` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `coeff_complementaryRawMomentEntry` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `coeff_cons_one_longitudinalRightRecenterHom` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
-- `coeff_det_polynomialMatrix3_gap` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
+- `coeff_det_polynomialMatrix3_gap` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`, `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `coeff_ell_twoFunctionFactorBxSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coeff_ell_twoFunctionFactorBzSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coeff_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
@@ -5908,6 +5909,7 @@ Distinct declaration spellings indexed: **8866**.
 - `matrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `matrix3ParameterGapDualJet` — `def` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `matrix3ToParameterGap` — `def` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
+- `matrix3_det_hasNoPositiveParameterCoeffBelow` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `matrix4_det_ne_zero_exists_entry_ne_zero` — `theorem` in `HC4.Newton.TerminalQuadraticHessian`
 - `matrix4_det_ne_zero_exists_permutation_entries_ne_zero` — `theorem` in `HC4.Newton.TerminalWeightPermutation`
 - `matrix4_det_ne_zero_row_exists_entry` — `theorem` in `HC4.Newton.TerminalCenteredWeights`
