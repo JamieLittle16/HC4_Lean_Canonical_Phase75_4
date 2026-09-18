@@ -82,8 +82,8 @@ theorem missingHessianRow_coeff_eq_zero_of_lt
     (parameterFirstHessian P.centralDeficitFamily missing i).coeff n = 0 := by
   rw [parameterFirstHessian_coeff]
   have hpd :=
-    G.missingPderiv_firstDeficitLayer_eq_zero_of_lt
-      missing j hminimal hn
+    missingPderiv_firstDeficitLayer_eq_zero_of_lt
+      G missing j hminimal hn
   simp [HC4.Polynomial.hessian_apply, hpd]
 
 /-- The selected opposite source monomial makes the missing first derivative
@@ -150,12 +150,12 @@ theorem exists_missingHessianRow_coeff_ne_zero_at
       MvPolynomial.pderiv missing
         (familyParameterLayer P.centralDeficitFamily j) ≠ 0 := by
     simpa [j] using
-      G.missingPderiv_firstDeficitLayer_ne_zero_at
-        missing hop hpos
+      missingPderiv_firstDeficitLayer_ne_zero_at
+        G missing hop hpos
   have hdegree :
       ∀ d ∈ (familyParameterLayer P.centralDeficitFamily j).support,
         3 ≤ HC4.Polynomial.ordinaryDegree4 d :=
-    G.centralDeficitLayer_support_degree_ge_three j hj
+    centralDeficitLayer_support_degree_ge_three G j hj
   rcases
       HC4.Polynomial.exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three
         missing
