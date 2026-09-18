@@ -132,10 +132,8 @@ theorem hessian_zero_one_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 1 2) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [HC4.Newton.pderiv_comm_backport (0 : Fin 2) 1]
   rw [pderiv_one_centralDeficitBinarySpecialisation,
     pderiv_zero_centralDeficitBinarySpecialisation]
-  rw [HC4.Newton.pderiv_comm_backport (1 : Fin 4) 2]
 
 /-- Companion mixed entry. -/
 theorem hessian_one_zero_centralDeficitBinarySpecialisation
@@ -145,10 +143,8 @@ theorem hessian_one_zero_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 2 1) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [HC4.Newton.pderiv_comm_backport (1 : Fin 2) 0]
   rw [pderiv_zero_centralDeficitBinarySpecialisation,
     pderiv_one_centralDeficitBinarySpecialisation]
-  rw [HC4.Newton.pderiv_comm_backport (2 : Fin 4) 1]
 
 /-- **Exact binary Hessian transport.** -/
 theorem binaryHessianDet_centralDeficitBinarySpecialisation
@@ -166,7 +162,7 @@ theorem binaryHessianDet_centralDeficitBinarySpecialisation
     hessian_one_one_centralDeficitBinarySpecialisation,
     hessian_zero_one_centralDeficitBinarySpecialisation,
     hessian_one_zero_centralDeficitBinarySpecialisation]
-  simp only [map_sub, map_mul]
+  rfl
 
 /-- Exact image of one source monomial. -/
 theorem centralDeficitBinarySpecialisation_monomial
@@ -250,7 +246,7 @@ theorem coeff_centralDeficitBinarySpecialisation_of_mem
             (∑ f ∈ F.support,
               MvPolynomial.monomial f (MvPolynomial.coeff f F)) := by
             exact congrArg
-              (centralDeficitBinarySpecialisation (K := K)) has.symm
+              (centralDeficitBinarySpecialisation (K := K)) has
       _ = _ := by
         simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
   rw [hsum, MvPolynomial.coeff_sum]
@@ -305,7 +301,7 @@ theorem centralDeficitBinarySpecialisation_isHomogeneous
             (∑ e ∈ F.support,
               MvPolynomial.monomial e (MvPolynomial.coeff e F)) := by
             exact congrArg
-              (centralDeficitBinarySpecialisation (K := K)) has.symm
+              (centralDeficitBinarySpecialisation (K := K)) has
       _ = _ := by
         simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
   have hdSum : d ∈
@@ -337,6 +333,13 @@ theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
         (HC4.Polynomial.hessian (MvPolynomial.monomial e z)) =
       (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
         (z • exponentHessianCore (K := K) e) := by
+  have hpred (n : ℕ) :
+      (n : MvPolynomial (Fin 2) K) *
+          ((n - 1 : ℕ) : MvPolynomial (Fin 2) K) =
+        (n : MvPolynomial (Fin 2) K) ^ 2 -
+          (n : MvPolynomial (Fin 2) K) :=
+    HC4.Polynomial.natCast_mul_pred
+      (K := MvPolynomial (Fin 2) K) n
   apply Matrix.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
@@ -344,7 +347,7 @@ theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
       MvPolynomial.pderiv_monomial,
       centralDeficitBinarySpecialisation_monomial,
       HC4.Polynomial.exponentHessianCore, h1, h2,
-      Finsupp.single_apply, HC4.Polynomial.natCast_mul_pred] <;> ring
+      Finsupp.single_apply, mul_assoc, hpred] <;> ring
 
 end
 
