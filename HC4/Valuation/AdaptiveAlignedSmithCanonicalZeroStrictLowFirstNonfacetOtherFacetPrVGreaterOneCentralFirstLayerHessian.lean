@@ -308,11 +308,13 @@ theorem centralBinaryCore_activeDet_ne_zero
       G.central_one_zero, G.central_two_zero]
     ring
   rw [hformula]
-  repeat' apply mul_ne_zero
-  · exact pow_ne_zero 2 (MvPolynomial.C_ne_zero.mpr hz)
-  · exact MvPolynomial.C_ne_zero.mpr h0K
-  · exact MvPolynomial.C_ne_zero.mpr h3K
-  · exact MvPolynomial.C_ne_zero.mpr hlast
+  have hCscalar :
+      (MvPolynomial.C
+        (z ^ 2 * (G.central 0 : K) * (G.central 3 : K) *
+          (1 - (G.central 0 : K) - (G.central 3 : K))) :
+        MvPolynomial (Fin 2) K) ≠ 0 :=
+    MvPolynomial.C_ne_zero.mpr hscalar
+  simpa using hCscalar
 
 theorem binaryParameterHessian_coeff_zero
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
