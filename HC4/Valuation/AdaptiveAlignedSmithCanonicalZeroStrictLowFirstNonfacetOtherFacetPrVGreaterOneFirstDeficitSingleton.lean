@@ -165,8 +165,8 @@ theorem firstDeficitLayer_eq_monomial_axis
           have hfmem : f ∈ G.firstDeficitLayer.support :=
             MvPolynomial.mem_support_iff.mpr hf
           exact hfe (huniq f hfmem)
-        rw [hf0]
-        simp [hfe]
+        rw [hf0, MvPolynomial.coeff_monomial]
+        simp [hfe, Ne.symm hfe]
     exact Or.inl ⟨e, A, hA, hmono, he1, he2⟩
   · rcases hright with ⟨e, he, he1, he2, huniq⟩
     let A := MvPolynomial.coeff e G.firstDeficitLayer
@@ -183,8 +183,8 @@ theorem firstDeficitLayer_eq_monomial_axis
           have hfmem : f ∈ G.firstDeficitLayer.support :=
             MvPolynomial.mem_support_iff.mpr hf
           exact hfe (huniq f hfmem)
-        rw [hf0]
-        simp [hfe]
+        rw [hf0, MvPolynomial.coeff_monomial]
+        simp [hfe, Ne.symm hfe]
     exact Or.inr ⟨e, A, hA, hmono, he1, he2⟩
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
