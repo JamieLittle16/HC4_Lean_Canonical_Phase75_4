@@ -7070,7 +7070,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedCompleteRankThree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
-- Declarations: `theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_specialHessianDet_one`, `theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_exactActiveFourBlock`, `structure AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry`, `def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_completeRankThreeGeometry`
+- Declarations: `theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_specialHessianDet_one`, `theorem ScaleAwareAdaptiveGeometricRestartState.zeroDefect_exactActiveFourBlock`, `structure AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry`, `def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_completeRankThreeGeometry`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry.constantThreeByThreeGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoContinuation`
 

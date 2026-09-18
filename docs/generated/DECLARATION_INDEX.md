@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8981**.
+Distinct declaration spellings indexed: **8982**.
 
 ## Repeated declaration spellings
 
@@ -946,6 +946,7 @@ Distinct declaration spellings indexed: **8981**.
 - `AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
 - `AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry.positiveRankOneReesReducedTrace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction`
 - `AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
+- `AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry.constantThreeByThreeGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
 - `AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
 - `AdaptiveAlignedSmithCanonicalZeroDefectReentryOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry`
 - `AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`
