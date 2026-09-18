@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreePencils
+import HC4.Valuation.ParameterGapDualJet
 import Mathlib.Tactic
 
 /-!
@@ -105,6 +106,120 @@ theorem rankTwoToRankThreeRoofPencil_det_ne_zero
     · exact hrK
     · exact hlast
   exact hne hcoeff
+
+
+/-! ## Gap-jet form for an arbitrary honest roof family -/
+
+/-- Lift a three-by-three polynomial matrix into the parameter-gap subring. -/
+noncomputable def matrix3ToParameterGap
+    {R : Type*} [CommRing R] {j : ℕ}
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    Matrix (Fin 3) (Fin 3) (HC4.Valuation.parameterGapSubring (R := R) j) :=
+  fun r s => ⟨M r s, hM r s⟩
+
+/-- Entrywise dual jet at a positive gap order for a three-by-three matrix. -/
+noncomputable def matrix3ParameterGapDualJet
+    {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    Matrix (Fin 3) (Fin 3) (DualNumber R) :=
+  (HC4.Valuation.parameterGapDualJet (R := R) j hj).mapMatrix
+    (matrix3ToParameterGap M hM)
+
+@[simp] theorem matrix3ParameterGapDualJet_apply
+    {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (r s : Fin 3) :
+    matrix3ParameterGapDualJet hj M hM r s =
+      ((M r s).coeff 0, (M r s).coeff j) := by
+  rfl
+
+/-- The nilpotent determinant component is the selected coefficient of the
+honest three-by-three determinant. -/
+theorem snd_det_matrix3ParameterGapDualJet
+    {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    TrivSqZeroExt.snd (matrix3ParameterGapDualJet hj M hM).det =
+      M.det.coeff j := by
+  let J := HC4.Valuation.parameterGapDualJet (R := R) j hj
+  let G := matrix3ToParameterGap M hM
+  have hmap : J G.det = (J.mapMatrix G).det := J.map_det G
+  have hsub :=
+    (HC4.Valuation.parameterGapSubring (R := R) j).subtype.map_det G
+  have hmatrix :
+      (HC4.Valuation.parameterGapSubring (R := R) j).subtype.mapMatrix G = M := by
+    ext r s
+    rfl
+  rw [hmatrix] at hsub
+  change TrivSqZeroExt.snd ((J.mapMatrix G).det) = M.det.coeff j
+  rw [← hmap]
+  change ((G.det : HC4.Valuation.parameterGapSubring (R := R) j) :
+      Polynomial R).coeff j = _
+  simpa using congrArg (fun p : Polynomial R => p.coeff j) hsub
+
+/-- Rank-two constant three-by-three block with middle kernel coordinate. -/
+def rankTwoRoofZeroKernelBase
+    {R : Type*} [CommRing R] (a b c d : R) :
+    Matrix (Fin 3) (Fin 3) R :=
+  !![a, 0, b;
+     0, 0, 0;
+     c, 0, d]
+
+/-- Dual first jet around a rank-two roof block. -/
+def rankTwoRoofFirstJet
+    {R : Type*} [CommRing R] (a b c d : R)
+    (B : Matrix (Fin 3) (Fin 3) R) :
+    Matrix (Fin 3) (Fin 3) (DualNumber R) :=
+  fun i k => (rankTwoRoofZeroKernelBase a b c d i k, B i k)
+
+/-- The first determinant variation only sees the new middle diagonal. -/
+theorem snd_det_rankTwoRoofFirstJet
+    {R : Type*} [CommRing R] (a b c d : R)
+    (B : Matrix (Fin 3) (Fin 3) R) :
+    TrivSqZeroExt.snd (rankTwoRoofFirstJet a b c d B).det =
+      (a * d - b * c) * B 1 1 := by
+  simp [rankTwoRoofFirstJet, rankTwoRoofZeroKernelBase,
+    Matrix.det_fin_three, DualNumber.snd_mul]
+  ring
+
+/-- **Honest gap-family rank-two to rank-three bridge.**
+
+If a three-by-three polynomial Hessian block has a positive parameter gap,
+its constant layer is rank two with nonzero active minor, and its determinant
+vanishes identically, then the middle diagonal of the first layer must vanish.
+-/
+theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
+    {R : Type*} [CommRing R] [IsDomain R]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : R)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
+    (hactive : a * d - b * c ≠ 0)
+    (hdet : M.det = 0) :
+    (M 1 1).coeff j = 0 := by
+  let B : Matrix (Fin 3) (Fin 3) R :=
+    fun r s => (M r s).coeff j
+  have hjet :
+      matrix3ParameterGapDualJet hj M hgap =
+        rankTwoRoofFirstJet a b c d B := by
+    ext r s
+    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
+      B, hbase]
+  have hzero :
+      TrivSqZeroExt.snd
+        (matrix3ParameterGapDualJet hj M hgap).det = 0 := by
+    rw [snd_det_matrix3ParameterGapDualJet, hdet]
+    simp
+  rw [hjet, snd_det_rankTwoRoofFirstJet] at hzero
+  have hB : B 1 1 = 0 :=
+    (mul_eq_zero.mp hzero).resolve_left hactive
+  exact hB
 
 end
 
