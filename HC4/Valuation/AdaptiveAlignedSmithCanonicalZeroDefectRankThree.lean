@@ -99,6 +99,57 @@ noncomputable def
     geometry := C.rankThreeGeometry complexity
   }
 
+/-- At literal raw defect zero the complete exact-active rank-three exhaustion
+cannot land in the zero-Schur constructor.  Hence the represented special
+fibre already has an actual nonzero constant \`3 x 3\` Hessian minor in the
+retained honest active chart.
+
+This is stronger than merely carrying
+\`AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry\`: the zero-Schur
+alternative would make the constant coefficient of the Schur determinant
+vanish, while the exact active block has determinant-one constant term. -/
+theorem AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry.constantThreeByThreeGeometry
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    {complexity : ℕ}
+    (G : AdaptiveAlignedSmithCanonicalZeroDefectRankThreeGeometry
+      s complexity) :
+    AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry G.chart := by
+  cases G.geometry with
+  | constantMinor H _ =>
+      exact H
+  | zeroSchur Z hblock _ =>
+      exfalso
+      have hA : G.chart.block.schurA.coeff 0 = 0 := by
+        rw [← hblock]
+        exact Z.schurA_coeff_zero
+      have hB : G.chart.block.schurB.coeff 0 = 0 := by
+        rw [← hblock]
+        exact Z.schurB_coeff_zero
+      have hC : G.chart.block.schurC.coeff 0 = 0 := by
+        rw [← hblock]
+        exact Z.schurC_coeff_zero
+      have hschur :
+          G.chart.block.polynomialSchurSeries.determinant =
+            G.chart.block.activeDet * Polynomial.X ^ s.rawDefect := by
+        calc
+          G.chart.block.polynomialSchurSeries.determinant =
+              G.chart.block.activeDet * G.chart.block.determinantCore :=
+            G.chart.block.polynomialSchurSeries_determinant
+          _ = G.chart.block.activeDet * Polynomial.X ^ s.rawDefect := by
+            rw [G.chart.fullDet]
+      have hcoeff := congrArg
+        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0) hschur
+      have hleft :
+          G.chart.block.polynomialSchurSeries.determinant.coeff 0 = 0 := by
+        simp [BinarySchurPolynomialSeries.determinant,
+          GeneralFourBlock.polynomialSchurSeries, hA, hB, hC]
+      have hright :
+          (G.chart.block.activeDet * Polynomial.X ^ s.rawDefect).coeff 0 ≠ 0 := by
+        rw [G.source_zero]
+        simpa using G.chart.activeDet_coeff_zero_ne_zero
+      exact (hright (by simpa [hleft] using hcoeff.symm)).elim
+
+
 end
 
 end HC4.Valuation
