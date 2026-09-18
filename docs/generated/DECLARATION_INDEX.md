@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8809**.
+Distinct declaration spellings indexed: **8811**.
 
 ## Repeated declaration spellings
 
@@ -5028,6 +5028,7 @@ Distinct declaration spellings indexed: **8809**.
 - `firstDeficitLayer_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `firstDeficitOrder_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeparture` — `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstDepartureBinaryDet` — `def` in `HC4.Newton.FirstDepartureBinaryHessian`
 - `firstDepartureBinaryDet_eq_neg_sq` — `theorem` in `HC4.Newton.FirstDepartureBinaryHessian`
@@ -6113,6 +6114,7 @@ Distinct declaration spellings indexed: **8809**.
 - `no_recenteredRankOneSchurChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRaySchurClockCompatibility`
 - `no_shiftedPolynomialAutonomousLogODE_degree_ge_three` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `no_three_facet_cycle` — `theorem` in `HC4.Newton.FacetCycleClassification`
+- `no_unit_total_deficit_from_central_staircase_chord` — `theorem` in `HC4.Polynomial.FiniteStaircaseAdjacentDeficit`
 - `nonScalarIntegralWeight_exists_centered_ne_zero` — `theorem` in `HC4.Newton.TerminalCenteredWeights`
 - `nonScalarIntegralWeight_isNontrivial` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
 - `nonScalarTerminalConformalFace_centered_partner` — `theorem` in `HC4.Newton.TerminalCenteredWeights`
