@@ -246,12 +246,16 @@ theorem exists_qs_ray_facetEndpoint_sourceExposure
         (fun e => Finsupp.weight finalWeight e) finalLevel := by
     simpa [finalWeight, finalLevel] using hface
 
+  have hfacetSingleton :
+      C.ray.facetExponent ∈
+        ({C.ray.facetExponent} : Set (Fin 4 →₀ ℕ)) := by
+    exact Set.mem_singleton _
   have hdF : C.ray.facetExponent ∈ F.support := by
-    have hset := hface'.subset (by simp)
+    have hset := hface'.subset hfacetSingleton
     simpa using hset
   have hdWeight :
       Finsupp.weight finalWeight C.ray.facetExponent = finalLevel :=
-    hface'.weight_eq (by simp)
+    hface'.weight_eq hfacetSingleton
   have hbound : HC4.Polynomial.IsWeightLE finalWeight finalLevel F := by
     intro e he
     exact hface'.weight_le (by simpa using he)
