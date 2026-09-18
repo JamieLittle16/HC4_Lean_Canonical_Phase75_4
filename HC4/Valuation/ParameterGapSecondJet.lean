@@ -141,7 +141,7 @@ noncomputable def parameterGapSecondJet
   map_add' p q := by
     apply TrivSqZeroExt.ext
     · apply TrivSqZeroExt.ext <;> simp
-    · apply TrivSqZeroExt.ext <;> simp
+    · apply TrivSqZeroExt.ext <;> simp <;> ring
   map_mul' p q := by
     have hgap := coeff_mul_at_gap_endpoint_commRing
       (R := R) hj p.property q.property
@@ -155,7 +155,10 @@ noncomputable def parameterGapSecondJet
       · simpa [DualNumber.snd_mul] using hgap
       · simp only [DualNumber.snd_mul, TrivSqZeroExt.fst_mk,
           TrivSqZeroExt.snd_mk]
+        change 2 * (p.1 * q.1).coeff (2 * j) = _
         rw [hgap2]
+        simp only [TrivSqZeroExt.snd_add, TrivSqZeroExt.snd_mul,
+          TrivSqZeroExt.fst_mk, TrivSqZeroExt.snd_mk]
         ring
 
 @[simp] theorem parameterGapSecondJet_fst_fst
@@ -211,6 +214,7 @@ noncomputable def matrixParameterGapSecondJet
 
 /-- **Second determinant coefficient bridge.**  The doubly-nilpotent component
 of the determinant is twice the selected `2*j` coefficient. -/
+set_option maxHeartbeats 4000000 in
 theorem snd_snd_det_matrixParameterGapSecondJet
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 4) (Fin 4) (Polynomial R))
