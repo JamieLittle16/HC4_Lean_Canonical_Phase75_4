@@ -87,6 +87,92 @@ theorem no_adjacent_deficits_on_staircase_chord
   rw [← hmultiple] at hlevelLe
   exact (not_le_of_gt hstepLt) hlevelLe
 
+
+/-- A central staircase point cannot have an honest support point at total
+deficit one.  Relative to the central deficit pair `(0,0)`, either unit-axis
+move would make the change in the chord level equal to `ell` or `n-1`,
+whereas every longitudinal change contributes an integer multiple of the
+strictly larger level `ell+n-1`. -/
+theorem no_unit_total_deficit_from_central_staircase_chord
+    {ell n c0 e0 e1 e2 : ℕ}
+    (hn : 2 ≤ n)
+    (hell : 0 < ell)
+    (hc :
+      (0 : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - 1) +
+          ((ell : ℤ) + (n : ℤ) - 1) * (1 - (c0 : ℤ)))
+    (he :
+      (ell : ℤ) * (e1 : ℤ) +
+          ((n : ℤ) - 1) * (e2 : ℤ) =
+        (ell : ℤ) * ((n : ℤ) - 1) +
+          ((ell : ℤ) + (n : ℤ) - 1) * (1 - (e0 : ℤ)))
+    (hunit : e1 + e2 = 1) :
+    False := by
+  have hnZ : (2 : ℤ) ≤ (n : ℤ) := by exact_mod_cast hn
+  have hellZ : (0 : ℤ) < (ell : ℤ) := by exact_mod_cast hell
+  have hlevelPos :
+      (0 : ℤ) < (ell : ℤ) + (n : ℤ) - 1 := by omega
+  rcases Nat.eq_zero_or_pos e1 with he1zero | he1pos
+  · have he1 : e1 = 0 := he1zero
+    have he2 : e2 = 1 := by omega
+    have hmultiple :
+        (n : ℤ) - 1 =
+          ((ell : ℤ) + (n : ℤ) - 1) *
+            ((c0 : ℤ) - (e0 : ℤ)) := by
+      rw [he1, he2] at he
+      norm_num at he
+      nlinarith [hc, he]
+    have hsmall :
+        (n : ℤ) - 1 < (ell : ℤ) + (n : ℤ) - 1 := by
+      omega
+    have hleftPos : (0 : ℤ) < (n : ℤ) - 1 := by omega
+    have hdiffPos : (0 : ℤ) < (c0 : ℤ) - (e0 : ℤ) := by
+      by_contra hnot
+      have hnonpos : (c0 : ℤ) - (e0 : ℤ) ≤ 0 := le_of_not_gt hnot
+      have hprod :
+          ((ell : ℤ) + (n : ℤ) - 1) *
+              ((c0 : ℤ) - (e0 : ℤ)) ≤ 0 :=
+        mul_nonpos_of_nonneg_of_nonpos (le_of_lt hlevelPos) hnonpos
+      rw [← hmultiple] at hprod
+      exact (not_le_of_gt hleftPos) hprod
+    have hone : (1 : ℤ) ≤ (c0 : ℤ) - (e0 : ℤ) := by omega
+    have hlevelLe :
+        (ell : ℤ) + (n : ℤ) - 1 ≤
+          ((ell : ℤ) + (n : ℤ) - 1) *
+            ((c0 : ℤ) - (e0 : ℤ)) := by
+      exact (mul_le_mul_left hlevelPos).2 hone
+    rw [← hmultiple] at hlevelLe
+    exact (not_le_of_gt hsmall) hlevelLe
+  · have he2 : e2 = 0 := by omega
+    have he1 : e1 = 1 := by omega
+    have hmultiple :
+        (ell : ℤ) =
+          ((ell : ℤ) + (n : ℤ) - 1) *
+            ((c0 : ℤ) - (e0 : ℤ)) := by
+      rw [he1, he2] at he
+      norm_num at he
+      nlinarith [hc, he]
+    have hsmall :
+        (ell : ℤ) < (ell : ℤ) + (n : ℤ) - 1 := by
+      omega
+    have hdiffPos : (0 : ℤ) < (c0 : ℤ) - (e0 : ℤ) := by
+      by_contra hnot
+      have hnonpos : (c0 : ℤ) - (e0 : ℤ) ≤ 0 := le_of_not_gt hnot
+      have hprod :
+          ((ell : ℤ) + (n : ℤ) - 1) *
+              ((c0 : ℤ) - (e0 : ℤ)) ≤ 0 :=
+        mul_nonpos_of_nonneg_of_nonpos (le_of_lt hlevelPos) hnonpos
+      rw [← hmultiple] at hprod
+      exact (not_le_of_gt hellZ) hprod
+    have hone : (1 : ℤ) ≤ (c0 : ℤ) - (e0 : ℤ) := by omega
+    have hlevelLe :
+        (ell : ℤ) + (n : ℤ) - 1 ≤
+          ((ell : ℤ) + (n : ℤ) - 1) *
+            ((c0 : ℤ) - (e0 : ℤ)) := by
+      exact (mul_le_mul_left hlevelPos).2 hone
+    rw [← hmultiple] at hlevelLe
+    exact (not_le_of_gt hsmall) hlevelLe
+
 end
 
 end HC4.Polynomial
