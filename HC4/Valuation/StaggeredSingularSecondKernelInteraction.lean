@@ -52,7 +52,8 @@ theorem coeff_active_mul_kernelPair_eq_zero_before_double
   apply coeff_mul_eq_zero_of_right_vanishes_through
   intro r hr
   apply coeff_kernelPair_eq_zero_before_double B C
-  · omega
+    (j := j) (n := r)
+  · exact lt_of_le_of_lt hr hn
   · exact hB
   · exact hC
 
