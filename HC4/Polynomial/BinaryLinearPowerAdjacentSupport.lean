@@ -128,6 +128,7 @@ theorem coeff_gradientRatioLinearForm_pow_pure_zero
           _ = 0 := by
                 rw [MvPolynomial.coeff_mul_X']
                 simp [hnot]
+      rw [gradientRatioLinearForm_finTwo_eq] at ih hfirst hsecond
       rw [hfirst, hsecond, ih]
       simp [pow_succ]
 
