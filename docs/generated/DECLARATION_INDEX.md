@@ -4687,6 +4687,7 @@ Distinct declaration spellings indexed: **8943**.
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
 - `exists_layerExponent_of_coefficientProfile_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
+- `exists_leftSecondInteractionData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
@@ -4737,6 +4738,7 @@ Distinct declaration spellings indexed: **8943**.
 - `exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `exists_rankThree_translated_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `exists_ratio_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
+- `exists_rightSecondInteractionData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `exists_scalarMinimalSmithExponent` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `exists_scalarShear_diagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `exists_scalar_directionalRecurrence_eq_linearPowerProfile` — `theorem` in `HC4.Newton.LinearPowerRecurrenceClassification`
@@ -5773,7 +5775,6 @@ Distinct declaration spellings indexed: **8943**.
 - `leftPivot_or_rightAxisPivot_of_constantBlock` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `leftPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `leftPoint_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
-- `leftSecondInteractionData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `leftSection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `leftSection_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `leftTransverse_zero_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
@@ -7752,7 +7753,6 @@ Distinct declaration spellings indexed: **8943**.
 - `rightRecentered_hessian_allMinors_raw` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `rightRecentered_mvC_mul_mvC_div_cancel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
 - `rightRecentered_quadraticCoefficient_ne_zero_of_transverseBlocker_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
-- `rightSecondInteractionData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `rightSection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `rightSection_coeff_eq_zero_of_lt_sectionGaugeOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSectionGauge`
 - `rightSection_constantCoeff_zero_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
