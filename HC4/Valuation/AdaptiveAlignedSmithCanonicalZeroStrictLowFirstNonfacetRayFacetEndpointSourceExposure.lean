@@ -262,8 +262,9 @@ theorem exists_qs_ray_facetEndpoint_sourceExposure
     intro e he hew
     have hmem :
         e ∈ ({C.ray.facetExponent} : Set (Fin 4 →₀ ℕ)) :=
-      hface'.mem_iff.mpr ⟨(by simpa using he), hew⟩
-    simpa only [Set.mem_singleton_iff] using hmem
+      (HC4.Newton.IsExposedFace.mem_iff hface' (x := e)).2
+        ⟨(by simpa using he), hew⟩
+    exact Set.mem_singleton_iff.mp hmem
   have hinit :
       HC4.Polynomial.initialForm finalWeight finalLevel F =
         MvPolynomial.monomial C.ray.facetExponent
