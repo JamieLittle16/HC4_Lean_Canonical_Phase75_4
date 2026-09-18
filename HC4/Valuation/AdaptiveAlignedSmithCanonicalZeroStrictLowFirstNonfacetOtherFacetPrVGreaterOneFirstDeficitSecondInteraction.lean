@@ -211,48 +211,13 @@ private noncomputable def leftSecondInteractionData
     exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
       hthree houtThree hfirst hfirst1 hfirst2 huniq
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 0 2).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (0 : Fin 4) 2]
-      exact hrow
-    simpa [firstDeficitLeftStaggeredBlock,
-      firstDeficitLeftStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.leftBlock_q_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 1 2).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (1 : Fin 4) 2]
-      exact hrow
-    simpa [firstDeficitLeftStaggeredBlock,
-      firstDeficitLeftStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.leftBlock_s_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 3 2).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (3 : Fin 4) 2]
-      exact hrow
-    simpa [firstDeficitLeftStaggeredBlock,
-      firstDeficitLeftStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.leftBlock_y_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
-    simpa [firstDeficitLeftStaggeredBlock,
-      firstDeficitLeftStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hrow
+    exact G.leftBlock_z_coeff_eq_zero_before hminimal hn
 
 private noncomputable def rightSecondInteractionData
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -295,48 +260,13 @@ private noncomputable def rightSecondInteractionData
     exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
       hthree houtThree hfirst hfirst1 hfirst2 huniq
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 0 1).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (0 : Fin 4) 1]
-      exact hrow
-    simpa [firstDeficitRightStaggeredBlock,
-      firstDeficitRightStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.rightBlock_q_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 2 1).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (2 : Fin 4) 1]
-      exact hrow
-    simpa [firstDeficitRightStaggeredBlock,
-      firstDeficitRightStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.rightBlock_s_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
-    have hsym :
-        (parameterFirstHessian P.centralDeficitFamily 3 1).coeff n = 0 := by
-      rw [parameterFirstHessian_symmetric
-        P.centralDeficitFamily (3 : Fin 4) 1]
-      exact hrow
-    simpa [firstDeficitRightStaggeredBlock,
-      firstDeficitRightStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hsym
+    exact G.rightBlock_y_coeff_eq_zero_before hminimal hn
   · intro n hn
-    have hrow :=
-      missingHessianRow_coeff_eq_zero_of_lt
-        (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
-    simpa [firstDeficitRightStaggeredBlock,
-      firstDeficitRightStaggeredMatrix,
-      GeneralFourBlock.ofSymmetricMatrix] using hrow
+    exact G.rightBlock_z_coeff_eq_zero_before hminimal hn
 
 /-- Provenance-rich second interaction forced by the zero full determinant. -/
 inductive FirstDeficitSecondInteractionGeometry : Prop
@@ -402,31 +332,51 @@ theorem firstDeficit_secondInteractionGeometry
       let E := G.leftSecondInteractionData
         hthree houtThree hfirst hfirst1 hfirst2 huniq
         hop (by omega) hstrict hminimal
+      have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
+        change G.firstDeficitLeftStaggeredBlock.s.coeff
+          (opposite 1 + opposite 2) ≠ 0
+        exact hmixed
       have hz :=
         E.kernelDiagonal_coeff_secondInteraction_ne_zero
           (G.left_base_b_zero hthree houtThree)
           (G.left_base_d_zero hthree houtThree)
           (G.left_base_r_zero hthree houtThree)
           (G.left_base_outer_minor_ne_zero hthree houtThree)
-          (by simpa [E] using hmixed)
+          hsj
+      have hz' :
+          G.firstDeficitLeftStaggeredBlock.z.coeff
+            (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
+        change E.block.z.coeff
+          (2 * E.kernelOrder - E.activeOrder) ≠ 0
+        exact hz
       exact .left first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop2
-        hstrict hminimal hB hlayer hmixed (by simpa [E] using hz)
+        hstrict hminimal hB hlayer hmixed hz'
   | right first opposite B hfirst hfirst1 hfirst2 huniq
       hop hop1 hstrict hminimal hB hlayer hmixed =>
       let E := G.rightSecondInteractionData
         hthree houtThree hfirst hfirst1 hfirst2 huniq
         hop (by omega) hstrict hminimal
+      have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
+        change G.firstDeficitRightStaggeredBlock.s.coeff
+          (opposite 1 + opposite 2) ≠ 0
+        exact hmixed
       have hz :=
         E.kernelDiagonal_coeff_secondInteraction_ne_zero
           (G.right_base_b_zero hthree houtThree)
           (G.right_base_d_zero hthree houtThree)
           (G.right_base_r_zero hthree houtThree)
           (G.right_base_outer_minor_ne_zero hthree houtThree)
-          (by simpa [E] using hmixed)
+          hsj
+      have hz' :
+          G.firstDeficitRightStaggeredBlock.z.coeff
+            (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) ≠ 0 := by
+        change E.block.z.coeff
+          (2 * E.kernelOrder - E.activeOrder) ≠ 0
+        exact hz
       exact .right first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop1
-        hstrict hminimal hB hlayer hmixed (by simpa [E] using hz)
+        hstrict hminimal hB hlayer hmixed hz'
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
