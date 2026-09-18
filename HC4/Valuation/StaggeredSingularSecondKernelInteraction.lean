@@ -191,8 +191,17 @@ theorem determinantCore_coeff_doubleKernel_of_middleKernelBase
 
   rw [hyy1, hsy1, hss1, hyy2, hsy2, hqy1, hqs1, hqy2,
     hqq1, hss2, hqs2, hqq2]
-  simp [Polynomial.coeff_zero_eq_eval_zero, hb0, hd0, hr0]
-  ring
+  have hbEval : Polynomial.eval 0 H.b = 0 := by
+    rw [← Polynomial.coeff_zero_eq_eval_zero]
+    exact hb0
+  have hdEval : Polynomial.eval 0 H.d = 0 := by
+    rw [← Polynomial.coeff_zero_eq_eval_zero]
+    exact hd0
+  have hrEval : Polynomial.eval 0 H.r = 0 := by
+    rw [← Polynomial.coeff_zero_eq_eval_zero]
+    exact hr0
+  simp [Polynomial.coeff_zero_eq_eval_zero, hbEval, hdEval, hrEval]
+  ring_nf
 
 namespace StaggeredSingularFirstKernelBreakFourBlockData
 
