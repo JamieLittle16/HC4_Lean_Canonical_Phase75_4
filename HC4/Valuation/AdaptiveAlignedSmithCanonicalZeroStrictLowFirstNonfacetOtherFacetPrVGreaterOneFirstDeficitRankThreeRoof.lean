@@ -209,10 +209,13 @@ theorem firstDeficitLeftActiveHessian_det_ne_zero
     rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
     dsimp [a, b, c, d, H0]
     fin_cases r <;> fin_cases s <;>
-      simp [firstDeficitLeftActiveIndex,
+      simp [-standardTwoZero_pderiv_two_eq_A,
+        -standardTwoZero_pderiv_three_eq_C,
+        firstDeficitLeftActiveIndex,
         HC4.Polynomial.rankTwoRoofZeroKernelBase,
         G.exposure_face_eq, HC4.Polynomial.hessian_apply,
         MvPolynomial.pderiv_monomial,
+        standardTwoZeroA, standardTwoZeroC,
         G.central_one_zero, G.central_two_zero]
   have hactive : a * d - b * c ≠ 0 := by
     dsimp [a, b, c, d, H0]
@@ -265,10 +268,13 @@ theorem firstDeficitRightActiveHessian_det_ne_zero
     rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
     dsimp [a, b, c, d, H0]
     fin_cases r <;> fin_cases s <;>
-      simp [firstDeficitRightActiveIndex,
+      simp [-standardTwoZero_pderiv_two_eq_A,
+        -standardTwoZero_pderiv_three_eq_C,
+        firstDeficitRightActiveIndex,
         HC4.Polynomial.rankTwoRoofZeroKernelBase,
         G.exposure_face_eq, HC4.Polynomial.hessian_apply,
         MvPolynomial.pderiv_monomial,
+        standardTwoZeroA, standardTwoZeroC,
         G.central_one_zero, G.central_two_zero]
   have hactive : a * d - b * c ≠ 0 := by
     dsimp [a, b, c, d, H0]
@@ -323,10 +329,13 @@ theorem firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
     rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
     dsimp [a, b, c, d, H0]
     fin_cases r <;> fin_cases s <;>
-      simp [firstDeficitLeftActiveIndex,
+      simp [-standardTwoZero_pderiv_two_eq_A,
+        -standardTwoZero_pderiv_three_eq_C,
+        firstDeficitLeftActiveIndex,
         HC4.Polynomial.rankTwoRoofZeroKernelBase,
         G.exposure_face_eq, HC4.Polynomial.hessian_apply,
         MvPolynomial.pderiv_monomial,
+        standardTwoZeroA, standardTwoZeroC,
         G.central_one_zero, G.central_two_zero]
   have hactive : a * d - b * c ≠ 0 := by
     dsimp [a, b, c, d, H0]
@@ -382,10 +391,13 @@ theorem firstDeficitRightActiveHessian_det_coeff_first_ne_zero
     rw [parameterFirstHessian_coeff, G.layer_zero_eq_exposure hthree houtThree]
     dsimp [a, b, c, d, H0]
     fin_cases r <;> fin_cases s <;>
-      simp [firstDeficitRightActiveIndex,
+      simp [-standardTwoZero_pderiv_two_eq_A,
+        -standardTwoZero_pderiv_three_eq_C,
+        firstDeficitRightActiveIndex,
         HC4.Polynomial.rankTwoRoofZeroKernelBase,
         G.exposure_face_eq, HC4.Polynomial.hessian_apply,
         MvPolynomial.pderiv_monomial,
+        standardTwoZeroA, standardTwoZeroC,
         G.central_one_zero, G.central_two_zero]
   have hactive : a * d - b * c ≠ 0 := by
     dsimp [a, b, c, d, H0]
