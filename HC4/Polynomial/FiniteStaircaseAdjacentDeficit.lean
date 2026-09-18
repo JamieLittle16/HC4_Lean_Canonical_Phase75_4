@@ -140,7 +140,7 @@ theorem no_unit_total_deficit_from_central_staircase_chord
         (ell : ℤ) + (n : ℤ) - 1 ≤
           ((ell : ℤ) + (n : ℤ) - 1) *
             ((c0 : ℤ) - (e0 : ℤ)) := by
-      exact (mul_le_mul_left hlevelPos).2 hone
+      simpa only [mul_one] using (mul_le_mul_left hlevelPos).2 hone
     rw [← hmultiple] at hlevelLe
     exact (not_le_of_gt hsmall) hlevelLe
   · have he2 : e2 = 0 := by omega
@@ -169,7 +169,7 @@ theorem no_unit_total_deficit_from_central_staircase_chord
         (ell : ℤ) + (n : ℤ) - 1 ≤
           ((ell : ℤ) + (n : ℤ) - 1) *
             ((c0 : ℤ) - (e0 : ℤ)) := by
-      exact (mul_le_mul_left hlevelPos).2 hone
+      simpa only [mul_one] using (mul_le_mul_left hlevelPos).2 hone
     rw [← hmultiple] at hlevelLe
     exact (not_le_of_gt hsmall) hlevelLe
 
