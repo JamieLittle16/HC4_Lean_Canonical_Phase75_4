@@ -91,10 +91,12 @@ theorem rankTwoToRankThreeRoofPencil_det_ne_zero
     (rankTwoToRankThreeRoofPencil (K := K)
       p r a D b C A).det ≠ 0 := by
   intro hzero
-  have hcoeff := congrArg
-    (fun q : Polynomial K => q.coeff 1) hzero
+  have hcoeff :
+      (rankTwoToRankThreeRoofPencil (K := K)
+        p r a D b C A).det.coeff 1 = 0 := by
+    simpa using congrArg
+      (fun q : Polynomial K => q.coeff 1) hzero
   rw [coeff_one_det_rankTwoToRankThreeRoofPencil] at hcoeff
-  simp only [Polynomial.coeff_zero] at hcoeff
   have hpK : (p : K) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hp)
   have hrK : (r : K) ≠ 0 := by
@@ -226,9 +228,10 @@ theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
   have hjet :
       matrix3ParameterGapDualJet hj M hgap =
         rankTwoRoofFirstJet a b c d B := by
-    ext r s
-    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
-      B, hbase]
+    funext r s
+    change ((M r s).coeff 0, (M r s).coeff j) =
+      (rankTwoRoofZeroKernelBase a b c d r s, (M r s).coeff j)
+    rw [hbase]
   have hzero :
       TrivSqZeroExt.snd
         (matrix3ParameterGapDualJet hj M hgap).det = 0 := by
@@ -281,9 +284,10 @@ theorem coeff_det_polynomialMatrix3_gap
   have hjet :
       matrix3ParameterGapDualJet hj M hgap =
         rankTwoRoofFirstJet a b c d B := by
-    ext r s
-    simp [matrix3ParameterGapDualJet_apply, rankTwoRoofFirstJet,
-      B, hbase]
+    funext r s
+    change ((M r s).coeff 0, (M r s).coeff j) =
+      (rankTwoRoofZeroKernelBase a b c d r s, (M r s).coeff j)
+    rw [hbase]
   calc
     M.det.coeff j =
         TrivSqZeroExt.snd
