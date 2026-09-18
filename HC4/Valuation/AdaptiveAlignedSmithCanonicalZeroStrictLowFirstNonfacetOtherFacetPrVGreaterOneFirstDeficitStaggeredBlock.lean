@@ -169,31 +169,47 @@ already-certified source roof determinant on coordinates `0,1,3`. -/
 theorem firstDeficitLeftStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitLeftStaggeredBlock =
       G.firstDeficitLeftActiveHessian.det := by
-  set_option maxHeartbeats 1000000 in
-    unfold firstKernelBreakActiveThreeDet
-      firstDeficitLeftStaggeredBlock
-      firstDeficitLeftStaggeredMatrix
-      firstDeficitLeftActiveHessian
-      firstDeficitLeftActiveIndex
-      firstDeficitLeftStaggeredPerm
-      GeneralFourBlock.ofSymmetricMatrix
-    simp [Matrix.det_fin_three]
-    ring
+  unfold firstKernelBreakActiveThreeDet
+    firstDeficitLeftStaggeredBlock
+    firstDeficitLeftStaggeredMatrix
+    firstDeficitLeftActiveHessian
+    firstDeficitLeftActiveIndex
+    GeneralFourBlock.ofSymmetricMatrix
+  simp [Matrix.det_fin_three,
+    firstDeficitLeftStaggeredPerm_zero,
+    firstDeficitLeftStaggeredPerm_one,
+    firstDeficitLeftStaggeredPerm_two,
+    firstDeficitLeftStaggeredPerm_three]
+  rw [parameterFirstHessian_symmetric
+      P.centralDeficitFamily (1 : Fin 4) 0,
+    parameterFirstHessian_symmetric
+      P.centralDeficitFamily (3 : Fin 4) 1,
+    parameterFirstHessian_symmetric
+      P.centralDeficitFamily (3 : Fin 4) 0]
+  ring
 
 /-- Symmetric active-three identification for coordinates `0,2,3`. -/
 theorem firstDeficitRightStaggeredBlock_activeThree_eq :
     firstKernelBreakActiveThreeDet G.firstDeficitRightStaggeredBlock =
       G.firstDeficitRightActiveHessian.det := by
-  set_option maxHeartbeats 1000000 in
-    unfold firstKernelBreakActiveThreeDet
-      firstDeficitRightStaggeredBlock
-      firstDeficitRightStaggeredMatrix
-      firstDeficitRightActiveHessian
-      firstDeficitRightActiveIndex
-      firstDeficitRightStaggeredPerm
-      GeneralFourBlock.ofSymmetricMatrix
-    simp [Matrix.det_fin_three]
-    ring
+  unfold firstKernelBreakActiveThreeDet
+    firstDeficitRightStaggeredBlock
+    firstDeficitRightStaggeredMatrix
+    firstDeficitRightActiveHessian
+    firstDeficitRightActiveIndex
+    GeneralFourBlock.ofSymmetricMatrix
+  simp [Matrix.det_fin_three,
+    firstDeficitRightStaggeredPerm_zero,
+    firstDeficitRightStaggeredPerm_one,
+    firstDeficitRightStaggeredPerm_two,
+    firstDeficitRightStaggeredPerm_three]
+  rw [parameterFirstHessian_symmetric
+      P.centralDeficitFamily (2 : Fin 4) 0,
+    parameterFirstHessian_symmetric
+      P.centralDeficitFamily (3 : Fin 4) 2,
+    parameterFirstHessian_symmetric
+      P.centralDeficitFamily (3 : Fin 4) 0]
+  ring
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
