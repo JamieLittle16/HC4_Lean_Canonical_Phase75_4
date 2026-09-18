@@ -44,6 +44,22 @@ private theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square
   rw [hsym]
   simp [parameterFirstHessian]
 
+private theorem hessianPrincipalMinor_eq_square
+    (F : MvPolynomial (Fin 4) K)
+    (i j : Fin 4) :
+    HC4.Polynomial.hessianPrincipalMinor F i j =
+      HC4.Polynomial.hessian F i i * HC4.Polynomial.hessian F j j -
+        HC4.Polynomial.hessian F i j * HC4.Polynomial.hessian F i j := by
+  have hsym :
+      HC4.Polynomial.hessian F j i =
+        HC4.Polynomial.hessian F i j := by
+    change
+      MvPolynomial.pderiv i (MvPolynomial.pderiv j F) =
+        MvPolynomial.pderiv j (MvPolynomial.pderiv i F)
+    exact pderiv_comm_commRing i j F
+  unfold HC4.Polynomial.hessianPrincipalMinor
+  rw [hsym]
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsRayFacetEndpointFirstBreakData
 
@@ -64,6 +80,153 @@ def LayerMinorAtFirstBreak
   B.a.coeff j * B.z.coeff j - B.q.coeff j * B.q.coeff j ≠ 0 ∨
     B.d.coeff j * B.z.coeff j - B.s.coeff j * B.s.coeff j ≠ 0 ∨
     B.x.coeff j * B.z.coeff j - B.y.coeff j * B.y.coeff j ≠ 0
+
+/-- Exact source-weight-component form of the residual layer-only
+first-break minor.  Unlike an actual source minor, this statement remembers
+the precise interior reverse-Rees weight level where the rank-two event
+occurs. -/
+def ExactSourceWeightLayerMinorAtFirstBreak
+    (D : QsRayFacetEndpointFirstBreakData C) : Prop :=
+  let B := kernelLastFamilyHessianFourBlock
+    D.exposure.reverseReesFamily D.kernelCoordinate
+  let hrow := D.exposure.kernelLastBlock_kernelRow_ne_zero D.kernelCoordinate
+  let j := firstFourBlockKernelRowBreakOrder B hrow
+  j ≤ D.exposure.natLevel ∧
+    let L :=
+      HC4.Polynomial.initialForm
+        (fun i => (D.exposure.natWeight i : ℤ))
+        ((D.exposure.natLevel - j : ℕ) : ℤ)
+        (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+    HC4.Polynomial.hessianPrincipalMinor L
+          (kernelLastPerm D.kernelCoordinate 0) D.kernelCoordinate ≠ 0 ∨
+      HC4.Polynomial.hessianPrincipalMinor L
+          (kernelLastPerm D.kernelCoordinate 1) D.kernelCoordinate ≠ 0 ∨
+      HC4.Polynomial.hessianPrincipalMinor L
+          (kernelLastPerm D.kernelCoordinate 2) D.kernelCoordinate ≠ 0
+
+private theorem layerMinor0_eq
+    (D : QsRayFacetEndpointFirstBreakData C)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      D.exposure.reverseReesFamily D.kernelCoordinate
+    B.a.coeff j * B.z.coeff j - B.q.coeff j * B.q.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer D.exposure.reverseReesFamily j)
+        (kernelLastPerm D.kernelCoordinate 0)
+        (kernelLastPerm D.kernelCoordinate 3) := by
+  dsimp only
+  unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
+    kernelLastParameterFirstHessian
+  simp only [Matrix.submatrix_apply, parameterFirstHessian_coeff]
+  rw [hessianPrincipalMinor_eq_square]
+
+private theorem layerMinor1_eq
+    (D : QsRayFacetEndpointFirstBreakData C)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      D.exposure.reverseReesFamily D.kernelCoordinate
+    B.d.coeff j * B.z.coeff j - B.s.coeff j * B.s.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer D.exposure.reverseReesFamily j)
+        (kernelLastPerm D.kernelCoordinate 1)
+        (kernelLastPerm D.kernelCoordinate 3) := by
+  dsimp only
+  unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
+    kernelLastParameterFirstHessian
+  simp only [Matrix.submatrix_apply, parameterFirstHessian_coeff]
+  rw [hessianPrincipalMinor_eq_square]
+
+private theorem layerMinor2_eq
+    (D : QsRayFacetEndpointFirstBreakData C)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      D.exposure.reverseReesFamily D.kernelCoordinate
+    B.x.coeff j * B.z.coeff j - B.y.coeff j * B.y.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer D.exposure.reverseReesFamily j)
+        (kernelLastPerm D.kernelCoordinate 2)
+        (kernelLastPerm D.kernelCoordinate 3) := by
+  dsimp only
+  unfold kernelLastFamilyHessianFourBlock GeneralFourBlock.ofSymmetricMatrix
+    kernelLastParameterFirstHessian
+  simp only [Matrix.submatrix_apply, parameterFirstHessian_coeff]
+  rw [hessianPrincipalMinor_eq_square]
+
+/-- A layer-only first-break event is exactly rank-two Hessian geometry on one
+honest source weight component.  The component need not be maximal, so this
+theorem intentionally stops short of claiming a nonzero minor on the whole
+represented source. -/
+theorem layerMinorAtFirstBreak_exactSourceWeightComponent
+    (D : QsRayFacetEndpointFirstBreakData C)
+    (h : D.LayerMinorAtFirstBreak) :
+    D.ExactSourceWeightLayerMinorAtFirstBreak := by
+  let B := kernelLastFamilyHessianFourBlock
+    D.exposure.reverseReesFamily D.kernelCoordinate
+  let hrow := D.exposure.kernelLastBlock_kernelRow_ne_zero D.kernelCoordinate
+  let j := firstFourBlockKernelRowBreakOrder B hrow
+  let L := familyParameterLayer D.exposure.reverseReesFamily j
+  have hminor :
+      HC4.Polynomial.hessianPrincipalMinor L
+            (kernelLastPerm D.kernelCoordinate 0)
+            (kernelLastPerm D.kernelCoordinate 3) ≠ 0 ∨
+        HC4.Polynomial.hessianPrincipalMinor L
+            (kernelLastPerm D.kernelCoordinate 1)
+            (kernelLastPerm D.kernelCoordinate 3) ≠ 0 ∨
+        HC4.Polynomial.hessianPrincipalMinor L
+            (kernelLastPerm D.kernelCoordinate 2)
+            (kernelLastPerm D.kernelCoordinate 3) ≠ 0 := by
+    change
+      B.a.coeff j * B.z.coeff j - B.q.coeff j * B.q.coeff j ≠ 0 ∨
+        B.d.coeff j * B.z.coeff j - B.s.coeff j * B.s.coeff j ≠ 0 ∨
+        B.x.coeff j * B.z.coeff j - B.y.coeff j * B.y.coeff j ≠ 0 at h
+    rcases h with h0 | h1 | h2
+    · left
+      rw [← D.layerMinor0_eq j]
+      exact h0
+    · right
+      left
+      rw [← D.layerMinor1_eq j]
+      exact h1
+    · right
+      right
+      rw [← D.layerMinor2_eq j]
+      exact h2
+  have hLne : L ≠ 0 := by
+    intro hzero
+    rcases hminor with h0 | h1 | h2
+    · apply h0
+      rw [hzero]
+      simp [HC4.Polynomial.hessianPrincipalMinor,
+        HC4.Polynomial.hessian_apply]
+    · apply h1
+      rw [hzero]
+      simp [HC4.Polynomial.hessianPrincipalMinor,
+        HC4.Polynomial.hessian_apply]
+    · apply h2
+      rw [hzero]
+      simp [HC4.Polynomial.hessianPrincipalMinor,
+        HC4.Polynomial.hessian_apply]
+  have hexact :=
+    reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
+      D.exposure.natWeight D.exposure.natLevel j
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
+      D.exposure.hasReverseWeightBound
+      (by
+        simpa [L,
+          QsRayFacetEndpointSourceExposure.reverseReesFamily] using hLne)
+  rcases hexact with ⟨hj, hexact⟩
+  have hexact' :
+      L =
+        HC4.Polynomial.initialForm
+          (fun i => (D.exposure.natWeight i : ℤ))
+          ((D.exposure.natLevel - j : ℕ) : ℤ)
+          (polynomialFamilySpecialFiber T.terminal.blocker.presented.family) := by
+    simpa [L, QsRayFacetEndpointSourceExposure.reverseReesFamily] using hexact
+  unfold ExactSourceWeightLayerMinorAtFirstBreak
+  dsimp only
+  refine ⟨hj, ?_⟩
+  rw [← hexact']
+  simpa only [kernelLastPerm_last] using hminor
 
 private theorem familyMinor0_eq
     (D : QsRayFacetEndpointFirstBreakData C) :
