@@ -9755,12 +9755,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree.lean`
-- Purpose: The first central-deficit layer genuinely raises the Hessian rank to three
+- Purpose: The first positive deficit layer opens the central Hessian to rank three
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`, `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def firstDeficitOneRoofIndex`, `def firstDeficitTwoRoofIndex`, `theorem binaryLinearPower_hessian_diag_ne_zero`, `def firstDeficitOneRoofHessian`, `def firstDeficitTwoRoofHessian`, `theorem oneRoof_gap`, `theorem twoRoof_gap`, `theorem oneRoof_base`, `theorem twoRoof_base`, `theorem firstDeficitOneRoofHessian_det_ne_zero`, `theorem firstDeficitTwoRoofHessian_det_ne_zero`, `theorem firstDeficit_rankThree_roof`
+- Declarations: `lemma therefore`, `def firstDeficitRoofOneIndex`, `def firstDeficitRoofTwoIndex`, `def firstDeficitRoofOneMatrix`, `def firstDeficitRoofTwoMatrix`, `theorem firstDeficitRoofOne_gap`, `theorem firstDeficitRoofTwo_gap`, `theorem firstDeficitRoofOne_coeff_zero`, `theorem firstDeficitRoofTwo_coeff_zero`, `theorem firstDeficitRoofOne_middleDiagonal_ne_zero`, `theorem firstDeficitRoofTwo_middleDiagonal_ne_zero`, `inductive FirstDeficitRankThreeRoofGeometry`, `theorem firstDeficitRankThreeRoofGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`
 
