@@ -52,7 +52,9 @@ variable {K : Type*} [Field K]
 
 The coefficientwise monomial formula and injectivity of `kernelInflateHom`
 are canonical infrastructure from `KernelInflationHessianDefect`; reuse them
-here rather than redeclaring a second copy.
+here rather than redeclaring a second copy.  Keeping those declarations in one
+module also prevents generated-inventory refreshes from reintroducing duplicate
+environment names.
 -/
 
 /-- **Integral kernel blow-up preserves identically singular Hessian families.**
