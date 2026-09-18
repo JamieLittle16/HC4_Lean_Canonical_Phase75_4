@@ -145,9 +145,9 @@ private theorem sourceMinor0_of_familyMinor
   have hpoly : B.a * B.z - B.q * B.q ≠ 0 := by
     intro hz
     apply h
-    change (B.a * B.z - B.q * B.q).coeff j ≠ 0
-    rw [hz]
-    simp
+    have hc := congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff j) hz
+    simpa [B] using hc
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
@@ -196,9 +196,9 @@ private theorem sourceMinor1_of_familyMinor
   have hpoly : B.d * B.z - B.s * B.s ≠ 0 := by
     intro hz
     apply h
-    change (B.d * B.z - B.s * B.s).coeff j ≠ 0
-    rw [hz]
-    simp
+    have hc := congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff j) hz
+    simpa [B] using hc
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
@@ -247,9 +247,9 @@ private theorem sourceMinor2_of_familyMinor
   have hpoly : B.x * B.z - B.y * B.y ≠ 0 := by
     intro hz
     apply h
-    change (B.x * B.z - B.y * B.y).coeff j ≠ 0
-    rw [hz]
-    simp
+    have hc := congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff j) hz
+    simpa [B] using hc
   have hparam :
       parameterFirstEquiv K
         (HC4.Polynomial.hessianPrincipalMinor
@@ -301,7 +301,7 @@ private noncomputable def actualRankTwoChart0
       (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
       (rho (sigma 0)) (rho (sigma 1)) ≠ 0
   rw [hs0, hs1]
-  simpa only [kernelLastPerm_last] using hminor
+  simpa [rho, kernelLastPerm_last] using hminor
 
 private noncomputable def actualRankTwoChart1
     (D : QsRayFacetEndpointFirstBreakData C)
@@ -327,7 +327,7 @@ private noncomputable def actualRankTwoChart1
       (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
       (rho (sigma 0)) (rho (sigma 1)) ≠ 0
   rw [hs0, hs1]
-  simpa only [kernelLastPerm_last] using hminor
+  simpa [rho, kernelLastPerm_last] using hminor
 
 private noncomputable def actualRankTwoChart2
     (D : QsRayFacetEndpointFirstBreakData C)
@@ -353,7 +353,7 @@ private noncomputable def actualRankTwoChart2
       (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
       (rho (sigma 0)) (rho (sigma 1)) ≠ 0
   rw [hs0, hs1]
-  simpa only [kernelLastPerm_last] using hminor
+  simpa [rho, kernelLastPerm_last] using hminor
 
 /-- **Endpoint first-break refinement.**  A whole-family first-break minor
 already gives an actual rank-two chart on the represented source.  The only
