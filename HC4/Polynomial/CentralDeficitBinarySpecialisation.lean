@@ -180,6 +180,160 @@ theorem centralDeficitBinarySpecialisation_monomial
     simp
 
 
+
+/-- Binary exponent retaining exactly source coordinates `1,2`. -/
+def binaryDeficitExponent (e : Fin 4 →₀ ℕ) : Fin 2 →₀ ℕ :=
+  Finsupp.single (0 : Fin 2) (e 1) +
+    Finsupp.single (1 : Fin 2) (e 2)
+
+@[simp] theorem binaryDeficitExponent_zero
+    (e : Fin 4 →₀ ℕ) :
+    binaryDeficitExponent e (0 : Fin 2) = e 1 := by
+  simp [binaryDeficitExponent, Finsupp.single_apply]
+
+@[simp] theorem binaryDeficitExponent_one
+    (e : Fin 4 →₀ ℕ) :
+    binaryDeficitExponent e (1 : Fin 2) = e 2 := by
+  simp [binaryDeficitExponent, Finsupp.single_apply]
+
+theorem binaryDeficitExponent_degree
+    (e : Fin 4 →₀ ℕ) :
+    (binaryDeficitExponent e).degree = e 1 + e 2 := by
+  rw [Finsupp.degree_eq_weight_one]
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · simp [binaryDeficitExponent, Finsupp.single_apply, Fin.sum_univ_two]
+  · intro i
+    simp
+
+/-- Monomial form of the binary specialisation. -/
+theorem centralDeficitBinarySpecialisation_monomial_eq
+    (e : Fin 4 →₀ ℕ) (z : K) :
+    centralDeficitBinarySpecialisation (K := K)
+        (MvPolynomial.monomial e z) =
+      MvPolynomial.monomial (binaryDeficitExponent e) z := by
+  rw [centralDeficitBinarySpecialisation_monomial]
+  apply MvPolynomial.ext
+  intro d
+  rw [MvPolynomial.coeff_monomial, MvPolynomial.coeff_monomial]
+  by_cases hd : binaryDeficitExponent e = d
+  · subst d
+    simp [binaryDeficitExponent, MvPolynomial.coeff_C_mul,
+      MvPolynomial.coeff_mul, Finsupp.single_apply]
+  · have hne : d ≠ binaryDeficitExponent e := Ne.symm hd
+    rw [if_neg hd]
+    classical
+    simp only [MvPolynomial.coeff_mul]
+    rw [Finset.sum_eq_zero]
+    intro x hx
+    rcases Finset.mem_antidiagonal.mp hx with hsum
+    by_cases hx0 : x.1 = Finsupp.single (0 : Fin 2) (e 1)
+    · subst x.1
+      have hx1 : x.2 ≠ Finsupp.single (1 : Fin 2) (e 2) := by
+        intro heq
+        apply hne
+        rw [← hsum, heq]
+        ext i
+        fin_cases i <;> simp [binaryDeficitExponent, Finsupp.single_apply]
+      simp [hx1]
+    · simp [hx0]
+
+/-- Coefficient preservation under an injective deficit projection. -/
+theorem coeff_centralDeficitBinarySpecialisation_of_mem
+    (F : MvPolynomial (Fin 4) K)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ F.support)
+    (hinj :
+      ∀ f ∈ F.support,
+        binaryDeficitExponent f = binaryDeficitExponent e → f = e) :
+    MvPolynomial.coeff (binaryDeficitExponent e)
+        (centralDeficitBinarySpecialisation (K := K) F) =
+      MvPolynomial.coeff e F := by
+  classical
+  have hsum :
+      centralDeficitBinarySpecialisation (K := K) F =
+        ∑ f ∈ F.support,
+          MvPolynomial.monomial (binaryDeficitExponent f)
+            (MvPolynomial.coeff f F) := by
+    calc
+      centralDeficitBinarySpecialisation (K := K) F =
+          centralDeficitBinarySpecialisation (K := K)
+            (∑ f ∈ F.support,
+              MvPolynomial.monomial f (MvPolynomial.coeff f F)) := by
+            rw [MvPolynomial.as_sum F]
+      _ = _ := by
+        simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
+  rw [hsum, MvPolynomial.coeff_sum]
+  rw [Finset.sum_eq_single e]
+  · simp
+  · intro f hf hfe
+    rw [MvPolynomial.coeff_monomial]
+    have hproj : binaryDeficitExponent f ≠ binaryDeficitExponent e := by
+      intro h
+      exact hfe (hinj f hf h)
+    simp [hproj]
+  · intro hnot
+    exact (hnot he).elim
+
+/-- Deficit-injective support prevents cancellation under binary
+specialisation. -/
+theorem centralDeficitBinarySpecialisation_ne_zero_of_injective
+    (F : MvPolynomial (Fin 4) K)
+    (hF : F ≠ 0)
+    (hinj :
+      ∀ e ∈ F.support, ∀ f ∈ F.support,
+        binaryDeficitExponent f = binaryDeficitExponent e → f = e) :
+    centralDeficitBinarySpecialisation (K := K) F ≠ 0 := by
+  rcases MvPolynomial.support_nonempty.mpr hF with ⟨e, he⟩
+  have hc := MvPolynomial.mem_support_iff.mp he
+  intro hz
+  have hcoeff :=
+    coeff_centralDeficitBinarySpecialisation_of_mem
+      F he (fun f hf h => hinj e he f hf h)
+  rw [hz] at hcoeff
+  simp only [MvPolynomial.coeff_zero] at hcoeff
+  exact hc hcoeff.symm
+
+/-- A source layer of constant total deficit becomes a homogeneous binary
+polynomial of exactly that degree. -/
+theorem centralDeficitBinarySpecialisation_isHomogeneous
+    (F : MvPolynomial (Fin 4) K)
+    (q : ℕ)
+    (hdeg : ∀ e ∈ F.support, e 1 + e 2 = q) :
+    (centralDeficitBinarySpecialisation (K := K) F).IsHomogeneous q := by
+  classical
+  intro d hd
+  have hsum :
+      centralDeficitBinarySpecialisation (K := K) F =
+        ∑ e ∈ F.support,
+          MvPolynomial.monomial (binaryDeficitExponent e)
+            (MvPolynomial.coeff e F) := by
+    calc
+      centralDeficitBinarySpecialisation (K := K) F =
+          centralDeficitBinarySpecialisation (K := K)
+            (∑ e ∈ F.support,
+              MvPolynomial.monomial e (MvPolynomial.coeff e F)) := by
+            rw [MvPolynomial.as_sum F]
+      _ = _ := by
+        simp only [map_sum, centralDeficitBinarySpecialisation_monomial_eq]
+  have hdSum : d ∈
+      (∑ e ∈ F.support,
+        MvPolynomial.monomial (binaryDeficitExponent e)
+          (MvPolynomial.coeff e F)).support := by
+    rwa [← hsum]
+  have hdUnion := MvPolynomial.support_sum hdSum
+  rcases Finset.mem_biUnion.mp hdUnion with ⟨e, he, hde⟩
+  have hcoeff := MvPolynomial.mem_support_iff.mp hde
+  rw [MvPolynomial.coeff_monomial] at hcoeff
+  split at hcoeff
+  · next hEq =>
+      have hdEq : d = binaryDeficitExponent e := hEq.symm
+      subst d
+      rw [Finsupp.degree_eq_weight_one] at binaryDeficitExponent_degree
+      have hdegree := binaryDeficitExponent_degree e
+      rw [Finsupp.degree_eq_weight_one] at hdegree
+      exact hdegree.trans (hdeg e he)
+  · exact (hcoeff rfl).elim
+
 /-- A monomial with zero exponents in the two deficit coordinates becomes,
 after Hessian formation and binary specialisation, exactly its all-ones
 exponent Hessian core embedded as constants. -/
