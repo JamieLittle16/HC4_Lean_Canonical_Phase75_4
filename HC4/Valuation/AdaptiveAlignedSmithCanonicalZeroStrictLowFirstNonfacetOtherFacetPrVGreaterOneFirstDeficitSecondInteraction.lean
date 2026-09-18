@@ -212,7 +212,7 @@ private noncomputable def leftSecondInteractionData
       hthree houtThree hfirst hfirst1 hfirst2 huniq
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 0 2).coeff n = 0 := by
@@ -224,7 +224,7 @@ private noncomputable def leftSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 1 2).coeff n = 0 := by
@@ -236,7 +236,7 @@ private noncomputable def leftSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 3 2).coeff n = 0 := by
@@ -248,7 +248,7 @@ private noncomputable def leftSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (2 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
     simpa [firstDeficitLeftStaggeredBlock,
       firstDeficitLeftStaggeredMatrix,
@@ -296,7 +296,7 @@ private noncomputable def rightSecondInteractionData
       hthree houtThree hfirst hfirst1 hfirst2 huniq
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (0 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 0 1).coeff n = 0 := by
@@ -308,7 +308,7 @@ private noncomputable def rightSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (2 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 2 1).coeff n = 0 := by
@@ -320,7 +320,7 @@ private noncomputable def rightSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (3 : Fin 4)
     have hsym :
         (parameterFirstHessian P.centralDeficitFamily 3 1).coeff n = 0 := by
@@ -332,7 +332,7 @@ private noncomputable def rightSecondInteractionData
       GeneralFourBlock.ofSymmetricMatrix] using hsym
   · intro n hn
     have hrow :=
-      G.missingHessianRow_coeff_eq_zero_of_lt
+      missingHessianRow_coeff_eq_zero_of_lt
         (1 : Fin 4) (opposite 1 + opposite 2) hminimal hn (1 : Fin 4)
     simpa [firstDeficitRightStaggeredBlock,
       firstDeficitRightStaggeredMatrix,
