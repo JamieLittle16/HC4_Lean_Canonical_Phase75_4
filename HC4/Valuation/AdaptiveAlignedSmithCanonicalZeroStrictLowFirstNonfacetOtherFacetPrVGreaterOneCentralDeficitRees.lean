@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits
 import HC4.Valuation.SingularBoundedReverseWeightedRees
 import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.Valuation.ActualParameterLayer
@@ -137,15 +138,23 @@ theorem centralDeficitWeight_add_deficits_eq_level
     exact_mod_cast hlevelZ'
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    change
-      (P.finalWeight 0).toNat * e 0 +
-          ((P.finalWeight 1).toNat - 1) * e 1 +
-          ((P.finalWeight 2).toNat - 1) * e 2 +
-          (P.finalWeight 3).toNat * e 3 +
-          e 1 + e 2 =
-        P.centralDeficitLevel
+    simp only [nsmul_eq_mul]
+    simp only [centralDeficitWeight]
+    have h1 :
+        (P.finalWeight 1).toNat - 1 + 1 =
+          (P.finalWeight 1).toNat :=
+      Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr
+        (Nat.ne_of_gt h1pos))
+    have h2 :
+        (P.finalWeight 2).toNat - 1 + 1 =
+          (P.finalWeight 2).toNat :=
+      Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr
+        (Nat.ne_of_gt h2pos))
     calc
-      _ =
+      e 0 * (P.finalWeight 0).toNat +
+            e 1 * ((P.finalWeight 1).toNat - 1) +
+            e 2 * ((P.finalWeight 2).toNat - 1) +
+            e 3 * (P.finalWeight 3).toNat + e 1 + e 2 =
           (P.finalWeight 0).toNat * e 0 +
             (((P.finalWeight 1).toNat - 1) + 1) * e 1 +
             (((P.finalWeight 2).toNat - 1) + 1) * e 2 +
@@ -154,11 +163,7 @@ theorem centralDeficitWeight_add_deficits_eq_level
           (P.finalWeight 0).toNat * e 0 +
             (P.finalWeight 1).toNat * e 1 +
             (P.finalWeight 2).toNat * e 2 +
-            (P.finalWeight 3).toNat * e 3 := by
-          rw [Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr
-              (Nat.ne_of_gt h1pos)),
-            Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr
-              (Nat.ne_of_gt h2pos))]
+            (P.finalWeight 3).toNat * e 3 := by rw [h1, h2]
       _ = P.centralDeficitLevel := hlevelNat
   · intro i
     simp
@@ -193,6 +198,7 @@ theorem centralDeficitFamily_layer_mem_iff
     (q : ℕ) (e : Fin 4 →₀ ℕ) :
     e ∈ (familyParameterLayer P.centralDeficitFamily q).support ↔
       e ∈ P.carrier.support ∧ e 1 + e 2 = q := by
+  unfold centralDeficitFamily
   rw [reverseWeightedReesFamily_parameterLayer_mem_iff]
   constructor
   · rintro ⟨he, hq⟩
@@ -236,9 +242,8 @@ theorem centralDeficitFamily_layer_zero_eq
           (familyParameterLayer P.centralDeficitFamily 0).support := by
       rw [P.centralDeficitFamily_layer_mem_iff]
       simp [G.central_mem, G.central_one_zero, G.central_two_zero]
-    have hc := MvPolynomial.mem_support_iff.mp hmem
-    rw [familyParameterLayer_coeff,
-      reverseWeightedReesFamily_parameterLayer_coeff] at hc ⊢
+    unfold QsOtherFacetPlanarCarrierPackage.centralDeficitFamily
+    rw [reverseWeightedReesFamily_parameterLayer_coeff]
     simp [G.central_mem, G.central_one_zero, G.central_two_zero,
       P.centralDeficit_order_eq G.central_mem]
   · have hnot :
@@ -257,7 +262,10 @@ theorem centralDeficitFamily_layer_zero_eq
           (familyParameterLayer P.centralDeficitFamily 0) = 0 :=
       MvPolynomial.notMem_support_iff.mp hnot
     rw [hz]
-    simp [he]
+    have hce : G.central ≠ e := by
+      intro h
+      exact he h.symm
+    simp [hce]
 
 /-- The actual locked roof endpoint supplies a positive parameter layer. -/
 theorem centralDeficitFamily_hasPositiveActualLayer :
