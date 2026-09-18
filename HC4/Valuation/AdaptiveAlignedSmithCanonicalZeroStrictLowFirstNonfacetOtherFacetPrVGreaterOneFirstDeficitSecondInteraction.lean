@@ -46,130 +46,6 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
-private theorem centralParameterHessian_coeff_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
-    (i j : Fin 4) :
-    (parameterFirstHessian P.centralDeficitFamily i j).coeff 0 =
-      HC4.Polynomial.hessian G.exposure.face i j := by
-  rw [parameterFirstHessian_coeff,
-    centralDeficitFamily_layer_zero_eq G hthree houtThree,
-    G.exposure_face_eq]
-
-private theorem left_base_b_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitLeftStaggeredBlock.b.coeff 0 = 0 := by
-  unfold firstDeficitLeftStaggeredBlock firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero]
-
-private theorem left_base_d_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitLeftStaggeredBlock.d.coeff 0 = 0 := by
-  unfold firstDeficitLeftStaggeredBlock firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero]
-
-private theorem left_base_r_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitLeftStaggeredBlock.r.coeff 0 = 0 := by
-  unfold firstDeficitLeftStaggeredBlock firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero]
-
-private theorem right_base_b_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitRightStaggeredBlock.b.coeff 0 = 0 := by
-  unfold firstDeficitRightStaggeredBlock firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_two_zero]
-
-private theorem right_base_d_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitRightStaggeredBlock.d.coeff 0 = 0 := by
-  unfold firstDeficitRightStaggeredBlock firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_two_zero]
-
-private theorem right_base_r_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitRightStaggeredBlock.r.coeff 0 = 0 := by
-  unfold firstDeficitRightStaggeredBlock firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree]
-  rw [G.exposure_face_eq]
-  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_two_zero]
-
-/-- In either staggered orientation, the outer active constant minor is exactly
-the retained central `(0,3)` principal Hessian minor. -/
-private theorem left_base_outer_minor_ne_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitLeftStaggeredBlock.a.coeff 0 *
-          G.firstDeficitLeftStaggeredBlock.x.coeff 0 -
-        G.firstDeficitLeftStaggeredBlock.p.coeff 0 *
-          G.firstDeficitLeftStaggeredBlock.p.coeff 0 ≠ 0 := by
-  unfold firstDeficitLeftStaggeredBlock firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree,
-    G.centralParameterHessian_coeff_zero hthree houtThree,
-    G.centralParameterHessian_coeff_zero hthree houtThree]
-  simpa [HC4.Polynomial.hessianPrincipalMinor] using
-    G.exposure_rankTwo_minor
-
-private theorem right_base_outer_minor_ne_zero
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.firstDeficitRightStaggeredBlock.a.coeff 0 *
-          G.firstDeficitRightStaggeredBlock.x.coeff 0 -
-        G.firstDeficitRightStaggeredBlock.p.coeff 0 *
-          G.firstDeficitRightStaggeredBlock.p.coeff 0 ≠ 0 := by
-  unfold firstDeficitRightStaggeredBlock firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [G.centralParameterHessian_coeff_zero hthree houtThree,
-    G.centralParameterHessian_coeff_zero hthree houtThree,
-    G.centralParameterHessian_coeff_zero hthree houtThree]
-  simpa [HC4.Polynomial.hessianPrincipalMinor] using
-    G.exposure_rankTwo_minor
-
 /-- Provenance-rich second interaction forced by the zero full determinant. -/
 inductive FirstDeficitSecondInteractionGeometry : Prop
   | left
@@ -237,18 +113,18 @@ theorem firstDeficit_secondInteractionGeometry
         ⟨E, hblock, hactive, hkernel⟩
       have hb0 : E.block.b.coeff 0 = 0 := by
         rw [hblock]
-        exact G.left_base_b_zero hthree houtThree
+        exact G.firstDeficitLeftStaggeredBlock_base_b_zero hthree houtThree
       have hd0 : E.block.d.coeff 0 = 0 := by
         rw [hblock]
-        exact G.left_base_d_zero hthree houtThree
+        exact G.firstDeficitLeftStaggeredBlock_base_d_zero hthree houtThree
       have hr0 : E.block.r.coeff 0 = 0 := by
         rw [hblock]
-        exact G.left_base_r_zero hthree houtThree
+        exact G.firstDeficitLeftStaggeredBlock_base_r_zero hthree houtThree
       have houter :
           E.block.a.coeff 0 * E.block.x.coeff 0 -
               E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
         rw [hblock]
-        exact G.left_base_outer_minor_ne_zero hthree houtThree
+        exact G.firstDeficitLeftStaggeredBlock_base_outer_minor_ne_zero hthree houtThree
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
         exact hmixed
@@ -271,18 +147,18 @@ theorem firstDeficit_secondInteractionGeometry
         ⟨E, hblock, hactive, hkernel⟩
       have hb0 : E.block.b.coeff 0 = 0 := by
         rw [hblock]
-        exact G.right_base_b_zero hthree houtThree
+        exact G.firstDeficitRightStaggeredBlock_base_b_zero hthree houtThree
       have hd0 : E.block.d.coeff 0 = 0 := by
         rw [hblock]
-        exact G.right_base_d_zero hthree houtThree
+        exact G.firstDeficitRightStaggeredBlock_base_d_zero hthree houtThree
       have hr0 : E.block.r.coeff 0 = 0 := by
         rw [hblock]
-        exact G.right_base_r_zero hthree houtThree
+        exact G.firstDeficitRightStaggeredBlock_base_r_zero hthree houtThree
       have houter :
           E.block.a.coeff 0 * E.block.x.coeff 0 -
               E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0 := by
         rw [hblock]
-        exact G.right_base_outer_minor_ne_zero hthree houtThree
+        exact G.firstDeficitRightStaggeredBlock_base_outer_minor_ne_zero hthree houtThree
       have hsj : E.block.s.coeff E.kernelOrder ≠ 0 := by
         rw [hblock, hkernel]
         exact hmixed
