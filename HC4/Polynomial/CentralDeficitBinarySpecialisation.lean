@@ -132,11 +132,24 @@ theorem hessian_zero_one_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 1 2) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [pderiv_comm_backport (1 : Fin 2) (0 : Fin 2)
-      (centralDeficitBinarySpecialisation (K := K) F)]
-  rw [pderiv_zero_centralDeficitBinarySpecialisation,
-    pderiv_one_centralDeficitBinarySpecialisation]
-  rw [pderiv_comm_backport (1 : Fin 4) (2 : Fin 4) F]
+  calc
+    MvPolynomial.pderiv (0 : Fin 2)
+        (MvPolynomial.pderiv (1 : Fin 2)
+          (centralDeficitBinarySpecialisation (K := K) F)) =
+      MvPolynomial.pderiv (0 : Fin 2)
+        (centralDeficitBinarySpecialisation (K := K)
+          (MvPolynomial.pderiv (2 : Fin 4) F)) := by
+            rw [pderiv_one_centralDeficitBinarySpecialisation]
+    _ = centralDeficitBinarySpecialisation (K := K)
+          (MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4) F)) := by
+            rw [pderiv_zero_centralDeficitBinarySpecialisation]
+    _ = centralDeficitBinarySpecialisation (K := K)
+          (MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4) F)) := by
+            exact congrArg
+              (centralDeficitBinarySpecialisation (K := K))
+              (pderiv_comm_backport (1 : Fin 4) (2 : Fin 4) F)
 
 /-- Companion mixed entry. -/
 theorem hessian_one_zero_centralDeficitBinarySpecialisation
@@ -146,8 +159,18 @@ theorem hessian_one_zero_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 2 1) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [pderiv_one_centralDeficitBinarySpecialisation,
-    pderiv_zero_centralDeficitBinarySpecialisation]
+  calc
+    MvPolynomial.pderiv (1 : Fin 2)
+        (MvPolynomial.pderiv (0 : Fin 2)
+          (centralDeficitBinarySpecialisation (K := K) F)) =
+      MvPolynomial.pderiv (1 : Fin 2)
+        (centralDeficitBinarySpecialisation (K := K)
+          (MvPolynomial.pderiv (1 : Fin 4) F)) := by
+            rw [pderiv_zero_centralDeficitBinarySpecialisation]
+    _ = centralDeficitBinarySpecialisation (K := K)
+          (MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4) F)) := by
+            rw [pderiv_one_centralDeficitBinarySpecialisation]
 
 /-- **Exact binary Hessian transport.** -/
 theorem binaryHessianDet_centralDeficitBinarySpecialisation
@@ -159,14 +182,18 @@ theorem binaryHessianDet_centralDeficitBinarySpecialisation
             HC4.Polynomial.hessian F 2 2 -
           HC4.Polynomial.hessian F 1 2 *
             HC4.Polynomial.hessian F 2 1) := by
+  have hsym :
+      HC4.Polynomial.hessian F 2 1 =
+        HC4.Polynomial.hessian F 1 2 := by
+    simp only [HC4.Polynomial.hessian_apply]
+    exact pderiv_comm_backport (2 : Fin 4) (1 : Fin 4) F
   unfold binaryDirectionalHessianDet directionalSecondDerivative
     directionalMixedDerivative
   simp only [← HC4.Polynomial.hessian_apply]
   rw [hessian_zero_zero_centralDeficitBinarySpecialisation,
     hessian_one_one_centralDeficitBinarySpecialisation,
-    hessian_zero_one_centralDeficitBinarySpecialisation,
     hessian_one_zero_centralDeficitBinarySpecialisation]
-  rfl
+  simp only [map_sub, map_mul, hsym, pow_two]
 
 /-- Exact image of one source monomial. -/
 theorem centralDeficitBinarySpecialisation_monomial
@@ -337,19 +364,24 @@ theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
         (HC4.Polynomial.hessian (MvPolynomial.monomial e z)) =
       (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
         (z • exponentHessianCore (K := K) e) := by
-  apply Matrix.ext
-  intro i j
-  fin_cases i <;> fin_cases j <;>
-    simp [HC4.Polynomial.hessian_apply,
-      MvPolynomial.pderiv_monomial,
-      centralDeficitBinarySpecialisation_monomial,
-      HC4.Polynomial.exponentHessianCore, h1, h2,
-      Finsupp.single_apply, mul_assoc] <;>
-    try
-      { rw [HC4.Polynomial.natCast_mul_pred
-          (K := MvPolynomial (Fin 2) K)]
-        ring } <;>
-    ring
+  have heval :=
+    HC4.Polynomial.eval_one_hessian_monomial (K := K) e z
+  calc
+    (centralDeficitBinarySpecialisation (K := K)).mapMatrix
+        (HC4.Polynomial.hessian (MvPolynomial.monomial e z)) =
+      (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
+        ((MvPolynomial.eval fun _ : Fin 4 => (1 : K)).mapMatrix
+          (HC4.Polynomial.hessian (MvPolynomial.monomial e z))) := by
+            apply Matrix.ext
+            intro i j
+            fin_cases i <;> fin_cases j <;>
+              simp [HC4.Polynomial.hessian_apply,
+                MvPolynomial.pderiv_monomial,
+                centralDeficitBinarySpecialisation_monomial,
+                MvPolynomial.eval_monomial, Finsupp.prod, h1, h2]
+    _ = (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
+        (z • exponentHessianCore (K := K) e) := by
+          rw [heval]
 
 end
 
