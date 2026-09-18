@@ -242,6 +242,59 @@ theorem kernelDiagonal_coeff_eq_zero_before_secondInteraction
         exact
           (mul_eq_zero.mp hdet).resolve_left E.active_coeff_ne_zero
 
+/-- **Exact second-interaction identity.**
+
+At the first quadratic kernel-row interaction, the zero determinant equates
+the leading active-three contribution to the square of the first mixed
+opening.  This equality is stronger than the later nonvanishing corollary and
+is retained for source-exponent reconstruction. -/
+theorem activeCoeff_mul_kernelDiagonal_secondInteraction_eq_outer_mul_mixed_sq
+    [NoZeroDivisors R]
+    (hb0 : E.block.b.coeff 0 = 0)
+    (hd0 : E.block.d.coeff 0 = 0)
+    (hr0 : E.block.r.coeff 0 = 0) :
+    (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+        E.block.z.coeff
+          (2 * E.kernelOrder - E.activeOrder) =
+      (E.block.a.coeff 0 * E.block.x.coeff 0 -
+          E.block.p.coeff 0 * E.block.p.coeff 0) *
+        (E.block.s.coeff E.kernelOrder *
+          E.block.s.coeff E.kernelOrder) := by
+  let k := 2 * E.kernelOrder - E.activeOrder
+  have hsum : E.activeOrder + k = 2 * E.kernelOrder := by
+    dsimp [k]
+    omega
+  have hzLower :
+      ∀ n : ℕ, n < k → E.block.z.coeff n = 0 := by
+    intro n hn
+    exact E.kernelDiagonal_coeff_eq_zero_before_secondInteraction n (by
+      simpa [k] using hn)
+  have hactiveZ :
+      (firstKernelBreakActiveThreeDet E.block * E.block.z).coeff
+          (2 * E.kernelOrder) =
+        (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+          E.block.z.coeff k := by
+    have hlead :=
+      coeff_mul_eq_leading_mul_of_lower_zero
+        (firstKernelBreakActiveThreeDet E.block) E.block.z
+        E.active_lower_zero hzLower
+    simpa [hsum] using hlead
+  have hdet :
+      E.block.determinantCore.coeff (2 * E.kernelOrder) = 0 := by
+    rw [E.determinantCore_eq_zero]
+    simp
+  rw [determinantCore_coeff_doubleKernel_of_middleKernelBase
+      E.block E.q_lower_zero E.s_lower_zero E.y_lower_zero
+      hb0 hd0 hr0, hactiveZ] at hdet
+  change
+    (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+          E.block.z.coeff k -
+        (E.block.a.coeff 0 * E.block.x.coeff 0 -
+            E.block.p.coeff 0 * E.block.p.coeff 0) *
+          (E.block.s.coeff E.kernelOrder *
+            E.block.s.coeff E.kernelOrder) = 0 at hdet
+  exact sub_eq_zero.mp hdet
+
 /-- If the constant active block has a genuine outer principal minor and the
 first mixed opening is the middle entry `s_j`, then the next missing-diagonal
 coefficient is forced nonzero at the exact order `2*j-q`. -/
