@@ -132,8 +132,11 @@ theorem hessian_zero_one_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 1 2) := by
   simp only [HC4.Polynomial.hessian_apply]
+  rw [pderiv_comm_commRing (1 : Fin 2) (0 : Fin 2)
+      (centralDeficitBinarySpecialisation (K := K) F)]
   rw [pderiv_one_centralDeficitBinarySpecialisation,
     pderiv_zero_centralDeficitBinarySpecialisation]
+  rw [pderiv_comm_commRing (1 : Fin 4) (2 : Fin 4) F]
 
 /-- Companion mixed entry. -/
 theorem hessian_one_zero_centralDeficitBinarySpecialisation
@@ -143,8 +146,8 @@ theorem hessian_one_zero_centralDeficitBinarySpecialisation
       centralDeficitBinarySpecialisation (K := K)
         (HC4.Polynomial.hessian F 2 1) := by
   simp only [HC4.Polynomial.hessian_apply]
-  rw [pderiv_zero_centralDeficitBinarySpecialisation,
-    pderiv_one_centralDeficitBinarySpecialisation]
+  rw [pderiv_one_centralDeficitBinarySpecialisation,
+    pderiv_zero_centralDeficitBinarySpecialisation]
 
 /-- **Exact binary Hessian transport.** -/
 theorem binaryHessianDet_centralDeficitBinarySpecialisation
@@ -333,21 +336,28 @@ theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
         (HC4.Polynomial.hessian (MvPolynomial.monomial e z)) =
       (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
         (z • exponentHessianCore (K := K) e) := by
-  have hpred (n : ℕ) :
-      (n : MvPolynomial (Fin 2) K) *
-          ((n - 1 : ℕ) : MvPolynomial (Fin 2) K) =
-        (n : MvPolynomial (Fin 2) K) ^ 2 -
-          (n : MvPolynomial (Fin 2) K) :=
-    HC4.Polynomial.natCast_mul_pred
-      (K := MvPolynomial (Fin 2) K) n
+  have heval :=
+    HC4.Polynomial.eval_one_hessian_monomial (K := K) e z
   apply Matrix.ext
   intro i j
-  fin_cases i <;> fin_cases j <;>
-    simp [HC4.Polynomial.hessian_apply,
-      MvPolynomial.pderiv_monomial,
-      centralDeficitBinarySpecialisation_monomial,
-      HC4.Polynomial.exponentHessianCore, h1, h2,
-      Finsupp.single_apply, mul_assoc, hpred] <;> ring
+  have hevalij := congrFun (congrFun heval i) j
+  have hconst :
+      centralDeficitBinarySpecialisation (K := K)
+          (HC4.Polynomial.hessian (MvPolynomial.monomial e z) i j) =
+        MvPolynomial.C
+          (MvPolynomial.eval (fun _ : Fin 4 => (1 : K))
+            (HC4.Polynomial.hessian (MvPolynomial.monomial e z) i j)) := by
+    fin_cases i <;> fin_cases j <;>
+      simp [HC4.Polynomial.hessian_apply,
+        MvPolynomial.pderiv_monomial,
+        centralDeficitBinarySpecialisation_monomial,
+        MvPolynomial.eval_monomial, h1, h2]
+  change
+    centralDeficitBinarySpecialisation (K := K)
+        (HC4.Polynomial.hessian (MvPolynomial.monomial e z) i j) =
+      MvPolynomial.C ((z • exponentHessianCore (K := K) e) i j)
+  rw [hconst]
+  exact congrArg MvPolynomial.C hevalij
 
 end
 
