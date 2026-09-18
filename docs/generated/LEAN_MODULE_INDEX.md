@@ -9750,7 +9750,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem firstDeficitLayer_binaryExponent_mem`, `theorem firstDeficitLayer_axis_support`, `theorem firstDeficitOrder_two_le`, `theorem firstDeficitLayer_singleton_axis`
+- Declarations: `theorem firstDeficitLayer_binaryExponent_mem`, `theorem firstDeficitLayer_axis_support`, `theorem firstDeficitLayer_singleton_axis`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFourTermCarrier`
 
