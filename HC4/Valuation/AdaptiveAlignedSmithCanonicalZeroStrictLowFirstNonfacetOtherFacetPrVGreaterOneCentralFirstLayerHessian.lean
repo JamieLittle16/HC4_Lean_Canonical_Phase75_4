@@ -112,6 +112,7 @@ theorem firstDeficitBinaryFace_isHomogeneous :
   intro e he
   exact (G.firstDeficitLayer_support he).2
 
+include G in
 noncomputable def binaryParameterHessian :
     Matrix (Fin 4) (Fin 4)
       (Polynomial (MvPolynomial (Fin 2) K)) :=
@@ -182,18 +183,18 @@ noncomputable def centralBinaryCore :
     Matrix (Fin 4) (Fin 4) (MvPolynomial (Fin 2) K) :=
   (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
     ((MvPolynomial.coeff G.central P.carrier) •
-      exponentHessianCore (K := K) G.central)
+      HC4.Polynomial.exponentHessianCore (K := K) G.central)
 
 theorem centralBinaryCore_eq_rankTwoBase :
     G.centralBinaryCore =
-      rankTwoZeroKernelBase
+      HC4.Polynomial.rankTwoZeroKernelBase
         (G.centralBinaryCore 0 0) (G.centralBinaryCore 0 3)
         (G.centralBinaryCore 3 0) (G.centralBinaryCore 3 3) := by
   apply Matrix.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [centralBinaryCore, rankTwoZeroKernelBase,
-      exponentHessianCore, G.central_one_zero, G.central_two_zero]
+    simp [centralBinaryCore, HC4.Polynomial.rankTwoZeroKernelBase,
+      HC4.Polynomial.exponentHessianCore, G.central_one_zero, G.central_two_zero]
 
 theorem centralBinaryCore_activeDet_ne_zero :
     G.centralBinaryCore 0 0 * G.centralBinaryCore 3 3 -
@@ -228,7 +229,7 @@ theorem centralBinaryCore_activeDet_ne_zero :
           (1 - (G.central 0 : K) - (G.central 3 : K))) :
         MvPolynomial (Fin 2) K) ≠ 0 :=
     MvPolynomial.C_ne_zero.mpr hscalar
-  simpa [centralBinaryCore, exponentHessianCore, z,
+  simpa [centralBinaryCore, HC4.Polynomial.exponentHessianCore, z,
     G.central_one_zero, G.central_two_zero] using hC
 
 theorem binaryParameterHessian_coeff_zero
@@ -256,7 +257,7 @@ theorem firstDeficitBinaryFace_hessian_zero
   have hbase :
       ∀ i j,
         (G.binaryParameterHessian i j).coeff 0 =
-          rankTwoZeroKernelBase
+          HC4.Polynomial.rankTwoZeroKernelBase
             (G.centralBinaryCore 0 0) (G.centralBinaryCore 0 3)
             (G.centralBinaryCore 3 0) (G.centralBinaryCore 3 3) i j := by
     intro i j
