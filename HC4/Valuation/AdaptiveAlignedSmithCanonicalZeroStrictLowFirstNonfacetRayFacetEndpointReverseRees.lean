@@ -78,12 +78,11 @@ theorem hessianClock_nonneg
     (E : QsRayFacetEndpointSourceExposure C) :
     2 * ∑ i : Fin 4, E.natWeight i ≤ 4 * E.natLevel := by
   have hsum :
-      ((∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) =
+      (∑ i : Fin 4, (E.natWeight i : ℤ)) =
         ∑ i : Fin 4, E.weight i := by
-    push_cast
     apply Finset.sum_congr rfl
     intro i hi
-    rw [E.natWeight_cast]
+    exact E.natWeight_cast i
   have hltZ :
       ((2 * ∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) <
         ((4 * E.natLevel : ℕ) : ℤ) := by
@@ -139,12 +138,11 @@ theorem reverseReesFamily_defect_pos
     (E : QsRayFacetEndpointSourceExposure C) :
     0 < 4 * E.natLevel - 2 * ∑ i : Fin 4, E.natWeight i := by
   have hsum :
-      ((∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) =
+      (∑ i : Fin 4, (E.natWeight i : ℤ)) =
         ∑ i : Fin 4, E.weight i := by
-    push_cast
     apply Finset.sum_congr rfl
     intro i hi
-    rw [E.natWeight_cast]
+    exact E.natWeight_cast i
   have hltZ :
       ((2 * ∑ i : Fin 4, E.natWeight i : ℕ) : ℤ) <
         ((4 * E.natLevel : ℕ) : ℤ) := by
