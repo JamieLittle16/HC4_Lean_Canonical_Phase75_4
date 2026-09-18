@@ -136,6 +136,7 @@ theorem exists_first_oneOpening_of_first_twoAxis
     rcases F.highest_zRoof_mem with ⟨he, _h0, h1, _h2, _h3⟩
     refine ⟨F.highest.e1, Finset.mem_filter.mpr ⟨he, ?_⟩⟩
     rw [h1]
+    have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
     omega
   rcases Finset.exists_min_image U (fun e => e 1 + e 2) hU with
     ⟨e, heU, hmin⟩
