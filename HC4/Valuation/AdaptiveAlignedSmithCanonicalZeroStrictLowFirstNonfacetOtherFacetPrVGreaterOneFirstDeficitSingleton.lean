@@ -85,6 +85,35 @@ theorem firstDeficitLayer_axis_support
     have h := hone (binaryDeficitExponent e) hmem
     simpa using h
 
+/-- The first positive total-deficit order is genuinely nonlinear.  A
+unit deficit would contradict the exact staircase chord relative to the
+central source monomial. -/
+theorem firstDeficitOrder_two_le
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    2 ≤ G.firstDeficitOrder := by
+  by_contra hnot
+  have hD : G.firstDeficitOrder = 1 := by
+    have hpos := G.firstDeficitOrder_pos
+    omega
+  rcases MvPolynomial.support_nonempty.mpr G.firstDeficitLayer_ne_zero with
+    ⟨e, he⟩
+  have heData := G.firstDeficitLayer_support he
+  have hc :=
+    F.support_deficit_chord hthree houtThree G.central_mem
+  have heq :=
+    F.support_deficit_chord hthree houtThree heData.1
+  have hc0 :
+      (0 : ℤ) =
+        (F.locked.ell : ℤ) * ((F.highest.n : ℤ) - 1) +
+          ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+            (1 - (G.central 0 : ℤ)) := by
+    simpa [G.central_one_zero, G.central_two_zero] using hc
+  have hunit : e 1 + e 2 = 1 := by
+    simpa [hD] using heData.2
+  exact no_unit_total_deficit_from_central_staircase_chord
+    F.highest.n_two_le F.locked.ell_pos hc0 heq hunit
+
 /-- **First total-deficit layer singleton.**
 
 The first positive layer is one honest roof monomial.  In the first
