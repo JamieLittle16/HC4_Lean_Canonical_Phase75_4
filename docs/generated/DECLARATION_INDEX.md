@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8812**.
+Distinct declaration spellings indexed: **8813**.
 
 ## Repeated declaration spellings
 
@@ -3926,7 +3926,6 @@ Distinct declaration spellings indexed: **8812**.
 - `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_leftZero_baseOne` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_sq_t_sq_det_codimensionTwoWeightedDeparturePencil_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_s_t_det_codimensionTwoDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
-- `coeff_s_t_det_codimensionTwoNonhomogeneousDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `coeff_s_t_det_codimensionTwoWeightedDeparturePencil` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
 - `coeff_single_zero_killBinaryTransverseLinear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `coeff_smithScalarLevelDegreeComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
@@ -5025,8 +5024,11 @@ Distinct declaration spellings indexed: **8812**.
 - `firstDeficitBinaryFace_no_adjacent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
 - `firstDeficitBinaryFace_support_lifts` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
 - `firstDeficitLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `firstDeficitLayer_axis_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
+- `firstDeficitLayer_binaryExponent_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeficitLayer_deficit_injective` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitLayer_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `firstDeficitLayer_singleton_axis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSingleton`
 - `firstDeficitLayer_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
@@ -7993,7 +7995,6 @@ Distinct declaration spellings indexed: **8812**.
 - `singleton_firstBreakRankTwoOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`
 - `singularFirstKernelBreakData_of_kernelRow` — `def` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
-- `singular_codimensionTwoNonhomogeneousDeparturePencil_forces_primitive` — `theorem` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `singular_codimensionTwoTrinomial_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `singular_codimensionTwoWeightedDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
 - `slice_finSuccEquiv_eq_longitudinalMonomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
