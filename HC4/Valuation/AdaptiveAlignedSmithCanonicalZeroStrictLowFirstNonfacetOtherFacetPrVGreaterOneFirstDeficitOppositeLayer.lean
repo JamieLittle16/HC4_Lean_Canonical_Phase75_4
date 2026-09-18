@@ -294,6 +294,83 @@ theorem firstDeficitRightOpposite_layer_eq_monomial
     rw [hf0, MvPolynomial.coeff_monomial]
     simp [hfo, Ne.symm hfo]
 
+/-- In the left orientation the exact opposite layer opens the specific
+mixed Hessian entry between the first-deficit axis and the missing coordinate. -/
+theorem firstDeficitLeftOpposite_mixedCoeff_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {opposite : Fin 4 →₀ ℕ}
+    (hop : opposite ∈ P.carrier.support)
+    (hop2one : opposite 2 = 1)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2) :
+    G.firstDeficitLeftStaggeredBlock.s.coeff
+        (opposite 1 + opposite 2) ≠ 0 := by
+  have hq2 : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  have hop1pos : 0 < opposite 1 := by omega
+  have hop2pos : 0 < opposite 2 := by omega
+  have hopLayer :
+      opposite ∈
+        (familyParameterLayer P.centralDeficitFamily
+          (opposite 1 + opposite 2)).support := by
+    rw [P.centralDeficitFamily_layer_mem_iff]
+    exact ⟨hop, rfl⟩
+  have hmixed :
+      MvPolynomial.pderiv (2 : Fin 4)
+        (MvPolynomial.pderiv (1 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily
+            (opposite 1 + opposite 2))) ≠ 0 :=
+    HC4.Polynomial.pderiv_pderiv_ne_zero_of_support_two_positive
+      (1 : Fin 4) 2 (by decide)
+      (familyParameterLayer P.centralDeficitFamily
+        (opposite 1 + opposite 2))
+      opposite hopLayer hop1pos hop2pos
+  unfold firstDeficitLeftStaggeredBlock
+    firstDeficitLeftStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitLeftStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply] using hmixed
+
+/-- Right-oriented mirror of the exact mixed opening. -/
+theorem firstDeficitRightOpposite_mixedCoeff_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {opposite : Fin 4 →₀ ℕ}
+    (hop : opposite ∈ P.carrier.support)
+    (hop1one : opposite 1 = 1)
+    (hstrict : G.firstDeficitOrder < opposite 1 + opposite 2) :
+    G.firstDeficitRightStaggeredBlock.s.coeff
+        (opposite 1 + opposite 2) ≠ 0 := by
+  have hq2 : 2 ≤ G.firstDeficitOrder :=
+    firstDeficitOrder_two_le G hthree houtThree
+  have hop1pos : 0 < opposite 1 := by omega
+  have hop2pos : 0 < opposite 2 := by omega
+  have hopLayer :
+      opposite ∈
+        (familyParameterLayer P.centralDeficitFamily
+          (opposite 1 + opposite 2)).support := by
+    rw [P.centralDeficitFamily_layer_mem_iff]
+    exact ⟨hop, rfl⟩
+  have hmixed :
+      MvPolynomial.pderiv (1 : Fin 4)
+        (MvPolynomial.pderiv (2 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily
+            (opposite 1 + opposite 2))) ≠ 0 :=
+    HC4.Polynomial.pderiv_pderiv_ne_zero_of_support_two_positive
+      (2 : Fin 4) 1 (by decide)
+      (familyParameterLayer P.centralDeficitFamily
+        (opposite 1 + opposite 2))
+      opposite hopLayer hop2pos hop1pos
+  unfold firstDeficitRightStaggeredBlock
+    firstDeficitRightStaggeredMatrix
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply]
+  simp [firstDeficitRightStaggeredPerm]
+  rw [parameterFirstHessian_coeff]
+  simpa [HC4.Polynomial.hessian_apply] using hmixed
+
 /-- Provenance-rich exact shape of the least later opposite-opening layer. -/
 inductive FirstDeficitOppositeLayerGeometry
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) : Prop
@@ -315,6 +392,9 @@ inductive FirstDeficitOppositeLayerGeometry
         familyParameterLayer P.centralDeficitFamily
             (opposite 1 + opposite 2) =
           MvPolynomial.monomial opposite B)
+      (mixed_coeff_ne_zero :
+        G.firstDeficitLeftStaggeredBlock.s.coeff
+          (opposite 1 + opposite 2) ≠ 0)
   | right
       (first opposite : Fin 4 →₀ ℕ) (B : K)
       (first_mem : first ∈ G.firstDeficitLayer.support)
@@ -333,6 +413,9 @@ inductive FirstDeficitOppositeLayerGeometry
         familyParameterLayer P.centralDeficitFamily
             (opposite 1 + opposite 2) =
           MvPolynomial.monomial opposite B)
+      (mixed_coeff_ne_zero :
+        G.firstDeficitRightStaggeredBlock.s.coeff
+          (opposite 1 + opposite 2) ≠ 0)
 
 /-- **Exact least-opposite source layer.**  The first later opening of the
 missing coordinate is one honest monomial and is linear in that coordinate. -/
@@ -348,18 +431,24 @@ theorem firstDeficit_oppositeLayerGeometry
           hthree houtThree hfirst hfirst1 hfirst2 huniq
           hop hop2one hstrict hminimal with
         ⟨B, hB, hlayer⟩
+      have hmixed :=
+        G.firstDeficitLeftOpposite_mixedCoeff_ne_zero
+          hthree houtThree hop hop2one hstrict
       exact .left first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop2one
-        hstrict hminimal hB hlayer
+        hstrict hminimal hB hlayer hmixed
   | right first opposite hfirst hfirst1 hfirst2 huniq
       hop hop1one hstrict hminimal =>
       rcases G.firstDeficitRightOpposite_layer_eq_monomial
           hthree houtThree hfirst hfirst1 hfirst2 huniq
           hop hop1one hstrict hminimal with
         ⟨B, hB, hlayer⟩
+      have hmixed :=
+        G.firstDeficitRightOpposite_mixedCoeff_ne_zero
+          hthree houtThree hop hop1one hstrict
       exact .right first opposite B
         hfirst hfirst1 hfirst2 huniq hop hop1one
-        hstrict hminimal hB hlayer
+        hstrict hminimal hB hlayer hmixed
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
