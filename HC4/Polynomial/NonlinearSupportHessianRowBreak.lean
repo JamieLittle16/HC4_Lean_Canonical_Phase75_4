@@ -92,7 +92,10 @@ theorem exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_thre
         have hz1 : d (1 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h1
         have hz2 : d (2 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h2
         have hz3 : d (3 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h3
-        simp [ordinaryDegree4, hdk1, hz1, hz2, hz3] at hdeg
+        have hdk1' : d (0 : Fin 4) = 1 := by simpa using hdk1
+        have hdeg' := hdeg
+        simp [ordinaryDegree4, hz1, hz2, hz3] at hdeg'
+        omega
       · by_cases h0 : 0 < d (0 : Fin 4)
         · exact ⟨0, by decide, h0⟩
         by_cases h2 : 0 < d (2 : Fin 4)
@@ -102,7 +105,10 @@ theorem exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_thre
         have hz0 : d (0 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h0
         have hz2 : d (2 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h2
         have hz3 : d (3 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h3
-        simp [ordinaryDegree4, hdk1, hz0, hz2, hz3] at hdeg
+        have hdk1' : d (1 : Fin 4) = 1 := by simpa using hdk1
+        have hdeg' := hdeg
+        simp [ordinaryDegree4, hz0, hz2, hz3] at hdeg'
+        omega
       · by_cases h0 : 0 < d (0 : Fin 4)
         · exact ⟨0, by decide, h0⟩
         by_cases h1 : 0 < d (1 : Fin 4)
@@ -112,7 +118,10 @@ theorem exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_thre
         have hz0 : d (0 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h0
         have hz1 : d (1 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h1
         have hz3 : d (3 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h3
-        simp [ordinaryDegree4, hdk1, hz0, hz1, hz3] at hdeg
+        have hdk1' : d (2 : Fin 4) = 1 := by simpa using hdk1
+        have hdeg' := hdeg
+        simp [ordinaryDegree4, hz0, hz1, hz3] at hdeg'
+        omega
       · by_cases h0 : 0 < d (0 : Fin 4)
         · exact ⟨0, by decide, h0⟩
         by_cases h1 : 0 < d (1 : Fin 4)
@@ -122,7 +131,10 @@ theorem exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_thre
         have hz0 : d (0 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h0
         have hz1 : d (1 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h1
         have hz2 : d (2 : Fin 4) = 0 := Nat.eq_zero_of_not_pos h2
-        simp [ordinaryDegree4, hdk1, hz0, hz1, hz2] at hdeg
+        have hdk1' : d (3 : Fin 4) = 1 := by simpa using hdk1
+        have hdeg' := hdeg
+        simp [ordinaryDegree4, hz0, hz1, hz2] at hdeg'
+        omega
     rcases hother with ⟨i, hik, hdi⟩
     exact ⟨i,
       pderiv_pderiv_ne_zero_of_support_two_positive
