@@ -105,6 +105,57 @@ theorem kernelBlock_det_eq_zero_of_secondVariation_eq_zero
     simpa [mul_assoc] using hzero
   exact (mul_eq_zero.mp hprod).resolve_left hfactor
 
+
+/-- **Polynomial-family bridge for the rank-two second variation.**
+
+Let a polynomial matrix have no positive parameter coefficient below a
+positive order \`j\`.  If its constant layer is exactly a matrix supported on
+the active coordinates \`0,3\`, its determinant vanishes identically, and that
+active \`2 x 2\` minor is nonzero, then the \`j\`-th coefficient layer has
+singular kernel block on coordinates \`1,2\`.
+
+The arbitrary \`2*j\` coefficient layer is retained: the preceding exact
+second-variation theorem proves that it cannot affect this conclusion. -/
+theorem kernelBlock_det_eq_zero_of_polynomialMatrix_gap
+    {K : Type*} [Field K]
+    {j : ℕ} (hj : 0 < j)
+    (M : Matrix (Fin 4) (Fin 4) (Polynomial K))
+    (hgap : ∀ r s,
+      HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (a b c d : K)
+    (hbase : ∀ r s,
+      (M r s).coeff 0 = rankTwoZeroKernelBase a b c d r s)
+    (hactive : a * d - b * c ≠ 0)
+    (hdet : M.det = 0) :
+    let B : Matrix (Fin 4) (Fin 4) K :=
+      fun r s => (M r s).coeff j
+    B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0 := by
+  let B : Matrix (Fin 4) (Fin 4) K :=
+    fun r s => (M r s).coeff j
+  let C : Matrix (Fin 4) (Fin 4) K :=
+    fun r s => (M r s).coeff (2 * j)
+  change B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0
+  have hjet :
+      HC4.Valuation.matrixParameterGapSecondJet hj M hgap =
+        rankTwoZeroKernelSecondVariation a b c d B C := by
+    apply Matrix.ext
+    intro r s
+    rw [HC4.Valuation.matrixParameterGapSecondJet_apply]
+    simp [rankTwoZeroKernelSecondVariation, rankTwoSecondVariationEntry,
+      B, C, hbase]
+  have hbridge :=
+    HC4.Valuation.snd_snd_det_matrixParameterGapSecondJet
+      (R := K) hj M hgap
+  have hzero :
+      TrivSqZeroExt.snd
+          (TrivSqZeroExt.snd
+            (HC4.Valuation.matrixParameterGapSecondJet hj M hgap).det) = 0 := by
+    rw [hbridge, hdet]
+    simp
+  rw [hjet] at hzero
+  exact kernelBlock_det_eq_zero_of_secondVariation_eq_zero
+    B C hactive hzero
+
 end
 
 end HC4.Polynomial
