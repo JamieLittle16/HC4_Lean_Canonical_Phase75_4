@@ -823,6 +823,9 @@ human architecture guide.
   - `HC4.Polynomial.AutonomousODERootFactorisation`
 - `HC4.Polynomial.AutonomousODETranslation`
   - `HC4.Polynomial.AutonomousODEPolynomialDegree`
+- `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
+  - `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `HC4.Polynomial.BinarySchurProjectiveMotion`
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Polynomial.CentralDeficitBinarySpecialisation`

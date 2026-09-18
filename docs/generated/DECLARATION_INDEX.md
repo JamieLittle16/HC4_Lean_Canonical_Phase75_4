@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8802**.
+Distinct declaration spellings indexed: **8809**.
 
 ## Repeated declaration spellings
 
@@ -3326,6 +3326,7 @@ Distinct declaration spellings indexed: **8802**.
 - `bigradedHessianCoupledKernelBlock_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `bigradedHessianCoupledKernelBlock_euler_determinant` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
 - `bigradedHessianCoupledKernelBlock_kernel_or_minor_eq_zero` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `binaryAdjacentZeroOneExponent` — `def` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - `binaryAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `binaryAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `binaryAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
@@ -3429,6 +3430,8 @@ Distinct declaration spellings indexed: **8802**.
 - `binaryProfileHessianDetFamily_eq_longitudinal_reduction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianEulerReduction`
 - `binaryProfileWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryHomogenization`
 - `binaryProfileWeight_mul_longitudinal_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinaryProfileHessianFamily`
+- `binaryPureZeroExponent` — `def` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
+- `binaryPureZeroExponent_succ` — `theorem` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - `binarySchurDerivativeDet` — `def` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_scaledMotion` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
 - `binarySchurDerivativeDet_ne_zero_of_wedge` — `theorem` in `HC4.Polynomial.BinarySchurProjectiveMotion`
@@ -3847,6 +3850,8 @@ Distinct declaration spellings indexed: **8802**.
 - `coeff_four_rankThree_raw_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
 - `coeff_four_rankThree_raw_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
 - `coeff_four_rankThree_raw_S_zero` — `theorem` in `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
+- `coeff_gradientRatioLinearForm_pow_adjacent_zero_one` — `theorem` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
+- `coeff_gradientRatioLinearForm_pow_pure_zero` — `theorem` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - `coeff_initialForm` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `coeff_integralKernelBlowupFamily` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `coeff_integralSmithConformalFamily` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
@@ -5209,6 +5214,7 @@ Distinct declaration spellings indexed: **8802**.
 - `gradientRatioLinearForm_component_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `gradientRatioLinearForm_div_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `gradientRatioLinearForm_div_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
+- `gradientRatioLinearForm_finTwo_eq` — `theorem` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - `gradientRatioLinearForm_mul_pivot_eq_degree_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `gradientRatioLinearForm_ne_zero_of_linearPower_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `gradientRatioLinearForm_scale_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
@@ -6919,6 +6925,7 @@ Distinct declaration spellings indexed: **8802**.
 - `pureRightAxis_of_pderiv_first_eq_zero_of_exactDegree` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pureRightAxis_of_rightAxisPivotKernel` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pureRightAxis_support_shape` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
+- `pure_and_adjacent_mem_support_C_mul_linearPower` — `theorem` in `HC4.Polynomial.BinaryLinearPowerAdjacentSupport`
 - `pure_r_s_correction_eq_zero` — `theorem` in `HC4.Toric.ClassifiedSupport`
 - `qExponent` — `def` in `HC4.Toric.InvariantSemigroup`
 - `qsContactFractionLongitudinalProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
