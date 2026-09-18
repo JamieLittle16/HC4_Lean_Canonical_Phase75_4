@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8869**.
+Distinct declaration spellings indexed: **8870**.
 
 ## Repeated declaration spellings
 
@@ -3837,6 +3837,7 @@ Distinct declaration spellings indexed: **8869**.
 - `coeff_complementaryRawMomentEntry` — `theorem` in `HC4.Polynomial.ComplementaryMvMomentRealisation`
 - `coeff_cons_one_longitudinalRightRecenterHom` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_det_polynomialMatrix3_gap` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`, `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
+- `coeff_det_polynomialMatrix3_gap_ne_zero` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `coeff_ell_twoFunctionFactorBxSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coeff_ell_twoFunctionFactorBzSeries` — `theorem` in `HC4.Polynomial.TwoFunctionEulerFactorSeries`
 - `coeff_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
