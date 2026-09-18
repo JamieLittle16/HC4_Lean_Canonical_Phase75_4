@@ -510,7 +510,7 @@ theorem firstDeficitLeftStaggeredBlock_base_outer_minor_ne_zero
           (parameterFirstHessian P.centralDeficitFamily 0 3).coeff 0 ≠ 0
   repeat' rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
-  rw [G.exposure_face_eq]
+  rw [← G.exposure_face_eq]
   simpa [HC4.Polynomial.hessianPrincipalMinor,
     parameterFirstHessian_symmetric] using G.exposure_rankTwo_minor
 
@@ -528,7 +528,7 @@ theorem firstDeficitRightStaggeredBlock_base_outer_minor_ne_zero
           (parameterFirstHessian P.centralDeficitFamily 0 3).coeff 0 ≠ 0
   repeat' rw [parameterFirstHessian_coeff,
     centralDeficitFamily_layer_zero_eq G hthree houtThree]
-  rw [G.exposure_face_eq]
+  rw [← G.exposure_face_eq]
   simpa [HC4.Polynomial.hessianPrincipalMinor,
     parameterFirstHessian_symmetric] using G.exposure_rankTwo_minor
 
