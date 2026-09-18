@@ -179,6 +179,26 @@ theorem centralDeficitBinarySpecialisation_monomial
   · intro i
     simp
 
+
+/-- A monomial with zero exponents in the two deficit coordinates becomes,
+after Hessian formation and binary specialisation, exactly its all-ones
+exponent Hessian core embedded as constants. -/
+theorem centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero
+    (e : Fin 4 →₀ ℕ) (z : K)
+    (h1 : e 1 = 0) (h2 : e 2 = 0) :
+    (centralDeficitBinarySpecialisation (K := K)).mapMatrix
+        (HC4.Polynomial.hessian (MvPolynomial.monomial e z)) =
+      (MvPolynomial.C : K →+* MvPolynomial (Fin 2) K).mapMatrix
+        (z • exponentHessianCore (K := K) e) := by
+  apply Matrix.ext
+  intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp [HC4.Polynomial.hessian_apply,
+      MvPolynomial.pderiv_monomial,
+      centralDeficitBinarySpecialisation_monomial,
+      exponentHessianCore, h1, h2,
+      Finsupp.single_apply, natCast_mul_pred] <;> ring
+
 end
 
 end HC4.Polynomial
