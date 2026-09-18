@@ -831,6 +831,7 @@ human architecture guide.
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Polynomial.CentralDeficitBinarySpecialisation`
   - `HC4.Newton.PreterminalFirstDeparture`
+  - `HC4.Polynomial.MonomialHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
 - `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
   - `HC4.Polynomial.RankThreePencils`
