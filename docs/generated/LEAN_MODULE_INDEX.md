@@ -9760,7 +9760,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem leftOppositeLayer_secondDerivative_eq_zero`, `theorem rightOppositeLayer_secondDerivative_eq_zero`, `theorem firstDeficitLeftOpposite_layer_singleton`, `theorem firstDeficitRightOpposite_layer_singleton`, `theorem firstDeficitLeftOpposite_layer_eq_monomial`, `theorem firstDeficitRightOpposite_layer_eq_monomial`, `inductive FirstDeficitOppositeLayerGeometry`, `theorem firstDeficit_oppositeLayerGeometry`
+- Declarations: `theorem leftOppositeLayer_secondDerivative_eq_zero`, `theorem rightOppositeLayer_secondDerivative_eq_zero`, `theorem firstDeficitLeftOpposite_layer_singleton`, `theorem firstDeficitRightOpposite_layer_singleton`, `theorem firstDeficitLeftOpposite_layer_eq_monomial`, `theorem firstDeficitRightOpposite_layer_eq_monomial`, `theorem firstDeficitLeftOpposite_mixedCoeff_ne_zero`, `theorem firstDeficitRightOpposite_mixedCoeff_ne_zero`, `inductive FirstDeficitOppositeLayerGeometry`, `theorem firstDeficit_oppositeLayerGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 
