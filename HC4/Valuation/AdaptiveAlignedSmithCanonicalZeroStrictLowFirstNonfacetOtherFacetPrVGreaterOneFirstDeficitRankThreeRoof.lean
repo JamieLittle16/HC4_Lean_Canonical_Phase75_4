@@ -164,6 +164,25 @@ private theorem layer_zero_eq_exposure
   rw [centralDeficitFamily_layer_zero_eq G hthree houtThree,
     G.exposure_face_eq]
 
+
+/-- The left active roof determinant itself has no positive coefficient below
+the canonical first deficit order. -/
+theorem firstDeficitLeftActiveHessian_det_gap :
+    HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+      G.firstDeficitLeftActiveHessian.det := by
+  exact HC4.Polynomial.matrix3_det_hasNoPositiveParameterCoeffBelow
+    G.firstDeficitLeftActiveHessian
+    (fun i j => G.leftActive_gap i j)
+
+/-- The right active roof determinant itself has no positive coefficient below
+the canonical first deficit order. -/
+theorem firstDeficitRightActiveHessian_det_gap :
+    HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+      G.firstDeficitRightActiveHessian.det := by
+  exact HC4.Polynomial.matrix3_det_hasNoPositiveParameterCoeffBelow
+    G.firstDeficitRightActiveHessian
+    (fun i j => G.rightActive_gap i j)
+
 /-- In the left-axis branch, the complete honest parameter Hessian has a
 nonzero active three-by-three determinant. -/
 theorem firstDeficitLeftActiveHessian_det_ne_zero
