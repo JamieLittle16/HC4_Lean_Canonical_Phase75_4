@@ -3642,6 +3642,7 @@ human architecture guide.
   - `HC4.Valuation.ReverseReesAssociatedGraded`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
   - `HC4.Polynomial.MonomialHessian`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
   - `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
   - `HC4.Valuation.RankOneSpecialFiberFirstBreak`

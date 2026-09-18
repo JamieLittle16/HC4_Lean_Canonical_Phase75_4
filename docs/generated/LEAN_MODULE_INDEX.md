@@ -5139,7 +5139,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.4.39`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedUnramifiedReentry`, `HC4.Newton.CharZeroHessianKernelRigidity`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.NonlinearSupportHessianRowBreak`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveSlopeKernelFree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedStrictReason`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
+- Imported by local modules: `HC4.Polynomial.NonlinearSupportHessianRowBreak`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveSlopeKernelFree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedStrictReason`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
 - Declarations: `theorem pderiv_pderiv_ne_zero_of_support_exponent_ge_two`, `theorem ScaleAwareAdaptiveGeometricRestartState.saturatedKernelOpening_unramified_or_nonlinearHessian`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFreeFirstContact`
@@ -10767,7 +10767,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak.lean`
 - Purpose: First rank-two break from a pure lower-ray facet endpoint
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`, `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `HC4.Valuation.RankOneSpecialFiberFirstBreak`, `HC4.Polynomial.MonomialHessian`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`, `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `HC4.Valuation.RankOneSpecialFiberFirstBreak`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`, `HC4.Polynomial.MonomialHessian`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
 - Declarations: `theorem reverseReesFamily_layer_zero`, `theorem kernelLastBlock_kernelRow_ne_zero`, `theorem kernelLastBlock_kernelRow_coeff_zero`, `theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero`, `def firstBreakRankTwoOutcome`
