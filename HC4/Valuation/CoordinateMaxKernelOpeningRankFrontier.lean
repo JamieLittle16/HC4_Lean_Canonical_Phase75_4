@@ -185,16 +185,16 @@ theorem kernelLastBlock_kernelRow_ne_zero
   fin_cases j
   · exact Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 0) (rho 3) ≠ 0
-      exact hi')
+      simpa using hi')
   · exact Or.inr (Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 1) (rho 3) ≠ 0
-      exact hi'))
+      simpa using hi'))
   · exact Or.inr (Or.inr (Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 2) (rho 3) ≠ 0
-      exact hi')))
+      simpa using hi')))
   · exact Or.inr (Or.inr (Or.inr (by
       change parameterFirstHessian D.reverseReesFamily (rho 3) (rho 3) ≠ 0
-      exact hi'))
+      simpa using hi')))
 
 /-- Honest finite rank split for one canonical coordinate-max opening. -/
 inductive RankFrontier
