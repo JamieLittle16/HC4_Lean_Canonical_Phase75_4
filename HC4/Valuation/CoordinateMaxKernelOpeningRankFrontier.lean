@@ -182,19 +182,40 @@ theorem kernelLastBlock_kernelRow_ne_zero
     apply hi
     rw [parameterFirstHessian_symmetric]
     exact hzero
-  fin_cases j
+  by_cases hj0 : j = (0 : Fin 4)
   · exact Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 0) (rho 3) ≠ 0
-      simpa using hi')
+      simpa [hj0] using hi')
+  by_cases hj1 : j = (1 : Fin 4)
   · exact Or.inr (Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 1) (rho 3) ≠ 0
-      simpa using hi'))
+      simpa [hj1] using hi'))
+  by_cases hj2 : j = (2 : Fin 4)
   · exact Or.inr (Or.inr (Or.inl (by
       change parameterFirstHessian D.reverseReesFamily (rho 2) (rho 3) ≠ 0
-      simpa using hi')))
-  · exact Or.inr (Or.inr (Or.inr (by
-      change parameterFirstHessian D.reverseReesFamily (rho 3) (rho 3) ≠ 0
-      simpa using hi')))
+      simpa [hj2] using hi')))
+  have hj0v : j.val ≠ 0 := by
+    intro h
+    apply hj0
+    apply Fin.ext
+    simpa using h
+  have hj1v : j.val ≠ 1 := by
+    intro h
+    apply hj1
+    apply Fin.ext
+    simpa using h
+  have hj2v : j.val ≠ 2 := by
+    intro h
+    apply hj2
+    apply Fin.ext
+    simpa using h
+  have hj3 : j = (3 : Fin 4) := by
+    apply Fin.ext
+    simp
+    omega
+  exact Or.inr (Or.inr (Or.inr (by
+    change parameterFirstHessian D.reverseReesFamily (rho 3) (rho 3) ≠ 0
+    simpa [hj3] using hi')))
 
 /-- Honest finite rank split for one canonical coordinate-max opening. -/
 inductive RankFrontier
