@@ -71,9 +71,19 @@ theorem kernelLastBlock_kernelRow_ne_zero
         E.reverseReesFamily_hasHessianDefect)
   change B.q ≠ 0 ∨ B.s ≠ 0 ∨ B.y ≠ 0 ∨ B.z ≠ 0
   by_contra hnot
-  push_neg at hnot
+  have hq : B.q = 0 := by
+    by_contra hq
+    exact hnot (Or.inl hq)
+  have hs : B.s = 0 := by
+    by_contra hs
+    exact hnot (Or.inr (Or.inl hs))
+  have hy : B.y = 0 := by
+    by_contra hy
+    exact hnot (Or.inr (Or.inr (Or.inl hy)))
+  have hz : B.z = 0 := by
+    by_contra hz
+    exact hnot (Or.inr (Or.inr (Or.inr hz)))
   have hdet0 : B.determinantCore = 0 := by
-    rcases hnot with ⟨hq, hs, hy, hz⟩
     unfold GeneralFourBlock.determinantCore
     rw [hq, hs, hy, hz]
     ring
