@@ -98,16 +98,8 @@ theorem familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
       simp [hle] at hcoeff
       simpa [hwz] using hcoeff
 
-/-- Every in-range parameter layer of a bounded reverse Rees family is exactly
-an initial form of the original source. -/
-theorem reverseWeightedReesFamily_parameterLayer_eq_initialForm
-    (w : Fin 4 → ℕ) (D n : ℕ) (F : MvPolynomial (Fin 4) K)
-    (h : HasReverseWeightBound w D F) (hn : n ≤ D) :
-    familyParameterLayer (reverseWeightedReesFamily w D F h) n =
-      initialForm (fun i => (w i : ℤ)) ((D - n : ℕ) : ℤ) F := by
-  exact familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq
-    w D n (reverseWeightedReesFamily w D F h) F
-    (adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h) hn
+/- `reverseWeightedReesFamily_parameterLayer_eq_initialForm` is now provided
+directly by `BoundedReverseWeightedRees`; reuse that canonical declaration here. -/
 
 /-- Coefficientwise Hessian provenance for the reverse Rees family.  At
 parameter order `n`, differentiation merely shifts the associated weight by
