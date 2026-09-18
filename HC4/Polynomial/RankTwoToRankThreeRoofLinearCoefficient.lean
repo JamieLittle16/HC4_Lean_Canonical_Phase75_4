@@ -52,18 +52,34 @@ def rankTwoToRankThreeRoofPencil
       Polynomial.X * Polynomial.C A *
         Polynomial.C (vectorHessianCore3 (K := K) ![a, D, b] i j)
 
+set_option maxHeartbeats 2000000
+
+/-- Formal-derivative form of the exact linear determinant coefficient.
+Using the derivative at zero avoids expanding coefficient extraction through
+the irrelevant quadratic and cubic determinant terms. -/
+theorem derivative_det_rankTwoToRankThreeRoofPencil_eval_zero
+    {K : Type*} [CommRing K]
+    (p r a D b C A : K) :
+    Polynomial.eval 0
+        (Polynomial.derivative
+          (rankTwoToRankThreeRoofPencil p r a D b C A).det) =
+      A * C ^ 2 * D * (D - 1) * p * r * (1 - p - r) := by
+  simp [rankTwoToRankThreeRoofPencil, vectorHessianCore3,
+    Matrix.det_fin_three,
+    Polynomial.derivative_add, Polynomial.derivative_sub,
+    Polynomial.derivative_mul]
+  ring
+
 /-- **Exact linear determinant coefficient for the roof opening.** -/
 theorem coeff_one_det_rankTwoToRankThreeRoofPencil
     {K : Type*} [CommRing K]
     (p r a D b C A : K) :
     (rankTwoToRankThreeRoofPencil p r a D b C A).det.coeff 1 =
       A * C ^ 2 * D * (D - 1) * p * r * (1 - p - r) := by
-  set_option maxHeartbeats 2000000 in
-    simp [rankTwoToRankThreeRoofPencil, vectorHessianCore3,
-      Matrix.det_fin_three]
-    ring_nf
-    simp [Polynomial.coeff_X_pow]
-    ring
+  have h := derivative_det_rankTwoToRankThreeRoofPencil_eval_zero
+    (K := K) p r a D b C A
+  rw [← Polynomial.coeff_zero_eq_eval_zero] at h
+  simpa [Polynomial.coeff_derivative] using h
 
 /-- A genuine nonprimitive axis opening makes the three-coordinate roof
 Hessian determinant nonzero. -/
@@ -116,7 +132,7 @@ theorem rankTwoToRankThreeRoofPencil_det_ne_zero
 noncomputable def matrix3ToParameterGap
     {R : Type*} [CommRing R] {j : ℕ}
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    (hM : ∀ r s : Fin 3, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
     Matrix (Fin 3) (Fin 3) (HC4.Valuation.parameterGapSubring (R := R) j) :=
   fun r s => ⟨M r s, hM r s⟩
 
@@ -124,7 +140,7 @@ noncomputable def matrix3ToParameterGap
 noncomputable def matrix3ParameterGapDualJet
     {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    (hM : ∀ r s : Fin 3, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
     Matrix (Fin 3) (Fin 3) (DualNumber R) :=
   (HC4.Valuation.parameterGapDualJet (R := R) j hj).mapMatrix
     (matrix3ToParameterGap M hM)
@@ -132,7 +148,7 @@ noncomputable def matrix3ParameterGapDualJet
 @[simp] theorem matrix3ParameterGapDualJet_apply
     {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
+    (hM : ∀ r s : Fin 3, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
     (r s : Fin 3) :
     matrix3ParameterGapDualJet hj M hM r s =
       ((M r s).coeff 0, (M r s).coeff j) := by
@@ -143,7 +159,7 @@ honest three-by-three determinant. -/
 theorem snd_det_matrix3ParameterGapDualJet
     {R : Type*} [CommRing R] {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hM : ∀ r s, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
+    (hM : ∀ r s : Fin 3, HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
     TrivSqZeroExt.snd (matrix3ParameterGapDualJet hj M hM).det =
       M.det.coeff j := by
   let J := HC4.Valuation.parameterGapDualJet (R := R) j hj
@@ -197,10 +213,10 @@ theorem middleDiagonal_eq_zero_of_polynomialMatrix3_gap
     {R : Type*} [CommRing R] [IsDomain R]
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hgap : ∀ r s,
+    (hgap : ∀ r s : Fin 3,
       HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
     (a b c d : R)
-    (hbase : ∀ r s,
+    (hbase : ∀ r s : Fin 3,
       (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
     (hactive : a * d - b * c ≠ 0)
     (hdet : M.det = 0) :
@@ -230,7 +246,7 @@ theorem matrix3_det_hasNoPositiveParameterCoeffBelow
     {R : Type*} [CommRing R]
     {j : ℕ}
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hM : ∀ r s,
+    (hM : ∀ r s : Fin 3,
       HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s)) :
     HC4.Valuation.HasNoPositiveParameterCoeffBelow j M.det := by
   let S : Subring (Polynomial R) :=
@@ -253,10 +269,10 @@ theorem coeff_det_polynomialMatrix3_gap
     {R : Type*} [CommRing R]
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hgap : ∀ r s,
+    (hgap : ∀ r s : Fin 3,
       HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
     (a b c d : R)
-    (hbase : ∀ r s,
+    (hbase : ∀ r s : Fin 3,
       (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s) :
     M.det.coeff j =
       (a * d - b * c) * (M 1 1).coeff j := by
@@ -288,10 +304,10 @@ theorem coeff_det_polynomialMatrix3_gap_ne_zero
     {R : Type*} [CommRing R] [NoZeroDivisors R]
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hgap : ∀ r s,
+    (hgap : ∀ r s : Fin 3,
       HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
     (a b c d : R)
-    (hbase : ∀ r s,
+    (hbase : ∀ r s : Fin 3,
       (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
     (hactive : a * d - b * c ≠ 0)
     (hdiag : (M 1 1).coeff j ≠ 0) :
@@ -307,10 +323,10 @@ theorem polynomialMatrix3_gap_det_ne_zero_of_middleDiagonal
     {R : Type*} [CommRing R] [IsDomain R]
     {j : ℕ} (hj : 0 < j)
     (M : Matrix (Fin 3) (Fin 3) (Polynomial R))
-    (hgap : ∀ r s,
+    (hgap : ∀ r s : Fin 3,
       HC4.Valuation.HasNoPositiveParameterCoeffBelow j (M r s))
     (a b c d : R)
-    (hbase : ∀ r s,
+    (hbase : ∀ r s : Fin 3,
       (M r s).coeff 0 = rankTwoRoofZeroKernelBase a b c d r s)
     (hactive : a * d - b * c ≠ 0)
     (hdiag : (M 1 1).coeff j ≠ 0) :
