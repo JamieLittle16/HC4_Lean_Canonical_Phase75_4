@@ -242,6 +242,95 @@ theorem kernelDiagonal_coeff_eq_zero_before_secondInteraction
         exact
           (mul_eq_zero.mp hdet).resolve_left E.active_coeff_ne_zero
 
+/-- **Exact second-interaction coefficient identity.**
+
+At the first quadratic kernel-row interaction the zero full determinant
+retains the equality that is stronger than mere nonvanishing of the later
+kernel diagonal. -/
+theorem kernelDiagonal_secondInteraction_identity
+    [NoZeroDivisors R]
+    (hb0 : E.block.b.coeff 0 = 0)
+    (hd0 : E.block.d.coeff 0 = 0)
+    (hr0 : E.block.r.coeff 0 = 0) :
+    (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+        E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+      (E.block.a.coeff 0 * E.block.x.coeff 0 -
+          E.block.p.coeff 0 * E.block.p.coeff 0) *
+        (E.block.s.coeff E.kernelOrder *
+          E.block.s.coeff E.kernelOrder) := by
+  let k := 2 * E.kernelOrder - E.activeOrder
+  have hsum : E.activeOrder + k = 2 * E.kernelOrder := by
+    dsimp [k]
+    omega
+  have hzLower :
+      ∀ n : ℕ, n < k → E.block.z.coeff n = 0 := by
+    intro n hn
+    exact E.kernelDiagonal_coeff_eq_zero_before_secondInteraction n (by
+      simpa [k] using hn)
+  have hactiveZ :
+      (firstKernelBreakActiveThreeDet E.block * E.block.z).coeff
+          (2 * E.kernelOrder) =
+        (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+          E.block.z.coeff k := by
+    have hlead :=
+      coeff_mul_eq_leading_mul_of_lower_zero
+        (firstKernelBreakActiveThreeDet E.block) E.block.z
+        E.active_lower_zero hzLower
+    simpa [hsum] using hlead
+  have hdet :
+      E.block.determinantCore.coeff (2 * E.kernelOrder) = 0 := by
+    rw [E.determinantCore_eq_zero]
+    simp
+  rw [determinantCore_coeff_doubleKernel_of_middleKernelBase
+      E.block E.q_lower_zero E.s_lower_zero E.y_lower_zero
+      hb0 hd0 hr0, hactiveZ] at hdet
+  have hsub :
+      (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder *
+          E.block.z.coeff k -
+        (E.block.a.coeff 0 * E.block.x.coeff 0 -
+            E.block.p.coeff 0 * E.block.p.coeff 0) *
+          (E.block.s.coeff E.kernelOrder *
+            E.block.s.coeff E.kernelOrder) = 0 := by
+    simpa [k] using hdet
+  exact sub_eq_zero.mp hsub
+
+/-- **Cancelled second-interaction identity.**
+
+If the leading active-three coefficient is the outer constant principal minor
+times the first opening of the active middle diagonal, cancellation of that
+nonzero outer minor gives the source-facing reflection identity used by the
+next layer. -/
+theorem kernelDiagonal_secondInteraction_cancelled
+    [NoZeroDivisors R]
+    (hb0 : E.block.b.coeff 0 = 0)
+    (hd0 : E.block.d.coeff 0 = 0)
+    (hr0 : E.block.r.coeff 0 = 0)
+    (houter :
+      E.block.a.coeff 0 * E.block.x.coeff 0 -
+        E.block.p.coeff 0 * E.block.p.coeff 0 ≠ 0)
+    (hactive :
+      (firstKernelBreakActiveThreeDet E.block).coeff E.activeOrder =
+        (E.block.a.coeff 0 * E.block.x.coeff 0 -
+          E.block.p.coeff 0 * E.block.p.coeff 0) *
+        E.block.d.coeff E.activeOrder) :
+    E.block.d.coeff E.activeOrder *
+        E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+      E.block.s.coeff E.kernelOrder *
+        E.block.s.coeff E.kernelOrder := by
+  have hraw := E.kernelDiagonal_secondInteraction_identity hb0 hd0 hr0
+  rw [hactive] at hraw
+  have hfactored :
+      (E.block.a.coeff 0 * E.block.x.coeff 0 -
+          E.block.p.coeff 0 * E.block.p.coeff 0) *
+        (E.block.d.coeff E.activeOrder *
+          E.block.z.coeff (2 * E.kernelOrder - E.activeOrder)) =
+      (E.block.a.coeff 0 * E.block.x.coeff 0 -
+          E.block.p.coeff 0 * E.block.p.coeff 0) *
+        (E.block.s.coeff E.kernelOrder *
+          E.block.s.coeff E.kernelOrder) := by
+    simpa [mul_assoc] using hraw
+  exact mul_left_cancel₀ houter hfactored
+
 /-- If the constant active block has a genuine outer principal minor and the
 first mixed opening is the middle entry `s_j`, then the next missing-diagonal
 coefficient is forced nonzero at the exact order `2*j-q`. -/
