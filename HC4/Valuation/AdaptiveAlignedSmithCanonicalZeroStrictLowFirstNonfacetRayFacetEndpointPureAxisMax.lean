@@ -306,6 +306,7 @@ theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport
       apply hk0
       apply Fin.ext
       simpa using hk
+    have hklt : k.val < 4 := k.isLt
     have hkCases : k.val = 1 ∨ k.val = 2 ∨ k.val = 3 := by
       omega
     rcases hkCases with hk1 | hk2 | hk3
