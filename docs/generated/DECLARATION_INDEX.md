@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9019**.
+Distinct declaration spellings indexed: **9024**.
 
 ## Repeated declaration spellings
 
@@ -773,6 +773,9 @@ Distinct declaration spellings indexed: **9019**.
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress_from_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress_of_reachedRankThree_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesRankThreeClosure`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.finalGeometry_of_no_globalProgress_from_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_from_source_or_finalGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
+- `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_finalGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesFinalOutcome`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact_of_coreProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroBlockerCoreReduction`
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_honestFirstContact_of_zeroStrictLowProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
@@ -809,6 +812,7 @@ Distinct declaration spellings indexed: **9019**.
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThree_firstContact_forces_b_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRankThreeFirstContact`
 - `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.terminal_qs_rankThree_firstContact_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalRankThreeFirstContact`
 - `AdaptiveAlignedSmithCanonicalRankThreeCompleteOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankThreeCompleteClosure`
+- `AdaptiveAlignedSmithCanonicalReachableFinalGeometryData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
 - `AdaptiveAlignedSmithCanonicalReachableSupportProducer` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableSupportReduction`
 - `AdaptiveAlignedSmithCanonicalReachableSupportProducer.toReachableResolution` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableSupportReduction`
 - `AdaptiveAlignedSmithCanonicalReachableTerminalResolution` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution`
@@ -984,6 +988,7 @@ Distinct declaration spellings indexed: **9019**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.toReachableFinalGeometryData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
 - `AdaptiveAlignedSmithClosingFirstContactLatticeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
 - `AdaptiveAlignedSmithClosingFirstContactTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
