@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8991**.
+Distinct declaration spellings indexed: **8992**.
 
 ## Repeated declaration spellings
 
@@ -5059,6 +5059,7 @@ Distinct declaration spellings indexed: **8991**.
 - `firstContactTerminalRightConstantSection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`
 - `firstContact_initialForm_support_constraints` — `theorem` in `HC4.Newton.FirstContactAffinePlane`
 - `firstContact_initialForm_support_degree_ge_three` — `theorem` in `HC4.Newton.FirstContactNonlinearSupport`
+- `firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le` — `theorem` in `HC4.Newton.FirstContactNonlinearSupport`
 - `firstContact_mvC_mul_mvC_div_cancel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstantKernelFirstContact`
 - `firstDeficitBinaryFace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `firstDeficitBinaryFace_axis_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitAxis`
