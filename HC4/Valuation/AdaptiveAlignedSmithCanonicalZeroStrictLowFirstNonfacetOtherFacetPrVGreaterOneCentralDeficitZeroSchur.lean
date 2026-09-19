@@ -30,6 +30,64 @@ open HC4.Newton HC4.Polynomial HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/-- Generic right roof matrix for the reordered central Schur block. -/
+noncomputable def centralDeficitRightRoofOf
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    Matrix (Fin 3) (Fin 3) (Polynomial (MvPolynomial (Fin 4) K)) :=
+  fun i j =>
+    parameterFirstHessian Q
+      (firstDeficitRightActiveIndex i)
+      (firstDeficitRightActiveIndex j)
+
+/-- The first cleared Schur entry is the determinant of the same principal
+three-plane, up to simultaneous reordering. -/
+theorem centralDeficitSchurBlockOf_schurA_eq_rightRoofOf_det
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).schurA =
+      (centralDeficitRightRoofOf Q).det := by
+  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
+  rw [← GeneralFourBlock.firstThreeMinorMatrix_det]
+  have hmatrix :
+      GeneralFourBlock.firstThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
+        (centralDeficitRightRoofOf Q).submatrix sigma sigma := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [sigma, GeneralFourBlock.firstThreeMinorMatrix,
+        centralDeficitRightRoofOf, centralDeficitSchurBlockOf,
+        GeneralFourBlock.ofSymmetricMatrix, firstDeficitRightActiveIndex,
+        parameterFirstHessian_symmetric]
+  rw [hmatrix]
+  exact Matrix.det_submatrix_equiv_self (centralDeficitRightRoofOf Q) sigma
+
+/-- Generic left roof matrix for the reordered central Schur block. -/
+noncomputable def centralDeficitLeftRoofOf
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    Matrix (Fin 3) (Fin 3) (Polynomial (MvPolynomial (Fin 4) K)) :=
+  fun i j =>
+    parameterFirstHessian Q
+      (firstDeficitLeftActiveIndex i)
+      (firstDeficitLeftActiveIndex j)
+
+/-- The second cleared Schur entry is the determinant of the other principal
+three-plane, again only up to simultaneous reordering. -/
+theorem centralDeficitSchurBlockOf_schurC_eq_leftRoofOf_det
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).schurC =
+      (centralDeficitLeftRoofOf Q).det := by
+  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
+  rw [← GeneralFourBlock.secondThreeMinorMatrix_det]
+  have hmatrix :
+      GeneralFourBlock.secondThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
+        (centralDeficitLeftRoofOf Q).submatrix sigma sigma := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [sigma, GeneralFourBlock.secondThreeMinorMatrix,
+        centralDeficitLeftRoofOf, centralDeficitSchurBlockOf,
+        GeneralFourBlock.ofSymmetricMatrix, firstDeficitLeftActiveIndex,
+        parameterFirstHessian_symmetric]
+  rw [hmatrix]
+  exact Matrix.det_submatrix_equiv_self (centralDeficitLeftRoofOf Q) sigma
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -195,37 +253,19 @@ row/column reordering. -/
 theorem centralDeficitSchurA_eq_rightRoofDet :
     G.centralDeficitSchurBlock.schurA =
       G.firstDeficitRightActiveHessian.det := by
-  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
-  have hmatrix :
-      GeneralFourBlock.firstThreeMinorMatrix G.centralDeficitSchurBlock =
-        G.firstDeficitRightActiveHessian.submatrix sigma sigma := by
-    ext i j
-    fin_cases i <;> fin_cases j <;>
-      simp [sigma, GeneralFourBlock.firstThreeMinorMatrix,
-        firstDeficitRightActiveHessian, centralDeficitSchurBlock,
-        centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
-        firstDeficitRightActiveIndex, parameterFirstHessian_symmetric]
-  rw [← GeneralFourBlock.firstThreeMinorMatrix_det, hmatrix]
-  exact Matrix.det_submatrix_equiv_self
-    G.firstDeficitRightActiveHessian sigma
+  unfold centralDeficitSchurBlock
+  simpa [centralDeficitRightRoofOf, firstDeficitRightActiveHessian] using
+    (centralDeficitSchurBlockOf_schurA_eq_rightRoofOf_det
+      P.centralDeficitFamily)
 
 /-- Second principal cleared Schur entry equals the left roof determinant. -/
 theorem centralDeficitSchurC_eq_leftRoofDet :
     G.centralDeficitSchurBlock.schurC =
       G.firstDeficitLeftActiveHessian.det := by
-  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
-  have hmatrix :
-      GeneralFourBlock.secondThreeMinorMatrix G.centralDeficitSchurBlock =
-        G.firstDeficitLeftActiveHessian.submatrix sigma sigma := by
-    ext i j
-    fin_cases i <;> fin_cases j <;>
-      simp [sigma, GeneralFourBlock.secondThreeMinorMatrix,
-        firstDeficitLeftActiveHessian, centralDeficitSchurBlock,
-        centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
-        firstDeficitLeftActiveIndex, parameterFirstHessian_symmetric]
-  rw [← GeneralFourBlock.secondThreeMinorMatrix_det, hmatrix]
-  exact Matrix.det_submatrix_equiv_self
-    G.firstDeficitLeftActiveHessian sigma
+  unfold centralDeficitSchurBlock
+  simpa [centralDeficitLeftRoofOf, firstDeficitLeftActiveHessian] using
+    (centralDeficitSchurBlockOf_schurC_eq_leftRoofOf_det
+      P.centralDeficitFamily)
 
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
 theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
