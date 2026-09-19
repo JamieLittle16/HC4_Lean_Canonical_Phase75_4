@@ -161,6 +161,31 @@ theorem pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
   rw [hii]
   simp
 
+
+/-- Tiny arithmetic core of the reflected left deficit identity. -/
+theorem reflected_left_deficit_arithmetic
+    {q j k o₁ o₂ s₁ s₂ : ℕ}
+    (hj : j = o₁ + o₂)
+    (hk : k = 2 * j - q)
+    (ho₂ : o₂ = 1)
+    (hqj : q < j)
+    (hs : s₁ + s₂ = k)
+    (hs₂ : s₂ = 2) :
+    q + s₁ = 2 * o₁ := by
+  omega
+
+/-- Tiny arithmetic core of the reflected right deficit identity. -/
+theorem reflected_right_deficit_arithmetic
+    {q j k o₁ o₂ s₁ s₂ : ℕ}
+    (hj : j = o₁ + o₂)
+    (hk : k = 2 * j - q)
+    (ho₁ : o₁ = 1)
+    (hqj : q < j)
+    (hs : s₁ + s₂ = k)
+    (hs₁ : s₁ = 2) :
+    q + s₂ = 2 * o₂ := by
+  omega
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -518,7 +543,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         simpa only [HC4.Polynomial.hessian_apply] using
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (1 : Fin 4) G.firstDeficitLayer first
-            hfirst (by omega : 2 ≤ first 1))
+            hfirst (by rw [hfirst1]; exact hqTwo))
       have hthirdHessian :
           MvPolynomial.pderiv (2 : Fin 4)
             (HC4.Polynomial.hessian
@@ -547,15 +572,18 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         exact ⟨hsecond, hsecondOrder⟩
       have hsecondLe : second 2 ≤ 2 := by
         by_contra hnot
-        have hthreeExp : 3 ≤ second 2 := by omega
+        have hthreeExp : 3 ≤ second 2 := by
+          exact Nat.lt_of_not_ge hnot
         exact
           (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
             (K := K) (2 : Fin 4)
             (familyParameterLayer P.centralDeficitFamily k)
             second hsecondLayer hthreeExp) hthird
-      have hsecondEq : second 2 = 2 := by omega
-      have hreflect : q + second 1 = 2 * opposite 1 := by
-        omega
+      have hsecondEq : second 2 = 2 :=
+        Nat.le_antisymm hsecondLe hsecond2
+      have hreflect : q + second 1 = 2 * opposite 1 :=
+        reflected_left_deficit_arithmetic
+          hj hk hop2 hqj hsecondOrder hsecondEq
       exact .left first opposite second q j k
         hq hj hk hfirst hfirst1 hfirst2 hop hop2 hqj
         hsecond hsecondOrder hsecondEq hreflect
@@ -596,7 +624,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         simpa only [HC4.Polynomial.hessian_apply] using
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (2 : Fin 4) G.firstDeficitLayer first
-            hfirst (by omega : 2 ≤ first 2))
+            hfirst (by rw [hfirst2]; exact hqTwo))
       have hthirdHessian :
           MvPolynomial.pderiv (1 : Fin 4)
             (HC4.Polynomial.hessian
@@ -625,15 +653,18 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         exact ⟨hsecond, hsecondOrder⟩
       have hsecondLe : second 1 ≤ 2 := by
         by_contra hnot
-        have hthreeExp : 3 ≤ second 1 := by omega
+        have hthreeExp : 3 ≤ second 1 := by
+          exact Nat.lt_of_not_ge hnot
         exact
           (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
             (K := K) (1 : Fin 4)
             (familyParameterLayer P.centralDeficitFamily k)
             second hsecondLayer hthreeExp) hthird
-      have hsecondEq : second 1 = 2 := by omega
-      have hreflect : q + second 2 = 2 * opposite 2 := by
-        omega
+      have hsecondEq : second 1 = 2 :=
+        Nat.le_antisymm hsecondLe hsecond1
+      have hreflect : q + second 2 = 2 * opposite 2 :=
+        reflected_right_deficit_arithmetic
+          hj hk hop1 hqj hsecondOrder hsecondEq
       exact .right first opposite second q j k
         hq hj hk hfirst hfirst1 hfirst2 hop hop1 hqj
         hsecond hsecondOrder hsecondEq hreflect
