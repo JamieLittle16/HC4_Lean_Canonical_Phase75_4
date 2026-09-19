@@ -53,11 +53,15 @@ noncomputable def centralDeficitSchurBlockOf
     ((parameterFirstHessian Q).submatrix
       centralDeficitSchurPerm centralDeficitSchurPerm)
 
-/-- Constant coefficient of the active determinant for an arbitrary family. -/
-omit [IsAlgClosed K] in
-theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
+/-- Constant coefficient of the literal active `(0,3)` Hessian determinant
+for an arbitrary parameter family.  This deliberately avoids mentioning the
+four-block wrapper in the theorem statement, keeping kernel reduction small. -/
+theorem centralDeficitActiveDet_coeff_zero_eq
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).activeDet.coeff 0 =
+    (parameterFirstHessian Q (0 : Fin 4) 0 *
+          parameterFirstHessian Q (3 : Fin 4) 3 -
+        parameterFirstHessian Q (0 : Fin 4) 3 *
+          parameterFirstHessian Q (0 : Fin 4) 3).coeff 0 =
       HC4.Polynomial.hessianPrincipalMinor
         (familyParameterLayer Q 0)
         (0 : Fin 4) (3 : Fin 4) := by
@@ -73,10 +77,6 @@ theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
           (MvPolynomial.pderiv 3 (familyParameterLayer Q 0))
     exact pderiv_comm_commRing (3 : Fin 4) (0 : Fin 4)
       (familyParameterLayer Q 0)
-  unfold centralDeficitSchurBlockOf GeneralFourBlock.activeDet
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
   change
     Polynomial.constantCoeff
       (parameterFirstHessian Q (0 : Fin 4) 0 *
@@ -127,23 +127,18 @@ theorem centralDeficitSchurBlock_matrix :
     P.centralDeficitFamily
     (centralDeficitSchurPerm i) (centralDeficitSchurPerm j)
 
-/-- Constant coefficient of the active determinant is the honest Hessian
-principal minor of total-deficit layer zero in coordinates `(0,3)`. -/
-theorem centralDeficitSchurBlock_activeDet_coeff_zero_eq :
-    (centralDeficitSchurBlock (P := P)).activeDet.coeff 0 =
-      HC4.Polynomial.hessianPrincipalMinor
-        (familyParameterLayer P.centralDeficitFamily 0)
-        (0 : Fin 4) (3 : Fin 4) := by
-  exact centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
-    P.centralDeficitFamily
-
 /-- The active determinant has a genuinely nonzero constant coefficient. -/
 theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     (centralDeficitSchurBlock (P := P)).activeDet.coeff 0 ≠ 0 := by
-  rw [centralDeficitSchurBlock_activeDet_coeff_zero_eq (P := P)]
+  change
+    (parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 0 *
+          parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 3 -
+        parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 3 *
+          parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 3).coeff 0 ≠ 0
+  rw [centralDeficitActiveDet_coeff_zero_eq P.centralDeficitFamily]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
   rw [← G.exposure_face_eq]
   exact G.exposure_rankTwo_minor
