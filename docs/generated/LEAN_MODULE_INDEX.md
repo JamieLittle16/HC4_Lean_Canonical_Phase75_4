@@ -13250,7 +13250,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FiniteSupportCrossFacetRay`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero`, `theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero`
+- Declarations: `theorem hessianPrincipalMinor_rename_perm`, `theorem hessianPrincipalMinor_source_ne_zero_of_rename_perm`, `theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero`, `theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero`
 
 ### `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
 
