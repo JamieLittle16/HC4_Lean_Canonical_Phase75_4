@@ -55,7 +55,7 @@ private theorem centralDeficitSchurBlock_schurA_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurA.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock GeneralFourBlock.schurA
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurA
     GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
@@ -76,7 +76,7 @@ private theorem centralDeficitSchurBlock_schurB_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurB.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock GeneralFourBlock.schurB
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurB
     GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
@@ -97,7 +97,7 @@ private theorem centralDeficitSchurBlock_schurC_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurC.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock GeneralFourBlock.schurC
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurC
     GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
@@ -138,7 +138,7 @@ theorem centralDeficitSchurA_eq_rightRoofDet :
       G.firstDeficitRightActiveHessian.det := by
   rw [← GeneralFourBlock.firstThreeMinorMatrix_det]
   unfold GeneralFourBlock.firstThreeMinorMatrix
-    firstDeficitRightActiveHessian centralDeficitSchurBlock
+    firstDeficitRightActiveHessian centralDeficitSchurBlock centralDeficitSchurBlockOf
     GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
@@ -153,7 +153,7 @@ theorem centralDeficitSchurC_eq_leftRoofDet :
       G.firstDeficitLeftActiveHessian.det := by
   rw [← GeneralFourBlock.secondThreeMinorMatrix_det]
   unfold GeneralFourBlock.secondThreeMinorMatrix
-    firstDeficitLeftActiveHessian centralDeficitSchurBlock
+    firstDeficitLeftActiveHessian centralDeficitSchurBlock centralDeficitSchurBlockOf
     GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
@@ -168,20 +168,18 @@ theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     (G.centralDeficitZeroSchurSeries hthree houtThree).HasPositiveEntryLayer := by
   let Z := G.centralDeficitZeroSchurSeries hthree houtThree
-  have hroof := G.firstDeficitRankThreeRoofGeometry hthree houtThree
+  have hroof := G.firstDeficit_activeRankThree hthree houtThree
   have hentry :
       Z.series.active ≠ 0 ∨ Z.series.kernel ≠ 0 := by
-    cases hroof with
-    | roofOne e A hA hlayer he1 he2 hne =>
-        right
-        change G.centralDeficitSchurBlock.schurC ≠ 0
-        rw [G.centralDeficitSchurC_eq_leftRoofDet]
-        exact hne
-    | roofTwo e A hA hlayer he1 he2 hne =>
-        left
-        change G.centralDeficitSchurBlock.schurA ≠ 0
-        rw [G.centralDeficitSchurA_eq_rightRoofDet]
-        exact hne
+    rcases hroof with hleft | hright
+    · right
+      change G.centralDeficitSchurBlock.schurC ≠ 0
+      rw [G.centralDeficitSchurC_eq_leftRoofDet]
+      exact hleft
+    · left
+      change G.centralDeficitSchurBlock.schurA ≠ 0
+      rw [G.centralDeficitSchurA_eq_rightRoofDet]
+      exact hright
   by_contra hnone
   have hA := Z.active_eq_zero_of_not_hasPositiveEntryLayer hnone
   have hC := Z.kernel_eq_zero_of_not_hasPositiveEntryLayer hnone
