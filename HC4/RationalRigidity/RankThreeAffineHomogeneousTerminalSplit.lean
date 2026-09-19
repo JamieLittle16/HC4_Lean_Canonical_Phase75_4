@@ -52,11 +52,15 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
     Q = 0 ∨ R = 0 ∨ S = 0 ∨
       HC4.Newton.MvExponentOnCodimensionTwoBoundary
         (L.exponent phi.natDegree) := by
+  have hcertNat :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phi) (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
+    simpa using hcert
   have hstep :=
     rankThree_unit_longitudinal_step_of_certificate
       (K := K) (A := A) (B := B) (C := C) (P := 1)
       (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC (by norm_num) hphiDeg hphi0 hcert
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat
   have hphi1 : phi.coeff 1 ≠ 0 := hstep.2
   have h1mem : 1 ∈ phi.support := Polynomial.mem_support_iff.mpr hphi1
 
@@ -75,8 +79,9 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
 
   have hrel :=
     rankThree_terminal_homogeneous_direction_relation
-      (K := K) hA hB hC (by norm_num)
-      hphiDeg hphi0 hcert hsum
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum
 
   have hbaseOne :
       (A : K) + (B : K) + (C : K) - 1 ≠ 0 := by
