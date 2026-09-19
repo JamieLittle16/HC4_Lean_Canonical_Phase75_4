@@ -201,76 +201,6 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
-/-- Left active-middle entry is the honest `(1,1)` Hessian entry of
-the exact total-deficit layer. -/
-theorem firstDeficitLeftStaggeredBlock_d_coeff
-    (n : ℕ) :
-    G.firstDeficitLeftStaggeredBlock.d.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1 := by
-  rw [G.firstDeficitLeftStaggeredBlock_d_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 1
-
-/-- Left mixed entry is the honest `(1,2)` Hessian entry of the exact
-total-deficit layer. -/
-theorem firstDeficitLeftStaggeredBlock_s_coeff
-    (n : ℕ) :
-    G.firstDeficitLeftStaggeredBlock.s.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 2 := by
-  rw [G.firstDeficitLeftStaggeredBlock_s_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 2
-
-/-- Right active-middle entry is the honest `(2,2)` Hessian entry. -/
-theorem firstDeficitRightStaggeredBlock_d_coeff
-    (n : ℕ) :
-    G.firstDeficitRightStaggeredBlock.d.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2 := by
-  rw [G.firstDeficitRightStaggeredBlock_d_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 2
-
-/-- Right mixed entry is the honest `(2,1)` Hessian entry. -/
-theorem firstDeficitRightStaggeredBlock_s_coeff
-    (n : ℕ) :
-    G.firstDeficitRightStaggeredBlock.s.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 1 := by
-  rw [G.firstDeficitRightStaggeredBlock_s_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 1
-
-/-- The left staggered missing diagonal is literally the `(2,2)` Hessian
-entry of the exact total-deficit source layer. -/
-theorem firstDeficitLeftStaggeredBlock_z_coeff
-    (n : ℕ) :
-    G.firstDeficitLeftStaggeredBlock.z.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2 := by
-  rw [G.firstDeficitLeftStaggeredBlock_z_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 2
-
-/-- Right-oriented mirror: the missing diagonal is the `(1,1)` Hessian
-entry of the exact source layer. -/
-theorem firstDeficitRightStaggeredBlock_z_coeff
-    (n : ℕ) :
-    G.firstDeficitRightStaggeredBlock.z.coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1 := by
-  rw [G.firstDeficitRightStaggeredBlock_z_eq_parameterFirstHessian]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 1
-
 /-- Provenance-rich source monomial forced at the second interaction order. -/
 inductive FirstDeficitSecondSourceLayerGeometry : Prop
   | left
@@ -358,20 +288,13 @@ theorem firstDeficit_secondSourceLayerGeometry
           MvPolynomial.pderiv (2 : Fin 4)
             (MvPolynomial.pderiv (2 : Fin 4)
               (familyParameterLayer P.centralDeficitFamily k)) ≠ 0 := by
-        have hz' := hz
-        change G.firstDeficitLeftStaggeredBlock.z.coeff k ≠ 0 at hz'
-        rw [G.firstDeficitLeftStaggeredBlock_z_coeff k] at hz'
-        simpa only [HC4.Polynomial.hessian_apply] using hz'
+        simpa only [q, j, k, HC4.Polynomial.hessian_apply] using hz
       rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
           (K := K) (2 : Fin 4)
           (familyParameterLayer P.centralDeficitFamily k) hderiv with
         ⟨second, hsecondLayer, hsecond2⟩
       have hsource :=
         (P.centralDeficitFamily_layer_mem_iff k second).1 hsecondLayer
-      have heqSource := heq
-      rw [G.firstDeficitLeftStaggeredBlock_d_coeff,
-        G.firstDeficitLeftStaggeredBlock_z_coeff,
-        G.firstDeficitLeftStaggeredBlock_s_coeff] at heqSource
       have heqSource' :
           HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 *
               HC4.Polynomial.hessian
@@ -383,7 +306,7 @@ theorem firstDeficit_secondSourceLayerGeometry
               HC4.Polynomial.hessian
                 (familyParameterLayer P.centralDeficitFamily j)
                 (1 : Fin 4) 2 := by
-        simpa only [q, j, k, firstDeficitLayer] using heqSource
+        simpa only [q, j, k, firstDeficitLayer] using heq
       exact .left first opposite second B q j k
         rfl rfl rfl hfirst
         (by simpa only [q] using hfirst1) hfirst2 huniq
@@ -399,20 +322,13 @@ theorem firstDeficit_secondSourceLayerGeometry
           MvPolynomial.pderiv (1 : Fin 4)
             (MvPolynomial.pderiv (1 : Fin 4)
               (familyParameterLayer P.centralDeficitFamily k)) ≠ 0 := by
-        have hz' := hz
-        change G.firstDeficitRightStaggeredBlock.z.coeff k ≠ 0 at hz'
-        rw [G.firstDeficitRightStaggeredBlock_z_coeff k] at hz'
-        simpa only [HC4.Polynomial.hessian_apply] using hz'
+        simpa only [q, j, k, HC4.Polynomial.hessian_apply] using hz
       rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
           (K := K) (1 : Fin 4)
           (familyParameterLayer P.centralDeficitFamily k) hderiv with
         ⟨second, hsecondLayer, hsecond1⟩
       have hsource :=
         (P.centralDeficitFamily_layer_mem_iff k second).1 hsecondLayer
-      have heqSource := heq
-      rw [G.firstDeficitRightStaggeredBlock_d_coeff,
-        G.firstDeficitRightStaggeredBlock_z_coeff,
-        G.firstDeficitRightStaggeredBlock_s_coeff] at heqSource
       have heqSource' :
           HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 *
               HC4.Polynomial.hessian
@@ -424,7 +340,7 @@ theorem firstDeficit_secondSourceLayerGeometry
               HC4.Polynomial.hessian
                 (familyParameterLayer P.centralDeficitFamily j)
                 (2 : Fin 4) 1 := by
-        simpa only [q, j, k, firstDeficitLayer] using heqSource
+        simpa only [q, j, k, firstDeficitLayer] using heq
       exact .right first opposite second B q j k
         rfl rfl rfl hfirst hfirst1
         (by simpa only [q] using hfirst2) huniq
