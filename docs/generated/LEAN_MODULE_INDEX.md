@@ -10820,7 +10820,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`, `HC4.Newton.FiniteSupportExposedVertex`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
-- Declarations: `theorem qs_ray_exponent_eq_of_zeroCoordinate_eq`, `theorem qs_ray_coordinateMax_zero_initialForm_eq_monomial`, `theorem qs_ray_coordinateMax_zero_witness_pos`, `theorem qs_ray_sourceMinor_of_coordinateMax_zero_transverse`, `def actualRankTwoChart0j`, `theorem qs_ray_binarySupport_of_coordinateMax_zero_pure`, `theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport`, `theorem qs_ray_facetEndpoint_actualRankTwo_or_binarySupport`
+- Declarations: `theorem qs_ray_exponent_eq_of_zeroCoordinate_eq`, `theorem qs_ray_face_ne_zero`, `theorem qs_ray_coordinateMax_zero_initialForm_eq_monomial`, `theorem qs_ray_coordinateMax_zero_witness_pos`, `theorem qs_ray_sourceMinor_of_coordinateMax_zero_transverse`, `def actualRankTwoChart0j`, `theorem qs_ray_binarySupport_of_coordinateMax_zero_pure`, `theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport`, `theorem qs_ray_facetEndpoint_actualRankTwo_or_binarySupport`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
 
