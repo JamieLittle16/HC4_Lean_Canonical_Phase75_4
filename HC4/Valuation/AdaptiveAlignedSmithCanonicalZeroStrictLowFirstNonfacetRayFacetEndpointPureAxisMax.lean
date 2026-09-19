@@ -198,19 +198,52 @@ private noncomputable def actualRankTwoChart0j
     (h : HC4.Polynomial.hessianPrincipalMinor
       (polynomialFamilySpecialFiber s.family) (0 : Fin 4) j ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
-  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) j
-  have hrho0 : rho (0 : Fin 4) = 0 := by
-    dsimp [rho]
-    fin_cases j <;> simp_all
-  have hrho1 : rho (1 : Fin 4) = j := by
-    simp [rho]
-  refine {
-    permutation := rho
-    activeDet_coeff_zero_ne_zero := ?_
-  }
-  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  rw [hrho0, hrho1]
-  exact h
+  by_cases hj1 : j = (1 : Fin 4)
+  · subst j
+    refine {
+      permutation := Equiv.refl (Fin 4)
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa using h
+  by_cases hj2 : j = (2 : Fin 4)
+  · subst j
+    let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
+    refine {
+      permutation := rho
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using h
+  · have hj0v : j.val ≠ 0 := by
+      intro hv
+      apply hj0
+      apply Fin.ext
+      simpa using hv
+    have hj1v : j.val ≠ 1 := by
+      intro hv
+      apply hj1
+      apply Fin.ext
+      simpa using hv
+    have hj2v : j.val ≠ 2 := by
+      intro hv
+      apply hj2
+      apply Fin.ext
+      simpa using hv
+    have hj3v : j.val = 3 := by
+      have hjlt : j.val < 4 := j.isLt
+      omega
+    have hj3 : j = (3 : Fin 4) := by
+      apply Fin.ext
+      simpa using hj3v
+    subst j
+    let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
+    refine {
+      permutation := rho
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using h
 
 /-- If the coordinate-`0` maximal ray point is pure longitudinal and the
 starting endpoint is supported on the base plane `(0,a)`, affine
@@ -300,6 +333,7 @@ theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport
         (3 : Fin 4) (by decide) h3)⟩
   · right
     apply C.qs_ray_binarySupport_of_coordinateMax_zero_pure a ha0 hfacetBase
+    dsimp only
     intro k hk0
     have hkval0 : k.val ≠ 0 := by
       intro hk
