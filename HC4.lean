@@ -287,3 +287,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
 import HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation
+
+-- Retain starting rank-three provenance through the final zero-strict-low split.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier
