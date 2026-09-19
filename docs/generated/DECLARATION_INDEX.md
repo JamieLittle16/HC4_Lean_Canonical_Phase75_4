@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9065**.
+Distinct declaration spellings indexed: **9067**.
 
 ## Repeated declaration spellings
 
@@ -6616,6 +6616,8 @@ Distinct declaration spellings indexed: **9065**.
 - `pderiv_fourUnitSourceInflateFamily` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
 - `pderiv_gradientRatioLinearForm_fin` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `pderiv_gradientRatioLinearForm_pow_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
+- `pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `pderiv_initialForm` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `pderiv_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `pderiv_kernelInflateHom` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
