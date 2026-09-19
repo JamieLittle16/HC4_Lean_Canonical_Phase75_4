@@ -55,7 +55,9 @@ theorem linearForm_ne_zero :
   intro hL
   apply T.topFace.face_ne_zero
   rw [P.eq_power, hL]
-  simp [show 0 < T.topFace.degree by omega]
+  have hmne : T.topFace.degree ≠ 0 := by
+    omega
+  simp [hmne]
 
 /-- Some coordinate other than the stored kernel coordinate occurs genuinely
 in the top linear form. -/
@@ -80,19 +82,26 @@ theorem topFace_hessian_diagonal_ne_zero
     (j : Fin 4)
     (hj : P.ratio j ≠ 0) :
     HC4.Polynomial.hessian T.topFace.face j j ≠ 0 := by
-  have hrepr : T.topFace.degree = (T.topFace.degree - 2) + 2 := by omega
+  have hm3 : 3 ≤ T.topFace.degree :=
+    T.topFace.degree_ge_three
   have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
   have hL : gradientRatioLinearForm P.ratio ≠ 0 := P.linearForm_ne_zero
-  have hn2 : (((T.topFace.degree - 2 + 2 : ℕ) : K)) ≠ 0 := by
-    exact_mod_cast (show T.topFace.degree - 2 + 2 ≠ 0 by omega)
+  have hmK : (T.topFace.degree : K) ≠ 0 := by
+    exact_mod_cast (show T.topFace.degree ≠ 0 by omega)
   have hn1 : (((T.topFace.degree - 2 + 1 : ℕ) : K)) ≠ 0 := by
     exact_mod_cast (show T.topFace.degree - 2 + 1 ≠ 0 by omega)
-  rw [P.eq_power, hrepr]
-  rw [hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin]
+  rw [P.eq_power]
+  have hformula :=
+    hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin
+      P.coefficient P.ratio (T.topFace.degree - 2) j j
+  have hrepr : T.topFace.degree - 2 + 2 = T.topFace.degree := by
+    omega
+  rw [hrepr] at hformula
+  rw [hformula]
   apply mul_ne_zero
   · simp only [MvPolynomial.C_ne_zero]
     exact mul_ne_zero
-      (mul_ne_zero (mul_ne_zero (mul_ne_zero ha hn2) hn1) hj) hj
+      (mul_ne_zero (mul_ne_zero (mul_ne_zero ha hmK) hn1) hj) hj
   · exact pow_ne_zero _ hL
 
 /-- After the honest kernel-last reindexing, some active constant Hessian
