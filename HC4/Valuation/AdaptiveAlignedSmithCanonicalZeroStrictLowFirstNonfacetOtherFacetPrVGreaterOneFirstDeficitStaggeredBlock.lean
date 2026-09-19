@@ -212,6 +212,166 @@ theorem firstDeficitRightStaggeredBlock_activeThree_eq :
   rw [firstKernelBreakActiveThreeDet_eq_submatrix_det,
     G.firstDeficitRightStaggeredBlock_activeSubmatrix_eq]
 
+
+/-- The leading active-three coefficient factors through the nonzero outer
+constant principal minor and the first opening of the middle diagonal. -/
+theorem firstDeficitLeftStaggeredBlock_activeCoeff_eq_outer_mul_middle
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (firstKernelBreakActiveThreeDet
+        G.firstDeficitLeftStaggeredBlock).coeff G.firstDeficitOrder =
+      (G.firstDeficitLeftStaggeredBlock.a.coeff 0 *
+          G.firstDeficitLeftStaggeredBlock.x.coeff 0 -
+        G.firstDeficitLeftStaggeredBlock.p.coeff 0 *
+          G.firstDeficitLeftStaggeredBlock.p.coeff 0) *
+        G.firstDeficitLeftStaggeredBlock.d.coeff G.firstDeficitOrder := by
+  let H0 := HC4.Polynomial.hessian G.exposure.face
+  let a := H0 (0 : Fin 4) 0
+  let b := H0 (0 : Fin 4) 3
+  let c0 := H0 (3 : Fin 4) 0
+  let d := H0 (3 : Fin 4) 3
+  have hbase : ∀ r s,
+      (G.firstDeficitLeftActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c0 d r s := by
+    intro r s
+    simpa [a, b, c0, d, H0] using
+      G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree r s
+  have hcoeff :=
+    HC4.Polynomial.coeff_det_polynomialMatrix3_gap
+      G.firstDeficitOrder_pos
+      G.firstDeficitLeftActiveHessian
+      (fun r s => G.leftActive_gap r s)
+      a b c0 d hbase
+  have hsub := G.firstDeficitLeftStaggeredBlock_activeSubmatrix_eq
+  have ha :
+      G.firstDeficitLeftStaggeredBlock.a =
+        G.firstDeficitLeftActiveHessian 0 0 := by
+    have h := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hp02 :
+      G.firstDeficitLeftStaggeredBlock.p =
+        G.firstDeficitLeftActiveHessian 0 2 := by
+    have h := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hp20 :
+      G.firstDeficitLeftStaggeredBlock.p =
+        G.firstDeficitLeftActiveHessian 2 0 := by
+    have h := congrFun (congrFun hsub (2 : Fin 3)) (0 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hx :
+      G.firstDeficitLeftStaggeredBlock.x =
+        G.firstDeficitLeftActiveHessian 2 2 := by
+    have h := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hd :
+      G.firstDeficitLeftStaggeredBlock.d =
+        G.firstDeficitLeftActiveHessian 1 1 := by
+    have h := congrFun (congrFun hsub (1 : Fin 3)) (1 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have ha0 :
+      G.firstDeficitLeftStaggeredBlock.a.coeff 0 = a := by
+    rw [ha]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 0
+  have hp0b :
+      G.firstDeficitLeftStaggeredBlock.p.coeff 0 = b := by
+    rw [hp02]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 2
+  have hp0c :
+      G.firstDeficitLeftStaggeredBlock.p.coeff 0 = c0 := by
+    rw [hp20]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 0
+  have hx0 :
+      G.firstDeficitLeftStaggeredBlock.x.coeff 0 = d := by
+    rw [hx]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 2
+  have hdq :
+      G.firstDeficitLeftStaggeredBlock.d.coeff G.firstDeficitOrder =
+        (G.firstDeficitLeftActiveHessian 1 1).coeff G.firstDeficitOrder := by
+    rw [hd]
+  rw [G.firstDeficitLeftStaggeredBlock_activeThree_eq]
+  rw [hcoeff]
+  rw [← ha0, ← hx0, ← hp0b, ← hp0c, ← hdq]
+
+/-- Right-oriented version of the same active-coefficient factorisation. -/
+theorem firstDeficitRightStaggeredBlock_activeCoeff_eq_outer_mul_middle
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (firstKernelBreakActiveThreeDet
+        G.firstDeficitRightStaggeredBlock).coeff G.firstDeficitOrder =
+      (G.firstDeficitRightStaggeredBlock.a.coeff 0 *
+          G.firstDeficitRightStaggeredBlock.x.coeff 0 -
+        G.firstDeficitRightStaggeredBlock.p.coeff 0 *
+          G.firstDeficitRightStaggeredBlock.p.coeff 0) *
+        G.firstDeficitRightStaggeredBlock.d.coeff G.firstDeficitOrder := by
+  let H0 := HC4.Polynomial.hessian G.exposure.face
+  let a := H0 (0 : Fin 4) 0
+  let b := H0 (0 : Fin 4) 3
+  let c0 := H0 (3 : Fin 4) 0
+  let d := H0 (3 : Fin 4) 3
+  have hbase : ∀ r s,
+      (G.firstDeficitRightActiveHessian r s).coeff 0 =
+        HC4.Polynomial.rankTwoRoofZeroKernelBase a b c0 d r s := by
+    intro r s
+    simpa [a, b, c0, d, H0] using
+      G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
+        hthree houtThree r s
+  have hcoeff :=
+    HC4.Polynomial.coeff_det_polynomialMatrix3_gap
+      G.firstDeficitOrder_pos
+      G.firstDeficitRightActiveHessian
+      (fun r s => G.rightActive_gap r s)
+      a b c0 d hbase
+  have hsub := G.firstDeficitRightStaggeredBlock_activeSubmatrix_eq
+  have ha :
+      G.firstDeficitRightStaggeredBlock.a =
+        G.firstDeficitRightActiveHessian 0 0 := by
+    have h := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hp02 :
+      G.firstDeficitRightStaggeredBlock.p =
+        G.firstDeficitRightActiveHessian 0 2 := by
+    have h := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hp20 :
+      G.firstDeficitRightStaggeredBlock.p =
+        G.firstDeficitRightActiveHessian 2 0 := by
+    have h := congrFun (congrFun hsub (2 : Fin 3)) (0 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hx :
+      G.firstDeficitRightStaggeredBlock.x =
+        G.firstDeficitRightActiveHessian 2 2 := by
+    have h := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have hd :
+      G.firstDeficitRightStaggeredBlock.d =
+        G.firstDeficitRightActiveHessian 1 1 := by
+    have h := congrFun (congrFun hsub (1 : Fin 3)) (1 : Fin 3)
+    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+  have ha0 :
+      G.firstDeficitRightStaggeredBlock.a.coeff 0 = a := by
+    rw [ha]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 0
+  have hp0b :
+      G.firstDeficitRightStaggeredBlock.p.coeff 0 = b := by
+    rw [hp02]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 2
+  have hp0c :
+      G.firstDeficitRightStaggeredBlock.p.coeff 0 = c0 := by
+    rw [hp20]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 0
+  have hx0 :
+      G.firstDeficitRightStaggeredBlock.x.coeff 0 = d := by
+    rw [hx]
+    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 2
+  have hdq :
+      G.firstDeficitRightStaggeredBlock.d.coeff G.firstDeficitOrder =
+        (G.firstDeficitRightActiveHessian 1 1).coeff G.firstDeficitOrder := by
+    rw [hd]
+  rw [G.firstDeficitRightStaggeredBlock_activeThree_eq]
+  rw [hcoeff]
+  rw [← ha0, ← hx0, ← hp0b, ← hp0c, ← hdq]
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
