@@ -38,20 +38,20 @@ private theorem rankThree_coordinate_pos_on_otherFacet
     {facet next : ToricFacet}
     (hthree : MvRankThreeOnFacet facet d)
     (hne : next ≠ facet) :
-    0 < d (facetOmittedCoordinate next) := by
+    0 < d (HC4.Polynomial.facetOmittedCoordinate next) := by
   have hcoords := (mvRankThreeOnFacet_iff facet d).1 hthree
   cases facet <;> cases next <;>
-    simp [facetOmittedCoordinate] at hne hcoords ⊢ <;>
+    simp [HC4.Polynomial.facetOmittedCoordinate] at hne hcoords ⊢ <;>
     tauto
 
 private theorem rankThree_omittedCoordinate_zero
     {d : Fin 4 →₀ ℕ}
     {facet : ToricFacet}
     (hthree : MvRankThreeOnFacet facet d) :
-    d (facetOmittedCoordinate facet) = 0 := by
+    d (HC4.Polynomial.facetOmittedCoordinate facet) = 0 := by
   have hcoords := (mvRankThreeOnFacet_iff facet d).1 hthree
   cases facet <;>
-    simpa [facetOmittedCoordinate] using hcoords.1
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hcoords.1
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
@@ -72,32 +72,32 @@ theorem topBoundaryTransition_nextRay_or_codimensionTwo
         next ≠ facet ∧
           Nonempty
             (CrossFacetRayData T.topFace.face
-              (facetOmittedCoordinate next))) ∨
+              (HC4.Polynomial.facetOmittedCoordinate next))) ∨
       (∃ d ∈ T.topFace.face.support,
         MvExponentOnCodimensionTwoBoundary d) := by
   rcases htransition with
     ⟨d, hd, _hdeg, _holdPos, hnext | hcodim⟩
   · rcases hnext with ⟨next, hne, hnextThree⟩
-    have hd0 : d (facetOmittedCoordinate next) = 0 :=
+    have hd0 : d (HC4.Polynomial.facetOmittedCoordinate next) = 0 :=
       rankThree_omittedCoordinate_zero hnextThree
     have hstartMem :
         T.exposedSingularBoundaryVertex.exponent ∈ T.topFace.face.support :=
       T.exposedBoundary_exponent_mem_topFace
     have hstartPos :
         0 < T.exposedSingularBoundaryVertex.exponent
-          (facetOmittedCoordinate next) :=
+          (HC4.Polynomial.facetOmittedCoordinate next) :=
       rankThree_coordinate_pos_on_otherFacet hthree hne
     have hzero :
-        (zeroCoordinateSupport
-          (facetOmittedCoordinate next) T.topFace.face).Nonempty :=
-      ⟨d, mem_zeroCoordinateSupport.mpr ⟨hd, hd0⟩⟩
+        (HC4.Newton.zeroCoordinateSupport
+          (HC4.Polynomial.facetOmittedCoordinate next) T.topFace.face).Nonempty :=
+      ⟨d, mem_HC4.Newton.zeroCoordinateSupport.mpr ⟨hd, hd0⟩⟩
     have hpos :
-        (positiveCoordinateSupport
-          (facetOmittedCoordinate next) T.topFace.face).Nonempty :=
+        (HC4.Newton.positiveCoordinateSupport
+          (HC4.Polynomial.facetOmittedCoordinate next) T.topFace.face).Nonempty :=
       ⟨T.exposedSingularBoundaryVertex.exponent,
-        mem_positiveCoordinateSupport.mpr ⟨hstartMem, hstartPos⟩⟩
+        mem_HC4.Newton.positiveCoordinateSupport.mpr ⟨hstartMem, hstartPos⟩⟩
     exact Or.inl
-      ⟨next, hne, ⟨crossFacetRayData hzero hpos⟩⟩
+      ⟨next, hne, ⟨HC4.Newton.crossFacetRayData hzero hpos⟩⟩
   · exact Or.inr ⟨d, hd, hcodim⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
