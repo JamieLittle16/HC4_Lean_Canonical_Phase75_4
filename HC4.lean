@@ -308,3 +308,6 @@ import HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor
 
 -- Homogeneous balance-free rays are codimension-two or carry an honest Hessian pivot.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo
+
+-- Lift nonzero Hessian pivots through the canonical three-exposure ray extractor.
+import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
