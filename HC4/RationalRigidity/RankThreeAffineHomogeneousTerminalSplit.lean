@@ -190,8 +190,7 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
   have he31 := congrFun haff1 (3 : Fin 4)
   have hsum : (1 : K) + Q + R + S = 0 := by
     simp [ordinaryDegree4, Nat.cast_add] at hdeg1K
-    simp [rankThreeLogBaseExponent, rankThreeLogDirection] at
-      he01 he11 he21 he31
+    simp [rankThreeLogBaseExponent, rankThreeLogDirection] at he01 he11 he21 he31
     rw [he01, he11, he21, he31] at hdeg1K
     push_cast at hdeg1K
     linear_combination hdeg1K
@@ -352,11 +351,17 @@ theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo
             (L.exponent phi.natDegree)) ∨
       HC4.Newton.MvExponentOnCodimensionTwoBoundary
         (L.exponent phi.natDegree) := by
+  have hcertNat :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phi) (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
+    simpa using hcert
   have hboundary :
       HC4.Polynomial.MvExponentOnBoundary
         (L.exponent phi.natDegree) :=
     rankThreeAffineLine_topExponent_on_boundary_of_certificate
-      (K := K) L hA hB hC (by norm_num) hphiDeg hphi0 hcert
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      L hA hB hC (by norm_num) hphiDeg hphi0 hcertNat
   rcases HC4.Newton.mvBoundary_rankThreeFacet_or_codimensionTwo hboundary with
     hthree | hcodim
   · rcases hthree with ⟨next, hnext⟩
