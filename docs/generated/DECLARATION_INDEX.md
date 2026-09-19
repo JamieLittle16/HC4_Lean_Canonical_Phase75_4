@@ -1782,8 +1782,8 @@ Distinct declaration spellings indexed: **9105**.
 - `FrontierPreterminalSchurCertificate` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierRigidPacketSchurExposure` — `structure` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `GeneralFourBlock` — `structure` in `HC4.Newton.GeneralFourBlockSchur`
-- `GeneralFourBlock.schurA_eq_sourceRoofDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
-- `GeneralFourBlock.schurC_eq_sourceRoofDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `GeneralFourBlock.schurA_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `GeneralFourBlock.schurC_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `GeneralFourBlock.schurC_scale_lastCoordinate` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `GeneralThreeBlock` — `structure` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `GeneralThreeBlock.binaryScalarSchurSeries` — `def` in `HC4.Newton.GeneralThreeBlockSecondScalarSchur`
