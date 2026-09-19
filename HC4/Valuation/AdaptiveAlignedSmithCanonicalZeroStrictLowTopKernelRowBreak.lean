@@ -68,29 +68,18 @@ theorem exists_topKernelReverseRees_parameterFirstHessian_row_ne_zero
       ∀ i : Fin 4,
         HC4.Polynomial.hessian T.topKernelReesSource kernelCoordinate i = 0 := by
     intro i
-    have hrecovered := congrArg
-      (fun P : MvPolynomial (Fin 4) K =>
-        HC4.Polynomial.hessian P kernelCoordinate i)
-      T.topKernelReverseRees_evalOne_eq_source
-    have hleft :
-        HC4.Polynomial.hessian
-            (MvPolynomial.map (Polynomial.evalRingHom (1 : K))
-              T.topKernelReverseReesFamily)
-            kernelCoordinate i = 0 := by
-      rw [HC4.Polynomial.hessian_apply]
-      simp [MvPolynomial.pderiv_map, hfamilyRow i,
-        HC4.Polynomial.hessian_apply]
-    rw [hleft] at hrecovered
-    exact hrecovered.symm
+    rw [← T.topKernelReverseRees_evalOne_eq_source]
+    rw [HC4.Polynomial.hessian_apply]
+    rw [MvPolynomial.pderiv_map, MvPolynomial.pderiv_map]
+    have hfamily := hfamilyRow i
+    rw [HC4.Polynomial.hessian_apply] at hfamily
+    rw [hfamily]
+    simp
 
-  have hrowZero :
-      (HC4.Polynomial.hessian T.topKernelReesSource).row kernelCoordinate = 0 := by
-    funext i
-    exact hsourceRow i
   have hdetZero :
       HC4.Polynomial.hessianDeterminant T.topKernelReesSource = 0 := by
     unfold HC4.Polynomial.hessianDeterminant
-    exact Matrix.det_eq_zero_of_row_eq_zero kernelCoordinate hrowZero
+    exact Matrix.det_eq_zero_of_row_eq_zero kernelCoordinate hsourceRow
   rw [T.topKernelReesSource_hessianDeterminant_eq_one] at hdetZero
   exact one_ne_zero hdetZero
 
@@ -106,21 +95,57 @@ theorem topKernelLastBlock_kernelRow_ne_zero
   let rho := kernelLastPerm kernelCoordinate
   let j : Fin 4 := rho.symm i
   have hrhoj : rho j = i := by simp [j]
-  let B := kernelLastFamilyHessianFourBlock
-    T.topKernelReverseReesFamily kernelCoordinate
-  have hentry :
+  have hlast : rho (3 : Fin 4) = kernelCoordinate := by simp [rho]
+  have hi' :
       parameterFirstHessian T.topKernelReverseReesFamily
-        (rho 3) (rho j) ≠ 0 := by
-    simpa [kernelLastPerm_last, hrhoj] using hi
-  fin_cases j
-  · exact Or.inl (by simpa [B, kernelLastFamilyHessianFourBlock] using hentry)
+        (rho j) (rho 3) ≠ 0 := by
+    rw [hrhoj, hlast]
+    intro hzero
+    apply hi
+    rw [parameterFirstHessian_symmetric]
+    exact hzero
+  by_cases hj0 : j = (0 : Fin 4)
+  · exact Or.inl (by
+      change
+        parameterFirstHessian T.topKernelReverseReesFamily
+          (rho 0) (rho 3) ≠ 0
+      simpa [hj0] using hi')
+  by_cases hj1 : j = (1 : Fin 4)
   · exact Or.inr (Or.inl (by
-      simpa [B, kernelLastFamilyHessianFourBlock] using hentry))
+      change
+        parameterFirstHessian T.topKernelReverseReesFamily
+          (rho 1) (rho 3) ≠ 0
+      simpa [hj1] using hi'))
+  by_cases hj2 : j = (2 : Fin 4)
   · exact Or.inr (Or.inr (Or.inl (by
-      simpa [B, kernelLastFamilyHessianFourBlock] using hentry)))
-  · exact Or.inr (Or.inr (Or.inr (by
-      simpa [B, kernelLastFamilyHessianFourBlock] using hentry)))
-
+      change
+        parameterFirstHessian T.topKernelReverseReesFamily
+          (rho 2) (rho 3) ≠ 0
+      simpa [hj2] using hi')))
+  have hj0v : j.val ≠ 0 := by
+    intro h
+    apply hj0
+    apply Fin.ext
+    simpa using h
+  have hj1v : j.val ≠ 1 := by
+    intro h
+    apply hj1
+    apply Fin.ext
+    simpa using h
+  have hj2v : j.val ≠ 2 := by
+    intro h
+    apply hj2
+    apply Fin.ext
+    simpa using h
+  have hj3 : j = (3 : Fin 4) := by
+    apply Fin.ext
+    simp
+    omega
+  exact Or.inr (Or.inr (Or.inr (by
+    change
+      parameterFirstHessian T.topKernelReverseReesFamily
+        (rho 3) (rho 3) ≠ 0
+    simpa [hj3] using hi')))
 /-- If the stored top face has the coordinate kernel, then the entire
 kernel-last row vanishes at parameter order zero. -/
 theorem topKernelLastBlock_kernelRow_coeff_zero
@@ -137,20 +162,36 @@ theorem topKernelLastBlock_kernelRow_coeff_zero
       ∀ j : Fin 4,
         HC4.Polynomial.hessian T.topFace.face kernelCoordinate j = 0 := by
     intro j
-    simp [HC4.Polynomial.hessian_apply, hkernel]
-  have hcoeff :
-      ∀ j : Fin 4,
-        (parameterFirstHessian T.topKernelReverseReesFamily
-          (rho 3) (rho j)).coeff 0 = 0 := by
-    intro j
+    have h := congrArg (MvPolynomial.pderiv j) hkernel
+    simpa [HC4.Polynomial.hessian_apply] using h
+  have hentry (j : Fin 4) :
+      (parameterFirstHessian T.topKernelReverseReesFamily
+        (rho j) (rho 3)).coeff 0 = 0 := by
+    rw [show rho 3 = kernelCoordinate by simp [rho]]
+    rw [parameterFirstHessian_symmetric]
     rw [parameterFirstHessian_coeff]
     rw [T.topKernelReverseRees_layer_zero_eq_topFace]
-    simpa [kernelLastPerm_last] using hrow (rho j)
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · simpa [B, kernelLastFamilyHessianFourBlock] using hcoeff 0
-  · simpa [B, kernelLastFamilyHessianFourBlock] using hcoeff 1
-  · simpa [B, kernelLastFamilyHessianFourBlock] using hcoeff 2
-  · simpa [B, kernelLastFamilyHessianFourBlock] using hcoeff 3
+    exact hrow (rho j)
+  dsimp [B]
+  constructor
+  · change
+      (parameterFirstHessian T.topKernelReverseReesFamily
+        (rho 0) (rho 3)).coeff 0 = 0
+    exact hentry 0
+  constructor
+  · change
+      (parameterFirstHessian T.topKernelReverseReesFamily
+        (rho 1) (rho 3)).coeff 0 = 0
+    exact hentry 1
+  constructor
+  · change
+      (parameterFirstHessian T.topKernelReverseReesFamily
+        (rho 2) (rho 3)).coeff 0 = 0
+    exact hentry 2
+  · change
+      (parameterFirstHessian T.topKernelReverseReesFamily
+        (rho 3) (rho 3)).coeff 0 = 0
+    exact hentry 3
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
