@@ -13550,7 +13550,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurSingularity`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.ReverseReesSchurAssociatedGraded`, `HC4.Valuation.ReverseReesSchurParameterBudget`
-- Declarations: `def permutedFamilyHessianFourBlock`, `theorem permutedFamilyHessianFourBlock_matrix`, `theorem permutedFamilyHessianFourBlock_determinantCore_eq_X_pow`
+- Declarations: `def permutedFamilyHessianFourBlock`, `theorem permutedFamilyHessianFourBlock_matrix`, `theorem permutedFamilyHessianFourBlock_determinantCore_eq_det`, `theorem permutedFamilyHessianFourBlock_determinantCore_eq_X_pow`
 
 ### `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 
