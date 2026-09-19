@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9046**.
+Distinct declaration spellings indexed: **9047**.
 
 ## Repeated declaration spellings
 
@@ -5505,6 +5505,7 @@ Distinct declaration spellings indexed: **9046**.
 - `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianPrincipalMinor_ne_zero_of_eulerScaled_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero` — `theorem` in `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- `hessianPrincipalMinor_ne_zero_of_support_two_positive` — `theorem` in `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
 - `hessianPrincipalMinor_unitTransverseInflate_one_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
 - `hessianPrincipalMinor_unitTransverseInflate_one_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
 - `hessianPrincipalMinor_unitTransverseInflate_two_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveInflation`
