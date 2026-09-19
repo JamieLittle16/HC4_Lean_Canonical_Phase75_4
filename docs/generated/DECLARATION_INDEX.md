@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8996**.
+Distinct declaration spellings indexed: **9002**.
 
 ## Repeated declaration spellings
 
@@ -2736,7 +2736,9 @@ Distinct declaration spellings indexed: **8996**.
 - `QsPrLockedQuotientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsPrLockedQuotientData.direction_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrQuotientFiber`
 - `QsRankThreeRankTwoClosure` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- `QsRankThreeRankTwoClosureNoSquare` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
 - `QsRankThreeSourceLiftedClosure` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- `QsRankThreeSourceLiftedClosureNoSquare` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
 - `QsRayFacetEndpointFirstBreakData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
 - `QsRayFacetEndpointSourceExposure` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - `QsTwoFixedTerminalData` — `structure` in `HC4.Newton.FirstContactCrossFacetAffineRRTwoFixedCertificate`
@@ -7145,9 +7147,13 @@ Distinct declaration spellings indexed: **8996**.
 - `qs_rankThree_lowerBoundary_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `qs_rankThree_not_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
 - `qs_rankThree_rankTwoClosure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- `qs_rankThree_rankTwoClosure_noSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
 - `qs_rankThree_sourceLiftedClosure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- `qs_rankThree_sourceLiftedClosure_noSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- `qs_rankThree_startCodimensionTwo_or_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`
 - `qs_rankThree_startCodimensionTwo_or_actualRankTwo_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`
 - `qs_rankThree_startCodimensionTwo_or_lockedOtherFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetLockedFrontier`
+- `qs_rankThree_startCodimensionTwo_or_otherFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 - `qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 - `qs_ray_all_transverse_fixed_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - `qs_ray_boundaryOutcome_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwoClosure`

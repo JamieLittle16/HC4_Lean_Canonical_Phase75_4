@@ -11070,7 +11070,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
-- Declarations: `theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo_or_quadraticSquare`
+- Declarations: `theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo_or_quadraticSquare`, `theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 
@@ -11100,7 +11100,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`, `inductive QsRankThreeSourceLiftedClosure`, `theorem qs_rankThree_sourceLiftedClosure`
+- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`, `inductive QsRankThreeRankTwoClosureNoSquare`, `theorem qs_rankThree_rankTwoClosure_noSquare`, `inductive QsRankThreeSourceLiftedClosureNoSquare`, `theorem qs_rankThree_sourceLiftedClosure_noSquare`, `inductive QsRankThreeSourceLiftedClosure`, `theorem qs_rankThree_sourceLiftedClosure`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 
@@ -11120,7 +11120,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetDirectionLock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`
-- Declarations: `theorem qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare`
+- Declarations: `theorem qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare`, `theorem qs_rankThree_startCodimensionTwo_or_otherFacet`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
 
