@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9010**.
+Distinct declaration spellings indexed: **9016**.
 
 ## Repeated declaration spellings
 
@@ -3097,6 +3097,7 @@ Distinct declaration spellings indexed: **9010**.
 - `actualRankTwoChart01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `actualRankTwoChart02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `actualRankTwoChart03` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
+- `actualRankTwoChart0a` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `actualRankTwoChart0j` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
 - `actualRankTwoChart1` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `actualRankTwoChart12` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
@@ -3327,6 +3328,7 @@ Distinct declaration spellings indexed: **9010**.
 - `allTransverseZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
 - `allTwoByTwoMinorsZero_of_centerFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `allTwoByTwoMinorsZero_of_rankOneCoreRelations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
+- `applies` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `avoids` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `axisRestriction_derivative_eval_one_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `axisRestriction_derivative_eval_zero_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -5478,6 +5480,7 @@ Distinct declaration spellings indexed: **9010**.
 - `hessianPrincipalMinor_C_mul` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `hessianPrincipalMinor_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `hessianPrincipalMinor_constantPolynomialFamily` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
+- `hessianPrincipalMinor_eq_binaryDirectionalHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `hessianPrincipalMinor_monomial_ne_zero_of_two_positive` — `theorem` in `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - `hessianPrincipalMinor_ne_zero_of_crossFacetRay` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
@@ -7157,6 +7160,7 @@ Distinct declaration spellings indexed: **9010**.
 - `qs_rankThree_startCodimensionTwo_or_otherFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 - `qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsReducedLowerFrontier`
 - `qs_ray_all_transverse_fixed_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+- `qs_ray_binarySupport_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `qs_ray_binarySupport_of_coordinateMax_zero_pure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
 - `qs_ray_boundaryOutcome_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwoClosure`
 - `qs_ray_boundaryOutcome_otherFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetReduction`
@@ -7170,6 +7174,7 @@ Distinct declaration spellings indexed: **9010**.
 - `qs_ray_degreeOne_terminalCertificate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_directionSum_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_ray_exponent_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
+- `qs_ray_facetEndpoint_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `qs_ray_facetEndpoint_actualRankTwo_or_binarySupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
 - `qs_ray_facetEndpoint_actualRankTwo_or_firstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
 - `qs_ray_facetEndpoint_actualRankTwo_or_pureAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
@@ -7178,6 +7183,7 @@ Distinct declaration spellings indexed: **9010**.
 - `qs_ray_facetEndpoint_mem_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - `qs_ray_facetEndpoint_sourceMinor_of_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
 - `qs_ray_facetEndpoint_unique_zeroCoordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
+- `qs_ray_facetExponent_eq_single_axis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `qs_ray_facet_degree_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetDegreeGap`
 - `qs_ray_otherFacet_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `qs_ray_otherFacet_contactQuadraticRees_package` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees`
