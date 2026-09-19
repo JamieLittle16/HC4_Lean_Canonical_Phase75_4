@@ -50,6 +50,7 @@ human architecture guide.
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
+  - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
   - `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
   - `HC4.RationalRigidity.RankThreeBalancedHomogeneousImpossible`
   - `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
@@ -1194,6 +1195,10 @@ human architecture guide.
 - `HC4.RationalRigidity.PolynomialAutonomousQuadraticExtraction`
   - `HC4.Polynomial.AutonomousODEQuadraticRigidity`
   - `HC4.RationalRigidity.RankThreeTargetDegreeBound`
+- `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+  - `HC4.Newton.SingularBoundaryRankSplit`
+  - `HC4.Polynomial.FourExponent`
+  - `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
 - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`
