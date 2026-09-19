@@ -41,6 +41,7 @@ variable
 /-- **The first three forced deficit layers are a full source arithmetic
 progression.** -/
 theorem firstDeficit_fullSourceReflection
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     ∃ first opposite second : Fin 4 →₀ ℕ,
