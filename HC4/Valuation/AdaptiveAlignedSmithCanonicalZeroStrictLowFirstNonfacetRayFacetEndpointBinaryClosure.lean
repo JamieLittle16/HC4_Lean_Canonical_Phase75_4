@@ -213,20 +213,35 @@ theorem qs_ray_binarySupport_actualRankTwo
     rw [← hQrename, hsuppRename]
     exact Finset.mem_image.mpr ⟨d, hd, rfl⟩
 
+  have mapDomain_degree (d : Fin 2 →₀ ℕ) :
+      (d.mapDomain emb).degree = d.degree := by
+    rw [Finsupp.degree_eq_sum, Finsupp.degree_eq_sum]
+    simpa [Finsupp.sum_fintype] using
+      (Finsupp.sum_mapDomain_index_addMonoidHom
+        (f := (emb : Fin 2 → Fin 4)) (s := d)
+        (fun _ : Fin 4 => AddMonoidHom.id ℕ))
+
   have degree_map (d : Fin 2 →₀ ℕ) :
       HC4.Polynomial.ordinaryDegree4 (d.mapDomain emb) = d.degree := by
     rw [← finsuppDegree_eq_ordinaryDegree4]
-    exact Finsupp.degree_mapDomain emb d
+    exact mapDomain_degree d
 
   have map_zero_apply (d : Fin 2 →₀ ℕ) :
       (d.mapDomain emb) (0 : Fin 4) = d (0 : Fin 2) := by
     rw [← AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding_zero
       a ha0]
-    exact Finsupp.mapDomain_apply_of_injective emb.injective d (0 : Fin 2)
+    exact Finsupp.mapDomain_apply emb.injective d (0 : Fin 2)
 
   let D := T.topFace.degree
+  have hfacetEq :
+      C.ray.facetExponent = Finsupp.single a D := by
+    simpa [D] using
+      C.qs_ray_facetExponent_eq_single_axis a ha0 hfacetBase
+  have haD : C.ray.facetExponent a = D := by
+    have happ :=
+      congrArg (fun e : Fin 4 →₀ ℕ => e a) hfacetEq
+    simpa using happ
   have hD : 2 ≤ D := by
-    dsimp [D]
     omega
 
   have hmax :
@@ -267,7 +282,6 @@ theorem qs_ray_binarySupport_actualRankTwo
         HC4.Polynomial.ordinaryDegree4 e = T.topFace.degree := by
       dsimp [e]
       rw [degree_map d, hdD]
-      rfl
     have hbZ : (0 : ℤ) < (C.bump : ℤ) := by exact_mod_cast C.bump_pos
     have he0Z : (0 : ℤ) ≤ (e (0 : Fin 4) : ℤ) := by omega
     have he0 : e (0 : Fin 4) = 0 := by
@@ -335,8 +349,11 @@ theorem qs_ray_binarySupport_actualRankTwo
   rcases Finset.mem_image.mp houtAmbient with ⟨dout, hdoutQ, hdoutMap⟩
   have hdout0 :
       0 < dout (0 : Fin 2) := by
-    have happ :=
-      congrArg (fun e : Fin 4 →₀ ℕ => e (0 : Fin 4)) hdoutMap
+    have happ :
+        (dout.mapDomain emb) (0 : Fin 4) =
+          C.ray.outsideExponent (0 : Fin 4) := by
+      simpa using
+        congrArg (fun e : Fin 4 →₀ ℕ => e (0 : Fin 4)) hdoutMap
     rw [map_zero_apply dout] at happ
     rw [happ]
     exact C.ray.outside_coordinate_pos
