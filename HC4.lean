@@ -299,3 +299,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayC
 
 -- Balance-free homogeneous affine terminal: fixed direction or codimension two.
 import HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit
+
+-- Homogeneous arbitrary-contact rays enter the canonical fixed-direction/codimension-two RR split.
+import HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal
