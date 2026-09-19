@@ -237,10 +237,16 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
           · have hAne : (A : K) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hA
             exact (hAne hA0).elim
           · have hSp1 : S + 1 = 0 := by
-              linear_combination hsum
+              have hs := hsum
+              rw [hQ, hR0] at hs
+              simpa [add_comm] using hs
             exact Or.inr (Or.inl ⟨hQ, hR0, hSp1⟩)
-        · have hS0 : S = 0 := by
-            linear_combination hsum + hRp1
+        · have hRneg : R = -1 := by
+            linear_combination hRp1
+          have hS0 : S = 0 := by
+            have hs := hsum
+            rw [hQ, hRneg] at hs
+            simpa using hs
           exact Or.inr (Or.inr (Or.inl ⟨hQ, hS0, hRp1⟩))
       · exact (hbaseOne hbase).elim
     · have hBC_K :
@@ -271,10 +277,16 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
           · have hBne : (B : K) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hB
             exact (hBne hB0).elim
           · have hSp1 : S + 1 = 0 := by
-              linear_combination hsum
+              have hs := hsum
+              rw [hQ0, hR] at hs
+              simpa [add_comm] using hs
             exact Or.inr (Or.inl ⟨hQ0, hR, hSp1⟩)
-        · have hS0 : S = 0 := by
-            linear_combination hsum + hQp1
+        · have hQneg : Q = -1 := by
+            linear_combination hQp1
+          have hS0 : S = 0 := by
+            have hs := hsum
+            rw [hQneg, hR] at hs
+            simpa using hs
           exact Or.inr (Or.inr (Or.inr ⟨hR, hS0, hQp1⟩))
       · exact (hbaseOne hbase).elim
     · have hAC_K :
@@ -305,10 +317,16 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
           · have hCne : (C : K) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hC
             exact (hCne hC0).elim
           · have hRp1 : R + 1 = 0 := by
-              linear_combination hsum
+              have hs := hsum
+              rw [hQ0, hS] at hs
+              simpa [add_comm] using hs
             exact Or.inr (Or.inr (Or.inl ⟨hQ0, hS, hRp1⟩))
-        · have hR0 : R = 0 := by
-            linear_combination hsum + hQp1
+        · have hQneg : Q = -1 := by
+            linear_combination hQp1
+          have hR0 : R = 0 := by
+            have hs := hsum
+            rw [hQneg, hS] at hs
+            simpa using hs
           exact Or.inr (Or.inr (Or.inr ⟨hR0, hS, hQp1⟩))
       · exact (hbaseOne hbase).elim
     · have hAB_K :
