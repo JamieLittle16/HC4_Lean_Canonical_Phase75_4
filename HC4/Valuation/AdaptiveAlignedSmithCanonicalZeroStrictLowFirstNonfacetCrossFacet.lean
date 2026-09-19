@@ -279,8 +279,17 @@ noncomputable def firstNonfacetCrossFacetData_qs
     HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs := by
   let psi := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
-  rcases T.strictLow_sourceCodimensionTwo_two_le with
-    ⟨dstar, hdstar, hdstarDeg, hdstar0, _hdstarCodim⟩
+  let hstar := T.strictLow_sourceCodimensionTwo_two_le
+  let dstar : Fin 4 →₀ ℕ := Classical.choose hstar
+  have hstarSpec := Classical.choose_spec hstar
+  have hdstar :
+      dstar ∈ (polynomialFamilySpecialFiber
+        T.terminal.blocker.presented.family).support :=
+    hstarSpec.1
+  have hdstarDeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 dstar :=
+    hstarSpec.2.1
+  have hdstar0 : 2 ≤ dstar (0 : Fin 4) :=
+    hstarSpec.2.2.1
   have hdstarOut :
       dstar ∈ HC4.Newton.nonlinearOutsideSupport (0 : Fin 4) psi := by
     apply HC4.Newton.mem_nonlinearOutsideSupport.mpr
