@@ -66,15 +66,16 @@ variable (P : D.ChildLinearPowerData m)
 /-- The pure extraction axis contributes a literal nonzero Hessian diagonal
 entry on the special-fibre child. -/
 theorem extraction_hessian_ne_zero
+    (P : D.ChildLinearPowerData m)
     (hm : 3 ≤ m) :
     HC4.Polynomial.hessian D.child
       D.extractionCoordinate D.extractionCoordinate ≠ 0 := by
   have hrepr : m = (m - 2) + 2 := by omega
   have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
   have hc : P.ratio D.extractionCoordinate ≠ 0 :=
-    P.extraction_ratio_ne_zero (by omega)
+    ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P (by omega)
   have hL : gradientRatioLinearForm P.ratio ≠ 0 :=
-    P.linearForm_ne_zero (by omega)
+    ChildLinearPowerData.linearForm_ne_zero (D := D) P (by omega)
   have hn2 : (((m - 2 + 2 : ℕ) : K)) ≠ 0 := by
     exact_mod_cast (show m - 2 + 2 ≠ 0 by omega)
   have hn1 : (((m - 2 + 1 : ℕ) : K)) ≠ 0 := by
