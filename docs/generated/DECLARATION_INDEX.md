@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9063**.
+Distinct declaration spellings indexed: **9064**.
 
 ## Repeated declaration spellings
 
@@ -6643,6 +6643,7 @@ Distinct declaration spellings indexed: **9063**.
 - `pderiv_quadraticLongitudinalSourceLift` — `theorem` in `HC4.Newton.QuadraticLongitudinalSource`
 - `pderiv_ratio_cross` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `pderiv_rename_transverseBaseEmbedding` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
+- `pderiv_right_eq_zero_of_mul_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `pderiv_second_eq_zero_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pderiv_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `pderiv_source_transverseSourceShearHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
