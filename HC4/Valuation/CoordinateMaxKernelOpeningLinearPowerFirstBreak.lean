@@ -48,6 +48,7 @@ variable (P : D.ChildLinearPowerData m)
 axis supplies a nonzero constant coefficient on one of the three active
 Hessian diagonals. -/
 theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+    (P : D.ChildLinearPowerData m)
     (hm : 3 ≤ m) :
     let B := kernelLastFamilyHessianFourBlock
       D.reverseReesFamily D.kernelCoordinate
@@ -60,7 +61,8 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
   have hrhoj : rho j = D.extractionCoordinate := by
     simp [j]
   have hne : D.extractionCoordinate ≠ D.kernelCoordinate :=
-    P.extractionCoordinate_ne_kernelCoordinate (by omega)
+    ChildLinearPowerData.extractionCoordinate_ne_kernelCoordinate
+      (D := D) P (by omega)
   have hjne : j ≠ (3 : Fin 4) := by
     intro hj
     have h := hrhoj
@@ -72,7 +74,7 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
         D.extractionCoordinate D.extractionCoordinate).coeff 0 ≠ 0 := by
     rw [parameterFirstHessian_coeff]
     rw [D.reverseReesFamily_layer_zero_eq_child]
-    exact P.extraction_hessian_ne_zero hm
+    exact ChildLinearPowerData.extraction_hessian_ne_zero (D := D) P hm
 
   have hentry' :
       (parameterFirstHessian D.reverseReesFamily
@@ -99,6 +101,7 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
 family attached to a pure-axis linear-power child necessarily produces
 concrete rank-two geometry at its first actual kernel-row opening. -/
 noncomputable def firstBreakRankTwoOutcome
+    (P : D.ChildLinearPowerData m)
     (hm : 3 ≤ m)
     (hnonlinear : ∀ d ∈ F.support, 3 ≤ ordinaryDegree4 d) :
     let B := kernelLastFamilyHessianFourBlock
@@ -113,7 +116,9 @@ noncomputable def firstBreakRankTwoOutcome
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     dsimp [B]
-    exact P.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero hm
+    exact
+      ChildLinearPowerData.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+        (D := D) P hm
   exact rankOneSpecialFiber_firstKernelRowBreak_rankTwo
     B hrow hzero.1 hzero.2.1 hzero.2.2.1 hzero.2.2.2 hactive
 
