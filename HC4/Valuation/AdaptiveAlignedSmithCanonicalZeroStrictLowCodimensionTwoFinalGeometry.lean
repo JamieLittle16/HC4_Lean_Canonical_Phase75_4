@@ -81,7 +81,8 @@ theorem exposedCodimensionTwo_resolvedRankTwoGeometry
     rcases T.topKernel_rankTwo_or_linearPower k hk with htwo | hpower
     · exact .topFace htwo
     · rcases hpower with ⟨P⟩
-      exact .topKernelFirstBreak k P P.firstBreakRankTwoOutcome
+      exact .topKernelFirstBreak k P
+        (TopFaceLinearPowerKernelData.firstBreakRankTwoOutcome P)
   · rcases hopening with ⟨D, htwo⟩
     exact .openingChild D htwo
   · rcases hopeningBreak with ⟨D, P, hbreak⟩
