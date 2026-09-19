@@ -55,15 +55,16 @@ private theorem centralDeficitSchurBlock_schurA_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurA.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurA
-    GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
+  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurA = 0
+  rw [← GeneralFourBlock.schurA_map
+    G.centralDeficitSchurBlock Polynomial.constantCoeff]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
+    GeneralFourBlock.schurA GeneralFourBlock.activeDet
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
-  rw [Polynomial.coeff_zero_eq_eval_zero]
-  simp only [Polynomial.eval_sub, Polynomial.eval_add, Polynomial.eval_mul,
-    Polynomial.eval_ofNat]
-  simp only [← Polynomial.coeff_zero_eq_eval_zero]
+    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
+    Polynomial.constantCoeff_apply]
   simp_rw [parameterFirstHessian_coeff]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
     G.exposure_face_eq]
@@ -71,20 +72,20 @@ private theorem centralDeficitSchurBlock_schurA_coeff_zero
     -standardTwoZero_pderiv_three_eq_C,
     HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
     G.central_one_zero, G.central_two_zero]
-
 private theorem centralDeficitSchurBlock_schurB_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurB.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurB
-    GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
+  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurB = 0
+  rw [← GeneralFourBlock.schurB_map
+    G.centralDeficitSchurBlock Polynomial.constantCoeff]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
+    GeneralFourBlock.schurB GeneralFourBlock.activeDet
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
-  rw [Polynomial.coeff_zero_eq_eval_zero]
-  simp only [Polynomial.eval_sub, Polynomial.eval_add, Polynomial.eval_mul,
-    Polynomial.eval_ofNat]
-  simp only [← Polynomial.coeff_zero_eq_eval_zero]
+    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
+    Polynomial.constantCoeff_apply]
   simp_rw [parameterFirstHessian_coeff]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
     G.exposure_face_eq]
@@ -92,20 +93,20 @@ private theorem centralDeficitSchurBlock_schurB_coeff_zero
     -standardTwoZero_pderiv_three_eq_C,
     HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
     G.central_one_zero, G.central_two_zero]
-
 private theorem centralDeficitSchurBlock_schurC_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurC.coeff 0 = 0 := by
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf GeneralFourBlock.schurC
-    GeneralFourBlock.activeDet GeneralFourBlock.ofSymmetricMatrix
+  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurC = 0
+  rw [← GeneralFourBlock.schurC_map
+    G.centralDeficitSchurBlock Polynomial.constantCoeff]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
+    GeneralFourBlock.schurC GeneralFourBlock.activeDet
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
-  rw [Polynomial.coeff_zero_eq_eval_zero]
-  simp only [Polynomial.eval_sub, Polynomial.eval_add, Polynomial.eval_mul,
-    Polynomial.eval_ofNat]
-  simp only [← Polynomial.coeff_zero_eq_eval_zero]
+    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
+    Polynomial.constantCoeff_apply]
   simp_rw [parameterFirstHessian_coeff]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
     G.exposure_face_eq]
@@ -113,7 +114,6 @@ private theorem centralDeficitSchurBlock_schurC_coeff_zero
     -standardTwoZero_pderiv_three_eq_C,
     HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
     G.central_one_zero, G.central_two_zero]
-
 /-- The complete central Schur block is a genuine zero-constant Schur series. -/
 noncomputable def centralDeficitZeroSchurSeries
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
