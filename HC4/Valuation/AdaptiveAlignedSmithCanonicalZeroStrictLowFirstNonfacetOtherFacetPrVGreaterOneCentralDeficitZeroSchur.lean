@@ -58,7 +58,7 @@ theorem centralDeficitFirstThreeMinor_eq_rightRoof_submatrix
     GeneralFourBlock.firstThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
       (centralDeficitRightRoofOf Q).submatrix
         centralDeficitRoofSwap centralDeficitRoofSwap := by
-  ext i j
+  funext i j
   fin_cases i <;> fin_cases j <;>
     simp only [GeneralFourBlock.firstThreeMinorMatrix,
       centralDeficitSchurBlockOf,
@@ -98,7 +98,7 @@ theorem centralDeficitSecondThreeMinor_eq_leftRoof_submatrix
     GeneralFourBlock.secondThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
       (centralDeficitLeftRoofOf Q).submatrix
         centralDeficitRoofSwap centralDeficitRoofSwap := by
-  ext i j
+  funext i j
   fin_cases i <;> fin_cases j <;>
     simp only [GeneralFourBlock.secondThreeMinorMatrix,
       centralDeficitSchurBlockOf,
