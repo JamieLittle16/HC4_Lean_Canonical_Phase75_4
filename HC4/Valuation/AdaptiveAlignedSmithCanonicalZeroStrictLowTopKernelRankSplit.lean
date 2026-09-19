@@ -115,7 +115,7 @@ theorem topKernel_rankTwo_or_linearPower
       intro hL0
       apply T.topFace.face_ne_zero
       rw [ha, hL0]
-      simp [hmpos]
+      simp [hmne]
     have hmK : (T.topFace.degree : K) ≠ 0 := by
       exact_mod_cast hmne
     have hpow :
