@@ -30,6 +30,18 @@ open HC4.Newton HC4.Polynomial HC4.Toric
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/-- The common three-plane reorder used by both roof comparisons. -/
+def centralDeficitRoofSwap : Equiv.Perm (Fin 3) :=
+  Equiv.swap 1 2
+
+@[simp] theorem centralDeficitRoofSwap_zero :
+    centralDeficitRoofSwap 0 = 0 := by decide
+
+@[simp] theorem centralDeficitRoofSwap_one :
+    centralDeficitRoofSwap 1 = 2 := by decide
+
+@[simp] theorem centralDeficitRoofSwap_two :
+    centralDeficitRoofSwap 2 = 1 := by decide
 /-- Generic right roof matrix for the reordered central Schur block. -/
 noncomputable def centralDeficitRightRoofOf
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
@@ -45,20 +57,19 @@ theorem centralDeficitSchurBlockOf_schurA_eq_rightRoofOf_det
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).schurA =
       (centralDeficitRightRoofOf Q).det := by
-  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
   rw [← GeneralFourBlock.firstThreeMinorMatrix_det]
   have hmatrix :
       GeneralFourBlock.firstThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
-        (centralDeficitRightRoofOf Q).submatrix sigma sigma := by
+        (centralDeficitRightRoofOf Q).submatrix
+          centralDeficitRoofSwap centralDeficitRoofSwap := by
     ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [sigma, GeneralFourBlock.firstThreeMinorMatrix,
+      simp [GeneralFourBlock.firstThreeMinorMatrix,
         centralDeficitRightRoofOf, centralDeficitSchurBlockOf,
-        GeneralFourBlock.ofSymmetricMatrix, firstDeficitRightActiveIndex,
-        parameterFirstHessian_symmetric]
+        firstDeficitRightActiveIndex, parameterFirstHessian_symmetric]
   rw [hmatrix]
-  exact Matrix.det_submatrix_equiv_self (centralDeficitRightRoofOf Q) sigma
-
+  exact Matrix.det_submatrix_equiv_self
+    centralDeficitRoofSwap (centralDeficitRightRoofOf Q)
 /-- Generic left roof matrix for the reordered central Schur block. -/
 noncomputable def centralDeficitLeftRoofOf
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
@@ -74,20 +85,19 @@ theorem centralDeficitSchurBlockOf_schurC_eq_leftRoofOf_det
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).schurC =
       (centralDeficitLeftRoofOf Q).det := by
-  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
   rw [← GeneralFourBlock.secondThreeMinorMatrix_det]
   have hmatrix :
       GeneralFourBlock.secondThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
-        (centralDeficitLeftRoofOf Q).submatrix sigma sigma := by
+        (centralDeficitLeftRoofOf Q).submatrix
+          centralDeficitRoofSwap centralDeficitRoofSwap := by
     ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [sigma, GeneralFourBlock.secondThreeMinorMatrix,
+      simp [GeneralFourBlock.secondThreeMinorMatrix,
         centralDeficitLeftRoofOf, centralDeficitSchurBlockOf,
-        GeneralFourBlock.ofSymmetricMatrix, firstDeficitLeftActiveIndex,
-        parameterFirstHessian_symmetric]
+        firstDeficitLeftActiveIndex, parameterFirstHessian_symmetric]
   rw [hmatrix]
-  exact Matrix.det_submatrix_equiv_self (centralDeficitLeftRoofOf Q) sigma
-
+  exact Matrix.det_submatrix_equiv_self
+    centralDeficitRoofSwap (centralDeficitLeftRoofOf Q)
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
