@@ -748,7 +748,7 @@ theorem kernelInflateHom_isHomogeneous
   have hsource :
       MvPolynomial.coeff d P ≠ 0 := by
     intro hz
-    rw [hz, mul_zero] at hdI
+    rw [hz, zero_mul] at hdI
     exact hdI rfl
   exact hP hsource
 

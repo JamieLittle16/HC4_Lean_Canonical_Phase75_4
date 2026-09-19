@@ -38,3 +38,9 @@ import HC4.Polynomial.AutonomousODEPolynomialDegree
 import HC4.Polynomial.AutonomousODETranslation
 
 import HC4.Polynomial.RankThreeFractionBridge
+
+-- State-free source-honest Schur algebra used by the final A19 ray closure.
+import HC4.Polynomial.BinarySchurProjectiveMotion
+
+-- Endpoint-dual first variation for the final A19 staircase closure.
+import HC4.Polynomial.HighestBinomialParallelFirstVariation

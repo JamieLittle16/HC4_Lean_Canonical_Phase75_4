@@ -31,6 +31,23 @@ variable {K : Type u} [Field K] [CharZero K]
 
 /-! ## The represented endpoint really is the current state -/
 
+/-- Extensionality for scale-aware adaptive states through their data fields.
+The remaining fields are propositions depending on these data, so proof
+irrelevance closes them once the seven computational fields agree. -/
+theorem ScaleAwareAdaptiveGeometricRestartState.ext_data
+    {s t : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (hraw : s.rawDefect = t.rawDefect)
+    (hscale : s.scale = t.scale)
+    (hdegree : s.degreeCap = t.degreeCap)
+    (hsource : s.sourceComplexity = t.sourceComplexity)
+    (hrepair : s.repair = t.repair)
+    (hfamily : s.family = t.family)
+    (hsection : s.movingSection = t.movingSection) :
+    s = t := by
+  cases s
+  cases t
+  simp_all
+
 /-- Re-recording a presented blocker endpoint's ordinary adaptive state at the
 stored absolute scale gives literally the stored presented state.  In
 particular the polynomial family is not silently changed by a bookkeeping
@@ -41,7 +58,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.endpointScaleAware_eq_pres
     (D.blocker.aligned.toAdaptiveState D.presented).toScaleAwareAt
         D.presented.scale D.presented.scale_pos =
       D.presented := by
-  apply ScaleAwareAdaptiveGeometricRestartState.ext <;>
+  apply ScaleAwareAdaptiveGeometricRestartState.ext_data <;>
     simp [AdaptiveGeometricRestartState.toScaleAwareAt,
       AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState,
       D.defect_eq, D.family_eq, D.movingSection_eq]
@@ -56,7 +73,7 @@ theorem AdaptiveAlignedSmithCanonicalPresentedSurviving.endpointScaleAware_eq_pr
     (D.wall.aligned.toAdaptiveState D.presented).toScaleAwareAt
         D.presented.scale D.presented.scale_pos =
       D.presented := by
-  apply ScaleAwareAdaptiveGeometricRestartState.ext <;>
+  apply ScaleAwareAdaptiveGeometricRestartState.ext_data <;>
     simp [AdaptiveGeometricRestartState.toScaleAwareAt,
       AdaptiveAlignedSmithMinimalZeroJetEndpoint.toAdaptiveState,
       D.defect_eq, D.family_eq, D.movingSection_eq]
@@ -117,13 +134,14 @@ theorem AdaptiveAlignedSmithRankTwoPacketEndpoint.globalRamifiedStrictMacro_from
       CertifiedSameScaleEpisodeProgress RR target D.presented := by
     simpa [target] using hlift
 
-  let local : AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro
+  let localMacro : AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro
       RR D.presented :=
     .mk D.presented target
       (HasCertifiedRamifiedEpisodeInternalMove.identity D.presented)
       hprogress
 
-  exact local.prepend_internal RR D.sourcePresentation
+  exact AdaptiveAlignedSmithCanonicalGlobalRamifiedStrictMacro.prepend_internal
+    RR D.sourcePresentation localMacro
 
 /-- Regression check: the direct presented rank-two target is still the
 literal family built by the local rank-two continuation, not a repair-only
