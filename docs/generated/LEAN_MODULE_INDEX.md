@@ -10779,7 +10779,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`, `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
 - Declarations: `theorem applies`, `theorem hessianPrincipalMinor_eq_binaryDirectionalHessianDet`, `def actualRankTwoChart0a`, `theorem qs_ray_facetExponent_eq_single_axis`, `theorem qs_ray_binarySupport_actualRankTwo`, `theorem qs_ray_facetEndpoint_actualRankTwo`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
@@ -11117,10 +11117,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure.lean`
 - Purpose: A19 exposed `.qs` rank-three branch after rank-two closure
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`, `inductive QsRankThreeRankTwoClosureNoSquare`, `theorem qs_rankThree_rankTwoClosure_noSquare`, `inductive QsRankThreeSourceLiftedClosureNoSquare`, `theorem qs_rankThree_sourceLiftedClosure_noSquare`, `inductive QsRankThreeSourceLiftedClosure`, `theorem qs_rankThree_sourceLiftedClosure`
+- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`, `inductive QsRankThreeRankTwoClosureNoSquare`, `theorem qs_rankThree_rankTwoClosure_noSquare`, `theorem qs_rankThree_actualRankTwo_noSquare`, `inductive QsRankThreeSourceLiftedClosureNoSquare`, `theorem qs_rankThree_sourceLiftedClosure_noSquare`, `inductive QsRankThreeSourceLiftedClosure`, `theorem qs_rankThree_sourceLiftedClosure`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 
