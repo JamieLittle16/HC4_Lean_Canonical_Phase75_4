@@ -119,6 +119,80 @@ theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero
     D0.weight_bound i k
   simpa [D0.face_eq] using hminor0
 
+
+/-- A nonzero principal minor on the canonically re-extracted contact-zero ray
+lifts to the renamed source polynomial. -/
+theorem CrossFacetRayData.renameContactToZero_source_hessianPrincipalMinor_ne_zero
+    {F : MvPolynomial (Fin 4) K}
+    {j i k : Fin 4}
+    (R : CrossFacetRayData F j)
+    (hminor :
+      hessianPrincipalMinor R.renameContactToZero.face i k ≠ 0) :
+    hessianPrincipalMinor
+        (MvPolynomial.rename (Equiv.swap j (0 : Fin 4)) F) i k ≠ 0 := by
+  let rho : Equiv.Perm (Fin 4) := Equiv.swap j (0 : Fin 4)
+  let v : Fin 4 →₀ ℕ := Finsupp.mapDomain rho R.facetExponent
+  let o : Fin 4 →₀ ℕ := Finsupp.mapDomain rho R.outsideExponent
+
+  have hvCoeff :
+      MvPolynomial.coeff v (MvPolynomial.rename rho F) ≠ 0 := by
+    dsimp [v]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact MvPolynomial.mem_support_iff.mp R.facet_mem_source
+  have hoCoeff :
+      MvPolynomial.coeff o (MvPolynomial.rename rho F) ≠ 0 := by
+    dsimp [o]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact MvPolynomial.mem_support_iff.mp R.outside_mem_source
+
+  have hvMem :
+      v ∈ (MvPolynomial.rename rho F).support :=
+    MvPolynomial.mem_support_iff.mpr hvCoeff
+  have hoMem :
+      o ∈ (MvPolynomial.rename rho F).support :=
+    MvPolynomial.mem_support_iff.mpr hoCoeff
+
+  have hv0 : v (0 : Fin 4) = 0 := by
+    dsimp [v]
+    rw [Finsupp.mapDomain_equiv_apply]
+    simpa [rho] using R.facet_coordinate_zero
+  have ho0 : 0 < o (0 : Fin 4) := by
+    dsimp [o]
+    rw [Finsupp.mapDomain_equiv_apply]
+    simpa [rho] using R.outside_coordinate_pos
+
+  have hfacet :
+      (zeroCoordinateSupport (0 : Fin 4)
+        (MvPolynomial.rename rho F)).Nonempty :=
+    ⟨v, mem_zeroCoordinateSupport.mpr ⟨hvMem, hv0⟩⟩
+  have hout :
+      (positiveCoordinateSupport (0 : Fin 4)
+        (MvPolynomial.rename rho F)).Nonempty :=
+    ⟨o, mem_positiveCoordinateSupport.mpr ⟨hoMem, ho0⟩⟩
+
+  have hminor' :
+      hessianPrincipalMinor (crossFacetRayData hfacet hout).face i k ≠ 0 := by
+    simpa [CrossFacetRayData.renameContactToZero, rho, v, o] using hminor
+  exact crossFacetRayData_source_hessianPrincipalMinor_ne_zero
+    hfacet hout hminor'
+
+/-- A minor on the normalized ray therefore lifts all the way back to the
+original, unrenamed source in the correspondingly permuted coordinate pair. -/
+theorem CrossFacetRayData.source_hessianPrincipalMinor_ne_zero_of_renamedZero
+    {F : MvPolynomial (Fin 4) K}
+    {j i k : Fin 4}
+    (R : CrossFacetRayData F j)
+    (hminor :
+      hessianPrincipalMinor R.renameContactToZero.face i k ≠ 0) :
+    hessianPrincipalMinor F
+        ((Equiv.swap j (0 : Fin 4)).symm i)
+        ((Equiv.swap j (0 : Fin 4)).symm k) ≠ 0 := by
+  exact hessianPrincipalMinor_source_ne_zero_of_rename_perm
+    (Equiv.swap j (0 : Fin 4)) F i k
+    (R.renameContactToZero_source_hessianPrincipalMinor_ne_zero hminor)
+
 end
 
 end HC4.Valuation
