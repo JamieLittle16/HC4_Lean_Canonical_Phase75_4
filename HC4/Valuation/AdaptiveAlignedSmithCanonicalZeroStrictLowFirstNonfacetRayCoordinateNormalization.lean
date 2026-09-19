@@ -45,7 +45,7 @@ theorem ray_renamedZeroTerminalOutcome
     (K := K)
     (F := C.face)
     (j := HC4.Polynomial.facetOmittedCoordinate facet)
-    C.ray C.ray_hessian_zero
+    C.ray C.hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
