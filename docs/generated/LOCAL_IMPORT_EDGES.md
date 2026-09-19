@@ -383,6 +383,9 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
   - `HC4.Newton.TerminalCoordinatePermutation`
+- `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+  - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+  - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `HC4.Newton.FiniteSupportDominantClockRefinement`
   - `HC4.Newton.FiniteSupportPositiveExposedFaceRefinement`
 - `HC4.Newton.FiniteSupportExposedFaceRefinement`

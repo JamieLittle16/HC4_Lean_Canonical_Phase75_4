@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9037**.
+Distinct declaration spellings indexed: **9041**.
 
 ## Repeated declaration spellings
 
@@ -1493,6 +1493,8 @@ Distinct declaration spellings indexed: **9037**.
 - `CrossFacetRayData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetRayData.renameContactToZero` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.renameContactToZero_hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+- `CrossFacetRayData.renameContactToZero_support_degree` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+- `CrossFacetRayData.renamedZero_homogeneousTerminalSplit` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 - `CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroAffineLineData` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
@@ -5008,6 +5010,7 @@ Distinct declaration spellings indexed: **9037**.
 - `finite_infinity_target_cover` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `finset_eq_pair_of_rankThreeQuotientFiber_of_le_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `finsuppDegree_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
+- `finsuppDegree_eq_ordinaryDegree4_local` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 - `finsuppSum_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `finsupp_eq_fourCoordinateSum` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
 - `finsupp_weight_doubleFin4Weight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
@@ -6471,6 +6474,7 @@ Distinct declaration spellings indexed: **9037**.
 - `ordinaryDegree4_cons_smithTransverseExponent_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `ordinaryDegree4_cons_smithTransverseExponent_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `ordinaryDegree4_eq_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
+- `ordinaryDegree4_mapDomain_perm` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 - `ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `ordinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `ordinaryOfShiftedLeading_coeff_profile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyBihomogeneousKernel`
