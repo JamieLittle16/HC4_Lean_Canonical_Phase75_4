@@ -72,6 +72,7 @@ theorem firstDeficit_fullSourceReflection
             (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
         have hell : (0 : ℤ) < (F.locked.ell : ℤ) := by
           exact_mod_cast F.locked.ell_pos
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         have hn : (1 : ℤ) < (F.highest.n : ℤ) := by
           exact_mod_cast (show 1 < F.highest.n by omega)
         omega
@@ -86,7 +87,7 @@ theorem firstDeficit_fullSourceReflection
       have h0Z :
           (first 0 : ℤ) + (second 0 : ℤ) =
             2 * (opposite 0 : ℤ) := by
-        nlinarith [hfChord, hoChord, hsChord]
+        nlinarith only [hfChord, hoChord, hsChord, h1Z, h2Z, hcoef]
       have h0 : first 0 + second 0 = 2 * opposite 0 := by
         exact_mod_cast h0Z
 
@@ -104,7 +105,7 @@ theorem firstDeficit_fullSourceReflection
       have h3Z :
           (first 3 : ℤ) + (second 3 : ℤ) =
             2 * (opposite 3 : ℤ) := by
-        nlinarith [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
+        nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
       have h3 : first 3 + second 3 = 2 * opposite 3 := by
         exact_mod_cast h3Z
 
@@ -142,6 +143,7 @@ theorem firstDeficit_fullSourceReflection
             (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
         have hell : (0 : ℤ) < (F.locked.ell : ℤ) := by
           exact_mod_cast F.locked.ell_pos
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         have hn : (1 : ℤ) < (F.highest.n : ℤ) := by
           exact_mod_cast (show 1 < F.highest.n by omega)
         omega
@@ -156,7 +158,7 @@ theorem firstDeficit_fullSourceReflection
       have h0Z :
           (first 0 : ℤ) + (second 0 : ℤ) =
             2 * (opposite 0 : ℤ) := by
-        nlinarith [hfChord, hoChord, hsChord]
+        nlinarith only [hfChord, hoChord, hsChord, h1Z, h2Z, hcoef]
       have h0 : first 0 + second 0 = 2 * opposite 0 := by
         exact_mod_cast h0Z
 
@@ -174,7 +176,7 @@ theorem firstDeficit_fullSourceReflection
       have h3Z :
           (first 3 : ℤ) + (second 3 : ℤ) =
             2 * (opposite 3 : ℤ) := by
-        nlinarith [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
+        nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
       have h3 : first 3 + second 3 = 2 * opposite 3 := by
         exact_mod_cast h3Z
 
