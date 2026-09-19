@@ -1,4 +1,5 @@
 import HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed
+import HC4.RationalRigidity.RankThreeAffineTopBoundary
 import HC4.Polynomial.FourExponent
 import HC4.Newton.SingularBoundaryRankSplit
 import Mathlib.Tactic
@@ -141,6 +142,59 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
       · exact Or.inl hQ
       · exact Or.inr (Or.inl hR)
     · exact Or.inr (Or.inr (Or.inl hS))
+
+
+/-- **The honest top exponent of a normalized affine terminal leaves the
+starting `.qs` facet.**
+
+The terminal ODE puts the top supported exponent on the coordinate boundary.
+Its longitudinal coordinate is exactly `natDegree phi`, hence is positive;
+therefore that boundary point cannot lie back on the contact-`0` facet
+`.qs`.  It is either rank three on one of the other coordinate facets or is
+already codimension two. -/
+theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    (∃ next : HC4.Toric.ToricFacet,
+        next ≠ .qs ∧
+          HC4.Newton.MvRankThreeOnFacet next
+            (L.exponent phi.natDegree)) ∨
+      HC4.Newton.MvExponentOnCodimensionTwoBoundary
+        (L.exponent phi.natDegree) := by
+  have hboundary :
+      HC4.Polynomial.MvExponentOnBoundary
+        (L.exponent phi.natDegree) :=
+    rankThreeAffineLine_topExponent_on_boundary_of_certificate
+      (K := K) L hA hB hC (by norm_num) hphiDeg hphi0 hcert
+  rcases HC4.Newton.mvBoundary_rankThreeFacet_or_codimensionTwo hboundary with
+    hthree | hcodim
+  · rcases hthree with ⟨next, hnext⟩
+    left
+    refine ⟨next, ?_, hnext⟩
+    intro hqs
+    subst next
+    have hzero :
+        (L.exponent phi.natDegree) (0 : Fin 4) = 0 :=
+      (HC4.Newton.mvRankThreeOnFacet_qs hnext).1
+    have hphi : phi ≠ 0 := by
+      intro hz
+      rw [hz] at hphi0
+      simp at hphi0
+    have htopMem : phi.natDegree ∈ phi.support := by
+      rw [Polynomial.mem_support_iff]
+      change phi.leadingCoeff ≠ 0
+      exact (Polynomial.leadingCoeff_ne_zero).2 hphi
+    have hlong :
+        (L.exponent phi.natDegree) (0 : Fin 4) = phi.natDegree := by
+      simpa using L.exponent_zero_eq htopMem
+    rw [hlong] at hzero
+    omega
+  · exact Or.inr hcodim
 
 end
 
