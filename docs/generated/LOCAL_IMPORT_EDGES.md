@@ -211,6 +211,7 @@ human architecture guide.
   - `HC4.Valuation.DefectRetainingDepartureFrontier`
   - `HC4.Valuation.ExactKernelDefectDrop`
   - `HC4.Valuation.FinalRestartAssembly`
+  - `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
   - `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
   - `HC4.Valuation.FirstSchurDepartureBridge`
   - `HC4.Valuation.GeometricAssemblyEntry`
@@ -4411,6 +4412,9 @@ human architecture guide.
 - `HC4.Valuation.FinalRestartAssembly`
   - `HC4.Newton.RestartClassification`
   - `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
+  - `HC4.Newton.FiniteSupportCrossFacetRay`
+  - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
   - `HC4.Newton.FiniteSupportExposedVertex`
   - `HC4.Polynomial.MonomialHessianPrincipalMinor`

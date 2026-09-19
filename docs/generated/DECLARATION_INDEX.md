@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9048**.
+Distinct declaration spellings indexed: **9050**.
 
 ## Repeated declaration spellings
 
@@ -1483,6 +1483,7 @@ Distinct declaration spellings indexed: **9048**.
 - `CrossFacetInitialData.qs_support_coordinate_eq_facet_of_slope_zero` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTransition`
 - `CrossFacetInitialData.qs_support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.ray_face_weight_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
+- `CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
 - `CrossFacetInitialData.support_crossFacet_affine_proportional` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.support_eq_of_contactCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
@@ -4250,6 +4251,7 @@ Distinct declaration spellings indexed: **9048**.
 - `crossFacetRayAux1` — `def` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `crossFacetRayAux2` — `def` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `crossFacetRayData` — `def` in `HC4.Newton.FiniteSupportCrossFacetRay`
+- `crossFacetRayData_source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
 - `crossFacetSlope` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacetSlope_le_iff_cross` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacetWeight` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
