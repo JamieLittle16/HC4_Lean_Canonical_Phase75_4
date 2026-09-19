@@ -35,27 +35,13 @@ variable {facet : ToricFacet}
 
 /-- **Arbitrary-facet lower ray enters the canonical affine RR terminal.**
 
-After swapping the actual contact coordinate with coordinate `0` and
-re-extracting the ray from the renamed source support, the endpoint is either
-rank three on canonical `.qs` with the full general affine terminal
-certificate, or genuinely codimension two. -/
-theorem ray_renamedZero_terminalCertificate_or_codimensionTwo
+The large certificate is retained inside the compact Newton-level constructor,
+avoiding repeated dependent normalization in valuation assembly. -/
+theorem ray_renamedZeroTerminalOutcome
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T facet) :
-    let R0 := C.ray.renameContactToZero
-    (MvRankThreeOnFacet .qs R0.facetExponent ∧
-      HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
-        (phi := R0.zeroCoefficientPolynomial)
-        ((R0.facetExponent 1 : ℕ) : K)
-        ((R0.facetExponent 2 : ℕ) : K)
-        ((R0.facetExponent 3 : ℕ) : K)
-        (1 : K)
-        (R0.zeroSlope (1 : Fin 4))
-        (R0.zeroSlope (2 : Fin 4))
-        (R0.zeroSlope (3 : Fin 4))) ∨
-      MvExponentOnCodimensionTwoBoundary R0.facetExponent := by
-  exact C.ray.renamedZero_terminalCertificate_or_codimensionTwo
-    C.ray_hessian_zero
+    C.ray.RenamedZeroTerminalOutcome := by
+  exact C.ray.renamedZeroTerminalOutcome C.ray_hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
