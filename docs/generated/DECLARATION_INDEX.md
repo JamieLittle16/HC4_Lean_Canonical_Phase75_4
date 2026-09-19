@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8993**.
+Distinct declaration spellings indexed: **8995**.
 
 ## Repeated declaration spellings
 
@@ -5192,6 +5192,7 @@ Distinct declaration spellings indexed: **8993**.
 - `firstMixedHessianCoreAtZero_factor` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `firstNonfacetContactCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `firstNonfacetCrossFacetData_of_tame` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- `firstNonfacetCrossFacetData_qs` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `firstNonfacetCrossFacet_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
 - `firstNonfacetExposedBoundaryVertex` — `def` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 - `firstNonfacet_sourceCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
@@ -7136,6 +7137,7 @@ Distinct declaration spellings indexed: **8993**.
 - `qs_exposed_topFaceOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_quadraticSquare_source_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
 - `qs_rankThree_affineTerminal_or_codimensionTwo_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
+- `qs_rankThree_crossFacet_or_firstNonfacetCrossFacet_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `qs_rankThree_firstContact_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_rankThree_firstNonfacetCrossFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
 - `qs_rankThree_lowerBoundary_or_codimensionTwoSource` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
