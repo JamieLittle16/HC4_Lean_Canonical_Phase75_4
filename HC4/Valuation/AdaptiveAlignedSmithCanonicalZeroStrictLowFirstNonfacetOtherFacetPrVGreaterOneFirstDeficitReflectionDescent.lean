@@ -39,6 +39,38 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+/-- The two affine staircase equations propagate arithmetic reflection
+from coordinates 0,1,2 to the final source coordinate.  Keeping this as a
+small declaration avoids exposing the full descent context to `nlinarith`. -/
+private theorem sourceReflection_three
+    (F : QsOtherFacetPrLeftVContactFrontierData C P S R)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {first opposite second : Fin 4 →₀ ℕ}
+    (hfirst : first ∈ P.carrier.support)
+    (hop : opposite ∈ P.carrier.support)
+    (hsecond : second ∈ P.carrier.support)
+    (h0Z :
+      (first 0 : ℤ) + (second 0 : ℤ) = 2 * (opposite 0 : ℤ))
+    (h1Z :
+      (first 1 : ℤ) + (second 1 : ℤ) = 2 * (opposite 1 : ℤ))
+    (h2Z :
+      (first 2 : ℤ) + (second 2 : ℤ) = 2 * (opposite 2 : ℤ)) :
+    first 3 + second 3 = 2 * opposite 3 := by
+  have hfCurve := (F.support_staircase_equations hthree houtThree hfirst).2
+  have hoCurve := (F.support_staircase_equations hthree houtThree hop).2
+  have hsCurve := (F.support_staircase_equations hthree houtThree hsecond).2
+  simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
+    HC4.Polynomial.rankThreeQuotientCoordinate_pair,
+    HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
+    one_mul] at hfCurve hoCurve hsCurve
+  push_cast at hfCurve hoCurve hsCurve
+  have h3Z :
+      (first 3 : ℤ) + (second 3 : ℤ) =
+        2 * (opposite 3 : ℤ) := by
+    nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
+  exact_mod_cast h3Z
+
 /-- The first reflected source progression descends strictly in the
 longitudinal coordinate. -/
 theorem firstDeficit_fullSourceReflection_longitudinalDescent
@@ -73,6 +105,7 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         exact_mod_cast (show 1 < F.highest.n by omega)
       have hcoef :
           (0 : ℤ) <
@@ -85,7 +118,9 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have h1stepZ :
           (0 : ℤ) ≤ (opposite 1 : ℤ) - (first 1 : ℤ) := by
         rw [hfirst1]
-        exact_mod_cast (Nat.sub_nonneg.mpr hop1ge)
+        have hop1geZ : (q : ℤ) ≤ (opposite 1 : ℤ) := by
+          exact_mod_cast hop1ge
+        exact sub_nonneg.mpr hop1geZ
       have h2stepZ :
           (0 : ℤ) < (opposite 2 : ℤ) - (first 2 : ℤ) := by
         rw [hop2, hfirst2]
@@ -113,23 +148,9 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have hsecond0opp0 : second 0 < opposite 0 := by
         omega
 
-      have hfCurve := (F.support_staircase_equations
-        hthree houtThree hfirstP).2
-      have hoCurve := (F.support_staircase_equations
-        hthree houtThree hop).2
-      have hsCurve := (F.support_staircase_equations
-        hthree houtThree hsecond).2
-      simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
-        HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-        HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-        one_mul] at hfCurve hoCurve hsCurve
-      push_cast at hfCurve hoCurve hsCurve
-      have h3Z :
-          (first 3 : ℤ) + (second 3 : ℤ) =
-            2 * (opposite 3 : ℤ) := by
-        nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
-      have h3 : first 3 + second 3 = 2 * opposite 3 := by
-        exact_mod_cast h3Z
+      have h3 : first 3 + second 3 = 2 * opposite 3 :=
+        sourceReflection_three F hthree houtThree
+          hfirstP hop hsecond h0Z h1Z h2Z
       have hneFO : first ≠ opposite := by
         intro heq
         have hc : first 2 = opposite 2 := by
@@ -167,6 +188,7 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         exact_mod_cast (show 1 < F.highest.n by omega)
       have hcoef :
           (0 : ℤ) <
@@ -183,7 +205,9 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have h2stepZ :
           (0 : ℤ) ≤ (opposite 2 : ℤ) - (first 2 : ℤ) := by
         rw [hfirst2]
-        exact_mod_cast (Nat.sub_nonneg.mpr hop2ge)
+        have hop2geZ : (q : ℤ) ≤ (opposite 2 : ℤ) := by
+          exact_mod_cast hop2ge
+        exact sub_nonneg.mpr hop2geZ
       have hfirst0opp0Z :
           (opposite 0 : ℤ) < (first 0 : ℤ) := by
         nlinarith only [hfChord, hoChord, h1stepZ, h2stepZ,
@@ -207,23 +231,9 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       have hsecond0opp0 : second 0 < opposite 0 := by
         omega
 
-      have hfCurve := (F.support_staircase_equations
-        hthree houtThree hfirstP).2
-      have hoCurve := (F.support_staircase_equations
-        hthree houtThree hop).2
-      have hsCurve := (F.support_staircase_equations
-        hthree houtThree hsecond).2
-      simp only [HC4.Polynomial.rankThreeQuotientCoordinate_secondTransverse,
-        HC4.Polynomial.rankThreeQuotientCoordinate_pair,
-        HC4.Polynomial.rankThreeQuotientCoordinate_firstTransverse,
-        one_mul] at hfCurve hoCurve hsCurve
-      push_cast at hfCurve hoCurve hsCurve
-      have h3Z :
-          (first 3 : ℤ) + (second 3 : ℤ) =
-            2 * (opposite 3 : ℤ) := by
-        nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
-      have h3 : first 3 + second 3 = 2 * opposite 3 := by
-        exact_mod_cast h3Z
+      have h3 : first 3 + second 3 = 2 * opposite 3 :=
+        sourceReflection_three F hthree houtThree
+          hfirstP hop hsecond h0Z h1Z h2Z
       have hneFO : first ≠ opposite := by
         intro heq
         have hc : first 1 = opposite 1 := by
