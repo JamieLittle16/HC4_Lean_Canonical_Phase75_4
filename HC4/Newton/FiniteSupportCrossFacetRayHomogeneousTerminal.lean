@@ -62,8 +62,8 @@ theorem CrossFacetRayData.renameContactToZero_support_degree
   let R0 := R.renameContactToZero
   have hdRenamed :
       d ∈ (MvPolynomial.rename rho F).support := by
-    simpa [R0, rho, CrossFacetRayData.renameContactToZero] using
-      R0.support_subset hd
+    change d ∈ (MvPolynomial.rename (Equiv.swap j (0 : Fin 4)) F).support
+    exact R0.support_subset hd
   have hdCoeff :
       MvPolynomial.coeff d (MvPolynomial.rename rho F) ≠ 0 :=
     MvPolynomial.mem_support_iff.mp hdRenamed
