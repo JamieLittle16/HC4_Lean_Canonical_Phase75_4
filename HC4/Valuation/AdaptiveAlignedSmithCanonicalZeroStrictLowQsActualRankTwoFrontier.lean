@@ -55,6 +55,29 @@ theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo_or_quadraticSquare
       C.qs_ray_otherFacet_actualRankTwoHessianChart hCthree hne hnext)
   · exact Or.inr (Or.inr hsquare)
 
+
+
+/-- **Square-free rank-three `.qs` frontier with the different-facet branch
+consumed.** -/
+theorem qs_rankThree_startCodimensionTwo_or_actualRankTwo
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    (∃ C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs,
+      MvExponentOnCodimensionTwoBoundary C.ray.facetExponent) ∨
+      Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented) := by
+  rcases T.qs_rankThree_startCodimensionTwo_or_otherFacet hthree with
+    hstart | hother
+  · exact Or.inl hstart
+  · rcases hother with ⟨C, next, hCthree, hne, hnext⟩
+    exact Or.inr
+      (C.qs_ray_otherFacet_actualRankTwoHessianChart hCthree hne hnext)
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
