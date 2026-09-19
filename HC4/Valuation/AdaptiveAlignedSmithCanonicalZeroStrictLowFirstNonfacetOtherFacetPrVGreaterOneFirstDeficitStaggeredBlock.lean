@@ -67,6 +67,23 @@ def firstDeficitRightStaggeredPerm : Equiv.Perm (Fin 4) where
 @[simp] theorem firstDeficitRightStaggeredPerm_three :
     firstDeficitRightStaggeredPerm 3 = 1 := by rfl
 
+
+/-- On the active three coordinates, the left staggered permutation is
+exactly the left active-index embedding. -/
+private theorem firstDeficitLeftStaggeredPerm_castSucc
+    (i : Fin 3) :
+    firstDeficitLeftStaggeredPerm (Fin.castSucc i) =
+      firstDeficitLeftActiveIndex i := by
+  fin_cases i <;> decide
+
+/-- On the active three coordinates, the right staggered permutation is
+exactly the right active-index embedding. -/
+private theorem firstDeficitRightStaggeredPerm_castSucc
+    (i : Fin 3) :
+    firstDeficitRightStaggeredPerm (Fin.castSucc i) =
+      firstDeficitRightActiveIndex i := by
+  fin_cases i <;> rfl
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -180,10 +197,15 @@ theorem firstDeficitLeftStaggeredBlock_activeSubmatrix_eq :
       G.firstDeficitLeftActiveHessian := by
   rw [G.firstDeficitLeftStaggeredBlock_matrix]
   ext i j
-  fin_cases i <;> fin_cases j <;>
-    simp [firstDeficitLeftStaggeredMatrix,
-      firstDeficitLeftActiveHessian,
-      firstDeficitLeftActiveIndex]
+  change
+    parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitLeftStaggeredPerm (Fin.castSucc i))
+        (firstDeficitLeftStaggeredPerm (Fin.castSucc j)) =
+      parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitLeftActiveIndex i)
+        (firstDeficitLeftActiveIndex j)
+  rw [firstDeficitLeftStaggeredPerm_castSucc,
+    firstDeficitLeftStaggeredPerm_castSucc]
 
 /-- Right-oriented active-submatrix identification. -/
 theorem firstDeficitRightStaggeredBlock_activeSubmatrix_eq :
@@ -192,10 +214,15 @@ theorem firstDeficitRightStaggeredBlock_activeSubmatrix_eq :
       G.firstDeficitRightActiveHessian := by
   rw [G.firstDeficitRightStaggeredBlock_matrix]
   ext i j
-  fin_cases i <;> fin_cases j <;>
-    simp [firstDeficitRightStaggeredMatrix,
-      firstDeficitRightActiveHessian,
-      firstDeficitRightActiveIndex]
+  change
+    parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitRightStaggeredPerm (Fin.castSucc i))
+        (firstDeficitRightStaggeredPerm (Fin.castSucc j)) =
+      parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitRightActiveIndex i)
+        (firstDeficitRightActiveIndex j)
+  rw [firstDeficitRightStaggeredPerm_castSucc,
+    firstDeficitRightStaggeredPerm_castSucc]
 
 /-- The active-three determinant of the left staggered block is exactly the
 already-certified source roof determinant on coordinates `0,1,3`. -/
