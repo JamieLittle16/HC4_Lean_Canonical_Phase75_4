@@ -126,9 +126,9 @@ theorem extractionCoordinate_ne_kernelCoordinate
     D.extractionCoordinate ≠ D.kernelCoordinate := by
   intro heq
   have hextract : P.ratio D.extractionCoordinate ≠ 0 :=
-    P.extraction_ratio_ne_zero hm
+    ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P hm
   have hkernel : P.ratio D.kernelCoordinate = 0 :=
-    P.kernel_ratio_eq_zero hm
+    ChildLinearPowerData.kernel_ratio_eq_zero (D := D) P hm
   rw [heq] at hextract
   exact hextract hkernel
 
