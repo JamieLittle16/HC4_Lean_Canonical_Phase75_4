@@ -82,20 +82,46 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
     simpa [hrhoj] using hentry
 
   dsimp [B]
-  fin_cases j
-  · exact Or.inl (by
+  by_cases hj0 : j = (0 : Fin 4)
+  · subst j
+    exact Or.inl (by
       change
         (parameterFirstHessian D.reverseReesFamily (rho 0) (rho 0)).coeff 0 ≠ 0
       exact hentry')
-  · exact Or.inr (Or.inl (by
+  by_cases hj1 : j = (1 : Fin 4)
+  · subst j
+    exact Or.inr (Or.inl (by
       change
         (parameterFirstHessian D.reverseReesFamily (rho 1) (rho 1)).coeff 0 ≠ 0
       exact hentry'))
-  · exact Or.inr (Or.inr (by
+  by_cases hj2 : j = (2 : Fin 4)
+  · subst j
+    exact Or.inr (Or.inr (by
       change
         (parameterFirstHessian D.reverseReesFamily (rho 2) (rho 2)).coeff 0 ≠ 0
       exact hentry'))
-  · exact (hjne rfl).elim
+  · have hj0v : j.val ≠ 0 := by
+      intro hv
+      apply hj0
+      apply Fin.ext
+      simpa using hv
+    have hj1v : j.val ≠ 1 := by
+      intro hv
+      apply hj1
+      apply Fin.ext
+      simpa using hv
+    have hj2v : j.val ≠ 2 := by
+      intro hv
+      apply hj2
+      apply Fin.ext
+      simpa using hv
+    have hj3v : j.val = 3 := by
+      have hjlt : j.val < 4 := j.isLt
+      omega
+    have hj3 : j = (3 : Fin 4) := by
+      apply Fin.ext
+      simpa using hj3v
+    exact (hjne hj3).elim
 
 /-- **Linear-power first-opening closure.**  The exact source-honest Rees
 family attached to a pure-axis linear-power child necessarily produces
