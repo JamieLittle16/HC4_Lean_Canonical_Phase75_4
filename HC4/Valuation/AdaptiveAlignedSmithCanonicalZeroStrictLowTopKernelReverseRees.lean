@@ -31,12 +31,14 @@ def ordinaryTopNatWeight : Fin 4 → ℕ := fun _ => 1
 
 @[simp] theorem weight_ordinaryTopNatWeight
     (d : Fin 4 →₀ ℕ) :
-    Finsupp.weight ordinaryTopNatWeight d = ordinaryDegree4 d := by
-  have hweight :
-      Finsupp.weight (1 : Fin 4 → ℕ) d = d.degree :=
-    (congrFun Finsupp.degree_eq_weight_one d).symm
-  rw [ordinaryTopNatWeight, hweight]
-  exact HC4.Valuation.finsuppDegree_eq_ordinaryDegree4 d
+    Finsupp.weight ordinaryTopNatWeight d =
+      HC4.Polynomial.ordinaryDegree4 d := by
+  change
+    Finsupp.weight (1 : Fin 4 → ℕ) d =
+      HC4.Polynomial.ordinaryDegree4 d
+  exact
+    ((congrFun Finsupp.degree_eq_weight_one d).symm).trans
+      (HC4.Valuation.finsuppDegree_eq_ordinaryDegree4 d)
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
@@ -55,8 +57,13 @@ theorem topKernelReesSource_hasReverseWeightBound :
     HasReverseWeightBound ordinaryTopNatWeight T.topFace.degree
       T.topKernelReesSource := by
   intro d hd
-  rw [weight_ordinaryTopNatWeight]
-  exact T.topFace.maximal d (by simpa [topKernelReesSource] using hd)
+  have hd' :
+      d ∈
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support := by
+    simpa [topKernelReesSource] using hd
+  simpa only [weight_ordinaryTopNatWeight] using
+    T.topFace.maximal d hd'
 
 /-- Honest auxiliary ordinary reverse-Rees family from the actual represented
 source down to its selected maximal top face. -/
@@ -71,10 +78,9 @@ theorem topKernelReverseRees_specialFiber_eq_topFace :
       T.topFace.face := by
   rw [topKernelReverseReesFamily]
   rw [polynomialFamilySpecialFiber_reverseWeightedReesFamily]
-  rw [T.topFace.face_eq]
-  congr 2
-  funext i
-  rfl
+  symm
+  simpa [ordinaryTopNatWeight, topKernelReesSource] using
+    T.topFace.face_eq
 
 /-- Parameter `1` recovers the represented source special fibre exactly. -/
 theorem topKernelReverseRees_evalOne_eq_source :
