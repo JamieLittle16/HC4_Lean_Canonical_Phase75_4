@@ -900,7 +900,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactSelection`
 - External imports: none
 - Imported by local modules: `HC4.Newton`, `HC4.Newton.FirstContactAffinePlane`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FirstNonfacetBoundary`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`, `HC4.Valuation.NonlinearDegreeBoundPreservation`
-- Declarations: `def NonlinearDegreeBound`, `def TopDegreeOnFacet`, `def HasNonlinearOutsideFacet`, `def LowDegreeTameAtFacet`, `theorem nonlinearOutsideSupport_nonempty_of_hasNonlinearOutsideFacet`, `theorem topDegree_omittedCoordinate_zero`, `theorem exists_singular_first_nonfacet_contact`
+- Declarations: `def NonlinearDegreeBound`, `def TopDegreeOnFacet`, `def HasNonlinearOutsideFacet`, `def LowDegreeTameAtFacet`, `theorem nonlinearOutsideSupport_nonempty_of_hasNonlinearOutsideFacet`, `theorem topDegree_omittedCoordinate_zero`, `theorem exists_singular_first_nonfacet_contact`, `theorem exists_singular_first_nonfacet_contact_of_two_outside_comparison`
 
 ### `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
 
