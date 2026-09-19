@@ -101,6 +101,55 @@ theorem qs_rankThree_lowerBoundary_or_quadraticSquare
     · exact Or.inl hfacetTwo
   · exact Or.inr hsquare
 
+
+
+/-- **Strengthened `.qs` boundary closure with no quadratic-square leaf.**
+
+The strict-low comparison contact removes the former low-degree square
+exception before the boundary analysis starts.  Hence the canonically exposed
+`.qs` rank-three branch always reaches a genuine lower first-contact carrier.
+Its retained facet endpoint is either already codimension two, or the actual
+outside endpoint crosses to a different rank-three facet / codimension two. -/
+theorem qs_rankThree_lowerBoundary
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    ∃ C :
+        AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+          (K := K) T .qs,
+      QsLowerBoundaryOutcome C := by
+  rcases T.qs_rankThree_crossFacet_or_firstNonfacetCrossFacet_or_nonlinearConfined
+      hthree with htop | hlower | hconfined
+  · rcases htop with ⟨D⟩
+    have htopOn := T.qs_exposed_topFaceOnFacet hthree
+    have hon := htopOn D.outsideExponent D.outside_mem
+    have hz : D.outsideExponent (0 : Fin 4) = 0 := by
+      have htoric :=
+        (HC4.Polynomial.onFacet_toToricExponent_iff .qs D.outsideExponent).1 hon
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using htoric
+    exact (Nat.ne_of_gt D.outside_coordinate_pos hz).elim
+  · rcases hlower with ⟨C⟩
+    refine ⟨C, ?_⟩
+    rcases C.ray.zero_terminalCertificate_or_codimensionTwo C.hessian_zero with
+      hterminal | htwo
+    · have hfacetThree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent :=
+        hterminal.1
+      rcases C.qs_ray_outside_boundaryTransition hfacetThree with
+        houtThree | houtTwo
+      · exact Or.inr (Or.inl houtThree)
+      · exact Or.inr (Or.inr houtTwo)
+    · exact Or.inl htwo
+  · rcases T.strictLow_sourceCodimensionTwo_two_le with
+      ⟨d, hd, hdeg, hd0, _hcodim⟩
+    have hon := hconfined d hd hdeg
+    have hz : d (0 : Fin 4) = 0 := by
+      have htoric :=
+        (HC4.Polynomial.onFacet_toToricExponent_iff .qs d).1 hon
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using htoric
+    omega
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
