@@ -206,6 +206,253 @@ inductive FirstDeficitSecondInteractionGeometry : Prop
                 (opposite 1 + opposite 2))
               (2 : Fin 4) 1)
 
+/-- Transport the active-middle coefficient of an abstract left staggered
+certificate to the honest source Hessian. -/
+private theorem left_staggered_d_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitLeftStaggeredBlock)
+    (hactive : E.activeOrder = G.firstDeficitOrder) :
+    E.block.d.coeff E.activeOrder =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily G.firstDeficitOrder)
+        (1 : Fin 4) 1 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitLeftStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitLeftStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitLeftStaggeredMatrix :=
+        G.firstDeficitLeftStaggeredBlock_matrix
+  calc
+    E.block.d.coeff E.activeOrder =
+        (E.block.matrix (1 : Fin 4) 1).coeff E.activeOrder :=
+      generalFourBlock_d_coeff_eq_matrix_11_coeff E.block E.activeOrder
+    _ = (G.firstDeficitLeftStaggeredMatrix
+          (1 : Fin 4) 1).coeff E.activeOrder := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (1 : Fin 4) 1).coeff E.activeOrder := by
+      simp only [firstDeficitLeftStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily E.activeOrder)
+          (1 : Fin 4) 1 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily E.activeOrder (1 : Fin 4) 1
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily G.firstDeficitOrder)
+          (1 : Fin 4) 1 := by
+      rw [hactive]
+
+/-- Transport the left mixed kernel-opening coefficient to source Hessian. -/
+private theorem left_staggered_s_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitLeftStaggeredBlock)
+    {j : ℕ}
+    (hkernel : E.kernelOrder = j) :
+    E.block.s.coeff E.kernelOrder =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily j)
+        (1 : Fin 4) 2 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitLeftStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitLeftStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitLeftStaggeredMatrix :=
+        G.firstDeficitLeftStaggeredBlock_matrix
+  calc
+    E.block.s.coeff E.kernelOrder =
+        (E.block.matrix (1 : Fin 4) 3).coeff E.kernelOrder :=
+      generalFourBlock_s_coeff_eq_matrix_13_coeff E.block E.kernelOrder
+    _ = (G.firstDeficitLeftStaggeredMatrix
+          (1 : Fin 4) 3).coeff E.kernelOrder := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (1 : Fin 4) 2).coeff E.kernelOrder := by
+      simp only [firstDeficitLeftStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one,
+        firstDeficitLeftStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily E.kernelOrder)
+          (1 : Fin 4) 2 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily E.kernelOrder (1 : Fin 4) 2
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily j)
+          (1 : Fin 4) 2 := by
+      rw [hkernel]
+
+/-- Transport the forced left missing-diagonal coefficient to source Hessian. -/
+private theorem left_staggered_z_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitLeftStaggeredBlock)
+    {q j : ℕ}
+    (hactive : E.activeOrder = q)
+    (hkernel : E.kernelOrder = j) :
+    E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily (2 * j - q))
+        (2 : Fin 4) 2 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitLeftStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitLeftStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitLeftStaggeredMatrix :=
+        G.firstDeficitLeftStaggeredBlock_matrix
+  calc
+    E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+        (E.block.matrix (3 : Fin 4) 3).coeff
+          (2 * E.kernelOrder - E.activeOrder) :=
+      generalFourBlock_z_coeff_eq_matrix_33_coeff E.block
+        (2 * E.kernelOrder - E.activeOrder)
+    _ = (G.firstDeficitLeftStaggeredMatrix
+          (3 : Fin 4) 3).coeff
+          (2 * E.kernelOrder - E.activeOrder) := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (2 : Fin 4) 2).coeff
+          (2 * E.kernelOrder - E.activeOrder) := by
+      simp only [firstDeficitLeftStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily
+            (2 * E.kernelOrder - E.activeOrder))
+          (2 : Fin 4) 2 :=
+      parameterFirstHessian_coeff P.centralDeficitFamily
+        (2 * E.kernelOrder - E.activeOrder) (2 : Fin 4) 2
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily (2 * j - q))
+          (2 : Fin 4) 2 := by
+      rw [hkernel, hactive]
+
+/-- Right-oriented active-middle coefficient transport. -/
+private theorem right_staggered_d_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitRightStaggeredBlock)
+    (hactive : E.activeOrder = G.firstDeficitOrder) :
+    E.block.d.coeff E.activeOrder =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily G.firstDeficitOrder)
+        (2 : Fin 4) 2 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitRightStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitRightStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitRightStaggeredMatrix :=
+        G.firstDeficitRightStaggeredBlock_matrix
+  calc
+    E.block.d.coeff E.activeOrder =
+        (E.block.matrix (1 : Fin 4) 1).coeff E.activeOrder :=
+      generalFourBlock_d_coeff_eq_matrix_11_coeff E.block E.activeOrder
+    _ = (G.firstDeficitRightStaggeredMatrix
+          (1 : Fin 4) 1).coeff E.activeOrder := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (2 : Fin 4) 2).coeff E.activeOrder := by
+      simp only [firstDeficitRightStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily E.activeOrder)
+          (2 : Fin 4) 2 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily E.activeOrder (2 : Fin 4) 2
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily G.firstDeficitOrder)
+          (2 : Fin 4) 2 := by
+      rw [hactive]
+
+/-- Right-oriented mixed coefficient transport. -/
+private theorem right_staggered_s_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitRightStaggeredBlock)
+    {j : ℕ}
+    (hkernel : E.kernelOrder = j) :
+    E.block.s.coeff E.kernelOrder =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily j)
+        (2 : Fin 4) 1 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitRightStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitRightStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitRightStaggeredMatrix :=
+        G.firstDeficitRightStaggeredBlock_matrix
+  calc
+    E.block.s.coeff E.kernelOrder =
+        (E.block.matrix (1 : Fin 4) 3).coeff E.kernelOrder :=
+      generalFourBlock_s_coeff_eq_matrix_13_coeff E.block E.kernelOrder
+    _ = (G.firstDeficitRightStaggeredMatrix
+          (1 : Fin 4) 3).coeff E.kernelOrder := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (2 : Fin 4) 1).coeff E.kernelOrder := by
+      simp only [firstDeficitRightStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one,
+        firstDeficitRightStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily E.kernelOrder)
+          (2 : Fin 4) 1 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily E.kernelOrder (2 : Fin 4) 1
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily j)
+          (2 : Fin 4) 1 := by
+      rw [hkernel]
+
+/-- Right-oriented missing-diagonal coefficient transport. -/
+private theorem right_staggered_z_coeff_source
+    (E : StaggeredSingularFirstKernelBreakFourBlockData
+      (MvPolynomial (Fin 4) K))
+    (hblock : E.block = G.firstDeficitRightStaggeredBlock)
+    {q j : ℕ}
+    (hactive : E.activeOrder = q)
+    (hkernel : E.kernelOrder = j) :
+    E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily (2 * j - q))
+        (1 : Fin 4) 1 := by
+  have hmatrix :
+      E.block.matrix = G.firstDeficitRightStaggeredMatrix := by
+    calc
+      E.block.matrix = G.firstDeficitRightStaggeredBlock.matrix := by
+        exact congrArg GeneralFourBlock.matrix hblock
+      _ = G.firstDeficitRightStaggeredMatrix :=
+        G.firstDeficitRightStaggeredBlock_matrix
+  calc
+    E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
+        (E.block.matrix (3 : Fin 4) 3).coeff
+          (2 * E.kernelOrder - E.activeOrder) :=
+      generalFourBlock_z_coeff_eq_matrix_33_coeff E.block
+        (2 * E.kernelOrder - E.activeOrder)
+    _ = (G.firstDeficitRightStaggeredMatrix
+          (3 : Fin 4) 3).coeff
+          (2 * E.kernelOrder - E.activeOrder) := by
+      rw [hmatrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily
+          (1 : Fin 4) 1).coeff
+          (2 * E.kernelOrder - E.activeOrder) := by
+      simp only [firstDeficitRightStaggeredMatrix,
+        Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily
+            (2 * E.kernelOrder - E.activeOrder))
+          (1 : Fin 4) 1 :=
+      parameterFirstHessian_coeff P.centralDeficitFamily
+        (2 * E.kernelOrder - E.activeOrder) (1 : Fin 4) 1
+    _ = HC4.Polynomial.hessian
+          (familyParameterLayer P.centralDeficitFamily (2 * j - q))
+          (1 : Fin 4) 1 := by
+      rw [hkernel, hactive]
+
 /-- Left branch of the source-honest second interaction.  Kept opaque
 separately so kernel checking does not accumulate the right-oriented proof
 term in the same declaration. -/
@@ -270,100 +517,12 @@ private theorem firstDeficit_secondInteractionGeometry_left
   have hz :=
     E.kernelDiagonal_coeff_secondInteraction_ne_zero
       hb0 hd0 hr0 houter hsj
-  have hmatrix :
-      E.block.matrix = G.firstDeficitLeftStaggeredMatrix := by
-    calc
-      E.block.matrix = G.firstDeficitLeftStaggeredBlock.matrix := by
-        exact congrArg GeneralFourBlock.matrix hblock
-      _ = G.firstDeficitLeftStaggeredMatrix :=
-        G.firstDeficitLeftStaggeredBlock_matrix
-  have hdSource :
-      E.block.d.coeff E.activeOrder =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            G.firstDeficitOrder)
-          (1 : Fin 4) 1 := by
-    calc
-      E.block.d.coeff E.activeOrder =
-          (E.block.matrix (1 : Fin 4) 1).coeff E.activeOrder :=
-        generalFourBlock_d_coeff_eq_matrix_11_coeff E.block E.activeOrder
-      _ = (G.firstDeficitLeftStaggeredMatrix
-            (1 : Fin 4) 1).coeff E.activeOrder := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (1 : Fin 4) 1).coeff E.activeOrder := by
-        simp only [firstDeficitLeftStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily E.activeOrder)
-            (1 : Fin 4) 1 :=
-        parameterFirstHessian_coeff
-          P.centralDeficitFamily E.activeOrder (1 : Fin 4) 1
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              G.firstDeficitOrder)
-            (1 : Fin 4) 1 := by
-        rw [hactive]
-  have hsSource :
-      E.block.s.coeff E.kernelOrder =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            (opposite 1 + opposite 2))
-          (1 : Fin 4) 2 := by
-    calc
-      E.block.s.coeff E.kernelOrder =
-          (E.block.matrix (1 : Fin 4) 3).coeff E.kernelOrder :=
-        generalFourBlock_s_coeff_eq_matrix_13_coeff E.block E.kernelOrder
-      _ = (G.firstDeficitLeftStaggeredMatrix
-            (1 : Fin 4) 3).coeff E.kernelOrder := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (1 : Fin 4) 2).coeff E.kernelOrder := by
-        simp only [firstDeficitLeftStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one,
-          firstDeficitLeftStaggeredPerm_three]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily E.kernelOrder)
-            (1 : Fin 4) 2 :=
-        parameterFirstHessian_coeff
-          P.centralDeficitFamily E.kernelOrder (1 : Fin 4) 2
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (opposite 1 + opposite 2))
-            (1 : Fin 4) 2 := by
-        rw [hkernel]
-  have hzSource :
-      E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
-          (2 : Fin 4) 2 := by
-    calc
-      E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
-          (E.block.matrix (3 : Fin 4) 3).coeff
-            (2 * E.kernelOrder - E.activeOrder) :=
-        generalFourBlock_z_coeff_eq_matrix_33_coeff E.block
-          (2 * E.kernelOrder - E.activeOrder)
-      _ = (G.firstDeficitLeftStaggeredMatrix
-            (3 : Fin 4) 3).coeff
-            (2 * E.kernelOrder - E.activeOrder) := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (2 : Fin 4) 2).coeff
-            (2 * E.kernelOrder - E.activeOrder) := by
-        simp only [firstDeficitLeftStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_three]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (2 * E.kernelOrder - E.activeOrder))
-            (2 : Fin 4) 2 :=
-        parameterFirstHessian_coeff P.centralDeficitFamily
-          (2 * E.kernelOrder - E.activeOrder) (2 : Fin 4) 2
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
-            (2 : Fin 4) 2 := by
-        rw [hkernel, hactive]
+  have hdSource :=
+    G.left_staggered_d_coeff_source E hblock hactive
+  have hsSource :=
+    G.left_staggered_s_coeff_source E hblock hkernel
+  have hzSource :=
+    G.left_staggered_z_coeff_source E hblock hactive hkernel
   have hmixedSource :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
@@ -463,100 +622,12 @@ private theorem firstDeficit_secondInteractionGeometry_right
   have hz :=
     E.kernelDiagonal_coeff_secondInteraction_ne_zero
       hb0 hd0 hr0 houter hsj
-  have hmatrix :
-      E.block.matrix = G.firstDeficitRightStaggeredMatrix := by
-    calc
-      E.block.matrix = G.firstDeficitRightStaggeredBlock.matrix := by
-        exact congrArg GeneralFourBlock.matrix hblock
-      _ = G.firstDeficitRightStaggeredMatrix :=
-        G.firstDeficitRightStaggeredBlock_matrix
-  have hdSource :
-      E.block.d.coeff E.activeOrder =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            G.firstDeficitOrder)
-          (2 : Fin 4) 2 := by
-    calc
-      E.block.d.coeff E.activeOrder =
-          (E.block.matrix (1 : Fin 4) 1).coeff E.activeOrder :=
-        generalFourBlock_d_coeff_eq_matrix_11_coeff E.block E.activeOrder
-      _ = (G.firstDeficitRightStaggeredMatrix
-            (1 : Fin 4) 1).coeff E.activeOrder := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (2 : Fin 4) 2).coeff E.activeOrder := by
-        simp only [firstDeficitRightStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily E.activeOrder)
-            (2 : Fin 4) 2 :=
-        parameterFirstHessian_coeff
-          P.centralDeficitFamily E.activeOrder (2 : Fin 4) 2
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              G.firstDeficitOrder)
-            (2 : Fin 4) 2 := by
-        rw [hactive]
-  have hsSource :
-      E.block.s.coeff E.kernelOrder =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            (opposite 1 + opposite 2))
-          (2 : Fin 4) 1 := by
-    calc
-      E.block.s.coeff E.kernelOrder =
-          (E.block.matrix (1 : Fin 4) 3).coeff E.kernelOrder :=
-        generalFourBlock_s_coeff_eq_matrix_13_coeff E.block E.kernelOrder
-      _ = (G.firstDeficitRightStaggeredMatrix
-            (1 : Fin 4) 3).coeff E.kernelOrder := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (2 : Fin 4) 1).coeff E.kernelOrder := by
-        simp only [firstDeficitRightStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one,
-          firstDeficitRightStaggeredPerm_three]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily E.kernelOrder)
-            (2 : Fin 4) 1 :=
-        parameterFirstHessian_coeff
-          P.centralDeficitFamily E.kernelOrder (2 : Fin 4) 1
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (opposite 1 + opposite 2))
-            (2 : Fin 4) 1 := by
-        rw [hkernel]
-  have hzSource :
-      E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
-        HC4.Polynomial.hessian
-          (familyParameterLayer P.centralDeficitFamily
-            (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
-          (1 : Fin 4) 1 := by
-    calc
-      E.block.z.coeff (2 * E.kernelOrder - E.activeOrder) =
-          (E.block.matrix (3 : Fin 4) 3).coeff
-            (2 * E.kernelOrder - E.activeOrder) :=
-        generalFourBlock_z_coeff_eq_matrix_33_coeff E.block
-          (2 * E.kernelOrder - E.activeOrder)
-      _ = (G.firstDeficitRightStaggeredMatrix
-            (3 : Fin 4) 3).coeff
-            (2 * E.kernelOrder - E.activeOrder) := by
-        rw [hmatrix]
-      _ = (parameterFirstHessian P.centralDeficitFamily
-            (1 : Fin 4) 1).coeff
-            (2 * E.kernelOrder - E.activeOrder) := by
-        simp only [firstDeficitRightStaggeredMatrix,
-          Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_three]
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (2 * E.kernelOrder - E.activeOrder))
-            (1 : Fin 4) 1 :=
-        parameterFirstHessian_coeff P.centralDeficitFamily
-          (2 * E.kernelOrder - E.activeOrder) (1 : Fin 4) 1
-      _ = HC4.Polynomial.hessian
-            (familyParameterLayer P.centralDeficitFamily
-              (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
-            (1 : Fin 4) 1 := by
-        rw [hkernel, hactive]
+  have hdSource :=
+    G.right_staggered_d_coeff_source E hblock hactive
+  have hsSource :=
+    G.right_staggered_s_coeff_source E hblock hkernel
+  have hzSource :=
+    G.right_staggered_z_coeff_source E hblock hactive hkernel
   have hmixedSource :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
