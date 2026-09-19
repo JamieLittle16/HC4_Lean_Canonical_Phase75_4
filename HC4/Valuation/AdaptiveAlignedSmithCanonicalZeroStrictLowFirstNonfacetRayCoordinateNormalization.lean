@@ -41,7 +41,11 @@ theorem ray_renamedZeroTerminalOutcome
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T facet) :
     C.ray.RenamedZeroTerminalOutcome := by
-  exact C.ray.renamedZeroTerminalOutcome C.ray_hessian_zero
+  exact HC4.Newton.CrossFacetRayData.renamedZeroTerminalOutcome
+    (K := K)
+    (F := C.face)
+    (j := HC4.Polynomial.facetOmittedCoordinate facet)
+    C.ray C.ray_hessian_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
