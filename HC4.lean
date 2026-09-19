@@ -293,3 +293,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeom
 
 -- Iterate honest top-face boundary transitions through balance-free next-facet rays.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay
+
+-- Normalize arbitrary lower first-nonfacet rays into the canonical affine-RR chart.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization
