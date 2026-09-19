@@ -560,7 +560,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`, `HC4.Newton.TerminalCoordinatePermutation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
-- Declarations: `def CrossFacetRayData.renameContactToZero`, `theorem CrossFacetRayData.renameContactToZero_hessian_zero`, `theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo`
+- Declarations: `def CrossFacetRayData.renameContactToZero`, `theorem CrossFacetRayData.renameContactToZero_hessian_zero`, `theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo`, `inductive CrossFacetRayData.RenamedZeroTerminalOutcome`, `theorem CrossFacetRayData.renamedZeroTerminalOutcome`
 
 ### `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 
@@ -10790,7 +10790,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem ray_renamedZero_terminalCertificate_or_codimensionTwo`
+- Declarations: `theorem ray_renamedZeroTerminalOutcome`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
 

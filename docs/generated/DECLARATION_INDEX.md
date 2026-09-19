@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9041**.
+Distinct declaration spellings indexed: **9043**.
 
 ## Repeated declaration spellings
 
@@ -1488,12 +1488,14 @@ Distinct declaration spellings indexed: **9041**.
 - `CrossFacetInitialData.support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.support_subset` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetRayData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetRay`
+- `CrossFacetRayData.RenamedZeroTerminalOutcome` — `inductive` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.coeff_zeroCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.exists_faceExponent_of_zeroCoefficientPolynomial_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetRayData.renameContactToZero` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.renameContactToZero_hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.renameContactToZero_support_degree` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+- `CrossFacetRayData.renamedZeroTerminalOutcome` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.renamedZero_homogeneousTerminalSplit` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 - `CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
@@ -7679,7 +7681,7 @@ Distinct declaration spellings indexed: **9041**.
 - `ray_kernel_order_one_mixed_elimination` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_kernel_order_one_mixed_elimination_of_coefficients` — `theorem` in `HC4.Newton.RayKernelExtremalElimination`
 - `ray_positiveCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
-- `ray_renamedZero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`
+- `ray_renamedZeroTerminalOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`
 - `ray_support_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `ray_support_directly_exposed_in_represented_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
 - `ray_transverse_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayConstantSchurMinor`
