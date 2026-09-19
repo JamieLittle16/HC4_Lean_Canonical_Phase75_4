@@ -75,8 +75,8 @@ theorem extraction_hessian_ne_zero
     ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P (by omega)
   have hL : gradientRatioLinearForm P.ratio ≠ 0 :=
     ChildLinearPowerData.linearForm_ne_zero (D := D) P (by omega)
-  have hn2 : (((m - 2 + 2 : ℕ) : K)) ≠ 0 := by
-    exact_mod_cast (show m - 2 + 2 ≠ 0 by omega)
+  have hmK : (m : K) ≠ 0 := by
+    exact_mod_cast (show m ≠ 0 by omega)
   have hn1 : (((m - 2 + 1 : ℕ) : K)) ≠ 0 := by
     exact_mod_cast (show m - 2 + 1 ≠ 0 by omega)
   rw [P.eq_power]
@@ -89,7 +89,7 @@ theorem extraction_hessian_ne_zero
   rw [hformula]
   apply mul_ne_zero
   · simp only [MvPolynomial.C_ne_zero]
-    exact mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero ha hn2) hn1) hc) hc
+    exact mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero ha hmK) hn1) hc) hc
   · exact pow_ne_zero _ hL
 
 end ChildLinearPowerData
