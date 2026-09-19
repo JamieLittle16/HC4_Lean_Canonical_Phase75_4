@@ -3759,6 +3759,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`

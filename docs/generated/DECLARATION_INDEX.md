@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9028**.
+Distinct declaration spellings indexed: **9032**.
 
 ## Repeated declaration spellings
 
@@ -2106,6 +2106,8 @@ Distinct declaration spellings indexed: **9028**.
 - `LiteralConstantSpecialSourceKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `LiteralConstantSpecialSourceKernelData.exists_ramifiedSpend_of_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyClosingCarrierExit`
 - `LongitudinalOneData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
+- `LosslessFinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
+- `LosslessFinalGeometryFrontier.toFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `LowDegreeTameAtFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `MaximalCommonParameterFamilyData` — `structure` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
 - `MixedDegreeSmithExponentOutcome` — `inductive` in `HC4.Newton.MixedDegreeFirstWallCompetition`
@@ -5990,6 +5992,8 @@ Distinct declaration spellings indexed: **9028**.
 - `longitudinalSignHom_pointedReflection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
 - `longitudinalWallFace_secondDerivative_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature`
 - `longitudinalZeroJetCore_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
+- `losslessFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
+- `losslessFinalGeometryFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `losslessFrontier_supplies_compactFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `lowAffineLine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
 - `lowDegreeTame_or_exists_omittedQuadraticSquare` — `theorem` in `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
