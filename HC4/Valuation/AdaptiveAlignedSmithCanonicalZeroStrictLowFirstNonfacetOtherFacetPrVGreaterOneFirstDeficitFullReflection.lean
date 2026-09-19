@@ -50,7 +50,8 @@ theorem firstDeficit_fullSourceReflection
       first ≠ opposite ∧
       opposite ≠ second ∧
       ∀ i : Fin 4, first i + second i = 2 * opposite i := by
-  rcases G.firstDeficit_reflectedSecondLayerGeometry hthree houtThree with H
+  rcases firstDeficit_reflectedSecondLayerGeometry_export
+      G hthree houtThree with H
   cases H with
   | left first opposite second q j k hq hj hk
       hfirst hfirst1 hfirst2 hop hop2 hqj
