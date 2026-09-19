@@ -206,117 +206,6 @@ inductive FirstDeficitSecondInteractionGeometry : Prop
                 (opposite 1 + opposite 2))
               (2 : Fin 4) 1)
 
-/-- Left staggered-matrix active-middle entry is the honest source Hessian.
-No `GeneralFourBlock` field occurs in this statement. -/
-private theorem left_staggeredMatrix_d_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 1).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1
-  rw [firstDeficitLeftStaggeredPerm_one]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 1
-
-/-- Left staggered-matrix mixed entry is the honest source Hessian. -/
-private theorem left_staggeredMatrix_s_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 3).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 2 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 2
-  rw [firstDeficitLeftStaggeredPerm_one,
-    firstDeficitLeftStaggeredPerm_three]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 2
-
-/-- Left staggered-matrix missing diagonal is the honest source Hessian. -/
-private theorem left_staggeredMatrix_z_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitLeftStaggeredMatrix (3 : Fin 4) 3).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2
-  rw [firstDeficitLeftStaggeredPerm_three]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 2
-
-/-- Right staggered-matrix active-middle entry is the honest source Hessian. -/
-private theorem right_staggeredMatrix_d_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 1).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (1 : Fin 4))
-      (firstDeficitRightStaggeredPerm (1 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 2
-  rw [firstDeficitRightStaggeredPerm_one]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 2
-
-/-- Right staggered-matrix mixed entry is the honest source Hessian. -/
-private theorem right_staggeredMatrix_s_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 3).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 1 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (1 : Fin 4))
-      (firstDeficitRightStaggeredPerm (3 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (2 : Fin 4) 1
-  rw [firstDeficitRightStaggeredPerm_one,
-    firstDeficitRightStaggeredPerm_three]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (2 : Fin 4) 1
-
-/-- Right staggered-matrix missing diagonal is the honest source Hessian. -/
-private theorem right_staggeredMatrix_z_coeff_source
-    (n : ℕ) :
-    (G.firstDeficitRightStaggeredMatrix (3 : Fin 4) 3).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (3 : Fin 4))
-      (firstDeficitRightStaggeredPerm (3 : Fin 4))).coeff n =
-      HC4.Polynomial.hessian
-        (familyParameterLayer P.centralDeficitFamily n)
-        (1 : Fin 4) 1
-  rw [firstDeficitRightStaggeredPerm_three]
-  exact parameterFirstHessian_coeff
-    P.centralDeficitFamily n (1 : Fin 4) 1
-
 /-- Left branch of the source-honest second interaction.  Kept opaque
 separately so kernel checking does not accumulate the right-oriented proof
 term in the same declaration. -/
@@ -434,26 +323,29 @@ private theorem firstDeficit_secondInteractionGeometry_left
             (3 : Fin 4) 3).coeff
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) := by
         rw [hkernel, hactive]
-  have hdSource :=
-    G.left_staggeredMatrix_d_coeff_source G.firstDeficitOrder
-  have hsSource :=
-    G.left_staggeredMatrix_s_coeff_source (opposite 1 + opposite 2)
-  have hzSource :=
-    G.left_staggeredMatrix_z_coeff_source
-      (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder)
+  rw [G.firstDeficitLeftStaggeredMatrix_apply,
+    firstDeficitLeftStaggeredPerm_one,
+    parameterFirstHessian_coeff] at hdMatrix
+  rw [G.firstDeficitLeftStaggeredMatrix_apply,
+    firstDeficitLeftStaggeredPerm_one,
+    firstDeficitLeftStaggeredPerm_three,
+    parameterFirstHessian_coeff] at hsMatrix
+  rw [G.firstDeficitLeftStaggeredMatrix_apply,
+    firstDeficitLeftStaggeredPerm_three,
+    parameterFirstHessian_coeff] at hzMatrix
   have hmixedSource :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
           (opposite 1 + opposite 2))
         (1 : Fin 4) 2 ≠ 0 := by
-    rw [← hsSource, ← hsMatrix]
+    rw [← hsMatrix]
     exact hsj
   have hz' :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
           (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
         (2 : Fin 4) 2 ≠ 0 := by
-    rw [← hzSource, ← hzMatrix]
+    rw [← hzMatrix]
     exact hz
   have heq' :
       HC4.Polynomial.hessian
@@ -472,9 +364,7 @@ private theorem firstDeficit_secondInteractionGeometry_left
           (familyParameterLayer P.centralDeficitFamily
             (opposite 1 + opposite 2))
           (1 : Fin 4) 2 := by
-    rw [← hdSource, ← hdMatrix,
-      ← hzSource, ← hzMatrix,
-      ← hsSource, ← hsMatrix]
+    rw [← hdMatrix, ← hzMatrix, ← hsMatrix]
     exact heq
   exact .left first opposite B
     hfirst hfirst1 hfirst2 huniq hop hop2
@@ -595,26 +485,29 @@ private theorem firstDeficit_secondInteractionGeometry_right
             (3 : Fin 4) 3).coeff
             (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder) := by
         rw [hkernel, hactive]
-  have hdSource :=
-    G.right_staggeredMatrix_d_coeff_source G.firstDeficitOrder
-  have hsSource :=
-    G.right_staggeredMatrix_s_coeff_source (opposite 1 + opposite 2)
-  have hzSource :=
-    G.right_staggeredMatrix_z_coeff_source
-      (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder)
+  rw [G.firstDeficitRightStaggeredMatrix_apply,
+    firstDeficitRightStaggeredPerm_one,
+    parameterFirstHessian_coeff] at hdMatrix
+  rw [G.firstDeficitRightStaggeredMatrix_apply,
+    firstDeficitRightStaggeredPerm_one,
+    firstDeficitRightStaggeredPerm_three,
+    parameterFirstHessian_coeff] at hsMatrix
+  rw [G.firstDeficitRightStaggeredMatrix_apply,
+    firstDeficitRightStaggeredPerm_three,
+    parameterFirstHessian_coeff] at hzMatrix
   have hmixedSource :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
           (opposite 1 + opposite 2))
         (2 : Fin 4) 1 ≠ 0 := by
-    rw [← hsSource, ← hsMatrix]
+    rw [← hsMatrix]
     exact hsj
   have hz' :
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily
           (2 * (opposite 1 + opposite 2) - G.firstDeficitOrder))
         (1 : Fin 4) 1 ≠ 0 := by
-    rw [← hzSource, ← hzMatrix]
+    rw [← hzMatrix]
     exact hz
   have heq' :
       HC4.Polynomial.hessian
@@ -633,9 +526,7 @@ private theorem firstDeficit_secondInteractionGeometry_right
           (familyParameterLayer P.centralDeficitFamily
             (opposite 1 + opposite 2))
           (2 : Fin 4) 1 := by
-    rw [← hdSource, ← hdMatrix,
-      ← hzSource, ← hzMatrix,
-      ← hsSource, ← hsMatrix]
+    rw [← hdMatrix, ← hzMatrix, ← hsMatrix]
     exact heq
   exact .right first opposite B
     hfirst hfirst1 hfirst2 huniq hop hop1
