@@ -54,6 +54,7 @@ noncomputable def centralDeficitSchurBlockOf
       centralDeficitSchurPerm centralDeficitSchurPerm)
 
 /-- Constant coefficient of the active determinant for an arbitrary family. -/
+omit [IsAlgClosed K] in
 theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).activeDet.coeff 0 =
@@ -76,10 +77,19 @@ theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
     GeneralFourBlock.ofSymmetricMatrix
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
-  rw [Polynomial.coeff_zero_eq_eval_zero]
-  simp only [Polynomial.eval_sub, Polynomial.eval_mul]
-  simp only [← Polynomial.coeff_zero_eq_eval_zero]
-  simp_rw [parameterFirstHessian_coeff]
+  change
+    Polynomial.constantCoeff
+      (parameterFirstHessian Q (0 : Fin 4) 0 *
+          parameterFirstHessian Q (3 : Fin 4) 3 -
+        parameterFirstHessian Q (0 : Fin 4) 3 *
+          parameterFirstHessian Q (0 : Fin 4) 3) =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer Q 0) (0 : Fin 4) (3 : Fin 4)
+  rw [map_sub, map_mul, map_mul]
+  simp only [Polynomial.constantCoeff_apply]
+  rw [parameterFirstHessian_coeff Q 0 (0 : Fin 4) 0,
+    parameterFirstHessian_coeff Q 0 (3 : Fin 4) 3,
+    parameterFirstHessian_coeff Q 0 (0 : Fin 4) 3]
   unfold HC4.Polynomial.hessianPrincipalMinor
   rw [hsym]
 
