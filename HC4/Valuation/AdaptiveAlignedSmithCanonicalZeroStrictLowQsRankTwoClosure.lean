@@ -1,5 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift
 import Mathlib.Tactic
 
 /-!
@@ -80,6 +80,56 @@ theorem qs_rankThree_rankTwoClosure
   · exact .actualRankTwo htwo
   · rcases hsquare with ⟨d, hd, hdeg, htwo, hother⟩
     exact .quadraticSquare d hd hdeg htwo hother
+
+
+
+/-- Assembly-facing refinement of `QsRankThreeRankTwoClosure`.  The endpoint
+first-break constructor is consumed one step further: instead of retaining an
+auxiliary Rees packet, it exposes the exact weighted source component on which
+the nonzero principal Hessian minor occurs. -/
+inductive QsRankThreeSourceLiftedClosure
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) : Prop
+  | actualRankTwo
+      (C : Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented))
+  | exactSourceWeightLayer
+      (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs)
+      (D :
+        AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData C)
+      (layer :
+        AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData.ExactSourceWeightLayerMinorAtFirstBreak D)
+  | quadraticSquare
+      (d : Fin 4 →₀ ℕ)
+      (mem : d ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support)
+      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
+      (zero_two : d (0 : Fin 4) = 2)
+      (other_zero : ∀ i : Fin 4, i ≠ (0 : Fin 4) → d i = 0)
+
+/-- **Source-lifted `.qs` frontier.**  Every endpoint-first-break residue is
+now represented directly by a weighted component of the actual source. -/
+theorem qs_rankThree_sourceLiftedClosure
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    T.QsRankThreeSourceLiftedClosure := by
+  cases T.qs_rankThree_rankTwoClosure hthree with
+  | actualRankTwo C =>
+      exact .actualRankTwo C
+  | facetEndpointFirstBreak C hD =>
+      rcases hD with ⟨D⟩
+      rcases D.actualRankTwo_or_exactSourceWeightLayerMinor with
+        hactual | hlayer
+      · exact .actualRankTwo hactual
+      · exact .exactSourceWeightLayer C D hlayer
+  | quadraticSquare d mem degree_two zero_two other_zero =>
+      exact .quadraticSquare d mem degree_two zero_two other_zero
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
