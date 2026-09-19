@@ -111,11 +111,13 @@ theorem firstDeficit_fullSourceReflection
 
       refine ⟨first, opposite, second, hfirstP, hop, hsecond, ?_, ?_, ?_⟩
       · intro heq
-        have hcoord := congrArg (fun e : Fin 4 →₀ ℕ => e 2) heq
+        have hcoord : first 2 = opposite 2 := by
+          simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 2) heq
         rw [hfirst2, hop2] at hcoord
         omega
       · intro heq
-        have hcoord := congrArg (fun e : Fin 4 →₀ ℕ => e 2) heq
+        have hcoord : opposite 2 = second 2 := by
+          simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 2) heq
         rw [hop2, hsecond2] at hcoord
         omega
       · intro i
@@ -182,11 +184,13 @@ theorem firstDeficit_fullSourceReflection
 
       refine ⟨first, opposite, second, hfirstP, hop, hsecond, ?_, ?_, ?_⟩
       · intro heq
-        have hcoord := congrArg (fun e : Fin 4 →₀ ℕ => e 1) heq
+        have hcoord : first 1 = opposite 1 := by
+          simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) heq
         rw [hfirst1, hop1] at hcoord
         omega
       · intro heq
-        have hcoord := congrArg (fun e : Fin 4 →₀ ℕ => e 1) heq
+        have hcoord : opposite 1 = second 1 := by
+          simpa using congrArg (fun e : Fin 4 →₀ ℕ => e 1) heq
         rw [hop1, hsecond1] at hcoord
         omega
       · intro i
