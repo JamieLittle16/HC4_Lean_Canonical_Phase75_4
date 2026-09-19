@@ -24,6 +24,39 @@ open HC4.Polynomial
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+
+/-- Hessian principal minors commute with a coordinate permutation. -/
+theorem hessianPrincipalMinor_rename_perm
+    (rho : Equiv.Perm (Fin 4))
+    (F : MvPolynomial (Fin 4) K)
+    (i k : Fin 4) :
+    hessianPrincipalMinor (MvPolynomial.rename rho F) i k =
+      MvPolynomial.rename rho
+        (hessianPrincipalMinor F (rho.symm i) (rho.symm k)) := by
+  unfold hessianPrincipalMinor
+  have hH := HC4.Newton.hessian_rename_perm (K := K) rho F
+  have hii := congrFun (congrFun hH i) i
+  have hkk := congrFun (congrFun hH k) k
+  have hik := congrFun (congrFun hH i) k
+  have hki := congrFun (congrFun hH k) i
+  simp only [Matrix.submatrix_apply, RingHom.mapMatrix_apply] at hii hkk hik hki
+  rw [hii, hkk, hik, hki]
+  simp
+
+/-- Nonvanishing of a renamed principal minor gives nonvanishing of the
+corresponding source principal minor. -/
+theorem hessianPrincipalMinor_source_ne_zero_of_rename_perm
+    (rho : Equiv.Perm (Fin 4))
+    (F : MvPolynomial (Fin 4) K)
+    (i k : Fin 4)
+    (hminor :
+      hessianPrincipalMinor (MvPolynomial.rename rho F) i k ≠ 0) :
+    hessianPrincipalMinor F (rho.symm i) (rho.symm k) ≠ 0 := by
+  intro hzero
+  apply hminor
+  rw [hessianPrincipalMinor_rename_perm]
+  simp [hzero]
+
 /-- One exact cross-facet exposure lifts a nonzero principal Hessian minor
 from its exposed face to the carrier. -/
 theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero
