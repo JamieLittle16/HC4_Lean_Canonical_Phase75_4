@@ -92,11 +92,14 @@ theorem kernel_ratio_eq_zero
       _ = 0 := D.child_kernel
 
   by_contra hc
-  have hCa : MvPolynomial.C P.coefficient ≠ 0 := by simpa using ha
+  have hCa :
+      (MvPolynomial.C P.coefficient : MvPolynomial (Fin 4) K) ≠ 0 := by
+    simpa using ha
   have hscalar : (m : K) * P.ratio D.kernelCoordinate ≠ 0 :=
     mul_ne_zero hmK hc
   have hCs :
-      MvPolynomial.C ((m : K) * P.ratio D.kernelCoordinate) ≠ 0 := by
+      (MvPolynomial.C ((m : K) * P.ratio D.kernelCoordinate) :
+        MvPolynomial (Fin 4) K) ≠ 0 := by
     simpa using hscalar
   exact (mul_ne_zero (mul_ne_zero hCa hCs) hpow) hderiv
 
