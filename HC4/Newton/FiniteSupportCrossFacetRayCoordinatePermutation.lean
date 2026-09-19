@@ -1,5 +1,6 @@
 import HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal
 import HC4.Newton.TerminalCoordinatePermutation
+import HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit
 import Mathlib.Tactic
 
 /-!
@@ -131,6 +132,50 @@ theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo
     R.renameContactToZero_hessian_zero hzero
   exact R0.zero_terminalCertificate_or_codimensionTwo hzero0
 
+
+
+/-- **Arbitrary-contact ray reaches a genuinely new boundary stratum.**
+
+After normalising the contact coordinate to `0`, either the ray's retained
+facet endpoint is already codimension two, or its exact affine RR terminal has
+an honest top supported exponent on a different rank-three coordinate facet
+(or already codimension two).  No balance or homogeneity assumption is used. -/
+theorem CrossFacetRayData.renamedZero_topOtherFacet_or_codimensionTwo
+    [IsAlgClosed K]
+    {F : MvPolynomial (Fin 4) K}
+    {j : Fin 4}
+    (R : CrossFacetRayData F j)
+    (hzero : hessianDeterminant F = 0) :
+    let R0 := R.renameContactToZero
+    MvExponentOnCodimensionTwoBoundary R0.facetExponent ∨
+      (∃ next : HC4.Toric.ToricFacet,
+          next ≠ .qs ∧
+            MvRankThreeOnFacet next
+              (R0.zeroAffineLineData.exponent
+                R0.zeroCoefficientPolynomial.natDegree)) ∨
+      MvExponentOnCodimensionTwoBoundary
+        (R0.zeroAffineLineData.exponent
+          R0.zeroCoefficientPolynomial.natDegree) := by
+  let R0 := R.renameContactToZero
+  rcases R.renamedZero_terminalCertificate_or_codimensionTwo hzero with
+    hterminal | hcodim
+  · rcases hterminal with ⟨hthree, hcert⟩
+    have hcoords := mvRankThreeOnFacet_qs hthree
+    have hA : 0 < R0.facetExponent 1 := hcoords.2.1
+    have hB : 0 < R0.facetExponent 2 := hcoords.2.2.1
+    have hC : 0 < R0.facetExponent 3 := hcoords.2.2.2
+    have hphiDeg : 0 < R0.zeroCoefficientPolynomial.natDegree :=
+      R0.zeroCoefficientPolynomial_natDegree_pos
+    have hphi0 : R0.zeroCoefficientPolynomial.coeff 0 ≠ 0 :=
+      R0.zeroCoefficientPolynomial_coeff_zero_ne
+    rcases
+        HC4.RationalRigidity.rankThree_affineTerminal_top_otherFacet_or_codimensionTwo
+          (K := K)
+          R0.zeroAffineLineData hA hB hC hphiDeg hphi0 hcert with
+      hnext | htopCodim
+    · exact Or.inr (Or.inl hnext)
+    · exact Or.inr (Or.inr htopCodim)
+  · exact Or.inl hcodim
 
 /-- Compact constructor form of the canonical terminal split.  Packaging the
 large dependent certificate once here keeps downstream valuation adapters
