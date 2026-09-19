@@ -128,6 +128,39 @@ theorem pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
       (MvPolynomial.pderiv i (MvPolynomial.monomial d a)) = 0 := by
   simp [MvPolynomial.pderiv_monomial, hdi]
 
+
+/-- If a polynomial is constant in coordinate `i`, then every pure Hessian
+entry in another coordinate remains constant in `i`. -/
+theorem pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero
+    (i j : Fin 4)
+    (Q : MvPolynomial (Fin 4) K)
+    (hi : MvPolynomial.pderiv i Q = 0) :
+    MvPolynomial.pderiv i (HC4.Polynomial.hessian Q j j) = 0 := by
+  simp only [HC4.Polynomial.hessian_apply]
+  calc
+    MvPolynomial.pderiv i
+        (MvPolynomial.pderiv j (MvPolynomial.pderiv j Q)) =
+      MvPolynomial.pderiv j
+        (MvPolynomial.pderiv j (MvPolynomial.pderiv i Q)) := by
+          rw [pderiv_comm_commRing i j
+            (MvPolynomial.pderiv j Q)]
+          rw [pderiv_comm_commRing i j Q]
+    _ = 0 := by rw [hi]; simp
+
+/-- If the pure second derivative in coordinate `i` vanishes, then the
+`i`-derivative of any Hessian entry with one `i` slot also vanishes. -/
+theorem pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
+    (i j : Fin 4)
+    (Q : MvPolynomial (Fin 4) K)
+    (hii :
+      MvPolynomial.pderiv i (MvPolynomial.pderiv i Q) = 0) :
+    MvPolynomial.pderiv i (HC4.Polynomial.hessian Q j i) = 0 := by
+  simp only [HC4.Polynomial.hessian_apply]
+  rw [pderiv_comm_commRing i j Q]
+  rw [pderiv_comm_commRing i j (MvPolynomial.pderiv i Q)]
+  rw [hii]
+  simp
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -459,20 +492,9 @@ theorem firstDeficit_reflectedSecondLayerGeometry
       have hA0 :
           MvPolynomial.pderiv (2 : Fin 4)
             (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1) = 0 := by
-        simp only [HC4.Polynomial.hessian_apply]
-        calc
-          MvPolynomial.pderiv (2 : Fin 4)
-              (MvPolynomial.pderiv (1 : Fin 4)
-                (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)) =
-            MvPolynomial.pderiv (1 : Fin 4)
-              (MvPolynomial.pderiv (1 : Fin 4)
-                (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)) := by
-                  rw [pderiv_comm_commRing
-                    (2 : Fin 4) (1 : Fin 4)
-                    (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)]
-                  rw [pderiv_comm_commRing
-                    (2 : Fin 4) (1 : Fin 4) G.firstDeficitLayer]
-          _ = 0 := by rw [hfirstKernel]; simp
+        exact pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero
+          (K := K) (2 : Fin 4) (1 : Fin 4)
+          G.firstDeficitLayer hfirstKernel
       have hOppSecond :
           MvPolynomial.pderiv (2 : Fin 4)
             (MvPolynomial.pderiv (2 : Fin 4)
@@ -485,16 +507,9 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (HC4.Polynomial.hessian
               (familyParameterLayer P.centralDeficitFamily j)
               (1 : Fin 4) 2) = 0 := by
-        simp only [HC4.Polynomial.hessian_apply]
-        rw [pderiv_comm_commRing
-          (2 : Fin 4) (1 : Fin 4)
-          (familyParameterLayer P.centralDeficitFamily j)]
-        rw [pderiv_comm_commRing
-          (2 : Fin 4) (1 : Fin 4)
-          (MvPolynomial.pderiv (2 : Fin 4)
-            (familyParameterLayer P.centralDeficitFamily j))]
-        rw [hOppSecond]
-        simp
+        exact pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
+          (K := K) (2 : Fin 4) (1 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily j) hOppSecond
       have hqTwo : 2 ≤ q := by
         rw [hq]
         exact firstDeficitOrder_two_le G hthree houtThree
@@ -555,20 +570,9 @@ theorem firstDeficit_reflectedSecondLayerGeometry
       have hA0 :
           MvPolynomial.pderiv (1 : Fin 4)
             (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2) = 0 := by
-        simp only [HC4.Polynomial.hessian_apply]
-        calc
-          MvPolynomial.pderiv (1 : Fin 4)
-              (MvPolynomial.pderiv (2 : Fin 4)
-                (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)) =
-            MvPolynomial.pderiv (2 : Fin 4)
-              (MvPolynomial.pderiv (2 : Fin 4)
-                (MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer)) := by
-                  rw [pderiv_comm_commRing
-                    (1 : Fin 4) (2 : Fin 4)
-                    (MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer)]
-                  rw [pderiv_comm_commRing
-                    (1 : Fin 4) (2 : Fin 4) G.firstDeficitLayer]
-          _ = 0 := by rw [hfirstKernel]; simp
+        exact pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero
+          (K := K) (1 : Fin 4) (2 : Fin 4)
+          G.firstDeficitLayer hfirstKernel
       have hOppSecond :
           MvPolynomial.pderiv (1 : Fin 4)
             (MvPolynomial.pderiv (1 : Fin 4)
@@ -581,16 +585,9 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (HC4.Polynomial.hessian
               (familyParameterLayer P.centralDeficitFamily j)
               (2 : Fin 4) 1) = 0 := by
-        simp only [HC4.Polynomial.hessian_apply]
-        rw [pderiv_comm_commRing
-          (1 : Fin 4) (2 : Fin 4)
-          (familyParameterLayer P.centralDeficitFamily j)]
-        rw [pderiv_comm_commRing
-          (1 : Fin 4) (2 : Fin 4)
-          (MvPolynomial.pderiv (1 : Fin 4)
-            (familyParameterLayer P.centralDeficitFamily j))]
-        rw [hOppSecond]
-        simp
+        exact pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
+          (K := K) (1 : Fin 4) (2 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily j) hOppSecond
       have hqTwo : 2 ≤ q := by
         rw [hq]
         exact firstDeficitOrder_two_le G hthree houtThree
