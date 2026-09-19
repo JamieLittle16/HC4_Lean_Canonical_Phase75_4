@@ -296,3 +296,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRa
 
 -- Normalize arbitrary lower first-nonfacet rays into the canonical affine-RR chart.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization
+
+-- Balance-free homogeneous affine terminal: fixed direction or codimension two.
+import HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit
