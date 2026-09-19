@@ -45,7 +45,13 @@ private theorem ordinaryDegree4_mapDomain_perm
     ordinaryDegree4 (Finsupp.mapDomain rho d) = ordinaryDegree4 d := by
   rw [← finsuppDegree_eq_ordinaryDegree4_local,
     ← finsuppDegree_eq_ordinaryDegree4_local]
-  exact Finsupp.degree_mapDomain rho d
+  rw [Finsupp.degree_eq_weight_one, Finsupp.degree_eq_weight_one]
+  change
+    (Finsupp.linearCombination ℕ (fun _ : Fin 4 => (1 : ℕ)))
+        (Finsupp.mapDomain rho d) =
+      (Finsupp.linearCombination ℕ (fun _ : Fin 4 => (1 : ℕ))) d
+  rw [Finsupp.linearCombination_mapDomain]
+  simp [Function.comp_def]
 
 /-- Any support exponent of the contact-normalized ray has the same ordinary
 degree as its preimage in the original homogeneous source. -/
@@ -120,9 +126,29 @@ theorem CrossFacetRayData.renamedZero_homogeneousTerminalSplit
     have hphi0 : R0.zeroCoefficientPolynomial.coeff 0 ≠ 0 :=
       R0.zeroCoefficientPolynomial_coeff_zero_ne
 
+    have hcertNat :
+        HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+          (phi := R0.zeroCoefficientPolynomial)
+          ((R0.facetExponent 1 : ℕ) : K)
+          ((R0.facetExponent 2 : ℕ) : K)
+          ((R0.facetExponent 3 : ℕ) : K)
+          ((1 : ℕ) : K)
+          (R0.zeroSlope (1 : Fin 4))
+          (R0.zeroSlope (2 : Fin 4))
+          (R0.zeroSlope (3 : Fin 4)) := by
+      simpa using hcert
     have hstep :=
       HC4.RationalRigidity.rankThree_unit_longitudinal_step_of_certificate
-        hA hB hC (by norm_num) hphiDeg hphi0 hcert
+        (K := K)
+        (A := R0.facetExponent 1)
+        (B := R0.facetExponent 2)
+        (C := R0.facetExponent 3)
+        (P := 1)
+        (Q := R0.zeroSlope (1 : Fin 4))
+        (R := R0.zeroSlope (2 : Fin 4))
+        (S := R0.zeroSlope (3 : Fin 4))
+        (phi := R0.zeroCoefficientPolynomial)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat
     have hphi1 : R0.zeroCoefficientPolynomial.coeff 1 ≠ 0 := hstep.2
     have h1mem : 1 ∈ R0.zeroCoefficientPolynomial.support :=
       Polynomial.mem_support_iff.mpr hphi1
@@ -187,6 +213,14 @@ theorem CrossFacetRayData.renamedZero_homogeneousTerminalSplit
 
     have hsplit :=
       HC4.RationalRigidity.rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
+        (K := K)
+        (A := R0.facetExponent 1)
+        (B := R0.facetExponent 2)
+        (C := R0.facetExponent 3)
+        (Q := R0.zeroSlope (1 : Fin 4))
+        (R := R0.zeroSlope (2 : Fin 4))
+        (S := R0.zeroSlope (3 : Fin 4))
+        (phi := R0.zeroCoefficientPolynomial)
         R0.zeroAffineLineData hA hB hC hphiDeg hphi0 hcert
         hdegreeOne' hdegreeTop'
     exact Or.inl ⟨hthree, hcert, hsplit⟩
