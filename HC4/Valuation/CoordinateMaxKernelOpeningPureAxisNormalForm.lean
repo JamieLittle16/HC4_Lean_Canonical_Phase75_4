@@ -42,7 +42,8 @@ theorem linearForm_eq_extractionAxis
   rw [Finset.sum_eq_single D.extractionCoordinate]
   · rfl
   · intro j _ hje
-    rw [P.ratio_eq_zero_of_ne_extraction hm j hje]
+    rw [ChildLinearPowerData.ratio_eq_zero_of_ne_extraction
+      (D := D) P hm j hje]
     simp
   · simp
 
@@ -56,7 +57,8 @@ theorem pureAxisCoefficient_ne_zero
     P.pureAxisCoefficient D ≠ 0 := by
   unfold pureAxisCoefficient
   exact mul_ne_zero P.coefficient_ne_zero
-    (pow_ne_zero _ (P.extraction_ratio_ne_zero hm))
+    (pow_ne_zero _
+      (ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P hm))
 
 /-- **Exact pure-axis child normal form.** -/
 theorem child_eq_pureAxis
@@ -64,7 +66,8 @@ theorem child_eq_pureAxis
     D.child =
       MvPolynomial.C (P.pureAxisCoefficient D) *
         (MvPolynomial.X D.extractionCoordinate) ^ m := by
-  rw [P.eq_power, P.linearForm_eq_extractionAxis hm]
+  rw [P.eq_power,
+    ChildLinearPowerData.linearForm_eq_extractionAxis (D := D) P hm]
   unfold pureAxisCoefficient
   rw [mul_pow, ← MvPolynomial.C_pow, ← mul_assoc, ← MvPolynomial.C_mul]
 
