@@ -85,10 +85,14 @@ private theorem centralDeficitConstantBlock_sparse
   simp only [Matrix.submatrix_apply,
     centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
     centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
-  refine ⟨hentry 0 2 (by omega), hentry 0 1 (by omega),
-    hentry 3 2 (by omega), hentry 3 1 (by omega),
-    hentry 2 2 (by omega), hentry 2 1 (by omega),
-    hentry 1 1 (by omega)⟩
+  refine ⟨
+    hentry 0 2 (Or.inr (Or.inr (Or.inr rfl))),
+    hentry 0 1 (Or.inr (Or.inr (Or.inl rfl))),
+    hentry 3 2 (Or.inr (Or.inr (Or.inr rfl))),
+    hentry 3 1 (Or.inr (Or.inr (Or.inl rfl))),
+    hentry 2 2 (Or.inr (Or.inl rfl)),
+    hentry 2 1 (Or.inr (Or.inl rfl)),
+    hentry 1 1 (Or.inl rfl)⟩
 
 private theorem centralDeficitSchurBlock_schurA_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
