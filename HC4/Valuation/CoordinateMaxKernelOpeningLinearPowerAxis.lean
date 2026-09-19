@@ -72,11 +72,12 @@ theorem extraction_ratio_ne_zero
   have hchildDeriv :
       MvPolynomial.pderiv D.extractionCoordinate D.child = 0 := by
     rw [P.eq_power, MvPolynomial.pderiv_C_mul]
-    have hmrepr : m = (m - 1) + 1 := by omega
-    conv_lhs =>
-      rhs
-      rw [hmrepr]
-    rw [pderiv_gradientRatioLinearForm_pow_succ]
+    have hpowderiv :=
+      pderiv_gradientRatioLinearForm_pow_succ
+        P.ratio D.extractionCoordinate (m - 1)
+    have hmrepr : m - 1 + 1 = m := by omega
+    rw [hmrepr] at hpowderiv
+    rw [hpowderiv]
     simp [hratio]
 
   have hsupp : D.child.support.Nonempty :=
