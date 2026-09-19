@@ -261,7 +261,7 @@ theorem firstDeficitLeftStaggeredBlock_activeCoeff_eq_outer_mul_middle
       (G.firstDeficitLeftActiveHessian r s).coeff 0 =
         HC4.Polynomial.rankTwoRoofZeroKernelBase a b c0 d r s := by
     intro r s
-    simpa [a, b, c0, d, H0] using
+    simpa only [a, b, c0, d, H0] using
       G.firstDeficitLeftActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree r s
   have hcoeff :=
@@ -309,19 +309,27 @@ theorem firstDeficitLeftStaggeredBlock_activeCoeff_eq_outer_mul_middle
   have ha0 :
       G.firstDeficitLeftStaggeredBlock.a.coeff 0 = a := by
     rw [ha]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 0
+    have h := hbase (0 : Fin 3) (0 : Fin 3)
+    change (G.firstDeficitLeftActiveHessian 0 0).coeff 0 = a at h
+    exact h
   have hp0b :
       G.firstDeficitLeftStaggeredBlock.p.coeff 0 = b := by
     rw [hp02]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 2
+    have h := hbase (0 : Fin 3) (2 : Fin 3)
+    change (G.firstDeficitLeftActiveHessian 0 2).coeff 0 = b at h
+    exact h
   have hp0c :
       G.firstDeficitLeftStaggeredBlock.p.coeff 0 = c0 := by
     rw [hp20]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 0
+    have h := hbase (2 : Fin 3) (0 : Fin 3)
+    change (G.firstDeficitLeftActiveHessian 2 0).coeff 0 = c0 at h
+    exact h
   have hx0 :
       G.firstDeficitLeftStaggeredBlock.x.coeff 0 = d := by
     rw [hx]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 2
+    have h := hbase (2 : Fin 3) (2 : Fin 3)
+    change (G.firstDeficitLeftActiveHessian 2 2).coeff 0 = d at h
+    exact h
   have hdq :
       G.firstDeficitLeftStaggeredBlock.d.coeff G.firstDeficitOrder =
         (G.firstDeficitLeftActiveHessian 1 1).coeff G.firstDeficitOrder := by
@@ -350,7 +358,7 @@ theorem firstDeficitRightStaggeredBlock_activeCoeff_eq_outer_mul_middle
       (G.firstDeficitRightActiveHessian r s).coeff 0 =
         HC4.Polynomial.rankTwoRoofZeroKernelBase a b c0 d r s := by
     intro r s
-    simpa [a, b, c0, d, H0] using
+    simpa only [a, b, c0, d, H0] using
       G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree r s
   have hcoeff :=
@@ -398,19 +406,27 @@ theorem firstDeficitRightStaggeredBlock_activeCoeff_eq_outer_mul_middle
   have ha0 :
       G.firstDeficitRightStaggeredBlock.a.coeff 0 = a := by
     rw [ha]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 0
+    have h := hbase (0 : Fin 3) (0 : Fin 3)
+    change (G.firstDeficitRightActiveHessian 0 0).coeff 0 = a at h
+    exact h
   have hp0b :
       G.firstDeficitRightStaggeredBlock.p.coeff 0 = b := by
     rw [hp02]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 0 2
+    have h := hbase (0 : Fin 3) (2 : Fin 3)
+    change (G.firstDeficitRightActiveHessian 0 2).coeff 0 = b at h
+    exact h
   have hp0c :
       G.firstDeficitRightStaggeredBlock.p.coeff 0 = c0 := by
     rw [hp20]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 0
+    have h := hbase (2 : Fin 3) (0 : Fin 3)
+    change (G.firstDeficitRightActiveHessian 2 0).coeff 0 = c0 at h
+    exact h
   have hx0 :
       G.firstDeficitRightStaggeredBlock.x.coeff 0 = d := by
     rw [hx]
-    simpa [HC4.Polynomial.rankTwoRoofZeroKernelBase] using hbase 2 2
+    have h := hbase (2 : Fin 3) (2 : Fin 3)
+    change (G.firstDeficitRightActiveHessian 2 2).coeff 0 = d at h
+    exact h
   have hdq :
       G.firstDeficitRightStaggeredBlock.d.coeff G.firstDeficitOrder =
         (G.firstDeficitRightActiveHessian 1 1).coeff G.firstDeficitOrder := by
