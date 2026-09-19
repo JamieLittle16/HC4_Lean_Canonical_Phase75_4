@@ -62,6 +62,77 @@ theorem scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor
   simp_rw [scaleAwareHessianSeriesMatrix_coeff_zero]
   simpa only [hsym]
 
+/-- Any honest nonzero special-fibre principal Hessian minor can be made the
+active block of a scale-aware rank-two chart by a finite coordinate
+permutation. -/
+noncomputable def actualRankTwoHessianChart_of_specialFiber_minor
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    {i k : Fin 4}
+    (hik : i ≠ k)
+    (hminor :
+      HC4.Polynomial.hessianPrincipalMinor
+        (polynomialFamilySpecialFiber s.family) i k ≠ 0) :
+    AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
+  fin_cases i <;> fin_cases k
+  · exact (hik rfl).elim
+  · let rho : Equiv.Perm (Fin 4) := Equiv.refl (Fin 4)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 1
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · exact (hik rfl).elim
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (1 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 1)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 0)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 2
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · exact (hik rfl).elim
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 3)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (1 : Fin 4) 0)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 3
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · let rho : Equiv.Perm (Fin 4) :=
+      (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (1 : Fin 4) 2)
+    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using hminor
+  · exact (hik rfl).elim
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
