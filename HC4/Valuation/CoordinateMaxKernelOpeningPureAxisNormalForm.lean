@@ -40,7 +40,6 @@ theorem linearForm_eq_extractionAxis
   classical
   unfold gradientRatioLinearForm
   rw [Finset.sum_eq_single D.extractionCoordinate]
-  · rfl
   · intro j _ hje
     rw [ChildLinearPowerData.ratio_eq_zero_of_ne_extraction
       (D := D) P hm j hje]
