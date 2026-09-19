@@ -73,65 +73,33 @@ noncomputable def actualRankTwoHessianChart_of_specialFiber_minor
       HC4.Polynomial.hessianPrincipalMinor
         (polynomialFamilySpecialFiber s.family) i k ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
-  fin_cases i <;> fin_cases k
-  · exact (hik rfl).elim
-  · let rho : Equiv.Perm (Fin 4) := Equiv.refl (Fin 4)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 1
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · exact (hik rfl).elim
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (1 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 1)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 0)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 2
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · exact (hik rfl).elim
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (0 : Fin 4) 2).trans (Equiv.swap (1 : Fin 4) 3)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (1 : Fin 4) 0)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) 3
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · let rho : Equiv.Perm (Fin 4) :=
-      (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (1 : Fin 4) 2)
-    refine { permutation := rho, activeDet_coeff_zero_ne_zero := ?_ }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using hminor
-  · exact (hik rfl).elim
+  let sigma : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) i
+  let tau : Equiv.Perm (Fin 4) := Equiv.swap (sigma (1 : Fin 4)) k
+  let rho : Equiv.Perm (Fin 4) := sigma.trans tau
+  have hs0 : sigma (0 : Fin 4) = i := by
+    simp [sigma]
+  have hs1_ne_i : sigma (1 : Fin 4) ≠ i := by
+    intro h
+    have h' : sigma (1 : Fin 4) = sigma (0 : Fin 4) := by
+      rw [hs0]
+      exact h
+    have : (1 : Fin 4) = 0 := sigma.injective h'
+    norm_num at this
+  have hrho0 : rho (0 : Fin 4) = i := by
+    dsimp [rho]
+    rw [Equiv.trans_apply, hs0]
+    simp [tau, hs1_ne_i, hik]
+  have hrho1 : rho (1 : Fin 4) = k := by
+    dsimp [rho]
+    rw [Equiv.trans_apply]
+    simp [tau]
+  refine {
+    permutation := rho
+    activeDet_coeff_zero_ne_zero := ?_
+  }
+  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+  rw [hrho0, hrho1]
+  exact hminor
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
