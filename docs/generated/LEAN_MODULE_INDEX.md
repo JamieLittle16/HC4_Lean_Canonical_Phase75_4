@@ -8047,7 +8047,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet.lean`
 - Purpose: A19.66: tame lower nonlinear escape gives an honest cross-facet contact
 - A-labels: `A18.5.12`, `A18.5.65c`, `A18.5.70`, `A19.60`, `A19.65`, `A19.66`, `A19.67`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FiniteSupportCrossFacetRay`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FiniteSupportCrossFacetRay`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 - Declarations: `structure AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData`, `theorem source_contact_le`, `theorem zero_and_positive_support_nonempty`, `def ray`, `theorem ray_hessian_zero`, `theorem ray_support_degree_ge_three`, `theorem ray_contact_eq`, `def firstNonfacetCrossFacetData_of_tame`, `def firstNonfacetCrossFacetData_qs`, `theorem qs_rankThree_crossFacet_or_firstNonfacetCrossFacet_or_nonlinearConfined`, `theorem rankThree_crossFacet_or_firstNonfacetCrossFacet_or_quadraticSquare_or_nonlinearConfined`
@@ -11229,7 +11229,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.61`, `A19.63`, `A19.87`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetResidualDegreeGap`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSourceLayerRigidity`
 - Declarations: `theorem lowNegativeFirst_sourceSupport_sparse`, `theorem lowNegativeSecond_sourceSupport_sparse`, `theorem strictLow_sourceCodimensionTwo`, `theorem strictLow_sourceCodimensionTwo_two_le`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
