@@ -73,19 +73,52 @@ private noncomputable def actualRankTwoChart0a
     (h : HC4.Polynomial.hessianPrincipalMinor
       (polynomialFamilySpecialFiber s.family) (0 : Fin 4) a ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
-  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) a
-  have hrho0 : rho (0 : Fin 4) = 0 := by
-    dsimp [rho]
-    fin_cases a <;> simp_all
-  have hrho1 : rho (1 : Fin 4) = a := by
-    simp [rho]
-  refine {
-    permutation := rho
-    activeDet_coeff_zero_ne_zero := ?_
-  }
-  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  rw [hrho0, hrho1]
-  exact h
+  by_cases ha1 : a = (1 : Fin 4)
+  · subst a
+    refine {
+      permutation := Equiv.refl (Fin 4)
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa using h
+  by_cases ha2 : a = (2 : Fin 4)
+  · subst a
+    let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
+    refine {
+      permutation := rho
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using h
+  · have ha0v : a.val ≠ 0 := by
+      intro hv
+      apply ha0
+      apply Fin.ext
+      simpa using hv
+    have ha1v : a.val ≠ 1 := by
+      intro hv
+      apply ha1
+      apply Fin.ext
+      simpa using hv
+    have ha2v : a.val ≠ 2 := by
+      intro hv
+      apply ha2
+      apply Fin.ext
+      simpa using hv
+    have ha3v : a.val = 3 := by
+      have halt : a.val < 4 := a.isLt
+      omega
+    have ha3 : a = (3 : Fin 4) := by
+      apply Fin.ext
+      simpa using ha3v
+    subst a
+    let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
+    refine {
+      permutation := rho
+      activeDet_coeff_zero_ne_zero := ?_
+    }
+    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+    simpa [rho] using h
 
 /-- A pure-axis facet endpoint has exactly the top degree on that axis. -/
 private theorem qs_ray_facetExponent_eq_single_axis
