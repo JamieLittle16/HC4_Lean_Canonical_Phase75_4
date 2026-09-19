@@ -68,6 +68,20 @@ noncomputable def zeroStrictLow_completeRankThreeGeometry
   D.presented.zeroDefect_completeRankThreeGeometry complexity
     (D.presented_rawDefect_eq_zero_of_source_zero hzero)
 
+/-- At zero clock the retained exact-active exhaustion has an actual nonzero
+constant `3 x 3` Hessian minor.  This is the strongest source-honest form of
+the generic rank-three geometry available on the represented blocker state:
+the zero-Schur constructor is impossible when the full determinant has
+constant term one. -/
+noncomputable def zeroStrictLow_constantThreeByThreeGeometry
+    {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
+    (complexity : ℕ)
+    (hzero : source.rawDefect = 0) :
+    AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry
+      (D.zeroStrictLow_completeRankThreeGeometry complexity hzero).chart :=
+  (D.zeroStrictLow_completeRankThreeGeometry complexity hzero).constantThreeByThreeGeometry
+
 /-- Consolidated final zero-clock packet, stated propositionally so no witness
 choice is hidden. -/
 theorem zeroStrictLow_zeroClockPacket
