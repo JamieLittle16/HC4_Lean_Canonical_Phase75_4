@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9025**.
+Distinct declaration spellings indexed: **9028**.
 
 ## Repeated declaration spellings
 
@@ -1491,6 +1491,9 @@ Distinct declaration spellings indexed: **9025**.
 - `CrossFacetRayData.coeff_zeroCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.exists_faceExponent_of_zeroCoefficientPolynomial_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
+- `CrossFacetRayData.renameContactToZero` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+- `CrossFacetRayData.renameContactToZero_hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+- `CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroAffineLineData` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroAffineLineData_hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
