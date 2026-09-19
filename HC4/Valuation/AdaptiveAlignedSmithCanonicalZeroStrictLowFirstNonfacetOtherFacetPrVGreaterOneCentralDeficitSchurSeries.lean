@@ -110,14 +110,15 @@ variable
 
 /-- Complete parameter-first Hessian of the total-deficit family, with the
 central `(0,3)` principal block placed first. -/
-noncomputable def centralDeficitSchurBlock :
+noncomputable def centralDeficitSchurBlock
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   centralDeficitSchurBlockOf P.centralDeficitFamily
 
 /-- Displaying the Schur four-block recovers the literal permuted complete
 source Hessian. -/
 theorem centralDeficitSchurBlock_matrix :
-    (centralDeficitSchurBlock (P := P)).matrix =
+    G.centralDeficitSchurBlock.matrix =
       (parameterFirstHessian P.centralDeficitFamily).submatrix
         centralDeficitSchurPerm centralDeficitSchurPerm := by
   unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
@@ -127,34 +128,18 @@ theorem centralDeficitSchurBlock_matrix :
     P.centralDeficitFamily
     (centralDeficitSchurPerm i) (centralDeficitSchurPerm j)
 
-/-- The active determinant has a genuinely nonzero constant coefficient. -/
-theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne
-    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    (centralDeficitSchurBlock (P := P)).activeDet.coeff 0 ≠ 0 := by
-  change
-    (parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 0 *
-          parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 3 -
-        parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 3 *
-          parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 3).coeff 0 ≠ 0
-  rw [centralDeficitActiveDet_coeff_zero_eq P.centralDeficitFamily]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
-  rw [← G.exposure_face_eq]
-  exact G.exposure_rankTwo_minor
-
 /-- The reordered block is still the complete Hessian of the honest singular
 total-deficit family. -/
 theorem centralDeficitSchurBlock_determinantCore_eq_zero :
-    (centralDeficitSchurBlock (P := P)).determinantCore = 0 := by
+    G.centralDeficitSchurBlock.determinantCore = 0 := by
   calc
-    (centralDeficitSchurBlock (P := P)).determinantCore =
-        (centralDeficitSchurBlock (P := P)).matrix.det :=
-      (GeneralFourBlock.matrix_det (centralDeficitSchurBlock (P := P))).symm
+    G.centralDeficitSchurBlock.determinantCore =
+        G.centralDeficitSchurBlock.matrix.det :=
+      (GeneralFourBlock.matrix_det G.centralDeficitSchurBlock).symm
     _ =
         ((parameterFirstHessian P.centralDeficitFamily).submatrix
           centralDeficitSchurPerm centralDeficitSchurPerm).det := by
-      rw [centralDeficitSchurBlock_matrix (P := P)]
+      rw [G.centralDeficitSchurBlock_matrix]
     _ = (parameterFirstHessian P.centralDeficitFamily).det := by
       rw [Matrix.det_submatrix_equiv_self]
     _ = 0 := by
@@ -164,17 +149,17 @@ theorem centralDeficitSchurBlock_determinantCore_eq_zero :
 /-- The whole denominator-cleared binary Schur determinant vanishes,
 not merely its first few coefficients. -/
 theorem centralDeficitSchurBlock_schurDetCore_eq_zero :
-    (centralDeficitSchurBlock (P := P)).schurDetCore = 0 :=
+    G.centralDeficitSchurBlock.schurDetCore = 0 :=
   GeneralFourBlock.schurDetCore_eq_zero_of_determinantCore_eq_zero
-    (centralDeficitSchurBlock (P := P))
-    (centralDeficitSchurBlock_determinantCore_eq_zero (P := P))
+    G.centralDeficitSchurBlock
+    (G.centralDeficitSchurBlock_determinantCore_eq_zero)
 
 /-- Series-facing form: all reflected coefficient relations are contained in
 one exact polynomial identity. -/
 theorem centralDeficitSchurSeries_determinant_eq_zero :
-    (centralDeficitSchurBlock (P := P)).polynomialSchurSeries.determinant = 0 := by
+    G.centralDeficitSchurBlock.polynomialSchurSeries.determinant = 0 := by
   rw [GeneralFourBlock.polynomialSchurSeries_determinant]
-  rw [centralDeficitSchurBlock_determinantCore_eq_zero (P := P)]
+  rw [G.centralDeficitSchurBlock_determinantCore_eq_zero]
   simp
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
