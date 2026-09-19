@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9091**.
+Distinct declaration spellings indexed: **9090**.
 
 ## Repeated declaration spellings
 
@@ -3728,6 +3728,7 @@ Distinct declaration spellings indexed: **9091**.
 - `centralBinaryCore` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `centralBinaryCore_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 - `centralBinaryCore_eq_rankTwoBase` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `centralDeficitActiveDet_coeff_zero_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitBinarySpecialisation` — `def` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_hessian_monomial_of_deficits_zero` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_isHomogeneous` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
@@ -3743,8 +3744,6 @@ Distinct declaration spellings indexed: **9091**.
 - `centralDeficitSchurA_eq_rightRoofDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `centralDeficitSchurBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlockOf` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
-- `centralDeficitSchurBlockOf_activeDet_coeff_zero_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
-- `centralDeficitSchurBlock_activeDet_coeff_zero_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlock_activeDet_coeff_zero_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`

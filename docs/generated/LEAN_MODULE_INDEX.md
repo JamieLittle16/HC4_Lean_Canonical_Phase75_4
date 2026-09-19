@@ -9260,7 +9260,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`, `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
-- Declarations: `def centralDeficitSchurPerm`, `def centralDeficitSchurBlockOf`, `theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq`, `def centralDeficitSchurBlock`, `theorem centralDeficitSchurBlock_matrix`, `theorem centralDeficitSchurBlock_activeDet_coeff_zero_eq`, `theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne`, `theorem centralDeficitSchurBlock_determinantCore_eq_zero`, `theorem centralDeficitSchurBlock_schurDetCore_eq_zero`, `theorem centralDeficitSchurSeries_determinant_eq_zero`
+- Declarations: `def centralDeficitSchurPerm`, `def centralDeficitSchurBlockOf`, `theorem centralDeficitActiveDet_coeff_zero_eq`, `def centralDeficitSchurBlock`, `theorem centralDeficitSchurBlock_matrix`, `theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne`, `theorem centralDeficitSchurBlock_determinantCore_eq_zero`, `theorem centralDeficitSchurBlock_schurDetCore_eq_zero`, `theorem centralDeficitSchurSeries_determinant_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 
