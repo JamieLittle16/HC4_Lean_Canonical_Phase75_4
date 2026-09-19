@@ -112,8 +112,9 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero :
     let B := kernelLastFamilyHessianFourBlock
       T.topKernelReverseReesFamily kernelCoordinate
     B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
-  rcases P.exists_active_ratio_ne_zero with ⟨j, hjk, hj⟩
-  have hjdiag := P.topFace_hessian_diagonal_ne_zero j hj
+  rcases exists_active_ratio_ne_zero (P := P) with ⟨j, hjk, hj⟩
+  have hjdiag :=
+    topFace_hessian_diagonal_ne_zero (P := P) j hj
   let rho := kernelLastPerm kernelCoordinate
   let r : Fin 4 := rho.symm j
   have hrho : rho r = j := by simp [r]
@@ -195,7 +196,7 @@ noncomputable def firstBreakRankTwoOutcome :
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     dsimp [B]
-    exact P.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+    exact kernelLastBlock_activeDiagonal_coeff_zero_ne_zero (P := P)
   exact rankOneSpecialFiber_firstKernelRowBreak_rankTwo
     B hrow hzero.1 hzero.2.1 hzero.2.2.1 hzero.2.2.2 hactive
 
