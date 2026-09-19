@@ -43,6 +43,12 @@ def centralDeficitSchurPerm : Equiv.Perm (Fin 4) :=
 @[simp] theorem centralDeficitSchurPerm_one :
     centralDeficitSchurPerm 1 = 3 := by decide
 
+@[simp] theorem centralDeficitSchurPerm_two :
+    centralDeficitSchurPerm 2 = 2 := by decide
+
+@[simp] theorem centralDeficitSchurPerm_three :
+    centralDeficitSchurPerm 3 = 1 := by decide
+
 /-- The Schur block construction itself is family-theoretic; keeping this
 generic prevents the large HC4 frontier package from entering coefficient
 normalization. -/
@@ -52,6 +58,19 @@ noncomputable def centralDeficitSchurBlockOf
   GeneralFourBlock.ofSymmetricMatrix
     ((parameterFirstHessian Q).submatrix
       centralDeficitSchurPerm centralDeficitSchurPerm)
+
+/-- Parameter-zero specialization of the generic reordered Hessian block.
+This is deliberately proved before any HC4 geometry is introduced. -/
+theorem centralDeficitSchurBlockOf_map_constantCoeff
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).map Polynomial.constantCoeff =
+      GeneralFourBlock.ofSymmetricMatrix
+        ((HC4.Polynomial.hessian (familyParameterLayer Q 0)).submatrix
+          centralDeficitSchurPerm centralDeficitSchurPerm) := by
+  apply GeneralFourBlock.ext <;>
+    simp [centralDeficitSchurBlockOf, GeneralFourBlock.map,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
+      parameterFirstHessian_coeff]
 
 /-- Constant coefficient of the literal active `(0,3)` Hessian determinant
 for an arbitrary parameter family.  This deliberately avoids mentioning the
