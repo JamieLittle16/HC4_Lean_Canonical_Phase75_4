@@ -121,6 +121,7 @@ theorem extraction_ratio_ne_zero
 /-- Therefore the extraction coordinate and the newly appearing kernel
 coordinate are necessarily different. -/
 theorem extractionCoordinate_ne_kernelCoordinate
+    (P : D.ChildLinearPowerData m)
     (hm : 2 ≤ m) :
     D.extractionCoordinate ≠ D.kernelCoordinate := by
   intro heq
