@@ -1,5 +1,6 @@
 import HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal
 import HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor
+import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
 import Mathlib.Tactic
 
 /-!
@@ -233,6 +234,40 @@ theorem balanceFreeHomogeneousRay_codimensionTwo_or_rankTwoFace
           hessianPrincipalMinor_ne_zero_of_support_two_positive
             hface (by decide) hpos2 hpos3⟩)
   · exact Or.inl hcodim
+
+
+/-- **Source-facing balance-free ray dichotomy.**
+
+The local contact-zero RR analysis either reaches codimension two, or its
+nonzero ray Hessian pivot lifts through the canonical ray extractor and the
+coordinate normalization to a genuine nonzero principal Hessian minor of the
+original source polynomial. -/
+theorem balanceFreeHomogeneousRay_codimensionTwo_or_sourceRankTwo
+    {F : MvPolynomial (Fin 4) K}
+    {j : Fin 4}
+    (R : CrossFacetRayData F j)
+    {D : ℕ}
+    (hzero : hessianDeterminant F = 0)
+    (hhom : ∀ d ∈ F.support, ordinaryDegree4 d = D) :
+    MvExponentOnCodimensionTwoBoundary R.renameContactToZero.facetExponent ∨
+      MvExponentOnCodimensionTwoBoundary
+        (R.renameContactToZero.zeroAffineLineData.exponent
+          R.renameContactToZero.zeroCoefficientPolynomial.natDegree) ∨
+      ∃ i k : Fin 4,
+        i ≠ k ∧ hessianPrincipalMinor F i k ≠ 0 := by
+  rcases balanceFreeHomogeneousRay_codimensionTwo_or_rankTwoFace
+      R hzero hhom with hnear | hfar | hminor
+  · exact Or.inl hnear
+  · exact Or.inr (Or.inl hfar)
+  · rcases hminor with ⟨i, k, hik, hminor⟩
+    let rho : Equiv.Perm (Fin 4) := Equiv.swap j (0 : Fin 4)
+    have hsource :=
+      R.source_hessianPrincipalMinor_ne_zero_of_renamedZero hminor
+    have hne : rho.symm i ≠ rho.symm k := by
+      intro h
+      apply hik
+      exact rho.symm.injective h
+    exact Or.inr (Or.inr ⟨rho.symm i, rho.symm k, hne, hsource⟩)
 
 end
 
