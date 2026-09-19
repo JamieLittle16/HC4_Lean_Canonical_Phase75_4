@@ -312,5 +312,3 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRan
 -- Lift nonzero Hessian pivots through the canonical three-exposure ray extractor.
 import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
 
--- Full source-lattice reflection at the live first-deficit endpoint.
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitFullReflection
