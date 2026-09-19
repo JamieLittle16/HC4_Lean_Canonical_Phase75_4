@@ -519,7 +519,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.65c`, `A18.5.93`, `A19.67`
 - Local imports: `HC4.Newton.FiniteSupportCrossFacetExposure`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`, `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
+- Imported by local modules: `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectExposure`
 - Declarations: `def crossFacetRayAux0`, `def crossFacetRayAux1`, `def crossFacetRayAux2`, `theorem CrossFacetInitialData.ray_face_weight_eq`, `theorem CrossFacetInitialData.auxiliary_cross_proportional`, `theorem CrossFacetInitialData.auxiliary_cross_le`, `structure CrossFacetRayData`, `def crossFacetRayData`, `theorem CrossFacetRayData.rankThreeFacet_or_codimensionTwo`
 
 ### `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
@@ -559,7 +559,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
+- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`, `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
 - Declarations: `def CrossFacetRayData.renameContactToZero`, `theorem CrossFacetRayData.renameContactToZero_hessian_zero`, `theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo`, `theorem CrossFacetRayData.renamedZero_topOtherFacet_or_codimensionTwo`, `inductive CrossFacetRayData.RenamedZeroTerminalOutcome`, `theorem CrossFacetRayData.renamedZeroTerminalOutcome`
 
 ### `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
@@ -13247,7 +13247,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/FiniteSupportCrossFacetRayHessianMinorLift.lean`
 - Purpose: Lift a canonical cross-facet ray Hessian minor back to its source
 - A-labels: none detected
-- Local imports: `HC4.Newton.FiniteSupportCrossFacetRay`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- Local imports: `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
 - Declarations: `theorem hessianPrincipalMinor_rename_perm`, `theorem hessianPrincipalMinor_source_ne_zero_of_rename_perm`, `theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero`, `theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero`, `theorem CrossFacetRayData.renameContactToZero_source_hessianPrincipalMinor_ne_zero`, `theorem CrossFacetRayData.source_hessianPrincipalMinor_ne_zero_of_renamedZero`

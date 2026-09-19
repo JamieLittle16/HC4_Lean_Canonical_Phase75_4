@@ -4416,7 +4416,7 @@ human architecture guide.
   - `HC4.Newton.RestartClassification`
   - `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
-  - `HC4.Newton.FiniteSupportCrossFacetRay`
+  - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
   - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
   - `HC4.Newton.FiniteSupportExposedVertex`
