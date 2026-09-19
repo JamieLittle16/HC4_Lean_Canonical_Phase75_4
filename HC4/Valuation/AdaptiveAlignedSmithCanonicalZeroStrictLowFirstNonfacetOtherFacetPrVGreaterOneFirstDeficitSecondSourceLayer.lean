@@ -98,6 +98,23 @@ theorem pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
   exact pderiv_pderiv_ne_zero_of_support_exponent_ge_two
     (K := K) i (MvPolynomial.pderiv i Q) d₁ hd₁mem hd₁two
 
+
+/-- Differentiate a product-square identity without exposing a large ambient
+proof context to the simplifier. -/
+theorem pderiv_right_eq_zero_of_mul_eq_square
+    (i : Fin 4)
+    (A Z S : MvPolynomial (Fin 4) K)
+    (hidentity : A * Z = S * S)
+    (hA : MvPolynomial.pderiv i A = 0)
+    (hS : MvPolynomial.pderiv i S = 0)
+    (hAne : A ≠ 0) :
+    MvPolynomial.pderiv i Z = 0 := by
+  have hdiff := congrArg (MvPolynomial.pderiv i) hidentity
+  rw [MvPolynomial.pderiv_mul, MvPolynomial.pderiv_mul] at hdiff
+  rw [hA, hS] at hdiff
+  simp only [zero_mul, zero_add, mul_zero, add_zero] at hdiff
+  exact (mul_eq_zero.mp hdiff).resolve_left hAne
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -473,16 +490,21 @@ theorem firstDeficit_reflectedSecondLayerGeometry
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (1 : Fin 4) G.firstDeficitLayer first
             hfirst (by omega : 2 ≤ first 1))
-      have hdiff := congrArg
-        (MvPolynomial.pderiv (2 : Fin 4)) hid
-      simp only [MvPolynomial.pderiv_mul, hA0, hS0,
-        zero_mul, zero_add, mul_zero, add_zero] at hdiff
       have hthirdHessian :
           MvPolynomial.pderiv (2 : Fin 4)
             (HC4.Polynomial.hessian
               (familyParameterLayer P.centralDeficitFamily k)
-              (2 : Fin 4) 2) = 0 :=
-        (mul_eq_zero.mp hdiff).resolve_left hAne
+              (2 : Fin 4) 2) = 0 := by
+        exact pderiv_right_eq_zero_of_mul_eq_square
+          (K := K) (2 : Fin 4)
+          (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily k)
+            (2 : Fin 4) 2)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily j)
+            (1 : Fin 4) 2)
+          hid hA0 hS0 hAne
       have hthird :
           MvPolynomial.pderiv (2 : Fin 4)
             (MvPolynomial.pderiv (2 : Fin 4)
@@ -563,16 +585,21 @@ theorem firstDeficit_reflectedSecondLayerGeometry
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (2 : Fin 4) G.firstDeficitLayer first
             hfirst (by omega : 2 ≤ first 2))
-      have hdiff := congrArg
-        (MvPolynomial.pderiv (1 : Fin 4)) hid
-      simp only [MvPolynomial.pderiv_mul, hA0, hS0,
-        zero_mul, zero_add, mul_zero, add_zero] at hdiff
       have hthirdHessian :
           MvPolynomial.pderiv (1 : Fin 4)
             (HC4.Polynomial.hessian
               (familyParameterLayer P.centralDeficitFamily k)
-              (1 : Fin 4) 1) = 0 :=
-        (mul_eq_zero.mp hdiff).resolve_left hAne
+              (1 : Fin 4) 1) = 0 := by
+        exact pderiv_right_eq_zero_of_mul_eq_square
+          (K := K) (1 : Fin 4)
+          (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily k)
+            (1 : Fin 4) 1)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily j)
+            (2 : Fin 4) 1)
+          hid hA0 hS0 hAne
       have hthird :
           MvPolynomial.pderiv (1 : Fin 4)
             (MvPolynomial.pderiv (1 : Fin 4)
