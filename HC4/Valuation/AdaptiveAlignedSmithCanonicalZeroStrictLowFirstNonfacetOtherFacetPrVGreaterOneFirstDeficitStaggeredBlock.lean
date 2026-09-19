@@ -196,7 +196,7 @@ theorem firstDeficitLeftStaggeredBlock_activeSubmatrix_eq :
         Fin.castSucc Fin.castSucc =
       G.firstDeficitLeftActiveHessian := by
   rw [G.firstDeficitLeftStaggeredBlock_matrix]
-  ext i j
+  funext i j
   change
     parameterFirstHessian P.centralDeficitFamily
         (firstDeficitLeftStaggeredPerm (Fin.castSucc i))
@@ -213,7 +213,7 @@ theorem firstDeficitRightStaggeredBlock_activeSubmatrix_eq :
         Fin.castSucc Fin.castSucc =
       G.firstDeficitRightActiveHessian := by
   rw [G.firstDeficitRightStaggeredBlock_matrix]
-  ext i j
+  funext i j
   change
     parameterFirstHessian P.centralDeficitFamily
         (firstDeficitRightStaggeredPerm (Fin.castSucc i))
