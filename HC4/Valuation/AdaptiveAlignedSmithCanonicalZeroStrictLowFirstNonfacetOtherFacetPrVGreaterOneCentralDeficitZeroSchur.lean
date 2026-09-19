@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof
+import HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber
 import HC4.Newton.ZeroSchurFirstEntryClock
 import Mathlib.Tactic
 
@@ -51,69 +52,74 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+/-- Parameter-zero specialization of the reordered block. -/
+private noncomputable def centralDeficitConstantBlock :
+    GeneralFourBlock (MvPolynomial (Fin 4) K) :=
+  parameterConstantCoeffFourBlock G.centralDeficitSchurBlock
+
+/-- The constant block has no entries touching either deficit coordinate.
+Only the honest `(0,3)` active block can survive. -/
+private theorem centralDeficitConstantBlock_sparse
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.centralDeficitConstantBlock.p = 0 ∧
+      G.centralDeficitConstantBlock.q = 0 ∧
+      G.centralDeficitConstantBlock.r = 0 ∧
+      G.centralDeficitConstantBlock.s = 0 ∧
+      G.centralDeficitConstantBlock.x = 0 ∧
+      G.centralDeficitConstantBlock.y = 0 ∧
+      G.centralDeficitConstantBlock.z = 0) := by
+  have hentry (i j : Fin 4)
+      (hi : i = 1 ∨ i = 2 ∨ j = 1 ∨ j = 2) :
+      (parameterFirstHessian P.centralDeficitFamily i j).coeff 0 = 0 := by
+    rw [parameterFirstHessian_coeff,
+      G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+    rcases hi with rfl | rfl | rfl | rfl <;>
+      simp [-standardTwoZero_pderiv_two_eq_A,
+        -standardTwoZero_pderiv_three_eq_C,
+        HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+        G.central_one_zero, G.central_two_zero]
+  unfold centralDeficitConstantBlock parameterConstantCoeffFourBlock
+    centralDeficitSchurBlock centralDeficitSchurBlockOf
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply,
+    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
+    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
+  refine ⟨hentry 0 2 (by omega), hentry 0 1 (by omega),
+    hentry 3 2 (by omega), hentry 3 1 (by omega),
+    hentry 2 2 (by omega), hentry 2 1 (by omega),
+    hentry 1 1 (by omega)⟩
+
 private theorem centralDeficitSchurBlock_schurA_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurA.coeff 0 = 0 := by
-  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurA = 0
-  rw [← GeneralFourBlock.schurA_map
-    G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
-    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
-    GeneralFourBlock.schurA GeneralFourBlock.activeDet
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
-    Polynomial.constantCoeff_apply]
-  simp_rw [parameterFirstHessian_coeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
-    G.exposure_face_eq]
-  simp [-standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero]
+  rw [parameterConstantCoeffFourBlock_schurA]
+  rcases G.centralDeficitConstantBlock_sparse hthree houtThree with
+    ⟨hp, _hq, hr, _hs, hx, _hy, _hz⟩
+  change G.centralDeficitConstantBlock.schurA = 0
+  simp [GeneralFourBlock.schurA, GeneralFourBlock.activeDet, hp, hr, hx]
+
 private theorem centralDeficitSchurBlock_schurB_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurB.coeff 0 = 0 := by
-  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurB = 0
-  rw [← GeneralFourBlock.schurB_map
-    G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
-    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
-    GeneralFourBlock.schurB GeneralFourBlock.activeDet
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
-    Polynomial.constantCoeff_apply]
-  simp_rw [parameterFirstHessian_coeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
-    G.exposure_face_eq]
-  simp [-standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero]
+  rw [parameterConstantCoeffFourBlock_schurB]
+  rcases G.centralDeficitConstantBlock_sparse hthree houtThree with
+    ⟨hp, hq, hr, hs, _hx, hy, _hz⟩
+  change G.centralDeficitConstantBlock.schurB = 0
+  simp [GeneralFourBlock.schurB, GeneralFourBlock.activeDet,
+    hp, hq, hr, hs, hy]
+
 private theorem centralDeficitSchurBlock_schurC_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.schurC.coeff 0 = 0 := by
-  change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurC = 0
-  rw [← GeneralFourBlock.schurC_map
-    G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
-    GeneralFourBlock.map GeneralFourBlock.ofSymmetricMatrix
-    GeneralFourBlock.schurC GeneralFourBlock.activeDet
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
-    Polynomial.constantCoeff_apply]
-  simp_rw [parameterFirstHessian_coeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree,
-    G.exposure_face_eq]
-  simp [-standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero]
+  rw [parameterConstantCoeffFourBlock_schurC]
+  rcases G.centralDeficitConstantBlock_sparse hthree houtThree with
+    ⟨_hp, hq, _hr, hs, _hx, _hy, hz⟩
+  change G.centralDeficitConstantBlock.schurC = 0
+  simp [GeneralFourBlock.schurC, GeneralFourBlock.activeDet, hq, hs, hz]
 /-- The complete central Schur block is a genuine zero-constant Schur series. -/
 noncomputable def centralDeficitZeroSchurSeries
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -145,6 +151,13 @@ theorem centralDeficitSchurA_eq_rightRoofDet :
     centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
     firstDeficitRightActiveIndex]
   simp [Matrix.det_fin_three]
+  have h20 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (2 : Fin 4) 0
+  have h23 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (2 : Fin 4) 3
+  have h30 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (3 : Fin 4) 0
+  rw [h20, h23, h30]
   ring
 
 /-- Second principal cleared Schur entry equals the left roof determinant. -/
@@ -160,6 +173,13 @@ theorem centralDeficitSchurC_eq_leftRoofDet :
     centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
     firstDeficitLeftActiveIndex]
   simp [Matrix.det_fin_three]
+  have h10 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (1 : Fin 4) 0
+  have h13 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (1 : Fin 4) 3
+  have h30 := parameterFirstHessian_symmetric
+    P.centralDeficitFamily (3 : Fin 4) 0
+  rw [h10, h13, h30]
   ring
 
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
