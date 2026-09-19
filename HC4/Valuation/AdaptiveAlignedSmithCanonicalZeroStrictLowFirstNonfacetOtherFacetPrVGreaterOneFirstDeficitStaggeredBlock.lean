@@ -115,6 +115,24 @@ noncomputable def firstDeficitRightStaggeredMatrix
   (parameterFirstHessian P.centralDeficitFamily).submatrix
     firstDeficitRightStaggeredPerm firstDeficitRightStaggeredPerm
 
+/-- Entrywise form of the left staggered source Hessian. -/
+@[simp] theorem firstDeficitLeftStaggeredMatrix_apply
+    (i j : Fin 4) :
+    G.firstDeficitLeftStaggeredMatrix i j =
+      parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitLeftStaggeredPerm i)
+        (firstDeficitLeftStaggeredPerm j) := by
+  rfl
+
+/-- Entrywise form of the right staggered source Hessian. -/
+@[simp] theorem firstDeficitRightStaggeredMatrix_apply
+    (i j : Fin 4) :
+    G.firstDeficitRightStaggeredMatrix i j =
+      parameterFirstHessian P.centralDeficitFamily
+        (firstDeficitRightStaggeredPerm i)
+        (firstDeficitRightStaggeredPerm j) := by
+  rfl
+
 /-- Four-block attached to the left-axis first-deficit branch. -/
 noncomputable def firstDeficitLeftStaggeredBlock
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
