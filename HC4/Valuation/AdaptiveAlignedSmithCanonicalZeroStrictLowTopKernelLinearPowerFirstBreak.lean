@@ -55,6 +55,8 @@ theorem linearForm_ne_zero :
   intro hL
   apply T.topFace.face_ne_zero
   rw [P.eq_power, hL]
+  have hm3 : 3 ≤ T.topFace.degree :=
+    T.topFace.degree_ge_three
   have hmne : T.topFace.degree ≠ 0 := by
     omega
   simp [hmne]
@@ -129,23 +131,39 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero :
     rw [T.topKernelReverseRees_layer_zero_eq_topFace]
     simpa [hrho] using hjdiag
   dsimp [B]
-  fin_cases r
-  · exact Or.inl (by
-      change
-        (parameterFirstHessian T.topKernelReverseReesFamily
-          (rho 0) (rho 0)).coeff 0 ≠ 0
-      exact hentry)
-  · exact Or.inr (Or.inl (by
-      change
-        (parameterFirstHessian T.topKernelReverseReesFamily
-          (rho 1) (rho 1)).coeff 0 ≠ 0
-      exact hentry))
-  · exact Or.inr (Or.inr (by
-      change
-        (parameterFirstHessian T.topKernelReverseReesFamily
-          (rho 2) (rho 2)).coeff 0 ≠ 0
-      exact hentry))
-  · exact (hrne rfl).elim
+  by_cases hr0 : r = (0 : Fin 4)
+  · have hentry0 := hentry
+    rw [hr0] at hentry0
+    exact Or.inl hentry0
+  by_cases hr1 : r = (1 : Fin 4)
+  · have hentry1 := hentry
+    rw [hr1] at hentry1
+    exact Or.inr (Or.inl hentry1)
+  by_cases hr2 : r = (2 : Fin 4)
+  · have hentry2 := hentry
+    rw [hr2] at hentry2
+    exact Or.inr (Or.inr hentry2)
+  · have hr0v : r.val ≠ 0 := by
+      intro hv
+      apply hr0
+      apply Fin.ext
+      simpa using hv
+    have hr1v : r.val ≠ 1 := by
+      intro hv
+      apply hr1
+      apply Fin.ext
+      simpa using hv
+    have hr2v : r.val ≠ 2 := by
+      intro hv
+      apply hr2
+      apply Fin.ext
+      simpa using hv
+    have hr3 : r = (3 : Fin 4) := by
+      apply Fin.ext
+      simp
+      have hrlt : r.val < 4 := r.isLt
+      omega
+    exact (hrne hr3).elim
 
 /-- **Top-kernel linear-power closure.**  The honest ordinary reverse-Rees
 family necessarily reaches concrete rank-two geometry at the first actual
@@ -163,13 +181,17 @@ noncomputable def firstBreakRankTwoOutcome :
     T.topKernelLastBlock_kernelRow_coeff_zero kernelCoordinate
       (by
         rw [P.eq_power, MvPolynomial.pderiv_C_mul]
+        have hformula :=
+          pderiv_gradientRatioLinearForm_pow_succ
+            P.ratio kernelCoordinate (T.topFace.degree - 1)
         have hmrepr :
-            T.topFace.degree = (T.topFace.degree - 1) + 1 := by omega
-        conv_lhs =>
-          rhs
-          rw [hmrepr]
-        rw [pderiv_gradientRatioLinearForm_pow_succ]
-        simp [P.kernel_ratio_zero])
+            T.topFace.degree - 1 + 1 = T.topFace.degree := by
+          have hm3 : 3 ≤ T.topFace.degree :=
+            T.topFace.degree_ge_three
+          omega
+        rw [hmrepr] at hformula
+        rw [hformula, P.kernel_ratio_zero]
+        simp)
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     dsimp [B]
