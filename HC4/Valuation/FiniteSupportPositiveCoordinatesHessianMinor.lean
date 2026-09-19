@@ -38,17 +38,20 @@ theorem hessianPrincipalMinor_ne_zero_of_support_two_positive
   let D2 := coordinateMaxInitialData D1.face D1.face_ne_zero (2 : Fin 4)
   let D3 := coordinateMaxInitialData D2.face D2.face_ne_zero (3 : Fin 4)
 
-  let d := D3.witness
+  have hsupport3 : D3.face.support.Nonempty :=
+    MvPolynomial.support_nonempty.mpr D3.face_ne_zero
+  let d := Classical.choose hsupport3
+  have hd3 : d ∈ D3.face.support := Classical.choose_spec hsupport3
   let c := MvPolynomial.coeff d D3.face
 
-  have hd2 : d ∈ D2.face.support := D3.witness_mem
+  have hd2 : d ∈ D2.face.support := D3.support_subset hd3
   have hd1 : d ∈ D1.face.support := D2.support_subset hd2
   have hd0 : d ∈ D0.face.support := D1.support_subset hd1
   have hdF : d ∈ F.support := D0.support_subset hd0
 
   have hc : c ≠ 0 := by
     dsimp [c]
-    exact MvPolynomial.mem_support_iff.mp D3.witness_mem
+    exact MvPolynomial.mem_support_iff.mp hd3
 
   have hunique : ∀ q ∈ D3.face.support, q = d := by
     intro q hq
@@ -65,8 +68,7 @@ theorem hessianPrincipalMinor_ne_zero_of_support_two_positive
     · simpa using
         (D2.coordinate_eq q hq2).trans (D2.coordinate_eq d hd2).symm
     · simpa using
-        (D3.coordinate_eq q hq).trans
-          (D3.coordinate_eq d D3.witness_mem).symm
+        (D3.coordinate_eq q hq).trans (D3.coordinate_eq d hd3).symm
 
   have hmono : D3.face = MvPolynomial.monomial d c := by
     apply MvPolynomial.ext
