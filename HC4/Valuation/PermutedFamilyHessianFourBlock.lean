@@ -64,6 +64,23 @@ theorem permutedFamilyHessianFourBlock_determinantCore_eq_det
 
 /-- Symbolic projection formulas. Keeping rho abstract avoids reducing
 concrete swap terms during downstream elaboration. -/
+@[simp] theorem permutedFamilyHessianFourBlock_a
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).a =
+      parameterFirstHessian P (rho 0) (rho 0) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_b
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).b =
+      parameterFirstHessian P (rho 0) (rho 1) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_d
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).d =
+      parameterFirstHessian P (rho 1) (rho 1) := rfl
 @[simp] theorem permutedFamilyHessianFourBlock_p
     (rho : Equiv.Perm (Fin 4))
     (P : MvPolynomial (Fin 4) (Polynomial K)) :
