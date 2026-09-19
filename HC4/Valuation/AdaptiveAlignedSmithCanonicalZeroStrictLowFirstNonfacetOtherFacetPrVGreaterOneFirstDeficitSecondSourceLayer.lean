@@ -209,10 +209,19 @@ theorem firstDeficitLeftStaggeredBlock_d_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 1 := by
-  unfold firstDeficitLeftStaggeredBlock
-    firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one]
+  change
+    (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 1).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
+      (firstDeficitLeftStaggeredPerm (1 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1
+  rw [firstDeficitLeftStaggeredPerm_one]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (1 : Fin 4) 1
 
@@ -224,11 +233,19 @@ theorem firstDeficitLeftStaggeredBlock_s_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 2 := by
-  unfold firstDeficitLeftStaggeredBlock
-    firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    firstDeficitLeftStaggeredPerm_one,
+  change
+    (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 3).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 2
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
+      (firstDeficitLeftStaggeredPerm (3 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 2
+  rw [firstDeficitLeftStaggeredPerm_one,
     firstDeficitLeftStaggeredPerm_three]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (1 : Fin 4) 2
@@ -240,10 +257,19 @@ theorem firstDeficitRightStaggeredBlock_d_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 2 := by
-  unfold firstDeficitRightStaggeredBlock
-    firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one]
+  change
+    (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 1).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitRightStaggeredPerm (1 : Fin 4))
+      (firstDeficitRightStaggeredPerm (1 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2
+  rw [firstDeficitRightStaggeredPerm_one]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (2 : Fin 4) 2
 
@@ -254,11 +280,19 @@ theorem firstDeficitRightStaggeredBlock_s_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 1 := by
-  unfold firstDeficitRightStaggeredBlock
-    firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    firstDeficitRightStaggeredPerm_one,
+  change
+    (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 3).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 1
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitRightStaggeredPerm (1 : Fin 4))
+      (firstDeficitRightStaggeredPerm (3 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 1
+  rw [firstDeficitRightStaggeredPerm_one,
     firstDeficitRightStaggeredPerm_three]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (2 : Fin 4) 1
@@ -271,10 +305,19 @@ theorem firstDeficitLeftStaggeredBlock_z_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 2 := by
-  unfold firstDeficitLeftStaggeredBlock
-    firstDeficitLeftStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_three]
+  change
+    (G.firstDeficitLeftStaggeredMatrix (3 : Fin 4) 3).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitLeftStaggeredPerm (3 : Fin 4))
+      (firstDeficitLeftStaggeredPerm (3 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2
+  rw [firstDeficitLeftStaggeredPerm_three]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (2 : Fin 4) 2
 
@@ -286,10 +329,19 @@ theorem firstDeficitRightStaggeredBlock_z_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 1 := by
-  unfold firstDeficitRightStaggeredBlock
-    firstDeficitRightStaggeredMatrix
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_three]
+  change
+    (G.firstDeficitRightStaggeredMatrix (3 : Fin 4) 3).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1
+  change
+    (parameterFirstHessian P.centralDeficitFamily
+      (firstDeficitRightStaggeredPerm (3 : Fin 4))
+      (firstDeficitRightStaggeredPerm (3 : Fin 4))).coeff n =
+      HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1
+  rw [firstDeficitRightStaggeredPerm_three]
   exact parameterFirstHessian_coeff
     P.centralDeficitFamily n (1 : Fin 4) 1
 
@@ -509,7 +561,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
           MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer = 0 := by
         apply pderiv_eq_zero_of_all_supported_exponents_zero
         intro d hd
-        rw [huniq d hd, hfirst2]
+        rw [huniq d (MvPolynomial.mem_support_iff.mpr hd), hfirst2]
       have hA0 :
           MvPolynomial.pderiv (2 : Fin 4)
             (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1) = 0 := by
@@ -590,7 +642,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
           MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer = 0 := by
         apply pderiv_eq_zero_of_all_supported_exponents_zero
         intro d hd
-        rw [huniq d hd, hfirst1]
+        rw [huniq d (MvPolynomial.mem_support_iff.mpr hd), hfirst1]
       have hA0 :
           MvPolynomial.pderiv (1 : Fin 4)
             (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2) = 0 := by
