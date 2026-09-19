@@ -10789,7 +10789,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - Declarations: `structure QsRayFacetEndpointFirstBreakData`, `theorem firstBreakRankTwoOutcome`, `theorem qs_ray_facetEndpoint_actualRankTwo_or_firstBreak`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
@@ -10799,8 +10799,8 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`, `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`
-- Declarations: `theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square`, `theorem hessianPrincipalMinor_eq_square`, `def LayerMinorAtFirstBreak`, `def ExactSourceWeightLayerMinorAtFirstBreak`, `theorem layerMinor0_eq`, `theorem layerMinor1_eq`, `theorem layerMinor2_eq`, `theorem intentionally`, `theorem layerMinorAtFirstBreak_exactSourceWeightComponent`, `theorem familyMinor0_eq`, `theorem familyMinor1_eq`, `theorem familyMinor2_eq`, `theorem sourceMinor0_of_familyMinor`, `theorem sourceMinor1_of_familyMinor`, `theorem sourceMinor2_of_familyMinor`, `def actualRankTwoChart0`, `def actualRankTwoChart1`, `def actualRankTwoChart2`, `theorem actualRankTwo_or_layerMinor`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure`
+- Declarations: `theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square`, `theorem hessianPrincipalMinor_eq_square`, `def LayerMinorAtFirstBreak`, `def ExactSourceWeightLayerMinorAtFirstBreak`, `theorem layerMinor0_eq`, `theorem layerMinor1_eq`, `theorem layerMinor2_eq`, `theorem intentionally`, `theorem layerMinorAtFirstBreak_exactSourceWeightComponent`, `theorem familyMinor0_eq`, `theorem familyMinor1_eq`, `theorem familyMinor2_eq`, `theorem sourceMinor0_of_familyMinor`, `theorem sourceMinor1_of_familyMinor`, `theorem sourceMinor2_of_familyMinor`, `def actualRankTwoChart0`, `def actualRankTwoChart1`, `def actualRankTwoChart2`, `theorem actualRankTwo_or_layerMinor`, `theorem actualRankTwo_or_exactSourceWeightLayerMinor`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
 
@@ -11097,10 +11097,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure.lean`
 - Purpose: A19 exposed `.qs` rank-three branch after rank-two closure
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`
+- Declarations: `inductive QsRankThreeRankTwoClosure`, `theorem qs_rankThree_rankTwoClosure`, `inductive QsRankThreeSourceLiftedClosure`, `theorem qs_rankThree_sourceLiftedClosure`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRayTerminalReduction`
 
