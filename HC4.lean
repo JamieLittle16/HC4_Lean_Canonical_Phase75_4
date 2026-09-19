@@ -305,3 +305,6 @@ import HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal
 
 -- Positive support in two coordinates forces an honest source Hessian pivot.
 import HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor
+
+-- Homogeneous balance-free rays are codimension-two or carry an honest Hessian pivot.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo
