@@ -80,6 +80,31 @@ inductive FinalGeometryFrontier
           3 ≤ HC4.Polynomial.ordinaryDegree4 d →
             HC4.Toric.OnFacet facet (HC4.Polynomial.toToricExponent d))
 
+/-- Proposition-valued wrapper for the final frontier construction.
+
+The upstream residual reduction is a nested disjunction in `Prop`, so it
+cannot be eliminated directly into the `Type`-valued frontier.  Packaging
+the result as `Nonempty` keeps the case split proposition-valued; the public
+constructor below then performs one classical choice. -/
+private theorem finalGeometryFrontier_nonempty
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    Nonempty T.FinalGeometryFrontier := by
+  rcases
+      T.boundaryTransition_or_codimensionTwo_or_quadraticSquare_or_nonlinearConfined with
+    htop | hlower | hcodim | hsquare | hconfined
+  · rcases htop with ⟨facet, htransition⟩
+    exact ⟨.topBoundaryTransition facet htransition⟩
+  · rcases hlower with ⟨facet, C, htransition⟩
+    exact ⟨.lowerBoundaryTransition facet C htransition⟩
+  · exact ⟨.codimensionTwo hcodim
+      (T.exposedCodimensionTwo_resolvedRankTwoGeometry hcodim)⟩
+  · rcases hsquare with ⟨facet, d, hd, hdeg, homit, hpure⟩
+    exact ⟨.quadraticSquare facet d hd hdeg homit hpure⟩
+  · rcases hconfined with ⟨facet, hfacet⟩
+    exact ⟨.nonlinearConfined facet hfacet⟩
+
 /-- **Final zero-strict-low geometry frontier.**
 
 A genuine zero-clock strict-low terminal is exhausted by the two honest
@@ -90,20 +115,8 @@ noncomputable def finalGeometryFrontier
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
-    T.FinalGeometryFrontier := by
-  rcases
-      T.boundaryTransition_or_codimensionTwo_or_quadraticSquare_or_nonlinearConfined with
-    htop | hlower | hcodim | hsquare | hconfined
-  · rcases htop with ⟨facet, htransition⟩
-    exact .topBoundaryTransition facet htransition
-  · rcases hlower with ⟨facet, C, htransition⟩
-    exact .lowerBoundaryTransition facet C htransition
-  · exact .codimensionTwo hcodim
-      (T.exposedCodimensionTwo_resolvedRankTwoGeometry hcodim)
-  · rcases hsquare with ⟨facet, d, hd, hdeg, homit, hpure⟩
-    exact .quadraticSquare facet d hd hdeg homit hpure
-  · rcases hconfined with ⟨facet, hfacet⟩
-    exact .nonlinearConfined facet hfacet
+    T.FinalGeometryFrontier :=
+  Classical.choice (finalGeometryFrontier_nonempty T)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
