@@ -262,7 +262,8 @@ theorem balanceFreeHomogeneousRay_codimensionTwo_or_sourceRankTwo
   · rcases hminor with ⟨i, k, hik, hminor⟩
     let rho : Equiv.Perm (Fin 4) := Equiv.swap j (0 : Fin 4)
     have hsource :=
-      R.source_hessianPrincipalMinor_ne_zero_of_renamedZero hminor
+      CrossFacetRayData.source_hessianPrincipalMinor_ne_zero_of_renamedZero
+        R hminor
     have hne : rho.symm i ≠ rho.symm k := by
       intro h
       apply hik
