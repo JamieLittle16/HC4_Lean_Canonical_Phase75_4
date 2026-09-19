@@ -80,14 +80,12 @@ theorem kernel_ratio_eq_zero
             (MvPolynomial.C P.coefficient *
               (gradientRatioLinearForm P.ratio) ^ m) := by
                 rw [MvPolynomial.pderiv_C_mul]
-                have hmrepr : m = (m - 1) + 1 := by omega
-                conv_rhs =>
-                  rhs
-                  rw [hmrepr]
-                rw [pderiv_gradientRatioLinearForm_pow_succ]
-                congr 2
-                push_cast
-                ring
+                have hpowderiv :=
+                  pderiv_gradientRatioLinearForm_pow_succ
+                    P.ratio D.kernelCoordinate (m - 1)
+                have hmrepr : m - 1 + 1 = m := by omega
+                rw [hmrepr] at hpowderiv
+                rw [hpowderiv]
       _ = MvPolynomial.pderiv D.kernelCoordinate D.child := by
             rw [P.eq_power]
       _ = 0 := D.child_kernel
@@ -99,7 +97,11 @@ theorem kernel_ratio_eq_zero
   have hCs :
       MvPolynomial.C ((m : K) * P.ratio D.kernelCoordinate) ≠ 0 := by
     simpa using hscalar
-  exact (mul_ne_zero (mul_ne_zero hCa hCs) hpow) hderiv
+  rcases mul_eq_zero.mp hderiv with hleft | hright
+  · rcases mul_eq_zero.mp hleft with hCa0 | hCs0
+    · exact hCa hCa0
+    · exact hCs hCs0
+  · exact hpow hright
 
 end ChildLinearPowerData
 
