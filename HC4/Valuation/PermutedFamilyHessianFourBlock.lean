@@ -45,6 +45,66 @@ theorem permutedFamilyHessianFourBlock_matrix
   intro i j
   exact parameterFirstHessian_symmetric P (rho i) (rho j)
 
+/-- Determinant core of a permuted family Hessian block is the determinant
+of the unpermuted parameter-first Hessian. -/
+theorem permutedFamilyHessianFourBlock_determinantCore_eq_det
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).determinantCore =
+      (parameterFirstHessian P).det := by
+  calc
+    (permutedFamilyHessianFourBlock rho P).determinantCore =
+        (permutedFamilyHessianFourBlock rho P).matrix.det :=
+      (GeneralFourBlock.matrix_det
+        (permutedFamilyHessianFourBlock rho P)).symm
+    _ = ((parameterFirstHessian P).submatrix rho rho).det := by
+      rw [permutedFamilyHessianFourBlock_matrix]
+    _ = (parameterFirstHessian P).det := by
+      rw [Matrix.det_submatrix_equiv_self]
+
+/-- Symbolic projection formulas. Keeping rho abstract avoids reducing
+concrete swap terms during downstream elaboration. -/
+@[simp] theorem permutedFamilyHessianFourBlock_p
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).p =
+      parameterFirstHessian P (rho 0) (rho 2) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_q
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).q =
+      parameterFirstHessian P (rho 0) (rho 3) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_r
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).r =
+      parameterFirstHessian P (rho 1) (rho 2) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_s
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).s =
+      parameterFirstHessian P (rho 1) (rho 3) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_x
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).x =
+      parameterFirstHessian P (rho 2) (rho 2) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_y
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).y =
+      parameterFirstHessian P (rho 2) (rho 3) := rfl
+
+@[simp] theorem permutedFamilyHessianFourBlock_z
+    (rho : Equiv.Perm (Fin 4))
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    (permutedFamilyHessianFourBlock rho P).z =
+      parameterFirstHessian P (rho 3) (rho 3) := rfl
 /-- Simultaneous source-coordinate permutation preserves the exact family
 Hessian determinant clock. -/
 theorem permutedFamilyHessianFourBlock_determinantCore_eq_X_pow
