@@ -302,3 +302,6 @@ import HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit
 
 -- Homogeneous arbitrary-contact rays enter the canonical fixed-direction/codimension-two RR split.
 import HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal
+
+-- Positive support in two coordinates forces an honest source Hessian pivot.
+import HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor
