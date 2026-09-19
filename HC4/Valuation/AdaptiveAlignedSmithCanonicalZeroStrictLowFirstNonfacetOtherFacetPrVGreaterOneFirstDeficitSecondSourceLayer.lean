@@ -316,7 +316,7 @@ theorem firstDeficit_secondSourceLayerGeometry
         have hz' := hz
         change G.firstDeficitLeftStaggeredBlock.z.coeff k ≠ 0 at hz'
         rw [G.firstDeficitLeftStaggeredBlock_z_coeff k] at hz'
-        simpa [HC4.Polynomial.hessian_apply] using hz'
+        simpa only [HC4.Polynomial.hessian_apply] using hz'
       rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
           (K := K) (2 : Fin 4)
           (familyParameterLayer P.centralDeficitFamily k) hderiv with
@@ -357,7 +357,7 @@ theorem firstDeficit_secondSourceLayerGeometry
         have hz' := hz
         change G.firstDeficitRightStaggeredBlock.z.coeff k ≠ 0 at hz'
         rw [G.firstDeficitRightStaggeredBlock_z_coeff k] at hz'
-        simpa [HC4.Polynomial.hessian_apply] using hz'
+        simpa only [HC4.Polynomial.hessian_apply] using hz'
       rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
           (K := K) (1 : Fin 4)
           (familyParameterLayer P.centralDeficitFamily k) hderiv with
@@ -486,7 +486,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         exact firstDeficitOrder_two_le G hthree houtThree
       have hAne :
           HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 ≠ 0 := by
-        simpa [HC4.Polynomial.hessian_apply] using
+        simpa only [HC4.Polynomial.hessian_apply] using
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (1 : Fin 4) G.firstDeficitLayer first
             hfirst (by omega : 2 ≤ first 1))
@@ -510,7 +510,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (MvPolynomial.pderiv (2 : Fin 4)
               (MvPolynomial.pderiv (2 : Fin 4)
                 (familyParameterLayer P.centralDeficitFamily k))) = 0 := by
-        simpa [HC4.Polynomial.hessian_apply] using hthirdHessian
+        simpa only [HC4.Polynomial.hessian_apply] using hthirdHessian
       have hsecondLayer :
           second ∈
             (familyParameterLayer P.centralDeficitFamily k).support := by
@@ -581,7 +581,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         exact firstDeficitOrder_two_le G hthree houtThree
       have hAne :
           HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 ≠ 0 := by
-        simpa [HC4.Polynomial.hessian_apply] using
+        simpa only [HC4.Polynomial.hessian_apply] using
           (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
             (K := K) (2 : Fin 4) G.firstDeficitLayer first
             hfirst (by omega : 2 ≤ first 2))
@@ -605,7 +605,7 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (MvPolynomial.pderiv (1 : Fin 4)
               (MvPolynomial.pderiv (1 : Fin 4)
                 (familyParameterLayer P.centralDeficitFamily k))) = 0 := by
-        simpa [HC4.Polynomial.hessian_apply] using hthirdHessian
+        simpa only [HC4.Polynomial.hessian_apply] using hthirdHessian
       have hsecondLayer :
           second ∈
             (familyParameterLayer P.centralDeficitFamily k).support := by
