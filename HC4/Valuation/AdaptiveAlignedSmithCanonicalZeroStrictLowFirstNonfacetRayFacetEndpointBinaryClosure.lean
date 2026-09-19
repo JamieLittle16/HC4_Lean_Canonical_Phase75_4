@@ -73,28 +73,13 @@ private noncomputable def actualRankTwoChart0a
     (h : HC4.Polynomial.hessianPrincipalMinor
       (polynomialFamilySpecialFiber s.family) (0 : Fin 4) a ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
-  fin_cases a
-  · exact (ha0 rfl).elim
-  · refine {
-      permutation := Equiv.refl (Fin 4)
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa using h
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
-    refine {
-      permutation := rho
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using h
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
-    refine {
-      permutation := rho
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using h
+  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) a
+  refine {
+    permutation := rho
+    activeDet_coeff_zero_ne_zero := ?_
+  }
+  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+  simpa [rho, ha0] using h
 
 /-- A pure-axis facet endpoint has exactly the top degree on that axis. -/
 private theorem qs_ray_facetExponent_eq_single_axis
