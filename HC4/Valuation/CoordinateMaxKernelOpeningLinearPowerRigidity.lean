@@ -51,7 +51,8 @@ theorem linearForm_ne_zero
   intro hL
   apply D.child_ne_zero
   rw [P.eq_power, hL]
-  simp [hm]
+  have hm0 : m ≠ 0 := Nat.ne_of_gt hm
+  simp [hm0]
 
 /-- The first-opening kernel direction is absent from the exact linear form. -/
 theorem kernel_ratio_eq_zero
@@ -59,7 +60,8 @@ theorem kernel_ratio_eq_zero
     P.ratio D.kernelCoordinate = 0 := by
   have hmpos : 0 < m := by omega
   have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
-  have hL : gradientRatioLinearForm P.ratio ≠ 0 := P.linearForm_ne_zero hmpos
+  have hL : gradientRatioLinearForm P.ratio ≠ 0 :=
+    ChildLinearPowerData.linearForm_ne_zero D P hmpos
   have hpow :
       (gradientRatioLinearForm P.ratio) ^ (m - 1) ≠ 0 :=
     pow_ne_zero _ hL
