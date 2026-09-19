@@ -76,14 +76,24 @@ theorem qs_ray_exponent_eq_of_zeroCoordinate_eq
   have hkZ : (d k : ℤ) = (e k : ℤ) := by linarith
   exact_mod_cast hkZ
 
+/-- The lower ray face is nonzero because it contains the stored facet
+endpoint. -/
+theorem qs_ray_face_ne_zero
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs) :
+    C.ray.face ≠ 0 := by
+  intro hzero
+  have hmem := C.ray.facet_mem_face
+  rw [hzero] at hmem
+  simpa using hmem
+
 /-- The coordinate-`0` maximum on the lower affine ray is a literal
 singleton monomial. -/
 theorem qs_ray_coordinateMax_zero_initialForm_eq_monomial
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs) :
     let hface : C.ray.face ≠ 0 :=
-      MvPolynomial.support_nonempty.mpr ⟨C.ray.facetExponent,
-        C.ray.facet_mem_face⟩
+      C.qs_ray_face_ne_zero
     let M := HC4.Newton.coordinateMaxInitialData
       C.ray.face hface (0 : Fin 4)
     M.face =
@@ -91,8 +101,7 @@ theorem qs_ray_coordinateMax_zero_initialForm_eq_monomial
         (MvPolynomial.coeff M.witness C.ray.face) := by
   dsimp only
   let hface : C.ray.face ≠ 0 :=
-    MvPolynomial.support_nonempty.mpr
-      ⟨C.ray.facetExponent, C.ray.facet_mem_face⟩
+    C.qs_ray_face_ne_zero
   let M := HC4.Newton.coordinateMaxInitialData
     C.ray.face hface (0 : Fin 4)
   rw [M.face_eq]
@@ -114,15 +123,13 @@ theorem qs_ray_coordinateMax_zero_witness_pos
     (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
       T .qs) :
     let hface : C.ray.face ≠ 0 :=
-      MvPolynomial.support_nonempty.mpr ⟨C.ray.facetExponent,
-        C.ray.facet_mem_face⟩
+      C.qs_ray_face_ne_zero
     let M := HC4.Newton.coordinateMaxInitialData
       C.ray.face hface (0 : Fin 4)
     0 < M.witness (0 : Fin 4) := by
   dsimp only
   let hface : C.ray.face ≠ 0 :=
-    MvPolynomial.support_nonempty.mpr
-      ⟨C.ray.facetExponent, C.ray.facet_mem_face⟩
+    C.qs_ray_face_ne_zero
   let M := HC4.Newton.coordinateMaxInitialData
     C.ray.face hface (0 : Fin 4)
   have hle :
@@ -140,8 +147,7 @@ theorem qs_ray_sourceMinor_of_coordinateMax_zero_transverse
     (hj0 : j ≠ (0 : Fin 4))
     (hjpos :
       let hface : C.ray.face ≠ 0 :=
-        MvPolynomial.support_nonempty.mpr ⟨C.ray.facetExponent,
-          C.ray.facet_mem_face⟩
+        C.qs_ray_face_ne_zero
       let M := HC4.Newton.coordinateMaxInitialData
         C.ray.face hface (0 : Fin 4)
       0 < M.witness j) :
@@ -149,8 +155,7 @@ theorem qs_ray_sourceMinor_of_coordinateMax_zero_transverse
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)
         (0 : Fin 4) j ≠ 0 := by
   let hface : C.ray.face ≠ 0 :=
-    MvPolynomial.support_nonempty.mpr
-      ⟨C.ray.facetExponent, C.ray.facet_mem_face⟩
+    C.qs_ray_face_ne_zero
   let M := HC4.Newton.coordinateMaxInitialData
     C.ray.face hface (0 : Fin 4)
   have h0pos : 0 < M.witness (0 : Fin 4) :=
@@ -193,28 +198,13 @@ private noncomputable def actualRankTwoChart0j
     (h : HC4.Polynomial.hessianPrincipalMinor
       (polynomialFamilySpecialFiber s.family) (0 : Fin 4) j ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
-  fin_cases j
-  · exact (hj0 rfl).elim
-  · refine {
-      permutation := Equiv.refl (Fin 4)
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa using h
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
-    refine {
-      permutation := rho
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using h
-  · let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
-    refine {
-      permutation := rho
-      activeDet_coeff_zero_ne_zero := ?_
-    }
-    rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-    simpa [rho] using h
+  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) j
+  refine {
+    permutation := rho
+    activeDet_coeff_zero_ne_zero := ?_
+  }
+  rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
+  simpa [rho, hj0] using h
 
 /-- If the coordinate-`0` maximal ray point is pure longitudinal and the
 starting endpoint is supported on the base plane `(0,a)`, affine
@@ -229,16 +219,14 @@ theorem qs_ray_binarySupport_of_coordinateMax_zero_pure
         C.ray.facetExponent k = 0)
     (hmaxPure :
       let hface : C.ray.face ≠ 0 :=
-        MvPolynomial.support_nonempty.mpr ⟨C.ray.facetExponent,
-          C.ray.facet_mem_face⟩
+        C.qs_ray_face_ne_zero
       let M := HC4.Newton.coordinateMaxInitialData
         C.ray.face hface (0 : Fin 4)
       ∀ k : Fin 4, k ≠ (0 : Fin 4) → M.witness k = 0) :
     AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransverseBaseSupport
       a C.ray.face := by
   let hface : C.ray.face ≠ 0 :=
-    MvPolynomial.support_nonempty.mpr
-      ⟨C.ray.facetExponent, C.ray.facet_mem_face⟩
+    C.qs_ray_face_ne_zero
   let M := HC4.Newton.coordinateMaxInitialData
     C.ray.face hface (0 : Fin 4)
   have hM0pos : 0 < M.witness (0 : Fin 4) :=
@@ -286,8 +274,7 @@ theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport
       AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransverseBaseSupport
         a C.ray.face := by
   let hface : C.ray.face ≠ 0 :=
-    MvPolynomial.support_nonempty.mpr
-      ⟨C.ray.facetExponent, C.ray.facet_mem_face⟩
+    C.qs_ray_face_ne_zero
   let M := HC4.Newton.coordinateMaxInitialData
     C.ray.face hface (0 : Fin 4)
   by_cases h1 : 0 < M.witness (1 : Fin 4)
