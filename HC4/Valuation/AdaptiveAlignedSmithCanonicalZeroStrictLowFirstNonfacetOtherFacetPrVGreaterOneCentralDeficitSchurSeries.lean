@@ -60,8 +60,7 @@ variable
 
 /-- Complete parameter-first Hessian of the total-deficit family, with the
 central `(0,3)` principal block placed first. -/
-noncomputable def centralDeficitSchurBlock
-    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
+noncomputable def centralDeficitSchurBlock :
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   GeneralFourBlock.ofSymmetricMatrix
     ((parameterFirstHessian P.centralDeficitFamily).submatrix
@@ -70,7 +69,7 @@ noncomputable def centralDeficitSchurBlock
 /-- Displaying the Schur four-block recovers the literal permuted complete
 source Hessian. -/
 theorem centralDeficitSchurBlock_matrix :
-    G.centralDeficitSchurBlock.matrix =
+    (centralDeficitSchurBlock (P := P)).matrix =
       (parameterFirstHessian P.centralDeficitFamily).submatrix
         centralDeficitSchurPerm centralDeficitSchurPerm := by
   apply GeneralFourBlock.matrix_ofSymmetricMatrix
@@ -82,7 +81,7 @@ theorem centralDeficitSchurBlock_matrix :
 /-- Constant coefficient of the active determinant is the honest Hessian
 principal minor of total-deficit layer zero in coordinates `(0,3)`. -/
 theorem centralDeficitSchurBlock_activeDet_coeff_zero_eq :
-    G.centralDeficitSchurBlock.activeDet.coeff 0 =
+    (centralDeficitSchurBlock (P := P)).activeDet.coeff 0 =
       HC4.Polynomial.hessianPrincipalMinor
         (familyParameterLayer P.centralDeficitFamily 0)
         (0 : Fin 4) (3 : Fin 4) := by
@@ -113,10 +112,11 @@ theorem centralDeficitSchurBlock_activeDet_coeff_zero_eq :
 
 /-- The active determinant has a genuinely nonzero constant coefficient. -/
 theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    G.centralDeficitSchurBlock.activeDet.coeff 0 ≠ 0 := by
-  rw [G.centralDeficitSchurBlock_activeDet_coeff_zero_eq]
+    (centralDeficitSchurBlock (P := P)).activeDet.coeff 0 ≠ 0 := by
+  rw [centralDeficitSchurBlock_activeDet_coeff_zero_eq (P := P)]
   rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
   rw [← G.exposure_face_eq]
   exact G.exposure_rankTwo_minor
@@ -124,15 +124,15 @@ theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne
 /-- The reordered block is still the complete Hessian of the honest singular
 total-deficit family. -/
 theorem centralDeficitSchurBlock_determinantCore_eq_zero :
-    G.centralDeficitSchurBlock.determinantCore = 0 := by
+    (centralDeficitSchurBlock (P := P)).determinantCore = 0 := by
   calc
-    G.centralDeficitSchurBlock.determinantCore =
-        G.centralDeficitSchurBlock.matrix.det :=
-      (GeneralFourBlock.matrix_det G.centralDeficitSchurBlock).symm
+    (centralDeficitSchurBlock (P := P)).determinantCore =
+        (centralDeficitSchurBlock (P := P)).matrix.det :=
+      (GeneralFourBlock.matrix_det (centralDeficitSchurBlock (P := P))).symm
     _ =
         ((parameterFirstHessian P.centralDeficitFamily).submatrix
           centralDeficitSchurPerm centralDeficitSchurPerm).det := by
-      rw [G.centralDeficitSchurBlock_matrix]
+      rw [centralDeficitSchurBlock_matrix (P := P)]
     _ = (parameterFirstHessian P.centralDeficitFamily).det := by
       rw [Matrix.det_submatrix_equiv_self]
     _ = 0 := by
@@ -142,16 +142,17 @@ theorem centralDeficitSchurBlock_determinantCore_eq_zero :
 /-- The whole denominator-cleared binary Schur determinant vanishes,
 not merely its first few coefficients. -/
 theorem centralDeficitSchurBlock_schurDetCore_eq_zero :
-    G.centralDeficitSchurBlock.schurDetCore = 0 :=
-  G.centralDeficitSchurBlock.schurDetCore_eq_zero_of_determinantCore_eq_zero
-    G.centralDeficitSchurBlock_determinantCore_eq_zero
+    (centralDeficitSchurBlock (P := P)).schurDetCore = 0 :=
+  GeneralFourBlock.schurDetCore_eq_zero_of_determinantCore_eq_zero
+    (centralDeficitSchurBlock (P := P))
+    (centralDeficitSchurBlock_determinantCore_eq_zero (P := P))
 
 /-- Series-facing form: all reflected coefficient relations are contained in
 one exact polynomial identity. -/
 theorem centralDeficitSchurSeries_determinant_eq_zero :
-    G.centralDeficitSchurBlock.polynomialSchurSeries.determinant = 0 := by
+    (centralDeficitSchurBlock (P := P)).polynomialSchurSeries.determinant = 0 := by
   rw [GeneralFourBlock.polynomialSchurSeries_determinant]
-  rw [G.centralDeficitSchurBlock_determinantCore_eq_zero]
+  rw [centralDeficitSchurBlock_determinantCore_eq_zero (P := P)]
   simp
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
