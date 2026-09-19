@@ -384,6 +384,7 @@ human architecture guide.
 - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`
   - `HC4.Newton.TerminalCoordinatePermutation`
+  - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
   - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
   - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -1202,6 +1203,7 @@ human architecture guide.
 - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.Polynomial.FourExponent`
+  - `HC4.RationalRigidity.RankThreeAffineTopBoundary`
   - `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
 - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`

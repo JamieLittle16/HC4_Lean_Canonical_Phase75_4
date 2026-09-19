@@ -557,10 +557,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/FiniteSupportCrossFacetRayCoordinatePermutation.lean`
 - Purpose: Coordinate-normalise a balance-free cross-facet ray
 - A-labels: none detected
-- Local imports: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`, `HC4.Newton.TerminalCoordinatePermutation`
+- Local imports: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRTerminal`, `HC4.Newton.TerminalCoordinatePermutation`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
-- Declarations: `def CrossFacetRayData.renameContactToZero`, `theorem CrossFacetRayData.renameContactToZero_hessian_zero`, `theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo`, `inductive CrossFacetRayData.RenamedZeroTerminalOutcome`, `theorem CrossFacetRayData.renamedZeroTerminalOutcome`
+- Declarations: `def CrossFacetRayData.renameContactToZero`, `theorem CrossFacetRayData.renameContactToZero_hessian_zero`, `theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo`, `theorem CrossFacetRayData.renamedZero_topOtherFacet_or_codimensionTwo`, `inductive CrossFacetRayData.RenamedZeroTerminalOutcome`, `theorem CrossFacetRayData.renamedZeroTerminalOutcome`
 
 ### `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 
@@ -3523,10 +3523,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity/RankThreeAffineHomogeneousTerminalSplit.lean`
 - Purpose: Balance-free homogeneous affine terminal split
 - A-labels: none detected
-- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
+- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
-- Declarations: `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`
+- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+- Declarations: `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
 
 ### `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 
@@ -3575,7 +3575,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.35`, `A18.5.36`
 - Local imports: `HC4.RationalRigidity.RankThreeQuadraticTopRelation`, `HC4.Polynomial.RankThreeAffineLineRealisation`, `HC4.Polynomial.FourExponent`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`, `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`, `HC4.RationalRigidity.RankThreeSupportedEndpointBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
+- Imported by local modules: `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`, `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`, `HC4.RationalRigidity.RankThreeSupportedEndpointBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayBoundary`
 - Declarations: `theorem rankThreeAffineLine_topExponent_on_boundary_of_certificate`
 
 ### `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`

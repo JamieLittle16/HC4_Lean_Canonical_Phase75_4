@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9043**.
+Distinct declaration spellings indexed: **9045**.
 
 ## Repeated declaration spellings
 
@@ -1498,6 +1498,7 @@ Distinct declaration spellings indexed: **9043**.
 - `CrossFacetRayData.renamedZeroTerminalOutcome` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.renamedZero_homogeneousTerminalSplit` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
 - `CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+- `CrossFacetRayData.renamedZero_topOtherFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroAffineLineData` — `def` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
 - `CrossFacetRayData.zeroAffineLineData_hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
@@ -7554,6 +7555,7 @@ Distinct declaration spellings indexed: **9043**.
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+- `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
 - `rankThree_coordinate_pos_on_otherFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `rankThree_core_det_zero_of_lineMoment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
