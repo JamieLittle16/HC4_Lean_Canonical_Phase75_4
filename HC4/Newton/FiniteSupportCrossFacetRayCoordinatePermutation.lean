@@ -131,6 +131,46 @@ theorem CrossFacetRayData.renamedZero_terminalCertificate_or_codimensionTwo
     R.renameContactToZero_hessian_zero hzero
   exact R0.zero_terminalCertificate_or_codimensionTwo hzero0
 
+
+/-- Compact constructor form of the canonical terminal split.  Packaging the
+large dependent certificate once here keeps downstream valuation adapters
+cheap to elaborate. -/
+inductive CrossFacetRayData.RenamedZeroTerminalOutcome
+    {F : MvPolynomial (Fin 4) K}
+    {j : Fin 4}
+    (R : CrossFacetRayData F j) : Prop
+  | rankThree
+      (hthree :
+        MvRankThreeOnFacet .qs R.renameContactToZero.facetExponent)
+      (certificate :
+        HC4.RationalRigidity.HasRankThreePolynomialTerminalCertificate
+          (phi := R.renameContactToZero.zeroCoefficientPolynomial)
+          ((R.renameContactToZero.facetExponent 1 : ℕ) : K)
+          ((R.renameContactToZero.facetExponent 2 : ℕ) : K)
+          ((R.renameContactToZero.facetExponent 3 : ℕ) : K)
+          (1 : K)
+          (R.renameContactToZero.zeroSlope (1 : Fin 4))
+          (R.renameContactToZero.zeroSlope (2 : Fin 4))
+          (R.renameContactToZero.zeroSlope (3 : Fin 4)))
+  | codimensionTwo
+      (boundary :
+        MvExponentOnCodimensionTwoBoundary
+          R.renameContactToZero.facetExponent)
+
+/-- Constructor-valued form of
+`renamedZero_terminalCertificate_or_codimensionTwo`. -/
+theorem CrossFacetRayData.renamedZeroTerminalOutcome
+    [IsAlgClosed K]
+    {F : MvPolynomial (Fin 4) K}
+    {j : Fin 4}
+    (R : CrossFacetRayData F j)
+    (hzero : hessianDeterminant F = 0) :
+    R.RenamedZeroTerminalOutcome := by
+  rcases R.renamedZero_terminalCertificate_or_codimensionTwo hzero with
+    hterminal | hcodim
+  · exact .rankThree hterminal.1 hterminal.2
+  · exact .codimensionTwo hcodim
+
 end
 
 end HC4.Newton
