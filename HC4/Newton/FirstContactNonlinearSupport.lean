@@ -59,6 +59,46 @@ theorem firstContact_initialForm_support_degree_ge_three
   rw [← weight_scaledContactWeight] at hstrict
   omega
 
+
+/-- The nonlinear-support conclusion also holds with a pure quadratic square
+in the bumped coordinate when the contact satisfies the stronger doubled-bump
+margin. -/
+theorem firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le
+    {K : Type*} [CommRing K]
+    {j : Fin 4} {scale bump m : ℕ}
+    {psi : MvPolynomial (Fin 4) K}
+    (hm : 3 ≤ m)
+    (hscale : 0 < scale)
+    (hbump : 2 * bump ≤ scale * (m - 3)) :
+    ∀ d ∈
+        (initialForm (scaledContactWeight j scale bump)
+          (scale * m : ℕ) psi).support,
+      3 ≤ ordinaryDegree4 d := by
+  intro d hd
+  have hdPsi : d ∈ psi.support :=
+    support_initialForm_subset
+      (scaledContactWeight j scale bump) (scale * m : ℕ) psi hd
+  have hcoeff :
+      MvPolynomial.coeff d
+        (initialForm (scaledContactWeight j scale bump)
+          (scale * m : ℕ) psi) ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  have hweight :
+      Finsupp.weight (scaledContactWeight j scale bump) d =
+        ((scale * m : ℕ) : ℤ) := by
+    exact
+      (initialForm_isWeightedHomogeneous
+        (scaledContactWeight j scale bump) (scale * m : ℕ) psi) hcoeff
+  by_contra hnot
+  have hdeg2 : ordinaryDegree4 d ≤ 2 := by omega
+  have hj2 : d j ≤ 2 := by
+    fin_cases j <;> simp [ordinaryDegree4] at hdeg2 ⊢ <;> omega
+  have hstrict :=
+    lowDegree_below_scaled_contact_of_two_mul_bump_le
+      hscale hdeg2 hj2 hbump hm
+  rw [← weight_scaledContactWeight] at hstrict
+  omega
+
 end
 
 end HC4.Newton
