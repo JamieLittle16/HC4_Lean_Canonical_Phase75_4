@@ -115,6 +115,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceBoundaryVertex`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
@@ -2428,6 +2429,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
   - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
+  - `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+  - `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
   - `HC4.Newton.MixedDegreeFirstWallCompetition`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroBlockerCoreReduction`

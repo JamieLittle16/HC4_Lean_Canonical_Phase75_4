@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9047**.
+Distinct declaration spellings indexed: **9048**.
 
 ## Repeated declaration spellings
 
@@ -3347,6 +3347,7 @@ Distinct declaration spellings indexed: **9047**.
 - `avoids` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `axisRestriction_derivative_eval_one_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `axisRestriction_derivative_eval_zero_eq_zero` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `balanceFreeHomogeneousRay_codimensionTwo_or_rankTwoFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
 - `balanced_distance_of_resonance` — `theorem` in `HC4.Polynomial.FiniteStaircaseOneFiberResonanceArithmetic`
 - `balanced_iff_normal_form` — `theorem` in `HC4.Toric.InvariantSemigroup`
 - `balanced_on_pr_normal_form` — `theorem` in `HC4.Toric.Facets`
