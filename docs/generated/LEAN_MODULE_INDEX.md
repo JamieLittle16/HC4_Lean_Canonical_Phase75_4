@@ -1450,7 +1450,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.FourExponent`, `HC4.MongeAmpere.FirstContactMaximal`
 - External imports: none
 - Imported by local modules: `HC4.Newton`, `HC4.Newton.FirstContactSelection`
-- Declarations: `def scaledContactWeight`, `theorem sum_scaledContactWeight`, `theorem scaledContact_hessianDeterminant_eq_zero_of_isWeightLE`, `def scaledContactExponentWeight`, `theorem weight_scaledContactWeight`, `theorem isWeightLE_scaledContactWeight_iff`, `theorem lowDegree_below_scaled_contact`, `theorem scaledContact_top_facet`, `theorem contact_equation`, `theorem contact_degree_lt`, `theorem bump_le_scale_mul_m_sub_three`, `theorem quadratic_below_scaled_contact`
+- Declarations: `def scaledContactWeight`, `theorem sum_scaledContactWeight`, `theorem scaledContact_hessianDeterminant_eq_zero_of_isWeightLE`, `def scaledContactExponentWeight`, `theorem weight_scaledContactWeight`, `theorem isWeightLE_scaledContactWeight_iff`, `theorem lowDegree_below_scaled_contact`, `theorem lowDegree_below_scaled_contact_of_two_mul_bump_le`, `theorem scaledContact_top_facet`, `theorem contact_equation`, `theorem contact_degree_lt`, `theorem bump_le_scale_mul_m_sub_three`, `theorem quadratic_below_scaled_contact`
 
 ### `HC4.Newton.SchurTangentialRawRay`
 
