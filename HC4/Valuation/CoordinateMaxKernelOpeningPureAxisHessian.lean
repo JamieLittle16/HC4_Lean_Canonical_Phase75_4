@@ -70,7 +70,6 @@ theorem extraction_hessian_ne_zero
     (hm : 3 ≤ m) :
     HC4.Polynomial.hessian D.child
       D.extractionCoordinate D.extractionCoordinate ≠ 0 := by
-  have hrepr : m = (m - 2) + 2 := by omega
   have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
   have hc : P.ratio D.extractionCoordinate ≠ 0 :=
     ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P (by omega)
@@ -80,8 +79,14 @@ theorem extraction_hessian_ne_zero
     exact_mod_cast (show m - 2 + 2 ≠ 0 by omega)
   have hn1 : (((m - 2 + 1 : ℕ) : K)) ≠ 0 := by
     exact_mod_cast (show m - 2 + 1 ≠ 0 by omega)
-  rw [P.eq_power, hrepr]
-  rw [hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin]
+  rw [P.eq_power]
+  have hformula :=
+    hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin
+      P.coefficient P.ratio (m - 2)
+      D.extractionCoordinate D.extractionCoordinate
+  have hrepr : m - 2 + 2 = m := by omega
+  rw [hrepr] at hformula
+  rw [hformula]
   apply mul_ne_zero
   · simp only [MvPolynomial.C_ne_zero]
     exact mul_ne_zero (mul_ne_zero (mul_ne_zero (mul_ne_zero ha hn2) hn1) hc) hc
