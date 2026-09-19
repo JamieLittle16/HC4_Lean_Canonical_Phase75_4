@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9057**.
+Distinct declaration spellings indexed: **9059**.
 
 ## Repeated declaration spellings
 
@@ -5796,6 +5796,8 @@ Distinct declaration spellings indexed: **9057**.
 - `kernelDiagonal_coeff_kernelOrder_eq_zero` — `theorem` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
 - `kernelDiagonal_coeff_order_eq_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `kernelDiagonal_coeff_secondInteraction_ne_zero` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
+- `kernelDiagonal_secondInteraction_cancelled` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
+- `kernelDiagonal_secondInteraction_identity` — `theorem` in `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - `kernelExponent_dvd_denominatorClearingRamification` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelInflateDerivativeCoefficient` — `def` in `HC4.Valuation.KernelInflationHessianDefect`
 - `kernelInflateHom` — `def` in `HC4.Valuation.KernelInflationHessianDefect`

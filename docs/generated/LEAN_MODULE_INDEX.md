@@ -13950,7 +13950,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
-- Declarations: `theorem coeff_active_mul_kernelPair_eq_zero_before_double`, `theorem determinantCore_coeff_eq_activeThree_mul_z_before_double`, `theorem coeff_active_mul_kernelPair_at_double`, `theorem determinantCore_coeff_doubleKernel_of_middleKernelBase`, `theorem kernelDiagonal_coeff_eq_zero_before_secondInteraction`, `theorem kernelDiagonal_coeff_secondInteraction_ne_zero`
+- Declarations: `theorem coeff_active_mul_kernelPair_eq_zero_before_double`, `theorem determinantCore_coeff_eq_activeThree_mul_z_before_double`, `theorem coeff_active_mul_kernelPair_at_double`, `theorem determinantCore_coeff_doubleKernel_of_middleKernelBase`, `theorem kernelDiagonal_coeff_eq_zero_before_secondInteraction`, `theorem kernelDiagonal_secondInteraction_identity`, `theorem kernelDiagonal_secondInteraction_cancelled`, `theorem kernelDiagonal_coeff_secondInteraction_ne_zero`
 
 ### `HC4.Valuation.StrictSmithConstantResidualRigidity`
 
