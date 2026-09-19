@@ -10787,7 +10787,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure.lean`
 - Purpose: Complete lower-ray facet endpoint rank-two frontier
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - Declarations: `structure QsRayFacetEndpointFirstBreakData`, `theorem firstBreakRankTwoOutcome`, `theorem qs_ray_facetEndpoint_actualRankTwo_or_firstBreak`
@@ -10809,7 +10809,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`, `HC4.Newton.FiniteSupportExposedVertex`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
 - Declarations: `theorem qs_ray_exponent_eq_of_zeroCoordinate_eq`, `theorem qs_ray_coordinateMax_zero_initialForm_eq_monomial`, `theorem qs_ray_coordinateMax_zero_witness_pos`, `theorem qs_ray_sourceMinor_of_coordinateMax_zero_transverse`, `def actualRankTwoChart0j`, `theorem qs_ray_binarySupport_of_coordinateMax_zero_pure`, `theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
@@ -10819,7 +10819,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirectInitialForm`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `HC4.Polynomial.UniqueMaximalInitialMonomial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - Declarations: `def qsRayFacetEndpointWeight`, `theorem qsRayFacetEndpointWeight_finsupp`, `theorem qs_ray_facetEndpoint_unique_zeroCoordinate`, `theorem qs_ray_facetEndpoint_initialForm_eq_monomial`, `theorem qs_ray_facetEndpoint_sourceMinor_of_two_positive`, `def actualRankTwoChart12`, `def actualRankTwoChart13`, `def actualRankTwoChart23`, `theorem qs_ray_facetEndpoint_actualRankTwo_or_pureAxis`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
