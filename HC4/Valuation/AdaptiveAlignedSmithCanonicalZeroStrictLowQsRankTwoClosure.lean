@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsActualRankTwoFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift
 import Mathlib.Tactic
 
@@ -117,6 +118,24 @@ theorem qs_rankThree_rankTwoClosure_noSquare
     · exact .facetEndpointFirstBreak C hbreak
   · exact .actualRankTwo htwo
 
+/-- **Square-free `.qs` frontier with the endpoint residual consumed.**
+The coordinate-max/binary endpoint closure upgrades the former first-break
+alternative to an actual represented-source rank-two Hessian chart. -/
+theorem qs_rankThree_actualRankTwo_noSquare
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+        T.terminal.blocker.presented) := by
+  rcases T.qs_rankThree_startCodimensionTwo_or_actualRankTwo hthree with
+    hstart | htwo
+  · rcases hstart with ⟨C, _hcodim⟩
+    exact C.qs_ray_facetEndpoint_actualRankTwo
+  · exact htwo
+
 /-- Source-lifted square-free form of the same frontier. -/
 inductive QsRankThreeSourceLiftedClosureNoSquare
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -142,15 +161,7 @@ theorem qs_rankThree_sourceLiftedClosure_noSquare
     (hthree : MvRankThreeOnFacet .qs
       T.exposedSingularBoundaryVertex.exponent) :
     T.QsRankThreeSourceLiftedClosureNoSquare := by
-  cases T.qs_rankThree_rankTwoClosure_noSquare hthree with
-  | actualRankTwo C =>
-      exact .actualRankTwo C
-  | facetEndpointFirstBreak C hD =>
-      rcases hD with ⟨D⟩
-      rcases D.actualRankTwo_or_exactSourceWeightLayerMinor with
-        hactual | hlayer
-      · exact .actualRankTwo hactual
-      · exact .exactSourceWeightLayer C D hlayer
+  exact .actualRankTwo (T.qs_rankThree_actualRankTwo_noSquare hthree)
 
 
 /-- Assembly-facing refinement of `QsRankThreeRankTwoClosure`.  The endpoint
