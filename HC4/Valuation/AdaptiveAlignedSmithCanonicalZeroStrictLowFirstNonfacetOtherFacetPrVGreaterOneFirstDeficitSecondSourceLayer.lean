@@ -115,6 +115,19 @@ theorem pderiv_right_eq_zero_of_mul_eq_square
   simp only [zero_mul, zero_add, mul_zero, add_zero] at hdiff
   exact (mul_eq_zero.mp hdiff).resolve_left hAne
 
+
+/-- A monomial which is linear in one coordinate has zero second pure
+derivative in that coordinate.  Keeping this calculation state-free prevents
+large source-provenance contexts from entering monomial simplification. -/
+theorem pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
+    (i : Fin 4)
+    (d : Fin 4 →₀ ℕ)
+    (a : K)
+    (hdi : d i = 1) :
+    MvPolynomial.pderiv i
+      (MvPolynomial.pderiv i (MvPolynomial.monomial d a)) = 0 := by
+  simp [MvPolynomial.pderiv_monomial, hdi]
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -465,7 +478,8 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (MvPolynomial.pderiv (2 : Fin 4)
               (familyParameterLayer P.centralDeficitFamily j)) = 0 := by
         rw [hlayer]
-        simp [MvPolynomial.pderiv_monomial, hop2]
+        exact pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
+          (K := K) (2 : Fin 4) opposite B hop2
       have hS0 :
           MvPolynomial.pderiv (2 : Fin 4)
             (HC4.Polynomial.hessian
@@ -560,7 +574,8 @@ theorem firstDeficit_reflectedSecondLayerGeometry
             (MvPolynomial.pderiv (1 : Fin 4)
               (familyParameterLayer P.centralDeficitFamily j)) = 0 := by
         rw [hlayer]
-        simp [MvPolynomial.pderiv_monomial, hop1]
+        exact pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
+          (K := K) (1 : Fin 4) opposite B hop1
       have hS0 :
           MvPolynomial.pderiv (1 : Fin 4)
             (HC4.Polynomial.hessian
