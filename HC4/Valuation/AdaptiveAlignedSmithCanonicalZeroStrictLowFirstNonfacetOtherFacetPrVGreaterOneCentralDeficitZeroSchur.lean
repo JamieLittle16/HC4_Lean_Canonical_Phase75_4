@@ -118,45 +118,37 @@ row/column reordering. -/
 theorem centralDeficitSchurA_eq_rightRoofDet :
     G.centralDeficitSchurBlock.schurA =
       G.firstDeficitRightActiveHessian.det := by
-  rw [← GeneralFourBlock.firstThreeMinorMatrix_det]
-  unfold GeneralFourBlock.firstThreeMinorMatrix
-    firstDeficitRightActiveHessian centralDeficitSchurBlock centralDeficitSchurBlockOf
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
-    firstDeficitRightActiveIndex]
-  simp [Matrix.det_fin_three]
-  have h20 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (2 : Fin 4) 0
-  have h23 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (2 : Fin 4) 3
-  have h30 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (3 : Fin 4) 0
-  rw [h20, h23, h30]
-  ring
+  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
+  have hmatrix :
+      GeneralFourBlock.firstThreeMinorMatrix G.centralDeficitSchurBlock =
+        G.firstDeficitRightActiveHessian.submatrix sigma sigma := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [sigma, GeneralFourBlock.firstThreeMinorMatrix,
+        firstDeficitRightActiveHessian, centralDeficitSchurBlock,
+        centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+        firstDeficitRightActiveIndex, parameterFirstHessian_symmetric]
+  rw [← GeneralFourBlock.firstThreeMinorMatrix_det, hmatrix]
+  exact Matrix.det_submatrix_equiv_self
+    G.firstDeficitRightActiveHessian sigma
 
 /-- Second principal cleared Schur entry equals the left roof determinant. -/
 theorem centralDeficitSchurC_eq_leftRoofDet :
     G.centralDeficitSchurBlock.schurC =
       G.firstDeficitLeftActiveHessian.det := by
-  rw [← GeneralFourBlock.secondThreeMinorMatrix_det]
-  unfold GeneralFourBlock.secondThreeMinorMatrix
-    firstDeficitLeftActiveHessian centralDeficitSchurBlock centralDeficitSchurBlockOf
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, centralDeficitSchurPerm_three,
-    firstDeficitLeftActiveIndex]
-  simp [Matrix.det_fin_three]
-  have h10 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (1 : Fin 4) 0
-  have h13 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (1 : Fin 4) 3
-  have h30 := parameterFirstHessian_symmetric
-    P.centralDeficitFamily (3 : Fin 4) 0
-  rw [h10, h13, h30]
-  ring
+  let sigma : Equiv.Perm (Fin 3) := Equiv.swap 1 2
+  have hmatrix :
+      GeneralFourBlock.secondThreeMinorMatrix G.centralDeficitSchurBlock =
+        G.firstDeficitLeftActiveHessian.submatrix sigma sigma := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [sigma, GeneralFourBlock.secondThreeMinorMatrix,
+        firstDeficitLeftActiveHessian, centralDeficitSchurBlock,
+        centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+        firstDeficitLeftActiveIndex, parameterFirstHessian_symmetric]
+  rw [← GeneralFourBlock.secondThreeMinorMatrix_det, hmatrix]
+  exact Matrix.det_submatrix_equiv_self
+    G.firstDeficitLeftActiveHessian sigma
 
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
 theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
