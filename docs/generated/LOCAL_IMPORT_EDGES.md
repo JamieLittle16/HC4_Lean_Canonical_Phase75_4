@@ -16,6 +16,7 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportCrossFacetExposure`
   - `HC4.Newton.FiniteSupportCrossFacetRayAffineRRBoundaryTransition`
   - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
+  - `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
   - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.FirstContactAffinePlane`
   - `HC4.Newton.FirstContactCrossFacetAffineLine`
