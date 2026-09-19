@@ -9257,10 +9257,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries.lean`
 - Purpose: Source-honest binary Schur series of the central total-deficit family
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`, `HC4.Newton.RankOneSchurSeriesAlignment`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`, `HC4.Valuation.PermutedFamilyHessianFourBlock`, `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
-- Declarations: `def centralDeficitSchurPerm`, `def centralDeficitSchurBlockOf`, `theorem centralDeficitSchurBlockOf_p_coeff_zero`, `theorem centralDeficitSchurBlockOf_q_coeff_zero`, `theorem centralDeficitSchurBlockOf_r_coeff_zero`, `theorem centralDeficitSchurBlockOf_s_coeff_zero`, `theorem centralDeficitSchurBlockOf_x_coeff_zero`, `theorem centralDeficitSchurBlockOf_y_coeff_zero`, `theorem centralDeficitSchurBlockOf_z_coeff_zero`, `theorem centralDeficitActiveDet_coeff_zero_eq`, `def centralDeficitSchurBlock`, `theorem centralDeficitSchurBlock_matrix`, `theorem centralDeficitSchurBlock_determinantCore_eq_zero`, `theorem centralDeficitSchurBlock_schurDetCore_eq_zero`, `theorem centralDeficitSchurSeries_determinant_eq_zero`
+- Declarations: `def centralDeficitSchurPerm`, `def centralDeficitSchurBlockOf`, `theorem centralDeficitSchurBlockOf_p_coeff_zero`, `theorem centralDeficitSchurBlockOf_q_coeff_zero`, `theorem centralDeficitSchurBlockOf_r_coeff_zero`, `theorem centralDeficitSchurBlockOf_s_coeff_zero`, `theorem centralDeficitSchurBlockOf_x_coeff_zero`, `theorem centralDeficitSchurBlockOf_y_coeff_zero`, `theorem centralDeficitSchurBlockOf_z_coeff_zero`, `theorem centralDeficitActiveDet_coeff_zero_eq`, `def centralDeficitSchurBlock`, `theorem centralDeficitSchurBlock_determinantCore_eq_zero`, `theorem centralDeficitSchurBlock_schurDetCore_eq_zero`, `theorem centralDeficitSchurSeries_determinant_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 
@@ -13549,7 +13549,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurSingularity`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.ReverseReesSchurAssociatedGraded`, `HC4.Valuation.ReverseReesSchurParameterBudget`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinarySchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFamilyActiveConstant`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactSchurClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurSingularity`, `HC4.Valuation.PermutedPolynomialHessianFourBlock`, `HC4.Valuation.ReverseReesSchurAssociatedGraded`, `HC4.Valuation.ReverseReesSchurParameterBudget`
 - Declarations: `def permutedFamilyHessianFourBlock`, `theorem permutedFamilyHessianFourBlock_matrix`, `theorem permutedFamilyHessianFourBlock_determinantCore_eq_det`, `theorem permutedFamilyHessianFourBlock_determinantCore_eq_X_pow`
 
 ### `HC4.Valuation.PermutedPolynomialHessianFourBlock`
