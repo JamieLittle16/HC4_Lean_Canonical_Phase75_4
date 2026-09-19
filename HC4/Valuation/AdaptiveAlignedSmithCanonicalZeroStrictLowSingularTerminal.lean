@@ -57,6 +57,18 @@ noncomputable def rankThreeGeometry
   T.blocker.allRankThreeGeometry
     canonicalAdaptiveAlignedSmithRepairRanking 0 T.repair_eq
 
+/-- The strict-low zero-clock packet also exposes an actual nonzero constant
+`3 x 3` Hessian minor on the represented blocker state.  Keeping this
+alongside the terminal object avoids later adapters having to re-run the
+generic zero-defect rank split. -/
+noncomputable def constantThreeByThreeGeometry
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData
+      (K := K) state) :
+    AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry
+      (T.blocker.zeroStrictLow_completeRankThreeGeometry 0 T.source_zero).chart :=
+  T.blocker.zeroStrictLow_constantThreeByThreeGeometry 0 T.source_zero
+
 /-- The represented blocker presentation itself is also at literal raw defect
 zero.  This is the first component of the already-green A19.52 packet. -/
 theorem presented_rawDefect_eq_zero
