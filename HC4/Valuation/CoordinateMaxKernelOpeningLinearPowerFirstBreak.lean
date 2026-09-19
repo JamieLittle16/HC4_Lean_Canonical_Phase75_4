@@ -83,23 +83,17 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
 
   dsimp [B]
   by_cases hj0 : j = (0 : Fin 4)
-  · subst j
-    exact Or.inl (by
-      change
-        (parameterFirstHessian D.reverseReesFamily (rho 0) (rho 0)).coeff 0 ≠ 0
-      exact hentry')
+  · have hentry0 := hentry'
+    rw [hj0] at hentry0
+    exact Or.inl hentry0
   by_cases hj1 : j = (1 : Fin 4)
-  · subst j
-    exact Or.inr (Or.inl (by
-      change
-        (parameterFirstHessian D.reverseReesFamily (rho 1) (rho 1)).coeff 0 ≠ 0
-      exact hentry'))
+  · have hentry1 := hentry'
+    rw [hj1] at hentry1
+    exact Or.inr (Or.inl hentry1)
   by_cases hj2 : j = (2 : Fin 4)
-  · subst j
-    exact Or.inr (Or.inr (by
-      change
-        (parameterFirstHessian D.reverseReesFamily (rho 2) (rho 2)).coeff 0 ≠ 0
-      exact hentry'))
+  · have hentry2 := hentry'
+    rw [hj2] at hentry2
+    exact Or.inr (Or.inr hentry2)
   · have hj0v : j.val ≠ 0 := by
       intro hv
       apply hj0
