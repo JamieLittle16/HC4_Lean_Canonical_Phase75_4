@@ -88,7 +88,7 @@ noncomputable def actualRankTwoHessianChart_of_specialFiber_minor
   have hrho0 : rho (0 : Fin 4) = i := by
     dsimp [rho]
     rw [hs0]
-    simp [tau, hs1_ne_i, hik]
+    exact Equiv.swap_apply_of_ne_of_ne (Ne.symm hs1_ne_i) hik
   have hrho1 : rho (1 : Fin 4) = k := by
     dsimp [rho]
     simp [tau]
