@@ -60,8 +60,10 @@ theorem exposedCodimensionTwo_topKernel_or_openingRankTwo_or_linearPower
   | topKernel k hk =>
       exact Or.inl ⟨k, hk⟩
   | firstOpening D =>
+      have hdeg2 : 2 ≤ T.topFace.degree :=
+        Nat.le_trans (by decide : 2 ≤ 3) T.topFace_degree_ge_three
       rcases D.child_rankTwo_or_linearPower
-          T.topFace.face_isHomogeneous (by omega : 2 ≤ T.topFace.degree) with
+          T.topFace.face_isHomogeneous hdeg2 with
         htwo | hpower
       · exact Or.inr (Or.inl ⟨D, htwo⟩)
       · exact Or.inr (Or.inr ⟨D, hpower⟩)
