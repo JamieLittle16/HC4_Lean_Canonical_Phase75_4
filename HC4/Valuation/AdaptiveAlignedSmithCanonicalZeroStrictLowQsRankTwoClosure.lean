@@ -83,6 +83,76 @@ theorem qs_rankThree_rankTwoClosure
 
 
 
+/-- Square-free rank-two frontier.  The only non-actual source branch is
+the honest first-break package attached to a codimension-two lower-ray
+starting endpoint. -/
+inductive QsRankThreeRankTwoClosureNoSquare
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) : Prop
+  | actualRankTwo
+      (C : Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented))
+  | facetEndpointFirstBreak
+      (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs)
+      (D : Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData C))
+
+/-- **Square-free `.qs` rank-two closure.** -/
+theorem qs_rankThree_rankTwoClosure_noSquare
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    T.QsRankThreeRankTwoClosureNoSquare := by
+  rcases T.qs_rankThree_startCodimensionTwo_or_actualRankTwo hthree with
+    hstart | htwo
+  · rcases hstart with ⟨C, _hcodim⟩
+    rcases C.qs_ray_facetEndpoint_actualRankTwo_or_firstBreak with
+      hactual | hbreak
+    · exact .actualRankTwo hactual
+    · exact .facetEndpointFirstBreak C hbreak
+  · exact .actualRankTwo htwo
+
+/-- Source-lifted square-free form of the same frontier. -/
+inductive QsRankThreeSourceLiftedClosureNoSquare
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) : Prop
+  | actualRankTwo
+      (C : Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented))
+  | exactSourceWeightLayer
+      (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs)
+      (D :
+        AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData C)
+      (layer :
+        AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsRayFacetEndpointFirstBreakData.ExactSourceWeightLayerMinorAtFirstBreak D)
+
+/-- **Square-free source-lifted `.qs` frontier.** -/
+theorem qs_rankThree_sourceLiftedClosure_noSquare
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    T.QsRankThreeSourceLiftedClosureNoSquare := by
+  cases T.qs_rankThree_rankTwoClosure_noSquare hthree with
+  | actualRankTwo C =>
+      exact .actualRankTwo C
+  | facetEndpointFirstBreak C hD =>
+      rcases hD with ⟨D⟩
+      rcases D.actualRankTwo_or_exactSourceWeightLayerMinor with
+        hactual | hlayer
+      · exact .actualRankTwo hactual
+      · exact .exactSourceWeightLayer C D hlayer
+
+
 /-- Assembly-facing refinement of `QsRankThreeRankTwoClosure`.  The endpoint
 first-break constructor is consumed one step further: instead of retaining an
 auxiliary Rees packet, it exposes the exact weighted source component on which
