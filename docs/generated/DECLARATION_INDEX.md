@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9089**.
+Distinct declaration spellings indexed: **9091**.
 
 ## Repeated declaration spellings
 
@@ -3735,6 +3735,8 @@ Distinct declaration spellings indexed: **9089**.
 - `centralDeficitBinarySpecialisation_monomial` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_monomial_eq` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `centralDeficitBinarySpecialisation_ne_zero_of_injective` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `centralDeficitConstantBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `centralDeficitConstantBlock_sparse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `centralDeficitFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hasPositiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `centralDeficitFamily_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`

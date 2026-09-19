@@ -9267,10 +9267,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur.lean`
 - Purpose: Zero-Schur normalisation of the central total-deficit family
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`, `HC4.Newton.ZeroSchurFirstEntryClock`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`, `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`, `HC4.Newton.ZeroSchurFirstEntryClock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem centralDeficitSchurBlock_schurA_coeff_zero`, `theorem centralDeficitSchurBlock_schurB_coeff_zero`, `theorem centralDeficitSchurBlock_schurC_coeff_zero`, `def centralDeficitZeroSchurSeries`, `theorem centralDeficitSchurA_eq_rightRoofDet`, `theorem centralDeficitSchurC_eq_leftRoofDet`, `theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer`, `theorem centralDeficitZeroSchurTail_determinant_eq_zero`, `theorem centralDeficitZeroSchurTail_pivot`
+- Declarations: `def centralDeficitConstantBlock`, `theorem centralDeficitConstantBlock_sparse`, `theorem centralDeficitSchurBlock_schurA_coeff_zero`, `theorem centralDeficitSchurBlock_schurB_coeff_zero`, `theorem centralDeficitSchurBlock_schurC_coeff_zero`, `def centralDeficitZeroSchurSeries`, `theorem centralDeficitSchurA_eq_rightRoofDet`, `theorem centralDeficitSchurC_eq_leftRoofDet`, `theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer`, `theorem centralDeficitZeroSchurTail_determinant_eq_zero`, `theorem centralDeficitZeroSchurTail_pivot`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
 
@@ -12629,7 +12629,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianFourBlock`, `HC4.Newton.ZeroSchurFirstEntryClock`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`, `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianShearCharts`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`, `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`, `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianShearCharts`
 - Declarations: `theorem polynomialFamilySeriesHom_constantCoeff`, `theorem adaptiveAlignedEndpointRightRecenteredHessianSeriesMatrix_coeff_zero`, `theorem adaptiveAlignedEndpointRightRecenteredHessianSeriesMatrix_coeff_zero_recentered`, `def parameterConstantCoeffFourBlock`, `theorem parameterConstantCoeffFourBlock_activeDet`, `theorem parameterConstantCoeffFourBlock_schurA`, `theorem parameterConstantCoeffFourBlock_schurB`, `theorem parameterConstantCoeffFourBlock_schurC`, `def adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock`, `theorem parameterConstantCoeff_rightRecenteredHessianFourBlock`, `theorem rightRecenteredHessianFourBlock_activeDet_coeff_zero`, `theorem rightRecenteredHessianFourBlock_schurA_coeff_zero`, `theorem rightRecenteredHessianFourBlock_schurB_coeff_zero`, `theorem rightRecenteredHessianFourBlock_schurC_coeff_zero`, `theorem rightRecenteredHessianFourBlock_schurConstant_det_eq_zero`, `theorem AdaptiveAlignedSmithBlockerEndpoint.rightRecenteredSchur_or_zeroSchur_of_active`, `theorem AdaptiveAlignedSmithBlockerEndpoint.rightRecenteredSchur_or_zeroSchur_or_allActiveMinorsZero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithRigidPacketExposureClosing`
