@@ -1205,6 +1205,7 @@ human architecture guide.
   - `HC4.Polynomial.FourExponent`
   - `HC4.RationalRigidity.RankThreeAffineTopBoundary`
   - `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`
+  - `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
 - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.RationalRigidity.RankThreeEndpointNondegeneracy`

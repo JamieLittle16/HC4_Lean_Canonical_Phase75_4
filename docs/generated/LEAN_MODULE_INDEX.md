@@ -3523,10 +3523,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity/RankThreeAffineHomogeneousTerminalSplit.lean`
 - Purpose: Balance-free homogeneous affine terminal split
 - A-labels: none detected
-- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
+- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
-- Declarations: `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
+- Declarations: `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
 
 ### `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 
@@ -3745,7 +3745,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.59`, `A18.5.60`, `A18.5.61`
 - Local imports: `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`, `HC4.RationalRigidity.RankThreeHomogeneousEndpointUnits`
+- Imported by local modules: `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`, `HC4.RationalRigidity.RankThreeHomogeneousEndpointUnits`
 - Declarations: `theorem coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_R_zero`, `theorem coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_R_zero`, `theorem coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_S_zero`, `theorem coeff_three_rankThreeEtaNumeratorPolynomial_unit_of_homogeneous_S_zero`, `theorem rankThree_terminal_homogeneous_R_zero_relation`, `theorem rankThree_terminal_homogeneous_S_zero_relation`
 
 ### `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
