@@ -62,7 +62,6 @@ private theorem hessianPrincipalMinor_eq_binaryDirectionalHessianDet
         MvPolynomial.pderiv j (MvPolynomial.pderiv i F) :=
     pderiv_comm_commRing i j F
   rw [hcomm]
-  ring
 
 /-- A source principal minor in coordinates `(0,a)` gives an actual
 rank-two chart. -/
@@ -131,9 +130,21 @@ private theorem qs_ray_facetExponent_eq_single_axis
         C.ray.facetExponent k = 0) :
     C.ray.facetExponent =
       Finsupp.single a T.topFace.degree := by
-  have hdeg := C.qs_ray_facetEndpoint_degree_eq_topFace
   have h0 : C.ray.facetExponent (0 : Fin 4) = 0 :=
     C.ray.facet_coordinate_zero
+  have hcontact :=
+    C.ray_contact_eq C.ray.facetExponent C.ray.facet_mem_face
+  simp only [HC4.Polynomial.facetOmittedCoordinate] at hcontact
+  unfold HC4.Newton.scaledContactExponentWeight at hcontact
+  rw [h0] at hcontact
+  simp only [Nat.cast_zero, mul_zero, add_zero] at hcontact
+  push_cast at hcontact
+  have hsZ : (0 : ℤ) < (C.scale : ℤ) := by
+    exact_mod_cast C.scale_pos
+  have hdeg :
+      HC4.Polynomial.ordinaryDegree4 C.ray.facetExponent =
+        T.topFace.degree := by
+    nlinarith
   fin_cases a
   · exact (ha0 rfl).elim
   · have h2 := hfacetBase (2 : Fin 4) (by decide) (by decide)
@@ -186,9 +197,8 @@ theorem qs_ray_binarySupport_actualRankTwo
     AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
       a ha0
   rcases
-      AdaptiveAlignedSmithRankOneClosingSourceCarrier
-        .transverseBaseSupport_exists_binaryPlanarisation
-          ha0 hbinary with
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseSupport_exists_binaryPlanarisation
+        (K := K) ha0 hbinary with
     ⟨Q, hQrename⟩
 
   have hsuppRename :
