@@ -405,12 +405,12 @@ theorem firstDeficit_secondSourceLayerGeometry
               HC4.Polynomial.hessian
                 (familyParameterLayer P.centralDeficitFamily j)
                 (1 : Fin 4) 2 := by
-        simpa [q, j, k, firstDeficitLayer] using heqSource
+        simpa only [q, j, k, firstDeficitLayer] using heqSource
       exact .left first opposite second B q j k
         rfl rfl rfl hfirst
-        (by simpa [q] using hfirst1) hfirst2 huniq
-        hop hop2 hB (by simpa [j] using hlayer)
-        (by simpa [q, j] using hstrict)
+        (by simpa only [q] using hfirst1) hfirst2 huniq
+        hop hop2 hB (by simpa only [j] using hlayer)
+        (by simpa only [q, j] using hstrict)
         hsource.1 hsource.2 hsecond2 heqSource'
   | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
       hstrict hminimal hB hlayer hmixed hz heq =>
@@ -446,12 +446,12 @@ theorem firstDeficit_secondSourceLayerGeometry
               HC4.Polynomial.hessian
                 (familyParameterLayer P.centralDeficitFamily j)
                 (2 : Fin 4) 1 := by
-        simpa [q, j, k, firstDeficitLayer] using heqSource
+        simpa only [q, j, k, firstDeficitLayer] using heqSource
       exact .right first opposite second B q j k
         rfl rfl rfl hfirst hfirst1
-        (by simpa [q] using hfirst2) huniq
-        hop hop1 hB (by simpa [j] using hlayer)
-        (by simpa [q, j] using hstrict)
+        (by simpa only [q] using hfirst2) huniq
+        hop hop1 hB (by simpa only [j] using hlayer)
+        (by simpa only [q, j] using hstrict)
         hsource.1 hsource.2 hsecond1 heqSource'
 
 /-- Exact reflected second-layer deficit geometry forced by the
