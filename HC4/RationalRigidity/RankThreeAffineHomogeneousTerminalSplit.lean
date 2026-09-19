@@ -54,6 +54,8 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
         (L.exponent phi.natDegree) := by
   have hstep :=
     rankThree_unit_longitudinal_step_of_certificate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
       hA hB hC (by norm_num) hphiDeg hphi0 hcert
   have hphi1 : phi.coeff 1 ≠ 0 := hstep.2
   have h1mem : 1 ∈ phi.support := Polynomial.mem_support_iff.mpr hphi1
