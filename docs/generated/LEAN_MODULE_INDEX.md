@@ -7350,7 +7350,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoFinalGeometry`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive FinalGeometryFrontier`, `def finalGeometryFrontier`
+- Declarations: `inductive FinalGeometryFrontier`, `theorem finalGeometryFrontier_nonempty`, `def finalGeometryFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
 
