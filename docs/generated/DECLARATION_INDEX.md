@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9103**.
+Distinct declaration spellings indexed: **9105**.
 
 ## Repeated declaration spellings
 
@@ -1782,6 +1782,8 @@ Distinct declaration spellings indexed: **9103**.
 - `FrontierPreterminalSchurCertificate` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierRigidPacketSchurExposure` — `structure` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `GeneralFourBlock` — `structure` in `HC4.Newton.GeneralFourBlockSchur`
+- `GeneralFourBlock.schurA_eq_sourceRoofDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `GeneralFourBlock.schurC_eq_sourceRoofDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `GeneralFourBlock.schurC_scale_lastCoordinate` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `GeneralThreeBlock` — `structure` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `GeneralThreeBlock.binaryScalarSchurSeries` — `def` in `HC4.Newton.GeneralThreeBlockSecondScalarSchur`
