@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneNoInteriorSupport
 import Mathlib.Tactic
 
 /-!
@@ -37,6 +38,38 @@ variable
     {R : QsOtherFacetContactQuadraticReesPackage C}
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+
+/-- The central survivor cannot lie in the endpoint-only four-term
+staircase.  Its honest source monomial has both deficit coordinates zero,
+whereas every endpoint retained by `NoStrictInteriorSupport` has at least one
+of those coordinates positive. -/
+theorem central_not_noStrictInterior
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F) :
+    ¬ F.NoStrictInteriorSupport := by
+  intro hno
+  have hsupp := F.support_eq_locked_highest_of_noStrictInterior hno
+  have hmem : G.central ∈
+      ({C.ray.facetExponent, C.ray.outsideExponent,
+        F.highest.e0, F.highest.e1} : Finset (Fin 4 →₀ ℕ)) := by
+    rw [← hsupp]
+    exact G.central_mem
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
+  rcases hmem with hfacet | hout | hhigh0 | hhigh1
+  · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hfacet
+    rw [G.central_one_zero, F.locked.facet_one] at h1
+    omega
+  · have h2 := congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) hout
+    rw [G.central_two_zero, F.locked.outside_two] at h2
+    exact (Nat.ne_of_gt F.locked.ell_pos) h2.symm
+  · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hhigh0
+    rw [G.central_one_zero, F.highest.e0_one] at h1
+    have hn : 0 < F.highest.n := lt_of_lt_of_le (by decide : 0 < 2)
+      F.highest.n_two_le
+    exact (Nat.ne_of_gt hn) h1.symm
+  · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hhigh1
+    rw [G.central_one_zero, F.highest.e1_one] at h1
+    have hn : 0 < F.highest.n - 1 := by omega
+    exact (Nat.ne_of_gt hn) h1.symm
 
 /-- **The first three forced deficit layers are a full source arithmetic
 progression.** -/
