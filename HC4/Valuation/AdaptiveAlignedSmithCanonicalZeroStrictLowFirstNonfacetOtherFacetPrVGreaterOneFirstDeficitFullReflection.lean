@@ -56,17 +56,21 @@ theorem central_not_noStrictInterior
   simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
   rcases hmem with hfacet | hout | hhigh0 | hhigh1
   · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hfacet
+    change G.central 1 = C.ray.facetExponent 1 at h1
     rw [G.central_one_zero, F.locked.facet_one] at h1
     omega
   · have h2 := congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) hout
+    change G.central 2 = C.ray.outsideExponent 2 at h2
     rw [G.central_two_zero, F.locked.outside_two] at h2
     exact (Nat.ne_of_gt F.locked.ell_pos) h2.symm
   · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hhigh0
+    change G.central 1 = F.highest.e0 1 at h1
     rw [G.central_one_zero, F.highest.e0_one] at h1
     have hn : 0 < F.highest.n := lt_of_lt_of_le (by decide : 0 < 2)
       F.highest.n_two_le
     exact (Nat.ne_of_gt hn) h1.symm
   · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hhigh1
+    change G.central 1 = F.highest.e1 1 at h1
     rw [G.central_one_zero, F.highest.e1_one] at h1
     have hn : 0 < F.highest.n - 1 := by omega
     exact (Nat.ne_of_gt hn) h1.symm
