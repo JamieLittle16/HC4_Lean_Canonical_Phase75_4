@@ -30,99 +30,6 @@ open HC4.Newton HC4.Polynomial HC4.Toric
 universe u
 variable {K : Type u} [Field K]
 
-/-- The common three-plane reorder used by both roof comparisons. -/
-def centralDeficitRoofSwap : Equiv.Perm (Fin 3) :=
-  Equiv.swap 1 2
-
-@[simp] theorem centralDeficitRoofSwap_zero :
-    centralDeficitRoofSwap 0 = 0 := by decide
-
-@[simp] theorem centralDeficitRoofSwap_one :
-    centralDeficitRoofSwap 1 = 2 := by decide
-
-@[simp] theorem centralDeficitRoofSwap_two :
-    centralDeficitRoofSwap 2 = 1 := by decide
-/-- Generic right roof matrix for the reordered central Schur block. -/
-noncomputable def centralDeficitRightRoofOf
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    Matrix (Fin 3) (Fin 3) (Polynomial (MvPolynomial (Fin 4) K)) :=
-  fun i j =>
-    parameterFirstHessian Q
-      (firstDeficitRightActiveIndex i)
-      (firstDeficitRightActiveIndex j)
-
-/-- The first Schur three-minor is literally the right roof after the
-common simultaneous `(1 2)` reindexing. -/
-theorem centralDeficitFirstThreeMinor_eq_rightRoof_submatrix
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    GeneralFourBlock.firstThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
-      (centralDeficitRightRoofOf Q).submatrix
-        centralDeficitRoofSwap centralDeficitRoofSwap := by
-  funext i j
-  fin_cases i <;> fin_cases j <;>
-    simp only [GeneralFourBlock.firstThreeMinorMatrix,
-      centralDeficitSchurBlockOf,
-      permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
-      permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_p,
-      permutedFamilyHessianFourBlock_r, permutedFamilyHessianFourBlock_x,
-      centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-      centralDeficitSchurPerm_two,
-      Matrix.submatrix_apply,
-      centralDeficitRoofSwap_zero, centralDeficitRoofSwap_one,
-      centralDeficitRoofSwap_two, centralDeficitRightRoofOf,
-      firstDeficitRightActiveIndex] <;>
-    first | rfl | exact parameterFirstHessian_symmetric Q _ _
-
-/-- The first cleared Schur entry is the right roof determinant. -/
-theorem centralDeficitSchurBlockOf_schurA_eq_rightRoofOf_det
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).schurA =
-      (centralDeficitRightRoofOf Q).det := by
-  rw [← GeneralFourBlock.firstThreeMinorMatrix_det]
-  rw [centralDeficitFirstThreeMinor_eq_rightRoof_submatrix]
-  exact Matrix.det_submatrix_equiv_self
-    centralDeficitRoofSwap (centralDeficitRightRoofOf Q)
-/-- Generic left roof matrix for the reordered central Schur block. -/
-noncomputable def centralDeficitLeftRoofOf
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    Matrix (Fin 3) (Fin 3) (Polynomial (MvPolynomial (Fin 4) K)) :=
-  fun i j =>
-    parameterFirstHessian Q
-      (firstDeficitLeftActiveIndex i)
-      (firstDeficitLeftActiveIndex j)
-
-/-- The second Schur three-minor is literally the left roof after the
-same simultaneous `(1 2)` reindexing. -/
-theorem centralDeficitSecondThreeMinor_eq_leftRoof_submatrix
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    GeneralFourBlock.secondThreeMinorMatrix (centralDeficitSchurBlockOf Q) =
-      (centralDeficitLeftRoofOf Q).submatrix
-        centralDeficitRoofSwap centralDeficitRoofSwap := by
-  funext i j
-  fin_cases i <;> fin_cases j <;>
-    simp only [GeneralFourBlock.secondThreeMinorMatrix,
-      centralDeficitSchurBlockOf,
-      permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
-      permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_q,
-      permutedFamilyHessianFourBlock_s, permutedFamilyHessianFourBlock_z,
-      centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-      centralDeficitSchurPerm_three,
-      Matrix.submatrix_apply,
-      centralDeficitRoofSwap_zero, centralDeficitRoofSwap_one,
-      centralDeficitRoofSwap_two, centralDeficitLeftRoofOf,
-      firstDeficitLeftActiveIndex] <;>
-    first | rfl | exact parameterFirstHessian_symmetric Q _ _
-
-/-- The second cleared Schur entry is the left roof determinant. -/
-theorem centralDeficitSchurBlockOf_schurC_eq_leftRoofOf_det
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).schurC =
-      (centralDeficitLeftRoofOf Q).det := by
-  rw [← GeneralFourBlock.secondThreeMinorMatrix_det]
-  rw [centralDeficitSecondThreeMinor_eq_leftRoof_submatrix]
-  exact Matrix.det_submatrix_equiv_self
-    centralDeficitRoofSwap (centralDeficitLeftRoofOf Q)
-
 variable [CharZero K] [IsAlgClosed K]
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
@@ -290,18 +197,72 @@ theorem centralDeficitSchurA_eq_rightRoofDet :
     G.centralDeficitSchurBlock.schurA =
       G.firstDeficitRightActiveHessian.det := by
   unfold centralDeficitSchurBlock
-  simpa [centralDeficitRightRoofOf, firstDeficitRightActiveHessian] using
-    (centralDeficitSchurBlockOf_schurA_eq_rightRoofOf_det
-      P.centralDeficitFamily)
+  rw [show
+    (centralDeficitSchurBlockOf P.centralDeficitFamily).schurA =
+      ((centralDeficitSchurBlockOf P.centralDeficitFamily).a *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).d -
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).b *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).b) *
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).x -
+      ((centralDeficitSchurBlockOf P.centralDeficitFamily).d *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).p *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).p -
+        2 * (centralDeficitSchurBlockOf P.centralDeficitFamily).b *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).p *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).r +
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).a *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).r *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).r) by
+      rfl]
+  simp only [centralDeficitSchurBlockOf,
+    permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
+    permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_p,
+    permutedFamilyHessianFourBlock_r, permutedFamilyHessianFourBlock_x,
+    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
+    centralDeficitSchurPerm_two]
+  unfold firstDeficitRightActiveHessian
+  rw [Matrix.det_fin_three]
+  simp only [firstDeficitRightActiveIndex]
+  rw [parameterFirstHessian_symmetric P.centralDeficitFamily (2 : Fin 4) 0,
+    parameterFirstHessian_symmetric P.centralDeficitFamily (2 : Fin 4) 3,
+    parameterFirstHessian_symmetric P.centralDeficitFamily (3 : Fin 4) 0]
+  ring
 
 /-- Second principal cleared Schur entry equals the left roof determinant. -/
 theorem centralDeficitSchurC_eq_leftRoofDet :
     G.centralDeficitSchurBlock.schurC =
       G.firstDeficitLeftActiveHessian.det := by
   unfold centralDeficitSchurBlock
-  simpa [centralDeficitLeftRoofOf, firstDeficitLeftActiveHessian] using
-    (centralDeficitSchurBlockOf_schurC_eq_leftRoofOf_det
-      P.centralDeficitFamily)
+  rw [show
+    (centralDeficitSchurBlockOf P.centralDeficitFamily).schurC =
+      ((centralDeficitSchurBlockOf P.centralDeficitFamily).a *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).d -
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).b *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).b) *
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).z -
+      ((centralDeficitSchurBlockOf P.centralDeficitFamily).d *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).q *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).q -
+        2 * (centralDeficitSchurBlockOf P.centralDeficitFamily).b *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).q *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).s +
+        (centralDeficitSchurBlockOf P.centralDeficitFamily).a *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).s *
+          (centralDeficitSchurBlockOf P.centralDeficitFamily).s) by
+      rfl]
+  simp only [centralDeficitSchurBlockOf,
+    permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
+    permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_q,
+    permutedFamilyHessianFourBlock_s, permutedFamilyHessianFourBlock_z,
+    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
+    centralDeficitSchurPerm_three]
+  unfold firstDeficitLeftActiveHessian
+  rw [Matrix.det_fin_three]
+  simp only [firstDeficitLeftActiveIndex]
+  rw [parameterFirstHessian_symmetric P.centralDeficitFamily (1 : Fin 4) 0,
+    parameterFirstHessian_symmetric P.centralDeficitFamily (1 : Fin 4) 3,
+    parameterFirstHessian_symmetric P.centralDeficitFamily (3 : Fin 4) 0]
+  ring
 
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
 theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
