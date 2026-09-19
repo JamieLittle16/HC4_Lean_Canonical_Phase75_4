@@ -30,7 +30,7 @@ noncomputable section
 open HC4.Newton HC4.Polynomial HC4.Toric
 
 universe u
-variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+variable {K : Type u} [Field K] [CharZero K]
 
 /-- Coordinate order `(0,3 | 2,1)`; the first two coordinates are exactly
 the honest central rank-two principal block. -/
@@ -148,6 +148,8 @@ theorem centralDeficitActiveDet_coeff_zero_eq
     parameterFirstHessian_coeff Q 0 (0 : Fin 4) 3]
   unfold HC4.Polynomial.hessianPrincipalMinor
   rw [hsym]
+
+variable [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
