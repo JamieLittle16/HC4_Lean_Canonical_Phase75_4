@@ -259,6 +259,128 @@ noncomputable def firstNonfacetCrossFacetData_of_tame
     }⟩
   exact Classical.choice hnonempty
 
+/-- **Strict-low `.qs` first contact without a quadratic-square exception.**
+
+The strict-low residual always supplies a nonlinear represented-source monomial
+with longitudinal exponent at least two.  Used as the comparison exponent in
+the strengthened minimal-contact selector, this gives the doubled-bump margin
+which keeps a possible pure `x₀²` term strictly below contact.  Hence every
+genuine nonlinear escape from `.qs` has the same honest singular nonlinear
+cross-facet carrier as in the tame case. -/
+noncomputable def firstNonfacetCrossFacetData_qs
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (htop : HC4.Newton.TopDegreeOnFacet .qs T.topFace.degree
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family))
+    (hout : HC4.Newton.HasNonlinearOutsideFacet .qs
+      (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)) :
+    HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs := by
+  let psi := polynomialFamilySpecialFiber T.terminal.blocker.presented.family
+  rcases T.strictLow_sourceCodimensionTwo_two_le with
+    ⟨dstar, hdstar, hdstarDeg, hdstar0, _hdstarCodim⟩
+  have hdstarOut :
+      dstar ∈ HC4.Newton.nonlinearOutsideSupport (0 : Fin 4) psi := by
+    apply HC4.Newton.mem_nonlinearOutsideSupport.mpr
+    exact ⟨by simpa [psi] using hdstar, hdstarDeg, by omega⟩
+  have hfirst :=
+    HC4.Newton.exists_singular_first_nonfacet_contact_of_two_outside_comparison
+      T.topFace_degree_ge_three
+      T.representedSpecialFiber_nonlinearDegreeBound_topFace
+      htop hout dstar
+      (by
+        simpa [HC4.Polynomial.facetOmittedCoordinate] using hdstarOut)
+      (by
+        simpa [HC4.Polynomial.facetOmittedCoordinate] using hdstar0)
+      T.representedSpecialFiber_isPolynomialMongeAmpere
+  have hnonempty : Nonempty
+      (HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        T .qs) := by
+    rcases hfirst with
+      ⟨d₀, scale, bump, hdpsi, hddeg, hdpos, hscaleEq, hbumpEq,
+        hscale, hbump, hdouble, hbound, hzero, hdG, hnot⟩
+    let G : MvPolynomial (Fin 4) K :=
+      HC4.Polynomial.initialForm
+        (HC4.Newton.scaledContactWeight (0 : Fin 4) scale bump)
+        ((scale * T.topFace.degree : ℕ) : ℤ) psi
+    have hGeq :
+        G = HC4.Polynomial.initialForm
+          (HC4.Newton.scaledContactWeight (0 : Fin 4) scale bump)
+          ((scale * T.topFace.degree : ℕ) : ℤ) psi := rfl
+    have hnotG : ¬ HC4.Polynomial.MvSupportOnFacet .qs G := by
+      simpa [G, psi, HC4.Polynomial.facetOmittedCoordinate] using hnot
+    have hzeroG : HC4.Polynomial.hessianDeterminant G = 0 := by
+      simpa [G, psi, HC4.Polynomial.facetOmittedCoordinate] using hzero
+    have hnonlinear :
+        ∀ d ∈ G.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+      dsimp [G]
+      exact HC4.Newton.firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le
+        T.topFace_degree_ge_three hscale hdouble
+    have hattained :
+        ∃ v ∈ psi.support,
+          HC4.Polynomial.ordinaryDegree4 v = T.topFace.degree := by
+      exact ⟨T.topFace.witness, by simpa [psi] using T.topFace.witness_mem,
+        T.topFace.witness_degree⟩
+    have hsupports := HC4.Newton.firstContactCarrier_crossFacet_supports
+      (F := .qs) (m := T.topFace.degree) (scale := scale) (bump := bump)
+      (psi := psi) (G := G) htop hattained hGeq hnotG
+    have hfacet :
+        (HC4.Newton.zeroCoordinateSupport (0 : Fin 4) G).Nonempty := by
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hsupports.1
+    have houtside :
+        (HC4.Newton.positiveCoordinateSupport (0 : Fin 4) G).Nonempty := by
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hsupports.2.1
+    let D : HC4.Newton.CrossFacetInitialData G
+        (HC4.Newton.crossFacetOppositeCoordinate (0 : Fin 4))
+        (0 : Fin 4) :=
+      HC4.Newton.crossFacetInitialData hfacet houtside
+    exact ⟨{
+      scale := scale
+      bump := bump
+      face := G
+      face_eq := by
+        simpa [G, psi, HC4.Polynomial.facetOmittedCoordinate]
+      scale_pos := hscale
+      bump_pos := hbump
+      source_weight_le := by
+        simpa [psi, HC4.Polynomial.facetOmittedCoordinate] using hbound
+      hessian_zero := hzeroG
+      support_degree_ge_three := hnonlinear
+      not_on_facet := hnotG
+      crossFacet := D
+      contact_eq := hsupports.2.2
+    }⟩
+  exact Classical.choice hnonempty
+
+/-- The `.qs` rank-three source split therefore has no independent quadratic
+square constructor: direct top-face crossing, honest lower nonlinear contact,
+or complete nonlinear confinement are exhaustive. -/
+theorem qs_rankThree_crossFacet_or_firstNonfacetCrossFacet_or_nonlinearConfined
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    Nonempty
+        (HC4.Newton.CrossFacetInitialData T.topFace.face
+          (HC4.Newton.crossFacetOppositeCoordinate (0 : Fin 4))
+          (0 : Fin 4)) ∨
+      Nonempty
+        (HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+          T .qs) ∨
+      (∀ d ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support,
+        3 ≤ HC4.Polynomial.ordinaryDegree4 d →
+          HC4.Toric.OnFacet .qs (HC4.Polynomial.toToricExponent d)) := by
+  rcases T.rankThree_crossFacet_or_nonlinearOutside_or_nonlinearConfined
+      .qs hthree with hcross | hlower | hconfined
+  · exact Or.inl (by
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hcross)
+  · rcases hlower with ⟨hout, htop⟩
+    exact Or.inr (Or.inl ⟨T.firstNonfacetCrossFacetData_qs htop hout⟩)
+  · exact Or.inr (Or.inr hconfined)
+
 /-- Refine the A19.60 rank-three source trichotomy by splitting the lower
 outside-support branch into an actual first-contact cross-facet carrier or a
 literal omitted-coordinate quadratic square. -/
