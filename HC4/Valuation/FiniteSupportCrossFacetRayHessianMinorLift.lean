@@ -74,11 +74,17 @@ theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero
   have hminor2 : hessianPrincipalMinor D2.face i k ≠ 0 := by
     change hessianPrincipalMinor D2.face i k ≠ 0 at hminor
     exact hminor
-  have hminor1 : hessianPrincipalMinor D1.face i k ≠ 0 :=
-    D2.source_hessianPrincipalMinor_ne_zero hminor2
-  have hminor0 : hessianPrincipalMinor D0.face i k ≠ 0 :=
-    D1.source_hessianPrincipalMinor_ne_zero hminor1
-  exact D0.source_hessianPrincipalMinor_ne_zero hminor0
+  have hminor1 : hessianPrincipalMinor D1.face i k ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      D2.weight_bound i k
+    simpa [D2.face_eq] using hminor2
+  have hminor0 : hessianPrincipalMinor D0.face i k ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      D1.weight_bound i k
+    simpa [D1.face_eq] using hminor1
+  apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+    D0.weight_bound i k
+  simpa [D0.face_eq] using hminor0
 
 end
 
