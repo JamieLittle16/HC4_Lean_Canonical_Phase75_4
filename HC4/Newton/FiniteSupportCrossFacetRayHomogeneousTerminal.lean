@@ -45,7 +45,7 @@ private theorem ordinaryDegree4_mapDomain_perm
     ordinaryDegree4 (Finsupp.mapDomain rho d) = ordinaryDegree4 d := by
   rw [← finsuppDegree_eq_ordinaryDegree4_local,
     ← finsuppDegree_eq_ordinaryDegree4_local]
-  rw [Finsupp.degree_eq_weight_one, Finsupp.degree_eq_weight_one]
+  rw [Finsupp.degree_eq_weight_one]
   change
     (Finsupp.linearCombination ℕ (fun _ : Fin 4 => (1 : ℕ)))
         (Finsupp.mapDomain rho d) =
