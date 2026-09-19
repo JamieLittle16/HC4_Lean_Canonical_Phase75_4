@@ -86,6 +86,7 @@ theorem kernel_ratio_eq_zero
                 have hmrepr : m - 1 + 1 = m := by omega
                 rw [hmrepr] at hpowderiv
                 rw [hpowderiv]
+                simp only [mul_assoc]
       _ = MvPolynomial.pderiv D.kernelCoordinate D.child := by
             rw [P.eq_power]
       _ = 0 := D.child_kernel
@@ -97,11 +98,7 @@ theorem kernel_ratio_eq_zero
   have hCs :
       MvPolynomial.C ((m : K) * P.ratio D.kernelCoordinate) ≠ 0 := by
     simpa using hscalar
-  rcases mul_eq_zero.mp hderiv with hleft | hright
-  · rcases mul_eq_zero.mp hleft with hCa0 | hCs0
-    · exact hCa hCa0
-    · exact hCs hCs0
-  · exact hpow hright
+  exact (mul_ne_zero (mul_ne_zero hCa hCs) hpow) hderiv
 
 end ChildLinearPowerData
 
