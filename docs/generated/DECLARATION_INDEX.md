@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8990**.
+Distinct declaration spellings indexed: **8991**.
 
 ## Repeated declaration spellings
 
@@ -8082,6 +8082,7 @@ Distinct declaration spellings indexed: **8990**.
 - `selected_binaryContact_outside_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `selected_contact_degree_lt` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `selected_contact_isWeightLE` — `theorem` in `HC4.Newton.FirstContactSelection`
+- `selected_contact_isWeightLE_of_two_outside_comparison` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `selected_contact_level` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `selected_contact_outside_le` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `separatedBinomialODE_iff_expanded` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`

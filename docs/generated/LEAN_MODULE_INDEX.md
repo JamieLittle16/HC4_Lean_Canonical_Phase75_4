@@ -868,9 +868,9 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: Constructing the first nonlinear contact from finite support
 - A-labels: none detected
 - Local imports: `HC4.Newton.ScaledContact`
-- External imports: `Mathlib.Data.Finset.Max`
+- External imports: `Mathlib.Data.Finset.Max`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Newton`, `HC4.Newton.FirstNonfacetContact`
-- Declarations: `def nonlinearOutsideSupport`, `def contactSlope`, `theorem exists_minimal_contactExponent`, `theorem contactSlope_le_iff_cross`, `theorem selected_contact_degree_lt`, `theorem selected_contact_level`, `theorem selected_contact_outside_le`, `theorem selected_contact_isWeightLE`, `theorem exists_selected_contact_isWeightLE`
+- Declarations: `def nonlinearOutsideSupport`, `def contactSlope`, `theorem exists_minimal_contactExponent`, `theorem contactSlope_le_iff_cross`, `theorem selected_contact_degree_lt`, `theorem selected_contact_level`, `theorem selected_contact_outside_le`, `theorem selected_contact_isWeightLE`, `theorem selected_contact_isWeightLE_of_two_outside_comparison`, `theorem exists_selected_contact_isWeightLE`
 
 ### `HC4.Newton.FirstDepartureBinaryHessian`
 
