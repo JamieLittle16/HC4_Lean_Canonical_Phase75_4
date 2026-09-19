@@ -59,18 +59,62 @@ noncomputable def centralDeficitSchurBlockOf
     ((parameterFirstHessian Q).submatrix
       centralDeficitSchurPerm centralDeficitSchurPerm)
 
-/-- Parameter-zero specialization of the generic reordered Hessian block.
-This is deliberately proved before any HC4 geometry is introduced. -/
-theorem centralDeficitSchurBlockOf_map_constantCoeff
+/-- Constant coefficient of the first complementary column entries. -/
+theorem centralDeficitSchurBlockOf_p_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).map Polynomial.constantCoeff =
-      GeneralFourBlock.ofSymmetricMatrix
-        ((HC4.Polynomial.hessian (familyParameterLayer Q 0)).submatrix
-          centralDeficitSchurPerm centralDeficitSchurPerm) := by
-  apply GeneralFourBlock.ext <;>
-    simp [centralDeficitSchurBlockOf, GeneralFourBlock.map,
-      GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
-      parameterFirstHessian_coeff]
+    (centralDeficitSchurBlockOf Q).p.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 0 2 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (0 : Fin 4) 2)
+
+theorem centralDeficitSchurBlockOf_q_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).q.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 0 1 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (0 : Fin 4) 1)
+
+theorem centralDeficitSchurBlockOf_r_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).r.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 3 2 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (3 : Fin 4) 2)
+
+theorem centralDeficitSchurBlockOf_s_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).s.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 3 1 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (3 : Fin 4) 1)
+
+theorem centralDeficitSchurBlockOf_x_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).x.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 2 2 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (2 : Fin 4) 2)
+
+theorem centralDeficitSchurBlockOf_y_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).y.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 2 1 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (2 : Fin 4) 1)
+
+theorem centralDeficitSchurBlockOf_z_coeff_zero
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).z.coeff 0 =
+      HC4.Polynomial.hessian (familyParameterLayer Q 0) 1 1 := by
+  simpa [centralDeficitSchurBlockOf, GeneralFourBlock.ofSymmetricMatrix,
+    Matrix.submatrix_apply] using
+    (parameterFirstHessian_coeff Q 0 (1 : Fin 4) 1)
 
 /-- Constant coefficient of the literal active `(0,3)` Hessian determinant
 for an arbitrary parameter family.  This deliberately avoids mentioning the
