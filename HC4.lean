@@ -280,3 +280,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsRankTwoClosure
 import HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor
 
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift
+
+-- Final repair-aware unrestricted HC4 splice from a concrete terminal obstruction producer.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly
