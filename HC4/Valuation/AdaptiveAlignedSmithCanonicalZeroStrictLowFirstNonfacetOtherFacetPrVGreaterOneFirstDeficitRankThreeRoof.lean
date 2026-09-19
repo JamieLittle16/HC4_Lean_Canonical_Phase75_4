@@ -135,7 +135,7 @@ noncomputable def firstDeficitRightActiveHessian
       (firstDeficitRightActiveIndex i)
       (firstDeficitRightActiveIndex j)
 
-private theorem leftActive_gap
+theorem leftActive_gap
     (i j : Fin 3) :
     HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
       (G.firstDeficitLeftActiveHessian i j) := by
@@ -147,7 +147,7 @@ private theorem leftActive_gap
     (centralDeficitFamily_hasPositiveActualLayer G) hnpos hnlt]
   simp [HC4.Polynomial.hessian_apply]
 
-private theorem rightActive_gap
+theorem rightActive_gap
     (i j : Fin 3) :
     HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
       (G.firstDeficitRightActiveHessian i j) := by
