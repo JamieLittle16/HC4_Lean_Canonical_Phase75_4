@@ -86,19 +86,24 @@ theorem topKernel_rankTwo_or_linearPower
       intro i j k l
       by_contra hne
       exact htwo ⟨i, j, k, l, hne⟩
+    have hm3 : 3 ≤ T.topFace.degree :=
+      T.topFace.degree_ge_three
+    have hm2 : 2 ≤ T.topFace.degree := by omega
+    have hmpos : 0 < T.topFace.degree := by omega
+    have hmne : T.topFace.degree ≠ 0 := by omega
     rcases rankOneHomogeneousLogGradientData_of_allMinors
         T.topFace.face
         T.topFace.degree
         T.topFace.face_isHomogeneous
         T.topFace.face_ne_zero
-        (by omega : 2 ≤ T.topFace.degree)
+        hm2
         hall with ⟨G⟩
     rcases rankOneHomogeneousLogGradientData_four_global G with ⟨c, hc⟩
     rcases homogeneous_eq_C_mul_gradientRatioLinearForm_pow
         T.topFace.degree
         T.topFace.face
         T.topFace.face_isHomogeneous
-        (by omega : 0 < T.topFace.degree)
+        hmpos
         G.pivot G.pivot_ne_zero c hc with ⟨a, ha⟩
 
     have ha_ne : a ≠ 0 := by
@@ -110,41 +115,23 @@ theorem topKernel_rankTwo_or_linearPower
       intro hL0
       apply T.topFace.face_ne_zero
       rw [ha, hL0]
-      simp [show 0 < T.topFace.degree by omega]
+      simp [hmpos]
     have hmK : (T.topFace.degree : K) ≠ 0 := by
-      exact_mod_cast (show T.topFace.degree ≠ 0 by omega)
+      exact_mod_cast hmne
     have hpow :
         (gradientRatioLinearForm c) ^ (T.topFace.degree - 1) ≠ 0 :=
       pow_ne_zero _ hL_ne
     have hscalarZero :
         (T.topFace.degree : K) * c kernelCoordinate = 0 := by
-      have hderiv :
-          MvPolynomial.C a *
-              MvPolynomial.C
-                ((T.topFace.degree : K) * c kernelCoordinate) *
-              (gradientRatioLinearForm c) ^ (T.topFace.degree - 1) = 0 := by
-        calc
-          MvPolynomial.C a *
-                MvPolynomial.C
-                  ((T.topFace.degree : K) * c kernelCoordinate) *
-                (gradientRatioLinearForm c) ^ (T.topFace.degree - 1) =
-              MvPolynomial.pderiv kernelCoordinate
-                (MvPolynomial.C a *
-                  (gradientRatioLinearForm c) ^ T.topFace.degree) := by
-                    rw [MvPolynomial.pderiv_C_mul]
-                    have hmrepr :
-                        T.topFace.degree =
-                          (T.topFace.degree - 1) + 1 := by omega
-                    conv_rhs =>
-                      rhs
-                      rw [hmrepr]
-                    rw [pderiv_gradientRatioLinearForm_pow_succ]
-                    congr 2
-                    push_cast
-                    ring
-          _ = MvPolynomial.pderiv kernelCoordinate T.topFace.face := by
-                rw [ha]
-          _ = 0 := hkernel
+      have hpowderiv :=
+        pderiv_gradientRatioLinearForm_pow_succ
+          c kernelCoordinate (T.topFace.degree - 1)
+      have hmrepr :
+          T.topFace.degree - 1 + 1 = T.topFace.degree := by
+        omega
+      rw [hmrepr] at hpowderiv
+      have hderiv := hkernel
+      rw [ha, MvPolynomial.pderiv_C_mul, hpowderiv] at hderiv
       have hCa : (MvPolynomial.C a : MvPolynomial (Fin 4) K) ≠ 0 := by
         simpa using ha_ne
       have hrest :
