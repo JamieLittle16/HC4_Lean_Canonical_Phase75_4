@@ -550,6 +550,24 @@ theorem actualRankTwo_or_layerMinor
       right
       exact h
 
+
+
+/-- **Source-honest endpoint first-break frontier.**  The residual auxiliary
+layer case is immediately rewritten as an exact weighted component of the
+represented determinant-one source.  Thus callers above this file never need
+to reason about an opaque Rees-layer minor: they see either an actual source
+rank-two chart or a concrete source weight component carrying a nonzero
+principal Hessian minor. -/
+theorem actualRankTwo_or_exactSourceWeightLayerMinor
+    (D : QsRayFacetEndpointFirstBreakData C) :
+    Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented) ∨
+      D.ExactSourceWeightLayerMinorAtFirstBreak := by
+  rcases D.actualRankTwo_or_layerMinor with hactual | hlayer
+  · exact Or.inl hactual
+  · exact Or.inr (D.layerMinorAtFirstBreak_exactSourceWeightComponent hlayer)
+
 end QsRayFacetEndpointFirstBreakData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
