@@ -212,10 +212,9 @@ theorem firstDeficitLeftStaggeredBlock_d_coeff
   unfold firstDeficitLeftStaggeredBlock
     firstDeficitLeftStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simpa [HC4.Polynomial.hessian_apply]
+  simp only [Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_one]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (1 : Fin 4) 1
 
 /-- Left mixed entry is the honest `(1,2)` Hessian entry of the exact
 total-deficit layer. -/
@@ -228,10 +227,11 @@ theorem firstDeficitLeftStaggeredBlock_s_coeff
   unfold firstDeficitLeftStaggeredBlock
     firstDeficitLeftStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simpa [HC4.Polynomial.hessian_apply]
+  simp only [Matrix.submatrix_apply,
+    firstDeficitLeftStaggeredPerm_one,
+    firstDeficitLeftStaggeredPerm_three]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (1 : Fin 4) 2
 
 /-- Right active-middle entry is the honest `(2,2)` Hessian entry. -/
 theorem firstDeficitRightStaggeredBlock_d_coeff
@@ -243,11 +243,9 @@ theorem firstDeficitRightStaggeredBlock_d_coeff
   unfold firstDeficitRightStaggeredBlock
     firstDeficitRightStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simp [-standardTwoZero_pderiv_two_eq_A,
-    HC4.Polynomial.hessian_apply, standardTwoZeroA]
+  simp only [Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_one]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (2 : Fin 4) 2
 
 /-- Right mixed entry is the honest `(2,1)` Hessian entry. -/
 theorem firstDeficitRightStaggeredBlock_s_coeff
@@ -259,10 +257,11 @@ theorem firstDeficitRightStaggeredBlock_s_coeff
   unfold firstDeficitRightStaggeredBlock
     firstDeficitRightStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simpa [HC4.Polynomial.hessian_apply]
+  simp only [Matrix.submatrix_apply,
+    firstDeficitRightStaggeredPerm_one,
+    firstDeficitRightStaggeredPerm_three]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (2 : Fin 4) 1
 
 /-- The left staggered missing diagonal is literally the `(2,2)` Hessian
 entry of the exact total-deficit source layer. -/
@@ -275,11 +274,9 @@ theorem firstDeficitLeftStaggeredBlock_z_coeff
   unfold firstDeficitLeftStaggeredBlock
     firstDeficitLeftStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitLeftStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simp [-standardTwoZero_pderiv_two_eq_A,
-    HC4.Polynomial.hessian_apply, standardTwoZeroA]
+  simp only [Matrix.submatrix_apply, firstDeficitLeftStaggeredPerm_three]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (2 : Fin 4) 2
 
 /-- Right-oriented mirror: the missing diagonal is the `(1,1)` Hessian
 entry of the exact source layer. -/
@@ -292,10 +289,9 @@ theorem firstDeficitRightStaggeredBlock_z_coeff
   unfold firstDeficitRightStaggeredBlock
     firstDeficitRightStaggeredMatrix
     GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply]
-  simp [firstDeficitRightStaggeredPerm]
-  rw [parameterFirstHessian_coeff]
-  simpa [HC4.Polynomial.hessian_apply]
+  simp only [Matrix.submatrix_apply, firstDeficitRightStaggeredPerm_three]
+  exact parameterFirstHessian_coeff
+    P.centralDeficitFamily n (1 : Fin 4) 1
 
 /-- Provenance-rich source monomial forced at the second interaction order. -/
 inductive FirstDeficitSecondSourceLayerGeometry : Prop
