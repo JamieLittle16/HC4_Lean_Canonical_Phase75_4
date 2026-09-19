@@ -72,7 +72,9 @@ theorem central_not_noStrictInterior
   · have h1 := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) hhigh1
     change G.central 1 = F.highest.e1 1 at h1
     rw [G.central_one_zero, F.highest.e1_one] at h1
-    have hn : 0 < F.highest.n - 1 := by omega
+    have hn1 : 1 < F.highest.n :=
+      lt_of_lt_of_le (by decide : 1 < 2) F.highest.n_two_le
+    have hn : 0 < F.highest.n - 1 := Nat.sub_pos_of_lt hn1
     exact (Nat.ne_of_gt hn) h1.symm
 
 /-- **The first three forced deficit layers are a full source arithmetic
