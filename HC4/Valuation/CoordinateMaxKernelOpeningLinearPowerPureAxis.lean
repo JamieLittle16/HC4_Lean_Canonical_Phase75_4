@@ -97,38 +97,38 @@ theorem pderiv_ratio_cross
     (i j : Fin 4) :
     MvPolynomial.C (P.ratio j) * MvPolynomial.pderiv i D.child =
       MvPolynomial.C (P.ratio i) * MvPolynomial.pderiv j D.child := by
-  have hmrepr : m = (m - 1) + 1 := by omega
   rw [P.eq_power]
   rw [MvPolynomial.pderiv_C_mul, MvPolynomial.pderiv_C_mul]
-  conv_lhs =>
-    rhs
-    rw [hmrepr]
-  conv_rhs =>
-    rhs
-    rw [hmrepr]
-  rw [pderiv_gradientRatioLinearForm_pow_succ]
-  rw [pderiv_gradientRatioLinearForm_pow_succ]
+  have hi :=
+    pderiv_gradientRatioLinearForm_pow_succ P.ratio i (m - 1)
+  have hj :=
+    pderiv_gradientRatioLinearForm_pow_succ P.ratio j (m - 1)
+  have hmrepr : m - 1 + 1 = m := by omega
+  rw [hmrepr] at hi hj
+  rw [hi, hj]
   push_cast
   ring
 
 /-- The extraction partial of the nonzero linear-power child is nonzero. -/
 theorem extraction_pderiv_ne_zero
+    (P : D.ChildLinearPowerData m)
     (hm : 2 ≤ m) :
     MvPolynomial.pderiv D.extractionCoordinate D.child ≠ 0 := by
   have hmpos : 0 < m := by omega
   have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
   have hc : P.ratio D.extractionCoordinate ≠ 0 :=
-    P.extraction_ratio_ne_zero hm
+    ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P hm
   have hL : gradientRatioLinearForm P.ratio ≠ 0 :=
-    P.linearForm_ne_zero hmpos
+    ChildLinearPowerData.linearForm_ne_zero (D := D) P hmpos
   have hpow : (gradientRatioLinearForm P.ratio) ^ (m - 1) ≠ 0 :=
     pow_ne_zero _ hL
   rw [P.eq_power, MvPolynomial.pderiv_C_mul]
-  have hmrepr : m = (m - 1) + 1 := by omega
-  conv_lhs =>
-    rhs
-    rw [hmrepr]
-  rw [pderiv_gradientRatioLinearForm_pow_succ]
+  have hpowderiv :=
+    pderiv_gradientRatioLinearForm_pow_succ
+      P.ratio D.extractionCoordinate (m - 1)
+  have hmrepr : m - 1 + 1 = m := by omega
+  rw [hmrepr] at hpowderiv
+  rw [hpowderiv]
   apply mul_ne_zero
   · simpa using ha
   · apply mul_ne_zero
@@ -148,10 +148,10 @@ theorem ratio_eq_zero_of_ne_extraction
     P.ratio j = 0 := by
   by_contra hj
   have he : P.ratio D.extractionCoordinate ≠ 0 :=
-    P.extraction_ratio_ne_zero hm
+    ChildLinearPowerData.extraction_ratio_ne_zero (D := D) P hm
   have hde :
       MvPolynomial.pderiv D.extractionCoordinate D.child ≠ 0 :=
-    P.extraction_pderiv_ne_zero hm
+    ChildLinearPowerData.extraction_pderiv_ne_zero (D := D) P hm
   have hsupp :
       (MvPolynomial.pderiv D.extractionCoordinate D.child).support.Nonempty :=
     MvPolynomial.support_nonempty.mpr hde
@@ -161,7 +161,9 @@ theorem ratio_eq_zero_of_ne_extraction
         (MvPolynomial.pderiv D.extractionCoordinate D.child) ≠ 0 :=
     MvPolynomial.mem_support_iff.mp hqE
 
-  have hcross := P.pderiv_ratio_cross hm D.extractionCoordinate j
+  have hcross :=
+    ChildLinearPowerData.pderiv_ratio_cross
+      (D := D) P hm D.extractionCoordinate j
   have hcoeff := congrArg (MvPolynomial.coeff q) hcross
   have hqJcoeff :
       MvPolynomial.coeff q (MvPolynomial.pderiv j D.child) ≠ 0 := by
@@ -185,8 +187,12 @@ case of the full pure-axis statement. -/
 theorem kernel_ratio_eq_zero_from_pureAxis
     (hm : 2 ≤ m) :
     P.ratio D.kernelCoordinate = 0 := by
-  exact P.ratio_eq_zero_of_ne_extraction hm D.kernelCoordinate
-    (Ne.symm (P.extractionCoordinate_ne_kernelCoordinate hm))
+  exact
+    ChildLinearPowerData.ratio_eq_zero_of_ne_extraction
+      (D := D) P hm D.kernelCoordinate
+      (Ne.symm
+        (ChildLinearPowerData.extractionCoordinate_ne_kernelCoordinate
+          (D := D) P hm))
 
 end ChildLinearPowerData
 
