@@ -11220,7 +11220,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSingularCarrier`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
-- Declarations: `structure AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData`, `def rankThreeGeometry`, `theorem presented_rawDefect_eq_zero`, `def toSingularTerminal`, `theorem topFace_ne_zero`, `theorem topFace_degree_ge_three`, `theorem topFace_hessianDeterminant_eq_zero`, `theorem zeroClockFirstContactPacket`, `theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_zeroStrictLowSingularTerminal`
+- Declarations: `structure AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData`, `def rankThreeGeometry`, `def constantThreeByThreeGeometry`, `theorem presented_rawDefect_eq_zero`, `def toSingularTerminal`, `theorem topFace_ne_zero`, `theorem topFace_degree_ge_three`, `theorem topFace_hessianDeterminant_eq_zero`, `theorem zeroClockFirstContactPacket`, `theorem AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.globalProgress_or_zeroStrictLowSingularTerminal`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSourceCodimensionTwo`
 
@@ -11290,7 +11290,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
-- Declarations: `theorem presented_rawDefect_eq_zero_of_source_zero`, `theorem blocker_defect_eq_zero_of_source_zero`, `def zeroStrictLow_completeRankThreeGeometry`, `theorem zeroStrictLow_zeroClockPacket`
+- Declarations: `theorem presented_rawDefect_eq_zero_of_source_zero`, `theorem blocker_defect_eq_zero_of_source_zero`, `def zeroStrictLow_completeRankThreeGeometry`, `def zeroStrictLow_constantThreeByThreeGeometry`, `theorem zeroStrictLow_zeroClockPacket`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithClassifierDispatcher`
 

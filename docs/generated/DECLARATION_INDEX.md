@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8987**.
+Distinct declaration spellings indexed: **8989**.
 
 ## Repeated declaration spellings
 
@@ -4161,6 +4161,7 @@ Distinct declaration spellings indexed: **8987**.
 - `constantSpecialSchurKernelLineData_of_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawBinaryProjectiveLine`
 - `constantSpecialSourceKernel_of_rs2Provenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `constantSpecialSourceKernel_of_vanishingProjectiveWedges` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
+- `constantThreeByThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `constantVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurConstantProjectiveKernel`
 - `constantVector_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurConstantProjectiveKernel`
 - `constantVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurConstantProjectiveKernel`
@@ -9243,6 +9244,7 @@ Distinct declaration spellings indexed: **8987**.
 - `zeroSmithSourceSupport` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `zeroSmithSourceSupport_nonempty_of_noGenuineWall` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `zeroStrictLow_completeRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
+- `zeroStrictLow_constantThreeByThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_exactExponentMixedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
 - `zeroStrictLow_firstContactHessianGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
 - `zeroStrictLow_firstContactPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLosslessTerminalResidual`
