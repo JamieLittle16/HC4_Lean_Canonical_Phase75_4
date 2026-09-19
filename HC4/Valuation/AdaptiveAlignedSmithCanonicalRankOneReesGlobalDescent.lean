@@ -36,7 +36,7 @@ theorem adaptiveAlignedSmithCanonicalGlobalMacroProgress_trans
     (hbc : AdaptiveAlignedSmithCanonicalGlobalMacroProgress b c) :
     AdaptiveAlignedSmithCanonicalGlobalMacroProgress a c := by
   unfold AdaptiveAlignedSmithCanonicalGlobalMacroProgress at hab hbc ⊢
-  letI : IsTrans ℕ Nat.lt := ⟨Nat.lt_trans⟩
+  letI : IsTrans ℕ Nat.lt :=\n    ⟨fun _ _ _ hab hbc => Nat.lt_trans hab hbc⟩
   letI : IsTrans (ℕ × ℕ) (Prod.Lex Nat.lt Nat.lt) :=
     ⟨fun _ _ _ hxy hyz => Prod.Lex.trans hxy hyz⟩
   exact Prod.Lex.trans hab hbc
