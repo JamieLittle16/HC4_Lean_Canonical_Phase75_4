@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent
+import HC4.Valuation.PermutedFamilyHessianFourBlock
 import HC4.Newton.RankOneSchurSeriesAlignment
 import Mathlib.Tactic
 
@@ -54,59 +55,64 @@ generic prevents the large HC4 frontier package from entering coefficient
 normalization. -/
 noncomputable def centralDeficitSchurBlockOf
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) where
-  a := parameterFirstHessian Q 0 0
-  b := parameterFirstHessian Q 0 3
-  d := parameterFirstHessian Q 3 3
-  p := parameterFirstHessian Q 0 2
-  q := parameterFirstHessian Q 0 1
-  r := parameterFirstHessian Q 3 2
-  s := parameterFirstHessian Q 3 1
-  x := parameterFirstHessian Q 2 2
-  y := parameterFirstHessian Q 2 1
-  z := parameterFirstHessian Q 1 1
+    GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
+  permutedFamilyHessianFourBlock centralDeficitSchurPerm Q
 
 /-- Constant coefficient of the first complementary column entries. -/
 theorem centralDeficitSchurBlockOf_p_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).p.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 0 2 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_p]
+  simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_two]
   exact parameterFirstHessian_coeff Q 0 (0 : Fin 4) 2
 
 theorem centralDeficitSchurBlockOf_q_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).q.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 0 1 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_q]
+  simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_three]
   exact parameterFirstHessian_coeff Q 0 (0 : Fin 4) 1
 
 theorem centralDeficitSchurBlockOf_r_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).r.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 3 2 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_r]
+  simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_two]
   exact parameterFirstHessian_coeff Q 0 (3 : Fin 4) 2
 
 theorem centralDeficitSchurBlockOf_s_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).s.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 3 1 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_s]
+  simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_three]
   exact parameterFirstHessian_coeff Q 0 (3 : Fin 4) 1
 
 theorem centralDeficitSchurBlockOf_x_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).x.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 2 2 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_x]
+  simp only [centralDeficitSchurPerm_two, centralDeficitSchurPerm_two]
   exact parameterFirstHessian_coeff Q 0 (2 : Fin 4) 2
 
 theorem centralDeficitSchurBlockOf_y_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).y.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 2 1 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_y]
+  simp only [centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
   exact parameterFirstHessian_coeff Q 0 (2 : Fin 4) 1
 
 theorem centralDeficitSchurBlockOf_z_coeff_zero
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).z.coeff 0 =
       HC4.Polynomial.hessian (familyParameterLayer Q 0) 1 1 := by
+  rw [centralDeficitSchurBlockOf, permutedFamilyHessianFourBlock_z]
+  simp only [centralDeficitSchurPerm_three, centralDeficitSchurPerm_three]
   exact parameterFirstHessian_coeff Q 0 (1 : Fin 4) 1
 
 /-- Constant coefficient of the literal active `(0,3)` Hessian determinant
@@ -173,35 +179,14 @@ noncomputable def centralDeficitSchurBlock
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   centralDeficitSchurBlockOf P.centralDeficitFamily
 
-/-- Displaying the Schur four-block recovers the literal permuted complete
-source Hessian. -/
-theorem centralDeficitSchurBlock_matrix :
-    G.centralDeficitSchurBlock.matrix =
-      (parameterFirstHessian P.centralDeficitFamily).submatrix
-        centralDeficitSchurPerm centralDeficitSchurPerm := by
-  ext i j
-  fin_cases i <;> fin_cases j <;>
-    simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf,
-      GeneralFourBlock.matrix, Matrix.submatrix_apply,
-      parameterFirstHessian_symmetric]
-
 /-- The reordered block is still the complete Hessian of the honest singular
 total-deficit family. -/
 theorem centralDeficitSchurBlock_determinantCore_eq_zero :
     G.centralDeficitSchurBlock.determinantCore = 0 := by
-  calc
-    G.centralDeficitSchurBlock.determinantCore =
-        G.centralDeficitSchurBlock.matrix.det :=
-      (GeneralFourBlock.matrix_det G.centralDeficitSchurBlock).symm
-    _ =
-        ((parameterFirstHessian P.centralDeficitFamily).submatrix
-          centralDeficitSchurPerm centralDeficitSchurPerm).det := by
-      rw [G.centralDeficitSchurBlock_matrix]
-    _ = (parameterFirstHessian P.centralDeficitFamily).det := by
-      rw [Matrix.det_submatrix_equiv_self]
-    _ = 0 := by
-      rw [parameterFirstHessian_det, P.centralDeficitFamily_hessian_zero]
-      simp
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_determinantCore_eq_det]
+  rw [parameterFirstHessian_det, P.centralDeficitFamily_hessian_zero]
+  simp
 
 /-- The whole denominator-cleared binary Schur determinant vanishes,
 not merely its first few coefficients. -/
