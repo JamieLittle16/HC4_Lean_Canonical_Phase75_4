@@ -40,17 +40,19 @@ variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
 variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
-variable (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
 
 /-- The scalar coefficient in the nonzero top-face linear power is nonzero. -/
-theorem coefficient_ne_zero : P.coefficient ≠ 0 := by
+theorem coefficient_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    P.coefficient ≠ 0 := by
   intro ha
   apply T.topFace.face_ne_zero
   rw [P.eq_power, ha]
   simp
 
 /-- The linear form in the nonzero top face is nonzero. -/
-theorem linearForm_ne_zero :
+theorem linearForm_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     gradientRatioLinearForm P.ratio ≠ 0 := by
   intro hL
   apply T.topFace.face_ne_zero
@@ -63,12 +65,13 @@ theorem linearForm_ne_zero :
 
 /-- Some coordinate other than the stored kernel coordinate occurs genuinely
 in the top linear form. -/
-theorem exists_active_ratio_ne_zero :
+theorem exists_active_ratio_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     ∃ j : Fin 4, j ≠ kernelCoordinate ∧ P.ratio j ≠ 0 := by
   have hexists : ∃ j : Fin 4, P.ratio j ≠ 0 := by
     by_contra hnone
     push_neg at hnone
-    apply P.linearForm_ne_zero
+    apply linearForm_ne_zero P
     unfold gradientRatioLinearForm
     simp [hnone]
   rcases hexists with ⟨j, hj⟩
@@ -81,13 +84,14 @@ theorem exists_active_ratio_ne_zero :
 /-- Any nonzero coefficient of the top linear form supplies a nonzero Hessian
 diagonal on the degree-at-least-three top face. -/
 theorem topFace_hessian_diagonal_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (j : Fin 4)
     (hj : P.ratio j ≠ 0) :
     HC4.Polynomial.hessian T.topFace.face j j ≠ 0 := by
   have hm3 : 3 ≤ T.topFace.degree :=
     T.topFace.degree_ge_three
-  have ha : P.coefficient ≠ 0 := P.coefficient_ne_zero
-  have hL : gradientRatioLinearForm P.ratio ≠ 0 := P.linearForm_ne_zero
+  have ha : P.coefficient ≠ 0 := coefficient_ne_zero P
+  have hL : gradientRatioLinearForm P.ratio ≠ 0 := linearForm_ne_zero P
   have hmK : (T.topFace.degree : K) ≠ 0 := by
     exact_mod_cast (show T.topFace.degree ≠ 0 by omega)
   have hn1 : (((T.topFace.degree - 2 + 1 : ℕ) : K)) ≠ 0 := by
@@ -108,13 +112,14 @@ theorem topFace_hessian_diagonal_ne_zero
 
 /-- After the honest kernel-last reindexing, some active constant Hessian
 diagonal is nonzero. -/
-theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero :
+theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     let B := kernelLastFamilyHessianFourBlock
       T.topKernelReverseReesFamily kernelCoordinate
     B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
-  rcases exists_active_ratio_ne_zero (P := P) with ⟨j, hjk, hj⟩
+  rcases exists_active_ratio_ne_zero P with ⟨j, hjk, hj⟩
   have hjdiag :=
-    topFace_hessian_diagonal_ne_zero (P := P) j hj
+    topFace_hessian_diagonal_ne_zero P j hj
   let rho := kernelLastPerm kernelCoordinate
   let r : Fin 4 := rho.symm j
   have hrho : rho r = j := by simp [r]
@@ -169,7 +174,8 @@ theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero :
 /-- **Top-kernel linear-power closure.**  The honest ordinary reverse-Rees
 family necessarily reaches concrete rank-two geometry at the first actual
 opening of the stored top-face kernel row. -/
-noncomputable def firstBreakRankTwoOutcome :
+noncomputable def firstBreakRankTwoOutcome
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     let B := kernelLastFamilyHessianFourBlock
       T.topKernelReverseReesFamily kernelCoordinate
     let hrow := T.topKernelLastBlock_kernelRow_ne_zero kernelCoordinate
@@ -196,7 +202,7 @@ noncomputable def firstBreakRankTwoOutcome :
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     dsimp [B]
-    exact kernelLastBlock_activeDiagonal_coeff_zero_ne_zero (P := P)
+    exact kernelLastBlock_activeDiagonal_coeff_zero_ne_zero P
   exact rankOneSpecialFiber_firstKernelRowBreak_rankTwo
     B hrow hzero.1 hzero.2.1 hzero.2.2.1 hzero.2.2.2 hactive
 
