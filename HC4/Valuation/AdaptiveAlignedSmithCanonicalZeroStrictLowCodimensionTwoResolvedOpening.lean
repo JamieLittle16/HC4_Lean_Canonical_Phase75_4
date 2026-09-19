@@ -69,9 +69,11 @@ theorem exposedCodimensionTwo_topKernel_or_rankTwoGeometry
     right
     right
     refine ⟨D, P, ?_⟩
-    exact P.firstBreakRankTwoOutcome
-      T.topFace.degree_ge_three
-      T.topFace.face_support_degree_ge_three
+    exact
+      CanonicalCoordinateMaxKernelOpeningData.ChildLinearPowerData.firstBreakRankTwoOutcome
+        (D := D) P
+        T.topFace.degree_ge_three
+        T.topFace.face_support_degree_ge_three
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
