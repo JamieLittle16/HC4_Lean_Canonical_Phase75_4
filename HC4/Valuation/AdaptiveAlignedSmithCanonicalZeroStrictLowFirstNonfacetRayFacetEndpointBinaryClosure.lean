@@ -220,8 +220,8 @@ theorem qs_ray_binarySupport_actualRankTwo
 
   have map_zero_apply (d : Fin 2 →₀ ℕ) :
       (d.mapDomain emb) (0 : Fin 4) = d (0 : Fin 2) := by
-    rw [← AdaptiveAlignedSmithRankOneClosingSourceCarrier
-      .transverseBaseEmbedding_zero a ha0]
+    rw [← AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding_zero
+      a ha0]
     exact Finsupp.mapDomain_apply_of_injective emb.injective d (0 : Fin 2)
 
   let D := T.topFace.degree
@@ -367,8 +367,7 @@ theorem qs_ray_binarySupport_actualRankTwo
       HC4.Newton.binaryDirectionalHessianDet
           (0 : Fin 4) a C.ray.face ≠ 0 := by
     rw [← hQrename]
-    rw [AdaptiveAlignedSmithRankOneClosingSourceCarrier
-      .binaryDirectionalHessianDet_rename_transverseBaseEmbedding]
+    rw [AdaptiveAlignedSmithRankOneClosingSourceCarrier.binaryDirectionalHessianDet_rename_transverseBaseEmbedding]
     exact hrenameDet
 
   have hrayMinor :
