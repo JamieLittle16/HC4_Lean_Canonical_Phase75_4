@@ -79,6 +79,42 @@ theorem qs_rankThree_startCodimensionTwo_or_otherFacet_or_quadraticSquare
     · exact Or.inl ⟨C, hfacetTwo⟩
   · exact Or.inr (Or.inr hsquare)
 
+
+
+/-- **Square-free reduced exposed-`.qs` frontier.**
+
+The strengthened first-contact selector removes the quadratic-square
+constructor.  The far codimension-two endpoint is still impossible by A19.91,
+so only a codimension-two *starting* endpoint or an actual different-facet
+rank-three outside endpoint remains. -/
+theorem qs_rankThree_startCodimensionTwo_or_otherFacet
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (hthree : HC4.Newton.MvRankThreeOnFacet .qs
+      T.exposedSingularBoundaryVertex.exponent) :
+    (∃ C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs,
+      HC4.Newton.MvExponentOnCodimensionTwoBoundary C.ray.facetExponent) ∨
+    (∃ C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+        (K := K) T .qs,
+      ∃ next : ToricFacet,
+        HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent ∧
+        next ≠ .qs ∧
+        HC4.Newton.MvRankThreeOnFacet next C.ray.outsideExponent) := by
+  rcases T.qs_rankThree_lowerBoundary hthree with ⟨C, _houtcome⟩
+  rcases C.ray.zero_terminalCertificate_or_codimensionTwo C.hessian_zero with
+    hterminal | hfacetTwo
+  · have hfacetThree : HC4.Newton.MvRankThreeOnFacet .qs C.ray.facetExponent :=
+      hterminal.1
+    rcases C.qs_ray_outside_boundaryTransition hfacetThree with
+      houtThree | houtTwo
+    · rcases houtThree with ⟨next, hne, hnext⟩
+      exact Or.inr ⟨C, next, hfacetThree, hne, hnext⟩
+    · exact (C.qs_ray_outside_codimensionTwo_impossible
+        hfacetThree houtTwo).elim
+  · exact Or.inl ⟨C, hfacetTwo⟩
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
