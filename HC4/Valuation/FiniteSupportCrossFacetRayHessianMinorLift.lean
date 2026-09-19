@@ -1,4 +1,4 @@
-import HC4.Newton.FiniteSupportCrossFacetRay
+import HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation
 import HC4.Valuation.WeightedHessianPrincipalMinorInitial
 import Mathlib.Tactic
 
@@ -191,7 +191,8 @@ theorem CrossFacetRayData.source_hessianPrincipalMinor_ne_zero_of_renamedZero
         ((Equiv.swap j (0 : Fin 4)).symm k) ≠ 0 := by
   exact hessianPrincipalMinor_source_ne_zero_of_rename_perm
     (Equiv.swap j (0 : Fin 4)) F i k
-    (R.renameContactToZero_source_hessianPrincipalMinor_ne_zero hminor)
+    (CrossFacetRayData.renameContactToZero_source_hessianPrincipalMinor_ne_zero
+      R hminor)
 
 end
 
