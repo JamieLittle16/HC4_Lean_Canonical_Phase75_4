@@ -87,11 +87,10 @@ noncomputable def actualRankTwoHessianChart_of_specialFiber_minor
     norm_num at this
   have hrho0 : rho (0 : Fin 4) = i := by
     dsimp [rho]
-    rw [Equiv.trans_apply, hs0]
+    rw [hs0]
     simp [tau, hs1_ne_i, hik]
   have hrho1 : rho (1 : Fin 4) = k := by
     dsimp [rho]
-    rw [Equiv.trans_apply]
     simp [tau]
   refine {
     permutation := rho
