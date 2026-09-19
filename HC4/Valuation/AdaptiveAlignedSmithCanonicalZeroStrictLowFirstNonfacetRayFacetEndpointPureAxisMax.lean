@@ -314,6 +314,71 @@ theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport
     · exact Nat.eq_zero_of_not_pos h2
     · exact Nat.eq_zero_of_not_pos h3
 
+
+/-- **Pure-axis endpoint reduction with an honest binary residual.**  The old
+pure-axis alternative can be sharpened: after maximising the omitted
+coordinate, either the represented source already has an actual rank-two
+chart, or the entire lower ray is supported on one base plane `(0,a)` and
+the stored facet endpoint is a genuine nonlinear pure `a`-axis power. -/
+theorem qs_ray_facetEndpoint_actualRankTwo_or_binarySupport
+    (C : AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
+      T .qs) :
+    Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented) ∨
+      ∃ a : Fin 4,
+        a ≠ (0 : Fin 4) ∧
+        1 < C.ray.facetExponent a ∧
+        (∀ k : Fin 4,
+          k ≠ (0 : Fin 4) → k ≠ a → C.ray.facetExponent k = 0) ∧
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransverseBaseSupport
+          a C.ray.face := by
+  rcases C.qs_ray_facetEndpoint_actualRankTwo_or_pureAxis with
+    hactual | h1 | h2 | h3
+  · exact Or.inl hactual
+  · rcases h1 with ⟨h1gt, h0, h2, h3⟩
+    have hbase :
+        ∀ k : Fin 4, k ≠ (0 : Fin 4) → k ≠ (1 : Fin 4) →
+          C.ray.facetExponent k = 0 := by
+      intro k hk0 hk1
+      fin_cases k
+      · exact (hk0 rfl).elim
+      · exact (hk1 rfl).elim
+      · exact h2
+      · exact h3
+    rcases C.qs_ray_coordinateMax_actualRankTwo_or_binarySupport
+        (1 : Fin 4) (by decide) hbase with htwo | hbinary
+    · exact Or.inl htwo
+    · exact Or.inr ⟨(1 : Fin 4), by decide, h1gt, hbase, hbinary⟩
+  · rcases h2 with ⟨h2gt, h0, h1, h3⟩
+    have hbase :
+        ∀ k : Fin 4, k ≠ (0 : Fin 4) → k ≠ (2 : Fin 4) →
+          C.ray.facetExponent k = 0 := by
+      intro k hk0 hk2
+      fin_cases k
+      · exact (hk0 rfl).elim
+      · exact h1
+      · exact (hk2 rfl).elim
+      · exact h3
+    rcases C.qs_ray_coordinateMax_actualRankTwo_or_binarySupport
+        (2 : Fin 4) (by decide) hbase with htwo | hbinary
+    · exact Or.inl htwo
+    · exact Or.inr ⟨(2 : Fin 4), by decide, h2gt, hbase, hbinary⟩
+  · rcases h3 with ⟨h3gt, h0, h1, h2⟩
+    have hbase :
+        ∀ k : Fin 4, k ≠ (0 : Fin 4) → k ≠ (3 : Fin 4) →
+          C.ray.facetExponent k = 0 := by
+      intro k hk0 hk3
+      fin_cases k
+      · exact (hk0 rfl).elim
+      · exact h1
+      · exact h2
+      · exact (hk3 rfl).elim
+    rcases C.qs_ray_coordinateMax_actualRankTwo_or_binarySupport
+        (3 : Fin 4) (by decide) hbase with htwo | hbinary
+    · exact Or.inl htwo
+    · exact Or.inr ⟨(3 : Fin 4), by decide, h3gt, hbase, hbinary⟩
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
 end
