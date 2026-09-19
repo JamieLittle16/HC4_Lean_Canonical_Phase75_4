@@ -107,7 +107,8 @@ theorem pderiv_ratio_cross
   rw [hmrepr] at hi hj
   rw [hi, hj]
   push_cast
-  ring_nf
+  simp only [MvPolynomial.C_mul]
+  ring
 
 /-- The extraction partial of the nonzero linear-power child is nonzero. -/
 theorem extraction_pderiv_ne_zero
