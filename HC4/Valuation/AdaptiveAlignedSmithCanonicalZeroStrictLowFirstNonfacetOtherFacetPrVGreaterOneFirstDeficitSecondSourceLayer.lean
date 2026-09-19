@@ -559,6 +559,13 @@ theorem firstDeficit_reflectedSecondLayerGeometry
         hq hj hk hfirst hfirst1 hfirst2 hop hop1 hqj
         hsecond hsecondOrder hsecondEq hreflect
 
+/-- Public export seam for downstream full-reflection assembly. -/
+theorem firstDeficit_reflectedSecondLayerGeometry_export
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.FirstDeficitReflectedSecondLayerGeometry :=
+  firstDeficit_reflectedSecondLayerGeometry G hthree houtThree
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
