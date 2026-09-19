@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9009**.
+Distinct declaration spellings indexed: **9010**.
 
 ## Repeated declaration spellings
 
@@ -7170,6 +7170,7 @@ Distinct declaration spellings indexed: **9009**.
 - `qs_ray_degreeOne_terminalCertificate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
 - `qs_ray_directionSum_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayDirection`
 - `qs_ray_exponent_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
+- `qs_ray_facetEndpoint_actualRankTwo_or_binarySupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointPureAxisMax`
 - `qs_ray_facetEndpoint_actualRankTwo_or_firstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakClosure`
 - `qs_ray_facetEndpoint_actualRankTwo_or_pureAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointRankTwo`
 - `qs_ray_facetEndpoint_degree_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
