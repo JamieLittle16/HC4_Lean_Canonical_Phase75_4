@@ -43,6 +43,46 @@ def centralDeficitSchurPerm : Equiv.Perm (Fin 4) :=
 @[simp] theorem centralDeficitSchurPerm_one :
     centralDeficitSchurPerm 1 = 3 := by decide
 
+/-- The Schur block construction itself is family-theoretic; keeping this
+generic prevents the large HC4 frontier package from entering coefficient
+normalization. -/
+noncomputable def centralDeficitSchurBlockOf
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
+  GeneralFourBlock.ofSymmetricMatrix
+    ((parameterFirstHessian Q).submatrix
+      centralDeficitSchurPerm centralDeficitSchurPerm)
+
+/-- Constant coefficient of the active determinant for an arbitrary family. -/
+theorem centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
+    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
+    (centralDeficitSchurBlockOf Q).activeDet.coeff 0 =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer Q 0)
+        (0 : Fin 4) (3 : Fin 4) := by
+  have hsym :
+      HC4.Polynomial.hessian (familyParameterLayer Q 0)
+          (0 : Fin 4) (3 : Fin 4) =
+        HC4.Polynomial.hessian (familyParameterLayer Q 0)
+          (3 : Fin 4) (0 : Fin 4) := by
+    change
+      MvPolynomial.pderiv 3
+          (MvPolynomial.pderiv 0 (familyParameterLayer Q 0)) =
+        MvPolynomial.pderiv 0
+          (MvPolynomial.pderiv 3 (familyParameterLayer Q 0))
+    exact pderiv_comm_commRing (3 : Fin 4) (0 : Fin 4)
+      (familyParameterLayer Q 0)
+  unfold centralDeficitSchurBlockOf GeneralFourBlock.activeDet
+    GeneralFourBlock.ofSymmetricMatrix
+  simp only [Matrix.submatrix_apply,
+    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+  rw [Polynomial.coeff_zero_eq_eval_zero]
+  simp only [Polynomial.eval_sub, Polynomial.eval_mul]
+  simp only [← Polynomial.coeff_zero_eq_eval_zero]
+  simp_rw [parameterFirstHessian_coeff]
+  unfold HC4.Polynomial.hessianPrincipalMinor
+  rw [hsym]
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -62,9 +102,7 @@ variable
 central `(0,3)` principal block placed first. -/
 noncomputable def centralDeficitSchurBlock :
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
-  GeneralFourBlock.ofSymmetricMatrix
-    ((parameterFirstHessian P.centralDeficitFamily).submatrix
-      centralDeficitSchurPerm centralDeficitSchurPerm)
+  centralDeficitSchurBlockOf P.centralDeficitFamily
 
 /-- Displaying the Schur four-block recovers the literal permuted complete
 source Hessian. -/
@@ -72,6 +110,7 @@ theorem centralDeficitSchurBlock_matrix :
     (centralDeficitSchurBlock (P := P)).matrix =
       (parameterFirstHessian P.centralDeficitFamily).submatrix
         centralDeficitSchurPerm centralDeficitSchurPerm := by
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
   apply GeneralFourBlock.matrix_ofSymmetricMatrix
   intro i j
   exact parameterFirstHessian_symmetric
@@ -85,30 +124,8 @@ theorem centralDeficitSchurBlock_activeDet_coeff_zero_eq :
       HC4.Polynomial.hessianPrincipalMinor
         (familyParameterLayer P.centralDeficitFamily 0)
         (0 : Fin 4) (3 : Fin 4) := by
-  have hsym :
-      HC4.Polynomial.hessian (familyParameterLayer P.centralDeficitFamily 0)
-          (0 : Fin 4) (3 : Fin 4) =
-        HC4.Polynomial.hessian (familyParameterLayer P.centralDeficitFamily 0)
-          (3 : Fin 4) (0 : Fin 4) := by
-    change
-      MvPolynomial.pderiv 3
-          (MvPolynomial.pderiv 0
-            (familyParameterLayer P.centralDeficitFamily 0)) =
-        MvPolynomial.pderiv 0
-          (MvPolynomial.pderiv 3
-            (familyParameterLayer P.centralDeficitFamily 0))
-    exact pderiv_comm_commRing (3 : Fin 4) (0 : Fin 4)
-      (familyParameterLayer P.centralDeficitFamily 0)
-  unfold centralDeficitSchurBlock GeneralFourBlock.activeDet
-    GeneralFourBlock.ofSymmetricMatrix
-  simp only [Matrix.submatrix_apply,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
-  rw [Polynomial.coeff_zero_eq_eval_zero]
-  simp only [Polynomial.eval_sub, Polynomial.eval_mul]
-  simp only [← Polynomial.coeff_zero_eq_eval_zero]
-  simp_rw [parameterFirstHessian_coeff]
-  unfold HC4.Polynomial.hessianPrincipalMinor
-  rw [hsym]
+  exact centralDeficitSchurBlockOf_activeDet_coeff_zero_eq
+    P.centralDeficitFamily
 
 /-- The active determinant has a genuinely nonzero constant coefficient. -/
 theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne
