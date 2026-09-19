@@ -42,6 +42,7 @@ variable
 /-- The first reflected source progression descends strictly in the
 longitudinal coordinate. -/
 theorem firstDeficit_fullSourceReflection_longitudinalDescent
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     ∃ first opposite second : Fin 4 →₀ ℕ,
