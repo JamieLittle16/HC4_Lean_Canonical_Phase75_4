@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9072**.
+Distinct declaration spellings indexed: **9075**.
 
 ## Repeated declaration spellings
 
@@ -5126,12 +5126,15 @@ Distinct declaration spellings indexed: **9072**.
 - `firstDeficitLeftStaggeredBlock_active_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitLeftStaggeredBlock_active_lower_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitLeftStaggeredBlock_d_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitLeftStaggeredBlock_d_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredBlock_kernelDiagonal_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitLeftStaggeredBlock_kernel_break` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitLeftStaggeredBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredBlock_s_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitLeftStaggeredBlock_s_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredBlock_z_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitLeftStaggeredBlock_z_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitLeftStaggeredPerm_castSucc` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
@@ -5159,12 +5162,15 @@ Distinct declaration spellings indexed: **9072**.
 - `firstDeficitRightStaggeredBlock_active_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitRightStaggeredBlock_active_lower_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitRightStaggeredBlock_d_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitRightStaggeredBlock_d_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredBlock_kernelDiagonal_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitRightStaggeredBlock_kernel_break` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficitRightStaggeredBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredBlock_s_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitRightStaggeredBlock_s_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredBlock_z_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `firstDeficitRightStaggeredBlock_z_eq_parameterFirstHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
 - `firstDeficitRightStaggeredPerm_castSucc` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBlock`
@@ -5344,9 +5350,6 @@ Distinct declaration spellings indexed: **9072**.
 - `fullVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `gap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `generalFourBlock_baseFacts_of_activeSubmatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
-- `generalFourBlock_d_eq_matrix_11` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
-- `generalFourBlock_s_eq_matrix_13` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
-- `generalFourBlock_z_eq_matrix_33` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `generalSurvivingSmithFaceShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `generalSurvivingSmithGradeShape_of_noNegativeLowPatterns` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `genuineCoefficientWall_specialFiber_has_negativeGrade` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
