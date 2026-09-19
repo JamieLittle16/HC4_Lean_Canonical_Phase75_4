@@ -90,12 +90,12 @@ theorem topBoundaryTransition_nextRay_or_codimensionTwo
     have hzero :
         (HC4.Newton.zeroCoordinateSupport
           (HC4.Polynomial.facetOmittedCoordinate next) T.topFace.face).Nonempty :=
-      ⟨d, mem_HC4.Newton.zeroCoordinateSupport.mpr ⟨hd, hd0⟩⟩
+      ⟨d, HC4.Newton.mem_zeroCoordinateSupport.mpr ⟨hd, hd0⟩⟩
     have hpos :
         (HC4.Newton.positiveCoordinateSupport
           (HC4.Polynomial.facetOmittedCoordinate next) T.topFace.face).Nonempty :=
       ⟨T.exposedSingularBoundaryVertex.exponent,
-        mem_HC4.Newton.positiveCoordinateSupport.mpr ⟨hstartMem, hstartPos⟩⟩
+        HC4.Newton.mem_positiveCoordinateSupport.mpr ⟨hstartMem, hstartPos⟩⟩
     exact Or.inl
       ⟨next, hne, ⟨HC4.Newton.crossFacetRayData hzero hpos⟩⟩
   · exact Or.inr ⟨d, hd, hcodim⟩
