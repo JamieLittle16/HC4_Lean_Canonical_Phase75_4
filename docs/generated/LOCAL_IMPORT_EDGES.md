@@ -66,6 +66,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ReachableTerminalReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionRecentering`
@@ -1751,6 +1752,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneTraceCollapse`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ReachableTerminalReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalObstructionProducer`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2FreeDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
