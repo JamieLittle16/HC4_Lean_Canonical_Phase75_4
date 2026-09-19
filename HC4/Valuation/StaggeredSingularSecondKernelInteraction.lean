@@ -259,6 +259,8 @@ theorem kernelDiagonal_secondInteraction_identity
         (E.block.s.coeff E.kernelOrder *
           E.block.s.coeff E.kernelOrder) := by
   let k := 2 * E.kernelOrder - E.activeOrder
+  have hactiveLt : E.activeOrder < E.kernelOrder := E.active_lt_kernel
+  have hqle : E.activeOrder ≤ 2 * E.kernelOrder := by omega
   have hsum : E.activeOrder + k = 2 * E.kernelOrder := by
     dsimp [k]
     omega
