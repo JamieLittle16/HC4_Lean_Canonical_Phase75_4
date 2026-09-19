@@ -45,6 +45,90 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+private theorem centralDeficit_p_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.p.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_p_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_q_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.q.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_q_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_r_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.r.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_r_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_s_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.s.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_s_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_x_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.x.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_x_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_y_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.y.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_y_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
+private theorem centralDeficit_z_coeff_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.z.coeff 0 = 0 := by
+  unfold centralDeficitSchurBlock
+  rw [centralDeficitSchurBlockOf_z_coeff_zero,
+    G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  simp [HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
+    G.central_one_zero, G.central_two_zero,
+    -standardTwoZero_pderiv_two_eq_A,
+    -standardTwoZero_pderiv_three_eq_C]
+
 private theorem centralDeficitSchurBlock_schurA_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
@@ -52,15 +136,12 @@ private theorem centralDeficitSchurBlock_schurA_coeff_zero
   change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurA = 0
   rw [← GeneralFourBlock.schurA_map
     G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock
-  rw [centralDeficitSchurBlockOf_map_constantCoeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
-  simp [GeneralFourBlock.schurA, GeneralFourBlock.activeDet,
-    GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero,
-    -standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C]
+  simp only [GeneralFourBlock.map, GeneralFourBlock.schurA,
+    GeneralFourBlock.activeDet, Polynomial.constantCoeff_apply]
+  rw [G.centralDeficit_p_coeff_zero hthree houtThree,
+    G.centralDeficit_r_coeff_zero hthree houtThree,
+    G.centralDeficit_x_coeff_zero hthree houtThree]
+  ring
 
 private theorem centralDeficitSchurBlock_schurB_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -69,15 +150,14 @@ private theorem centralDeficitSchurBlock_schurB_coeff_zero
   change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurB = 0
   rw [← GeneralFourBlock.schurB_map
     G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock
-  rw [centralDeficitSchurBlockOf_map_constantCoeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
-  simp [GeneralFourBlock.schurB, GeneralFourBlock.activeDet,
-    GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero,
-    -standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C]
+  simp only [GeneralFourBlock.map, GeneralFourBlock.schurB,
+    GeneralFourBlock.activeDet, Polynomial.constantCoeff_apply]
+  rw [G.centralDeficit_p_coeff_zero hthree houtThree,
+    G.centralDeficit_q_coeff_zero hthree houtThree,
+    G.centralDeficit_r_coeff_zero hthree houtThree,
+    G.centralDeficit_s_coeff_zero hthree houtThree,
+    G.centralDeficit_y_coeff_zero hthree houtThree]
+  ring
 
 private theorem centralDeficitSchurBlock_schurC_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -86,15 +166,12 @@ private theorem centralDeficitSchurBlock_schurC_coeff_zero
   change Polynomial.constantCoeff G.centralDeficitSchurBlock.schurC = 0
   rw [← GeneralFourBlock.schurC_map
     G.centralDeficitSchurBlock Polynomial.constantCoeff]
-  unfold centralDeficitSchurBlock
-  rw [centralDeficitSchurBlockOf_map_constantCoeff]
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
-  simp [GeneralFourBlock.schurC, GeneralFourBlock.activeDet,
-    GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply,
-    HC4.Polynomial.hessian_apply, MvPolynomial.pderiv_monomial,
-    G.central_one_zero, G.central_two_zero,
-    -standardTwoZero_pderiv_two_eq_A,
-    -standardTwoZero_pderiv_three_eq_C]
+  simp only [GeneralFourBlock.map, GeneralFourBlock.schurC,
+    GeneralFourBlock.activeDet, Polynomial.constantCoeff_apply]
+  rw [G.centralDeficit_q_coeff_zero hthree houtThree,
+    G.centralDeficit_s_coeff_zero hthree houtThree,
+    G.centralDeficit_z_coeff_zero hthree houtThree]
+  ring
 
 /-- The complete central Schur block is a genuine zero-constant Schur series. -/
 noncomputable def centralDeficitZeroSchurSeries
