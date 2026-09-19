@@ -66,8 +66,7 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
   have he3 := congrFun haff1 (3 : Fin 4)
   have hsum : (1 : K) + Q + R + S = 0 := by
     simp [ordinaryDegree4, Nat.cast_add] at hdeg1K
-    simp [rankThreeLogBaseExponent, rankThreeLogDirection] at
-      he0 he1 he2 he3
+    simp [rankThreeLogBaseExponent, rankThreeLogDirection] at he0 he1 he2 he3
     rw [he0, he1, he2, he3] at hdeg1K
     push_cast at hdeg1K
     linear_combination hdeg1K
