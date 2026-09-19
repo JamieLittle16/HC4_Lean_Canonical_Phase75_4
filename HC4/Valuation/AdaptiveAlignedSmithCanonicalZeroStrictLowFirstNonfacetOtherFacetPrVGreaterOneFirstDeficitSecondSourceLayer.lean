@@ -186,6 +186,24 @@ theorem reflected_right_deficit_arithmetic
     q + s₂ = 2 * o₂ := by
   omega
 
+/-- Tiny field-to-matrix projection lemmas keep downstream staggered
+coefficient proofs opaque instead of unfolding `GeneralFourBlock.matrix`
+inside the full HC4 context. -/
+private theorem generalFourBlock_d_eq_matrix_11
+    {R : Type*} [CommRing R] (H : GeneralFourBlock R) :
+    H.d = H.matrix (1 : Fin 4) 1 := by
+  rfl
+
+private theorem generalFourBlock_s_eq_matrix_13
+    {R : Type*} [CommRing R] (H : GeneralFourBlock R) :
+    H.s = H.matrix (1 : Fin 4) 3 := by
+  rfl
+
+private theorem generalFourBlock_z_eq_matrix_33
+    {R : Type*} [CommRing R] (H : GeneralFourBlock R) :
+    H.z = H.matrix (3 : Fin 4) 3 := by
+  rfl
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 namespace QsOtherFacetPrLeftVCentralRankTwoGeometry
 
@@ -209,21 +227,22 @@ theorem firstDeficitLeftStaggeredBlock_d_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 1 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitLeftStaggeredBlock_matrix (1 : Fin 4))
-    (1 : Fin 4)
-  change G.firstDeficitLeftStaggeredBlock.d =
-    G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 1 at hentry
-  change G.firstDeficitLeftStaggeredBlock.d =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4)) at hentry
-  rw [firstDeficitLeftStaggeredPerm_one] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (1 : Fin 4) 1)
+  calc
+    G.firstDeficitLeftStaggeredBlock.d.coeff n =
+        (G.firstDeficitLeftStaggeredBlock.matrix (1 : Fin 4) 1).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_d_eq_matrix_11 G.firstDeficitLeftStaggeredBlock)
+    _ = (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 1).coeff n := by
+      rw [G.firstDeficitLeftStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (1 : Fin 4) 1).coeff n := by
+      simp only [firstDeficitLeftStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitLeftStaggeredPerm_one]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (1 : Fin 4) 1
 
 /-- Left mixed entry is the honest `(1,2)` Hessian entry of the exact
 total-deficit layer. -/
@@ -233,22 +252,23 @@ theorem firstDeficitLeftStaggeredBlock_s_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 2 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitLeftStaggeredBlock_matrix (1 : Fin 4))
-    (3 : Fin 4)
-  change G.firstDeficitLeftStaggeredBlock.s =
-    G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 3 at hentry
-  change G.firstDeficitLeftStaggeredBlock.s =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (1 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4)) at hentry
-  rw [firstDeficitLeftStaggeredPerm_one,
-    firstDeficitLeftStaggeredPerm_three] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (1 : Fin 4) 2)
+  calc
+    G.firstDeficitLeftStaggeredBlock.s.coeff n =
+        (G.firstDeficitLeftStaggeredBlock.matrix (1 : Fin 4) 3).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_s_eq_matrix_13 G.firstDeficitLeftStaggeredBlock)
+    _ = (G.firstDeficitLeftStaggeredMatrix (1 : Fin 4) 3).coeff n := by
+      rw [G.firstDeficitLeftStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (1 : Fin 4) 2).coeff n := by
+      simp only [firstDeficitLeftStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitLeftStaggeredPerm_one,
+        firstDeficitLeftStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 2 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (1 : Fin 4) 2
 
 /-- Right active-middle entry is the honest `(2,2)` Hessian entry. -/
 theorem firstDeficitRightStaggeredBlock_d_coeff
@@ -257,21 +277,22 @@ theorem firstDeficitRightStaggeredBlock_d_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 2 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitRightStaggeredBlock_matrix (1 : Fin 4))
-    (1 : Fin 4)
-  change G.firstDeficitRightStaggeredBlock.d =
-    G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 1 at hentry
-  change G.firstDeficitRightStaggeredBlock.d =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (1 : Fin 4))
-      (firstDeficitRightStaggeredPerm (1 : Fin 4)) at hentry
-  rw [firstDeficitRightStaggeredPerm_one] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (2 : Fin 4) 2)
+  calc
+    G.firstDeficitRightStaggeredBlock.d.coeff n =
+        (G.firstDeficitRightStaggeredBlock.matrix (1 : Fin 4) 1).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_d_eq_matrix_11 G.firstDeficitRightStaggeredBlock)
+    _ = (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 1).coeff n := by
+      rw [G.firstDeficitRightStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 2).coeff n := by
+      simp only [firstDeficitRightStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitRightStaggeredPerm_one]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (2 : Fin 4) 2
 
 /-- Right mixed entry is the honest `(2,1)` Hessian entry. -/
 theorem firstDeficitRightStaggeredBlock_s_coeff
@@ -280,22 +301,23 @@ theorem firstDeficitRightStaggeredBlock_s_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 1 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitRightStaggeredBlock_matrix (1 : Fin 4))
-    (3 : Fin 4)
-  change G.firstDeficitRightStaggeredBlock.s =
-    G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 3 at hentry
-  change G.firstDeficitRightStaggeredBlock.s =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (1 : Fin 4))
-      (firstDeficitRightStaggeredPerm (3 : Fin 4)) at hentry
-  rw [firstDeficitRightStaggeredPerm_one,
-    firstDeficitRightStaggeredPerm_three] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (2 : Fin 4) 1)
+  calc
+    G.firstDeficitRightStaggeredBlock.s.coeff n =
+        (G.firstDeficitRightStaggeredBlock.matrix (1 : Fin 4) 3).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_s_eq_matrix_13 G.firstDeficitRightStaggeredBlock)
+    _ = (G.firstDeficitRightStaggeredMatrix (1 : Fin 4) 3).coeff n := by
+      rw [G.firstDeficitRightStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1).coeff n := by
+      simp only [firstDeficitRightStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitRightStaggeredPerm_one,
+        firstDeficitRightStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 1 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (2 : Fin 4) 1
 
 /-- The left staggered missing diagonal is literally the `(2,2)` Hessian
 entry of the exact total-deficit source layer. -/
@@ -305,21 +327,22 @@ theorem firstDeficitLeftStaggeredBlock_z_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (2 : Fin 4) 2 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitLeftStaggeredBlock_matrix (3 : Fin 4))
-    (3 : Fin 4)
-  change G.firstDeficitLeftStaggeredBlock.z =
-    G.firstDeficitLeftStaggeredMatrix (3 : Fin 4) 3 at hentry
-  change G.firstDeficitLeftStaggeredBlock.z =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4))
-      (firstDeficitLeftStaggeredPerm (3 : Fin 4)) at hentry
-  rw [firstDeficitLeftStaggeredPerm_three] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (2 : Fin 4) 2)
+  calc
+    G.firstDeficitLeftStaggeredBlock.z.coeff n =
+        (G.firstDeficitLeftStaggeredBlock.matrix (3 : Fin 4) 3).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_z_eq_matrix_33 G.firstDeficitLeftStaggeredBlock)
+    _ = (G.firstDeficitLeftStaggeredMatrix (3 : Fin 4) 3).coeff n := by
+      rw [G.firstDeficitLeftStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 2).coeff n := by
+      simp only [firstDeficitLeftStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitLeftStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (2 : Fin 4) 2 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (2 : Fin 4) 2
 
 /-- Right-oriented mirror: the missing diagonal is the `(1,1)` Hessian
 entry of the exact source layer. -/
@@ -329,21 +352,22 @@ theorem firstDeficitRightStaggeredBlock_z_coeff
       HC4.Polynomial.hessian
         (familyParameterLayer P.centralDeficitFamily n)
         (1 : Fin 4) 1 := by
-  have hentry := congrFun
-    (congrFun G.firstDeficitRightStaggeredBlock_matrix (3 : Fin 4))
-    (3 : Fin 4)
-  change G.firstDeficitRightStaggeredBlock.z =
-    G.firstDeficitRightStaggeredMatrix (3 : Fin 4) 3 at hentry
-  change G.firstDeficitRightStaggeredBlock.z =
-    parameterFirstHessian P.centralDeficitFamily
-      (firstDeficitRightStaggeredPerm (3 : Fin 4))
-      (firstDeficitRightStaggeredPerm (3 : Fin 4)) at hentry
-  rw [firstDeficitRightStaggeredPerm_three] at hentry
-  have hcoeff := congrArg
-    (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n) hentry
-  exact hcoeff.trans
-    (parameterFirstHessian_coeff
-      P.centralDeficitFamily n (1 : Fin 4) 1)
+  calc
+    G.firstDeficitRightStaggeredBlock.z.coeff n =
+        (G.firstDeficitRightStaggeredBlock.matrix (3 : Fin 4) 3).coeff n := by
+      exact congrArg
+        (fun Q : Polynomial (MvPolynomial (Fin 4) K) => Q.coeff n)
+        (generalFourBlock_z_eq_matrix_33 G.firstDeficitRightStaggeredBlock)
+    _ = (G.firstDeficitRightStaggeredMatrix (3 : Fin 4) 3).coeff n := by
+      rw [G.firstDeficitRightStaggeredBlock_matrix]
+    _ = (parameterFirstHessian P.centralDeficitFamily (1 : Fin 4) 1).coeff n := by
+      simp only [firstDeficitRightStaggeredMatrix, Matrix.submatrix_apply,
+        firstDeficitRightStaggeredPerm_three]
+    _ = HC4.Polynomial.hessian
+        (familyParameterLayer P.centralDeficitFamily n)
+        (1 : Fin 4) 1 :=
+      parameterFirstHessian_coeff
+        P.centralDeficitFamily n (1 : Fin 4) 1
 
 /-- Provenance-rich source monomial forced at the second interaction order. -/
 inductive FirstDeficitSecondSourceLayerGeometry : Prop
