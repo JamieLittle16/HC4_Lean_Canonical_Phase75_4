@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9066**.
+Distinct declaration spellings indexed: **9068**.
 
 ## Repeated declaration spellings
 
@@ -5180,6 +5180,8 @@ Distinct declaration spellings indexed: **9066**.
 - `firstDeficit_primitiveOppositeOpening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
 - `firstDeficit_reflectedSecondLayerGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `firstDeficit_secondInteractionGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
+- `firstDeficit_secondInteractionGeometry_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
+- `firstDeficit_secondInteractionGeometry_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `firstDeficit_secondSourceLayerGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `firstDeficit_staggeredFirstKernelBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeparture` — `def` in `HC4.Newton.FirstSchurLayerLinearization`, `def` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
