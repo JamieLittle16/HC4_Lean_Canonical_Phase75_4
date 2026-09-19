@@ -9890,7 +9890,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`, `HC4.Valuation.StaggeredSingularSecondKernelInteraction`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
-- Declarations: `theorem generalFourBlock_baseFacts_of_activeSubmatrix`, `inductive FirstDeficitSecondInteractionGeometry`, `theorem firstDeficit_secondInteractionGeometry`
+- Declarations: `theorem generalFourBlock_baseFacts_of_activeSubmatrix`, `theorem generalFourBlock_d_coeff_eq_matrix_11_coeff`, `theorem generalFourBlock_s_coeff_eq_matrix_13_coeff`, `theorem generalFourBlock_z_coeff_eq_matrix_33_coeff`, `inductive FirstDeficitSecondInteractionGeometry`, `theorem firstDeficit_secondInteractionGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 
