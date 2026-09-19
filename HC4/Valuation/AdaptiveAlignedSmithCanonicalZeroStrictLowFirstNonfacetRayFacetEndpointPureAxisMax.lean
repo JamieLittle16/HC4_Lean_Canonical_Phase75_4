@@ -199,12 +199,18 @@ private noncomputable def actualRankTwoChart0j
       (polynomialFamilySpecialFiber s.family) (0 : Fin 4) j ≠ 0) :
     AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart s := by
   let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) j
+  have hrho0 : rho (0 : Fin 4) = 0 := by
+    dsimp [rho]
+    fin_cases j <;> simp_all
+  have hrho1 : rho (1 : Fin 4) = j := by
+    simp [rho]
   refine {
     permutation := rho
     activeDet_coeff_zero_ne_zero := ?_
   }
   rw [scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor]
-  simpa [rho, hj0] using h
+  rw [hrho0, hrho1]
+  exact h
 
 /-- If the coordinate-`0` maximal ray point is pure longitudinal and the
 starting endpoint is supported on the base plane `(0,a)`, affine
@@ -295,11 +301,29 @@ theorem qs_ray_coordinateMax_actualRankTwo_or_binarySupport
   · right
     apply C.qs_ray_binarySupport_of_coordinateMax_zero_pure a ha0 hfacetBase
     intro k hk0
-    fin_cases k
-    · exact (hk0 rfl).elim
-    · exact Nat.eq_zero_of_not_pos h1
-    · exact Nat.eq_zero_of_not_pos h2
-    · exact Nat.eq_zero_of_not_pos h3
+    have hkval0 : k.val ≠ 0 := by
+      intro hk
+      apply hk0
+      apply Fin.ext
+      simpa using hk
+    have hkCases : k.val = 1 ∨ k.val = 2 ∨ k.val = 3 := by
+      omega
+    rcases hkCases with hk1 | hk2 | hk3
+    · have hk : k = (1 : Fin 4) := by
+        apply Fin.ext
+        simpa using hk1
+      subst k
+      exact Nat.eq_zero_of_not_pos h1
+    · have hk : k = (2 : Fin 4) := by
+        apply Fin.ext
+        simpa using hk2
+      subst k
+      exact Nat.eq_zero_of_not_pos h2
+    · have hk : k = (3 : Fin 4) := by
+        apply Fin.ext
+        simpa using hk3
+      subst k
+      exact Nat.eq_zero_of_not_pos h3
 
 
 /-- **Pure-axis endpoint reduction with an honest binary residual.**  The old
