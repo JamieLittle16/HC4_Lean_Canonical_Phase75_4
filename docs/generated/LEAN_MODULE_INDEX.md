@@ -7257,10 +7257,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo.lean`
 - Purpose: Balance-free homogeneous ray to codimension two or rank-two Hessian geometry
 - A-labels: none detected
-- Local imports: `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
+- Local imports: `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`, `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem balanceFreeHomogeneousRay_codimensionTwo_or_rankTwoFace`
+- Declarations: `theorem balanceFreeHomogeneousRay_codimensionTwo_or_rankTwoFace`, `theorem balanceFreeHomogeneousRay_codimensionTwo_or_sourceRankTwo`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 
@@ -13249,8 +13249,8 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.FiniteSupportCrossFacetRay`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`
-- Declarations: `theorem hessianPrincipalMinor_rename_perm`, `theorem hessianPrincipalMinor_source_ne_zero_of_rename_perm`, `theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero`, `theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
+- Declarations: `theorem hessianPrincipalMinor_rename_perm`, `theorem hessianPrincipalMinor_source_ne_zero_of_rename_perm`, `theorem CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero`, `theorem crossFacetRayData_source_hessianPrincipalMinor_ne_zero`, `theorem CrossFacetRayData.renameContactToZero_source_hessianPrincipalMinor_ne_zero`, `theorem CrossFacetRayData.source_hessianPrincipalMinor_ne_zero_of_renamedZero`
 
 ### `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
 

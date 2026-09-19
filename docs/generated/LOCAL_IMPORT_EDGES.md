@@ -2432,6 +2432,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
   - `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+  - `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
   - `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
   - `HC4.Newton.MixedDegreeFirstWallCompetition`
