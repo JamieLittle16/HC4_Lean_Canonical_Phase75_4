@@ -275,27 +275,37 @@ theorem firstDeficitLeftStaggeredBlock_activeCoeff_eq_outer_mul_middle
       G.firstDeficitLeftStaggeredBlock.a =
         G.firstDeficitLeftActiveHessian 0 0 := by
     have h := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitLeftStaggeredBlock.a =
+      G.firstDeficitLeftActiveHessian 0 0 at h
+    exact h
   have hp02 :
       G.firstDeficitLeftStaggeredBlock.p =
         G.firstDeficitLeftActiveHessian 0 2 := by
     have h := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitLeftStaggeredBlock.p =
+      G.firstDeficitLeftActiveHessian 0 2 at h
+    exact h
   have hp20 :
       G.firstDeficitLeftStaggeredBlock.p =
         G.firstDeficitLeftActiveHessian 2 0 := by
     have h := congrFun (congrFun hsub (2 : Fin 3)) (0 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitLeftStaggeredBlock.p =
+      G.firstDeficitLeftActiveHessian 2 0 at h
+    exact h
   have hx :
       G.firstDeficitLeftStaggeredBlock.x =
         G.firstDeficitLeftActiveHessian 2 2 := by
     have h := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitLeftStaggeredBlock.x =
+      G.firstDeficitLeftActiveHessian 2 2 at h
+    exact h
   have hd :
       G.firstDeficitLeftStaggeredBlock.d =
         G.firstDeficitLeftActiveHessian 1 1 := by
     have h := congrFun (congrFun hsub (1 : Fin 3)) (1 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitLeftStaggeredBlock.d =
+      G.firstDeficitLeftActiveHessian 1 1 at h
+    exact h
   have ha0 :
       G.firstDeficitLeftStaggeredBlock.a.coeff 0 = a := by
     rw [ha]
@@ -354,27 +364,37 @@ theorem firstDeficitRightStaggeredBlock_activeCoeff_eq_outer_mul_middle
       G.firstDeficitRightStaggeredBlock.a =
         G.firstDeficitRightActiveHessian 0 0 := by
     have h := congrFun (congrFun hsub (0 : Fin 3)) (0 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitRightStaggeredBlock.a =
+      G.firstDeficitRightActiveHessian 0 0 at h
+    exact h
   have hp02 :
       G.firstDeficitRightStaggeredBlock.p =
         G.firstDeficitRightActiveHessian 0 2 := by
     have h := congrFun (congrFun hsub (0 : Fin 3)) (2 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitRightStaggeredBlock.p =
+      G.firstDeficitRightActiveHessian 0 2 at h
+    exact h
   have hp20 :
       G.firstDeficitRightStaggeredBlock.p =
         G.firstDeficitRightActiveHessian 2 0 := by
     have h := congrFun (congrFun hsub (2 : Fin 3)) (0 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitRightStaggeredBlock.p =
+      G.firstDeficitRightActiveHessian 2 0 at h
+    exact h
   have hx :
       G.firstDeficitRightStaggeredBlock.x =
         G.firstDeficitRightActiveHessian 2 2 := by
     have h := congrFun (congrFun hsub (2 : Fin 3)) (2 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitRightStaggeredBlock.x =
+      G.firstDeficitRightActiveHessian 2 2 at h
+    exact h
   have hd :
       G.firstDeficitRightStaggeredBlock.d =
         G.firstDeficitRightActiveHessian 1 1 := by
     have h := congrFun (congrFun hsub (1 : Fin 3)) (1 : Fin 3)
-    simpa [Matrix.submatrix_apply, GeneralFourBlock.matrix] using h
+    change G.firstDeficitRightStaggeredBlock.d =
+      G.firstDeficitRightActiveHessian 1 1 at h
+    exact h
   have ha0 :
       G.firstDeficitRightStaggeredBlock.a.coeff 0 = a := by
     rw [ha]
