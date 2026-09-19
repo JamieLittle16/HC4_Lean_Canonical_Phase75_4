@@ -221,6 +221,7 @@ variable
 
 /-- Left active-middle entry is the honest `(1,1)` Hessian entry of
 the exact total-deficit layer. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitLeftStaggeredBlock_d_coeff
     (n : ℕ) :
     G.firstDeficitLeftStaggeredBlock.d.coeff n =
@@ -246,6 +247,7 @@ theorem firstDeficitLeftStaggeredBlock_d_coeff
 
 /-- Left mixed entry is the honest `(1,2)` Hessian entry of the exact
 total-deficit layer. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitLeftStaggeredBlock_s_coeff
     (n : ℕ) :
     G.firstDeficitLeftStaggeredBlock.s.coeff n =
@@ -271,6 +273,7 @@ theorem firstDeficitLeftStaggeredBlock_s_coeff
         P.centralDeficitFamily n (1 : Fin 4) 2
 
 /-- Right active-middle entry is the honest `(2,2)` Hessian entry. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitRightStaggeredBlock_d_coeff
     (n : ℕ) :
     G.firstDeficitRightStaggeredBlock.d.coeff n =
@@ -295,6 +298,7 @@ theorem firstDeficitRightStaggeredBlock_d_coeff
         P.centralDeficitFamily n (2 : Fin 4) 2
 
 /-- Right mixed entry is the honest `(2,1)` Hessian entry. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitRightStaggeredBlock_s_coeff
     (n : ℕ) :
     G.firstDeficitRightStaggeredBlock.s.coeff n =
@@ -321,6 +325,7 @@ theorem firstDeficitRightStaggeredBlock_s_coeff
 
 /-- The left staggered missing diagonal is literally the `(2,2)` Hessian
 entry of the exact total-deficit source layer. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitLeftStaggeredBlock_z_coeff
     (n : ℕ) :
     G.firstDeficitLeftStaggeredBlock.z.coeff n =
@@ -346,6 +351,7 @@ theorem firstDeficitLeftStaggeredBlock_z_coeff
 
 /-- Right-oriented mirror: the missing diagonal is the `(1,1)` Hessian
 entry of the exact source layer. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficitRightStaggeredBlock_z_coeff
     (n : ℕ) :
     G.firstDeficitRightStaggeredBlock.z.coeff n =
