@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9064**.
+Distinct declaration spellings indexed: **9065**.
 
 ## Repeated declaration spellings
 
@@ -6630,6 +6630,7 @@ Distinct declaration spellings indexed: **9064**.
 - `pderiv_other_support_extraction_coordinate` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `pderiv_pderiv_eq_zero_of_longitudinalTransverseDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
 - `pderiv_pderiv_eq_zero_of_transverseComplementDegree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderWallFace`
+- `pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `pderiv_pderiv_ne_zero_of_support_exponent_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
 - `pderiv_pderiv_ne_zero_of_support_exponents_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `pderiv_pderiv_ne_zero_of_support_two_positive` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
