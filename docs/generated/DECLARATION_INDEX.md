@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **8982**.
+Distinct declaration spellings indexed: **8984**.
 
 ## Repeated declaration spellings
 
@@ -1624,6 +1624,7 @@ Distinct declaration spellings indexed: **8982**.
 - `FacetOutcome` — `inductive` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.facet` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.toClassifiedBranch` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
+- `FinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `FiniteTargetChart` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `FirstActualLayerHasFreshSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `FirstActualLayerSupportContainedInSpecialFiber` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
@@ -4960,6 +4961,7 @@ Distinct declaration spellings indexed: **8982**.
 - `finTwo_degree_eq_coord_of_other_zero_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `finTwo_degree_le_totalDegree_of_mem_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `finTwo_exponent_eq_of_degree_eq_of_coord_eq_curved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
+- `finalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `finalLevel_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalWeight_toNat_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`

@@ -117,6 +117,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementFacetElimination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoElimination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryActiveSchur`
@@ -2450,6 +2451,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankTwoGeometry`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoFinalGeometry`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalResidualReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
