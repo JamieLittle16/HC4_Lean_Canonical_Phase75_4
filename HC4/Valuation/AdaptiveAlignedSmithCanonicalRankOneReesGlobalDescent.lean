@@ -36,6 +36,9 @@ theorem adaptiveAlignedSmithCanonicalGlobalMacroProgress_trans
     (hbc : AdaptiveAlignedSmithCanonicalGlobalMacroProgress b c) :
     AdaptiveAlignedSmithCanonicalGlobalMacroProgress a c := by
   unfold AdaptiveAlignedSmithCanonicalGlobalMacroProgress at hab hbc ⊢
+  letI : IsTrans ℕ Nat.lt := ⟨Nat.lt_trans⟩
+  letI : IsTrans (ℕ × ℕ) (Prod.Lex Nat.lt Nat.lt) :=
+    ⟨fun _ _ _ hxy hyz => Prod.Lex.trans hxy hyz⟩
   exact Prod.Lex.trans hab hbc
 
 /-- Forget the intermediate nodes of a finite rank-one termination trace while
@@ -56,10 +59,14 @@ theorem
   | terminal geometry =>
       exact Or.inl rfl
   | @restart source target progress rawDefect_lt repair_eq tail ih =>
+      change
+        tail.reachedRankThree.state = source ∨
+          AdaptiveAlignedSmithCanonicalGlobalMacroProgress
+            tail.reachedRankThree.state source
       rcases ih with hEq | hTail
       · right
-        simpa [AdaptiveAlignedSmithCanonicalRankOneTerminationTrace.reachedRankThree,
-          hEq] using progress
+        rw [hEq]
+        exact progress
       · right
         exact adaptiveAlignedSmithCanonicalGlobalMacroProgress_trans hTail progress
 
