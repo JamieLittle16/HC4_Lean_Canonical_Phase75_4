@@ -164,7 +164,7 @@ private theorem initialForm_coeff_mul_eq_zero
   exact Finset.sum_eq_zero (fun x hx => hall x hx)
 
 private theorem tilted_binary_nonCancellation
-    {σ K : Type*} [Field K]
+    {σ K : Type*} [Field K] [CharZero K]
     {w : σ → ℤ}
     {A B C : Polynomial (MvPolynomial σ K)}
     {N i₀ j₀ : ℕ} {a c : ℤ}
@@ -201,11 +201,12 @@ private theorem tilted_binary_nonCancellation
     rw [htop]
     exact mul_ne_zero hAiTop hCjTop
   have heq : A * C = B * B := sub_eq_zero.mp hdet
-  have hcoeff := congrArg (fun P : Polynomial (MvPolynomial σ K) =>
-    P.coeff N) heq
+  have hcoeff : (A * C).coeff N = (B * B).coeff N :=
+    congrArg (fun P : Polynomial (MvPolynomial σ K) => P.coeff N) heq
   have hzero :
       HC4.Polynomial.initialForm w (a + c) ((A * C).coeff N) = 0 := by
-    rw [hcoeff, hBB0]
+    rw [hcoeff]
+    exact hBB0
   rw [hAC] at hzero
   exact hdesired hzero
 
@@ -416,8 +417,8 @@ private theorem centralDeficit_leftTilt_impossible
       HC4.Polynomial.hessian G.firstDeficitLayer
         (2 : Fin 4) 2 = 0 := by
     rw [hfirstMono]
-    simp [HC4.Polynomial.hessian_apply, standardTwoZeroA, standardTwoZeroC,
-      MvPolynomial.pderiv_monomial, he2]
+    rw [HC4.Polynomial.hessian_apply]
+    simp [MvPolynomial.pderiv_monomial, he2]
   have hdiagRight :
       (G.firstDeficitRightActiveHessian 1 1).coeff
           G.firstDeficitOrder = 0 := by
@@ -487,13 +488,9 @@ private theorem centralDeficit_leftTilt_impossible
     have hbcHom : MvPolynomial.IsWeightedHomogeneous w (b0 * c0) 0 := by
       simpa using MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
     dsimp [Delta0]
-    rw [show a0 * d0 - b0 * c0 =
-        a0 * d0 + (-1 : K) • (b0 * c0) by ring]
-    rw [HC4.Polynomial.initialForm_add,
-      HC4.Polynomial.initialForm_smul,
+    rw [map_sub,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hbcHom]
-    simp
 
   have hfirstHom :
       MvPolynomial.IsWeightedHomogeneous w
@@ -638,7 +635,7 @@ private theorem centralDeficit_leftTilt_impossible
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_x]
     convert hH (2 : Fin 4) 2 using 1 <;>
-      simp [w, dgap, firstDeficitLeftTiltWeight]
+      simp [w, dgap, firstDeficitLeftTiltWeight] <;> ring
   have hactiveB : HasTiltedParameterCoeffBoundBelow w q s 0 H.activeDet := by
     unfold GeneralFourBlock.activeDet
     simpa using (haB.mul hdB).sub (hbB.mul hbB)
@@ -694,7 +691,6 @@ private theorem centralDeficit_leftTilt_impossible
       simpa [tiltedParameterPenalty] using h
     · apply isWeightLE_mono' (hP := h)
       simp [tiltedParameterPenalty, hn0]
-      omega
   have hpPos :
       ∀ n : ℕ, 0 < n → n < s →
         HC4.Polynomial.IsWeightLE w
@@ -785,8 +781,7 @@ private theorem centralDeficit_leftTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hppPos
   have hbpr :
       HC4.Polynomial.IsWeightLE w corrBound
@@ -800,8 +795,7 @@ private theorem centralDeficit_leftTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hprPos
   have harr :
       HC4.Polynomial.IsWeightLE w corrBound
@@ -815,8 +809,7 @@ private theorem centralDeficit_leftTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hrrPos
 
   let correction :=
@@ -969,7 +962,8 @@ private theorem centralDeficit_leftTilt_impossible
     dsimp [target, WX, WC, M, dgap] at hMq ⊢
     nlinarith
   have hBBinterior :
-      2 * (-(q : ℤ) - ((dgap : ℤ) - 2)) < target := by
+      (-(q : ℤ) - ((dgap : ℤ) - 2)) +
+        (-(q : ℤ) - ((dgap : ℤ) - 2)) < target := by
     dsimp [target, WX, WC, M, dgap] at hMq ⊢
     nlinarith
 
@@ -1048,7 +1042,7 @@ private theorem centralDeficit_leftTilt_impossible
   exact tilted_binary_nonCancellation
     (w := w) (A := H.schurA) (B := H.schurB) (C := H.schurC)
     (N := N) (i₀ := s) (j₀ := q) (a := WX) (c := WC)
-    (by simp [N]) hAsLE hCqLE hAsTopNe hCqTopNe
+    (by dsimp [N]; omega) hAsLE hCqLE hAsTopNe hCqTopNe
     (by simpa [target] using hACother)
     (by simpa [target] using hBB)
     hdet
@@ -1180,8 +1174,8 @@ private theorem centralDeficit_rightTilt_impossible
       HC4.Polynomial.hessian G.firstDeficitLayer
         (1 : Fin 4) 1 = 0 := by
     rw [hfirstMono]
-    simp [HC4.Polynomial.hessian_apply, standardTwoZeroA, standardTwoZeroC,
-      MvPolynomial.pderiv_monomial, he1]
+    rw [HC4.Polynomial.hessian_apply]
+    simp [MvPolynomial.pderiv_monomial, he1]
   have hdiagLeft :
       (G.firstDeficitLeftActiveHessian 1 1).coeff
           G.firstDeficitOrder = 0 := by
@@ -1251,13 +1245,9 @@ private theorem centralDeficit_rightTilt_impossible
     have hbcHom : MvPolynomial.IsWeightedHomogeneous w (b0 * c0) 0 := by
       simpa using MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
     dsimp [Delta0]
-    rw [show a0 * d0 - b0 * c0 =
-        a0 * d0 + (-1 : K) • (b0 * c0) by ring]
-    rw [HC4.Polynomial.initialForm_add,
-      HC4.Polynomial.initialForm_smul,
+    rw [map_sub,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hbcHom]
-    simp
   have hfirstHom :
       MvPolynomial.IsWeightedHomogeneous w
         G.firstDeficitLayer (-(q : ℤ)) := by
@@ -1400,7 +1390,7 @@ private theorem centralDeficit_rightTilt_impossible
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_z]
     convert hH (1 : Fin 4) 1 using 1 <;>
-      simp [w, dgap, firstDeficitRightTiltWeight]
+      simp [w, dgap, firstDeficitRightTiltWeight] <;> ring
   have hactiveB : HasTiltedParameterCoeffBoundBelow w q s 0 H.activeDet := by
     unfold GeneralFourBlock.activeDet
     simpa using (haB.mul hdB).sub (hbB.mul hbB)
@@ -1535,8 +1525,7 @@ private theorem centralDeficit_rightTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hqqPos
   have hbqs :
       HC4.Polynomial.IsWeightLE w corrBound
@@ -1550,8 +1539,7 @@ private theorem centralDeficit_rightTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hqsPos
   have hass :
       HC4.Polynomial.IsWeightLE w corrBound
@@ -1565,8 +1553,7 @@ private theorem centralDeficit_rightTilt_impossible
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
-          · simp [tiltedParameterPenalty, hn0]
-            omega)
+          · simp [tiltedParameterPenalty, hn0])
         hssPos
 
   let correction :=
@@ -1719,7 +1706,8 @@ private theorem centralDeficit_rightTilt_impossible
     dsimp [target, WA, WZ, M, dgap] at hMq ⊢
     nlinarith
   have hBBinterior :
-      2 * (-(q : ℤ) - ((dgap : ℤ) - 2)) < target := by
+      (-(q : ℤ) - ((dgap : ℤ) - 2)) +
+        (-(q : ℤ) - ((dgap : ℤ) - 2)) < target := by
     dsimp [target, WA, WZ, M, dgap] at hMq ⊢
     nlinarith
 
@@ -1798,7 +1786,7 @@ private theorem centralDeficit_rightTilt_impossible
   exact tilted_binary_nonCancellation
     (w := w) (A := H.schurA) (B := H.schurB) (C := H.schurC)
     (N := N) (i₀ := q) (j₀ := s) (a := WA) (c := WZ)
-    (by simp [N]) hAqLE hCsLE hAqTopNe hCsTopNe
+    (by dsimp [N]; omega) hAqLE hCsLE hAqTopNe hCsTopNe
     (by simpa [target] using hACother)
     (by simpa [target] using hBB)
     hdet
