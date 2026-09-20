@@ -273,11 +273,11 @@ inductive FirstDeficitSecondSourceLayerGeometry : Prop
 The forced diagonal coefficient at `2*j-q` is realized by an actual source
 monomial in precisely that total-deficit layer, with missing-coordinate
 exponent at least two. -/
-theorem firstDeficit_secondSourceLayerGeometry
+theorem firstDeficit_secondSourceLayerGeometry_of_interaction
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (O : G.FirstDeficitSecondInteractionGeometry) :
     G.FirstDeficitSecondSourceLayerGeometry := by
-  rcases G.firstDeficit_secondInteractionGeometry hthree houtThree with O
   cases O with
   | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
       hstrict hminimal hB hlayer hmixed hz heq =>
@@ -347,6 +347,16 @@ theorem firstDeficit_secondSourceLayerGeometry
         hop hop1 hB (by simpa only [j] using hlayer)
         (by simpa only [q, j] using hstrict)
         hsource.1 hsource.2 hsecond1 heqSource'
+
+/-- Public wrapper selecting the canonical first interaction and then using
+the witness-preserving source-layer adapter above. -/
+theorem firstDeficit_secondSourceLayerGeometry
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.FirstDeficitSecondSourceLayerGeometry :=
+  G.firstDeficit_secondSourceLayerGeometry_of_interaction
+    hthree houtThree
+    (G.firstDeficit_secondInteractionGeometry hthree houtThree)
 
 /-- Exact reflected second-layer deficit geometry forced by the
 second-interaction Hessian identity. -/
