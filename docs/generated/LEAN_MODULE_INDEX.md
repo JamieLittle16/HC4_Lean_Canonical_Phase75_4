@@ -1519,7 +1519,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSourceContinuation`
 - Declarations: `theorem offDiag_coeff_eq_zero_below_of_diagonal_gap`, `theorem schurB_coeff_eq_activeDet_zero_mul_y_of_left_gap`, `theorem schurB_coeff_eq_activeDet_zero_mul_y_of_right_gap`
 
 ### `HC4.Newton.SmithCollisionQuadraticRankOne`
@@ -9317,10 +9317,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSourceContinuation.lean`
 - Purpose: Source-safe continuation of the central zero-Schur tail
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`, `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.GeneralFourBlockKernelLift`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`, `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.GeneralFourBlockKernelLift`, `HC4.Newton.SingularSchurDiagonalGap`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem centralDeficitSchurBlock_activeDet_ne_zero`, `theorem centralDeficit_rawKernel_or_reflectedInteraction`
+- Declarations: `theorem centralDeficitSchurBlock_activeDet_ne_zero`, `theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne_zero`, `theorem centralDeficitSchurB_firstOppositeOpening`, `theorem centralDeficit_rawKernel_or_reflectedInteraction`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 

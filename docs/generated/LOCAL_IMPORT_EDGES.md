@@ -3170,6 +3170,7 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSourceContinuation`
   - `HC4.Newton.GeneralFourBlockKernelLift`
   - `HC4.Newton.RankOneSingularSchurConstantKernel`
+  - `HC4.Newton.SingularSchurDiagonalGap`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
   - `HC4.Newton.ZeroSchurFirstEntryClock`
