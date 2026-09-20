@@ -51,13 +51,39 @@ def sourceLeftRoofFormula (H : Fin 4 → Fin 4 → R0) : R0 :=
   H 0 3 * H 0 1 * H 3 1 -
   H 0 3 * H 1 1 * H 0 3
 
+/-- Generic scalar expansion of the first cleared Schur entry. -/
+theorem schurA_eq_sourceRoofFormula
+    (H : GeneralFourBlock R0) :
+    H.schurA =
+      H.a * H.x * H.d -
+      H.a * H.r * H.r -
+      H.p * H.p * H.d +
+      H.p * H.r * H.b +
+      H.b * H.p * H.r -
+      H.b * H.x * H.b := by
+  unfold GeneralFourBlock.schurA GeneralFourBlock.activeDet
+  ring
+
+/-- Generic scalar expansion of the second cleared Schur entry. -/
+theorem schurC_eq_sourceRoofFormula
+    (H : GeneralFourBlock R0) :
+    H.schurC =
+      H.a * H.z * H.d -
+      H.a * H.s * H.s -
+      H.q * H.q * H.d +
+      H.q * H.s * H.b +
+      H.b * H.q * H.s -
+      H.b * H.z * H.b := by
+  unfold GeneralFourBlock.schurC GeneralFourBlock.activeDet
+  ring
+
 /-- The first cleared Schur entry of the central permutation is exactly the
 right source-roof cubic. -/
 theorem centralDeficitSchurBlockOf_schurA_eq_sourceRightRoofFormula
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).schurA =
       sourceRightRoofFormula (fun i j => parameterFirstHessian Q i j) := by
-  rw [GeneralFourBlock.schurA_eq_sourceRoofFormula]
+  rw [schurA_eq_sourceRoofFormula]
   simp only [centralDeficitSchurBlockOf,
     permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
     permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_p,
@@ -70,7 +96,7 @@ theorem centralDeficitSchurBlockOf_schurC_eq_sourceLeftRoofFormula
     (Q : MvPolynomial (Fin 4) (Polynomial K)) :
     (centralDeficitSchurBlockOf Q).schurC =
       sourceLeftRoofFormula (fun i j => parameterFirstHessian Q i j) := by
-  rw [GeneralFourBlock.schurC_eq_sourceRoofFormula]
+  rw [schurC_eq_sourceRoofFormula]
   simp only [centralDeficitSchurBlockOf,
     permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
     permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_q,
@@ -82,8 +108,9 @@ theorem centralDeficitSchurBlockOf_schurC_eq_sourceLeftRoofFormula
 theorem sourceRightRoof_det_formula
     (H : Fin 4 → Fin 4 → R0)
     (hsymm : ∀ i j, H i j = H j i) :
-    (fun i j : Fin 3 =>
-      H (firstDeficitRightActiveIndex i) (firstDeficitRightActiveIndex j)).det =
+    ((fun i j : Fin 3 =>
+      H (firstDeficitRightActiveIndex i) (firstDeficitRightActiveIndex j)) :
+        Matrix (Fin 3) (Fin 3) R0).det =
       sourceRightRoofFormula H := by
   rw [Matrix.det_fin_three]
   simp only [firstDeficitRightActiveIndex, sourceRightRoofFormula]
@@ -93,8 +120,9 @@ theorem sourceRightRoof_det_formula
 theorem sourceLeftRoof_det_formula
     (H : Fin 4 → Fin 4 → R0)
     (hsymm : ∀ i j, H i j = H j i) :
-    (fun i j : Fin 3 =>
-      H (firstDeficitLeftActiveIndex i) (firstDeficitLeftActiveIndex j)).det =
+    ((fun i j : Fin 3 =>
+      H (firstDeficitLeftActiveIndex i) (firstDeficitLeftActiveIndex j)) :
+        Matrix (Fin 3) (Fin 3) R0).det =
       sourceLeftRoofFormula H := by
   rw [Matrix.det_fin_three]
   simp only [firstDeficitLeftActiveIndex, sourceLeftRoofFormula]
