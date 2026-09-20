@@ -357,6 +357,58 @@ theorem determinant_coeff_eq_zero_of_lt_first
       S.offDiag (Nat.pos_of_ne_zero hn0) hoff]
     simp
 
+/-- If both factors vanish below order `j`, their product has no
+coefficient strictly before order `2*j`. -/
+theorem coeff_mul_eq_zero_before_twice_of_lower_zero
+    (B C : Polynomial R)
+    {j n : ℕ}
+    (hn : n < 2 * j)
+    (hB : ∀ r : ℕ, r < j → B.coeff r = 0)
+    (hC : ∀ r : ℕ, r < j → C.coeff r = 0) :
+    (B * C).coeff n = 0 := by
+  rw [Polynomial.coeff_mul]
+  apply Finset.sum_eq_zero
+  intro x hx
+  have hsum : x.1 + x.2 = n := Finset.mem_antidiagonal.mp hx
+  have hsmall : x.1 < j ∨ x.2 < j := by
+    by_contra hnot
+    push_neg at hnot
+    omega
+  rcases hsmall with hleft | hright
+  · rw [hB x.1 hleft]
+    simp
+  · rw [hC x.2 hright]
+    simp
+
+/-- If both factors vanish below `j`, the coefficient at the exact first
+possible product order `2*j` is the product of their `j`th coefficients. -/
+theorem coeff_mul_twice_eq_leading_mul_of_lower_zero
+    (B C : Polynomial R)
+    {j : ℕ}
+    (hB : ∀ r : ℕ, r < j → B.coeff r = 0)
+    (hC : ∀ r : ℕ, r < j → C.coeff r = 0) :
+    (B * C).coeff (2 * j) = B.coeff j * C.coeff j := by
+  rw [Polynomial.coeff_mul]
+  apply Finset.sum_eq_single (j, j)
+  · intro x hx hne
+    have hsum : x.1 + x.2 = 2 * j := Finset.mem_antidiagonal.mp hx
+    by_cases hx1 : x.1 < j
+    · rw [hB x.1 hx1]
+      simp
+    · by_cases hx2 : x.2 < j
+      · rw [hC x.2 hx2]
+        simp
+      · have hx1ge : j ≤ x.1 := Nat.le_of_not_gt hx1
+        have hx2ge : j ≤ x.2 := Nat.le_of_not_gt hx2
+        have heq1 : x.1 = j := by omega
+        have heq2 : x.2 = j := by omega
+        exact (hne (Prod.ext heq1 heq2)).elim
+  · intro hnot
+    have hmem : (j, j) ∈ Finset.antidiagonal (2 * j) := by
+      rw [Finset.mem_antidiagonal]
+      omega
+    exact (hnot hmem).elim
+
 /-- For an identically singular rank-one Schur series, the first
 transverse departure cannot occur in the kernel direction.  The determinant
 linearisation at the first transverse order kills that coefficient, so the
@@ -368,19 +420,37 @@ theorem firstTransverse_offDiag_ne_zero_of_determinant_eq_zero
     (hdet : S.determinant = 0)
     (htrans : S.HasPositiveTransverseLayer) :
     S.offDiag.coeff (S.firstPositiveTransverseOrder htrans) ≠ 0 := by
-  let E := S.firstDeparture htrans
-  have hcoeff : E.determinant.coeff E.order = 0 := by
-    change S.determinant.coeff (S.firstPositiveTransverseOrder htrans) = 0
+  let j := S.firstPositiveTransverseOrder htrans
+  have hj : 0 < j := by
+    dsimp [j]
+    exact S.firstPositiveTransverseOrder_pos htrans
+  have hkernelLower :
+      ∀ r : ℕ, r < j → S.kernel.coeff r = 0 := by
+    intro r hr
+    exact S.kernel_coeff_eq_zero_of_lt_first htrans (by simpa [j] using hr)
+  have hoffLower :
+      ∀ r : ℕ, r < j → S.offDiag.coeff r = 0 := by
+    intro r hr
+    exact S.offDiag_coeff_eq_zero_of_lt_first htrans (by simpa [j] using hr)
+  have hactiveKernel :
+      (S.active * S.kernel).coeff j =
+        S.active.coeff 0 * S.kernel.coeff j :=
+    coeff_mul_eq_constant_mul_of_right_vanishes_below
+      S.active S.kernel hkernelLower
+  have hoffSquare : (S.offDiag * S.offDiag).coeff j = 0 :=
+    coeff_sq_eq_zero_of_vanishes_below S.offDiag hj hoffLower
+  have hcoeff : S.determinant.coeff j = 0 := by
     rw [hdet]
     rfl
-  have hkernel :
-      S.kernel.coeff (S.firstPositiveTransverseOrder htrans) = 0 := by
-    have hlin := E.coeff_order_determinant
-    rw [hcoeff] at hlin
-    exact (mul_eq_zero.mp hlin.symm).resolve_left hlead
+  have hkernel : S.kernel.coeff j = 0 := by
+    unfold RankOneSchurSeries.determinant at hcoeff
+    rw [Polynomial.coeff_sub, hactiveKernel, hoffSquare,
+      S.active_coeff_zero] at hcoeff
+    simp only [sub_zero] at hcoeff
+    exact (mul_eq_zero.mp hcoeff).resolve_left hlead
   rcases S.transverse_nonzero_at_first htrans with hoff | hker
-  · exact hoff
-  · exact False.elim (hker hkernel)
+  · simpa [j] using hoff
+  · exact False.elim (hker (by simpa [j] using hkernel))
 
 /-- In the same identically singular rank-one series, the kernel entry remains
 zero strictly before twice the first transverse order. -/
@@ -398,16 +468,20 @@ theorem kernel_coeff_eq_zero_before_twice_firstTransverse
       intro hn
       let j := S.firstPositiveTransverseOrder htrans
       by_cases hnj : n < j
-      · exact S.kernel_coeff_eq_zero_of_lt_first htrans hnj
+      · exact S.kernel_coeff_eq_zero_of_lt_first htrans (by simpa [j] using hnj)
       · have hkerLower :
             ∀ r : ℕ, r < n → S.kernel.coeff r = 0 := by
           intro r hr
           exact ih r hr (lt_trans hr hn)
+        have hoffLower :
+            ∀ r : ℕ, r < j → S.offDiag.coeff r = 0 := by
+          intro r hr
+          exact S.offDiag_coeff_eq_zero_of_lt_first htrans
+            (by simpa [j] using hr)
         have hoffSquare :
             (S.offDiag * S.offDiag).coeff n = 0 := by
-          exact coeff_sq_eq_zero_of_vanishes_below
-            S.offDiag (by dsimp [j]; exact S.firstPositiveTransverseOrder_pos htrans)
-            (fun r hr => S.offDiag_coeff_eq_zero_of_lt_first htrans hr)
+          exact coeff_mul_eq_zero_before_twice_of_lower_zero
+            S.offDiag S.offDiag (by simpa [j] using hn) hoffLower hoffLower
         have hactiveKernel :
             (S.active * S.kernel).coeff n =
               S.active.coeff 0 * S.kernel.coeff n := by
@@ -453,10 +527,9 @@ theorem kernel_coeff_twice_firstTransverse_identity
     exact S.offDiag_coeff_eq_zero_of_lt_first htrans (by simpa [j] using hr)
   have hoffSquare :
       (S.offDiag * S.offDiag).coeff (2 * j) =
-        S.offDiag.coeff j * S.offDiag.coeff j := by
-    have h := coeff_mul_eq_leading_mul_of_lower_zero
-      S.offDiag S.offDiag (q := j) (j := j) hoffLower hoffLower
-    simpa [two_mul] using h
+        S.offDiag.coeff j * S.offDiag.coeff j :=
+    coeff_mul_twice_eq_leading_mul_of_lower_zero
+      S.offDiag S.offDiag hoffLower hoffLower
   have hcoeff : S.determinant.coeff (2 * j) = 0 := by
     rw [hdet]
     rfl
