@@ -3186,6 +3186,9 @@ human architecture guide.
   - `HC4.Newton.RankOneSingularSchurConstantKernel`
   - `HC4.Newton.SingularSchurDiagonalGap`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
+  - `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
   - `HC4.Polynomial.DerivativeBounds`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSourceContinuation`
