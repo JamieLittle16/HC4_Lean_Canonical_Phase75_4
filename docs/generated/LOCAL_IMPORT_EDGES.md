@@ -38,6 +38,7 @@ human architecture guide.
   - `HC4.Newton.ProductCoordinateHessian`
   - `HC4.Newton.QuadraticLongitudinalHessianBoundary`
   - `HC4.Newton.QuadraticLongitudinalSource`
+  - `HC4.Newton.RankOneSingularSchurConstantKernel`
   - `HC4.Newton.RankOneSingularSchurContinuation`
   - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
@@ -610,6 +611,9 @@ human architecture guide.
   - `HC4.Newton.BinaryPivotGeometry`
   - `HC4.Newton.FirstSchurLayerLinearization`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Newton.RankOneSingularSchurConstantKernel`
+  - `HC4.Newton.RankOneSchurSeriesAlignment`
+  - `HC4.Newton.RankOneSingularSchurContinuation`
 - `HC4.Newton.RankOneSingularSchurContinuation`
   - `HC4.Newton.FirstSchurLayerLinearization`
 - `HC4.Newton.RankTwoFourBlockSchur`

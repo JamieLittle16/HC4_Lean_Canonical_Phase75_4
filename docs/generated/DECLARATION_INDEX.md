@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9138**.
+Distinct declaration spellings indexed: **9141**.
 
 ## Repeated declaration spellings
 
@@ -1838,6 +1838,7 @@ Distinct declaration spellings indexed: **9138**.
 - `HasCompleteCanonicalReductionToJC2` — `def` in `HC4.Valuation.FinalRestartAssembly`
 - `HasCompleteLosslessCanonicalReductionToJC2` — `def` in `HC4.Valuation.LosslessSmithFrontier`
 - `HasConformalQuadraticWeight` — `def` in `HC4.Newton.TerminalConformalFace`
+- `HasConstantBinaryKernel` — `def` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `HasConstantDet` — `def` in `HC4.LinearAlgebra.Congruence`
 - `HasConstantProjectiveDirection` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurConstantProjectiveKernel`
 - `HasCorrectedRS2ProjectiveWedgeProvenance` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurCorrectedRS2Fork`
@@ -5453,6 +5454,8 @@ Distinct declaration spellings indexed: **9138**.
 - `hasAlignedRecenteredSameExponentCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition`
 - `hasBalancedSupport_mapCoeffs_iff` — `theorem` in `HC4.Toric.CoefficientDescent`
 - `hasCanonicalContinuationFromSeparatedRightWall_of_geometricData` — `theorem` in `HC4.Valuation.PointedShearContinuation`
+- `hasConstantBinaryKernel_of_alignLeft_stationary` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
+- `hasConstantBinaryKernel_of_alignRight_stationary` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `hasConstantDet_pullback` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `hasConstantDet_pullback_of_det_sq_eq_one` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `hasConstantProjectiveDirection_of_vanishingProjectiveWedges` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
