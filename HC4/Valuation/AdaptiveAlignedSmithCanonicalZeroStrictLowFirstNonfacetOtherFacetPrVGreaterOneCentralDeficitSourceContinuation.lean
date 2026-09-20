@@ -46,6 +46,36 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+/-- The active `(0,3)` determinant of the complete central block is
+nonzero as a polynomial series.  Its constant coefficient is exactly the
+retained nonzero principal minor of the honest coordinate-max central face. -/
+theorem centralDeficitSchurBlock_activeDet_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.activeDet ≠ 0 := by
+  have hlayer0 :
+      familyParameterLayer P.centralDeficitFamily 0 = G.exposure.face := by
+    calc
+      familyParameterLayer P.centralDeficitFamily 0 =
+          MvPolynomial.monomial G.central
+            (MvPolynomial.coeff G.central P.carrier) :=
+        G.centralDeficitFamily_layer_zero_eq hthree houtThree
+      _ = G.exposure.face := G.exposure_face_eq.symm
+  have hcoeff :
+      G.centralDeficitSchurBlock.activeDet.coeff 0 ≠ 0 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    unfold GeneralFourBlock.activeDet
+    rw [permutedFamilyHessianFourBlock_a,
+      permutedFamilyHessianFourBlock_b,
+      permutedFamilyHessianFourBlock_d]
+    simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+    rw [centralDeficitActiveDet_coeff_zero_eq]
+    rw [hlayer0]
+    exact G.exposure_rankTwo_minor
+  intro hzero
+  rw [hzero] at hcoeff
+  simp at hcoeff
+
 /-- **Raw-kernel or reflected continuation of the central total-deficit
 family.**
 
@@ -64,6 +94,7 @@ theorem centralDeficit_rawKernel_or_reflectedInteraction
     (∃ u v : MvPolynomial (Fin 4) K,
         (u ≠ 0 ∨ v ≠ 0) ∧
         H.IsClearedSchurKernel (Polynomial.C u) (Polynomial.C v) ∧
+        H.clearedKernelLift (Polynomial.C u) (Polynomial.C v) ≠ 0 ∧
         H.matrix.mulVec
           (H.clearedKernelLift (Polynomial.C u) (Polynomial.C v)) = 0) ∨
       ∃ A : RankOneSchurSeries (MvPolynomial (Fin 4) K),
@@ -140,7 +171,19 @@ theorem centralDeficit_rawKernel_or_reflectedInteraction
               (Q.offDiag * Polynomial.C u +
                 Q.kernel * Polynomial.C v) := by ring
           _ = 0 := by rw [hrawB]; simp
-    refine Or.inl ⟨u, v, huv, hker, ?_⟩
+    have hactive : H.activeDet ≠ 0 := by
+      simpa [H] using
+        G.centralDeficitSchurBlock_activeDet_ne_zero hthree houtThree
+    have huvC :
+        Polynomial.C u ≠ 0 ∨ Polynomial.C v ≠ 0 := by
+      rcases huv with hu | hv
+      · exact Or.inl (Polynomial.C_ne_zero.mpr hu)
+      · exact Or.inr (Polynomial.C_ne_zero.mpr hv)
+    have hlift :
+        H.clearedKernelLift (Polynomial.C u) (Polynomial.C v) ≠ 0 :=
+      H.clearedKernelLift_ne_zero_of_activeDet_ne_zero
+        (Polynomial.C u) (Polynomial.C v) hactive huvC
+    refine Or.inl ⟨u, v, huv, hker, hlift, ?_⟩
     exact H.mulVec_clearedKernelLift_eq_zero
       (Polynomial.C u) (Polynomial.C v) hker
   · exact Or.inr hreflected
