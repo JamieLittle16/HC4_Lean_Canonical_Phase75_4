@@ -348,6 +348,78 @@ theorem centralDeficit_alignedTail_firstPositiveTransverseOrder_eq_sourceGap
     ⟨A, htrans, hlead, hAdet, hprovenance, horder⟩
   exact ⟨J, A, htrans, hqJ, hlead, hAdet, hprovenance, horder⟩
 
+/-- **Exact reflected Schur interaction at the honest source gap.**
+
+The source/alignment bridge already identifies the first positive transverse
+order with `J - firstDeficitOrder`.  Since the aligned series is identically
+singular with nonzero leading coefficient, the generic rank-one singular
+continuation formulas apply directly at that exact order.  In particular
+there is no stationary alternative left in this theorem. -/
+theorem centralDeficit_exactReflectedInteraction_at_sourceGap
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+    let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+      hthree houtThree
+    let Q := Z.tailSeries hz
+    ∃ (J : ℕ) (A : RankOneSchurSeries (MvPolynomial (Fin 4) K))
+        (htrans : A.HasPositiveTransverseLayer),
+      G.firstDeficitOrder < J ∧
+      A.leading ≠ 0 ∧
+      A.determinant = 0 ∧
+      ((∃ hleft : Q.LeftPivot, A = Q.alignLeft hleft) ∨
+        (∃ hright : Q.RightAxisPivot, A = Q.alignRight hright)) ∧
+      let j := J - G.firstDeficitOrder
+      0 < j ∧
+      A.firstPositiveTransverseOrder htrans = j ∧
+      A.offDiag.coeff j ≠ 0 ∧
+      (∀ n : ℕ, n < 2 * j → A.kernel.coeff n = 0) ∧
+      A.leading * A.kernel.coeff (2 * j) =
+        A.offDiag.coeff j * A.offDiag.coeff j ∧
+      A.kernel.coeff (2 * j) ≠ 0 := by
+  let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+  let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+    hthree houtThree
+  let Q := Z.tailSeries hz
+  rcases G.centralDeficit_alignedTail_firstPositiveTransverseOrder_eq_sourceGap
+      hthree houtThree with
+    ⟨J, A, htrans, hqJ, hlead, hdet, hprov, horder⟩
+  let j := J - G.firstDeficitOrder
+  have hj : 0 < j := by
+    simpa [j] using Nat.sub_pos_of_lt hqJ
+  have hoff :
+      A.offDiag.coeff j ≠ 0 := by
+    have h :=
+      A.firstTransverse_offDiag_ne_zero_of_determinant_eq_zero
+        hlead hdet htrans
+    rw [horder] at h
+    simpa [j] using h
+  have hkernelLower :
+      ∀ n : ℕ, n < 2 * j → A.kernel.coeff n = 0 := by
+    intro n hn
+    apply A.kernel_coeff_eq_zero_before_twice_firstTransverse
+      hlead hdet htrans n
+    rw [horder]
+    simpa [j] using hn
+  have hid :
+      A.leading * A.kernel.coeff (2 * j) =
+        A.offDiag.coeff j * A.offDiag.coeff j := by
+    have h :=
+      A.kernel_coeff_twice_firstTransverse_identity hlead hdet htrans
+    rw [horder] at h
+    simpa [j] using h
+  have hkernel :
+      A.kernel.coeff (2 * j) ≠ 0 := by
+    have h :=
+      A.kernel_coeff_twice_firstTransverse_ne_zero hlead hdet htrans
+    rw [horder] at h
+    simpa [j] using h
+  refine ⟨J, A, htrans, hqJ, hlead, hdet, ?_, ?_⟩
+  · simpa [Q, Z, hz] using hprov
+  · dsimp [j]
+    exact ⟨hj, by simpa [j] using horder, hoff, hkernelLower, hid, hkernel⟩
+
+
 /-- **Raw-kernel or reflected continuation of the central total-deficit
 family.**
 
