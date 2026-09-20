@@ -94,10 +94,11 @@ theorem central_deficit_chord_difference
 
 /-- The first reflected source progression descends strictly in the
 longitudinal coordinate. -/
-theorem firstDeficit_fullSourceReflection_longitudinalDescent
+theorem firstDeficit_fullSourceReflection_longitudinalDescent_of_reflectedSecondLayer
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (H : G.FirstDeficitReflectedSecondLayerGeometry) :
     ∃ first opposite second : Fin 4 →₀ ℕ,
       first ∈ P.carrier.support ∧
       opposite ∈ P.carrier.support ∧
@@ -107,8 +108,6 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       (∀ i : Fin 4, first i + second i = 2 * opposite i) ∧
       second 0 < opposite 0 ∧
       opposite 0 < first 0 := by
-  rcases firstDeficit_reflectedSecondLayerGeometry_export
-      G hthree houtThree with H
   cases H with
   | left first opposite second q j k hq hj hk
       hfirst hfirst1 hfirst2 hop hop2 hqj
@@ -276,6 +275,25 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       · exact h2
       · exact h3
 
+
+/-- Public wrapper selecting the canonical reflected second layer before
+proving strict longitudinal descent of the same three source witnesses. -/
+theorem firstDeficit_fullSourceReflection_longitudinalDescent
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    ∃ first opposite second : Fin 4 →₀ ℕ,
+      first ∈ P.carrier.support ∧
+      opposite ∈ P.carrier.support ∧
+      second ∈ P.carrier.support ∧
+      first ≠ opposite ∧
+      opposite ≠ second ∧
+      (∀ i : Fin 4, first i + second i = 2 * opposite i) ∧
+      second 0 < opposite 0 ∧
+      opposite 0 < first 0 :=
+  G.firstDeficit_fullSourceReflection_longitudinalDescent_of_reflectedSecondLayer
+    hthree houtThree
+    (G.firstDeficit_reflectedSecondLayerGeometry hthree houtThree)
 
 /-- **The first opposite opening is separated by at least two deficit orders.**
 
