@@ -1520,7 +1520,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`
-- Declarations: `theorem offDiag_coeff_eq_zero_below_of_diagonal_gap`
+- Declarations: `theorem offDiag_coeff_eq_zero_below_of_diagonal_gap`, `theorem schurB_coeff_eq_activeDet_zero_mul_y_of_left_gap`, `theorem schurB_coeff_eq_activeDet_zero_mul_y_of_right_gap`
 
 ### `HC4.Newton.SmithCollisionQuadraticRankOne`
 

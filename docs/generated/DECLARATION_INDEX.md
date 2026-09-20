@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9146**.
+Distinct declaration spellings indexed: **9148**.
 
 ## Repeated declaration spellings
 
@@ -8160,6 +8160,8 @@ Distinct declaration spellings indexed: **9146**.
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `schurB_C_mul` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurB_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
+- `schurB_coeff_eq_activeDet_zero_mul_y_of_left_gap` — `theorem` in `HC4.Newton.SingularSchurDiagonalGap`
+- `schurB_coeff_eq_activeDet_zero_mul_y_of_right_gap` — `theorem` in `HC4.Newton.SingularSchurDiagonalGap`
 - `schurB_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `schurB_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
