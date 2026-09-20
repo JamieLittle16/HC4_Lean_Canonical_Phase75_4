@@ -51,6 +51,7 @@ import HC4.Valuation.CanonicalSmithDefectExposureCollision
 import HC4.Valuation.SmithFrontierFourBlockExtraction
 import HC4.Newton.ZeroSchurFirstEntryClock
 import HC4.Newton.RankOneSingularSchurContinuation
+import HC4.Newton.RankOneSingularSchurConstantKernel
 import HC4.Newton.RigidPacketEvaluatedHessianChart
 import HC4.Valuation.RigidPacketZeroSchurBridge
 import HC4.Valuation.RigidClosingExactCollisionSource
