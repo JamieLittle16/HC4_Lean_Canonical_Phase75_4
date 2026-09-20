@@ -246,7 +246,8 @@ theorem firstDeficitLeftTilt_parameterHessian_bound
     have h0 := firstDeficitLeftTilt_layerZero_isWeightLE (G := G)
       hthree houtThree (J - q)
     have hh := h0.hessian_entry i j
-    simpa [w, tiltedParameterPenalty] using hh
+    simpa [w, tiltedParameterPenalty, sub_eq_add_neg,
+      add_assoc, add_left_comm, add_comm] using hh
   · have hnpos : (0 : ℕ) < n := Nat.pos_of_ne_zero hn0
     have hL := G.firstDeficitLeftTilt_earlierLayer_isWeightLE
       hq hqJ hmin1 hmin2 hearliest hnpos hn
@@ -284,7 +285,8 @@ theorem firstDeficitRightTilt_parameterHessian_bound
     have h0 := firstDeficitRightTilt_layerZero_isWeightLE (G := G)
       hthree houtThree (J - q)
     have hh := h0.hessian_entry i j
-    simpa [w, tiltedParameterPenalty] using hh
+    simpa [w, tiltedParameterPenalty, sub_eq_add_neg,
+      add_assoc, add_left_comm, add_comm] using hh
   · have hnpos : (0 : ℕ) < n := Nat.pos_of_ne_zero hn0
     have hL := G.firstDeficitRightTilt_earlierLayer_isWeightLE
       hq hqJ hmin1 hmin2 hearliest hnpos hn
