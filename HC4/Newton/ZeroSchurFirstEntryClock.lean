@@ -445,6 +445,36 @@ theorem kernel_coeff_first_add_eq_tail
   rw [Polynomial.coeff_X_pow_mul']
   simp [tailSeries]
 
+/-- If the raw off-diagonal entry first opens at a physical order
+`J` strictly after the common first Schur order `q`, then after removing
+the common factor its off-diagonal tail first opens exactly at `J - q`. -/
+theorem tailSeries_offDiag_gap_and_open_at_sub
+    (S : ZeroSchurSeries R)
+    (h : S.HasPositiveEntryLayer)
+    {q J : ℕ}
+    (hfirst : S.firstPositiveEntryOrder h = q)
+    (hqJ : q < J)
+    (hgap : ∀ n : ℕ, n < J → S.series.offDiag.coeff n = 0)
+    (hopen : S.series.offDiag.coeff J ≠ 0) :
+    (∀ n : ℕ, n < J - q →
+      (S.tailSeries h).offDiag.coeff n = 0) ∧
+    (S.tailSeries h).offDiag.coeff (J - q) ≠ 0 := by
+  constructor
+  · intro n hn
+    have hphys : q + n < J := by omega
+    have ht := S.offDiag_coeff_first_add_eq_tail h n
+    rw [hfirst] at ht
+    rw [← ht]
+    exact hgap (q + n) hphys
+  · have hqle : q ≤ J := Nat.le_of_lt hqJ
+    have hadd : q + (J - q) = J := Nat.add_sub_of_le hqle
+    have ht := S.offDiag_coeff_first_add_eq_tail h (J - q)
+    rw [hfirst, hadd] at ht
+    intro hz
+    apply hopen
+    rw [ht]
+    exact hz
+
 /-- The first normalised tail has a nonzero constant block. -/
 theorem tailSeries_constantBlock_nonzero
     (S : ZeroSchurSeries R)
