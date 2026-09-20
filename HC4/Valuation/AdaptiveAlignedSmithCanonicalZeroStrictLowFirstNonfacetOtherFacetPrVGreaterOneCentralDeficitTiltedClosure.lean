@@ -424,6 +424,9 @@ private theorem centralDeficit_leftTilt_impossible
     rw [hfirstMono]
     rw [HC4.Polynomial.hessian_apply]
     simp [MvPolynomial.pderiv_monomial, he2]
+    change MvPolynomial.pderiv (2 : Fin 4)
+      (0 : MvPolynomial (Fin 4) K) = 0
+    simp
   have hdiagRight :
       (G.firstDeficitRightActiveHessian 1 1).coeff
           G.firstDeficitOrder = 0 := by
@@ -600,7 +603,7 @@ private theorem centralDeficit_leftTilt_impossible
         w M L (2 : Fin 4) 2
     rw [hLTop] at hh
     convert hh.symm using 1 <;>
-      simp [WX, w, dgap, firstDeficitLeftTiltWeight] <;> ring
+      simp [WX, w, dgap, firstDeficitLeftTiltWeight] <;> ring_nf
   have hxsTopNe :
       HC4.Polynomial.initialForm w WX (H.x.coeff s) ≠ 0 := by
     rw [hxsTop]
@@ -1355,7 +1358,7 @@ private theorem centralDeficit_rightTilt_impossible
         w M L (1 : Fin 4) 1
     rw [hLTop] at hh
     convert hh.symm using 1 <;>
-      simp [WZ, w, dgap, firstDeficitRightTiltWeight] <;> ring
+      simp [WZ, w, dgap, firstDeficitRightTiltWeight] <;> ring_nf
   have hzsTopNe :
       HC4.Polynomial.initialForm w WZ (H.z.coeff s) ≠ 0 := by
     rw [hzsTop]
