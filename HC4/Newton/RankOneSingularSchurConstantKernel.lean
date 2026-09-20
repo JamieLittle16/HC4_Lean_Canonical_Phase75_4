@@ -99,6 +99,61 @@ theorem hasConstantBinaryKernel_of_alignRight_stationary
     change S.offDiag = 0 at hoff
     simpa using hoff
 
+
+/-- **Raw-kernel or reflected-interaction dispatcher.**
+
+For a nonzero determinant-zero constant binary block, choose the canonical
+left/right alignment.  If the aligned series is stationary, pull its kernel
+back to the raw coordinates.  Otherwise retain the exact first reflected
+`j,2*j` interaction of the aligned series. -/
+theorem constantKernel_or_reflectedInteraction
+    (S : BinarySchurPolynomialSeries R)
+    (hdet : S.determinant = 0)
+    (hpivot : S.LeftPivot ∨ S.RightAxisPivot) :
+    S.HasConstantBinaryKernel ∨
+      ∃ A : RankOneSchurSeries R,
+        A.leading ≠ 0 ∧
+        A.determinant = 0 ∧
+        ((∃ hleft : S.LeftPivot, A = S.alignLeft hleft) ∨
+          (∃ hright : S.RightAxisPivot, A = S.alignRight hright)) ∧
+        ∃ j : ℕ,
+          0 < j ∧
+          A.offDiag.coeff j ≠ 0 ∧
+          (∀ n : ℕ, n < 2 * j → A.kernel.coeff n = 0) ∧
+          A.leading * A.kernel.coeff (2 * j) =
+            A.offDiag.coeff j * A.offDiag.coeff j ∧
+          A.kernel.coeff (2 * j) ≠ 0 := by
+  rcases hpivot with hleft | hright
+  · let A := S.alignLeft hleft
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using S.alignLeft_leading_ne_zero hleft
+    have hdetA : A.determinant = 0 := by
+      calc
+        A.determinant =
+            (Polynomial.C (S.active.coeff 0)) ^ 2 * S.determinant := by
+              simpa [A] using S.alignLeft_determinant hleft
+        _ = 0 := by rw [hdet]; simp
+    rcases A.stationary_or_reflectedInteraction hlead hdetA with
+      hstationary | hreflected
+    · exact Or.inl
+        (S.hasConstantBinaryKernel_of_alignLeft_stationary
+          hleft hstationary.1 hstationary.2)
+    · exact Or.inr ⟨A, hlead, hdetA, Or.inl ⟨hleft, rfl⟩, hreflected⟩
+  · let A := S.alignRight hright
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using S.alignRight_leading_ne_zero hright
+    have hdetA : A.determinant = 0 := by
+      calc
+        A.determinant = S.determinant := by
+          simpa [A] using S.alignRight_determinant hright
+        _ = 0 := hdet
+    rcases A.stationary_or_reflectedInteraction hlead hdetA with
+      hstationary | hreflected
+    · exact Or.inl
+        (S.hasConstantBinaryKernel_of_alignRight_stationary
+          hright hstationary.1 hstationary.2)
+    · exact Or.inr ⟨A, hlead, hdetA, Or.inr ⟨hright, rfl⟩, hreflected⟩
+
 end BinarySchurPolynomialSeries
 
 end
