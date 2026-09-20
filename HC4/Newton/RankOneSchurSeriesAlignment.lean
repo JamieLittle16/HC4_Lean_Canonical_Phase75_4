@@ -115,14 +115,6 @@ theorem alignLeft_offDiag_coeff_eq_active_zero_mul
   unfold alignLeft
   simp [hoff0]
 
-/-- The right-axis alignment is only a swap of the diagonal axes, so its
-off-diagonal coefficients are literally unchanged. -/
-theorem alignRight_offDiag_coeff
-    (S : BinarySchurPolynomialSeries R)
-    (hright : S.RightAxisPivot)
-    (n : ℕ) :
-    (S.alignRight hright).offDiag.coeff n = S.offDiag.coeff n := rfl
-
 /-- Determinant scaling under the left-pivot congruence. -/
 theorem alignLeft_determinant
     (S : BinarySchurPolynomialSeries R)
@@ -153,6 +145,14 @@ noncomputable def alignRight
     exact hright.2.1
   kernel_coeff_zero := by
     exact hright.1
+
+/-- The right-axis alignment is only a swap of the diagonal axes, so its
+off-diagonal coefficients are literally unchanged. -/
+theorem alignRight_offDiag_coeff
+    (S : BinarySchurPolynomialSeries R)
+    (hright : S.RightAxisPivot)
+    (n : ℕ) :
+    (S.alignRight hright).offDiag.coeff n = S.offDiag.coeff n := rfl
 
 /-- Axis swap leaves the binary determinant unchanged. -/
 theorem alignRight_determinant
