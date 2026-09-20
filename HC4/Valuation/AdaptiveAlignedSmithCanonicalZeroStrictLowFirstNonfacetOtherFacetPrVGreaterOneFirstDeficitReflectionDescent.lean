@@ -255,6 +255,117 @@ theorem firstDeficit_fullSourceReflection_longitudinalDescent
       · exact h2
       · exact h3
 
+
+/-- **The first opposite opening is separated by at least two deficit orders.**
+
+The first reflected layer is pure on one deficit axis, while the first later
+opening of the opposite axis has exponent exactly one in that missing
+coordinate.  A hypothetical order gap one would make the other deficit
+coordinate unchanged.  Subtracting the exact source staircase chords would
+then force a positive multiple of `ell+n-1` to equal one of its proper
+positive summands, which is impossible.
+
+This is entirely source arithmetic; no further determinant coefficient or
+auxiliary clock is used. -/
+theorem firstDeficit_oppositeOrder_gap_two_le
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    ∃ opposite : Fin 4 →₀ ℕ,
+      opposite ∈ P.carrier.support ∧
+      G.firstDeficitOrder + 2 ≤ opposite 1 + opposite 2 ∧
+      (opposite 2 = 1 ∨ opposite 1 = 1) := by
+  rcases firstDeficit_reflectedSecondLayerGeometry_export
+      G hthree houtThree with H
+  cases H with
+  | left first opposite second q j k hq hj hk
+      hfirst hfirst1 hfirst2 hop hop2 hqj
+      hsecond hsecondOrder hsecond2 hreflect =>
+      have hfirstP : first ∈ P.carrier.support :=
+        (G.firstDeficitLayer_support hfirst).1
+      have hfChord := F.support_deficit_chord hthree houtThree hfirstP
+      have hoChord := F.support_deficit_chord hthree houtThree hop
+      have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
+        exact_mod_cast F.locked.ell_pos
+      have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        exact_mod_cast (show 1 < F.highest.n by omega)
+      have hcoefPos :
+          (0 : ℤ) <
+            (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+        omega
+      have hgap : q + 2 ≤ j := by
+        by_contra hnot
+        have hjEq : j = q + 1 := by omega
+        have hop1 : opposite 1 = q := by
+          rw [hj, hop2] at hjEq
+          omega
+        rw [hfirst1, hfirst2] at hfChord
+        rw [hop1, hop2] at hoChord
+        norm_num at hfChord hoChord
+        have hdiffEq :
+            ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+                ((first 0 : ℤ) - (opposite 0 : ℤ)) =
+              (F.highest.n : ℤ) - 1 := by
+          nlinarith only [hfChord, hoChord]
+        have hdiffPos :
+            (0 : ℤ) < (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          nlinarith only [hdiffEq, hnZ, hcoefPos]
+        have hdiffOne :
+            (1 : ℤ) ≤ (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          omega
+        have hcoefGt :
+            (F.highest.n : ℤ) - 1 <
+              (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+          linarith
+        nlinarith only [hdiffEq, hdiffOne, hcoefGt, hcoefPos]
+      refine ⟨opposite, hop, ?_, Or.inl hop2⟩
+      rw [← hq, ← hj]
+      exact hgap
+
+  | right first opposite second q j k hq hj hk
+      hfirst hfirst1 hfirst2 hop hop1 hqj
+      hsecond hsecondOrder hsecond1 hreflect =>
+      have hfirstP : first ∈ P.carrier.support :=
+        (G.firstDeficitLayer_support hfirst).1
+      have hfChord := F.support_deficit_chord hthree houtThree hfirstP
+      have hoChord := F.support_deficit_chord hthree houtThree hop
+      have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
+        exact_mod_cast F.locked.ell_pos
+      have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        exact_mod_cast (show 1 < F.highest.n by omega)
+      have hcoefPos :
+          (0 : ℤ) <
+            (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+        omega
+      have hgap : q + 2 ≤ j := by
+        by_contra hnot
+        have hjEq : j = q + 1 := by omega
+        have hop2 : opposite 2 = q := by
+          rw [hj, hop1] at hjEq
+          omega
+        rw [hfirst1, hfirst2] at hfChord
+        rw [hop1, hop2] at hoChord
+        norm_num at hfChord hoChord
+        have hdiffEq :
+            ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+                ((first 0 : ℤ) - (opposite 0 : ℤ)) =
+              (F.locked.ell : ℤ) := by
+          nlinarith only [hfChord, hoChord]
+        have hdiffPos :
+            (0 : ℤ) < (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          nlinarith only [hdiffEq, hellZ, hcoefPos]
+        have hdiffOne :
+            (1 : ℤ) ≤ (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          omega
+        have hcoefGt :
+            (F.locked.ell : ℤ) <
+              (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+          omega
+        nlinarith only [hdiffEq, hdiffOne, hcoefGt, hcoefPos]
+      refine ⟨opposite, hop, ?_, Or.inr hop1⟩
+      rw [← hq, ← hj]
+      exact hgap
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
