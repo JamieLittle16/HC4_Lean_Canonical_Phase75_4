@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9133**.
+Distinct declaration spellings indexed: **9136**.
 
 ## Repeated declaration spellings
 
@@ -3100,6 +3100,7 @@ Distinct declaration spellings indexed: **9133**.
 - `activeKernelSupport_coordinate_dvd_canonicalDegreeRamification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
 - `activeKernelSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `active_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `active_coeff_first_add_eq_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `active_coeff_first_eq_tail_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `active_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `active_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
@@ -5876,6 +5877,7 @@ Distinct declaration spellings indexed: **9133**.
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `kernel_coeff_firstOrder_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerKernelClock`
+- `kernel_coeff_first_add_eq_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_first_eq_tail_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_twice_firstTransverse_identity` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `kernel_coeff_twice_firstTransverse_ne_zero` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
@@ -6486,6 +6488,7 @@ Distinct declaration spellings indexed: **9133**.
 - `ofZeroConstantSchur` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
 - `offDiag_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_coeff_firstOrder_ne_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `offDiag_coeff_first_add_eq_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_coeff_first_eq_tail_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
