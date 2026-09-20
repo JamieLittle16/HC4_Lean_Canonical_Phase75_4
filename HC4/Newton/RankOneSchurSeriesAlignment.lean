@@ -101,6 +101,28 @@ noncomputable def alignLeft
         rw [hdet]
         ring
 
+/-- Once the raw off-diagonal constant coefficient is zero, the left
+alignment cannot mix the active series into the off-diagonal direction:
+every aligned off-diagonal coefficient is just the nonzero pivot scalar
+times the corresponding raw coefficient. -/
+theorem alignLeft_offDiag_coeff_eq_active_zero_mul
+    (S : BinarySchurPolynomialSeries R)
+    (hleft : S.LeftPivot)
+    (hoff0 : S.offDiag.coeff 0 = 0)
+    (n : ℕ) :
+    (S.alignLeft hleft).offDiag.coeff n =
+      S.active.coeff 0 * S.offDiag.coeff n := by
+  unfold alignLeft
+  simp [hoff0]
+
+/-- The right-axis alignment is only a swap of the diagonal axes, so its
+off-diagonal coefficients are literally unchanged. -/
+theorem alignRight_offDiag_coeff
+    (S : BinarySchurPolynomialSeries R)
+    (hright : S.RightAxisPivot)
+    (n : ℕ) :
+    (S.alignRight hright).offDiag.coeff n = S.offDiag.coeff n := rfl
+
 /-- Determinant scaling under the left-pivot congruence. -/
 theorem alignLeft_determinant
     (S : BinarySchurPolynomialSeries R)
