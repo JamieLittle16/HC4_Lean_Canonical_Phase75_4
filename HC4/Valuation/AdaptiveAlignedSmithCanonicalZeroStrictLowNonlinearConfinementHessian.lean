@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit
+import HC4.Newton.MixedDegreeAxisCollision
 import Mathlib.Tactic
 
 /-!
@@ -99,6 +100,58 @@ theorem hessian_omitted_eq_C_of_nonlinearConfinement
       intro h
       exact hm h.symm
     simp [hsource, h0m]
+
+/-- A constant Hessian coupling to the distinguished longitudinal coordinate
+vanishes under the normalized axis collision `0 ↔ e₀`.
+
+This is the one-variable fundamental-theorem-of-calculus calculation used in
+the older direct-closing terminal, isolated here without any terminal-specific
+geometry. -/
+theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
+    (F : MvPolynomial (Fin 4) K)
+    (j : Fin 4)
+    (hcoll :
+      HasExactGradientCollision F
+        (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
+        (Fin.cons (1 : K) (fun _ : Fin 3 => 0)))
+    (c : K)
+    (hconst :
+      HC4.Polynomial.hessian F j (0 : Fin 4) =
+        MvPolynomial.C c) :
+    c = 0 := by
+  let G : Polynomial K :=
+    longitudinalAxisRestriction (MvPolynomial.pderiv j F)
+  have hGderiv : G.derivative = Polynomial.C c := by
+    dsimp [G]
+    rw [← longitudinalAxisRestriction_pderiv_zero]
+    rw [show
+      MvPolynomial.pderiv (0 : Fin 4) (MvPolynomial.pderiv j F) =
+          MvPolynomial.C c by
+        simpa [HC4.Polynomial.hessian_apply] using hconst]
+    simp [longitudinalAxisRestriction]
+  have hgrad :
+      Polynomial.eval (0 : K) G =
+        Polynomial.eval (1 : K) G := by
+    have h := hcoll j
+    rw [eval_finCons_zero_eq_longitudinalAxisRestriction,
+      eval_finCons_zero_eq_longitudinalAxisRestriction] at h
+    simpa [G] using h
+  let R : Polynomial K := G - Polynomial.C c * Polynomial.X
+  have hRderiv : R.derivative = 0 := by
+    dsimp [R]
+    rw [Polynomial.derivative_sub, hGderiv,
+      Polynomial.derivative_C_mul_X]
+    simp
+  have hRconst := Polynomial.eq_C_of_derivative_eq_zero hRderiv
+  have heval :
+      Polynomial.eval (0 : K) R =
+        Polynomial.eval (1 : K) R := by
+    rw [hRconst]
+  have hcRelation :
+      Polynomial.eval (0 : K) G =
+        Polynomial.eval (1 : K) G - c := by
+    simpa [R] using heval
+  linear_combination hgrad - hcRelation
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
