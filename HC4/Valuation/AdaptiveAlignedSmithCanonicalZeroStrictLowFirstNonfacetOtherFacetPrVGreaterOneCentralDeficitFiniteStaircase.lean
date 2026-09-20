@@ -90,6 +90,27 @@ structure FirstDeficitGapTwoFiberData where
     HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite =
       HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second
 
+/-- Three actual reflected source points which move strictly through the
+finite-staircase pair coordinate. -/
+structure FirstDeficitSeparatedPairData where
+  first : Fin 4 →₀ ℕ
+  opposite : Fin 4 →₀ ℕ
+  second : Fin 4 →₀ ℕ
+  first_mem : first ∈ P.carrier.support
+  opposite_mem : opposite ∈ P.carrier.support
+  second_mem : second ∈ P.carrier.support
+  gap_five :
+    G.firstDeficitOrder + 5 ≤ opposite 1 + opposite 2
+  pair_order :
+    ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair <
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair <
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair) ∨
+    ((HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair <
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair ∧
+      (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair <
+        (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair)
+
 /-- **First finite-staircase transition.**
 
 For the canonical reflected second layer, either the opening gap is exactly
@@ -103,10 +124,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     Nonempty (FirstDeficitGapTwoFiberData (P := P) (F := F)) ∨
-      ∃ opposite : Fin 4 →₀ ℕ,
-        opposite ∈ P.carrier.support ∧
-        G.firstDeficitOrder + 5 ≤ opposite 1 + opposite 2 ∧
-        (opposite 2 = 1 ∨ opposite 1 = 1) := by
+      Nonempty (FirstDeficitSeparatedPairData (P := P) (F := F) G) := by
   rcases G.firstDeficit_reflectedSecondLayerGeometry_export
       hthree houtThree with H
   cases H with
