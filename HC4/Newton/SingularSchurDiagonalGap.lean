@@ -1,4 +1,4 @@
-import HC4.Newton.RankOneSchurSeriesAlignment
+import HC4.Newton.FirstSchurLayerLinearization
 import Mathlib.Tactic
 
 /-!
@@ -56,7 +56,7 @@ theorem offDiag_coeff_eq_zero_below_of_diagonal_gap
       rw [Polynomial.coeff_sub, hdiagProduct, hoffSquare] at hcoeff
       have hsq :
           S.offDiag.coeff n * S.offDiag.coeff n = 0 := by
-        simpa using (neg_eq_zero.mp hcoeff)
+        simpa only [zero_sub, neg_eq_zero] using hcoeff
       rcases mul_eq_zero.mp hsq with hz | hz
       · exact hz
       · exact hz
