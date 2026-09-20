@@ -86,7 +86,8 @@ theorem firstDeficit_reflectedLineDeparture
     firstDeficitOrder_two_le G hthree houtThree
   cases G.firstDeficit_secondMissingOpening hthree houtThree with
   | left first opposite q J Kord hq hJ hK
-      hfirst hfirst1 hfirst2 hop hop2 hqJ hmin1 hmin2 hKle =>
+      hfirst hfirst1 hfirst2 hop hop2 hqJ hmin1 hmin2
+      second hsecond hsecondOrder hsecond2 hsecondUnique hKle =>
       rcases F.locked_yRoof_mem with
         ⟨hlocked, _hlocked0, hlocked1, hlocked2, _hlocked3⟩
       have hqTwo' : 2 ≤ q := by
@@ -109,10 +110,11 @@ theorem firstDeficit_reflectedLineDeparture
         rw [hlocked1, hlocked2]
         omega
       exact .left q J hq hqJ C.ray.outsideExponent hlocked
-        (by simpa [hlocked2] using hellFour) hbelow
+        (by rw [hlocked2]; omega) hbelow
 
   | right first opposite q J Kord hq hJ hK
-      hfirst hfirst1 hfirst2 hop hop1 hqJ hmin1 hmin2 hKle =>
+      hfirst hfirst1 hfirst2 hop hop1 hqJ hmin1 hmin2
+      second hsecond hsecondOrder hsecond1 hsecondUnique hKle =>
       rcases F.highest_zRoof_mem with
         ⟨hhigh, _hhigh0, hhigh1, hhigh2, _hhigh3⟩
       have hqTwo' : 2 ≤ q := by
@@ -136,7 +138,7 @@ theorem firstDeficit_reflectedLineDeparture
         rw [hhigh1, hhigh2]
         omega
       exact .right q J hq hqJ F.highest.e1 hhigh
-        (by simpa [hhigh1] using hnFour) hbelow
+        (by rw [hhigh1]; omega) hbelow
 
 
 /-- The first source stratum that falls below the reflected order line.  The
