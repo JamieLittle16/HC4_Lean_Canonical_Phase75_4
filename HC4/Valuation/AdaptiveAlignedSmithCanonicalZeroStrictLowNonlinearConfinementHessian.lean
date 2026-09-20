@@ -121,6 +121,12 @@ theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
     c = 0 := by
   let G : Polynomial K :=
     longitudinalAxisRestriction (MvPolynomial.pderiv j F)
+  have hCaxis :
+      longitudinalAxisRestriction (MvPolynomial.C c) =
+        Polynomial.C c := by
+    apply Polynomial.ext
+    intro n
+    simp [longitudinalAxisRestriction]
   have hGderiv : G.derivative = Polynomial.C c := by
     dsimp [G]
     rw [← longitudinalAxisRestriction_pderiv_zero]
@@ -128,11 +134,12 @@ theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
       MvPolynomial.pderiv (0 : Fin 4) (MvPolynomial.pderiv j F) =
           MvPolynomial.C c by
         simpa [HC4.Polynomial.hessian_apply] using hconst]
-    simp [longitudinalAxisRestriction]
+    exact hCaxis
   have hgrad :
       Polynomial.eval (0 : K) G =
         Polynomial.eval (1 : K) G := by
     have h := hcoll j
+    unfold mvGradientComponentAt at h
     rw [eval_finCons_zero_eq_longitudinalAxisRestriction,
       eval_finCons_zero_eq_longitudinalAxisRestriction] at h
     simpa [G] using h
@@ -147,11 +154,16 @@ theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
       Polynomial.eval (0 : K) R =
         Polynomial.eval (1 : K) R := by
     rw [hRconst]
+    simp
   have hcRelation :
       Polynomial.eval (0 : K) G =
         Polynomial.eval (1 : K) G - c := by
     simpa [R] using heval
-  linear_combination hgrad - hcRelation
+  have hsub :
+      Polynomial.eval (1 : K) G - c =
+        Polynomial.eval (1 : K) G :=
+    hcRelation.symm.trans hgrad
+  exact sub_eq_self.mp hsub
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
