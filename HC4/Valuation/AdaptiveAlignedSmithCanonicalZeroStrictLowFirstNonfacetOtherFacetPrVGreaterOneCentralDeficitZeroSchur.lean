@@ -569,7 +569,9 @@ theorem centralDeficitZeroSchurSeries_firstPositiveEntryOrder_eq_firstDeficitOrd
         rw [G.centralDeficitSchurC_eq_leftRoofDet]
         exact G.firstDeficitLeftActiveHessian_det_gap
           (Z.firstPositiveEntryOrder hz) hmpos hlt
-  omega
+  have heq : Z.firstPositiveEntryOrder hz = q :=
+    Nat.le_antisymm hle hge
+  simpa [Z, hz, q] using heq
 
 /-- Since the complete Schur determinant is identically zero, removing the
 first common positive Schur order leaves an identically determinant-zero
