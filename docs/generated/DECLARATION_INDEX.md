@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9141**.
+Distinct declaration spellings indexed: **9142**.
 
 ## Repeated declaration spellings
 
@@ -4219,6 +4219,7 @@ Distinct declaration spellings indexed: **9141**.
 - `constantFamily_hasIntegralCanonicalSmithConformalDivisibility` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantKernel_or_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `constantKernel_or_joint_or_separated` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
+- `constantKernel_or_reflectedInteraction` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `constantPolynomialFamily` — `def` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantPolynomialFamily_transverseSourceShearVariableBase` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `constantSourceDirectionalDerivative` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`

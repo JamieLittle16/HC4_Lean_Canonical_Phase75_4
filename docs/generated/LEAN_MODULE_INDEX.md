@@ -1380,7 +1380,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.RankOneSchurSeriesAlignment`, `HC4.Newton.RankOneSingularSchurContinuation`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def HasConstantBinaryKernel`, `theorem hasConstantBinaryKernel_of_alignLeft_stationary`, `theorem hasConstantBinaryKernel_of_alignRight_stationary`
+- Declarations: `def HasConstantBinaryKernel`, `theorem hasConstantBinaryKernel_of_alignLeft_stationary`, `theorem hasConstantBinaryKernel_of_alignRight_stationary`, `theorem constantKernel_or_reflectedInteraction`
 
 ### `HC4.Newton.RankOneSingularSchurContinuation`
 
