@@ -237,6 +237,8 @@ theorem firstDeficitLeftTilt_parameterHessian_bound
     HasTiltedParameterCoeffBoundBelow w q s (w i + w j)
       (parameterFirstHessian P.centralDeficitFamily i j) := by
   let w := firstDeficitLeftTiltWeight (J - q)
+  change HasTiltedParameterCoeffBoundBelow w q s (w i + w j)
+    (parameterFirstHessian P.centralDeficitFamily i j)
   intro n hn
   rw [parameterFirstHessian_coeff]
   by_cases hn0 : n = 0
@@ -273,6 +275,8 @@ theorem firstDeficitRightTilt_parameterHessian_bound
     HasTiltedParameterCoeffBoundBelow w q s (w i + w j)
       (parameterFirstHessian P.centralDeficitFamily i j) := by
   let w := firstDeficitRightTiltWeight (J - q)
+  change HasTiltedParameterCoeffBoundBelow w q s (w i + w j)
+    (parameterFirstHessian P.centralDeficitFamily i j)
   intro n hn
   rw [parameterFirstHessian_coeff]
   by_cases hn0 : n = 0
