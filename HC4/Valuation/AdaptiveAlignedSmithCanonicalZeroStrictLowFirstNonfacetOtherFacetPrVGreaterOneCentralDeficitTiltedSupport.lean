@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitEarliestLineDeparture
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseSourceDeficits
 import HC4.Polynomial.DerivativeBounds
 import Mathlib.Tactic
 
@@ -43,7 +44,7 @@ theorem weight_firstDeficitLeftTiltWeight
       (d : ℤ) * (e 2 : ℤ) - ((e 1 : ℤ) + (e 2 : ℤ)) := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    simp [firstDeficitLeftTiltWeight, nsmul_eq_mul]
+    simp [firstDeficitLeftTiltWeight]
     ring
   · intro i
     simp
@@ -54,7 +55,7 @@ theorem weight_firstDeficitRightTiltWeight
       (d : ℤ) * (e 1 : ℤ) - ((e 1 : ℤ) + (e 2 : ℤ)) := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype]
   · rw [Fin.sum_univ_four]
-    simp [firstDeficitRightTiltWeight, nsmul_eq_mul]
+    simp [firstDeficitRightTiltWeight]
     ring
   · intro i
     simp
@@ -134,12 +135,11 @@ theorem firstDeficitLeftTilt_earlierLayer_isWeightLE
       have hJ : J = q + d := by
         dsimp [d]
         omega
-      rw [h1, hJ] at hJle
-      simpa using hJle
+      simpa [h1, hJ] using hJle
     by_cases h2 : e 2 = 2
     · have h2le := hmin2 e hsrc.1 (by omega)
-      rw [horder, h2] at h2le
-      simpa [d] using h2le
+      rw [horder] at h2le
+      simpa [h2, d] using h2le
     · have h3 : 3 ≤ e 2 := by omega
       by_contra hnot
       have hbad : e 1 + e 2 < q + e 2 * d := by
@@ -197,12 +197,11 @@ theorem firstDeficitRightTilt_earlierLayer_isWeightLE
       have hJ : J = q + d := by
         dsimp [d]
         omega
-      rw [h1, hJ] at hJle
-      simpa using hJle
+      simpa [h1, hJ] using hJle
     by_cases h2 : e 1 = 2
     · have h2le := hmin2 e hsrc.1 (by omega)
-      rw [horder, h2] at h2le
-      simpa [d] using h2le
+      rw [horder] at h2le
+      simpa [h2, d] using h2le
     · have h3 : 3 ≤ e 1 := by omega
       by_contra hnot
       have hbad : e 1 + e 2 < q + e 1 * d := by
@@ -231,6 +230,7 @@ theorem firstDeficitLeftTilt_selectedLayer_top
     (hdepart : depart ∈ P.carrier.support)
     (horder : depart 1 + depart 2 = s)
     (hmissing : depart 2 = m)
+    (hm3 : 3 ≤ m)
     (hbad : s < q + m * (J - q))
     (hmax :
       ∀ f ∈ P.carrier.support,
@@ -263,7 +263,8 @@ theorem firstDeficitLeftTilt_selectedLayer_top
     have hem : e 2 ≤ m := by
       by_contra hnot
       have hgt : m < e 2 := Nat.lt_of_not_ge hnot
-      have he3 : 3 ≤ e 2 := by omega
+      have he3 : 3 ≤ e 2 :=
+        le_trans hm3 (Nat.le_of_lt hgt)
       have hebad : e 1 + e 2 < q + e 2 * d := by
         rw [heorder]
         have hb : s < q + m * d := by simpa [d] using hbad
@@ -316,7 +317,8 @@ theorem firstDeficitLeftTilt_selectedLayer_top
         subst e
         exact he hdepartL
       rw [hz, MvPolynomial.coeff_monomial]
-      simp [hne]
+      have hne' : depart ≠ e := fun h => hne h.symm
+      simp [hne']
   · rw [if_neg hwt, MvPolynomial.coeff_monomial]
     by_cases heq : e = depart
     · subst e
@@ -327,8 +329,8 @@ theorem firstDeficitLeftTilt_selectedLayer_top
           (depart 1 : ℤ) + (depart 2 : ℤ) = (s : ℤ) := by
         exact_mod_cast horder
       rw [horderZ, hmissing]
-      rfl
-    · simp [heq]
+    · have hne' : depart ≠ e := fun h => heq h.symm
+      simp [hne']
 
 theorem firstDeficitRightTilt_selectedLayer_top
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
@@ -339,6 +341,7 @@ theorem firstDeficitRightTilt_selectedLayer_top
     (hdepart : depart ∈ P.carrier.support)
     (horder : depart 1 + depart 2 = s)
     (hmissing : depart 1 = m)
+    (hm3 : 3 ≤ m)
     (hbad : s < q + m * (J - q))
     (hmax :
       ∀ f ∈ P.carrier.support,
@@ -371,7 +374,8 @@ theorem firstDeficitRightTilt_selectedLayer_top
     have hem : e 1 ≤ m := by
       by_contra hnot
       have hgt : m < e 1 := Nat.lt_of_not_ge hnot
-      have he3 : 3 ≤ e 1 := by omega
+      have he3 : 3 ≤ e 1 :=
+        le_trans hm3 (Nat.le_of_lt hgt)
       have hebad : e 1 + e 2 < q + e 1 * d := by
         rw [heorder]
         have hb : s < q + m * d := by simpa [d] using hbad
