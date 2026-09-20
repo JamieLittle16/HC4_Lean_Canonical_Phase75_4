@@ -74,7 +74,7 @@ variable
 
 /-- Three distinct actual source monomials lying in one normalized
 `(1,V)` quotient fibre. -/
-structure FirstDeficitGapTwoFiberData : Prop where
+structure FirstDeficitGapTwoFiberData where
   first : Fin 4 →₀ ℕ
   opposite : Fin 4 →₀ ℕ
   second : Fin 4 →₀ ℕ
