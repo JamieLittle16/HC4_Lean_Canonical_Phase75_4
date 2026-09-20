@@ -215,13 +215,9 @@ theorem firstDeficit_secondMissingOpening
         ⟨hhigh, _hhigh0, hhigh1, hhigh2, _hhigh3⟩
       have hJle : J ≤ F.highest.n - 1 := by
         have hhighPos : 0 < F.highest.e1 1 := by
-          have hVpos : 0 < F.V := by
-            omega
-          have hn1pos : 0 < F.highest.n - 1 := by
-            have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
-            omega
+          have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
           rw [hhigh1]
-          exact Nat.mul_pos hVpos hn1pos
+          omega
         have h := hminimal F.highest.e1 hhigh hhighPos
         dsimp [J]
         rw [hhigh1, hhigh2] at h
