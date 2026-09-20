@@ -38,6 +38,7 @@ human architecture guide.
   - `HC4.Newton.ProductCoordinateHessian`
   - `HC4.Newton.QuadraticLongitudinalHessianBoundary`
   - `HC4.Newton.QuadraticLongitudinalSource`
+  - `HC4.Newton.RankOneSingularSchurContinuation`
   - `HC4.Newton.RayKernelExtremalElimination`
   - `HC4.Newton.RigidPacketEvaluatedHessianChart`
   - `HC4.Newton.SingularBoundaryRankSplit`
