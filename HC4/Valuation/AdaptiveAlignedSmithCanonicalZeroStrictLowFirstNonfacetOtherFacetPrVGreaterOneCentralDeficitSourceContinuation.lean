@@ -141,7 +141,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
           simpa [H] using G.centralDeficitSchurBlock_p]
         rw [parameterFirstHessian_symmetric
           P.centralDeficitFamily (0 : Fin 4) 2]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (2 : Fin 4) J hminimal hn 0
       have hr :
           ∀ n : ℕ, n < J → H.r.coeff n = 0 := by
@@ -151,7 +151,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
           simpa [H] using G.centralDeficitSchurBlock_r]
         rw [parameterFirstHessian_symmetric
           P.centralDeficitFamily (3 : Fin 4) 2]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (2 : Fin 4) J hminimal hn 3
       have hy :
           ∀ n : ℕ, n < J → H.y.coeff n = 0 := by
@@ -159,7 +159,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
         rw [show H.y =
             parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 by
           simpa [H] using G.centralDeficitSchurBlock_y]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (2 : Fin 4) J hminimal hn 1
       have hq0 : H.q.coeff 0 = 0 := by
         simpa [H] using G.centralDeficit_q_coeff_zero hthree houtThree
@@ -200,7 +200,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
           simpa [H] using G.centralDeficitSchurBlock_q]
         rw [parameterFirstHessian_symmetric
           P.centralDeficitFamily (0 : Fin 4) 1]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (1 : Fin 4) J hminimal hn 0
       have hs :
           ∀ n : ℕ, n < J → H.s.coeff n = 0 := by
@@ -210,7 +210,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
           simpa [H] using G.centralDeficitSchurBlock_s]
         rw [parameterFirstHessian_symmetric
           P.centralDeficitFamily (3 : Fin 4) 1]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (1 : Fin 4) J hminimal hn 3
       have hy :
           ∀ n : ℕ, n < J → H.y.coeff n = 0 := by
@@ -220,7 +220,7 @@ theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
           simpa [H] using G.centralDeficitSchurBlock_y]
         rw [parameterFirstHessian_symmetric
           P.centralDeficitFamily (2 : Fin 4) 1]
-        exact G.missingHessianRow_coeff_eq_zero_of_lt
+        exact missingHessianRow_coeff_eq_zero_of_lt (P := P)
           (1 : Fin 4) J hminimal hn 2
       have hp0 : H.p.coeff 0 = 0 := by
         simpa [H] using G.centralDeficit_p_coeff_zero hthree houtThree
