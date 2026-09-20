@@ -306,7 +306,7 @@ theorem firstDeficitLeftTilt_selectedLayer_top
         rw [hmissing] at horder
         omega
       have heq : e = depart :=
-        F.support_eq_of_deficits_eq hthree houtThree
+        HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq F hthree houtThree
           hsrc.1 hdepart he1 (by omega)
       subst e
       simp
@@ -417,7 +417,7 @@ theorem firstDeficitRightTilt_selectedLayer_top
         rw [hmissing] at horder
         omega
       have heq : e = depart :=
-        F.support_eq_of_deficits_eq hthree houtThree
+        HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData.QsOtherFacetPrLeftVContactFrontierData.support_eq_of_deficits_eq F hthree houtThree
           hsrc.1 hdepart (by omega) he2
       subst e
       simp
