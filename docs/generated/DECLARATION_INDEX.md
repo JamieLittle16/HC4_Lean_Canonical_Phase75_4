@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9198**.
+Distinct declaration spellings indexed: **9200**.
 
 ## Repeated declaration spellings
 
@@ -3224,6 +3224,7 @@ Distinct declaration spellings indexed: **9198**.
 - `adaptiveSurvivingWallExposureData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithSurvivingExposure`
 - `adaptiveWall_blocker_or_integralSurvivingWall` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `add` — `def` in `HC4.Toric.InvariantSemigroup`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
+- `add_of_shift_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `adjacentFacets_comm` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `adjacent_transition_on_extreme_ray` — `theorem` in `HC4.Newton.BoundaryCycle`
 - `admissibleIntegralKernelSlope_le_bound` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
@@ -8899,6 +8900,7 @@ Distinct declaration spellings indexed: **9198**.
 - `sub` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `sub_initialForm_isWeightLT` — `theorem` in `HC4.Polynomial.WeightBounds`
 - `sub_leadingMonomial_ne_zero_of_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
+- `sub_of_shift_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `sum_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`
 - `sum_qsOtherFacetPairWeight_eq_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `sum_qsOtherFacetSkewWeight_eq_two_level` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSkew`
