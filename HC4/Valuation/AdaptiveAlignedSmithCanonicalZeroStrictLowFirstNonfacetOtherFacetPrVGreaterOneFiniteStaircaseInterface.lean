@@ -47,7 +47,7 @@ theorem prVGreaterOne_wallSlope_height_eq_of_pair_eq
         (ell : ℤ) * ((n : ℤ) - (k : ℤ))) :
     j₁ = j₂ := by
   have hnZ : (0 : ℤ) < (n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < n by omega)
+    omega
   have hjZ : (j₁ : ℤ) = (j₂ : ℤ) := by
     nlinarith [h₁, h₂]
   exact_mod_cast hjZ
@@ -83,7 +83,7 @@ theorem prVGreaterOne_wallSlope_pair_lt_iff_height_gt
     k₁ < k₂ ↔ j₂ < j₁ := by
   have hellZ : (0 : ℤ) < (ell : ℤ) := by exact_mod_cast hell
   have hnZ : (0 : ℤ) < (n : ℤ) - 1 := by
-    exact_mod_cast (show 1 < n by omega)
+    omega
   constructor
   · intro hk
     have hkZ : (k₁ : ℤ) < (k₂ : ℤ) := by exact_mod_cast hk
