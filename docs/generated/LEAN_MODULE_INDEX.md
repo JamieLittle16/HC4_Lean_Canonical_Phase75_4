@@ -1370,7 +1370,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`, `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.BinaryPivotGeometry`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.SchurTangentialRawRay`, `HC4.Newton.SingularSchurDiagonalGap`, `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.FirstSchurDepartureBridge`, `HC4.Valuation.ReverseReesSchurParameterBudget`
-- Declarations: `structure BinarySchurPolynomialSeries`, `def determinant`, `def constantBlock`, `def LeftPivot`, `def RightAxisPivot`, `def alignLeft`, `theorem alignLeft_offDiag_coeff_eq_active_zero_mul`, `theorem alignRight_offDiag_coeff`, `theorem alignLeft_determinant`, `theorem alignLeft_leading_ne_zero`, `def alignRight`, `theorem alignRight_determinant`, `theorem alignRight_leading_ne_zero`, `def polynomialSchurSeries`, `theorem polynomialSchurSeries_determinant`
+- Declarations: `structure BinarySchurPolynomialSeries`, `def determinant`, `def constantBlock`, `def LeftPivot`, `def RightAxisPivot`, `def alignLeft`, `theorem alignLeft_offDiag_coeff_eq_active_zero_mul`, `theorem alignLeft_determinant`, `theorem alignLeft_leading_ne_zero`, `def alignRight`, `theorem alignRight_offDiag_coeff`, `theorem alignRight_determinant`, `theorem alignRight_leading_ne_zero`, `def polynomialSchurSeries`, `theorem polynomialSchurSeries_determinant`
 
 ### `HC4.Newton.RankOneSingularSchurConstantKernel`
 
