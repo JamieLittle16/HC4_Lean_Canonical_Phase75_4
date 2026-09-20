@@ -472,6 +472,31 @@ theorem centralDeficitSchurB_gap :
   simpa [GeneralFourBlock.schurB] using
     (hactive.mul hy).sub hinside
 
+/-- The zero-Schur series genuinely moves at a positive parameter order. -/
+theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (G.centralDeficitZeroSchurSeries hthree houtThree).HasPositiveEntryLayer := by
+  let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+  have hroof := G.firstDeficit_activeRankThree hthree houtThree
+  have hentry :
+      Z.series.active ≠ 0 ∨ Z.series.kernel ≠ 0 := by
+    rcases hroof with hleft | hright
+    · right
+      change G.centralDeficitSchurBlock.schurC ≠ 0
+      rw [G.centralDeficitSchurC_eq_leftRoofDet]
+      exact hleft
+    · left
+      change G.centralDeficitSchurBlock.schurA ≠ 0
+      rw [G.centralDeficitSchurA_eq_rightRoofDet]
+      exact hright
+  by_contra hnone
+  have hA := Z.active_eq_zero_of_not_hasPositiveEntryLayer hnone
+  have hC := Z.kernel_eq_zero_of_not_hasPositiveEntryLayer hnone
+  rcases hentry with hne | hne
+  · exact hne hA
+  · exact hne hC
+
 /-- The abstract first positive Schur order is exactly the honest first
 total-deficit source order. -/
 theorem centralDeficitZeroSchurSeries_firstPositiveEntryOrder_eq_firstDeficitOrder
@@ -545,31 +570,6 @@ theorem centralDeficitZeroSchurSeries_firstPositiveEntryOrder_eq_firstDeficitOrd
         exact G.firstDeficitLeftActiveHessian_det_gap
           (Z.firstPositiveEntryOrder hz) hmpos hlt
   omega
-
-/-- The zero-Schur series genuinely moves at a positive parameter order. -/
-theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
-    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    (G.centralDeficitZeroSchurSeries hthree houtThree).HasPositiveEntryLayer := by
-  let Z := G.centralDeficitZeroSchurSeries hthree houtThree
-  have hroof := G.firstDeficit_activeRankThree hthree houtThree
-  have hentry :
-      Z.series.active ≠ 0 ∨ Z.series.kernel ≠ 0 := by
-    rcases hroof with hleft | hright
-    · right
-      change G.centralDeficitSchurBlock.schurC ≠ 0
-      rw [G.centralDeficitSchurC_eq_leftRoofDet]
-      exact hleft
-    · left
-      change G.centralDeficitSchurBlock.schurA ≠ 0
-      rw [G.centralDeficitSchurA_eq_rightRoofDet]
-      exact hright
-  by_contra hnone
-  have hA := Z.active_eq_zero_of_not_hasPositiveEntryLayer hnone
-  have hC := Z.kernel_eq_zero_of_not_hasPositiveEntryLayer hnone
-  rcases hentry with hne | hne
-  · exact hne hA
-  · exact hne hC
 
 /-- Since the complete Schur determinant is identically zero, removing the
 first common positive Schur order leaves an identically determinant-zero
