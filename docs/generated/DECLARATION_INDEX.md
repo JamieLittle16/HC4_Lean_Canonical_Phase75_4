@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9150**.
+Distinct declaration spellings indexed: **9152**.
 
 ## Repeated declaration spellings
 
@@ -3239,10 +3239,12 @@ Distinct declaration spellings indexed: **9150**.
 - `alignLeft_kernel_coeff` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
 - `alignLeft_leading_ne_zero` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_offDiag_coeff` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
+- `alignLeft_offDiag_coeff_eq_active_zero_mul` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_transverse_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `alignRight` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignRight_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignRight_leading_ne_zero` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
+- `alignRight_offDiag_coeff` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignedRamification_primitive_constantCoeff_ne_zero` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `alignedRamification_sectionCoordinate_factorisation` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `alignedRamification_sourceCoefficient_factorisation` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
