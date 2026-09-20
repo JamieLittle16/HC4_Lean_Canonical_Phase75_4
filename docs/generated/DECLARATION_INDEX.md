@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9111**.
+Distinct declaration spellings indexed: **9113**.
 
 ## Repeated declaration spellings
 
@@ -3061,6 +3061,7 @@ Distinct declaration spellings indexed: **9111**.
 - `TerminalAssociatedGradedCollisionData` — `structure` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `TerminalAssociatedGradedCollisionData.exists_jc2Sensitive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalReduction`
 - `TerminalAssociatedGradedCollisionData.impossible_of_JC2` — `theorem` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
+- `TopBoundaryCodimensionTwoResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - `TopDegreeOnFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
@@ -9037,6 +9038,7 @@ Distinct declaration spellings indexed: **9111**.
 - `toZeroIntegralSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSlopeBridge`
 - `toZeroSchurClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
 - `toZeroSchurClockWithPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
+- `topBoundaryTransition_actualRankTwo_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - `topBoundaryTransition_nextRay_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `topDegree_omittedCoordinate_zero` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `topFaceCrossFacet_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`

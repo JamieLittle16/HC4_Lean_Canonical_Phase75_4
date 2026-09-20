@@ -191,6 +191,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
   - `HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2`
   - `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
@@ -3866,6 +3867,11 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
   - `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
   - `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
