@@ -77,40 +77,41 @@ theorem schurC_eq_sourceRoofFormula
   unfold GeneralFourBlock.schurC GeneralFourBlock.activeDet
   ring
 
-/-- The first cleared Schur entry of the central permutation is exactly the
-right source-roof cubic. -/
-theorem centralDeficitSchurBlockOf_schurA_eq_sourceRightRoofFormula
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).schurA =
-      sourceRightRoofFormula (fun i j => parameterFirstHessian Q i j) := by
-  rw [schurA_eq_sourceRoofFormula]
-  simp only [centralDeficitSchurBlockOf,
-    permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
-    permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_p,
-    permutedFamilyHessianFourBlock_r, permutedFamilyHessianFourBlock_x,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_two, sourceRightRoofFormula]
+/-- Assemble the right source-roof formula from six scalar field identities. -/
+theorem schurA_eq_sourceRightRoofFormula_of_fields
+    (B : GeneralFourBlock R0)
+    (H : Fin 4 → Fin 4 → R0)
+    (ha : B.a = H 0 0)
+    (hb : B.b = H 0 3)
+    (hd : B.d = H 3 3)
+    (hp : B.p = H 0 2)
+    (hr : B.r = H 3 2)
+    (hx : B.x = H 2 2) :
+    B.schurA = sourceRightRoofFormula H := by
+  rw [schurA_eq_sourceRoofFormula, ha, hb, hd, hp, hr, hx]
+  rfl
 
-/-- The second cleared Schur entry is the left source-roof cubic. -/
-theorem centralDeficitSchurBlockOf_schurC_eq_sourceLeftRoofFormula
-    (Q : MvPolynomial (Fin 4) (Polynomial K)) :
-    (centralDeficitSchurBlockOf Q).schurC =
-      sourceLeftRoofFormula (fun i j => parameterFirstHessian Q i j) := by
-  rw [schurC_eq_sourceRoofFormula]
-  simp only [centralDeficitSchurBlockOf,
-    permutedFamilyHessianFourBlock_a, permutedFamilyHessianFourBlock_b,
-    permutedFamilyHessianFourBlock_d, permutedFamilyHessianFourBlock_q,
-    permutedFamilyHessianFourBlock_s, permutedFamilyHessianFourBlock_z,
-    centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one,
-    centralDeficitSchurPerm_three, sourceLeftRoofFormula]
+/-- Assemble the left source-roof formula from six scalar field identities. -/
+theorem schurC_eq_sourceLeftRoofFormula_of_fields
+    (B : GeneralFourBlock R0)
+    (H : Fin 4 → Fin 4 → R0)
+    (ha : B.a = H 0 0)
+    (hb : B.b = H 0 3)
+    (hd : B.d = H 3 3)
+    (hq : B.q = H 0 1)
+    (hs : B.s = H 3 1)
+    (hz : B.z = H 1 1) :
+    B.schurC = sourceLeftRoofFormula H := by
+  rw [schurC_eq_sourceRoofFormula, ha, hb, hd, hq, hs, hz]
+  rfl
 
 /-- Generic determinant formula for the source-coordinate roof (0,2,3). -/
 theorem sourceRightRoof_det_formula
     (H : Fin 4 → Fin 4 → R0)
     (hsymm : ∀ i j, H i j = H j i) :
-    ((fun i j : Fin 3 =>
+    Matrix.det ((fun i j : Fin 3 =>
       H (firstDeficitRightActiveIndex i) (firstDeficitRightActiveIndex j)) :
-        Matrix (Fin 3) (Fin 3) R0).det =
+        Matrix (Fin 3) (Fin 3) R0) =
       sourceRightRoofFormula H := by
   rw [Matrix.det_fin_three]
   simp only [firstDeficitRightActiveIndex, sourceRightRoofFormula]
@@ -120,9 +121,9 @@ theorem sourceRightRoof_det_formula
 theorem sourceLeftRoof_det_formula
     (H : Fin 4 → Fin 4 → R0)
     (hsymm : ∀ i j, H i j = H j i) :
-    ((fun i j : Fin 3 =>
+    Matrix.det ((fun i j : Fin 3 =>
       H (firstDeficitLeftActiveIndex i) (firstDeficitLeftActiveIndex j)) :
-        Matrix (Fin 3) (Fin 3) R0).det =
+        Matrix (Fin 3) (Fin 3) R0) =
       sourceLeftRoofFormula H := by
   rw [Matrix.det_fin_three]
   simp only [firstDeficitLeftActiveIndex, sourceLeftRoofFormula]
@@ -294,25 +295,83 @@ row/column reordering. -/
 theorem centralDeficitSchurA_eq_rightRoofDet :
     G.centralDeficitSchurBlock.schurA =
       G.firstDeficitRightActiveHessian.det := by
-  unfold centralDeficitSchurBlock
-  rw [centralDeficitSchurBlockOf_schurA_eq_sourceRightRoofFormula]
-  symm
-  unfold firstDeficitRightActiveHessian
-  exact sourceRightRoof_det_formula
-    (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
-    (parameterFirstHessian_symmetric P.centralDeficitFamily)
+  let H := fun i j => parameterFirstHessian P.centralDeficitFamily i j
+  have ha : G.centralDeficitSchurBlock.a = H 0 0 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_a]
+    simp only [centralDeficitSchurPerm_zero]
+  have hb : G.centralDeficitSchurBlock.b = H 0 3 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_b]
+    simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+  have hd : G.centralDeficitSchurBlock.d = H 3 3 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_d]
+    simp only [centralDeficitSchurPerm_one]
+  have hp : G.centralDeficitSchurBlock.p = H 0 2 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_p]
+    simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_two]
+  have hr : G.centralDeficitSchurBlock.r = H 3 2 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_r]
+    simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_two]
+  have hx : G.centralDeficitSchurBlock.x = H 2 2 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_x]
+    simp only [centralDeficitSchurPerm_two]
+  calc
+    G.centralDeficitSchurBlock.schurA =
+        sourceRightRoofFormula H :=
+      schurA_eq_sourceRightRoofFormula_of_fields
+        G.centralDeficitSchurBlock H ha hb hd hp hr hx
+    _ = G.firstDeficitRightActiveHessian.det := by
+      symm
+      unfold firstDeficitRightActiveHessian H
+      exact sourceRightRoof_det_formula
+        (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
+        (parameterFirstHessian_symmetric P.centralDeficitFamily)
 
 /-- Second principal cleared Schur entry equals the left roof determinant. -/
 theorem centralDeficitSchurC_eq_leftRoofDet :
     G.centralDeficitSchurBlock.schurC =
       G.firstDeficitLeftActiveHessian.det := by
-  unfold centralDeficitSchurBlock
-  rw [centralDeficitSchurBlockOf_schurC_eq_sourceLeftRoofFormula]
-  symm
-  unfold firstDeficitLeftActiveHessian
-  exact sourceLeftRoof_det_formula
-    (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
-    (parameterFirstHessian_symmetric P.centralDeficitFamily)
+  let H := fun i j => parameterFirstHessian P.centralDeficitFamily i j
+  have ha : G.centralDeficitSchurBlock.a = H 0 0 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_a]
+    simp only [centralDeficitSchurPerm_zero]
+  have hb : G.centralDeficitSchurBlock.b = H 0 3 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_b]
+    simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+  have hd : G.centralDeficitSchurBlock.d = H 3 3 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_d]
+    simp only [centralDeficitSchurPerm_one]
+  have hq : G.centralDeficitSchurBlock.q = H 0 1 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_q]
+    simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_three]
+  have hs : G.centralDeficitSchurBlock.s = H 3 1 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_s]
+    simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_three]
+  have hz : G.centralDeficitSchurBlock.z = H 1 1 := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_z]
+    simp only [centralDeficitSchurPerm_three]
+  calc
+    G.centralDeficitSchurBlock.schurC =
+        sourceLeftRoofFormula H :=
+      schurC_eq_sourceLeftRoofFormula_of_fields
+        G.centralDeficitSchurBlock H ha hb hd hq hs hz
+    _ = G.firstDeficitLeftActiveHessian.det := by
+      symm
+      unfold firstDeficitLeftActiveHessian H
+      exact sourceLeftRoof_det_formula
+        (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
+        (parameterFirstHessian_symmetric P.centralDeficitFamily)
 
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
 theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
