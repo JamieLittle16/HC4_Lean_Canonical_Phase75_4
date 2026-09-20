@@ -163,7 +163,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               (F.highest.n : ℤ) - 1 := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hc : (0 : ℤ) < (F.highest.n : ℤ) - 1 := by omega
         have hcD :
             (F.highest.n : ℤ) - 1 < D := by
@@ -186,7 +186,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               D + (F.locked.ell : ℤ) := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hcD : (F.locked.ell : ℤ) < D := by
           dsimp [D]
           omega
@@ -207,7 +207,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               D + 2 * (F.locked.ell : ℤ) := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hDc : D < 2 * (F.locked.ell : ℤ) := by
           dsimp [D]
           omega
@@ -234,17 +234,25 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hfoEq :
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) = D := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hosEq :
             D * ((opposite 0 : ℤ) - (second 0 : ℤ)) = D := by
           dsimp [D]
-          nlinarith only [hoChord, hsChord]
+          linear_combination hoChord - hsChord
+        have hfoDiff :
+            (first 0 : ℤ) - (opposite 0 : ℤ) = 1 := by
+          apply mul_left_cancel₀ (ne_of_gt hD)
+          simpa using hfoEq
+        have hosDiff :
+            (opposite 0 : ℤ) - (second 0 : ℤ) = 1 := by
+          apply mul_left_cancel₀ (ne_of_gt hD)
+          simpa using hosEq
         have hfoZ :
             (first 0 : ℤ) = (opposite 0 : ℤ) + 1 := by
-          nlinarith [hfoEq, hD]
+          omega
         have hosZ :
             (opposite 0 : ℤ) = (second 0 : ℤ) + 1 := by
-          nlinarith [hosEq, hD]
+          omega
         have hfo : first 0 = opposite 0 + 1 := by
           exact_mod_cast hfoZ
         have hos : opposite 0 = second 0 + 1 := by
@@ -328,14 +336,15 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
               ((F.highest.n : ℤ) - 1) *
                 ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [hf, ho]
+          linear_combination ho - hf
         have hscaleOS :
             D * (((second 0 : ℤ) + (second 1 : ℤ)) -
               ((opposite 0 : ℤ) + (opposite 1 : ℤ))) =
               ((F.highest.n : ℤ) - 1) *
                 ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [ho, hs, hreflectZ]
+          linear_combination hs - ho +
+            ((F.highest.n : ℤ) - 1) * hreflectZ
         have hdeltaFO :
             (0 : ℤ) <
               ((opposite 0 : ℤ) + (opposite 1 : ℤ)) -
@@ -426,7 +435,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               (F.locked.ell : ℤ) := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hcD : (F.locked.ell : ℤ) < D := by
           dsimp [D]
           omega
@@ -447,7 +456,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               D + ((F.highest.n : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hcD : (F.highest.n : ℤ) - 1 < D := by
           dsimp [D]
           omega
@@ -468,7 +477,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) =
               D + 2 * ((F.highest.n : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hc : (0 : ℤ) < 2 * ((F.highest.n : ℤ) - 1) := by
           omega
         have hcD :
@@ -495,17 +504,25 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hfoEq :
             D * ((first 0 : ℤ) - (opposite 0 : ℤ)) = D := by
           dsimp [D]
-          nlinarith only [hfChord, hoChord]
+          linear_combination hfChord - hoChord
         have hosEq :
             D * ((opposite 0 : ℤ) - (second 0 : ℤ)) = D := by
           dsimp [D]
-          nlinarith only [hoChord, hsChord]
+          linear_combination hoChord - hsChord
+        have hfoDiff :
+            (first 0 : ℤ) - (opposite 0 : ℤ) = 1 := by
+          apply mul_left_cancel₀ (ne_of_gt hD)
+          simpa using hfoEq
+        have hosDiff :
+            (opposite 0 : ℤ) - (second 0 : ℤ) = 1 := by
+          apply mul_left_cancel₀ (ne_of_gt hD)
+          simpa using hosEq
         have hfoZ :
             (first 0 : ℤ) = (opposite 0 : ℤ) + 1 := by
-          nlinarith [hfoEq, hD]
+          omega
         have hosZ :
             (opposite 0 : ℤ) = (second 0 : ℤ) + 1 := by
-          nlinarith [hosEq, hD]
+          omega
         have hfo : first 0 = opposite 0 + 1 := by
           exact_mod_cast hfoZ
         have hos : opposite 0 = second 0 + 1 := by
@@ -589,14 +606,15 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
               ((F.highest.n : ℤ) - 1) *
                 ((opposite 2 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [hf, ho]
+          linear_combination hf - ho
         have hscaleOS :
             D * (((opposite 0 : ℤ) + 1) -
               ((second 0 : ℤ) + 2)) =
               ((F.highest.n : ℤ) - 1) *
                 ((opposite 2 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
-          nlinarith only [ho, hs, hreflectZ]
+          linear_combination ho - hs +
+            ((F.highest.n : ℤ) - 1) * hreflectZ
         have hdeltaOF :
             (0 : ℤ) <
               (first 0 : ℤ) - ((opposite 0 : ℤ) + 1) := by
