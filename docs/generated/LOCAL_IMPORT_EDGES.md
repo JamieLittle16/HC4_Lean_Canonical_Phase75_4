@@ -656,7 +656,7 @@ human architecture guide.
   - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.MvBoundaryStrata`
 - `HC4.Newton.SingularSchurDiagonalGap`
-  - `HC4.Newton.FirstSchurLayerLinearization`
+  - `HC4.Newton.RankOneSchurSeriesAlignment`
 - `HC4.Newton.SmithCollisionQuadraticRankOne`
   - `HC4.Newton.RankOneRepairProgress`
 - `HC4.Newton.SmithExtremeBalance`

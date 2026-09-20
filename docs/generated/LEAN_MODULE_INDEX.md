@@ -969,7 +969,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.PreterminalFirstDeparture`
 - External imports: `Mathlib.Algebra.BigOperators.NatAntidiagonal`, `Mathlib.Algebra.Polynomial.Coeff`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FirstSchurPreterminalBinaryAdapter`, `HC4.Newton.FocusedSchurRestartSignatureProbe`, `HC4.Newton.RankOneSchurSeriesAlignment`, `HC4.Newton.RankOneSingularSchurContinuation`, `HC4.Newton.SingularSchurDiagonalGap`, `HC4.Newton.TerminalFirstSchurAPIProbe`, `HC4.Newton.TerminalSchurSignatureProbe`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`, `HC4.Valuation.FirstKernelBreakRankTwo`, `HC4.Valuation.FirstSchurDepartureBridge`
+- Imported by local modules: `HC4.Newton.FirstSchurPreterminalBinaryAdapter`, `HC4.Newton.FocusedSchurRestartSignatureProbe`, `HC4.Newton.RankOneSchurSeriesAlignment`, `HC4.Newton.RankOneSingularSchurContinuation`, `HC4.Newton.TerminalFirstSchurAPIProbe`, `HC4.Newton.TerminalSchurSignatureProbe`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`, `HC4.Valuation.FirstKernelBreakRankTwo`, `HC4.Valuation.FirstSchurDepartureBridge`
 - Declarations: `theorem coeff_mul_eq_constant_mul_of_right_vanishes_below`, `theorem coeff_mul_eq_zero_of_right_vanishes_through`, `theorem coeff_sq_eq_zero_of_vanishes_below`, `structure FirstRankOneSchurDeparture`, `def determinant`, `theorem coeff_order_determinant`, `structure RankOneSchurSeries`, `def determinant`, `def positiveTransverseOrders`, `def HasPositiveTransverseLayer`, `def firstPositiveTransverseOrder`, `theorem firstPositiveTransverseOrder_mem`, `theorem firstPositiveTransverseOrder_pos`, `theorem offDiag_coeff_eq_zero_of_lt_first`, `theorem kernel_coeff_eq_zero_of_lt_first`, `theorem transverse_nonzero_at_first`, `theorem offDiag_eq_zero_of_not_hasPositiveTransverseLayer`, `theorem kernel_eq_zero_of_not_hasPositiveTransverseLayer`, `theorem determinant_eq_zero_of_not_hasPositiveTransverseLayer`, `theorem determinant_coeff_eq_zero_of_lt_first`, `theorem coeff_mul_eq_zero_before_twice_of_lower_zero`, `theorem coeff_mul_twice_eq_leading_mul_of_lower_zero`, `theorem firstTransverse_offDiag_ne_zero_of_determinant_eq_zero`, `theorem kernel_coeff_eq_zero_before_twice_firstTransverse`, `theorem kernel_coeff_twice_firstTransverse_identity`, `theorem kernel_coeff_twice_firstTransverse_ne_zero`, `theorem hasPositiveTransverseLayer_of_determinant_eq_factor_mul_X_pow`, `theorem firstPositiveTransverseOrder_le_of_determinant_eq_factor_mul_X_pow`, `def firstDeparture`, `structure PreterminalSchurDepartureData`, `def determinant`, `theorem determinant_coeff_order_eq_linearSource`, `theorem determinant_coeff_order_eq_zero_of_clearedFactor`, `theorem linearSource_eq_zero_of_clearedFactor`
 
 ### `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
@@ -1369,7 +1369,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`, `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.BinaryPivotGeometry`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.SchurTangentialRawRay`, `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.FirstSchurDepartureBridge`, `HC4.Valuation.ReverseReesSchurParameterBudget`
+- Imported by local modules: `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.SchurTangentialRawRay`, `HC4.Newton.SingularSchurDiagonalGap`, `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.FirstSchurDepartureBridge`, `HC4.Valuation.ReverseReesSchurParameterBudget`
 - Declarations: `structure BinarySchurPolynomialSeries`, `def determinant`, `def constantBlock`, `def LeftPivot`, `def RightAxisPivot`, `def alignLeft`, `theorem alignLeft_determinant`, `theorem alignLeft_leading_ne_zero`, `def alignRight`, `theorem alignRight_determinant`, `theorem alignRight_leading_ne_zero`, `def polynomialSchurSeries`, `theorem polynomialSchurSeries_determinant`
 
 ### `HC4.Newton.RankOneSingularSchurConstantKernel`
@@ -1517,7 +1517,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/SingularSchurDiagonalGap.lean`
 - Purpose: Off-diagonal gap forced by singularity and diagonal gaps
 - A-labels: none detected
-- Local imports: `HC4.Newton.FirstSchurLayerLinearization`
+- Local imports: `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`
 - Declarations: `theorem offDiag_coeff_eq_zero_below_of_diagonal_gap`
