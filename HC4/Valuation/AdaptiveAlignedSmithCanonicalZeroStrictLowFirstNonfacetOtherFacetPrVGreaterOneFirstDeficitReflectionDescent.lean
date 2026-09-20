@@ -288,6 +288,7 @@ theorem firstDeficit_oppositeOrder_gap_two_le
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         exact_mod_cast (show 1 < F.highest.n by omega)
       have hcoefPos :
           (0 : ℤ) <
@@ -332,6 +333,7 @@ theorem firstDeficit_oppositeOrder_gap_two_le
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
         exact_mod_cast (show 1 < F.highest.n by omega)
       have hcoefPos :
           (0 : ℤ) <
