@@ -428,7 +428,8 @@ theorem firstDeficitRightTilt_selectedLayer_top
         subst e
         exact he hdepartL
       rw [hz, MvPolynomial.coeff_monomial]
-      simp [hne]
+      have hne' : depart ≠ e := fun h => hne h.symm
+      simp [hne']
   · rw [if_neg hwt, MvPolynomial.coeff_monomial]
     by_cases heq : e = depart
     · subst e
@@ -439,8 +440,8 @@ theorem firstDeficitRightTilt_selectedLayer_top
           (depart 1 : ℤ) + (depart 2 : ℤ) = (s : ℤ) := by
         exact_mod_cast horder
       rw [horderZ, hmissing]
-      rfl
-    · simp [heq]
+    · have hne' : depart ≠ e := fun h => heq h.symm
+      simp [hne']
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
