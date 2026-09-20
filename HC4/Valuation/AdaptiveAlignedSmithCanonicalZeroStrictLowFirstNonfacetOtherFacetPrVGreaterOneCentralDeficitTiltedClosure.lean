@@ -424,9 +424,6 @@ private theorem centralDeficit_leftTilt_impossible
     rw [hfirstMono]
     rw [HC4.Polynomial.hessian_apply]
     simp [MvPolynomial.pderiv_monomial, he2]
-    change MvPolynomial.pderiv (2 : Fin 4)
-      (0 : MvPolynomial (Fin 4) K) = 0
-    simp
   have hdiagRight :
       (G.firstDeficitRightActiveHessian 1 1).coeff
           G.firstDeficitOrder = 0 := by
