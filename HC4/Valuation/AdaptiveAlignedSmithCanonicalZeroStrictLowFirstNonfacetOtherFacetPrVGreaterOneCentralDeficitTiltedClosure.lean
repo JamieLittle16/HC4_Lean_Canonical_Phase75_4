@@ -195,7 +195,7 @@ private theorem tilted_binary_nonCancellation
     initialForm_coeff_mul_eq_zero
       (w := w) (P := B) (Q := B) (M := a + c) hBB
   have htop :=
-    HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+    HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
       (K := K) hAiLE hCjLE
   have hdesired :
       HC4.Polynomial.initialForm w (a + c)
@@ -488,29 +488,16 @@ private theorem centralDeficit_leftTilt_impossible
     simpa using (ha0LE.mul hd0LE).sub (hb0LE.mul hc0LE)
   have hDelta0Top :
       HC4.Polynomial.initialForm w 0 Delta0 = Delta0 := by
+    have hadHom := MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
+    have hbcHom := MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
     dsimp [Delta0]
-    rw [HC4.Polynomial.initialForm_add]
-    have had :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
-        (K := K) ha0LE hd0LE
-    have hbc :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
-        (K := K) hb0LE hc0LE
-    have haTop :=
-      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous ha0Hom
-    have hbTop :=
-      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hb0Hom
-    have hcTop :=
-      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hc0Hom
-    have hdTop :=
-      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hd0Hom
-    simpa [sub_eq_add_neg, HC4.Polynomial.initialForm_smul,
-      had, hbc, haTop, hbTop, hcTop, hdTop] using
-      congrArg (fun X => X)
-        (show HC4.Polynomial.initialForm w 0
-            (a0 * d0 - b0 * c0) =
-              HC4.Polynomial.initialForm w 0
-                (a0 * d0 - b0 * c0) from rfl)
+    rw [show a0 * d0 - b0 * c0 =
+        a0 * d0 + (-1 : K) • (b0 * c0) by simp]
+    rw [HC4.Polynomial.initialForm_add,
+      HC4.Polynomial.initialForm_smul,
+      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
+      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hbcHom]
+    simp
 
   have hfirstHom :
       MvPolynomial.IsWeightedHomogeneous w
@@ -558,7 +545,7 @@ private theorem centralDeficit_leftTilt_impossible
         H.schurC.coeff q := by
     rw [hCqFormula]
     have hp :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hDelta0LE hVqLE
     rw [hDelta0Top,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hVqHom] at hp
@@ -920,7 +907,7 @@ private theorem centralDeficit_leftTilt_impossible
           HC4.Polynomial.initialForm w WX (H.x.coeff s) := by
     rw [hmainTop]
     have hp :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hD0LE hxsLE
     rw [hD0Top] at hp
     simpa using hp
@@ -1272,32 +1259,16 @@ private theorem centralDeficit_rightTilt_impossible
     simpa using (ha0LE.mul hd0LE).sub (hb0LE.mul hc0LE)
   have hDelta0Top :
       HC4.Polynomial.initialForm w 0 Delta0 = Delta0 := by
-    apply MvPolynomial.ext
-    intro f
-    rw [HC4.Polynomial.coeff_initialForm]
-    by_cases hf : f ∈ Delta0.support
-    · have hle := hDelta0LE hf
-      have hge : 0 ≤ Finsupp.weight w f := by
-        dsimp [Delta0] at hf
-        have hsup :=
-          MvPolynomial.support_sub_subset (a0 * d0) (b0 * c0) hf
-        rcases Finset.mem_union.mp hsup with had | hbc
-        · have hsupp := MvPolynomial.support_mul a0 d0 had
-          rcases Finset.mem_add.mp hsupp with ⟨r, hr, t, ht, hrt⟩
-          subst f
-          have hra := ha0Hom (MvPolynomial.mem_support_iff.mp hr)
-          have htd := hd0Hom (MvPolynomial.mem_support_iff.mp ht)
-          simpa [Finsupp.weight_add, hra, htd]
-        · have hsupp := MvPolynomial.support_mul b0 c0 hbc
-          rcases Finset.mem_add.mp hsupp with ⟨r, hr, t, ht, hrt⟩
-          subst f
-          have hrb := hb0Hom (MvPolynomial.mem_support_iff.mp hr)
-          have htc := hc0Hom (MvPolynomial.mem_support_iff.mp ht)
-          simpa [Finsupp.weight_add, hrb, htc]
-      have hw : Finsupp.weight w f = 0 := le_antisymm hle hge
-      simp [hw]
-    · have hz0 := MvPolynomial.notMem_support_iff.mp hf
-      simp [hz0]
+    have hadHom := MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
+    have hbcHom := MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
+    dsimp [Delta0]
+    rw [show a0 * d0 - b0 * c0 =
+        a0 * d0 + (-1 : K) • (b0 * c0) by simp]
+    rw [HC4.Polynomial.initialForm_add,
+      HC4.Polynomial.initialForm_smul,
+      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
+      HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hbcHom]
+    simp
   have hfirstHom :
       MvPolynomial.IsWeightedHomogeneous w
         G.firstDeficitLayer (-(q : ℤ)) := by
@@ -1343,7 +1314,7 @@ private theorem centralDeficit_rightTilt_impossible
         H.schurA.coeff q := by
     rw [hAqFormula]
     have hp :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hDelta0LE hVqLE
     rw [hDelta0Top,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hVqHom] at hp
@@ -1693,7 +1664,7 @@ private theorem centralDeficit_rightTilt_impossible
           HC4.Polynomial.initialForm w WZ (H.z.coeff s) := by
     rw [hmainTop]
     have hp :=
-      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hD0LE hzsLE
     rw [hD0Top] at hp
     simpa using hp
