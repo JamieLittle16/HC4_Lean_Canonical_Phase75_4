@@ -60,6 +60,13 @@ inductive FirstDeficitSecondMissingOpeningData : Prop
         ∀ f ∈ P.carrier.support, 0 < f 2 → J ≤ f 1 + f 2)
       (second_missing_minimal :
         ∀ f ∈ P.carrier.support, 2 ≤ f 2 → Kord ≤ f 1 + f 2)
+      (second : Fin 4 →₀ ℕ)
+      (second_mem : second ∈ P.carrier.support)
+      (second_order : second 1 + second 2 = Kord)
+      (second_two : second 2 = 2)
+      (second_missing_unique :
+        ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → 2 ≤ f 2 →
+          f = second)
       (K_le_locked : Kord ≤ F.locked.ell)
   | right
       (first opposite : Fin 4 →₀ ℕ)
@@ -77,6 +84,13 @@ inductive FirstDeficitSecondMissingOpeningData : Prop
         ∀ f ∈ P.carrier.support, 0 < f 1 → J ≤ f 1 + f 2)
       (second_missing_minimal :
         ∀ f ∈ P.carrier.support, 2 ≤ f 1 → Kord ≤ f 1 + f 2)
+      (second : Fin 4 →₀ ℕ)
+      (second_mem : second ∈ P.carrier.support)
+      (second_order : second 1 + second 2 = Kord)
+      (second_one : second 1 = 2)
+      (second_missing_unique :
+        ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → 2 ≤ f 1 →
+          f = second)
       (K_le_highest : Kord ≤ F.highest.n - 1)
 
 /-- The generic staggered kernel gap is exactly the missing-coordinate
@@ -134,6 +148,127 @@ theorem firstDeficit_secondMissingOpening
           rw [parameterFirstHessian_coeff]
           simpa [HC4.Polynomial.hessian_apply] using hderiv
         exact hcoeff hz
+      have hqTwo : 2 ≤ q := by
+        dsimp [q]
+        exact firstDeficitOrder_two_le G hthree houtThree
+      have hfirstKernel :
+          MvPolynomial.pderiv (2 : Fin 4) G.firstDeficitLayer = 0 := by
+        apply pderiv_eq_zero_of_all_supported_exponents_zero
+        intro d hd
+        rw [huniq d (MvPolynomial.mem_support_iff.mpr hd), hfirst2]
+      have hA0 :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1) = 0 := by
+        exact pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero
+          (K := K) (2 : Fin 4) (1 : Fin 4)
+          G.firstDeficitLayer hfirstKernel
+      have hLayerJ :
+          familyParameterLayer P.centralDeficitFamily J =
+            MvPolynomial.monomial opposite B := by
+        simpa [J] using hlayer
+      have hOppSecond :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily J)) = 0 := by
+        rw [hLayerJ]
+        exact pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
+          (K := K) (2 : Fin 4) opposite B hop2
+      have hS0 :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily J)
+              (1 : Fin 4) 2) = 0 := by
+        exact pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
+          (K := K) (2 : Fin 4) (1 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily J) hOppSecond
+      have hAne :
+          HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 ≠ 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using
+          (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
+            (K := K) (1 : Fin 4) G.firstDeficitLayer first
+            hfirst (by
+              rw [hfirst1]
+              simpa [q] using hqTwo))
+      have hidentity :
+          HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily Kord)
+                (2 : Fin 4) 2 =
+            HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily J)
+                (1 : Fin 4) 2 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily J)
+                (1 : Fin 4) 2 := by
+        simpa [q, J, Kord] using heq
+      have hthirdHessian :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily Kord)
+              (2 : Fin 4) 2) = 0 := by
+        exact pderiv_right_eq_zero_of_mul_eq_square
+          (K := K) (2 : Fin 4)
+          (HC4.Polynomial.hessian G.firstDeficitLayer (1 : Fin 4) 1)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily Kord)
+            (2 : Fin 4) 2)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily J)
+            (1 : Fin 4) 2)
+          hidentity hA0 hS0 hAne
+      have hthird :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4)
+              (MvPolynomial.pderiv (2 : Fin 4)
+                (familyParameterLayer P.centralDeficitFamily Kord))) = 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using hthirdHessian
+      have hcap :
+          ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → f 2 ≤ 2 := by
+        intro f hf horder
+        have hfLayer :
+            f ∈ (familyParameterLayer P.centralDeficitFamily Kord).support := by
+          rw [P.centralDeficitFamily_layer_mem_iff]
+          exact ⟨hf, horder⟩
+        by_contra hnot
+        have hf3 : 3 ≤ f 2 := by omega
+        exact
+          (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
+            (K := K) (2 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily Kord)
+            f hfLayer hf3) hthird
+      have hsecondDeriv :
+          MvPolynomial.pderiv (2 : Fin 4)
+            (MvPolynomial.pderiv (2 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily Kord)) ≠ 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using
+          (show
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily Kord)
+              (2 : Fin 4) 2 ≠ 0 by
+            simpa [q, J, Kord] using hsecond)
+      rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
+          (K := K) (2 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily Kord) hsecondDeriv with
+        ⟨secondExp, hsecondLayer, hsecondTwoGe⟩
+      have hsecondSource :=
+        (P.centralDeficitFamily_layer_mem_iff Kord secondExp).1 hsecondLayer
+      have hsecondTwoLe :
+          secondExp 2 ≤ 2 :=
+        hcap secondExp hsecondSource.1 hsecondSource.2
+      have hsecondTwo : secondExp 2 = 2 :=
+        Nat.le_antisymm hsecondTwoLe hsecondTwoGe
+      have hsecondUnique :
+          ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → 2 ≤ f 2 →
+            f = secondExp := by
+        intro f hf horder hfTwoGe
+        have hfTwoLe := hcap f hf horder
+        have hfTwo : f 2 = 2 := Nat.le_antisymm hfTwoLe hfTwoGe
+        have hfOne : f 1 = secondExp 1 := by
+          omega
+        have hfTwoEq : f 2 = secondExp 2 := by
+          rw [hfTwo, hsecondTwo]
+        exact F.support_eq_of_deficits_eq
+          hthree houtThree hf hsecondSource.1 hfOne hfTwoEq
       rcases F.locked_yRoof_mem with
         ⟨hlocked, _hlocked0, hlocked1, hlocked2, _hlocked3⟩
       have hJle : J ≤ F.locked.ell := by
@@ -142,9 +277,6 @@ theorem firstDeficit_secondMissingOpening
         dsimp [J]
         rw [hlocked1, hlocked2] at h
         simpa using h
-      have hqTwo : 2 ≤ q := by
-        dsimp [q]
-        exact firstDeficitOrder_two_le G hthree houtThree
       have hellTwo : 2 ≤ F.locked.ell := by
         have hqJ : q < J := by
           simpa [q, J] using hstrict
@@ -162,7 +294,8 @@ theorem firstDeficit_secondMissingOpening
         (by
           intro f hf hfpos
           simpa [J] using hminimal f hf hfpos)
-        hmin2 hKle
+        hmin2 secondExp hsecondSource.1 hsecondSource.2
+        hsecondTwo hsecondUnique hKle
 
   | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
       hstrict hminimal hB hlayer hmixed hsecond heq =>
@@ -211,6 +344,127 @@ theorem firstDeficit_secondMissingOpening
           rw [parameterFirstHessian_coeff]
           simpa [HC4.Polynomial.hessian_apply] using hderiv
         exact hcoeff hz
+      have hqTwo : 2 ≤ q := by
+        dsimp [q]
+        exact firstDeficitOrder_two_le G hthree houtThree
+      have hfirstKernel :
+          MvPolynomial.pderiv (1 : Fin 4) G.firstDeficitLayer = 0 := by
+        apply pderiv_eq_zero_of_all_supported_exponents_zero
+        intro d hd
+        rw [huniq d (MvPolynomial.mem_support_iff.mpr hd), hfirst1]
+      have hA0 :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2) = 0 := by
+        exact pderiv_hessian_diag_eq_zero_of_pderiv_eq_zero
+          (K := K) (1 : Fin 4) (2 : Fin 4)
+          G.firstDeficitLayer hfirstKernel
+      have hLayerJ :
+          familyParameterLayer P.centralDeficitFamily J =
+            MvPolynomial.monomial opposite B := by
+        simpa [J] using hlayer
+      have hOppSecond :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily J)) = 0 := by
+        rw [hLayerJ]
+        exact pderiv_pderiv_monomial_eq_zero_of_exponent_eq_one
+          (K := K) (1 : Fin 4) opposite B hop1
+      have hS0 :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily J)
+              (2 : Fin 4) 1) = 0 := by
+        exact pderiv_hessian_mixed_eq_zero_of_second_pderiv_eq_zero
+          (K := K) (1 : Fin 4) (2 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily J) hOppSecond
+      have hAne :
+          HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 ≠ 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using
+          (pderiv_pderiv_ne_zero_of_support_exponent_ge_two
+            (K := K) (2 : Fin 4) G.firstDeficitLayer first
+            hfirst (by
+              rw [hfirst2]
+              simpa [q] using hqTwo))
+      have hidentity :
+          HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily Kord)
+                (1 : Fin 4) 1 =
+            HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily J)
+                (2 : Fin 4) 1 *
+              HC4.Polynomial.hessian
+                (familyParameterLayer P.centralDeficitFamily J)
+                (2 : Fin 4) 1 := by
+        simpa [q, J, Kord] using heq
+      have hthirdHessian :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily Kord)
+              (1 : Fin 4) 1) = 0 := by
+        exact pderiv_right_eq_zero_of_mul_eq_square
+          (K := K) (1 : Fin 4)
+          (HC4.Polynomial.hessian G.firstDeficitLayer (2 : Fin 4) 2)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily Kord)
+            (1 : Fin 4) 1)
+          (HC4.Polynomial.hessian
+            (familyParameterLayer P.centralDeficitFamily J)
+            (2 : Fin 4) 1)
+          hidentity hA0 hS0 hAne
+      have hthird :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4)
+              (MvPolynomial.pderiv (1 : Fin 4)
+                (familyParameterLayer P.centralDeficitFamily Kord))) = 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using hthirdHessian
+      have hcap :
+          ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → f 1 ≤ 2 := by
+        intro f hf horder
+        have hfLayer :
+            f ∈ (familyParameterLayer P.centralDeficitFamily Kord).support := by
+          rw [P.centralDeficitFamily_layer_mem_iff]
+          exact ⟨hf, horder⟩
+        by_contra hnot
+        have hf3 : 3 ≤ f 1 := by omega
+        exact
+          (pderiv_pderiv_pderiv_ne_zero_of_support_exponent_ge_three
+            (K := K) (1 : Fin 4)
+            (familyParameterLayer P.centralDeficitFamily Kord)
+            f hfLayer hf3) hthird
+      have hsecondDeriv :
+          MvPolynomial.pderiv (1 : Fin 4)
+            (MvPolynomial.pderiv (1 : Fin 4)
+              (familyParameterLayer P.centralDeficitFamily Kord)) ≠ 0 := by
+        simpa only [HC4.Polynomial.hessian_apply] using
+          (show
+            HC4.Polynomial.hessian
+              (familyParameterLayer P.centralDeficitFamily Kord)
+              (1 : Fin 4) 1 ≠ 0 by
+            simpa [q, J, Kord] using hsecond)
+      rcases exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero
+          (K := K) (1 : Fin 4)
+          (familyParameterLayer P.centralDeficitFamily Kord) hsecondDeriv with
+        ⟨secondExp, hsecondLayer, hsecondOneGe⟩
+      have hsecondSource :=
+        (P.centralDeficitFamily_layer_mem_iff Kord secondExp).1 hsecondLayer
+      have hsecondOneLe :
+          secondExp 1 ≤ 2 :=
+        hcap secondExp hsecondSource.1 hsecondSource.2
+      have hsecondOne : secondExp 1 = 2 :=
+        Nat.le_antisymm hsecondOneLe hsecondOneGe
+      have hsecondUnique :
+          ∀ f ∈ P.carrier.support, f 1 + f 2 = Kord → 2 ≤ f 1 →
+            f = secondExp := by
+        intro f hf horder hfOneGe
+        have hfOneLe := hcap f hf horder
+        have hfOne : f 1 = 2 := Nat.le_antisymm hfOneLe hfOneGe
+        have hfTwo : f 2 = secondExp 2 := by
+          omega
+        have hfOneEq : f 1 = secondExp 1 := by
+          rw [hfOne, hsecondOne]
+        exact F.support_eq_of_deficits_eq
+          hthree houtThree hf hsecondSource.1 hfOneEq hfTwo
       rcases F.highest_zRoof_mem with
         ⟨hhigh, _hhigh0, hhigh1, hhigh2, _hhigh3⟩
       have hJle : J ≤ F.highest.n - 1 := by
@@ -222,9 +476,6 @@ theorem firstDeficit_secondMissingOpening
         dsimp [J]
         rw [hhigh1, hhigh2] at h
         simpa using h
-      have hqTwo : 2 ≤ q := by
-        dsimp [q]
-        exact firstDeficitOrder_two_le G hthree houtThree
       have hhighTwo : 2 ≤ F.highest.n - 1 := by
         have hqJ : q < J := by
           simpa [q, J] using hstrict
@@ -242,7 +493,8 @@ theorem firstDeficit_secondMissingOpening
         (by
           intro f hf hfpos
           simpa [J] using hminimal f hf hfpos)
-        hmin2 hKle
+        hmin2 secondExp hsecondSource.1 hsecondSource.2
+        hsecondOne hsecondUnique hKle
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
