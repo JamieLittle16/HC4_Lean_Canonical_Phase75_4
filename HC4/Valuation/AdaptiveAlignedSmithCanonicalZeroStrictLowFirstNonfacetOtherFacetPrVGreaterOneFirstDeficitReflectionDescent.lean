@@ -71,6 +71,27 @@ private theorem sourceReflection_three
     nlinarith only [hfCurve, hoCurve, hsCurve, h0Z, h1Z, h2Z]
   exact_mod_cast h3Z
 
+/-- **Central deficit-chord difference.**
+
+Relative to the retained central monomial, every actual carrier exponent has
+longitudinal drop exactly equal to its weighted transverse deficit.  This is
+the integral lattice equation underlying the reflected-source endgame. -/
+theorem central_deficit_chord_difference
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    {e : Fin 4 →₀ ℕ}
+    (he : e ∈ P.carrier.support) :
+    ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+        ((G.central 0 : ℤ) - (e 0 : ℤ)) =
+      (F.locked.ell : ℤ) * (e 1 : ℤ) +
+        ((F.highest.n : ℤ) - 1) * (e 2 : ℤ) := by
+  have hc := F.support_deficit_chord hthree houtThree G.central_mem
+  have hec := F.support_deficit_chord hthree houtThree he
+  rw [G.central_one_zero, G.central_two_zero] at hc
+  norm_num at hc
+  nlinarith only [hc, hec]
+
 /-- The first reflected source progression descends strictly in the
 longitudinal coordinate. -/
 theorem firstDeficit_fullSourceReflection_longitudinalDescent
