@@ -400,11 +400,11 @@ Differentiating the second-interaction identity once more in the missing
 coordinate shows that the third pure derivative of the forced second layer
 vanishes.  Hence its missing-coordinate exponent is at most two; the existing
 second-derivative witness gives the reverse inequality. -/
-theorem firstDeficit_reflectedSecondLayerGeometry
+theorem firstDeficit_reflectedSecondLayerGeometry_of_secondSourceLayer
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (O : G.FirstDeficitSecondSourceLayerGeometry) :
     G.FirstDeficitReflectedSecondLayerGeometry := by
-  rcases G.firstDeficit_secondSourceLayerGeometry hthree houtThree with O
   cases O with
   | left first opposite second B q j k hq hj hk
       hfirst hfirst1 hfirst2 huniq hop hop2 hB hlayer hqj
@@ -568,6 +568,16 @@ theorem firstDeficit_reflectedSecondLayerGeometry
       exact .right first opposite second q j k
         hq hj hk hfirst hfirst1 hfirst2 hop hop1 hqj
         hsecond hsecondOrder hsecondEq hreflect
+
+/-- Public wrapper selecting the canonical second source layer before
+performing the witness-preserving reflected-layer refinement. -/
+theorem firstDeficit_reflectedSecondLayerGeometry
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.FirstDeficitReflectedSecondLayerGeometry :=
+  G.firstDeficit_reflectedSecondLayerGeometry_of_secondSourceLayer
+    hthree houtThree
+    (G.firstDeficit_secondSourceLayerGeometry hthree houtThree)
 
 /-- Public export seam for downstream full-reflection assembly. -/
 theorem firstDeficit_reflectedSecondLayerGeometry_export
