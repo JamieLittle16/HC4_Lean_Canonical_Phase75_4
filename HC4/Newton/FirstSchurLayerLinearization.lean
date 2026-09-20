@@ -452,6 +452,48 @@ theorem firstTransverse_offDiag_ne_zero_of_determinant_eq_zero
   · simpa [j] using hoff
   · exact False.elim (hker (by simpa [j] using hkernel))
 
+/-- An explicit nonzero off-diagonal coefficient at order `d`, together
+with an off-diagonal gap below `d`, identifies the abstract first transverse
+order of an identically singular rank-one series.  A hypothetical earlier
+kernel-only departure is impossible because singularity forces the first
+transverse departure to be off-diagonal. -/
+theorem exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+    [NoZeroDivisors R]
+    (S : RankOneSchurSeries R)
+    (hlead : S.leading ≠ 0)
+    (hdet : S.determinant = 0)
+    {d : ℕ}
+    (hd : 0 < d)
+    (hgap : ∀ n : ℕ, n < d → S.offDiag.coeff n = 0)
+    (hopen : S.offDiag.coeff d ≠ 0) :
+    ∃ htrans : S.HasPositiveTransverseLayer,
+      S.firstPositiveTransverseOrder htrans = d := by
+  have htrans : S.HasPositiveTransverseLayer := by
+    unfold HasPositiveTransverseLayer positiveTransverseOrders
+    refine ⟨d, Finset.mem_filter.mpr ⟨?_, hd⟩⟩
+    apply Finset.mem_union.mpr
+    left
+    exact Polynomial.mem_support_iff.mpr hopen
+  refine ⟨htrans, ?_⟩
+  have hmem := S.firstPositiveTransverseOrder_mem htrans
+  have hle : S.firstPositiveTransverseOrder htrans ≤ d := by
+    unfold firstPositiveTransverseOrder
+    exact Finset.min'_le S.positiveTransverseOrders d
+      (by
+        unfold positiveTransverseOrders
+        exact Finset.mem_filter.mpr
+          ⟨Finset.mem_union.mpr
+            (Or.inl (Polynomial.mem_support_iff.mpr hopen)), hd⟩)
+  have hge : d ≤ S.firstPositiveTransverseOrder htrans := by
+    by_contra hnot
+    have hlt : S.firstPositiveTransverseOrder htrans < d :=
+      Nat.lt_of_not_ge hnot
+    have hne :=
+      S.firstTransverse_offDiag_ne_zero_of_determinant_eq_zero
+        hlead hdet htrans
+    exact hne (hgap _ hlt)
+  exact Nat.le_antisymm hle hge
+
 /-- In the same identically singular rank-one series, the kernel entry remains
 zero strictly before twice the first transverse order. -/
 theorem kernel_coeff_eq_zero_before_twice_firstTransverse
