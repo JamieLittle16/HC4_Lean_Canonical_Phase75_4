@@ -295,9 +295,76 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
           · exact hgap2 h2
           · exact hgap3 h3
           · exact hgap4 h4
-        refine ⟨opposite, hop, ?_, Or.inl hop2⟩
-        rw [← hq, ← hj]
-        exact hfar
+        have hgapFive :
+            G.firstDeficitOrder + 5 ≤ opposite 1 + opposite 2 := by
+          rw [← hq, ← hj]
+          exact hfar
+        have hop1Lower : q + 4 ≤ opposite 1 := by
+          rw [hj, hop2] at hfar
+          omega
+        have hdeltaZ :
+            (0 : ℤ) <
+              (opposite 1 : ℤ) - (q : ℤ) - 1 := by
+          exact_mod_cast (show q + 1 < opposite 1 by omega)
+        have hrhsPos :
+            (0 : ℤ) <
+              ((F.highest.n : ℤ) - 1) *
+                ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
+          exact mul_pos (by omega) hdeltaZ
+        have hreflectZ :
+            (q : ℤ) + (second 1 : ℤ) =
+              2 * (opposite 1 : ℤ) := by
+          exact_mod_cast hreflect
+        have hf := hfChord
+        have ho := hoChord
+        have hs := hsChord
+        rw [hfirst1, hfirst2] at hf
+        rw [hop2] at ho
+        rw [hsecond2] at hs
+        norm_num at hf ho hs
+        have hscaleFO :
+            D * (((opposite 0 : ℤ) + (opposite 1 : ℤ)) -
+              ((first 0 : ℤ) + (q : ℤ))) =
+              ((F.highest.n : ℤ) - 1) *
+                ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
+          dsimp [D]
+          nlinarith only [hf, ho]
+        have hscaleOS :
+            D * (((second 0 : ℤ) + (second 1 : ℤ)) -
+              ((opposite 0 : ℤ) + (opposite 1 : ℤ))) =
+              ((F.highest.n : ℤ) - 1) *
+                ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
+          dsimp [D]
+          nlinarith only [ho, hs, hreflectZ]
+        have hpairFOZ :
+            (first 0 : ℤ) + (q : ℤ) <
+              (opposite 0 : ℤ) + (opposite 1 : ℤ) := by
+          nlinarith [hscaleFO, hD, hrhsPos]
+        have hpairOSZ :
+            (opposite 0 : ℤ) + (opposite 1 : ℤ) <
+              (second 0 : ℤ) + (second 1 : ℤ) := by
+          nlinarith [hscaleOS, hD, hrhsPos]
+        have hpairFO :
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair <
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
+          rw [hfirst1]
+          exact_mod_cast hpairFOZ
+        have hpairOS :
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair <
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
+          exact_mod_cast hpairOSZ
+        exact ⟨{
+          first := first
+          opposite := opposite
+          second := second
+          first_mem := hfirstP
+          opposite_mem := hop
+          second_mem := hsecond
+          gap_five := hgapFive
+          pair_order := Or.inl ⟨hpairFO, hpairOS⟩
+        }⟩
 
   | right first opposite second q j k hq hj hk
       hfirst hfirst1 hfirst2 hop hop1 hqj
