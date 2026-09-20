@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9122**.
+Distinct declaration spellings indexed: **9123**.
 
 ## Repeated declaration spellings
 
@@ -3776,6 +3776,7 @@ Distinct declaration spellings indexed: **9122**.
 - `centralDeficit_z_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `centralRoof_residuals_two_le` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `central_active_exponents_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralFirstLayerHessian`
+- `central_deficit_chord_difference` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
 - `central_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitFullReflection`
 - `central_zero_gt_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralReesSecondVariation`
 - `certifiedAdaptiveAlignedSmithCanonicalGlobalMacroProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
