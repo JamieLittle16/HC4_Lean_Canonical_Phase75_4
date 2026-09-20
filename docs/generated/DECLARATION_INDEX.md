@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9167**.
+Distinct declaration spellings indexed: **9168**.
 
 ## Repeated declaration spellings
 
@@ -1657,6 +1657,7 @@ Distinct declaration spellings indexed: **9167**.
 - `FirstDeficitReflectedSecondLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `FirstDeficitSecondInteractionGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `FirstDeficitSecondSourceLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `FirstDeficitSeparatedPairData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFiniteStaircase`
 - `FirstKernelBreakFourBlockData` — `structure` in `HC4.Valuation.FirstKernelBreakRankTwo`
 - `FirstKeyCanonicalMaximalHomogeneousKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalCancellationInterface`
 - `FirstKeyCanonicalMaximalHomogeneousKernelData.degreeOne_or_nonradialKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyPureRadialElimination`

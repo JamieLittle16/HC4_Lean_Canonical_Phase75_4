@@ -9290,7 +9290,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseInterface`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem no_integer_multiple_between_zero_one`, `theorem no_integer_multiple_between_one_two`, `theorem no_integer_multiple_between_two_three`, `structure FirstDeficitGapTwoFiberData`, `theorem firstDeficit_gapTwoFiber_or_fiveGap`
+- Declarations: `theorem no_integer_multiple_between_zero_one`, `theorem no_integer_multiple_between_one_two`, `theorem no_integer_multiple_between_two_three`, `structure FirstDeficitGapTwoFiberData`, `structure FirstDeficitSeparatedPairData`, `theorem firstDeficit_gapTwoFiber_or_fiveGap`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`
 
