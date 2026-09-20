@@ -101,6 +101,26 @@ theorem sub
     HasTiltedParameterCoeffBoundBelow w q s a (P - Q) := by
   simpa [sub_eq_add_neg] using hP.add hQ.neg
 
+theorem add_of_shift_eq
+    {a b : ℤ} {P Q : Polynomial (MvPolynomial σ K)}
+    (hP : HasTiltedParameterCoeffBoundBelow w q s a P)
+    (hQ : HasTiltedParameterCoeffBoundBelow w q s b Q)
+    (hab : a = b) :
+    HasTiltedParameterCoeffBoundBelow w q s a (P + Q) := by
+  have hQ' : HasTiltedParameterCoeffBoundBelow w q s a Q := by
+    simpa [hab] using hQ
+  exact hP.add hQ'
+
+theorem sub_of_shift_eq
+    {a b : ℤ} {P Q : Polynomial (MvPolynomial σ K)}
+    (hP : HasTiltedParameterCoeffBoundBelow w q s a P)
+    (hQ : HasTiltedParameterCoeffBoundBelow w q s b Q)
+    (hab : a = b) :
+    HasTiltedParameterCoeffBoundBelow w q s a (P - Q) := by
+  have hQ' : HasTiltedParameterCoeffBoundBelow w q s a Q := by
+    simpa [hab] using hQ
+  exact hP.sub hQ'
+
 theorem mul
     {a b : ℤ} {P Q : Polynomial (MvPolynomial σ K)}
     (hP : HasTiltedParameterCoeffBoundBelow w q s a P)
@@ -146,6 +166,8 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
+include G
+
 private theorem firstDeficitLeftTilt_layerZero_isWeightLE
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
@@ -153,7 +175,7 @@ private theorem firstDeficitLeftTilt_layerZero_isWeightLE
     HC4.Polynomial.IsWeightLE
       (firstDeficitLeftTiltWeight d) 0
       (familyParameterLayer P.centralDeficitFamily 0) := by
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  rw [centralDeficitFamily_layer_zero_eq G hthree houtThree]
   intro e he
   have hne :
       MvPolynomial.coeff e
@@ -177,7 +199,7 @@ private theorem firstDeficitRightTilt_layerZero_isWeightLE
     HC4.Polynomial.IsWeightLE
       (firstDeficitRightTiltWeight d) 0
       (familyParameterLayer P.centralDeficitFamily 0) := by
-  rw [G.centralDeficitFamily_layer_zero_eq hthree houtThree]
+  rw [centralDeficitFamily_layer_zero_eq G hthree houtThree]
   intro e he
   have hne :
       MvPolynomial.coeff e
@@ -219,11 +241,11 @@ theorem firstDeficitLeftTilt_parameterHessian_bound
   rw [parameterFirstHessian_coeff]
   by_cases hn0 : n = 0
   · subst n
-    have h0 := G.firstDeficitLeftTilt_layerZero_isWeightLE
+    have h0 := firstDeficitLeftTilt_layerZero_isWeightLE (G := G)
       hthree houtThree (J - q)
     have hh := h0.hessian_entry i j
     simpa [w, tiltedParameterPenalty] using hh
-  · have hnpos : 0 < n := Nat.pos_of_ne_zero hn0
+  · have hnpos : (0 : ℕ) < n := Nat.pos_of_ne_zero hn0
     have hL := G.firstDeficitLeftTilt_earlierLayer_isWeightLE
       hq hqJ hmin1 hmin2 hearliest hnpos hn
     have hh := hL.hessian_entry i j
@@ -255,11 +277,11 @@ theorem firstDeficitRightTilt_parameterHessian_bound
   rw [parameterFirstHessian_coeff]
   by_cases hn0 : n = 0
   · subst n
-    have h0 := G.firstDeficitRightTilt_layerZero_isWeightLE
+    have h0 := firstDeficitRightTilt_layerZero_isWeightLE (G := G)
       hthree houtThree (J - q)
     have hh := h0.hessian_entry i j
     simpa [w, tiltedParameterPenalty] using hh
-  · have hnpos : 0 < n := Nat.pos_of_ne_zero hn0
+  · have hnpos : (0 : ℕ) < n := Nat.pos_of_ne_zero hn0
     have hL := G.firstDeficitRightTilt_earlierLayer_isWeightLE
       hq hqJ hmin1 hmin2 hearliest hnpos hn
     have hh := hL.hessian_entry i j
@@ -329,11 +351,13 @@ theorem firstDeficitLeftTilt_schur_bounds
       (2 * ((d : ℤ) - 1)) G.centralDeficitSchurBlock.x := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_x]
-    simpa [w, d, firstDeficitLeftTiltWeight] using hH (2 : Fin 4) 2
+    convert hH (2 : Fin 4) 2 using 1 <;>
+      simp [w, d, firstDeficitLeftTiltWeight] <;> ring
   have hy : HasTiltedParameterCoeffBoundBelow w q s ((d : ℤ) - 2)
       G.centralDeficitSchurBlock.y := by
     rw [G.centralDeficitSchurBlock_y]
-    simpa [w, d, firstDeficitLeftTiltWeight] using hH (2 : Fin 4) 1
+    convert hH (2 : Fin 4) 1 using 1 <;>
+      simp [w, d, firstDeficitLeftTiltWeight] <;> ring
   have hz : HasTiltedParameterCoeffBoundBelow w q s (-2)
       G.centralDeficitSchurBlock.z := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
@@ -349,8 +373,12 @@ theorem firstDeficitLeftTilt_schur_bounds
     have hprb := (hp.mul hr).mul hb
     have hbpr := (hb.mul hp).mul hr
     have hbxb := (hb.mul hx).mul hb
-    convert ((((haxd.sub harr).sub hppd).add hprb).add hbpr).sub hbxb using 1 <;>
-      ring
+    have h12 := haxd.sub_of_shift_eq harr (by ring)
+    have h123 := h12.sub_of_shift_eq hppd (by ring)
+    have h1234 := h123.add_of_shift_eq hprb (by ring)
+    have h12345 := h1234.add_of_shift_eq hbpr (by ring)
+    have hall := h12345.sub_of_shift_eq hbxb (by ring)
+    convert hall using 1 <;> ring
   have hB : HasTiltedParameterCoeffBoundBelow w q s
       ((d : ℤ) - 2) G.centralDeficitSchurBlock.schurB := by
     unfold GeneralFourBlock.schurB
@@ -368,10 +396,15 @@ theorem firstDeficitLeftTilt_schur_bounds
             G.centralDeficitSchurBlock.a *
               G.centralDeficitSchurBlock.r * G.centralDeficitSchurBlock.s) := by
       have h1 := (hd0.mul hp).mul hq0
-      have h2 := hb.mul ((hp.mul hs).add (hq0.mul hr))
+      have hsum := (hp.mul hs).add_of_shift_eq (hq0.mul hr) (by ring)
+      have h2 := hb.mul hsum
       have h3 := (ha.mul hr).mul hs
-      convert (h1.sub h2).add h3 using 1 <;> ring
-    exact (hactive.mul hy).sub hinside
+      have h12 := h1.sub_of_shift_eq h2 (by ring)
+      have hall := h12.add_of_shift_eq h3 (by ring)
+      convert hall using 1 <;> ring
+    have hactiveY := hactive.mul hy
+    have hres := hactiveY.sub_of_shift_eq hinside (by ring)
+    convert hres using 1 <;> ring
   have hC : HasTiltedParameterCoeffBoundBelow w q s (-2)
       G.centralDeficitSchurBlock.schurC := by
     rw [schurC_eq_sourceRoofFormula]
@@ -381,8 +414,12 @@ theorem firstDeficitLeftTilt_schur_bounds
     have hqsb := (hq0.mul hs).mul hb
     have hbqs := (hb.mul hq0).mul hs
     have hbzb := (hb.mul hz).mul hb
-    convert ((((hazd.sub hass).sub hqqd).add hqsb).add hbqs).sub hbzb using 1 <;>
-      ring
+    have h12 := hazd.sub_of_shift_eq hass (by ring)
+    have h123 := h12.sub_of_shift_eq hqqd (by ring)
+    have h1234 := h123.add_of_shift_eq hqsb (by ring)
+    have h12345 := h1234.add_of_shift_eq hbqs (by ring)
+    have hall := h12345.sub_of_shift_eq hbzb (by ring)
+    convert hall using 1 <;> ring
   exact ⟨hA, hB, hC⟩
 
 theorem firstDeficitRightTilt_schur_bounds
@@ -452,12 +489,14 @@ theorem firstDeficitRightTilt_schur_bounds
   have hy : HasTiltedParameterCoeffBoundBelow w q s ((d : ℤ) - 2)
       G.centralDeficitSchurBlock.y := by
     rw [G.centralDeficitSchurBlock_y]
-    simpa [w, d, firstDeficitRightTiltWeight] using hH (2 : Fin 4) 1
+    convert hH (2 : Fin 4) 1 using 1 <;>
+      simp [w, d, firstDeficitRightTiltWeight] <;> ring
   have hz : HasTiltedParameterCoeffBoundBelow w q s
       (2 * ((d : ℤ) - 1)) G.centralDeficitSchurBlock.z := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_z]
-    simpa [w, d, firstDeficitRightTiltWeight] using hH (1 : Fin 4) 1
+    convert hH (1 : Fin 4) 1 using 1 <;>
+      simp [w, d, firstDeficitRightTiltWeight] <;> ring
 
   have hA : HasTiltedParameterCoeffBoundBelow w q s (-2)
       G.centralDeficitSchurBlock.schurA := by
@@ -468,8 +507,12 @@ theorem firstDeficitRightTilt_schur_bounds
     have hprb := (hp.mul hr).mul hb
     have hbpr := (hb.mul hp).mul hr
     have hbxb := (hb.mul hx).mul hb
-    convert ((((haxd.sub harr).sub hppd).add hprb).add hbpr).sub hbxb using 1 <;>
-      ring
+    have h12 := haxd.sub_of_shift_eq harr (by ring)
+    have h123 := h12.sub_of_shift_eq hppd (by ring)
+    have h1234 := h123.add_of_shift_eq hprb (by ring)
+    have h12345 := h1234.add_of_shift_eq hbpr (by ring)
+    have hall := h12345.sub_of_shift_eq hbxb (by ring)
+    convert hall using 1 <;> ring
   have hB : HasTiltedParameterCoeffBoundBelow w q s
       ((d : ℤ) - 2) G.centralDeficitSchurBlock.schurB := by
     unfold GeneralFourBlock.schurB
@@ -487,10 +530,15 @@ theorem firstDeficitRightTilt_schur_bounds
             G.centralDeficitSchurBlock.a *
               G.centralDeficitSchurBlock.r * G.centralDeficitSchurBlock.s) := by
       have h1 := (hd0.mul hp).mul hq0
-      have h2 := hb.mul ((hp.mul hs).add (hq0.mul hr))
+      have hsum := (hp.mul hs).add_of_shift_eq (hq0.mul hr) (by ring)
+      have h2 := hb.mul hsum
       have h3 := (ha.mul hr).mul hs
-      convert (h1.sub h2).add h3 using 1 <;> ring
-    exact (hactive.mul hy).sub hinside
+      have h12 := h1.sub_of_shift_eq h2 (by ring)
+      have hall := h12.add_of_shift_eq h3 (by ring)
+      convert hall using 1 <;> ring
+    have hactiveY := hactive.mul hy
+    have hres := hactiveY.sub_of_shift_eq hinside (by ring)
+    convert hres using 1 <;> ring
   have hC : HasTiltedParameterCoeffBoundBelow w q s
       (2 * ((d : ℤ) - 1)) G.centralDeficitSchurBlock.schurC := by
     rw [schurC_eq_sourceRoofFormula]
@@ -500,8 +548,12 @@ theorem firstDeficitRightTilt_schur_bounds
     have hqsb := (hq0.mul hs).mul hb
     have hbqs := (hb.mul hq0).mul hs
     have hbzb := (hb.mul hz).mul hb
-    convert ((((hazd.sub hass).sub hqqd).add hqsb).add hbqs).sub hbzb using 1 <;>
-      ring
+    have h12 := hazd.sub_of_shift_eq hass (by ring)
+    have h123 := h12.sub_of_shift_eq hqqd (by ring)
+    have h1234 := h123.add_of_shift_eq hqsb (by ring)
+    have h12345 := h1234.add_of_shift_eq hbqs (by ring)
+    have hall := h12345.sub_of_shift_eq hbzb (by ring)
+    convert hall using 1 <;> ring
   exact ⟨hA, hB, hC⟩
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
