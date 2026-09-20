@@ -3748,8 +3748,6 @@ Distinct declaration spellings indexed: **9111**.
 - `centralDeficitSchurBlockOf_q_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlockOf_r_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlockOf_s_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
-- `centralDeficitSchurBlockOf_schurA_eq_sourceRightRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
-- `centralDeficitSchurBlockOf_schurC_eq_sourceLeftRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `centralDeficitSchurBlockOf_x_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlockOf_y_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 - `centralDeficitSchurBlockOf_z_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
@@ -8122,6 +8120,7 @@ Distinct declaration spellings indexed: **9111**.
 - `schurA_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `schurA_eq_sourceRightRoofFormula_of_fields` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurA_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
@@ -8141,6 +8140,7 @@ Distinct declaration spellings indexed: **9111**.
 - `schurC_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `schurC_eq_sourceLeftRoofFormula_of_fields` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurC_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
