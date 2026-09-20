@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9172**.
+Distinct declaration spellings indexed: **9174**.
 
 ## Repeated declaration spellings
 
@@ -1650,6 +1650,7 @@ Distinct declaration spellings indexed: **9172**.
 - `FirstContactKernelNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
 - `FirstContactRationalNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
 - `FirstDeficitGapTwoFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFiniteStaircase`
+- `FirstDeficitMinimalReflectedLineDepartureData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitReflectedLineDeparture`
 - `FirstDeficitOppositeLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`
 - `FirstDeficitOppositeOpening` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 - `FirstDeficitPrimitiveOppositeOpening` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitPrimitiveOpposite`
@@ -5238,6 +5239,7 @@ Distinct declaration spellings indexed: **9172**.
 - `firstDeficit_fullSourceReflection_longitudinalDescent_of_reflectedSecondLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
 - `firstDeficit_fullSourceReflection_of_reflectedSecondLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitFullReflection`
 - `firstDeficit_gapTwoFiber_or_fiveGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFiniteStaircase`
+- `firstDeficit_minimalReflectedLineDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitReflectedLineDeparture`
 - `firstDeficit_oppositeLayerGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`
 - `firstDeficit_oppositeOpening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 - `firstDeficit_oppositeOrder_gap_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`

@@ -9320,7 +9320,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSecondMissingOpening`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive FirstDeficitReflectedLineDepartureData`, `theorem firstDeficit_reflectedLineDeparture`
+- Declarations: `inductive FirstDeficitReflectedLineDepartureData`, `theorem firstDeficit_reflectedLineDeparture`, `inductive FirstDeficitMinimalReflectedLineDepartureData`, `theorem firstDeficit_minimalReflectedLineDeparture`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
 
