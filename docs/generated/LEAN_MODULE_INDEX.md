@@ -1369,7 +1369,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`, `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.BinaryPivotGeometry`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.SchurTangentialRawRay`, `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.FirstSchurDepartureBridge`, `HC4.Valuation.ReverseReesSchurParameterBudget`
+- Imported by local modules: `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.SchurTangentialRawRay`, `HC4.Newton.SingularSchurDiagonalGap`, `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`, `HC4.Valuation.FirstSchurDepartureBridge`, `HC4.Valuation.ReverseReesSchurParameterBudget`
 - Declarations: `structure BinarySchurPolynomialSeries`, `def determinant`, `def constantBlock`, `def LeftPivot`, `def RightAxisPivot`, `def alignLeft`, `theorem alignLeft_determinant`, `theorem alignLeft_leading_ne_zero`, `def alignRight`, `theorem alignRight_determinant`, `theorem alignRight_leading_ne_zero`, `def polynomialSchurSeries`, `theorem polynomialSchurSeries_determinant`
 
 ### `HC4.Newton.RankOneSingularSchurConstantKernel`
@@ -1517,7 +1517,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/SingularSchurDiagonalGap.lean`
 - Purpose: Off-diagonal gap forced by singularity and diagonal gaps
 - A-labels: none detected
-- Local imports: `HC4.Newton.FirstSchurLayerLinearization`
+- Local imports: `HC4.Newton.FirstSchurLayerLinearization`, `HC4.Newton.RankOneSchurSeriesAlignment`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFirstSchurOrder`
 - Declarations: `theorem offDiag_coeff_eq_zero_below_of_diagonal_gap`
