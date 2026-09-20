@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9123**.
+Distinct declaration spellings indexed: **9127**.
 
 ## Repeated declaration spellings
 
@@ -5312,6 +5312,7 @@ Distinct declaration spellings indexed: **9123**.
 - `firstSchurData` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+- `firstTransverse_offDiag_ne_zero_of_determinant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `firstZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
 - `first_contact_determinant_weight_lower_bound` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `first_contact_determinant_weight_pos` — `theorem` in `HC4.Newton.FirstContactArithmetic`
@@ -5865,10 +5866,13 @@ Distinct declaration spellings indexed: **9123**.
 - `kernelSlopeDenominatorClearingRamification` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernelSlopeDenominatorClearingRamification_pos` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `kernel_coeff_defect_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerKernelClock`
+- `kernel_coeff_eq_zero_before_twice_firstTransverse` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `kernel_coeff_firstOrder_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerKernelClock`
 - `kernel_coeff_first_eq_tail_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `kernel_coeff_twice_firstTransverse_identity` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `kernel_coeff_twice_firstTransverse_ne_zero` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `kernel_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_eq_zero_of_not_hasPositiveEntryLayer` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_eq_zero_of_not_hasPositiveTransverseLayer` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
