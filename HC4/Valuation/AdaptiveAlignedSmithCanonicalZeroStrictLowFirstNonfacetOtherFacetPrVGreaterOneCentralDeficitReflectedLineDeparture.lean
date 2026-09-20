@@ -138,6 +138,87 @@ theorem firstDeficit_reflectedLineDeparture
       exact .right q J hq hqJ F.highest.e1 hhigh
         (by simpa [hhigh1] using hnFour) hbelow
 
+
+/-- The first source stratum that falls below the reflected order line.  The
+minimality is only with respect to the missing-coordinate exponent; this is
+exactly what is needed to know that every smaller missing stratum still lies
+on or above the line. -/
+inductive FirstDeficitMinimalReflectedLineDepartureData : Prop
+  | left
+      (q J m : ℕ)
+      (q_eq : q = G.firstDeficitOrder)
+      (q_lt_J : q < J)
+      (depart : Fin 4 →₀ ℕ)
+      (depart_mem : depart ∈ P.carrier.support)
+      (depart_missing : depart 2 = m)
+      (m_three_le : 3 ≤ m)
+      (depart_below :
+        depart 1 + depart 2 < q + depart 2 * (J - q))
+      (minimal :
+        ∀ f ∈ P.carrier.support,
+          3 ≤ f 2 →
+          f 1 + f 2 < q + f 2 * (J - q) →
+          m ≤ f 2)
+  | right
+      (q J m : ℕ)
+      (q_eq : q = G.firstDeficitOrder)
+      (q_lt_J : q < J)
+      (depart : Fin 4 →₀ ℕ)
+      (depart_mem : depart ∈ P.carrier.support)
+      (depart_missing : depart 1 = m)
+      (m_three_le : 3 ≤ m)
+      (depart_below :
+        depart 1 + depart 2 < q + depart 1 * (J - q))
+      (minimal :
+        ∀ f ∈ P.carrier.support,
+          3 ≤ f 1 →
+          f 1 + f 2 < q + f 1 * (J - q) →
+          m ≤ f 1)
+
+/-- **Canonical first departure.**
+
+Finite support is not needed explicitly here: well-ordering of the natural
+missing-coordinate exponent selects the least stratum containing a source
+point below the reflected line. -/
+theorem firstDeficit_minimalReflectedLineDeparture
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.FirstDeficitMinimalReflectedLineDepartureData := by
+  cases G.firstDeficit_reflectedLineDeparture hthree houtThree with
+  | left q J hq hqJ depart hdepart hm3 hbelow =>
+      let pred : ℕ → Prop := fun m =>
+        ∃ f : Fin 4 →₀ ℕ,
+          f ∈ P.carrier.support ∧
+          f 2 = m ∧
+          3 ≤ m ∧
+          f 1 + f 2 < q + f 2 * (J - q)
+      have hex : ∃ m, pred m := by
+        refine ⟨depart 2, depart, hdepart, rfl, hm3, hbelow⟩
+      let m := Nat.find hex
+      have hmSpec : pred m := Nat.find_spec hex
+      rcases hmSpec with ⟨f, hf, hf2, hm3', hfbelow⟩
+      refine .left q J m hq hqJ f hf hf2 hm3' hfbelow ?_
+      intro g hg hg3 hgbelow
+      apply Nat.find_min' hex
+      exact ⟨g, hg, rfl, hg3, hgbelow⟩
+
+  | right q J hq hqJ depart hdepart hm3 hbelow =>
+      let pred : ℕ → Prop := fun m =>
+        ∃ f : Fin 4 →₀ ℕ,
+          f ∈ P.carrier.support ∧
+          f 1 = m ∧
+          3 ≤ m ∧
+          f 1 + f 2 < q + f 1 * (J - q)
+      have hex : ∃ m, pred m := by
+        refine ⟨depart 1, depart, hdepart, rfl, hm3, hbelow⟩
+      let m := Nat.find hex
+      have hmSpec : pred m := Nat.find_spec hex
+      rcases hmSpec with ⟨f, hf, hf1, hm3', hfbelow⟩
+      refine .right q J m hq hqJ f hf hf1 hm3' hfbelow ?_
+      intro g hg hg3 hgbelow
+      apply Nat.find_min' hex
+      exact ⟨g, hg, rfl, hg3, hgbelow⟩
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
