@@ -9980,7 +9980,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitFullReflection`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSchurSeries`
-- Declarations: `theorem sourceReflection_three`, `theorem central_deficit_chord_difference`, `theorem firstDeficit_fullSourceReflection_longitudinalDescent`, `theorem firstDeficit_oppositeOrder_gap_two_le`, `theorem firstDeficit_primitiveOppositeOpening_interval`
+- Declarations: `theorem sourceReflection_three`, `theorem central_deficit_chord_difference`, `theorem firstDeficit_fullSourceReflection_longitudinalDescent_of_reflectedSecondLayer`, `theorem firstDeficit_fullSourceReflection_longitudinalDescent`, `theorem firstDeficit_oppositeOrder_gap_two_le`, `theorem firstDeficit_primitiveOppositeOpening_interval`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 
