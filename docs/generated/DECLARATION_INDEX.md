@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9152**.
+Distinct declaration spellings indexed: **9153**.
 
 ## Repeated declaration spellings
 
@@ -8962,6 +8962,7 @@ Distinct declaration spellings indexed: **9152**.
 - `tailOffDiag` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tailSeries` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tailSeries_constantBlock_nonzero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `tailSeries_offDiag_gap_and_open_at_sub` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_constantBlock_nonzero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_constantMatrix_ne_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `tail_constant_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
