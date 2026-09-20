@@ -115,9 +115,10 @@ at `J` to the nonzero active minor times the honest mixed Hessian opening.
 
 This is the source/algebra bridge needed before alignment: no Schur
 congruence is interpreted as a source-coordinate transformation. -/
-theorem centralDeficitSchurB_firstOppositeOpening
+theorem centralDeficitSchurB_firstOppositeOpening_of_interaction
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (O : G.FirstDeficitSecondInteractionGeometry) :
     let H := G.centralDeficitSchurBlock
     ∃ J : ℕ,
       G.firstDeficitOrder < J ∧
@@ -128,9 +129,8 @@ theorem centralDeficitSchurB_firstOppositeOpening
     simpa [H] using
       G.centralDeficitSchurBlock_activeDet_coeff_zero_ne_zero
         hthree houtThree
-  rcases G.firstDeficit_secondInteractionGeometry hthree houtThree with hleft | hright
-  · cases hleft with
-    | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
+  cases O with
+  | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
         hstrict hminimal hB hlayer hmixed hsecond heq =>
       let J := opposite 1 + opposite 2
       have hp :
@@ -189,8 +189,7 @@ theorem centralDeficitSchurB_firstOppositeOpening
           H hp hr hy hq0 hs0]
         exact mul_ne_zero hactive0 hyJ
       exact ⟨J, by simpa [J] using hstrict, hgap, hopen⟩
-  · cases hright with
-    | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
+  | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
         hstrict hminimal hB hlayer hmixed hsecond heq =>
       let J := opposite 1 + opposite 2
       have hq :
@@ -250,6 +249,20 @@ theorem centralDeficitSchurB_firstOppositeOpening
         exact mul_ne_zero hactive0 hyJ
       exact ⟨J, by simpa [J] using hstrict, hgap, hopen⟩
 
+
+/-- Public wrapper selecting the canonical source interaction before exposing
+the first raw Schur off-diagonal opening. -/
+theorem centralDeficitSchurB_firstOppositeOpening
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let H := G.centralDeficitSchurBlock
+    ∃ J : ℕ,
+      G.firstDeficitOrder < J ∧
+      (∀ n : ℕ, n < J → H.schurB.coeff n = 0) ∧
+      H.schurB.coeff J ≠ 0 :=
+  G.centralDeficitSchurB_firstOppositeOpening_of_interaction
+    hthree houtThree
+    (G.firstDeficit_secondInteractionGeometry hthree houtThree)
 
 /-- **The aligned central tail first moves at the honest source gap `J-q`.**
 
