@@ -145,7 +145,7 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
-private theorem centralDeficit_p_coeff_zero
+theorem centralDeficit_p_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.p.coeff 0 = 0 := by
@@ -157,7 +157,7 @@ private theorem centralDeficit_p_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_q_coeff_zero
+theorem centralDeficit_q_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.q.coeff 0 = 0 := by
@@ -169,7 +169,7 @@ private theorem centralDeficit_q_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_r_coeff_zero
+theorem centralDeficit_r_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.r.coeff 0 = 0 := by
@@ -181,7 +181,7 @@ private theorem centralDeficit_r_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_s_coeff_zero
+theorem centralDeficit_s_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.s.coeff 0 = 0 := by
@@ -193,7 +193,7 @@ private theorem centralDeficit_s_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_x_coeff_zero
+theorem centralDeficit_x_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.x.coeff 0 = 0 := by
@@ -205,7 +205,7 @@ private theorem centralDeficit_x_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_y_coeff_zero
+theorem centralDeficit_y_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.y.coeff 0 = 0 := by
@@ -217,7 +217,7 @@ private theorem centralDeficit_y_coeff_zero
     -standardTwoZero_pderiv_two_eq_A,
     -standardTwoZero_pderiv_three_eq_C]
 
-private theorem centralDeficit_z_coeff_zero
+theorem centralDeficit_z_coeff_zero
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
     G.centralDeficitSchurBlock.z.coeff 0 = 0 := by
