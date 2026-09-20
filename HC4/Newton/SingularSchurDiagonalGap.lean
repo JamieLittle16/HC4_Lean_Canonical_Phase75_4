@@ -37,7 +37,7 @@ theorem offDiag_coeff_eq_zero_below_of_diagonal_gap
       intro hn
       have hdiagProduct :
           (S.active * S.kernel).coeff (2 * n) = 0 := by
-        exact coeff_mul_eq_zero_before_twice_of_lower_zero
+        exact RankOneSchurSeries.coeff_mul_eq_zero_before_twice_of_lower_zero
           S.active S.kernel
           (by omega)
           hactive hkernel
@@ -48,7 +48,7 @@ theorem offDiag_coeff_eq_zero_below_of_diagonal_gap
       have hoffSquare :
           (S.offDiag * S.offDiag).coeff (2 * n) =
             S.offDiag.coeff n * S.offDiag.coeff n := by
-        exact coeff_mul_twice_eq_leading_mul_of_lower_zero
+        exact RankOneSchurSeries.coeff_mul_twice_eq_leading_mul_of_lower_zero
           S.offDiag S.offDiag hoffLower hoffLower
       have hcoeff : S.determinant.coeff (2 * n) = 0 := by
         rw [hdet]
