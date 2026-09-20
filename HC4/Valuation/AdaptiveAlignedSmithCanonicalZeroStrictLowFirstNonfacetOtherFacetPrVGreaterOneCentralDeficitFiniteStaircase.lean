@@ -120,6 +120,7 @@ the first deficit order by at least five.
 
 The exclusion of gaps one, three, and four is integral source arithmetic on
 the exact staircase chord. -/
+set_option maxHeartbeats 1000000 in
 theorem firstDeficit_gapTwoFiber_or_fiveGap
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
