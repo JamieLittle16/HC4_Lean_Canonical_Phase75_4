@@ -124,8 +124,6 @@ theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
   have hCaxis :
       longitudinalAxisRestriction (MvPolynomial.C c) =
         Polynomial.C c := by
-    apply Polynomial.ext
-    intro n
     simp [longitudinalAxisRestriction, MvPolynomial.finSuccEquiv_apply]
   have hGderiv : G.derivative = Polynomial.C c := by
     dsimp [G]
