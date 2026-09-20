@@ -9300,7 +9300,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`, `HC4.Newton.RankOneSingularSchurConstantKernel`, `HC4.Newton.GeneralFourBlockKernelLift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem centralDeficit_rawKernel_or_reflectedInteraction`
+- Declarations: `theorem centralDeficitSchurBlock_activeDet_ne_zero`, `theorem centralDeficit_rawKernel_or_reflectedInteraction`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 
