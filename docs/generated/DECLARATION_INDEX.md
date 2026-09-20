@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9157**.
+Distinct declaration spellings indexed: **9158**.
 
 ## Repeated declaration spellings
 
@@ -4729,6 +4729,7 @@ Distinct declaration spellings indexed: **9157**.
 - `exists_activeProjectiveWedgePointData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `exists_active_ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
 - `exists_actualPositiveLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
+- `exists_aligned_firstPositiveTransverseOrder_eq_of_offDiag_gap_open` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `exists_axisPreservingShear_layerTransverseDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPreservingQuadraticNormalization`
 - `exists_binaryStaircaseProfileResidual_C_mul_X_pow_factor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreStaircaseProfileRigidity`
 - `exists_canonicalPositiveTransverseRees_unramifiedFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesUnramifiedFrontier`
