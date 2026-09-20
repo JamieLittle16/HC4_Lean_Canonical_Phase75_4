@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur
 import HC4.Newton.RankOneSingularSchurConstantKernel
 import HC4.Newton.GeneralFourBlockKernelLift
+import HC4.Newton.SingularSchurDiagonalGap
 import Mathlib.Tactic
 
 /-!
@@ -75,6 +76,179 @@ theorem centralDeficitSchurBlock_activeDet_ne_zero
   intro hzero
   rw [hzero] at hcoeff
   simp at hcoeff
+
+
+/-- The retained active `(0,3)` minor is already nonzero in the special
+fibre.  Exposing the coefficient, rather than only polynomial nonvanishing,
+lets later Schur coefficient calculations stay purely multiplicative. -/
+theorem centralDeficitSchurBlock_activeDet_coeff_zero_ne_zero
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    G.centralDeficitSchurBlock.activeDet.coeff 0 ≠ 0 := by
+  have hlayer0 :
+      familyParameterLayer P.centralDeficitFamily 0 = G.exposure.face := by
+    calc
+      familyParameterLayer P.centralDeficitFamily 0 =
+          MvPolynomial.monomial G.central
+            (MvPolynomial.coeff G.central P.carrier) :=
+        G.centralDeficitFamily_layer_zero_eq hthree houtThree
+      _ = G.exposure.face := G.exposure_face_eq.symm
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  unfold GeneralFourBlock.activeDet
+  rw [permutedFamilyHessianFourBlock_a,
+    permutedFamilyHessianFourBlock_b,
+    permutedFamilyHessianFourBlock_d]
+  simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+  rw [centralDeficitActiveDet_coeff_zero_eq]
+  rw [hlayer0]
+  exact G.exposure_rankTwo_minor
+
+/-- **The first opposite source opening is exactly the first raw Schur
+off-diagonal opening.**
+
+If the missing source coordinate is `2`, then the central Schur fields
+`p,r,y` vanish below the least opposite opening `J`; if the missing
+coordinate is `1`, the mirror fields `q,s,y` do.  The special fibre has
+all four cross entries zero.  The generic Schur coefficient helper therefore
+reduces the coefficient at every order below `J` to zero and the coefficient
+at `J` to the nonzero active minor times the honest mixed Hessian opening.
+
+This is the source/algebra bridge needed before alignment: no Schur
+congruence is interpreted as a source-coordinate transformation. -/
+theorem centralDeficitSchurB_firstOppositeOpening
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let H := G.centralDeficitSchurBlock
+    ∃ J : ℕ,
+      G.firstDeficitOrder < J ∧
+      (∀ n : ℕ, n < J → H.schurB.coeff n = 0) ∧
+      H.schurB.coeff J ≠ 0 := by
+  let H := G.centralDeficitSchurBlock
+  have hactive0 : H.activeDet.coeff 0 ≠ 0 := by
+    simpa [H] using
+      G.centralDeficitSchurBlock_activeDet_coeff_zero_ne_zero
+        hthree houtThree
+  rcases G.firstDeficit_secondInteractionGeometry hthree houtThree with hleft | hright
+  · cases hleft with
+    | left first opposite B hfirst hfirst1 hfirst2 huniq hop hop2
+        hstrict hminimal hB hlayer hmixed hsecond heq =>
+      let J := opposite 1 + opposite 2
+      have hp :
+          ∀ n : ℕ, n < J → H.p.coeff n = 0 := by
+        intro n hn
+        rw [show H.p =
+            parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 2 by
+          simpa [H] using G.centralDeficitSchurBlock_p]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (0 : Fin 4) 2]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (2 : Fin 4) J hminimal hn 0
+      have hr :
+          ∀ n : ℕ, n < J → H.r.coeff n = 0 := by
+        intro n hn
+        rw [show H.r =
+            parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 2 by
+          simpa [H] using G.centralDeficitSchurBlock_r]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (3 : Fin 4) 2]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (2 : Fin 4) J hminimal hn 3
+      have hy :
+          ∀ n : ℕ, n < J → H.y.coeff n = 0 := by
+        intro n hn
+        rw [show H.y =
+            parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_y]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (2 : Fin 4) J hminimal hn 1
+      have hq0 : H.q.coeff 0 = 0 := by
+        simpa [H] using G.centralDeficit_q_coeff_zero hthree houtThree
+      have hs0 : H.s.coeff 0 = 0 := by
+        simpa [H] using G.centralDeficit_s_coeff_zero hthree houtThree
+      have hyJ : H.y.coeff J ≠ 0 := by
+        rw [show H.y =
+            parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_y]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (2 : Fin 4) 1]
+        rw [parameterFirstHessian_coeff]
+        simpa [J] using hmixed
+      have hgap : ∀ n : ℕ, n < J → H.schurB.coeff n = 0 := by
+        intro n hn
+        have hform :=
+          GeneralFourBlock.schurB_coeff_eq_activeDet_zero_mul_y_of_left_gap
+            H
+            (fun m hm => hp m (lt_trans hm hn))
+            (fun m hm => hr m (lt_trans hm hn))
+            (fun m hm => hy m (lt_trans hm hn))
+            hq0 hs0
+        rw [hform, hy n hn]
+        simp
+      have hopen : H.schurB.coeff J ≠ 0 := by
+        rw [GeneralFourBlock.schurB_coeff_eq_activeDet_zero_mul_y_of_left_gap
+          H hp hr hy hq0 hs0]
+        exact mul_ne_zero hactive0 hyJ
+      exact ⟨J, by simpa [J] using hstrict, hgap, hopen⟩
+  · cases hright with
+    | right first opposite B hfirst hfirst1 hfirst2 huniq hop hop1
+        hstrict hminimal hB hlayer hmixed hsecond heq =>
+      let J := opposite 1 + opposite 2
+      have hq :
+          ∀ n : ℕ, n < J → H.q.coeff n = 0 := by
+        intro n hn
+        rw [show H.q =
+            parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_q]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (0 : Fin 4) 1]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (1 : Fin 4) J hminimal hn 0
+      have hs :
+          ∀ n : ℕ, n < J → H.s.coeff n = 0 := by
+        intro n hn
+        rw [show H.s =
+            parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_s]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (3 : Fin 4) 1]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (1 : Fin 4) J hminimal hn 3
+      have hy :
+          ∀ n : ℕ, n < J → H.y.coeff n = 0 := by
+        intro n hn
+        rw [show H.y =
+            parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_y]
+        rw [parameterFirstHessian_symmetric
+          P.centralDeficitFamily (2 : Fin 4) 1]
+        exact G.missingHessianRow_coeff_eq_zero_of_lt
+          (1 : Fin 4) J hminimal hn 2
+      have hp0 : H.p.coeff 0 = 0 := by
+        simpa [H] using G.centralDeficit_p_coeff_zero hthree houtThree
+      have hr0 : H.r.coeff 0 = 0 := by
+        simpa [H] using G.centralDeficit_r_coeff_zero hthree houtThree
+      have hyJ : H.y.coeff J ≠ 0 := by
+        rw [show H.y =
+            parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 by
+          simpa [H] using G.centralDeficitSchurBlock_y]
+        rw [parameterFirstHessian_coeff]
+        simpa [J] using hmixed
+      have hgap : ∀ n : ℕ, n < J → H.schurB.coeff n = 0 := by
+        intro n hn
+        have hform :=
+          GeneralFourBlock.schurB_coeff_eq_activeDet_zero_mul_y_of_right_gap
+            H
+            (fun m hm => hq m (lt_trans hm hn))
+            (fun m hm => hs m (lt_trans hm hn))
+            (fun m hm => hy m (lt_trans hm hn))
+            hp0 hr0
+        rw [hform, hy n hn]
+        simp
+      have hopen : H.schurB.coeff J ≠ 0 := by
+        rw [GeneralFourBlock.schurB_coeff_eq_activeDet_zero_mul_y_of_right_gap
+          H hq hs hy hp0 hr0]
+        exact mul_ne_zero hactive0 hyJ
+      exact ⟨J, by simpa [J] using hstrict, hgap, hopen⟩
 
 /-- **Raw-kernel or reflected continuation of the central total-deficit
 family.**
