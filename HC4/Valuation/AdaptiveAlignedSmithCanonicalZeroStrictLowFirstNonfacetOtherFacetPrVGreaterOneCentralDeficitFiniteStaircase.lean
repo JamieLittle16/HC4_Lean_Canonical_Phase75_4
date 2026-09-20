@@ -84,11 +84,11 @@ structure FirstDeficitGapTwoFiberData where
   first_ne_opposite : first ≠ opposite
   opposite_ne_second : opposite ≠ second
   first_quotient_eq_opposite :
-    rankThreeQuotientCoordinate 1 F.V first =
-      rankThreeQuotientCoordinate 1 F.V opposite
+    HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first =
+      HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite
   opposite_quotient_eq_second :
-    rankThreeQuotientCoordinate 1 F.V opposite =
-      rankThreeQuotientCoordinate 1 F.V second
+    HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite =
+      HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second
 
 /-- **First finite-staircase transition.**
 
@@ -102,7 +102,7 @@ the exact staircase chord. -/
 theorem firstDeficit_gapTwoFiber_or_fiveGap
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
-    Nonempty G.FirstDeficitGapTwoFiberData ∨
+    Nonempty (FirstDeficitGapTwoFiberData (P := P) (F := F)) ∨
       ∃ opposite : Fin 4 →₀ ℕ,
         opposite ∈ P.carrier.support ∧
         G.firstDeficitOrder + 5 ≤ opposite 1 + opposite 2 ∧
@@ -120,8 +120,9 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
       have hsChord := F.support_deficit_chord hthree houtThree hsecond
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
+      have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
-        exact_mod_cast (show 1 < F.highest.n by omega)
+        exact_mod_cast hn2
       have hsep := F.highest_n_lt_locked_height hthree houtThree
       have hnle : F.highest.n ≤ F.locked.ell := by omega
       have hnleZ : (F.highest.n : ℤ) ≤ (F.locked.ell : ℤ) := by
@@ -231,14 +232,14 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hos : opposite 0 = second 0 + 1 := by
           exact_mod_cast hosZ
         have hpairFO :
-            (rankThreeQuotientCoordinate 1 F.V first).pair =
-              (rankThreeQuotientCoordinate 1 F.V opposite).pair := by
-          simp only [rankThreeQuotientCoordinate_pair]
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair =
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           omega
         have hpairOS :
-            (rankThreeQuotientCoordinate 1 F.V opposite).pair =
-              (rankThreeQuotientCoordinate 1 F.V second).pair := by
-          simp only [rankThreeQuotientCoordinate_pair]
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair =
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           omega
         have hqFO :=
           F.support_quotient_eq_of_pair_eq hfirstP hop hpairFO
@@ -290,8 +291,9 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
       have hsChord := F.support_deficit_chord hthree houtThree hsecond
       have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
         exact_mod_cast F.locked.ell_pos
+      have hn2 : 2 ≤ F.highest.n := F.highest.n_two_le
       have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
-        exact_mod_cast (show 1 < F.highest.n by omega)
+        exact_mod_cast hn2
       have hsep := F.highest_n_lt_locked_height hthree houtThree
       have hnle : F.highest.n ≤ F.locked.ell := by omega
       let D : ℤ :=
@@ -398,14 +400,14 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hos : opposite 0 = second 0 + 1 := by
           exact_mod_cast hosZ
         have hpairFO :
-            (rankThreeQuotientCoordinate 1 F.V first).pair =
-              (rankThreeQuotientCoordinate 1 F.V opposite).pair := by
-          simp only [rankThreeQuotientCoordinate_pair]
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair =
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           omega
         have hpairOS :
-            (rankThreeQuotientCoordinate 1 F.V opposite).pair =
-              (rankThreeQuotientCoordinate 1 F.V second).pair := by
-          simp only [rankThreeQuotientCoordinate_pair]
+            (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair =
+              (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair := by
+          simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           omega
         have hqFO :=
           F.support_quotient_eq_of_pair_eq hfirstP hop hpairFO
