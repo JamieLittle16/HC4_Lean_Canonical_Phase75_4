@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9105**.
+Distinct declaration spellings indexed: **9107**.
 
 ## Repeated declaration spellings
 
@@ -8482,6 +8482,7 @@ Distinct declaration spellings indexed: **9105**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
+- `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceMinor0_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `sourceMinor1_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `sourceMinor2_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
@@ -8498,6 +8499,7 @@ Distinct declaration spellings indexed: **9105**.
 - `sourceRankThreeExit_of_preterminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - `sourceRankThreeExit_of_residualZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - `sourceReflection_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
+- `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `sourceVectorProjectiveWedge` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `sourceVectorProjectiveWedge_shear02_recover_two_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
