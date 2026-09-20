@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9174**.
+Distinct declaration spellings indexed: **9176**.
 
 ## Repeated declaration spellings
 
@@ -1649,6 +1649,7 @@ Distinct declaration spellings indexed: **9174**.
 - `FirstBinarySchurFamilyEntry` — `structure` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `FirstContactKernelNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
 - `FirstContactRationalNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
+- `FirstDeficitEarliestReflectedLineDepartureData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitEarliestLineDeparture`
 - `FirstDeficitGapTwoFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFiniteStaircase`
 - `FirstDeficitMinimalReflectedLineDepartureData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitReflectedLineDeparture`
 - `FirstDeficitOppositeLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeLayer`
@@ -5233,6 +5234,7 @@ Distinct declaration spellings indexed: **9174**.
 - `firstDeficitRoofTwo_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `firstDeficitRoofTwo_middleDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `firstDeficit_activeRankThree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`
+- `firstDeficit_earliestReflectedLineDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitEarliestLineDeparture`
 - `firstDeficit_exists_staggeredRankTwoMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `firstDeficit_fullSourceReflection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitFullReflection`
 - `firstDeficit_fullSourceReflection_longitudinalDescent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
