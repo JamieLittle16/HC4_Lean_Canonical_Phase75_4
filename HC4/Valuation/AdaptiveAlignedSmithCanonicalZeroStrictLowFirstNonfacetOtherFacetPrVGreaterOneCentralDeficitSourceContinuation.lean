@@ -250,6 +250,156 @@ theorem centralDeficitSchurB_firstOppositeOpening
         exact mul_ne_zero hactive0 hyJ
       exact ⟨J, by simpa [J] using hstrict, hgap, hopen⟩
 
+
+/-- **The aligned central tail first moves at the honest source gap `J-q`.**
+
+The raw Schur off-diagonal first opens at the least actual opposite source
+layer `J`.  Removing the common Schur factor of exact order
+`q = firstDeficitOrder` moves this opening to `J-q`.  Both possible
+constant rank-one alignments preserve that first opening: the right-axis
+alignment leaves the off-diagonal entry unchanged, while in the left-pivot
+alignment the raw tail has zero off-diagonal constant term, so the only
+remaining factor is the nonzero active pivot scalar.
+
+Thus the abstract first transverse Schur order is no longer anonymous and
+the stationary aligned-tail branch is impossible. -/
+theorem centralDeficit_alignedTail_firstPositiveTransverseOrder_eq_sourceGap
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+    let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+      hthree houtThree
+    let Q := Z.tailSeries hz
+    ∃ (J : ℕ) (A : RankOneSchurSeries (MvPolynomial (Fin 4) K))
+        (htrans : A.HasPositiveTransverseLayer),
+      G.firstDeficitOrder < J ∧
+      A.leading ≠ 0 ∧
+      A.determinant = 0 ∧
+      ((∃ hleft : Q.LeftPivot, A = Q.alignLeft hleft) ∨
+        (∃ hright : Q.RightAxisPivot, A = Q.alignRight hright)) ∧
+      A.firstPositiveTransverseOrder htrans =
+        J - G.firstDeficitOrder := by
+  let H := G.centralDeficitSchurBlock
+  let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+  let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+    hthree houtThree
+  let Q := Z.tailSeries hz
+
+  have hraw :
+      ∃ J : ℕ,
+        G.firstDeficitOrder < J ∧
+        (∀ n : ℕ, n < J → H.schurB.coeff n = 0) ∧
+        H.schurB.coeff J ≠ 0 := by
+    simpa [H] using
+      G.centralDeficitSchurB_firstOppositeOpening hthree houtThree
+  rcases hraw with ⟨J, hqJ, hrawGap, hrawOpen⟩
+
+  have hfirst :
+      Z.firstPositiveEntryOrder hz = G.firstDeficitOrder := by
+    simpa [Z, hz] using
+      G.centralDeficitZeroSchurSeries_firstPositiveEntryOrder_eq_firstDeficitOrder
+        hthree houtThree
+
+  have hrawGapZ :
+      ∀ n : ℕ, n < J → Z.series.offDiag.coeff n = 0 := by
+    intro n hn
+    simpa [Z, H, centralDeficitZeroSchurSeries,
+      GeneralFourBlock.polynomialSchurSeries] using hrawGap n hn
+  have hrawOpenZ : Z.series.offDiag.coeff J ≠ 0 := by
+    simpa [Z, H, centralDeficitZeroSchurSeries,
+      GeneralFourBlock.polynomialSchurSeries] using hrawOpen
+
+  rcases Z.tailSeries_offDiag_gap_and_open_at_sub
+      hz hfirst hqJ hrawGapZ hrawOpenZ with
+    ⟨hQgapRaw, hQopenRaw⟩
+  have hQgap :
+      ∀ n : ℕ, n < J - G.firstDeficitOrder →
+        Q.offDiag.coeff n = 0 := by
+    simpa [Q] using hQgapRaw
+  have hQopen :
+      Q.offDiag.coeff (J - G.firstDeficitOrder) ≠ 0 := by
+    simpa [Q] using hQopenRaw
+  have hd : 0 < J - G.firstDeficitOrder :=
+    Nat.sub_pos_of_lt hqJ
+  have hQoff0 : Q.offDiag.coeff 0 = 0 :=
+    hQgap 0 hd
+
+  have hQdet : Q.determinant = 0 := by
+    have h :=
+      G.centralDeficitZeroSchurTail_determinant_eq_zero
+        hthree houtThree
+    simpa [Z, hz, Q] using h
+  have hpivot : Q.LeftPivot ∨ Q.RightAxisPivot := by
+    have h := G.centralDeficitZeroSchurTail_pivot hthree houtThree
+    simpa [Z, hz, Q] using h
+
+  rcases hpivot with hleft | hright
+  · let A := Q.alignLeft hleft
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using Q.alignLeft_leading_ne_zero hleft
+    have hdet : A.determinant = 0 := by
+      calc
+        A.determinant =
+            (Polynomial.C (Q.active.coeff 0)) ^ 2 * Q.determinant := by
+          simpa [A] using Q.alignLeft_determinant hleft
+        _ = 0 := by rw [hQdet]; simp
+    have hAgap :
+        ∀ n : ℕ, n < J - G.firstDeficitOrder →
+          A.offDiag.coeff n = 0 := by
+      intro n hn
+      rw [show A.offDiag.coeff n =
+          Q.active.coeff 0 * Q.offDiag.coeff n by
+        simpa [A] using
+          Q.alignLeft_offDiag_coeff_eq_active_zero_mul
+            hleft hQoff0 n]
+      rw [hQgap n hn]
+      simp
+    have hAopen :
+        A.offDiag.coeff (J - G.firstDeficitOrder) ≠ 0 := by
+      rw [show
+        A.offDiag.coeff (J - G.firstDeficitOrder) =
+            Q.active.coeff 0 *
+              Q.offDiag.coeff (J - G.firstDeficitOrder) by
+        simpa [A] using
+          Q.alignLeft_offDiag_coeff_eq_active_zero_mul
+            hleft hQoff0 (J - G.firstDeficitOrder)]
+      exact mul_ne_zero hleft.1 hQopen
+    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+        hlead hdet hd hAgap hAopen with
+      ⟨htrans, horder⟩
+    exact ⟨J, A, htrans, hqJ, hlead, hdet,
+      Or.inl ⟨hleft, rfl⟩, horder⟩
+
+  · let A := Q.alignRight hright
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using Q.alignRight_leading_ne_zero hright
+    have hdet : A.determinant = 0 := by
+      calc
+        A.determinant = Q.determinant := by
+          simpa [A] using Q.alignRight_determinant hright
+        _ = 0 := hQdet
+    have hAgap :
+        ∀ n : ℕ, n < J - G.firstDeficitOrder →
+          A.offDiag.coeff n = 0 := by
+      intro n hn
+      rw [show A.offDiag.coeff n = Q.offDiag.coeff n by
+        simpa [A] using Q.alignRight_offDiag_coeff hright n]
+      exact hQgap n hn
+    have hAopen :
+        A.offDiag.coeff (J - G.firstDeficitOrder) ≠ 0 := by
+      rw [show
+        A.offDiag.coeff (J - G.firstDeficitOrder) =
+            Q.offDiag.coeff (J - G.firstDeficitOrder) by
+        simpa [A] using
+          Q.alignRight_offDiag_coeff hright
+            (J - G.firstDeficitOrder)]
+      exact hQopen
+    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+        hlead hdet hd hAgap hAopen with
+      ⟨htrans, horder⟩
+    exact ⟨J, A, htrans, hqJ, hlead, hdet,
+      Or.inr ⟨hright, rfl⟩, horder⟩
+
 /-- **Raw-kernel or reflected continuation of the central total-deficit
 family.**
 
