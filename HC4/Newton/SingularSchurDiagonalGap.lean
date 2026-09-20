@@ -1,4 +1,5 @@
 import HC4.Newton.FirstSchurLayerLinearization
+import HC4.Newton.RankOneSchurSeriesAlignment
 import Mathlib.Tactic
 
 /-!
