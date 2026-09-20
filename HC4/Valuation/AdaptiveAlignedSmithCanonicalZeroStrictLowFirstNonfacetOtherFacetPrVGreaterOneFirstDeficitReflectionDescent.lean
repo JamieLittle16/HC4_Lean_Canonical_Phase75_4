@@ -368,6 +368,143 @@ theorem firstDeficit_oppositeOrder_gap_two_le
       rw [← hq, ← hj]
       exact hgap
 
+
+/-- **The primitive opposite opening lies in a finite endpoint window.**
+
+In the left orientation the least source point opening deficit coordinate
+`2` occurs no later than the literal locked outside endpoint, whose total
+deficit is `ell`.  In the right orientation the symmetric minimum occurs no
+later than the literal primitive-highest `e1` endpoint, whose total deficit
+is `n-1`.
+
+Together with the two-order separation above this traps the first reflected
+opening in a finite source interval. -/
+theorem firstDeficit_primitiveOppositeOpening_interval
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (∃ opposite : Fin 4 →₀ ℕ,
+        opposite ∈ P.carrier.support ∧
+        opposite 2 = 1 ∧
+        G.firstDeficitOrder + 2 ≤ opposite 1 + opposite 2 ∧
+        opposite 1 + opposite 2 ≤ F.locked.ell) ∨
+      (∃ opposite : Fin 4 →₀ ℕ,
+        opposite ∈ P.carrier.support ∧
+        opposite 1 = 1 ∧
+        G.firstDeficitOrder + 2 ≤ opposite 1 + opposite 2 ∧
+        opposite 1 + opposite 2 ≤ F.highest.n - 1) := by
+  rcases G.firstDeficit_primitiveOppositeOpening hthree houtThree with ⟨O⟩
+  cases O with
+  | left first opposite hfirst hfirst1 hfirst2 huniq
+      hop hop2 hstrict hminimal =>
+      have hfirstP : first ∈ P.carrier.support :=
+        (G.firstDeficitLayer_support hfirst).1
+      have hfChord := F.support_deficit_chord hthree houtThree hfirstP
+      have hoChord := F.support_deficit_chord hthree houtThree hop
+      have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
+        exact_mod_cast F.locked.ell_pos
+      have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+        exact_mod_cast (show 1 < F.highest.n by omega)
+      have hcoefPos :
+          (0 : ℤ) <
+            (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+        omega
+      let j := opposite 1 + opposite 2
+      have hgap : G.firstDeficitOrder + 2 ≤ j := by
+        by_contra hnot
+        have hjEq : j = G.firstDeficitOrder + 1 := by
+          dsimp [j] at *
+          omega
+        have hop1 : opposite 1 = G.firstDeficitOrder := by
+          dsimp [j] at hjEq
+          rw [hop2] at hjEq
+          omega
+        rw [hfirst1, hfirst2] at hfChord
+        rw [hop1, hop2] at hoChord
+        norm_num at hfChord hoChord
+        have hdiffEq :
+            ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+                ((first 0 : ℤ) - (opposite 0 : ℤ)) =
+              (F.highest.n : ℤ) - 1 := by
+          nlinarith only [hfChord, hoChord]
+        have hdiffPos :
+            (0 : ℤ) < (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          nlinarith only [hdiffEq, hnZ, hcoefPos]
+        have hdiffOne :
+            (1 : ℤ) ≤ (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          omega
+        have hcoefGt :
+            (F.highest.n : ℤ) - 1 <
+              (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+          linarith
+        nlinarith only [hdiffEq, hdiffOne, hcoefGt, hcoefPos]
+      have houtMem :
+          C.ray.outsideExponent ∈ P.carrier.support :=
+        F.locked.outside_provenance.carrier_mem
+      have hout2 : 0 < C.ray.outsideExponent 2 := by
+        rw [F.locked.outside_two]
+        exact F.locked.ell_pos
+      have hupper := hminimal C.ray.outsideExponent houtMem hout2
+      rw [F.locked.outside_one, F.locked.outside_two] at hupper
+      norm_num at hupper
+      exact Or.inl ⟨opposite, hop, hop2, by simpa [j] using hgap, hupper⟩
+
+  | right first opposite hfirst hfirst1 hfirst2 huniq
+      hop hop1 hstrict hminimal =>
+      have hfirstP : first ∈ P.carrier.support :=
+        (G.firstDeficitLayer_support hfirst).1
+      have hfChord := F.support_deficit_chord hthree houtThree hfirstP
+      have hoChord := F.support_deficit_chord hthree houtThree hop
+      have hellZ : (0 : ℤ) < (F.locked.ell : ℤ) := by
+        exact_mod_cast F.locked.ell_pos
+      have hnZ : (1 : ℤ) < (F.highest.n : ℤ) := by
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+        exact_mod_cast (show 1 < F.highest.n by omega)
+      have hcoefPos :
+          (0 : ℤ) <
+            (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+        omega
+      let j := opposite 1 + opposite 2
+      have hgap : G.firstDeficitOrder + 2 ≤ j := by
+        by_contra hnot
+        have hjEq : j = G.firstDeficitOrder + 1 := by
+          dsimp [j] at *
+          omega
+        have hop2 : opposite 2 = G.firstDeficitOrder := by
+          dsimp [j] at hjEq
+          rw [hop1] at hjEq
+          omega
+        rw [hfirst1, hfirst2] at hfChord
+        rw [hop1, hop2] at hoChord
+        norm_num at hfChord hoChord
+        have hdiffEq :
+            ((F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1) *
+                ((first 0 : ℤ) - (opposite 0 : ℤ)) =
+              (F.locked.ell : ℤ) := by
+          nlinarith only [hfChord, hoChord]
+        have hdiffPos :
+            (0 : ℤ) < (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          nlinarith only [hdiffEq, hellZ, hcoefPos]
+        have hdiffOne :
+            (1 : ℤ) ≤ (first 0 : ℤ) - (opposite 0 : ℤ) := by
+          omega
+        have hcoefGt :
+            (F.locked.ell : ℤ) <
+              (F.locked.ell : ℤ) + (F.highest.n : ℤ) - 1 := by
+          omega
+        nlinarith only [hdiffEq, hdiffOne, hcoefGt, hcoefPos]
+      have hhighMem : F.highest.e1 ∈ P.carrier.support :=
+        F.highest.e1_provenance.carrier_mem
+      have hhigh1 : 0 < F.highest.e1 1 := by
+        rw [F.highest.e1_one]
+        have hnTwo : 2 ≤ F.highest.n := F.highest.n_two_le
+        omega
+      have hupper := hminimal F.highest.e1 hhighMem hhigh1
+      rw [F.highest.e1_one, F.highest.e1_two] at hupper
+      norm_num at hupper
+      exact Or.inr ⟨opposite, hop, hop1, by simpa [j] using hgap, hupper⟩
+
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
 
