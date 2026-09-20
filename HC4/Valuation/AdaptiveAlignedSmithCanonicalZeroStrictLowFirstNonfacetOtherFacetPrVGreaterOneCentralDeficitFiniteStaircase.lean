@@ -120,7 +120,6 @@ the first deficit order by at least five.
 
 The exclusion of gaps one, three, and four is integral source arithmetic on
 the exact staircase chord. -/
-set_option maxHeartbeats 1000000 in
 theorem firstDeficit_gapTwoFiber_or_fiveGap
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
@@ -277,12 +276,12 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
           opposite_quotient_eq_second := hqOS
         }⟩
         · intro heq
-          have hc := congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) heq
-          rw [hfirst2, hop2] at hc
+          have hc : first (2 : Fin 4) = opposite (2 : Fin 4) :=
+            congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) heq
           omega
         · intro heq
-          have hc := congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) heq
-          rw [hop2, hsecond2] at hc
+          have hc : opposite (2 : Fin 4) = second (2 : Fin 4) :=
+            congrArg (fun e : Fin 4 →₀ ℕ => e (2 : Fin 4)) heq
           omega
       · right
         have hfar : q + 5 ≤ j := by
@@ -306,7 +305,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hdeltaZ :
             (0 : ℤ) <
               (opposite 1 : ℤ) - (q : ℤ) - 1 := by
-          exact_mod_cast (show q + 1 < opposite 1 by omega)
+          omega
         have hrhsPos :
             (0 : ℤ) <
               ((F.highest.n : ℤ) - 1) *
@@ -337,25 +336,51 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
                 ((opposite 1 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
           nlinarith only [ho, hs, hreflectZ]
+        have hdeltaFO :
+            (0 : ℤ) <
+              ((opposite 0 : ℤ) + (opposite 1 : ℤ)) -
+                ((first 0 : ℤ) + (q : ℤ)) := by
+          have hprod :
+              (0 : ℤ) <
+                D * (((opposite 0 : ℤ) + (opposite 1 : ℤ)) -
+                  ((first 0 : ℤ) + (q : ℤ))) := by
+            rw [hscaleFO]
+            exact hrhsPos
+          rcases (mul_pos_iff.mp hprod) with hpos | hneg
+          · exact hpos.2
+          · omega
+        have hdeltaOS :
+            (0 : ℤ) <
+              ((second 0 : ℤ) + (second 1 : ℤ)) -
+                ((opposite 0 : ℤ) + (opposite 1 : ℤ)) := by
+          have hprod :
+              (0 : ℤ) <
+                D * (((second 0 : ℤ) + (second 1 : ℤ)) -
+                  ((opposite 0 : ℤ) + (opposite 1 : ℤ))) := by
+            rw [hscaleOS]
+            exact hrhsPos
+          rcases (mul_pos_iff.mp hprod) with hpos | hneg
+          · exact hpos.2
+          · omega
         have hpairFOZ :
             (first 0 : ℤ) + (q : ℤ) <
               (opposite 0 : ℤ) + (opposite 1 : ℤ) := by
-          nlinarith [hscaleFO, hD, hrhsPos]
+          omega
         have hpairOSZ :
             (opposite 0 : ℤ) + (opposite 1 : ℤ) <
               (second 0 : ℤ) + (second 1 : ℤ) := by
-          nlinarith [hscaleOS, hD, hrhsPos]
+          omega
         have hpairFO :
             (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair <
               (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair := by
           simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           rw [hfirst1]
-          exact_mod_cast hpairFOZ
+          omega
         have hpairOS :
             (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair <
               (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair := by
           simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
-          exact_mod_cast hpairOSZ
+          omega
         exact ⟨{
           first := first
           opposite := opposite
@@ -512,12 +537,12 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
           opposite_quotient_eq_second := hqOS
         }⟩
         · intro heq
-          have hc := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) heq
-          rw [hfirst1, hop1] at hc
+          have hc : first (1 : Fin 4) = opposite (1 : Fin 4) :=
+            congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) heq
           omega
         · intro heq
-          have hc := congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) heq
-          rw [hop1, hsecond1] at hc
+          have hc : opposite (1 : Fin 4) = second (1 : Fin 4) :=
+            congrArg (fun e : Fin 4 →₀ ℕ => e (1 : Fin 4)) heq
           omega
       · right
         have hfar : q + 5 ≤ j := by
@@ -541,7 +566,7 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
         have hdeltaZ :
             (0 : ℤ) <
               (opposite 2 : ℤ) - (q : ℤ) - 1 := by
-          exact_mod_cast (show q + 1 < opposite 2 by omega)
+          omega
         have hrhsPos :
             (0 : ℤ) <
               ((F.highest.n : ℤ) - 1) *
@@ -572,25 +597,48 @@ theorem firstDeficit_gapTwoFiber_or_fiveGap
                 ((opposite 2 : ℤ) - (q : ℤ) - 1) := by
           dsimp [D]
           nlinarith only [ho, hs, hreflectZ]
+        have hdeltaOF :
+            (0 : ℤ) <
+              (first 0 : ℤ) - ((opposite 0 : ℤ) + 1) := by
+          have hprod :
+              (0 : ℤ) <
+                D * ((first 0 : ℤ) - ((opposite 0 : ℤ) + 1)) := by
+            rw [hscaleFO]
+            exact hrhsPos
+          rcases (mul_pos_iff.mp hprod) with hpos | hneg
+          · exact hpos.2
+          · omega
+        have hdeltaSO :
+            (0 : ℤ) <
+              ((opposite 0 : ℤ) + 1) - ((second 0 : ℤ) + 2) := by
+          have hprod :
+              (0 : ℤ) <
+                D * (((opposite 0 : ℤ) + 1) -
+                  ((second 0 : ℤ) + 2)) := by
+            rw [hscaleOS]
+            exact hrhsPos
+          rcases (mul_pos_iff.mp hprod) with hpos | hneg
+          · exact hpos.2
+          · omega
         have hpairOFZ :
             (opposite 0 : ℤ) + 1 < (first 0 : ℤ) := by
-          nlinarith [hscaleFO, hD, hrhsPos]
+          omega
         have hpairSOZ :
             (second 0 : ℤ) + 2 <
               (opposite 0 : ℤ) + 1 := by
-          nlinarith [hscaleOS, hD, hrhsPos]
+          omega
         have hpairOF :
             (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair <
               (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V first).pair := by
           simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           rw [hop1, hfirst1]
-          exact_mod_cast hpairOFZ
+          omega
         have hpairSO :
             (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V second).pair <
               (HC4.Polynomial.rankThreeQuotientCoordinate 1 F.V opposite).pair := by
           simp only [HC4.Polynomial.rankThreeQuotientCoordinate_pair]
           rw [hsecond1, hop1]
-          exact_mod_cast hpairSOZ
+          omega
         exact ⟨{
           first := first
           opposite := opposite
