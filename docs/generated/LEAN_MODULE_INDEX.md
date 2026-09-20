@@ -1040,7 +1040,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRS2LiftRepair`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSourceContinuation`, `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
-- Declarations: `def clearedKernelLift`, `def IsClearedSchurKernel`, `theorem matrix_mulVec_clearedKernelLift`, `theorem mulVec_clearedKernelLift_eq_zero`
+- Declarations: `def clearedKernelLift`, `def IsClearedSchurKernel`, `theorem matrix_mulVec_clearedKernelLift`, `theorem clearedKernelLift_ne_zero_of_activeDet_ne_zero`, `theorem mulVec_clearedKernelLift_eq_zero`
 
 ### `HC4.Newton.GeneralFourBlockSchur`
 

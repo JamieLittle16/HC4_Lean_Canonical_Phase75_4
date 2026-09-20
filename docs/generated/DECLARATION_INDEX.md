@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9143**.
+Distinct declaration spellings indexed: **9144**.
 
 ## Repeated declaration spellings
 
@@ -3830,6 +3830,7 @@ Distinct declaration spellings indexed: **9143**.
 - `clear_power_rational_identity` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `clear_power_rational_identity_pointwise` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `clearedKernelLift` — `def` in `HC4.Newton.GeneralFourBlockKernelLift`
+- `clearedKernelLift_ne_zero_of_activeDet_ne_zero` — `theorem` in `HC4.Newton.GeneralFourBlockKernelLift`
 - `clearedPolynomialSubstitution` — `def` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `clearedPolynomialSubstitution_identity_of_ratFunc` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `clearedPolynomialSubstitution_map_eq` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
