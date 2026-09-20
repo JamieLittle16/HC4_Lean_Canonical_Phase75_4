@@ -387,6 +387,165 @@ theorem centralDeficitSchurC_eq_leftRoofDet :
         (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
         (parameterFirstHessian_symmetric P.centralDeficitFamily)
 
+/-- Every entry of the complete parameter-first Hessian has the canonical
+first-deficit gap. -/
+private theorem centralDeficitParameterHessian_gap
+    (i j : Fin 4) :
+    HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+      (parameterFirstHessian P.centralDeficitFamily i j) := by
+  intro n hnpos hnlt
+  rw [parameterFirstHessian_coeff]
+  rw [familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual
+    P.centralDeficitFamily
+    (centralDeficitFamily_hasPositiveActualLayer G) hnpos hnlt]
+  simp [HC4.Polynomial.hessian_apply]
+
+/-- The off-diagonal cleared Schur entry has no positive coefficient below
+the first honest total-deficit layer. -/
+theorem centralDeficitSchurB_gap :
+    HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+      G.centralDeficitSchurBlock.schurB := by
+  have ha :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.a := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_a]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hb :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.b := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_b]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hd :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.d := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_d]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hp :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.p := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_p]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hq :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.q := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_q]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hr :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.r := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_r]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hs :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.s := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_s]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hy :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.y := by
+    unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+    rw [permutedFamilyHessianFourBlock_y]
+    exact G.centralDeficitParameterHessian_gap _ _
+  have hactive :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        G.centralDeficitSchurBlock.activeDet :=
+    (ha.mul hd).sub (hb.mul hb)
+  have hinside :
+      HasNoPositiveParameterCoeffBelow G.firstDeficitOrder
+        (G.centralDeficitSchurBlock.d * G.centralDeficitSchurBlock.p *
+            G.centralDeficitSchurBlock.q -
+          G.centralDeficitSchurBlock.b *
+            (G.centralDeficitSchurBlock.p * G.centralDeficitSchurBlock.s +
+              G.centralDeficitSchurBlock.q * G.centralDeficitSchurBlock.r) +
+          G.centralDeficitSchurBlock.a *
+            G.centralDeficitSchurBlock.r * G.centralDeficitSchurBlock.s) :=
+    (((hd.mul hp).mul hq).sub
+      (hb.mul ((hp.mul hs).add (hq.mul hr)))).add
+        ((ha.mul hr).mul hs)
+  simpa [GeneralFourBlock.schurB] using
+    (hactive.mul hy).sub hinside
+
+/-- The abstract first positive Schur order is exactly the honest first
+total-deficit source order. -/
+theorem centralDeficitZeroSchurSeries_firstPositiveEntryOrder_eq_firstDeficitOrder
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+    let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+      hthree houtThree
+    Z.firstPositiveEntryOrder hz = G.firstDeficitOrder := by
+  let Z := G.centralDeficitZeroSchurSeries hthree houtThree
+  let hz := G.centralDeficitZeroSchurSeries_hasPositiveEntryLayer
+    hthree houtThree
+  let q := G.firstDeficitOrder
+
+  have hqmem : q ∈ Z.positiveEntryOrders := by
+    have haxis := G.firstDeficitLayer_singleton_axis hthree houtThree
+    apply Finset.mem_filter.mpr
+    constructor
+    · rcases haxis with hleft | hright
+      · rcases hleft with ⟨e, he, he1, he2, huniq⟩
+        apply Finset.mem_union.mpr
+        right
+        apply Finset.mem_union.mpr
+        right
+        apply Polynomial.mem_support_iff.mpr
+        change G.centralDeficitSchurBlock.schurC.coeff q ≠ 0
+        rw [G.centralDeficitSchurC_eq_leftRoofDet]
+        exact G.firstDeficitLeftActiveHessian_det_coeff_first_ne_zero
+          hthree houtThree he he1 he2 huniq
+      · rcases hright with ⟨e, he, he1, he2, huniq⟩
+        apply Finset.mem_union.mpr
+        left
+        apply Polynomial.mem_support_iff.mpr
+        change G.centralDeficitSchurBlock.schurA.coeff q ≠ 0
+        rw [G.centralDeficitSchurA_eq_rightRoofDet]
+        exact G.firstDeficitRightActiveHessian_det_coeff_first_ne_zero
+          hthree houtThree he he1 he2 huniq
+    · dsimp [q]
+      exact G.firstDeficitOrder_pos
+
+  have hle : Z.firstPositiveEntryOrder hz ≤ q := by
+    unfold ZeroSchurSeries.firstPositiveEntryOrder
+    exact Finset.min'_le Z.positiveEntryOrders q hqmem
+
+  have hm := Z.firstPositiveEntryOrder_mem hz
+  have hmpos := (Finset.mem_filter.mp hm).2
+  have hge : q ≤ Z.firstPositiveEntryOrder hz := by
+    by_contra hnot
+    have hlt : Z.firstPositiveEntryOrder hz < q := Nat.lt_of_not_ge hnot
+    have hunion := (Finset.mem_filter.mp hm).1
+    rcases Finset.mem_union.mp hunion with hA | hrest
+    · have hne := Polynomial.mem_support_iff.mp hA
+      apply hne
+      change G.centralDeficitSchurBlock.schurA.coeff
+        (Z.firstPositiveEntryOrder hz) = 0
+      rw [G.centralDeficitSchurA_eq_rightRoofDet]
+      exact G.firstDeficitRightActiveHessian_det_gap
+        (Z.firstPositiveEntryOrder hz) hmpos hlt
+    · rcases Finset.mem_union.mp hrest with hB | hC
+      · have hne := Polynomial.mem_support_iff.mp hB
+        apply hne
+        change G.centralDeficitSchurBlock.schurB.coeff
+          (Z.firstPositiveEntryOrder hz) = 0
+        exact G.centralDeficitSchurB_gap
+          (Z.firstPositiveEntryOrder hz) hmpos hlt
+      · have hne := Polynomial.mem_support_iff.mp hC
+        apply hne
+        change G.centralDeficitSchurBlock.schurC.coeff
+          (Z.firstPositiveEntryOrder hz) = 0
+        rw [G.centralDeficitSchurC_eq_leftRoofDet]
+        exact G.firstDeficitLeftActiveHessian_det_gap
+          (Z.firstPositiveEntryOrder hz) hmpos hlt
+  omega
+
 /-- The zero-Schur series genuinely moves at a positive parameter order. -/
 theorem centralDeficitZeroSchurSeries_hasPositiveEntryLayer
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
