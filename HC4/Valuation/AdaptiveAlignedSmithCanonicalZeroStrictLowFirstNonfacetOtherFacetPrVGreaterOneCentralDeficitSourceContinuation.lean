@@ -334,9 +334,6 @@ theorem centralDeficit_alignedTail_firstPositiveTransverseOrder_eq_sourceGap
     simpa [Q] using hQopenRaw
   have hd : 0 < J - G.firstDeficitOrder :=
     Nat.sub_pos_of_lt hqJ
-  have hQoff0 : Q.offDiag.coeff 0 = 0 :=
-    hQgap 0 hd
-
   have hQdet : Q.determinant = 0 := by
     have h :=
       G.centralDeficitZeroSchurTail_determinant_eq_zero
@@ -346,72 +343,10 @@ theorem centralDeficit_alignedTail_firstPositiveTransverseOrder_eq_sourceGap
     have h := G.centralDeficitZeroSchurTail_pivot hthree houtThree
     simpa [Z, hz, Q] using h
 
-  rcases hpivot with hleft | hright
-  · let A := Q.alignLeft hleft
-    have hlead : A.leading ≠ 0 := by
-      simpa [A] using Q.alignLeft_leading_ne_zero hleft
-    have hdet : A.determinant = 0 := by
-      calc
-        A.determinant =
-            (Polynomial.C (Q.active.coeff 0)) ^ 2 * Q.determinant := by
-          simpa [A] using Q.alignLeft_determinant hleft
-        _ = 0 := by rw [hQdet]; simp
-    have hAgap :
-        ∀ n : ℕ, n < J - G.firstDeficitOrder →
-          A.offDiag.coeff n = 0 := by
-      intro n hn
-      rw [show A.offDiag.coeff n =
-          Q.active.coeff 0 * Q.offDiag.coeff n by
-        simpa [A] using
-          Q.alignLeft_offDiag_coeff_eq_active_zero_mul
-            hleft hQoff0 n]
-      rw [hQgap n hn]
-      simp
-    have hAopen :
-        A.offDiag.coeff (J - G.firstDeficitOrder) ≠ 0 := by
-      rw [show
-        A.offDiag.coeff (J - G.firstDeficitOrder) =
-            Q.active.coeff 0 *
-              Q.offDiag.coeff (J - G.firstDeficitOrder) by
-        simpa [A] using
-          Q.alignLeft_offDiag_coeff_eq_active_zero_mul
-            hleft hQoff0 (J - G.firstDeficitOrder)]
-      exact mul_ne_zero hleft.1 hQopen
-    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
-        hlead hdet hd hAgap hAopen with
-      ⟨htrans, horder⟩
-    exact ⟨J, A, htrans, hqJ, hlead, hdet,
-      Or.inl ⟨hleft, rfl⟩, horder⟩
-
-  · let A := Q.alignRight hright
-    have hlead : A.leading ≠ 0 := by
-      simpa [A] using Q.alignRight_leading_ne_zero hright
-    have hdet : A.determinant = 0 := by
-      calc
-        A.determinant = Q.determinant := by
-          simpa [A] using Q.alignRight_determinant hright
-        _ = 0 := hQdet
-    have hAgap :
-        ∀ n : ℕ, n < J - G.firstDeficitOrder →
-          A.offDiag.coeff n = 0 := by
-      intro n hn
-      rw [show A.offDiag.coeff n = Q.offDiag.coeff n by
-        simpa [A] using Q.alignRight_offDiag_coeff hright n]
-      exact hQgap n hn
-    have hAopen :
-        A.offDiag.coeff (J - G.firstDeficitOrder) ≠ 0 := by
-      rw [show
-        A.offDiag.coeff (J - G.firstDeficitOrder) =
-            Q.offDiag.coeff (J - G.firstDeficitOrder) by
-        simpa [A] using
-          Q.alignRight_offDiag_coeff hright
-            (J - G.firstDeficitOrder)]
-      exact hQopen
-    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
-        hlead hdet hd hAgap hAopen with
-      ⟨htrans, horder⟩
-    exact ⟨J, A, htrans, hqJ, hlead, hdet,
-      Or.inr ⟨hright, rfl⟩, horder⟩
+  rcases Q.exists_aligned_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+      hQdet hpivot hd hQgap hQopen with
+    ⟨A, htrans, hlead, hAdet, hprovenance, horder⟩
+  exact ⟨J, A, htrans, hqJ, hlead, hAdet, hprovenance, horder⟩
 
 /-- **Raw-kernel or reflected continuation of the central total-deficit
 family.**
