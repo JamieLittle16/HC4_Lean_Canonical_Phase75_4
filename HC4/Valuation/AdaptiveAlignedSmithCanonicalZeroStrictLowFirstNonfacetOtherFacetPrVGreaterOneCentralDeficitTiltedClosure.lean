@@ -27,6 +27,11 @@ noncomputable section
 
 open HC4.Newton HC4.Polynomial HC4.Toric
 
+/- Avoid the imported reverse aliases for pderiv 2/3 while doing direct
+   monomial Hessian calculations below. -/
+attribute [-simp] standardTwoZero_pderiv_two_eq_A
+attribute [-simp] standardTwoZero_pderiv_three_eq_C
+
 universe u
 
 private theorem isWeightLE_mono'
@@ -164,7 +169,7 @@ private theorem initialForm_coeff_mul_eq_zero
   exact Finset.sum_eq_zero (fun x hx => hall x hx)
 
 private theorem tilted_binary_nonCancellation
-    {σ K : Type*} [Field K] [CharZero K]
+    {σ K : Type*} [Field K] [CharZero K] [DecidableEq σ]
     {w : σ → ℤ}
     {A B C : Polynomial (MvPolynomial σ K)}
     {N i₀ j₀ : ℕ} {a c : ℤ}
@@ -772,7 +777,7 @@ private theorem centralDeficit_leftTilt_impossible
   have hdpp :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.d * (H.p * H.p)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hpp0
         (fun n hn => by
@@ -786,7 +791,7 @@ private theorem centralDeficit_leftTilt_impossible
   have hbpr :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.b * (H.p * H.r)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hpr0
         (fun n hn => by
@@ -800,7 +805,7 @@ private theorem centralDeficit_leftTilt_impossible
   have harr :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.a * (H.r * H.r)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hrr0
         (fun n hn => by
@@ -1516,7 +1521,7 @@ private theorem centralDeficit_rightTilt_impossible
   have hdqq :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.d * (H.q * H.q)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hqq0
         (fun n hn => by
@@ -1530,7 +1535,7 @@ private theorem centralDeficit_rightTilt_impossible
   have hbqs :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.b * (H.q * H.s)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hqs0
         (fun n hn => by
@@ -1544,7 +1549,7 @@ private theorem centralDeficit_rightTilt_impossible
   have hass :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.a * (H.s * H.s)).coeff s) := by
-    simpa [corrBound] using
+    simpa only [zero_add] using
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hss0
         (fun n hn => by
@@ -1786,7 +1791,7 @@ private theorem centralDeficit_rightTilt_impossible
   exact tilted_binary_nonCancellation
     (w := w) (A := H.schurA) (B := H.schurB) (C := H.schurC)
     (N := N) (i₀ := q) (j₀ := s) (a := WA) (c := WZ)
-    (by dsimp [N]; omega) hAqLE hCsLE hAqTopNe hCsTopNe
+    (by rfl) hAqLE hCsLE hAqTopNe hCsTopNe
     (by simpa [target] using hACother)
     (by simpa [target] using hBB)
     hdet
