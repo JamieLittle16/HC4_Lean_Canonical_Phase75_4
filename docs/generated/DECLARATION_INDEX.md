@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9145**.
+Distinct declaration spellings indexed: **9146**.
 
 ## Repeated declaration spellings
 
@@ -6494,6 +6494,7 @@ Distinct declaration spellings indexed: **9145**.
 - `ofShear02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `ofSymmetricMatrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `ofZeroConstantSchur` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `offDiag_coeff_eq_zero_below_of_diagonal_gap` — `theorem` in `HC4.Newton.SingularSchurDiagonalGap`
 - `offDiag_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_coeff_firstOrder_ne_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `offDiag_coeff_first_add_eq_tail` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
