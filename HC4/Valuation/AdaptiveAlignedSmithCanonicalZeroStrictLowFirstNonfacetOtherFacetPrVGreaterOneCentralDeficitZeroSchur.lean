@@ -327,7 +327,8 @@ theorem centralDeficitSchurA_eq_rightRoofDet :
         G.centralDeficitSchurBlock H ha hb hd hp hr hx
     _ = G.firstDeficitRightActiveHessian.det := by
       symm
-      unfold firstDeficitRightActiveHessian H
+      unfold firstDeficitRightActiveHessian
+      dsimp [H]
       exact sourceRightRoof_det_formula
         (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
         (parameterFirstHessian_symmetric P.centralDeficitFamily)
@@ -368,7 +369,8 @@ theorem centralDeficitSchurC_eq_leftRoofDet :
         G.centralDeficitSchurBlock H ha hb hd hq hs hz
     _ = G.firstDeficitLeftActiveHessian.det := by
       symm
-      unfold firstDeficitLeftActiveHessian H
+      unfold firstDeficitLeftActiveHessian
+      dsimp [H]
       exact sourceLeftRoof_det_formula
         (fun i j => parameterFirstHessian P.centralDeficitFamily i j)
         (parameterFirstHessian_symmetric P.centralDeficitFamily)
