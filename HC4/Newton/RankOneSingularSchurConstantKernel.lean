@@ -89,15 +89,17 @@ theorem hasConstantBinaryKernel_of_alignRight_stationary
     (hoff : (S.alignRight hright).offDiag = 0)
     (hker : (S.alignRight hright).kernel = 0) :
     S.HasConstantBinaryKernel := by
-  refine ⟨1, 0, Or.inl one_ne_zero, ?_, ?_⟩
-  · change S.active * Polynomial.C (1 : R) +
+  refine ⟨S.kernel.coeff 0, 0, Or.inl hright.2.2, ?_, ?_⟩
+  · change S.active * Polynomial.C (S.kernel.coeff 0) +
       S.offDiag * Polynomial.C (0 : R) = 0
     change S.active = 0 at hker
-    simpa using hker
-  · change S.offDiag * Polynomial.C (1 : R) +
+    rw [hker]
+    simp
+  · change S.offDiag * Polynomial.C (S.kernel.coeff 0) +
       S.kernel * Polynomial.C (0 : R) = 0
     change S.offDiag = 0 at hoff
-    simpa using hoff
+    rw [hoff]
+    simp
 
 
 /-- **Raw-kernel or reflected-interaction dispatcher.**
