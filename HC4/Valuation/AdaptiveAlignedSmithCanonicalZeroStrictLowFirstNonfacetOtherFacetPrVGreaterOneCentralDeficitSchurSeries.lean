@@ -185,27 +185,37 @@ Schur block. -/
 @[simp] theorem centralDeficitSchurBlock_p :
     G.centralDeficitSchurBlock.p =
       parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 2 := by
-  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_p]
+  simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_two]
 
 @[simp] theorem centralDeficitSchurBlock_q :
     G.centralDeficitSchurBlock.q =
       parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 1 := by
-  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_q]
+  simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_three]
 
 @[simp] theorem centralDeficitSchurBlock_r :
     G.centralDeficitSchurBlock.r =
       parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 2 := by
-  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_r]
+  simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_two]
 
 @[simp] theorem centralDeficitSchurBlock_s :
     G.centralDeficitSchurBlock.s =
       parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 1 := by
-  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_s]
+  simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_three]
 
 @[simp] theorem centralDeficitSchurBlock_y :
     G.centralDeficitSchurBlock.y =
       parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 := by
-  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+  unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
+  rw [permutedFamilyHessianFourBlock_y]
+  simp only [centralDeficitSchurPerm_two, centralDeficitSchurPerm_three]
 
 /-- The reordered block is still the complete Hessian of the honest singular
 total-deficit family. -/
