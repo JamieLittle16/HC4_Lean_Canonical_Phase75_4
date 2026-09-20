@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9109**.
+Distinct declaration spellings indexed: **9111**.
 
 ## Repeated declaration spellings
 
@@ -8122,6 +8122,7 @@ Distinct declaration spellings indexed: **9109**.
 - `schurA_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurA_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `schurA_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurA_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurA_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurB` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.RankTwoFourBlockSchur`, `def` in `HC4.Newton.RankTwoReesSchurEntry`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
@@ -8140,6 +8141,7 @@ Distinct declaration spellings indexed: **9109**.
 - `schurC_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithFourBlockCovariance`
 - `schurC_diagonalScale` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_diagonal_parameter_factor` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `schurC_eq_sourceRoofFormula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `schurC_map` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurC_shearSecondComplement` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `schurDetCore` — `def` in `HC4.Newton.GeneralFourBlockSchur`
