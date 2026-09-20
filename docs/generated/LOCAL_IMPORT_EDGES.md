@@ -608,6 +608,8 @@ human architecture guide.
   - `HC4.Newton.BinaryPivotGeometry`
   - `HC4.Newton.FirstSchurLayerLinearization`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Newton.RankOneSingularSchurContinuation`
+  - `HC4.Newton.FirstSchurLayerLinearization`
 - `HC4.Newton.RankTwoFourBlockSchur`
   - `HC4.Newton.FirstSchurDeterminantOrder`
 - `HC4.Newton.RankTwoHomogeneousPacketClassification`
