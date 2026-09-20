@@ -71,10 +71,10 @@ theorem hessian_omitted_eq_C_of_nonlinearConfinement
       (m + Finsupp.single i 1) + Finsupp.single j 1
     have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 n := by
       dsimp [n, j]
+      unfold HC4.Polynomial.ordinaryDegree4 at hmdeg ⊢
       cases facet <;> fin_cases i <;>
-        simp [HC4.Polynomial.ordinaryDegree4,
-          HC4.Polynomial.facetOmittedCoordinate,
-          Finsupp.single_apply] <;> omega
+        simp [HC4.Polynomial.facetOmittedCoordinate,
+          Finsupp.add_apply, Finsupp.single_apply] <;> omega
     have hjpos : 0 < n j := by
       dsimp [n]
       simp [Finsupp.single_apply]
@@ -98,7 +98,10 @@ theorem hessian_omitted_eq_C_of_nonlinearConfinement
               (HC4.Polynomial.hessian F j i)))
     rw [coeff_pderiv_backport, coeff_pderiv_backport]
     dsimp [n] at hsource
-    simp [hsource, hm]
+    have h0m : (0 : Fin 4 →₀ ℕ) ≠ m := by
+      intro h
+      exact hm h.symm
+    simp [hsource, h0m]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
