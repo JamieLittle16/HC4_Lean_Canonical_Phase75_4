@@ -79,10 +79,11 @@ theorem central_not_noStrictInterior
 
 /-- **The first three forced deficit layers are a full source arithmetic
 progression.** -/
-theorem firstDeficit_fullSourceReflection
+theorem firstDeficit_fullSourceReflection_of_reflectedSecondLayer
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
-    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
+    (H : G.FirstDeficitReflectedSecondLayerGeometry) :
     ∃ first opposite second : Fin 4 →₀ ℕ,
       first ∈ P.carrier.support ∧
       opposite ∈ P.carrier.support ∧
@@ -90,8 +91,6 @@ theorem firstDeficit_fullSourceReflection
       first ≠ opposite ∧
       opposite ≠ second ∧
       ∀ i : Fin 4, first i + second i = 2 * opposite i := by
-  rcases firstDeficit_reflectedSecondLayerGeometry_export
-      G hthree houtThree with H
   cases H with
   | left first opposite second q j k hq hj hk
       hfirst hfirst1 hfirst2 hop hop2 hqj
@@ -238,6 +237,23 @@ theorem firstDeficit_fullSourceReflection
         · exact h1
         · exact h2
         · exact h3
+
+/-- Public wrapper selecting the canonical reflected second layer before
+assembling the full source arithmetic progression. -/
+theorem firstDeficit_fullSourceReflection
+    (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
+    (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
+    (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent) :
+    ∃ first opposite second : Fin 4 →₀ ℕ,
+      first ∈ P.carrier.support ∧
+      opposite ∈ P.carrier.support ∧
+      second ∈ P.carrier.support ∧
+      first ≠ opposite ∧
+      opposite ≠ second ∧
+      ∀ i : Fin 4, first i + second i = 2 * opposite i :=
+  G.firstDeficit_fullSourceReflection_of_reflectedSecondLayer
+    hthree houtThree
+    (G.firstDeficit_reflectedSecondLayerGeometry hthree houtThree)
 
 end QsOtherFacetPrLeftVCentralRankTwoGeometry
 end AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData
