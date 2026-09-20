@@ -82,11 +82,11 @@ theorem clearedKernelLift_ne_zero_of_activeDet_ne_zero
   · intro hzero
     have hcoord := congrFun hzero (2 : Fin 4)
     simp [clearedKernelLift] at hcoord
-    exact (mul_ne_zero hactive hu) hcoord
+    exact hcoord.elim hactive hu
   · intro hzero
     have hcoord := congrFun hzero (3 : Fin 4)
     simp [clearedKernelLift] at hcoord
-    exact (mul_ne_zero hactive hv) hcoord
+    exact hcoord.elim hactive hv
 
 /-- A cleared Schur-kernel vector lifts to an actual kernel vector of the full
 four-block, still without division. -/
