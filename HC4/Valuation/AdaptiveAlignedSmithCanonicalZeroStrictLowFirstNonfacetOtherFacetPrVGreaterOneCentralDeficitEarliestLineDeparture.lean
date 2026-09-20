@@ -134,8 +134,8 @@ theorem firstDeficit_earliestReflectedLineDeparture
         rw [hlocked1, hlocked2]
         have hdOne : 1 ≤ J - q := by omega
         have hmul :
-            F.locked.ell ≤ F.locked.ell * (J - q) :=
-          Nat.mul_le_mul_left F.locked.ell hdOne
+            F.locked.ell ≤ F.locked.ell * (J - q) := by
+          simpa using Nat.mul_le_mul_left F.locked.ell hdOne
         omega
       let pred : ℕ → Prop := fun s =>
         ∃ f : Fin 4 →₀ ℕ,
@@ -172,7 +172,7 @@ theorem firstDeficit_earliestReflectedLineDeparture
         rw [hK] at h
         omega
       refine .left q J s m hq hqJ depart hdepart horder rfl hm3'
-        (by simpa [m] using hbad) hmin1 hmin2' ?_ ?_
+        (by simpa [m, horder] using hbad) hmin1 hmin2' ?_ ?_
       · intro g hg hg3 hgbad
         apply Nat.find_min' hex
         exact ⟨g, hg, hg3, rfl, hgbad⟩
@@ -202,8 +202,8 @@ theorem firstDeficit_earliestReflectedLineDeparture
         have hdOne : 1 ≤ J - q := by omega
         have hmul :
             F.highest.n - 1 ≤
-              (F.highest.n - 1) * (J - q) :=
-          Nat.mul_le_mul_left (F.highest.n - 1) hdOne
+              (F.highest.n - 1) * (J - q) := by
+          simpa using Nat.mul_le_mul_left (F.highest.n - 1) hdOne
         omega
       let pred : ℕ → Prop := fun s =>
         ∃ f : Fin 4 →₀ ℕ,
@@ -240,7 +240,7 @@ theorem firstDeficit_earliestReflectedLineDeparture
         rw [hK] at h
         omega
       refine .right q J s m hq hqJ depart hdepart horder rfl hm3'
-        (by simpa [m] using hbad) hmin1 hmin2' ?_ ?_
+        (by simpa [m, horder] using hbad) hmin1 hmin2' ?_ ?_
       · intro g hg hg3 hgbad
         apply Nat.find_min' hex
         exact ⟨g, hg, hg3, rfl, hgbad⟩
