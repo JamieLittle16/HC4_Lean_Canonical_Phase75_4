@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9121**.
+Distinct declaration spellings indexed: **9122**.
 
 ## Repeated declaration spellings
 
@@ -5574,6 +5574,7 @@ Distinct declaration spellings indexed: **9121**.
 - `hessian_initialForm_entry` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `hessian_kernelInflateHom_entry` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessian_linearPower_mulVec_rigidTopKernelDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
+- `hessian_longitudinal_constant_eq_zero_of_axisCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_monomial_diagonal_ne_zero_of_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`

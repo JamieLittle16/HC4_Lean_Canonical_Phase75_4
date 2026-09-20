@@ -3816,6 +3816,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowResidualNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
+  - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
