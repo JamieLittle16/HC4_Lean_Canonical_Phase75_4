@@ -30,14 +30,11 @@ private theorem ordinaryDegree4_pos_of_ne_zero
     (m : Fin 4 →₀ ℕ)
     (hm : m ≠ 0) :
     0 < HC4.Polynomial.ordinaryDegree4 m := by
-  by_contra hnot
-  have hzero : HC4.Polynomial.ordinaryDegree4 m = 0 :=
-    Nat.eq_zero_of_not_pos hnot
-  apply hm
-  apply Finsupp.ext
-  intro i
-  unfold HC4.Polynomial.ordinaryDegree4 at hzero
-  fin_cases i <;> omega
+  have hdeg : Finsupp.degree m ≠ 0 := by
+    intro hz
+    exact hm ((Finsupp.degree_eq_zero_iff m).mp hz)
+  rw [← finsuppDegree_eq_ordinaryDegree4 m]
+  exact Nat.pos_of_ne_zero hdeg
 
 /-- **Facet confinement makes the omitted Hessian row constant.**
 
