@@ -169,6 +169,75 @@ theorem alignRight_leading_ne_zero
     (S.alignRight hright).leading ≠ 0 := by
   exact hright.2.2
 
+/-- A raw determinant-zero binary Schur series whose off-diagonal entry
+first opens at order `d>0` has an aligned rank-one presentation with exactly
+the same first transverse order.  This packages both possible constant
+pivots and makes explicit that neither alignment can cancel the opening. -/
+theorem exists_aligned_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+    [NoZeroDivisors R]
+    (S : BinarySchurPolynomialSeries R)
+    (hdet : S.determinant = 0)
+    (hpivot : S.LeftPivot ∨ S.RightAxisPivot)
+    {d : ℕ}
+    (hd : 0 < d)
+    (hgap : ∀ n : ℕ, n < d → S.offDiag.coeff n = 0)
+    (hopen : S.offDiag.coeff d ≠ 0) :
+    ∃ (A : RankOneSchurSeries R)
+        (htrans : A.HasPositiveTransverseLayer),
+      A.leading ≠ 0 ∧
+      A.determinant = 0 ∧
+      ((∃ hleft : S.LeftPivot, A = S.alignLeft hleft) ∨
+        (∃ hright : S.RightAxisPivot, A = S.alignRight hright)) ∧
+      A.firstPositiveTransverseOrder htrans = d := by
+  have hoff0 : S.offDiag.coeff 0 = 0 := hgap 0 hd
+  rcases hpivot with hleft | hright
+  · let A := S.alignLeft hleft
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using S.alignLeft_leading_ne_zero hleft
+    have hAdet : A.determinant = 0 := by
+      calc
+        A.determinant =
+            (Polynomial.C (S.active.coeff 0)) ^ 2 * S.determinant := by
+          simpa [A] using S.alignLeft_determinant hleft
+        _ = 0 := by rw [hdet]; simp
+    have hAgap : ∀ n : ℕ, n < d → A.offDiag.coeff n = 0 := by
+      intro n hn
+      rw [show A.offDiag.coeff n =
+          S.active.coeff 0 * S.offDiag.coeff n by
+        simpa [A] using
+          S.alignLeft_offDiag_coeff_eq_active_zero_mul hleft hoff0 n]
+      rw [hgap n hn]
+      simp
+    have hAopen : A.offDiag.coeff d ≠ 0 := by
+      rw [show A.offDiag.coeff d =
+          S.active.coeff 0 * S.offDiag.coeff d by
+        simpa [A] using
+          S.alignLeft_offDiag_coeff_eq_active_zero_mul hleft hoff0 d]
+      exact mul_ne_zero hleft.1 hopen
+    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+        hlead hAdet hd hAgap hAopen with ⟨htrans, horder⟩
+    exact ⟨A, htrans, hlead, hAdet, Or.inl ⟨hleft, rfl⟩, horder⟩
+  · let A := S.alignRight hright
+    have hlead : A.leading ≠ 0 := by
+      simpa [A] using S.alignRight_leading_ne_zero hright
+    have hAdet : A.determinant = 0 := by
+      calc
+        A.determinant = S.determinant := by
+          simpa [A] using S.alignRight_determinant hright
+        _ = 0 := hdet
+    have hAgap : ∀ n : ℕ, n < d → A.offDiag.coeff n = 0 := by
+      intro n hn
+      rw [show A.offDiag.coeff n = S.offDiag.coeff n by
+        simpa [A] using S.alignRight_offDiag_coeff hright n]
+      exact hgap n hn
+    have hAopen : A.offDiag.coeff d ≠ 0 := by
+      rw [show A.offDiag.coeff d = S.offDiag.coeff d by
+        simpa [A] using S.alignRight_offDiag_coeff hright d]
+      exact hopen
+    rcases A.exists_firstPositiveTransverseOrder_eq_of_offDiag_gap_open
+        hlead hAdet hd hAgap hAopen with ⟨htrans, horder⟩
+    exact ⟨A, htrans, hlead, hAdet, Or.inr ⟨hright, rfl⟩, horder⟩
+
 end BinarySchurPolynomialSeries
 
 /-! ## General four-block series -/
