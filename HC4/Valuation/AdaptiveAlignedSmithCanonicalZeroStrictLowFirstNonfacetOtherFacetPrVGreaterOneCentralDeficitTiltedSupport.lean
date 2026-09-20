@@ -221,6 +221,8 @@ theorem firstDeficitRightTilt_earlierLayer_isWeightLE
   dsimp [d] at hlineZ ⊢
   nlinarith
 
+include G
+
 theorem firstDeficitLeftTilt_selectedLayer_top
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
