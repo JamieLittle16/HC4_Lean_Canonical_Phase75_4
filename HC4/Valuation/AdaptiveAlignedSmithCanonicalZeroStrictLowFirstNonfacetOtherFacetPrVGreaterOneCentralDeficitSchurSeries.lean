@@ -179,6 +179,34 @@ noncomputable def centralDeficitSchurBlock
     GeneralFourBlock (Polynomial (MvPolynomial (Fin 4) K)) :=
   centralDeficitSchurBlockOf P.centralDeficitFamily
 
+
+/-- Source-coordinate form of the first complementary column of the central
+Schur block. -/
+@[simp] theorem centralDeficitSchurBlock_p :
+    G.centralDeficitSchurBlock.p =
+      parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 2 := by
+  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+
+@[simp] theorem centralDeficitSchurBlock_q :
+    G.centralDeficitSchurBlock.q =
+      parameterFirstHessian P.centralDeficitFamily (0 : Fin 4) 1 := by
+  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+
+@[simp] theorem centralDeficitSchurBlock_r :
+    G.centralDeficitSchurBlock.r =
+      parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 2 := by
+  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+
+@[simp] theorem centralDeficitSchurBlock_s :
+    G.centralDeficitSchurBlock.s =
+      parameterFirstHessian P.centralDeficitFamily (3 : Fin 4) 1 := by
+  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+
+@[simp] theorem centralDeficitSchurBlock_y :
+    G.centralDeficitSchurBlock.y =
+      parameterFirstHessian P.centralDeficitFamily (2 : Fin 4) 1 := by
+  simp [centralDeficitSchurBlock, centralDeficitSchurBlockOf]
+
 /-- The reordered block is still the complete Hessian of the honest singular
 total-deficit family. -/
 theorem centralDeficitSchurBlock_determinantCore_eq_zero :
