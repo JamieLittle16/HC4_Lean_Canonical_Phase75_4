@@ -62,7 +62,8 @@ private theorem initialForm_finset_sum'
   induction S using Finset.induction_on with
   | empty => simp
   | @insert a S ha ih =>
-      rw [Finset.sum_insert ha, HC4.Polynomial.initialForm_add, ih]
+      rw [Finset.sum_insert ha, HC4.Polynomial.initialForm_add, ih,
+        Finset.sum_insert ha]
 
 private theorem coeff_mul_isWeightLE_of_two_zero_constants
     {σ K : Type*} [CommRing K] [DecidableEq σ]
@@ -87,11 +88,9 @@ private theorem coeff_mul_isWeightLE_of_two_zero_constants
   have hsum : x.1 + x.2 = s := by
     exact Finset.mem_antidiagonal.mp (by simpa [A] using hx)
   by_cases hx1 : x.1 = 0
-  · subst x.1
-    simp [f, hP0]
+  · simp [f, hx1, hP0]
   by_cases hx2 : x.2 = 0
-  · subst x.2
-    simp [f, hQ0]
+  · simp [f, hx2, hQ0]
   have hx1pos : 0 < x.1 := Nat.pos_of_ne_zero hx1
   have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
   have hx1lt : x.1 < s := by omega
@@ -120,8 +119,7 @@ private theorem coeff_mul_isWeightLE_of_right_positive
   have hsum : x.1 + x.2 = s := by
     exact Finset.mem_antidiagonal.mp (by simpa [A] using hx)
   by_cases hx2 : x.2 = 0
-  · subst x.2
-    simp [f, hQ0]
+  · simp [f, hx2, hQ0]
   have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
   have hx1lt : x.1 < s := by omega
   have hx2le : x.2 ≤ s := by omega
@@ -195,7 +193,7 @@ private theorem tilted_binary_nonCancellation
     initialForm_coeff_mul_eq_zero
       (w := w) (P := B) (Q := B) (M := a + c) hBB
   have htop :=
-    HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+    HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
       (K := K) hAiLE hCjLE
   have hdesired :
       HC4.Polynomial.initialForm w (a + c)
@@ -291,6 +289,7 @@ variable
 
 include G
 
+set_option maxHeartbeats 800000 in
 private theorem centralDeficit_leftTilt_impossible
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
@@ -413,16 +412,11 @@ private theorem centralDeficit_leftTilt_impossible
     simpa [a0, b0, c0, d0, H0] using
       G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree r t
-  have hDelta0ne : Delta0 ≠ 0 := by
-    simpa [Delta0, a0, b0, c0, d0, H0] using
-      G.firstDeficitLeftActiveHessian_base_outer_minor_ne_zero
-        hthree houtThree
-
   have hdiagRightSource :
       HC4.Polynomial.hessian G.firstDeficitLayer
         (2 : Fin 4) 2 = 0 := by
     rw [hfirstMono]
-    simp [HC4.Polynomial.hessian_apply,
+    simp [HC4.Polynomial.hessian_apply, standardTwoZeroA, standardTwoZeroC,
       MvPolynomial.pderiv_monomial, he2]
   have hdiagRight :
       (G.firstDeficitRightActiveHessian 1 1).coeff
@@ -488,11 +482,13 @@ private theorem centralDeficit_leftTilt_impossible
     simpa using (ha0LE.mul hd0LE).sub (hb0LE.mul hc0LE)
   have hDelta0Top :
       HC4.Polynomial.initialForm w 0 Delta0 = Delta0 := by
-    have hadHom := MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
-    have hbcHom := MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
+    have hadHom : MvPolynomial.IsWeightedHomogeneous w (a0 * d0) 0 := by
+      simpa using MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
+    have hbcHom : MvPolynomial.IsWeightedHomogeneous w (b0 * c0) 0 := by
+      simpa using MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
     dsimp [Delta0]
     rw [show a0 * d0 - b0 * c0 =
-        a0 * d0 + (-1 : K) • (b0 * c0) by simp]
+        a0 * d0 + (-1 : K) • (b0 * c0) by ring]
     rw [HC4.Polynomial.initialForm_add,
       HC4.Polynomial.initialForm_smul,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
@@ -522,7 +518,8 @@ private theorem centralDeficit_leftTilt_impossible
     have hh :=
       HC4.Polynomial.hessian_entry_isWeightedHomogeneous
         hfirstHom (1 : Fin 4) 1
-    simpa [WC, w, dgap, firstDeficitLeftTiltWeight] using hh
+    convert hh using 1 <;>
+      simp [WC, w, dgap, firstDeficitLeftTiltWeight] <;> ring
   have hVqLE := HC4.Polynomial.isWeightLE_of_isWeightedHomogeneous hVqHom
 
   have hCqFormula :
@@ -545,7 +542,7 @@ private theorem centralDeficit_leftTilt_impossible
         H.schurC.coeff q := by
     rw [hCqFormula]
     have hp :=
-      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hDelta0LE hVqLE
     rw [hDelta0Top,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hVqHom] at hp
@@ -584,10 +581,12 @@ private theorem centralDeficit_leftTilt_impossible
     rw [permutedFamilyHessianFourBlock_x]
     simp only [centralDeficitSchurPerm_two]
     rw [parameterFirstHessian_coeff]
+    rfl
   have hxsLE : HC4.Polynomial.IsWeightLE w WX (H.x.coeff s) := by
     rw [hxCoeff]
     have hh := hLLE.hessian_entry (2 : Fin 4) 2
-    simpa [WX, w, dgap, firstDeficitLeftTiltWeight] using hh
+    convert hh using 1 <;>
+      simp [WX, w, dgap, firstDeficitLeftTiltWeight] <;> ring
   have hxsTop :
       HC4.Polynomial.initialForm w WX (H.x.coeff s) =
         HC4.Polynomial.hessian
@@ -598,8 +597,8 @@ private theorem centralDeficit_leftTilt_impossible
       HC4.Polynomial.hessian_initialForm_entry
         w M L (2 : Fin 4) 2
     rw [hLTop] at hh
-    symm
-    simpa [WX, w, dgap, firstDeficitLeftTiltWeight] using hh
+    convert hh.symm using 1 <;>
+      simp [WX, w, dgap, firstDeficitLeftTiltWeight] <;> ring
   have hxsTopNe :
       HC4.Polynomial.initialForm w WX (H.x.coeff s) ≠ 0 := by
     rw [hxsTop]
@@ -639,7 +638,7 @@ private theorem centralDeficit_leftTilt_impossible
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_x]
     convert hH (2 : Fin 4) 2 using 1 <;>
-      simp [w, dgap, firstDeficitLeftTiltWeight] <;> ring
+      simp [w, dgap, firstDeficitLeftTiltWeight]
   have hactiveB : HasTiltedParameterCoeffBoundBelow w q s 0 H.activeDet := by
     unfold GeneralFourBlock.activeDet
     simpa using (haB.mul hdB).sub (hbB.mul hbB)
@@ -714,7 +713,7 @@ private theorem centralDeficit_leftTilt_impossible
     exact h
 
   let cross : ℤ := -(q : ℤ) - ((dgap : ℤ) - 1)
-  let corrBound : ℤ := 2 * cross
+  let corrBound : ℤ := cross + cross
   have hpp :
       HC4.Polynomial.IsWeightLE w corrBound ((H.p * H.p).coeff s) := by
     simpa [corrBound, cross] using
@@ -782,7 +781,7 @@ private theorem centralDeficit_leftTilt_impossible
         (w := w) (s := s) hspos hpp0
         (fun n hn => by
           have h := hdB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -797,7 +796,7 @@ private theorem centralDeficit_leftTilt_impossible
         (w := w) (s := s) hspos hpr0
         (fun n hn => by
           have h := hbB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -812,7 +811,7 @@ private theorem centralDeficit_leftTilt_impossible
         (w := w) (s := s) hspos hrr0
         (fun n hn => by
           have h := haB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -854,13 +853,10 @@ private theorem centralDeficit_leftTilt_impossible
     have hsum : x.1 + x.2 = s := by
       exact Finset.mem_antidiagonal.mp (by simpa [A] using hx)
     by_cases hx1 : x.1 = 0
-    · subst x.1
-      have hx2 : x.2 = s := by omega
-      subst x.2
-      exact hD0LE.mul hxsLE
+    · have hx2 : x.2 = s := by omega
+      simpa [f, hx1, hx2] using hD0LE.mul hxsLE
     by_cases hx2 : x.2 = 0
-    · subst x.2
-      simp [f, hx0]
+    · simp [f, hx2, hx0]
     have hx1pos : 0 < x.1 := Nat.pos_of_ne_zero hx1
     have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
     have hx1lt : x.1 < s := by omega
@@ -887,8 +883,7 @@ private theorem centralDeficit_leftTilt_impossible
       · have hx2 : x.2 = s := by omega
         exact (hne (Prod.ext hx1 hx2)).elim
       by_cases hx2 : x.2 = 0
-      · subst x.2
-        simp [hx0]
+      · simp [hx2, hx0]
       have hx1pos : 0 < x.1 := Nat.pos_of_ne_zero hx1
       have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
       have hx1lt : x.1 < s := by omega
@@ -907,7 +902,7 @@ private theorem centralDeficit_leftTilt_impossible
           HC4.Polynomial.initialForm w WX (H.x.coeff s) := by
     rw [hmainTop]
     have hp :=
-      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hD0LE hxsLE
     rw [hD0Top] at hp
     simpa using hp
@@ -985,11 +980,9 @@ private theorem centralDeficit_leftTilt_impossible
     intro x hx hne
     have hsum : x.1 + x.2 = N := Finset.mem_antidiagonal.mp hx
     by_cases hi0 : x.1 = 0
-    · subst x.1
-      simp [hA0]
+    · simp [hi0, hA0]
     by_cases hj0 : x.2 = 0
-    · subst x.2
-      simp [hC0]
+    · simp [hj0, hC0]
     by_cases his : x.1 = s
     · have hjq : x.2 = q := by dsimp [N] at hsum; omega
       exact (hne (Prod.ext his hjq)).elim
@@ -1024,11 +1017,9 @@ private theorem centralDeficit_leftTilt_impossible
     intro x hx
     have hsum : x.1 + x.2 = N := Finset.mem_antidiagonal.mp hx
     by_cases hi0 : x.1 = 0
-    · subst x.1
-      simp [hB0]
+    · simp [hi0, hB0]
     by_cases hj0 : x.2 = 0
-    · subst x.2
-      simp [hB0]
+    · simp [hj0, hB0]
     by_cases hige : s ≤ x.1
     · have hjle : x.2 ≤ q := by dsimp [N] at hsum; omega
       rw [hBleq x.2 hjle]
@@ -1062,6 +1053,7 @@ private theorem centralDeficit_leftTilt_impossible
     (by simpa [target] using hBB)
     hdet
 
+set_option maxHeartbeats 800000 in
 private theorem centralDeficit_rightTilt_impossible
     (hthree : MvRankThreeOnFacet .qs C.ray.facetExponent)
     (houtThree : MvRankThreeOnFacet .pr C.ray.outsideExponent)
@@ -1184,16 +1176,11 @@ private theorem centralDeficit_rightTilt_impossible
     simpa [a0, b0, c0, d0, H0] using
       G.firstDeficitRightActiveHessian_coeff_zero_eq_rankTwoRoofBase
         hthree houtThree r t
-  have hDelta0ne : Delta0 ≠ 0 := by
-    simpa [Delta0, a0, b0, c0, d0, H0] using
-      G.firstDeficitRightActiveHessian_base_outer_minor_ne_zero
-        hthree houtThree
-
   have hdiagLeftSource :
       HC4.Polynomial.hessian G.firstDeficitLayer
         (1 : Fin 4) 1 = 0 := by
     rw [hfirstMono]
-    simp [HC4.Polynomial.hessian_apply,
+    simp [HC4.Polynomial.hessian_apply, standardTwoZeroA, standardTwoZeroC,
       MvPolynomial.pderiv_monomial, he1]
   have hdiagLeft :
       (G.firstDeficitLeftActiveHessian 1 1).coeff
@@ -1259,11 +1246,13 @@ private theorem centralDeficit_rightTilt_impossible
     simpa using (ha0LE.mul hd0LE).sub (hb0LE.mul hc0LE)
   have hDelta0Top :
       HC4.Polynomial.initialForm w 0 Delta0 = Delta0 := by
-    have hadHom := MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
-    have hbcHom := MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
+    have hadHom : MvPolynomial.IsWeightedHomogeneous w (a0 * d0) 0 := by
+      simpa using MvPolynomial.IsWeightedHomogeneous.mul ha0Hom hd0Hom
+    have hbcHom : MvPolynomial.IsWeightedHomogeneous w (b0 * c0) 0 := by
+      simpa using MvPolynomial.IsWeightedHomogeneous.mul hb0Hom hc0Hom
     dsimp [Delta0]
     rw [show a0 * d0 - b0 * c0 =
-        a0 * d0 + (-1 : K) • (b0 * c0) by simp]
+        a0 * d0 + (-1 : K) • (b0 * c0) by ring]
     rw [HC4.Polynomial.initialForm_add,
       HC4.Polynomial.initialForm_smul,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hadHom,
@@ -1292,7 +1281,8 @@ private theorem centralDeficit_rightTilt_impossible
     have hh :=
       HC4.Polynomial.hessian_entry_isWeightedHomogeneous
         hfirstHom (2 : Fin 4) 2
-    simpa [WA, w, dgap, firstDeficitRightTiltWeight] using hh
+    convert hh using 1 <;>
+      simp [WA, w, dgap, firstDeficitRightTiltWeight] <;> ring
   have hVqLE := HC4.Polynomial.isWeightLE_of_isWeightedHomogeneous hVqHom
   have hAqFormula :
       H.schurA.coeff q = Delta0 * Vq := by
@@ -1314,7 +1304,7 @@ private theorem centralDeficit_rightTilt_impossible
         H.schurA.coeff q := by
     rw [hAqFormula]
     have hp :=
-      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hDelta0LE hVqLE
     rw [hDelta0Top,
       HC4.Polynomial.initialForm_eq_self_of_isWeightedHomogeneous hVqHom] at hp
@@ -1353,10 +1343,12 @@ private theorem centralDeficit_rightTilt_impossible
     rw [permutedFamilyHessianFourBlock_z]
     simp only [centralDeficitSchurPerm_three]
     rw [parameterFirstHessian_coeff]
+    rfl
   have hzsLE : HC4.Polynomial.IsWeightLE w WZ (H.z.coeff s) := by
     rw [hzCoeff]
     have hh := hLLE.hessian_entry (1 : Fin 4) 1
-    simpa [WZ, w, dgap, firstDeficitRightTiltWeight] using hh
+    convert hh using 1 <;>
+      simp [WZ, w, dgap, firstDeficitRightTiltWeight] <;> ring
   have hzsTop :
       HC4.Polynomial.initialForm w WZ (H.z.coeff s) =
         HC4.Polynomial.hessian
@@ -1367,8 +1359,8 @@ private theorem centralDeficit_rightTilt_impossible
       HC4.Polynomial.hessian_initialForm_entry
         w M L (1 : Fin 4) 1
     rw [hLTop] at hh
-    symm
-    simpa [WZ, w, dgap, firstDeficitRightTiltWeight] using hh
+    convert hh.symm using 1 <;>
+      simp [WZ, w, dgap, firstDeficitRightTiltWeight] <;> ring
   have hzsTopNe :
       HC4.Polynomial.initialForm w WZ (H.z.coeff s) ≠ 0 := by
     rw [hzsTop]
@@ -1408,7 +1400,7 @@ private theorem centralDeficit_rightTilt_impossible
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_z]
     convert hH (1 : Fin 4) 1 using 1 <;>
-      simp [w, dgap, firstDeficitRightTiltWeight] <;> ring
+      simp [w, dgap, firstDeficitRightTiltWeight]
   have hactiveB : HasTiltedParameterCoeffBoundBelow w q s 0 H.activeDet := by
     unfold GeneralFourBlock.activeDet
     simpa using (haB.mul hdB).sub (hbB.mul hbB)
@@ -1472,7 +1464,7 @@ private theorem centralDeficit_rightTilt_impossible
     exact h
 
   let cross : ℤ := -(q : ℤ) - ((dgap : ℤ) - 1)
-  let corrBound : ℤ := 2 * cross
+  let corrBound : ℤ := cross + cross
   have hqq :
       HC4.Polynomial.IsWeightLE w corrBound ((H.q * H.q).coeff s) := by
     simpa [corrBound, cross] using
@@ -1539,7 +1531,7 @@ private theorem centralDeficit_rightTilt_impossible
         (w := w) (s := s) hspos hqq0
         (fun n hn => by
           have h := hdB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -1554,7 +1546,7 @@ private theorem centralDeficit_rightTilt_impossible
         (w := w) (s := s) hspos hqs0
         (fun n hn => by
           have h := hbB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -1569,7 +1561,7 @@ private theorem centralDeficit_rightTilt_impossible
         (w := w) (s := s) hspos hss0
         (fun n hn => by
           have h := haB n hn
-          apply isWeightLE_mono' (hP := h)
+          apply isWeightLE_mono' (b := 0) (hP := h)
           by_cases hn0 : n = 0
           · subst n
             simp [tiltedParameterPenalty]
@@ -1611,13 +1603,10 @@ private theorem centralDeficit_rightTilt_impossible
     have hsum : x.1 + x.2 = s := by
       exact Finset.mem_antidiagonal.mp (by simpa [A] using hx)
     by_cases hx1 : x.1 = 0
-    · subst x.1
-      have hx2 : x.2 = s := by omega
-      subst x.2
-      exact hD0LE.mul hzsLE
+    · have hx2 : x.2 = s := by omega
+      simpa [f, hx1, hx2] using hD0LE.mul hzsLE
     by_cases hx2 : x.2 = 0
-    · subst x.2
-      simp [f, hz0]
+    · simp [f, hx2, hz0]
     have hx1pos : 0 < x.1 := Nat.pos_of_ne_zero hx1
     have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
     have hx1lt : x.1 < s := by omega
@@ -1644,8 +1633,7 @@ private theorem centralDeficit_rightTilt_impossible
       · have hx2 : x.2 = s := by omega
         exact (hne (Prod.ext hx1 hx2)).elim
       by_cases hx2 : x.2 = 0
-      · subst x.2
-        simp [hz0]
+      · simp [hx2, hz0]
       have hx1pos : 0 < x.1 := Nat.pos_of_ne_zero hx1
       have hx2pos : 0 < x.2 := Nat.pos_of_ne_zero hx2
       have hx1lt : x.1 < s := by omega
@@ -1664,7 +1652,7 @@ private theorem centralDeficit_rightTilt_impossible
           HC4.Polynomial.initialForm w WZ (H.z.coeff s) := by
     rw [hmainTop]
     have hp :=
-      HC4.Polynomial.initialForm_mul_eq_mul_initialForm_of_isWeightLE
+      HC4.Valuation.initialForm_mul_eq_mul_initialForm_of_isWeightLE
         (K := K) hD0LE hzsLE
     rw [hD0Top] at hp
     simpa using hp
@@ -1742,11 +1730,9 @@ private theorem centralDeficit_rightTilt_impossible
     intro x hx hne
     have hsum : x.1 + x.2 = N := Finset.mem_antidiagonal.mp hx
     by_cases hi0 : x.1 = 0
-    · subst x.1
-      simp [hA0]
+    · simp [hi0, hA0]
     by_cases hj0 : x.2 = 0
-    · subst x.2
-      simp [hC0]
+    · simp [hj0, hC0]
     by_cases hjs : x.2 = s
     · have hiq : x.1 = q := by dsimp [N] at hsum; omega
       exact (hne (Prod.ext hiq hjs)).elim
@@ -1781,11 +1767,9 @@ private theorem centralDeficit_rightTilt_impossible
     intro x hx
     have hsum : x.1 + x.2 = N := Finset.mem_antidiagonal.mp hx
     by_cases hi0 : x.1 = 0
-    · subst x.1
-      simp [hB0]
+    · simp [hi0, hB0]
     by_cases hj0 : x.2 = 0
-    · subst x.2
-      simp [hB0]
+    · simp [hj0, hB0]
     by_cases hige : s ≤ x.1
     · have hjle : x.2 ≤ q := by dsimp [N] at hsum; omega
       rw [hBleq x.2 hjle]
