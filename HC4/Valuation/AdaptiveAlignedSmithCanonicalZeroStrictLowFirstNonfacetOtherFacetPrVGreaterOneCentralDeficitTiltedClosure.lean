@@ -780,7 +780,8 @@ private theorem centralDeficit_leftTilt_impossible
   have hdpp :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.d * (H.p * H.p)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hpp0
         (fun n hn => by
@@ -794,7 +795,8 @@ private theorem centralDeficit_leftTilt_impossible
   have hbpr :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.b * (H.p * H.r)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hpr0
         (fun n hn => by
@@ -808,7 +810,8 @@ private theorem centralDeficit_leftTilt_impossible
   have harr :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.a * (H.r * H.r)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hrr0
         (fun n hn => by
@@ -1524,7 +1527,8 @@ private theorem centralDeficit_rightTilt_impossible
   have hdqq :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.d * (H.q * H.q)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hqq0
         (fun n hn => by
@@ -1538,7 +1542,8 @@ private theorem centralDeficit_rightTilt_impossible
   have hbqs :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.b * (H.q * H.s)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hqs0
         (fun n hn => by
@@ -1552,7 +1557,8 @@ private theorem centralDeficit_rightTilt_impossible
   have hass :
       HC4.Polynomial.IsWeightLE w corrBound
         ((H.a * (H.s * H.s)).coeff s) := by
-    simpa only [zero_add] using
+    rw [← zero_add corrBound]
+    exact
       coeff_mul_isWeightLE_of_right_positive
         (w := w) (s := s) hspos hss0
         (fun n hn => by
