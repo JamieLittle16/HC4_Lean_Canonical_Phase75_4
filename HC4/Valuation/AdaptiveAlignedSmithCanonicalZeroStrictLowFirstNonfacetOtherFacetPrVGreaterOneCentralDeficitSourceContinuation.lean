@@ -183,7 +183,6 @@ theorem centralDeficit_rawKernel_or_reflectedInteraction
         H.clearedKernelLift (Polynomial.C u) (Polynomial.C v) ≠ 0 :=
       H.clearedKernelLift_ne_zero_of_activeDet_ne_zero
         (Polynomial.C u) (Polynomial.C v) hactive huvC
-    apply Or.inl
     refine ⟨u, v, ?_⟩
     constructor
     · exact huv
