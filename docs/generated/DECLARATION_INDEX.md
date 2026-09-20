@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9168**.
+Distinct declaration spellings indexed: **9170**.
 
 ## Repeated declaration spellings
 
@@ -1656,6 +1656,7 @@ Distinct declaration spellings indexed: **9168**.
 - `FirstDeficitRankThreeRoofGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `FirstDeficitReflectedSecondLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `FirstDeficitSecondInteractionGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
+- `FirstDeficitSecondMissingOpeningData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSecondMissingOpening`
 - `FirstDeficitSecondSourceLayerGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `FirstDeficitSeparatedPairData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitFiniteStaircase`
 - `FirstKernelBreakFourBlockData` — `structure` in `HC4.Valuation.FirstKernelBreakRankTwo`
@@ -5247,6 +5248,7 @@ Distinct declaration spellings indexed: **9168**.
 - `firstDeficit_secondInteractionGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `firstDeficit_secondInteractionGeometry_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `firstDeficit_secondInteractionGeometry_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
+- `firstDeficit_secondMissingOpening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitSecondMissingOpening`
 - `firstDeficit_secondSourceLayerGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `firstDeficit_secondSourceLayerGeometry_of_interaction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
 - `firstDeficit_staggeredFirstKernelBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
