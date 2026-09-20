@@ -300,26 +300,32 @@ theorem centralDeficitSchurA_eq_rightRoofDet :
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_a]
     simp only [centralDeficitSchurPerm_zero]
+    dsimp [H]
   have hb : G.centralDeficitSchurBlock.b = H 0 3 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_b]
     simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+    dsimp [H]
   have hd : G.centralDeficitSchurBlock.d = H 3 3 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_d]
     simp only [centralDeficitSchurPerm_one]
+    dsimp [H]
   have hp : G.centralDeficitSchurBlock.p = H 0 2 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_p]
     simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_two]
+    dsimp [H]
   have hr : G.centralDeficitSchurBlock.r = H 3 2 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_r]
     simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_two]
+    dsimp [H]
   have hx : G.centralDeficitSchurBlock.x = H 2 2 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_x]
     simp only [centralDeficitSchurPerm_two]
+    dsimp [H]
   calc
     G.centralDeficitSchurBlock.schurA =
         sourceRightRoofFormula H :=
@@ -342,26 +348,32 @@ theorem centralDeficitSchurC_eq_leftRoofDet :
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_a]
     simp only [centralDeficitSchurPerm_zero]
+    dsimp [H]
   have hb : G.centralDeficitSchurBlock.b = H 0 3 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_b]
     simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_one]
+    dsimp [H]
   have hd : G.centralDeficitSchurBlock.d = H 3 3 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_d]
     simp only [centralDeficitSchurPerm_one]
+    dsimp [H]
   have hq : G.centralDeficitSchurBlock.q = H 0 1 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_q]
     simp only [centralDeficitSchurPerm_zero, centralDeficitSchurPerm_three]
+    dsimp [H]
   have hs : G.centralDeficitSchurBlock.s = H 3 1 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_s]
     simp only [centralDeficitSchurPerm_one, centralDeficitSchurPerm_three]
+    dsimp [H]
   have hz : G.centralDeficitSchurBlock.z = H 1 1 := by
     unfold centralDeficitSchurBlock centralDeficitSchurBlockOf
     rw [permutedFamilyHessianFourBlock_z]
     simp only [centralDeficitSchurPerm_three]
+    dsimp [H]
   calc
     G.centralDeficitSchurBlock.schurC =
         sourceLeftRoofFormula H :=
