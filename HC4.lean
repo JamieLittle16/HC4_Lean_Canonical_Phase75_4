@@ -285,6 +285,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayF
 
 -- Final repair-aware unrestricted HC4 splice from a concrete terminal obstruction producer.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction
 
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
