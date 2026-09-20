@@ -115,7 +115,8 @@ variable
     {F : QsOtherFacetPrLeftVContactFrontierData C P S R}
     (G : QsOtherFacetPrLeftVCentralRankTwoGeometry F)
 
-/-- Provenance-rich second interaction forced by the zero full determinant. -/
+/-- Provenance-rich second interaction forced by the zero full determinant.
+This is deliberately a two-constructor source-orientation split (`left`/`right`). -/
 inductive FirstDeficitSecondInteractionGeometry : Prop
   | left
       (first opposite : Fin 4 →₀ ℕ) (B : K)
