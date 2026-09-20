@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9117**.
+Distinct declaration spellings indexed: **9120**.
 
 ## Repeated declaration spellings
 
@@ -5576,6 +5576,7 @@ Distinct declaration spellings indexed: **9117**.
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `hessian_monomial_diagonal_ne_zero_of_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
+- `hessian_omitted_eq_C_of_nonlinearConfinement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `hessian_one_one_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `hessian_one_zero_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `hessian_parameterRamificationFamily` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -6370,6 +6371,7 @@ Distinct declaration spellings indexed: **9117**.
 - `nonlinearConfined_facetPattern_restriction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
 - `nonlinearConfined_facet_classification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
 - `nonlinearConfined_facet_ne_qs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
+- `nonlinearConfined_hessianRow_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `nonlinearConfined_qs_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
 - `nonlinearDegreeBound_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExposureGeometry`
 - `nonlinearDegreeBound_alignedSmithGenuineFirstWallFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithEndpoint`
@@ -6532,6 +6534,7 @@ Distinct declaration spellings indexed: **9117**.
 - `ordinaryDegree4_cons_smithTransverseExponent_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `ordinaryDegree4_eq_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
 - `ordinaryDegree4_mapDomain_perm` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+- `ordinaryDegree4_pos_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `ordinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `ordinaryOfShiftedLeading_coeff_profile` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyBihomogeneousKernel`
