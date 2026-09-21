@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9225**.
+Distinct declaration spellings indexed: **9226**.
 
 ## Repeated declaration spellings
 
@@ -5511,6 +5511,7 @@ Distinct declaration spellings indexed: **9225**.
 - `gradient_injective_of_hessianDeterminant_one_of_reesReducedResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesTraceReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_sourceNativeFirstContactProducer_of_endpointImpossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_terminalObstructionProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
+- `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
 - `hasAlignedRecenteredFirstWallCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalFirstWall`
 - `hasAlignedRecenteredFirstWallCompetition_of_terminalResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall`

@@ -74,6 +74,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionRecentering`
@@ -1814,6 +1815,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminal`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2FreeDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
