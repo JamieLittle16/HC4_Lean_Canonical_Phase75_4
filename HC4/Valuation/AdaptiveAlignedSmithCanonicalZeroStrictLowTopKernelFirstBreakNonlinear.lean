@@ -127,89 +127,34 @@ theorem ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two
   rw [hii, hkk, hik, hki]
   ring
 
-/-- If the residual exact layer is quadratic, its nonzero principal minor
-already lifts to the whole represented source and therefore gives the standard
-actual rank-two chart. -/
-noncomputable def ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two
-    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    (L : P.ExactOrdinaryLayerMinorAtFirstBreak)
-    (hdeg : L.sourceDegree = 2) :
-    AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
-      T.terminal.blocker.presented := by
-  have hmax :
-      ∀ d ∈ T.topKernelReesSource.support,
-        HC4.Polynomial.ordinaryDegree4 d ≤ T.topFace.degree := by
-    intro d hd
-    have hd' :
-        d ∈
-          (polynomialFamilySpecialFiber
-            T.terminal.blocker.presented.family).support := by
-      simpa [topKernelReesSource] using hd
-    exact T.topFace.maximal d hd'
-
-  have hbound :
-      HC4.Polynomial.IsWeightLE
-        fourOrdinaryIntegerWeight
-        (T.topFace.degree : ℤ)
-        T.topKernelReesSource :=
-    isWeightLE_fourOrdinary_of_degree_le
-      T.topKernelReesSource T.topFace.degree hmax
-
-  have hlayerMinor :
-      HC4.Polynomial.hessianPrincipalMinor
-        (HC4.Polynomial.initialForm
-          fourOrdinaryIntegerWeight
-          (L.sourceDegree : ℤ)
-          T.topKernelReesSource)
-        L.index kernelCoordinate ≠ 0 := by
-    have h := L.minor_ne_zero
-    simpa [fourOrdinaryIntegerWeight, ordinaryTopNatWeight] using h
-
-  have hsourceMinor :
-      HC4.Polynomial.hessianPrincipalMinor
-        T.topKernelReesSource L.index kernelCoordinate ≠ 0 := by
-    have hsourceBound :
-        HC4.Polynomial.IsWeightLE
-          fourOrdinaryIntegerWeight
-          (L.sourceDegree : ℤ)
-          T.topKernelReesSource := by
-      -- For the quadratic branch we only need the same exact degree layer as
-      -- a maximal source component.  If higher source degree survived, the
-      -- G16 layer is not maximal and cannot be lifted directly here.
-      -- We therefore retain this case below rather than assert a false bound.
-      subst hdeg
-      exact hbound
-    exact
-      hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
-        hsourceBound L.index kernelCoordinate hlayerMinor
-
-  apply actualRankTwoHessianChart_of_specialFiber_minor
-    L.index_ne_kernel
-  simpa [topKernelReesSource] using hsourceMinor
-
-/-- **Nonlinear top-kernel first-break frontier.**
+/-- **Curved top-kernel first-break frontier.**
 
 Every top-kernel linear-power branch gives either an actual rank-two chart on
 the represented determinant-one source or a strictly lower exact ordinary
-source layer of degree at least three carrying a nonzero principal Hessian
-minor. -/
-theorem actualRankTwo_or_exactLowerNonlinearLayerMinor
+source layer of degree at least two carrying a nonzero principal Hessian
+minor.
+
+The remaining degree-two subcase is intentionally retained here: its correct
+source lift is through the origin Hessian / quadratic component, not through a
+maximal-weight argument. -/
+structure ExactCurvedOrdinaryLayerMinorAtFirstBreak
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  layer : P.ExactOrdinaryLayerMinorAtFirstBreak
+  sourceDegree_ge_two : 2 ≤ layer.sourceDegree
+
+theorem actualRankTwo_or_exactLowerCurvedLayerMinor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     Nonempty
         (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
           T.terminal.blocker.presented) ∨
-      Nonempty P.ExactNonlinearOrdinaryLayerMinorAtFirstBreak := by
+      Nonempty P.ExactCurvedOrdinaryLayerMinorAtFirstBreak := by
   rcases P.actualRankTwo_or_exactLowerOrdinaryLayerMinor with hactual | hlayer
   · exact Or.inl hactual
   · rcases hlayer with ⟨L⟩
-    have hge2 := L.sourceDegree_ge_two
-    by_cases h2 : L.sourceDegree = 2
-    · exact Or.inl ⟨L.actualRankTwoChart_of_degree_eq_two h2⟩
-    · right
-      exact ⟨{
-        layer := L
-        sourceDegree_ge_three := by omega
-      }⟩
+    exact Or.inr ⟨{
+      layer := L
+      sourceDegree_ge_two := L.sourceDegree_ge_two
+    }⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
