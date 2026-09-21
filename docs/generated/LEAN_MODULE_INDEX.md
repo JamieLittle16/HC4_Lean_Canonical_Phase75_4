@@ -7500,7 +7500,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`, `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem rankThree_exists_two_positive`, `theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor`, `theorem exposedRankThree_actualRankTwoHessianChart`, `structure LosslessCodimensionTwoResidual`, `theorem globalRankThreeProgress_or_codimensionTwoResidual`
+- Declarations: `theorem rankThree_exists_two_positive`, `theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor`, `theorem exposedSingularNonlinearBoundaryVertex_twoPositive_sourcePrincipalMinor`, `theorem exposedRankThree_actualRankTwoHessianChart`, `structure ExposedPureAxisResidual`, `theorem exposedTwoPositive_actualRankTwoHessianChart`, `theorem exposedBoundary_actualRankTwo_or_pureAxis`, `theorem globalRankThreeProgress_or_pureAxisResidual`, `structure LosslessCodimensionTwoResidual`, `theorem globalRankThreeProgress_or_codimensionTwoResidual`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
 
