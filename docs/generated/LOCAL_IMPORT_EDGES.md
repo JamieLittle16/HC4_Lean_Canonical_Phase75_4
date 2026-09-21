@@ -1819,6 +1819,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminal`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`
+  - `HC4.PlanarJC2HessianEmbedding`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`

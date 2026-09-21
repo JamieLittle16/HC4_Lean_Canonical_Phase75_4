@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9230**.
+Distinct declaration spellings indexed: **9231**.
 
 ## Repeated declaration spellings
 
@@ -6873,6 +6873,7 @@ Distinct declaration spellings indexed: **9230**.
 - `planarJC2_of_finalResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualHardness`
 - `planarJC2_of_hessianFour_gradient_injective` — `theorem` in `HC4.PlanarJC2HessianEmbedding`
 - `planarJC2_of_reesLowLayerOrderResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`
+- `planarJC2_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`
 - `planarJacobianDetPolynomial` — `def` in `HC4.PlanarJC2Interface`
 - `planarJacobianDetPolynomial_normalizePlanarKellerMap` — `theorem` in `HC4.PlanarJC2HessianEmbedding`
 - `planarJacobianMatrixAt` — `def` in `HC4.PlanarJacobianEvaluation`
