@@ -582,6 +582,278 @@ theorem actualRankTwo_or_exactLowerOrdinaryLayerMinor
       · exact Or.inr (P.exactLayerData (2 : Fin 3) (by
           simpa [j, B, hrow] using h2))
 
+
+/-! ## Detailed mixed-opening frontier -/
+
+/-- Source-honest refinement of the layer-only first-break branch.
+
+Unlike `ExactOrdinaryLayerMinorAtFirstBreak`, this packet retains the exact
+reason the first break was layer-only: the kernel diagonal is still zero on
+that layer while one mixed kernel entry is nonzero. -/
+structure ExactMixedOrdinaryLayerAtFirstBreak
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  layer : P.ExactOrdinaryLayerMinorAtFirstBreak
+  kernelDiagonal_eq_zero :
+    HC4.Polynomial.hessian
+      (HC4.Polynomial.initialForm
+        (fun i => (ordinaryTopNatWeight i : ℤ))
+        (layer.sourceDegree : ℤ)
+        T.topKernelReesSource)
+      kernelCoordinate kernelCoordinate = 0
+  mixed_ne_zero :
+    HC4.Polynomial.hessian
+      (HC4.Polynomial.initialForm
+        (fun i => (ordinaryTopNatWeight i : ℤ))
+        (layer.sourceDegree : ℤ)
+        T.topKernelReesSource)
+      layer.index kernelCoordinate ≠ 0
+
+/-- **Detailed top-kernel first-break source lift.**
+
+At the first opening of the kernel row, either the kernel diagonal itself
+opens.  Then one nonzero active special-fibre diagonal gives a nonzero
+whole-family principal minor at exactly that order, which lifts to an actual
+rank-two chart on the represented source.
+
+Or the kernel diagonal is still zero.  Then the first opening is genuinely
+mixed, and the retained exact lower ordinary source layer satisfies
+`H_kk = 0` but `H_ik != 0` for one transverse index `i`.
+
+This keeps precisely the information needed by the mixed-layer
+direction-lock/staircase algebra. -/
+theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented) ∨
+      Nonempty P.ExactMixedOrdinaryLayerAtFirstBreak := by
+  let B := kernelLastFamilyHessianFourBlock
+    T.topKernelReverseReesFamily kernelCoordinate
+  let hrow := T.topKernelLastBlock_kernelRow_ne_zero kernelCoordinate
+  let j := firstFourBlockKernelRowBreakOrder B hrow
+
+  have hzero :=
+    T.topKernelLastBlock_kernelRow_coeff_zero
+      kernelCoordinate P.topFace_kernel
+  have hjpos : 0 < j := by
+    dsimp [j, B, hrow]
+    exact firstFourBlockKernelRowBreakOrder_pos
+      (kernelLastFamilyHessianFourBlock
+        T.topKernelReverseReesFamily kernelCoordinate)
+      (T.topKernelLastBlock_kernelRow_ne_zero kernelCoordinate)
+      hzero.1 hzero.2.1 hzero.2.2.1 hzero.2.2.2
+  have hlower :
+      ∀ n : ℕ, n < j →
+        B.q.coeff n = 0 ∧ B.s.coeff n = 0 ∧
+          B.y.coeff n = 0 ∧ B.z.coeff n = 0 := by
+    intro n hn
+    dsimp [j] at hn
+    exact firstFourBlockKernelRowBreakOrder_lower_zero B hrow hn
+  have hqLower : ∀ n : ℕ, n < j → B.q.coeff n = 0 :=
+    fun n hn => (hlower n hn).1
+  have hsLower : ∀ n : ℕ, n < j → B.s.coeff n = 0 :=
+    fun n hn => (hlower n hn).2.1
+  have hyLower : ∀ n : ℕ, n < j → B.y.coeff n = 0 :=
+    fun n hn => (hlower n hn).2.2.1
+  have hzLower : ∀ n : ℕ, n < j → B.z.coeff n = 0 :=
+    fun n hn => (hlower n hn).2.2.2
+  have hbreak : fourBlockKernelRowBreakAt B j := by
+    dsimp [j]
+    exact firstFourBlockKernelRowBreakOrder_spec B hrow
+
+  by_cases hzj : B.z.coeff j = 0
+  · have hmixed :
+        B.q.coeff j ≠ 0 ∨ B.s.coeff j ≠ 0 ∨ B.y.coeff j ≠ 0 := by
+      rcases hbreak with hq | hs | hy | hz
+      · exact Or.inl hq
+      · exact Or.inr (Or.inl hs)
+      · exact Or.inr (Or.inr hy)
+      · exact (hz hzj).elim
+
+    rcases hmixed with hq | hs | hy
+    · have hminor :
+          HC4.Polynomial.hessianPrincipalMinor
+            (familyParameterLayer T.topKernelReverseReesFamily j)
+            (kernelLastPerm kernelCoordinate 0) kernelCoordinate ≠ 0 := by
+        rw [← P.layerMinor0_eq j]
+        rw [hzj]
+        simpa using neg_ne_zero.mpr (mul_ne_zero hq hq)
+      rcases P.exactLayerData (0 : Fin 3) hminor with ⟨L⟩
+      have horder : L.order = j := by
+        simpa [j, B, hrow] using L.order_is_firstBreak
+      have hdiag :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            kernelCoordinate kernelCoordinate = 0 := by
+        have hz :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              kernelCoordinate kernelCoordinate).coeff L.order = 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hzj
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hz
+        exact hz
+      have hmix :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            L.index kernelCoordinate ≠ 0 := by
+        have hq' :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              (kernelLastPerm kernelCoordinate 0)
+              kernelCoordinate).coeff L.order ≠ 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hq
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hq'
+        simpa using hq'
+      exact Or.inr ⟨{
+        layer := L
+        kernelDiagonal_eq_zero := hdiag
+        mixed_ne_zero := hmix
+      }⟩
+
+    · have hminor :
+          HC4.Polynomial.hessianPrincipalMinor
+            (familyParameterLayer T.topKernelReverseReesFamily j)
+            (kernelLastPerm kernelCoordinate 1) kernelCoordinate ≠ 0 := by
+        rw [← P.layerMinor1_eq j]
+        rw [hzj]
+        simpa using neg_ne_zero.mpr (mul_ne_zero hs hs)
+      rcases P.exactLayerData (1 : Fin 3) hminor with ⟨L⟩
+      have horder : L.order = j := by
+        simpa [j, B, hrow] using L.order_is_firstBreak
+      have hdiag :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            kernelCoordinate kernelCoordinate = 0 := by
+        have hz :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              kernelCoordinate kernelCoordinate).coeff L.order = 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hzj
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hz
+        exact hz
+      have hmix :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            L.index kernelCoordinate ≠ 0 := by
+        have hs' :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              (kernelLastPerm kernelCoordinate 1)
+              kernelCoordinate).coeff L.order ≠ 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hs
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hs'
+        simpa using hs'
+      exact Or.inr ⟨{
+        layer := L
+        kernelDiagonal_eq_zero := hdiag
+        mixed_ne_zero := hmix
+      }⟩
+
+    · have hminor :
+          HC4.Polynomial.hessianPrincipalMinor
+            (familyParameterLayer T.topKernelReverseReesFamily j)
+            (kernelLastPerm kernelCoordinate 2) kernelCoordinate ≠ 0 := by
+        rw [← P.layerMinor2_eq j]
+        rw [hzj]
+        simpa using neg_ne_zero.mpr (mul_ne_zero hy hy)
+      rcases P.exactLayerData (2 : Fin 3) hminor with ⟨L⟩
+      have horder : L.order = j := by
+        simpa [j, B, hrow] using L.order_is_firstBreak
+      have hdiag :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            kernelCoordinate kernelCoordinate = 0 := by
+        have hz :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              kernelCoordinate kernelCoordinate).coeff L.order = 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hzj
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hz
+        exact hz
+      have hmix :
+          HC4.Polynomial.hessian
+            (HC4.Polynomial.initialForm
+              (fun i => (ordinaryTopNatWeight i : ℤ))
+              (L.sourceDegree : ℤ)
+              T.topKernelReesSource)
+            L.index kernelCoordinate ≠ 0 := by
+        have hy' :
+            (parameterFirstHessian T.topKernelReverseReesFamily
+              (kernelLastPerm kernelCoordinate 2)
+              kernelCoordinate).coeff L.order ≠ 0 := by
+          rw [horder]
+          simpa [B, kernelLastFamilyHessianFourBlock,
+            GeneralFourBlock.ofSymmetricMatrix,
+            kernelLastParameterFirstHessian] using hy
+        rw [parameterFirstHessian_coeff, L.exactLayer] at hy'
+        simpa using hy'
+      exact Or.inr ⟨{
+        layer := L
+        kernelDiagonal_eq_zero := hdiag
+        mixed_ne_zero := hmix
+      }⟩
+
+  · have hqSq : (B.q * B.q).coeff j = 0 :=
+      coeff_kernelPair_eq_zero_through B.q B.q hjpos hqLower hqLower j le_rfl
+    have hsSq : (B.s * B.s).coeff j = 0 :=
+      coeff_kernelPair_eq_zero_through B.s B.s hjpos hsLower hsLower j le_rfl
+    have hySq : (B.y * B.y).coeff j = 0 :=
+      coeff_kernelPair_eq_zero_through B.y B.y hjpos hyLower hyLower j le_rfl
+    have haz : (B.a * B.z).coeff j = B.a.coeff 0 * B.z.coeff j :=
+      coeff_mul_eq_constant_mul_of_right_vanishes_below B.a B.z hzLower
+    have hdz : (B.d * B.z).coeff j = B.d.coeff 0 * B.z.coeff j :=
+      coeff_mul_eq_constant_mul_of_right_vanishes_below B.d B.z hzLower
+    have hxz : (B.x * B.z).coeff j = B.x.coeff 0 * B.z.coeff j :=
+      coeff_mul_eq_constant_mul_of_right_vanishes_below B.x B.z hzLower
+    have hactive :=
+      P.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+        T.topFace.degree_ge_three
+    change B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 at hactive
+    rcases hactive with ha | hd | hx
+    · have hfamily :
+          (B.a * B.z - B.q * B.q).coeff j ≠ 0 := by
+        rw [Polynomial.coeff_sub, haz, hqSq]
+        simpa using mul_ne_zero ha hzj
+      exact Or.inl ⟨P.actualRankTwoChart0
+        (P.sourceMinor0_of_familyMinor (j := j) hfamily)⟩
+    · have hfamily :
+          (B.d * B.z - B.s * B.s).coeff j ≠ 0 := by
+        rw [Polynomial.coeff_sub, hdz, hsSq]
+        simpa using mul_ne_zero hd hzj
+      exact Or.inl ⟨P.actualRankTwoChart1
+        (P.sourceMinor1_of_familyMinor (j := j) hfamily)⟩
+    · have hfamily :
+          (B.x * B.z - B.y * B.y).coeff j ≠ 0 := by
+        rw [Polynomial.coeff_sub, hxz, hySq]
+        simpa using mul_ne_zero hx hzj
+      exact Or.inl ⟨P.actualRankTwoChart2
+        (P.sourceMinor2_of_familyMinor (j := j) hfamily)⟩
+
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
