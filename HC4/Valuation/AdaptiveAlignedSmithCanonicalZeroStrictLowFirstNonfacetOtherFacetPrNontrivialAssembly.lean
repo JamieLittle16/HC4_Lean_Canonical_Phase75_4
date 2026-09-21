@@ -21,6 +21,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOthe
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactQuadraticRees
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightClosure
@@ -87,7 +88,7 @@ theorem QsOtherFacetPlanarHighestPairSlicePackage.pr_nontrivial_after_left_closu
       rcases S.pr_leftV_contactFrontier
           R hV Q hthree houtThree hnontrivial with ⟨F⟩
       rcases F.centralRankTwoGeometry hthree houtThree with ⟨G⟩
-      exact Or.inr (Or.inr ⟨G.actualRankTwoHessianChart⟩)
+      exact (G.centralDeficit_impossible hthree houtThree).elim
     · rcases hright with ⟨Q⟩
       exact Or.inr (Or.inl <|
         S.pr_rightV_contactFrontier
