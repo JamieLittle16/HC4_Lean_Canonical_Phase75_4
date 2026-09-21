@@ -317,6 +317,7 @@ import HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation
 -- Retain starting rank-three provenance through the final zero-strict-low split.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress
 
 -- Iterate honest top-face boundary transitions through balance-free next-facet rays.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay
