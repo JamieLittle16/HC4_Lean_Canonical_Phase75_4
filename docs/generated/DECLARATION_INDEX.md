@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9501**.
+Distinct declaration spellings indexed: **9507**.
 
 ## Repeated declaration spellings
 
@@ -9401,6 +9401,12 @@ Distinct declaration spellings indexed: **9501**.
 - `terminal_transverseSecondDerivative_support_degree_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
 - `therefore` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `thirdZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+- `threePivot0BinarySchurSeries` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot0BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot1BinarySchurSeries` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot1BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot2BinarySchurSeries` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot2BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `threeSchurBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurBlock_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurBlock_constantMinor_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
