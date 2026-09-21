@@ -205,7 +205,6 @@ theorem GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
       rcases mul_eq_zero.mp hs2 with hs | hs <;> exact hs
     simp [GeneralFourBlock.determinantCore, hb, hd, hr, hs]
 
-set_option maxHeartbeats 2000000 in
 /-- A nondegenerate symmetric four-variable Hessian with one vanishing
 off-diagonal entry has a nonzero principal \`2 x 2\` minor.
 
@@ -273,29 +272,54 @@ theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
 
   have h01 : H.a * H.d - H.b * H.b = 0 := by
     have h := hminor (0 : Fin 4) 1 (by decide)
+    change
+      M (rho 0) (rho 0) * M (rho 1) (rho 1) -
+        M (rho 0) (rho 1) * M (rho 1) (rho 0) = 0 at h
     rw [hsym (rho 1) (rho 0)] at h
-    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
+    change
+      M (rho 0) (rho 0) * M (rho 1) (rho 1) -
+        M (rho 0) (rho 1) * M (rho 0) (rho 1) = 0
+    exact h
   have h02 : H.a * H.x - H.p * H.p = 0 := by
     have h := hminor (0 : Fin 4) 2 (by decide)
+    change
+      M (rho 0) (rho 0) * M (rho 2) (rho 2) -
+        M (rho 0) (rho 2) * M (rho 2) (rho 0) = 0 at h
     rw [hsym (rho 2) (rho 0)] at h
-    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
+    change
+      M (rho 0) (rho 0) * M (rho 2) (rho 2) -
+        M (rho 0) (rho 2) * M (rho 0) (rho 2) = 0
+    exact h
   have h03 : H.a * H.z - H.q * H.q = 0 := by
     have h := hminor (0 : Fin 4) 3 (by decide)
+    change
+      M (rho 0) (rho 0) * M (rho 3) (rho 3) -
+        M (rho 0) (rho 3) * M (rho 3) (rho 0) = 0 at h
     rw [hsym (rho 3) (rho 0)] at h
-    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
+    change
+      M (rho 0) (rho 0) * M (rho 3) (rho 3) -
+        M (rho 0) (rho 3) * M (rho 0) (rho 3) = 0
+    exact h
   have h12 : H.d * H.x - H.r * H.r = 0 := by
     have h := hminor (1 : Fin 4) 2 (by decide)
+    change
+      M (rho 1) (rho 1) * M (rho 2) (rho 2) -
+        M (rho 1) (rho 2) * M (rho 2) (rho 1) = 0 at h
     rw [hsym (rho 2) (rho 1)] at h
-    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
+    change
+      M (rho 1) (rho 1) * M (rho 2) (rho 2) -
+        M (rho 1) (rho 2) * M (rho 1) (rho 2) = 0
+    exact h
   have h13 : H.d * H.z - H.s * H.s = 0 := by
     have h := hminor (1 : Fin 4) 3 (by decide)
+    change
+      M (rho 1) (rho 1) * M (rho 3) (rho 3) -
+        M (rho 1) (rho 3) * M (rho 3) (rho 1) = 0 at h
     rw [hsym (rho 3) (rho 1)] at h
-    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
+    change
+      M (rho 1) (rho 1) * M (rho 3) (rho 3) -
+        M (rho 1) (rho 3) * M (rho 1) (rho 3) = 0
+    exact h
 
   have hdetH :
       H.determinantCore = HC4.Polynomial.hessianDeterminant F := by
