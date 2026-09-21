@@ -72,7 +72,9 @@ private theorem firstBreak_kernelRow_lower_zero
   have hn' :
       n <
         firstFourBlockKernelRowBreakOrder B hrow := by
-    simpa [B, hrow] using (show n < M.mixed.layer.order from hn)
+    have hn0 : n < M.mixed.layer.order := hn
+    rw [M.mixed.layer.order_is_firstBreak] at hn0
+    simpa [B, hrow] using hn0
   exact firstFourBlockKernelRowBreakOrder_lower_zero B hrow hn'
 
 private theorem firstBreak_rawKernelDiagonal_eq_zero
@@ -215,11 +217,11 @@ theorem projectedRankTwo_or_tangentAtFirstBreak
         M.threeSchurCoefficientMatrixAtFirstBreak S 1 2 = 0
     · exact Or.inr ⟨h0, h1, hdiag⟩
     · left
-      refine ⟨0, h1, ?_⟩
+      refine ⟨1, h1, ?_⟩
       have hs :
-          M.threeSchurCoefficientMatrixAtFirstBreak S 2 0 =
-            M.threeSchurCoefficientMatrixAtFirstBreak S 0 2 :=
-        hsymm 2 0
+          M.threeSchurCoefficientMatrixAtFirstBreak S 2 1 =
+            M.threeSchurCoefficientMatrixAtFirstBreak S 1 2 :=
+        hsymm 2 1
       rw [hdiag, hs]
       simp only [mul_zero, zero_mul, zero_sub]
       exact neg_ne_zero.mpr (mul_ne_zero h1 h1)
