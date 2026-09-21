@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9477**.
+Distinct declaration spellings indexed: **9478**.
 
 ## Repeated declaration spellings
 
@@ -6128,6 +6128,7 @@ Distinct declaration spellings indexed: **9477**.
 - `kernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `kernelLastFamilyHessianFourBlock_determinantCore_eq_X_pow` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock_determinantCore_eq_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastFamilyHessianFourBlock_matrix` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `kernelLastParameterFirstHessian` — `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
