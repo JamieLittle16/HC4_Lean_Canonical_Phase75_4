@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo
 import HC4.Valuation.WeightedHessianPrincipalMinorInitial
 import HC4.Polynomial.MonomialHessianPrincipalMinor
 import Mathlib.Tactic
@@ -91,7 +92,7 @@ theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor
   have hminor3 :
       HC4.Polynomial.hessianPrincipalMinor D3.face i j ≠ 0 := by
     rw [hmono]
-    exact hessianPrincipalMinor_monomial_ne_zero_of_two_positive
+    exact HC4.Polynomial.hessianPrincipalMinor_monomial_ne_zero_of_two_positive
       E.coeff_ne_zero hij hi hj
 
   have hminor2 :
