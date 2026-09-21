@@ -31,7 +31,7 @@ theorem nonlinearConfined_impossible_of_no_globalProgress
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state)
-    (facet : ToricFacet)
+    (facet : HC4.Toric.ToricFacet)
     (hconfined :
       ∀ d ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support,
