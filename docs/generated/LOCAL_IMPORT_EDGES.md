@@ -636,6 +636,8 @@ human architecture guide.
   - `HC4.Newton.RankOneSingularSchurContinuation`
 - `HC4.Newton.RankOneSingularSchurContinuation`
   - `HC4.Newton.FirstSchurLayerLinearization`
+- `HC4.Newton.RankOneThreeSchur`
+  - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Newton.RankTwoFourBlockSchur`
   - `HC4.Newton.FirstSchurDeterminantOrder`
 - `HC4.Newton.RankTwoHomogeneousPacketClassification`
@@ -2589,6 +2591,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
+  - `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
