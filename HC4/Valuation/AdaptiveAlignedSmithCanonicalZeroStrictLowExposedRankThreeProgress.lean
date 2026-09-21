@@ -344,7 +344,7 @@ theorem exposedBoundary_actualRankTwo_or_pureAxis
       intro i hia
       by_contra hne
       have hi : 0 < d i := Nat.pos_of_ne_zero hne
-      exact htwo ⟨a, i, hia, ha, hi⟩
+      exact htwo ⟨a, i, hia.symm, ha, hi⟩
     right
     rcases hpos with h0 | h1 | h2 | h3
     · exact ⟨{
