@@ -121,6 +121,74 @@ theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor
 
   exact ⟨i, j, hij, hminorF⟩
 
+/-- Two positive coordinates in the canonical exposed monomial are already
+enough to force a nonzero principal Hessian minor on the original singular
+source.  This is the rank-three lift above with the toric stratum information
+removed. -/
+theorem exposedSingularNonlinearBoundaryVertex_twoPositive_sourcePrincipalMinor
+    {F : MvPolynomial (Fin 4) K}
+    (hF : F ≠ 0)
+    (hzero : HC4.Polynomial.hessianDeterminant F = 0)
+    (hnonlinear :
+      ∀ d ∈ F.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d)
+    (i j : Fin 4)
+    (hij : i ≠ j)
+    (hi :
+      0 < (exposedSingularNonlinearBoundaryVertex
+        F hF hzero hnonlinear).exponent i)
+    (hj :
+      0 < (exposedSingularNonlinearBoundaryVertex
+        F hF hzero hnonlinear).exponent j) :
+    HC4.Polynomial.hessianPrincipalMinor F i j ≠ 0 := by
+  let E :=
+    exposedSingularNonlinearBoundaryVertex F hF hzero hnonlinear
+  let D0 := coordinateMaxInitialData F hF (0 : Fin 4)
+  have h0zero : HC4.Polynomial.hessianDeterminant D0.face = 0 :=
+    D0.hessian_zero hzero
+  let D1 := coordinateMaxInitialData D0.face D0.face_ne_zero (1 : Fin 4)
+  have h1zero : HC4.Polynomial.hessianDeterminant D1.face = 0 :=
+    D1.hessian_zero h0zero
+  let D2 := coordinateMaxInitialData D1.face D1.face_ne_zero (2 : Fin 4)
+  have h2zero : HC4.Polynomial.hessianDeterminant D2.face = 0 :=
+    D2.hessian_zero h1zero
+  let D3 := coordinateMaxInitialData D2.face D2.face_ne_zero (3 : Fin 4)
+
+  have hiE : 0 < E.exponent i := by simpa [E] using hi
+  have hjE : 0 < E.exponent j := by simpa [E] using hj
+
+  have hmono :
+      D3.face = MvPolynomial.monomial E.exponent E.coeff := by
+    rw [D3.face_eq]
+    exact E.exposed
+
+  have hminor3 :
+      HC4.Polynomial.hessianPrincipalMinor D3.face i j ≠ 0 := by
+    rw [hmono]
+    exact HC4.Polynomial.hessianPrincipalMinor_monomial_ne_zero_of_two_positive
+      E.coeff_ne_zero hij hiE hjE
+
+  have hminor2 :
+      HC4.Polynomial.hessianPrincipalMinor D2.face i j ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      D3.weight_bound i j
+    simpa [D3.face_eq] using hminor3
+
+  have hminor1 :
+      HC4.Polynomial.hessianPrincipalMinor D1.face i j ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      D2.weight_bound i j
+    simpa [D2.face_eq] using hminor2
+
+  have hminor0 :
+      HC4.Polynomial.hessianPrincipalMinor D0.face i j ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      D1.weight_bound i j
+    simpa [D1.face_eq] using hminor1
+
+  apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+    D0.weight_bound i j
+  simpa [D0.face_eq] using hminor0
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- A rank-three canonical A19 boundary exponent already supplies an actual
@@ -175,6 +243,153 @@ theorem exposedRankThree_actualRankTwoHessianChart
 
   exact
     ⟨actualRankTwoHessianChart_of_specialFiber_minor hij hminorSource⟩
+
+/-- Literal pure-axis form of the canonical exposed nonlinear boundary
+monomial. -/
+structure ExposedPureAxisResidual
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) : Type (u + 1) where
+  axis : Fin 4
+  axis_pos : 0 < T.exposedSingularBoundaryVertex.exponent axis
+  other_zero :
+    ∀ i : Fin 4, i ≠ axis →
+      T.exposedSingularBoundaryVertex.exponent i = 0
+
+/-- Any two positive coordinates of the canonical exposed boundary monomial
+give an actual rank-two Hessian chart on the represented source. -/
+theorem exposedTwoPositive_actualRankTwoHessianChart
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (i j : Fin 4)
+    (hij : i ≠ j)
+    (hi : 0 < T.exposedSingularBoundaryVertex.exponent i)
+    (hj : 0 < T.exposedSingularBoundaryVertex.exponent j) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+        T.terminal.blocker.presented) := by
+  have hi' :
+      0 < (exposedSingularNonlinearBoundaryVertex
+        T.topFace.face
+        T.topFace.face_ne_zero
+        T.topFace.hessian_zero
+        T.topFace.face_support_degree_ge_three).exponent i := by
+    simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.exposedSingularBoundaryVertex]
+      using hi
+  have hj' :
+      0 < (exposedSingularNonlinearBoundaryVertex
+        T.topFace.face
+        T.topFace.face_ne_zero
+        T.topFace.hessian_zero
+        T.topFace.face_support_degree_ge_three).exponent j := by
+    simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.exposedSingularBoundaryVertex]
+      using hj
+  have hminorTop :=
+    exposedSingularNonlinearBoundaryVertex_twoPositive_sourcePrincipalMinor
+      T.topFace.face_ne_zero
+      T.topFace.hessian_zero
+      T.topFace.face_support_degree_ge_three
+      i j hij hi' hj'
+
+  let source :=
+    polynomialFamilySpecialFiber T.terminal.blocker.presented.family
+  have hweight :
+      HC4.Polynomial.IsWeightLE
+        (fun _ : Fin 4 => (1 : ℤ))
+        (T.topFace.degree : ℤ)
+        source := by
+    intro d hd
+    change
+      Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d ≤
+        (T.topFace.degree : ℤ)
+    rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
+    exact_mod_cast T.topFace.maximal d hd
+  have hminorSource :
+      HC4.Polynomial.hessianPrincipalMinor source i j ≠ 0 := by
+    apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
+      hweight i j
+    simpa [source, T.topFace.face_eq] using hminorTop
+  exact
+    ⟨actualRankTwoHessianChart_of_specialFiber_minor hij hminorSource⟩
+
+/-- **Canonical boundary rank reduction.**  Without any toric case split, the
+actual exposed nonlinear boundary monomial either already gives represented
+rank-two Hessian geometry or is literally supported on one coordinate axis. -/
+theorem exposedBoundary_actualRankTwo_or_pureAxis
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    Nonempty
+        (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+          T.terminal.blocker.presented) ∨
+      Nonempty T.ExposedPureAxisResidual := by
+  classical
+  let d := T.exposedSingularBoundaryVertex.exponent
+  by_cases htwo :
+      ∃ i j : Fin 4, i ≠ j ∧ 0 < d i ∧ 0 < d j
+  · rcases htwo with ⟨i, j, hij, hi, hj⟩
+    left
+    exact T.exposedTwoPositive_actualRankTwoHessianChart
+      i j hij (by simpa [d] using hi) (by simpa [d] using hj)
+  · have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+      simpa [d] using T.exposedBoundary_exponent_degree_ge_three
+    have hpos :
+        0 < d (0 : Fin 4) ∨ 0 < d (1 : Fin 4) ∨
+          0 < d (2 : Fin 4) ∨ 0 < d (3 : Fin 4) := by
+      unfold HC4.Polynomial.ordinaryDegree4 at hdeg
+      omega
+    have pureAt (a : Fin 4) (ha : 0 < d a) :
+        ∀ i : Fin 4, i ≠ a → d i = 0 := by
+      intro i hia
+      by_contra hne
+      have hi : 0 < d i := Nat.pos_of_ne_zero hne
+      exact htwo ⟨a, i, hia, ha, hi⟩
+    right
+    rcases hpos with h0 | h1 | h2 | h3
+    · exact ⟨{
+        axis := (0 : Fin 4)
+        axis_pos := by simpa [d] using h0
+        other_zero := by
+          intro i hi
+          simpa [d] using pureAt (0 : Fin 4) h0 i hi
+      }⟩
+    · exact ⟨{
+        axis := (1 : Fin 4)
+        axis_pos := by simpa [d] using h1
+        other_zero := by
+          intro i hi
+          simpa [d] using pureAt (1 : Fin 4) h1 i hi
+      }⟩
+    · exact ⟨{
+        axis := (2 : Fin 4)
+        axis_pos := by simpa [d] using h2
+        other_zero := by
+          intro i hi
+          simpa [d] using pureAt (2 : Fin 4) h2 i hi
+      }⟩
+    · exact ⟨{
+        axis := (3 : Fin 4)
+        axis_pos := by simpa [d] using h3
+        other_zero := by
+          intro i hi
+          simpa [d] using pureAt (3 : Fin 4) h3 i hi
+      }⟩
+
+/-- Strongest current local/global reduction: the honest strict-low terminal
+either has a geometry-backed global rank-three successor or its canonical
+exposed nonlinear boundary monomial is a literal pure-axis power. -/
+theorem globalRankThreeProgress_or_pureAxisResidual
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    (∃ target : ScaleAwareAdaptiveGeometricRestartState (K := K),
+        AdaptiveAlignedSmithCanonicalGlobalMacroProgress target state) ∨
+      Nonempty T.ExposedPureAxisResidual := by
+  rcases T.exposedBoundary_actualRankTwo_or_pureAxis with hactual | hpure
+  · rcases hactual with ⟨A⟩
+    exact Or.inl (T.exists_globalRankThreeProgress_of_actualRankTwo A)
+  · exact Or.inr hpure
 
 /-- The final residual after consuming the canonical exposed rank-three
 boundary geometry. -/
