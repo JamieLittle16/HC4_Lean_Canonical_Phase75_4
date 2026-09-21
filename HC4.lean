@@ -309,6 +309,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction
 -- Sound public splice: unrestricted HC4 now targets the geometry-rich
 -- zero-clock singular strict-low carrier directly, without repair terminality.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness
 
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
