@@ -4109,6 +4109,9 @@ human architecture guide.
   - `HC4.Newton.RankOneThreeSchur`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+  - `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`

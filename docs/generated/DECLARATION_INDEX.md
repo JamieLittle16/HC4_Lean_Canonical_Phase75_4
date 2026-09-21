@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9491**.
+Distinct declaration spellings indexed: **9498**.
 
 ## Repeated declaration spellings
 
@@ -3167,6 +3167,12 @@ Distinct declaration spellings indexed: **9491**.
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopKernelThreeSchurClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `TopKernelThreeSchurClockData.firstThreeSchurOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- `TopKernelThreeSchurClockData.firstThreeSchurOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- `TopKernelThreeSchurClockData.firstThreeSchurTail_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- `TopKernelThreeSchurClockData.toExactZeroThreeSchurClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- `TopKernelThreeSchurClockData.triple_firstThreeSchurOrder_le_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- `TopKernelThreeSchurClockData.triple_firstThreeSchurOrder_le_fourDegree_sub_eight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
 - `ToricFacet` — `inductive` in `HC4.Toric.Facets`
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
@@ -4886,6 +4892,7 @@ Distinct declaration spellings indexed: **9491**.
 - `exists_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
 - `exists_eval_ne_zero_of_ne_zero_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `exists_exactRankOneSchurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`
+- `exists_exactZeroThreeSchurClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
 - `exists_exponent_of_coefficientProfile_mem` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
 - `exists_exposed_nonlinear_balanced_monomial` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
