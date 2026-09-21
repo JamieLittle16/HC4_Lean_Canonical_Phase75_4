@@ -1639,9 +1639,9 @@ Distinct declaration spellings indexed: **9381**.
 - `EndpointResidualNormalForm` — `structure` in `HC4.Newton.MixedDegreeAxisCollision`
 - `EndpointResidualNormalForm.exactRecenteredLayer` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `Equivalent` — `def` in `HC4.Valuation.ScaledDefect`
+- `ExactCurvedOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactNonlinearOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
-- `ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactRankOneSchurClockAt` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ExactScalarSchurThreeClock` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
@@ -3206,7 +3206,7 @@ Distinct declaration spellings indexed: **9381**.
 - `actualRankTwoGlobalProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
 - `actualRankTwoHessianChart_of_specialFiber_minor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
-- `actualRankTwo_or_exactLowerNonlinearLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
+- `actualRankTwo_or_exactLowerCurvedLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `actualRankTwo_or_exactLowerOrdinaryLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `actualRankTwo_or_exactSourceWeightLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `actualRankTwo_or_layerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
