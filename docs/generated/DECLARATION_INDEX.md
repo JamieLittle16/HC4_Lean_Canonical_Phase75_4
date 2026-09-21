@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9223**.
+Distinct declaration spellings indexed: **9225**.
 
 ## Repeated declaration spellings
 
@@ -2141,6 +2141,7 @@ Distinct declaration spellings indexed: **9223**.
 - `MvRankThreeOnFacet` — `def` in `HC4.Newton.MvBoundaryStrata`
 - `MvSupportOnFacet` — `def` in `HC4.Polynomial.FourExponent`
 - `MvSupportOnFacet.initialForm` — `theorem` in `HC4.Polynomial.FourExponent`
+- `NoGlobalProgressResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNoGlobalProgressReduction`
 - `NoScaleAwareAdaptiveCollisionState` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalAssemblySoundness`
 - `NonlinearDegreeBound` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `OnFacet` — `def` in `HC4.Toric.Facets`
@@ -6386,6 +6387,7 @@ Distinct declaration spellings indexed: **9223**.
 - `noCounterexample_of_JC2_completeCanonicalReduction` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_losslessCanonicalReduction` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `noCounterexample_of_currentCanonicalEntry` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
+- `noGlobalProgressResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNoGlobalProgressReduction`
 - `noPositiveParameterLayer_or_first` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `noStrictInteriorSupport_of_stationaryResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `noWallDefectDrop` — `def` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedDefectDrop`
