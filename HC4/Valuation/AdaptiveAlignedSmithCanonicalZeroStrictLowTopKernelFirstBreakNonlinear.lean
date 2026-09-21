@@ -206,9 +206,8 @@ noncomputable def ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degr
         (fourOrdinaryDegreeComponent T.topKernelReesSource 2)
         L.index kernelCoordinate ≠ 0 := by
     have h := L.minor_ne_zero
-    subst L.sourceDegree
     simpa [fourOrdinaryDegreeComponent, fourOrdinaryIntegerWeight,
-      ordinaryTopNatWeight] using h
+      ordinaryTopNatWeight, hdeg] using h
   have hsource :=
     principalMinor_source_ne_zero_of_degreeTwoComponent
       T.topKernelReesSource L.index kernelCoordinate hlayer
