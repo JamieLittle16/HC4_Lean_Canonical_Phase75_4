@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9266**.
+Distinct declaration spellings indexed: **9271**.
 
 ## Repeated declaration spellings
 
@@ -2136,6 +2136,7 @@ Distinct declaration spellings indexed: **9266**.
 - `LiteralConstantSpecialSourceKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
 - `LiteralConstantSpecialSourceKernelData.exists_ramifiedSpend_of_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyClosingCarrierExit`
 - `LongitudinalOneData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
+- `LosslessCodimensionTwoResidual` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `LosslessFinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `LosslessFinalGeometryFrontier.toFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `LosslessProgressResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction`
@@ -4929,11 +4930,13 @@ Distinct declaration spellings indexed: **9266**.
 - `exposedCrossRoofData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofSourceData`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofSourceData`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofSourceData`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofSourceData`
 - `exposedFace_self` — `theorem` in `HC4.Newton.ExposedFaces`
 - `exposedNonlinearBalancedCore_nonempty` — `theorem` in `HC4.Newton.FirstNonfacetExposedBoundaryVertex`
+- `exposedRankThree_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `exposedSingularBoundaryVertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
 - `exposedSingularNonlinearBoundaryVertex` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `exposedSingularNonlinearBoundaryVertex_carrier_coordinate_eq` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOutcome` — `def` in `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
+- `exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `exposedSuperfaceCandidates` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposedSuperfaceSlope` — `def` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
@@ -5484,6 +5487,7 @@ Distinct declaration spellings indexed: **9266**.
 - `geometricOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingRigidRankTwoGeometry`
 - `globalMacroProgress_of_rankTwoTarget` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedSurvivingFirstContactClosure`
 - `globalRamifiedStrictMacro_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
+- `globalRankThreeProgress_or_codimensionTwoResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `globalRankThreeProgress_or_losslessResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction`
 - `globalRestartClassifier_reaches_terminal` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_defect_lt` — `theorem` in `HC4.Newton.GlobalRestartClassification`
@@ -7749,6 +7753,7 @@ Distinct declaration spellings indexed: **9266**.
 - `rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `rankThree_eta_eq_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
+- `rankThree_exists_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
 - `rankThree_logarithmicCoreFromMoments_eq` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
