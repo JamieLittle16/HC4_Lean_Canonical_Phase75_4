@@ -130,6 +130,50 @@ theorem matrix_eq_firstFactor_smul_tail
   rw [S.entry_eq_firstFactor_mul_tail h i j]
   simp
 
+/-- The coefficient at physical order `firstPositiveEntryOrder + r` is
+exactly coefficient `r` of the normalised tail entry. -/
+theorem entry_coeff_first_add_eq_tail
+    (S : ZeroThreeSchurSeries R)
+    (h : S.HasPositiveEntryLayer)
+    (i j : Fin 3)
+    (r : ℕ) :
+    (S.matrix i j).coeff (S.firstPositiveEntryOrder h + r) =
+      (S.tailMatrix h i j).coeff r := by
+  rw [S.entry_eq_firstFactor_mul_tail h i j]
+  rw [Polynomial.coeff_X_pow_mul']
+  simp
+
+/-- If one raw matrix entry first opens at a physical order `J` strictly
+after the common first 3x3 order `q`, its normalised tail entry first opens
+at the relative order `J-q`. -/
+theorem tailEntry_gap_and_open_at_sub
+    (S : ZeroThreeSchurSeries R)
+    (h : S.HasPositiveEntryLayer)
+    (i j : Fin 3)
+    {q J : ℕ}
+    (hfirst : S.firstPositiveEntryOrder h = q)
+    (hqJ : q < J)
+    (hgap : ∀ n : ℕ, n < J → (S.matrix i j).coeff n = 0)
+    (hopen : (S.matrix i j).coeff J ≠ 0) :
+    (∀ n : ℕ, n < J - q →
+      (S.tailMatrix h i j).coeff n = 0) ∧
+    (S.tailMatrix h i j).coeff (J - q) ≠ 0 := by
+  constructor
+  · intro n hn
+    have hphys : q + n < J := by omega
+    have ht := S.entry_coeff_first_add_eq_tail h i j n
+    rw [hfirst] at ht
+    rw [← ht]
+    exact hgap (q + n) hphys
+  · have hqle : q ≤ J := Nat.le_of_lt hqJ
+    have hadd : q + (J - q) = J := Nat.add_sub_of_le hqle
+    have ht := S.entry_coeff_first_add_eq_tail h i j (J - q)
+    rw [hfirst, hadd] at ht
+    intro hz
+    apply hopen
+    rw [ht]
+    exact hz
+
 /-- The determinant acquires exactly three copies of the common entry
 factor. -/
 theorem determinant_eq_firstFactor_cube_mul_tail
