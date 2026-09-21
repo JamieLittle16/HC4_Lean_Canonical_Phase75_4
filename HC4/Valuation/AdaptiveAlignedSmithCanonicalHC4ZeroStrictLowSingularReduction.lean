@@ -25,6 +25,8 @@ namespace HC4.Valuation
 
 noncomputable section
 
+open HC4.Newton
+
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
