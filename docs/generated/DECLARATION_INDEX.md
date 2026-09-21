@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9507**.
+Distinct declaration spellings indexed: **9512**.
 
 ## Repeated declaration spellings
 
@@ -1708,6 +1708,9 @@ Distinct declaration spellings indexed: **9507**.
 - `FinalSeamQuarticCoreCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
 - `FinalSeamQuarticEndpointMultiplicityData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `FinalSeamQuarticHomogeneousCoreData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
+- `FinalSeamQuarticHomogeneousCoreData.q2_hessianMatrix_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
+- `FinalSeamQuarticHomogeneousCoreData.q2_hessianMatrix_isUnit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
+- `FinalSeamQuarticHomogeneousCoreData.quadraticHessianMatrix_eq_core` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `FinalSeamQuarticMidpointData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamSimpleAxisPivot` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
@@ -5938,8 +5941,10 @@ Distinct declaration spellings indexed: **9507**.
 - `homogeneous_exactCollision_gradient_zero` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
 - `homogeneous_exactCollision_uniqueContributor_impossible` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
 - `homogeneous_exists_pderiv_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
+- `homogeneous_ge_three_hessian_eval_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `homogeneous_ge_three_polynomialFamilyHessianDefect_impossible` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
 - `homogeneous_ge_three_quadraticFamilyHessianMatrix_eq_zero` — `theorem` in `HC4.Valuation.CanonicalEntrySanity`
+- `homogeneous_ge_three_quadraticFamilyHessianMatrix_eq_zero_field` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `homogeneous_gradient_zero_at_origin` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
 - `homogeneous_hessian_mul_X` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyEulerRadialReduction`
 - `homogeneous_longitudinalCoefficient_coeff_unique` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
