@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9516**.
+Distinct declaration spellings indexed: **9518**.
 
 ## Repeated declaration spellings
 
@@ -1706,6 +1706,7 @@ Distinct declaration spellings indexed: **9516**.
 - `FinalSeamQuarticAxisGradientData` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `FinalSeamQuarticAxisPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `FinalSeamQuarticCoreCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
+- `FinalSeamQuarticCoreCollisionData.h4_hessian_column_zero_relation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticEuler`
 - `FinalSeamQuarticCoreCollisionData.q2_add_h4_gradient_eval_right_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
 - `FinalSeamQuarticEndpointMultiplicityData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `FinalSeamQuarticHomogeneousCoreData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
@@ -5950,6 +5951,7 @@ Distinct declaration spellings indexed: **9516**.
 - `homogeneous_ge_three_quadraticFamilyHessianMatrix_eq_zero_field` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `homogeneous_gradient_axis_eval_neg_eq_negOnePow_eval` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
 - `homogeneous_gradient_zero_at_origin` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
+- `homogeneous_hessian_eval_radial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticEuler`
 - `homogeneous_hessian_mul_X` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyEulerRadialReduction`
 - `homogeneous_longitudinalCoefficient_coeff_unique` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
 - `homogeneous_longitudinalCoefficient_eq_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
