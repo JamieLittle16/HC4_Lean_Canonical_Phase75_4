@@ -47,13 +47,13 @@ inductive NoGlobalProgressResidual
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) : Type (u + 1)
   | topBoundaryCodimensionTwo
-      (facet : ToricFacet)
+      (facet : HC4.Toric.ToricFacet)
       (facet_ne_qs : facet ≠ .qs)
       (rankThree :
         MvRankThreeOnFacet facet T.exposedSingularBoundaryVertex.exponent)
       (residual : Nonempty (T.TopBoundaryCodimensionTwoResidual facet))
   | lowerBoundaryTransition
-      (facet : ToricFacet)
+      (facet : HC4.Toric.ToricFacet)
       (facet_ne_qs : facet ≠ .qs)
       (rankThree :
         MvRankThreeOnFacet facet T.exposedSingularBoundaryVertex.exponent)
@@ -69,7 +69,7 @@ inductive NoGlobalProgressResidual
           T.exposedSingularBoundaryVertex.exponent)
       (geometry : T.ExposedCodimensionTwoResolvedRankTwoGeometry)
   | quadraticSquare
-      (facet : ToricFacet)
+      (facet : HC4.Toric.ToricFacet)
       (facet_ne_qs : facet ≠ .qs)
       (rankThree :
         MvRankThreeOnFacet facet T.exposedSingularBoundaryVertex.exponent)
