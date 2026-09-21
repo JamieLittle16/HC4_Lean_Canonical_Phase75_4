@@ -323,7 +323,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTw
 
 -- Consume represented-state rank-two charts as geometry-backed global progress.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress\nimport HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress
 
 -- At a genuine no-successor source, the strengthened square-free `.qs`
 -- boundary closure is now an immediate contradiction through retained
