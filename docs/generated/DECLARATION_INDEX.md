@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9264**.
+Distinct declaration spellings indexed: **9266**.
 
 ## Repeated declaration spellings
 
@@ -2138,6 +2138,7 @@ Distinct declaration spellings indexed: **9264**.
 - `LongitudinalOneData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
 - `LosslessFinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `LosslessFinalGeometryFrontier.toFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
+- `LosslessProgressResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction`
 - `LowDegreeTameAtFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `MaximalCommonParameterFamilyData` — `structure` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
 - `MixedDegreeSmithExponentOutcome` — `inductive` in `HC4.Newton.MixedDegreeFirstWallCompetition`
@@ -5483,6 +5484,7 @@ Distinct declaration spellings indexed: **9264**.
 - `geometricOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingRigidRankTwoGeometry`
 - `globalMacroProgress_of_rankTwoTarget` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedSurvivingFirstContactClosure`
 - `globalRamifiedStrictMacro_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
+- `globalRankThreeProgress_or_losslessResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction`
 - `globalRestartClassifier_reaches_terminal` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_defect_lt` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_positiveKernelDefectDrop` — `theorem` in `HC4.Newton.GlobalRestartClassification`
