@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit
 import HC4.Newton.MixedDegreeAxisCollision
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo
 import Mathlib.Tactic
 
 /-!
@@ -163,6 +164,157 @@ theorem hessian_longitudinal_constant_eq_zero_of_axisCollision
     hcRelation.symm.trans hgrad
   exact sub_eq_self.mp hsub
 
+
+/-- If a symmetric four-block has a zero \`(0,1)\` coupling and all five
+principal minors touching row \`0\` or row \`1\` vanish, then its full
+determinant vanishes.
+
+The proof is deliberately division-free.  The \`(0,1)\` principal relation
+gives \`a*d = 0\`.  If \`a = 0\`, the \`(0,2)\` and \`(0,3)\` relations kill
+\`p,q\`, so row \`0\` is zero.  If \`d = 0\`, the \`(1,2)\` and \`(1,3)\`
+relations kill \`r,s\`, so row \`1\` is zero. -/
+theorem GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
+    {R : Type*} [CommRing R] [IsDomain R]
+    (H : GeneralFourBlock R)
+    (hb : H.b = 0)
+    (h01 : H.a * H.d - H.b * H.b = 0)
+    (h02 : H.a * H.x - H.p * H.p = 0)
+    (h03 : H.a * H.z - H.q * H.q = 0)
+    (h12 : H.d * H.x - H.r * H.r = 0)
+    (h13 : H.d * H.z - H.s * H.s = 0) :
+    H.determinantCore = 0 := by
+  have had : H.a * H.d = 0 := by
+    simpa [hb] using (sub_eq_zero.mp h01)
+  rcases mul_eq_zero.mp had with ha | hd
+  · have hp2 : H.p * H.p = 0 := by
+      simpa [ha] using (sub_eq_zero.mp h02).symm
+    have hq2 : H.q * H.q = 0 := by
+      simpa [ha] using (sub_eq_zero.mp h03).symm
+    have hp : H.p = 0 := by
+      rcases mul_eq_zero.mp hp2 with hp | hp <;> exact hp
+    have hq : H.q = 0 := by
+      rcases mul_eq_zero.mp hq2 with hq | hq <;> exact hq
+    simp [GeneralFourBlock.determinantCore, ha, hb, hp, hq]
+  · have hr2 : H.r * H.r = 0 := by
+      simpa [hd] using (sub_eq_zero.mp h12).symm
+    have hs2 : H.s * H.s = 0 := by
+      simpa [hd] using (sub_eq_zero.mp h13).symm
+    have hr : H.r = 0 := by
+      rcases mul_eq_zero.mp hr2 with hr | hr <;> exact hr
+    have hs : H.s = 0 := by
+      rcases mul_eq_zero.mp hs2 with hs | hs <;> exact hs
+    simp [GeneralFourBlock.determinantCore, hb, hd, hr, hs]
+
+/-- A nondegenerate symmetric four-variable Hessian with one vanishing
+off-diagonal entry has a nonzero principal \`2 x 2\` minor.
+
+This is the finite matrix fact needed by nonlinear confinement: after moving
+the vanishing coupling to the displayed \`(0,1)\` slot, simultaneous vanishing
+of every principal minor contradicts the nonzero full determinant. -/
+theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
+    (F : MvPolynomial (Fin 4) K)
+    {i j : Fin 4}
+    (hij : i ≠ j)
+    (hzero : HC4.Polynomial.hessian F i j = 0)
+    (hdet : HC4.Polynomial.hessianDeterminant F ≠ 0) :
+    ∃ a b : Fin 4,
+      a ≠ b ∧ HC4.Polynomial.hessianPrincipalMinor F a b ≠ 0 := by
+  classical
+  by_contra hnone
+  push_neg at hnone
+
+  let sigma : Equiv.Perm (Fin 4) := Equiv.swap (0 : Fin 4) i
+  let tau : Equiv.Perm (Fin 4) := Equiv.swap (sigma (1 : Fin 4)) j
+  let rho : Equiv.Perm (Fin 4) := sigma.trans tau
+
+  have hs0 : sigma (0 : Fin 4) = i := by
+    simp [sigma]
+  have hs1_ne_i : sigma (1 : Fin 4) ≠ i := by
+    intro h
+    have h' : sigma (1 : Fin 4) = sigma (0 : Fin 4) := by
+      rw [hs0]
+      exact h
+    have : (1 : Fin 4) = 0 := sigma.injective h'
+    norm_num at this
+  have hrho0 : rho (0 : Fin 4) = i := by
+    dsimp [rho]
+    rw [hs0]
+    exact Equiv.swap_apply_of_ne_of_ne (Ne.symm hs1_ne_i) hij
+  have hrho1 : rho (1 : Fin 4) = j := by
+    dsimp [rho]
+    simp [tau]
+
+  let M := HC4.Polynomial.hessian F
+  let H : GeneralFourBlock (MvPolynomial (Fin 4) K) :=
+    GeneralFourBlock.ofSymmetricMatrix (M.submatrix rho rho)
+
+  have hsym : ∀ a b : Fin 4, M a b = M b a := by
+    intro a b
+    change
+      MvPolynomial.pderiv b (MvPolynomial.pderiv a F) =
+        MvPolynomial.pderiv a (MvPolynomial.pderiv b F)
+    exact pderiv_comm_commRing b a F
+
+  have hmatrix :
+      H.matrix = M.submatrix rho rho := by
+    apply GeneralFourBlock.matrix_ofSymmetricMatrix
+    intro a b
+    exact hsym (rho a) (rho b)
+
+  have hb : H.b = 0 := by
+    dsimp [H, GeneralFourBlock.ofSymmetricMatrix]
+    simp only [Matrix.submatrix_apply]
+    rw [hrho0, hrho1]
+    exact hzero
+
+  have hminor (a b : Fin 4) (hab : a ≠ b) :
+      HC4.Polynomial.hessianPrincipalMinor F (rho a) (rho b) = 0 := by
+    exact hnone (rho a) (rho b) (fun h => hab (rho.injective h))
+
+  have h01 : H.a * H.d - H.b * H.b = 0 := by
+    have h := hminor (0 : Fin 4) 1 (by decide)
+    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
+      hsym (rho 1) (rho 0)] using h
+  have h02 : H.a * H.x - H.p * H.p = 0 := by
+    have h := hminor (0 : Fin 4) 2 (by decide)
+    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
+      hsym (rho 2) (rho 0)] using h
+  have h03 : H.a * H.z - H.q * H.q = 0 := by
+    have h := hminor (0 : Fin 4) 3 (by decide)
+    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
+      hsym (rho 3) (rho 0)] using h
+  have h12 : H.d * H.x - H.r * H.r = 0 := by
+    have h := hminor (1 : Fin 4) 2 (by decide)
+    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
+      hsym (rho 2) (rho 1)] using h
+  have h13 : H.d * H.z - H.s * H.s = 0 := by
+    have h := hminor (1 : Fin 4) 3 (by decide)
+    simpa [HC4.Polynomial.hessianPrincipalMinor, H,
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
+      hsym (rho 3) (rho 1)] using h
+
+  have hdetH :
+      H.determinantCore = HC4.Polynomial.hessianDeterminant F := by
+    calc
+      H.determinantCore = H.matrix.det :=
+        (GeneralFourBlock.matrix_det H).symm
+      _ = (M.submatrix rho rho).det := by rw [hmatrix]
+      _ = M.det := by rw [Matrix.det_submatrix_equiv_self]
+      _ = HC4.Polynomial.hessianDeterminant F := by
+        rfl
+
+  have hdet0 :
+      H.determinantCore = 0 :=
+    H.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
+      hb h01 h02 h03 h12 h13
+  apply hdet
+  rw [← hdetH]
+  exact hdet0
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 /-- The final `nonlinearConfined` source therefore has a constant Hessian
@@ -246,6 +398,59 @@ theorem nonlinearConfined_hessianOmittedLongitudinal_eq_zero
       hconst
   rw [hconst, hc]
   simp
+
+
+/-- **The nonlinear-confinement residual already has an actual rank-two chart.**
+
+Confinement makes the omitted Hessian row constant; the normalized axis
+collision kills its coupling to coordinate \`0\`.  Since complete nonlinear
+confinement cannot occur on \`.qs\`, the omitted coordinate is genuinely
+different from coordinate \`0\`.  The represented state has raw defect zero,
+so its special-fibre Hessian determinant is exactly one.  The finite symmetric
+matrix lemma above therefore supplies a nonzero principal \`2 x 2\` Hessian
+minor, which is packaged by the existing source-honest chart adapter. -/
+theorem nonlinearConfined_actualRankTwoHessianChart
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (facet : ToricFacet)
+    (hconfined :
+      ∀ d ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support,
+        3 ≤ HC4.Polynomial.ordinaryDegree4 d →
+          HC4.Toric.OnFacet facet (HC4.Polynomial.toToricExponent d)) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+        T.terminal.blocker.presented) := by
+  let F :=
+    polynomialFamilySpecialFiber T.terminal.blocker.presented.family
+  let j := HC4.Polynomial.facetOmittedCoordinate facet
+
+  have hj0 : j ≠ (0 : Fin 4) := by
+    have hne := T.nonlinearConfined_facet_ne_qs facet hconfined
+    cases facet <;>
+      simp [j, HC4.Polynomial.facetOmittedCoordinate] at hne ⊢
+
+  have hjcoupling :
+      HC4.Polynomial.hessian F j (0 : Fin 4) = 0 := by
+    simpa [F, j] using
+      T.nonlinearConfined_hessianOmittedLongitudinal_eq_zero facet hconfined
+
+  have hdetOne :
+      HC4.Polynomial.hessianDeterminant F = 1 := by
+    dsimp [F]
+    exact
+      T.terminal.blocker.presented.zeroDefect_specialFiber_hessianDeterminant_eq_one
+        T.presented_zero
+  have hdetNe :
+      HC4.Polynomial.hessianDeterminant F ≠ 0 := by
+    rw [hdetOne]
+    exact one_ne_zero
+
+  rcases exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
+      F hj0 hjcoupling hdetNe with
+    ⟨a, b, hab, hminor⟩
+  exact ⟨actualRankTwoHessianChart_of_specialFiber_minor hab hminor⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
