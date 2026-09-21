@@ -2596,6 +2596,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightImpossible`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseSquare`
   - `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`

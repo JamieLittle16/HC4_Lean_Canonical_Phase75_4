@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9400**.
+Distinct declaration spellings indexed: **9402**.
 
 ## Repeated declaration spellings
 
@@ -1683,6 +1683,7 @@ Distinct declaration spellings indexed: **9400**.
 - `FinalSeamMarkedTerminalWeight.exists_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamMarkedTerminalWeight.exists_second_zero_away_from_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamMarkedTerminalWeight.hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
+- `FinalSeamMarkedTerminalWeight.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightImpossible`
 - `FinalSeamMarkedTerminalWeight.squareCoordinate_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamSimpleAxisPivot` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
@@ -6665,6 +6666,7 @@ Distinct declaration spellings indexed: **9400**.
 - `not_dvd_two_mul_of_nonexceptional` — `theorem` in `HC4.Toric.ExceptionalGrading`
 - `not_forall_secondUnitRestart_normalizedDefect_lt` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `not_globalRestartProgress_self` — `theorem` in `HC4.Newton.GlobalRestartClassification`
+- `not_hasFinalSeamMarkedTerminalWeightExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightImpossible`
 - `not_isPolynomialMongeAmpere_of_positive_hessian_weight` — `theorem` in `HC4.MongeAmpere.PolynomialInitial`
 - `not_mem_alignedSmithSectionWalls_zeroPolynomialSection` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `not_nonempty_sparse_reverseClosed_negative_character` — `theorem` in `HC4.Toric.SymmetricEigenSupport`
