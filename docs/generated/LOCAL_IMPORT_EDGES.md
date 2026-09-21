@@ -2578,6 +2578,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamOrderTransfer`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamOrderTransfer`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
@@ -2591,6 +2593,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseSquare`
+  - `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
