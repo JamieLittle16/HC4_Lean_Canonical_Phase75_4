@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9537**.
+Distinct declaration spellings indexed: **9539**.
 
 ## Repeated declaration spellings
 
@@ -4726,6 +4726,7 @@ Distinct declaration spellings indexed: **9537**.
 - `entryBlock_detCore_eq_zero_of_scaledDeterminant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `entryBlock_pivot_of_scaledDeterminant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurDeterminantOrder`
 - `entry_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `entry_coeff_first_add_eq_tail` — `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `entry_coeff_first_eq_tail_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `entry_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `entry_nonzero_at_first` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
@@ -9335,6 +9336,7 @@ Distinct declaration spellings indexed: **9537**.
 - `tailConstantMatrix_ne_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailConstantMatrix_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
 - `tailEntry` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailEntry_gap_and_open_at_sub` — `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailKernel` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tailMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailMatrix_isSymm` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`, `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
