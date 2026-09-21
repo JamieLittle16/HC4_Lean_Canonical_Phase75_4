@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9478**.
+Distinct declaration spellings indexed: **9485**.
 
 ## Repeated declaration spellings
 
@@ -3160,6 +3160,7 @@ Distinct declaration spellings indexed: **9478**.
 - `TopDegreeOnFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
+- `TopKernelThreeSchurClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `ToricFacet` — `inductive` in `HC4.Toric.Facets`
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
@@ -5792,6 +5793,7 @@ Distinct declaration spellings indexed: **9478**.
 - `hessianKernel_firstRow` — `theorem` in `HC4.Newton.FixedKernelHessian`
 - `hessianKernel_secondRow` — `theorem` in `HC4.Newton.FixedKernelHessian`
 - `hessianLayer_eq_zero_of_pos_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
+- `hessianMinor_linearPower_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `hessianMonomialContributionAt` — `def` in `HC4.Newton.TerminalActualHessian`
 - `hessianMonomialContributionAt_origin_ne_zero_exponent_eq` — `theorem` in `HC4.Newton.TerminalActualHessian`
 - `hessianPrincipalMinor` — `def` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
@@ -9375,6 +9377,11 @@ Distinct declaration spellings indexed: **9478**.
 - `terminal_transverseSecondDerivative_support_degree_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
 - `therefore` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThree`
 - `thirdZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+- `threeSchurBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurBlock_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurBlock_constantMinor_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurClockData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `three_le_noWallSmithSourceDegree_of_delta_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`
 - `thrice_firstOrder_le_defect` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `tiedMixedDegreeWall_has_two_nonzeroHomogeneousComponents` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
