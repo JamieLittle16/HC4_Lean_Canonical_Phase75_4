@@ -273,29 +273,29 @@ theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
 
   have h01 : H.a * H.d - H.b * H.b = 0 := by
     have h := hminor (0 : Fin 4) 1 (by decide)
+    rw [hsym (rho 1) (rho 0)] at h
     simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
-      hsym (rho 1) (rho 0)] using h
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
   have h02 : H.a * H.x - H.p * H.p = 0 := by
     have h := hminor (0 : Fin 4) 2 (by decide)
+    rw [hsym (rho 2) (rho 0)] at h
     simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
-      hsym (rho 2) (rho 0)] using h
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
   have h03 : H.a * H.z - H.q * H.q = 0 := by
     have h := hminor (0 : Fin 4) 3 (by decide)
+    rw [hsym (rho 3) (rho 0)] at h
     simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
-      hsym (rho 3) (rho 0)] using h
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
   have h12 : H.d * H.x - H.r * H.r = 0 := by
     have h := hminor (1 : Fin 4) 2 (by decide)
+    rw [hsym (rho 2) (rho 1)] at h
     simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
-      hsym (rho 2) (rho 1)] using h
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
   have h13 : H.d * H.z - H.s * H.s = 0 := by
     have h := hminor (1 : Fin 4) 3 (by decide)
+    rw [hsym (rho 3) (rho 1)] at h
     simpa [HC4.Polynomial.hessianPrincipalMinor, H,
-      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply,
-      hsym (rho 3) (rho 1)] using h
+      GeneralFourBlock.ofSymmetricMatrix, M, Matrix.submatrix_apply] using h
 
   have hdetH :
       H.determinantCore = HC4.Polynomial.hessianDeterminant F := by
@@ -309,8 +309,8 @@ theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
 
   have hdet0 :
       H.determinantCore = 0 :=
-    H.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
-      hb h01 h02 h03 h12 h13
+    HC4.Valuation.GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
+      H hb h01 h02 h03 h12 h13
   apply hdet
   rw [← hdetH]
   exact hdet0
