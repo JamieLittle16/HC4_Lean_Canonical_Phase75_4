@@ -193,6 +193,60 @@ theorem nonlinearConfined_hessianRow_constant
       T.terminal.blocker.presented.family)
     facet hconfined i
 
+
+/-- **Nonlinear confinement kills the omitted/longitudinal Hessian coupling.**
+
+The confinement hypothesis makes the omitted Hessian row constant.  The
+retained strict-low blocker lives on the genuine normalized axis collision
+\`0 ↔ e₀\`, so the constant entry coupling the omitted coordinate to the
+distinguished longitudinal coordinate must vanish.  This is source-level
+geometry on the represented special fibre; no repair transition is used. -/
+theorem nonlinearConfined_hessianOmittedLongitudinal_eq_zero
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (facet : ToricFacet)
+    (hconfined :
+      ∀ d ∈ (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family).support,
+        3 ≤ HC4.Polynomial.ordinaryDegree4 d →
+          HC4.Toric.OnFacet facet (HC4.Polynomial.toToricExponent d)) :
+    HC4.Polynomial.hessian
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family)
+        (HC4.Polynomial.facetOmittedCoordinate facet) (0 : Fin 4) = 0 := by
+  have hconst :=
+    T.nonlinearConfined_hessianRow_constant facet hconfined (0 : Fin 4)
+  rcases T.terminal.blocker.blocker.aligned.rawSpecialFiber_axisData with
+    ⟨hcollRaw, _hzero, _hvalue⟩
+  have hcoll :
+      HasExactGradientCollision
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family)
+        (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
+        (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) := by
+    simpa [AdaptiveAlignedSmithMinimalEndpoint.rawSpecialFiber,
+      T.terminal.blocker.family_eq] using hcollRaw
+  have hc :
+      MvPolynomial.coeff 0
+          (HC4.Polynomial.hessian
+            (polynomialFamilySpecialFiber
+              T.terminal.blocker.presented.family)
+            (HC4.Polynomial.facetOmittedCoordinate facet) (0 : Fin 4)) = 0 := by
+    exact hessian_longitudinal_constant_eq_zero_of_axisCollision
+      (polynomialFamilySpecialFiber
+        T.terminal.blocker.presented.family)
+      (HC4.Polynomial.facetOmittedCoordinate facet)
+      hcoll
+      (MvPolynomial.coeff 0
+        (HC4.Polynomial.hessian
+          (polynomialFamilySpecialFiber
+            T.terminal.blocker.presented.family)
+          (HC4.Polynomial.facetOmittedCoordinate facet) (0 : Fin 4)))
+      hconst
+  rw [hconst, hc]
+  simp
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
