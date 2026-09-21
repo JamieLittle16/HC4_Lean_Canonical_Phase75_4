@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9316**.
+Distinct declaration spellings indexed: **9327**.
 
 ## Repeated declaration spellings
 
@@ -2854,6 +2854,7 @@ Distinct declaration spellings indexed: **9316**.
 - `RepairState.rankDefect` — `def` in `HC4.Newton.FiniteRepairTermination`
 - `RepairState.rankDefect_le_two` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `RepairState.rankDefect_lt_of_rank_lt` — `theorem` in `HC4.Newton.FiniteRepairTermination`
+- `RepresentedNonlinearSupportLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `ReverseClosed` — `def` in `HC4.Toric.SymmetricEigenSupport`
 - `RightAxisPivot` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `SameEpisodeScale` — `def` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
@@ -5819,6 +5820,7 @@ Distinct declaration spellings indexed: **9316**.
 - `impossible_of_finalResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualReduction`
 - `impossible_of_noSecondMarkedZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `impossible_of_quadraticContact_both_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
+- `impossible_of_representedNonlinearSupportLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `impossible_of_singular_singletonSmithFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingularSingletonContradiction`
 - `impossible_of_squareContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`
 - `impossible_of_stationaryIntegralProfileHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`
@@ -7995,9 +7997,18 @@ Distinct declaration spellings indexed: **9316**.
 - `repairProgress_or_closing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `repairProgress_trans` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `repairState_measure_lt_of_progress` — `theorem` in `HC4.Newton.FiniteRepairTermination`
+- `representedAxisHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `representedAxisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `representedAxisHessian_row_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `representedAxisHessian_zero_zero_eq_C_nonzero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `representedAxisHessian_zero_zero_isUnit_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `representedSpecialFiber` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `representedSpecialFiber_isPolynomialMongeAmpere` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `representedSpecialFiber_nonlinearDegreeBound_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
+- `represented_axis_mixedHessian_zero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `represented_gradientAtZero_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `represented_transverseLinearCoefficient_eq_zero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `represented_transverseLinear_natDegree_le_one_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `residualDefect_lt` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `residualNonScalarJump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
