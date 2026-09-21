@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9392**.
+Distinct declaration spellings indexed: **9395**.
 
 ## Repeated declaration spellings
 
@@ -5750,6 +5750,8 @@ Distinct declaration spellings indexed: **9392**.
 - `hessianTermWeight` — `def` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTermWeight_eq` — `theorem` in `HC4.Polynomial.HessianDeterminant`
 - `hessianTerm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.HessianDeterminant`
+- `hessianTwoByTwoMinor` — `def` in `HC4.Valuation.WeightedHessianMinorInitial`
+- `hessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero` — `theorem` in `HC4.Valuation.WeightedHessianMinorInitial`
 - `hessian_C_mul_gradientRatioLinearForm_pow_add_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreDirectionLock`
 - `hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
 - `hessian_C_mul_gradientRatioLinearForm_pow_add_two_finFour` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
@@ -5917,6 +5919,7 @@ Distinct declaration spellings indexed: **9392**.
 - `initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm` — `theorem` in `HC4.Polynomial.MaximalHessianInitial`
 - `initialForm_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.PolynomialInitial`
 - `initialForm_hessianPrincipalMinor_eq` — `theorem` in `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- `initialForm_hessianTwoByTwoMinor_eq` — `theorem` in `HC4.Valuation.WeightedHessianMinorInitial`
 - `initialForm_idempotent` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_mul_eq_left_mul_initialForm_of_leftHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
