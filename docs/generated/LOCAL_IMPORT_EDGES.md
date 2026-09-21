@@ -60,6 +60,7 @@ human architecture guide.
   - `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
   - `HC4.Toric`
   - `HC4.Valuation.ActualParameterLayer`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionNormalization`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
