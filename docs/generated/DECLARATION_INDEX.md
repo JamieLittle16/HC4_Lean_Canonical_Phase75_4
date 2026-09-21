@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9532**.
+Distinct declaration spellings indexed: **9534**.
 
 ## Repeated declaration spellings
 
@@ -4978,6 +4978,7 @@ Distinct declaration spellings indexed: **9532**.
 - `exists_positiveTail_of_X_pow_dvd` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `exists_positive_nat_strict_upper_bound_on_finset` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_positive_tail_factorisation` — `theorem` in `HC4.Polynomial.ComplementaryEdgeRigidity`
+- `exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
@@ -8040,6 +8041,7 @@ Distinct declaration spellings indexed: **9532**.
 - `rankTwoToRankThreeRoofPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `rankTwoZeroKernelBase` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `rankTwoZeroKernelSecondVariation` — `def` in `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `rankTwo_has_principalPivot` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `rankTwo_measure_succ_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankTwo_repairProgress_complexityDrop_or_rankThree` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankTwo_to_rankThree_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
