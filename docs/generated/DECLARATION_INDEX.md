@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9471**.
+Distinct declaration spellings indexed: **9477**.
 
 ## Repeated declaration spellings
 
@@ -4520,6 +4520,10 @@ Distinct declaration spellings indexed: **9471**.
 - `det_primitiveBinomialHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `det_primitiveBinomialScaledHessianPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
 - `det_rankOneClearedThreeSchurMatrix` — `theorem` in `HC4.Newton.RankOneThreeSchur`
+- `det_rankOneClearedThreeSchurMatrixD` — `theorem` in `HC4.Newton.RankOneThreeSchur`
+- `det_rankOneClearedThreeSchurMatrixD_of_fullDet_X_pow` — `theorem` in `HC4.Newton.RankOneThreeSchur`
+- `det_rankOneClearedThreeSchurMatrixX` — `theorem` in `HC4.Newton.RankOneThreeSchur`
+- `det_rankOneClearedThreeSchurMatrixX_of_fullDet_X_pow` — `theorem` in `HC4.Newton.RankOneThreeSchur`
 - `det_rankOneClearedThreeSchurMatrix_eq_matrix_det` — `theorem` in `HC4.Newton.RankOneThreeSchur`
 - `det_rankOneClearedThreeSchurMatrix_of_fullDet_X_pow` — `theorem` in `HC4.Newton.RankOneThreeSchur`
 - `det_rankThreeLogHessianCore` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
@@ -7738,6 +7742,8 @@ Distinct declaration spellings indexed: **9471**.
 - `ramified_sub_lt_unramified` — `theorem` in `HC4.Valuation.ScaledDefect`
 - `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `rankOneClearedThreeSchurMatrix` — `def` in `HC4.Newton.RankOneThreeSchur`
+- `rankOneClearedThreeSchurMatrixD` — `def` in `HC4.Newton.RankOneThreeSchur`
+- `rankOneClearedThreeSchurMatrixX` — `def` in `HC4.Newton.RankOneThreeSchur`
 - `rankOneClearedThreeSchurMatrix_eq_zero` — `theorem` in `HC4.Newton.RankOneThreeSchur`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`

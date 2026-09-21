@@ -1400,7 +1400,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.GeneralFourBlockSchur`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def rankOneClearedThreeSchurMatrix`, `theorem det_rankOneClearedThreeSchurMatrix`, `theorem det_rankOneClearedThreeSchurMatrix_eq_matrix_det`, `theorem det_rankOneClearedThreeSchurMatrix_of_fullDet_X_pow`, `theorem rankOneClearedThreeSchurMatrix_eq_zero`
+- Declarations: `def rankOneClearedThreeSchurMatrix`, `theorem det_rankOneClearedThreeSchurMatrix`, `theorem det_rankOneClearedThreeSchurMatrix_eq_matrix_det`, `theorem det_rankOneClearedThreeSchurMatrix_of_fullDet_X_pow`, `theorem rankOneClearedThreeSchurMatrix_eq_zero`, `def rankOneClearedThreeSchurMatrixD`, `theorem det_rankOneClearedThreeSchurMatrixD`, `def rankOneClearedThreeSchurMatrixX`, `theorem det_rankOneClearedThreeSchurMatrixX`, `theorem det_rankOneClearedThreeSchurMatrixD_of_fullDet_X_pow`, `theorem det_rankOneClearedThreeSchurMatrixX_of_fullDet_X_pow`
 
 ### `HC4.Newton.RankTwoFourBlockSchur`
 
