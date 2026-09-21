@@ -205,6 +205,7 @@ theorem GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal
       rcases mul_eq_zero.mp hs2 with hs | hs <;> exact hs
     simp [GeneralFourBlock.determinantCore, hb, hd, hr, hs]
 
+set_option maxHeartbeats 2000000 in
 /-- A nondegenerate symmetric four-variable Hessian with one vanishing
 off-diagonal entry has a nonzero principal \`2 x 2\` minor.
 
@@ -263,7 +264,6 @@ theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero
 
   have hb : H.b = 0 := by
     dsimp [H, GeneralFourBlock.ofSymmetricMatrix]
-    simp only [Matrix.submatrix_apply]
     rw [hrho0, hrho1]
     exact hzero
 
