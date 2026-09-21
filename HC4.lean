@@ -306,8 +306,8 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayF
 -- Final repair-aware unrestricted HC4 splice from a concrete terminal obstruction producer.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction
-// Sound public splice: unrestricted HC4 now targets the geometry-rich
-// zero-clock singular strict-low carrier directly, without repair terminality.
+-- Sound public splice: unrestricted HC4 now targets the geometry-rich
+-- zero-clock singular strict-low carrier directly, without repair terminality.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction
 
 
