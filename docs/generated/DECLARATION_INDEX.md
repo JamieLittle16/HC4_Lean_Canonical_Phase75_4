@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9309**.
+Distinct declaration spellings indexed: **9313**.
 
 ## Repeated declaration spellings
 
@@ -1656,6 +1656,7 @@ Distinct declaration spellings indexed: **9309**.
 - `FacetOutcome.toClassifiedBranch` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `FinalSeamData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
+- `FinalSeamExactGradientAxisOrder` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `FinalSeamExactHessianAxisOrder` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamStrictLowHessianSignature` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
@@ -5105,6 +5106,7 @@ Distinct declaration spellings indexed: **9309**.
 - `finalGeometryFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `finalLevel_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalSeamAxisGradientComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisGradient`
+- `finalSeamAxisGradientComponent_derivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `finalSeamAxisGradientComponent_eval_neg_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisGradient`
 - `finalSeamAxisGradientComponent_eval_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisGradient`
 - `finalSeamAxisGradientComponent_twoEndpoint_dvd` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisGradient`
@@ -5112,6 +5114,7 @@ Distinct declaration spellings indexed: **9309**.
 - `finalSeamAxisHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamAxisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
+- `finalSeamExactGradientAxisOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `finalSeamExactHessianAxisOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `finalSeamOriginHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamOriginHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
@@ -6620,6 +6623,7 @@ Distinct declaration spellings indexed: **9309**.
 - `ofShear02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `ofSymmetricMatrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `ofZeroConstantSchur` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `of_derivative_of_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `offDiag_coeff_eq_zero_below_of_diagonal_gap` — `theorem` in `HC4.Newton.SingularSchurDiagonalGap`
 - `offDiag_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `offDiag_coeff_firstOrder_ne_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`

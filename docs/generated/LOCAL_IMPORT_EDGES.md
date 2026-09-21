@@ -2573,6 +2573,8 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisGradient`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
   - `HC4.Valuation.AdaptiveAlignedSmithBlockerEndgameProvenance`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
