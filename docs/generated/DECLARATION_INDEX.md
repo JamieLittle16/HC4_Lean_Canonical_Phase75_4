@@ -7,12 +7,12 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9498**.
+Distinct declaration spellings indexed: **9501**.
 
 ## Repeated declaration spellings
 
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
-- `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
+- `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `HasPositiveEntryLayer` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
@@ -223,7 +223,7 @@ Distinct declaration spellings indexed: **9498**.
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankTwoProgress_or_closing` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `repairProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwo`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalResidualRankTwoGeometry`
-- `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `residualNonScalarJump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `reverseOrder_eq_quotientContactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `reverseOrder_lt_highest_of_pair_lt_highest` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
@@ -263,11 +263,15 @@ Distinct declaration spellings indexed: **9498**.
 - `squareContact_weight_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `sub` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
+- `tailConstantMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailConstantMatrix_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailConstantMatrix_det_zero_of_residual_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailConstantMatrix_ne_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailEntry` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailSeries` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_constant_entry_ne_zero` — `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
-- `tail_determinantFactor` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `tail_determinantFactor` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `target_family` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationComposition`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalSurvivingRigidExposureRankTwo`
 - `terminalHighPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
 - `terminalLowPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofAffineTerminalRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
@@ -1291,7 +1295,7 @@ Distinct declaration spellings indexed: **9498**.
 - `AdaptiveWallOutcome` — `inductive` in `HC4.Valuation.AdaptiveGeometricRestartState`
 - `AdjacentFacets` — `def` in `HC4.Newton.BoundaryCycle`
 - `AllCanonicalRankOneRepairStatesImpossible` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalAssemblySoundness`
-- `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
+- `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `AnchoredJC2SensitiveTerminalCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
 - `AnchoredJC2SensitiveTerminalCollisionData.hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
 - `Balanced` — `def` in `HC4.Toric.InvariantSemigroup`
@@ -1835,6 +1839,7 @@ Distinct declaration spellings indexed: **9498**.
 - `FirstRankOneSchurDeparture` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
 - `FirstReesProjectiveWedgeDepartureData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `FirstReesProjectiveWedgeDepartureData.exists_bigradedDepartureData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `FirstTailRankFrontier` — `inductive` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `FirstTransverseKeyHomogeneousSliceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
 - `FirstTransverseKeyHomogeneousSliceData.finSuccEquiv_eq_longitudinalMonomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLongitudinalCancellationInterface`
 - `FirstTransverseKeyMaximalHomogeneousSliceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
@@ -2088,6 +2093,7 @@ Distinct declaration spellings indexed: **9498**.
 - `HasTransverseHessianRankAtMostOne` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseRankFrontier`
 - `HasTransverseHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseRankFrontier`
 - `HasTrivialKernel` — `def` in `HC4.Newton.RankOnePacketReentry`
+- `HasTwoByTwoMinor` — `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `HasTwoByTwoMinorWitness` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `HasTwoPureNonlinearAxes` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `HasUnitKernelSectionDivisibility` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
@@ -5564,6 +5570,7 @@ Distinct declaration spellings indexed: **9498**.
 - `firstPositiveTransverseSourceDegree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `firstPotential` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `firstSchurData` — `def` in `HC4.Valuation.FirstSchurDepartureBridge`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `firstTailRankFrontier` — `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `firstThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstTransverse_offDiag_ne_zero_of_determinant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
@@ -8181,7 +8188,7 @@ Distinct declaration spellings indexed: **9498**.
 - `represented_transverseLinearCoefficient_eq_zero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `represented_transverseLinear_natDegree_le_one_of_noLongitudinalCoupling` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`
 - `represented_transverseLinear_natDegree_le_one_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
-- `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `residualDefect_lt` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `residualNonScalarJump` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `residualTerminal_nonnegative_positive_or_zero` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
@@ -9295,11 +9302,11 @@ Distinct declaration spellings indexed: **9498**.
 - `tailConstantBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
 - `tailConstantBlock_matrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
 - `tailConstantBlock_matrix_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
-- `tailConstantMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`
+- `tailConstantMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailConstantMatrix_det` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
-- `tailConstantMatrix_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
-- `tailConstantMatrix_det_zero_of_residual_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
-- `tailConstantMatrix_ne_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`
+- `tailConstantMatrix_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailConstantMatrix_det_zero_of_residual_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+- `tailConstantMatrix_ne_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailConstantMatrix_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
 - `tailEntry` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailKernel` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
@@ -9314,7 +9321,7 @@ Distinct declaration spellings indexed: **9498**.
 - `tail_constant_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_constant_det_zero_of_residual_pos` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_constant_entry_ne_zero` — `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
-- `tail_determinantFactor` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
+- `tail_determinantFactor` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tail_entryBlock_nonzero` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
 - `tail_pivot_of_residual_pos` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tail_scaledDeterminant_eq_schurDeterminant` — `theorem` in `HC4.Newton.RankTwoReesSchurEntry`
