@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9327**.
+Distinct declaration spellings indexed: **9329**.
 
 ## Repeated declaration spellings
 
@@ -2855,6 +2855,7 @@ Distinct declaration spellings indexed: **9327**.
 - `RepairState.rankDefect_le_two` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `RepairState.rankDefect_lt_of_rank_lt` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `RepresentedNonlinearSupportLongitudinal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `RepresentedNonlinearSupportOnSingleAxis` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
 - `ReverseClosed` — `def` in `HC4.Toric.SymmetricEigenSupport`
 - `RightAxisPivot` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `SameEpisodeScale` — `def` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
@@ -5821,6 +5822,7 @@ Distinct declaration spellings indexed: **9327**.
 - `impossible_of_noSecondMarkedZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactUniqueZeroElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `impossible_of_quadraticContact_both_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
 - `impossible_of_representedNonlinearSupportLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `impossible_of_representedNonlinearSupportOnSingleAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
 - `impossible_of_singular_singletonSmithFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingularSingletonContradiction`
 - `impossible_of_squareContact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`
 - `impossible_of_stationaryIntegralProfileHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIntegralProfileHessian`

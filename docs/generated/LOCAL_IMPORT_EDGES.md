@@ -2584,6 +2584,8 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithBlockerEndgameProvenance`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
