@@ -102,6 +102,8 @@ structure FinalSeamData
       (Fin.cons (1 : K) (fun _ : Fin 3 => 0))
   presentedZero :
     T.terminal.blocker.presented.rawDefect = 0
+  representedHessianDetOne :
+    HC4.Polynomial.hessianDeterminant T.representedSpecialFiber = 1
   blockerZero :
     T.terminal.blocker.blocker.aligned.endpoint.defect = 0
   residualNormalForm :
@@ -157,6 +159,17 @@ noncomputable def finalSeamData
         (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
         (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) := by
     simpa [hF] using hcollisionRaw
+  have hdetOne :
+      HC4.Polynomial.hessianDeterminant T.representedSpecialFiber = 1 := by
+    change
+      HC4.Polynomial.hessianDeterminant
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family) = 1
+    rw [hessianDeterminant_polynomialFamilySpecialFiber]
+    have hdef := T.terminal.blocker.presented.hessianDefect
+    unfold HasPolynomialFamilyHessianDefect at hdef
+    rw [hdef, hpacket.1]
+    simp
   have hsupport : T.SourceSupportAlternative := by
     rcases T.terminal.pattern with hpure | hfirst | hsecond
     · exact .pureLongitudinal hpure (T.pureLongitudinal_sourceSupport hpure)
@@ -165,6 +178,7 @@ noncomputable def finalSeamData
   exact {
     exactCollision := hcollision
     presentedZero := hpacket.1
+    representedHessianDetOne := hdetOne
     blockerZero := hpacket.2.1
     residualNormalForm := hpacket.2.2.1
     mixedDegree := hpacket.2.2.2.1
