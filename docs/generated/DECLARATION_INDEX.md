@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9212**.
+Distinct declaration spellings indexed: **9213**.
 
 ## Repeated declaration spellings
 
@@ -995,6 +995,7 @@ Distinct declaration spellings indexed: **9212**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.toReachableFinalGeometryData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData.impossible_of_no_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `AdaptiveAlignedSmithClosingFirstContactLatticeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
 - `AdaptiveAlignedSmithClosingFirstContactTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`
 - `AdaptiveAlignedSmithClosingSourceLatticeData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`
