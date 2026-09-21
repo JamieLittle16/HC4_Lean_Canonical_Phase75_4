@@ -75,6 +75,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4Reduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
