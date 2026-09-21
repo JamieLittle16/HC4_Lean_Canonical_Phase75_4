@@ -60,7 +60,6 @@ human architecture guide.
   - `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
   - `HC4.Toric`
   - `HC4.Valuation.ActualParameterLayer`
-  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionNormalization`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
@@ -2475,6 +2474,10 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSlopeDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2FreeDispatcher`
   - `HC4.Valuation.AdaptivePositiveKernelFixedScaleProgress`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesGlobalDescent`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`

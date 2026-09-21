@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9231**.
+Distinct declaration spellings indexed: **9235**.
 
 ## Repeated declaration spellings
 
@@ -563,6 +563,8 @@ Distinct declaration spellings indexed: **9231**.
 - `AdaptiveAlignedSmithCanonicalGlobalPresentationDispatchOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationDispatcher`
 - `AdaptiveAlignedSmithCanonicalGlobalPresentationThenPointedProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationComposition`
 - `AdaptiveAlignedSmithCanonicalGlobalPresentationTraceOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationTraceInvariant`
+- `AdaptiveAlignedSmithCanonicalGlobalPresentedActualRankThreeProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
+- `AdaptiveAlignedSmithCanonicalGlobalPresentedActualRankThreeProgress.ofGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
 - `AdaptiveAlignedSmithCanonicalGlobalPresentedActualRankTwoProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `AdaptiveAlignedSmithCanonicalGlobalPresentedActualRankTwoProgress.ofGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRankTwoProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerGeometry`
@@ -3137,6 +3139,7 @@ Distinct declaration spellings indexed: **9231**.
 - `active_swap13_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
+- `actualRankThreeGlobalProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
 - `actualRankTwoChart0` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `actualRankTwoChart01` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
 - `actualRankTwoChart02` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`
@@ -4808,6 +4811,7 @@ Distinct declaration spellings indexed: **9231**.
 - `exists_fourBlockKernelRowBreakAt` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
+- `exists_globalRankThreeProgress_of_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
 - `exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
