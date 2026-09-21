@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9226**.
+Distinct declaration spellings indexed: **9230**.
 
 ## Repeated declaration spellings
 
@@ -383,7 +383,9 @@ Distinct declaration spellings indexed: **9226**.
 - `AdaptiveAlignedSmithBlockerRecenteredSourceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithBlockerEndgameProvenance`
 - `AdaptiveAlignedSmithCanonicalActualRankThreeGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
+- `AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart.exists_globalRankThreeProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
 - `AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart.rankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+- `AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart.toGlobalRankThreeProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
 - `AdaptiveAlignedSmithCanonicalAdaptiveSchurPreterminalRankThreeExit` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAdaptiveSchurPreterminalRankThree`
 - `AdaptiveAlignedSmithCanonicalAlignedBoundaryAbsorbedOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalAlignedBoundaryAbsorber`
 - `AdaptiveAlignedSmithCanonicalAlignedBoundaryGeometricOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMixedDegreeBoundaryReduction`
@@ -510,6 +512,7 @@ Distinct declaration spellings indexed: **9226**.
 - `AdaptiveAlignedSmithCanonicalFirstContactHessianGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `AdaptiveAlignedSmithCanonicalFirstContactResidualProducer` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
 - `AdaptiveAlignedSmithCanonicalFirstContactResidualProducer.toReesLowLayerOrderResidualResolver` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
+- `AdaptiveAlignedSmithCanonicalGlobalActualRankThreeProgress` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
 - `AdaptiveAlignedSmithCanonicalGlobalBoundaryContinuationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalBoundaryContinuationReduction`
 - `AdaptiveAlignedSmithCanonicalGlobalBoundaryPresentation` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalResidualPresentationHeadNormalization`
 - `AdaptiveAlignedSmithCanonicalGlobalBoundaryPresentation.toInternalMove` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalResidualPresentationHeadNormalization`
@@ -9183,6 +9186,7 @@ Distinct declaration spellings indexed: **9226**.
 - `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`, `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
 - `translated_support_subset_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `transportPlanarRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
+- `transportRepair` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
 - `transportWSquareRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `transverseAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `transverseAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`

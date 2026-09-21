@@ -1540,6 +1540,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithBoundaryReentry`
   - `HC4.Valuation.AdaptiveAlignedSmithClassifierDispatcher`
   - `HC4.Valuation.AdaptiveSectionBoundaryReentry`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalAdaptiveSchurPreterminalRankThree`
