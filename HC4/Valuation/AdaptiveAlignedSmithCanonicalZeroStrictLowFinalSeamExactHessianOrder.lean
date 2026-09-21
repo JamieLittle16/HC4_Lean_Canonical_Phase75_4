@@ -124,8 +124,7 @@ theorem finalSeamExactHessianAxisOrder
               (HC4.Polynomial.hessian G (0 : Fin 4) (0 : Fin 4)) =
             Q.derivative.derivative := by
         dsimp [Q]
-        rw [HC4.Polynomial.hessian_apply,
-          longitudinalAxisRestriction_pderiv_zero,
+        rw [longitudinalAxisRestriction_pderiv_zero,
           longitudinalAxisRestriction_pderiv_zero]
       exact .pureLongitudinal N.multiplicity hpure (by
         rw [haxis]
