@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9289**.
+Distinct declaration spellings indexed: **9291**.
 
 ## Repeated declaration spellings
 
@@ -1657,6 +1657,7 @@ Distinct declaration spellings indexed: **9289**.
 - `FinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `FinalSeamData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
+- `FinalSeamStrictLowHessianSignature` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `FiniteTargetChart` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `FirstActualLayerHasFreshSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `FirstActualLayerSupportContainedInSpecialFiber` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
@@ -5102,6 +5103,7 @@ Distinct declaration spellings indexed: **9289**.
 - `finalLevel_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalSeamData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `finalSeamRightRecenteredData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
+- `finalSeamStrictLowHessianSignature` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalWeight_toNat_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finiteIntegralRescaledTilt` — `def` in `HC4.Newton.SmithPoleMinimality`
