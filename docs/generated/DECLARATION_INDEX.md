@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9375**.
+Distinct declaration spellings indexed: **9381**.
 
 ## Repeated declaration spellings
 
@@ -1639,7 +1639,10 @@ Distinct declaration spellings indexed: **9375**.
 - `EndpointResidualNormalForm` — `structure` in `HC4.Newton.MixedDegreeAxisCollision`
 - `EndpointResidualNormalForm.exactRecenteredLayer` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `Equivalent` — `def` in `HC4.Valuation.ScaledDefect`
+- `ExactNonlinearOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
+- `ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactRankOneSchurClockAt` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ExactScalarSchurThreeClock` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ExactSmithExponentMixedDegreeData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
@@ -3203,6 +3206,7 @@ Distinct declaration spellings indexed: **9375**.
 - `actualRankTwoGlobalProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
 - `actualRankTwoHessianChart_of_specialFiber_minor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+- `actualRankTwo_or_exactLowerNonlinearLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `actualRankTwo_or_exactLowerOrdinaryLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `actualRankTwo_or_exactSourceWeightLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `actualRankTwo_or_layerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
@@ -5514,6 +5518,7 @@ Distinct declaration spellings indexed: **9375**.
 - `fourOrdinaryDegreeComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryDegreeComponent_allMinors_zero_of_maximal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryDegreeComponent_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
+- `fourOrdinaryInitialForm_eq_zero_of_neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `fourOrdinaryIntegerWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryIntegerWeight_eq_ordinaryDegree4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `fourOrdinaryReverseReesFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
@@ -5751,6 +5756,7 @@ Distinct declaration spellings indexed: **9375**.
 - `hessian_apply` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `hessian_elementaryShearHom` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `hessian_entry_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.DerivativeWeight`
+- `hessian_fourOrdinaryDegreeComponent_eq_zero_of_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `hessian_initialForm_entry` — `theorem` in `HC4.Polynomial.DerivativeWeight`
 - `hessian_kernelInflateHom_entry` — `theorem` in `HC4.Valuation.KernelInflationHessianDefect`
 - `hessian_linearPower_mulVec_rigidTopKernelDirection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
