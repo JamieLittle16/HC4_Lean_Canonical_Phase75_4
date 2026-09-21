@@ -50,6 +50,22 @@ theorem exists_globalProgress
       canonicalAdaptiveAlignedSmithRepairRanking state 0 T.repair_eq T.source_zero
   exact ⟨P.target, P.globalProgress⟩
 
+/-- A concrete zero-strict-low terminal cannot occur at a genuine global
+no-successor state.  This is intentionally conditional on the actual
+`AdaptiveAlignedSmithCanonicalGlobalMacroProgress` terminal predicate; it
+does not turn the existence of one geometry-backed successor into an
+unconditional local contradiction. -/
+theorem AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData.impossible_of_no_globalProgress
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData
+      (K := K) state)
+    (hterminal :
+      ∀ target : ScaleAwareAdaptiveGeometricRestartState (K := K),
+        ¬ AdaptiveAlignedSmithCanonicalGlobalMacroProgress target state) :
+    False := by
+  obtain ⟨target, hprogress⟩ := T.exists_globalProgress
+  exact hterminal target hprogress
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowTerminalData
 
 /-- **Producer-free rank-one Rees trace always exits by honest global
