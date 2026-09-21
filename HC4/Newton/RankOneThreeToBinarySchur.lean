@@ -1,4 +1,5 @@
 import HC4.Newton.ZeroSchurFirstEntryClock
+import HC4.Newton.ZeroThreeSchurFirstEntryClock
 import Mathlib.Tactic
 
 /-!
@@ -99,6 +100,234 @@ theorem threePivot2BinarySchurSeries_determinant
     BinarySchurPolynomialSeries.determinant, Matrix.det_fin_three,
     h10, h20, h21]
   ring
+
+
+/-! ## Rank-one 3x3 tail to an exact binary zero-Schur clock -/
+
+namespace ZeroThreeSchurSeries
+
+variable [IsDomain R]
+
+/-- Entrywise division by the common first power preserves symmetry. -/
+theorem tailMatrix_isSymm
+    (S : ZeroThreeSchurSeries R)
+    (h : S.HasPositiveEntryLayer)
+    (hsymm : S.matrix.IsSymm) :
+    (S.tailMatrix h).IsSymm := by
+  intro i j
+  have hij := S.entry_eq_firstFactor_mul_tail h i j
+  have hji := S.entry_eq_firstFactor_mul_tail h j i
+  have hs := hsymm i j
+  have hmul :
+      Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h i j =
+        Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h j i := by
+    rw [← hij, ← hji]
+    exact hs
+  exact mul_left_cancel₀
+    (pow_ne_zero _ Polynomial.X_ne_zero) hmul
+
+end ZeroThreeSchurSeries
+
+namespace ExactZeroThreeSchurClock
+
+variable [IsDomain R]
+
+/-- Symmetry of the normalised first-entry tail matrix. -/
+theorem tailMatrix_isSymm
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm) :
+    (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).IsSymm :=
+  E.zeroSeries.tailMatrix_isSymm E.hasPositiveEntryLayer hsymm
+
+/-- Hence the constant coefficient matrix of the tail is symmetric. -/
+theorem tailConstantMatrix_isSymm
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm) :
+    E.tailConstantMatrix.IsSymm := by
+  intro i j
+  exact congrArg
+    (fun p : Polynomial R => p.coeff 0)
+    (E.tailMatrix_isSymm hsymm i j)
+
+/-- A nonzero symmetric 3x3 matrix with all 2x2 minors zero has a nonzero
+diagonal entry.  This is the scalar pivot needed for the second Schur step. -/
+theorem exists_diagonal_ne_zero_of_rankOne
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hne : E.tailConstantMatrix ≠ 0) :
+    ∃ p : Fin 3, E.tailConstantMatrix p p ≠ 0 := by
+  let C := E.tailConstantMatrix
+  have hCsymm : C.IsSymm := E.tailConstantMatrix_isSymm hsymm
+  by_contra hnot
+  push_neg at hnot
+  apply hne
+  ext i j
+  by_cases hij : i = j
+  · subst j
+    exact hnot i
+  · have hm := hall i i j j
+    have hprod : C i j * C j i = 0 := by
+      simpa [C, hnot i, hnot j] using hm
+    rcases mul_eq_zero.mp hprod with hz | hz
+    · exact hz
+    · have hs := hCsymm j i
+      rw [hs] at hz
+      exact hz
+
+private noncomputable def toBinaryClockPivot0
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 0 0 ≠ 0) :
+    ExactZeroSchurClock R := by
+  let M := E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+  have hM : M.IsSymm := E.tailMatrix_isSymm hsymm
+  have hC : E.tailConstantMatrix.IsSymm :=
+    E.tailConstantMatrix_isSymm hsymm
+  refine {
+    zeroSeries := {
+      series := threePivot0BinarySchurSeries M
+      active_coeff_zero := ?_
+      offDiag_coeff_zero := ?_
+      kernel_coeff_zero := ?_
+    }
+    clearingFactor := M 0 0 * E.clearingFactor
+    defect := E.residualDefect
+    clearingFactor_coeff_zero_ne_zero := ?_
+    determinantFactor := ?_
+  }
+  · have hm := hall 0 0 1 1
+    have hs := hC 1 0
+    simpa [threePivot0BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hm := hall 0 0 1 2
+    have hs := hC 1 0
+    simpa [threePivot0BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
+      mul_comm] using hm
+  · have hm := hall 0 0 2 2
+    have hs := hC 2 0
+    simpa [threePivot0BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hp :
+        (M 0 0).coeff 0 ≠ 0 := by
+      simpa [M, tailConstantMatrix] using hpivot
+    simpa [Polynomial.coeff_zero_eq_eval_zero] using
+      mul_ne_zero hp E.clearingFactor_coeff_zero_ne_zero
+  · rw [threePivot0BinarySchurSeries_determinant M hM]
+    rw [E.tail_determinantFactor]
+    ring
+
+private noncomputable def toBinaryClockPivot1
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 1 1 ≠ 0) :
+    ExactZeroSchurClock R := by
+  let M := E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+  have hM : M.IsSymm := E.tailMatrix_isSymm hsymm
+  have hC : E.tailConstantMatrix.IsSymm :=
+    E.tailConstantMatrix_isSymm hsymm
+  refine {
+    zeroSeries := {
+      series := threePivot1BinarySchurSeries M
+      active_coeff_zero := ?_
+      offDiag_coeff_zero := ?_
+      kernel_coeff_zero := ?_
+    }
+    clearingFactor := M 1 1 * E.clearingFactor
+    defect := E.residualDefect
+    clearingFactor_coeff_zero_ne_zero := ?_
+    determinantFactor := ?_
+  }
+  · have hm := hall 1 1 0 0
+    have hs := hC 0 1
+    simpa [threePivot1BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hm := hall 1 1 0 2
+    have hs := hC 0 1
+    simpa [threePivot1BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
+      mul_comm] using hm
+  · have hm := hall 1 1 2 2
+    have hs := hC 2 1
+    simpa [threePivot1BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hp :
+        (M 1 1).coeff 0 ≠ 0 := by
+      simpa [M, tailConstantMatrix] using hpivot
+    simpa [Polynomial.coeff_zero_eq_eval_zero] using
+      mul_ne_zero hp E.clearingFactor_coeff_zero_ne_zero
+  · rw [threePivot1BinarySchurSeries_determinant M hM]
+    rw [E.tail_determinantFactor]
+    ring
+
+private noncomputable def toBinaryClockPivot2
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 2 2 ≠ 0) :
+    ExactZeroSchurClock R := by
+  let M := E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+  have hM : M.IsSymm := E.tailMatrix_isSymm hsymm
+  have hC : E.tailConstantMatrix.IsSymm :=
+    E.tailConstantMatrix_isSymm hsymm
+  refine {
+    zeroSeries := {
+      series := threePivot2BinarySchurSeries M
+      active_coeff_zero := ?_
+      offDiag_coeff_zero := ?_
+      kernel_coeff_zero := ?_
+    }
+    clearingFactor := M 2 2 * E.clearingFactor
+    defect := E.residualDefect
+    clearingFactor_coeff_zero_ne_zero := ?_
+    determinantFactor := ?_
+  }
+  · have hm := hall 2 2 0 0
+    have hs := hC 0 2
+    simpa [threePivot2BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hm := hall 2 2 0 1
+    have hs0 := hC 0 2
+    have hs1 := hC 1 2
+    simpa [threePivot2BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs0, hs1,
+      mul_comm] using hm
+  · have hm := hall 2 2 1 1
+    have hs := hC 1 2
+    simpa [threePivot2BinarySchurSeries, M,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+  · have hp :
+        (M 2 2).coeff 0 ≠ 0 := by
+      simpa [M, tailConstantMatrix] using hpivot
+    simpa [Polynomial.coeff_zero_eq_eval_zero] using
+      mul_ne_zero hp E.clearingFactor_coeff_zero_ne_zero
+  · rw [threePivot2BinarySchurSeries_determinant M hM]
+    rw [E.tail_determinantFactor]
+    ring
+
+/-- **Second finite Schur step.**
+
+If the first normalised 3x3 coefficient block is rank one, symmetry supplies
+a nonzero scalar diagonal pivot.  Its cleared 1+2 Schur quotient is an exact
+zero-constant binary clock with precisely the residual 3x3 determinant
+order. -/
+noncomputable def toBinaryZeroSchurClock_of_rankOne
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hne : E.tailConstantMatrix ≠ 0) :
+    ExactZeroSchurClock R := by
+  rcases E.exists_diagonal_ne_zero_of_rankOne hsymm hall hne with
+    ⟨p, hp⟩
+  fin_cases p
+  · exact E.toBinaryClockPivot0 hsymm hall hp
+  · exact E.toBinaryClockPivot1 hsymm hall hp
+  · exact E.toBinaryClockPivot2 hsymm hall hp
+
+end ExactZeroThreeSchurClock
 
 end
 
