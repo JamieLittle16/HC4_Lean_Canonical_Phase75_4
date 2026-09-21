@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9518**.
+Distinct declaration spellings indexed: **9522**.
 
 ## Repeated declaration spellings
 
@@ -1710,6 +1710,8 @@ Distinct declaration spellings indexed: **9518**.
 - `FinalSeamQuarticCoreCollisionData.q2_add_h4_gradient_eval_right_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
 - `FinalSeamQuarticEndpointMultiplicityData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `FinalSeamQuarticHomogeneousCoreData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
+- `FinalSeamQuarticHomogeneousCoreData.h4_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticTopSingular`
+- `FinalSeamQuarticHomogeneousCoreData.initialForm_four_eq_h4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticTopSingular`
 - `FinalSeamQuarticHomogeneousCoreData.q2_hessianMatrix_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `FinalSeamQuarticHomogeneousCoreData.q2_hessianMatrix_isUnit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
 - `FinalSeamQuarticHomogeneousCoreData.quadraticHessianMatrix_eq_core` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticQuadraticCore`
@@ -6107,6 +6109,7 @@ Distinct declaration spellings indexed: **9518**.
 - `isWeightLE_binaryOrdinary_of_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`
 - `isWeightLE_finset_prod` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `isWeightLE_finset_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
+- `isWeightLE_fourOrdinary_four_of_isHomogeneous_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticTopSingular`
 - `isWeightLE_fourOrdinary_of_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `isWeightLE_mono` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `isWeightLE_of_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightBounds`
@@ -6116,6 +6119,7 @@ Distinct declaration spellings indexed: **9518**.
 - `isWeightLE_zero_pureLongitudinalTransverseWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `isWeightLT_prod_of_exists` — `theorem` in `HC4.Polynomial.TopProduct`
 - `isWeightLT_zero` — `theorem` in `HC4.Polynomial.WeightBounds`
+- `isWeightedHomogeneous_fourOrdinary_of_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticTopSingular`
 - `isWeightedHomogeneous_qsContactTransverseNatWeight_of_exactDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalSlices`
 - `isolatedRigidMatrixFourBlock` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `iteratedBinaryLinearFormTransverseDeriv` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
