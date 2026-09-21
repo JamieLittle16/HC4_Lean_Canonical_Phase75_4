@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9370**.
+Distinct declaration spellings indexed: **9375**.
 
 ## Repeated declaration spellings
 
@@ -1675,6 +1675,7 @@ Distinct declaration spellings indexed: **9370**.
 - `FinalSeamMarkedTerminalWeight.conformalFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamMarkedTerminalWeight.exists_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamMarkedTerminalWeight.exists_second_zero_away_from_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
+- `FinalSeamMarkedTerminalWeight.hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `FinalSeamMarkedTerminalWeight.squareCoordinate_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamSimpleAxisPivot` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
@@ -1911,6 +1912,7 @@ Distinct declaration spellings indexed: **9370**.
 - `HasExactSmithExponentPositiveLongitudinalGap.ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPositiveLongitudinalGap`
 - `HasExactSmithExponentPositiveLongitudinalGap.toFirstLongitudinalDeparture` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture`
 - `HasExactTransverseDegree` — `def` in `HC4.Newton.TransverseSupportRigidity`
+- `HasFinalSeamMarkedTerminalWeightExtraction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `HasFirstExactSmithExponentLongitudinalDeparture` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture`
 - `HasFirstExactSmithExponentLongitudinalDeparture.no_intermediate_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture`
 - `HasFirstExactSmithExponentLongitudinalDeparture.ordinaryDegree_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstLongitudinalDeparture`
@@ -5641,6 +5643,7 @@ Distinct declaration spellings indexed: **9370**.
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_constructorFirstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
+- `hasPlanarKellerCollision_of_markedTerminalWeightExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `hasPlanarKellerCollision_of_standardized` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
 - `hasPositiveActualParameterLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `hasPositiveActualParameterLayer_of_hessianDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
@@ -9215,6 +9218,7 @@ Distinct declaration spellings indexed: **9370**.
 - `terminalAxisHessian_zero_zero_eq_C_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `terminalAxisHessian_zero_zero_isUnit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `terminalConformalFace_dichotomy` — `theorem` in `HC4.Newton.TerminalConformalFace`
+- `terminalConformalFace_totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `terminalDirectRankJump_collision_forces_opposite_pair` — `theorem` in `HC4.Newton.TerminalDirectRankJumpReduction`
 - `terminalDirectRankJump_collision_forces_residual` — `theorem` in `HC4.Newton.TerminalDirectRankJumpReduction`
 - `terminalDirectRankJump_injective_or_residual` — `theorem` in `HC4.Newton.TerminalDirectRankJumpReduction`
@@ -9459,6 +9463,7 @@ Distinct declaration spellings indexed: **9370**.
 - `twoRootEulerOperator_support_subset` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoRootEulerOperator_translate_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
+- `twoZeroMarkedTerminalWeight_standardizes` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
 - `two_le_stationaryWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
