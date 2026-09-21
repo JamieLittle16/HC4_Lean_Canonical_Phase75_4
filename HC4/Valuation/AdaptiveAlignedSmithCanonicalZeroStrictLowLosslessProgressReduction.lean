@@ -71,9 +71,9 @@ inductive LosslessProgressResidual
       (d : Fin 4 →₀ ℕ)
       (mem : d ∈ (polynomialFamilySpecialFiber
           T.terminal.blocker.presented.family).support)
-      (degree_two : ordinaryDegree4 d = 2)
-      (omitted_two : d (facetOmittedCoordinate facet) = 2)
-      (pure : ∀ i : Fin 4, i ≠ facetOmittedCoordinate facet → d i = 0)
+      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
+      (omitted_two : d (HC4.Polynomial.facetOmittedCoordinate facet) = 2)
+      (pure : ∀ i : Fin 4, i ≠ HC4.Polynomial.facetOmittedCoordinate facet → d i = 0)
 
 /-- **Lossless strict-low progress reduction.**
 
