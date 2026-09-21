@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9411**.
+Distinct declaration spellings indexed: **9418**.
 
 ## Repeated declaration spellings
 
@@ -5195,6 +5195,7 @@ Distinct declaration spellings indexed: **9411**.
 - `finalSeamTransverseQuadraticPivotFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
 - `finalSeamTransverseSquareData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseSquare`
 - `finalSeam_exists_other_exactOrder_one_of_markedOrder_succ_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamOrderTransfer`
+- `finalSeam_topFace_degree_ge_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalWeight_toNat_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finiteIntegralRescaledTilt` — `def` in `HC4.Newton.SmithPoleMinimality`
@@ -7199,6 +7200,7 @@ Distinct declaration spellings indexed: **9411**.
 - `polynomial_X_pow_dvd_of_add_pow_dvd_pow_mul` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `polynomial_X_pow_mul_cancel` — `theorem` in `HC4.Valuation.IntegralKernelBlowup`
 - `polynomial_coeff_eq_zero_of_constant_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianCancellation`
+- `polynomial_derivative_eval_half_eq_zero_of_natDegree_le_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `polynomial_eq_C_constantCoeff_of_positive_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomial_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_eq_X_pow_mul_C_add_X_mul` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -8081,6 +8083,10 @@ Distinct declaration spellings indexed: **9411**.
 - `repairProgress_or_closing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `repairProgress_trans` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `repairState_measure_lt_of_progress` — `theorem` in `HC4.Newton.FiniteRepairTermination`
+- `representedAxisGradientComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+- `representedAxisGradientComponent_eval_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+- `representedAxisGradientComponent_eval_zero_eq_eval_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+- `representedAxisGradientComponent_natDegree_le_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `representedAxisHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `representedAxisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `representedAxisHessian_row_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
@@ -8092,6 +8098,7 @@ Distinct declaration spellings indexed: **9411**.
 - `represented_axis_mixedHessian_zero_of_noLongitudinalCoupling` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`
 - `represented_axis_mixedHessian_zero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `represented_gradientAtZero_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+- `represented_midpoint_hessianRow_zero_of_degree_le_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `represented_transverseLinearCoefficient_eq_zero_of_noLongitudinalCoupling` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`
 - `represented_transverseLinearCoefficient_eq_zero_of_nonlinearLongitudinal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `represented_transverseLinear_natDegree_le_one_of_noLongitudinalCoupling` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`

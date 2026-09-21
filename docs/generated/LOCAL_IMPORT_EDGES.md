@@ -2563,6 +2563,8 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
   - `HC4.Newton.TerminalCenteredWeights`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalCoupling`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
