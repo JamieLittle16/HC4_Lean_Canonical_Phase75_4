@@ -11870,7 +11870,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidMixedLayerCross`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem fourOrdinaryInitialForm_eq_zero_of_neg`, `theorem hessian_fourOrdinaryDegreeComponent_eq_zero_of_le_one`, `structure ExactNonlinearOrdinaryLayerMinorAtFirstBreak`, `theorem ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two`, `structure ExactCurvedOrdinaryLayerMinorAtFirstBreak`, `theorem actualRankTwo_or_exactLowerCurvedLayerMinor`
+- Declarations: `theorem fourOrdinaryInitialForm_eq_zero_of_neg`, `theorem hessian_fourOrdinaryDegreeComponent_eq_zero_of_le_one`, `theorem fourOrdinaryInitialForm_zero_eq_C_constantCoeff`, `theorem hessian_fourOrdinaryDegreeComponent_two_eq_C_constantCoeff`, `structure ExactNonlinearOrdinaryLayerMinorAtFirstBreak`, `theorem ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two`, `theorem principalMinor_source_ne_zero_of_degreeTwoComponent`, `def ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two`, `structure ExactCurvedOrdinaryLayerMinorAtFirstBreak`, `theorem actualRankTwo_or_exactLowerCurvedLayerMinor`, `theorem actualRankTwo_or_exactLowerNonlinearLayerMinor`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 
