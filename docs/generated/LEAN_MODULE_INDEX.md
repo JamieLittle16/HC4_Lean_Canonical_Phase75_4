@@ -1407,10 +1407,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/RankOneThreeToBinarySchur.lean`
 - Purpose: Cleared 1+2 Schur quotient of a symmetric 3x3 polynomial matrix
 - A-labels: none detected
-- Local imports: `HC4.Newton.ZeroSchurFirstEntryClock`
+- Local imports: `HC4.Newton.ZeroSchurFirstEntryClock`, `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def threePivot0BinarySchurSeries`, `def threePivot1BinarySchurSeries`, `def threePivot2BinarySchurSeries`, `theorem threePivot0BinarySchurSeries_determinant`, `theorem threePivot1BinarySchurSeries_determinant`, `theorem threePivot2BinarySchurSeries_determinant`
+- Declarations: `def threePivot0BinarySchurSeries`, `def threePivot1BinarySchurSeries`, `def threePivot2BinarySchurSeries`, `theorem threePivot0BinarySchurSeries_determinant`, `theorem threePivot1BinarySchurSeries_determinant`, `theorem threePivot2BinarySchurSeries_determinant`, `theorem tailMatrix_isSymm`, `theorem tailMatrix_isSymm`, `theorem tailConstantMatrix_isSymm`, `theorem exists_diagonal_ne_zero_of_rankOne`, `def toBinaryClockPivot0`, `def toBinaryClockPivot1`, `def toBinaryClockPivot2`, `def toBinaryZeroSchurClock_of_rankOne`
 
 ### `HC4.Newton.RankTwoFourBlockSchur`
 
@@ -2099,7 +2099,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.RankOneThreeSchur`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
+- Imported by local modules: `HC4.Newton.RankOneThreeToBinarySchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
 - Declarations: `structure ZeroThreeSchurSeries`, `def HasPositiveEntryLayer`, `def firstPositiveEntryOrder`, `theorem firstPositiveEntryOrder_spec`, `theorem firstPositiveEntryOrder_pos`, `theorem entry_coeff_eq_zero_of_lt_first`, `theorem firstFactor_dvd_entry`, `def tailEntry`, `def tailMatrix`, `theorem entry_eq_firstFactor_mul_tail`, `theorem matrix_eq_firstFactor_smul_tail`, `theorem determinant_eq_firstFactor_cube_mul_tail`, `theorem tail_constant_entry_ne_zero`, `structure ExactZeroThreeSchurClock`, `theorem hasPositiveEntryLayer`, `def firstOrder`, `theorem firstOrder_pos`, `theorem determinant_eq_firstFactor_cube_mul_tail`, `theorem triple_firstOrder_le_defect`, `theorem tail_constant_entry_ne_zero`, `def residualDefect`, `theorem tail_determinantFactor`, `def tailConstantMatrix`, `theorem tailConstantMatrix_ne_zero`, `theorem tailConstantMatrix_det_zero_of_residual_pos`, `theorem tailConstantMatrix_det_ne_zero_of_residual_zero`, `def HasTwoByTwoMinor`, `def AllTwoByTwoMinorsZero`, `inductive FirstTailRankFrontier`, `theorem firstTailRankFrontier`
 
 ## Area: `Polynomial`
