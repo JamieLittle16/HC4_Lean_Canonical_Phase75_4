@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9217**.
+Distinct declaration spellings indexed: **9218**.
 
 ## Repeated declaration spellings
 
@@ -7321,6 +7321,7 @@ Distinct declaration spellings indexed: **9217**.
 - `qs_rankThree_crossFacet_or_firstNonfacetCrossFacet_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `qs_rankThree_firstContact_two_fixed` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRImpossible`
 - `qs_rankThree_firstNonfacetCrossFacet_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsExposedTopFace`
+- `qs_rankThree_impossible_of_no_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsNoGlobalProgress`
 - `qs_rankThree_lowerBoundary` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `qs_rankThree_lowerBoundary_or_codimensionTwoSource` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsSquareCodimensionTwo`
 - `qs_rankThree_lowerBoundary_or_quadraticSquare` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
