@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9466**.
+Distinct declaration spellings indexed: **9471**.
 
 ## Repeated declaration spellings
 
@@ -1695,6 +1695,7 @@ Distinct declaration spellings indexed: **9466**.
 - `FinalSeamMarkedTerminalWeight.squareCoordinate_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
 - `FinalSeamQuarticAxisGradientData` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `FinalSeamQuarticAxisPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
+- `FinalSeamQuarticCoreCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
 - `FinalSeamQuarticEndpointMultiplicityData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `FinalSeamQuarticHomogeneousCoreData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `FinalSeamQuarticMidpointData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
@@ -5197,6 +5198,8 @@ Distinct declaration spellings indexed: **9466**.
 - `finalSeamExactHessianAxisOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `finalSeamHalf` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
 - `finalSeamMidpointAffinePart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
+- `finalSeamMidpointAffinePart_gradientComponent_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
+- `finalSeamMidpointAffinePart_gradient_eval_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
 - `finalSeamMidpointAffinePart_hessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `finalSeamMidpointComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `finalSeamMidpointFibre` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
@@ -5207,6 +5210,7 @@ Distinct declaration spellings indexed: **9466**.
 - `finalSeamMidpointLeft` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
 - `finalSeamMidpointLeft_shift_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
 - `finalSeamMidpointQuarticCore` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
+- `finalSeamMidpointQuarticCore_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
 - `finalSeamMidpointQuarticCore_hessianDeterminant_eq_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `finalSeamMidpointQuarticCore_hessian_eq_fibre` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `finalSeamMidpointRight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
@@ -5222,6 +5226,7 @@ Distinct declaration spellings indexed: **9466**.
 - `finalSeamOrigin_principalMinor_ne_zero_of_zero_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamQuarticAxisGradientData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `finalSeamQuarticAxisPacket_of_degree_le_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
+- `finalSeamQuarticCoreCollisionData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticCoreCollision`
 - `finalSeamQuarticEndpointMultiplicityData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMultiplicity`
 - `finalSeamQuarticHomogeneousCoreData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`
 - `finalSeamQuarticMidpointData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
