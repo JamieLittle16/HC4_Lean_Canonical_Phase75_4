@@ -256,6 +256,133 @@ theorem tail_constant_entry_ne_zero
       (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer i j).coeff 0 ≠ 0 := by
   exact E.zeroSeries.tail_constant_entry_ne_zero E.hasPositiveEntryLayer
 
+
+/-- Residual determinant order after removing the common first 3x3 entry
+factor. -/
+def residualDefect
+    (E : ExactZeroThreeSchurClock R) : ℕ :=
+  E.defect - 3 * E.firstOrder
+
+/-- Exact determinant clock on the normalised first-entry tail matrix. -/
+theorem tail_determinantFactor
+    (E : ExactZeroThreeSchurClock R) :
+    (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).det =
+      E.clearingFactor * Polynomial.X ^ E.residualDefect := by
+  have hle := E.triple_firstOrder_le_defect
+  have hsplit :
+      E.defect = 3 * E.firstOrder + E.residualDefect := by
+    unfold residualDefect
+    omega
+  have hscaled :
+      Polynomial.X ^ (3 * E.firstOrder) *
+          (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).det =
+        Polynomial.X ^ (3 * E.firstOrder) *
+          (E.clearingFactor * Polynomial.X ^ E.residualDefect) := by
+    calc
+      Polynomial.X ^ (3 * E.firstOrder) *
+            (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).det =
+          E.zeroSeries.matrix.det :=
+        E.determinant_eq_firstFactor_cube_mul_tail.symm
+      _ = E.clearingFactor * Polynomial.X ^ E.defect :=
+        E.determinantFactor
+      _ = Polynomial.X ^ (3 * E.firstOrder) *
+          (E.clearingFactor * Polynomial.X ^ E.residualDefect) := by
+        rw [hsplit, pow_add]
+        ring
+  exact mul_left_cancel₀
+    (pow_ne_zero (3 * E.firstOrder) Polynomial.X_ne_zero)
+    hscaled
+
+/-- Constant coefficient matrix of the normalised first-entry tail. -/
+noncomputable def tailConstantMatrix
+    (E : ExactZeroThreeSchurClock R) :
+    Matrix (Fin 3) (Fin 3) R :=
+  fun i j =>
+    (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer i j).coeff 0
+
+/-- The tail constant matrix is nonzero. -/
+theorem tailConstantMatrix_ne_zero
+    (E : ExactZeroThreeSchurClock R) :
+    E.tailConstantMatrix ≠ 0 := by
+  rcases E.tail_constant_entry_ne_zero with ⟨i, j, hij⟩
+  intro hz
+  have hentry := congrArg (fun M : Matrix (Fin 3) (Fin 3) R => M i j) hz
+  simpa [tailConstantMatrix] using hij hentry
+
+/-- If residual determinant order remains, the normalised first coefficient
+matrix is singular. -/
+theorem tailConstantMatrix_det_zero_of_residual_pos
+    (E : ExactZeroThreeSchurClock R)
+    (hres : 0 < E.residualDefect) :
+    E.tailConstantMatrix.det = 0 := by
+  have hcoeff :
+      (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).det.coeff 0 = 0 := by
+    rw [E.tail_determinantFactor]
+    rw [Polynomial.coeff_mul_X_pow']
+    simp [Nat.not_le.mpr hres]
+  simpa [tailConstantMatrix, Matrix.det_fin_three,
+    Polynomial.coeff_zero_eq_eval_zero] using hcoeff
+
+/-- If no residual determinant order remains, the first coefficient matrix
+is already nondegenerate. -/
+theorem tailConstantMatrix_det_ne_zero_of_residual_zero
+    (E : ExactZeroThreeSchurClock R)
+    (hres : E.residualDefect = 0) :
+    E.tailConstantMatrix.det ≠ 0 := by
+  have hcoeff :
+      (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer).det.coeff 0 =
+        E.clearingFactor.coeff 0 := by
+    rw [E.tail_determinantFactor, hres]
+    simp
+  intro hdet
+  apply E.clearingFactor_coeff_zero_ne_zero
+  rw [← hcoeff]
+  simpa [tailConstantMatrix, Matrix.det_fin_three,
+    Polynomial.coeff_zero_eq_eval_zero] using hdet
+
+/-- A concrete nonzero 2x2 minor of a 3x3 matrix. -/
+def HasTwoByTwoMinor
+    (M : Matrix (Fin 3) (Fin 3) R) : Prop :=
+  ∃ i j k l : Fin 3,
+    M i j * M k l - M i l * M k j ≠ 0
+
+/-- All 2x2 minors of a 3x3 matrix vanish. -/
+def AllTwoByTwoMinorsZero
+    (M : Matrix (Fin 3) (Fin 3) R) : Prop :=
+  ∀ i j k l : Fin 3,
+    M i j * M k l - M i l * M k j = 0
+
+/-- Finite rank frontier of the normalised first 3x3 coefficient block. -/
+inductive FirstTailRankFrontier
+    (E : ExactZeroThreeSchurClock R) : Prop
+  | determinantClosing
+      (residual_eq_zero : E.residualDefect = 0)
+      (det_ne_zero : E.tailConstantMatrix.det ≠ 0)
+  | rankTwo
+      (residual_pos : 0 < E.residualDefect)
+      (minor : HasTwoByTwoMinor E.tailConstantMatrix)
+  | rankOne
+      (residual_pos : 0 < E.residualDefect)
+      (allMinors : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+      (matrix_ne_zero : E.tailConstantMatrix ≠ 0)
+
+/-- Every exact zero-constant 3x3 clock reaches the finite first-tail rank
+frontier. -/
+theorem firstTailRankFrontier
+    (E : ExactZeroThreeSchurClock R) :
+    E.FirstTailRankFrontier := by
+  by_cases hres : E.residualDefect = 0
+  · exact .determinantClosing hres
+      (E.tailConstantMatrix_det_ne_zero_of_residual_zero hres)
+  · have hrespos : 0 < E.residualDefect := Nat.pos_of_ne_zero hres
+    by_cases hminor : HasTwoByTwoMinor E.tailConstantMatrix
+    · exact .rankTwo hrespos hminor
+    · have hall : AllTwoByTwoMinorsZero E.tailConstantMatrix := by
+        intro i j k l
+        by_contra hne
+        exact hminor ⟨i, j, k, l, hne⟩
+      exact .rankOne hrespos hall E.tailConstantMatrix_ne_zero
+
 end ExactZeroThreeSchurClock
 
 end
