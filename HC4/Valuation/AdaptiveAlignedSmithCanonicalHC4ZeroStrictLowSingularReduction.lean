@@ -51,7 +51,6 @@ theorem
       (K := K)
   · intro state T
     exact hsingular T.toSingularTerminal
-  · exact F
   · exact hdet
 
 end
