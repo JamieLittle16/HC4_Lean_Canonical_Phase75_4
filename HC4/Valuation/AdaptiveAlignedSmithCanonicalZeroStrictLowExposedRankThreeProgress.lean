@@ -59,23 +59,23 @@ to carry provenance which it does not store. -/
 theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor
     {F : MvPolynomial (Fin 4) K}
     (hF : F ≠ 0)
-    (hzero : hessianDeterminant F = 0)
-    (hnonlinear : ∀ d ∈ F.support, 3 ≤ ordinaryDegree4 d)
+    (hzero : HC4.Polynomial.hessianDeterminant F = 0)
+    (hnonlinear : ∀ d ∈ F.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d)
     (facet : ToricFacet)
     (hthree :
       MvRankThreeOnFacet facet
         (exposedSingularNonlinearBoundaryVertex
           F hF hzero hnonlinear).exponent) :
     ∃ i j : Fin 4,
-      i ≠ j ∧ hessianPrincipalMinor F i j ≠ 0 := by
+      i ≠ j ∧ HC4.Polynomial.hessianPrincipalMinor F i j ≠ 0 := by
   let E :=
     exposedSingularNonlinearBoundaryVertex F hF hzero hnonlinear
   let D0 := coordinateMaxInitialData F hF (0 : Fin 4)
-  have h0zero : hessianDeterminant D0.face = 0 := D0.hessian_zero hzero
+  have h0zero : HC4.Polynomial.hessianDeterminant D0.face = 0 := D0.hessian_zero hzero
   let D1 := coordinateMaxInitialData D0.face D0.face_ne_zero (1 : Fin 4)
-  have h1zero : hessianDeterminant D1.face = 0 := D1.hessian_zero h0zero
+  have h1zero : HC4.Polynomial.hessianDeterminant D1.face = 0 := D1.hessian_zero h0zero
   let D2 := coordinateMaxInitialData D1.face D1.face_ne_zero (2 : Fin 4)
-  have h2zero : hessianDeterminant D2.face = 0 := D2.hessian_zero h1zero
+  have h2zero : HC4.Polynomial.hessianDeterminant D2.face = 0 := D2.hessian_zero h1zero
   let D3 := coordinateMaxInitialData D2.face D2.face_ne_zero (3 : Fin 4)
 
   have hthreeE : MvRankThreeOnFacet facet E.exponent := by
@@ -89,31 +89,31 @@ theorem exposedSingularNonlinearBoundaryVertex_rankThree_sourcePrincipalMinor
     exact E.exposed
 
   have hminor3 :
-      hessianPrincipalMinor D3.face i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor D3.face i j ≠ 0 := by
     rw [hmono]
     exact hessianPrincipalMinor_monomial_ne_zero_of_two_positive
       E.coeff_ne_zero hij hi hj
 
   have hminor2 :
-      hessianPrincipalMinor D2.face i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor D2.face i j ≠ 0 := by
     apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       D3.weight_bound i j
     simpa [D3.face_eq] using hminor3
 
   have hminor1 :
-      hessianPrincipalMinor D1.face i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor D1.face i j ≠ 0 := by
     apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       D2.weight_bound i j
     simpa [D2.face_eq] using hminor2
 
   have hminor0 :
-      hessianPrincipalMinor D0.face i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor D0.face i j ≠ 0 := by
     apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       D1.weight_bound i j
     simpa [D1.face_eq] using hminor1
 
   have hminorF :
-      hessianPrincipalMinor F i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor F i j ≠ 0 := by
     apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       D0.weight_bound i j
     simpa [D0.face_eq] using hminor0
@@ -167,7 +167,7 @@ theorem exposedRankThree_actualRankTwoHessianChart
     exact_mod_cast T.topFace.maximal d hd
 
   have hminorSource :
-      hessianPrincipalMinor source i j ≠ 0 := by
+      HC4.Polynomial.hessianPrincipalMinor source i j ≠ 0 := by
     apply hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero
       hweight i j
     simpa [source, T.topFace.face_eq] using hminorTop
