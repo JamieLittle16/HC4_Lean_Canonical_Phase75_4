@@ -119,6 +119,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTerminalFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceBoundaryVertex`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryFrontier`
@@ -2460,6 +2461,10 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSlopeDispatcher`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2FreeDispatcher`
   - `HC4.Valuation.AdaptivePositiveKernelFixedScaleProgress`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
   - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
