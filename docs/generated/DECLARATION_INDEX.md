@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9418**.
+Distinct declaration spellings indexed: **9426**.
 
 ## Repeated declaration spellings
 
@@ -1691,6 +1691,8 @@ Distinct declaration spellings indexed: **9418**.
 - `FinalSeamMarkedTerminalWeight.hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `FinalSeamMarkedTerminalWeight.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightImpossible`
 - `FinalSeamMarkedTerminalWeight.squareCoordinate_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTerminalWeightRestriction`
+- `FinalSeamQuarticAxisGradientData` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
+- `FinalSeamQuarticAxisPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamSimpleAxisPivot` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
 - `FinalSeamSimpleAxisPivot.coeff_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
@@ -3155,6 +3157,7 @@ Distinct declaration spellings indexed: **9418**.
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TwoChartCover` — `def` in `HC4.RationalRigidity.ChartCertificates`
+- `TwoEndpointLinearResidualData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `X_dvd_axisRestriction_derivative` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_dvd_longitudinalCoefficient_single_of_zeroGradient` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `X_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
@@ -5189,11 +5192,14 @@ Distinct declaration spellings indexed: **9418**.
 - `finalSeamOriginHessian_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamOrigin_principalMinor_ne_zero_of_diagonalExactOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamOrigin_principalMinor_ne_zero_of_zero_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
+- `finalSeamQuarticAxisGradientData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
+- `finalSeamQuarticAxisPacket_of_degree_le_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `finalSeamRightRecenteredData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `finalSeamSimpleAxisPivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
 - `finalSeamStrictLowHessianSignature` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `finalSeamTransverseQuadraticPivotFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
 - `finalSeamTransverseSquareData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseSquare`
+- `finalSeam_degree_eq_four_of_le_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `finalSeam_exists_other_exactOrder_one_of_markedOrder_succ_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamOrderTransfer`
 - `finalSeam_topFace_degree_ge_four` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
@@ -8086,6 +8092,7 @@ Distinct declaration spellings indexed: **9418**.
 - `representedAxisGradientComponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `representedAxisGradientComponent_eval_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `representedAxisGradientComponent_eval_zero_eq_eval_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
+- `representedAxisGradientComponent_natDegree_le_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `representedAxisGradientComponent_natDegree_le_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamCubicExclusion`
 - `representedAxisHessian` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
 - `representedAxisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
@@ -9470,6 +9477,7 @@ Distinct declaration spellings indexed: **9418**.
 - `twice` — `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `twice_firstOrder_le_defect` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `twoByTwoWitness_or_allZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`
+- `twoEndpointLinearResidualData_of_natDegree_le_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticAxisFrontier`
 - `twoEndpointResidual_exactFirst_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `twoFunctionCarrier` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `twoFunctionCarrier_hessian_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
