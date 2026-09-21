@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9402**.
+Distinct declaration spellings indexed: **9408**.
 
 ## Repeated declaration spellings
 
@@ -1640,9 +1640,13 @@ Distinct declaration spellings indexed: **9402**.
 - `EndpointResidualNormalForm.exactRecenteredLayer` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `Equivalent` — `def` in `HC4.Valuation.ScaledDefect`
 - `ExactCurvedOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
+- `ExactKernelLinearCoupledOrdinaryLayerData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
 - `ExactMixedOrdinaryLayerAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `ExactNonlinearMixedOrdinaryLayerAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakMixedNonlinear`
 - `ExactNonlinearMixedOrdinaryLayerAtFirstBreak.exactClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakMixedNonlinear`
+- `ExactNonlinearMixedOrdinaryLayerAtFirstBreak.exists_kernelLinear_coupledSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
+- `ExactNonlinearMixedOrdinaryLayerAtFirstBreak.kernelExponent_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
+- `ExactNonlinearMixedOrdinaryLayerAtFirstBreak.toKernelLinearCoupledData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
 - `ExactNonlinearOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
@@ -3211,6 +3215,7 @@ Distinct declaration spellings indexed: **9402**.
 - `actualRankTwoGlobalProgress` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress`
 - `actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
 - `actualRankTwoHessianChart_of_specialFiber_minor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+- `actualRankTwo_or_exactKernelLinearCoupledLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
 - `actualRankTwo_or_exactLowerCurvedLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `actualRankTwo_or_exactLowerMixedOrdinaryLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `actualRankTwo_or_exactLowerNonlinearLayerMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
@@ -4810,6 +4815,7 @@ Distinct declaration spellings indexed: **9402**.
 - `exactKernelClosingContact` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelContact`
 - `exactLayerData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `exactMarkedAxisCollision_of_noSecondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `exactNonlinearMixedLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
 - `exactOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `exactRankOneSchurClockAt_determinant_coeff_defect_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurResidualClosingKernel`
 - `exactRankOneSchurClockAt_kernel_coeff_defect_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurResidualClosingKernel`
