@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9291**.
+Distinct declaration spellings indexed: **9295**.
 
 ## Repeated declaration spellings
 
@@ -1656,6 +1656,7 @@ Distinct declaration spellings indexed: **9291**.
 - `FacetOutcome.toClassifiedBranch` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `FinalSeamData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
+- `FinalSeamExactHessianAxisOrder` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `FinalSeamStrictLowHessianSignature` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `FiniteTargetChart` — `def` in `HC4.RationalRigidity.FinitePreimage`
@@ -1873,6 +1874,7 @@ Distinct declaration spellings indexed: **9291**.
 - `HasExactBinaryLinearFormTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `HasExactGradientCollision` — `def` in `HC4.Newton.ExactCollisionFirstWall`
 - `HasExactGradientCollision.rename_perm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
+- `HasExactPolynomialInitialOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `HasExactSmithExponentPositiveLongitudinalGap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPositiveLongitudinalGap`
 - `HasExactSmithExponentPositiveLongitudinalGap.coefficientFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPositiveLongitudinalGap`
 - `HasExactSmithExponentPositiveLongitudinalGap.coefficientFiber_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPositiveLongitudinalGap`
@@ -4398,6 +4400,7 @@ Distinct declaration spellings indexed: **9291**.
 - `derivative_det_rankTwoToRankThreeRoofPencil_eval_zero` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `derivative_fourAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `derivative_monomial_eval_neg_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity`
+- `derivative_of_succ` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `derivative_sourceAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `derivative_taylor_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHomogeneousRigidity`
 - `derivative_translatePolynomial` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
@@ -5102,6 +5105,7 @@ Distinct declaration spellings indexed: **9291**.
 - `finalGeometryFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `finalLevel_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalSeamData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
+- `finalSeamExactHessianAxisOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `finalSeamRightRecenteredData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
 - `finalSeamStrictLowHessianSignature` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
