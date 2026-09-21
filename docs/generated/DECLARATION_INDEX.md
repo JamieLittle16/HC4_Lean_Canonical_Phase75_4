@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9219**.
+Distinct declaration spellings indexed: **9222**.
 
 ## Repeated declaration spellings
 
@@ -1796,6 +1796,7 @@ Distinct declaration spellings indexed: **9219**.
 - `FrontierPreterminalSchurCertificate` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierRigidPacketSchurExposure` — `structure` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `GeneralFourBlock` — `structure` in `HC4.Newton.GeneralFourBlockSchur`
+- `GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `GeneralFourBlock.schurC_scale_lastCoordinate` — `theorem` in `HC4.Valuation.RigidClosingResidualOrientation`
 - `GeneralThreeBlock` — `structure` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `GeneralThreeBlock.binaryScalarSchurSeries` — `def` in `HC4.Newton.GeneralThreeBlockSecondScalarSchur`
@@ -4803,6 +4804,7 @@ Distinct declaration spellings indexed: **9219**.
 - `exists_fourBlockKernelRowBreakAt` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
+- `exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
@@ -6457,6 +6459,7 @@ Distinct declaration spellings indexed: **9219**.
 - `nondegenerateTerminalQuadraticHessian_polynomial_ne_zero` — `theorem` in `HC4.Newton.TerminalQuadraticHessian`
 - `nonemptyQuadraticProjectedSubface_exists_homogeneousCollisionFibre` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `nonemptyQuadraticProjectedSubface_exists_minimalLongitudinalPacket` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
+- `nonlinearConfined_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `nonlinearConfined_facetPattern_restriction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
 - `nonlinearConfined_facet_classification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
 - `nonlinearConfined_facet_ne_qs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`

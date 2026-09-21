@@ -9509,7 +9509,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralClosure`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNontrivialAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - Declarations: `theorem scaleAwareHessianFourBlock_activeDet_coeff_zero_eq_specialFiber_minor`, `def actualRankTwoHessianChart_of_specialFiber_minor`, `theorem carrier_hessianPrincipalMinor_ne_zero`, `theorem presented_specialFiber_hessianPrincipalMinor_ne_zero`, `def actualRankTwoHessianChart`, `def actualRankThreeGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralClosure`
@@ -11357,10 +11357,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian.lean`
 - Purpose: Hessian structure of the nonlinear-confinement branch
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`, `HC4.Newton.MixedDegreeAxisCollision`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`, `HC4.Newton.MixedDegreeAxisCollision`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem ordinaryDegree4_pos_of_ne_zero`, `theorem hessian_omitted_eq_C_of_nonlinearConfinement`, `theorem hessian_longitudinal_constant_eq_zero_of_axisCollision`, `theorem nonlinearConfined_hessianRow_constant`, `theorem nonlinearConfined_hessianOmittedLongitudinal_eq_zero`
+- Declarations: `theorem ordinaryDegree4_pos_of_ne_zero`, `theorem hessian_omitted_eq_C_of_nonlinearConfinement`, `theorem hessian_longitudinal_constant_eq_zero_of_axisCollision`, `theorem GeneralFourBlock.determinantCore_eq_zero_of_b_eq_zero_of_fivePrincipal`, `theorem exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero`, `theorem nonlinearConfined_hessianRow_constant`, `theorem nonlinearConfined_hessianOmittedLongitudinal_eq_zero`, `theorem nonlinearConfined_actualRankTwoHessianChart`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
 
