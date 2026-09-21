@@ -828,6 +828,8 @@ human architecture guide.
 - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.Newton.RankOneRepairProgress`
   - `HC4.Newton.RankOneSchurSeriesAlignment`
+- `HC4.Newton.ZeroThreeSchurFirstEntryClock`
+  - `HC4.Newton.RankOneThreeSchur`
 - `HC4.PlanarDoublingInjectivity`
   - `HC4.PlanarJC2Interface`
 - `HC4.PlanarJC2HessianEmbedding`
