@@ -1,5 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered
 
 /-!
 # Direct singular-terminal reduction for unrestricted HC4
