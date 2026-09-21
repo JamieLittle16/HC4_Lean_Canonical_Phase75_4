@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9329**.
+Distinct declaration spellings indexed: **9334**.
 
 ## Repeated declaration spellings
 
@@ -1922,6 +1922,7 @@ Distinct declaration spellings indexed: **9329**.
 - `HasJointCodimensionTwoDeparture` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `HasLeftPivotHessianKernel` — `def` in `HC4.Newton.FixedKernelHessian`
 - `HasLinearPowerTransverseNormalForm` — `def` in `HC4.Newton.LinearPowerPacketNormalForm`
+- `HasMixedNonlinearSourceMonomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `HasNoNegativeLowSmithPatterns` — `def` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `HasNoPositiveParameterCoeffBelow` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `HasNoPositiveParameterCoeffBelow.C` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
@@ -2028,6 +2029,7 @@ Distinct declaration spellings indexed: **9329**.
 - `HasTransverseHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseRankFrontier`
 - `HasTrivialKernel` — `def` in `HC4.Newton.RankOnePacketReentry`
 - `HasTwoByTwoMinorWitness` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
+- `HasTwoPureNonlinearAxes` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `HasUnitKernelSectionDivisibility` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `HasVanishingProjectiveWedges` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `HasVanishingRawSpecialSchurProjectiveWedges` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawBinaryProjectiveLine`
@@ -4922,6 +4924,7 @@ Distinct declaration spellings indexed: **9329**.
 - `exponentHessianCore_factor` — `theorem` in `HC4.Polynomial.MonomialHessian`
 - `exponentHessianMinor3` — `def` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `exponent_eq_one_of_positiveWeightedTerm_eq_weight` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
+- `exponent_eq_single_of_not_mixed` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `exponent_eq_zero_of_pderiv_eq_zero` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
 - `exponent_eq_zero_of_positiveWeightedTerm_eq_zero` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `exponent_ne_zero_of_gradientContribution_ne_zero` — `theorem` in `HC4.Newton.SmithFirstWallTransverse`
@@ -5592,6 +5595,7 @@ Distinct declaration spellings indexed: **9329**.
 - `hasLinearPowerTransverseNormalForm_of_hessianKernel` — `theorem` in `HC4.Newton.LinearPowerPacketNormalForm`
 - `hasLinearPowerTransverseNormalForm_of_leftPivotKernel` — `theorem` in `HC4.Newton.LinearPowerPacketNormalForm`
 - `hasLosslessFrontier_supplies_compactFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
+- `hasMixedNonlinearSourceMonomial_of_witness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_constructorFirstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
@@ -6335,6 +6339,7 @@ Distinct declaration spellings indexed: **9329**.
 - `mixedDegreePair_of_not_degreePure` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `mixedDegree_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
 - `mixedDeparture_hasRepairOrTerminal` — `theorem` in `HC4.Newton.RestartClassification`
+- `mixedNonlinearSource_or_twoPureNonlinearAxes` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `mixedOrientation_endpoint_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
 - `mixedThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixedThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
