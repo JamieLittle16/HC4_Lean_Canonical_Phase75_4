@@ -1142,6 +1142,8 @@ human architecture guide.
 - `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
   - `HC4.Polynomial.RankThreePencils`
   - `HC4.Valuation.ParameterGapDualJet`
+- `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
+  - `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - _(no local imports)_
 - `HC4.Polynomial.TopProduct`
@@ -3415,6 +3417,7 @@ human architecture guide.
   - `HC4.Polynomial.UniqueMaximalInitialMonomial`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightSourceDeficits`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightClosure`
+  - `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineTerminalRealisation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneRightCentralDeficitRees`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofAffineCoordinates`
