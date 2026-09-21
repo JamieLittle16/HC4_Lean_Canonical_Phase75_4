@@ -327,6 +327,148 @@ noncomputable def toBinaryZeroSchurClock_of_rankOne
   · exact E.toBinaryClockPivot1 hsymm hall hp
   · exact E.toBinaryClockPivot2 hsymm hall hp
 
+
+/-! ## Singular rank-two 3x3 tail has a principal pivot -/
+
+/-- In a symmetric singular 3x3 matrix over a domain, the existence of any
+nonzero 2x2 minor forces one of the three coordinate-principal 2x2 minors to
+be nonzero.
+
+The proof is division-free.  If all three principal minors vanish, the
+identities
+
+    (a*e-b*c)^2 + a*det(M) = (a*d-b^2)(a*f-c^2),
+    (b*e-c*d)^2 + d*det(M) = (a*d-b^2)(d*f-e^2),
+    (b*f-c*e)^2 + f*det(M) = (a*f-c^2)(d*f-e^2)
+
+kill the three cross minors as well.  Symmetry then kills every 2x2 minor,
+contradicting the retained rank-two witness. -/
+theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hdet : E.tailConstantMatrix.det = 0)
+    (hminor : HasTwoByTwoMinor E.tailConstantMatrix) :
+    (E.tailConstantMatrix 0 0 * E.tailConstantMatrix 1 1 -
+        E.tailConstantMatrix 0 1 * E.tailConstantMatrix 1 0 ≠ 0) ∨
+      (E.tailConstantMatrix 0 0 * E.tailConstantMatrix 2 2 -
+        E.tailConstantMatrix 0 2 * E.tailConstantMatrix 2 0 ≠ 0) ∨
+      (E.tailConstantMatrix 1 1 * E.tailConstantMatrix 2 2 -
+        E.tailConstantMatrix 1 2 * E.tailConstantMatrix 2 1 ≠ 0) := by
+  let M := E.tailConstantMatrix
+  have hM : M.IsSymm := E.tailConstantMatrix_isSymm hsymm
+  have h01sym : M 1 0 = M 0 1 := hM 1 0
+  have h02sym : M 2 0 = M 0 2 := hM 2 0
+  have h12sym : M 2 1 = M 1 2 := hM 2 1
+
+  by_contra hnone
+  push_neg at hnone
+  rcases hnone with ⟨hp01, hp02, hp12⟩
+
+  have hp01' : M 0 0 * M 1 1 - M 0 1 * M 0 1 = 0 := by
+    simpa [h01sym] using hp01
+  have hp02' : M 0 0 * M 2 2 - M 0 2 * M 0 2 = 0 := by
+    simpa [h02sym] using hp02
+  have hp12' : M 1 1 * M 2 2 - M 1 2 * M 1 2 = 0 := by
+    simpa [h12sym] using hp12
+
+  have hdet' :
+      M 0 0 * M 1 1 * M 2 2 +
+          2 * M 0 1 * M 0 2 * M 1 2 -
+          M 0 0 * M 1 2 * M 1 2 -
+          M 1 1 * M 0 2 * M 0 2 -
+          M 2 2 * M 0 1 * M 0 1 = 0 := by
+    simpa [M, Matrix.det_fin_three, h01sym, h02sym, h12sym] using hdet
+
+  have hcross0sq :
+      (M 0 0 * M 1 2 - M 0 1 * M 0 2) *
+          (M 0 0 * M 1 2 - M 0 1 * M 0 2) = 0 := by
+    have hid :
+        (M 0 0 * M 1 2 - M 0 1 * M 0 2) *
+              (M 0 0 * M 1 2 - M 0 1 * M 0 2) +
+            M 0 0 *
+              (M 0 0 * M 1 1 * M 2 2 +
+                2 * M 0 1 * M 0 2 * M 1 2 -
+                M 0 0 * M 1 2 * M 1 2 -
+                M 1 1 * M 0 2 * M 0 2 -
+                M 2 2 * M 0 1 * M 0 1) =
+          (M 0 0 * M 1 1 - M 0 1 * M 0 1) *
+            (M 0 0 * M 2 2 - M 0 2 * M 0 2) := by
+      ring
+    rw [hdet', hp01', hp02'] at hid
+    simpa using hid
+  have hcross0 :
+      M 0 0 * M 1 2 - M 0 1 * M 0 2 = 0 := by
+    rcases mul_eq_zero.mp hcross0sq with h | h
+    · exact h
+    · exact h
+
+  have hcross1sq :
+      (M 0 1 * M 1 2 - M 0 2 * M 1 1) *
+          (M 0 1 * M 1 2 - M 0 2 * M 1 1) = 0 := by
+    have hid :
+        (M 0 1 * M 1 2 - M 0 2 * M 1 1) *
+              (M 0 1 * M 1 2 - M 0 2 * M 1 1) +
+            M 1 1 *
+              (M 0 0 * M 1 1 * M 2 2 +
+                2 * M 0 1 * M 0 2 * M 1 2 -
+                M 0 0 * M 1 2 * M 1 2 -
+                M 1 1 * M 0 2 * M 0 2 -
+                M 2 2 * M 0 1 * M 0 1) =
+          (M 0 0 * M 1 1 - M 0 1 * M 0 1) *
+            (M 1 1 * M 2 2 - M 1 2 * M 1 2) := by
+      ring
+    rw [hdet', hp01', hp12'] at hid
+    simpa using hid
+  have hcross1 :
+      M 0 1 * M 1 2 - M 0 2 * M 1 1 = 0 := by
+    rcases mul_eq_zero.mp hcross1sq with h | h
+    · exact h
+    · exact h
+
+  have hcross2sq :
+      (M 0 1 * M 2 2 - M 0 2 * M 1 2) *
+          (M 0 1 * M 2 2 - M 0 2 * M 1 2) = 0 := by
+    have hid :
+        (M 0 1 * M 2 2 - M 0 2 * M 1 2) *
+              (M 0 1 * M 2 2 - M 0 2 * M 1 2) +
+            M 2 2 *
+              (M 0 0 * M 1 1 * M 2 2 +
+                2 * M 0 1 * M 0 2 * M 1 2 -
+                M 0 0 * M 1 2 * M 1 2 -
+                M 1 1 * M 0 2 * M 0 2 -
+                M 2 2 * M 0 1 * M 0 1) =
+          (M 0 0 * M 2 2 - M 0 2 * M 0 2) *
+            (M 1 1 * M 2 2 - M 1 2 * M 1 2) := by
+      ring
+    rw [hdet', hp02', hp12'] at hid
+    simpa using hid
+  have hcross2 :
+      M 0 1 * M 2 2 - M 0 2 * M 1 2 = 0 := by
+    rcases mul_eq_zero.mp hcross2sq with h | h
+    · exact h
+    · exact h
+
+  rcases hminor with ⟨i, j, k, l, hne⟩
+  fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
+    simp_all [M]
+
+/-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
+literal coordinate-principal active 2x2 pivot. -/
+theorem rankTwo_has_principalPivot
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hres : 0 < E.residualDefect)
+    (hminor : HasTwoByTwoMinor E.tailConstantMatrix) :
+    (E.tailConstantMatrix 0 0 * E.tailConstantMatrix 1 1 -
+        E.tailConstantMatrix 0 1 * E.tailConstantMatrix 1 0 ≠ 0) ∨
+      (E.tailConstantMatrix 0 0 * E.tailConstantMatrix 2 2 -
+        E.tailConstantMatrix 0 2 * E.tailConstantMatrix 2 0 ≠ 0) ∨
+      (E.tailConstantMatrix 1 1 * E.tailConstantMatrix 2 2 -
+        E.tailConstantMatrix 1 2 * E.tailConstantMatrix 2 1 ≠ 0) := by
+  exact E.exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
+    hsymm (E.tailConstantMatrix_det_zero_of_residual_pos hres) hminor
+
+
 end ExactZeroThreeSchurClock
 
 end
