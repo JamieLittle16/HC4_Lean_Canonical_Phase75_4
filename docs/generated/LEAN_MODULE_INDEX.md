@@ -11360,7 +11360,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`, `HC4.Newton.MixedDegreeAxisCollision`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem ordinaryDegree4_pos_of_ne_zero`, `theorem hessian_omitted_eq_C_of_nonlinearConfinement`, `theorem hessian_longitudinal_constant_eq_zero_of_axisCollision`, `theorem nonlinearConfined_hessianRow_constant`
+- Declarations: `theorem ordinaryDegree4_pos_of_ne_zero`, `theorem hessian_omitted_eq_C_of_nonlinearConfinement`, `theorem hessian_longitudinal_constant_eq_zero_of_axisCollision`, `theorem nonlinearConfined_hessianRow_constant`, `theorem nonlinearConfined_hessianOmittedLongitudinal_eq_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementReduction`
 
