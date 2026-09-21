@@ -72,6 +72,27 @@ theorem kernelLastFamilyHessianFourBlock_matrix
   simp [kernelLastParameterFirstHessian,
     parameterFirstHessian_symmetric]
 
+/-- Simultaneous kernel-last reindexing preserves an exact positive Hessian
+determinant clock as well as the singular clock used below. -/
+theorem kernelLastFamilyHessianFourBlock_determinantCore_eq_X_pow
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (k : Fin 4)
+    {Delta : ℕ}
+    (hdef : HasPolynomialFamilyHessianDefect (K := K) P Delta) :
+    (kernelLastFamilyHessianFourBlock P k).determinantCore =
+      (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^ Delta := by
+  calc
+    (kernelLastFamilyHessianFourBlock P k).determinantCore =
+        (kernelLastFamilyHessianFourBlock P k).matrix.det :=
+      (GeneralFourBlock.matrix_det _).symm
+    _ = (kernelLastParameterFirstHessian P k).det := by
+      rw [kernelLastFamilyHessianFourBlock_matrix]
+    _ = (parameterFirstHessian P).det := by
+      unfold kernelLastParameterFirstHessian
+      rw [Matrix.det_submatrix_equiv_self]
+    _ = (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^ Delta :=
+      parameterFirstHessian_det_eq_X_pow P hdef
+
 /-- Simultaneous reindexing does not change the determinant, so an identically
 singular family gives an identically singular kernel-last four-block. -/
 theorem kernelLastFamilyHessianFourBlock_determinantCore_eq_zero
