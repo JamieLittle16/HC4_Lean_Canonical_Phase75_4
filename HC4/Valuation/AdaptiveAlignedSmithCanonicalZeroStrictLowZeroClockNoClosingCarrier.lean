@@ -66,7 +66,6 @@ theorem strictLowBlocker_noClosingSourceCarrier
   let B := T.blocker.strictLowBlocker T.exponent T.mem T.pattern
   have hzero : B.aligned.endpoint.defect = 0 := by
     dsimp [B]
-    rw [T.blocker.strictLowBlocker_aligned]
     exact T.zeroClockFirstContactPacket.2.1
   exact B.noClosingSourceCarrier_of_defect_eq_zero hzero
 
