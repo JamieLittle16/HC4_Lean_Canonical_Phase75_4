@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9334**.
+Distinct declaration spellings indexed: **9338**.
 
 ## Repeated declaration spellings
 
@@ -1659,6 +1659,9 @@ Distinct declaration spellings indexed: **9334**.
 - `FinalSeamExactGradientAxisOrder` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamGradientOrder`
 - `FinalSeamExactHessianAxisOrder` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamExactHessianOrder`
 - `FinalSeamRightRecenteredData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
+- `FinalSeamSimpleAxisPivot` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
+- `FinalSeamSimpleAxisPivot.coeff_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
+- `FinalSeamSimpleAxisPivot.twoEndpointFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
 - `FinalSeamStrictLowHessianSignature` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `FiniteTargetChart` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `FirstActualLayerHasFreshSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
@@ -5131,6 +5134,7 @@ Distinct declaration spellings indexed: **9334**.
 - `finalSeamOrigin_principalMinor_ne_zero_of_diagonalExactOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamOrigin_principalMinor_ne_zero_of_zero_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamAxisHessian`
 - `finalSeamRightRecenteredData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamRightRecentered`
+- `finalSeamSimpleAxisPivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSimpleAxisPivot`
 - `finalSeamStrictLowHessianSignature` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamFirstContactSignature`
 - `finalSeam_exists_other_exactOrder_one_of_markedOrder_succ_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamOrderTransfer`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
