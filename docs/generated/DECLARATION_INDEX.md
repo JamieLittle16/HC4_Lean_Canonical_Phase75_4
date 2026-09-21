@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9278**.
+Distinct declaration spellings indexed: **9283**.
 
 ## Repeated declaration spellings
 
@@ -1655,6 +1655,7 @@ Distinct declaration spellings indexed: **9278**.
 - `FacetOutcome.facet` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.toClassifiedBranch` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FinalGeometryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
+- `FinalSeamData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `FiniteTargetChart` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `FirstActualLayerHasFreshSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `FirstActualLayerSupportContainedInSpecialFiber` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
@@ -3080,6 +3081,7 @@ Distinct declaration spellings indexed: **9278**.
 - `SmithTwoExtremeBalance` — `def` in `HC4.Newton.SmithExtremeBalance`
 - `SourceCoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `SourceCoordinateSpecialKernelData.reesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `SourceSupportAlternative` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `SparseOnPQCone` — `def` in `HC4.Toric.SparseEigenSupport`
 - `SparseOnRLevel` — `def` in `HC4.Toric.SparseEigenSupport`
 - `SparseOnSLevel` — `def` in `HC4.Toric.SparseEigenSupport`
@@ -5097,6 +5099,7 @@ Distinct declaration spellings indexed: **9278**.
 - `finalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `finalGeometryFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryFrontier`
 - `finalLevel_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
+- `finalSeamData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `finalWeight_toNat_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finalWeight_toNat_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitRees`
 - `finiteIntegralRescaledTilt` — `def` in `HC4.Newton.SmithPoleMinimality`
@@ -7963,6 +7966,7 @@ Distinct declaration spellings indexed: **9278**.
 - `repairProgress_or_closing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `repairProgress_trans` — `theorem` in `HC4.Newton.FiniteRepairTermination`
 - `repairState_measure_lt_of_progress` — `theorem` in `HC4.Newton.FiniteRepairTermination`
+- `representedSpecialFiber` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `representedSpecialFiber_isPolynomialMongeAmpere` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `representedSpecialFiber_nonlinearDegreeBound_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `residualDefect` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
@@ -8062,6 +8066,7 @@ Distinct declaration spellings indexed: **9278**.
 - `rightRecenteredHessianFourBlock_schurB_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `rightRecenteredHessianFourBlock_schurC_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
 - `rightRecenteredHessianFourBlock_schurConstant_det_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianSpecialFiber`
+- `rightRecenteredSpecialFiber` — `abbrev` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `rightRecentered_hessian_allMinors_raw` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `rightRecentered_mvC_mul_mvC_div_cancel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
 - `rightRecentered_quadraticCoefficient_ne_zero_of_transverseBlocker_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
