@@ -98,6 +98,75 @@ theorem rankOneClearedThreeSchurMatrix_eq_zero
   fin_cases i <;> fin_cases j <;>
     simp [rankOneClearedThreeSchurMatrix, had, har, has, hax, hay, haz]
 
+
+/-- Denominator-cleared 3x3 Schur quotient after pivoting on coordinate 1. -/
+def rankOneClearedThreeSchurMatrixD
+    (H : GeneralFourBlock R) : Matrix (Fin 3) (Fin 3) R :=
+  !![
+    H.d * H.a - H.b * H.b,
+      H.d * H.p - H.b * H.r,
+      H.d * H.q - H.b * H.s;
+    H.d * H.p - H.b * H.r,
+      H.d * H.x - H.r * H.r,
+      H.d * H.y - H.r * H.s;
+    H.d * H.q - H.b * H.s,
+      H.d * H.y - H.r * H.s,
+      H.d * H.z - H.s * H.s
+  ]
+
+/-- Exact determinant identity for the coordinate-1 scalar pivot. -/
+theorem det_rankOneClearedThreeSchurMatrixD
+    (H : GeneralFourBlock R) :
+    (H.rankOneClearedThreeSchurMatrixD).det =
+      H.d ^ 2 * H.determinantCore := by
+  simp [rankOneClearedThreeSchurMatrixD, Matrix.det_fin_three,
+    determinantCore]
+  ring
+
+/-- Denominator-cleared 3x3 Schur quotient after pivoting on coordinate 2. -/
+def rankOneClearedThreeSchurMatrixX
+    (H : GeneralFourBlock R) : Matrix (Fin 3) (Fin 3) R :=
+  !![
+    H.x * H.a - H.p * H.p,
+      H.x * H.b - H.p * H.r,
+      H.x * H.q - H.p * H.y;
+    H.x * H.b - H.p * H.r,
+      H.x * H.d - H.r * H.r,
+      H.x * H.s - H.r * H.y;
+    H.x * H.q - H.p * H.y,
+      H.x * H.s - H.r * H.y,
+      H.x * H.z - H.y * H.y
+  ]
+
+/-- Exact determinant identity for the coordinate-2 scalar pivot. -/
+theorem det_rankOneClearedThreeSchurMatrixX
+    (H : GeneralFourBlock R) :
+    (H.rankOneClearedThreeSchurMatrixX).det =
+      H.x ^ 2 * H.determinantCore := by
+  simp [rankOneClearedThreeSchurMatrixX, Matrix.det_fin_three,
+    determinantCore]
+  ring
+
+/-- Pure-clock form for the coordinate-1 scalar pivot. -/
+theorem det_rankOneClearedThreeSchurMatrixD_of_fullDet_X_pow
+    {S : Type*} [CommRing S]
+    (H : GeneralFourBlock (Polynomial S))
+    (Delta : Nat)
+    (hdet : H.determinantCore = Polynomial.X ^ Delta) :
+    (H.rankOneClearedThreeSchurMatrixD).det =
+      H.d ^ 2 * Polynomial.X ^ Delta := by
+  rw [H.det_rankOneClearedThreeSchurMatrixD, hdet]
+
+/-- Pure-clock form for the coordinate-2 scalar pivot. -/
+theorem det_rankOneClearedThreeSchurMatrixX_of_fullDet_X_pow
+    {S : Type*} [CommRing S]
+    (H : GeneralFourBlock (Polynomial S))
+    (Delta : Nat)
+    (hdet : H.determinantCore = Polynomial.X ^ Delta) :
+    (H.rankOneClearedThreeSchurMatrixX).det =
+      H.x ^ 2 * Polynomial.X ^ Delta := by
+  rw [H.det_rankOneClearedThreeSchurMatrixX, hdet]
+
 end GeneralFourBlock
 
 end
