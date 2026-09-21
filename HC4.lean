@@ -317,6 +317,11 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTw
 -- Consume represented-state rank-two charts as geometry-backed global progress.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankTwoProgress
 
+-- At a genuine no-successor source, the strengthened square-free `.qs`
+-- boundary closure is now an immediate contradiction through retained
+-- represented-state rank-two geometry.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsNoGlobalProgress
+
 -- Normalize arbitrary lower first-nonfacet rays into the canonical affine-RR chart.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayCoordinateNormalization
 
