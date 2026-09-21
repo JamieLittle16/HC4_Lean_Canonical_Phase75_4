@@ -216,6 +216,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
   - `HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2`
   - `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
@@ -4016,6 +4017,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
   - `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
