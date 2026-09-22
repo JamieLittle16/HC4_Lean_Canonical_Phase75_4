@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9573**.
+Distinct declaration spellings indexed: **9580**.
 
 ## Repeated declaration spellings
 
@@ -3180,6 +3180,7 @@ Distinct declaration spellings indexed: **9573**.
 - `TerminalAssociatedGradedCollisionData` — `structure` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `TerminalAssociatedGradedCollisionData.exists_jc2Sensitive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalReduction`
 - `TerminalAssociatedGradedCollisionData.impossible_of_JC2` — `theorem` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
+- `ThreeSchurFullyTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `ThreeSchurProjectedRankTwoAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `ThreeSchurTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `ThreeSchurTangentAtFirstBreak.HasLaterKernelOpening` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
@@ -3191,12 +3192,17 @@ Distinct declaration spellings indexed: **9573**.
 - `ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
+- `ThreeSchurTangentAtFirstBreak.tailKernelOpening_or_fullyTangent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `ThreeSchurTangentAtFirstBreak.toKernelDerivativeLinearPowerData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
 - `ThreeSchurTangentAtFirstBreak.toLaterKernelOpeningData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.toStaircaseSeedData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentStaircaseSeed`
 - `ThreeSchurTangentKernelDerivativeLinearPowerData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
 - `ThreeSchurTangentLaterKernelOpeningData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
+- `ThreeSchurTangentLaterKernelOpeningData.firstThreeSchurOrder_le_later` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
+- `ThreeSchurTangentLaterKernelOpeningData.toTailKernelOpeningData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `ThreeSchurTangentStaircaseSeedData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentStaircaseSeed`
+- `ThreeSchurTangentTailKernelOpeningData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
+- `ThreeSchurTangentTailKernelOpeningData.relativeOrder_pos_of_common_le_firstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `TopBoundaryCodimensionTwoResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - `TopDegreeOnFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
@@ -5685,6 +5691,7 @@ Distinct declaration spellings indexed: **9573**.
 - `fullVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `fullVector_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
+- `fullyTangentAtFirstBreak_of_first_lt_common` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `gap` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `generalFourBlock_baseFacts_of_activeSubmatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
 - `generalFourBlock_d_coeff_eq_matrix_11_coeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondInteraction`
