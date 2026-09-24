@@ -296,10 +296,11 @@ inductive TopKernelThreeSchurZeroRelativeSourceFrontier
           tail.physical.index 2 ≠ 0)
       (residual_pos :
         0 < S.toExactZeroThreeSchurClock.residualDefect)
-      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
-      (defect_eq :
-        clock.defect =
-          S.toExactZeroThreeSchurClock.residualDefect)
+      (allMinors :
+        ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+          S.toExactZeroThreeSchurClock.tailConstantMatrix)
+      (matrix_ne_zero :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
 
 /-- **D2: source-honest consumption of every zero-relative principal
 rank-two branch.** -/
@@ -315,8 +316,8 @@ theorem TopKernelThreeSchurZeroRelativePrincipalFrontier.toSourceFrontier
   | rankTwoPrincipal tail hz _hcommon hopen _hres pivot =>
       exact ⟨.representedSchur tail hz hopen
         pivot.toRepresentedSourceSchurWitness⟩
-  | binaryZeroSchur tail hz _hcommon hopen hres clock hdef =>
-      exact ⟨.binaryZeroSchur tail hz hopen hres clock hdef⟩
+  | binaryZeroSchur tail hz _hcommon hopen hres hall hne =>
+      exact ⟨.binaryZeroSchur tail hz hopen hres hall hne⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
