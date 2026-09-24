@@ -85,7 +85,7 @@ theorem fourOrdinaryInitialForm_zero_eq_C_constantCoeff
         Finsupp.weight fourOrdinaryIntegerWeight d ≠ (0 : ℤ) := by
       rw [fourOrdinaryIntegerWeight_eq_ordinaryDegree4]
       exact_mod_cast hdeg
-    simp [hweight, hd, MvPolynomial.constantCoeff_eq]
+    simp [hweight, hd, Ne.symm hd, MvPolynomial.constantCoeff_eq]
 
 /-- The Hessian of the exact ordinary quadratic component is the constant
 source-origin Hessian of the full polynomial. -/
@@ -130,14 +130,19 @@ theorem ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two
   have hle : L.sourceDegree ≤ 1 := by omega
   let Q :=
     fourOrdinaryDegreeComponent T.topKernelReesSource L.sourceDegree
+  have hweights :
+      fourOrdinaryIntegerWeight =
+        (fun i => (ordinaryTopNatWeight i : ℤ)) := by
+    funext i
+    simp [fourOrdinaryIntegerWeight, ordinaryTopNatWeight]
   have hQeq :
       Q =
         HC4.Polynomial.initialForm
           (fun i => (ordinaryTopNatWeight i : ℤ))
           (L.sourceDegree : ℤ)
           T.topKernelReesSource := by
-    simp [Q, fourOrdinaryDegreeComponent,
-      fourOrdinaryIntegerWeight, ordinaryTopNatWeight]
+    dsimp [Q, fourOrdinaryDegreeComponent]
+    rw [hweights]
 
   have hii :
       HC4.Polynomial.hessian Q L.index L.index = 0 :=
