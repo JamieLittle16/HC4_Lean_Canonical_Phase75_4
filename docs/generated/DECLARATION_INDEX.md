@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9674**.
+Distinct declaration spellings indexed: **9678**.
 
 ## Repeated declaration spellings
 
@@ -5243,6 +5243,7 @@ Distinct declaration spellings indexed: **9674**.
 - `familyParameterLayer_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_eq_firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
 - `familyParameterLayer_eq_initialForm_of_adaptiveSmithInflate_eq` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
+- `familyParameterLayer_eq_zero_of_adaptiveSmithInflate_eq_of_level_lt` — `theorem` in `HC4.Valuation.ReverseReesSchurRange`
 - `familyParameterLayer_eq_zero_of_lt_firstActualParameterOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
 - `familyParameterLayer_eulerScaledHessian_apply` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
@@ -8378,8 +8379,11 @@ Distinct declaration spellings indexed: **9674**.
 - `reverseWeightedRees_parameterFirstHessian_budget` — `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `reverseWeightedRees_parameterFirstHessian_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `reverseWeightedRees_parameterFirstSchurA_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseWeightedRees_parameterFirstSchurA_coeff_eq_zero_of_range_lt` — `theorem` in `HC4.Valuation.ReverseReesSchurRange`
 - `reverseWeightedRees_parameterFirstSchurB_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseWeightedRees_parameterFirstSchurB_coeff_eq_zero_of_range_lt` — `theorem` in `HC4.Valuation.ReverseReesSchurRange`
 - `reverseWeightedRees_parameterFirstSchurC_coeff_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
+- `reverseWeightedRees_parameterFirstSchurC_coeff_eq_zero_of_range_lt` — `theorem` in `HC4.Valuation.ReverseReesSchurRange`
 - `reverseWeightedRees_schurA_inflate_eq` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_schurA_normalization` — `theorem` in `HC4.Valuation.ReverseReesAssociatedGraded`
 - `reverseWeightedRees_schurB_inflate_eq` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`

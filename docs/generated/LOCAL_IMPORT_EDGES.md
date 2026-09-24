@@ -4880,6 +4880,8 @@ human architecture guide.
   - `HC4.Newton.RankOneSchurSeriesAlignment`
   - `HC4.Valuation.PermutedFamilyHessianFourBlock`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
+- `HC4.Valuation.ReverseReesSchurRange`
+  - `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.BoundedReverseWeightedRees`
