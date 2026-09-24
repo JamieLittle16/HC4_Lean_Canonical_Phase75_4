@@ -52,8 +52,8 @@ structure ThreeSchurTangentTailKernelOpeningData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1) where
-  tangent : S.ThreeSchurTangentAtFirstBreak M
-  physical : S.ThreeSchurTangentLaterKernelOpeningData M
+  tangent : ThreeSchurTangentAtFirstBreak S M
+  physical : ThreeSchurTangentLaterKernelOpeningData S M
   commonOrder : ℕ
   commonOrder_eq : commonOrder = S.firstThreeSchurOrder
   common_le_later : commonOrder ≤ physical.laterOrder
@@ -74,7 +74,7 @@ theorem ThreeSchurTangentLaterKernelOpeningData.firstThreeSchurOrder_le_later
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentLaterKernelOpeningData M) :
+    (D : ThreeSchurTangentLaterKernelOpeningData S M) :
     S.firstThreeSchurOrder ≤ D.laterOrder := by
   let E := S.toExactZeroThreeSchurClock
   have hJpos : 0 < D.laterOrder := by
@@ -93,8 +93,8 @@ theorem ThreeSchurTangentLaterKernelOpeningData.toTailKernelOpeningData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentLaterKernelOpeningData M) :
-    Nonempty (S.ThreeSchurTangentTailKernelOpeningData M) := by
+    (D : ThreeSchurTangentLaterKernelOpeningData S M) :
+    Nonempty (ThreeSchurTangentTailKernelOpeningData S M) := by
   let E := S.toExactZeroThreeSchurClock
   let q := S.firstThreeSchurOrder
   let J := D.laterOrder
@@ -156,7 +156,7 @@ theorem ThreeSchurTangentTailKernelOpeningData.relativeOrder_pos_of_common_le_fi
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hle : D.commonOrder ≤ M.mixed.layer.order) :
     0 < D.relativeOrder := by
   rw [D.relativeOrder_eq]
@@ -181,7 +181,7 @@ theorem fullyTangentAtFirstBreak_of_first_lt_common
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
     (hlt : M.mixed.layer.order < S.firstThreeSchurOrder) :
-    S.ThreeSchurFullyTangentAtFirstBreak M := by
+    ThreeSchurFullyTangentAtFirstBreak S M := by
   refine ⟨hlt, ?_⟩
   intro i r n hn
   let E := S.toExactZeroThreeSchurClock
@@ -200,10 +200,10 @@ theorem ThreeSchurTangentAtFirstBreak.tailKernelOpening_or_fullyTangent
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
-    (∃ D : S.ThreeSchurTangentTailKernelOpeningData M,
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    (∃ D : ThreeSchurTangentTailKernelOpeningData S M,
         0 < D.relativeOrder) ∨
-      S.ThreeSchurFullyTangentAtFirstBreak M := by
+      ThreeSchurFullyTangentAtFirstBreak S M := by
   rcases R.toLaterKernelOpeningData with ⟨L⟩
   rcases L.toTailKernelOpeningData with ⟨D⟩
   by_cases hle : S.firstThreeSchurOrder ≤ M.mixed.layer.order
