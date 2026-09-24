@@ -183,8 +183,21 @@ theorem coeff_fourUnitSourceInflateFamily
   unfold fourUnitSourceInflateFamily
   rw [coeff_kernelInflateHom]
   rw [coeff_unitTransverseInflateFamily]
-  rw [← mul_assoc, ← pow_add]
-  rfl
+  rw [pow_one]
+  calc
+    Polynomial.X ^ (d 1 + d 2 + d 3) *
+          MvPolynomial.coeff d P * Polynomial.X ^ d 0 =
+        (Polynomial.X ^ (d 1 + d 2 + d 3) *
+          Polynomial.X ^ d 0) * MvPolynomial.coeff d P := by
+            ring
+    _ = Polynomial.X ^ ((d 1 + d 2 + d 3) + d 0) *
+          MvPolynomial.coeff d P := by
+            rw [← pow_add]
+    _ = Polynomial.X ^ HC4.Polynomial.ordinaryDegree4 d *
+          MvPolynomial.coeff d P := by
+            congr 2
+            simp [HC4.Polynomial.ordinaryDegree4]
+            omega
 
 /-- Four unit source inflations are injective. -/
 theorem fourUnitSourceInflateFamily_injective :
