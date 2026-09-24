@@ -50,7 +50,7 @@ structure ThreeSchurTangentStaircaseSeedData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1) where
-  tangent : S.ThreeSchurTangentAtFirstBreak M
+  tangent : ThreeSchurTangentAtFirstBreak S M
   coefficient : K
   coefficient_ne_zero : coefficient ≠ 0
   kernelFreePart : MvPolynomial (Fin 4) K
@@ -72,8 +72,8 @@ theorem ThreeSchurTangentAtFirstBreak.toStaircaseSeedData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
-    Nonempty (S.ThreeSchurTangentStaircaseSeedData M) := by
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (ThreeSchurTangentStaircaseSeedData S M) := by
   rcases R.toKernelDerivativeLinearPowerData with ⟨L⟩
   let A : MvPolynomial (Fin 4) K :=
     MvPolynomial.pderiv kernelCoordinate M.sourceLayer
