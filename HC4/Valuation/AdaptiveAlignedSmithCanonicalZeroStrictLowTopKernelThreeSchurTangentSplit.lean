@@ -224,11 +224,13 @@ theorem projectedRankTwo_or_tangentAtFirstBreak
     · left
       refine ⟨1, h1, ?_⟩
       have hs :
-          threeSchurCoefficientMatrixAtFirstBreak S M 2 1 =
-            threeSchurCoefficientMatrixAtFirstBreak S M 1 2 := by
+          threeSchurCoefficientMatrixAtFirstBreak S M 2
+              ((1 : Fin 2).castSucc) =
+            threeSchurCoefficientMatrixAtFirstBreak S M
+              ((1 : Fin 2).castSucc) 2 := by
         have h := congrArg
           (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) =>
-            N 1 2) hsymm
+            N ((1 : Fin 2).castSucc) 2) hsymm
         simpa using h
       rw [hdiag, hs]
       simp only [mul_zero, zero_mul, zero_sub]
@@ -236,11 +238,13 @@ theorem projectedRankTwo_or_tangentAtFirstBreak
   · left
     refine ⟨0, h0, ?_⟩
     have hs :
-        threeSchurCoefficientMatrixAtFirstBreak S M 2 0 =
-          threeSchurCoefficientMatrixAtFirstBreak S M 0 2 := by
+        threeSchurCoefficientMatrixAtFirstBreak S M 2
+            ((0 : Fin 2).castSucc) =
+          threeSchurCoefficientMatrixAtFirstBreak S M
+            ((0 : Fin 2).castSucc) 2 := by
       have h := congrArg
         (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) =>
-          N 0 2) hsymm
+          N ((0 : Fin 2).castSucc) 2) hsymm
       simpa using h
     rw [hdiag, hs]
     simp only [mul_zero, zero_mul, zero_sub]
