@@ -51,7 +51,7 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
 
-private theorem ExactZeroSchurClock.zeroActive_eq_X_pow_first_mul_tail
+private theorem zeroActive_eq_X_pow_first_mul_tail
     (E : ExactZeroSchurClock (MvPolynomial (Fin 4) K)) :
     E.zeroSeries.series.active =
       (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^ E.firstOrder *
@@ -59,7 +59,7 @@ private theorem ExactZeroSchurClock.zeroActive_eq_X_pow_first_mul_tail
   simpa [ExactZeroSchurClock.firstOrder, ExactZeroSchurClock.tailSeries] using
     E.zeroSeries.active_eq_firstFactor_mul_tail E.hasPositiveEntryLayer
 
-private theorem ExactZeroSchurClock.zeroOffDiag_eq_X_pow_first_mul_tail
+private theorem zeroOffDiag_eq_X_pow_first_mul_tail
     (E : ExactZeroSchurClock (MvPolynomial (Fin 4) K)) :
     E.zeroSeries.series.offDiag =
       (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^ E.firstOrder *
@@ -67,7 +67,7 @@ private theorem ExactZeroSchurClock.zeroOffDiag_eq_X_pow_first_mul_tail
   simpa [ExactZeroSchurClock.firstOrder, ExactZeroSchurClock.tailSeries] using
     E.zeroSeries.offDiag_eq_firstFactor_mul_tail E.hasPositiveEntryLayer
 
-private theorem ExactZeroSchurClock.zeroKernel_eq_X_pow_first_mul_tail
+private theorem zeroKernel_eq_X_pow_first_mul_tail
     (E : ExactZeroSchurClock (MvPolynomial (Fin 4) K)) :
     E.zeroSeries.series.kernel =
       (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^ E.firstOrder *
@@ -89,10 +89,9 @@ noncomputable def PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOff
     {B : P.PositiveTailExplicitBinaryClockData S}
     (D : P.PositiveTailBinaryWholeFamilySchurProvenance B) :
     Polynomial (MvPolynomial (Fin 4) K) :=
-  let E := B.exactClock
-  -Polynomial.C (E.tailSeries.offDiag.coeff 0) *
-      (D.pair.block P.threeSchurBlock).schurA +
-    Polynomial.C (E.tailSeries.active.coeff 0) *
+  -(Polynomial.C (B.exactClock.tailSeries.offDiag.coeff 0) *
+      (D.pair.block P.threeSchurBlock).schurA) +
+    Polynomial.C (B.exactClock.tailSeries.active.coeff 0) *
       (D.pair.block P.threeSchurBlock).schurB
 
 /-- Left-pivot whole-family kernel projective quadratic. -/
@@ -169,8 +168,8 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOffDiag_eq
   let E := B.exactClock
   let A := (D.pair.block P.threeSchurBlock).schurA
   let C := (D.pair.block P.threeSchurBlock).schurB
-  have hA := E.zeroActive_eq_X_pow_first_mul_tail
-  have hC := E.zeroOffDiag_eq_X_pow_first_mul_tail
+  have hA := zeroActive_eq_X_pow_first_mul_tail E
+  have hC := zeroOffDiag_eq_X_pow_first_mul_tail E
   calc
     D.firstPivot * D.leftTransverseOffDiag =
         -Polynomial.C (E.tailSeries.offDiag.coeff 0) *
@@ -232,9 +231,9 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseKernel_eq
   let A := (D.pair.block P.threeSchurBlock).schurA
   let C := (D.pair.block P.threeSchurBlock).schurB
   let G := (D.pair.block P.threeSchurBlock).schurC
-  have hA := E.zeroActive_eq_X_pow_first_mul_tail
-  have hC := E.zeroOffDiag_eq_X_pow_first_mul_tail
-  have hG := E.zeroKernel_eq_X_pow_first_mul_tail
+  have hA := zeroActive_eq_X_pow_first_mul_tail E
+  have hC := zeroOffDiag_eq_X_pow_first_mul_tail E
+  have hG := zeroKernel_eq_X_pow_first_mul_tail E
   calc
     D.firstPivot * D.leftTransverseKernel =
         (Polynomial.C (E.tailSeries.offDiag.coeff 0)) ^ 2 *
@@ -306,7 +305,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseOffDiag_eq
           B.rankOnePhysicalBaseOrder *
         (B.exactClock.tailSeries.alignRight hright).offDiag := by
   let E := B.exactClock
-  have hC := E.zeroOffDiag_eq_X_pow_first_mul_tail
+  have hC := zeroOffDiag_eq_X_pow_first_mul_tail E
   calc
     D.firstPivot * D.rightTransverseOffDiag =
         ((Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
@@ -341,7 +340,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseKernel_eq
           B.rankOnePhysicalBaseOrder *
         (B.exactClock.tailSeries.alignRight hright).kernel := by
   let E := B.exactClock
-  have hA := E.zeroActive_eq_X_pow_first_mul_tail
+  have hA := zeroActive_eq_X_pow_first_mul_tail E
   calc
     D.firstPivot * D.rightTransverseKernel =
         ((Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
@@ -375,7 +374,7 @@ inductive PositiveTailRankOneWholeFamilyFirstTransverseOpening
       (whole : Polynomial (MvPolynomial (Fin 4) K))
       (order : ℕ)
       (order_eq :
-        order = B.rankOnePhysicalBaseOrder + R.clock.firstOrder)
+        order = B.rankOnePhysicalBaseOrder + R.exactRankOneClock.firstOrder)
       (lower_zero : ∀ n : ℕ, n < order → whole.coeff n = 0)
       (opens : whole.coeff order ≠ 0)
   | kernel
@@ -383,7 +382,7 @@ inductive PositiveTailRankOneWholeFamilyFirstTransverseOpening
       (whole : Polynomial (MvPolynomial (Fin 4) K))
       (order : ℕ)
       (order_eq :
-        order = B.rankOnePhysicalBaseOrder + R.clock.firstOrder)
+        order = B.rankOnePhysicalBaseOrder + R.exactRankOneClock.firstOrder)
       (lower_zero : ∀ n : ℕ, n < order → whole.coeff n = 0)
       (opens : whole.coeff order ≠ 0)
 
