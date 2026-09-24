@@ -58,8 +58,8 @@ noncomputable def TopKernelThreeSchurClockData.toExactZeroThreeSchurClock
         clearingFactor := P.threeSchurBlock.a ^ 2
         defect := T.topKernelOrdinaryReesDefect
         clearingFactor_coeff_zero_ne_zero := by
-          rw [Polynomial.coeff_pow]
-          simp [hpivot]
+          simpa [Polynomial.coeff_zero_eq_eval_zero] using
+            (pow_ne_zero 2 hpivot)
         determinantFactor := hdet
       }
   | pivotD hpivot hzero hdet =>
@@ -71,8 +71,8 @@ noncomputable def TopKernelThreeSchurClockData.toExactZeroThreeSchurClock
         clearingFactor := P.threeSchurBlock.d ^ 2
         defect := T.topKernelOrdinaryReesDefect
         clearingFactor_coeff_zero_ne_zero := by
-          rw [Polynomial.coeff_pow]
-          simp [hpivot]
+          simpa [Polynomial.coeff_zero_eq_eval_zero] using
+            (pow_ne_zero 2 hpivot)
         determinantFactor := hdet
       }
   | pivotX hpivot hzero hdet =>
@@ -84,8 +84,8 @@ noncomputable def TopKernelThreeSchurClockData.toExactZeroThreeSchurClock
         clearingFactor := P.threeSchurBlock.x ^ 2
         defect := T.topKernelOrdinaryReesDefect
         clearingFactor_coeff_zero_ne_zero := by
-          rw [Polynomial.coeff_pow]
-          simp [hpivot]
+          simpa [Polynomial.coeff_zero_eq_eval_zero] using
+            (pow_ne_zero 2 hpivot)
         determinantFactor := hdet
       }
 
@@ -116,7 +116,10 @@ theorem TopKernelThreeSchurClockData.triple_firstThreeSchurOrder_le_defect
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData) :
     3 * S.firstThreeSchurOrder ≤ T.topKernelOrdinaryReesDefect := by
-  exact S.toExactZeroThreeSchurClock.triple_firstOrder_le_defect
+  unfold TopKernelThreeSchurClockData.firstThreeSchurOrder
+  have h := S.toExactZeroThreeSchurClock.triple_firstOrder_le_defect
+  cases S <;>
+    simpa [TopKernelThreeSchurClockData.toExactZeroThreeSchurClock] using h
 
 /-- Expanded form of the same budget against the selected top degree. -/
 theorem TopKernelThreeSchurClockData.triple_firstThreeSchurOrder_le_fourDegree_sub_eight
