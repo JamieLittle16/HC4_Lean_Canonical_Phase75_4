@@ -1689,9 +1689,6 @@ Distinct declaration spellings indexed: **9702**.
 - `ExactZeroSchurClock.scalar_firstOrder_add_residualDefect_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScalarZeroSchurProjectiveRankThree`
 - `ExactZeroSchurClock.scalar_kernel_coeff_firstOrder_add_eq_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScalarZeroSchurProjectiveRankThree`
 - `ExactZeroSchurClock.scalar_offDiag_coeff_firstOrder_add_eq_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScalarZeroSchurProjectiveRankThree`
-- `ExactZeroSchurClock.zeroActive_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
-- `ExactZeroSchurClock.zeroKernel_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
-- `ExactZeroSchurClock.zeroOffDiag_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `ExactZeroSchurClosingOutcome` — `def` in `HC4.Valuation.RigidPacketZeroSchurBridge`
 - `ExactZeroSchurFourBlockData` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ExactZeroThreeSchurClock` — `structure` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
@@ -9937,6 +9934,7 @@ Distinct declaration spellings indexed: **9702**.
 - `xeLm_rs2ProjectiveDerivatives_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurXeLmRigidity`
 - `xeLm_rs2ProjectiveDerivatives_eq_zero_of_totalDegree_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyRS2ReadyFrontier`
 - `zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
+- `zeroActive_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `zeroBaseDegreePure_exists_homogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerDegreeEndpoints`
 - `zeroBaseFirstWallCompetition_degreePure_or_mixedPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalBlockerCompetition`
 - `zeroClockFirstContactPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
@@ -9961,12 +9959,14 @@ Distinct declaration spellings indexed: **9702**.
 - `zeroJetNormalizedFamily_valueAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `zeroJetNormalizedSpecialFiber_axisData` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `zeroJetNormalizedSpecialFiber_valueAtZero` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
+- `zeroKernel_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `zeroLayer_locked_coefficients` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarSpecialFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesHighestMomentRealisation`
 - `zeroLayer_specialisedEulerHessian_eq_highestBinomialMomentHessian_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesHighestMomentRealisation`
 - `zeroLayer_specialisedEulerHessian_eq_lockedBinomialMomentHessian` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarLockedMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarLockedMomentRealisation`
 - `zeroLayer_support_eq_locked` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarSpecialFiber`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarSpecialFiber`
 - `zeroLongitudinal_not_positive_lowerHull` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
+- `zeroOffDiag_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `zeroOrderCanonicalFamilyWall_longitudinal_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrderCanonicalFamilyWall_transverse_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroPolynomialSection` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
