@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9730**.
+Distinct declaration spellings indexed: **9732**.
 
 ## Repeated declaration spellings
 
@@ -8404,6 +8404,7 @@ Distinct declaration spellings indexed: **9730**.
 - `reverseWeightedReesFamily` — `def` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_actualLayerOrder_le_level` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_exactGradientCollision` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
@@ -8412,6 +8413,7 @@ Distinct declaration spellings indexed: **9730**.
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_scaledGradient_eval` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `reverseWeightedReesFamily_sourceSchurA_of_familySchurA_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
 - `reverseWeightedReesFamily_sourceSchurB_of_familySchurB_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
