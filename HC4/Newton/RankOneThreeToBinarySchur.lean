@@ -394,6 +394,20 @@ noncomputable def toBinaryZeroSchurClock_of_rankOne
         · exact hp
       exact E.toBinaryClockPivot2 hsymm hall h2
 
+/-- The second Schur step preserves the residual determinant defect exactly. -/
+@[simp] theorem toBinaryZeroSchurClock_of_rankOne_defect
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hne : E.tailConstantMatrix ≠ 0) :
+    (E.toBinaryZeroSchurClock_of_rankOne hsymm hall hne).defect =
+      E.residualDefect := by
+  by_cases h0 : E.tailConstantMatrix 0 0 ≠ 0
+  · simp [toBinaryZeroSchurClock_of_rankOne, h0, toBinaryClockPivot0]
+  · by_cases h1 : E.tailConstantMatrix 1 1 ≠ 0
+    · simp [toBinaryZeroSchurClock_of_rankOne, h0, h1, toBinaryClockPivot1]
+    · simp [toBinaryZeroSchurClock_of_rankOne, h0, h1, toBinaryClockPivot2]
+
 
 /-! ## Singular rank-two 3x3 tail has a principal pivot -/
 
