@@ -372,11 +372,11 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   rcases hnone with ⟨hp01, hp02, hp12⟩
 
   have hp01' : M 0 0 * M 1 1 - M 0 1 * M 0 1 = 0 := by
-    simpa [h01sym] using hp01
+    simpa [M, h01sym] using hp01
   have hp02' : M 0 0 * M 2 2 - M 0 2 * M 0 2 = 0 := by
-    simpa [h02sym] using hp02
+    simpa [M, h02sym] using hp02
   have hp12' : M 1 1 * M 2 2 - M 1 2 * M 1 2 = 0 := by
-    simpa [h12sym] using hp12
+    simpa [M, h12sym] using hp12
 
   have hdet' :
       M 0 0 * M 1 1 * M 2 2 +
