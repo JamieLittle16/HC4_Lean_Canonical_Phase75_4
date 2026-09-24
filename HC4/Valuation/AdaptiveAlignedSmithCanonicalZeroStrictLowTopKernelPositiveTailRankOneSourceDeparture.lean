@@ -225,8 +225,11 @@ theorem PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGe
           · by_cases hC : B.exactClock.tailSeries.kernel.coeff n = 0
             · exfalso
               apply hkernel
-              simp [ExactZeroSchurClock.toRankOneClockLeft,
-                BinarySchurPolynomialSeries.alignLeft, hA, hB, hC]
+              change
+                (B.exactClock.tailSeries.alignLeft pivot).kernel.coeff n = 0
+              rw [B.exactClock.tailSeries.alignLeft_kernel_coeff pivot n,
+                hA, hB, hC]
+              ring
             · exact B.transverseGeometry_of_tailKernelCoeff n hC
           · exact B.transverseGeometry_of_tailOffDiagCoeff n hB
         · exact B.transverseGeometry_of_tailActiveCoeff n hA
