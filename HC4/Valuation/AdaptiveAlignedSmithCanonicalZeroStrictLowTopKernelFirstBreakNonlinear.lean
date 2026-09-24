@@ -78,9 +78,10 @@ theorem fourOrdinaryInitialForm_zero_eq_C_constantCoeff
   · have hdeg : HC4.Polynomial.ordinaryDegree4 d ≠ 0 := by
       intro hz
       apply hd
-      apply Finsupp.degree_eq_zero_iff.mp
-      rw [finsuppDegree_eq_ordinaryDegree4]
-      exact hz
+      ext i
+      fin_cases i <;>
+        simp [HC4.Polynomial.ordinaryDegree4] at hz ⊢ <;>
+        omega
     have hweight :
         Finsupp.weight fourOrdinaryIntegerWeight d ≠ (0 : ℤ) := by
       rw [fourOrdinaryIntegerWeight_eq_ordinaryDegree4]
