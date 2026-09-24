@@ -604,6 +604,8 @@ human architecture guide.
   - `HC4.Newton.RankOneThreeToBinarySchur`
 - `HC4.Newton.OneZeroBlockDeterminant`
   - _(no local imports)_
+- `HC4.Newton.PolynomialFirstOpeningTransport`
+  - _(no local imports)_
 - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
   - `HC4.Newton.FiniteSupportCrossFacetExposure`
   - `HC4.Newton.FiniteSupportExposedVertex`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9651**.
+Distinct declaration spellings indexed: **9652**.
 
 ## Repeated declaration spellings
 
@@ -7406,6 +7406,7 @@ Distinct declaration spellings indexed: **9651**.
 - `polynomial_exists_two_support_of_derivative_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
+- `polynomial_firstOpening_of_mul_eq_X_pow_mul` — `theorem` in `HC4.Newton.PolynomialFirstOpeningTransport`
 - `polynomial_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible`
 - `polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_identity_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
