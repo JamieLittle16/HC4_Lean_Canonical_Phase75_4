@@ -47,7 +47,7 @@ theorem reverseWeightedReesFamily_sourceSchurA_of_familySchurA_ne_zero
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
   have hinflated :
-      adaptiveSmithInflateHom w
+      adaptiveSmithInflateHom (K := K) w
         (permutedFamilyHessianFourBlock rho
           (reverseWeightedReesFamily w D F hbound)).schurA = 0 := by
     exact hnorm
@@ -79,7 +79,7 @@ theorem reverseWeightedReesFamily_sourceSchurB_of_familySchurB_ne_zero
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
   have hinflated :
-      adaptiveSmithInflateHom w
+      adaptiveSmithInflateHom (K := K) w
         (permutedFamilyHessianFourBlock rho
           (reverseWeightedReesFamily w D F hbound)).schurB = 0 := by
     exact hnorm
@@ -110,7 +110,7 @@ theorem reverseWeightedReesFamily_sourceSchurC_of_familySchurC_ne_zero
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
   have hinflated :
-      adaptiveSmithInflateHom w
+      adaptiveSmithInflateHom (K := K) w
         (permutedFamilyHessianFourBlock rho
           (reverseWeightedReesFamily w D F hbound)).schurC = 0 := by
     exact hnorm
