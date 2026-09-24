@@ -73,7 +73,7 @@ theorem pderiv_fourUnitSourceInflateFamily
   rw [pderiv_kernelInflateHom]
   rw [pderiv_kernelInflateHom]
   fin_cases i <;>
-    simp [kernelInflateDerivativeCoefficient, map_mul] <;>
+    simp [kernelInflateDerivativeCoefficient, map_mul, kernelInflateHom_C] <;>
     ring
 
 /-- Extending coefficients from `K` to `K[tau]` and evaluating at a constant
