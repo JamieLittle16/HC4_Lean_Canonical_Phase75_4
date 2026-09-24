@@ -39,24 +39,26 @@ theorem reverseWeightedReesFamily_sourceSchurA_of_familySchurA_ne_zero
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurA ≠ 0) :
     (permutedPolynomialHessianFourBlock rho F).schurA ≠ 0 := by
+  let Q := reverseWeightedReesFamily w D F hbound
+  have hsourceFirst :
+      (permutedPolynomialHessianFourBlock rho Q).schurA ≠ 0 := by
+    intro hz
+    apply hne
+    rw [permutedFamilyHessianFourBlock_schurA_eq_parameterFirstEquiv]
+    rw [hz]
+    simp
   intro hsource
   have hnorm :=
     reverseWeightedRees_schurA_inflate_eq
       w D F hbound rho hloss
-  dsimp at hnorm
+  dsimp [Q] at hnorm
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
-  have hinflated :
-      adaptiveSmithInflateHom (K := K) w
-        (permutedFamilyHessianFourBlock rho
-          (reverseWeightedReesFamily w D F hbound)).schurA = 0 := by
-    exact hnorm
   have hzero :
-      (permutedFamilyHessianFourBlock rho
-        (reverseWeightedReesFamily w D F hbound)).schurA = 0 := by
+      (permutedPolynomialHessianFourBlock rho Q).schurA = 0 := by
     apply adaptiveSmithInflateHom_injective (K := K) w
-    simpa using hinflated
-  exact hne hzero
+    simpa [Q] using hnorm
+  exact hsourceFirst hzero
 
 /-- Whole-family off-diagonal Schur B nonvanishing lifts to the represented
 source. -/
@@ -71,24 +73,26 @@ theorem reverseWeightedReesFamily_sourceSchurB_of_familySchurB_ne_zero
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurB ≠ 0) :
     (permutedPolynomialHessianFourBlock rho F).schurB ≠ 0 := by
+  let Q := reverseWeightedReesFamily w D F hbound
+  have hsourceFirst :
+      (permutedPolynomialHessianFourBlock rho Q).schurB ≠ 0 := by
+    intro hz
+    apply hne
+    rw [permutedFamilyHessianFourBlock_schurB_eq_parameterFirstEquiv]
+    rw [hz]
+    simp
   intro hsource
   have hnorm :=
     reverseWeightedRees_schurB_inflate_eq
       w D F hbound rho hloss
-  dsimp at hnorm
+  dsimp [Q] at hnorm
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
-  have hinflated :
-      adaptiveSmithInflateHom (K := K) w
-        (permutedFamilyHessianFourBlock rho
-          (reverseWeightedReesFamily w D F hbound)).schurB = 0 := by
-    exact hnorm
   have hzero :
-      (permutedFamilyHessianFourBlock rho
-        (reverseWeightedReesFamily w D F hbound)).schurB = 0 := by
+      (permutedPolynomialHessianFourBlock rho Q).schurB = 0 := by
     apply adaptiveSmithInflateHom_injective (K := K) w
-    simpa using hinflated
-  exact hne hzero
+    simpa [Q] using hnorm
+  exact hsourceFirst hzero
 
 /-- Whole-family Schur C nonvanishing lifts to the represented source. -/
 theorem reverseWeightedReesFamily_sourceSchurC_of_familySchurC_ne_zero
@@ -102,24 +106,26 @@ theorem reverseWeightedReesFamily_sourceSchurC_of_familySchurC_ne_zero
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurC ≠ 0) :
     (permutedPolynomialHessianFourBlock rho F).schurC ≠ 0 := by
+  let Q := reverseWeightedReesFamily w D F hbound
+  have hsourceFirst :
+      (permutedPolynomialHessianFourBlock rho Q).schurC ≠ 0 := by
+    intro hz
+    apply hne
+    rw [permutedFamilyHessianFourBlock_schurC_eq_parameterFirstEquiv]
+    rw [hz]
+    simp
   intro hsource
   have hnorm :=
     reverseWeightedRees_schurC_inflate_eq
       w D F hbound rho hloss
-  dsimp at hnorm
+  dsimp [Q] at hnorm
   rw [hsource] at hnorm
   simp [constantPolynomialFamily] at hnorm
-  have hinflated :
-      adaptiveSmithInflateHom (K := K) w
-        (permutedFamilyHessianFourBlock rho
-          (reverseWeightedReesFamily w D F hbound)).schurC = 0 := by
-    exact hnorm
   have hzero :
-      (permutedFamilyHessianFourBlock rho
-        (reverseWeightedReesFamily w D F hbound)).schurC = 0 := by
+      (permutedPolynomialHessianFourBlock rho Q).schurC = 0 := by
     apply adaptiveSmithInflateHom_injective (K := K) w
-    simpa using hinflated
-  exact hne hzero
+    simpa [Q] using hnorm
+  exact hsourceFirst hzero
 
 end
 
