@@ -39,9 +39,9 @@ theorem fourOrdinaryInitialForm_eq_zero_of_neg
     (R : MvPolynomial (Fin 4) K)
     (m : ℤ)
     (hm : m < 0) :
-    initialForm fourOrdinaryIntegerWeight m R = 0 := by
+    HC4.Polynomial.initialForm fourOrdinaryIntegerWeight m R = 0 := by
   ext d
-  rw [coeff_initialForm]
+  rw [HC4.Polynomial.coeff_initialForm]
   simp only [MvPolynomial.coeff_zero]
   split
   · rename_i hweight
@@ -68,10 +68,10 @@ theorem hessian_fourOrdinaryDegreeComponent_eq_zero_of_le_one
 /-- Ordinary weight zero extracts exactly the source constant term. -/
 theorem fourOrdinaryInitialForm_zero_eq_C_constantCoeff
     (R : MvPolynomial (Fin 4) K) :
-    initialForm fourOrdinaryIntegerWeight 0 R =
+    HC4.Polynomial.initialForm fourOrdinaryIntegerWeight 0 R =
       MvPolynomial.C (MvPolynomial.constantCoeff R) := by
   ext d
-  rw [coeff_initialForm]
+  rw [HC4.Polynomial.coeff_initialForm]
   by_cases hd : d = 0
   · subst d
     simp [MvPolynomial.constantCoeff_eq]
@@ -98,7 +98,7 @@ theorem hessian_fourOrdinaryDegreeComponent_two_eq_C_constantCoeff
   have h :=
     initialForm_fourHessianEntry_eq_componentHessian R 2 i j
   have hzero :
-      initialForm fourOrdinaryIntegerWeight 0
+      HC4.Polynomial.initialForm fourOrdinaryIntegerWeight 0
           (HC4.Polynomial.hessian R i j) =
         MvPolynomial.C
           (MvPolynomial.constantCoeff (HC4.Polynomial.hessian R i j)) :=
@@ -136,10 +136,8 @@ theorem ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two
           (fun i => (ordinaryTopNatWeight i : ℤ))
           (L.sourceDegree : ℤ)
           T.topKernelReesSource := by
-    dsimp [Q, fourOrdinaryDegreeComponent]
-    congr 2
-    funext i
-    simp [fourOrdinaryIntegerWeight, ordinaryTopNatWeight]
+    simp [Q, fourOrdinaryDegreeComponent,
+      fourOrdinaryIntegerWeight, ordinaryTopNatWeight]
 
   have hii :
       HC4.Polynomial.hessian Q L.index L.index = 0 :=
@@ -191,7 +189,9 @@ theorem principalMinor_source_ne_zero_of_degreeTwoComponent
     hessian_fourOrdinaryDegreeComponent_two_eq_C_constantCoeff,
     hessian_fourOrdinaryDegreeComponent_two_eq_C_constantCoeff,
     hessian_fourOrdinaryDegreeComponent_two_eq_C_constantCoeff]
-  simpa [hscalar]
+  have hC := congrArg
+    (MvPolynomial.C : K → MvPolynomial (Fin 4) K) hscalar
+  simpa only [map_sub, map_mul, map_zero] using hC
 
 /-- A quadratic residual layer therefore immediately gives an actual rank-two
 chart on the represented source. -/
@@ -262,7 +262,9 @@ theorem actualRankTwo_or_exactLowerNonlinearLayerMinor
     · exact Or.inl ⟨C.layer.actualRankTwoChart_of_degree_eq_two h2⟩
     · exact Or.inr ⟨{
         layer := C.layer
-        sourceDegree_ge_three := by omega
+        sourceDegree_ge_three := by
+          have hge := C.sourceDegree_ge_two
+          omega
       }⟩
 
 end TopFaceLinearPowerKernelData
