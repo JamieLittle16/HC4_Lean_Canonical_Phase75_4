@@ -52,6 +52,7 @@ def ThreeSchurActivePair.sourcePerm
 /-- The pair chart used by nested Schur elimination is literally the genuine
 parameter-first Hessian four-block in the corresponding source-coordinate
 permutation. -/
+set_option maxHeartbeats 2000000 in
 theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (pair : ThreeSchurActivePair) :
