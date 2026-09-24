@@ -80,8 +80,8 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
           kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
           h0, h1, h2, h3] <;>
         try
-          simpa using
-            (parameterFirstHessian_symmetric T.topKernelReverseReesFamily _ _)
+          exact parameterFirstHessian_symmetric
+            T.topKernelReverseReesFamily _ _
   | pair12 =>
       have h0 :
           (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 0) = 1 := by
@@ -103,8 +103,8 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
           kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
           h0, h1, h2, h3] <;>
         try
-          simpa using
-            (parameterFirstHessian_symmetric T.topKernelReverseReesFamily _ _)
+          exact parameterFirstHessian_symmetric
+            T.topKernelReverseReesFamily _ _
 
 private theorem ordinary_schurA_loss_le
     (pair : ThreeSchurActivePair) :
