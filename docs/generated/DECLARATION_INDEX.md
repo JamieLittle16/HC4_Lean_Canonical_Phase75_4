@@ -3226,7 +3226,7 @@ Distinct declaration spellings indexed: **9688**.
 - `ThreeSchurActivePair.sourceSchurB_ne_zero_of_familySchurB_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `ThreeSchurActivePair.sourceSchurC_ne_zero_of_familySchurC_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `ThreeSchurFullyTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
-- `ThreeSchurProjectedRankTwoAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
+- `ThreeSchurProjectedRankTwoAtFirstBreak` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `ThreeSchurTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `ThreeSchurTangentAtFirstBreak.HasLaterKernelOpening` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.hasLaterKernelOpening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`

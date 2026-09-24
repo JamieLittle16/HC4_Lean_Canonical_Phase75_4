@@ -12330,7 +12330,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakMixedNonlinear`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
-- Declarations: `def threeSchurCoefficientMatrixAtFirstBreak`, `theorem firstBreak_kernelRow_lower_zero`, `theorem firstBreak_rawKernelDiagonal_eq_zero`, `theorem threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero`, `theorem threeSchurCoefficientMatrixAtFirstBreak_isSymm`, `structure ThreeSchurProjectedRankTwoAtFirstBreak`, `structure ThreeSchurTangentAtFirstBreak`, `theorem projectedRankTwo_or_tangentAtFirstBreak`
+- Declarations: `def threeSchurCoefficientMatrixAtFirstBreak`, `theorem firstBreak_kernelRow_lower_zero`, `theorem firstBreak_rawKernelDiagonal_eq_zero`, `theorem threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero`, `theorem threeSchurCoefficientMatrixAtFirstBreak_isSymm`, `def ThreeSchurProjectedRankTwoAtFirstBreak`, `structure ThreeSchurTangentAtFirstBreak`, `theorem projectedRankTwo_or_tangentAtFirstBreak`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentStaircaseSeed`
 
