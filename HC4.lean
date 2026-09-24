@@ -315,6 +315,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardne
 -- discharge every auxiliary positive-tail rank label into represented-source
 -- Schur geometry or an exact whole-family first transverse opening.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier
 
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
