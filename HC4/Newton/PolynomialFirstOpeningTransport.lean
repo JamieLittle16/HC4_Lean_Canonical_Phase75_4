@@ -1,4 +1,3 @@
-import Mathlib.Data.Polynomial.Basic
 import Mathlib.Tactic
 
 /-!
