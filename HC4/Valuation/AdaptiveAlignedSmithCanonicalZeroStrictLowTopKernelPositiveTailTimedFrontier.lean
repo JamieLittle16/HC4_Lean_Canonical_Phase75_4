@@ -51,15 +51,25 @@ inductive TopKernelThreeSchurPositiveTailTimedFrontier
   | rankOnePreterminal
       (binary : P.PositiveTailExplicitBinaryClockData S)
       (rankOne : P.PositiveTailExplicitRankOneClockData binary)
-      (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
       (firstOrder_lt_defect :
         rankOne.exactRankOneClock.firstOrder < rankOne.exactRankOneClock.defect)
+      (offDiag_ne :
+        rankOne.exactRankOneClock.series.offDiag.coeff
+          rankOne.exactRankOneClock.firstOrder ≠ 0)
+      (sourceGeometry :
+        P.PositiveTailRankOneTransverseRepresentedSourceGeometry binary)
+      (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
   | rankOneExactClosing
       (binary : P.PositiveTailExplicitBinaryClockData S)
       (rankOne : P.PositiveTailExplicitRankOneClockData binary)
-      (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
       (firstOrder_eq_defect :
         rankOne.exactRankOneClock.firstOrder = rankOne.exactRankOneClock.defect)
+      (kernel_ne :
+        rankOne.exactRankOneClock.series.kernel.coeff
+          rankOne.exactRankOneClock.firstOrder ≠ 0)
+      (sourceGeometry :
+        P.PositiveTailRankOneTransverseRepresentedSourceGeometry binary)
+      (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
 
 /-- The source-honest frontier has no remaining timing branch beyond
 preterminal versus exact determinant closing. -/
@@ -71,10 +81,14 @@ theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toTimedFrontier
   cases F with
   | representedSchur geometry =>
       exact ⟨.representedSchur geometry⟩
-  | rankOneWholeFamilyOpening binary rankOne opening =>
-      rcases lt_or_eq_of_le rankOne.exactRankOneClock.firstOrder_le_defect with hpre | hclose
-      · exact ⟨.rankOnePreterminal binary rankOne opening hpre⟩
-      · exact ⟨.rankOneExactClosing binary rankOne opening hclose⟩
+  | rankOneEndpointSplit binary rankOne split =>
+      cases split with
+      | preterminal hpre hoff sourceGeometry opening =>
+          exact ⟨.rankOnePreterminal binary rankOne
+            hpre hoff sourceGeometry opening⟩
+      | exactClosing hclose hkernel sourceGeometry opening =>
+          exact ⟨.rankOneExactClosing binary rankOne
+            hclose hkernel sourceGeometry opening⟩
 
 /-- Assembly-facing timed positive-relative theorem. -/
 theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimedFrontier
