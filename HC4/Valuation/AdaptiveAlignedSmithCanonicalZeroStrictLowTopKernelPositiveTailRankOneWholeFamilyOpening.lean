@@ -97,7 +97,7 @@ noncomputable def PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOff
 
 /-- Left-pivot whole-family kernel projective quadratic. -/
 noncomputable def PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseKernel
-    {P : T.TopFaceLinearPowerKernelCoordinate}
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {B : P.PositiveTailExplicitBinaryClockData S}
     (D : P.PositiveTailBinaryWholeFamilySchurProvenance B) :
