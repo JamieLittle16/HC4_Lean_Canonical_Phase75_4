@@ -369,6 +369,93 @@ private noncomputable def toBinaryClockPivot2
     rw [E.tail_determinantFactor]
     ring
 
+/-- Public orientation-preserving wrapper for the coordinate-0 binary
+Schur clock of a rank-one normalised 3x3 tail. -/
+noncomputable def toBinaryZeroSchurClockPivot0
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 0 0 ≠ 0) :
+    ExactZeroSchurClock R :=
+  E.toBinaryClockPivot0 hsymm hall hpivot
+
+@[simp] theorem toBinaryZeroSchurClockPivot0_defect
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 0 0 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot0 hsymm hall hpivot).defect =
+      E.residualDefect := by
+  rfl
+
+theorem toBinaryZeroSchurClockPivot0_series
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 0 0 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot0 hsymm hall hpivot).zeroSeries.series =
+      threePivot0BinarySchurSeries
+        (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer) := by
+  rfl
+
+/-- Public orientation-preserving wrapper for the coordinate-1 binary
+Schur clock of a rank-one normalised 3x3 tail. -/
+noncomputable def toBinaryZeroSchurClockPivot1
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 1 1 ≠ 0) :
+    ExactZeroSchurClock R :=
+  E.toBinaryClockPivot1 hsymm hall hpivot
+
+@[simp] theorem toBinaryZeroSchurClockPivot1_defect
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 1 1 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot1 hsymm hall hpivot).defect =
+      E.residualDefect := by
+  rfl
+
+theorem toBinaryZeroSchurClockPivot1_series
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 1 1 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot1 hsymm hall hpivot).zeroSeries.series =
+      threePivot1BinarySchurSeries
+        (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer) := by
+  rfl
+
+/-- Public orientation-preserving wrapper for the coordinate-2 binary
+Schur clock of a rank-one normalised 3x3 tail. -/
+noncomputable def toBinaryZeroSchurClockPivot2
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 2 2 ≠ 0) :
+    ExactZeroSchurClock R :=
+  E.toBinaryClockPivot2 hsymm hall hpivot
+
+@[simp] theorem toBinaryZeroSchurClockPivot2_defect
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 2 2 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot2 hsymm hall hpivot).defect =
+      E.residualDefect := by
+  rfl
+
+theorem toBinaryZeroSchurClockPivot2_series
+    (E : ExactZeroThreeSchurClock R)
+    (hsymm : E.zeroSeries.matrix.IsSymm)
+    (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
+    (hpivot : E.tailConstantMatrix 2 2 ≠ 0) :
+    (E.toBinaryZeroSchurClockPivot2 hsymm hall hpivot).zeroSeries.series =
+      threePivot2BinarySchurSeries
+        (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer) := by
+  rfl
+
 /-- **Second finite Schur step.**
 
 If the first normalised 3x3 coefficient block is rank one, symmetry supplies
