@@ -373,6 +373,94 @@ theorem adaptiveSmithInflateHom_injective
   exact mul_left_cancel₀
     (pow_ne_zero (Finsupp.weight w d) Polynomial.X_ne_zero) hd
 
+/-! ## Exact collision transport through reverse Rees -/
+
+/-- Scaled gradient evaluation of a bounded reverse-Rees family.
+
+The source diagonal sends a constant source point `p` to the moving section
+`tau^w * p`.  After multiplying the `i`th gradient component by the
+corresponding source scale, the whole family is exactly the common
+`tau^D` multiple of the source gradient. -/
+theorem reverseWeightedReesFamily_scaledGradient_eval
+    (w : Fin 4 → ℕ) (D : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F)
+    (p : Fin 4 → K) (i : Fin 4) :
+    Polynomial.X ^ w i *
+        MvPolynomial.eval
+          (adaptiveSmithInflateSection w (polynomialConstantSection p))
+          (MvPolynomial.pderiv i
+            (reverseWeightedReesFamily w D F h)) =
+      Polynomial.X ^ D *
+        Polynomial.C
+          (MvPolynomial.eval p (MvPolynomial.pderiv i F)) := by
+  have hnorm :=
+    adaptiveSmithInflate_reverseWeightedReesFamily_eq w D F h
+  have hpd := congrArg (MvPolynomial.pderiv i) hnorm
+  rw [pderiv_adaptiveSmithInflateHom] at hpd
+  rw [MvPolynomial.pderiv_C_mul] at hpd
+  have heval :=
+    congrArg
+      (MvPolynomial.eval (polynomialConstantSection p))
+      hpd
+  simp only [map_mul, MvPolynomial.eval_C] at heval
+  rw [eval_adaptiveSmithInflateHom] at heval
+  have hconst :
+      MvPolynomial.eval (polynomialConstantSection p)
+          (MvPolynomial.pderiv i (constantPolynomialFamily F)) =
+        Polynomial.C
+          (MvPolynomial.eval p (MvPolynomial.pderiv i F)) := by
+    unfold constantPolynomialFamily polynomialConstantSection
+    rw [MvPolynomial.pderiv_map]
+    rw [MvPolynomial.eval_map]
+    exact
+      (MvPolynomial.eval₂_comp
+        Polynomial.C p (MvPolynomial.pderiv i F)).symm
+  rw [hconst] at heval
+  exact heval
+
+/-- Exact source-gradient collisions lift canonically to moving collisions on
+the bounded reverse-Rees family.
+
+The marked source points `p,q` become the polynomial sections
+`tau^w * p, tau^w * q`; no special-fibre identification or repair state is
+used. -/
+theorem reverseWeightedReesFamily_exactGradientCollision
+    (w : Fin 4 → ℕ) (D : ℕ) (F : MvPolynomial (Fin 4) K)
+    (h : HasReverseWeightBound w D F)
+    (p q : Fin 4 → K)
+    (hcoll : HC4.Newton.HasExactGradientCollision F p q) :
+    HasPolynomialFamilyExactGradientCollision
+      (reverseWeightedReesFamily w D F h)
+      (adaptiveSmithInflateSection w (polynomialConstantSection p))
+      (adaptiveSmithInflateSection w (polynomialConstantSection q)) := by
+  intro i
+  apply polynomial_X_pow_mul_cancel (K := K) (w i)
+  calc
+    Polynomial.X ^ w i *
+        MvPolynomial.eval
+          (adaptiveSmithInflateSection w (polynomialConstantSection p))
+          (MvPolynomial.pderiv i
+            (reverseWeightedReesFamily w D F h)) =
+      Polynomial.X ^ D *
+        Polynomial.C
+          (MvPolynomial.eval p (MvPolynomial.pderiv i F)) :=
+      reverseWeightedReesFamily_scaledGradient_eval w D F h p i
+    _ =
+      Polynomial.X ^ D *
+        Polynomial.C
+          (MvPolynomial.eval q (MvPolynomial.pderiv i F)) := by
+      have hi := hcoll i
+      unfold HC4.Newton.mvGradientComponentAt at hi
+      rw [hi]
+    _ =
+      Polynomial.X ^ w i *
+        MvPolynomial.eval
+          (adaptiveSmithInflateSection w (polynomialConstantSection q))
+          (MvPolynomial.pderiv i
+            (reverseWeightedReesFamily w D F h)) :=
+      (reverseWeightedReesFamily_scaledGradient_eval
+        w D F h q i).symm
+
 /-! ## Exact reverse-Rees Hessian clock -/
 
 /-- A bounded reverse weighted Rees family of a determinant-one source has
