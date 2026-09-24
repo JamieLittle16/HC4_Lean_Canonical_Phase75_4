@@ -301,6 +301,8 @@ inductive TopKernelThreeSchurZeroRelativeSourceFrontier
           S.toExactZeroThreeSchurClock.tailConstantMatrix)
       (matrix_ne_zero :
         S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
+      (orientedClock :
+        P.TopKernelThreeSchurRankOneOrientedBinaryClock S allMinors)
 
 /-- **D2: source-honest consumption of every zero-relative principal
 rank-two branch.** -/
@@ -316,8 +318,8 @@ theorem TopKernelThreeSchurZeroRelativePrincipalFrontier.toSourceFrontier
   | rankTwoPrincipal tail hz _hcommon hopen _hres pivot =>
       exact ⟨.representedSchur tail hz hopen
         pivot.toRepresentedSourceSchurWitness⟩
-  | binaryZeroSchur tail hz _hcommon hopen hres hall hne =>
-      exact ⟨.binaryZeroSchur tail hz hopen hres hall hne⟩
+  | binaryZeroSchur tail hz _hcommon hopen hres hall hne oriented =>
+      exact ⟨.binaryZeroSchur tail hz hopen hres hall hne oriented⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
