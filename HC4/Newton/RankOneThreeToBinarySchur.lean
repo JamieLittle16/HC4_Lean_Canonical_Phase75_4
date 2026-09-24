@@ -571,8 +571,7 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
       E.tailConstantMatrix 2 1 = E.tailConstantMatrix 1 2 := by
     simpa [M] using h12sym
 
-  simp only [M] at hp01' hp02' hp12' hp01rev hp02rev hp12rev
-    hcross0 hcross0rev hcross1 hcross1rev hcross2 hcross2rev
+  simp only [M] at hp01' hp02' hp12' hp01rev hp02rev hp12rev hcross0 hcross0rev hcross1 hcross1rev hcross2 hcross2rev
 
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
