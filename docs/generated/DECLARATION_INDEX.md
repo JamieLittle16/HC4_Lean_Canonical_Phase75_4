@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9608**.
+Distinct declaration spellings indexed: **9622**.
 
 ## Repeated declaration spellings
 
@@ -6966,6 +6966,8 @@ Distinct declaration spellings indexed: **9608**.
 - `overlapDirectClosingQuadratic_twoVisibleLayers` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingQuadraticSupport`
 - `overlapRelativeFirstDeformation_originHessian_ne_zero_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `pExponent` — `def` in `HC4.Toric.InvariantSemigroup`
+- `pair02Block` — `def` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `pair12Block` — `def` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
 - `pair_eq_of_reverseOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `pair_ge_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `pair_le_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
@@ -9496,11 +9498,23 @@ Distinct declaration spellings indexed: **9608**.
 - `threePivot0_rankOneClearedThreeSchurMatrixD_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
 - `threePivot0_rankOneClearedThreeSchurMatrixD_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
 - `threePivot0_rankOneClearedThreeSchurMatrixD_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
+- `threePivot0_rankOneClearedThreeSchurMatrixX_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot0_rankOneClearedThreeSchurMatrixX_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot0_rankOneClearedThreeSchurMatrixX_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
 - `threePivot0_rankOneClearedThreeSchurMatrix_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
 - `threePivot0_rankOneClearedThreeSchurMatrix_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
 - `threePivot0_rankOneClearedThreeSchurMatrix_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurFourBlock`
 - `threePivot1BinarySchurSeries` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `threePivot1BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `threePivot1_rankOneClearedThreeSchurMatrixD_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrixD_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrixD_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrixX_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrixX_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrixX_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrix_active` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrix_kernel` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `threePivot1_rankOneClearedThreeSchurMatrix_offDiag` — `theorem` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
 - `threePivot2BinarySchurSeries` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `threePivot2BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `threeSchurBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
