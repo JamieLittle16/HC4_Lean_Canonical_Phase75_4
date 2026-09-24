@@ -244,15 +244,16 @@ theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero
           coeff_mul_eq_constant_mul_of_right_vanishes_below B.b B.s hsLower
         rw [Polynomial.coeff_sub, hdq, hbs] at ht
         have h11 := P.threeSchurBlock_coeff_zero (1 : Fin 4) 1
-        have h10 := P.threeSchurBlock_coeff_zero (1 : Fin 4) 0
+        have h01 := P.threeSchurBlock_coeff_zero (0 : Fin 4) 1
         have hq := M.rawEntry_coeff_firstBreak (0 : Fin 4) 3
         have hs := M.rawEntry_coeff_firstBreak (1 : Fin 4) 3
         change B.d.coeff 0 = _ at h11
-        change B.b.coeff 0 = _ at h10
+        change B.b.coeff 0 = _ at h01
         change B.q.coeff j = _ at hq
         change B.s.coeff j = _ at hs
-        rw [h11, h10, hq, hs] at ht
-        simpa [kernelLastPerm_last, j, B] using ht
+        rw [h11, h01, hq, hs] at ht
+        simpa [kernelLastPerm_last, j, B, HC4.Polynomial.hessian_apply,
+          pderiv_comm_commRing] using ht
       · simp
       · have ht := R.mixed1_zero
         change (B.d * B.y - B.r * B.s).coeff j = 0 at ht
@@ -285,15 +286,16 @@ theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero
           coeff_mul_eq_constant_mul_of_right_vanishes_below B.p B.y hyLower
         rw [Polynomial.coeff_sub, hxq, hpy] at ht
         have h22 := P.threeSchurBlock_coeff_zero (2 : Fin 4) 2
-        have h20 := P.threeSchurBlock_coeff_zero (2 : Fin 4) 0
+        have h02 := P.threeSchurBlock_coeff_zero (0 : Fin 4) 2
         have hq := M.rawEntry_coeff_firstBreak (0 : Fin 4) 3
         have hy := M.rawEntry_coeff_firstBreak (2 : Fin 4) 3
         change B.x.coeff 0 = _ at h22
-        change B.p.coeff 0 = _ at h20
+        change B.p.coeff 0 = _ at h02
         change B.q.coeff j = _ at hq
         change B.y.coeff j = _ at hy
-        rw [h22, h20, hq, hy] at ht
-        simpa [kernelLastPerm_last, j, B] using ht
+        rw [h22, h02, hq, hy] at ht
+        simpa [kernelLastPerm_last, j, B, HC4.Polynomial.hessian_apply,
+          pderiv_comm_commRing] using ht
       · have ht := R.mixed1_zero
         change (B.x * B.s - B.r * B.y).coeff j = 0 at ht
         have hxs :
@@ -304,15 +306,16 @@ theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero
           coeff_mul_eq_constant_mul_of_right_vanishes_below B.r B.y hyLower
         rw [Polynomial.coeff_sub, hxs, hry] at ht
         have h22 := P.threeSchurBlock_coeff_zero (2 : Fin 4) 2
-        have h21 := P.threeSchurBlock_coeff_zero (2 : Fin 4) 1
+        have h12 := P.threeSchurBlock_coeff_zero (1 : Fin 4) 2
         have hs := M.rawEntry_coeff_firstBreak (1 : Fin 4) 3
         have hy := M.rawEntry_coeff_firstBreak (2 : Fin 4) 3
         change B.x.coeff 0 = _ at h22
-        change B.r.coeff 0 = _ at h21
+        change B.r.coeff 0 = _ at h12
         change B.s.coeff j = _ at hs
         change B.y.coeff j = _ at hy
-        rw [h22, h21, hs, hy] at ht
-        simpa [kernelLastPerm_last, j, B] using ht
+        rw [h22, h12, hs, hy] at ht
+        simpa [kernelLastPerm_last, j, B, HC4.Polynomial.hessian_apply,
+          pderiv_comm_commRing] using ht
       · simp
 
 end TopFaceLinearPowerKernelData
