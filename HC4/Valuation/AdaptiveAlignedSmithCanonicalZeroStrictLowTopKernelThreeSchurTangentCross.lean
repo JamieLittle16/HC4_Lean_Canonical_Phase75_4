@@ -140,10 +140,17 @@ private theorem firstBreak_kernelRow_lower_zero'
   let B := kernelLastFamilyHessianFourBlock
     T.topKernelReverseReesFamily kernelCoordinate
   let hrow := T.topKernelLastBlock_kernelRow_ne_zero kernelCoordinate
+  change ∀ n : ℕ, n < M.mixed.layer.order →
+    B.q.coeff n = 0 ∧ B.s.coeff n = 0 ∧
+      B.y.coeff n = 0 ∧ B.z.coeff n = 0
   intro n hn
+  have horder :
+      M.mixed.layer.order =
+        firstFourBlockKernelRowBreakOrder B hrow := by
+    simpa [B, hrow] using M.mixed.layer.order_is_firstBreak
   have hn' :
       n < firstFourBlockKernelRowBreakOrder B hrow := by
-    rw [← M.mixed.layer.order_is_firstBreak]
+    rw [← horder]
     exact hn
   exact firstFourBlockKernelRowBreakOrder_lower_zero B hrow hn'
 
@@ -175,7 +182,7 @@ theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero
   let j := M.mixed.layer.order
   have hj : 0 < j := by
     simpa [j] using M.mixed.layer.order_pos
-  have hlower := M.firstBreak_kernelRow_lower_zero'
+  have hlower := firstBreak_kernelRow_lower_zero' M
   have hqLower : ∀ n : ℕ, n < j → B.q.coeff n = 0 :=
     fun n hn => (hlower n (by simpa [j] using hn)).1
   have hsLower : ∀ n : ℕ, n < j → B.s.coeff n = 0 :=
