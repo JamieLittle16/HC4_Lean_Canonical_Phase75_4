@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9718**.
+Distinct declaration spellings indexed: **9721**.
 
 ## Repeated declaration spellings
 
@@ -3267,6 +3267,7 @@ Distinct declaration spellings indexed: **9718**.
 - `ThreeSchurTangentTailKernelOpeningData.commonOrder_eq_later_of_relativeOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
 - `ThreeSchurTangentTailKernelOpeningData.positiveTailDetailedFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `ThreeSchurTangentTailKernelOpeningData.positiveTailFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailFrontier`
+- `ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailGeometricFrontier`
 - `ThreeSchurTangentTailKernelOpeningData.positiveTailRankOneFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - `ThreeSchurTangentTailKernelOpeningData.positiveTailSourceHonestFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier`
 - `ThreeSchurTangentTailKernelOpeningData.positiveTailTimedFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier`
@@ -3297,9 +3298,11 @@ Distinct declaration spellings indexed: **9718**.
 - `TopKernelThreeSchurClockData.zeroSeries_eq_commonScale_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `TopKernelThreeSchurPositiveTailDetailedFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `TopKernelThreeSchurPositiveTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailFrontier`
+- `TopKernelThreeSchurPositiveTailGeometricFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailGeometricFrontier`
 - `TopKernelThreeSchurPositiveTailRankOneFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - `TopKernelThreeSchurPositiveTailRankOneFrontier.toSourceHonestFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier`
 - `TopKernelThreeSchurPositiveTailSourceHonestFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier`
+- `TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailGeometricFrontier`
 - `TopKernelThreeSchurPositiveTailSourceHonestFrontier.toTimedFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier`
 - `TopKernelThreeSchurPositiveTailTimedFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier`
 - `TopKernelThreeSchurPrincipalFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
