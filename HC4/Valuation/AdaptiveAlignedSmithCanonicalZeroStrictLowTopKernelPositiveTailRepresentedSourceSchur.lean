@@ -78,10 +78,11 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
           GeneralFourBlock.pair02Block, GeneralFourBlock.ofSymmetricMatrix,
           threeSchurBlock, kernelLastFamilyHessianFourBlock,
           kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-          h0, h1, h2, h3] <;>
-        try
-          exact parameterFirstHessian_symmetric
-            T.topKernelReverseReesFamily _ _
+          h0, h1, h2, h3]
+      exact parameterFirstHessian_symmetric
+        T.topKernelReverseReesFamily
+        ((Equiv.swap kernelCoordinate 3) 1)
+        ((Equiv.swap kernelCoordinate 3) 2)
   | pair12 =>
       have h0 :
           (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 0) = 1 := by
@@ -101,10 +102,15 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
           GeneralFourBlock.pair12Block, GeneralFourBlock.ofSymmetricMatrix,
           threeSchurBlock, kernelLastFamilyHessianFourBlock,
           kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-          h0, h1, h2, h3] <;>
-        try
-          exact parameterFirstHessian_symmetric
-            T.topKernelReverseReesFamily _ _
+          h0, h1, h2, h3]
+      · exact parameterFirstHessian_symmetric
+          T.topKernelReverseReesFamily
+          ((Equiv.swap kernelCoordinate 3) 0)
+          ((Equiv.swap kernelCoordinate 3) 1)
+      · exact parameterFirstHessian_symmetric
+          T.topKernelReverseReesFamily
+          ((Equiv.swap kernelCoordinate 3) 0)
+          ((Equiv.swap kernelCoordinate 3) 2)
 
 private theorem ordinary_schurA_loss_le
     (pair : ThreeSchurActivePair) :
