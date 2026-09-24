@@ -530,7 +530,7 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
-    simp_all [M] <;> ring_nf at *
+    simp_all [M] <;> ring_nf at * <;> simp_all
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
