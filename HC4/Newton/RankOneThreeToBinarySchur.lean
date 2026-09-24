@@ -578,8 +578,20 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
     simp [h01symE, h02symE, h12symE] <;>
-    ring_nf <;>
-    assumption
+    first
+    | linear_combination hp01'
+    | linear_combination hp01rev
+    | linear_combination hp02'
+    | linear_combination hp02rev
+    | linear_combination hp12'
+    | linear_combination hp12rev
+    | linear_combination hcross0
+    | linear_combination hcross0rev
+    | linear_combination hcross1
+    | linear_combination hcross1rev
+    | linear_combination hcross2
+    | linear_combination hcross2rev
+    | ring
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
