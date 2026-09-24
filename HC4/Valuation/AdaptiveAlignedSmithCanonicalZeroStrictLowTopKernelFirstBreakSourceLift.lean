@@ -43,6 +43,46 @@ open HC4.Polynomial
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/-- Parameter-first transport of a principal Hessian minor, with symmetry used
+to write the cross term as a square.  This local helper is intentionally
+duplicated from the lower-ray endpoint source-lift module so this top-kernel
+module does not depend on a private declaration in an unrelated namespace. -/
+private theorem parameterFirstEquiv_hessianPrincipalMinor_eq_square
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (i j : Fin 4) :
+    parameterFirstEquiv K
+        (HC4.Polynomial.hessianPrincipalMinor P i j) =
+      parameterFirstHessian P i i * parameterFirstHessian P j j -
+        parameterFirstHessian P i j * parameterFirstHessian P i j := by
+  have hsym :
+      HC4.Polynomial.hessian P j i =
+        HC4.Polynomial.hessian P i j := by
+    change
+      MvPolynomial.pderiv i (MvPolynomial.pderiv j P) =
+        MvPolynomial.pderiv j (MvPolynomial.pderiv i P)
+    exact pderiv_comm_commRing i j P
+  unfold HC4.Polynomial.hessianPrincipalMinor
+  simp only [map_sub, map_mul]
+  rw [hsym]
+  simp [parameterFirstHessian]
+
+/-- Field-valued principal-minor square form. -/
+private theorem hessianPrincipalMinor_eq_square
+    (F : MvPolynomial (Fin 4) K)
+    (i j : Fin 4) :
+    HC4.Polynomial.hessianPrincipalMinor F i j =
+      HC4.Polynomial.hessian F i i * HC4.Polynomial.hessian F j j -
+        HC4.Polynomial.hessian F i j * HC4.Polynomial.hessian F i j := by
+  have hsym :
+      HC4.Polynomial.hessian F j i =
+        HC4.Polynomial.hessian F i j := by
+    change
+      MvPolynomial.pderiv i (MvPolynomial.pderiv j F) =
+        MvPolynomial.pderiv j (MvPolynomial.pderiv i F)
+    exact pderiv_comm_commRing i j F
+  unfold HC4.Polynomial.hessianPrincipalMinor
+  rw [hsym]
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 namespace TopFaceLinearPowerKernelData
 
