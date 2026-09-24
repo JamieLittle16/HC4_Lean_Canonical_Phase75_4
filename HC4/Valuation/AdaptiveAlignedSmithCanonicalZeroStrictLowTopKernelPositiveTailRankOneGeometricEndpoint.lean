@@ -52,6 +52,84 @@ noncomputable def PositiveTailExplicitRankOneClockData.firstTransverseBlock
   c := MvPolynomial.eval point
     (R.exactRankOneClock.series.kernel.coeff R.exactRankOneClock.firstOrder)
 
+/-- Branch-independent represented-source Schur point witness.  This evaluates
+one of the three nonzero represented-source Schur polynomials at a source point
+where it remains nonzero. -/
+inductive PositiveTailRepresentedSourceSchurPointWitness
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | schurA
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (value_ne :
+        MvPolynomial.eval point
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurA ≠ 0)
+  | schurB
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (value_ne :
+        MvPolynomial.eval point
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurB ≠ 0)
+  | schurC
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (value_ne :
+        MvPolynomial.eval point
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurC ≠ 0)
+
+/-- Evaluate a branch-independent represented-source Schur witness. -/
+theorem PositiveTailRepresentedSourceSchurWitness.exists_sourcePointWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (G : P.PositiveTailRepresentedSourceSchurWitness) :
+    Nonempty P.PositiveTailRepresentedSourceSchurPointWitness := by
+  cases G with
+  | schurA pair hne =>
+      rcases exists_source_eval_ne_zero_of_ne_zero
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurA
+          hne with ⟨point, hpoint⟩
+      exact ⟨.schurA pair point hpoint⟩
+  | schurB pair hne =>
+      rcases exists_source_eval_ne_zero_of_ne_zero
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurB
+          hne with ⟨point, hpoint⟩
+      exact ⟨.schurB pair point hpoint⟩
+  | schurC pair hne =>
+      rcases exists_source_eval_ne_zero_of_ne_zero
+          (permutedPolynomialHessianFourBlock
+            (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurC
+          hne with ⟨point, hpoint⟩
+      exact ⟨.schurC pair point hpoint⟩
+
+/-- Forget the rank-one coefficient index and retain only the honest
+represented-source Schur polynomial. -/
+theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.toRepresentedSourceWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    (G : P.PositiveTailRankOneTransverseRepresentedSourceGeometry B) :
+    P.PositiveTailRepresentedSourceSchurWitness := by
+  cases G with
+  | schurA pair _ _ hsource =>
+      exact .schurA pair hsource
+  | schurB pair _ _ hsource =>
+      exact .schurB pair hsource
+  | schurC pair _ _ hsource =>
+      exact .schurC pair hsource
+
+/-- Evaluate the represented-source Schur geometry retained by a rank-one
+transverse event. -/
+theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.exists_sourcePointWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    (G : P.PositiveTailRankOneTransverseRepresentedSourceGeometry B) :
+    Nonempty P.PositiveTailRepresentedSourceSchurPointWitness :=
+  G.toRepresentedSourceWitness.exists_sourcePointWitness
+
 /-- Literal nondegenerate source-point event in the preterminal branch.
 
 The determinant statement is geometric: it is the determinant of the evaluated
