@@ -75,10 +75,11 @@ inductive TopKernelThreeSchurZeroRelativePrincipalFrontier
           tail.physical.index 2 ≠ 0)
       (residual_pos :
         0 < S.toExactZeroThreeSchurClock.residualDefect)
-      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
-      (defect_eq :
-        clock.defect =
-          S.toExactZeroThreeSchurClock.residualDefect)
+      (allMinors :
+        ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+          S.toExactZeroThreeSchurClock.tailConstantMatrix)
+      (matrix_ne_zero :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
 
 /-- **D1: zero-relative finite principal exhaustion.**
 
@@ -95,14 +96,26 @@ theorem ThreeSchurTangentTailKernelOpeningData.zeroRelativePrincipalFrontier
   have hcommon := D.commonOrder_eq_later_of_relativeOrder_eq_zero hz
   have hopen :=
     D.tailConstant_kernelOpening_ne_zero_of_relativeOrder_eq_zero hz
-  let F := Classical.choice S.principalFrontier
-  cases F with
+  let E := S.toExactZeroThreeSchurClock
+  have hsymm : E.zeroSeries.matrix.IsSymm := by
+    simpa [E] using S.exactZeroThreeSchurClock_isSymm
+  cases E.firstTailRankFrontier with
   | determinantClosing hres hdet =>
-      exact ⟨.determinantClosing D hz hcommon hopen hres hdet⟩
-  | rankTwoPrincipal hres pivot =>
-      exact ⟨.rankTwoPrincipal D hz hcommon hopen hres pivot⟩
-  | binaryZeroSchur hres clock hdef =>
-      exact ⟨.binaryZeroSchur D hz hcommon hopen hres clock hdef⟩
+      exact ⟨.determinantClosing D hz hcommon hopen
+        (by simpa [E] using hres) (by simpa [E] using hdet)⟩
+  | rankTwo hres hminor =>
+      have hres' : 0 < S.toExactZeroThreeSchurClock.residualDefect := by
+        simpa [E] using hres
+      rcases E.rankTwo_has_principalPivot hsymm hres hminor with
+        h01 | h02 | h12
+      · exact ⟨.rankTwoPrincipal D hz hcommon hopen hres' (.pivot01 (by simpa [E] using h01))⟩
+      · exact ⟨.rankTwoPrincipal D hz hcommon hopen hres' (.pivot02 (by simpa [E] using h02))⟩
+      · exact ⟨.rankTwoPrincipal D hz hcommon hopen hres' (.pivot12 (by simpa [E] using h12))⟩
+  | rankOne hres hall hne =>
+      exact ⟨.binaryZeroSchur D hz hcommon hopen
+        (by simpa [E] using hres)
+        (by simpa [E] using hall)
+        (by simpa [E] using hne)⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
