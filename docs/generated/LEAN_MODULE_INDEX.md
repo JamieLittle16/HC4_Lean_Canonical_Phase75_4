@@ -1278,7 +1278,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: First-order transport through a polynomial factor with nonzero constant term
 - A-labels: none detected
 - Local imports: none
-- External imports: `Mathlib.Data.Polynomial.Basic`, `Mathlib.Tactic`
+- External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Newton.PolynomialShiftedFactorTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - Declarations: `theorem polynomial_firstOpening_of_mul_eq_X_pow_mul`
 
