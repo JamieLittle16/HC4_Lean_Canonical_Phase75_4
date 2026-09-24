@@ -277,8 +277,9 @@ noncomputable def ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : ThreeSchurTangentAtFirstBreak S M) : ℕ :=
-  Nat.find R.hasLaterKernelOpening
+    (R : ThreeSchurTangentAtFirstBreak S M) : ℕ := by
+  classical
+  exact Nat.find R.hasLaterKernelOpening
 
 theorem ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
@@ -289,6 +290,7 @@ theorem ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec
       ∃ i : Fin 3,
         (S.toExactZeroThreeSchurClock.zeroSeries.matrix i 2).coeff
           R.laterKernelOpeningOrder ≠ 0 := by
+  classical
   exact Nat.find_spec R.hasLaterKernelOpening
 
 theorem ThreeSchurTangentAtFirstBreak.kernelColumn_coeff_zero_of_lt_later
@@ -304,8 +306,13 @@ theorem ThreeSchurTangentAtFirstBreak.kernelColumn_coeff_zero_of_lt_later
   · exact R.kernelColumn_coeff_zero_of_le_firstBreak i hle
   · have hjn : M.mixed.layer.order < n := by omega
     by_contra hcoeff
-    have hcand : R.HasLaterKernelOpening := ⟨n, hjn, i, hcoeff⟩
+    have hcand :
+        M.mixed.layer.order < n ∧
+          ∃ i : Fin 3,
+            (S.toExactZeroThreeSchurClock.zeroSeries.matrix i 2).coeff n ≠ 0 :=
+      ⟨hjn, i, hcoeff⟩
     have hmin : R.laterKernelOpeningOrder ≤ n := by
+      classical
       unfold laterKernelOpeningOrder
       exact Nat.find_min' R.hasLaterKernelOpening hcand
     omega
