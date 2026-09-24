@@ -54,7 +54,7 @@ theorem reverseWeightedReesFamily_sourceSchurA_of_familySchurA_ne_zero
   have hzero :
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurA = 0 := by
-    apply adaptiveSmithInflateHom_injective w
+    apply adaptiveSmithInflateHom_injective (K := K) w
     simpa using hinflated
   exact hne hzero
 
@@ -86,7 +86,7 @@ theorem reverseWeightedReesFamily_sourceSchurB_of_familySchurB_ne_zero
   have hzero :
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurB = 0 := by
-    apply adaptiveSmithInflateHom_injective w
+    apply adaptiveSmithInflateHom_injective (K := K) w
     simpa using hinflated
   exact hne hzero
 
@@ -117,7 +117,7 @@ theorem reverseWeightedReesFamily_sourceSchurC_of_familySchurC_ne_zero
   have hzero :
       (permutedFamilyHessianFourBlock rho
         (reverseWeightedReesFamily w D F hbound)).schurC = 0 := by
-    apply adaptiveSmithInflateHom_injective w
+    apply adaptiveSmithInflateHom_injective (K := K) w
     simpa using hinflated
   exact hne hzero
 
