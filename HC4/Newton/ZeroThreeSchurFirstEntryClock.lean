@@ -238,7 +238,7 @@ theorem hasPositiveEntryLayer
     funext i j
     apply Polynomial.ext
     intro n
-    rw [Polynomial.coeff_zero]
+    change (E.zeroSeries.matrix i j).coeff n = 0
     by_cases hn0 : n = 0
     · subst n
       exact E.zeroSeries.coeff_zero i j
