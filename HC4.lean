@@ -311,6 +311,11 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness
 
+-- Root the source-honest positive-relative three-Schur assembly.  C1--C3 now
+-- discharge every auxiliary positive-tail rank label into represented-source
+-- Schur geometry or an exact whole-family first transverse opening.
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier
+
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
 import HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation
