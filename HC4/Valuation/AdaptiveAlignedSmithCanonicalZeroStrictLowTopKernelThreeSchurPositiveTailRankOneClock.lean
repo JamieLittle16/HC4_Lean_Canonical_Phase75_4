@@ -114,9 +114,9 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailRankOneFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hpos : 0 < D.relativeOrder) :
-    Nonempty P.TopKernelThreeSchurPositiveTailRankOneFrontier S := by
+    Nonempty (P.TopKernelThreeSchurPositiveTailRankOneFrontier S) := by
   rcases D.positiveTailDetailedFrontier hpos with ⟨F⟩
   cases F with
   | activeRankTwo hres h01 =>
