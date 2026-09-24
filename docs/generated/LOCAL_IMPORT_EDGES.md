@@ -4870,6 +4870,8 @@ human architecture guide.
 - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.BoundedReverseWeightedRees`
+- `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
+  - `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `HC4.Valuation.RigidClosingExactCollisionSource`
   - `HC4.Valuation.CanonicalSmithDefectExposureCollision`
   - `HC4.Valuation.RigidPacketZeroSchurBridge`
