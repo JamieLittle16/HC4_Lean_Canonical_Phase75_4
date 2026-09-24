@@ -279,7 +279,7 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
     have hz : C 0 0 * C 1 1 - C 0 1 * C 1 0 = 0 := by
       simpa [C, E] using h01
     rw [h00C, h11C, h10] at hz
-    simpa using neg_eq_zero.mp hz
+    linear_combination -hz
   have h01z : C 0 1 = 0 :=
     (mul_self_eq_zero.mp h01sq)
   have h10z : C 1 0 = 0 := by rw [h10, h01z]
