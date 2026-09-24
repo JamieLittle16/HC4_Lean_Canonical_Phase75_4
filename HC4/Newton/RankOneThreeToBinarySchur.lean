@@ -527,10 +527,58 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     · exact h
     · exact h
 
+  have hp01rev : M 0 1 * M 0 1 - M 0 0 * M 1 1 = 0 := by
+    calc
+      M 0 1 * M 0 1 - M 0 0 * M 1 1 =
+          -(M 0 0 * M 1 1 - M 0 1 * M 0 1) := by ring
+      _ = 0 := by rw [hp01']; simp
+  have hp02rev : M 0 2 * M 0 2 - M 0 0 * M 2 2 = 0 := by
+    calc
+      M 0 2 * M 0 2 - M 0 0 * M 2 2 =
+          -(M 0 0 * M 2 2 - M 0 2 * M 0 2) := by ring
+      _ = 0 := by rw [hp02']; simp
+  have hp12rev : M 1 2 * M 1 2 - M 1 1 * M 2 2 = 0 := by
+    calc
+      M 1 2 * M 1 2 - M 1 1 * M 2 2 =
+          -(M 1 1 * M 2 2 - M 1 2 * M 1 2) := by ring
+      _ = 0 := by rw [hp12']; simp
+  have hcross0rev :
+      M 0 1 * M 0 2 - M 0 0 * M 1 2 = 0 := by
+    calc
+      M 0 1 * M 0 2 - M 0 0 * M 1 2 =
+          -(M 0 0 * M 1 2 - M 0 1 * M 0 2) := by ring
+      _ = 0 := by rw [hcross0]; simp
+  have hcross1rev :
+      M 0 2 * M 1 1 - M 0 1 * M 1 2 = 0 := by
+    calc
+      M 0 2 * M 1 1 - M 0 1 * M 1 2 =
+          -(M 0 1 * M 1 2 - M 0 2 * M 1 1) := by ring
+      _ = 0 := by rw [hcross1]; simp
+  have hcross2rev :
+      M 0 2 * M 1 2 - M 0 1 * M 2 2 = 0 := by
+    calc
+      M 0 2 * M 1 2 - M 0 1 * M 2 2 =
+          -(M 0 1 * M 2 2 - M 0 2 * M 1 2) := by ring
+      _ = 0 := by rw [hcross2]; simp
+
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
-    simp_all [M] <;> ring_nf at * <;> simp_all
+    simp only [M, h01sym, h02sym, h12sym] <;>
+    first
+    | ring
+    | exact hp01'
+    | exact hp01rev
+    | exact hp02'
+    | exact hp02rev
+    | exact hp12'
+    | exact hp12rev
+    | exact hcross0
+    | exact hcross0rev
+    | exact hcross1
+    | exact hcross1rev
+    | exact hcross2
+    | exact hcross2rev
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
