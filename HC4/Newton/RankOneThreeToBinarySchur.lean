@@ -158,10 +158,11 @@ theorem tailConstantMatrix_isSymm
     (E : ExactZeroThreeSchurClock R)
     (hsymm : E.zeroSeries.matrix.IsSymm) :
     E.tailConstantMatrix.IsSymm := by
+  apply Matrix.ext
   intro i j
   exact congrArg
     (fun p : Polynomial R => p.coeff 0)
-    (E.tailMatrix_isSymm symmEntry hsymm i j)
+    (symmEntry (E.tailMatrix_isSymm hsymm) j i)
 
 /-- A nonzero symmetric 3x3 matrix with all 2x2 minors zero has a nonzero
 diagonal entry.  This is the scalar pivot needed for the second Schur step. -/
