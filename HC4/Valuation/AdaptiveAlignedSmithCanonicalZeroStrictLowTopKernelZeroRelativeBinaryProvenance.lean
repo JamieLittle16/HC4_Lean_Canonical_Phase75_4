@@ -5,17 +5,16 @@ import Mathlib.Tactic
 /-!
 # Orientation-preserving binary clock for the zero-relative tail
 
-The zero-relative principal source frontier retains the rank-one constant 3x3
-tail before the generic second Schur stage forgets which diagonal pivot was
-used.  This file spends that retained witness directly.
+At relative order zero the retained physical opening is already a nonzero entry
+in column 2 of the constant normalised 3x3 tail.  In the remaining rank-one
+case all 2x2 minors vanish.  Symmetry then forces the diagonal entry (2,2) to
+be nonzero: if it vanished, the principal minor on the opened row and
+coordinate 2 would force the retained column-2 entry to vanish as well.
 
-A nonzero symmetric rank-one 3x3 constant matrix has a nonzero diagonal entry.
-We choose the first available coordinate in the order 0, 1, 2 and construct
-the corresponding exact binary zero-Schur clock through the public oriented
-constructors.  The exact binary series, determinant defect, physical
-zero-relative opening, and the original rank-one witness are all retained.
-
-No repair progress and no terminal claim is introduced here.
+Thus this branch has a canonical second scalar pivot: coordinate 2.  We retain
+that pivot and construct the exact coordinate-2 binary zero-Schur clock through
+the public oriented Newton API.  No arbitrary pivot choice, repair progress, or
+terminal claim is introduced.
 -/
 
 namespace HC4.Valuation
@@ -36,68 +35,58 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
 
-/-- Exact binary zero-Schur clock together with the literal diagonal pivot of
-the rank-one normalised 3x3 tail that constructed it. -/
-inductive ZeroRelativeExplicitBinaryClockData
+/-- In a symmetric rank-one constant 3x3 tail, a nonzero entry in column 2
+forces the (2,2) diagonal pivot to be nonzero. -/
+theorem TopKernelThreeSchurClockData.pivot2_ne_zero_of_rankOne_column2_opening
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    (S : P.TopKernelThreeSchurClockData) : Type (u + 1)
-  | pivot0
-      (allMinors :
-        ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
-          S.toExactZeroThreeSchurClock.tailConstantMatrix)
-      (matrix_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
-      (pivot_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 ≠ 0)
-      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
-      (series_eq :
-        clock.zeroSeries.series =
-          threePivot0BinarySchurSeries
-            (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
-              S.toExactZeroThreeSchurClock.hasPositiveEntryLayer))
-      (defect_eq :
-        clock.defect = S.toExactZeroThreeSchurClock.residualDefect)
-  | pivot1
-      (allMinors :
-        ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
-          S.toExactZeroThreeSchurClock.tailConstantMatrix)
-      (matrix_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
-      (pivot0_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 = 0)
-      (pivot_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 1 1 ≠ 0)
-      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
-      (series_eq :
-        clock.zeroSeries.series =
-          threePivot1BinarySchurSeries
-            (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
-              S.toExactZeroThreeSchurClock.hasPositiveEntryLayer))
-      (defect_eq :
-        clock.defect = S.toExactZeroThreeSchurClock.residualDefect)
-  | pivot2
-      (allMinors :
-        ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
-          S.toExactZeroThreeSchurClock.tailConstantMatrix)
-      (matrix_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
-      (pivot0_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 = 0)
-      (pivot1_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 1 1 = 0)
-      (pivot_ne_zero :
-        S.toExactZeroThreeSchurClock.tailConstantMatrix 2 2 ≠ 0)
-      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
-      (series_eq :
-        clock.zeroSeries.series =
-          threePivot2BinarySchurSeries
-            (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
-              S.toExactZeroThreeSchurClock.hasPositiveEntryLayer))
-      (defect_eq :
-        clock.defect = S.toExactZeroThreeSchurClock.residualDefect)
+    (S : P.TopKernelThreeSchurClockData)
+    (hall :
+      ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+        S.toExactZeroThreeSchurClock.tailConstantMatrix)
+    {i : Fin 3}
+    (hopen :
+      S.toExactZeroThreeSchurClock.tailConstantMatrix i 2 ≠ 0) :
+    S.toExactZeroThreeSchurClock.tailConstantMatrix 2 2 ≠ 0 := by
+  let E := S.toExactZeroThreeSchurClock
+  let C := E.tailConstantMatrix
+  have hsymm : E.zeroSeries.matrix.IsSymm := by
+    simpa [E] using S.exactZeroThreeSchurClock_isSymm
+  have hCsymm : C.IsSymm := E.tailConstantMatrix_isSymm hsymm
+  intro h22
+  have hm := hall i i 2 2
+  change C i i * C 2 2 - C i 2 * C 2 i = 0 at hm
+  have hs : C 2 i = C i 2 := by
+    exact symmEntry hCsymm 2 i
+  have hsq : C i 2 * C i 2 = 0 := by
+    rw [h22, hs] at hm
+    simpa using hm
+  rcases mul_eq_zero.mp hsq with hz | hz
+  · exact hopen (by simpa [E, C] using hz)
+  · exact hopen (by simpa [E, C] using hz)
 
-/-- Zero-relative source frontier with the remaining binary branch made
-orientation-explicit. -/
+/-- Exact coordinate-2 binary clock together with the rank-one 3x3 witness
+and the physical pivot that constructed it. -/
+structure ZeroRelativeExplicitBinaryClockData
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData) : Type (u + 1) where
+  allMinors :
+    ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+      S.toExactZeroThreeSchurClock.tailConstantMatrix
+  matrix_ne_zero :
+    S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0
+  pivot2_ne_zero :
+    S.toExactZeroThreeSchurClock.tailConstantMatrix 2 2 ≠ 0
+  clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K)
+  series_eq :
+    clock.zeroSeries.series =
+      threePivot2BinarySchurSeries
+        (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
+          S.toExactZeroThreeSchurClock.hasPositiveEntryLayer)
+  defect_eq :
+    clock.defect = S.toExactZeroThreeSchurClock.residualDefect
+
+/-- Zero-relative source frontier with the remaining rank-one branch converted
+to its canonical coordinate-2 exact binary clock. -/
 inductive TopKernelThreeSchurZeroRelativeBinaryFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
@@ -129,10 +118,10 @@ inductive TopKernelThreeSchurZeroRelativeBinaryFrontier
         0 < S.toExactZeroThreeSchurClock.residualDefect)
       (binary : P.ZeroRelativeExplicitBinaryClockData S)
 
-/-- **D3: explicit diagonal pivot and exact binary zero-Schur clock.**
+/-- **D3: rank-one constant tail -> explicit coordinate-2 binary clock.**
 
-The rank-one zero-relative branch retains enough provenance to choose the
-actual diagonal pivot before constructing the second Schur clock. -/
+The retained physical column-2 opening selects the diagonal pivot itself, so
+this step is finite and canonical. -/
 theorem TopKernelThreeSchurZeroRelativeSourceFrontier.toBinaryFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
@@ -148,45 +137,34 @@ theorem TopKernelThreeSchurZeroRelativeSourceFrontier.toBinaryFrontier
       let E := S.toExactZeroThreeSchurClock
       have hsymm : E.zeroSeries.matrix.IsSymm := by
         simpa [E] using S.exactZeroThreeSchurClock_isSymm
-      by_cases h0 : E.tailConstantMatrix 0 0 ≠ 0
-      · let clock := E.toBinaryZeroSchurClockPivot0 hsymm hall h0
-        refine ⟨.explicitBinary tail hz hopen hres
-          (.pivot0 (by simpa [E] using hall) (by simpa [E] using hne)
-            (by simpa [E] using h0) clock ?_ ?_)⟩
-        · simpa [clock, E] using
-            E.toBinaryZeroSchurClockPivot0_series hsymm hall h0
-        · simpa [clock, E] using
-            E.toBinaryZeroSchurClockPivot0_defect hsymm hall h0
-      · have h0z : E.tailConstantMatrix 0 0 = 0 := by
-          exact not_ne_iff.mp h0
-        by_cases h1 : E.tailConstantMatrix 1 1 ≠ 0
-        · let clock := E.toBinaryZeroSchurClockPivot1 hsymm hall h1
-          refine ⟨.explicitBinary tail hz hopen hres
-            (.pivot1 (by simpa [E] using hall) (by simpa [E] using hne)
-              (by simpa [E] using h0z) (by simpa [E] using h1)
-              clock ?_ ?_)⟩
-          · simpa [clock, E] using
-              E.toBinaryZeroSchurClockPivot1_series hsymm hall h1
-          · simpa [clock, E] using
-              E.toBinaryZeroSchurClockPivot1_defect hsymm hall h1
-        · have h1z : E.tailConstantMatrix 1 1 = 0 := by
-            exact not_ne_iff.mp h1
-          have h2 : E.tailConstantMatrix 2 2 ≠ 0 := by
-            rcases E.exists_diagonal_ne_zero_of_rankOne hsymm hall hne with
-              ⟨p, hp⟩
-            fin_cases p
-            · exact (h0 hp).elim
-            · exact (h1 hp).elim
-            · exact hp
-          let clock := E.toBinaryZeroSchurClockPivot2 hsymm hall h2
-          refine ⟨.explicitBinary tail hz hopen hres
-            (.pivot2 (by simpa [E] using hall) (by simpa [E] using hne)
-              (by simpa [E] using h0z) (by simpa [E] using h1z)
-              (by simpa [E] using h2) clock ?_ ?_)⟩
-          · simpa [clock, E] using
-              E.toBinaryZeroSchurClockPivot2_series hsymm hall h2
-          · simpa [clock, E] using
-              E.toBinaryZeroSchurClockPivot2_defect hsymm hall h2
+      have h2 :
+          S.toExactZeroThreeSchurClock.tailConstantMatrix 2 2 ≠ 0 :=
+        S.pivot2_ne_zero_of_rankOne_column2_opening hall hopen
+      let clock := E.toBinaryZeroSchurClockPivot2
+        hsymm (by simpa [E] using hall) (by simpa [E] using h2)
+      have hseries :
+          clock.zeroSeries.series =
+            threePivot2BinarySchurSeries
+              (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
+                S.toExactZeroThreeSchurClock.hasPositiveEntryLayer) := by
+        simpa [clock, E] using
+          E.toBinaryZeroSchurClockPivot2_series
+            hsymm (by simpa [E] using hall) (by simpa [E] using h2)
+      have hdefect :
+          clock.defect =
+            S.toExactZeroThreeSchurClock.residualDefect := by
+        simpa [clock, E] using
+          E.toBinaryZeroSchurClockPivot2_defect
+            hsymm (by simpa [E] using hall) (by simpa [E] using h2)
+      exact ⟨.explicitBinary tail hz hopen hres
+        {
+          allMinors := hall
+          matrix_ne_zero := hne
+          pivot2_ne_zero := h2
+          clock := clock
+          series_eq := hseries
+          defect_eq := hdefect
+        }⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
