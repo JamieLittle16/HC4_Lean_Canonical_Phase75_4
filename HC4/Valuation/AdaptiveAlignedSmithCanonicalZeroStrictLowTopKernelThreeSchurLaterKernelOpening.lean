@@ -44,7 +44,7 @@ private theorem tangent_kernelColumn_coeff_zero_of_lt_firstBreak
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M)
+    (R : ThreeSchurTangentAtFirstBreak S M)
     (i : Fin 3)
     {n : ℕ}
     (hn : n < M.mixed.layer.order) :
@@ -52,7 +52,7 @@ private theorem tangent_kernelColumn_coeff_zero_of_lt_firstBreak
   let B := kernelLastFamilyHessianFourBlock
     T.topKernelReverseReesFamily kernelCoordinate
   let j := M.mixed.layer.order
-  have hlower := M.firstBreak_kernelRow_lower_zero'
+  have hlower := firstBreak_kernelRow_lower_zero' M
   have hqLower : ∀ m : ℕ, m < j → B.q.coeff m = 0 :=
     fun m hm => (hlower m (by simpa [j] using hm)).1
   have hsLower : ∀ m : ℕ, m < j → B.s.coeff m = 0 :=
@@ -191,7 +191,7 @@ theorem ThreeSchurTangentAtFirstBreak.kernelColumn_coeff_zero_of_le_firstBreak
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M)
+    (R : ThreeSchurTangentAtFirstBreak S M)
     (i : Fin 3)
     {n : ℕ}
     (hn : n ≤ M.mixed.layer.order) :
@@ -222,9 +222,19 @@ theorem TopKernelThreeSchurClockData.exists_kernelColumn_series_ne_zero
   have h12 : Z.matrix 1 2 = 0 := hnone 1
   have h22 : Z.matrix 2 2 = 0 := hnone 2
   have h20 : Z.matrix 2 0 = 0 := by
-    rw [hsymm 2 0, h02]
+    have hs20 : Z.matrix 2 0 = Z.matrix 0 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3)
+            (Polynomial (MvPolynomial (Fin 4) K)) => N 0 2) hsymm
+      simpa using h
+    rw [hs20, h02]
   have h21 : Z.matrix 2 1 = 0 := by
-    rw [hsymm 2 1, h12]
+    have hs21 : Z.matrix 2 1 = Z.matrix 1 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3)
+            (Polynomial (MvPolynomial (Fin 4) K)) => N 1 2) hsymm
+      simpa using h
+    rw [hs21, h12]
   have hdetzero : Z.matrix.det = 0 := by
     simp [Matrix.det_fin_three, h02, h12, h22, h20, h21]
   have hcoeff :
@@ -241,7 +251,7 @@ def ThreeSchurTangentAtFirstBreak.HasLaterKernelOpening
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) : Prop :=
+    (R : ThreeSchurTangentAtFirstBreak S M) : Prop :=
   ∃ n : ℕ, M.mixed.layer.order < n ∧
     ∃ i : Fin 3,
       (S.toExactZeroThreeSchurClock.zeroSeries.matrix i 2).coeff n ≠ 0
@@ -250,7 +260,7 @@ theorem ThreeSchurTangentAtFirstBreak.hasLaterKernelOpening
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
+    (R : ThreeSchurTangentAtFirstBreak S M) :
     R.HasLaterKernelOpening := by
   rcases S.exists_kernelColumn_series_ne_zero with ⟨i, hi⟩
   rcases Polynomial.support_nonempty.mpr hi with ⟨n, hn⟩
@@ -267,14 +277,14 @@ noncomputable def ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) : ℕ :=
+    (R : ThreeSchurTangentAtFirstBreak S M) : ℕ :=
   Nat.find R.hasLaterKernelOpening
 
 theorem ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
+    (R : ThreeSchurTangentAtFirstBreak S M) :
     M.mixed.layer.order < R.laterKernelOpeningOrder ∧
       ∃ i : Fin 3,
         (S.toExactZeroThreeSchurClock.zeroSeries.matrix i 2).coeff
@@ -285,7 +295,7 @@ theorem ThreeSchurTangentAtFirstBreak.kernelColumn_coeff_zero_of_lt_later
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M)
+    (R : ThreeSchurTangentAtFirstBreak S M)
     (i : Fin 3)
     {n : ℕ}
     (hn : n < R.laterKernelOpeningOrder) :
@@ -307,7 +317,7 @@ structure ThreeSchurTangentLaterKernelOpeningData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1) where
-  tangent : S.ThreeSchurTangentAtFirstBreak M
+  tangent : ThreeSchurTangentAtFirstBreak S M
   laterOrder : ℕ
   first_lt_later : M.mixed.layer.order < laterOrder
   index : Fin 3
@@ -321,8 +331,8 @@ theorem ThreeSchurTangentAtFirstBreak.toLaterKernelOpeningData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
-    Nonempty (S.ThreeSchurTangentLaterKernelOpeningData M) := by
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (ThreeSchurTangentLaterKernelOpeningData S M) := by
   rcases R.laterKernelOpeningOrder_spec with ⟨hlt, i, hi⟩
   exact ⟨{
     tangent := R
