@@ -338,6 +338,56 @@ theorem PositiveTailExplicitBinaryClockData.representedSourceSchurGeometry
     rw [hz]
     simp
 
+/-- Branch-independent represented-source Schur witness for the positive-tail
+seam.  Unlike `PositiveTailBinaryRepresentedSourceSchurGeometry`, this record
+does not retain an auxiliary binary clock index; it remembers only the honest
+source-coordinate pair and one nonzero cleared 2+2 Schur polynomial. -/
+inductive PositiveTailRepresentedSourceSchurWitness
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Prop
+  | schurA
+      (pair : ThreeSchurActivePair)
+      (hne :
+        (permutedPolynomialHessianFourBlock
+          (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurA ≠ 0)
+  | schurB
+      (pair : ThreeSchurActivePair)
+      (hne :
+        (permutedPolynomialHessianFourBlock
+          (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurB ≠ 0)
+  | schurC
+      (pair : ThreeSchurActivePair)
+      (hne :
+        (permutedPolynomialHessianFourBlock
+          (pair.sourcePerm kernelCoordinate) T.topKernelReesSource).schurC ≠ 0)
+
+/-- Forget only the auxiliary binary-clock index from already source-honest
+positive-tail Schur geometry. -/
+theorem PositiveTailBinaryRepresentedSourceSchurGeometry.toRepresentedSourceWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    (G : P.PositiveTailBinaryRepresentedSourceSchurGeometry B) :
+    P.PositiveTailRepresentedSourceSchurWitness := by
+  cases G with
+  | schurA pair hne =>
+      exact PositiveTailRepresentedSourceSchurWitness.schurA pair hne
+  | schurB pair hne =>
+      exact PositiveTailRepresentedSourceSchurWitness.schurB pair hne
+  | schurC pair hne =>
+      exact PositiveTailRepresentedSourceSchurWitness.schurC pair hne
+
+/-- Every explicit positive-tail binary clock therefore already determines a
+branch-independent honest represented-source Schur witness.  In particular,
+this consumes the later binary determinant-closing alternative source-honestly;
+the determinant-closing hypotheses add terminal information but are not needed
+for this source lift. -/
+theorem PositiveTailExplicitBinaryClockData.representedSourceSchurWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    (B : P.PositiveTailExplicitBinaryClockData S) :
+    P.PositiveTailRepresentedSourceSchurWitness :=
+  B.representedSourceSchurGeometry.toRepresentedSourceWitness
+
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
