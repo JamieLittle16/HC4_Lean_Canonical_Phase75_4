@@ -102,9 +102,14 @@ theorem topKernelReverseReesRightSection_apply
       Polynomial.X *
         Polynomial.C
           (coordinateAxisPoint (K := K) (0 : Fin 4) i) := by
-  simp [topKernelReverseReesRightSection,
-    adaptiveSmithInflateSection, ordinaryTopNatWeight,
-    polynomialConstantSection, mul_comm]
+  change
+    Polynomial.X ^ 1 *
+        Polynomial.C
+          (coordinateAxisPoint (K := K) (0 : Fin 4) i) =
+      Polynomial.X *
+        Polynomial.C
+          (coordinateAxisPoint (K := K) (0 : Fin 4) i)
+  rw [pow_one]
 
 /-- The honest ordinary reverse-Rees family carries the marked source
 collision as the moving polynomial-family collision `0 ~ tau e_0`.
