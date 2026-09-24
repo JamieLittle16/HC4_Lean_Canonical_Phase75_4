@@ -388,6 +388,108 @@ theorem PositiveTailExplicitBinaryClockData.representedSourceSchurWitness
     P.PositiveTailRepresentedSourceSchurWitness :=
   B.representedSourceSchurGeometry.toRepresentedSourceWitness
 
+/-- A nonzero active principal 2x2 minor in the normalised positive
+three-Schur tail already forces an honest represented-source Schur polynomial
+to be nonzero.  This is the source-honest consumer for the
+`activeRankTwo` positive-tail alternative. -/
+theorem TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (h01 :
+      S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 *
+            S.toExactZeroThreeSchurClock.tailConstantMatrix 1 1 -
+          S.toExactZeroThreeSchurClock.tailConstantMatrix 0 1 *
+            S.toExactZeroThreeSchurClock.tailConstantMatrix 1 0 ≠ 0) :
+    P.PositiveTailRepresentedSourceSchurWitness := by
+  let E := S.toExactZeroThreeSchurClock
+  let M := E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+  have hsymmM : M.IsSymm :=
+    E.tailMatrix_isSymm S.exactZeroThreeSchurClock_isSymm
+  have hm := h01
+  change
+    (M 0 0).coeff 0 * (M 1 1).coeff 0 -
+        (M 0 1).coeff 0 * (M 1 0).coeff 0 ≠ 0 at hm
+  have hM10 : M 1 0 = M 0 1 := by
+    have h := congrArg
+      (fun N : Matrix (Fin 3) (Fin 3)
+          (Polynomial (MvPolynomial (Fin 4) K)) => N 0 1)
+      hsymmM
+    simpa using h
+  have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 :=
+    congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0) hM10
+  rw [hs] at hm
+  have htailCoeff :
+      (threePivot0BinarySchurSeries M).active.coeff 0 ≠ 0 := by
+    simpa [threePivot0BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
+  have htail :
+      (threePivot0BinarySchurSeries M).active ≠ 0 := by
+    intro hz
+    apply htailCoeff
+    rw [hz]
+    simp
+  have hraw :
+      (threePivot0BinarySchurSeries E.zeroSeries.matrix).active ≠ 0 := by
+    rw [show E.zeroSeries.matrix =
+        commonScaleThreeMatrix
+          ((Polynomial.X :
+            Polynomial (MvPolynomial (Fin 4) K)) ^ S.firstThreeSchurOrder)
+          M by
+        simpa [E, M] using S.zeroSeries_eq_commonScale_tail]
+    rw [threePivot0BinarySchurSeries_commonScale_active]
+    exact mul_ne_zero
+      (pow_ne_zero _ (pow_ne_zero _ Polynomial.X_ne_zero))
+      htail
+  cases S with
+  | pivotA ha hzero hdet =>
+      have hprod :
+          P.threeSchurBlock.a * P.threeSchurBlock.schurA ≠ 0 := by
+        rw [← P.threeSchurBlock.threePivot0_rankOneClearedThreeSchurMatrix_active]
+        simpa [E, TopKernelThreeSchurClockData.toExactZeroThreeSchurClock]
+          using hraw
+      have hschur : P.threeSchurBlock.schurA ≠ 0 := by
+        intro hz
+        apply hprod
+        rw [hz]
+        simp
+      exact PositiveTailRepresentedSourceSchurWitness.schurA
+        .pair01
+        (ThreeSchurActivePair.sourceSchurA_ne_zero_of_familySchurA_ne_zero
+          (T := T) (P := P) .pair01 hschur)
+  | pivotD hd hzero hdet =>
+      have hprod :
+          P.threeSchurBlock.d * P.threeSchurBlock.schurA ≠ 0 := by
+        rw [← P.threeSchurBlock.threePivot0_rankOneClearedThreeSchurMatrixD_active]
+        simpa [E, TopKernelThreeSchurClockData.toExactZeroThreeSchurClock]
+          using hraw
+      have hschur : P.threeSchurBlock.schurA ≠ 0 := by
+        intro hz
+        apply hprod
+        rw [hz]
+        simp
+      exact PositiveTailRepresentedSourceSchurWitness.schurA
+        .pair01
+        (ThreeSchurActivePair.sourceSchurA_ne_zero_of_familySchurA_ne_zero
+          (T := T) (P := P) .pair01 hschur)
+  | pivotX hx hzero hdet =>
+      have hprod :
+          P.threeSchurBlock.x *
+              (ThreeSchurActivePair.pair02.block P.threeSchurBlock).schurA ≠ 0 := by
+        rw [← P.threeSchurBlock.threePivot0_rankOneClearedThreeSchurMatrixX_active]
+        simpa [E, TopKernelThreeSchurClockData.toExactZeroThreeSchurClock]
+          using hraw
+      have hschur :
+          (ThreeSchurActivePair.pair02.block P.threeSchurBlock).schurA ≠ 0 := by
+        intro hz
+        apply hprod
+        rw [hz]
+        simp
+      exact PositiveTailRepresentedSourceSchurWitness.schurA
+        .pair02
+        (ThreeSchurActivePair.sourceSchurA_ne_zero_of_familySchurA_ne_zero
+          (T := T) (P := P) .pair02 hschur)
+
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
