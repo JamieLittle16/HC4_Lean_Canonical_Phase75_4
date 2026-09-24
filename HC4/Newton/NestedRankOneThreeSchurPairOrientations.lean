@@ -57,7 +57,7 @@ def pair12Block (H : GeneralFourBlock R) : GeneralFourBlock R where
 /-! First scalar pivot 0, second scalar pivot 2. -/
 
 theorem threePivot1_rankOneClearedThreeSchurMatrix_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrix).active =
       H.a * H.pair02Block.schurA := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -65,7 +65,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrix_active
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrix_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrix).offDiag =
       H.a * H.pair02Block.schurB := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -73,7 +73,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrix_offDiag
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrix_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrix).kernel =
       H.a * H.pair02Block.schurC := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -83,7 +83,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrix_kernel
 /-! First scalar pivot 1, second scalar pivot 2. -/
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixD_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).active =
       H.d * H.pair12Block.schurA := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
@@ -91,7 +91,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrixD_active
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixD_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).offDiag =
       H.d * H.pair12Block.schurB := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
@@ -99,7 +99,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrixD_offDiag
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixD_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).kernel =
       H.d * H.pair12Block.schurC := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
@@ -109,7 +109,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrixD_kernel
 /-! First scalar pivot 2, second scalar pivot 0. -/
 
 theorem threePivot0_rankOneClearedThreeSchurMatrixX_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).active =
       H.x * H.pair02Block.schurA := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
@@ -117,7 +117,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrixX_active
   ring
 
 theorem threePivot0_rankOneClearedThreeSchurMatrixX_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).offDiag =
       H.x * H.pair02Block.schurB := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
@@ -125,7 +125,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrixX_offDiag
   ring
 
 theorem threePivot0_rankOneClearedThreeSchurMatrixX_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).kernel =
       H.x * H.pair02Block.schurC := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
@@ -135,7 +135,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrixX_kernel
 /-! First scalar pivot 2, second scalar pivot 1. -/
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixX_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).active =
       H.x * H.pair12Block.schurA := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
@@ -143,7 +143,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrixX_active
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixX_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).offDiag =
       H.x * H.pair12Block.schurB := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
@@ -151,7 +151,7 @@ theorem threePivot1_rankOneClearedThreeSchurMatrixX_offDiag
   ring
 
 theorem threePivot1_rankOneClearedThreeSchurMatrixX_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot1BinarySchurSeries H.rankOneClearedThreeSchurMatrixX).kernel =
       H.x * H.pair12Block.schurC := by
   simp [threePivot1BinarySchurSeries, rankOneClearedThreeSchurMatrixX,
