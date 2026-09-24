@@ -606,6 +606,8 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Newton.PolynomialFirstOpeningTransport`
   - _(no local imports)_
+- `HC4.Newton.PolynomialShiftedFactorTransport`
+  - `HC4.Newton.PolynomialFirstOpeningTransport`
 - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
   - `HC4.Newton.FiniteSupportCrossFacetExposure`
   - `HC4.Newton.FiniteSupportExposedVertex`
