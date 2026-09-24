@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9745**.
+Distinct declaration spellings indexed: **9751**.
 
 ## Repeated declaration spellings
 
@@ -9644,6 +9644,12 @@ Distinct declaration spellings indexed: **9745**.
 - `toBinaryClockPivot0` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `toBinaryClockPivot1` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `toBinaryClockPivot2` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot0` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot0_series` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot1` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot1_series` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot2` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `toBinaryZeroSchurClockPivot2_series` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `toBinaryZeroSchurClock_of_rankOne` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `toClock` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `toClockLeft` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`, `def` in `HC4.Valuation.FirstSchurDepartureBridge`
