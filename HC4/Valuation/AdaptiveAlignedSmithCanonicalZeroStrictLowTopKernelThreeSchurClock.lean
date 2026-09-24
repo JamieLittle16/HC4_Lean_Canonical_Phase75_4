@@ -196,7 +196,7 @@ private theorem threeSchurBlock_constantPivotMinor_zero
   rw [hs] at hm
   simpa [mul_comm] using hm
 
-set_option maxHeartbeats 500000 in
+set_option maxHeartbeats 2000000 in
 private theorem rankOneClearedThreeSchurMatrix_coeff_zero
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     ∀ i j : Fin 3,
@@ -229,7 +229,7 @@ private theorem rankOneClearedThreeSchurMatrix_coeff_zero
         GeneralFourBlock.ofSymmetricMatrix] using
         P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 3 3
 
-set_option maxHeartbeats 500000 in
+set_option maxHeartbeats 2000000 in
 private theorem rankOneClearedThreeSchurMatrixD_coeff_zero
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     ∀ i j : Fin 3,
@@ -265,7 +265,7 @@ private theorem rankOneClearedThreeSchurMatrixD_coeff_zero
         GeneralFourBlock.ofSymmetricMatrix] using
         P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 3 3
 
-set_option maxHeartbeats 500000 in
+set_option maxHeartbeats 2000000 in
 private theorem rankOneClearedThreeSchurMatrixX_coeff_zero
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     ∀ i j : Fin 3,
