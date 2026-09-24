@@ -321,12 +321,18 @@ noncomputable def toBinaryZeroSchurClock_of_rankOne
     (hall : AllTwoByTwoMinorsZero E.tailConstantMatrix)
     (hne : E.tailConstantMatrix ≠ 0) :
     ExactZeroSchurClock R := by
-  rcases E.exists_diagonal_ne_zero_of_rankOne hsymm hall hne with
-    ⟨p, hp⟩
-  fin_cases p
-  · exact E.toBinaryClockPivot0 hsymm hall hp
-  · exact E.toBinaryClockPivot1 hsymm hall hp
-  · exact E.toBinaryClockPivot2 hsymm hall hp
+  by_cases h0 : E.tailConstantMatrix 0 0 ≠ 0
+  · exact E.toBinaryClockPivot0 hsymm hall h0
+  · by_cases h1 : E.tailConstantMatrix 1 1 ≠ 0
+    · exact E.toBinaryClockPivot1 hsymm hall h1
+    · have h2 : E.tailConstantMatrix 2 2 ≠ 0 := by
+        rcases E.exists_diagonal_ne_zero_of_rankOne hsymm hall hne with
+          ⟨p, hp⟩
+        fin_cases p
+        · exact (h0 hp).elim
+        · exact (h1 hp).elim
+        · exact hp
+      exact E.toBinaryClockPivot2 hsymm hall h2
 
 
 /-! ## Singular rank-two 3x3 tail has a principal pivot -/
