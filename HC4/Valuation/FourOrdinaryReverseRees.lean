@@ -183,7 +183,6 @@ theorem coeff_fourUnitSourceInflateFamily
   unfold fourUnitSourceInflateFamily
   rw [coeff_kernelInflateHom]
   rw [coeff_unitTransverseInflateFamily]
-  simp only [kernelCoefficientTauPower, one_mul]
   rw [← mul_assoc, ← pow_add]
   rfl
 
@@ -217,7 +216,7 @@ theorem fourUnitSourceInflateFamily_C
   · have hcoeff :
       MvPolynomial.coeff d
           (MvPolynomial.C c : MvPolynomial (Fin 4) (Polynomial K)) = 0 := by
-      simp [MvPolynomial.coeff_C, hd]
+      simp [MvPolynomial.coeff_C, Ne.symm hd]
     rw [hcoeff]
     simp
 
