@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9688**.
+Distinct declaration spellings indexed: **9690**.
 
 ## Repeated declaration spellings
 
@@ -7015,7 +7015,9 @@ Distinct declaration spellings indexed: **9688**.
 - `overlapRelativeFirstDeformation_originHessian_ne_zero_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingContactRouting`
 - `pExponent` — `def` in `HC4.Toric.InvariantSemigroup`
 - `pair02Block` — `def` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `pair02Block_ofSymmetricMatrix_submatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `pair12Block` — `def` in `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
+- `pair12Block_ofSymmetricMatrix_submatrix` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `pair_eq_of_reverseOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
 - `pair_ge_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
 - `pair_le_of_strictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseDualExtrema`
