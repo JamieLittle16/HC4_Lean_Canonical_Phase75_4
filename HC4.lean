@@ -316,6 +316,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardne
 -- Schur geometry or an exact whole-family first transverse opening.
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit
 
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
