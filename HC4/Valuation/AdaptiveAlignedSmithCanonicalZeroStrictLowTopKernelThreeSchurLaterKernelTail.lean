@@ -76,6 +76,7 @@ theorem ThreeSchurTangentLaterKernelOpeningData.firstThreeSchurOrder_le_later
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
     (D : ThreeSchurTangentLaterKernelOpeningData S M) :
     S.firstThreeSchurOrder ≤ D.laterOrder := by
+  classical
   let E := S.toExactZeroThreeSchurClock
   have hJpos : 0 < D.laterOrder := by
     exact lt_trans M.mixed.layer.order_pos D.first_lt_later
