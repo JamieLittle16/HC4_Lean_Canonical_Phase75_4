@@ -104,6 +104,7 @@ theorem threeSchurBlock_constantMinor_zero
           T.topKernelReverseReesFamily kernelCoordinate k j).coeff 0 = 0 := by
   repeat' rw [P.threeSchurBlock_coeff_zero]
   obtain ⟨n, hD⟩ : ∃ n : ℕ, T.topFace.degree = n + 2 := by
+    have hge : 3 ≤ T.topFace.degree := T.topFace_degree_ge_three
     refine ⟨T.topFace.degree - 2, ?_⟩
     omega
   rw [P.eq_power, hD]
@@ -181,6 +182,36 @@ theorem threeSchurClockData
             T.topKernelReverseReesFamily kernelCoordinate k j).coeff 0 = 0 :=
     P.threeSchurBlock_constantMinor_zero i j k l
 
+  have hsymm
+      (i j : Fin 4) :
+      (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate i j).coeff 0 =
+        (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate j i).coeff 0 := by
+    unfold kernelLastParameterFirstHessian
+    simp only [Matrix.submatrix_apply]
+    exact congrArg
+      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
+      (parameterFirstHessian_symmetric
+        T.topKernelReverseReesFamily
+        (kernelLastPerm kernelCoordinate i)
+        (kernelLastPerm kernelCoordinate j))
+
+  have hminorPivot
+      (p u v : Fin 4) :
+      (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate p p).coeff 0 *
+          (kernelLastParameterFirstHessian
+            T.topKernelReverseReesFamily kernelCoordinate u v).coeff 0 -
+        (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate p u).coeff 0 *
+          (kernelLastParameterFirstHessian
+            T.topKernelReverseReesFamily kernelCoordinate p v).coeff 0 = 0 := by
+    have hm := hminor p p u v
+    have hs := hsymm u p
+    rw [hs] at hm
+    simpa [mul_comm] using hm
+
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     simpa [B, threeSchurBlock] using
@@ -197,8 +228,8 @@ theorem threeSchurClockData
         change _ = 0
       all_goals
         simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using
-          hminor _ _ _ _
+          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
+          hminorPivot (0 : Fin 4) _ _
     · rw [B.det_rankOneClearedThreeSchurMatrix]
       rw [P.threeSchurBlock_determinantCore]
   · apply Nonempty.intro
@@ -211,8 +242,8 @@ theorem threeSchurClockData
         change _ = 0
       all_goals
         simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using
-          hminor _ _ _ _
+          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
+          hminorPivot (1 : Fin 4) _ _
     · rw [B.det_rankOneClearedThreeSchurMatrixD]
       rw [P.threeSchurBlock_determinantCore]
   · apply Nonempty.intro
@@ -225,8 +256,8 @@ theorem threeSchurClockData
         change _ = 0
       all_goals
         simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using
-          hminor _ _ _ _
+          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
+          hminorPivot (2 : Fin 4) _ _
     · rw [B.det_rankOneClearedThreeSchurMatrixX]
       rw [P.threeSchurBlock_determinantCore]
 
