@@ -4122,6 +4122,10 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
   - `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
   - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
+  - `HC4.Valuation.PermutedFamilyHessianFourBlock`
+  - `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
   - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`

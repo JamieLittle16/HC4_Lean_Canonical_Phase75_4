@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9640**.
+Distinct declaration spellings indexed: **9651**.
 
 ## Repeated declaration spellings
 
@@ -2263,12 +2263,14 @@ Distinct declaration spellings indexed: **9640**.
 - `PolynomialFamilyKernelRestartCertificate.globalProgress` — `theorem` in `HC4.Valuation.PolynomialFamilyKernelRestart`
 - `PolynomialRankTwoFourBlock` — `structure` in `HC4.Newton.RankTwoReesSchurEntry`
 - `PositiveReentry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
+- `PositiveTailBinaryRepresentedSourceSchurGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `PositiveTailBinaryWholeFamilySchurProvenance` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailBinaryWholeFamilySchurProvenance.schurA_ne_zero_of_active_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailBinaryWholeFamilySchurProvenance.schurB_ne_zero_of_offDiag_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailBinaryWholeFamilySchurProvenance.schurC_ne_zero_of_kernel_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailExplicitBinaryClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `PositiveTailExplicitBinaryClockData.exactClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
+- `PositiveTailExplicitBinaryClockData.representedSourceSchurGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `PositiveTailExplicitBinaryClockData.toRankOneClockData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - `PositiveTailExplicitBinaryClockData.wholeFamilySchurProvenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailExplicitRankOneClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
@@ -3194,6 +3196,12 @@ Distinct declaration spellings indexed: **9640**.
 - `TerminalAssociatedGradedCollisionData.impossible_of_JC2` — `theorem` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `ThreeSchurActivePair` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `ThreeSchurActivePair.block` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
+- `ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ThreeSchurActivePair.slotPerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ThreeSchurActivePair.sourcePerm` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ThreeSchurActivePair.sourceSchurA_ne_zero_of_familySchurA_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ThreeSchurActivePair.sourceSchurB_ne_zero_of_familySchurB_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ThreeSchurActivePair.sourceSchurC_ne_zero_of_familySchurC_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `ThreeSchurFullyTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `ThreeSchurProjectedRankTwoAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `ThreeSchurTangentAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
@@ -6969,6 +6977,9 @@ Distinct declaration spellings indexed: **9640**.
 - `ordinaryTopNatWeight_sum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
 - `ordinaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`, `def` in `HC4.Valuation.MaximalNormalizedSingularPolynomialCarrier`
 - `ordinaryWeightLT_one_eq_C_constantCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`
+- `ordinary_schurA_loss_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ordinary_schurB_loss_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
+- `ordinary_schurC_loss_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `originExponent` — `def` in `HC4.Toric.BoundaryGeometry`
 - `outsideBoundary` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
 - `outsideBoundary_rankThree_omitted_ne_contact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayBoundary`
