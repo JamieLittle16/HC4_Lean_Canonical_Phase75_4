@@ -10,6 +10,12 @@ This is the authoritative closing plan for the current unrestricted HC4 final-as
 
 A checkbox in the implementation ledger is marked **only after the corresponding Lean theorem/file has compiled successfully on the branch**. Paper arguments, plausible routes, or documentation-only commits do not earn a checkmark.
 
+### Verified checkpoints added under this plan
+
+- **A green:** rooted build commit `03398974de19849ea6c9615b308e67aa7ae2d1a9`.
+- **B green:** `10674ec6763f87db769b0af8d5448c1ac19eebf9`.
+- Both passed the full **Build and verify Lean project** workflow before their boxes were checked.
+
 ## Soundness boundary
 
 The unrestricted front door reduces HC4 to
@@ -48,12 +54,12 @@ Therefore the remaining unrestricted endpoint is genuinely JC2-hard in the prese
 
 ### A. Final local resolution interface
 
-- [ ] **A1.** Add a definitive singular-terminal resolution type carrying only sound final objects:
+- [x] **A1.** Add a definitive singular-terminal resolution type carrying only sound final objects:
   - an honest unconditional polynomial obstruction/contradiction object; or
   - an honest `TerminalAssociatedGradedCollisionData` endpoint suitable for the existing JC2 consumer.
-- [ ] **A2.** Add the corresponding consumer theorem:
+- [x] **A2.** Add the corresponding consumer theorem:
   under planar JC2, every value of this resolution type is contradictory.
-- [ ] **A3.** Add a singular-terminal-to-resolution property and splice it to a clean conditional `JC2 ⇒ HC4` theorem.
+- [x] **A3.** Add a singular-terminal-to-resolution property and splice it to a clean conditional `JC2 ⇒ HC4` theorem.
 
 **Rule:** no repair-only constructor and no global-progress-only constructor.
 
@@ -65,9 +71,9 @@ Let `J` be the retained later projected kernel opening and `q` the common first 
 r = J - q.
 ```
 
-- [ ] **B1.** Package the exact dichotomy `r = 0 ∨ 0 < r`.
-- [ ] **B2.** Show the `0 < r` branch is exactly the already-developed positive-tail branch, without losing physical-order provenance.
-- [ ] **B3.** Expose the `r = 0` branch as a constant normalised 3x3 kernel-column opening.
+- [x] **B1.** Package the exact dichotomy `r = 0 ∨ 0 < r`.
+- [x] **B2.** Show the `0 < r` branch is exactly the already-developed positive-tail branch, without losing physical-order provenance.
+- [x] **B3.** Expose the `r = 0` branch as a constant normalised 3x3 kernel-column opening.
 
 The older `q ≤ j` versus fully-tangent split remains useful internally but is no longer the assembly-facing split.
 
@@ -144,4 +150,4 @@ G  isolate and solve the canonical JC2-hard planar endpoint
 
 Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem.
 
-The immediate objective is **A**, followed by the minimal `r = J-q` bridge in **B**.
+The immediate objective is now **C**: transport the explicit positive-relative binary/rank-one Schur data back to an honest source or terminal endpoint without using repair progress as the conclusion.
