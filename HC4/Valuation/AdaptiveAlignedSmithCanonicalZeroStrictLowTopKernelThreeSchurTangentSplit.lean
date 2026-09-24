@@ -210,8 +210,8 @@ theorem projectedRankTwo_or_tangentAtFirstBreak
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) :
-    S.ThreeSchurProjectedRankTwoAtFirstBreak M ∨
-      S.ThreeSchurTangentAtFirstBreak M := by
+    ThreeSchurProjectedRankTwoAtFirstBreak S M ∨
+      ThreeSchurTangentAtFirstBreak S M := by
   have hdiag :=
     threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero S M
   have hsymm :=
