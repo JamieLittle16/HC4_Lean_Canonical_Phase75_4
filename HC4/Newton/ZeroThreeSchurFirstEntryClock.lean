@@ -49,8 +49,9 @@ def HasPositiveEntryLayer (S : ZeroThreeSchurSeries R) : Prop :=
 /-- Least positive order at which any entry of the 3x3 matrix is nonzero. -/
 noncomputable def firstPositiveEntryOrder
     (S : ZeroThreeSchurSeries R)
-    (h : S.HasPositiveEntryLayer) : ℕ :=
-  Nat.find h
+    (h : S.HasPositiveEntryLayer) : ℕ := by
+  classical
+  exact Nat.find h
 
 theorem firstPositiveEntryOrder_spec
     (S : ZeroThreeSchurSeries R)
@@ -58,7 +59,8 @@ theorem firstPositiveEntryOrder_spec
     0 < S.firstPositiveEntryOrder h ∧
       ∃ i j : Fin 3,
         (S.matrix i j).coeff (S.firstPositiveEntryOrder h) ≠ 0 := by
-  exact Nat.find_spec h
+  classical
+  simpa [firstPositiveEntryOrder] using (Nat.find_spec h)
 
 theorem firstPositiveEntryOrder_pos
     (S : ZeroThreeSchurSeries R)
@@ -79,9 +81,11 @@ theorem entry_coeff_eq_zero_of_lt_first
     exact S.coeff_zero i j
   · by_contra hcoeff
     have hpos : 0 < n := Nat.pos_of_ne_zero hn0
-    have hcandidate : S.HasPositiveEntryLayer :=
-      ⟨n, hpos, i, j, hcoeff⟩
+    have hcandidate :
+        0 < n ∧ ∃ i j : Fin 3, (S.matrix i j).coeff n ≠ 0 :=
+      ⟨hpos, ⟨i, j, hcoeff⟩⟩
     have hmin : S.firstPositiveEntryOrder h ≤ n := by
+      classical
       unfold firstPositiveEntryOrder
       exact Nat.find_min' h hcandidate
     omega
@@ -125,7 +129,8 @@ theorem matrix_eq_firstFactor_smul_tail
     (S : ZeroThreeSchurSeries R)
     (h : S.HasPositiveEntryLayer) :
     S.matrix =
-      (Polynomial.X ^ S.firstPositiveEntryOrder h) • S.tailMatrix h := by
+      (Polynomial.X ^ S.firstPositiveEntryOrder h : Polynomial R) •
+        S.tailMatrix h := by
   ext i j
   rw [S.entry_eq_firstFactor_mul_tail h i j]
   simp
@@ -201,12 +206,10 @@ theorem tail_constant_entry_ne_zero
     ∃ i j : Fin 3, (S.tailMatrix h i j).coeff 0 ≠ 0 := by
   rcases (S.firstPositiveEntryOrder_spec h).2 with ⟨i, j, hij⟩
   refine ⟨i, j, ?_⟩
-  have heq := congrArg
-    (fun p : Polynomial R => p.coeff (S.firstPositiveEntryOrder h))
-    (S.entry_eq_firstFactor_mul_tail h i j)
-  rw [Polynomial.coeff_X_pow_mul'] at heq
-  simpa using (show
-    (S.matrix i j).coeff (S.firstPositiveEntryOrder h) ≠ 0 from hij)
+  have heq := S.entry_coeff_first_add_eq_tail h i j 0
+  simp only [Nat.add_zero] at heq
+  rw [← heq]
+  exact hij
 
 end ZeroThreeSchurSeries
 
@@ -232,7 +235,7 @@ theorem hasPositiveEntryLayer
     E.zeroSeries.HasPositiveEntryLayer := by
   by_contra hnone
   have hmatrix : E.zeroSeries.matrix = 0 := by
-    ext i j
+    funext i j
     apply Polynomial.ext
     intro n
     rw [Polynomial.coeff_zero]
