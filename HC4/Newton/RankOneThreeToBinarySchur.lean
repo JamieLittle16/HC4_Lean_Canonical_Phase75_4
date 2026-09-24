@@ -1,6 +1,7 @@
 import HC4.Newton.ZeroSchurFirstEntryClock
 import HC4.Newton.ZeroThreeSchurFirstEntryClock
 import Mathlib.Tactic
+import Mathlib.LinearAlgebra.Matrix.Symmetric
 
 /-!
 # Cleared 1+2 Schur quotient of a symmetric 3x3 polynomial matrix
