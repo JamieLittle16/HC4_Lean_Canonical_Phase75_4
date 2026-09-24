@@ -410,6 +410,7 @@ identities
 
 kill the three cross minors as well.  Symmetry then kills every 2x2 minor,
 contradicting the retained rank-two witness. -/
+set_option maxHeartbeats 1000000 in
 theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     (E : ExactZeroThreeSchurClock R)
     (hsymm : E.zeroSeries.matrix.IsSymm)
