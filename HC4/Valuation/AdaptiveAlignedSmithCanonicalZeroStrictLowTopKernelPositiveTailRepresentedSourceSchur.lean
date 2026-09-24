@@ -57,15 +57,38 @@ private theorem pair02Block_ofSymmetricMatrix_submatrix
       GeneralFourBlock.ofSymmetricMatrix
         (M.submatrix (Equiv.swap (1 : Fin 4) 2)
           (Equiv.swap (1 : Fin 4) 2)) := by
+  have h0 : (Equiv.swap (1 : Fin 4) 2) 0 = 0 := by native_decide
+  have h1 : (Equiv.swap (1 : Fin 4) 2) 1 = 2 := by native_decide
+  have h2 : (Equiv.swap (1 : Fin 4) 2) 2 = 1 := by native_decide
+  have h3 : (Equiv.swap (1 : Fin 4) 2) 3 = 3 := by native_decide
   have h12 : M 1 2 = M 2 1 := by
     have h := congrArg
       (fun N : Matrix (Fin 4) (Fin 4)
         (Polynomial (MvPolynomial (Fin 4) K)) => N 2 1)
       hsymm
     simpa using h
-  apply GeneralFourBlock.ext <;>
-    simp [GeneralFourBlock.pair02Block,
-      GeneralFourBlock.ofSymmetricMatrix, h12]
+  apply GeneralFourBlock.ext
+  · change M 0 0 = M ((Equiv.swap (1 : Fin 4) 2) 0) ((Equiv.swap (1 : Fin 4) 2) 0)
+    rw [h0]
+  · change M 0 2 = M ((Equiv.swap (1 : Fin 4) 2) 0) ((Equiv.swap (1 : Fin 4) 2) 1)
+    rw [h0, h1]
+  · change M 2 2 = M ((Equiv.swap (1 : Fin 4) 2) 1) ((Equiv.swap (1 : Fin 4) 2) 1)
+    rw [h1]
+  · change M 0 1 = M ((Equiv.swap (1 : Fin 4) 2) 0) ((Equiv.swap (1 : Fin 4) 2) 2)
+    rw [h0, h2]
+  · change M 0 3 = M ((Equiv.swap (1 : Fin 4) 2) 0) ((Equiv.swap (1 : Fin 4) 2) 3)
+    rw [h0, h3]
+  · change M 1 2 = M ((Equiv.swap (1 : Fin 4) 2) 1) ((Equiv.swap (1 : Fin 4) 2) 2)
+    rw [h1, h2]
+    exact h12
+  · change M 2 3 = M ((Equiv.swap (1 : Fin 4) 2) 1) ((Equiv.swap (1 : Fin 4) 2) 3)
+    rw [h1, h3]
+  · change M 1 1 = M ((Equiv.swap (1 : Fin 4) 2) 2) ((Equiv.swap (1 : Fin 4) 2) 2)
+    rw [h2]
+  · change M 1 3 = M ((Equiv.swap (1 : Fin 4) 2) 2) ((Equiv.swap (1 : Fin 4) 2) 3)
+    rw [h2, h3]
+  · change M 3 3 = M ((Equiv.swap (1 : Fin 4) 2) 3) ((Equiv.swap (1 : Fin 4) 2) 3)
+    rw [h3]
 
 private theorem pair12Block_ofSymmetricMatrix_submatrix
     (M : Matrix (Fin 4) (Fin 4)
@@ -76,6 +99,12 @@ private theorem pair12Block_ofSymmetricMatrix_submatrix
         (M.submatrix
           ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1))
           ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1))) := by
+  let sigma : Equiv.Perm (Fin 4) :=
+    (Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1)
+  have h0 : sigma 0 = 1 := by native_decide
+  have h1 : sigma 1 = 2 := by native_decide
+  have h2 : sigma 2 = 0 := by native_decide
+  have h3 : sigma 3 = 3 := by native_decide
   have h01 : M 0 1 = M 1 0 := by
     have h := congrArg
       (fun N : Matrix (Fin 4) (Fin 4)
@@ -88,9 +117,32 @@ private theorem pair12Block_ofSymmetricMatrix_submatrix
         (Polynomial (MvPolynomial (Fin 4) K)) => N 2 0)
       hsymm
     simpa using h
-  apply GeneralFourBlock.ext <;>
-    simp [GeneralFourBlock.pair12Block,
-      GeneralFourBlock.ofSymmetricMatrix, h01, h02]
+  change
+    (GeneralFourBlock.ofSymmetricMatrix M).pair12Block =
+      GeneralFourBlock.ofSymmetricMatrix (M.submatrix sigma sigma)
+  apply GeneralFourBlock.ext
+  · change M 1 1 = M (sigma 0) (sigma 0)
+    rw [h0]
+  · change M 1 2 = M (sigma 0) (sigma 1)
+    rw [h0, h1]
+  · change M 2 2 = M (sigma 1) (sigma 1)
+    rw [h1]
+  · change M 0 1 = M (sigma 0) (sigma 2)
+    rw [h0, h2]
+    exact h01
+  · change M 1 3 = M (sigma 0) (sigma 3)
+    rw [h0, h3]
+  · change M 0 2 = M (sigma 1) (sigma 2)
+    rw [h1, h2]
+    exact h02
+  · change M 2 3 = M (sigma 1) (sigma 3)
+    rw [h1, h3]
+  · change M 0 0 = M (sigma 2) (sigma 2)
+    rw [h2]
+  · change M 0 3 = M (sigma 2) (sigma 3)
+    rw [h2, h3]
+  · change M 3 3 = M (sigma 3) (sigma 3)
+    rw [h3]
 
 /-- The pair chart used by nested Schur elimination is literally the genuine
 parameter-first Hessian four-block in the corresponding source-coordinate
