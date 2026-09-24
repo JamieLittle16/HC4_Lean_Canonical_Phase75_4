@@ -104,22 +104,6 @@ theorem ThreeSchurTangentTailKernelOpeningData.zeroRelativePrincipalFrontier
   | binaryZeroSchur hres clock hdef =>
       exact ⟨.binaryZeroSchur D hz hcommon hopen hres clock hdef⟩
 
-/-- Assembly-facing zero-relative branch extracted from the exact relative-tail
-frontier. -/
-theorem TopKernelThreeSchurRelativeTailFrontier.zeroRelativePrincipalFrontier
-    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    {S : P.TopKernelThreeSchurClockData}
-    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (F : P.TopKernelThreeSchurRelativeTailFrontier S M)
-    (hz :
-      ∃ tail common_eq_later constantKernelOpening,
-        F = TopKernelThreeSchurRelativeTailFrontier.zeroRelative
-          tail rfl common_eq_later constantKernelOpening) :
-    Nonempty (P.TopKernelThreeSchurZeroRelativePrincipalFrontier S M) := by
-  rcases hz with ⟨tail, _hcommon, _hopen, hF⟩
-  subst F
-  exact tail.zeroRelativePrincipalFrontier rfl
-
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
