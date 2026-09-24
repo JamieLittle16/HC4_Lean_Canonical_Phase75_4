@@ -54,7 +54,7 @@ law follows from the nonlinear top degree `D >= 3`. -/
 theorem topKernelOrdinaryRees_clock_nonnegative :
     2 * ∑ i : Fin 4, ordinaryTopNatWeight i ≤
       4 * T.topFace.degree := by
-  rw [T.ordinaryTopNatWeight_sum]
+  rw [ordinaryTopNatWeight_sum]
   have hD := T.topFace.degree_ge_three
   omega
 
@@ -73,7 +73,7 @@ theorem topKernelReverseReesFamily_hasHessianDefect :
       T.topKernelReesSource_hessianDeterminant_eq_one
       T.topKernelOrdinaryRees_clock_nonnegative
   simpa [topKernelReverseReesFamily, topKernelOrdinaryReesDefect,
-    T.ordinaryTopNatWeight_sum] using h
+    ordinaryTopNatWeight_sum] using h
 
 /-- Expanded determinant identity for consumers that work directly with the
 polynomial Hessian matrix. -/
