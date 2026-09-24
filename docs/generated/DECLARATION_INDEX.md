@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9769**.
+Distinct declaration spellings indexed: **9771**.
 
 ## Repeated declaration spellings
 
@@ -3344,10 +3344,12 @@ Distinct declaration spellings indexed: **9769**.
 - `X_zero_mul_H_pow_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `X_zero_mul_polynomialLift_monomial_eq` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `ZeroRelativeExplicitBinaryClockData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
+- `ZeroRelativeExplicitBinaryClockData.actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `ZeroRelativeExplicitBinaryClockData.endpointSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryEndpoint`
 - `ZeroRelativeExplicitBinaryClockData.representedSourceKernelMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `ZeroRelativeExplicitBinaryEndpointSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryEndpoint`
 - `ZeroRelativeRepresentedSourceKernelMinorWitness` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
+- `ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
