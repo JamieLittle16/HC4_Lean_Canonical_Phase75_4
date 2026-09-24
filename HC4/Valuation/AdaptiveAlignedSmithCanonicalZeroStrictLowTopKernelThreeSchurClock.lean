@@ -166,6 +166,7 @@ inductive TopKernelThreeSchurClockData
 
 /-- The scalar-pivot rank-one top face always produces the exact 1+3 Schur
 clock packet. -/
+set_option maxHeartbeats 1000000 in
 theorem threeSchurClockData
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     Nonempty P.TopKernelThreeSchurClockData := by
