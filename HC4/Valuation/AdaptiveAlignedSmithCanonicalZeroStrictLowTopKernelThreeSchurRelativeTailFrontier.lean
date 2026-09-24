@@ -54,7 +54,7 @@ inductive TopKernelThreeSchurRelativeTailFrontier
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1)
   | zeroRelative
-      (tail : S.ThreeSchurTangentTailKernelOpeningData M)
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
       (relative_eq_zero : tail.relativeOrder = 0)
       (common_eq_later :
         tail.commonOrder = tail.physical.laterOrder)
@@ -62,7 +62,7 @@ inductive TopKernelThreeSchurRelativeTailFrontier
         S.toExactZeroThreeSchurClock.tailConstantMatrix
           tail.physical.index 2 ≠ 0)
   | positiveRelative
-      (tail : S.ThreeSchurTangentTailKernelOpeningData M)
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
       (relative_pos : 0 < tail.relativeOrder)
       (frontier : P.TopKernelThreeSchurPositiveTailRankOneFrontier S)
 
@@ -72,7 +72,7 @@ theorem ThreeSchurTangentTailKernelOpeningData.commonOrder_eq_later_of_relativeO
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hz : D.relativeOrder = 0) :
     D.commonOrder = D.physical.laterOrder := by
   have hrel := D.relativeOrder_eq
@@ -85,7 +85,7 @@ theorem ThreeSchurTangentTailKernelOpeningData.tailConstant_kernelOpening_ne_zer
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hz : D.relativeOrder = 0) :
     S.toExactZeroThreeSchurClock.tailConstantMatrix
       D.physical.index 2 ≠ 0 := by
@@ -101,7 +101,7 @@ theorem ThreeSchurTangentAtFirstBreak.relativeTailFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
+    (R : ThreeSchurTangentAtFirstBreak S M) :
     Nonempty (P.TopKernelThreeSchurRelativeTailFrontier S M) := by
   rcases R.toLaterKernelOpeningData with ⟨L⟩
   rcases L.toTailKernelOpeningData with ⟨D⟩
