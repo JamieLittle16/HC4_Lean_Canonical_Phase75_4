@@ -12420,7 +12420,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`, `HC4.Newton.RankOneThreeToBinarySchur`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive ZeroRelativeExplicitBinaryClockData`, `inductive TopKernelThreeSchurZeroRelativeBinaryFrontier`, `theorem TopKernelThreeSchurZeroRelativeSourceFrontier.toBinaryFrontier`
+- Declarations: `theorem TopKernelThreeSchurClockData.pivot2_ne_zero_of_rankOne_column2_opening`, `structure ZeroRelativeExplicitBinaryClockData`, `inductive TopKernelThreeSchurZeroRelativeBinaryFrontier`, `theorem TopKernelThreeSchurZeroRelativeSourceFrontier.toBinaryFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalFrontier`
 
