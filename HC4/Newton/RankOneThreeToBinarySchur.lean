@@ -397,7 +397,7 @@ noncomputable def toBinaryZeroSchurClock_of_rankOne
 
 /-! ## Singular rank-two 3x3 tail has a principal pivot -/
 
-/-- In a symmetric singular 3x3 matrix over a domain, the existence of any
+/- In a symmetric singular 3x3 matrix over a domain, the existence of any
 nonzero 2x2 minor forces one of the three coordinate-principal 2x2 minors to
 be nonzero.
 
@@ -530,7 +530,7 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
-    simp_all [M]
+    simp_all [M] <;> ring_nf at *
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
