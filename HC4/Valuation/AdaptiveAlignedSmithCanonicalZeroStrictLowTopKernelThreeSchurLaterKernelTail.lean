@@ -76,18 +76,19 @@ theorem ThreeSchurTangentLaterKernelOpeningData.firstThreeSchurOrder_le_later
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
     (D : ThreeSchurTangentLaterKernelOpeningData S M) :
     S.firstThreeSchurOrder ≤ D.laterOrder := by
-  classical
-  let E := S.toExactZeroThreeSchurClock
-  have hJpos : 0 < D.laterOrder := by
-    exact lt_trans M.mixed.layer.order_pos D.first_lt_later
-  have hcand : E.zeroSeries.HasPositiveEntryLayer :=
-    ⟨D.laterOrder, hJpos, D.index, 2, D.opens⟩
-  have hmin :
-      E.zeroSeries.firstPositiveEntryOrder E.hasPositiveEntryLayer ≤
-        D.laterOrder := by
-    unfold ZeroThreeSchurSeries.firstPositiveEntryOrder
-    exact Nat.find_min' E.hasPositiveEntryLayer hcand
-  simpa [TopKernelThreeSchurClockData.firstThreeSchurOrder, E] using hmin
+  unfold TopKernelThreeSchurClockData.firstThreeSchurOrder
+  unfold ExactZeroThreeSchurClock.firstOrder
+  by_contra hnot
+  have hlt :
+      D.laterOrder <
+        S.toExactZeroThreeSchurClock.zeroSeries.firstPositiveEntryOrder
+          S.toExactZeroThreeSchurClock.hasPositiveEntryLayer := by
+    omega
+  have hz :=
+    S.toExactZeroThreeSchurClock.zeroSeries.entry_coeff_eq_zero_of_lt_first
+      S.toExactZeroThreeSchurClock.hasPositiveEntryLayer
+      D.index 2 hlt
+  exact D.opens hz
 
 /-- Divide the strict physical opening by the common first 3x3 factor. -/
 theorem ThreeSchurTangentLaterKernelOpeningData.toTailKernelOpeningData
@@ -161,7 +162,8 @@ theorem ThreeSchurTangentTailKernelOpeningData.relativeOrder_pos_of_common_le_fi
     (hle : D.commonOrder ≤ M.mixed.layer.order) :
     0 < D.relativeOrder := by
   rw [D.relativeOrder_eq]
-  omega
+  exact Nat.sub_pos_iff_lt.mpr
+    (lt_of_le_of_lt hle D.physical.first_lt_later)
 
 /-- The alternative q>j means the complete raw 3x3 Schur quotient is zero
 through the physical first Hessian break. -/
