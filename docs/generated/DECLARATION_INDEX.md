@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9723**.
+Distinct declaration spellings indexed: **9726**.
 
 ## Repeated declaration spellings
 
@@ -3274,6 +3274,7 @@ Distinct declaration spellings indexed: **9723**.
 - `ThreeSchurTangentTailKernelOpeningData.relativeOrder_pos_of_common_le_firstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
 - `ThreeSchurTangentTailKernelOpeningData.tailConstant_kernelColumn_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailFrontier`
 - `ThreeSchurTangentTailKernelOpeningData.tailConstant_kernelOpening_ne_zero_of_relativeOrder_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
+- `ThreeSchurTangentTailKernelOpeningData.zeroRelativePrincipalFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalFrontier`
 - `TopBoundaryCodimensionTwoResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - `TopDegreeOnFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
@@ -3308,7 +3309,9 @@ Distinct declaration spellings indexed: **9723**.
 - `TopKernelThreeSchurPrincipalFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurPrincipalPivot` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurRelativeTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
+- `TopKernelThreeSchurRelativeTailFrontier.zeroRelativePrincipalFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalFrontier`
 - `TopKernelThreeSchurSecondStageFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurSecondStage`
+- `TopKernelThreeSchurZeroRelativePrincipalFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalFrontier`
 - `ToricFacet` — `inductive` in `HC4.Toric.Facets`
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
