@@ -35,6 +35,17 @@ noncomputable section
 
 variable {R : Type*} [CommRing R]
 
+/-- Pointwise form of matrix symmetry, derived directly from the defining
+transpose equality so this file is independent of the pointwise API name. -/
+private theorem symmEntry
+    {n α : Type*}
+    {M : Matrix n n α}
+    (h : M.IsSymm)
+    (i j : n) :
+    M i j = M j i := by
+  have h' := congrArg (fun N : Matrix n n α => N j i) h
+  simpa using h'
+
 /-- Cleared binary quotient of a symmetric 3x3 series using coordinate 0 as
 scalar pivot. -/
 def threePivot0BinarySchurSeries
@@ -66,9 +77,9 @@ theorem threePivot0BinarySchurSeries_determinant
     (hsymm : M.IsSymm) :
     (threePivot0BinarySchurSeries M).determinant =
       M 0 0 * M.det := by
-  have h10 : M 1 0 = M 0 1 := hsymm 1 0
-  have h20 : M 2 0 = M 0 2 := hsymm 2 0
-  have h21 : M 2 1 = M 1 2 := hsymm 2 1
+  have h10 : M 1 0 = M 0 1 := symmEntry hsymm 1 0
+  have h20 : M 2 0 = M 0 2 := symmEntry hsymm 2 0
+  have h21 : M 2 1 = M 1 2 := symmEntry hsymm 2 1
   simp [threePivot0BinarySchurSeries,
     BinarySchurPolynomialSeries.determinant, Matrix.det_fin_three,
     h10, h20, h21]
@@ -80,9 +91,9 @@ theorem threePivot1BinarySchurSeries_determinant
     (hsymm : M.IsSymm) :
     (threePivot1BinarySchurSeries M).determinant =
       M 1 1 * M.det := by
-  have h10 : M 1 0 = M 0 1 := hsymm 1 0
-  have h20 : M 2 0 = M 0 2 := hsymm 2 0
-  have h21 : M 2 1 = M 1 2 := hsymm 2 1
+  have h10 : M 1 0 = M 0 1 := symmEntry hsymm 1 0
+  have h20 : M 2 0 = M 0 2 := symmEntry hsymm 2 0
+  have h21 : M 2 1 = M 1 2 := symmEntry hsymm 2 1
   simp [threePivot1BinarySchurSeries,
     BinarySchurPolynomialSeries.determinant, Matrix.det_fin_three,
     h10, h20, h21]
@@ -94,9 +105,9 @@ theorem threePivot2BinarySchurSeries_determinant
     (hsymm : M.IsSymm) :
     (threePivot2BinarySchurSeries M).determinant =
       M 2 2 * M.det := by
-  have h10 : M 1 0 = M 0 1 := hsymm 1 0
-  have h20 : M 2 0 = M 0 2 := hsymm 2 0
-  have h21 : M 2 1 = M 1 2 := hsymm 2 1
+  have h10 : M 1 0 = M 0 1 := symmEntry hsymm 1 0
+  have h20 : M 2 0 = M 0 2 := symmEntry hsymm 2 0
+  have h21 : M 2 1 = M 1 2 := symmEntry hsymm 2 1
   simp [threePivot2BinarySchurSeries,
     BinarySchurPolynomialSeries.determinant, Matrix.det_fin_three,
     h10, h20, h21]
@@ -115,14 +126,16 @@ theorem tailMatrix_isSymm
     (h : S.HasPositiveEntryLayer)
     (hsymm : S.matrix.IsSymm) :
     (S.tailMatrix h).IsSymm := by
+  apply Matrix.ext
   intro i j
   have hij := S.entry_eq_firstFactor_mul_tail h i j
   have hji := S.entry_eq_firstFactor_mul_tail h j i
-  have hs := hsymm i j
+  have hs : S.matrix j i = S.matrix i j :=
+    symmEntry hsymm j i
   have hmul :
-      Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h i j =
-        Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h j i := by
-    rw [← hij, ← hji]
+      Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h j i =
+        Polynomial.X ^ S.firstPositiveEntryOrder h * S.tailMatrix h i j := by
+    rw [← hji, ← hij]
     exact hs
   exact mul_left_cancel₀
     (pow_ne_zero _ Polynomial.X_ne_zero) hmul
@@ -148,7 +161,7 @@ theorem tailConstantMatrix_isSymm
   intro i j
   exact congrArg
     (fun p : Polynomial R => p.coeff 0)
-    (E.tailMatrix_isSymm hsymm i j)
+    (E.tailMatrix_isSymm symmEntry hsymm i j)
 
 /-- A nonzero symmetric 3x3 matrix with all 2x2 minors zero has a nonzero
 diagonal entry.  This is the scalar pivot needed for the second Schur step. -/
@@ -172,7 +185,7 @@ theorem exists_diagonal_ne_zero_of_rankOne
       simpa [C, hnot i, hnot j] using hm
     rcases mul_eq_zero.mp hprod with hz | hz
     · exact hz
-    · have hs := hCsymm j i
+    · have hs := symmEntry hCsymm j i
       rw [hs] at hz
       exact hz
 
@@ -199,16 +212,16 @@ private noncomputable def toBinaryClockPivot0
     determinantFactor := ?_
   }
   · have hm := hall 0 0 1 1
-    have hs := hC 1 0
+    have hs := symmEntry hC 1 0
     simpa [threePivot0BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hm := hall 0 0 1 2
-    have hs := hC 1 0
+    have hs := symmEntry hC 1 0
     simpa [threePivot0BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
       mul_comm] using hm
   · have hm := hall 0 0 2 2
-    have hs := hC 2 0
+    have hs := symmEntry hC 2 0
     simpa [threePivot0BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hp :
@@ -243,16 +256,16 @@ private noncomputable def toBinaryClockPivot1
     determinantFactor := ?_
   }
   · have hm := hall 1 1 0 0
-    have hs := hC 0 1
+    have hs := symmEntry hC 0 1
     simpa [threePivot1BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hm := hall 1 1 0 2
-    have hs := hC 0 1
+    have hs := symmEntry hC 0 1
     simpa [threePivot1BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
       mul_comm] using hm
   · have hm := hall 1 1 2 2
-    have hs := hC 2 1
+    have hs := symmEntry hC 2 1
     simpa [threePivot1BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hp :
@@ -287,17 +300,17 @@ private noncomputable def toBinaryClockPivot2
     determinantFactor := ?_
   }
   · have hm := hall 2 2 0 0
-    have hs := hC 0 2
+    have hs := symmEntry hC 0 2
     simpa [threePivot2BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hm := hall 2 2 0 1
-    have hs0 := hC 0 2
-    have hs1 := hC 1 2
+    have hs0 := symmEntry hC 0 2
+    have hs1 := symmEntry hC 1 2
     simpa [threePivot2BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs0, hs1,
       mul_comm] using hm
   · have hm := hall 2 2 1 1
-    have hs := hC 1 2
+    have hs := symmEntry hC 1 2
     simpa [threePivot2BinarySchurSeries, M,
       tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
   · have hp :
@@ -363,9 +376,9 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
         E.tailConstantMatrix 1 2 * E.tailConstantMatrix 2 1 ≠ 0) := by
   let M := E.tailConstantMatrix
   have hM : M.IsSymm := E.tailConstantMatrix_isSymm hsymm
-  have h01sym : M 1 0 = M 0 1 := hM 1 0
-  have h02sym : M 2 0 = M 0 2 := hM 2 0
-  have h12sym : M 2 1 = M 1 2 := hM 2 1
+  have h01sym : M 1 0 = M 0 1 := symmEntry hM 1 0
+  have h02sym : M 2 0 = M 0 2 := symmEntry hM 2 0
+  have h12sym : M 2 1 = M 1 2 := symmEntry hM 2 1
 
   by_contra hnone
   push_neg at hnone
