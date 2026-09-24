@@ -206,7 +206,11 @@ theorem PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGe
     Nonempty (P.PositiveTailRankOneTransverseRepresentedSourceGeometry B) := by
   cases R with
   | left hres pivot clock clock_eq =>
-      rw [clock_eq] at htrans
+      cases clock_eq
+      change
+        (B.exactClock.toRankOneClockLeft hres pivot).series.offDiag.coeff n ≠ 0 ∨
+          (B.exactClock.toRankOneClockLeft hres pivot).series.kernel.coeff n ≠ 0
+        at htrans
       rcases htrans with hoff | hkernel
       · by_cases hA : B.exactClock.tailSeries.active.coeff n = 0
         · by_cases hB : B.exactClock.tailSeries.offDiag.coeff n = 0
@@ -227,7 +231,11 @@ theorem PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGe
           · exact B.transverseGeometry_of_tailOffDiagCoeff n hB
         · exact B.transverseGeometry_of_tailActiveCoeff n hA
   | right hres pivot clock clock_eq =>
-      rw [clock_eq] at htrans
+      cases clock_eq
+      change
+        (B.exactClock.toRankOneClockRight hres pivot).series.offDiag.coeff n ≠ 0 ∨
+          (B.exactClock.toRankOneClockRight hres pivot).series.kernel.coeff n ≠ 0
+        at htrans
       rcases htrans with hoff | hkernel
       · have hB : B.exactClock.tailSeries.offDiag.coeff n ≠ 0 := by
           simpa [ExactZeroSchurClock.toRankOneClockRight,
