@@ -571,22 +571,15 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
       E.tailConstantMatrix 2 1 = E.tailConstantMatrix 1 2 := by
     simpa [M] using h12sym
 
+  simp only [M] at hp01' hp02' hp12' hp01rev hp02rev hp12rev
+    hcross0 hcross0rev hcross1 hcross1rev hcross2 hcross2rev
+
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
+    simp [h01symE, h02symE, h12symE] <;>
     first
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp01'
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp01rev
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp02'
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp02rev
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp12'
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp12rev
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross0
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross0rev
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross1
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross1rev
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross2
-    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross2rev
+    | assumption
     | ring
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
