@@ -156,7 +156,7 @@ theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M)
+    (R : ThreeSchurTangentAtFirstBreak S M)
     (r : Fin 3) :
     HC4.Polynomial.hessian T.topFace.face
           (kernelLastPerm kernelCoordinate S.pivotSlot)
