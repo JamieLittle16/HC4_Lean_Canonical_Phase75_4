@@ -121,10 +121,15 @@ private noncomputable def explicitBinaryClockPivot0
     change
       (M 0 0).coeff 0 * (M 1 1).coeff 0 -
           (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hM10 : M 1 0 = M 0 1 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3)
+            (Polynomial (MvPolynomial (Fin 4) K)) => N 0 1)
+        hsymmM
+      simpa using h
     have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
-      simpa using congrArg
-        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
-        (symmEntry hsymmM 1 0)
+      exact congrArg
+        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0) hM10
     rw [hs] at hm
     simpa [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -184,10 +189,15 @@ private noncomputable def explicitBinaryClockPivot1
     change
       (M 0 0).coeff 0 * (M 1 1).coeff 0 -
           (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hM10 : M 1 0 = M 0 1 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3)
+            (Polynomial (MvPolynomial (Fin 4) K)) => N 0 1)
+        hsymmM
+      simpa using h
     have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
-      simpa using congrArg
-        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
-        (symmEntry hsymmM 1 0)
+      exact congrArg
+        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0) hM10
     rw [hs] at hm
     simpa [threePivot1BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
