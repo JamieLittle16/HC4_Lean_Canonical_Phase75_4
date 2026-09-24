@@ -12160,7 +12160,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def PositiveTailExplicitRankOneClockData.firstTransverseBlock`, `structure PositiveTailRankOnePreterminalSourcePointGeometry`, `structure PositiveTailRankOneClosingSourcePointGeometry`, `inductive PositiveTailRankOneSourcePointGeometricEndpoint`, `theorem PositiveTailRankOneSourceHonestEndpointSplit.toSourcePointGeometricEndpoint`
+- Declarations: `def PositiveTailExplicitRankOneClockData.firstTransverseBlock`, `inductive PositiveTailRepresentedSourceSchurPointWitness`, `theorem PositiveTailRepresentedSourceSchurWitness.exists_sourcePointWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.toRepresentedSourceWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.exists_sourcePointWitness`, `structure PositiveTailRankOnePreterminalSourcePointGeometry`, `structure PositiveTailRankOneClosingSourcePointGeometry`, `inductive PositiveTailRankOneSourcePointGeometricEndpoint`, `theorem PositiveTailRankOneSourceHonestEndpointSplit.toSourcePointGeometricEndpoint`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
 
