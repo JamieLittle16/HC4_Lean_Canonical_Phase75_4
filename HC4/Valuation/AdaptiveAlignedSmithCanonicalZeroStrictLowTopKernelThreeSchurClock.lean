@@ -227,9 +227,19 @@ theorem threeSchurClockData
           Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
         change _ = 0
       all_goals
-        simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
-          hminorPivot (0 : Fin 4) _ _
+        first
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 1
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 2
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 2 2
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 2 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 3 3
     · rw [B.det_rankOneClearedThreeSchurMatrix]
       rw [P.threeSchurBlock_determinantCore]
   · apply Nonempty.intro
@@ -241,9 +251,22 @@ theorem threeSchurClockData
           Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
         change _ = 0
       all_goals
-        simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
-          hminorPivot (1 : Fin 4) _ _
+        first
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
+            hminorPivot (1 : Fin 4) 0 0
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
+            hminorPivot (1 : Fin 4) 0 2
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
+            hminorPivot (1 : Fin 4) 0 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 2 2
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 2 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 3 3
     · rw [B.det_rankOneClearedThreeSchurMatrixD]
       rw [P.threeSchurBlock_determinantCore]
   · apply Nonempty.intro
@@ -255,9 +278,24 @@ theorem threeSchurClockData
           Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
         change _ = 0
       all_goals
-        simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, mul_comm] using
-          hminorPivot (2 : Fin 4) _ _
+        first
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
+            hminorPivot (2 : Fin 4) 0 0
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
+            hminorPivot (2 : Fin 4) 0 1
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
+            hminorPivot (2 : Fin 4) 0 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
+            hminorPivot (2 : Fin 4) 1 1
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
+            hminorPivot (2 : Fin 4) 1 3
+        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (2 : Fin 4) 3 3
     · rw [B.det_rankOneClearedThreeSchurMatrixX]
       rw [P.threeSchurBlock_determinantCore]
 
