@@ -6,7 +6,7 @@ This is the authoritative closing plan for the current unrestricted HC4 final-as
 
 **Branch:** `final-assembly/a18-4-42-termination-frontier`  
 **Plan anchor:** PR #34 branch `final-assembly/a18-4-42-termination-frontier`  
-**Current positive-tail verification frontier:** `0d44ebec2bc7124a3dc408f7d154fc1451500ae4`. In Lean CI #3907, `AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur` and `...PositiveTailRankOneSourceDeparture` built successfully, including the C1/C2 adapters. The full rooted build then failed only because `HC4/Newton/PolynomialFirstOpeningTransport.lean` imported the absent package source path `Mathlib.Data.Polynomial.Basic`; that packaging-only import was replaced by `Mathlib.Tactic` in `0fb504e6bffbcf2d439b6b8ac43436c266a7490c`.
+**Current positive-tail verification frontier:** C1--C3 are Lean-verified on the rooted branch. The source-honest assembly and exact rank-one timing split are rooted in `HC4.lean`. The next substantive adapter, `AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`, was added in `3a23495e64fad26b52259bc87ae49ba6eae120b8` and rooted in `294d1b77669dcdc45412b91400b12b7bb8328ee2`; it is the active C4/C5 compile frontier and is **not** counted complete until Lean CI is green. The latent missing import in `PolynomialFirstOpeningTransport.lean` was repaired by importing `HC4.Newton.FirstSchurLayerLinearization` in `87ba9173bf55ff8b66a16232c172b03982c3291f`.
 
 A checkbox in the implementation ledger is marked **only after the corresponding Lean theorem/file has compiled successfully on the branch**. Paper arguments, plausible routes, or documentation-only commits do not earn a checkmark.
 
@@ -100,6 +100,12 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
   - `PositiveTailExplicitRankOneClockData.wholeFamilyFirstTransverseOpening`.
 
   This is source/provenance closure only: it does **not** by itself prove C4/C5 or the final singular-terminal contradiction.
+
+  **Rooted next frontier (pending Lean CI):** `PositiveTailRankOneSourceHonestEndpointSplit` removes the final exact-clock timing ambiguity, and `PositiveTailRankOneSourcePointGeometricEndpoint` is intended to turn:
+  - preterminal opening into a literal source-point binary block with determinant `-b^2 ≠ 0`;
+  - exact closing into a literal nonzero source-point kernel-curvature event;
+  while retaining represented-source Schur provenance and the exact whole-family opening.
+
 - [ ] **C4.** Convert the preterminal rank-one-clock outcome to either an actual represented-source principal Hessian minor or a final polynomial/associated-graded endpoint.
 - [ ] **C5.** Convert the exact-closing rank-one-clock outcome to a final polynomial/associated-graded endpoint. Reuse the existing negative-square / wedge pattern where possible rather than exporting `RepairProgress`.
 - [ ] **C6.** Assemble: every `0 < r` branch produces the final local resolution interface.
@@ -168,4 +174,4 @@ G  isolate and solve the canonical JC2-hard planar endpoint
 
 Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem.
 
-The immediate objective is now **C4/C5/C6**. C1--C3 are source-honest: the finite `activeRankTwo` and `binaryDeterminantClosing` alternatives land on a represented-source Schur witness, while the rank-one alternative retains an exact whole-family first transverse opening. The next finite split is the exact rank-one clock dichotomy `firstOrder < defect` versus `firstOrder = defect`: preterminality forces the first transverse event into the mixed/off-diagonal channel, while exact closing forces a nonzero kernel coefficient at the defect. These honest openings must now be converted into an actual source principal Hessian minor or one of the two permitted `FinalResolution` endpoints; repair progress is not an acceptable conclusion.
+The immediate objective is now **C4/C5/C6**. C1--C3 are source-honest and rooted. The exact rank-one timing split is already explicit: preterminality forces the first transverse event into the mixed/off-diagonal channel, while exact closing forces a nonzero kernel coefficient at the defect. The active implementation frontier is the source-point geometric adapter described above. Once that module is green, consume its preterminal `-b^2` block and closing kernel crossing into an actual represented-source Hessian/minor endpoint, then assemble the entire positive-relative branch into `FinalResolution`. Repair progress is not an acceptable conclusion.
