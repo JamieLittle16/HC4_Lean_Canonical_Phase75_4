@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9682**.
+Distinct declaration spellings indexed: **9683**.
 
 ## Repeated declaration spellings
 
@@ -9431,6 +9431,7 @@ Distinct declaration spellings indexed: **9682**.
 - `swappedEuler_eq_oneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerPencil`
 - `swappedEuler_eq_unitLeftOneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `swappedRankThreeEulerHessian` — `def` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
+- `symmEntry` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `symmetricMinimalSpecialFiber_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `symmetricQuadraticSubface_exists_homogeneousCollisionFibre` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `symmetricSmithPoleMinimal_exists_nonpositive_face_grade` — `theorem` in `HC4.Newton.SymmetricSmithMinimality`
