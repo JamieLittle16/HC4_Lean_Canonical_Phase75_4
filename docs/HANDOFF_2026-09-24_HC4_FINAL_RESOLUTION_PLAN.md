@@ -5,8 +5,8 @@
 This is the authoritative closing plan for the current unrestricted HC4 final-assembly branch.
 
 **Branch:** `final-assembly/a18-4-42-termination-frontier`  
-**Plan anchor:** PR #34 head `a870782df2ccf43fdb9ca0d210e7d0cbfb6659fb`  
-**Last substantive Lean-green head before this plan:** `7c9add8731b824de4f71e6f03d55d319cf632dae`
+**Plan anchor:** PR #34 branch `final-assembly/a18-4-42-termination-frontier`  
+**Current substantive Lean-green anchor:** `8409236e1afd24adc0a3e4d5357bbcb1cdde88f5` (`8624/8624` reported green locally; Proof Inventory #2152 green; hosted Lean CI #3897 was still reporting `in_progress` when this handoff was refreshed).
 
 A checkbox in the implementation ledger is marked **only after the corresponding Lean theorem/file has compiled successfully on the branch**. Paper arguments, plausible routes, or documentation-only commits do not earn a checkmark.
 
@@ -15,6 +15,7 @@ A checkbox in the implementation ledger is marked **only after the corresponding
 - **A green:** rooted build commit `03398974de19849ea6c9615b308e67aa7ae2d1a9`.
 - **B green:** `10674ec6763f87db769b0af8d5448c1ac19eebf9`.
 - Both passed the full **Build and verify Lean project** workflow before their boxes were checked.
+- **C3 source-provenance chain green:** substantive head `8409236e1afd24adc0a3e4d5357bbcb1cdde88f5`. The rooted closing target set reaches `8624/8624` locally, including represented-source Schur provenance, dependent rank-one source departure, and exact whole-family first-transverse opening transport.
 
 ## Soundness boundary
 
@@ -47,6 +48,10 @@ Therefore the remaining unrestricted endpoint is genuinely JC2-hard in the prese
 - [x] A strictly later projected kernel-column opening `J > j` is retained.
 - [x] The three-Schur tail transport and positive-tail collapse are Lean verified.
 - [x] The positive-tail residual reaches either explicit rank-two coefficient geometry, determinant closing, or an explicit oriented exact rank-one binary Schur clock with pivot provenance.
+- [x] Whole-family positive-tail binary Schur provenance is retained through the common three-Schur and binary factors.
+- [x] Every positive-tail explicit binary clock yields a genuine nonzero Schur polynomial on the represented determinant-one source.
+- [x] Every nonzero transverse coefficient of the final oriented rank-one clock is traced back to honest represented-source Schur geometry; in particular the canonical first transverse coefficient is source-honest.
+- [x] The canonical first transverse event is transported back through both removed common factors to an exact whole-family first opening at its physical parameter order.
 - [x] Whole-family reverse-Rees principal Hessian minors lift back to represented-source principal minors.
 - [x] Existing actual-rank-two and actual-rank-three geometry consumers are available, but must not be mistaken for final contradiction at the sound singular endpoint.
 
@@ -81,7 +86,16 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
 
 - [ ] **C1.** Consume `TopKernelThreeSchurPositiveTailRankOneFrontier.activeRankTwo` source-honestly.
 - [ ] **C2.** Consume the binary determinant-closing branch source-honestly.
-- [ ] **C3.** For the exact rank-one-clock branch, use `pivot0`/`pivot1` provenance plus the retained later opening to transport the first nonzero binary Schur coefficient back to honest represented-source geometry.
+- [x] **C3.** For the exact rank-one-clock branch, use `pivot0`/`pivot1` provenance plus the retained later opening to transport the first nonzero binary Schur coefficient back to honest represented-source geometry.
+
+  **Lean-verified C3 chain:**
+  - `PositiveTailExplicitBinaryClockData.wholeFamilySchurProvenance`;
+  - `PositiveTailExplicitBinaryClockData.representedSourceSchurGeometry`;
+  - `PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGeometry`;
+  - `PositiveTailExplicitRankOneClockData.firstTransverse_representedSourceGeometry`;
+  - `PositiveTailExplicitRankOneClockData.wholeFamilyFirstTransverseOpening`.
+
+  This is source/provenance closure only: it does **not** by itself prove C4/C5 or the final singular-terminal contradiction.
 - [ ] **C4.** Convert the preterminal rank-one-clock outcome to either an actual represented-source principal Hessian minor or a final polynomial/associated-graded endpoint.
 - [ ] **C5.** Convert the exact-closing rank-one-clock outcome to a final polynomial/associated-graded endpoint. Reuse the existing negative-square / wedge pattern where possible rather than exporting `RepairProgress`.
 - [ ] **C6.** Assemble: every `0 < r` branch produces the final local resolution interface.
@@ -150,4 +164,4 @@ G  isolate and solve the canonical JC2-hard planar endpoint
 
 Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem.
 
-The immediate objective is now **C**: transport the explicit positive-relative binary/rank-one Schur data back to an honest source or terminal endpoint without using repair progress as the conclusion.
+The immediate objective is now **C1/C2, then C4/C5/C6**. C3 is Lean-verified: the rank-one first transverse event is already source-honest and whole-family honest. The shortest remaining positive-tail route is to consume the finite `activeRankTwo` and `binaryDeterminantClosing` alternatives, then convert the rank-one preterminal/exact-closing alternatives into the final-resolution interface without using repair progress as the conclusion.
