@@ -216,8 +216,9 @@ private noncomputable def toBinaryClockPivot0
     change
       (M 0 0).coeff 0 * (M 1 1).coeff 0 -
           (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 1 0)
+    have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 1 0)
     rw [hs] at hm
     simpa [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -225,8 +226,9 @@ private noncomputable def toBinaryClockPivot0
     change
       (M 0 0).coeff 0 * (M 1 2).coeff 0 -
           (M 0 2).coeff 0 * (M 1 0).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 1 0)
+    have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 1 0)
     rw [hs] at hm
     simpa [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
@@ -234,8 +236,9 @@ private noncomputable def toBinaryClockPivot0
     change
       (M 0 0).coeff 0 * (M 2 2).coeff 0 -
           (M 0 2).coeff 0 * (M 2 0).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 2 0)
+    have hs : (M 2 0).coeff 0 = (M 0 2).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 2 0)
     rw [hs] at hm
     simpa [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -274,8 +277,9 @@ private noncomputable def toBinaryClockPivot1
     change
       (M 1 1).coeff 0 * (M 0 0).coeff 0 -
           (M 1 0).coeff 0 * (M 0 1).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 1 0)
+    have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 1 0)
     rw [hs] at hm
     simpa [threePivot1BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -289,8 +293,9 @@ private noncomputable def toBinaryClockPivot1
     change
       (M 1 1).coeff 0 * (M 2 2).coeff 0 -
           (M 1 2).coeff 0 * (M 2 1).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 2 1)
+    have hs : (M 2 1).coeff 0 = (M 1 2).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 2 1)
     rw [hs] at hm
     simpa [threePivot1BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -329,8 +334,9 @@ private noncomputable def toBinaryClockPivot2
     change
       (M 2 2).coeff 0 * (M 0 0).coeff 0 -
           (M 2 0).coeff 0 * (M 0 2).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 2 0)
+    have hs : (M 2 0).coeff 0 = (M 0 2).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 2 0)
     rw [hs] at hm
     simpa [threePivot2BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -338,8 +344,9 @@ private noncomputable def toBinaryClockPivot2
     change
       (M 2 2).coeff 0 * (M 0 1).coeff 0 -
           (M 2 1).coeff 0 * (M 0 2).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 2 1)
+    have hs : (M 2 1).coeff 0 = (M 1 2).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 2 1)
     rw [hs] at hm
     simpa [threePivot2BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
@@ -347,8 +354,9 @@ private noncomputable def toBinaryClockPivot2
     change
       (M 2 2).coeff 0 * (M 1 1).coeff 0 -
           (M 2 1).coeff 0 * (M 1 2).coeff 0 = 0 at hm
-    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
-      (symmEntry hM 2 1)
+    have hs : (M 2 1).coeff 0 = (M 1 2).coeff 0 := by
+      simpa using congrArg (fun p : Polynomial R => p.coeff 0)
+        (symmEntry hM 2 1)
     rw [hs] at hm
     simpa [threePivot2BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero] using hm
@@ -402,7 +410,6 @@ identities
 
 kill the three cross minors as well.  Symmetry then kills every 2x2 minor,
 contradicting the retained rank-two witness. -/
-set_option maxHeartbeats 800000 in
 theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     (E : ExactZeroThreeSchurClock R)
     (hsymm : E.zeroSeries.matrix.IsSymm)
@@ -520,6 +527,7 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     · exact h
 
   rcases hminor with ⟨i, j, k, l, hne⟩
+  apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
     simp_all [M]
 
