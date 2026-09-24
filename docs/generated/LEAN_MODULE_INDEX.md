@@ -5237,7 +5237,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness.lean`
 - Purpose: Hardness guard for the final zero-strict-low singular endpoint
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`, `HC4.PlanarJC2HessianEmbedding`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`, `HC4.PlanarJC2HessianEmbedding`
 - External imports: none
 - Imported by local modules: `HC4`
 - Declarations: `theorem planarJC2_of_zeroStrictLowSingularTerminal_impossible`
@@ -11959,7 +11959,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction`, `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - External imports: none
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`
 - Declarations: `inductive AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`, `def AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty`, `theorem impossible_of_JC2`, `theorem AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.impossible_of_JC2_of_finalResolution`, `theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
