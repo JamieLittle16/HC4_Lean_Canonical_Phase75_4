@@ -162,7 +162,7 @@ inductive PositiveTailRepresentedSourceThreeByThreePointGeometry
 
 /-- A represented-source Schur point witness is literally an evaluated nonzero
 3x3 Hessian minor of the represented special fibre. -/
-theorem PositiveTailRepresentedSourceSchurPointWitness.toThreeByThreePointGeometry
+noncomputable def PositiveTailRepresentedSourceSchurPointWitness.toThreeByThreePointGeometry
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (G : P.PositiveTailRepresentedSourceSchurPointWitness) :
     P.PositiveTailRepresentedSourceThreeByThreePointGeometry := by
