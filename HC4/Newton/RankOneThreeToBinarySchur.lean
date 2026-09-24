@@ -566,19 +566,19 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
     simp only [M, h01sym, h02sym, h12sym] <;>
     first
+    | simpa only [mul_comm] using hp01'
+    | simpa only [mul_comm] using hp01rev
+    | simpa only [mul_comm] using hp02'
+    | simpa only [mul_comm] using hp02rev
+    | simpa only [mul_comm] using hp12'
+    | simpa only [mul_comm] using hp12rev
+    | simpa only [mul_comm] using hcross0
+    | simpa only [mul_comm] using hcross0rev
+    | simpa only [mul_comm] using hcross1
+    | simpa only [mul_comm] using hcross1rev
+    | simpa only [mul_comm] using hcross2
+    | simpa only [mul_comm] using hcross2rev
     | ring
-    | exact hp01'
-    | exact hp01rev
-    | exact hp02'
-    | exact hp02rev
-    | exact hp12'
-    | exact hp12rev
-    | exact hcross0
-    | exact hcross0rev
-    | exact hcross1
-    | exact hcross1rev
-    | exact hcross2
-    | exact hcross2rev
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
