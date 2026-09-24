@@ -56,7 +56,11 @@ theorem TopKernelThreeSchurClockData.pivot2_ne_zero_of_rankOne_column2_opening
   have hm := hall i i 2 2
   change C i i * C 2 2 - C i 2 * C 2 i = 0 at hm
   have hs : C 2 i = C i 2 := by
-    exact symmEntry hCsymm 2 i
+    have h := congrArg
+      (fun N : Matrix (Fin 3) (Fin 3)
+        (MvPolynomial (Fin 4) K) => N 2 i)
+      hCsymm
+    simpa using h
   have hsq : C i 2 * C i 2 = 0 := by
     rw [h22, hs] at hm
     simpa using hm
