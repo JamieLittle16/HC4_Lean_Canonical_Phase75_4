@@ -28,42 +28,42 @@ def commonScaleThreeMatrix
   fun i j => c * M i j
 
 @[simp] theorem threePivot0BinarySchurSeries_commonScale_active
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot0BinarySchurSeries (commonScaleThreeMatrix c M)).active =
       c ^ 2 * (threePivot0BinarySchurSeries M).active := by
   simp [threePivot0BinarySchurSeries, commonScaleThreeMatrix]
   ring
 
 @[simp] theorem threePivot0BinarySchurSeries_commonScale_offDiag
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot0BinarySchurSeries (commonScaleThreeMatrix c M)).offDiag =
       c ^ 2 * (threePivot0BinarySchurSeries M).offDiag := by
   simp [threePivot0BinarySchurSeries, commonScaleThreeMatrix]
   ring
 
 @[simp] theorem threePivot0BinarySchurSeries_commonScale_kernel
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot0BinarySchurSeries (commonScaleThreeMatrix c M)).kernel =
       c ^ 2 * (threePivot0BinarySchurSeries M).kernel := by
   simp [threePivot0BinarySchurSeries, commonScaleThreeMatrix]
   ring
 
 @[simp] theorem threePivot1BinarySchurSeries_commonScale_active
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot1BinarySchurSeries (commonScaleThreeMatrix c M)).active =
       c ^ 2 * (threePivot1BinarySchurSeries M).active := by
   simp [threePivot1BinarySchurSeries, commonScaleThreeMatrix]
   ring
 
 @[simp] theorem threePivot1BinarySchurSeries_commonScale_offDiag
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot1BinarySchurSeries (commonScaleThreeMatrix c M)).offDiag =
       c ^ 2 * (threePivot1BinarySchurSeries M).offDiag := by
   simp [threePivot1BinarySchurSeries, commonScaleThreeMatrix]
   ring
 
 @[simp] theorem threePivot1BinarySchurSeries_commonScale_kernel
-    (c : R) (M : Matrix (Fin 3) (Fin 3) R) :
+    (c : Polynomial R) (M : Matrix (Fin 3) (Fin 3) (Polynomial R)) :
     (threePivot1BinarySchurSeries (commonScaleThreeMatrix c M)).kernel =
       c ^ 2 * (threePivot1BinarySchurSeries M).kernel := by
   simp [threePivot1BinarySchurSeries, commonScaleThreeMatrix]
