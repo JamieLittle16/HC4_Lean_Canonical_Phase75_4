@@ -12250,7 +12250,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`, `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.ParameterFirstLayerBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
-- Declarations: `def ordinaryTopNatWeight`, `def topKernelReesSource`, `theorem topKernelReesSource_hasReverseWeightBound`, `def topKernelReverseReesFamily`, `theorem topKernelReverseRees_specialFiber_eq_topFace`, `theorem topKernelReverseRees_evalOne_eq_source`, `theorem topKernelReesSource_hessianDeterminant_eq_one`, `theorem topKernelReesSource_exactCollision`, `theorem topKernelReesSource_collisionPoints_ne`
+- Declarations: `def ordinaryTopNatWeight`, `def topKernelReesSource`, `theorem topKernelReesSource_hasReverseWeightBound`, `def topKernelReverseReesFamily`, `def topKernelReverseReesLeftSection`, `def topKernelReverseReesRightSection`, `theorem topKernelReverseReesRightSection_apply`, `theorem topKernelReverseRees_exactCollision`, `theorem topKernelReverseRees_specialFiber_eq_topFace`, `theorem topKernelReverseRees_evalOne_eq_source`, `theorem topKernelReesSource_hessianDeterminant_eq_one`, `theorem topKernelReesSource_exactCollision`, `theorem topKernelReesSource_collisionPoints_ne`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 
