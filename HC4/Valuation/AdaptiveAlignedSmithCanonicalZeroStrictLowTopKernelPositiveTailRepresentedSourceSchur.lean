@@ -52,7 +52,6 @@ def ThreeSchurActivePair.sourcePerm
 /-- The pair chart used by nested Schur elimination is literally the genuine
 parameter-first Hessian four-block in the corresponding source-coordinate
 permutation. -/
-set_option maxHeartbeats 2000000 in
 theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (pair : ThreeSchurActivePair) :
@@ -60,15 +59,52 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
       permutedFamilyHessianFourBlock
         (pair.sourcePerm kernelCoordinate)
         T.topKernelReverseReesFamily := by
-  cases pair <;>
-    apply GeneralFourBlock.ext <;>
-    simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
-      ThreeSchurActivePair.sourcePerm,
-      GeneralFourBlock.pair02Block, GeneralFourBlock.pair12Block,
-      GeneralFourBlock.ofSymmetricMatrix,
-      threeSchurBlock, kernelLastFamilyHessianFourBlock,
-      kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-      kernelLastPerm, parameterFirstHessian_symmetric]
+  cases pair with
+  | pair01 =>
+      apply GeneralFourBlock.ext <;>
+        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
+          ThreeSchurActivePair.sourcePerm,
+          GeneralFourBlock.ofSymmetricMatrix,
+          threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock]
+  | pair02 =>
+      have h0 : (Equiv.swap (1 : Fin 4) 2) 0 = 0 := by native_decide
+      have h1 : (Equiv.swap (1 : Fin 4) 2) 1 = 2 := by native_decide
+      have h2 : (Equiv.swap (1 : Fin 4) 2) 2 = 1 := by native_decide
+      have h3 : (Equiv.swap (1 : Fin 4) 2) 3 = 3 := by native_decide
+      apply GeneralFourBlock.ext <;>
+        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
+          ThreeSchurActivePair.sourcePerm,
+          GeneralFourBlock.pair02Block, GeneralFourBlock.ofSymmetricMatrix,
+          threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
+          h0, h1, h2, h3] <;>
+        try
+          simpa using
+            (parameterFirstHessian_symmetric T.topKernelReverseReesFamily _ _)
+  | pair12 =>
+      have h0 :
+          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 0) = 1 := by
+        native_decide
+      have h1 :
+          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 1) = 2 := by
+        native_decide
+      have h2 :
+          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 2) = 0 := by
+        native_decide
+      have h3 :
+          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 3) = 3 := by
+        native_decide
+      apply GeneralFourBlock.ext <;>
+        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
+          ThreeSchurActivePair.sourcePerm,
+          GeneralFourBlock.pair12Block, GeneralFourBlock.ofSymmetricMatrix,
+          threeSchurBlock, kernelLastFamilyHessianFourBlock,
+          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
+          h0, h1, h2, h3] <;>
+        try
+          simpa using
+            (parameterFirstHessian_symmetric T.topKernelReverseReesFamily _ _)
 
 private theorem ordinary_schurA_loss_le
     (pair : ThreeSchurActivePair) :
