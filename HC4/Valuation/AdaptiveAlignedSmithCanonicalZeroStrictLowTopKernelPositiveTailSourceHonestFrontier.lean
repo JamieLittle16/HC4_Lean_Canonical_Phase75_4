@@ -1,4 +1,4 @@
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur
 import Mathlib.Tactic
 
@@ -42,17 +42,18 @@ variable {kernelCoordinate : Fin 4}
 have been discharged.
 
 The finite rank-two and binary-closing alternatives retain only represented
-source Schur geometry.  The rank-one alternative retains the exact first
-whole-family opening because C4/C5 still need its physical parameter order. -/
+source Schur geometry.  The rank-one alternative retains the exact
+preterminal/closing split together with source provenance and its first
+whole-family opening. -/
 inductive TopKernelThreeSchurPositiveTailSourceHonestFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData) : Type (u + 1)
   | representedSchur
       (geometry : P.PositiveTailRepresentedSourceSchurWitness)
-  | rankOneWholeFamilyOpening
+  | rankOneEndpointSplit
       (binary : P.PositiveTailExplicitBinaryClockData S)
       (rankOne : P.PositiveTailExplicitRankOneClockData binary)
-      (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
+      (split : P.PositiveTailRankOneSourceHonestEndpointSplit rankOne)
 
 /-- Every fully filtered positive-tail branch reaches the source-honest
 frontier.  This is the assembly form of C1--C3. -/
@@ -68,12 +69,12 @@ theorem TopKernelThreeSchurPositiveTailRankOneFrontier.toSourceHonestFrontier
   | binaryDeterminantClosing hres B hzero hdet =>
       exact ⟨.representedSchur B.representedSourceSchurWitness⟩
   | rankOneClock hres B R =>
-      rcases R.wholeFamilyFirstTransverseOpening with ⟨O⟩
-      exact ⟨.rankOneWholeFamilyOpening B R O⟩
+      rcases R.sourceHonestEndpointSplit with ⟨D⟩
+      exact ⟨.rankOneEndpointSplit B R D⟩
 
 /-- Assembly-facing positive-relative tail theorem: once the exact relative
 order is positive, the branch reaches honest represented-source Schur geometry
-or an exact whole-family first transverse opening. -/
+or an exact source-honest rank-one preterminal/closing packet. -/
 theorem ThreeSchurTangentTailKernelOpeningData.positiveTailSourceHonestFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
