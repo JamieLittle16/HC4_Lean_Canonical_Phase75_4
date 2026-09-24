@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9751**.
+Distinct declaration spellings indexed: **9754**.
 
 ## Repeated declaration spellings
 
@@ -3313,9 +3313,11 @@ Distinct declaration spellings indexed: **9751**.
 - `TopKernelThreeSchurPrincipalPivot.toRepresentedSourceSchurWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`
 - `TopKernelThreeSchurRelativeTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
 - `TopKernelThreeSchurSecondStageFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurSecondStage`
+- `TopKernelThreeSchurZeroRelativeBinaryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `TopKernelThreeSchurZeroRelativePrincipalFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalFrontier`
 - `TopKernelThreeSchurZeroRelativePrincipalFrontier.toSourceFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`
 - `TopKernelThreeSchurZeroRelativeSourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`
+- `TopKernelThreeSchurZeroRelativeSourceFrontier.toBinaryFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `ToricFacet` — `inductive` in `HC4.Toric.Facets`
 - `TransportedPlanarRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `TransportedWSquareRigidPacket` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
@@ -3337,6 +3339,7 @@ Distinct declaration spellings indexed: **9751**.
 - `X_two_mul_polynomialLift_monomial_eq` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `X_zero_mul_H_pow_eq_monomial` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
 - `X_zero_mul_polynomialLift_monomial_eq` — `theorem` in `HC4.Polynomial.TwoFunctionCarrierMonomialNormalForm`
+- `ZeroRelativeExplicitBinaryClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
