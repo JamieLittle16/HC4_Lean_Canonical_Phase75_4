@@ -75,7 +75,8 @@ theorem TopKernelThreeSchurClockData.zeroSeries_eq_commonScale_tail
           Polynomial (MvPolynomial (Fin 4) K)) ^ S.firstThreeSchurOrder)
         (S.toExactZeroThreeSchurClock.zeroSeries.tailMatrix
           S.toExactZeroThreeSchurClock.hasPositiveEntryLayer) := by
-  ext i j
+  apply Matrix.ext
+  intro i j
   have h :=
     S.toExactZeroThreeSchurClock.zeroSeries.entry_eq_firstFactor_mul_tail
       S.toExactZeroThreeSchurClock.hasPositiveEntryLayer i j
