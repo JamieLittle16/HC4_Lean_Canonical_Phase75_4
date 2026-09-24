@@ -53,13 +53,13 @@ inductive TopKernelThreeSchurPositiveTailTimedFrontier
       (rankOne : P.PositiveTailExplicitRankOneClockData binary)
       (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
       (firstOrder_lt_defect :
-        rankOne.clock.firstOrder < rankOne.clock.defect)
+        rankOne.exactRankOneClock.firstOrder < rankOne.exactRankOneClock.defect)
   | rankOneExactClosing
       (binary : P.PositiveTailExplicitBinaryClockData S)
       (rankOne : P.PositiveTailExplicitRankOneClockData binary)
       (opening : P.PositiveTailRankOneWholeFamilyFirstTransverseOpening rankOne)
       (firstOrder_eq_defect :
-        rankOne.clock.firstOrder = rankOne.clock.defect)
+        rankOne.exactRankOneClock.firstOrder = rankOne.exactRankOneClock.defect)
 
 /-- The source-honest frontier has no remaining timing branch beyond
 preterminal versus exact determinant closing. -/
@@ -72,7 +72,7 @@ theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toTimedFrontier
   | representedSchur geometry =>
       exact ⟨.representedSchur geometry⟩
   | rankOneWholeFamilyOpening binary rankOne opening =>
-      rcases lt_or_eq_of_le rankOne.clock.firstOrder_le_defect with hpre | hclose
+      rcases lt_or_eq_of_le rankOne.exactRankOneClock.firstOrder_le_defect with hpre | hclose
       · exact ⟨.rankOnePreterminal binary rankOne opening hpre⟩
       · exact ⟨.rankOneExactClosing binary rankOne opening hclose⟩
 
