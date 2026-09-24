@@ -204,7 +204,7 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hpos : 0 < D.relativeOrder)
     (h01 :
       S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 *
@@ -221,7 +221,11 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
   have hsymm : C.IsSymm := by
     simpa [C, E] using
       E.tailConstantMatrix_isSymm S.exactZeroThreeSchurClock_isSymm
-  have h10 : C 1 0 = C 0 1 := hsymm 1 0
+  have h10 : C 1 0 = C 0 1 := by
+    have h := congrArg
+      (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 0 1)
+      hsymm
+    simpa using h
   by_contra hnone
   push_neg at hnone
   rcases hnone with ⟨h00, h11⟩
@@ -233,8 +237,20 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
   have h01z : C 0 1 = 0 :=
     (mul_self_eq_zero.mp h01sq)
   have h10z : C 1 0 = 0 := by rw [h10, h01z]
-  have h20 : C 2 0 = 0 := by rw [hsymm 2 0, hcol 0]
-  have h21 : C 2 1 = 0 := by rw [hsymm 2 1, hcol 1]
+  have h20 : C 2 0 = 0 := by
+    have hs20 : C 2 0 = C 0 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 0 2)
+        hsymm
+      simpa using h
+    rw [hs20, hcol 0]
+  have h21 : C 2 1 = 0 := by
+    have hs21 : C 2 1 = C 1 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 1 2)
+        hsymm
+      simpa using h
+    rw [hs21, hcol 1]
   have h22 : C 2 2 = 0 := hcol 2
   apply E.tailConstantMatrix_ne_zero
   ext i j
@@ -246,9 +262,9 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailDetailedFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hpos : 0 < D.relativeOrder) :
-    Nonempty P.TopKernelThreeSchurPositiveTailDetailedFrontier S := by
+    Nonempty (P.TopKernelThreeSchurPositiveTailDetailedFrontier S) := by
   let E := S.toExactZeroThreeSchurClock
   have hcol :
       ∀ i : Fin 3, E.tailConstantMatrix i 2 = 0 := by
@@ -258,9 +274,21 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailDetailedFrontier
     have hsymm : E.tailConstantMatrix.IsSymm :=
       E.tailConstantMatrix_isSymm S.exactZeroThreeSchurClock_isSymm
     have h20 : E.tailConstantMatrix 2 0 = 0 := by
-      rw [hsymm 2 0, hcol 0]
+      have hs20 :
+          E.tailConstantMatrix 2 0 = E.tailConstantMatrix 0 2 := by
+        have h := congrArg
+          (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 0 2)
+          hsymm
+        simpa using h
+      rw [hs20, hcol 0]
     have h21 : E.tailConstantMatrix 2 1 = 0 := by
-      rw [hsymm 2 1, hcol 1]
+      have hs21 :
+          E.tailConstantMatrix 2 1 = E.tailConstantMatrix 1 2 := by
+        have h := congrArg
+          (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 1 2)
+          hsymm
+        simpa using h
+      rw [hs21, hcol 1]
     have h22 : E.tailConstantMatrix 2 2 = 0 := hcol 2
     simp [Matrix.det_fin_three, hcol 0, hcol 1, h22, h20, h21]
 
