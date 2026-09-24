@@ -77,7 +77,9 @@ theorem ThreeSchurTangentTailKernelOpeningData.commonOrder_eq_later_of_relativeO
     D.commonOrder = D.physical.laterOrder := by
   have hrel := D.relativeOrder_eq
   rw [hz] at hrel
-  omega
+  have hle : D.physical.laterOrder ≤ D.commonOrder := by
+    exact Nat.sub_eq_zero_iff_le.mp hrel.symm
+  exact Nat.le_antisymm D.common_le_later hle
 
 /-- At zero relative order, the retained projected kernel opening is already
 nonzero in the constant matrix of the normalised 3x3 tail. -/
