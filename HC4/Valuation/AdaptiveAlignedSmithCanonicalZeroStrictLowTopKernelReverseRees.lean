@@ -72,6 +72,60 @@ noncomputable def topKernelReverseReesFamily :
   reverseWeightedReesFamily ordinaryTopNatWeight T.topFace.degree
     T.topKernelReesSource T.topKernelReesSource_hasReverseWeightBound
 
+/-- Left marked section of the ordinary top-kernel reverse-Rees family. -/
+noncomputable def topKernelReverseReesLeftSection :
+    Fin 4 → Polynomial K :=
+  adaptiveSmithInflateSection ordinaryTopNatWeight
+    (polynomialConstantSection (fun _ : Fin 4 => (0 : K)))
+
+/-- Right marked section of the ordinary top-kernel reverse-Rees family.
+
+For ordinary weight one this is literally the moving axis section
+`tau * e_0`. -/
+noncomputable def topKernelReverseReesRightSection :
+    Fin 4 → Polynomial K :=
+  adaptiveSmithInflateSection ordinaryTopNatWeight
+    (polynomialConstantSection
+      (coordinateAxisPoint (K := K) (0 : Fin 4)))
+
+@[simp] theorem topKernelReverseReesLeftSection_eq_zero :
+    T.topKernelReverseReesLeftSection =
+      (fun _ : Fin 4 => (0 : Polynomial K)) := by
+  funext i
+  simp [topKernelReverseReesLeftSection,
+    adaptiveSmithInflateSection, ordinaryTopNatWeight,
+    polynomialConstantSection]
+
+theorem topKernelReverseReesRightSection_apply
+    (i : Fin 4) :
+    T.topKernelReverseReesRightSection i =
+      Polynomial.X *
+        Polynomial.C
+          (coordinateAxisPoint (K := K) (0 : Fin 4) i) := by
+  simp [topKernelReverseReesRightSection,
+    adaptiveSmithInflateSection, ordinaryTopNatWeight,
+    polynomialConstantSection]
+
+/-- The honest ordinary reverse-Rees family carries the marked source
+collision as the moving polynomial-family collision `0 ~ tau e_0`.
+
+The two sections coalesce only on the special fibre; no distinct collision is
+asserted there. -/
+theorem topKernelReverseRees_exactCollision :
+    HasPolynomialFamilyExactGradientCollision
+      T.topKernelReverseReesFamily
+      T.topKernelReverseReesLeftSection
+      T.topKernelReverseReesRightSection := by
+  unfold topKernelReverseReesFamily
+  exact
+    reverseWeightedReesFamily_exactGradientCollision
+      ordinaryTopNatWeight T.topFace.degree
+      T.topKernelReesSource
+      T.topKernelReesSource_hasReverseWeightBound
+      (fun _ : Fin 4 => (0 : K))
+      (coordinateAxisPoint (K := K) (0 : Fin 4))
+      T.topKernelReesSource_exactCollision
+
 /-- Parameter `0` is literally the stored singular top face. -/
 theorem topKernelReverseRees_specialFiber_eq_topFace :
     polynomialFamilySpecialFiber T.topKernelReverseReesFamily =
