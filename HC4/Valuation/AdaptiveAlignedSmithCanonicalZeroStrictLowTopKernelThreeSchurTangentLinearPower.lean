@@ -174,12 +174,14 @@ private theorem linearPower_cross_cancel
 
   rw [hpp, hpr] at hcross
   have hCcp :
-      MvPolynomial.C (s * cp * cp) =
-        MvPolynomial.C (s * cp) * MvPolynomial.C cp := by
+      (MvPolynomial.C (s * cp * cp) : MvPolynomial (Fin 4) K) =
+        (MvPolynomial.C (s * cp) : MvPolynomial (Fin 4) K) *
+          MvPolynomial.C cp := by
     rw [← MvPolynomial.C_mul]
   have hCcr :
-      MvPolynomial.C (s * cp * cr) =
-        MvPolynomial.C (s * cp) * MvPolynomial.C cr := by
+      (MvPolynomial.C (s * cp * cr) : MvPolynomial (Fin 4) K) =
+        (MvPolynomial.C (s * cp) : MvPolynomial (Fin 4) K) *
+          MvPolynomial.C cr := by
     rw [← MvPolynomial.C_mul]
   rw [hCcp, hCcr] at hcross
   have hprod :
@@ -262,7 +264,8 @@ theorem ThreeSchurTangentAtFirstBreak.kernelDerivative_gradientRatio
     · have hk :
           MvPolynomial.pderiv kernelCoordinate
               (MvPolynomial.pderiv kernelCoordinate M.sourceLayer) = 0 := by
-        simpa [sourceLayer, HC4.Polynomial.hessian_apply] using
+        simpa [ExactNonlinearMixedOrdinaryLayerAtFirstBreak.sourceLayer,
+          HC4.Polynomial.hessian_apply] using
           M.mixed.kernelDiagonal_eq_zero
       simpa [rho, kernelLastPerm_last, hk,
         TopKernelThreeSchurClockData.normalizedTopRatio,
