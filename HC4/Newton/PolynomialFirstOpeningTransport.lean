@@ -1,3 +1,4 @@
+import HC4.Newton.FirstSchurLayerLinearization
 import Mathlib.Tactic
 
 /-!
