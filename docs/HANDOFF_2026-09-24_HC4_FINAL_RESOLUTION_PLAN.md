@@ -102,12 +102,24 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
 
   This is source/provenance closure only: it does **not** by itself prove C4/C5 or the final singular-terminal contradiction.
 
-  **Verified / pending C4-C5 infrastructure:** `PositiveTailRankOneSourceHonestEndpointSplit` is locally compiled and removes the final exact-clock timing ambiguity while retaining the decisive nonzero coefficient, represented-source geometry, and whole-family opening. The newer rooted geometric layer is pending a real green run and is designed to retain:
+  **Verified / pending C4-C5 infrastructure:** `PositiveTailRankOneSourceHonestEndpointSplit` is locally compiled and removes the final exact-clock timing ambiguity while retaining the decisive nonzero coefficient, represented-source geometry, and whole-family opening.
+
+  **Rooted/source-complete but still awaiting a permitted green CI run:** the branch now additionally contains:
   - preterminal opening as a literal source-point binary block with determinant `-b^2 ≠ 0`;
   - exact closing as a literal nonzero source-point kernel-curvature event;
   - branch-independent represented-source Schur witnesses as evaluated nonzero 3x3 Hessian minors;
-  - the exact marked collision and distinct collision points on `T.topKernelReesSource`.
-  These are still inputs to C4/C5, not permitted `FinalResolution` constructors by themselves.
+  - `TopKernelThreeSchurPositiveTailGeometricFrontier`, which packages the complete positive-relative finite geometry;
+  - a distinct exact marked collision on `T.topKernelReesSource`;
+  - exact collision transport through the honest bounded reverse-Rees family;
+  - `topKernelMarkedAxisFirstContactFamily`, whose special fibre retains the literal distinct collision `0 ~ e₀`.
+
+  The current GitHub Actions state for the newest heads is `action_required`, so none of these newer declarations earns an additional checked C4/C5 box yet.
+
+  **Exact remaining C4/C5 seam:** construct/certify a genuine weighted associated-graded polynomial fibre from this collision-bearing first-contact geometry and prove that fibre has a `CertifiedTerminalDirectJumpEndpoint` (or produce the other permitted `FinalResolution` constructor). The evaluated Schur block is not itself a polynomial potential.
+
+  Two tempting shortcuts are invalid:
+  - the first-contact source scaling should not be called a standard one-zero terminal endpoint merely because one coordinate has been separated; the certified standard weight is `(0,d,a,d-a)` with `0<a<d`, so terminal classification still has to be proved;
+  - `AdaptiveAlignedSmithRankOneClosingSourceCarrier` is tied to the legacy right-recentered aligned-endpoint clock, not definitionally to the present ordinary reverse-Rees rank-one clock. Do not populate that carrier by identifying the two clocks.
 
 - [ ] **C4.** Convert the preterminal rank-one-clock outcome to either an actual represented-source principal Hessian minor or a final polynomial/associated-graded endpoint.
 - [ ] **C5.** Convert the exact-closing rank-one-clock outcome to a final polynomial/associated-graded endpoint. Reuse the existing negative-square / wedge pattern where possible rather than exporting `RepairProgress`.
@@ -118,8 +130,14 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
 When `r = 0`, the first normalised 3x3 coefficient matrix already contains a nonzero kernel-column entry.
 
 - [ ] **D1.** Run the existing principal second-stage frontier directly on the constant tail.
+
+  **Source-implemented and rooted; awaiting permitted CI:** `TopKernelThreeSchurZeroRelativePrincipalFrontier` retains the physical zero-relative kernel opening and reduces the branch to exactly determinant closing / one of three coordinate-principal rank-two pivots / exact binary zero-Schur.
 - [ ] **D2.** Principal rank-two case -> honest represented-source geometry / final resolution.
+
+  **Source-implemented and rooted; awaiting permitted CI:** `TopKernelThreeSchurPrincipalPivot.toRepresentedSourceSchurWitness` source-lifts all three principal orientations. The existing `01` lift is reused; the new `02` and `12` lifts use the nested kernel entries plus common-scale noncancellation in the correct `ThreeSchurActivePair` chart. `TopKernelThreeSchurZeroRelativeSourceFrontier` therefore leaves only determinant closing / represented-source Schur geometry / binary zero-Schur.
 - [ ] **D3.** Rank-one constant block -> explicit diagonal pivot -> exact binary zero-Schur clock, with source provenance retained.
+
+  The underlying generic theorem already constructs the exact binary clock from `AllTwoByTwoMinorsZero` + nonzero symmetric constant tail, but the current packaged frontier forgets which nonzero diagonal pivot was selected. Retain that pivot explicitly before checking D3.
 - [ ] **D4.** Close the resulting finite binary alternatives without introducing another unbounded staircase.
 - [ ] **D5.** Assemble: every `r = 0` branch produces the final local resolution interface.
 
@@ -175,6 +193,6 @@ G  isolate and solve the canonical JC2-hard planar endpoint
 
 ## Stop conditions / anti-detours
 
-Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem.
+Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem. Do not identify the ordinary top-kernel reverse-Rees clock with the legacy right-recentered blocker clock. Do not label the marked-axis first-contact fibre as a certified one-zero endpoint until its actual integral terminal weight is proved.
 
-The immediate objective is now **C4/C5/C6**. C1--C3 and the exact source-honest rank-one endpoint split are already compiled. The branch now retains the represented determinant-one source, its exact marked collision, evaluated 3x3 Hessian-minor geometry, and the preterminal/closing source-point events. The shortest remaining seam is to consume those objects with an existing terminal/rank-jump classification if possible—prefer `TerminalDirectRankJumpReduction` / already-certified endpoint machinery over adding another Schur wrapper. If no such adapter applies, isolate the smallest missing theorem connecting this retained source geometry to either an actual source principal Hessian chart or one of the two permitted `FinalResolution` constructors. Repair progress is not an acceptable conclusion.
+The immediate objective is now **C4/C5/C6**, while finishing the finite **D3/D4** branch in parallel. C1--C3 and the exact source-honest rank-one endpoint split are already compiled. The branch now retains the represented determinant-one source, moving collision through the reverse-Rees family, a collision-bearing marked-axis first-contact special fibre, evaluated 3x3 Hessian-minor geometry, and the preterminal/closing source-point events. The shortest remaining C seam is therefore the terminal associated-graded **classification/extraction** theorem, not another Schur provenance wrapper. In parallel, D has already been reduced source-level to a finite determinant-closing / represented-Schur / binary-zero-Schur frontier; retain the binary diagonal pivot explicitly and close those alternatives without another staircase. Repair progress is not an acceptable conclusion.
