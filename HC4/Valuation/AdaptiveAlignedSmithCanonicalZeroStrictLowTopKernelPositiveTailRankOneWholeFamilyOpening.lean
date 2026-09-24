@@ -210,7 +210,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOffDiag_eq
             B.rankOnePhysicalBaseOrder *
           (-Polynomial.C (E.tailSeries.offDiag.coeff 0) * E.tailSeries.active +
             Polynomial.C (E.tailSeries.active.coeff 0) * E.tailSeries.offDiag) := by
-              rw [B.nested_factor_eq]
+              rw [nested_factor_eq B]
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder *
@@ -287,7 +287,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseKernel_eq
             2 * Polynomial.C (E.tailSeries.active.coeff 0) *
               Polynomial.C (E.tailSeries.offDiag.coeff 0) * E.tailSeries.offDiag +
             (Polynomial.C (E.tailSeries.active.coeff 0)) ^ 2 * E.tailSeries.kernel) := by
-              rw [B.nested_factor_eq]
+              rw [nested_factor_eq B]
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder *
@@ -322,7 +322,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseOffDiag_eq
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder * E.tailSeries.offDiag := by
-              rw [B.nested_factor_eq]
+              rw [nested_factor_eq B]
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder *
@@ -357,7 +357,7 @@ theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseKernel_eq
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder * E.tailSeries.active := by
-              rw [B.nested_factor_eq]
+              rw [nested_factor_eq B]
     _ =
         (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
             B.rankOnePhysicalBaseOrder *
