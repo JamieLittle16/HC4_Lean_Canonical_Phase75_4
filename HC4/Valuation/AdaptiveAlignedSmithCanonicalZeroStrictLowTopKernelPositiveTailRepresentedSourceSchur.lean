@@ -60,7 +60,7 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
         (pair.sourcePerm kernelCoordinate)
         T.topKernelReverseReesFamily := by
   cases pair <;>
-    ext <;>
+    apply GeneralFourBlock.ext <;>
     simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
       ThreeSchurActivePair.sourcePerm,
       GeneralFourBlock.pair02Block, GeneralFourBlock.pair12Block,
@@ -200,21 +200,21 @@ theorem PositiveTailExplicitBinaryClockData.representedSourceSchurGeometry
   have hnonzero :=
     E.zeroSeries.entry_nonzero_at_first hpositive
   rcases hnonzero with hA | hB | hC
-  · apply .schurA D.pair
+  · refine PositiveTailBinaryRepresentedSourceSchurGeometry.schurA D.pair ?_
     apply D.pair.sourceSchurA_ne_zero_of_familySchurA_ne_zero (P := P)
     apply D.schurA_ne_zero_of_active_ne_zero
     intro hz
     apply hA
     rw [hz]
     simp
-  · apply .schurB D.pair
+  · refine PositiveTailBinaryRepresentedSourceSchurGeometry.schurB D.pair ?_
     apply D.pair.sourceSchurB_ne_zero_of_familySchurB_ne_zero (P := P)
     apply D.schurB_ne_zero_of_offDiag_ne_zero
     intro hz
     apply hB
     rw [hz]
     simp
-  · apply .schurC D.pair
+  · refine PositiveTailBinaryRepresentedSourceSchurGeometry.schurC D.pair ?_
     apply D.pair.sourceSchurC_ne_zero_of_familySchurC_ne_zero (P := P)
     apply D.schurC_ne_zero_of_kernel_ne_zero
     intro hz
