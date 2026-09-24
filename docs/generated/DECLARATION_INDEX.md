@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9732**.
+Distinct declaration spellings indexed: **9741**.
 
 ## Repeated declaration spellings
 
@@ -5763,6 +5763,9 @@ Distinct declaration spellings indexed: **9732**.
 - `fourOrdinaryReverseRees_firstKernelBreak_rankTwo` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
 - `fourOrdinaryReverseRees_parameterFirstHessian_coeff` — `theorem` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
 - `fourReverseReesScaledSection` — `def` in `HC4.Valuation.FourOrdinaryReverseReesCollision`
+- `fourReverseReesScaledSection_axisZero_unitDivisible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `fourReverseReesScaledSection_zero_eq_zeroPolynomialSection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `fourReverseReesScaledSection_zero_unitDivisible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `fourUnitSourceInflateFamily` — `def` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourUnitSourceInflateFamily_C` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
 - `fourUnitSourceInflateFamily_hasHessianDefect_add_eight` — `theorem` in `HC4.Valuation.FourOrdinaryReverseRees`
@@ -9681,6 +9684,10 @@ Distinct declaration spellings indexed: **9732**.
 - `topFace_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topKernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `topKernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
+- `topKernelMarkedAxisFirstContactFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `topKernelMarkedAxisFirstContact_exactGradientCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `topKernelMarkedAxisFirstContact_specialFiber_collisionPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `topKernelMarkedAxisFirstContact_specialFiber_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `topKernelOrdinaryReesDefect` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
 - `topKernelOrdinaryReesDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
 - `topKernelOrdinaryRees_clock_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
@@ -9843,6 +9850,8 @@ Distinct declaration spellings indexed: **9732**.
 - `unitKernelDeflateSection` — `def` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_eq_zero_of_eq_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitKernelDeflateSection_of_ne` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `unitKernelDeflateSection_scaledAxisZero_eq_constantAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
+- `unitKernelDeflateSection_scaledZero_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `unitKernelDeflateSection_zero` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `unitLeftOneFiberReflectedThreeLayerMomentPencil` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerReflection`
 - `unitLeftOneFiberSecondOrderMomentMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberSecondJet`
