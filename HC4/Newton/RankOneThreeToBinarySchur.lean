@@ -364,7 +364,7 @@ identities
 
 kill the three cross minors as well.  Symmetry then kills every 2x2 minor,
 contradicting the retained rank-two witness. -/
-theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
+set_option maxHeartbeats 800000 in\ntheorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     (E : ExactZeroThreeSchurClock R)
     (hsymm : E.zeroSeries.matrix.IsSymm)
     (hdet : E.tailConstantMatrix.det = 0)
@@ -392,13 +392,24 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
   have hp12' : M 1 1 * M 2 2 - M 1 2 * M 1 2 = 0 := by
     simpa [M, h12sym] using hp12
 
+  have hdetM : M.det = 0 := by
+    simpa [M] using hdet
   have hdet' :
       M 0 0 * M 1 1 * M 2 2 +
           2 * M 0 1 * M 0 2 * M 1 2 -
           M 0 0 * M 1 2 * M 1 2 -
           M 1 1 * M 0 2 * M 0 2 -
           M 2 2 * M 0 1 * M 0 1 = 0 := by
-    simpa [M, Matrix.det_fin_three, h01sym, h02sym, h12sym] using hdet
+    calc
+      M 0 0 * M 1 1 * M 2 2 +
+            2 * M 0 1 * M 0 2 * M 1 2 -
+            M 0 0 * M 1 2 * M 1 2 -
+            M 1 1 * M 0 2 * M 0 2 -
+            M 2 2 * M 0 1 * M 0 1 =
+          M.det := by
+            simp [Matrix.det_fin_three, h01sym, h02sym, h12sym]
+            ring
+      _ = 0 := hdetM
 
   have hcross0sq :
       (M 0 0 * M 1 2 - M 0 1 * M 0 2) *
