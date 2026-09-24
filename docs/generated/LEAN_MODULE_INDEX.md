@@ -12149,7 +12149,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - Declarations: `def PositiveTailExplicitRankOneClockData.exactRankOneClock`, `inductive PositiveTailRankOneTransverseRepresentedSourceGeometry`, `theorem PositiveTailExplicitBinaryClockData.transverseGeometry_of_tailActiveCoeff`, `theorem PositiveTailExplicitBinaryClockData.transverseGeometry_of_tailOffDiagCoeff`, `theorem PositiveTailExplicitBinaryClockData.transverseGeometry_of_tailKernelCoeff`, `theorem PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGeometry`, `theorem PositiveTailExplicitRankOneClockData.firstTransverse_representedSourceGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
@@ -12157,7 +12157,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening.lean`
 - Purpose: Exact whole-family first transverse opening for the positive rank-one tail
 - A-labels: none detected
-- Local imports: `HC4.Newton.PolynomialFirstOpeningTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
+- Local imports: `HC4.Newton.PolynomialFirstOpeningTransport`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
 - Declarations: `theorem zeroActive_eq_X_pow_first_mul_tail`, `theorem zeroOffDiag_eq_X_pow_first_mul_tail`, `theorem zeroKernel_eq_X_pow_first_mul_tail`, `def PositiveTailExplicitBinaryClockData.rankOnePhysicalBaseOrder`, `def PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOffDiag`, `def PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseKernel`, `def PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseOffDiag`, `def PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseKernel`, `theorem nested_factor_eq`, `theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseOffDiag_eq`, `theorem PositiveTailBinaryWholeFamilySchurProvenance.leftTransverseKernel_eq`, `theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseOffDiag_eq`, `theorem PositiveTailBinaryWholeFamilySchurProvenance.rightTransverseKernel_eq`, `inductive PositiveTailRankOneWholeFamilyFirstTransverseOpening`, `theorem PositiveTailExplicitRankOneClockData.wholeFamilyFirstTransverseOpening`
