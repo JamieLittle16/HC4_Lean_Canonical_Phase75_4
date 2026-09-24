@@ -572,14 +572,14 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     simpa [M] using h12sym
 
   simp only [M] at hp01' hp02' hp12' hp01rev hp02rev hp12rev hcross0 hcross0rev hcross1 hcross1rev hcross2 hcross2rev
+  ring_nf at hp01' hp02' hp12' hp01rev hp02rev hp12rev hcross0 hcross0rev hcross1 hcross1rev hcross2 hcross2rev
 
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
     simp [h01symE, h02symE, h12symE] <;>
-    first
-    | assumption
-    | ring
+    ring_nf <;>
+    assumption
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
 literal coordinate-principal active 2x2 pivot. -/
