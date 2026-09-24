@@ -39,7 +39,7 @@ namespace GeneralFourBlock
 /-- First pivot `a`, then the original coordinate-1 pivot: nested active
 entry equals `a * schurA`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrix_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrix).active =
       H.a * H.schurA := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -49,7 +49,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrix_active
 /-- First pivot `a`, then the original coordinate-1 pivot: nested
 off-diagonal entry equals `a * schurB`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrix_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrix).offDiag =
       H.a * H.schurB := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -59,7 +59,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrix_offDiag
 /-- First pivot `a`, then the original coordinate-1 pivot: nested kernel
 entry equals `a * schurC`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrix_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrix).kernel =
       H.a * H.schurC := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrix,
@@ -69,7 +69,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrix_kernel
 /-- First pivot `d`, then the remaining original coordinate-0 pivot: nested
 active entry equals `d * schurA`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrixD_active
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).active =
       H.d * H.schurA := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
@@ -79,7 +79,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrixD_active
 /-- First pivot `d`, then the remaining original coordinate-0 pivot: nested
 off-diagonal entry equals `d * schurB`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrixD_offDiag
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).offDiag =
       H.d * H.schurB := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
@@ -89,7 +89,7 @@ theorem threePivot0_rankOneClearedThreeSchurMatrixD_offDiag
 /-- First pivot `d`, then the remaining original coordinate-0 pivot: nested
 kernel entry equals `d * schurC`. -/
 theorem threePivot0_rankOneClearedThreeSchurMatrixD_kernel
-    (H : GeneralFourBlock R) :
+    (H : GeneralFourBlock (Polynomial R)) :
     (threePivot0BinarySchurSeries H.rankOneClearedThreeSchurMatrixD).kernel =
       H.d * H.schurC := by
   simp [threePivot0BinarySchurSeries, rankOneClearedThreeSchurMatrixD,
