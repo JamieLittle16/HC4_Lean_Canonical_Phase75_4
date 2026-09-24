@@ -39,6 +39,70 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
 
+/-- Orientation of the exact binary zero-Schur clock extracted from a
+rank-one normalised 3x3 tail.  The all-minors certificate is an index of the
+datum, so the selected diagonal pivot and the resulting clock cannot drift
+apart downstream. -/
+inductive TopKernelThreeSchurRankOneOrientedBinaryClock
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (allMinors :
+      ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+        S.toExactZeroThreeSchurClock.tailConstantMatrix) : Type (u + 1)
+  | pivot0
+      (hne :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix 0 0 ≠ 0)
+  | pivot1
+      (hne :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix 1 1 ≠ 0)
+  | pivot2
+      (hne :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix 2 2 ≠ 0)
+
+namespace TopKernelThreeSchurRankOneOrientedBinaryClock
+
+/-- The exact orientation-preserving binary clock selected by the retained
+diagonal pivot. -/
+noncomputable def exactClock
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {allMinors :
+      ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+        S.toExactZeroThreeSchurClock.tailConstantMatrix}
+    (B : P.TopKernelThreeSchurRankOneOrientedBinaryClock S allMinors) :
+    ExactZeroSchurClock (MvPolynomial (Fin 4) K) := by
+  let E := S.toExactZeroThreeSchurClock
+  have hsymm : E.zeroSeries.matrix.IsSymm := by
+    simpa [E] using S.exactZeroThreeSchurClock_isSymm
+  cases B with
+  | pivot0 hne =>
+      exact E.toBinaryZeroSchurClockPivot0 hsymm
+        (by simpa [E] using allMinors)
+        (by simpa [E] using hne)
+  | pivot1 hne =>
+      exact E.toBinaryZeroSchurClockPivot1 hsymm
+        (by simpa [E] using allMinors)
+        (by simpa [E] using hne)
+  | pivot2 hne =>
+      exact E.toBinaryZeroSchurClockPivot2 hsymm
+        (by simpa [E] using allMinors)
+        (by simpa [E] using hne)
+
+/-- The oriented binary clock keeps exactly the residual determinant defect of
+the three-Schur clock. -/
+@[simp] theorem exactClock_defect
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {allMinors :
+      ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+        S.toExactZeroThreeSchurClock.tailConstantMatrix}
+    (B : P.TopKernelThreeSchurRankOneOrientedBinaryClock S allMinors) :
+    B.exactClock.defect =
+      S.toExactZeroThreeSchurClock.residualDefect := by
+  cases B <;> rfl
+
+end TopKernelThreeSchurRankOneOrientedBinaryClock
+
 /-- Exact finite second-stage alternatives in the zero-relative branch,
 retaining the physical constant kernel opening that selected this branch. -/
 inductive TopKernelThreeSchurZeroRelativePrincipalFrontier
@@ -80,6 +144,8 @@ inductive TopKernelThreeSchurZeroRelativePrincipalFrontier
           S.toExactZeroThreeSchurClock.tailConstantMatrix)
       (matrix_ne_zero :
         S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0)
+      (orientedClock :
+        P.TopKernelThreeSchurRankOneOrientedBinaryClock S allMinors)
 
 /-- **D1: zero-relative finite principal exhaustion.**
 
@@ -112,10 +178,23 @@ theorem ThreeSchurTangentTailKernelOpeningData.zeroRelativePrincipalFrontier
       · exact ⟨.rankTwoPrincipal D hz hcommon hopen hres' (.pivot02 (by simpa [E] using h02))⟩
       · exact ⟨.rankTwoPrincipal D hz hcommon hopen hres' (.pivot12 (by simpa [E] using h12))⟩
   | rankOne hres hall hne =>
+      have hall' :
+          ExactZeroThreeSchurClock.AllTwoByTwoMinorsZero
+            S.toExactZeroThreeSchurClock.tailConstantMatrix := by
+        simpa [E] using hall
+      have hne' :
+          S.toExactZeroThreeSchurClock.tailConstantMatrix ≠ 0 := by
+        simpa [E] using hne
+      have horiented :
+          P.TopKernelThreeSchurRankOneOrientedBinaryClock S hall' := by
+        rcases E.exists_diagonal_ne_zero_of_rankOne hsymm hall hne with
+          ⟨p, hp⟩
+        fin_cases p
+        · exact .pivot0 (by simpa [E] using hp)
+        · exact .pivot1 (by simpa [E] using hp)
+        · exact .pivot2 (by simpa [E] using hp)
       exact ⟨.binaryZeroSchur D hz hcommon hopen
-        (by simpa [E] using hres)
-        (by simpa [E] using hall)
-        (by simpa [E] using hne)⟩
+        (by simpa [E] using hres) hall' hne' horiented⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
