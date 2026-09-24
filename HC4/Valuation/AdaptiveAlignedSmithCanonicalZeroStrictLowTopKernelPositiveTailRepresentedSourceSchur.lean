@@ -64,9 +64,10 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
     simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
       ThreeSchurActivePair.sourcePerm,
       GeneralFourBlock.pair02Block, GeneralFourBlock.pair12Block,
+      GeneralFourBlock.ofSymmetricMatrix,
       threeSchurBlock, kernelLastFamilyHessianFourBlock,
       kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-      kernelLastPerm]
+      kernelLastPerm, parameterFirstHessian_symmetric]
 
 private theorem ordinary_schurA_loss_le
     (pair : ThreeSchurActivePair) :
