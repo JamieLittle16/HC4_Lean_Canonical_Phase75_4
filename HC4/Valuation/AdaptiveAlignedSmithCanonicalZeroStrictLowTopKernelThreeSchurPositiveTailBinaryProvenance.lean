@@ -137,20 +137,16 @@ private noncomputable def explicitBinaryClockPivot0
     have h12 := hcol 1
     change (M 0 2).coeff 0 = 0 at h02
     change (M 1 2).coeff 0 = 0 at h12
-    change
-      (M 0 0).coeff 0 * (M 1 2).coeff 0 -
-        (M 0 1).coeff 0 * (M 0 2).coeff 0 = 0
-    rw [h12, h02]
-    ring
+    rw [Polynomial.coeff_zero_eq_eval_zero]
+    rw [Polynomial.coeff_zero_eq_eval_zero] at h02 h12
+    simp [threePivot0BinarySchurSeries, h02, h12]
   · have h02 := hcol 0
     have h22 := hcol 2
     change (M 0 2).coeff 0 = 0 at h02
     change (M 2 2).coeff 0 = 0 at h22
-    change
-      (M 0 0).coeff 0 * (M 2 2).coeff 0 -
-        (M 0 2).coeff 0 * (M 0 2).coeff 0 = 0
-    rw [h22, h02]
-    ring
+    rw [Polynomial.coeff_zero_eq_eval_zero]
+    rw [Polynomial.coeff_zero_eq_eval_zero] at h02 h22
+    simp [threePivot0BinarySchurSeries, h02, h22]
   · have hp :
         (M 0 0).coeff 0 ≠ 0 := by
       simpa [M, ExactZeroThreeSchurClock.tailConstantMatrix] using hpivot
@@ -211,20 +207,16 @@ private noncomputable def explicitBinaryClockPivot1
     have h12 := hcol 1
     change (M 0 2).coeff 0 = 0 at h02
     change (M 1 2).coeff 0 = 0 at h12
-    change
-      (M 1 1).coeff 0 * (M 0 2).coeff 0 -
-        (M 0 1).coeff 0 * (M 1 2).coeff 0 = 0
-    rw [h02, h12]
-    ring
+    rw [Polynomial.coeff_zero_eq_eval_zero]
+    rw [Polynomial.coeff_zero_eq_eval_zero] at h02 h12
+    simp [threePivot1BinarySchurSeries, h02, h12]
   · have h12 := hcol 1
     have h22 := hcol 2
     change (M 1 2).coeff 0 = 0 at h12
     change (M 2 2).coeff 0 = 0 at h22
-    change
-      (M 1 1).coeff 0 * (M 2 2).coeff 0 -
-        (M 1 2).coeff 0 * (M 1 2).coeff 0 = 0
-    rw [h22, h12]
-    ring
+    rw [Polynomial.coeff_zero_eq_eval_zero]
+    rw [Polynomial.coeff_zero_eq_eval_zero] at h12 h22
+    simp [threePivot1BinarySchurSeries, h12, h22]
   · have hp :
         (M 1 1).coeff 0 ≠ 0 := by
       simpa [M, ExactZeroThreeSchurClock.tailConstantMatrix] using hpivot
