@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9774**.
+Distinct declaration spellings indexed: **9777**.
 
 ## Repeated declaration spellings
 
@@ -3252,6 +3252,7 @@ Distinct declaration spellings indexed: **9774**.
 - `ThreeSchurTangentAtFirstBreak.kernelDerivative_pivot_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
 - `ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
+- `ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
 - `ThreeSchurTangentAtFirstBreak.relativeTailFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
 - `ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
 - `ThreeSchurTangentAtFirstBreak.tailKernelOpening_or_fullyTangent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
@@ -3314,7 +3315,9 @@ Distinct declaration spellings indexed: **9774**.
 - `TopKernelThreeSchurPrincipalFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurPrincipalPivot` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurPrincipalPivot.toRepresentedSourceSchurWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`
+- `TopKernelThreeSchurRelativeGeometricFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
 - `TopKernelThreeSchurRelativeTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
+- `TopKernelThreeSchurRelativeTailFrontier.toGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
 - `TopKernelThreeSchurSecondStageFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurSecondStage`
 - `TopKernelThreeSchurZeroRelativeBinaryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `TopKernelThreeSchurZeroRelativeBinaryFrontier.toFiniteFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryEndpoint`
