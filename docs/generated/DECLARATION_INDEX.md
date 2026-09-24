@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9683**.
+Distinct declaration spellings indexed: **9688**.
 
 ## Repeated declaration spellings
 
@@ -7912,7 +7912,10 @@ Distinct declaration spellings indexed: **9683**.
 - `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
 - `rankOneClearedThreeSchurMatrix` — `def` in `HC4.Newton.RankOneThreeSchur`
 - `rankOneClearedThreeSchurMatrixD` — `def` in `HC4.Newton.RankOneThreeSchur`
+- `rankOneClearedThreeSchurMatrixD_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `rankOneClearedThreeSchurMatrixX` — `def` in `HC4.Newton.RankOneThreeSchur`
+- `rankOneClearedThreeSchurMatrixX_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `rankOneClearedThreeSchurMatrix_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `rankOneClearedThreeSchurMatrix_eq_zero` — `theorem` in `HC4.Newton.RankOneThreeSchur`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
@@ -9582,7 +9585,9 @@ Distinct declaration spellings indexed: **9683**.
 - `threePivot2BinarySchurSeries_determinant` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `threeSchurBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurBlock_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurBlock_coeff_zero_symm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurBlock_constantMinor_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
+- `threeSchurBlock_constantPivotMinor_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurClockData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `threeSchurCoefficientMatrixAtFirstBreak` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`

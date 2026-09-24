@@ -12210,7 +12210,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.RankOneThreeSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
-- Declarations: `theorem hessianMinor_linearPower_eq_zero`, `def threeSchurBlock`, `theorem threeSchurBlock_coeff_zero`, `theorem threeSchurBlock_constantMinor_zero`, `theorem threeSchurBlock_determinantCore`, `inductive TopKernelThreeSchurClockData`, `theorem threeSchurClockData`
+- Declarations: `theorem hessianMinor_linearPower_eq_zero`, `def threeSchurBlock`, `theorem threeSchurBlock_coeff_zero`, `theorem threeSchurBlock_constantMinor_zero`, `theorem threeSchurBlock_determinantCore`, `inductive TopKernelThreeSchurClockData`, `theorem threeSchurBlock_coeff_zero_symm`, `theorem threeSchurBlock_constantPivotMinor_zero`, `theorem rankOneClearedThreeSchurMatrix_coeff_zero`, `theorem rankOneClearedThreeSchurMatrixD_coeff_zero`, `theorem rankOneClearedThreeSchurMatrixX_coeff_zero`, `theorem threeSchurClockData`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurFirstEntry`
 
