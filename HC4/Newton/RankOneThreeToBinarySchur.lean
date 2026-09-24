@@ -213,21 +213,32 @@ private noncomputable def toBinaryClockPivot0
     determinantFactor := ?_
   }
   · have hm := hall 0 0 1 1
-    have hs := symmEntry hC 1 0
+    change
+      (M 0 0).coeff 0 * (M 1 1).coeff 0 -
+          (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 1 0)
     rw [hs] at hm
-    simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot0BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 0 0 1 2
-    have hs := symmEntry hC 1 0
+    change
+      (M 0 0).coeff 0 * (M 1 2).coeff 0 -
+          (M 0 2).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 1 0)
     rw [hs] at hm
-    simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
-      mul_comm] using hm
+    simpa [threePivot0BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
   · have hm := hall 0 0 2 2
-    have hs := symmEntry hC 2 0
+    change
+      (M 0 0).coeff 0 * (M 2 2).coeff 0 -
+          (M 0 2).coeff 0 * (M 2 0).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 2 0)
     rw [hs] at hm
-    simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot0BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 0 0).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
@@ -260,19 +271,29 @@ private noncomputable def toBinaryClockPivot1
     determinantFactor := ?_
   }
   · have hm := hall 1 1 0 0
-    have hs := symmEntry hC 1 0
+    change
+      (M 1 1).coeff 0 * (M 0 0).coeff 0 -
+          (M 1 0).coeff 0 * (M 0 1).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 1 0)
     rw [hs] at hm
-    simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot1BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 1 1 0 2
-    simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
-      mul_comm] using hm
+    change
+      (M 1 1).coeff 0 * (M 0 2).coeff 0 -
+          (M 1 2).coeff 0 * (M 0 1).coeff 0 = 0 at hm
+    simpa [threePivot1BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
   · have hm := hall 1 1 2 2
-    have hs := symmEntry hC 2 1
+    change
+      (M 1 1).coeff 0 * (M 2 2).coeff 0 -
+          (M 1 2).coeff 0 * (M 2 1).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 2 1)
     rw [hs] at hm
-    simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot1BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 1 1).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
@@ -305,21 +326,32 @@ private noncomputable def toBinaryClockPivot2
     determinantFactor := ?_
   }
   · have hm := hall 2 2 0 0
-    have hs := symmEntry hC 2 0
+    change
+      (M 2 2).coeff 0 * (M 0 0).coeff 0 -
+          (M 2 0).coeff 0 * (M 0 2).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 2 0)
     rw [hs] at hm
-    simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot2BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 2 2 0 1
-    have hs := symmEntry hC 2 1
+    change
+      (M 2 2).coeff 0 * (M 0 1).coeff 0 -
+          (M 2 1).coeff 0 * (M 0 2).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 2 1)
     rw [hs] at hm
-    simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
-      mul_comm] using hm
+    simpa [threePivot2BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
   · have hm := hall 2 2 1 1
-    have hs := symmEntry hC 2 1
+    change
+      (M 2 2).coeff 0 * (M 1 1).coeff 0 -
+          (M 2 1).coeff 0 * (M 1 2).coeff 0 = 0 at hm
+    have hs := congrArg (fun p : Polynomial R => p.coeff 0)
+      (symmEntry hM 2 1)
     rw [hs] at hm
-    simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
+    simpa [threePivot2BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 2 2).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
@@ -370,7 +402,8 @@ identities
 
 kill the three cross minors as well.  Symmetry then kills every 2x2 minor,
 contradicting the retained rank-two witness. -/
-set_option maxHeartbeats 800000 in\ntheorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
+set_option maxHeartbeats 800000 in
+theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
     (E : ExactZeroThreeSchurClock R)
     (hsymm : E.zeroSeries.matrix.IsSymm)
     (hdet : E.tailConstantMatrix.det = 0)
