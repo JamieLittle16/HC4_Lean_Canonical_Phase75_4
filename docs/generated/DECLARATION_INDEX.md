@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9702**.
+Distinct declaration spellings indexed: **9707**.
 
 ## Repeated declaration spellings
 
@@ -2291,11 +2291,16 @@ Distinct declaration spellings indexed: **9702**.
 - `PositiveTailExplicitBinaryClockData.wholeFamilySchurProvenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance`
 - `PositiveTailExplicitRankOneClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - `PositiveTailExplicitRankOneClockData.exactRankOneClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
+- `PositiveTailExplicitRankOneClockData.firstTransverseBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PositiveTailExplicitRankOneClockData.firstTransverse_representedSourceGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
 - `PositiveTailExplicitRankOneClockData.sourceHonestEndpointSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
 - `PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
 - `PositiveTailExplicitRankOneClockData.wholeFamilyFirstTransverseOpening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
+- `PositiveTailRankOneClosingSourcePointGeometry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
+- `PositiveTailRankOnePreterminalSourcePointGeometry` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PositiveTailRankOneSourceHonestEndpointSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
+- `PositiveTailRankOneSourceHonestEndpointSplit.toSourcePointGeometricEndpoint` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
+- `PositiveTailRankOneSourcePointGeometricEndpoint` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PositiveTailRankOneTransverseRepresentedSourceGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
 - `PositiveTailRankOneWholeFamilyFirstTransverseOpening` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `PositiveTailRepresentedSourceSchurWitness` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
