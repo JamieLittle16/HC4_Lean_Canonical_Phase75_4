@@ -104,6 +104,32 @@ theorem topKernelReesSource_hessianDeterminant_eq_one :
     T.terminal.blocker.presented.zeroDefect_specialFiber_hessianDeterminant_eq_one
       T.presented_zero
 
+
+/-- The represented source used by the top-kernel reverse-Rees interpolation
+retains the exact marked collision already carried by the presented state. -/
+theorem topKernelReesSource_exactCollision :
+    HasExactGradientCollision
+      T.topKernelReesSource
+      (fun _ : Fin 4 => (0 : K))
+      (coordinateAxisPoint (K := K) (0 : Fin 4)) := by
+  have hcoll :=
+    polynomialFamilyExactGradientCollision_specialFiber
+      T.terminal.blocker.presented.family
+      (zeroPolynomialSection (K := K))
+      T.terminal.blocker.presented.movingSection
+      T.terminal.blocker.presented.exactCollision
+  simpa [topKernelReesSource,
+    T.terminal.blocker.presented.sectionSpecial] using hcoll
+
+/-- The two marked collision points on the represented source are distinct. -/
+theorem topKernelReesSource_collisionPoints_ne :
+    (fun _ : Fin 4 => (0 : K)) ≠
+      coordinateAxisPoint (K := K) (0 : Fin 4) := by
+  exact
+    Ne.symm
+      (coordinateAxisPoint_zero_ne_zeroPoint
+        (K := K))
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
