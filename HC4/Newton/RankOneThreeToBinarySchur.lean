@@ -561,23 +561,32 @@ theorem exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular
           -(M 0 1 * M 2 2 - M 0 2 * M 1 2) := by ring
       _ = 0 := by rw [hcross2]; simp
 
+  have h01symE :
+      E.tailConstantMatrix 1 0 = E.tailConstantMatrix 0 1 := by
+    simpa [M] using h01sym
+  have h02symE :
+      E.tailConstantMatrix 2 0 = E.tailConstantMatrix 0 2 := by
+    simpa [M] using h02sym
+  have h12symE :
+      E.tailConstantMatrix 2 1 = E.tailConstantMatrix 1 2 := by
+    simpa [M] using h12sym
+
   rcases hminor with ⟨i, j, k, l, hne⟩
   apply hne
   fin_cases i <;> fin_cases j <;> fin_cases k <;> fin_cases l <;>
-    simp only [M, h01sym, h02sym, h12sym] <;>
     first
-    | simpa only [mul_comm] using hp01'
-    | simpa only [mul_comm] using hp01rev
-    | simpa only [mul_comm] using hp02'
-    | simpa only [mul_comm] using hp02rev
-    | simpa only [mul_comm] using hp12'
-    | simpa only [mul_comm] using hp12rev
-    | simpa only [mul_comm] using hcross0
-    | simpa only [mul_comm] using hcross0rev
-    | simpa only [mul_comm] using hcross1
-    | simpa only [mul_comm] using hcross1rev
-    | simpa only [mul_comm] using hcross2
-    | simpa only [mul_comm] using hcross2rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp01'
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp01rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp02'
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp02rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp12'
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hp12rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross0
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross0rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross1
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross1rev
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross2
+    | simpa [M, h01symE, h02symE, h12symE, mul_comm] using hcross2rev
     | ring
 
 /-- Applied to a residual-positive first 3x3 tail, the rank-two branch has a
