@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9622**.
+Distinct declaration spellings indexed: **9623**.
 
 ## Repeated declaration spellings
 
@@ -4321,6 +4321,7 @@ Distinct declaration spellings indexed: **9622**.
 - `commonParameterFactor_one_exactCollision_and_strictRestart` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `commonParameterFactor_one_hasHessianDefect_sub_four` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `commonParameterFactor_one_strictGlobalRestart` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
+- `commonScaleThreeMatrix` — `def` in `HC4.Newton.NestedRankOneThreeSchurTailScaling`
 - `common_parameter_cube` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `common_r_s_levels_eq_zero` — `theorem` in `HC4.Toric.SupportIntersection`
 - `common_r_s_support_on_pq_cone` — `theorem` in `HC4.Toric.SupportIntersection`

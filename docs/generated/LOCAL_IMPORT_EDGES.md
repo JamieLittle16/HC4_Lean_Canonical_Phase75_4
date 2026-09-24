@@ -600,6 +600,8 @@ human architecture guide.
   - `HC4.Newton.RankOneThreeToBinarySchur`
 - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurFourBlock`
+- `HC4.Newton.NestedRankOneThreeSchurTailScaling`
+  - `HC4.Newton.RankOneThreeToBinarySchur`
 - `HC4.Newton.OneZeroBlockDeterminant`
   - _(no local imports)_
 - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
