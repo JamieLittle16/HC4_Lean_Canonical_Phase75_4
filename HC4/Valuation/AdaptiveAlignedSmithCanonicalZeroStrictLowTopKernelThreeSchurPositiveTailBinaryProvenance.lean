@@ -117,21 +117,28 @@ private noncomputable def explicitBinaryClockPivot0
     clearingFactor_coeff_zero_ne_zero := ?_
     determinantFactor := ?_
   }
-  · have h10 :
-        E.tailConstantMatrix 1 0 =
-          E.tailConstantMatrix 0 1 := hsymmC 1 0
-    simpa [threePivot0BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
-      Polynomial.coeff_zero_eq_eval_zero, h10] using h01
+  · have hm := h01
+    change
+      (M 0 0).coeff 0 * (M 1 1).coeff 0 -
+          (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
+      simpa using congrArg
+        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
+        (symmEntry hsymmM 1 0)
+    rw [hs] at hm
+    simpa [threePivot0BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero] using hm
   · have h02 := hcol 0
     have h12 := hcol 1
-    simpa [threePivot0BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
+    change (M 0 2).coeff 0 = 0 at h02
+    change (M 1 2).coeff 0 = 0 at h12
+    simp [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, h02, h12]
   · have h02 := hcol 0
     have h22 := hcol 2
-    simpa [threePivot0BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
+    change (M 0 2).coeff 0 = 0 at h02
+    change (M 2 2).coeff 0 = 0 at h22
+    simp [threePivot0BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, h02, h22]
   · have hp :
         (M 0 0).coeff 0 ≠ 0 := by
@@ -173,21 +180,28 @@ private noncomputable def explicitBinaryClockPivot1
     clearingFactor_coeff_zero_ne_zero := ?_
     determinantFactor := ?_
   }
-  · have h10 :
-        E.tailConstantMatrix 1 0 =
-          E.tailConstantMatrix 0 1 := hsymmC 1 0
-    simpa [threePivot1BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
-      Polynomial.coeff_zero_eq_eval_zero, h10, mul_comm] using h01
+  · have hm := h01
+    change
+      (M 0 0).coeff 0 * (M 1 1).coeff 0 -
+          (M 0 1).coeff 0 * (M 1 0).coeff 0 = 0 at hm
+    have hs : (M 1 0).coeff 0 = (M 0 1).coeff 0 := by
+      simpa using congrArg
+        (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
+        (symmEntry hsymmM 1 0)
+    rw [hs] at hm
+    simpa [threePivot1BinarySchurSeries,
+      Polynomial.coeff_zero_eq_eval_zero, mul_comm] using hm
   · have h02 := hcol 0
     have h12 := hcol 1
-    simpa [threePivot1BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
+    change (M 0 2).coeff 0 = 0 at h02
+    change (M 1 2).coeff 0 = 0 at h12
+    simp [threePivot1BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, h02, h12]
   · have h12 := hcol 1
     have h22 := hcol 2
-    simpa [threePivot1BinarySchurSeries, M,
-      ExactZeroThreeSchurClock.tailConstantMatrix,
+    change (M 1 2).coeff 0 = 0 at h12
+    change (M 2 2).coeff 0 = 0 at h22
+    simp [threePivot1BinarySchurSeries,
       Polynomial.coeff_zero_eq_eval_zero, h12, h22]
   · have hp :
         (M 1 1).coeff 0 ≠ 0 := by
@@ -229,10 +243,12 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
   by_contra hnone
   push_neg at hnone
   rcases hnone with ⟨h00, h11⟩
+  have h00C : C 0 0 = 0 := by simpa [C, E] using h00
+  have h11C : C 1 1 = 0 := by simpa [C, E] using h11
   have h01sq : C 0 1 * C 0 1 = 0 := by
     have hz : C 0 0 * C 1 1 - C 0 1 * C 1 0 = 0 := by
       simpa [C, E] using h01
-    rw [h00, h11, h10] at hz
+    rw [h00C, h11C, h10] at hz
     simpa using neg_eq_zero.mp hz
   have h01z : C 0 1 = 0 :=
     (mul_self_eq_zero.mp h01sq)
@@ -253,7 +269,8 @@ theorem activeDiagonal_ne_zero_of_positiveTail_rankOne
     rw [hs21, hcol 1]
   have h22 : C 2 2 = 0 := hcol 2
   apply E.tailConstantMatrix_ne_zero
-  ext i j
+  apply Matrix.ext
+  intro i j
   fin_cases i <;> fin_cases j <;>
     simp_all [C]
 
@@ -305,7 +322,7 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailDetailedFrontier
         E.tailConstantMatrix 0 0 * E.tailConstantMatrix 1 1 -
           E.tailConstantMatrix 0 1 * E.tailConstantMatrix 1 0 = 0 :=
       not_ne_iff.mp h01
-    rcases D.activeDiagonal_ne_zero_of_positiveTail_rankOne hpos h01z with
+    rcases activeDiagonal_ne_zero_of_positiveTail_rankOne D hpos h01z with
       h0 | h1
     · let clock :=
         explicitBinaryClockPivot0 (P := P) S h0 h01z hcol
