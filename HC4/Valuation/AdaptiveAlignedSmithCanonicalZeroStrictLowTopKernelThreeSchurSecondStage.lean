@@ -47,16 +47,19 @@ theorem TopKernelThreeSchurClockData.exactZeroThreeSchurClock_isSymm
     S.toExactZeroThreeSchurClock.zeroSeries.matrix.IsSymm := by
   cases S with
   | pivotA hpivot hzero hdet =>
+      apply Matrix.ext
       intro i j
       fin_cases i <;> fin_cases j <;>
         simp [TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
           GeneralFourBlock.rankOneClearedThreeSchurMatrix]
   | pivotD hpivot hzero hdet =>
+      apply Matrix.ext
       intro i j
       fin_cases i <;> fin_cases j <;>
         simp [TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixD]
   | pivotX hpivot hzero hdet =>
+      apply Matrix.ext
       intro i j
       fin_cases i <;> fin_cases j <;>
         simp [TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
@@ -104,7 +107,11 @@ theorem TopKernelThreeSchurClockData.secondStageFrontier
   | rankOne hres hall hne =>
       let B : ExactZeroSchurClock (MvPolynomial (Fin 4) K) :=
         E.toBinaryZeroSchurClock_of_rankOne hsymm hall hne
-      exact ⟨.binaryZeroSchur hres B rfl⟩
+      have hdefect :
+          B.defect = E.residualDefect := by
+        simpa [B] using
+          E.toBinaryZeroSchurClock_of_rankOne_defect hsymm hall hne
+      exact ⟨.binaryZeroSchur hres B (by simpa [E] using hdefect)⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
