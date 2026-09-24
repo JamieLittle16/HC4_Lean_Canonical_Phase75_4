@@ -476,6 +476,8 @@ theorem TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness
       have hprod :
           P.threeSchurBlock.x *
               (ThreeSchurActivePair.pair02.block P.threeSchurBlock).schurA ≠ 0 := by
+        change
+          P.threeSchurBlock.x * P.threeSchurBlock.pair02Block.schurA ≠ 0
         rw [← P.threeSchurBlock.threePivot0_rankOneClearedThreeSchurMatrixX_active]
         simpa [E, TopKernelThreeSchurClockData.toExactZeroThreeSchurClock]
           using hraw
