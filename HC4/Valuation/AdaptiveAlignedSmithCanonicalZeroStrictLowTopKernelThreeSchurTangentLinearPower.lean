@@ -212,7 +212,7 @@ theorem ThreeSchurTangentAtFirstBreak.kernelDerivative_gradientRatio
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M)
+    (R : ThreeSchurTangentAtFirstBreak S M)
     (i : Fin 4) :
     MvPolynomial.pderiv i
         (MvPolynomial.pderiv kernelCoordinate M.sourceLayer) =
@@ -264,7 +264,7 @@ theorem ThreeSchurTangentAtFirstBreak.kernelDerivative_pivot_ne_zero
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
+    (R : ThreeSchurTangentAtFirstBreak S M) :
     MvPolynomial.pderiv S.pivotCoordinate
       (MvPolynomial.pderiv kernelCoordinate M.sourceLayer) ≠ 0 := by
   have hmixed :
@@ -301,7 +301,7 @@ structure ThreeSchurTangentKernelDerivativeLinearPowerData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1) where
-  tangent : S.ThreeSchurTangentAtFirstBreak M
+  tangent : ThreeSchurTangentAtFirstBreak S M
   coefficient : K
   kernelDerivative_eq_power :
     MvPolynomial.pderiv kernelCoordinate M.sourceLayer =
@@ -317,8 +317,8 @@ theorem ThreeSchurTangentAtFirstBreak.toKernelDerivativeLinearPowerData
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : S.ThreeSchurTangentAtFirstBreak M) :
-    Nonempty (S.ThreeSchurTangentKernelDerivativeLinearPowerData M) := by
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (ThreeSchurTangentKernelDerivativeLinearPowerData S M) := by
   let A :=
     MvPolynomial.pderiv kernelCoordinate M.sourceLayer
   have hhomG := M.sourceLayer_homogeneous
