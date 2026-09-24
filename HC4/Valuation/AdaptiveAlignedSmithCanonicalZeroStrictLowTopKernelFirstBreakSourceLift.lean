@@ -250,6 +250,39 @@ private theorem layerMinor2_eq
   simp only [Matrix.submatrix_apply, parameterFirstHessian_coeff]
   rw [hessianPrincipalMinor_eq_square]
 
+private theorem layerMinor0_eq_kernel
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      T.topKernelReverseReesFamily kernelCoordinate
+    B.a.coeff j * B.z.coeff j - B.q.coeff j * B.q.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer T.topKernelReverseReesFamily j)
+        (kernelLastPerm kernelCoordinate 0) kernelCoordinate := by
+  simpa only [kernelLastPerm_last] using P.layerMinor0_eq j
+
+private theorem layerMinor1_eq_kernel
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      T.topKernelReverseReesFamily kernelCoordinate
+    B.d.coeff j * B.z.coeff j - B.s.coeff j * B.s.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer T.topKernelReverseReesFamily j)
+        (kernelLastPerm kernelCoordinate 1) kernelCoordinate := by
+  simpa only [kernelLastPerm_last] using P.layerMinor1_eq j
+
+private theorem layerMinor2_eq_kernel
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (j : ℕ) :
+    let B := kernelLastFamilyHessianFourBlock
+      T.topKernelReverseReesFamily kernelCoordinate
+    B.x.coeff j * B.z.coeff j - B.y.coeff j * B.y.coeff j =
+      HC4.Polynomial.hessianPrincipalMinor
+        (familyParameterLayer T.topKernelReverseReesFamily j)
+        (kernelLastPerm kernelCoordinate 2) kernelCoordinate := by
+  simpa only [kernelLastPerm_last] using P.layerMinor2_eq j
+
 private theorem activeIndex0_ne_kernel
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     kernelLastPerm kernelCoordinate (0 : Fin 4) ≠ kernelCoordinate := by
@@ -260,7 +293,7 @@ private theorem activeIndex0_ne_kernel
     simpa only [kernelLastPerm_last] using h
   have h03 : (0 : Fin 4) = (3 : Fin 4) :=
     (kernelLastPerm kernelCoordinate).injective h'
-  norm_num at h03
+  exact (by decide : (0 : Fin 4) ≠ 3) h03
 
 private theorem activeIndex1_ne_kernel
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
@@ -272,7 +305,7 @@ private theorem activeIndex1_ne_kernel
     simpa only [kernelLastPerm_last] using h
   have h13 : (1 : Fin 4) = (3 : Fin 4) :=
     (kernelLastPerm kernelCoordinate).injective h'
-  norm_num at h13
+  exact (by decide : (1 : Fin 4) ≠ 3) h13
 
 private theorem activeIndex2_ne_kernel
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
@@ -284,7 +317,7 @@ private theorem activeIndex2_ne_kernel
     simpa only [kernelLastPerm_last] using h
   have h23 : (2 : Fin 4) = (3 : Fin 4) :=
     (kernelLastPerm kernelCoordinate).injective h'
-  norm_num at h23
+  exact (by decide : (2 : Fin 4) ≠ 3) h23
 
 private theorem sourceMinor0_of_familyMinor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -604,15 +637,15 @@ theorem actualRankTwo_or_exactLowerOrdinaryLayerMinor
               (kernelLastPerm kernelCoordinate 2) kernelCoordinate ≠ 0 := by
         rcases h with h0 | h1 | h2
         · left
-          rw [← P.layerMinor0_eq j]
+          rw [← P.layerMinor0_eq_kernel j]
           simpa only [kernelLastPerm_last] using h0
         · right
           left
-          rw [← P.layerMinor1_eq j]
+          rw [← P.layerMinor1_eq_kernel j]
           simpa only [kernelLastPerm_last] using h1
         · right
           right
-          rw [← P.layerMinor2_eq j]
+          rw [← P.layerMinor2_eq_kernel j]
           simpa only [kernelLastPerm_last] using h2
       rcases hminor with h0 | h1 | h2
       · exact Or.inr (P.exactLayerData (0 : Fin 3) (by
@@ -715,7 +748,7 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
           HC4.Polynomial.hessianPrincipalMinor
             (familyParameterLayer T.topKernelReverseReesFamily j)
             (kernelLastPerm kernelCoordinate 0) kernelCoordinate ≠ 0 := by
-        rw [← P.layerMinor0_eq j]
+        rw [← P.layerMinor0_eq_kernel j]
         rw [hzj]
         simpa using neg_ne_zero.mpr (mul_ne_zero hq hq)
       rcases P.exactLayerData (0 : Fin 3) hminor with ⟨L⟩
@@ -744,16 +777,10 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
               (L.sourceDegree : ℤ)
               T.topKernelReesSource)
             L.index kernelCoordinate ≠ 0 := by
-        have hq' :
-            (parameterFirstHessian T.topKernelReverseReesFamily
-              (kernelLastPerm kernelCoordinate 0)
-              kernelCoordinate).coeff L.order ≠ 0 := by
-          rw [horder]
-          simpa [B, kernelLastFamilyHessianFourBlock,
-            GeneralFourBlock.ofSymmetricMatrix,
-            kernelLastParameterFirstHessian] using hq
-        rw [parameterFirstHessian_coeff, L.exactLayer] at hq'
-        simpa using hq'
+        intro hzero
+        apply L.minor_ne_zero
+        rw [hessianPrincipalMinor_eq_square, hdiag, hzero]
+        ring
       exact Or.inr ⟨{
         layer := L
         kernelDiagonal_eq_zero := hdiag
@@ -764,7 +791,7 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
           HC4.Polynomial.hessianPrincipalMinor
             (familyParameterLayer T.topKernelReverseReesFamily j)
             (kernelLastPerm kernelCoordinate 1) kernelCoordinate ≠ 0 := by
-        rw [← P.layerMinor1_eq j]
+        rw [← P.layerMinor1_eq_kernel j]
         rw [hzj]
         simpa using neg_ne_zero.mpr (mul_ne_zero hs hs)
       rcases P.exactLayerData (1 : Fin 3) hminor with ⟨L⟩
@@ -793,16 +820,10 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
               (L.sourceDegree : ℤ)
               T.topKernelReesSource)
             L.index kernelCoordinate ≠ 0 := by
-        have hs' :
-            (parameterFirstHessian T.topKernelReverseReesFamily
-              (kernelLastPerm kernelCoordinate 1)
-              kernelCoordinate).coeff L.order ≠ 0 := by
-          rw [horder]
-          simpa [B, kernelLastFamilyHessianFourBlock,
-            GeneralFourBlock.ofSymmetricMatrix,
-            kernelLastParameterFirstHessian] using hs
-        rw [parameterFirstHessian_coeff, L.exactLayer] at hs'
-        simpa using hs'
+        intro hzero
+        apply L.minor_ne_zero
+        rw [hessianPrincipalMinor_eq_square, hdiag, hzero]
+        ring
       exact Or.inr ⟨{
         layer := L
         kernelDiagonal_eq_zero := hdiag
@@ -813,7 +834,7 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
           HC4.Polynomial.hessianPrincipalMinor
             (familyParameterLayer T.topKernelReverseReesFamily j)
             (kernelLastPerm kernelCoordinate 2) kernelCoordinate ≠ 0 := by
-        rw [← P.layerMinor2_eq j]
+        rw [← P.layerMinor2_eq_kernel j]
         rw [hzj]
         simpa using neg_ne_zero.mpr (mul_ne_zero hy hy)
       rcases P.exactLayerData (2 : Fin 3) hminor with ⟨L⟩
@@ -842,16 +863,10 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
               (L.sourceDegree : ℤ)
               T.topKernelReesSource)
             L.index kernelCoordinate ≠ 0 := by
-        have hy' :
-            (parameterFirstHessian T.topKernelReverseReesFamily
-              (kernelLastPerm kernelCoordinate 2)
-              kernelCoordinate).coeff L.order ≠ 0 := by
-          rw [horder]
-          simpa [B, kernelLastFamilyHessianFourBlock,
-            GeneralFourBlock.ofSymmetricMatrix,
-            kernelLastParameterFirstHessian] using hy
-        rw [parameterFirstHessian_coeff, L.exactLayer] at hy'
-        simpa using hy'
+        intro hzero
+        apply L.minor_ne_zero
+        rw [hessianPrincipalMinor_eq_square, hdiag, hzero]
+        ring
       exact Or.inr ⟨{
         layer := L
         kernelDiagonal_eq_zero := hdiag
@@ -872,7 +887,6 @@ theorem actualRankTwo_or_exactLowerMixedOrdinaryLayer
       coeff_mul_eq_constant_mul_of_right_vanishes_below B.x B.z hzLower
     have hactive :=
       P.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
-        T.topFace.degree_ge_three
     change B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 at hactive
     rcases hactive with ha | hd | hx
     · have hfamily :
