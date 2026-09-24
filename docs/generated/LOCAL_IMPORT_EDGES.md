@@ -594,6 +594,10 @@ human architecture guide.
 - `HC4.Newton.MvBoundaryStrata`
   - `HC4.Newton.BoundaryStrata`
   - `HC4.Polynomial.FourExponent`
+- `HC4.Newton.NestedRankOneThreeSchurFourBlock`
+  - `HC4.Newton.GeneralFourBlockSchur`
+  - `HC4.Newton.RankOneThreeSchur`
+  - `HC4.Newton.RankOneThreeToBinarySchur`
 - `HC4.Newton.OneZeroBlockDeterminant`
   - _(no local imports)_
 - `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
