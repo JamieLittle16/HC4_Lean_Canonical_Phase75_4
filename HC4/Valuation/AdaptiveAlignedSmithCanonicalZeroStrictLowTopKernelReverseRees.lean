@@ -89,7 +89,7 @@ noncomputable def topKernelReverseReesRightSection :
       (coordinateAxisPoint (K := K) (0 : Fin 4)))
 
 @[simp] theorem topKernelReverseReesLeftSection_eq_zero :
-    T.topKernelReverseReesLeftSection =
+    topKernelReverseReesLeftSection =
       (fun _ : Fin 4 => (0 : Polynomial K)) := by
   funext i
   simp [topKernelReverseReesLeftSection,
@@ -98,13 +98,13 @@ noncomputable def topKernelReverseReesRightSection :
 
 theorem topKernelReverseReesRightSection_apply
     (i : Fin 4) :
-    T.topKernelReverseReesRightSection i =
+    topKernelReverseReesRightSection i =
       Polynomial.X *
         Polynomial.C
           (coordinateAxisPoint (K := K) (0 : Fin 4) i) := by
   simp [topKernelReverseReesRightSection,
     adaptiveSmithInflateSection, ordinaryTopNatWeight,
-    polynomialConstantSection]
+    polynomialConstantSection, mul_comm]
 
 /-- The honest ordinary reverse-Rees family carries the marked source
 collision as the moving polynomial-family collision `0 ~ tau e_0`.
@@ -114,8 +114,21 @@ asserted there. -/
 theorem topKernelReverseRees_exactCollision :
     HasPolynomialFamilyExactGradientCollision
       T.topKernelReverseReesFamily
-      T.topKernelReverseReesLeftSection
-      T.topKernelReverseReesRightSection := by
+      topKernelReverseReesLeftSection
+      topKernelReverseReesRightSection := by
+  have hsource :
+      HasExactGradientCollision
+        T.topKernelReesSource
+        (fun _ : Fin 4 => (0 : K))
+        (coordinateAxisPoint (K := K) (0 : Fin 4)) := by
+    have hcoll :=
+      polynomialFamilyExactGradientCollision_specialFiber
+        T.terminal.blocker.presented.family
+        (zeroPolynomialSection (K := K))
+        T.terminal.blocker.presented.movingSection
+        T.terminal.blocker.presented.exactCollision
+    simpa [topKernelReesSource,
+      T.terminal.blocker.presented.sectionSpecial] using hcoll
   unfold topKernelReverseReesFamily
   exact
     reverseWeightedReesFamily_exactGradientCollision
@@ -124,7 +137,7 @@ theorem topKernelReverseRees_exactCollision :
       T.topKernelReesSource_hasReverseWeightBound
       (fun _ : Fin 4 => (0 : K))
       (coordinateAxisPoint (K := K) (0 : Fin 4))
-      T.topKernelReesSource_exactCollision
+      hsource
 
 /-- Parameter `0` is literally the stored singular top face. -/
 theorem topKernelReverseRees_specialFiber_eq_topFace :
