@@ -129,7 +129,7 @@ theorem TopKernelThreeSchurClockData.topFace_pivotDiagonal_ne_zero
       rw [h] at hpivot
       simpa using hpivot
 
-private theorem firstBreak_kernelRow_lower_zero'
+theorem firstBreak_kernelRow_lower_zero'
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) :
     let B := kernelLastFamilyHessianFourBlock
