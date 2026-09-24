@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree
 import Mathlib.Tactic
 
 /-!
@@ -129,6 +130,64 @@ theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.exists_sourcePoin
     (G : P.PositiveTailRankOneTransverseRepresentedSourceGeometry B) :
     Nonempty P.PositiveTailRepresentedSourceSchurPointWitness :=
   G.toRepresentedSourceWitness.exists_sourcePointWitness
+
+/-- Actual represented-source 3x3 Hessian-minor geometry at a source point.
+The principal and mixed orientations are retained explicitly. -/
+inductive PositiveTailRepresentedSourceThreeByThreePointGeometry
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | firstPrincipal
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (detValue_ne :
+        MvPolynomial.eval point
+          (HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix
+            (permutedPolynomialHessianFourBlock
+              (pair.sourcePerm kernelCoordinate) T.topKernelReesSource)).det ≠ 0)
+  | mixed
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (detValue_ne :
+        MvPolynomial.eval point
+          (HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix
+            (permutedPolynomialHessianFourBlock
+              (pair.sourcePerm kernelCoordinate) T.topKernelReesSource)).det ≠ 0)
+  | secondPrincipal
+      (pair : ThreeSchurActivePair)
+      (point : Fin 4 → K)
+      (detValue_ne :
+        MvPolynomial.eval point
+          (HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix
+            (permutedPolynomialHessianFourBlock
+              (pair.sourcePerm kernelCoordinate) T.topKernelReesSource)).det ≠ 0)
+
+/-- A represented-source Schur point witness is literally an evaluated nonzero
+3x3 Hessian minor of the represented special fibre. -/
+theorem PositiveTailRepresentedSourceSchurPointWitness.toThreeByThreePointGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (G : P.PositiveTailRepresentedSourceSchurPointWitness) :
+    P.PositiveTailRepresentedSourceThreeByThreePointGeometry := by
+  cases G with
+  | schurA pair point hne =>
+      refine .firstPrincipal pair point ?_
+      rw [HC4.Valuation.GeneralFourBlock.firstThreeMinorMatrix_det]
+      exact hne
+  | schurB pair point hne =>
+      refine .mixed pair point ?_
+      rw [HC4.Valuation.GeneralFourBlock.mixedThreeMinorMatrix_det]
+      exact hne
+  | schurC pair point hne =>
+      refine .secondPrincipal pair point ?_
+      rw [HC4.Valuation.GeneralFourBlock.secondThreeMinorMatrix_det]
+      exact hne
+
+/-- Every branch-independent represented-source Schur witness therefore yields
+literal evaluated 3x3 Hessian-minor geometry. -/
+theorem PositiveTailRepresentedSourceSchurWitness.exists_threeByThreePointGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (G : P.PositiveTailRepresentedSourceSchurWitness) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry := by
+  rcases G.exists_sourcePointWitness with ⟨W⟩
+  exact ⟨W.toThreeByThreePointGeometry⟩
 
 /-- Literal nondegenerate source-point event in the preterminal branch.
 
