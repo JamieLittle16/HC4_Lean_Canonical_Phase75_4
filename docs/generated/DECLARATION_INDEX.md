@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9715**.
+Distinct declaration spellings indexed: **9718**.
 
 ## Repeated declaration spellings
 
@@ -2308,8 +2308,11 @@ Distinct declaration spellings indexed: **9715**.
 - `PositiveTailRankOneTransverseRepresentedSourceGeometry.toRepresentedSourceWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PositiveTailRankOneWholeFamilyFirstTransverseOpening` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `PositiveTailRepresentedSourceSchurPointWitness` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
+- `PositiveTailRepresentedSourceSchurPointWitness.toThreeByThreePointGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PositiveTailRepresentedSourceSchurWitness` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `PositiveTailRepresentedSourceSchurWitness.exists_sourcePointWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
+- `PositiveTailRepresentedSourceSchurWitness.exists_threeByThreePointGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
+- `PositiveTailRepresentedSourceThreeByThreePointGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - `PreterminalBinaryFirstDeparture` — `structure` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalBinaryFirstDeparture.kernelKernel_zero` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalBinaryFirstDeparture.layerDet` — `def` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`

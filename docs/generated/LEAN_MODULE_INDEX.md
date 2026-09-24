@@ -4409,7 +4409,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.4.83`, `A18.4.84`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - Declarations: `def firstThreeMinorMatrix`, `def mixedThreeMinorMatrix`, `def secondThreeMinorMatrix`, `theorem firstThreeMinorMatrix_det`, `theorem mixedThreeMinorMatrix_det`, `theorem secondThreeMinorMatrix_det`, `inductive AdaptiveAlignedSmithCanonicalThreeByThreeMinorGeometry`, `theorem actualMinor`, `inductive AdaptiveAlignedSmithCanonicalActualRankThreeGeometry`, `def AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart.rankThreeGeometry`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalAdaptiveSchurPreterminalRankThree`
@@ -12157,10 +12157,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint.lean`
 - Purpose: Source-point geometry for the positive-tail rank-one endpoint split
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def PositiveTailExplicitRankOneClockData.firstTransverseBlock`, `inductive PositiveTailRepresentedSourceSchurPointWitness`, `theorem PositiveTailRepresentedSourceSchurWitness.exists_sourcePointWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.toRepresentedSourceWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.exists_sourcePointWitness`, `structure PositiveTailRankOnePreterminalSourcePointGeometry`, `structure PositiveTailRankOneClosingSourcePointGeometry`, `inductive PositiveTailRankOneSourcePointGeometricEndpoint`, `theorem PositiveTailRankOneSourceHonestEndpointSplit.toSourcePointGeometricEndpoint`
+- Declarations: `def PositiveTailExplicitRankOneClockData.firstTransverseBlock`, `inductive PositiveTailRepresentedSourceSchurPointWitness`, `theorem PositiveTailRepresentedSourceSchurWitness.exists_sourcePointWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.toRepresentedSourceWitness`, `theorem PositiveTailRankOneTransverseRepresentedSourceGeometry.exists_sourcePointWitness`, `inductive PositiveTailRepresentedSourceThreeByThreePointGeometry`, `theorem PositiveTailRepresentedSourceSchurPointWitness.toThreeByThreePointGeometry`, `theorem PositiveTailRepresentedSourceSchurWitness.exists_threeByThreePointGeometry`, `structure PositiveTailRankOnePreterminalSourcePointGeometry`, `structure PositiveTailRankOneClosingSourcePointGeometry`, `inductive PositiveTailRankOneSourcePointGeometricEndpoint`, `theorem PositiveTailRankOneSourceHonestEndpointSplit.toSourcePointGeometricEndpoint`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture`
 
