@@ -67,14 +67,18 @@ private theorem firstBreak_kernelRow_lower_zero
   let B := kernelLastFamilyHessianFourBlock
     T.topKernelReverseReesFamily kernelCoordinate
   let hrow := T.topKernelLastBlock_kernelRow_ne_zero kernelCoordinate
+  change ∀ n : ℕ, n < M.mixed.layer.order →
+    B.q.coeff n = 0 ∧ B.s.coeff n = 0 ∧
+      B.y.coeff n = 0 ∧ B.z.coeff n = 0
   intro n hn
-  have horder := M.mixed.layer.order_is_firstBreak
-  have hn' :
-      n <
+  have horder :
+      M.mixed.layer.order =
         firstFourBlockKernelRowBreakOrder B hrow := by
-    have hn0 : n < M.mixed.layer.order := hn
-    rw [M.mixed.layer.order_is_firstBreak] at hn0
-    simpa [B, hrow] using hn0
+    simpa [B, hrow] using M.mixed.layer.order_is_firstBreak
+  have hn' :
+      n < firstFourBlockKernelRowBreakOrder B hrow := by
+    rw [← horder]
+    exact hn
   exact firstFourBlockKernelRowBreakOrder_lower_zero B hrow hn'
 
 private theorem firstBreak_rawKernelDiagonal_eq_zero
@@ -101,13 +105,13 @@ theorem threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) :
-    M.threeSchurCoefficientMatrixAtFirstBreak S 2 2 = 0 := by
+    threeSchurCoefficientMatrixAtFirstBreak S M 2 2 = 0 := by
   let B := kernelLastFamilyHessianFourBlock
     T.topKernelReverseReesFamily kernelCoordinate
   let j := M.mixed.layer.order
   have hj : 0 < j := by
     simpa [j] using M.mixed.layer.order_pos
-  have hlower := M.firstBreak_kernelRow_lower_zero
+  have hlower := firstBreak_kernelRow_lower_zero M
   have hqLower : ∀ n : ℕ, n < j → B.q.coeff n = 0 :=
     fun n hn => (hlower n (by simpa [j] using hn)).1
   have hsLower : ∀ n : ℕ, n < j → B.s.coeff n = 0 :=
@@ -117,7 +121,7 @@ theorem threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero
   have hzLower : ∀ n : ℕ, n < j → B.z.coeff n = 0 :=
     fun n hn => (hlower n (by simpa [j] using hn)).2.2.2
   have hzj : B.z.coeff j = 0 := by
-    simpa [B, j] using M.firstBreak_rawKernelDiagonal_eq_zero
+    simpa [B, j] using firstBreak_rawKernelDiagonal_eq_zero M
   cases S with
   | pivotA hpivot hzero hdet =>
       change
@@ -164,27 +168,28 @@ theorem threeSchurCoefficientMatrixAtFirstBreak_isSymm
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) :
-    (M.threeSchurCoefficientMatrixAtFirstBreak S).IsSymm := by
+    (threeSchurCoefficientMatrixAtFirstBreak S M).IsSymm := by
+  have hs := S.exactZeroThreeSchurClock_isSymm
+  apply Matrix.ext
   intro i j
-  have hs := S.exactZeroThreeSchurClock_isSymm i j
-  exact congrArg
-    (fun p : Polynomial (MvPolynomial (Fin 4) K) =>
-      p.coeff M.mixed.layer.order) hs
+  have hij := congrArg
+    (fun N : Matrix (Fin 3) (Fin 3)
+        (Polynomial (MvPolynomial (Fin 4) K)) =>
+      (N i j).coeff M.mixed.layer.order) hs
+  simpa [threeSchurCoefficientMatrixAtFirstBreak] using hij
 
 /-- A genuinely projected mixed opening gives a principal rank-two
 coefficient block at the exact first source layer. -/
-structure ThreeSchurProjectedRankTwoAtFirstBreak
+def ThreeSchurProjectedRankTwoAtFirstBreak
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (S : P.TopKernelThreeSchurClockData)
-    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Prop where
-  index : Fin 2
-  mixed_ne_zero :
-    M.threeSchurCoefficientMatrixAtFirstBreak S index.castSucc 2 ≠ 0
-  principalMinor_ne_zero :
-    M.threeSchurCoefficientMatrixAtFirstBreak S index.castSucc index.castSucc *
-          M.threeSchurCoefficientMatrixAtFirstBreak S 2 2 -
-        M.threeSchurCoefficientMatrixAtFirstBreak S index.castSucc 2 *
-          M.threeSchurCoefficientMatrixAtFirstBreak S 2 index.castSucc ≠ 0
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Prop :=
+  ∃ index : Fin 2,
+    threeSchurCoefficientMatrixAtFirstBreak S M index.castSucc 2 ≠ 0 ∧
+      threeSchurCoefficientMatrixAtFirstBreak S M index.castSucc index.castSucc *
+            threeSchurCoefficientMatrixAtFirstBreak S M 2 2 -
+          threeSchurCoefficientMatrixAtFirstBreak S M index.castSucc 2 *
+            threeSchurCoefficientMatrixAtFirstBreak S M 2 index.castSucc ≠ 0
 
 /-- The complementary case: the first actual Hessian kernel-row opening is
 invisible in the 1+3 quotient, so the quotient kernel column remains zero at
@@ -194,11 +199,11 @@ structure ThreeSchurTangentAtFirstBreak
     (S : P.TopKernelThreeSchurClockData)
     (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Prop where
   mixed0_zero :
-    M.threeSchurCoefficientMatrixAtFirstBreak S 0 2 = 0
+    threeSchurCoefficientMatrixAtFirstBreak S M 0 2 = 0
   mixed1_zero :
-    M.threeSchurCoefficientMatrixAtFirstBreak S 1 2 = 0
+    threeSchurCoefficientMatrixAtFirstBreak S M 1 2 = 0
   diagonal_zero :
-    M.threeSchurCoefficientMatrixAtFirstBreak S 2 2 = 0
+    threeSchurCoefficientMatrixAtFirstBreak S M 2 2 = 0
 
 /-- **Source-honest tangent split at the first kernel-row opening.** -/
 theorem projectedRankTwo_or_tangentAtFirstBreak
@@ -208,29 +213,35 @@ theorem projectedRankTwo_or_tangentAtFirstBreak
     S.ThreeSchurProjectedRankTwoAtFirstBreak M ∨
       S.ThreeSchurTangentAtFirstBreak M := by
   have hdiag :=
-    M.threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero S
+    threeSchurCoefficientMatrixAtFirstBreak_kernelDiagonal_zero S M
   have hsymm :=
-    M.threeSchurCoefficientMatrixAtFirstBreak_isSymm S
+    threeSchurCoefficientMatrixAtFirstBreak_isSymm S M
   by_cases h0 :
-      M.threeSchurCoefficientMatrixAtFirstBreak S 0 2 = 0
+      threeSchurCoefficientMatrixAtFirstBreak S M 0 2 = 0
   · by_cases h1 :
-        M.threeSchurCoefficientMatrixAtFirstBreak S 1 2 = 0
+        threeSchurCoefficientMatrixAtFirstBreak S M 1 2 = 0
     · exact Or.inr ⟨h0, h1, hdiag⟩
     · left
       refine ⟨1, h1, ?_⟩
       have hs :
-          M.threeSchurCoefficientMatrixAtFirstBreak S 2 1 =
-            M.threeSchurCoefficientMatrixAtFirstBreak S 1 2 :=
-        hsymm 2 1
+          threeSchurCoefficientMatrixAtFirstBreak S M 2 1 =
+            threeSchurCoefficientMatrixAtFirstBreak S M 1 2 := by
+        have h := congrArg
+          (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) =>
+            N 1 2) hsymm
+        simpa using h
       rw [hdiag, hs]
       simp only [mul_zero, zero_mul, zero_sub]
       exact neg_ne_zero.mpr (mul_ne_zero h1 h1)
   · left
     refine ⟨0, h0, ?_⟩
     have hs :
-        M.threeSchurCoefficientMatrixAtFirstBreak S 2 0 =
-          M.threeSchurCoefficientMatrixAtFirstBreak S 0 2 :=
-      hsymm 2 0
+        threeSchurCoefficientMatrixAtFirstBreak S M 2 0 =
+          threeSchurCoefficientMatrixAtFirstBreak S M 0 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) =>
+          N 0 2) hsymm
+      simpa using h
     rw [hdiag, hs]
     simp only [mul_zero, zero_mul, zero_sub]
     exact neg_ne_zero.mpr (mul_ne_zero h0 h0)
