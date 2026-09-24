@@ -164,141 +164,170 @@ inductive TopKernelThreeSchurClockData
             (Polynomial.X : Polynomial (MvPolynomial (Fin 4) K)) ^
               T.topKernelOrdinaryReesDefect)
 
+private theorem threeSchurBlock_coeff_zero_symm
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (i j : Fin 4) :
+    (kernelLastParameterFirstHessian
+        T.topKernelReverseReesFamily kernelCoordinate i j).coeff 0 =
+      (kernelLastParameterFirstHessian
+        T.topKernelReverseReesFamily kernelCoordinate j i).coeff 0 := by
+  unfold kernelLastParameterFirstHessian
+  simp only [Matrix.submatrix_apply]
+  exact congrArg
+    (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
+    (parameterFirstHessian_symmetric
+      T.topKernelReverseReesFamily
+      (kernelLastPerm kernelCoordinate i)
+      (kernelLastPerm kernelCoordinate j))
+
+private theorem threeSchurBlock_constantPivotMinor_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (p u v : Fin 4) :
+    (kernelLastParameterFirstHessian
+        T.topKernelReverseReesFamily kernelCoordinate p p).coeff 0 *
+        (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate u v).coeff 0 -
+      (kernelLastParameterFirstHessian
+        T.topKernelReverseReesFamily kernelCoordinate p u).coeff 0 *
+        (kernelLastParameterFirstHessian
+          T.topKernelReverseReesFamily kernelCoordinate p v).coeff 0 = 0 := by
+  have hm := P.threeSchurBlock_constantMinor_zero p p u v
+  have hs := P.threeSchurBlock_coeff_zero_symm u p
+  rw [hs] at hm
+  simpa [mul_comm] using hm
+
+set_option maxHeartbeats 500000 in
+private theorem rankOneClearedThreeSchurMatrix_coeff_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    ∀ i j : Fin 3,
+      (P.threeSchurBlock.rankOneClearedThreeSchurMatrix i j).coeff 0 = 0 := by
+  let B := P.threeSchurBlock
+  intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrix,
+      Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
+      Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
+    change _ = 0
+  all_goals
+    first
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 1 1
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 1 2
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 1 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 2 2
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 2 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (0 : Fin 4) 3 3
+
+set_option maxHeartbeats 500000 in
+private theorem rankOneClearedThreeSchurMatrixD_coeff_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    ∀ i j : Fin 3,
+      (P.threeSchurBlock.rankOneClearedThreeSchurMatrixD i j).coeff 0 = 0 := by
+  let B := P.threeSchurBlock
+  intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
+      Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
+      Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
+    change _ = 0
+  all_goals
+    first
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (1 : Fin 4) 0] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 0 0
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (1 : Fin 4) 0] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 0 2
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (1 : Fin 4) 0] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 0 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 2 2
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 2 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (1 : Fin 4) 3 3
+
+set_option maxHeartbeats 500000 in
+private theorem rankOneClearedThreeSchurMatrixX_coeff_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    ∀ i j : Fin 3,
+      (P.threeSchurBlock.rankOneClearedThreeSchurMatrixX i j).coeff 0 = 0 := by
+  let B := P.threeSchurBlock
+  intro i j
+  fin_cases i <;> fin_cases j <;>
+    simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
+      Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
+      Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
+    change _ = 0
+  all_goals
+    first
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 0,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 1] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 0 0
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 0,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 1] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 0 1
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 0,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 1] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 0 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 0,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 1] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 1 1
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 0,
+        P.threeSchurBlock_coeff_zero_symm (2 : Fin 4) 1] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 1 3
+    | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
+        GeneralFourBlock.ofSymmetricMatrix] using
+        P.threeSchurBlock_constantPivotMinor_zero (2 : Fin 4) 3 3
+
 /- The scalar-pivot rank-one top face always produces the exact 1+3 Schur
 clock packet. -/
-set_option maxHeartbeats 5000000 in
 theorem threeSchurClockData
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
     Nonempty P.TopKernelThreeSchurClockData := by
   let B := P.threeSchurBlock
-  have hminor
-      (i j k l : Fin 4) :
-      (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate i j).coeff 0 *
-          (kernelLastParameterFirstHessian
-            T.topKernelReverseReesFamily kernelCoordinate k l).coeff 0 -
-        (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate i l).coeff 0 *
-          (kernelLastParameterFirstHessian
-            T.topKernelReverseReesFamily kernelCoordinate k j).coeff 0 = 0 :=
-    P.threeSchurBlock_constantMinor_zero i j k l
-
-  have hsymm
-      (i j : Fin 4) :
-      (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate i j).coeff 0 =
-        (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate j i).coeff 0 := by
-    unfold kernelLastParameterFirstHessian
-    simp only [Matrix.submatrix_apply]
-    exact congrArg
-      (fun p : Polynomial (MvPolynomial (Fin 4) K) => p.coeff 0)
-      (parameterFirstHessian_symmetric
-        T.topKernelReverseReesFamily
-        (kernelLastPerm kernelCoordinate i)
-        (kernelLastPerm kernelCoordinate j))
-
-  have hminorPivot
-      (p u v : Fin 4) :
-      (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate p p).coeff 0 *
-          (kernelLastParameterFirstHessian
-            T.topKernelReverseReesFamily kernelCoordinate u v).coeff 0 -
-        (kernelLastParameterFirstHessian
-          T.topKernelReverseReesFamily kernelCoordinate p u).coeff 0 *
-          (kernelLastParameterFirstHessian
-            T.topKernelReverseReesFamily kernelCoordinate p v).coeff 0 = 0 := by
-    have hm := hminor p p u v
-    have hs := hsymm u p
-    rw [hs] at hm
-    simpa [mul_comm] using hm
-
   have hactive :
       B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
     simpa [B, threeSchurBlock] using
       P.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
-
   rcases hactive with ha | hd | hx
-  · apply Nonempty.intro
-    apply TopKernelThreeSchurClockData.pivotA ha
-    · intro i j
-      fin_cases i <;> fin_cases j <;>
-        simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrix,
-          Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
-          Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
-        change _ = 0
-      all_goals
-        first
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 1
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 2
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 1 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 2 2
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 2 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (0 : Fin 4) 3 3
-    · rw [B.det_rankOneClearedThreeSchurMatrix]
-      rw [P.threeSchurBlock_determinantCore]
-  · apply Nonempty.intro
-    apply TopKernelThreeSchurClockData.pivotD hd
-    · intro i j
-      fin_cases i <;> fin_cases j <;>
-        simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
-          Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
-          Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
-        change _ = 0
-      all_goals
-        first
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
-            hminorPivot (1 : Fin 4) 0 0
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
-            hminorPivot (1 : Fin 4) 0 2
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (1 : Fin 4) 0] using
-            hminorPivot (1 : Fin 4) 0 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 2 2
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 2 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (1 : Fin 4) 3 3
-    · rw [B.det_rankOneClearedThreeSchurMatrixD]
-      rw [P.threeSchurBlock_determinantCore]
-  · apply Nonempty.intro
-    apply TopKernelThreeSchurClockData.pivotX hx
-    · intro i j
-      fin_cases i <;> fin_cases j <;>
-        simp only [GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
-          Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons,
-          Matrix.tail_cons, Polynomial.coeff_sub, Polynomial.coeff_mul] <;>
-        change _ = 0
-      all_goals
-        first
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
-            hminorPivot (2 : Fin 4) 0 0
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
-            hminorPivot (2 : Fin 4) 0 1
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
-            hminorPivot (2 : Fin 4) 0 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
-            hminorPivot (2 : Fin 4) 1 1
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix, hsymm (2 : Fin 4) 0, hsymm (2 : Fin 4) 1] using
-            hminorPivot (2 : Fin 4) 1 3
-        | simpa [B, threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          GeneralFourBlock.ofSymmetricMatrix] using hminorPivot (2 : Fin 4) 3 3
-    · rw [B.det_rankOneClearedThreeSchurMatrixX]
-      rw [P.threeSchurBlock_determinantCore]
+  · exact ⟨.pivotA ha P.rankOneClearedThreeSchurMatrix_coeff_zero (by
+      rw [B.det_rankOneClearedThreeSchurMatrix]
+      rw [P.threeSchurBlock_determinantCore])⟩
+  · exact ⟨.pivotD hd P.rankOneClearedThreeSchurMatrixD_coeff_zero (by
+      rw [B.det_rankOneClearedThreeSchurMatrixD]
+      rw [P.threeSchurBlock_determinantCore])⟩
+  · exact ⟨.pivotX hx P.rankOneClearedThreeSchurMatrixX_coeff_zero (by
+      rw [B.det_rankOneClearedThreeSchurMatrixX]
+      rw [P.threeSchurBlock_determinantCore])⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
