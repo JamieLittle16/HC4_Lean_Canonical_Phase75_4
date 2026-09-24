@@ -1,4 +1,5 @@
 import HC4.Newton.PolynomialFirstOpeningTransport
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneSourceDeparture
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailWholeFamilySchurProvenance
 import Mathlib.Tactic
 
