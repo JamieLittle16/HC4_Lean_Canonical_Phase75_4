@@ -67,7 +67,7 @@ theorem ThreeSchurTangentTailKernelOpeningData.tailConstant_kernelColumn_zero
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hpos : 0 < D.relativeOrder) :
     ∀ i : Fin 3,
       S.toExactZeroThreeSchurClock.tailConstantMatrix i 2 = 0 := by
@@ -80,9 +80,10 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     {S : P.TopKernelThreeSchurClockData}
     {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : S.ThreeSchurTangentTailKernelOpeningData M)
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
     (hpos : 0 < D.relativeOrder) :
-    Nonempty P.TopKernelThreeSchurPositiveTailFrontier S := by
+    Nonempty (P.TopKernelThreeSchurPositiveTailFrontier S) := by
+  classical
   let E := S.toExactZeroThreeSchurClock
   let C := E.tailConstantMatrix
   have hcol : ∀ i : Fin 3, C i 2 = 0 := by
@@ -91,13 +92,25 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailFrontier
   have hsymm : C.IsSymm := by
     simpa [C, E] using
       E.tailConstantMatrix_isSymm S.exactZeroThreeSchurClock_isSymm
-  have h20 : C 2 0 = 0 := by rw [hsymm 2 0, hcol 0]
-  have h21 : C 2 1 = 0 := by rw [hsymm 2 1, hcol 1]
+  have h20 : C 2 0 = 0 := by
+    have hs20 : C 2 0 = C 0 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 0 2)
+        hsymm
+      simpa using h
+    rw [hs20, hcol 0]
+  have h21 : C 2 1 = 0 := by
+    have hs21 : C 2 1 = C 1 2 := by
+      have h := congrArg
+        (fun N : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 4) K) => N 1 2)
+        hsymm
+      simpa using h
+    rw [hs21, hcol 1]
   have h22 : C 2 2 = 0 := hcol 2
   have hdet0 : C.det = 0 := by
     simp [Matrix.det_fin_three, hcol 0, hcol 1, h22, h20, h21]
 
-  rcases S.principalFrontier with ⟨F⟩
+  let F := Classical.choice S.principalFrontier
   cases F with
   | determinantClosing hres hdet =>
       exfalso
