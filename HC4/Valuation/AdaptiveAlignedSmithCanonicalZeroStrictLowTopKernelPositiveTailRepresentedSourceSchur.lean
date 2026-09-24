@@ -49,6 +49,49 @@ def ThreeSchurActivePair.sourcePerm
     (kernelCoordinate : Fin 4) : Equiv.Perm (Fin 4) :=
   pair.slotPerm.trans (kernelLastPerm kernelCoordinate)
 
+private theorem pair02Block_ofSymmetricMatrix_submatrix
+    (M : Matrix (Fin 4) (Fin 4)
+      (Polynomial (MvPolynomial (Fin 4) K)))
+    (hsymm : M.IsSymm) :
+    (GeneralFourBlock.ofSymmetricMatrix M).pair02Block =
+      GeneralFourBlock.ofSymmetricMatrix
+        (M.submatrix (Equiv.swap (1 : Fin 4) 2)
+          (Equiv.swap (1 : Fin 4) 2)) := by
+  have h12 : M 1 2 = M 2 1 := by
+    have h := congrArg
+      (fun N : Matrix (Fin 4) (Fin 4)
+        (Polynomial (MvPolynomial (Fin 4) K)) => N 2 1)
+      hsymm
+    simpa using h
+  apply GeneralFourBlock.ext <;>
+    simp [GeneralFourBlock.pair02Block,
+      GeneralFourBlock.ofSymmetricMatrix, h12]
+
+private theorem pair12Block_ofSymmetricMatrix_submatrix
+    (M : Matrix (Fin 4) (Fin 4)
+      (Polynomial (MvPolynomial (Fin 4) K)))
+    (hsymm : M.IsSymm) :
+    (GeneralFourBlock.ofSymmetricMatrix M).pair12Block =
+      GeneralFourBlock.ofSymmetricMatrix
+        (M.submatrix
+          ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1))
+          ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1))) := by
+  have h01 : M 0 1 = M 1 0 := by
+    have h := congrArg
+      (fun N : Matrix (Fin 4) (Fin 4)
+        (Polynomial (MvPolynomial (Fin 4) K)) => N 1 0)
+      hsymm
+    simpa using h
+  have h02 : M 0 2 = M 2 0 := by
+    have h := congrArg
+      (fun N : Matrix (Fin 4) (Fin 4)
+        (Polynomial (MvPolynomial (Fin 4) K)) => N 2 0)
+      hsymm
+    simpa using h
+  apply GeneralFourBlock.ext <;>
+    simp [GeneralFourBlock.pair12Block,
+      GeneralFourBlock.ofSymmetricMatrix, h01, h02]
+
 /-- The pair chart used by nested Schur elimination is literally the genuine
 parameter-first Hessian four-block in the corresponding source-coordinate
 permutation. -/
@@ -59,58 +102,35 @@ theorem ThreeSchurActivePair.block_threeSchurBlock_eq_permutedFamily
       permutedFamilyHessianFourBlock
         (pair.sourcePerm kernelCoordinate)
         T.topKernelReverseReesFamily := by
+  let rho := kernelLastPerm kernelCoordinate
+  let M :=
+    (parameterFirstHessian T.topKernelReverseReesFamily).submatrix rho rho
+  have hsymm : M.IsSymm := by
+    apply Matrix.ext
+    intro i j
+    exact parameterFirstHessian_symmetric
+      T.topKernelReverseReesFamily (rho j) (rho i)
   cases pair with
   | pair01 =>
-      apply GeneralFourBlock.ext <;>
-        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
-          ThreeSchurActivePair.sourcePerm,
-          GeneralFourBlock.ofSymmetricMatrix,
-          threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock]
+      change
+        GeneralFourBlock.ofSymmetricMatrix M =
+          GeneralFourBlock.ofSymmetricMatrix M
+      rfl
   | pair02 =>
-      have h0 : (Equiv.swap (1 : Fin 4) 2) 0 = 0 := by native_decide
-      have h1 : (Equiv.swap (1 : Fin 4) 2) 1 = 2 := by native_decide
-      have h2 : (Equiv.swap (1 : Fin 4) 2) 2 = 1 := by native_decide
-      have h3 : (Equiv.swap (1 : Fin 4) 2) 3 = 3 := by native_decide
-      apply GeneralFourBlock.ext <;>
-        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
-          ThreeSchurActivePair.sourcePerm,
-          GeneralFourBlock.pair02Block, GeneralFourBlock.ofSymmetricMatrix,
-          threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-          h0, h1, h2, h3]
-      exact parameterFirstHessian_symmetric
-        T.topKernelReverseReesFamily
-        ((Equiv.swap kernelCoordinate 3) 1)
-        ((Equiv.swap kernelCoordinate 3) 2)
+      change
+        (GeneralFourBlock.ofSymmetricMatrix M).pair02Block =
+          GeneralFourBlock.ofSymmetricMatrix
+            (M.submatrix (Equiv.swap (1 : Fin 4) 2)
+              (Equiv.swap (1 : Fin 4) 2))
+      exact pair02Block_ofSymmetricMatrix_submatrix M hsymm
   | pair12 =>
-      have h0 :
-          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 0) = 1 := by
-        native_decide
-      have h1 :
-          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 1) = 2 := by
-        native_decide
-      have h2 :
-          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 2) = 0 := by
-        native_decide
-      have h3 :
-          (Equiv.swap (0 : Fin 4) 1) ((Equiv.swap (1 : Fin 4) 2) 3) = 3 := by
-        native_decide
-      apply GeneralFourBlock.ext <;>
-        simp [ThreeSchurActivePair.block, ThreeSchurActivePair.slotPerm,
-          ThreeSchurActivePair.sourcePerm,
-          GeneralFourBlock.pair12Block, GeneralFourBlock.ofSymmetricMatrix,
-          threeSchurBlock, kernelLastFamilyHessianFourBlock,
-          kernelLastParameterFirstHessian, permutedFamilyHessianFourBlock,
-          h0, h1, h2, h3]
-      · exact parameterFirstHessian_symmetric
-          T.topKernelReverseReesFamily
-          ((Equiv.swap kernelCoordinate 3) 0)
-          ((Equiv.swap kernelCoordinate 3) 1)
-      · exact parameterFirstHessian_symmetric
-          T.topKernelReverseReesFamily
-          ((Equiv.swap kernelCoordinate 3) 0)
-          ((Equiv.swap kernelCoordinate 3) 2)
+      change
+        (GeneralFourBlock.ofSymmetricMatrix M).pair12Block =
+          GeneralFourBlock.ofSymmetricMatrix
+            (M.submatrix
+              ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1))
+              ((Equiv.swap (1 : Fin 4) 2).trans (Equiv.swap (0 : Fin 4) 1)))
+      exact pair12Block_ofSymmetricMatrix_submatrix M hsymm
 
 private theorem ordinary_schurA_loss_le
     (pair : ThreeSchurActivePair) :
