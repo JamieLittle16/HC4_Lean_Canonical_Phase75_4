@@ -6,7 +6,7 @@ This is the authoritative closing plan for the current unrestricted HC4 final-as
 
 **Branch:** `final-assembly/a18-4-42-termination-frontier`  
 **Plan anchor:** PR #34 branch `final-assembly/a18-4-42-termination-frontier`  
-**Current substantive Lean-green anchor:** `8409236e1afd24adc0a3e4d5357bbcb1cdde88f5` (`8624/8624` reported green locally; Proof Inventory #2152 green; hosted Lean CI #3897 was still reporting `in_progress` when this handoff was refreshed).
+**Current positive-tail verification frontier:** `0d44ebec2bc7124a3dc408f7d154fc1451500ae4`. In Lean CI #3907, `AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur` and `...PositiveTailRankOneSourceDeparture` built successfully, including the C1/C2 adapters. The full rooted build then failed only because `HC4/Newton/PolynomialFirstOpeningTransport.lean` imported the absent package source path `Mathlib.Data.Polynomial.Basic`; that packaging-only import was replaced by `Mathlib.Tactic` in `0fb504e6bffbcf2d439b6b8ac43436c266a7490c`.
 
 A checkbox in the implementation ledger is marked **only after the corresponding Lean theorem/file has compiled successfully on the branch**. Paper arguments, plausible routes, or documentation-only commits do not earn a checkmark.
 
@@ -84,8 +84,12 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
 
 ### C. Positive relative tail: exact rank-one clock to honest endpoint
 
-- [ ] **C1.** Consume `TopKernelThreeSchurPositiveTailRankOneFrontier.activeRankTwo` source-honestly.
-- [ ] **C2.** Consume the binary determinant-closing branch source-honestly.
+- [x] **C1.** Consume `TopKernelThreeSchurPositiveTailRankOneFrontier.activeRankTwo` source-honestly.
+
+  **Lean-verified:** `TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness` turns the nonzero active 2×2 tail minor into a branch-independent nonzero represented-source Schur polynomial. Lean CI #3907 compiled this theorem.
+- [x] **C2.** Consume the binary determinant-closing branch source-honestly.
+
+  **Lean-verified:** `PositiveTailExplicitBinaryClockData.representedSourceSchurWitness` forgets every explicit binary clock, including the determinant-closing branch, to a represented-source `schurA`/`schurB`/`schurC` witness. Lean CI #3907 compiled this theorem.
 - [x] **C3.** For the exact rank-one-clock branch, use `pivot0`/`pivot1` provenance plus the retained later opening to transport the first nonzero binary Schur coefficient back to honest represented-source geometry.
 
   **Lean-verified C3 chain:**
@@ -164,4 +168,4 @@ G  isolate and solve the canonical JC2-hard planar endpoint
 
 Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem.
 
-The immediate objective is now **C1/C2, then C4/C5/C6**. C3 is Lean-verified: the rank-one first transverse event is already source-honest and whole-family honest. The shortest remaining positive-tail route is to consume the finite `activeRankTwo` and `binaryDeterminantClosing` alternatives, then convert the rank-one preterminal/exact-closing alternatives into the final-resolution interface without using repair progress as the conclusion.
+The immediate objective is now **C4/C5/C6**. C1--C3 are source-honest: the finite `activeRankTwo` and `binaryDeterminantClosing` alternatives land on a represented-source Schur witness, while the rank-one alternative retains an exact whole-family first transverse opening. The next finite split is the exact rank-one clock dichotomy `firstOrder < defect` versus `firstOrder = defect`: preterminality forces the first transverse event into the mixed/off-diagonal channel, while exact closing forces a nonzero kernel coefficient at the defect. These honest openings must now be converted into an actual source principal Hessian minor or one of the two permitted `FinalResolution` endpoints; repair progress is not an acceptable conclusion.
