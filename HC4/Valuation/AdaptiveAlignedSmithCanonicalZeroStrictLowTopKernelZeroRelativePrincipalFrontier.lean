@@ -1,0 +1,128 @@
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier
+import Mathlib.Tactic
+
+/-!
+# Finite principal frontier for the zero-relative top-kernel three-Schur tail
+
+At relative order zero the retained later projected kernel opening is already
+present in the constant matrix of the normalised 3x3 Schur tail.  No new
+staircase is required.
+
+This file runs the existing principal second-stage frontier directly and keeps
+the zero-relative physical provenance in every branch.  The resulting finite
+alternatives are exactly:
+
+* determinant closure of the constant 3x3 tail;
+* one of the three coordinate-principal rank-two pivots;
+* an exact binary zero-Schur clock from the rank-one constant tail.
+
+No source-lift or terminal claim is made here; those are the next finite
+consumers.
+-/
+
+namespace HC4.Valuation
+
+noncomputable section
+
+open HC4.Newton
+open HC4.Polynomial
+
+universe u
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+
+namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+namespace TopFaceLinearPowerKernelData
+
+variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+  (K := K) state}
+variable {kernelCoordinate : Fin 4}
+
+/-- Exact finite second-stage alternatives in the zero-relative branch,
+retaining the physical constant kernel opening that selected this branch. -/
+inductive TopKernelThreeSchurZeroRelativePrincipalFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1)
+  | determinantClosing
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_eq_zero : tail.relativeOrder = 0)
+      (common_eq_later : tail.commonOrder = tail.physical.laterOrder)
+      (constantKernelOpening :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix
+          tail.physical.index 2 ≠ 0)
+      (residual_eq_zero :
+        S.toExactZeroThreeSchurClock.residualDefect = 0)
+      (det_ne_zero :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix.det ≠ 0)
+  | rankTwoPrincipal
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_eq_zero : tail.relativeOrder = 0)
+      (common_eq_later : tail.commonOrder = tail.physical.laterOrder)
+      (constantKernelOpening :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix
+          tail.physical.index 2 ≠ 0)
+      (residual_pos :
+        0 < S.toExactZeroThreeSchurClock.residualDefect)
+      (pivot : P.TopKernelThreeSchurPrincipalPivot S)
+  | binaryZeroSchur
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_eq_zero : tail.relativeOrder = 0)
+      (common_eq_later : tail.commonOrder = tail.physical.laterOrder)
+      (constantKernelOpening :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix
+          tail.physical.index 2 ≠ 0)
+      (residual_pos :
+        0 < S.toExactZeroThreeSchurClock.residualDefect)
+      (clock : ExactZeroSchurClock (MvPolynomial (Fin 4) K))
+      (defect_eq :
+        clock.defect =
+          S.toExactZeroThreeSchurClock.residualDefect)
+
+/-- **D1: zero-relative finite principal exhaustion.**
+
+The existing principal second-stage frontier applies without modification; the
+only work here is to retain the exact physical zero-relative provenance in
+every constructor. -/
+theorem ThreeSchurTangentTailKernelOpeningData.zeroRelativePrincipalFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
+    (hz : D.relativeOrder = 0) :
+    Nonempty (P.TopKernelThreeSchurZeroRelativePrincipalFrontier S M) := by
+  have hcommon := D.commonOrder_eq_later_of_relativeOrder_eq_zero hz
+  have hopen :=
+    D.tailConstant_kernelOpening_ne_zero_of_relativeOrder_eq_zero hz
+  let F := Classical.choice S.principalFrontier
+  cases F with
+  | determinantClosing hres hdet =>
+      exact ⟨.determinantClosing D hz hcommon hopen hres hdet⟩
+  | rankTwoPrincipal hres pivot =>
+      exact ⟨.rankTwoPrincipal D hz hcommon hopen hres pivot⟩
+  | binaryZeroSchur hres clock hdef =>
+      exact ⟨.binaryZeroSchur D hz hcommon hopen hres clock hdef⟩
+
+/-- Assembly-facing zero-relative branch extracted from the exact relative-tail
+frontier. -/
+theorem TopKernelThreeSchurRelativeTailFrontier.zeroRelativePrincipalFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (F : P.TopKernelThreeSchurRelativeTailFrontier S M)
+    (hz :
+      ∃ tail common_eq_later constantKernelOpening,
+        F = TopKernelThreeSchurRelativeTailFrontier.zeroRelative
+          tail rfl common_eq_later constantKernelOpening) :
+    Nonempty (P.TopKernelThreeSchurZeroRelativePrincipalFrontier S M) := by
+  rcases hz with ⟨tail, _hcommon, _hopen, hF⟩
+  subst F
+  exact tail.zeroRelativePrincipalFrontier rfl
+
+end TopFaceLinearPowerKernelData
+end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+
+end
+
+end HC4.Valuation
