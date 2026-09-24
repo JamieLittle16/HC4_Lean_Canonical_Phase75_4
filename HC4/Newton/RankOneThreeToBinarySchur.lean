@@ -214,17 +214,20 @@ private noncomputable def toBinaryClockPivot0
   }
   · have hm := hall 0 0 1 1
     have hs := symmEntry hC 1 0
+    rw [hs] at hm
     simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 0 0 1 2
     have hs := symmEntry hC 1 0
+    rw [hs] at hm
     simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
       mul_comm] using hm
   · have hm := hall 0 0 2 2
     have hs := symmEntry hC 2 0
+    rw [hs] at hm
     simpa [threePivot0BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 0 0).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
@@ -257,18 +260,19 @@ private noncomputable def toBinaryClockPivot1
     determinantFactor := ?_
   }
   · have hm := hall 1 1 0 0
-    have hs := symmEntry hC 0 1
+    have hs := symmEntry hC 1 0
+    rw [hs] at hm
     simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 1 1 0 2
-    have hs := symmEntry hC 0 1
     simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
       mul_comm] using hm
   · have hm := hall 1 1 2 2
     have hs := symmEntry hC 2 1
+    rw [hs] at hm
     simpa [threePivot1BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 1 1).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
@@ -301,19 +305,21 @@ private noncomputable def toBinaryClockPivot2
     determinantFactor := ?_
   }
   · have hm := hall 2 2 0 0
-    have hs := symmEntry hC 0 2
+    have hs := symmEntry hC 2 0
+    rw [hs] at hm
     simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hm := hall 2 2 0 1
-    have hs0 := symmEntry hC 0 2
-    have hs1 := symmEntry hC 1 2
+    have hs := symmEntry hC 2 1
+    rw [hs] at hm
     simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs0, hs1,
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero,
       mul_comm] using hm
   · have hm := hall 2 2 1 1
-    have hs := symmEntry hC 1 2
+    have hs := symmEntry hC 2 1
+    rw [hs] at hm
     simpa [threePivot2BinarySchurSeries, M,
-      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero, hs] using hm
+      tailConstantMatrix, Polynomial.coeff_zero_eq_eval_zero] using hm
   · have hp :
         (M 2 2).coeff 0 ≠ 0 := by
       simpa [M, tailConstantMatrix] using hpivot
