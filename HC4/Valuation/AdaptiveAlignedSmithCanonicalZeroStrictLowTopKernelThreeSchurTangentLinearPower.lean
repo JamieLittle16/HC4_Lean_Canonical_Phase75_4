@@ -72,14 +72,16 @@ theorem TopKernelThreeSchurClockData.pivotRatio_ne_zero
   intro hp
   have hdiag := S.topFace_pivotDiagonal_ne_zero
   let n := T.topFace.degree - 2
+  have hm3 : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
   have hD : n + 2 = T.topFace.degree := by
     dsimp [n]
     omega
   have hformula :=
     hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin
       P.coefficient P.ratio n S.pivotCoordinate S.pivotCoordinate
-  rw [hD] at hformula
-  rw [P.eq_power, hformula, hp] at hdiag
+  change HC4.Polynomial.hessian T.topFace.face
+      S.pivotCoordinate S.pivotCoordinate ≠ 0 at hdiag
+  rw [P.eq_power, ← hD, hformula, hp] at hdiag
   simp at hdiag
 
 /-- Top-direction ratios normalized by the selected scalar pivot. -/
@@ -126,6 +128,7 @@ private theorem linearPower_cross_cancel
       (((n + 2 : ℕ) : K)) *
       (((n + 1 : ℕ) : K))
 
+  have hm3 : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
   have hD : n + 2 = T.topFace.degree := by
     dsimp [n]
     omega
@@ -135,18 +138,17 @@ private theorem linearPower_cross_cancel
   have hpr0 :=
     hessian_C_mul_gradientRatioLinearForm_pow_add_two_fin
       P.coefficient P.ratio n S.pivotCoordinate r
-  rw [hD] at hpp0 hpr0
   have hpp :
       HC4.Polynomial.hessian T.topFace.face
           S.pivotCoordinate S.pivotCoordinate =
         MvPolynomial.C (s * cp * cp) * L ^ n := by
-    rw [P.eq_power]
+    rw [P.eq_power, ← hD]
     simpa [s, cp, L] using hpp0
   have hpr :
       HC4.Polynomial.hessian T.topFace.face
           S.pivotCoordinate r =
         MvPolynomial.C (s * cp * cr) * L ^ n := by
-    rw [P.eq_power]
+    rw [P.eq_power, ← hD]
     simpa [s, cp, cr, L] using hpr0
 
   have hs : s ≠ 0 := by
@@ -170,16 +172,23 @@ private theorem linearPower_cross_cancel
       (MvPolynomial.C_ne_zero.mpr (mul_ne_zero hs hcp))
       (pow_ne_zero _ hL)
 
+  rw [hpp, hpr] at hcross
+  have hCcp :
+      MvPolynomial.C (s * cp * cp) =
+        MvPolynomial.C (s * cp) * MvPolynomial.C cp := by
+    rw [← MvPolynomial.C_mul]
+  have hCcr :
+      MvPolynomial.C (s * cp * cr) =
+        MvPolynomial.C (s * cp) * MvPolynomial.C cr := by
+    rw [← MvPolynomial.C_mul]
+  rw [hCcp, hCcr] at hcross
   have hprod :
       (MvPolynomial.C (s * cp) * L ^ n) *
         (MvPolynomial.C cp *
             HC4.Polynomial.hessian G r kernelCoordinate -
           MvPolynomial.C cr *
             HC4.Polynomial.hessian G S.pivotCoordinate kernelCoordinate) = 0 := by
-    rw [← hcross]
-    rw [hpp, hpr]
-    simp only [← MvPolynomial.C_mul]
-    ring
+    linear_combination hcross
   have hinner :
       MvPolynomial.C cp *
             HC4.Polynomial.hessian G r kernelCoordinate =
@@ -220,9 +229,10 @@ theorem ThreeSchurTangentAtFirstBreak.kernelDerivative_gradientRatio
         MvPolynomial.pderiv S.pivotCoordinate
           (MvPolynomial.pderiv kernelCoordinate M.sourceLayer) := by
   let rho := kernelLastPerm kernelCoordinate
-  let r : Fin 4 := rho.symm i
+  generalize hr : rho.symm i = r
   have hrho : rho r = i := by
-    simp [r, rho]
+    rw [← hr]
+    exact rho.apply_symm_apply i
 
   have hslot :
       MvPolynomial.pderiv (rho r)
@@ -325,6 +335,8 @@ theorem ThreeSchurTangentAtFirstBreak.toKernelDerivativeLinearPowerData
   have hhomA : A.IsHomogeneous (M.mixed.layer.sourceDegree - 1) := by
     dsimp [A]
     simpa using hhomG.pderiv
+  have hdeg3 : 3 ≤ M.mixed.layer.sourceDegree :=
+    M.sourceDegree_ge_three
   have hdegpos : 0 < M.mixed.layer.sourceDegree - 1 := by
     omega
   have hpivot :
