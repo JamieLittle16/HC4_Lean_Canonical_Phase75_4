@@ -100,7 +100,8 @@ theorem ThreeSchurTangentAtFirstBreak.toStaircaseSeedData
 
   have hAk : MvPolynomial.pderiv kernelCoordinate A = 0 := by
     dsimp [A]
-    simpa [sourceLayer, HC4.Polynomial.hessian_apply] using
+    simpa [ExactNonlinearMixedOrdinaryLayerAtFirstBreak.sourceLayer,
+      HC4.Polynomial.hessian_apply] using
       M.mixed.kernelDiagonal_eq_zero
 
   have hBk : MvPolynomial.pderiv kernelCoordinate B = 0 := by
@@ -110,6 +111,8 @@ theorem ThreeSchurTangentAtFirstBreak.toStaircaseSeedData
       MvPolynomial.pderiv kernelCoordinate
           (MvPolynomial.X kernelCoordinate) = 1 by simp]
     rw [hAk]
+    rw [show
+      MvPolynomial.pderiv kernelCoordinate M.sourceLayer = A by rfl]
     simp
 
   have hdecomp :
