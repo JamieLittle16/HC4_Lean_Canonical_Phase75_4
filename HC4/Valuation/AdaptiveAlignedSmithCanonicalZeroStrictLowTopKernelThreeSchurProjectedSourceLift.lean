@@ -87,6 +87,22 @@ private theorem parameterFirstEquiv_familyHessianPivotMinor_commuted
   rw [parameterFirstHessian_symmetric F pivot kernel]
   ring
 
+/-- Same row-commuted minor with the cross entry oriented as
+`H[pivot,other]`; used when the stored four-block names that symmetric entry
+in the opposite triangular orientation. -/
+private theorem parameterFirstEquiv_familyHessianPivotMinor_commuted_cross
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (pivot other kernel : Fin 4) :
+    parameterFirstEquiv K
+        (familyHessianTwoByTwoMinor
+          F other pivot kernel pivot) =
+      parameterFirstHessian F pivot pivot *
+          parameterFirstHessian F other kernel -
+        parameterFirstHessian F pivot other *
+          parameterFirstHessian F pivot kernel := by
+  rw [parameterFirstEquiv_familyHessianPivotMinor_commuted]
+  rw [parameterFirstHessian_symmetric F other pivot]
+
 /-- Any nonzero arbitrary Hessian minor on the special fibre forces the
 existing exact-active finite rank split into its geometric branch. -/
 theorem exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero
@@ -201,7 +217,7 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 2, rho 1, rho 3, rho 1, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianPivotMinor_commuted,
+          parameterFirstEquiv_familyHessianPivotMinor_commuted_cross,
           threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
