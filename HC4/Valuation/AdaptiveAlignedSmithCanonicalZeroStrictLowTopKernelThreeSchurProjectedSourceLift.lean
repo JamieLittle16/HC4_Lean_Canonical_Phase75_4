@@ -209,6 +209,7 @@ theorem threeSchurEntry_eq_parameterFirst_familyMinor
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrix,
+          parameterFirstHessian_symmetric,
           mul_comm, mul_left_comm, mul_assoc]
   | pivotD hpivot hzero hdet =>
       fin_cases i <;> fin_cases j <;>
@@ -220,6 +221,7 @@ theorem threeSchurEntry_eq_parameterFirst_familyMinor
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
+          parameterFirstHessian_symmetric,
           mul_comm, mul_left_comm, mul_assoc]
   | pivotX hpivot hzero hdet =>
       fin_cases i <;> fin_cases j <;>
@@ -231,6 +233,7 @@ theorem threeSchurEntry_eq_parameterFirst_familyMinor
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
+          parameterFirstHessian_symmetric,
           mul_comm, mul_left_comm, mul_assoc]
 
 /-- Any nonzero coefficient of any cleared 1+3 Schur entry therefore lifts to
