@@ -4143,6 +4143,7 @@ human architecture guide.
   - `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian`
   - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Newton.TerminalPermutedGradient`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Polynomial.WeightedInitial`
