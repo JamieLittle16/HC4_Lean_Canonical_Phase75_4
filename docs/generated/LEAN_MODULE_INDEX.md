@@ -7360,7 +7360,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalAffineQuadraticCollision`, `HC4.Valuation.NonlinearDegreeBoundPreservation`, `HC4.Newton.MixedDegreeWallRefinement`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSingularCarrier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceHomogeneous`
-- Declarations: `def ordinaryWeight`, `structure AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_face`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq`, `def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_singularTopFace`
+- Declarations: `def ordinaryWeight`, `structure AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_face`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.ordinaryDegree_eq_of_mem_support`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.source_mem_of_face_mem`, `theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq`, `def ScaleAwareAdaptiveGeometricRestartState.zeroDefect_singularTopFace`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroLinearJetKernelOpening`
 
