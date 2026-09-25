@@ -12510,7 +12510,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`, `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
-- Declarations: `theorem parameterFirstEquiv_familyHessianTwoByTwoMinor`, `theorem parameterFirstEquiv_familyHessianPivotMinor`, `theorem exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero`, `theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero`, `theorem projectedRankTwo_sourceTwoByTwoMinor`, `theorem projectedRankTwo_exactActiveFourBlock`
+- Declarations: `theorem parameterFirstEquiv_familyHessianTwoByTwoMinor`, `theorem parameterFirstEquiv_familyHessianPivotMinor`, `theorem parameterFirstEquiv_familyHessianPivotMinor_commuted`, `theorem exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero`, `theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero`, `theorem projectedRankTwo_sourceTwoByTwoMinor`, `theorem projectedRankTwo_exactActiveFourBlock`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
 
