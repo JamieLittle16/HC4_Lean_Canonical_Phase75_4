@@ -53,6 +53,54 @@ structure CrossFacetFarBoundaryData
         AdjacentFacets F H ∧
           OnRay a b F H (toToricExponent exponent))
 
+/-- Rebase the already-recognised affine support line from the original
+outside witness to the actual positive far endpoint.  Since both directions
+are proportional to the same nonzero contact-coordinate direction, the far
+endpoint itself may be used as the line direction for every support exponent. -/
+theorem CrossFacetInitialData.support_far_affine_proportional
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D) :
+    ∀ d ∈ D.face.support, ∀ k : Fin 4,
+      (R.exponent (0 : Fin 4) : ℤ) *
+          ((d k : ℤ) - (D.facetExponent k : ℤ)) =
+        (d (0 : Fin 4) : ℤ) *
+          ((R.exponent k : ℤ) - (D.facetExponent k : ℤ)) := by
+  intro d hd k
+  have hdLine :=
+    D.support_crossFacet_affine_proportional
+      ha hb hcontactScale hBal hcontact d hd k
+  have hfarLine :=
+    D.support_crossFacet_affine_proportional
+      ha hb hcontactScale hBal hcontact R.exponent R.mem_face k
+  have hout0 :
+      (D.outsideExponent (0 : Fin 4) : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt D.outside_coordinate_pos)
+  have hscaled :
+      (D.outsideExponent (0 : Fin 4) : ℤ) *
+        ((R.exponent (0 : Fin 4) : ℤ) *
+            ((d k : ℤ) - (D.facetExponent k : ℤ)) -
+          (d (0 : Fin 4) : ℤ) *
+            ((R.exponent k : ℤ) - (D.facetExponent k : ℤ))) = 0 := by
+    linear_combination
+      (R.exponent (0 : Fin 4) : ℤ) * hdLine -
+        (d (0 : Fin 4) : ℤ) * hfarLine
+  have hbracket :
+      (R.exponent (0 : Fin 4) : ℤ) *
+            ((d k : ℤ) - (D.facetExponent k : ℤ)) -
+          (d (0 : Fin 4) : ℤ) *
+            ((R.exponent k : ℤ) - (D.facetExponent k : ℤ)) = 0 :=
+    (mul_eq_zero.mp hscaled).resolve_left hout0
+  exact sub_eq_zero.mp hbracket
+
 /-- If the near and far endpoints of the honest cross-facet line both
 vanish in one transverse coordinate, then the whole exact secondary face is
 confined to that coordinate facet.  The proof uses the already-certified
