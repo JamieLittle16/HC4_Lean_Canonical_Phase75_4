@@ -278,13 +278,16 @@ theorem ZeroRelativeExplicitBinaryClockData.representedSourceKernelMinor
       exact .minor2 (P.sourceMinor2_of_raw_pivot2 hpoly)
 
 
-/-- Any represented-source kernel minor emitted by the zero-relative branch is
-already an actual rank-two Hessian chart on the literal presented state. -/
-noncomputable def ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoHessianChart
+/-- Any represented-source kernel minor emitted by the zero-relative branch
+already yields a nonempty actual rank-two Hessian chart on the literal
+presented state.  The witness itself is a proposition, so we keep the
+elimination target in Prop and choose the chart only afterwards. -/
+theorem ZeroRelativeRepresentedSourceKernelMinorWitness.exists_actualRankTwoHessianChart
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
     (W : P.ZeroRelativeRepresentedSourceKernelMinorWitness) :
-    AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
-      T.terminal.blocker.presented := by
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+        T.terminal.blocker.presented) := by
   cases W with
   | minor0 hminor =>
       have hne :
@@ -294,7 +297,7 @@ noncomputable def ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoH
         have h' : (0 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
         norm_num at h'
-      apply actualRankTwoHessianChart_of_specialFiber_minor hne
+      refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
   | minor1 hminor =>
@@ -305,7 +308,7 @@ noncomputable def ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoH
         have h' : (1 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
         norm_num at h'
-      apply actualRankTwoHessianChart_of_specialFiber_minor hne
+      refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
   | minor2 hminor =>
@@ -316,9 +319,18 @@ noncomputable def ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoH
         have h' : (2 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
         norm_num at h'
-      apply actualRankTwoHessianChart_of_specialFiber_minor hne
+      refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
+
+/-- Chosen actual rank-two Hessian chart carried by a represented-source
+kernel-minor witness. -/
+noncomputable def ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoHessianChart
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (W : P.ZeroRelativeRepresentedSourceKernelMinorWitness) :
+    AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
+      T.terminal.blocker.presented :=
+  Classical.choice W.exists_actualRankTwoHessianChart
 
 /-- The canonical zero-relative explicit binary packet therefore already
 contains an actual represented-state rank-two Hessian chart. -/
