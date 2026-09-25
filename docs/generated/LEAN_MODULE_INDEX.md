@@ -12547,7 +12547,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift.lean`
 - Purpose: Source lift for the projected three-Schur first-break branch
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`, `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`, `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
 - Declarations: `theorem parameterFirstEquiv_familyHessianTwoByTwoMinor`, `theorem parameterFirstEquiv_familyHessianPivotMinor`, `theorem parameterFirstEquiv_familyHessianPivotMinor_commuted`, `theorem parameterFirstEquiv_familyHessianPivotMinor_commuted_cross`, `theorem exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero`, `theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero`, `def TopKernelThreeSchurClockData.quotientSlot`, `theorem threeSchurEntry_eq_parameterFirst_familyMinor`, `theorem sourceTwoByTwoMinor_of_threeSchurEntry_coeff_ne_zero`, `theorem projectedRankTwo_sourceTwoByTwoMinor`, `theorem projectedRankTwo_exactActiveFourBlock`
@@ -12579,7 +12579,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
 - Declarations: `def TopKernelThreeSchurClockData.pivotSlot`, `def ExactNonlinearMixedOrdinaryLayerAtFirstBreak.sourceLayer`, `theorem ExactNonlinearMixedOrdinaryLayerAtFirstBreak.rawEntry_coeff_firstBreak`, `theorem TopKernelThreeSchurClockData.topFace_pivotDiagonal_ne_zero`, `theorem firstBreak_kernelRow_lower_zero`, `theorem ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
