@@ -180,11 +180,11 @@ def TopKernelThreeSchurClockData.quotientSlot
   | pivotD => exact ![(0 : Fin 4), 2, 3]
   | pivotX => exact ![(0 : Fin 4), 1, 3]
 
+set_option maxHeartbeats 1500000 in
 /-- Every entry of the cleared 1+3 Schur matrix is literally an arbitrary
 Hessian 2x2 minor of the honest reverse-Rees family, after the kernel-last
 source permutation.  This generalises the two projected first-break entries
 used below and is the source-lift needed by determinant closure. -/
-set_option maxHeartbeats 1500000 in
 theorem threeSchurEntry_eq_parameterFirst_familyMinor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (S : P.TopKernelThreeSchurClockData)
