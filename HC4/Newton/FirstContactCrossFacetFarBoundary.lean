@@ -722,6 +722,210 @@ theorem CrossFacetInitialData.sToR_support_equations
   · exact_mod_cast h13Z
   · exact_mod_cast hlineZ
 
+/-- Coprimality of the toric primitive weights converts the weighted
+`s -> r` support equations into literal ray coefficients `x,y`. -/
+theorem CrossFacetInitialData.sToR_support_primitiveCoordinates
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
+    (near0 : D.facetExponent 0 = 0)
+    (near1 : D.facetExponent 1 = a * n)
+    (near2 : D.facetExponent 2 = 0)
+    (near3 : D.facetExponent 3 = b * n)
+    (far0 : R.exponent 0 = b * m)
+    (far1 : R.exponent 1 = 0)
+    (far2 : R.exponent 2 = a * m)
+    (far3 : R.exponent 3 = 0)
+    {d : Fin 4 →₀ ℕ} (hd : d ∈ D.face.support) :
+    ∃ x y : ℕ,
+      d 0 = b * x ∧
+      d 2 = a * x ∧
+      d 1 = a * y ∧
+      d 3 = b * y ∧
+      n * x + m * y = m * n := by
+  rcases D.sToR_support_equations
+      ha hb hcontactScale hBal hcontact R hn hm
+      near0 near1 near2 near3 far0 far1 far2 far3 d hd with
+    ⟨h20, h13, hline⟩
+
+  have hbDivAD0 : b ∣ a * d 0 :=
+    ⟨d 2, h20.symm⟩
+  have hbDivD0 : b ∣ d 0 :=
+    hcop.symm.dvd_of_dvd_mul_left hbDivAD0
+  rcases hbDivD0 with ⟨x, hx0⟩
+  have hx2 : d 2 = a * x := by
+    have heq : b * d 2 = b * (a * x) := by
+      calc
+        b * d 2 = a * d 0 := h20
+        _ = a * (b * x) := by rw [hx0]
+        _ = b * (a * x) := by ring
+    exact Nat.mul_left_cancel hb heq
+
+  have haDivBD1 : a ∣ b * d 1 :=
+    ⟨d 3, h13⟩
+  have haDivD1 : a ∣ d 1 :=
+    hcop.dvd_of_dvd_mul_left haDivBD1
+  rcases haDivD1 with ⟨y, hy1⟩
+  have hy3 : d 3 = b * y := by
+    have heq : a * d 3 = a * (b * y) := by
+      calc
+        a * d 3 = b * d 1 := h13.symm
+        _ = b * (a * y) := by rw [hy1]
+        _ = a * (b * y) := by ring
+    exact Nat.mul_left_cancel ha heq
+
+  have hab : 0 < a * b := Nat.mul_pos ha hb
+  have hfactor :
+      (a * b) * (n * x + m * y) =
+        (a * b) * (m * n) := by
+    calc
+      (a * b) * (n * x + m * y) =
+          b * m * (a * y) + a * n * (b * x) := by ring
+      _ = b * m * d 1 + a * n * d 0 := by rw [← hy1, ← hx0]
+      _ = a * b * m * n := hline
+      _ = (a * b) * (m * n) := by ring
+  have hxy : n * x + m * y = m * n :=
+    Nat.mul_left_cancel hab hfactor
+
+  exact ⟨x, y, hx0, hx2, hy1, hy3, hxy⟩
+
+/-- **Opposite `s -> r` first-contact chord is impossible.**
+
+After swapping coordinates `1` and `2`, the primitive endpoint blocks are
+`(b,a)` and `(a,b)`.  Toric coprimality and the segment parameterisation
+therefore put the entire renamed face on the exact complementary line consumed
+by the existing Hessian obstruction. -/
+theorem CrossFacetInitialData.sToR_impossible
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
+    (near0 : D.facetExponent 0 = 0)
+    (near1 : D.facetExponent 1 = a * n)
+    (near2 : D.facetExponent 2 = 0)
+    (near3 : D.facetExponent 3 = b * n)
+    (far0 : R.exponent 0 = b * m)
+    (far1 : R.exponent 1 = 0)
+    (far2 : R.exponent 2 = a * m)
+    (far3 : R.exponent 3 = 0) :
+    False := by
+  rcases Nat.exists_coprime m n with
+    ⟨h, k, hcopMN, hmRaw, hnRaw⟩
+  let M := Nat.gcd m n
+  have hmEq : m = h * M := by
+    simpa [M] using hmRaw
+  have hnEq : n = k * M := by
+    simpa [M] using hnRaw
+  have hM : 0 < M := by
+    dsimp [M]
+    exact Nat.gcd_pos_of_pos_left n hm
+  have hh : 0 < h := by
+    by_contra hnot
+    have hz : h = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hmEq, hz, zero_mul] at hm
+    omega
+  have hk : 0 < k := by
+    by_contra hnot
+    have hz : k = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hnEq, hz, zero_mul] at hn
+    omega
+
+  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 2
+  let F : MvPolynomial (Fin 4) K := MvPolynomial.rename rho D.face
+
+  have hsupp :
+      IsSupportedOnComplementaryLine b a a b h k M F := by
+    intro e he
+    have heCoeff : MvPolynomial.coeff e F ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp he
+    rcases MvPolynomial.coeff_rename_ne_zero rho D.face e
+        (by simpa [F] using heCoeff) with
+      ⟨d, hdMap, hdCoeff⟩
+    have hd : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hdCoeff
+    rcases D.sToR_support_primitiveCoordinates
+        ha hb hcop hcontactScale hBal hcontact R hn hm
+        near0 near1 near2 near3 far0 far1 far2 far3 hd with
+      ⟨x, y, hx0, hx2, hy1, hy3, hline⟩
+    rcases exists_complementarySegment_index
+        hM hh hk hcopMN hmEq hnEq hline with
+      ⟨j, hj, hx, hy⟩
+    refine ⟨j, hj, ?_⟩
+    rw [← hdMap]
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp,
+        hx0, hx2, hy1, hy3, hx, hy,
+        Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hstartExp :
+      complementaryLineExponentFinsupp b a a b h k M 0 =
+        Finsupp.mapDomain rho D.facetExponent := by
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp,
+        near0, near1, near2, near3, hnEq,
+        Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hendExp :
+      complementaryLineExponentFinsupp b a a b h k M M =
+        Finsupp.mapDomain rho R.exponent := by
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp,
+        far0, far1, far2, far3, hmEq,
+        Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hstart :
+      MvPolynomial.coeff
+        (complementaryLineExponentFinsupp b a a b h k M 0) F ≠ 0 := by
+    rw [hstartExp]
+    dsimp [F]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact MvPolynomial.mem_support_iff.mp D.facet_mem_face
+
+  have hend :
+      MvPolynomial.coeff
+        (complementaryLineExponentFinsupp b a a b h k M M) F ≠ 0 := by
+    rw [hendExp]
+    dsimp [F]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact R.coeff_ne_zero
+
+  have hfaceZero : hessianDeterminant D.face = 0 :=
+    D.hessian_zero hzero
+  have hdet : hessianDeterminant F = 0 := by
+    dsimp [F]
+    rw [hessianDeterminant_rename_perm, hfaceZero]
+    simp
+
+  exact complementary_supported_edge_hessian_impossible
+    (K := K)
+    hb ha ha hb hM hh hk hsupp hstart hend hdet
+
 /-- Final finite endpoint split for the honest first-contact line.  The two
 adjacent ray pairings are immediately recognised as one-facet transitions;
 only the two opposite chords remain as genuinely complementary cases.
