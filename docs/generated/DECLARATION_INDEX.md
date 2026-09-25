@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9792**.
+Distinct declaration spellings indexed: **9793**.
 
 ## Repeated declaration spellings
 
@@ -994,6 +994,7 @@ Distinct declaration spellings indexed: **9792**.
 - `AdaptiveAlignedSmithCanonicalZeroDefectReentryOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry`
 - `AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`
 - `AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`
+- `AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectTopFaceSelection`
 - `AdaptiveAlignedSmithCanonicalZeroJetPlanarCoreOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreZeroJet`
 - `AdaptiveAlignedSmithCanonicalZeroJetStationaryPlanarCorePacket` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreZeroJet`
 - `AdaptiveAlignedSmithCanonicalZeroJetStationaryPlanarCorePacket.toCurvedEliminatedPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssembly`
