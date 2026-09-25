@@ -110,10 +110,8 @@ theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.source_mem_of
   have hdeg := T.ordinaryDegree_eq_of_mem_support hd
   have hface : MvPolynomial.coeff d T.face ≠ 0 :=
     MvPolynomial.mem_support_iff.mp hd
-  have hcoeff := T.coeff_eq_source_of_ordinaryDegree_eq d hdeg
-  apply MvPolynomial.mem_support_iff.mpr
-  rw [← hcoeff]
-  exact hface
+  rw [T.coeff_face, if_pos hdeg] at hface
+  exact MvPolynomial.mem_support_iff.mpr hface
 
 /-- Coefficients on the selected maximal ordinary degree are retained
 literally by the singular top face. -/
