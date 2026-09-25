@@ -65,6 +65,26 @@ structure AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
       (fun _ : Fin 4 => (0 : K))
       (coordinateAxisPoint (K := K) (0 : Fin 4))
 
+/-- Exact coefficient formula for the selected singular top face. -/
+theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_face
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    (d : Fin 4 →₀ ℕ) :
+    MvPolynomial.coeff d T.face =
+      if HC4.Polynomial.ordinaryDegree4 d = T.degree then
+        MvPolynomial.coeff d (polynomialFamilySpecialFiber s.family)
+      else 0 := by
+  rw [T.face_eq, HC4.Polynomial.coeff_initialForm]
+  have hw :
+      Finsupp.weight ordinaryWeight d =
+        (HC4.Polynomial.ordinaryDegree4 d : ℤ) := by
+    change
+      Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d =
+        (HC4.Polynomial.ordinaryDegree4 d : ℤ)
+    exact HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4 d
+  rw [hw]
+  simp
+
 /-- Coefficients on the selected maximal ordinary degree are retained
 literally by the singular top face. -/
 theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq
