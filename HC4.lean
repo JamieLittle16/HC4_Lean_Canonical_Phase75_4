@@ -347,6 +347,12 @@ import HC4.Valuation.PlanarKellerCollisionTerminalLift
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution
 
+-- Retain the exact positive first-contact equation through the surviving
+-- extreme-ray exit, then expose the genuine opposite boundary endpoint of
+-- the resulting one-dimensional cross-facet face.
+import HC4.Newton.FirstContactCrossFacetExtremeRayPositive
+import HC4.Newton.FirstContactCrossFacetFarBoundary
+
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
 import HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation
