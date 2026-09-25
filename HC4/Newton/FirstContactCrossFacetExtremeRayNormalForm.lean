@@ -64,6 +64,50 @@ theorem CrossFacetInitialData.qs_extremeRay_facet_normalForm
           Exponent.scale n (sExponent a b)) :=
   qs_adjacent_onRay_normalForm hAdj hRay
 
+/-- Coordinate form of the surviving `.qs` extreme-ray endpoint.  This is
+the exact sparse endpoint shape consumed by the next complementary-line
+adapter. -/
+theorem CrossFacetInitialData.qs_extremeRay_facet_coordinates
+    {K : Type*} [Field K] [CharZero K]
+    {F : MvPolynomial (Fin 4) K}
+    {a b : ℕ}
+    (D : CrossFacetInitialData F
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    {H : ToricFacet}
+    (hAdj : AdjacentFacets .qs H)
+    (hRay : OnRay a b .qs H (toToricExponent D.facetExponent)) :
+    (∃ n : ℕ,
+        D.facetExponent 0 = 0 ∧
+        D.facetExponent 1 = n ∧
+        D.facetExponent 2 = n ∧
+        D.facetExponent 3 = 0) ∨
+      (∃ n : ℕ,
+        D.facetExponent 0 = 0 ∧
+        D.facetExponent 1 = a * n ∧
+        D.facetExponent 2 = 0 ∧
+        D.facetExponent 3 = b * n) := by
+  rcases D.qs_extremeRay_facet_normalForm hAdj hRay with hq | hs
+  · rcases hq with ⟨n, hn⟩
+    left
+    refine ⟨n, ?_, ?_, ?_, ?_⟩
+    · exact D.facet_coordinate_zero
+    · have h := congrArg (fun u : Exponent => u.x2) hn
+      simpa [Exponent.scale, qExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x3) hn
+      simpa [Exponent.scale, qExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x4) hn
+      simpa [Exponent.scale, qExponent] using h
+  · rcases hs with ⟨n, hn⟩
+    right
+    refine ⟨n, ?_, ?_, ?_, ?_⟩
+    · exact D.facet_coordinate_zero
+    · have h := congrArg (fun u : Exponent => u.x2) hn
+      simpa [Exponent.scale, sExponent, Nat.mul_comm] using h
+    · have h := congrArg (fun u : Exponent => u.x3) hn
+      simpa [Exponent.scale, sExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x4) hn
+      simpa [Exponent.scale, sExponent, Nat.mul_comm] using h
+
 end
 
 end HC4.Newton
