@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9803**.
+Distinct declaration spellings indexed: **9809**.
 
 ## Repeated declaration spellings
 
@@ -3286,6 +3286,7 @@ Distinct declaration spellings indexed: **9803**.
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopKernelMarkedAxisFirstContactFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `TopKernelMarkedAxisLinearPowerSupportSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `TopKernelMarkedAxisQsRankThreeRefinementData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
 - `TopKernelThreeSchurClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
@@ -6589,6 +6590,10 @@ Distinct declaration spellings indexed: **9803**.
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_exposedFace_equiv` — `theorem` in `HC4.Newton.Equivariance`
 - `map_parameterThreeLayerMatrix_eval` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
+- `markedAxisFirstContact_pderiv_kernel_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
+- `markedAxisFirstContact_specialFiber_eq_topFace_of_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
+- `markedAxisFirstContact_specialFiber_eq_topFace_of_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
+- `markedAxisLinearPowerSupportSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `mathlibWeightedHomogeneous_to_integral` — `theorem` in `HC4.Newton.TerminalPermutedGradient`
 - `matrix` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`
 - `matrix3ParameterGapDualJet` — `def` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
@@ -9722,6 +9727,7 @@ Distinct declaration spellings indexed: **9803**.
 - `topFace_hessian_diagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
 - `topFace_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `topFace_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `topFace_pderiv_kernel_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `topKernelLastBlock_kernelRow_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `topKernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `topKernelMarkedAxisFirstContactFaceData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
