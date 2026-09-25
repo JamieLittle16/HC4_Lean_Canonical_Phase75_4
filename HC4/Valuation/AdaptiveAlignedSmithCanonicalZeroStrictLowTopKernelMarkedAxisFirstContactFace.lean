@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision
 import HC4.Newton.TerminalPermutedGradient
+import HC4.Newton.TerminalTwoZeroSupport
 import Mathlib.Tactic
 
 /-!
@@ -159,6 +160,72 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_homogeneous :
       (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
       (T.topFace.degree : ℤ)
       T.topKernelReesSource
+
+/-- Every monomial surviving on the marked-axis first-contact fibre has
+zero exponent in the marked coordinate.  The maximal ordinary-degree bound is
+essential here: transverse marked weight already exhausts the full level. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_exponent_zero
+    (d : Fin 4 →₀ ℕ)
+    (hd :
+      MvPolynomial.coeff d
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily) ≠ 0) :
+    d 0 = 0 := by
+  have hweighted :=
+    T.topKernelMarkedAxisFirstContact_specialFiber_homogeneous d hd
+  have hw :
+      Finsupp.weight
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+        (T.topFace.degree : ℤ) := by
+    rw [← integralWeightedDegree_eq_finsuppWeight]
+    exact hweighted
+  have htransZ :
+      ((d 1 + d 2 + d 3 : ℕ) : ℤ) =
+        (T.topFace.degree : ℤ) := by
+    have hw' := hw
+    rw [Finsupp.weight_apply, Finsupp.sum_fintype] at hw'
+    · simpa [topKernelMarkedAxisNatWeight, Fin.sum_univ_four] using hw'
+    · intro i
+      simp
+  have htrans :
+      d 1 + d 2 + d 3 = T.topFace.degree := by
+    exact_mod_cast htransZ
+  have hsource :
+      MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
+    have hinit := hd
+    rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm,
+      HC4.Polynomial.coeff_initialForm, if_pos hw] at hinit
+    exact hinit
+  have hmem : d ∈ T.topKernelReesSource.support :=
+    MvPolynomial.mem_support_iff.mpr hsource
+  have hord :
+      HC4.Polynomial.ordinaryDegree4 d ≤ T.topFace.degree := by
+    simpa only [weight_ordinaryTopNatWeight] using
+      T.topKernelReesSource_hasReverseWeightBound d hmem
+  unfold HC4.Polynomial.ordinaryDegree4 at hord
+  omega
+
+/-- The marked-axis first-contact special fibre is independent of coordinate
+zero. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero :
+    MvPolynomial.pderiv (0 : Fin 4)
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily) = 0 := by
+  apply pderiv_eq_zero_of_all_supported_exponents_zero
+  intro d hd
+  exact T.topKernelMarkedAxisFirstContact_specialFiber_exponent_zero d hd
+
+/-- Consequently the first-contact fibre is genuinely singular: its formal
+Hessian has a zero row in the marked direction. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_hessianDeterminant_eq_zero :
+    HC4.Polynomial.hessianDeterminant
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily) = 0 := by
+  unfold HC4.Polynomial.hessianDeterminant
+  apply Matrix.det_eq_zero_of_row_eq_zero (0 : Fin 4)
+  intro j
+  simp [HC4.Polynomial.hessian,
+    T.topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero]
 
 /-- Polynomial-level packet retained at the E-stage boundary: an exact
 weighted-homogeneous associated-graded fibre together with its literal distinct
