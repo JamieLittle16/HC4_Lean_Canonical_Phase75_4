@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9875**.
+Distinct declaration spellings indexed: **9877**.
 
 ## Repeated declaration spellings
 
@@ -5088,6 +5088,7 @@ Distinct declaration spellings indexed: **9875**.
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `exists_exposed_ratio_wall_from_min_fiber` — `theorem` in `HC4.Newton.FiniteSupportLowerHullExposure`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
+- `exists_finalResolution_of_constructorFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -10163,6 +10164,7 @@ Distinct declaration spellings indexed: **9875**.
 - `zeroSmithGrade_is_yz_of_noWLinear` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `zeroSmithSourceSupport` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `zeroSmithSourceSupport_nonempty_of_noGenuineWall` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
+- `zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `zeroStrictLow_completeRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_constantThreeByThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_exactExponentMixedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
