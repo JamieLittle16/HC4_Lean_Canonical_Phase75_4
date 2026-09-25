@@ -341,6 +341,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDGeometricFrontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier
+import HC4.Valuation.PlanarKellerCollisionTerminalLift
 
 
 -- Normalize arbitrary balance-free cross-facet rays to the canonical contact-0 chart.
