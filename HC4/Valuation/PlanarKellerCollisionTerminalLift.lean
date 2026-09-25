@@ -99,11 +99,9 @@ end
 
 end HC4.Newton
 
-namespace HC4.Valuation
+namespace HC4.Newton
 
 noncomputable section
-
-open HC4.Newton
 
 universe u
 variable {K : Type u} [Field K] [CharZero K]
@@ -223,4 +221,4 @@ end PlanarKellerCollisionData
 
 end
 
-end HC4.Valuation
+end HC4.Newton
