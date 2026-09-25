@@ -176,7 +176,7 @@ theorem CrossFacetFarBoundaryData.extremeRay_p_or_r
       have hx := congrArg (fun u : Exponent => u.x1) hn
       rw [hn0] at hx
       have hz : R.exponent (0 : Fin 4) = 0 := by
-        simpa [Exponent.scale] using hx
+        simpa [Exponent.scale, pExponent, qExponent, rExponent, sExponent] using hx
       omega
     first
     | exact Or.inl ⟨n, hnpos, hn⟩
@@ -184,7 +184,7 @@ theorem CrossFacetFarBoundaryData.extremeRay_p_or_r
     | exfalso
       have hx := congrArg (fun u : Exponent => u.x1) hn
       have hz : R.exponent (0 : Fin 4) = 0 := by
-        simpa [Exponent.scale, qExponent, sExponent] using hx
+        simpa [Exponent.scale, pExponent, qExponent, rExponent, sExponent] using hx
       omega
 
 /-- Coordinate form of the preceding far-ray reduction.  These are the
@@ -263,10 +263,19 @@ noncomputable def CrossFacetInitialData.farBoundaryData
   let far : Fin 4 →₀ ℕ := E.witness
   let c : K := MvPolynomial.coeff far E.face
 
-  have hfarE : far ∈ E.face.support := by
+  have hfarD : far ∈ D.face.support := by
     simpa [far, E] using E.witness_mem
-  have hfarD : far ∈ D.face.support :=
-    E.support_subset hfarE
+  have hfarCoeffEq :
+      MvPolynomial.coeff far E.face =
+        MvPolynomial.coeff far D.face := by
+    rw [E.face_eq, coeff_initialForm, weight_coordinateMaxWeight]
+    have hcoord : far (0 : Fin 4) = E.level := by
+      simpa [far, E] using E.witness_coordinate
+    simp [hcoord]
+  have hfarE : far ∈ E.face.support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    rw [hfarCoeffEq]
+    exact MvPolynomial.mem_support_iff.mp hfarD
 
   have hfar_coord : far (0 : Fin 4) = E.level := by
     simpa [far, E] using E.witness_coordinate
@@ -305,8 +314,11 @@ noncomputable def CrossFacetInitialData.farBoundaryData
         have hqs : q ∈ E.face.support :=
           MvPolynomial.mem_support_iff.mpr hne
         exact hq (hunique q hqs)
+      have hfarq : far ≠ q := by
+        intro hfarq
+        exact hq hfarq.symm
       rw [hqzero]
-      simp [hq]
+      simp [hfarq]
 
   have hinit :
       initialForm (coordinateMaxWeight (0 : Fin 4))
