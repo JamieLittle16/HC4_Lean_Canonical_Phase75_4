@@ -61,8 +61,10 @@ theorem TopKernelThreeSchurClockData.pivot2_ne_zero_of_rankOne_column2_opening
         (MvPolynomial (Fin 4) K) => N i 2)
       hCsymm
     simpa using h
+  have h22C : C 2 2 = 0 := by
+    simpa [C, E] using h22
   have hsq : C i 2 * C i 2 = 0 := by
-    rw [h22, hs] at hm
+    rw [h22C, hs] at hm
     simpa using hm
   rcases mul_eq_zero.mp hsq with hz | hz
   · exact hopen (by simpa [E, C] using hz)
