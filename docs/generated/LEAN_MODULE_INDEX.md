@@ -4879,7 +4879,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.37`, `A19.38`, `A19.4`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`, `HC4.Newton.TerminalTwoZeroPlanarCollision`, `HC4.Newton.TerminalCoordinatePermutation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - Declarations: `theorem hasPlanarKellerCollision_of_standardized`, `theorem hasPlanarKellerCollision`, `theorem not_planarJC2`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
@@ -11837,10 +11837,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution.lean`
 - Purpose: Explicit planar Keller collisions are permitted zero-strict-low resolutions
 - A-labels: none detected
-- Local imports: `HC4.Valuation.PlanarKellerCollisionTerminalLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
+- Local imports: `HC4.Valuation.PlanarKellerCollisionTerminalLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `def toZeroStrictLowSingularFinalResolution`, `theorem exists_zeroStrictLowSingularFinalResolution`, `theorem HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution`
+- Declarations: `def toZeroStrictLowSingularFinalResolution`, `theorem exists_zeroStrictLowSingularFinalResolution`, `theorem exists_zeroStrictLowSingularFinalResolution`, `theorem HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
 
