@@ -112,12 +112,19 @@ theorem unitKernelDeflateSection_scaledAxisZero_eq_constantAxis :
     have hspec :=
       Classical.choose_spec
         (fourReverseReesScaledSection_axisZero_unitDivisible (K := K))
+    simp only [fourReverseReesScaledSection] at hspec
     change
-      Polynomial.X * Polynomial.C (1 : K) =
+      Polynomial.X *
+          Polynomial.C
+            (coordinateAxisPoint (K := K) (0 : Fin 4) 0) =
         Polynomial.X *
           Classical.choose
             (fourReverseReesScaledSection_axisZero_unitDivisible (K := K))
       at hspec
+    have haxis :
+        coordinateAxisPoint (K := K) (0 : Fin 4) 0 = 1 := by
+      simp [coordinateAxisPoint]
+    rw [haxis] at hspec
     have heq :
         Polynomial.X ^ 1 *
             Classical.choose
@@ -203,8 +210,8 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_collisionPoints_ne
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
     (fun _ : Fin 4 => (0 : K)) ≠
-      coordinateAxisPoint (K := K) (0 : Fin 4) :=
-  T.topKernelReesSource_collisionPoints_ne
+      coordinateAxisPoint (K := K) (0 : Fin 4) := by
+  exact topKernelReesSource_collisionPoints_ne (K := K)
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
