@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9921**.
+Distinct declaration spellings indexed: **9925**.
 
 ## Repeated declaration spellings
 
@@ -1485,6 +1485,8 @@ Distinct declaration spellings indexed: **9921**.
 - `CrossFacetFarBoundaryData` — `structure` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.extremeRay_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarBoundaryData.nearFarBoundaryOutcome` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarBoundaryData.nearFarRayPairing` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.auxiliary_cross_le` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
@@ -1548,6 +1550,8 @@ Distinct declaration spellings indexed: **9921**.
 - `CrossFacetInitialData.support_eq_of_contactCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.support_subset` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
+- `CrossFacetNearFarBoundaryOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetNearFarRayPairing` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetRayData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetRay`
 - `CrossFacetRayData.RenamedZeroTerminalOutcome` — `inductive` in `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`
 - `CrossFacetRayData.coeff_zeroCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRayAffineRR`
