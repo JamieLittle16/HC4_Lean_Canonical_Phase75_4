@@ -2686,7 +2686,7 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseSquare`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
-  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`

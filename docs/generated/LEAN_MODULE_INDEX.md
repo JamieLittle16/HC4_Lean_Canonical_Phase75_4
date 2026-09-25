@@ -4599,7 +4599,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.88`, `A19.35`, `A19.36`, `A19.36a`, `A19.40`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesConstructorReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- Imported by local modules: `HC4`
 - Declarations: `structure AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer`, `def AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer.toFirstContactResidualProducer`, `theorem hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_constructorFirstContactResidualProducer`, `theorem planarJC2_iff_hessianFour_gradient_injective_of_constructorFirstContactResidualProducer`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
@@ -4869,7 +4869,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.34b`, `A19.35`, `A19.36`, `A19.4`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`, `HC4.Valuation.AdaptiveAlignedSmithFirstContactTwoZeroJC2`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - Declarations: `structure AdaptiveAlignedSmithCanonicalHonestFirstContactEndpoint`, `theorem hasSecondMarkedTerminalZero`, `theorem impossible_of_JC2`, `structure AdaptiveAlignedSmithCanonicalFirstContactResidualProducer`, `def AdaptiveAlignedSmithCanonicalFirstContactResidualProducer.toReesLowLayerOrderResidualResolver`, `theorem gradient_injective_of_hessianDeterminant_one_of_firstContactResidualProducer_of_endpointImpossible`, `theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactResidualProducer`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
@@ -7886,11 +7886,11 @@ Lean itself remains authoritative for elaborated names and dependencies.
 
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution.lean`
 - Purpose: Zero-strict-low singular terminals through the mature first-contact endpoint
-- A-labels: `A19.52`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
+- A-labels: none detected
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem exists_finalResolution_of_constructorFirstContactProducer`, `theorem zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer`, `theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution`
+- Declarations: `theorem exists_finalResolution_of_firstContactResidualProducer`, `theorem zeroStrictLowSingularFinalResolutionProperty_of_firstContactResidualProducer`, `theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactFinalResolution`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
 

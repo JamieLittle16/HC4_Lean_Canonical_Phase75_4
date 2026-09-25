@@ -5088,7 +5088,7 @@ Distinct declaration spellings indexed: **9878**.
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `exists_exposed_ratio_wall_from_min_fiber` — `theorem` in `HC4.Newton.FiniteSupportLowerHullExposure`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
-- `exists_finalResolution_of_constructorFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `exists_finalResolution_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -5897,7 +5897,7 @@ Distinct declaration spellings indexed: **9878**.
 - `gradientRatioLinearForm_scale_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `gradient_bijective_of_classified_polynomial` — `theorem` in `HC4.MainAssembly`
 - `gradient_global_proportional_family` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
-- `gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_reachableResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution`
@@ -10165,7 +10165,7 @@ Distinct declaration spellings indexed: **9878**.
 - `zeroSmithGrade_is_yz_of_noWLinear` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `zeroSmithSourceSupport` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `zeroSmithSourceSupport_nonempty_of_noGenuineWall` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
-- `zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `zeroStrictLowSingularFinalResolutionProperty_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `zeroStrictLow_completeRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_constantThreeByThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_exactExponentMixedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowMixedDegree`
