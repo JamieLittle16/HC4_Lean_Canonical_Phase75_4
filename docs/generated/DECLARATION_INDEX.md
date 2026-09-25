@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9928**.
+Distinct declaration spellings indexed: **9929**.
 
 ## Repeated declaration spellings
 
@@ -5103,6 +5103,7 @@ Distinct declaration spellings indexed: **9928**.
 - `exists_certifiedFixedScaleStrictSuccessor_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAllTransverseRationalKernelDispatcher`
 - `exists_certifiedFixedScaleStrictSuccessor_of_positiveSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`
 - `exists_certifiedRamifiedRawDefectSpend_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedProgressUpgrade`
+- `exists_complementarySegment_parameter` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `exists_constantTransverseShear_layerDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `exists_coordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `exists_denominatorClearedSpecialSchurKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
