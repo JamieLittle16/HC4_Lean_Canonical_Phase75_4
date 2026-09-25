@@ -58,7 +58,7 @@ theorem HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution
       (K := K) state) :
     Nonempty
       (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
-  rcases h.exists_terminalAssociatedGradedCollisionData with ⟨A⟩
+  rcases hasPlanarKellerCollision_exists_terminalAssociatedGradedCollisionData h with ⟨A⟩
   exact ⟨.associatedGradedCollision A⟩
 
 end
