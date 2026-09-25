@@ -114,6 +114,76 @@ theorem topKernelLinearPowerE2Frontier_nonempty
   | crossFacetFar data htwo =>
       exact ⟨.crossFacetFar data htwo C⟩
 
+/-- At the zero-strict-low represented state, an exact-active chart cannot
+enter the generic zero-Schur branch: that branch itself forces positive raw
+defect.  Hence an exact-active C/D output already carries a literal nonzero
+constant three-by-three Hessian minor. -/
+theorem exactActive_threeByThree_of_presentedZero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+      T.terminal.blocker.presented) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  cases A.rankThreeGeometry 0 with
+  | constantMinor G _ =>
+      exact ⟨G⟩
+  | zeroSchur Z hblock _ =>
+      have hdefectPos : 0 < T.terminal.blocker.presented.rawDefect := by
+        have hzero :
+            A.block.schurA.coeff 0 = 0 ∧
+              A.block.schurB.coeff 0 = 0 ∧
+              A.block.schurC.coeff 0 = 0 := by
+          rw [← hblock]
+          exact ⟨Z.schurA_coeff_zero, Z.schurB_coeff_zero,
+            Z.schurC_coeff_zero⟩
+        by_contra hnot
+        have hdefect0 :
+            T.terminal.blocker.presented.rawDefect = 0 :=
+          Nat.eq_zero_of_not_pos hnot
+        have hschur :
+            A.block.polynomialSchurSeries.determinant =
+              A.block.activeDet *
+                Polynomial.X ^ T.terminal.blocker.presented.rawDefect := by
+          calc
+            A.block.polynomialSchurSeries.determinant =
+                A.block.activeDet * A.block.determinantCore :=
+              A.block.polynomialSchurSeries_determinant
+            _ = A.block.activeDet *
+                Polynomial.X ^ T.terminal.blocker.presented.rawDefect := by
+              rw [A.fullDet]
+        have hcoeff := congrArg
+          (fun q : Polynomial (MvPolynomial (Fin 4) K) => q.coeff 0) hschur
+        have hleft :
+            A.block.polynomialSchurSeries.determinant.coeff 0 = 0 := by
+          simp [BinarySchurPolynomialSeries.determinant,
+            GeneralFourBlock.polynomialSchurSeries, hzero]
+        have hright :
+            (A.block.activeDet *
+              Polynomial.X ^ T.terminal.blocker.presented.rawDefect).coeff 0 ≠ 0 := by
+          rw [hdefect0]
+          simpa using A.activeDet_coeff_zero_ne_zero
+        exact (hright (by simpa [hleft] using hcoeff.symm)).elim
+      exact (Nat.not_lt_zero _ (T.presented_zero ▸ hdefectPos)).elim
+
+/-- In particular the source-honest C/D frontier is now sharpened: its
+`exactActive` constructor carries an actual constant three-by-three minor. -/
+theorem cd_exactActive_threeByThree
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (C : P.TopKernelLinearPowerCDSourceFrontier) :
+    (∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A)) ∨
+      (∃ (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+          (S : P.TopKernelThreeSchurClockData)
+          (R : ThreeSchurTangentAtFirstBreak S M),
+        Nonempty (P.TopKernelThreeSchurRelativeGeometricFrontier S M)) := by
+  cases C with
+  | exactActive A =>
+      exact Or.inl ⟨A, P.exactActive_threeByThree_of_presentedZero A⟩
+  | relative M S R G =>
+      exact Or.inr ⟨M, S, R, ⟨G⟩⟩
+
 /-- Canonical Type-valued combined E2 frontier. -/
 noncomputable def topKernelLinearPowerE2Frontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
