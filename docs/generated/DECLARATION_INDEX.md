@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9897**.
+Distinct declaration spellings indexed: **9898**.
 
 ## Repeated declaration spellings
 
@@ -3342,6 +3342,7 @@ Distinct declaration spellings indexed: **9897**.
 - `TopKernelThreeSchurPrincipalPivot` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurPrincipalPivot.toRepresentedSourceSchurWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativePrincipalSourceLift`
 - `TopKernelThreeSchurRelativeGeometricFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
+- `TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurRelativeGeometricFrontier.toSourceRankThreeFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurRelativeSourceRankThreeFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurRelativeTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
