@@ -31,6 +31,8 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetEndpointStratum`
   - `HC4.Newton.FirstContactCrossFacetEndpointTransition`
   - `HC4.Newton.FirstContactCrossFacetExit`
+  - `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
+  - `HC4.Newton.FirstContactCrossFacetFarBoundary`
   - `HC4.Newton.FirstContactHonestSlice`
   - `HC4.Newton.LongitudinalHessianCoupledKernel`
   - `HC4.Newton.LongitudinalHessianTopDegree`
@@ -542,6 +544,9 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetExit`
 - `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
   - `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
+- `HC4.Newton.FirstContactCrossFacetFarBoundary`
+  - `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
+  - `HC4.Newton.InteriorVertex`
 - `HC4.Newton.FirstContactHonestSlice`
   - `HC4.Newton.FirstContactAffinePlane`
 - `HC4.Newton.FirstContactNonlinearSupport`

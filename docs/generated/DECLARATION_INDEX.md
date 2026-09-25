@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9914**.
+Distinct declaration spellings indexed: **9916**.
 
 ## Repeated declaration spellings
 
@@ -1482,6 +1482,7 @@ Distinct declaration spellings indexed: **9914**.
 - `CoordinateMaxInitialData.firstContact_lineSlice_constraints` — `theorem` in `HC4.Newton.FirstContactAffinePlane`
 - `CoordinateMaxInitialData.hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `CoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
+- `CrossFacetFarBoundaryData` — `structure` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.auxiliary_cross_le` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
@@ -1494,6 +1495,7 @@ Distinct declaration spellings indexed: **9914**.
 - `CrossFacetInitialData.facetEndpoint_rankThree_or_transitionRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData.facetExponent_ne_outsideExponent` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.facetExponent_on_contactFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
+- `CrossFacetInitialData.farBoundaryData` — `def` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.honestLineCertificate` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData.honestLine_qs_rankThree_or_transitionRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
