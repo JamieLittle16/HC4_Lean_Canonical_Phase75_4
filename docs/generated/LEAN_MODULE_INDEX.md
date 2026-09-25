@@ -14800,7 +14800,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`, `HC4.Newton.TerminalAssociatedGradedEndpoint`, `HC4.PlanarJC2HessianEmbedding`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `theorem dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero`, `theorem planarDoublingPotential_twoZero_homogeneous`, `def toTerminalAssociatedGradedCollisionData`, `theorem exists_terminalAssociatedGradedCollisionData`
+- Declarations: `theorem dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero`, `theorem planarDoublingPotential_twoZero_homogeneous`, `theorem exists_terminalAssociatedGradedCollisionData`, `def toTerminalAssociatedGradedCollisionData`
 
 ### `HC4.Valuation.PointedShearContinuation`
 
