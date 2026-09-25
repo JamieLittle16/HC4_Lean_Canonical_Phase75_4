@@ -370,6 +370,133 @@ theorem CrossFacetFarBoundaryData.nearFarRayPairing
     · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
       exact .sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
 
+/-- Every support exponent on an opposite `q -> p` chord has the
+expected complementary coordinates and satisfies the primitive line equation
+`n*x + m*y = m*n`. -/
+theorem CrossFacetInitialData.qToP_support_equations
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
+    (near0 : D.facetExponent 0 = 0)
+    (near1 : D.facetExponent 1 = n)
+    (near2 : D.facetExponent 2 = n)
+    (near3 : D.facetExponent 3 = 0)
+    (far0 : R.exponent 0 = m)
+    (far1 : R.exponent 1 = 0)
+    (far2 : R.exponent 2 = 0)
+    (far3 : R.exponent 3 = m) :
+    ∀ d ∈ D.face.support,
+      d 0 = d 3 ∧
+      d 1 = d 2 ∧
+      n * d 0 + m * d 1 = m * n := by
+  intro d hd
+  have h1 := D.support_far_affine_proportional
+    ha hb hcontactScale hBal hcontact R d hd (1 : Fin 4)
+  have h2 := D.support_far_affine_proportional
+    ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
+  have h3 := D.support_far_affine_proportional
+    ha hb hcontactScale hBal hcontact R d hd (3 : Fin 4)
+  rw [near0, near1, near2, near3, far0, far1, far2, far3] at h1 h2 h3
+  have hmZ : (m : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hm)
+  have h03Z : (d 0 : ℤ) = (d 3 : ℤ) := by
+    have heq : (m : ℤ) * (d 3 : ℤ) = (m : ℤ) * (d 0 : ℤ) := by
+      simpa [mul_comm] using h3
+    exact (mul_left_cancel₀ hmZ heq).symm
+  have h12Z : (d 1 : ℤ) = (d 2 : ℤ) := by
+    have heq :
+        (m : ℤ) * ((d 1 : ℤ) - (n : ℤ)) =
+          (m : ℤ) * ((d 2 : ℤ) - (n : ℤ)) := by
+      exact h1.trans h2.symm
+    have hsub :
+        (d 1 : ℤ) - (n : ℤ) =
+          (d 2 : ℤ) - (n : ℤ) :=
+      mul_left_cancel₀ hmZ heq
+    linarith
+  have hlineZ :
+      (n : ℤ) * (d 0 : ℤ) + (m : ℤ) * (d 1 : ℤ) =
+        (m : ℤ) * (n : ℤ) := by
+    linear_combination h1
+  refine ⟨?_, ?_, ?_⟩
+  · exact_mod_cast h03Z
+  · exact_mod_cast h12Z
+  · exact_mod_cast hlineZ
+
+/-- On an opposite `s -> r` chord the two primitive ray blocks stay
+proportional, and the first block satisfies the corresponding endpoint line
+equation.  Coprimality of `a,b` will turn these relations into the canonical
+complementary-line integer parameter in the next adapter. -/
+theorem CrossFacetInitialData.sToR_support_equations
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
+    (near0 : D.facetExponent 0 = 0)
+    (near1 : D.facetExponent 1 = a * n)
+    (near2 : D.facetExponent 2 = 0)
+    (near3 : D.facetExponent 3 = b * n)
+    (far0 : R.exponent 0 = b * m)
+    (far1 : R.exponent 1 = 0)
+    (far2 : R.exponent 2 = a * m)
+    (far3 : R.exponent 3 = 0) :
+    ∀ d ∈ D.face.support,
+      b * d 2 = a * d 0 ∧
+      b * d 1 = a * d 3 ∧
+      b * m * d 1 + a * n * d 0 = a * b * m * n := by
+  intro d hd
+  have h1 := D.support_far_affine_proportional
+    ha hb hcontactScale hBal hcontact R d hd (1 : Fin 4)
+  have h2 := D.support_far_affine_proportional
+    ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
+  rw [near0, near1, near2, near3, far0, far1, far2, far3] at h1 h2
+  have hmZ : (m : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hm)
+  have hbZ : (b : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hb)
+  have h20Z :
+      (b : ℤ) * (d 2 : ℤ) = (a : ℤ) * (d 0 : ℤ) := by
+    have heq :
+        (m : ℤ) * ((b : ℤ) * (d 2 : ℤ)) =
+          (m : ℤ) * ((a : ℤ) * (d 0 : ℤ)) := by
+      simpa [mul_assoc, mul_left_comm, mul_comm] using h2
+    exact mul_left_cancel₀ hmZ heq
+  have hBalD : IsBalancedExponent a b d :=
+    hBal d (D.support_subset hd)
+  have h13Z :
+      (b : ℤ) * (d 1 : ℤ) = (a : ℤ) * (d 3 : ℤ) := by
+    unfold IsBalancedExponent at hBalD
+    have hBalDZ :
+        (a : ℤ) * (d 0 : ℤ) + (b : ℤ) * (d 1 : ℤ) =
+          (b : ℤ) * (d 2 : ℤ) + (a : ℤ) * (d 3 : ℤ) := by
+      exact_mod_cast hBalD
+    linear_combination hBalDZ - h20Z
+  have hlineZ :
+      (b : ℤ) * (m : ℤ) * (d 1 : ℤ) +
+          (a : ℤ) * (n : ℤ) * (d 0 : ℤ) =
+        (a : ℤ) * (b : ℤ) * (m : ℤ) * (n : ℤ) := by
+    linear_combination h1
+  refine ⟨?_, ?_, ?_⟩
+  · exact_mod_cast h20Z
+  · exact_mod_cast h13Z
+  · exact_mod_cast hlineZ
+
 /-- Final finite endpoint split for the honest first-contact line.  The two
 adjacent ray pairings are immediately recognised as one-facet transitions;
 only the two opposite chords remain as genuinely complementary cases.
