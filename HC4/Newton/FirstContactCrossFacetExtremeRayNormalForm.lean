@@ -16,6 +16,7 @@ complementary-edge polynomial obstruction.
 
 namespace HC4.Newton
 
+open HC4.Polynomial
 open HC4.Toric
 
 noncomputable section
