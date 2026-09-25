@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9826**.
+Distinct declaration spellings indexed: **9831**.
 
 ## Repeated declaration spellings
 
@@ -2237,6 +2237,7 @@ Distinct declaration spellings indexed: **9826**.
 - `LosslessFinalGeometryFrontier.toFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `LosslessProgressResidual` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessProgressReduction`
 - `LowDegreeTameAtFacet` — `def` in `HC4.Newton.FirstNonfacetContact`
+- `MarkedAxisCrossFacetCodimensionTwoFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `MaximalCommonParameterFamilyData` — `structure` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
 - `MixedDegreeSmithExponentOutcome` — `inductive` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `MvExponentOnBoundary` — `def` in `HC4.Polynomial.FourExponent`
@@ -6596,6 +6597,8 @@ Distinct declaration spellings indexed: **9826**.
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_exposedFace_equiv` — `theorem` in `HC4.Newton.Equivariance`
 - `map_parameterThreeLayerMatrix_eval` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
+- `markedAxisCrossFacetRay` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
+- `markedAxisCrossFacet_codimensionTwoFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `markedAxisFirstContact_pderiv_kernel_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `markedAxisFirstContact_specialFiber_eq_topFace_of_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `markedAxisFirstContact_specialFiber_eq_topFace_of_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
@@ -9733,8 +9736,10 @@ Distinct declaration spellings indexed: **9826**.
 - `topFaceCrossFacet_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
 - `topFaceOnFacet_topDegreeOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `topFaceOnMarkedFacet_of_noPositiveZeroCoordinateSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
+- `topFace_allTwoByTwoMinors_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `topFace_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `topFace_hessianPrincipalMinor_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `topFace_hessian_diagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
 - `topFace_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `topFace_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
