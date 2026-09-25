@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9878**.
+Distinct declaration spellings indexed: **9884**.
 
 ## Repeated declaration spellings
 
@@ -1028,6 +1028,7 @@ Distinct declaration spellings indexed: **9878**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStratum` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryTransition` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoTopFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactEndpointExtraction` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactProducer` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactProducer.toCoreProducer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacetData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
@@ -5088,6 +5089,7 @@ Distinct declaration spellings indexed: **9878**.
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `exists_exposed_ratio_wall_from_min_fiber` — `theorem` in `HC4.Newton.FiniteSupportLowerHullExposure`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
+- `exists_finalResolution_of_firstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finalResolution_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -5116,6 +5118,7 @@ Distinct declaration spellings indexed: **9878**.
 - `exists_globalRankThreeProgress_of_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
 - `exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
+- `exists_honestFirstContactEndpoint_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
 - `exists_layerExponent_of_coefficientProfile_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
@@ -5905,6 +5908,7 @@ Distinct declaration spellings indexed: **9878**.
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_relativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRelativeFirstContactReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_terminalClockSplitProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalClockSplitResolution`
+- `gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowFirstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `gradient_injective_of_hessianDeterminant_one_of_finalConstructorResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualConstructorReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_finalResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualReduction`
@@ -10165,6 +10169,8 @@ Distinct declaration spellings indexed: **9878**.
 - `zeroSmithGrade_is_yz_of_noWLinear` — `theorem` in `HC4.Newton.SmithFirstWallGradeClassification`
 - `zeroSmithSourceSupport` — `def` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `zeroSmithSourceSupport_nonempty_of_noGenuineWall` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
+- `zeroStrictLowFirstContactEndpointExtraction_of_firstContactResidualProducer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `zeroStrictLowSingularFinalResolutionProperty_of_firstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `zeroStrictLowSingularFinalResolutionProperty_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `zeroStrictLow_completeRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
 - `zeroStrictLow_constantThreeByThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
