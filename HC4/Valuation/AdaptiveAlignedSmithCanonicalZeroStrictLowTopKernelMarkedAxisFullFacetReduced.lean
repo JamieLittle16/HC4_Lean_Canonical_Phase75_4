@@ -44,7 +44,7 @@ inductive TopKernelMarkedAxisFullFacetReducedFrontier
   | startCodimensionTwo
       (boundary :
         HC4.Newton.MvExponentOnCodimensionTwoBoundary
-          (P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet).ray.facetExponent)
+          (P.fullMarkedFacetRayFacetExponent hfacet))
   | actualRankTwo
       (geometry :
         AdaptiveAlignedSmithCanonicalActualRankTwoHessianChart
@@ -74,7 +74,8 @@ theorem fullMarkedFacetReducedFrontier_nonempty
     rcases C.qs_ray_boundaryOutcome_actualRankTwoHessianChart hthree houtcome with
       ⟨A⟩
     exact ⟨.actualRankTwo A⟩
-  · exact ⟨.startCodimensionTwo (by simpa [C] using htwo)⟩
+  · exact ⟨.startCodimensionTwo (by
+      simpa [C, fullMarkedFacetRayFacetExponent] using htwo)⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
