@@ -78,6 +78,22 @@ noncomputable def fullMarkedFacetFirstNonfacetCrossFacetData
     P.nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet hfacet
   exact T.firstNonfacetCrossFacetData_qs htop hout
 
+/-- Facet endpoint of the canonical lower first-contact ray.  Naming this
+projection keeps later dependent endpoint types stable under elaboration. -/
+noncomputable def fullMarkedFacetRayFacetExponent
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (hfacet : HC4.Polynomial.MvSupportOnFacet .qs T.topFace.face) :
+    Fin 4 →₀ ℕ :=
+  let C := P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet
+  C.ray.facetExponent
+
+/-- Degree of the coefficient polynomial on the same canonical lower ray. -/
+noncomputable def fullMarkedFacetRayCoefficientDegree
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (hfacet : HC4.Polynomial.MvSupportOnFacet .qs T.topFace.face) : ℕ :=
+  let C := P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet
+  C.ray.zeroCoefficientPolynomial.natDegree
+
 /-- Finite A19 endpoint retained by the full marked-facet branch. -/
 inductive TopKernelMarkedAxisFullFacetContactFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -86,14 +102,13 @@ inductive TopKernelMarkedAxisFullFacetContactFrontier
   | rankThree
       (rankThree :
         HC4.Newton.MvRankThreeOnFacet .qs
-          (P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet).ray.facetExponent)
+          (P.fullMarkedFacetRayFacetExponent hfacet))
       (degree_one :
-        (P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet)
-          .ray.zeroCoefficientPolynomial.natDegree = 1)
+        P.fullMarkedFacetRayCoefficientDegree hfacet = 1)
   | codimensionTwo
       (boundary :
         HC4.Newton.MvExponentOnCodimensionTwoBoundary
-          (P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet).ray.facetExponent)
+          (P.fullMarkedFacetRayFacetExponent hfacet))
 
 /-- **Full marked-facet E2 endpoint split.**
 
@@ -112,8 +127,13 @@ theorem fullMarkedFacetContactFrontier_nonempty
       hterminal.1
     have hdegree : C.ray.zeroCoefficientPolynomial.natDegree = 1 :=
       C.qs_ray_terminal_degreeOne hthree
-    exact ⟨.rankThree (by simpa [C] using hthree) (by simpa [C] using hdegree)⟩
-  · exact ⟨.codimensionTwo (by simpa [C] using htwo)⟩
+    exact ⟨.rankThree
+      (by
+        simpa [C, fullMarkedFacetRayFacetExponent] using hthree)
+      (by
+        simpa [C, fullMarkedFacetRayCoefficientDegree] using hdegree)⟩
+  · exact ⟨.codimensionTwo (by
+      simpa [C, fullMarkedFacetRayFacetExponent] using htwo)⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
