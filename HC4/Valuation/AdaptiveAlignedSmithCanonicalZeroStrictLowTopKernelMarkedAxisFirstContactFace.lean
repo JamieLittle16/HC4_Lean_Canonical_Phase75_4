@@ -274,6 +274,10 @@ structure TopKernelMarkedAxisFirstContactFaceData : Type (u + 1) where
     IsIntegralWeightedHomogeneous
       (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
       (T.topFace.degree : ℤ) fibre
+  markedIndependent :
+    MvPolynomial.pderiv (0 : Fin 4) fibre = 0
+  hessian_zero :
+    HC4.Polynomial.hessianDeterminant fibre = 0
   exactCollision :
     HasExactGradientCollision
       fibre
@@ -290,6 +294,8 @@ noncomputable def topKernelMarkedAxisFirstContactFaceData :
     polynomialFamilySpecialFiber T.topKernelMarkedAxisFirstContactFamily
   fibre_eq := T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm
   homogeneous := T.topKernelMarkedAxisFirstContact_specialFiber_homogeneous
+  markedIndependent := T.topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero
+  hessian_zero := T.topKernelMarkedAxisFirstContact_specialFiber_hessianDeterminant_eq_zero
   exactCollision := T.topKernelMarkedAxisFirstContact_specialFiber_exactCollision
   distinct := T.topKernelMarkedAxisFirstContact_specialFiber_collisionPoints_ne
 
