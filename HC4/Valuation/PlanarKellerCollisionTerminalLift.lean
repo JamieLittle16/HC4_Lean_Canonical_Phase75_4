@@ -219,6 +219,24 @@ noncomputable def toTerminalAssociatedGradedCollisionData
 
 end PlanarKellerCollisionData
 
+/-- Proposition-level planar Keller collision witnesses also lift directly to
+a permitted terminal associated-graded collision.  Keeping the target under
+`Nonempty` makes the existential elimination sound and avoids choosing a
+planar witness in `Type`. -/
+theorem HC4.HasPlanarKellerCollision.exists_terminalAssociatedGradedCollisionData
+    (h : HC4.HasPlanarKellerCollision K) :
+    Nonempty (TerminalAssociatedGradedCollisionData K) := by
+  rcases h with ⟨G, hKeller, u, v, huv, hcoll⟩
+  let P : PlanarKellerCollisionData K := {
+    map := G
+    leftPoint := u
+    rightPoint := v
+    distinct := huv
+    keller := hKeller
+    collision := hcoll
+  }
+  exact P.exists_terminalAssociatedGradedCollisionData
+
 end
 
 end HC4.Newton
