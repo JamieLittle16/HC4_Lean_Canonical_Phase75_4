@@ -118,11 +118,11 @@ theorem exists_singular_first_nonfacet_contact_with_nonlinear_support
     ∃ (d₀ : Fin 4 →₀ ℕ) (scale bump : ℕ)
       (G : MvPolynomial (Fin 4) K),
       G = initialForm
-          (scaledContactWeight (HC4.Toric.facetOmittedCoordinate F) scale bump)
+          (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate F) scale bump)
           ((scale * m : ℕ) : ℤ) psi ∧
       d₀ ∈ G.support ∧
       3 ≤ ordinaryDegree4 d₀ ∧
-      0 < d₀ (HC4.Toric.facetOmittedCoordinate F) ∧
+      0 < d₀ (HC4.Polynomial.facetOmittedCoordinate F) ∧
       0 < scale ∧
       0 < bump ∧
       hessianDeterminant G = 0 ∧
@@ -132,7 +132,7 @@ theorem exists_singular_first_nonfacet_contact_with_nonlinear_support
       hm hdeg htop hout hlow hMA with
     ⟨d₀, scale, bump, hdpsi, hddeg, hdpos, hscaleEq, hbumpEq,
       hscale, hbump, hbound, hzero, hdinit, hnot⟩
-  let j := HC4.Toric.facetOmittedCoordinate F
+  let j := HC4.Polynomial.facetOmittedCoordinate F
   let G : MvPolynomial (Fin 4) K :=
     initialForm (scaledContactWeight j scale bump)
       ((scale * m : ℕ) : ℤ) psi
