@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision
+import HC4.Polynomial.WeightedInitial
 import HC4.Newton.TerminalPermutedGradient
 import HC4.Newton.TerminalTwoZeroSupport
 import Mathlib.Tactic
@@ -135,7 +136,7 @@ theorem topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees :
 `(0,1,1,1)` weighted initial form of the represented source. -/
 theorem topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm :
     polynomialFamilySpecialFiber T.topKernelMarkedAxisFirstContactFamily =
-      initialForm
+      HC4.Polynomial.initialForm
         (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
         (T.topFace.degree : ℤ)
         T.topKernelReesSource := by
@@ -156,7 +157,7 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_homogeneous :
   rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm]
   apply mathlibWeightedHomogeneous_to_integral
   exact
-    initialForm_isWeightedHomogeneous
+    HC4.Polynomial.initialForm_isWeightedHomogeneous
       (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
       (T.topFace.degree : ℤ)
       T.topKernelReesSource
@@ -235,7 +236,7 @@ structure TopKernelMarkedAxisFirstContactFaceData : Type (u + 1) where
     polynomialFamilySpecialFiber T.topKernelMarkedAxisFirstContactFamily
   fibre_eq :
     fibre =
-      initialForm
+      HC4.Polynomial.initialForm
         (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
         (T.topFace.degree : ℤ)
         T.topKernelReesSource
