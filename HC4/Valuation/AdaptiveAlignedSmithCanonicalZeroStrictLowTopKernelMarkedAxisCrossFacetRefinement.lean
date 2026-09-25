@@ -106,9 +106,9 @@ inductive MarkedAxisCrossFacetCodimensionTwoFrontier
   | far
       (boundary :
         MvExponentOnCodimensionTwoBoundary
-          ((P.markedAxisCrossFacetRay D).renameContactToZero.zeroAffineLineData.exponent
-            (P.markedAxisCrossFacetRay D).renameContactToZero
-              .zeroCoefficientPolynomial.natDegree))
+          (((P.markedAxisCrossFacetRay D).renameContactToZero).zeroAffineLineData.exponent
+            (((P.markedAxisCrossFacetRay D).renameContactToZero)
+              .zeroCoefficientPolynomial.natDegree)))
 
 /-- **E2 cross-facet refinement.**
 
