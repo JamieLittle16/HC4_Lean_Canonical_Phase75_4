@@ -119,7 +119,16 @@ consumer. -/
 noncomputable def toTerminalAssociatedGradedCollisionData
     (T : PlanarKellerCollisionData K) :
     TerminalAssociatedGradedCollisionData K := by
-  rcases T.keller with ⟨c, hc, hJ⟩
+  let c : K := Exists.choose T.keller
+  have hkeller :
+      c ≠ 0 ∧
+        HC4.planarJacobianDetPolynomial T.map =
+          MvPolynomial.C c := by
+    exact Exists.choose_spec T.keller
+  have hc : c ≠ 0 := hkeller.1
+  have hJ :
+      HC4.planarJacobianDetPolynomial T.map =
+        MvPolynomial.C c := hkeller.2
   let G : HC4.PlanarPolynomialMap K :=
     HC4.normalizePlanarKellerMap c T.map
   let A : MvPolynomial (Fin 2) K := G 0
