@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9777**.
+Distinct declaration spellings indexed: **9778**.
 
 ## Repeated declaration spellings
 
@@ -3356,6 +3356,7 @@ Distinct declaration spellings indexed: **9777**.
 - `ZeroRelativeExplicitBinaryEndpointSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryEndpoint`
 - `ZeroRelativeRepresentedSourceKernelMinorWitness` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `ZeroRelativeRepresentedSourceKernelMinorWitness.actualRankTwoHessianChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
+- `ZeroRelativeRepresentedSourceKernelMinorWitness.exists_actualRankTwoHessianChart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `ZeroScalarSchurThreeSeries` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ZeroSchurSeries` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ZeroSpecialFiberData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
