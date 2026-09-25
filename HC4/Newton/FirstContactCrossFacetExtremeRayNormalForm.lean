@@ -108,6 +108,43 @@ theorem CrossFacetInitialData.qs_extremeRay_facet_coordinates
     · have h := congrArg (fun u : Exponent => u.x4) hn
       simpa [Exponent.scale, sExponent, Nat.mul_comm] using h
 
+
+/-- A nonlinear surviving extreme-ray endpoint is a positive multiple of the
+corresponding ray generator; the origin case is excluded by ordinary degree. -/
+theorem CrossFacetInitialData.qs_extremeRay_facet_coordinates_pos
+    {K : Type*} [Field K] [CharZero K]
+    {F : MvPolynomial (Fin 4) K}
+    {a b : ℕ}
+    (D : CrossFacetInitialData F
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    {H : ToricFacet}
+    (hAdj : AdjacentFacets .qs H)
+    (hRay : OnRay a b .qs H (toToricExponent D.facetExponent))
+    (hdeg : 3 ≤ ordinaryDegree4 D.facetExponent) :
+    (∃ n : ℕ, 0 < n ∧
+        D.facetExponent 0 = 0 ∧
+        D.facetExponent 1 = n ∧
+        D.facetExponent 2 = n ∧
+        D.facetExponent 3 = 0) ∨
+      (∃ n : ℕ, 0 < n ∧
+        D.facetExponent 0 = 0 ∧
+        D.facetExponent 1 = a * n ∧
+        D.facetExponent 2 = 0 ∧
+        D.facetExponent 3 = b * n) := by
+  rcases D.qs_extremeRay_facet_coordinates hAdj hRay with hq | hs
+  · rcases hq with ⟨n, h0, h1, h2, h3⟩
+    left
+    refine ⟨n, ?_, h0, h1, h2, h3⟩
+    by_contra hn
+    have hn0 : n = 0 := Nat.eq_zero_of_not_pos hn
+    simp [ordinaryDegree4, h0, h1, h2, h3, hn0] at hdeg
+  · rcases hs with ⟨n, h0, h1, h2, h3⟩
+    right
+    refine ⟨n, ?_, h0, h1, h2, h3⟩
+    by_contra hn
+    have hn0 : n = 0 := Nat.eq_zero_of_not_pos hn
+    simp [ordinaryDegree4, h0, h1, h2, h3, hn0] at hdeg
+
 end
 
 end HC4.Newton
