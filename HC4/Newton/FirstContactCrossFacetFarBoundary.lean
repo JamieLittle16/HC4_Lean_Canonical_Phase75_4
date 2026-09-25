@@ -93,6 +93,52 @@ theorem CrossFacetFarBoundaryData.extremeRay_p_or_r
         simpa [Exponent.scale, qExponent, sExponent] using hx
       omega
 
+/-- Coordinate form of the preceding far-ray reduction.  These are the
+two endpoint shapes used by the finite near/far pairing step. -/
+theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    {D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hray :
+      ∃ F H : ToricFacet,
+        AdjacentFacets F H ∧
+          OnRay a b F H (toToricExponent R.exponent)) :
+    (∃ n : ℕ, 0 < n ∧
+        R.exponent 0 = n ∧
+        R.exponent 1 = 0 ∧
+        R.exponent 2 = 0 ∧
+        R.exponent 3 = n) ∨
+      (∃ n : ℕ, 0 < n ∧
+        R.exponent 0 = b * n ∧
+        R.exponent 1 = 0 ∧
+        R.exponent 2 = a * n ∧
+        R.exponent 3 = 0) := by
+  rcases R.extremeRay_p_or_r hray with hp | hr
+  · rcases hp with ⟨n, hnpos, hn⟩
+    left
+    refine ⟨n, hnpos, ?_, ?_, ?_, ?_⟩
+    · have h := congrArg (fun u : Exponent => u.x1) hn
+      simpa [Exponent.scale, pExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x2) hn
+      simpa [Exponent.scale, pExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x3) hn
+      simpa [Exponent.scale, pExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x4) hn
+      simpa [Exponent.scale, pExponent] using h
+  · rcases hr with ⟨n, hnpos, hn⟩
+    right
+    refine ⟨n, hnpos, ?_, ?_, ?_, ?_⟩
+    · have h := congrArg (fun u : Exponent => u.x1) hn
+      simpa [Exponent.scale, rExponent, Nat.mul_comm] using h
+    · have h := congrArg (fun u : Exponent => u.x2) hn
+      simpa [Exponent.scale, rExponent] using h
+    · have h := congrArg (fun u : Exponent => u.x3) hn
+      simpa [Exponent.scale, rExponent, Nat.mul_comm] using h
+    · have h := congrArg (fun u : Exponent => u.x4) hn
+      simpa [Exponent.scale, rExponent] using h
+
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
