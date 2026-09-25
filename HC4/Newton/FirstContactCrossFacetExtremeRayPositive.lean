@@ -59,7 +59,7 @@ theorem exists_qs_firstNonfacet_crossFacet_positiveExtremeRay
     ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
       hzero, hnot, hGBal, hnonlinear, D, H, hAdj, hRay⟩
   have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
-    hnonlinear D.facetExponent D.facet_mem_face
+    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
   have hnormal :=
     D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
   exact ⟨scale, bump, G, D, hscale, hbump, hzero, hGBal,
@@ -117,7 +117,7 @@ theorem exists_qs_firstNonfacet_crossFacet_positiveExtremeRay_withContact
           ((scale * m : ℕ) : ℤ) := by
     simpa [facetOmittedCoordinate] using hsupports.2.2
   have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
-    hnonlinear D.facetExponent D.facet_mem_face
+    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
   have hnormal :=
     D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
   exact ⟨scale, bump, G, D, hscale, hbump, hzero, hGBal,
