@@ -234,6 +234,166 @@ theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r
     · have h := congrArg (fun u : Exponent => u.x4) hn
       simpa [Exponent.scale, rExponent] using h
 
+/-- The four literal ray/ray pairings between the positive near endpoint
+and a positive far endpoint.  This record is deliberately coordinate-level:
+it is the finite interface consumed by the complementary/transition split. -/
+inductive CrossFacetNearFarRayPairing
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    {D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D) : Prop
+  | qToP
+      (n m : ℕ) (hn : 0 < n) (hm : 0 < m)
+      (near0 : D.facetExponent 0 = 0)
+      (near1 : D.facetExponent 1 = n)
+      (near2 : D.facetExponent 2 = n)
+      (near3 : D.facetExponent 3 = 0)
+      (far0 : R.exponent 0 = m)
+      (far1 : R.exponent 1 = 0)
+      (far2 : R.exponent 2 = 0)
+      (far3 : R.exponent 3 = m)
+  | qToR
+      (n m : ℕ) (hn : 0 < n) (hm : 0 < m)
+      (near0 : D.facetExponent 0 = 0)
+      (near1 : D.facetExponent 1 = n)
+      (near2 : D.facetExponent 2 = n)
+      (near3 : D.facetExponent 3 = 0)
+      (far0 : R.exponent 0 = b * m)
+      (far1 : R.exponent 1 = 0)
+      (far2 : R.exponent 2 = a * m)
+      (far3 : R.exponent 3 = 0)
+  | sToP
+      (n m : ℕ) (hn : 0 < n) (hm : 0 < m)
+      (near0 : D.facetExponent 0 = 0)
+      (near1 : D.facetExponent 1 = a * n)
+      (near2 : D.facetExponent 2 = 0)
+      (near3 : D.facetExponent 3 = b * n)
+      (far0 : R.exponent 0 = m)
+      (far1 : R.exponent 1 = 0)
+      (far2 : R.exponent 2 = 0)
+      (far3 : R.exponent 3 = m)
+  | sToR
+      (n m : ℕ) (hn : 0 < n) (hm : 0 < m)
+      (near0 : D.facetExponent 0 = 0)
+      (near1 : D.facetExponent 1 = a * n)
+      (near2 : D.facetExponent 2 = 0)
+      (near3 : D.facetExponent 3 = b * n)
+      (far0 : R.exponent 0 = b * m)
+      (far1 : R.exponent 1 = 0)
+      (far2 : R.exponent 2 = a * m)
+      (far3 : R.exponent 3 = 0)
+
+/-- Positive near-ray normal form and a far extreme-ray stratum give exactly
+one of the four explicit pairings above. -/
+theorem CrossFacetFarBoundaryData.nearFarRayPairing
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    {D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n))
+    (hray :
+      ∃ F H : ToricFacet,
+        AdjacentFacets F H ∧
+          OnRay a b F H (toToricExponent R.exponent)) :
+    CrossFacetNearFarRayPairing R := by
+  rcases R.extremeRay_coordinates_p_or_r hray with hfarP | hfarR
+  · rcases hfarP with ⟨m, hm, hf0, hf1, hf2, hf3⟩
+    rcases hnear with hq | hs
+    · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+      exact .qToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
+    · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+      exact .sToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
+  · rcases hfarR with ⟨m, hm, hf0, hf1, hf2, hf3⟩
+    rcases hnear with hq | hs
+    · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+      exact .qToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
+    · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+      exact .sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
+
+/-- Final finite endpoint split for the honest first-contact line.  The two
+adjacent ray pairings are immediately recognised as one-facet transitions;
+only the two opposite chords remain as genuinely complementary cases. -/
+inductive CrossFacetNearFarBoundaryOutcome
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D) : Prop
+  | farRankThree
+      (F : ToricFacet)
+      (rankThree : MvRankThreeOnFacet F R.exponent)
+  | adjacentRQ
+      (pairing : CrossFacetNearFarRayPairing R)
+      (support : MvSupportOnFacet .rq D.face)
+  | adjacentSP
+      (pairing : CrossFacetNearFarRayPairing R)
+      (support : MvSupportOnFacet .sp D.face)
+  | oppositeQP
+      (pairing : CrossFacetNearFarRayPairing R)
+  | oppositeSR
+      (pairing : CrossFacetNearFarRayPairing R)
+
+/-- The near/far geometry has no other cases. -/
+theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    CrossFacetNearFarBoundaryOutcome D R := by
+  rcases R.stratum with hthree | hray
+  · rcases hthree with ⟨F, hF⟩
+    exact .farRankThree F hF
+  · have P := R.nearFarRayPairing hnear hray
+    cases P with
+    | qToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+        exact .oppositeQP
+          (.qToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3)
+    | qToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+        have hsupp : MvSupportOnFacet .rq D.face :=
+          D.face_on_rq_of_near_q_far_r
+            ha hb hcontactScale hBal hcontact R hn3 hf3
+        exact .adjacentRQ
+          (.qToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3) hsupp
+    | sToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+        have hsupp : MvSupportOnFacet .sp D.face :=
+          D.face_on_sp_of_near_s_far_p
+            ha hb hcontactScale hBal hcontact R hn2 hf2
+        exact .adjacentSP
+          (.sToP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3) hsupp
+    | sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+        exact .oppositeSR
+          (.sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3)
+
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
