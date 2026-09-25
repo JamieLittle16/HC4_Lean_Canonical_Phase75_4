@@ -70,6 +70,23 @@ private theorem parameterFirstEquiv_familyHessianPivotMinor
   rw [parameterFirstHessian_symmetric F other pivot]
   ring
 
+/-- Row-commuted pivot form, matching the coordinate-1 and coordinate-2
+cleared Schur orientations without asking simplification to orient Hessian
+symmetry. -/
+private theorem parameterFirstEquiv_familyHessianPivotMinor_commuted
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (pivot other kernel : Fin 4) :
+    parameterFirstEquiv K
+        (familyHessianTwoByTwoMinor
+          F other pivot kernel pivot) =
+      parameterFirstHessian F pivot pivot *
+          parameterFirstHessian F other kernel -
+        parameterFirstHessian F other pivot *
+          parameterFirstHessian F pivot kernel := by
+  rw [parameterFirstEquiv_familyHessianTwoByTwoMinor]
+  rw [parameterFirstHessian_symmetric F pivot kernel]
+  ring
+
 /-- Any nonzero arbitrary Hessian minor on the special fibre forces the
 existing exact-active finite rank split into its geometric branch. -/
 theorem exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero
@@ -127,9 +144,9 @@ private theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero
       T.topKernelReesSource_hasReverseWeightBound i j k l
   simpa [topKernelReverseReesFamily] using hfamily
 
+set_option maxHeartbeats 800000 in
 /-- The projected first-break quotient branch contains a genuine nonzero
 arbitrary Hessian minor of the represented source. -/
-set_option maxHeartbeats 800000 in
 theorem projectedRankTwo_sourceTwoByTwoMinor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (S : P.TopKernelThreeSchurClockData)
@@ -172,19 +189,19 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
           GeneralFourBlock.rankOneClearedThreeSchurMatrix] using hopen
   | pivotD hpivot hzero hdet =>
       fin_cases index
-      · refine ⟨rho 1, rho 0, rho 1, rho 3, lift _ _ _ _ ?_⟩
+      · refine ⟨rho 0, rho 1, rho 3, rho 1, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianPivotMinor,
+          parameterFirstEquiv_familyHessianPivotMinor_commuted,
           threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
           mul_comm] using hopen
-      · refine ⟨rho 1, rho 2, rho 1, rho 3, lift _ _ _ _ ?_⟩
+      · refine ⟨rho 2, rho 1, rho 3, rho 1, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianPivotMinor,
+          parameterFirstEquiv_familyHessianPivotMinor_commuted,
           threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
@@ -192,19 +209,19 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
           mul_comm] using hopen
   | pivotX hpivot hzero hdet =>
       fin_cases index
-      · refine ⟨rho 2, rho 0, rho 2, rho 3, lift _ _ _ _ ?_⟩
+      · refine ⟨rho 0, rho 2, rho 3, rho 2, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianPivotMinor,
+          parameterFirstEquiv_familyHessianPivotMinor_commuted,
           threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
           mul_comm] using hopen
-      · refine ⟨rho 2, rho 1, rho 2, rho 3, lift _ _ _ _ ?_⟩
+      · refine ⟨rho 1, rho 2, rho 3, rho 2, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianPivotMinor,
+          parameterFirstEquiv_familyHessianPivotMinor_commuted,
           threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
