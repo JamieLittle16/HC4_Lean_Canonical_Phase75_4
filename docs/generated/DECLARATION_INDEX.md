@@ -15,7 +15,6 @@ Distinct declaration spellings indexed: **9896**.
 - `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `HasPositiveEntryLayer` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
-- `TopKernelThreeSchurClockData.pivotSlot` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
@@ -3319,7 +3318,7 @@ Distinct declaration spellings indexed: **9896**.
 - `TopKernelThreeSchurClockData.pivot2_ne_zero_of_rankOne_column2_opening` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `TopKernelThreeSchurClockData.pivotCoordinate` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
 - `TopKernelThreeSchurClockData.pivotRatio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentLinearPower`
-- `TopKernelThreeSchurClockData.pivotSlot` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
+- `TopKernelThreeSchurClockData.pivotSlot` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
 - `TopKernelThreeSchurClockData.principalFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPrincipalFrontier`
 - `TopKernelThreeSchurClockData.quotientSlot` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
 - `TopKernelThreeSchurClockData.raw_pivot2_entry_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
