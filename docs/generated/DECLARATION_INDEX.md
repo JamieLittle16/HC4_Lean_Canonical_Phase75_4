@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9846**.
+Distinct declaration spellings indexed: **9848**.
 
 ## Repeated declaration spellings
 
@@ -5826,6 +5826,8 @@ Distinct declaration spellings indexed: **9846**.
 - `fullMarkedFacetContactFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetFirstNonfacetCrossFacetData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetKernelSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
+- `fullMarkedFacetRayCoefficientDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
+- `fullMarkedFacetRayFacetExponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetReducedFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetReduced`
 - `fullPointedLongitudinalReflectionHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `fullPointedLongitudinalReflection_not_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`

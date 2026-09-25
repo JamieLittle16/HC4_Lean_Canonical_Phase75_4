@@ -12170,7 +12170,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetReduced`
-- Declarations: `theorem nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet`, `def fullMarkedFacetFirstNonfacetCrossFacetData`, `inductive TopKernelMarkedAxisFullFacetContactFrontier`, `theorem fullMarkedFacetContactFrontier_nonempty`
+- Declarations: `theorem nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet`, `def fullMarkedFacetFirstNonfacetCrossFacetData`, `def fullMarkedFacetRayFacetExponent`, `def fullMarkedFacetRayCoefficientDegree`, `inductive TopKernelMarkedAxisFullFacetContactFrontier`, `theorem fullMarkedFacetContactFrontier_nonempty`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetReduced`
 
