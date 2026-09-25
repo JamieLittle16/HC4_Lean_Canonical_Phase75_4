@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal
 import HC4.Newton.TerminalAssociatedGradedEndpoint
+import HC4.Newton.TerminalTwoZeroPlanarCollision
 import HC4.PlanarJC2HessianEmbedding
 import Mathlib.Tactic
 
