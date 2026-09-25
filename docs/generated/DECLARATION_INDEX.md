@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9934**.
+Distinct declaration spellings indexed: **9937**.
 
 ## Repeated declaration spellings
 
@@ -1488,6 +1488,8 @@ Distinct declaration spellings indexed: **9934**.
 - `CrossFacetFarBoundaryData.nearFarBoundaryOutcome` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.nearFarRayPairing` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.rankThree_or_adjacentFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarBoundaryData.rankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarRankThreeOrKernelOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.auxiliary_cross_le` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
@@ -5199,6 +5201,7 @@ Distinct declaration spellings indexed: **9934**.
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
+- `exists_qs_firstNonfacet_crossFacet_farRankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `exists_qs_firstNonfacet_crossFacet_positiveExtremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
 - `exists_qs_firstNonfacet_crossFacet_positiveExtremeRay_withContact` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
 - `exists_qs_ray_facetEndpoint_sourceExposure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
