@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9931**.
+Distinct declaration spellings indexed: **9933**.
 
 ## Repeated declaration spellings
 
@@ -1547,7 +1547,9 @@ Distinct declaration spellings indexed: **9931**.
 - `CrossFacetInitialData.qs_support_coordinate_eq_facet_of_slope_zero` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTransition`
 - `CrossFacetInitialData.qs_support_eq_of_zeroCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.ray_face_weight_eq` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
+- `CrossFacetInitialData.sToR_impossible` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.sToR_support_equations` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetInitialData.sToR_support_primitiveCoordinates` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.source_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`
 - `CrossFacetInitialData.support_crossFacet_affine_proportional` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.support_eq_of_contactCoordinate_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
