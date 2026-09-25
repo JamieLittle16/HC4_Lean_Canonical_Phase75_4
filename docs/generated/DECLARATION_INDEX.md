@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9831**.
+Distinct declaration spellings indexed: **9832**.
 
 ## Repeated declaration spellings
 
@@ -6597,6 +6597,7 @@ Distinct declaration spellings indexed: **9831**.
 - `map_evalOne_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `map_exposedFace_equiv` — `theorem` in `HC4.Newton.Equivariance`
 - `map_parameterThreeLayerMatrix_eval` — `theorem` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
+- `markedAxisCrossFacetNormalizedRay` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `markedAxisCrossFacetRay` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `markedAxisCrossFacet_codimensionTwoFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - `markedAxisFirstContact_pderiv_kernel_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
