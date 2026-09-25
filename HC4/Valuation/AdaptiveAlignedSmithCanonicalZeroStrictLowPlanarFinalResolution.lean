@@ -63,8 +63,12 @@ theorem exists_zeroStrictLowSingularFinalResolution
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
     Nonempty
-      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) :=
-  E.hasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution T
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+  rcases
+      hasPlanarKellerCollision_exists_terminalAssociatedGradedCollisionData
+        E.hasPlanarKellerCollision with
+    ⟨A⟩
+  exact ⟨.associatedGradedCollision A⟩
 
 end AdaptiveAlignedSmithCanonicalHonestFirstContactEndpoint
 
