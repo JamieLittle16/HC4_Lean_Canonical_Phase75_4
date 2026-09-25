@@ -48,7 +48,7 @@ structure CrossFacetFarBoundaryData
   coeff_ne_zero : MvPolynomial.coeff exponent D.face ≠ 0
   boundary : MvExponentOnBoundary exponent
   stratum :
-    (∃ F : ToricFacet, RankThreeOnFacet F (toToricExponent exponent)) ∨
+    (∃ F : ToricFacet, MvRankThreeOnFacet F exponent) ∨
       (∃ F H : ToricFacet,
         AdjacentFacets F H ∧
           OnRay a b F H (toToricExponent exponent))
@@ -147,12 +147,10 @@ noncomputable def CrossFacetInitialData.farBoundaryData
 
   have hBalFace : HasBalancedMvSupport a b D.face :=
     D.balanced hBal
-  have hfarBal :
-      HC4.Toric.Balanced a b (toToricExponent far) :=
-    (isBalancedExponent_iff_balanced a b far).1
-      (hBalFace far hfarD)
+  have hfarBal : IsBalancedExponent a b far :=
+    hBalFace far hfarD
   have hstratum :=
-    boundary_rankThree_or_extremeRay
+    mvBoundary_rankThree_or_extremeRay
       ha hb hcop hfarBal hboundary
 
   refine {
