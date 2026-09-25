@@ -162,6 +162,36 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_homogeneous :
       (T.topFace.degree : ℤ)
       T.topKernelReesSource
 
+/-- The honest marked-axis first-contact family retains an exact pure Hessian
+clock.  Its weight sum is three, so the determinant order is `4D - 6`. -/
+theorem topKernelMarkedAxisFirstContact_hasHessianDefect :
+    HasPolynomialFamilyHessianDefect
+      (K := K)
+      T.topKernelMarkedAxisFirstContactFamily
+      (4 * T.topFace.degree - 6) := by
+  have hdegree : 3 ≤ T.topFace.degree :=
+    T.topFace.degree_ge_three
+  have hnonneg :
+      2 * ∑ i : Fin 4, topKernelMarkedAxisNatWeight i ≤
+        4 * T.topFace.degree := by
+    simp [topKernelMarkedAxisNatWeight, Fin.sum_univ_four]
+    omega
+  have hclock :=
+    reverseWeightedReesFamily_hasHessianDefect
+      topKernelMarkedAxisNatWeight T.topFace.degree T.topKernelReesSource
+      T.topKernelReesSource_hasMarkedAxisReverseWeightBound
+      T.topKernelReesSource_hessianDeterminant_eq_one
+      hnonneg
+  rw [← T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees] at hclock
+  simpa [topKernelMarkedAxisNatWeight, Fin.sum_univ_four] using hclock
+
+/-- The marked-axis first-contact clock is genuinely positive. -/
+theorem topKernelMarkedAxisFirstContact_defect_pos :
+    0 < 4 * T.topFace.degree - 6 := by
+  have hdegree : 3 ≤ T.topFace.degree :=
+    T.topFace.degree_ge_three
+  omega
+
 /-- Every monomial surviving on the marked-axis first-contact fibre has
 zero exponent in the marked coordinate.  The maximal ordinary-degree bound is
 essential here: transverse marked weight already exhausts the full level. -/
