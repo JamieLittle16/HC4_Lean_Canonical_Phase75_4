@@ -160,6 +160,105 @@ private theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero
       T.topKernelReesSource_hasReverseWeightBound i j k l
   simpa [topKernelReverseReesFamily] using hfamily
 
+/-- Scalar-pivot slot used by one 1+3 Schur orientation in the
+kernel-last coordinate chart. -/
+def TopKernelThreeSchurClockData.pivotSlot
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData) : Fin 4 := by
+  cases S with
+  | pivotA => exact 0
+  | pivotD => exact 1
+  | pivotX => exact 2
+
+/-- The three non-pivot slots, in exactly the order used by the corresponding
+cleared 1+3 Schur matrix. -/
+def TopKernelThreeSchurClockData.quotientSlot
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData) : Fin 3 → Fin 4 := by
+  cases S with
+  | pivotA => exact ![(1 : Fin 4), 2, 3]
+  | pivotD => exact ![(0 : Fin 4), 2, 3]
+  | pivotX => exact ![(0 : Fin 4), 1, 3]
+
+/-- Every entry of the cleared 1+3 Schur matrix is literally an arbitrary
+Hessian 2x2 minor of the honest reverse-Rees family, after the kernel-last
+source permutation.  This generalises the two projected first-break entries
+used below and is the source-lift needed by determinant closure. -/
+set_option maxHeartbeats 1500000 in
+theorem threeSchurEntry_eq_parameterFirst_familyMinor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (S : P.TopKernelThreeSchurClockData)
+    (i j : Fin 3) :
+    let rho := kernelLastPerm kernelCoordinate
+    let pivot := rho S.pivotSlot
+    let other := rho (S.quotientSlot i)
+    let kernel := rho (S.quotientSlot j)
+    S.toExactZeroThreeSchurClock.zeroSeries.matrix i j =
+      parameterFirstEquiv K
+        (familyHessianTwoByTwoMinor
+          T.topKernelReverseReesFamily pivot other pivot kernel) := by
+  let rho := kernelLastPerm kernelCoordinate
+  cases S with
+  | pivotA hpivot hzero hdet =>
+      fin_cases i <;> fin_cases j <;>
+        simp [TopKernelThreeSchurClockData.pivotSlot,
+          TopKernelThreeSchurClockData.quotientSlot,
+          TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix,
+          kernelLastParameterFirstHessian,
+          GeneralFourBlock.rankOneClearedThreeSchurMatrix,
+          mul_comm, mul_left_comm, mul_assoc]
+  | pivotD hpivot hzero hdet =>
+      fin_cases i <;> fin_cases j <;>
+        simp [TopKernelThreeSchurClockData.pivotSlot,
+          TopKernelThreeSchurClockData.quotientSlot,
+          TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix,
+          kernelLastParameterFirstHessian,
+          GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
+          mul_comm, mul_left_comm, mul_assoc]
+  | pivotX hpivot hzero hdet =>
+      fin_cases i <;> fin_cases j <;>
+        simp [TopKernelThreeSchurClockData.pivotSlot,
+          TopKernelThreeSchurClockData.quotientSlot,
+          TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, kernelLastFamilyHessianFourBlock,
+          GeneralFourBlock.ofSymmetricMatrix,
+          kernelLastParameterFirstHessian,
+          GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
+          mul_comm, mul_left_comm, mul_assoc]
+
+/-- Any nonzero coefficient of any cleared 1+3 Schur entry therefore lifts to
+a genuine nonzero Hessian 2x2 minor of the represented determinant-one
+source. -/
+theorem sourceTwoByTwoMinor_of_threeSchurEntry_coeff_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (S : P.TopKernelThreeSchurClockData)
+    (i j : Fin 3)
+    (n : ℕ)
+    (hne :
+      (S.toExactZeroThreeSchurClock.zeroSeries.matrix i j).coeff n ≠ 0) :
+    ∃ a b c d : Fin 4,
+      hessianTwoByTwoMinor T.topKernelReesSource a b c d ≠ 0 := by
+  let rho := kernelLastPerm kernelCoordinate
+  let pivot := rho S.pivotSlot
+  let other := rho (S.quotientSlot i)
+  let kernel := rho (S.quotientSlot j)
+  have hcoeff :
+      (parameterFirstEquiv K
+        (familyHessianTwoByTwoMinor
+          T.topKernelReverseReesFamily pivot other pivot kernel)).coeff n ≠ 0 := by
+    rw [← P.threeSchurEntry_eq_parameterFirst_familyMinor S i j]
+    exact hne
+  exact ⟨pivot, other, pivot, kernel,
+    P.sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero
+      pivot other pivot kernel n hcoeff⟩
+
 set_option maxHeartbeats 800000 in
 /-- The projected first-break quotient branch contains a genuine nonzero
 arbitrary Hessian minor of the represented source. -/
