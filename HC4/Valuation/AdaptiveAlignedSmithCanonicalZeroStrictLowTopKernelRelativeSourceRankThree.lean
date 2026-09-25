@@ -129,6 +129,47 @@ theorem TopKernelThreeSchurRelativeGeometricFrontier.toSourceRankThreeFrontier
           rcases P.exactActive_threeByThree_of_presentedZero C with ⟨Q⟩
           exact ⟨.sourceConstantThreeByThree C Q⟩
 
+
+/-- A nonzero constant tail entry in the zero-relative closing branch lifts
+back through the common first three-Schur factor to an honest represented-
+source Hessian minor, hence to an exact-active source chart. -/
+theorem zeroRelativeClosing_exactActiveFourBlock
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+    (tail : ThreeSchurTangentTailKernelOpeningData S M)
+    (hopen :
+      S.toExactZeroThreeSchurClock.tailConstantMatrix
+        tail.physical.index 2 ≠ 0) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+        T.terminal.blocker.presented) := by
+  let E := S.toExactZeroThreeSchurClock
+  have htail :
+      (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+        tail.physical.index 2).coeff 0 ≠ 0 := by
+    simpa [E, ExactZeroThreeSchurClock.tailConstantMatrix] using hopen
+  have hraw :
+      (E.zeroSeries.matrix tail.physical.index 2).coeff
+        S.firstThreeSchurOrder ≠ 0 := by
+    have ht := E.zeroSeries.entry_coeff_first_add_eq_tail
+      E.hasPositiveEntryLayer tail.physical.index 2 0
+    have hfirst :
+        E.zeroSeries.firstPositiveEntryOrder E.hasPositiveEntryLayer =
+          S.firstThreeSchurOrder := by
+      rfl
+    rw [hfirst] at ht
+    simp only [Nat.add_zero] at ht
+    rw [ht]
+    exact htail
+  rcases P.sourceTwoByTwoMinor_of_threeSchurEntry_coeff_ne_zero
+      S tail.physical.index 2 S.firstThreeSchurOrder
+      (by simpa [E] using hraw) with
+    ⟨a, b, c, d, hm⟩
+  apply exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero
+    T.terminal.blocker.presented a b c d
+  simpa [topKernelReesSource] using hm
+
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
