@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9836**.
+Distinct declaration spellings indexed: **9840**.
 
 ## Repeated declaration spellings
 
@@ -3287,6 +3287,7 @@ Distinct declaration spellings indexed: **9836**.
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopKernelMarkedAxisFirstContactFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `TopKernelMarkedAxisFullFacetKernelSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `TopKernelMarkedAxisLinearPowerBoundaryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerBoundaryFrontier`
 - `TopKernelMarkedAxisLinearPowerFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerFrontier`
 - `TopKernelMarkedAxisLinearPowerRefinement` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerRefinement`
@@ -5820,6 +5821,7 @@ Distinct declaration spellings indexed: **9836**.
 - `frozenBinarySlice_eq_binomialProfile_of_remainderCoeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyDirectionalRemainder`
 - `fullDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
 - `fullDet_zero_through_order` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `fullMarkedFacetKernelSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `fullPointedLongitudinalReflectionHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `fullPointedLongitudinalReflection_not_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `fullVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
@@ -8275,6 +8277,7 @@ Distinct declaration spellings indexed: **9836**.
 - `ratio_eq_zero_of_ne_extraction` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
 - `ratio_eq_zero_of_ne_zero_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
+- `ratio_zero_of_topFaceOnMarkedFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `rationalInfinityValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `rationalNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
 - `rational_identity_of_cleared_identity` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
@@ -9757,6 +9760,7 @@ Distinct declaration spellings indexed: **9836**.
 - `topKernelMarkedAxisFirstContact_hasHessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisFirstContact_specialFiber_collisionPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `topKernelMarkedAxisFirstContact_specialFiber_eq_topFace_of_onMarkedFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `topKernelMarkedAxisFirstContact_specialFiber_eq_topFace_of_qsRankThree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
 - `topKernelMarkedAxisFirstContact_specialFiber_eq_zero_of_noZeroSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topKernelMarkedAxisFirstContact_specialFiber_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
