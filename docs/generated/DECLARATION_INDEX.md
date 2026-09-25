@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9840**.
+Distinct declaration spellings indexed: **9844**.
 
 ## Repeated declaration spellings
 
@@ -3287,6 +3287,7 @@ Distinct declaration spellings indexed: **9840**.
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopKernelMarkedAxisFirstContactFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `TopKernelMarkedAxisFullFacetContactFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `TopKernelMarkedAxisFullFacetKernelSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `TopKernelMarkedAxisLinearPowerBoundaryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerBoundaryFrontier`
 - `TopKernelMarkedAxisLinearPowerFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerFrontier`
@@ -5821,6 +5822,8 @@ Distinct declaration spellings indexed: **9840**.
 - `frozenBinarySlice_eq_binomialProfile_of_remainderCoeff_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyDirectionalRemainder`
 - `fullDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleAwareHessianChart`
 - `fullDet_zero_through_order` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `fullMarkedFacetContactFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
+- `fullMarkedFacetFirstNonfacetCrossFacetData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetKernelSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `fullPointedLongitudinalReflectionHom` — `def` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `fullPointedLongitudinalReflection_not_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -6928,6 +6931,7 @@ Distinct declaration spellings indexed: **9840**.
 - `nonlinearDegreeBound_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry`
 - `nonlinearDegreeBound_zeroGradientNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `nonlinearDegreeBound_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
+- `nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `nonlinearOutsideSupport` — `def` in `HC4.Newton.FirstContactSelection`
 - `nonlinearOutsideSupport_nonempty_of_hasNonlinearOutsideFacet` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `nonminimalSpecialFiber_hasFixedTenSmithDefectRestart` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
