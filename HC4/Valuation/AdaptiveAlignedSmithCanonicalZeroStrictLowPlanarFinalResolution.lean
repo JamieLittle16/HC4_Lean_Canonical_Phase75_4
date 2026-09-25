@@ -15,11 +15,11 @@ as the existing `associatedGradedCollision` final-resolution constructor.
 No new endpoint class is introduced.
 -/
 
-namespace HC4.Valuation
+namespace HC4.Newton
 
 noncomputable section
 
-open HC4.Newton
+open HC4.Valuation
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
@@ -50,4 +50,4 @@ end PlanarKellerCollisionData
 
 end
 
-end HC4.Valuation
+end HC4.Newton
