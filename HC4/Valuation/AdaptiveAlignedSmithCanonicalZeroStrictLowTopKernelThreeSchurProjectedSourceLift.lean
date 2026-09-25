@@ -160,16 +160,6 @@ private theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero
       T.topKernelReesSource_hasReverseWeightBound i j k l
   simpa [topKernelReverseReesFamily] using hfamily
 
-/-- Scalar-pivot slot used by one 1+3 Schur orientation in the
-kernel-last coordinate chart. -/
-def TopKernelThreeSchurClockData.pivotSlot
-    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    (S : P.TopKernelThreeSchurClockData) : Fin 4 := by
-  cases S with
-  | pivotA => exact 0
-  | pivotD => exact 1
-  | pivotX => exact 2
-
 /-- The three non-pivot slots, in exactly the order used by the corresponding
 cleared 1+3 Schur matrix. -/
 def TopKernelThreeSchurClockData.quotientSlot
