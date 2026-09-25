@@ -213,6 +213,33 @@ theorem TopKernelLinearPowerCDSourceFrontier.sourceRankThreeGeometry
   | relative M S _tangent G =>
       exact G.sourceRankThreeGeometry
 
+/-- **Stronger E3 collapse.**
+
+Every marked-axis constructor in the combined E2 frontier retains the same
+independent source-honest C/D packet.  Since that packet is now completely
+source-rank-three, the marked-axis distinction can be forgotten altogether:
+every linear-power top-kernel branch carries represented-source rank-three
+Hessian geometry. -/
+theorem TopKernelLinearPowerE2Frontier.sourceRankThreeGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry ∨
+      ∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  cases E with
+  | pureLongitudinal _b _hb _hface _hk cd =>
+      exact cd.sourceRankThreeGeometry
+  | fullFacetCodimensionTwo _hfacet _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+  | fullFacetActualRankTwo _hfacet _geometry cd =>
+      exact cd.sourceRankThreeGeometry
+  | crossFacetNear _data _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+  | crossFacetFar _data _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+
 /-- **E3 source-honest compression of one linear-power packet.**
 
 After consuming the C/D analysis, every combined E2 branch is reduced to one
