@@ -1,24 +1,27 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution
-import HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction
 
 /-!
 # Zero-strict-low singular terminals through the mature first-contact endpoint
 
 The current E-stage works on the geometry-rich
-`AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData`.  That carrier
-already retains every source-side input demanded by the older constructor-
-refined blocker-zero first-contact producer:
+`AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData`.  This carrier
+already retains exactly the zero-clock source inputs of the mature
+`AdaptiveAlignedSmithCanonicalFirstContactResidualProducer`:
 
 * canonical rank-one repair provenance;
 * the actual presented blocker and its complete rank-three geometry;
-* literal raw defect zero;
-* the represented strict-low Smith exponent and its pattern; and
-* the certified first longitudinal departure from the A19.52 packet.
+* literal raw defect zero; and
+* an actually represented strict-low Smith exponent together with its pattern.
 
-Consequently no additional presentation adapter is needed.  If the remaining
-E-stage geometry constructs the mature honest first-contact endpoint, the new
-planar terminal lift turns it immediately into the permitted
-`ZeroStrictLowSingularFinalResolution`.
+The retained exponent need not be the blocker's canonical Smith exponent, so
+this adapter deliberately uses the arbitrary-exponent first-contact producer
+rather than the later constructor-refined interface.
+
+Once that producer returns the mature honest first-contact endpoint, the
+unconditional planar Keller collision extraction and the planar terminal lift
+turn it immediately into the permitted
+`AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`.
 
 This module is assembly only: it introduces no new endpoint hypothesis and no
 new geometry.
@@ -28,48 +31,60 @@ namespace HC4.Valuation
 
 noncomputable section
 
+open HC4.Newton
+
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
-/-- A constructor-refined first-contact producer already resolves one concrete
-zero-strict-low singular terminal.
-
-Only its blocker-zero field is used: all positive-clock producer fields are
-irrelevant at this already-reached zero-clock carrier. -/
-theorem exists_finalResolution_of_constructorFirstContactProducer
+/-- The mature arbitrary-exponent first-contact producer resolves one concrete
+zero-strict-low singular terminal. -/
+theorem exists_finalResolution_of_firstContactResidualProducer
     {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state)
-    (P : AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer
+    (P : AdaptiveAlignedSmithCanonicalFirstContactResidualProducer
       (K := K)) :
     Nonempty
       (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
-  rcases P.blockerZeroStrictLow
+  let PT :
+      AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal
+        canonicalAdaptiveAlignedSmithRepairRanking state 0 :=
+    .blocker T.terminal.blocker T.geometry
+  have he :
+      T.terminal.exponent ∈
+        smithProjectedSupport (1 : Fin 4) 2 3 PT.specialFiber := by
+    simpa [PT,
+      AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.specialFiber,
+      AdaptiveAlignedSmithCanonicalPresentedRankThreeTerminal.presentedState]
+      using T.terminal.mem
+  rcases P.zeroStrictLow
       T.terminal.repair_eq
-      T.terminal.blocker
-      T.geometry
+      PT
       T.terminal.source_zero
       T.terminal.exponent
-      T.terminal.mem
-      T.terminal.pattern
-      T.zeroClockFirstContactPacket.2.2.2.2.1 with
+      he
+      T.terminal.pattern with
     ⟨E⟩
-  exact E.exists_zeroStrictLowSingularFinalResolution T
+  rcases
+      HC4.Newton.hasPlanarKellerCollision_exists_terminalAssociatedGradedCollisionData
+        E.hasPlanarKellerCollision with
+    ⟨A⟩
+  exact ⟨.associatedGradedCollision A⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
-/-- Hence the constructor-refined first-contact producer implies the exact
-current E3/E4 final-resolution property. -/
+/-- Hence the mature first-contact producer implies the exact current E3/E4
+final-resolution property. -/
 theorem
-    zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer
-    (P : AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer
+    zeroStrictLowSingularFinalResolutionProperty_of_firstContactResidualProducer
+    (P : AdaptiveAlignedSmithCanonicalFirstContactResidualProducer
       (K := K)) :
     AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty
       (K := K) := by
   intro state T
-  exact T.exists_finalResolution_of_constructorFirstContactProducer P
+  exact T.exists_finalResolution_of_firstContactResidualProducer P
 
 /-- **Current-architecture conditional HC4 closure.**
 
@@ -77,9 +92,9 @@ Once the zero-strict-low source geometry supplies the mature first-contact
 producer, planar JC2 closes every four-variable determinant-one Hessian
 gradient through the new final-resolution interface. -/
 theorem
-    gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution
+    gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactFinalResolution
     (hJC2 : HC4.PlanarJC2Injectivity K)
-    (P : AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer
+    (P : AdaptiveAlignedSmithCanonicalFirstContactResidualProducer
       (K := K))
     (F : MvPolynomial (Fin 4) K)
     (hdet : HC4.Polynomial.hessianDeterminant F = 1) :
@@ -87,7 +102,7 @@ theorem
   exact
     gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution
       hJC2
-      (zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer P)
+      (zeroStrictLowSingularFinalResolutionProperty_of_firstContactResidualProducer P)
       F hdet
 
 end
