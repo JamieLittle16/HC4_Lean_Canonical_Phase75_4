@@ -1,26 +1,35 @@
-# HC4 final-resolution closing plan — 24 September 2026
+# HC4 final-resolution closing plan — audited 25 September 2026
 
-## Purpose
+## 0. Exact audit anchor
 
-This is the authoritative closing plan for the current unrestricted HC4 final-assembly branch.
+This is the authoritative handoff for the current final-assembly branch.
 
 **Branch:** `final-assembly/a18-4-42-termination-frontier`  
-**Plan anchor:** PR #34 branch `final-assembly/a18-4-42-termination-frontier`  
-**Current positive-tail verification frontier:** C1--C3 are Lean-verified on the rooted branch. The exact source-honest rank-one endpoint split is also locally Lean-verified: the rooted build reached `AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailTimedFrontier` at target `8627/8631`, so `PositiveTailRankOneSourceHonestEndpointSplit` and its dependencies compiled before the timed-adapter constructor-name failure. That timed-adapter drift was repaired in `b16c11a66232f0b5bdd49d36b74e90c444969283` without discarding the retained nonzero coefficient/source geometry. Since then the branch has added the represented-source exact collision `b3849a482d3bcdc4125646e2c2bfb18a473edbcb`, evaluated represented-source Schur geometry `a1724d42d4654da50b9be6e2ea06768b3ab20176`, explicit represented-source 3x3 point-minor geometry `0090cf32e98589b11fc4db1496d681794e02f2f5`, and the rooted `TopKernelThreeSchurPositiveTailGeometricFrontier` in `d5852129e7ff6358809830c828d5768129aa3729` / `b49894d9dc81de515e227991c5d85b970f4ee90f`. Those newer geometric modules are **not** checked as complete until a real Lean build runs green; the current GitHub Actions run is `action_required` with no jobs, so it is not verification evidence.
+**Mathematical head audited:** `52169d950f4ea5a231e2b01f6850728da3c68a15`  
+**Head message:** `HC4: repair marked-axis first-contact support extraction`
 
-A checkbox in the implementation ledger is marked **only after the corresponding Lean theorem/file has compiled successfully on the branch**. Paper arguments, plausible routes, or documentation-only commits do not earn a checkmark.
+At audit time:
 
-### Verified checkpoints added under this plan
+- the maintainer reports the exact head builds green locally;
+- GitHub **Proof inventory export #2241 is green** on the exact head;
+- GitHub **Lean CI #4028 is still in progress** on the exact head;
+- the most recent completed remote green runs immediately below the latest support-extraction work include:
+  - `5a567af2e5872cf5c6f1caabbd4ac5f0cf2590bc` — Lean CI #4021 green;
+  - `56d12e296bc79588ec993b7984911e8e73885e5c` — Lean CI #4019 green;
+  - `2834326b93d8cbafe07d3b30fb26dfab6af3f4b3` — Lean CI #4017 green;
+  - `07eb6f3c8ed4ea96de885311aed5590da147fbd3` — Lean CI #4016 green;
+  - `bbdc9563b2a0f3c3f569592ba4862fa9386b6cfe` — Lean CI #4015 green;
+  - `3bcb1a419c06d41cf771e2747aff3e0dd0535c4e` — Lean CI #4011 green.
 
-- **A green:** rooted build commit `03398974de19849ea6c9615b308e67aa7ae2d1a9`.
-- **B green:** `10674ec6763f87db769b0af8d5448c1ac19eebf9`.
-- Both passed the full **Build and verify Lean project** workflow before their boxes were checked.
-- **C3 source-provenance chain green:** substantive head `8409236e1afd24adc0a3e4d5357bbcb1cdde88f5`. The rooted closing target set reaches `8624/8624` locally, including represented-source Schur provenance, dependent rank-one source departure, and exact whole-family first-transverse opening transport.
-- **Exact rank-one endpoint split locally green:** the later rooted build reached target `8627/8631` before failing in the downstream timed adapter, so the strengthened `PositiveTailRankOneSourceHonestEndpointSplit` itself is compiled. This is C4/C5 infrastructure only; C4 and C5 remain unchecked.
+The later commits from `56d12e…` through `52169d…` add coefficient/support provenance for the marked-axis first-contact face and repair compiler/API drift. They do **not** change the soundness boundary below.
 
-## Soundness boundary
+A checkbox is marked only for mathematics that has already compiled on the branch. For the latest exact-head additions, distinguish **local green / remote CI pending** from completed remote CI.
 
-The unrestricted front door reduces HC4 to
+---
+
+## 1. Soundness boundary — do not weaken this
+
+The unrestricted determinant-one HC4 front door reduces to proving
 
 ```lean
 ∀ {state},
@@ -28,177 +37,445 @@ The unrestricted front door reduces HC4 to
 ```
 
 and the existing theorem
+
 `planarJC2_of_zeroStrictLowSingularTerminal_impossible`
-shows that a uniform proof of this remaining singular-terminal impossibility implies the planar JC2 injectivity interface.
 
-Therefore the remaining unrestricted endpoint is genuinely JC2-hard in the present formal architecture. In particular:
+shows that a uniform contradiction of this remaining singular terminal implies the planar JC2 injectivity interface.
 
-- do **not** close the singular terminal by a bare `RepairProgress`;
-- do **not** use a no-global-successor hypothesis: the sound final singular carrier has no such assumption;
-- an `ActualRankTwoHessianChart` is useful geometry, but is **not by itself** a contradiction at this endpoint;
-- auxiliary Schur/Rees clocks must retain enough provenance to produce an honest source/polynomial endpoint;
-- unrestricted closure is claimed only after the public theorem, root build and final axiom/proof audits are green.
+Therefore the final unrestricted endpoint is genuinely **JC2-hard in the present formal architecture**.
 
-## Green prerequisites already available
+Consequences:
 
-- [x] Unrestricted determinant-one HC4 reduces soundly to zero-strict-low singular-terminal impossibility.
-- [x] The hardness guard `planarJC2_of_zeroStrictLowSingularTerminal_impossible` is Lean verified.
-- [x] The top-kernel ordinary reverse-Rees family is source-honest and carries the exact determinant clock.
-- [x] The first physical kernel-row opening is lifted to an exact nonlinear mixed source layer.
-- [x] The tangent first-break branch is reduced to a linear-power kernel derivative and explicit staircase seed.
-- [x] A strictly later projected kernel-column opening `J > j` is retained.
-- [x] The three-Schur tail transport and positive-tail collapse are Lean verified.
-- [x] The positive-tail residual reaches either explicit rank-two coefficient geometry, determinant closing, or an explicit oriented exact rank-one binary Schur clock with pivot provenance.
-- [x] Whole-family positive-tail binary Schur provenance is retained through the common three-Schur and binary factors.
-- [x] Every positive-tail explicit binary clock yields a genuine nonzero Schur polynomial on the represented determinant-one source.
-- [x] Every nonzero transverse coefficient of the final oriented rank-one clock is traced back to honest represented-source Schur geometry; in particular the canonical first transverse coefficient is source-honest.
-- [x] The canonical first transverse event is transported back through both removed common factors to an exact whole-family first opening at its physical parameter order.
-- [x] Whole-family reverse-Rees principal Hessian minors lift back to represented-source principal minors.
-- [x] Existing actual-rank-two and actual-rank-three geometry consumers are available, but must not be mistaken for final contradiction at the sound singular endpoint.
+- a bare `RepairProgress` is not a contradiction;
+- absence of a global successor is not available at the sound carrier;
+- an `ActualRankTwoHessianChart` or `ActualRankThreeHessianChart` is geometry, not by itself a contradiction;
+- an auxiliary Schur/Rees clock is not a source polynomial endpoint unless source provenance is explicitly retained;
+- the marked-axis first-contact face is **not** itself a certified terminal endpoint merely because it carries a distinct collision;
+- unrestricted HC4 may be claimed only after the separate planar JC2-hard endpoint is solved and the final root/axiom audits are green.
 
-## Implementation ledger
-
-### A. Final local resolution interface
-
-- [x] **A1.** Add a definitive singular-terminal resolution type carrying only sound final objects:
-  - an honest unconditional polynomial obstruction/contradiction object; or
-  - an honest `TerminalAssociatedGradedCollisionData` endpoint suitable for the existing JC2 consumer.
-- [x] **A2.** Add the corresponding consumer theorem:
-  under planar JC2, every value of this resolution type is contradictory.
-- [x] **A3.** Add a singular-terminal-to-resolution property and splice it to a clean conditional `JC2 ⇒ HC4` theorem.
-
-**Rule:** no repair-only constructor and no global-progress-only constructor.
-
-### B. Replace the coarse tail split by the exact relative-order split
-
-Let `J` be the retained later projected kernel opening and `q` the common first positive three-Schur quotient order. Set
+The project should first finish the four-dimensional **FinalResolution producer** and obtain a clean current-architecture theorem
 
 ```
-r = J - q.
+PlanarJC2Injectivity K → HC4(K)
 ```
 
-- [x] **B1.** Package the exact dichotomy `r = 0 ∨ 0 < r`.
-- [x] **B2.** Show the `0 < r` branch is exactly the already-developed positive-tail branch, without losing physical-order provenance.
-- [x] **B3.** Expose the `r = 0` branch as a constant normalised 3x3 kernel-column opening.
+then freeze the 4D machinery and solve the isolated planar endpoint.
 
-The older `q ≤ j` versus fully-tangent split remains useful internally but is no longer the assembly-facing split.
+---
 
-### C. Positive relative tail: exact rank-one clock to honest endpoint
+## 2. FinalResolution interface already fixed and green
 
-- [x] **C1.** Consume `TopKernelThreeSchurPositiveTailRankOneFrontier.activeRankTwo` source-honestly.
-
-  **Lean-verified:** `TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness` turns the nonzero active 2×2 tail minor into a branch-independent nonzero represented-source Schur polynomial. Lean CI #3907 compiled this theorem.
-- [x] **C2.** Consume the binary determinant-closing branch source-honestly.
-
-  **Lean-verified:** `PositiveTailExplicitBinaryClockData.representedSourceSchurWitness` forgets every explicit binary clock, including the determinant-closing branch, to a represented-source `schurA`/`schurB`/`schurC` witness. Lean CI #3907 compiled this theorem.
-- [x] **C3.** For the exact rank-one-clock branch, use `pivot0`/`pivot1` provenance plus the retained later opening to transport the first nonzero binary Schur coefficient back to honest represented-source geometry.
-
-  **Lean-verified C3 chain:**
-  - `PositiveTailExplicitBinaryClockData.wholeFamilySchurProvenance`;
-  - `PositiveTailExplicitBinaryClockData.representedSourceSchurGeometry`;
-  - `PositiveTailExplicitRankOneClockData.transverseCoeff_representedSourceGeometry`;
-  - `PositiveTailExplicitRankOneClockData.firstTransverse_representedSourceGeometry`;
-  - `PositiveTailExplicitRankOneClockData.wholeFamilyFirstTransverseOpening`.
-
-  This is source/provenance closure only: it does **not** by itself prove C4/C5 or the final singular-terminal contradiction.
-
-  **Verified / pending C4-C5 infrastructure:** `PositiveTailRankOneSourceHonestEndpointSplit` is locally compiled and removes the final exact-clock timing ambiguity while retaining the decisive nonzero coefficient, represented-source geometry, and whole-family opening.
-
-  **Rooted/source-complete but still awaiting a permitted green CI run:** the branch now additionally contains:
-  - preterminal opening as a literal source-point binary block with determinant `-b^2 ≠ 0`;
-  - exact closing as a literal nonzero source-point kernel-curvature event;
-  - branch-independent represented-source Schur witnesses as evaluated nonzero 3x3 Hessian minors;
-  - `TopKernelThreeSchurPositiveTailGeometricFrontier`, which packages the complete positive-relative finite geometry;
-  - a distinct exact marked collision on `T.topKernelReesSource`;
-  - exact collision transport through the honest bounded reverse-Rees family;
-  - `topKernelMarkedAxisFirstContactFamily`, whose special fibre retains the literal distinct collision `0 ~ e₀`.
-
-  The current GitHub Actions state for the newest heads is `action_required`, so none of these newer declarations earns an additional checked C4/C5 box yet.
-
-  **Exact remaining C4/C5/E seam after root CI #4011:** the branch now has an honest collision-bearing marked-axis first-contact fibre, proved to be the exact `(0,1,1,1)` weighted initial form of `T.topKernelReesSource`, weighted homogeneous, independent of coordinate 0, and Hessian-singular. This fibre is **not itself** a `CertifiedTerminalDirectJumpEndpoint`: coordinate-0 independence gives a zero Hessian row, and the weight is not automatically one of the certified standard one-zero/two-zero patterns. Therefore the remaining work is a finite support/refinement adapter from the unified relative geometric frontier plus this singular marked-axis face to either (i) one of the unconditional `AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction` constructors, or (ii) a different honest associated-graded fibre carrying a certified endpoint. Do not attempt to certify the marked-axis face itself.
-
-  Two tempting shortcuts are invalid:
-  - the first-contact source scaling should not be called a standard one-zero terminal endpoint merely because one coordinate has been separated; the certified standard weight is `(0,d,a,d-a)` with `0<a<d`, so terminal classification still has to be proved;
-  - `AdaptiveAlignedSmithRankOneClosingSourceCarrier` is tied to the legacy right-recentered aligned-endpoint clock, not definitionally to the present ordinary reverse-Rees rank-one clock. Do not populate that carrier by identifying the two clocks.
-
-- [ ] **C4.** Convert the preterminal rank-one-clock outcome to either an actual represented-source principal Hessian minor or a final polynomial/associated-graded endpoint.
-- [ ] **C5.** Convert the exact-closing rank-one-clock outcome to a final polynomial/associated-graded endpoint. Reuse the existing negative-square / wedge pattern where possible rather than exporting `RepairProgress`.
-- [ ] **C6.** Assemble: every `0 < r` branch produces the final local resolution interface.
-
-  **Positive-relative geometric assembly implemented/rooted; awaiting green CI and the E-stage adapter:** `TopKernelThreeSchurPositiveTailGeometricFrontier` is the complete source-honest `r > 0` geometric interface, and `TopKernelThreeSchurRelativeGeometricFrontier` embeds it as the positive side of the unified exact relative-order split. No further positive-tail clock or staircase assembly is outstanding. The remaining C6 work is precisely to convert this honest geometry to one of the permitted `FinalResolution` constructors.
-
-### D. Zero relative tail: finite constant-tail closure
-
-When `r = 0`, the first normalised 3x3 coefficient matrix already contains a nonzero kernel-column entry.
-
-- [x] **D1.** Run the existing principal second-stage frontier directly on the constant tail.
-
-  **Lean-verified (root CI #4011):** `TopKernelThreeSchurZeroRelativePrincipalFrontier` retains the physical zero-relative kernel opening and reduces the branch to exactly determinant closing / one of three coordinate-principal rank-two pivots / exact binary zero-Schur.
-- [x] **D2.** Principal rank-two case -> honest represented-source geometry / final resolution.
-
-  **Lean-verified source-provenance step (root CI #4011):** `TopKernelThreeSchurPrincipalPivot.toRepresentedSourceSchurWitness` source-lifts all three principal orientations. The existing `01` lift is reused; the new `02` and `12` lifts use the nested kernel entries plus common-scale noncancellation in the correct `ThreeSchurActivePair` chart. `TopKernelThreeSchurZeroRelativeSourceFrontier` therefore leaves only determinant closing / represented-source Schur geometry / binary zero-Schur.
-- [x] **D3.** Rank-one constant block -> explicit diagonal pivot -> exact binary zero-Schur clock, with source provenance retained.
-
-  **Lean-verified (root CI #4011):** the zero-relative frontier now retains the original rank-one 3x3 witness instead of an opaque binary clock. The physical constant-tail opening is a nonzero entry in column 2; symmetry plus vanishing of all 2x2 minors forces the diagonal entry `(2,2)` itself to be nonzero. This canonically selects coordinate 2 as the second scalar pivot. `ZeroRelativeExplicitBinaryClockData` then stores the exact pivot-2 binary zero-Schur clock, its literal `threePivot2BinarySchurSeries`, exact residual-defect equality, and the original rank-one/source opening data. Public orientation-preserving wrappers in `RankOneThreeToBinarySchur` avoid duplicating the clock construction.
-- [x] **D4.** Close the resulting finite binary alternatives without introducing another unbounded staircase.
-
-  **Lean-verified (root CI #4011):** `ZeroRelativeExplicitBinaryClockData.endpointSplit` exhausts the canonical pivot-2 binary clock into determinant closing, left/right preterminal, or left/right exact-closing alternatives. `TopKernelThreeSchurZeroRelativeBinaryFrontier.toFiniteFrontier` packages this as the complete finite D4 frontier. No unbounded staircase is introduced.
-- [ ] **D5.** Assemble: every `r = 0` branch produces the final local resolution interface.
-
-  **Geometric assembly Lean-verified (root CI #4011); E-stage final-resolution conversion still open:** `ZeroRelativeExplicitBinaryClockData.representedSourceKernelMinor` source-lifts the canonical pivot-2 packet to a genuine principal Hessian minor on `T.topKernelReesSource`; `exists_actualRankTwoHessianChart` turns that into represented-state rank-two geometry; and `ThreeSchurTangentTailKernelOpeningData.zeroRelativeGeometricFrontier` assembles every zero-relative branch into determinant closing, represented-source Schur geometry, or an actual represented-state rank-two Hessian chart. `TopKernelThreeSchurRelativeGeometricFrontier` then joins this with the positive-relative branch. The remaining D5 work is therefore the same E-stage final-resolution conversion, not more zero-relative clock analysis.
-
-### E. Singular terminal -> final resolution
-
-- [ ] **E1.** Assemble the non-top-kernel branches already closed by existing A19 geometry.
-- [ ] **E2.** Insert C and D for the residual top-kernel branch.
-- [ ] **E3.** Prove the canonical producer
+The only permitted local outputs are:
 
 ```lean
-AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
-  -> Nonempty ZeroStrictLowSingularFinalResolution
+inductive AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution (T)
+  | polynomialObstruction
+      (O : AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction)
+  | associatedGradedCollision
+      (A : TerminalAssociatedGradedCollisionData K)
 ```
 
-(or the equivalent indexed theorem).
+The consumer is already green:
 
-- [ ] **E4.** Audit that every constructor retains genuine source/polynomial provenance and that no auxiliary rank label is identified with a terminal polynomial endpoint.
+- `polynomialObstruction` is unconditionally impossible;
+- `associatedGradedCollision` is impossible under `PlanarJC2Injectivity K`.
 
-### F. Rigorous conditional endpoint
+The existing theorem
 
-- [ ] **F1.** Use E plus the existing terminal JC2 consumer to prove a clean current-architecture theorem `PlanarJC2Injectivity K -> HC4(K)`.
-- [ ] **F2.** Route the theorem through the public determinant-one gradient-injectivity entry.
-- [ ] **F3.** Root build green.
-- [ ] **F4.** Axiom/proof audit green for the conditional theorem.
+`gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution`
 
-At F4 the project has a rigorous, current, source-honest conditional endpoint. This does **not** claim unconditional HC4.
+already performs the final conditional splice once
 
-### G. Unconditional JC2-hard endpoint
-
-After F is green, freeze the four-dimensional global machinery.
-
-- [ ] **G1.** Starting from a hypothetical planar Keller counterexample, use `planarDoublingPotential` and the canonical HC4 reduction to extract the exact additional normal-form restrictions imposed by the singular terminal.
-- [ ] **G2.** State the resulting canonical planar counterexample property `P` as a standalone theorem/interface.
-- [ ] **G3.** Prove `PlanarJC2 counterexample -> P`.
-- [ ] **G4.** Prove `P -> False`.
-- [ ] **G5.** Deduce planar JC2.
-- [ ] **G6.** Deduce unrestricted HC4 from the already-green HC4 reduction.
-- [ ] **G7.** Full root build, `#print axioms`/proof audit and public theorem audit green.
-
-Only G7 licenses an unrestricted-HC4 claim.
-
-## Preferred commit order
-
-```text
-A  FinalResolution interface
-B  exact r = J-q split
-C  r>0: exact rank-one-clock -> honest endpoint extraction
-D  r=0: constant-tail finite closure
-E  singular terminal -> final resolution
-F  clean JC2 => HC4 splice + audits
-G  isolate and solve the canonical JC2-hard planar endpoint
+```lean
+AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty
 ```
 
-## Stop conditions / anti-detours
+is proved.
 
-Do not start a new global recursion or arbitrary SL4 state-level covariance layer unless C/D demonstrate that the retained pivots are insufficient. Do not extend the old generic blocker endgame merely to manufacture repair progress. Do not call an auxiliary layer minor a source minor without either whole-family reverse-Rees lifting or an explicit noncancellation theorem. Do not identify the ordinary top-kernel reverse-Rees clock with the legacy right-recentered blocker clock. Do not label the marked-axis first-contact fibre as a certified one-zero endpoint until its actual integral terminal weight is proved.
+No new final-resolution constructor should be added unless there is a genuine polynomial-level endpoint theorem that consumes it.
 
-The immediate objective is now **C4/C5/C6**, while finishing the finite **D3/D4** branch in parallel. C1--C3 and the exact source-honest rank-one endpoint split are already compiled. The branch now retains the represented determinant-one source, moving collision through the reverse-Rees family, a collision-bearing marked-axis first-contact special fibre, evaluated 3x3 Hessian-minor geometry, and the preterminal/closing source-point events. The shortest remaining C seam is therefore the terminal associated-graded **classification/extraction** theorem, not another Schur provenance wrapper. In parallel, D has already been reduced source-level to a finite determinant-closing / represented-Schur / binary-zero-Schur frontier; retain the binary diagonal pivot explicitly and close those alternatives without another staircase. Repair progress is not an acceptable conclusion.
+---
+
+## 3. What is now Lean-verified: the C/D geometric seam is finished
+
+### A. Final local interface
+
+- [x] FinalResolution type.
+- [x] JC2 consumer for every permitted constructor.
+- [x] Conditional HC4 wrapper from a total FinalResolution producer.
+
+### B. Exact relative-order split
+
+For the retained later kernel opening `J` and common first positive three-Schur order `q`, set `r = J - q`.
+
+- [x] `r = 0 ∨ 0 < r`.
+- [x] Positive-relative branch is the existing positive-tail geometry.
+- [x] Zero-relative branch exposes a constant normalised 3x3 kernel-column opening.
+
+### C. Positive-relative branch
+
+The positive branch is source-honest through the entire Schur/rank-one pipeline.
+
+- [x] active rank-two branch source-lifts to represented-source Schur geometry;
+- [x] binary determinant-closing branch source-lifts;
+- [x] exact rank-one clock retains pivot provenance;
+- [x] first transverse nonzero coefficient source-lifts;
+- [x] first transverse event transports through both removed common factors to the whole family;
+- [x] preterminal/exact-closing timing split is finite and source-honest;
+- [x] evaluated represented-source point geometry is retained;
+- [x] `TopKernelThreeSchurPositiveTailGeometricFrontier` packages the complete positive-relative geometry.
+
+There is **no remaining positive-tail clock/staircase problem**.
+
+The old ledger labels C4/C5/C6 remain conceptually “not yet FinalResolution” only because the geometry has not been converted to one of the two permitted final polynomial-level constructors. Do not reopen C1–C3 or rebuild the rank-one clock.
+
+### D. Zero-relative branch
+
+This branch is also finished geometrically.
+
+- [x] D1 principal second-stage finite frontier.
+- [x] D2 all three principal rank-two orientations source-lift.
+- [x] D3 rank-one constant tail retains provenance and canonically selects pivot 2 from the physical column-2 opening.
+- [x] D4 exact pivot-2 binary clock is reduced to determinant closing / left-right preterminal / left-right exact closing without an unbounded staircase.
+- [x] represented-source kernel principal minor is recovered.
+- [x] that minor yields represented-state actual rank-two Hessian geometry through a Prop-safe `Nonempty` interface.
+- [x] `TopKernelThreeSchurZeroRelativeGeometricFrontier` packages the complete zero-relative geometry.
+
+There is **no remaining zero-relative clock analysis**.
+
+### Unified exact relative geometry
+
+The two branches are already joined by
+
+`TopKernelThreeSchurRelativeGeometricFrontier`
+
+and
+
+`ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier`.
+
+This is now the single top-kernel geometric interface that the E-stage must consume.
+
+---
+
+## 4. New E-stage carrier now present: marked-axis first contact
+
+The branch has moved beyond the older “find an associated-graded collision” sketch.
+
+The exact head contains an honest first-contact construction tied to the represented determinant-one source.
+
+### 4.1 Honest whole-family identity
+
+The natural marked-axis weight is
+
+```
+topKernelMarkedAxisNatWeight = (0,1,1,1)
+```
+
+and the branch proves
+
+`topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees`:
+
+the marked-axis source inflation of the ordinary reverse-Rees family is exactly the bounded reverse-Rees family for this weight at level `T.topFace.degree`.
+
+### 4.2 Exact associated-graded fibre
+
+The special fibre is exactly
+
+```
+initialForm (0,1,1,1) T.topFace.degree T.topKernelReesSource
+```
+
+via
+
+`topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm`.
+
+It is proved:
+
+- integral weighted homogeneous;
+- independent of coordinate 0;
+- Hessian-singular;
+- collision-bearing at the literal points `0` and `e₀`;
+- those two points are distinct.
+
+These data are packaged by
+
+`TopKernelMarkedAxisFirstContactFaceData`.
+
+### 4.3 Exact relation to the retained singular top face
+
+The latest support/coefficient work proves:
+
+- the transverse `X₀^0` slice of the first-contact fibre equals the corresponding slice of `T.topFace.face`;
+- every supported exponent of the first-contact fibre has `d 0 = 0`;
+- most importantly:
+
+```
+d ∈ firstContactFibre.support
+  ↔ d ∈ T.topFace.face.support ∧ d 0 = 0
+```
+
+through
+
+`topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero`.
+
+The top-face API now also exposes the exact source provenance needed by this statement:
+
+- `ordinaryDegree_eq_of_mem_support`;
+- `source_mem_of_face_mem`;
+- `coeff_eq_source_of_ordinaryDegree_eq`.
+
+### 4.4 Critical non-shortcut
+
+Do **not** turn the marked-axis fibre itself into
+`TerminalAssociatedGradedCollisionData`.
+
+It is independent of coordinate 0, hence its Hessian has a zero row. Therefore:
+
+- it cannot satisfy the scalar `CertifiedTerminalDirectJumpEndpoint` constructor, which requires a nondegenerate actual Hessian;
+- weight `(0,1,1,1)` is not automatically one of the already-certified positive/one-zero/two-zero terminal weight families;
+- the collision `0 ~ e₀` on this fibre is expected from coordinate-0 independence and is not itself the terminal contradiction.
+
+The first-contact fibre is a **classification carrier**, not the final endpoint.
+
+---
+
+## 5. Exact current mathematical frontier: E-stage support/refinement classification
+
+The project is no longer blocked on Schur provenance. The next theorem must convert the unified relative geometry plus the marked-axis/top-face support carrier into a permitted FinalResolution object.
+
+The shortest route is to reuse the already-green singular-top-face classification machinery rather than create another Rees hierarchy.
+
+Existing relevant infrastructure includes:
+
+- `T.topFace` is a genuine nonzero ordinary-homogeneous singular face of degree at least 3;
+- `T.exposedSingularBoundaryVertex` and the existing rank-three/extreme-boundary machinery;
+- `rankThree_crossFacetInitial_or_topFaceOnFacet`;
+- `rankThree_crossFacet_or_nonlinearOutside_or_nonlinearConfined`;
+- the lower first-nonfacet source/contact pipeline;
+- the specialised `.qs` exposed-rank-three reductions;
+- existing unconditional terminal polynomial obstruction constructors:
+  - `positiveSingleton`;
+  - `complementarySupported`;
+  - `complementaryExposed`;
+  - `balancedRankThree`.
+
+The new support equivalence lets those finite-support/top-face arguments be applied to the **actual collision-bearing marked-axis slice** without guessing which monomials came from the represented source.
+
+### Next theorem family to build
+
+Create a small E-stage interface, for example conceptually
+
+```
+TopKernelMarkedAxisFirstContactResolutionFrontier T
+```
+
+whose constructors are already-consumable polynomial outcomes, not clocks or repair labels.
+
+The proof should branch only on genuine support geometry and should aim to return one of:
+
+1. an `AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction`; or
+2. a refinement to a **different** associated-graded fibre carrying
+   `CertifiedTerminalDirectJumpEndpoint` plus a retained distinct exact collision.
+
+Prefer (1) whenever the existing singular-support theorems already give it.
+
+Do not add a generic “rank-two geometry” constructor to FinalResolution.
+
+---
+
+## 6. Recommended next commits — shortest route to conditional HC4
+
+### E0 — status audit / interface adapter
+
+- [x] unified positive/zero relative geometric frontier exists;
+- [x] marked-axis collision-bearing first-contact family exists;
+- [x] its special fibre is the exact `(0,1,1,1)` initial form;
+- [x] exact support identity with `T.topFace.face ∩ {d₀ = 0}` exists;
+- [x] exact source coefficient/support provenance exists.
+
+No more E0 infrastructure should be added unless a concrete E1 proof requires it.
+
+### E1 — classify the marked-axis slice using existing top-face geometry
+
+**Immediate next mathematical commit.**
+
+Prove a finite support/refinement split for
+
+`T.topKernelMarkedAxisFirstContactFaceData.fibre`
+
+using
+
+`topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero`
+
+and the existing singular top-face boundary/source machinery.
+
+The split must retain enough data to feed a known endpoint theorem.
+
+Important discipline:
+
+- do not manufacture a torus balance certificate;
+- if using a balanced-rank-three consumer, obtain balance from already-retained geometry first;
+- otherwise prefer the balance-free rank-three/source split already present in the strict-low chain;
+- do not classify the marked-axis face merely from its Hessian singularity, since that singularity is partly forced by coordinate-0 independence.
+
+### E2 — map every E1 branch to a permitted FinalResolution constructor
+
+For each support branch:
+
+- first try `AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction`;
+- only if no unconditional obstruction applies, build a further honest associated-graded fibre with a **proved** `CertifiedTerminalDirectJumpEndpoint`.
+
+A useful target theorem shape is
+
+```lean
+theorem AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+    .topKernel_finalResolution
+    (T : ...)
+    : Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+```
+
+or an equivalent theorem indexed by the unified top-kernel frontier.
+
+### E3 — splice non-top-kernel branches
+
+Reuse the already-closed A19 geometry for branches outside the residual top-kernel seam.
+
+Do not re-run global restart/descent machinery.
+
+### E4 — total singular-terminal producer
+
+Prove
+
+```lean
+AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty
+```
+
+equivalently
+
+```lean
+∀ T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData ...,
+  Nonempty
+    (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+```
+
+### E5 — provenance audit
+
+Before calling E complete, verify:
+
+- every obstruction constructor receives the exact hypotheses of its green endpoint theorem;
+- every associated-graded collision has an honest polynomial fibre;
+- collision points are genuinely distinct;
+- the endpoint certificate is actually `CertifiedTerminalDirectJumpEndpoint`;
+- no Schur rank label is silently treated as a polynomial endpoint;
+- no legacy right-recentered clock is identified with the present ordinary reverse-Rees clock.
+
+---
+
+## 7. F-stage: finish the rigorous conditional theorem immediately after E
+
+Once E4 is green, the conditional theorem is essentially already wired.
+
+### F1
+
+Instantiate the existing
+
+`gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution`.
+
+### F2
+
+Expose a clean public theorem of the current architecture:
+
+```lean
+PlanarJC2Injectivity K →
+  ∀ F : MvPolynomial (Fin 4) K,
+    hessianDeterminant F = 1 →
+    Function.Injective (mvGradientMap F)
+```
+
+### F3
+
+Root `HC4.lean`, full build green.
+
+### F4
+
+Run:
+
+- proof inventory;
+- escape-hatch audit;
+- `#print axioms` / theorem-axiom audit for the public conditional theorem.
+
+At F4 the 4D reduction should be frozen. Further work should move to the isolated planar endpoint.
+
+---
+
+## 8. G-stage: the genuinely unrestricted HC4 step
+
+This remains separate and must not be hidden inside E/F.
+
+The present architecture proves that a uniform contradiction of the singular terminal implies planar JC2. Therefore unrestricted HC4 requires solving the induced planar JC2-hard endpoint.
+
+### G1 — extract the canonical planar counterexample normal form
+
+Start with a hypothetical planar Keller counterexample and use:
+
+- `planarDoublingPotential`;
+- the now-frozen HC4 reduction;
+- the exact singular-terminal/top-face/first-contact restrictions
+
+to state the strongest standalone planar property `P` forced on any remaining counterexample.
+
+Do not attack arbitrary JC2 before extracting `P`.
+
+### G2 — prove counterexample -> P
+
+This should be mostly reuse of already-green 4D machinery, now read backwards as a normal-form theorem.
+
+### G3 — solve P directly in dimension two
+
+This is the actual new JC2-hard mathematics.
+
+Use the strongest restrictions carried by the final singular terminal—especially the exact top-face and associated-graded support restrictions—rather than a generic planar Jacobian attack.
+
+### G4 — deduce planar JC2
+
+```
+PlanarJC2Injectivity K
+```
+
+### G5 — deduce unrestricted HC4
+
+Feed G4 into the already-green F theorem.
+
+### G6 — final audit
+
+- root build green;
+- no `sorry`, `admit`, new axioms, or unsafe proof escape;
+- `#print axioms` clean for the public unrestricted theorem;
+- verify the public theorem statement is the intended unrestricted determinant-one HC4 statement.
+
+Only G6 licenses the claim that unrestricted HC4 is formally proved.
+
+---
+
+## 9. What not to do from this head
+
+Do **not**:
+
+- reopen positive-tail rank-one clocks;
+- reopen zero-relative binary clocks;
+- build another unbounded staircase;
+- add another global restart/descent measure;
+- use repair progress as a terminal contradiction;
+- certify the marked-axis first-contact face itself as a terminal endpoint;
+- assume torus balance merely from ordinary homogeneity;
+- identify the ordinary reverse-Rees clock with the legacy right-recentered blocker clock;
+- add a new FinalResolution constructor just to accommodate unfinished geometry.
+
+The current bottleneck is **support classification / terminal refinement at the E-stage**, not valuation bookkeeping.
+
+---
+
+## 10. One-paragraph fresh-context handoff
+
+At audited head `52169d950f4ea5a231e2b01f6850728da3c68a15`, the positive-relative and zero-relative Schur/clock branches are already source-honest and unified by `TopKernelThreeSchurRelativeGeometricFrontier`; do not reopen C/D. The branch now constructs `topKernelMarkedAxisFirstContactFamily`, proves it is exactly the bounded reverse-Rees family for weight `(0,1,1,1)`, and packages its special fibre as an honest weighted-homogeneous Hessian-singular polynomial with the literal distinct exact collision `0 ~ e₀`. The latest support theorem proves that this fibre has exactly the exponents of `T.topFace.face` with `d₀ = 0`, with exact source coefficient provenance. This marked-axis fibre is **not** itself a certified terminal endpoint because it is independent of coordinate 0. The next task is therefore to use the existing strict-low singular-top-face boundary/source classification to classify/refine this exact zero-longitudinal slice into either an existing `AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction` or a further honest associated-graded collision with a proved `CertifiedTerminalDirectJumpEndpoint`. Once that gives a total `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty`, the existing wrapper immediately yields the rigorous conditional theorem `PlanarJC2Injectivity K -> HC4(K)`. Freeze the 4D machinery there; unrestricted HC4 then requires the separate JC2-hard G-stage: extract the canonical planar counterexample normal form forced by the singular terminal, prove that normal form impossible, deduce planar JC2, and feed it through the green conditional HC4 theorem.
