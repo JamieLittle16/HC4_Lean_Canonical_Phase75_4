@@ -1,4 +1,5 @@
 import HC4.Newton.FirstContactCrossFacetCarrier
+import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetEndpointTransition
 import Mathlib.Tactic
 
@@ -164,6 +165,69 @@ theorem exists_qs_firstNonfacet_crossFacet_extremeRay
   refine ⟨d₀, scale, bump, G, ?_, hd₀G, hd₀deg, hscale, hbump,
     hzero, hnot, hGBal, D, hexit.2⟩
   simpa [facetOmittedCoordinate] using hG
+
+
+/-- **Nonlinear-strengthened canonical first-contact extreme-ray exit.**
+
+This is the final-assembly form of `exists_qs_firstNonfacet_crossFacet_extremeRay`:
+the exact contact carrier additionally remembers that every surviving exponent
+has ordinary degree at least three. -/
+theorem exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear
+    {K : Type*} [Field K] [CharZero K] [IsAlgClosed K]
+    {a b m : ℕ} {psi : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet .qs m psi)
+    (hattained : ∃ v ∈ psi.support, ordinaryDegree4 v = m)
+    (hout : HasNonlinearOutsideFacet .qs psi)
+    (hlow : LowDegreeTameAtFacet .qs psi)
+    (hBal : HasBalancedMvSupport a b psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    ∃ (d₀ : Fin 4 →₀ ℕ) (scale bump : ℕ)
+      (G : MvPolynomial (Fin 4) K),
+      G = initialForm
+          (scaledContactWeight (0 : Fin 4) scale bump)
+          ((scale * m : ℕ) : ℤ) psi ∧
+      d₀ ∈ G.support ∧
+      3 ≤ ordinaryDegree4 d₀ ∧
+      0 < scale ∧
+      0 < bump ∧
+      hessianDeterminant G = 0 ∧
+      ¬ MvSupportOnFacet .qs G ∧
+      HasBalancedMvSupport a b G ∧
+      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) ∧
+      ∃ D : CrossFacetInitialData G
+          (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4),
+        ∃ H : ToricFacet,
+          AdjacentFacets .qs H ∧
+            OnRay a b .qs H (toToricExponent D.facetExponent) := by
+  rcases exists_singular_first_nonfacet_contact_with_nonlinear_support
+      hm hdeg htop hout hlow hMA with
+    ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, _hd₀pos,
+      hscale, hbump, hzero, hnot, hnonlinear⟩
+  have hGBal : HasBalancedMvSupport a b G := by
+    rw [hG]
+    exact hBal.initialForm _ _
+  have hsupports := firstContactCarrier_crossFacet_supports
+    (F := .qs) (m := m) (scale := scale) (bump := bump)
+    htop hattained hG hnot
+  have hfacet : (zeroCoordinateSupport (0 : Fin 4) G).Nonempty := by
+    simpa [facetOmittedCoordinate] using hsupports.1
+  have houtside : (positiveCoordinateSupport (0 : Fin 4) G).Nonempty := by
+    simpa [facetOmittedCoordinate] using hsupports.2.1
+  have hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4) scale bump d =
+        ((scale * m : ℕ) : ℤ) := by
+    simpa [facetOmittedCoordinate] using hsupports.2.2
+  let D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4) :=
+    crossFacetInitialData hfacet houtside
+  have hexit := D.qs_firstContact_endpoint_extremeRay
+    ha hb hcop hscale hbump hGBal hcontact hzero
+  refine ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
+    hzero, hnot, hGBal, hnonlinear, D, ?_⟩
+  exact hexit.2
 
 end
 
