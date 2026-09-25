@@ -48,6 +48,19 @@ theorem exists_zeroStrictLowSingularFinalResolution
 
 end PlanarKellerCollisionData
 
+/-- Existential planar Keller collision witnesses are already sufficient for a
+permitted final resolution.  This is the form consumed by the mature A19
+first-contact and standard two-zero endpoint theorems. -/
+theorem HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (h : HC4.HasPlanarKellerCollision K)
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+  rcases h.exists_terminalAssociatedGradedCollisionData with ⟨A⟩
+  exact ⟨.associatedGradedCollision A⟩
+
 end
 
 end HC4.Newton
