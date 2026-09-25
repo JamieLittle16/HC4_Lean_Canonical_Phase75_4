@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9873**.
+Distinct declaration spellings indexed: **9875**.
 
 ## Repeated declaration spellings
 
@@ -1901,6 +1901,8 @@ Distinct declaration spellings indexed: **9873**.
 - `GlobalRestartReachable` — `inductive` in `HC4.Newton.GlobalRestartClassification`
 - `GlobalRestartReachable.trans` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `GlobalRestartState` — `structure` in `HC4.Newton.GlobalRestartClassification`
+- `HC4.HasPlanarKellerCollision.exists_terminalAssociatedGradedCollisionData` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
+- `HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `HC4.Polynomial.IsWeightLE.mono` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `HC4.Polynomial.IsWeightLE.pow_nsmul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `HasAdaptiveAlignedBlockerExactFourBlockSchurData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactFourBlockSchur`

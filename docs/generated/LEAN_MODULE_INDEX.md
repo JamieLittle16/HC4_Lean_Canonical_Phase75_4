@@ -11840,7 +11840,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.PlanarKellerCollisionTerminalLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `def toZeroStrictLowSingularFinalResolution`, `theorem exists_zeroStrictLowSingularFinalResolution`
+- Declarations: `def toZeroStrictLowSingularFinalResolution`, `theorem exists_zeroStrictLowSingularFinalResolution`, `theorem HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
 
@@ -14810,7 +14810,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`, `HC4.Newton.TerminalAssociatedGradedEndpoint`, `HC4.PlanarJC2HessianEmbedding`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
-- Declarations: `theorem dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero`, `theorem planarDoublingPotential_twoZero_homogeneous`, `theorem exists_terminalAssociatedGradedCollisionData`, `def toTerminalAssociatedGradedCollisionData`
+- Declarations: `theorem dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero`, `theorem planarDoublingPotential_twoZero_homogeneous`, `theorem exists_terminalAssociatedGradedCollisionData`, `def toTerminalAssociatedGradedCollisionData`, `theorem HC4.HasPlanarKellerCollision.exists_terminalAssociatedGradedCollisionData`
 
 ### `HC4.Valuation.PointedShearContinuation`
 
