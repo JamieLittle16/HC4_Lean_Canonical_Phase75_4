@@ -92,7 +92,7 @@ theorem ratio_eq_zero_of_ne_zero_of_markedAxisFibre_eq_zero
     have hd0pos : 0 < d (0 : Fin 4) :=
       Nat.pos_of_ne_zero hd0ne
     have hpoint0 : point (0 : Fin 4) = 0 := by
-      simp [point, coordinateAxisPoint, hj0]
+      simp [point, coordinateAxisPoint, Ne.symm hj0]
     have hprod :
         ∏ i : Fin 4, point i ^ d i = 0 := by
       apply Finset.prod_eq_zero (Finset.mem_univ (0 : Fin 4))
@@ -106,9 +106,16 @@ theorem ratio_eq_zero_of_ne_zero_of_markedAxisFibre_eq_zero
         P.ratio j := by
     simp [point, gradientRatioLinearForm, coordinateAxisPoint]
 
-  have heval := congrArg (MvPolynomial.eval point) P.eq_power
-  rw [htopEval] at heval
-  simp [hlineEval] at heval
+  have heval :
+      0 = P.coefficient * P.ratio j ^ T.topFace.degree := by
+    calc
+      0 = MvPolynomial.eval point T.topFace.face := htopEval.symm
+      _ = MvPolynomial.eval point
+          (MvPolynomial.C P.coefficient *
+            (gradientRatioLinearForm P.ratio) ^ T.topFace.degree) := by
+            rw [P.eq_power]
+      _ = P.coefficient * P.ratio j ^ T.topFace.degree := by
+            simp [hlineEval]
   by_contra hj
   have hright :
       P.coefficient * P.ratio j ^ T.topFace.degree ≠ 0 :=
@@ -177,12 +184,11 @@ theorem pureLongitudinalTopFace_of_markedAxisFibre_eq_zero
     rw [P.eq_power,
       P.linearForm_eq_longitudinalAxis_of_markedAxisFibre_eq_zero hfibre,
       mul_pow, ← MvPolynomial.C_pow, ← mul_assoc, ← MvPolynomial.C_mul]
-    rfl
   have hk : kernelCoordinate ≠ (0 : Fin 4) := by
     intro h
-    have hz := P.kernel_ratio_zero
-    rw [h] at hz
-    exact hr0 hz
+    have hz0 : P.ratio (0 : Fin 4) = 0 := by
+      simpa only [h] using P.kernel_ratio_zero
+    exact hr0 hz0
   exact ⟨b, hb, hface, hk⟩
 
 end TopFaceLinearPowerKernelData
