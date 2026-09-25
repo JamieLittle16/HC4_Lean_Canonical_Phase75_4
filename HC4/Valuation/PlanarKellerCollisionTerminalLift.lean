@@ -113,22 +113,13 @@ namespace PlanarKellerCollisionData
 /-- **Planar collision -> permitted final associated-graded collision.**
 
 The target is an honest standard two-zero Hessian potential obtained from the
-normalised planar Keller map.  This gives a reusable bridge from any explicit
-planar endpoint to the exact `FinalResolution.associatedGradedCollision`
-consumer. -/
-noncomputable def toTerminalAssociatedGradedCollisionData
+normalised planar Keller map.  The theorem is proposition-valued, so the
+existential Keller scalar may be eliminated directly without crossing Lean's
+Prop-to-Type restriction. -/
+theorem exists_terminalAssociatedGradedCollisionData
     (T : PlanarKellerCollisionData K) :
-    TerminalAssociatedGradedCollisionData K := by
-  let c : K := Exists.choose T.keller
-  have hkeller :
-      c ≠ 0 ∧
-        HC4.planarJacobianDetPolynomial T.map =
-          MvPolynomial.C c := by
-    exact Exists.choose_spec T.keller
-  have hc : c ≠ 0 := hkeller.1
-  have hJ :
-      HC4.planarJacobianDetPolynomial T.map =
-        MvPolynomial.C c := hkeller.2
+    Nonempty (TerminalAssociatedGradedCollisionData K) := by
+  rcases T.keller with ⟨c, hc, hJ⟩
   let G : HC4.PlanarPolynomialMap K :=
     HC4.normalizePlanarKellerMap c T.map
   let A : MvPolynomial (Fin 2) K := G 0
@@ -196,22 +187,37 @@ noncomputable def toTerminalAssociatedGradedCollisionData
     unfold HC4.MongeAmpere.IsPolynomialMongeAmpere
     exact hdet
 
-  exact {
+  have hhomRenamed :
+      IsIntegralWeightedHomogeneous
+        (standardTwoZeroTerminalWeight (1 : ℤ))
+        (1 : ℤ)
+        (MvPolynomial.rename (Equiv.refl (Fin 4)) F) := by
+    simpa using hhom
+
+  have hMARenamed :
+      HC4.MongeAmpere.IsPolynomialMongeAmpere
+        (MvPolynomial.rename (Equiv.refl (Fin 4)) F) := by
+    simpa using hMA
+
+  have hendpoint :
+      CertifiedTerminalEndpoint
+        (MvPolynomial.rename (Equiv.refl (Fin 4)) F) :=
+    .twoZero (1 : ℤ) (by norm_num) hhomRenamed hMARenamed
+
+  exact ⟨{
     fibre := F
     leftPoint := p
     rightPoint := q
     distinct := hpq
     exactCollision := hcoll
-    endpoint :=
-      .permuted (Equiv.refl (Fin 4))
-        (.twoZero (1 : ℤ) (by norm_num) hhom hMA)
-  }
+    endpoint := .permuted (Equiv.refl (Fin 4)) hendpoint
+  }⟩
 
-/-- Proposition-safe wrapper convenient for final-resolution producers. -/
-theorem exists_terminalAssociatedGradedCollisionData
+/-- Type-valued form used by final-resolution constructors. -/
+noncomputable def toTerminalAssociatedGradedCollisionData
     (T : PlanarKellerCollisionData K) :
-    Nonempty (TerminalAssociatedGradedCollisionData K) :=
-  ⟨T.toTerminalAssociatedGradedCollisionData⟩
+    TerminalAssociatedGradedCollisionData K :=
+  Classical.choice T.exists_terminalAssociatedGradedCollisionData
 
 end PlanarKellerCollisionData
 
