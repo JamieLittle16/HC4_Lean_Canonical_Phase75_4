@@ -71,6 +71,25 @@ theorem
   intro state T
   exact T.exists_finalResolution_of_constructorFirstContactProducer P
 
+/-- **Current-architecture conditional HC4 closure.**
+
+Once the zero-strict-low source geometry supplies the mature first-contact
+producer, planar JC2 closes every four-variable determinant-one Hessian
+gradient through the new final-resolution interface. -/
+theorem
+    gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : AdaptiveAlignedSmithCanonicalConstructorFirstContactResidualProducer
+      (K := K))
+    (F : MvPolynomial (Fin 4) K)
+    (hdet : HC4.Polynomial.hessianDeterminant F = 1) :
+    Function.Injective (HC4.Newton.mvGradientMap F) := by
+  exact
+    gradient_injective_of_hessianDeterminant_one_of_JC2_of_zeroStrictLowSingularFinalResolution
+      hJC2
+      (zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer P)
+      F hdet
+
 end
 
 end HC4.Valuation
