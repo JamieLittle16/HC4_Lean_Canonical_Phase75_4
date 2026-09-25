@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9919**.
+Distinct declaration spellings indexed: **9921**.
 
 ## Repeated declaration spellings
 
@@ -1493,6 +1493,8 @@ Distinct declaration spellings indexed: **9919**.
 - `CrossFacetInitialData.coeff_face_eq_source_of_mem` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.coeff_qsCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.exists_faceExponent_of_qsCoefficientPolynomial_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
+- `CrossFacetInitialData.face_on_rq_of_near_q_far_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetInitialData.face_on_sp_of_near_s_far_p` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.face_support_coordinate_zero_of_far_zero` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.face_weight_eq` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineLine`
 - `CrossFacetInitialData.facetEndpoint_rankThree_or_transitionRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
