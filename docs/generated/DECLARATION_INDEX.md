@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9896**.
+Distinct declaration spellings indexed: **9897**.
 
 ## Repeated declaration spellings
 
@@ -10166,6 +10166,7 @@ Distinct declaration spellings indexed: **9896**.
 - `zeroPolynomialSection_smithDivisibility` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `zeroRamifiedSection_hasIntegralAdaptiveSmithSection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`
 - `zeroRationalSlopeWitness_of_saturatedKernelSlope_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`
+- `zeroRelativeClosing_exactActiveFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `zeroSchurBlock_eq_chartBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalChartDispatcher`
 - `zeroSchurCanonicalLeftRawDeparturePolynomial` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurSourceIntegratedDeparture`
 - `zeroSchurCanonicalResidualPhysicalOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurSourceIntegratedDeparture`
