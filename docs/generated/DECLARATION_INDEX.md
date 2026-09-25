@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9908**.
+Distinct declaration spellings indexed: **9909**.
 
 ## Repeated declaration spellings
 
@@ -1511,6 +1511,7 @@ Distinct declaration spellings indexed: **9908**.
 - `CrossFacetInitialData.qsExponentAt_eq_of_face_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.qsExponentAt_spec` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.qsSlope` — `def` in `HC4.Newton.FirstContactCrossFacetAffineRR`
+- `CrossFacetInitialData.qs_extremeRay_facet_coordinates` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 - `CrossFacetInitialData.qs_extremeRay_facet_normalForm` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 - `CrossFacetInitialData.qs_firstContact_endpoint_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointTransition`
 - `CrossFacetInitialData.qs_firstContact_endpoint_transition` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointTransition`
