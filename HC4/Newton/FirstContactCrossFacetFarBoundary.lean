@@ -53,6 +53,53 @@ structure CrossFacetFarBoundaryData
         AdjacentFacets F H ∧
           OnRay a b F H (toToricExponent exponent))
 
+/-- If the near and far endpoints of the honest cross-facet line both
+vanish in one transverse coordinate, then the whole exact secondary face is
+confined to that coordinate facet.  The proof uses the already-certified
+affine proportionality and positivity of the contact coordinates. -/
+theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (k : Fin 4)
+    (hfacetZero : D.facetExponent k = 0)
+    (hfarZero : R.exponent k = 0) :
+    ∀ d ∈ D.face.support, d k = 0 := by
+  have hfarLine :=
+    D.support_crossFacet_affine_proportional
+      ha hb hcontactScale hBal hcontact R.exponent R.mem_face k
+  have hfar0Z : (R.exponent (0 : Fin 4) : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt R.contact_pos)
+  have houtkProd :
+      (R.exponent (0 : Fin 4) : ℤ) *
+        (D.outsideExponent k : ℤ) = 0 := by
+    simpa [D.facet_coordinate_zero, hfacetZero, hfarZero] using hfarLine.symm
+  have houtkZ : (D.outsideExponent k : ℤ) = 0 :=
+    (mul_eq_zero.mp houtkProd).resolve_left hfar0Z
+  have houtk : D.outsideExponent k = 0 := by
+    exact_mod_cast houtkZ
+
+  intro d hd
+  have hdLine :=
+    D.support_crossFacet_affine_proportional
+      ha hb hcontactScale hBal hcontact d hd k
+  have hout0Z : (D.outsideExponent (0 : Fin 4) : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt D.outside_coordinate_pos)
+  have hprod :
+      (D.outsideExponent (0 : Fin 4) : ℤ) * (d k : ℤ) = 0 := by
+    simpa [D.facet_coordinate_zero, hfacetZero, houtk] using hdLine
+  have hdkZ : (d k : ℤ) = 0 :=
+    (mul_eq_zero.mp hprod).resolve_left hout0Z
+  exact_mod_cast hdkZ
+
 /-- A far endpoint has positive contact coordinate, so an extreme-ray
 stratum there can only be the two rays with positive coordinate zero: the
 `p` ray or the `r` ray.  The `q` and `s` rays are excluded literally
