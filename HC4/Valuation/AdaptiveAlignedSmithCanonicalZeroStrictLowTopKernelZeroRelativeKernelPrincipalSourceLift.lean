@@ -296,7 +296,8 @@ theorem ZeroRelativeRepresentedSourceKernelMinorWitness.exists_actualRankTwoHess
         intro h
         have h' : (0 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
-        norm_num at h'
+        have hval : (0 : Nat) = 3 := congrArg Fin.val h'
+        norm_num at hval
       refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
@@ -307,7 +308,8 @@ theorem ZeroRelativeRepresentedSourceKernelMinorWitness.exists_actualRankTwoHess
         intro h
         have h' : (1 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
-        norm_num at h'
+        have hval : (1 : Nat) = 3 := congrArg Fin.val h'
+        norm_num at hval
       refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
@@ -318,7 +320,8 @@ theorem ZeroRelativeRepresentedSourceKernelMinorWitness.exists_actualRankTwoHess
         intro h
         have h' : (2 : Fin 4) = 3 :=
           (kernelLastPerm kernelCoordinate).injective h
-        norm_num at h'
+        have hval : (2 : Nat) = 3 := congrArg Fin.val h'
+        norm_num at hval
       refine ⟨actualRankTwoHessianChart_of_specialFiber_minor hne ?_⟩
       simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
         using hminor
