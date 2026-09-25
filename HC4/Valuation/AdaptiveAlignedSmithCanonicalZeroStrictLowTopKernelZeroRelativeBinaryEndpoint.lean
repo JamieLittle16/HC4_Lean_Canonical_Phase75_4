@@ -101,8 +101,8 @@ theorem ZeroRelativeExplicitBinaryClockData.endpointSplit
           (B.clock.toRankOneClockLeft hres hleft).firstOrder_le_defect with
         hpre | hclose
       · exact ⟨.leftPreterminal hres hleft hpre
-          ((B.clock.toRankOneClockLeft hres hleft).
-            offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)⟩
+          ((B.clock.toRankOneClockLeft hres hleft).offDiag_coeff_firstOrder_ne_zero_of_preterminal
+            hpre)⟩
       · exact ⟨.leftExactClosing hres hleft hclose
           (exactRankOneSchurClockAt_kernel_coeff_firstOrder_ne_zero_of_closing
             (B.clock.toRankOneClockLeft hres hleft) hclose)⟩
@@ -110,8 +110,8 @@ theorem ZeroRelativeExplicitBinaryClockData.endpointSplit
           (B.clock.toRankOneClockRight hres hright).firstOrder_le_defect with
         hpre | hclose
       · exact ⟨.rightPreterminal hres hright hpre
-          ((B.clock.toRankOneClockRight hres hright).
-            offDiag_coeff_firstOrder_ne_zero_of_preterminal hpre)⟩
+          ((B.clock.toRankOneClockRight hres hright).offDiag_coeff_firstOrder_ne_zero_of_preterminal
+            hpre)⟩
       · exact ⟨.rightExactClosing hres hright hclose
           (exactRankOneSchurClockAt_kernel_coeff_firstOrder_ne_zero_of_closing
             (B.clock.toRankOneClockRight hres hright) hclose)⟩
