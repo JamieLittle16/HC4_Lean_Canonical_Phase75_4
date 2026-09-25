@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9906**.
+Distinct declaration spellings indexed: **9908**.
 
 ## Repeated declaration spellings
 
@@ -1511,6 +1511,7 @@ Distinct declaration spellings indexed: **9906**.
 - `CrossFacetInitialData.qsExponentAt_eq_of_face_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.qsExponentAt_spec` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.qsSlope` — `def` in `HC4.Newton.FirstContactCrossFacetAffineRR`
+- `CrossFacetInitialData.qs_extremeRay_facet_normalForm` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 - `CrossFacetInitialData.qs_firstContact_endpoint_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointTransition`
 - `CrossFacetInitialData.qs_firstContact_endpoint_transition` — `theorem` in `HC4.Newton.FirstContactCrossFacetEndpointTransition`
 - `CrossFacetInitialData.qs_outside_ordinaryDegree_eq_facet_of_direction_sum_zero` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTransition`
@@ -7833,6 +7834,7 @@ Distinct declaration spellings indexed: **9906**.
 - `qsRqSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
 - `qsSpContactSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactWeightedSchurShear`
 - `qsSpSuperfaceSchurPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfaceSchur`
+- `qs_adjacent_onRay_normalForm` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 - `qs_contactFace_pr_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `qs_contactFace_rq_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `qs_contactFace_sp_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
