@@ -2059,7 +2059,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.37`
 - Local imports: `HC4.Newton.TerminalTwoZeroGradientConjugacy`, `HC4.Newton.TerminalTwoZeroKellerReduction`, `HC4.Newton.TerminalCollision`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`, `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - Declarations: `def HasPlanarKellerCollision`, `theorem HasPlanarKellerCollision.not_planarJC2`, `theorem not_planarJC2_iff_hasPlanarKellerCollision`, `theorem standardTwoZero_terminal_hasPlanarKellerCollision`, `theorem standardTwoZero_terminal_not_planarJC2`
 
 ### `HC4.Newton.TerminalTwoZeroPlanarisation`
@@ -14807,7 +14807,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/PlanarKellerCollisionTerminalLift.lean`
 - Purpose: Planar Keller collisions lift to certified two-zero terminal collisions
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`, `HC4.Newton.TerminalAssociatedGradedEndpoint`, `HC4.PlanarJC2HessianEmbedding`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`, `HC4.Newton.TerminalAssociatedGradedEndpoint`, `HC4.Newton.TerminalTwoZeroPlanarCollision`, `HC4.PlanarJC2HessianEmbedding`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - Declarations: `theorem dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero`, `theorem planarDoublingPotential_twoZero_homogeneous`, `theorem exists_terminalAssociatedGradedCollisionData`, `def toTerminalAssociatedGradedCollisionData`, `theorem HC4.HasPlanarKellerCollision.exists_terminalAssociatedGradedCollisionData`

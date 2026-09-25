@@ -4968,6 +4968,7 @@ human architecture guide.
   - `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `HC4.Valuation.PlanarKellerCollisionTerminalLift`
   - `HC4.Newton.TerminalAssociatedGradedEndpoint`
+  - `HC4.Newton.TerminalTwoZeroPlanarCollision`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `HC4.Valuation.PointedShearContinuation`
