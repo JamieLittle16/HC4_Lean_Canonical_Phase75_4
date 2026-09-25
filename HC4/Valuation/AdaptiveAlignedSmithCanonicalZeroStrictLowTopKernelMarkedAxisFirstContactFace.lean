@@ -312,16 +312,22 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
       d ∈ T.topFace.face.support ∧ d 0 = 0 := by
   constructor
   · intro hd
+    have hcoeffSpecial :
+        MvPolynomial.coeff d
+            (polynomialFamilySpecialFiber
+              T.topKernelMarkedAxisFirstContactFamily) ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp hd
     have hzero :=
-      T.topKernelMarkedAxisFirstContact_specialFiber_exponent_zero d hd
+      T.topKernelMarkedAxisFirstContact_specialFiber_exponent_zero d hcoeffSpecial
     have hweighted :=
-      T.topKernelMarkedAxisFirstContact_specialFiber_homogeneous d hd
-    have hw :
+      T.topKernelMarkedAxisFirstContact_specialFiber_homogeneous d hcoeffSpecial
+    have hweight :
         Finsupp.weight
             (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
           (T.topFace.degree : ℤ) := by
       rw [← integralWeightedDegree_eq_finsuppWeight]
       exact hweighted
+    have hw := hweight
     rw [weight_topKernelMarkedAxisIntWeight] at hw
     have htrans :
         d 1 + d 2 + d 3 = T.topFace.degree := by
@@ -331,10 +337,9 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
       unfold HC4.Polynomial.ordinaryDegree4
       omega
     have hsource : MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
-      have hcoeff :=
-        MvPolynomial.mem_support_iff.mp hd
+      have hcoeff := hcoeffSpecial
       rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm,
-        HC4.Polynomial.coeff_initialForm, if_pos hw] at hcoeff
+        HC4.Polynomial.coeff_initialForm, if_pos hweight] at hcoeff
       exact hcoeff
     have htopCoeff :
         MvPolynomial.coeff d T.topFace.face ≠ 0 := by
