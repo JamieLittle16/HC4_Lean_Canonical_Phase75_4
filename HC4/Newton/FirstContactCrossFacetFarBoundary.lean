@@ -1032,6 +1032,58 @@ theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome
     | sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
         exact .oppositeSR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
 
+/-- After eliminating the two opposite complementary chords, every far
+endpoint is either genuinely rank three or the whole honest line lies in one
+of the two adjacent transition facets. -/
+theorem CrossFacetFarBoundaryData.rankThree_or_adjacentFacet
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    (∃ F : ToricFacet, MvRankThreeOnFacet F R.exponent) ∨
+      MvSupportOnFacet .rq D.face ∨
+      MvSupportOnFacet .sp D.face := by
+  have O := R.nearFarBoundaryOutcome
+    ha hb hcontactScale D hBal hcontact hnear
+  cases O with
+  | farRankThree F hF =>
+      exact Or.inl ⟨F, hF⟩
+  | adjacentRQ n m hn hm hn0 hn1 hn2 hn3
+      hf0 hf1 hf2 hf3 hsupp =>
+      exact Or.inr (Or.inl hsupp)
+  | adjacentSP n m hn hm hn0 hn1 hn2 hn3
+      hf0 hf1 hf2 hf3 hsupp =>
+      exact Or.inr (Or.inr hsupp)
+  | oppositeQP n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+      exact False.elim
+        (D.qToP_impossible
+          ha hb hcontactScale hBal hcontact hzero R hn hm
+          hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3)
+  | oppositeSR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3 =>
+      exact False.elim
+        (D.sToR_impossible
+          ha hb hcop hcontactScale hBal hcontact hzero R hn hm
+          hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3)
+
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
