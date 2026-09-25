@@ -1,4 +1,5 @@
 import HC4.Valuation.PlanarKellerCollisionTerminalLift
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
 
 /-!
@@ -47,6 +48,25 @@ theorem exists_zeroStrictLowSingularFinalResolution
   ⟨P.toZeroStrictLowSingularFinalResolution T⟩
 
 end PlanarKellerCollisionData
+
+namespace AdaptiveAlignedSmithCanonicalHonestFirstContactEndpoint
+
+/-- Every mature honest first-contact endpoint is already a permitted
+zero-strict-low final resolution.
+
+The endpoint first produces its unconditional planar Keller collision witness;
+the planar terminal lift then turns that witness into the standard certified
+two-zero associated-graded collision accepted by `FinalResolution`. -/
+theorem exists_zeroStrictLowSingularFinalResolution
+    {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (E : AdaptiveAlignedSmithCanonicalHonestFirstContactEndpoint (K := K))
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) :=
+  E.hasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution T
+
+end AdaptiveAlignedSmithCanonicalHonestFirstContactEndpoint
 
 /-- Existential planar Keller collision witnesses are already sufficient for a
 permitted final resolution.  This is the form consumed by the mature A19
