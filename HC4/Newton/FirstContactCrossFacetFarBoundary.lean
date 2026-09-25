@@ -100,6 +100,53 @@ theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero
     (mul_eq_zero.mp hprod).resolve_left hout0Z
   exact_mod_cast hdkZ
 
+/-- The adjacent `q -> r` ray pairing lies entirely on the `.rq`
+facet.  Only the two endpoint zero coordinates and honest affine-line
+provenance are used. -/
+theorem CrossFacetInitialData.face_on_rq_of_near_q_far_r
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear : D.facetExponent (3 : Fin 4) = 0)
+    (hfar : R.exponent (3 : Fin 4) = 0) :
+    MvSupportOnFacet .rq D.face := by
+  intro d hd
+  rw [onFacet_toToricExponent_iff]
+  exact
+    D.face_support_coordinate_zero_of_far_zero
+      ha hb hcontactScale hBal hcontact R (3 : Fin 4) hnear hfar d hd
+
+/-- Symmetrically, the adjacent `s -> p` pairing lies entirely on the
+`.sp` facet. -/
+theorem CrossFacetInitialData.face_on_sp_of_near_s_far_p
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear : D.facetExponent (2 : Fin 4) = 0)
+    (hfar : R.exponent (2 : Fin 4) = 0) :
+    MvSupportOnFacet .sp D.face := by
+  intro d hd
+  rw [onFacet_toToricExponent_iff]
+  exact
+    D.face_support_coordinate_zero_of_far_zero
+      ha hb hcontactScale hBal hcontact R (2 : Fin 4) hnear hfar d hd
+
 /-- A far endpoint has positive contact coordinate, so an extreme-ray
 stratum there can only be the two rays with positive coordinate zero: the
 `p` ray or the `r` ray.  The `q` and `s` rays are excluded literally
