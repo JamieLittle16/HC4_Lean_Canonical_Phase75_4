@@ -70,10 +70,14 @@ theorem markedAxisFirstContact_pderiv_kernel_eq_zero
           T.topKernelMarkedAxisFirstContactFamily) = 0 := by
   apply pderiv_eq_zero_of_all_supported_exponents_zero
   intro d hd
+  have hmarked :
+      d ∈ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support :=
+    MvPolynomial.mem_support_iff.mpr hd
   have htop :
       d ∈ T.topFace.face.support :=
     (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
-      d).1 hd |>.1
+      d).1 hmarked |>.1
   exact
     exponent_eq_zero_of_pderiv_eq_zero
       kernelCoordinate T.topFace.face P.topFace_pderiv_kernel_eq_zero d
