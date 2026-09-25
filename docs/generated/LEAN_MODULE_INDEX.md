@@ -890,7 +890,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstNonfacetContact`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Newton.FirstNonfacetExposedBoundaryVertex`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
-- Declarations: `theorem firstContact_initialForm_support_degree_ge_three`, `theorem firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le`
+- Declarations: `theorem firstContact_initialForm_support_degree_ge_three`, `theorem firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le`, `theorem exists_singular_first_nonfacet_contact_with_nonlinear_support`
 
 ### `HC4.Newton.FirstContactSelection`
 

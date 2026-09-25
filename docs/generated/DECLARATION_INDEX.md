@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9910**.
+Distinct declaration spellings indexed: **9911**.
 
 ## Repeated declaration spellings
 
@@ -5205,6 +5205,7 @@ Distinct declaration spellings indexed: **9910**.
 - `exists_singular_first_nonfacet_contact` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_of_two_outside_comparison` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_with_boundary_vertices` — `theorem` in `HC4.Newton.FirstNonfacetBoundary`
+- `exists_singular_first_nonfacet_contact_with_nonlinear_support` — `theorem` in `HC4.Newton.FirstContactNonlinearSupport`
 - `exists_sourceCoefficient_minimalAdaptiveFamilyParameterOrder` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `exists_sourceCoordinateProjectiveWedge_of_full_two_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
