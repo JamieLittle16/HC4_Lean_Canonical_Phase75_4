@@ -43,8 +43,32 @@ private theorem parameterFirstEquiv_familyHessianTwoByTwoMinor
     parameterFirstEquiv K (familyHessianTwoByTwoMinor F i j k l) =
       parameterFirstHessian F i k * parameterFirstHessian F j l -
         parameterFirstHessian F i l * parameterFirstHessian F j k := by
-  unfold familyHessianTwoByTwoMinor parameterFirstHessian
-  simp only [map_sub, map_mul]
+  change
+    parameterFirstEquiv K
+        (HC4.Polynomial.hessian F i k * HC4.Polynomial.hessian F j l -
+          HC4.Polynomial.hessian F i l * HC4.Polynomial.hessian F j k) =
+      parameterFirstEquiv K (HC4.Polynomial.hessian F i k) *
+          parameterFirstEquiv K (HC4.Polynomial.hessian F j l) -
+        parameterFirstEquiv K (HC4.Polynomial.hessian F i l) *
+          parameterFirstEquiv K (HC4.Polynomial.hessian F j k)
+  rw [map_sub, map_mul, map_mul]
+
+/-- Pivot-shaped form of the same identity.  Hessian symmetry puts the
+second product in exactly the orientation used by the cleared 1+3 Schur
+entries. -/
+private theorem parameterFirstEquiv_familyHessianPivotMinor
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (pivot other kernel : Fin 4) :
+    parameterFirstEquiv K
+        (familyHessianTwoByTwoMinor
+          F pivot other pivot kernel) =
+      parameterFirstHessian F pivot pivot *
+          parameterFirstHessian F other kernel -
+        parameterFirstHessian F pivot other *
+          parameterFirstHessian F pivot kernel := by
+  rw [parameterFirstEquiv_familyHessianTwoByTwoMinor]
+  rw [parameterFirstHessian_symmetric F other pivot]
+  ring
 
 /-- Any nonzero arbitrary Hessian minor on the special fibre forces the
 existing exact-active finite rank split into its geometric branch. -/
@@ -105,6 +129,7 @@ private theorem sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero
 
 /-- The projected first-break quotient branch contains a genuine nonzero
 arbitrary Hessian minor of the represented source. -/
+set_option maxHeartbeats 800000 in
 theorem projectedRankTwo_sourceTwoByTwoMinor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (S : P.TopKernelThreeSchurClockData)
@@ -132,16 +157,16 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 0, rho 1, rho 0, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrix] using hopen
       · refine ⟨rho 0, rho 2, rho 0, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrix] using hopen
@@ -150,8 +175,8 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 1, rho 0, rho 1, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
@@ -159,8 +184,8 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 1, rho 2, rho 1, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixD,
@@ -170,8 +195,8 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 2, rho 0, rho 2, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
@@ -179,8 +204,8 @@ theorem projectedRankTwo_sourceTwoByTwoMinor
       · refine ⟨rho 2, rho 1, rho 2, rho 3, lift _ _ _ _ ?_⟩
         simpa [threeSchurCoefficientMatrixAtFirstBreak,
           TopKernelThreeSchurClockData.toExactZeroThreeSchurClock,
-          parameterFirstEquiv_familyHessianTwoByTwoMinor,
-          rho, B, kernelLastFamilyHessianFourBlock,
+          parameterFirstEquiv_familyHessianPivotMinor,
+          threeSchurBlock, rho, B, kernelLastFamilyHessianFourBlock,
           GeneralFourBlock.ofSymmetricMatrix,
           kernelLastParameterFirstHessian,
           GeneralFourBlock.rankOneClearedThreeSchurMatrixX,
