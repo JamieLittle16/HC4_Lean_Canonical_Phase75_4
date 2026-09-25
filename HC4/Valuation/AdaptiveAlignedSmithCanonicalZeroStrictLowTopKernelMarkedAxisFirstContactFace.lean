@@ -67,6 +67,17 @@ theorem weight_topKernelMarkedAxisNatWeight
   · intro i
     simp
 
+/-- Integer-valued form of the same transverse-degree identity. -/
+theorem weight_topKernelMarkedAxisIntWeight
+    (d : Fin 4 →₀ ℕ) :
+    Finsupp.weight
+        (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+      ((d 1 + d 2 + d 3 : ℕ) : ℤ) := by
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · simp [topKernelMarkedAxisNatWeight, Fin.sum_univ_four]
+  · intro i
+    simp
+
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
@@ -291,6 +302,69 @@ theorem topKernelMarkedAxisFirstContact_transverseSlice_eq_topFace :
       simp
   rw [hw]
   simp [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
+
+/-- Exact support description of the marked-axis face: it is precisely the
+zero-longitudinal slice of the singular maximal ordinary top face. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
+    (d : Fin 4 →₀ ℕ) :
+    d ∈ (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily).support ↔
+      d ∈ T.topFace.face.support ∧ d 0 = 0 := by
+  constructor
+  · intro hd
+    have hzero :=
+      T.topKernelMarkedAxisFirstContact_specialFiber_exponent_zero d hd
+    have hweighted :=
+      T.topKernelMarkedAxisFirstContact_specialFiber_homogeneous d hd
+    have hw :
+        Finsupp.weight
+            (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+          (T.topFace.degree : ℤ) := by
+      rw [← integralWeightedDegree_eq_finsuppWeight]
+      exact hweighted
+    rw [weight_topKernelMarkedAxisIntWeight] at hw
+    have htrans :
+        d 1 + d 2 + d 3 = T.topFace.degree := by
+      exact_mod_cast hw
+    have hdeg :
+        HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
+      unfold HC4.Polynomial.ordinaryDegree4
+      omega
+    have hsource : MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
+      have hcoeff :=
+        MvPolynomial.mem_support_iff.mp hd
+      rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm,
+        HC4.Polynomial.coeff_initialForm, if_pos hw] at hcoeff
+      exact hcoeff
+    have htopCoeff :
+        MvPolynomial.coeff d T.topFace.face ≠ 0 := by
+      rw [T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
+      simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
+        using hsource
+    exact ⟨MvPolynomial.mem_support_iff.mpr htopCoeff, hzero⟩
+  · rintro ⟨htop, hzero⟩
+    have hdeg := T.topFace.ordinaryDegree_eq_of_mem_support htop
+    have hsourceMem := T.topFace.source_mem_of_face_mem htop
+    have htrans :
+        d 1 + d 2 + d 3 = T.topFace.degree := by
+      unfold HC4.Polynomial.ordinaryDegree4 at hdeg
+      omega
+    have hw :
+        Finsupp.weight
+            (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+          (T.topFace.degree : ℤ) := by
+      rw [weight_topKernelMarkedAxisIntWeight]
+      exact_mod_cast htrans
+    apply MvPolynomial.mem_support_iff.mpr
+    rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm,
+      HC4.Polynomial.coeff_initialForm, if_pos hw]
+    have hsourceCoeff :
+        MvPolynomial.coeff d
+            (polynomialFamilySpecialFiber
+              T.terminal.blocker.presented.family) ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp hsourceMem
+    simpa [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
+      using hsourceCoeff
 
 /-- Polynomial-level packet retained at the E-stage boundary: an exact
 weighted-homogeneous associated-graded fibre together with its literal distinct
