@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision
 import HC4.Polynomial.WeightedInitial
 import HC4.Newton.TerminalPermutedGradient
+import HC4.Newton.MixedDegreeAxisCollision
 import HC4.Newton.TerminalTwoZeroSupport
 import Mathlib.Tactic
 
@@ -257,6 +258,39 @@ theorem topKernelMarkedAxisFirstContact_specialFiber_hessianDeterminant_eq_zero 
   intro j
   simp [HC4.Polynomial.hessian,
     T.topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero]
+
+/-- The marked-axis face is exactly the longitudinal-exponent-zero slice
+of the singular maximal ordinary top face.  We state this through the native
+`finSuccEquiv` decomposition: the outer coefficient at `X₀^0` is identical. -/
+theorem topKernelMarkedAxisFirstContact_transverseSlice_eq_topFace :
+    (MvPolynomial.finSuccEquiv K 3
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily)).coeff 0 =
+      (MvPolynomial.finSuccEquiv K 3 T.topFace.face).coeff 0 := by
+  ext m
+  rw [MvPolynomial.finSuccEquiv_coeff_coeff,
+    MvPolynomial.finSuccEquiv_coeff_coeff]
+  let d : Fin 4 →₀ ℕ := m.cons 0
+  change
+    MvPolynomial.coeff d
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily) =
+      MvPolynomial.coeff d T.topFace.face
+  rw [T.topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm,
+    HC4.Polynomial.coeff_initialForm,
+    T.topFace.coeff_face]
+  have hw :
+      Finsupp.weight
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+        (HC4.Polynomial.ordinaryDegree4 d : ℤ) := by
+    dsimp [d]
+    rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+    · simp [topKernelMarkedAxisNatWeight,
+        HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
+    · intro i
+      simp
+  rw [hw]
+  simp [AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.topKernelReesSource]
 
 /-- Polynomial-level packet retained at the E-stage boundary: an exact
 weighted-homogeneous associated-graded fibre together with its literal distinct
