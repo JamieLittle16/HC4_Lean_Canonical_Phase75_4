@@ -12170,7 +12170,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive TopKernelMarkedAxisLinearPowerBoundaryFrontier`, `theorem topKernelMarkedAxisLinearPowerBoundaryFrontier_nonempty`, `def topKernelMarkedAxisLinearPowerBoundaryFrontier`
+- Declarations: `def markedAxisCrossFacetFarExponent`, `inductive TopKernelMarkedAxisLinearPowerBoundaryFrontier`, `theorem topKernelMarkedAxisLinearPowerBoundaryFrontier_nonempty`, `def topKernelMarkedAxisLinearPowerBoundaryFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerFrontier`
 
