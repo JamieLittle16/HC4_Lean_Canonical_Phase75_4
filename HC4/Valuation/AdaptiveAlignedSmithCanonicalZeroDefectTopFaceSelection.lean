@@ -65,6 +65,23 @@ structure AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData
       (fun _ : Fin 4 => (0 : K))
       (coordinateAxisPoint (K := K) (0 : Fin 4))
 
+/-- Coefficients on the selected maximal ordinary degree are retained
+literally by the singular top face. -/
+theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    (d : Fin 4 →₀ ℕ)
+    (hdeg : HC4.Polynomial.ordinaryDegree4 d = T.degree) :
+    MvPolynomial.coeff d T.face =
+      MvPolynomial.coeff d (polynomialFamilySpecialFiber s.family) := by
+  rw [T.face_eq, HC4.Polynomial.coeff_initialForm]
+  have hw :
+      Finsupp.weight ordinaryWeight d = (T.degree : ℤ) := by
+    change Finsupp.weight (fun _ : Fin 4 => (1 : ℤ)) d = (T.degree : ℤ)
+    rw [HC4.Newton.ordinaryIntegerWeight_eq_ordinaryDegree4]
+    exact_mod_cast hdeg
+  rw [if_pos hw]
+
 /-- **Every zero-defect scale-aware state has a genuine nonzero singular
 nonlinear top face.** -/
 noncomputable def
