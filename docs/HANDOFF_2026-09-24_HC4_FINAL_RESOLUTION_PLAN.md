@@ -125,6 +125,8 @@ The older `q ≤ j` versus fully-tangent split remains useful internally but is 
 - [ ] **C5.** Convert the exact-closing rank-one-clock outcome to a final polynomial/associated-graded endpoint. Reuse the existing negative-square / wedge pattern where possible rather than exporting `RepairProgress`.
 - [ ] **C6.** Assemble: every `0 < r` branch produces the final local resolution interface.
 
+  **Positive-relative geometric assembly implemented/rooted; awaiting green CI and the E-stage adapter:** `TopKernelThreeSchurPositiveTailGeometricFrontier` is the complete source-honest `r > 0` geometric interface, and `TopKernelThreeSchurRelativeGeometricFrontier` embeds it as the positive side of the unified exact relative-order split. No further positive-tail clock or staircase assembly is outstanding. The remaining C6 work is precisely to convert this honest geometry to one of the permitted `FinalResolution` constructors.
+
 ### D. Zero relative tail: finite constant-tail closure
 
 When `r = 0`, the first normalised 3x3 coefficient matrix already contains a nonzero kernel-column entry.
@@ -139,7 +141,11 @@ When `r = 0`, the first normalised 3x3 coefficient matrix already contains a non
 
   **Source-implemented and rooted; awaiting green CI:** the zero-relative frontier now retains the original rank-one 3x3 witness instead of an opaque binary clock. The physical constant-tail opening is a nonzero entry in column 2; symmetry plus vanishing of all 2x2 minors forces the diagonal entry `(2,2)` itself to be nonzero. This canonically selects coordinate 2 as the second scalar pivot. `ZeroRelativeExplicitBinaryClockData` then stores the exact pivot-2 binary zero-Schur clock, its literal `threePivot2BinarySchurSeries`, exact residual-defect equality, and the original rank-one/source opening data. Public orientation-preserving wrappers in `RankOneThreeToBinarySchur` avoid duplicating the clock construction.
 - [ ] **D4.** Close the resulting finite binary alternatives without introducing another unbounded staircase.
+
+  **Source-implemented and rooted; awaiting green CI:** `ZeroRelativeExplicitBinaryClockData.endpointSplit` exhausts the canonical pivot-2 binary clock into determinant closing, left/right preterminal, or left/right exact-closing alternatives. `TopKernelThreeSchurZeroRelativeBinaryFrontier.toFiniteFrontier` packages this as the complete finite D4 frontier. No unbounded staircase is introduced.
 - [ ] **D5.** Assemble: every `r = 0` branch produces the final local resolution interface.
+
+  **Geometric assembly implemented/rooted; awaiting green CI and the E-stage adapter:** `ZeroRelativeExplicitBinaryClockData.representedSourceKernelMinor` source-lifts the canonical pivot-2 packet to a genuine principal Hessian minor on `T.topKernelReesSource`; `exists_actualRankTwoHessianChart` turns that into represented-state rank-two geometry; and `ThreeSchurTangentTailKernelOpeningData.zeroRelativeGeometricFrontier` assembles every zero-relative branch into determinant closing, represented-source Schur geometry, or an actual represented-state rank-two Hessian chart. `TopKernelThreeSchurRelativeGeometricFrontier` then joins this with the positive-relative branch. The remaining D5 work is therefore the same E-stage final-resolution conversion, not more zero-relative clock analysis.
 
 ### E. Singular terminal -> final resolution
 
