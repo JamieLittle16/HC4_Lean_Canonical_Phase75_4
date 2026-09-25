@@ -283,6 +283,7 @@ human architecture guide.
   - `HC4.Valuation.MovingCollisionRecentering`
   - `HC4.Valuation.NonlinearDegreeBoundPreservation`
   - `HC4.Valuation.ParameterRamification`
+  - `HC4.Valuation.PlanarKellerCollisionTerminalLift`
   - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
@@ -4961,6 +4962,10 @@ human architecture guide.
 - `HC4.Valuation.PlanarHighestFirstVariationBridge`
   - `HC4.Polynomial.HighestBinomialParallelFirstVariation`
   - `HC4.Valuation.PlanarContactFirstVariationBridge`
+- `HC4.Valuation.PlanarKellerCollisionTerminalLift`
+  - `HC4.Newton.TerminalAssociatedGradedEndpoint`
+  - `HC4.PlanarJC2HessianEmbedding`
+  - `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.GeometricAssemblyEntry`
 - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`

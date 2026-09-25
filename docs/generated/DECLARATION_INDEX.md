@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9867**.
+Distinct declaration spellings indexed: **9871**.
 
 ## Repeated declaration spellings
 
@@ -4662,6 +4662,7 @@ Distinct declaration spellings indexed: **9867**.
 - `denominator_dvd_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `departureFrontier_supplies_losslessFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `dependsOnlyOnStandardZeroPair_exists_planarisation` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
+- `dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `dependsOnlyOnStandardZeroPair_vars_subset_range` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `derivativeRemainder_eq_single_axis_of_contribution_ne_zero` — `theorem` in `HC4.Newton.SmithFirstWallTransverse`
 - `derivative_binaryAffineLineSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
@@ -5189,6 +5190,7 @@ Distinct declaration spellings indexed: **9867**.
 - `exists_source_zRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `exists_strictInterior_of_not_noStrictInterior` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorFirstLayer`
 - `exists_support_exponent_ge_two_of_pderiv_pderiv_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- `exists_terminalAssociatedGradedCollisionData` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `exists_topKernelReverseRees_parameterFirstHessian_row_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `exists_transverseAlignedSquare_of_kernelFresh` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `exists_twoEndpointResidual_natDegree_lt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -7337,6 +7339,7 @@ Distinct declaration spellings indexed: **9867**.
 - `planarDoublingPotential_hasDoublingForm` — `theorem` in `HC4.PlanarJC2HessianEmbedding`
 - `planarDoublingPotential_hessianDeterminant` — `theorem` in `HC4.PlanarJC2HessianEmbedding`
 - `planarDoublingPotential_hessianDeterminant_one` — `theorem` in `HC4.PlanarJC2HessianEmbedding`
+- `planarDoublingPotential_twoZero_homogeneous` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `planarJC2_iff_hessianFour_gradient_injective_of_constructorFirstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
 - `planarJC2_iff_hessianFour_gradient_injective_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
 - `planarJC2_iff_hessianFour_gradient_injective_of_relativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`
@@ -9755,6 +9758,7 @@ Distinct declaration spellings indexed: **9867**.
 - `toStateEndpoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBoundaryEndpoint`
 - `toStateEndpoint_original` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBoundaryEndpoint`
 - `toSupportedBalancedRankThreeData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible`
+- `toTerminalAssociatedGradedCollisionData` — `def` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `toToricExponent` — `def` in `HC4.Polynomial.FourExponent`
 - `toZeroDefectCollisionEntry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
 - `toZeroIntegralSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSlopeBridge`
