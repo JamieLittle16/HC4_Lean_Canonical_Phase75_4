@@ -12430,7 +12430,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `inductive TopKernelThreeSchurRelativeSourceRankThreeFrontier`, `theorem PositiveTailRankOneSourcePointGeometricEndpoint.exists_sourceThreeByThree`, `theorem TopKernelThreeSchurPositiveTailGeometricFrontier.exists_sourceThreeByThree`, `theorem TopKernelThreeSchurRelativeGeometricFrontier.toSourceRankThreeFrontier`, `theorem zeroRelativeClosing_exactActiveFourBlock`, `theorem TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry`
+- Declarations: `inductive TopKernelThreeSchurRelativeSourceRankThreeFrontier`, `theorem PositiveTailRankOneSourcePointGeometricEndpoint.exists_sourceThreeByThree`, `theorem TopKernelThreeSchurPositiveTailGeometricFrontier.exists_sourceThreeByThree`, `theorem TopKernelThreeSchurRelativeGeometricFrontier.toSourceRankThreeFrontier`, `theorem zeroRelativeClosing_exactActiveFourBlock`, `theorem TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry`, `theorem TopKernelLinearPowerCDSourceFrontier.sourceRankThreeGeometry`, `inductive TopKernelLinearPowerE3SourceFrontier`, `theorem TopKernelLinearPowerE2Frontier.toE3SourceFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
 
