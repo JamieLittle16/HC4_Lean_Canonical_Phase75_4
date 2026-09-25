@@ -890,7 +890,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`, `HC4.Newton.InteriorVertex`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero`, `theorem CrossFacetInitialData.face_on_rq_of_near_q_far_r`, `theorem CrossFacetInitialData.face_on_sp_of_near_s_far_p`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r`, `inductive CrossFacetNearFarRayPairing`, `theorem CrossFacetFarBoundaryData.nearFarRayPairing`, `inductive CrossFacetNearFarBoundaryOutcome`, `theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome`, `def CrossFacetInitialData.farBoundaryData`
+- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetInitialData.support_far_affine_proportional`, `theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero`, `theorem CrossFacetInitialData.face_on_rq_of_near_q_far_r`, `theorem CrossFacetInitialData.face_on_sp_of_near_s_far_p`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r`, `inductive CrossFacetNearFarRayPairing`, `theorem CrossFacetFarBoundaryData.nearFarRayPairing`, `inductive CrossFacetNearFarBoundaryOutcome`, `theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome`, `def CrossFacetInitialData.farBoundaryData`
 
 ### `HC4.Newton.FirstContactHonestSlice`
 
