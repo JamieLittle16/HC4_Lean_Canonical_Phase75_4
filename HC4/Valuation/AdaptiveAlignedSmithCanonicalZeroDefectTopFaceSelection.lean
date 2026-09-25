@@ -85,6 +85,36 @@ theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_face
   rw [hw]
   simp
 
+/-- Every supported exponent of the selected top face has exactly the
+selected ordinary degree. -/
+theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.ordinaryDegree_eq_of_mem_support
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    {d : Fin 4 →₀ ℕ}
+    (hd : d ∈ T.face.support) :
+    HC4.Polynomial.ordinaryDegree4 d = T.degree := by
+  have hne : MvPolynomial.coeff d T.face ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  rw [T.coeff_face] at hne
+  by_contra hdeg
+  simp [hdeg] at hne
+
+/-- Every supported exponent of the selected top face is an actual supported
+source exponent. -/
+theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.source_mem_of_face_mem
+    {s : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+    (T : AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData s)
+    {d : Fin 4 →₀ ℕ}
+    (hd : d ∈ T.face.support) :
+    d ∈ (polynomialFamilySpecialFiber s.family).support := by
+  have hdeg := T.ordinaryDegree_eq_of_mem_support hd
+  have hface : MvPolynomial.coeff d T.face ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  have hcoeff := T.coeff_eq_source_of_ordinaryDegree_eq d hdeg
+  apply MvPolynomial.mem_support_iff.mpr
+  rw [← hcoeff]
+  exact hface
+
 /-- Coefficients on the selected maximal ordinary degree are retained
 literally by the singular top face. -/
 theorem AdaptiveAlignedSmithCanonicalZeroDefectSingularTopFaceData.coeff_eq_source_of_ordinaryDegree_eq
