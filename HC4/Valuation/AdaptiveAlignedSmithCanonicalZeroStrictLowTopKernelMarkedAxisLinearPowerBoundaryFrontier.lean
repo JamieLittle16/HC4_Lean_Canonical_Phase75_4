@@ -37,6 +37,18 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
 
+/-- Far endpoint of the contact-normalized marked-axis cross-facet ray.
+
+Naming the dependent projection avoids Lean parsing the normalized ray itself
+as the argument of `zeroAffineLineData.exponent`. -/
+noncomputable def markedAxisCrossFacetFarExponent
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : CrossFacetInitialData T.topFace.face
+      (crossFacetOppositeCoordinate (0 : Fin 4))
+      (0 : Fin 4)) : Fin 4 →₀ ℕ :=
+  let R0 := P.markedAxisCrossFacetNormalizedRay D
+  R0.zeroAffineLineData.exponent R0.zeroCoefficientPolynomial.natDegree
+
 /-- E2 frontier after consuming the genuine cross-facet branch. -/
 inductive TopKernelMarkedAxisLinearPowerBoundaryFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
@@ -70,9 +82,7 @@ inductive TopKernelMarkedAxisLinearPowerBoundaryFrontier
           (0 : Fin 4))
       (boundary :
         MvExponentOnCodimensionTwoBoundary
-          ((P.markedAxisCrossFacetNormalizedRay data).zeroAffineLineData.exponent
-            (P.markedAxisCrossFacetNormalizedRay data)
-              .zeroCoefficientPolynomial.natDegree))
+          (P.markedAxisCrossFacetFarExponent data))
 
 /-- **E2 marked-axis boundary refinement.**
 
@@ -93,7 +103,8 @@ theorem topKernelMarkedAxisLinearPowerBoundaryFrontier_nonempty
       | near hnear =>
           exact ⟨.crossFacetNear data hnear⟩
       | far hfar =>
-          exact ⟨.crossFacetFar data hfar⟩
+          exact ⟨.crossFacetFar data (by
+            simpa [markedAxisCrossFacetFarExponent] using hfar)⟩
 
 /-- Canonical Type-valued E2 boundary frontier. -/
 noncomputable def topKernelMarkedAxisLinearPowerBoundaryFrontier
