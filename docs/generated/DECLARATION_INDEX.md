@@ -1901,7 +1901,6 @@ Distinct declaration spellings indexed: **9875**.
 - `GlobalRestartReachable` — `inductive` in `HC4.Newton.GlobalRestartClassification`
 - `GlobalRestartReachable.trans` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `GlobalRestartState` — `structure` in `HC4.Newton.GlobalRestartClassification`
-- `HC4.HasPlanarKellerCollision.exists_terminalAssociatedGradedCollisionData` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `HC4.HasPlanarKellerCollision.exists_zeroStrictLowSingularFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `HC4.Polynomial.IsWeightLE.mono` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
 - `HC4.Polynomial.IsWeightLE.pow_nsmul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCoupledPointedMinimality`
@@ -5944,6 +5943,7 @@ Distinct declaration spellings indexed: **9875**.
 - `hasLosslessFrontier_supplies_compactFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
 - `hasMixedNonlinearSourceMonomial_of_witness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarCollision`
+- `hasPlanarKellerCollision_exists_terminalAssociatedGradedCollisionData` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_constructorFirstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
 - `hasPlanarKellerCollision_of_hessianDeterminant_one_of_not_injective_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`
