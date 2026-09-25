@@ -880,7 +880,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_positiveExtremeRay`
+- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_positiveExtremeRay`, `theorem exists_qs_firstNonfacet_crossFacet_positiveExtremeRay_withContact`
 
 ### `HC4.Newton.FirstContactHonestSlice`
 
