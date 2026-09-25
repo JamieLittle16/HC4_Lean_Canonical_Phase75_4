@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9871**.
+Distinct declaration spellings indexed: **9873**.
 
 ## Repeated declaration spellings
 
@@ -5200,6 +5200,7 @@ Distinct declaration spellings indexed: **9871**.
 - `exists_zeroCoordinate_coordinateMax` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `exists_zeroSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `exists_zeroSmithSource_minimalOrder` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
+- `exists_zeroStrictLowSingularFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `explicitBinaryClockPivot0` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `explicitBinaryClockPivot1` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `exponent` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
@@ -9764,6 +9765,7 @@ Distinct declaration spellings indexed: **9871**.
 - `toZeroIntegralSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSlopeBridge`
 - `toZeroSchurClock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
 - `toZeroSchurClockWithPermutation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningSecondZeroSchurClock`
+- `toZeroStrictLowSingularFinalResolution` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `topBoundaryTransition_actualRankTwo_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryRankTwoClosure`
 - `topBoundaryTransition_nextRay_or_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `topDegree_omittedCoordinate_zero` — `theorem` in `HC4.Newton.FirstNonfacetContact`
