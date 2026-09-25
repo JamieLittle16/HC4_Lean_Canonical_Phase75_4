@@ -370,43 +370,16 @@ theorem CrossFacetFarBoundaryData.nearFarRayPairing
     · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
       exact .sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
 
-/-- Primitive lattice parameterisation of the finite segment
-`n*x + m*y = m*n`.
-
-Writing `m = h*M` and `n = k*M` with coprime reduced factors, every
-nonnegative lattice point on the segment has the unique shape
-`x = h*j`, `y = k*(M-j)` for some `j ≤ M`.  This is exactly the
-arithmetic normal form used by `complementaryLineExponentFinsupp`. -/
-theorem exists_complementarySegment_parameter
-    {m n x y : ℕ}
-    (hm : 0 < m) (hn : 0 < n)
+/-- Once the endpoint scales have been reduced to coprime factors,
+every lattice point on the finite complementary segment has the corresponding
+integer index. -/
+theorem exists_complementarySegment_index
+    {M h k m n x y : ℕ}
+    (hM : 0 < M) (hh : 0 < h) (hk : 0 < k)
+    (hcop : h.Coprime k)
+    (hmEq : m = h * M) (hnEq : n = k * M)
     (hline : n * x + m * y = m * n) :
-    ∃ M h k j : ℕ,
-      0 < M ∧ 0 < h ∧ 0 < k ∧
-      h.Coprime k ∧
-      m = h * M ∧ n = k * M ∧
-      j ≤ M ∧ x = h * j ∧ y = k * (M - j) := by
-  rcases Nat.exists_coprime m n with
-    ⟨h, k, hcop, hmRaw, hnRaw⟩
-  let M := Nat.gcd m n
-  have hmEq : m = h * M := by
-    simpa [M] using hmRaw
-  have hnEq : n = k * M := by
-    simpa [M] using hnRaw
-  have hM : 0 < M := by
-    dsimp [M]
-    exact Nat.gcd_pos_of_pos_left n hm
-  have hh : 0 < h := by
-    by_contra hnot
-    have hz : h = 0 := Nat.eq_zero_of_not_pos hnot
-    rw [hmEq, hz, zero_mul] at hm
-    omega
-  have hk : 0 < k := by
-    by_contra hnot
-    have hz : k = 0 := Nat.eq_zero_of_not_pos hnot
-    rw [hnEq, hz, zero_mul] at hn
-    omega
-
+    ∃ j : ℕ, j ≤ M ∧ x = h * j ∧ y = k * (M - j) := by
   have hreduced : k * x + h * y = h * k * M := by
     have hscaled :
         M * (k * x + h * y) = M * (h * k * M) := by
@@ -447,8 +420,49 @@ theorem exists_complementarySegment_parameter
   have hy : y = k * (M - j) := by
     rw [hySub, Nat.mul_sub_left_distrib]
 
+  exact ⟨j, hjle, hx, hy⟩
+
+/-- Primitive lattice parameterisation of the finite segment
+`n*x + m*y = m*n`.
+
+Writing `m = h*M` and `n = k*M` with coprime reduced factors, every
+nonnegative lattice point on the segment has the unique shape
+`x = h*j`, `y = k*(M-j)` for some `j ≤ M`.  This is exactly the
+arithmetic normal form used by `complementaryLineExponentFinsupp`. -/
+theorem exists_complementarySegment_parameter
+    {m n x y : ℕ}
+    (hm : 0 < m) (hn : 0 < n)
+    (hline : n * x + m * y = m * n) :
+    ∃ M h k j : ℕ,
+      0 < M ∧ 0 < h ∧ 0 < k ∧
+      h.Coprime k ∧
+      m = h * M ∧ n = k * M ∧
+      j ≤ M ∧ x = h * j ∧ y = k * (M - j) := by
+  rcases Nat.exists_coprime m n with
+    ⟨h, k, hcop, hmRaw, hnRaw⟩
+  let M := Nat.gcd m n
+  have hmEq : m = h * M := by
+    simpa [M] using hmRaw
+  have hnEq : n = k * M := by
+    simpa [M] using hnRaw
+  have hM : 0 < M := by
+    dsimp [M]
+    exact Nat.gcd_pos_of_pos_left n hm
+  have hh : 0 < h := by
+    by_contra hnot
+    have hz : h = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hmEq, hz, zero_mul] at hm
+    omega
+  have hk : 0 < k := by
+    by_contra hnot
+    have hz : k = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hnEq, hz, zero_mul] at hn
+    omega
+  rcases exists_complementarySegment_index
+      hM hh hk hcop hmEq hnEq hline with
+    ⟨j, hj, hx, hy⟩
   exact ⟨M, h, k, j, hM, hh, hk, hcop,
-    hmEq, hnEq, hjle, hx, hy⟩
+    hmEq, hnEq, hj, hx, hy⟩
 
 /-- Every support exponent on an opposite `q -> p` chord has the
 expected complementary coordinates and satisfies the primitive line equation
