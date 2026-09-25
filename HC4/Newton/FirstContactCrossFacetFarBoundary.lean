@@ -1,5 +1,6 @@
 import HC4.Newton.FirstContactCrossFacetExtremeRayPositive
 import HC4.Newton.InteriorVertex
+import HC4.Polynomial.ComplementarySupportedEdgeImpossible
 import Mathlib.Tactic
 
 /-!
@@ -524,6 +525,136 @@ theorem CrossFacetInitialData.qToP_support_equations
   · exact_mod_cast h03Z
   · exact_mod_cast h12Z
   · exact_mod_cast hlineZ
+
+/-- **Opposite `q -> p` first-contact chord is impossible.**
+
+Swapping coordinates `1` and `3` sends the two endpoints to
+`(m,m,0,0)` and `(0,0,n,n)`.  The affine-line equations plus the reduced
+gcd parameterisation show that the entire renamed face is exactly supported
+on a complementary line with primitive exponents `1,1,1,1`.  The existing
+complementary-edge Hessian theorem then gives the contradiction. -/
+theorem CrossFacetInitialData.qToP_impossible
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
+    (near0 : D.facetExponent 0 = 0)
+    (near1 : D.facetExponent 1 = n)
+    (near2 : D.facetExponent 2 = n)
+    (near3 : D.facetExponent 3 = 0)
+    (far0 : R.exponent 0 = m)
+    (far1 : R.exponent 1 = 0)
+    (far2 : R.exponent 2 = 0)
+    (far3 : R.exponent 3 = m) :
+    False := by
+  rcases Nat.exists_coprime m n with
+    ⟨h, k, hcop, hmRaw, hnRaw⟩
+  let M := Nat.gcd m n
+  have hmEq : m = h * M := by
+    simpa [M] using hmRaw
+  have hnEq : n = k * M := by
+    simpa [M] using hnRaw
+  have hM : 0 < M := by
+    dsimp [M]
+    exact Nat.gcd_pos_of_pos_left n hm
+  have hh : 0 < h := by
+    by_contra hnot
+    have hz : h = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hmEq, hz, zero_mul] at hm
+    omega
+  have hk : 0 < k := by
+    by_contra hnot
+    have hz : k = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hnEq, hz, zero_mul] at hn
+    omega
+
+  let rho : Equiv.Perm (Fin 4) := Equiv.swap (1 : Fin 4) 3
+  let F : MvPolynomial (Fin 4) K := MvPolynomial.rename rho D.face
+
+  have hsupp :
+      IsSupportedOnComplementaryLine 1 1 1 1 h k M F := by
+    intro e he
+    have heCoeff : MvPolynomial.coeff e F ≠ 0 :=
+      MvPolynomial.mem_support_iff.mp he
+    rcases MvPolynomial.coeff_rename_ne_zero rho D.face e
+        (by simpa [F] using heCoeff) with
+      ⟨d, hdMap, hdCoeff⟩
+    have hd : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hdCoeff
+    rcases D.qToP_support_equations
+        ha hb hcontactScale hBal hcontact R hn hm
+        near0 near1 near2 near3 far0 far1 far2 far3 d hd with
+      ⟨hd03, hd12, hline⟩
+    rcases exists_complementarySegment_index
+        hM hh hk hcop hmEq hnEq hline with
+      ⟨j, hj, hx, hy⟩
+    refine ⟨j, hj, ?_⟩
+    rw [← hdMap]
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp, hx, hy, hd03, hd12,
+        Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hstartExp :
+      complementaryLineExponentFinsupp 1 1 1 1 h k M 0 =
+        Finsupp.mapDomain rho D.facetExponent := by
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp, near0, near1, near2, near3,
+        hnEq, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hendExp :
+      complementaryLineExponentFinsupp 1 1 1 1 h k M M =
+        Finsupp.mapDomain rho R.exponent := by
+    ext i
+    fin_cases i <;>
+      simp [rho, Finsupp.mapDomain_equiv_apply,
+        complementaryLineExponentFinsupp, far0, far1, far2, far3,
+        hmEq, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+
+  have hstart :
+      MvPolynomial.coeff
+        (complementaryLineExponentFinsupp 1 1 1 1 h k M 0) F ≠ 0 := by
+    rw [hstartExp]
+    dsimp [F]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact MvPolynomial.mem_support_iff.mp D.facet_mem_face
+
+  have hend :
+      MvPolynomial.coeff
+        (complementaryLineExponentFinsupp 1 1 1 1 h k M M) F ≠ 0 := by
+    rw [hendExp]
+    dsimp [F]
+    rw [MvPolynomial.coeff_rename_mapDomain
+      (rho : Fin 4 → Fin 4) rho.injective]
+    exact R.coeff_ne_zero
+
+  have hfaceZero : hessianDeterminant D.face = 0 :=
+    D.hessian_zero hzero
+  have hdet : hessianDeterminant F = 0 := by
+    dsimp [F]
+    rw [hessianDeterminant_rename_perm, hfaceZero]
+    simp
+
+  exact complementary_supported_edge_hessian_impossible
+    (K := K)
+    (by norm_num : 0 < (1 : ℕ))
+    (by norm_num : 0 < (1 : ℕ))
+    (by norm_num : 0 < (1 : ℕ))
+    (by norm_num : 0 < (1 : ℕ))
+    hM hh hk hsupp hstart hend hdet
 
 /-- On an opposite `s -> r` chord the two primitive ray blocks stay
 proportional, and the first block satisfies the corresponding endpoint line
