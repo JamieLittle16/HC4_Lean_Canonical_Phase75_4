@@ -240,6 +240,37 @@ theorem TopKernelLinearPowerE2Frontier.sourceRankThreeGeometry
   | crossFacetFar _data _boundary cd =>
       exact cd.sourceRankThreeGeometry
 
+/-- **Minimal E3 rank-three frontier.**
+
+The stronger source-rank-three collapse above shows that the marked-axis
+support labels are no longer live endpoint alternatives: every E2 branch
+already reaches one of exactly two represented-source Hessian events. -/
+inductive TopKernelLinearPowerE3RankThreeFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+
+/-- Every combined E2 branch lands in the two-constructor E3 rank-three
+frontier.  This is the preferred assembly interface downstream: pure
+longitudinal and codimension-two are classification provenance, not residual
+terminal cases. -/
+theorem TopKernelLinearPowerE2Frontier.toE3RankThreeFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.TopKernelLinearPowerE3RankThreeFrontier := by
+  rcases E.sourceRankThreeGeometry with hpoint | hconstant
+  · rcases hpoint with ⟨Q⟩
+    exact ⟨.sourcePointThreeByThree Q⟩
+  · rcases hconstant with ⟨A, hQ⟩
+    rcases hQ with ⟨Q⟩
+    exact ⟨.sourceConstantThreeByThree A Q⟩
+
 /-- **E3 source-honest compression of one linear-power packet.**
 
 After consuming the C/D analysis, every combined E2 branch is reduced to one
