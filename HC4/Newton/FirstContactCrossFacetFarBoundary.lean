@@ -176,16 +176,17 @@ theorem CrossFacetFarBoundaryData.extremeRay_p_or_r
       have hx := congrArg (fun u : Exponent => u.x1) hn
       rw [hn0] at hx
       have hz : R.exponent (0 : Fin 4) = 0 := by
-        simpa [Exponent.scale, pExponent, qExponent, rExponent, sExponent] using hx
-      omega
+        simpa only [toToricExponent_x1, Exponent.scale_x1, zero_mul] using hx
+      exact (Nat.ne_of_gt R.contact_pos hz).elim
     first
     | exact Or.inl ⟨n, hnpos, hn⟩
     | exact Or.inr ⟨n, hnpos, hn⟩
     | exfalso
       have hx := congrArg (fun u : Exponent => u.x1) hn
       have hz : R.exponent (0 : Fin 4) = 0 := by
-        simpa [Exponent.scale, pExponent, qExponent, rExponent, sExponent] using hx
-      omega
+        simpa only [toToricExponent_x1, Exponent.scale_x1,
+          qExponent, sExponent, mul_zero] using hx
+      exact (Nat.ne_of_gt R.contact_pos hz).elim
 
 /-- Coordinate form of the preceding far-ray reduction.  These are the
 two endpoint shapes used by the finite near/far pairing step. -/
