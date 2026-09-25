@@ -53,6 +53,46 @@ structure CrossFacetFarBoundaryData
         AdjacentFacets F H ∧
           OnRay a b F H (toToricExponent exponent))
 
+/-- A far endpoint has positive contact coordinate, so an extreme-ray
+stratum there can only be the two rays with positive coordinate zero: the
+`p` ray or the `r` ray.  The `q` and `s` rays are excluded literally
+because their coordinate-zero exponent vanishes. -/
+theorem CrossFacetFarBoundaryData.extremeRay_p_or_r
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    {D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hray :
+      ∃ F H : ToricFacet,
+        AdjacentFacets F H ∧
+          OnRay a b F H (toToricExponent R.exponent)) :
+    (∃ n : ℕ, 0 < n ∧
+        toToricExponent R.exponent = Exponent.scale n pExponent) ∨
+      (∃ n : ℕ, 0 < n ∧
+        toToricExponent R.exponent = Exponent.scale n (rExponent a b)) := by
+  rcases hray with ⟨F, H, hAdj, hRay⟩
+  cases F <;> cases H <;>
+    simp [AdjacentFacets, OppositeFacets, OnRay] at hAdj hRay
+  all_goals
+    rcases hRay with ⟨n, hn⟩
+    have hnpos : 0 < n := by
+      by_contra hnnot
+      have hn0 : n = 0 := Nat.eq_zero_of_not_pos hnnot
+      have hx := congrArg (fun u : Exponent => u.x1) hn
+      rw [hn0] at hx
+      have hz : R.exponent (0 : Fin 4) = 0 := by
+        simpa [Exponent.scale] using hx
+      omega
+    first
+    | exact Or.inl ⟨n, hnpos, hn⟩
+    | exact Or.inr ⟨n, hnpos, hn⟩
+    | exfalso
+      have hx := congrArg (fun u : Exponent => u.x1) hn
+      have hz : R.exponent (0 : Fin 4) = 0 := by
+        simpa [Exponent.scale, qExponent, sExponent] using hx
+      omega
+
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
