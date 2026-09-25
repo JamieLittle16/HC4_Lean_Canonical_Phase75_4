@@ -857,10 +857,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/FirstContactCrossFacetExit.lean`
 - Purpose: A18.5.71: the genuine first non-facet contact has a geometric exit
 - A-labels: `A18.5.65c`, `A18.5.69`, `A18.5.70`, `A18.5.71`, `A18.5.73d`
-- Local imports: `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactCrossFacetEndpointTransition`
+- Local imports: `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FirstContactCrossFacetEndpointTransition`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
-- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_exit`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay`
+- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_exit`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear`
 
 ### `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 
@@ -889,7 +889,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.32`
 - Local imports: `HC4.Newton.FirstNonfacetContact`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FirstNonfacetExposedBoundaryVertex`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
+- Imported by local modules: `HC4.Newton.FirstContactCrossFacetExit`, `HC4.Newton.FirstNonfacetExposedBoundaryVertex`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - Declarations: `theorem firstContact_initialForm_support_degree_ge_three`, `theorem firstContact_initialForm_support_degree_ge_three_of_two_mul_bump_le`, `theorem exists_singular_first_nonfacet_contact_with_nonlinear_support`
 
 ### `HC4.Newton.FirstContactSelection`

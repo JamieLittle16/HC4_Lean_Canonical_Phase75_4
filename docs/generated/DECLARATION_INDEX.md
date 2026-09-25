@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9911**.
+Distinct declaration spellings indexed: **9912**.
 
 ## Repeated declaration spellings
 
@@ -5178,6 +5178,7 @@ Distinct declaration spellings indexed: **9911**.
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
+- `exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_ray_facetEndpoint_sourceExposure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - `exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `exists_ramifiedSpend_currentScale` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCurrentScaleConstantKernel`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalCurrentScaleConstantKernel`

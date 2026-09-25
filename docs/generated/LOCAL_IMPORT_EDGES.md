@@ -537,6 +537,7 @@ human architecture guide.
 - `HC4.Newton.FirstContactCrossFacetExit`
   - `HC4.Newton.FirstContactCrossFacetCarrier`
   - `HC4.Newton.FirstContactCrossFacetEndpointTransition`
+  - `HC4.Newton.FirstContactNonlinearSupport`
 - `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
   - `HC4.Newton.FirstContactCrossFacetExit`
 - `HC4.Newton.FirstContactHonestSlice`
