@@ -5001,6 +5001,8 @@ human architecture guide.
 - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
   - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Valuation.BoundedReverseWeightedRees`
+- `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
   - `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `HC4.Valuation.RigidClosingExactCollisionSource`
