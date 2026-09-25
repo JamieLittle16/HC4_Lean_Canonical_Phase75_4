@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9877**.
+Distinct declaration spellings indexed: **9878**.
 
 ## Repeated declaration spellings
 
@@ -5897,6 +5897,7 @@ Distinct declaration spellings indexed: **9877**.
 - `gradientRatioLinearForm_scale_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `gradient_bijective_of_classified_polynomial` — `theorem` in `HC4.MainAssembly`
 - `gradient_global_proportional_family` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
+- `gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_presentedTerminalExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalJC2HC4Assembly`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_reachableResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalReachableJC2Resolution`

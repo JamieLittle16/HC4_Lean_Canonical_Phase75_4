@@ -7890,7 +7890,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalConstructorFirstContactReduction`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem exists_finalResolution_of_constructorFirstContactProducer`, `theorem zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer`
+- Declarations: `theorem exists_finalResolution_of_constructorFirstContactProducer`, `theorem zeroStrictLowSingularFinalResolutionProperty_of_constructorFirstContactProducer`, `theorem gradient_injective_of_hessianDeterminant_one_of_JC2_of_constructorFirstContactFinalResolution`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactHessian`
 
