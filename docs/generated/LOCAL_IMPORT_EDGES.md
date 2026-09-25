@@ -547,6 +547,7 @@ human architecture guide.
 - `HC4.Newton.FirstContactCrossFacetFarBoundary`
   - `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
   - `HC4.Newton.InteriorVertex`
+  - `HC4.Polynomial.ComplementarySupportedEdgeImpossible`
 - `HC4.Newton.FirstContactHonestSlice`
   - `HC4.Newton.FirstContactAffinePlane`
 - `HC4.Newton.FirstContactNonlinearSupport`

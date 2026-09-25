@@ -887,10 +887,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Newton/FirstContactCrossFacetFarBoundary.lean`
 - Purpose: Far boundary endpoint of the genuine first-contact cross-facet line
 - A-labels: none detected
-- Local imports: `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`, `HC4.Newton.InteriorVertex`
+- Local imports: `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`, `HC4.Newton.InteriorVertex`, `HC4.Polynomial.ComplementarySupportedEdgeImpossible`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetInitialData.support_far_affine_proportional`, `theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero`, `theorem CrossFacetInitialData.face_on_rq_of_near_q_far_r`, `theorem CrossFacetInitialData.face_on_sp_of_near_s_far_p`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r`, `inductive CrossFacetNearFarRayPairing`, `theorem CrossFacetFarBoundaryData.nearFarRayPairing`, `theorem exists_complementarySegment_index`, `theorem exists_complementarySegment_parameter`, `theorem CrossFacetInitialData.qToP_support_equations`, `theorem CrossFacetInitialData.sToR_support_equations`, `inductive CrossFacetNearFarBoundaryOutcome`, `theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome`, `def CrossFacetInitialData.farBoundaryData`
+- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetInitialData.support_far_affine_proportional`, `theorem CrossFacetInitialData.face_support_coordinate_zero_of_far_zero`, `theorem CrossFacetInitialData.face_on_rq_of_near_q_far_r`, `theorem CrossFacetInitialData.face_on_sp_of_near_s_far_p`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r`, `inductive CrossFacetNearFarRayPairing`, `theorem CrossFacetFarBoundaryData.nearFarRayPairing`, `theorem exists_complementarySegment_index`, `theorem exists_complementarySegment_parameter`, `theorem CrossFacetInitialData.qToP_support_equations`, `theorem CrossFacetInitialData.qToP_impossible`, `theorem CrossFacetInitialData.sToR_support_equations`, `inductive CrossFacetNearFarBoundaryOutcome`, `theorem CrossFacetFarBoundaryData.nearFarBoundaryOutcome`, `def CrossFacetInitialData.farBoundaryData`
 
 ### `HC4.Newton.FirstContactHonestSlice`
 
@@ -2511,7 +2511,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.25`, `A18.5.26`
 - Local imports: `HC4.Polynomial.ComplementaryLineRecognition`, `HC4.Polynomial.ComplementaryEdgeRigidity`, `HC4.Polynomial.MaximalHessianInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction`
+- Imported by local modules: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalPolynomialObstruction`
 - Declarations: `theorem complementary_supported_edge_hessian_impossible`, `theorem complementary_exposed_edge_hessian_impossible`
 
 ### `HC4.Polynomial.DerivativeBounds`
