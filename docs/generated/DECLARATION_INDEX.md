@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9811**.
+Distinct declaration spellings indexed: **9818**.
 
 ## Repeated declaration spellings
 
@@ -3289,6 +3289,8 @@ Distinct declaration spellings indexed: **9811**.
 - `TopKernelMarkedAxisLinearPowerRefinement` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerRefinement`
 - `TopKernelMarkedAxisLinearPowerSupportSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisLinearPowerSplit`
 - `TopKernelMarkedAxisQsRankThreeRefinementData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
+- `TopKernelMarkedAxisSupportFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
+- `TopKernelMarkedAxisSupportFrontier.crossFacet_fibre_support_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `TopKernelThreeSchurClockData` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `TopKernelThreeSchurClockData.activeRankTwo_representedSourceSchurWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRepresentedSourceSchur`
 - `TopKernelThreeSchurClockData.exactZeroThreeSchurClock_isSymm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurSecondStage`
@@ -9724,6 +9726,7 @@ Distinct declaration spellings indexed: **9811**.
 - `topDegree_omittedCoordinate_zero` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `topFaceCrossFacet_boundaryTransition` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCrossFacetBoundaryTransition`
 - `topFaceOnFacet_topDegreeOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
+- `topFaceOnMarkedFacet_of_noPositiveZeroCoordinateSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topFace_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessian_diagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
@@ -9741,6 +9744,7 @@ Distinct declaration spellings indexed: **9811**.
 - `topKernelMarkedAxisFirstContact_specialFiber_collisionPoints_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisFirstContact_specialFiber_eq_topFace_of_qsRankThree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
+- `topKernelMarkedAxisFirstContact_specialFiber_eq_zero_of_noZeroSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topKernelMarkedAxisFirstContact_specialFiber_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `topKernelMarkedAxisFirstContact_specialFiber_exponent_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisFirstContact_specialFiber_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
@@ -9748,8 +9752,11 @@ Distinct declaration spellings indexed: **9811**.
 - `topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisFirstContact_specialFiber_support_eq_topFace_of_qsRankThree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
 - `topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `topKernelMarkedAxisFirstContact_support_eq_topFace_of_noPositive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topKernelMarkedAxisFirstContact_transverseSlice_eq_topFace` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisNatWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+- `topKernelMarkedAxisSupportFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
+- `topKernelMarkedAxisSupportFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topKernelMarkedAxis_qsRankThreeRefinement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
 - `topKernelOrdinaryReesDefect` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
 - `topKernelOrdinaryReesDefect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
