@@ -93,6 +93,16 @@ noncomputable def markedAxisCrossFacetRay
         ⟨D.outside_mem, D.outside_coordinate_pos⟩⟩
   exact crossFacetRayData hzero hpos
 
+/-- Name the contact-normalized marked-axis ray explicitly.  This avoids
+fragile dependent projection chains through `renameContactToZero` in the
+endpoint frontier below. -/
+noncomputable def markedAxisCrossFacetNormalizedRay
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : CrossFacetInitialData T.topFace.face
+      (crossFacetOppositeCoordinate (0 : Fin 4))
+      (0 : Fin 4)) :=
+  (P.markedAxisCrossFacetRay D).renameContactToZero
+
 /-- Explicit endpoint data left by the cross-facet marked-axis branch. -/
 inductive MarkedAxisCrossFacetCodimensionTwoFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -102,13 +112,12 @@ inductive MarkedAxisCrossFacetCodimensionTwoFrontier
   | near
       (boundary :
         MvExponentOnCodimensionTwoBoundary
-          (P.markedAxisCrossFacetRay D).renameContactToZero.facetExponent)
+          (P.markedAxisCrossFacetNormalizedRay D).facetExponent)
   | far
       (boundary :
         MvExponentOnCodimensionTwoBoundary
-          (((P.markedAxisCrossFacetRay D).renameContactToZero).zeroAffineLineData.exponent
-            (((P.markedAxisCrossFacetRay D).renameContactToZero)
-              .zeroCoefficientPolynomial.natDegree)))
+          ((P.markedAxisCrossFacetNormalizedRay D).zeroAffineLineData.exponent
+            (P.markedAxisCrossFacetNormalizedRay D).zeroCoefficientPolynomial.natDegree))
 
 /-- **E2 cross-facet refinement.**
 
@@ -129,8 +138,10 @@ theorem markedAxisCrossFacet_codimensionTwoFrontier
   rcases balanceFreeHomogeneousRay_codimensionTwo_or_sourceRankTwo
       R T.topFace.hessian_zero hhom with
     hnear | hfar | hminor
-  · exact .near (by simpa [R] using hnear)
-  · exact .far (by simpa [R] using hfar)
+  · exact .near (by
+      simpa [R, markedAxisCrossFacetNormalizedRay] using hnear)
+  · exact .far (by
+      simpa [R, markedAxisCrossFacetNormalizedRay] using hfar)
   · rcases hminor with ⟨i, j, _hij, hne⟩
     exact (hne (P.topFace_hessianPrincipalMinor_eq_zero i j)).elim
 
