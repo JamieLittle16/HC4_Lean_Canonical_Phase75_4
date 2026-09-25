@@ -370,6 +370,86 @@ theorem CrossFacetFarBoundaryData.nearFarRayPairing
     · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
       exact .sToR n m hn hm hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3
 
+/-- Primitive lattice parameterisation of the finite segment
+`n*x + m*y = m*n`.
+
+Writing `m = h*M` and `n = k*M` with coprime reduced factors, every
+nonnegative lattice point on the segment has the unique shape
+`x = h*j`, `y = k*(M-j)` for some `j ≤ M`.  This is exactly the
+arithmetic normal form used by `complementaryLineExponentFinsupp`. -/
+theorem exists_complementarySegment_parameter
+    {m n x y : ℕ}
+    (hm : 0 < m) (hn : 0 < n)
+    (hline : n * x + m * y = m * n) :
+    ∃ M h k j : ℕ,
+      0 < M ∧ 0 < h ∧ 0 < k ∧
+      h.Coprime k ∧
+      m = h * M ∧ n = k * M ∧
+      j ≤ M ∧ x = h * j ∧ y = k * (M - j) := by
+  rcases Nat.exists_coprime m n with
+    ⟨h, k, hcop, hmRaw, hnRaw⟩
+  let M := Nat.gcd m n
+  have hmEq : m = h * M := by
+    simpa [M] using hmRaw
+  have hnEq : n = k * M := by
+    simpa [M] using hnRaw
+  have hM : 0 < M := by
+    dsimp [M]
+    exact Nat.gcd_pos_of_pos_left n hm
+  have hh : 0 < h := by
+    by_contra hnot
+    have hz : h = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hmEq, hz, zero_mul] at hm
+    omega
+  have hk : 0 < k := by
+    by_contra hnot
+    have hz : k = 0 := Nat.eq_zero_of_not_pos hnot
+    rw [hnEq, hz, zero_mul] at hn
+    omega
+
+  have hreduced : k * x + h * y = h * k * M := by
+    have hscaled :
+        M * (k * x + h * y) = M * (h * k * M) := by
+      calc
+        M * (k * x + h * y) =
+            (k * M) * x + (h * M) * y := by ring
+        _ = n * x + m * y := by rw [← hnEq, ← hmEq]
+        _ = m * n := hline
+        _ = (h * M) * (k * M) := by rw [hmEq, hnEq]
+        _ = M * (h * k * M) := by ring
+    exact Nat.mul_left_cancel hM hscaled
+
+  have hdivSum : h ∣ k * x + h * y := by
+    rw [hreduced]
+    exact ⟨k * M, by ring⟩
+  have hdivHY : h ∣ h * y := Nat.dvd_mul_right h y
+  have hdivKX : h ∣ k * x :=
+    (Nat.dvd_add_iff_left hdivHY).2 hdivSum
+  have hdivX : h ∣ x :=
+    hcop.dvd_of_dvd_mul_left hdivKX
+  rcases hdivX with ⟨j, hx⟩
+
+  have hfactor :
+      h * (k * j + y) = h * (k * M) := by
+    calc
+      h * (k * j + y) = k * (h * j) + h * y := by ring
+      _ = k * x + h * y := by rw [hx]
+      _ = h * k * M := hreduced
+      _ = h * (k * M) := by ring
+  have hred : k * j + y = k * M :=
+    Nat.mul_left_cancel hh hfactor
+  have hkjle : k * j ≤ k * M := by
+    exact ⟨y, hred⟩
+  have hjle : j ≤ M :=
+    Nat.le_of_mul_le_mul_left hkjle hk
+  have hySub : y = k * M - k * j :=
+    Nat.eq_sub_of_add_eq' hred
+  have hy : y = k * (M - j) := by
+    rw [hySub, Nat.mul_sub_left_distrib]
+
+  exact ⟨M, h, k, j, hM, hh, hk, hcop,
+    hmEq, hnEq, hjle, hx, hy⟩
+
 /-- Every support exponent on an opposite `q -> p` chord has the
 expected complementary coordinates and satisfies the primitive line equation
 `n*x + m*y = m*n`. -/
