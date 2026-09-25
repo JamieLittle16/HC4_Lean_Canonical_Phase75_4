@@ -2079,7 +2079,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Newton.TerminalTwoZeroPattern`, `HC4.Newton.CharZeroHessianKernelRigidity`
 - External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Newton.TerminalOneZeroSupport`, `HC4.Newton.TerminalTwoZeroDoublingForm`, `HC4.Polynomial.NonlinearSupportHessianRowBreak`, `HC4.RationalRigidity.RankThreeInfinityAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`
+- Imported by local modules: `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`, `HC4.Newton.MixedDegreeWallRefinement`, `HC4.Newton.TerminalOneZeroSupport`, `HC4.Newton.TerminalTwoZeroDoublingForm`, `HC4.Polynomial.NonlinearSupportHessianRowBreak`, `HC4.RationalRigidity.RankThreeInfinityAssembly`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitSecondSourceLayer`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - Declarations: `def standardPositivePairWeight`, `def DependsOnlyOnStandardZeroPair`, `theorem integralWeightedDegree_standardTwoZero`, `theorem weight_standardPositivePair`, `theorem standardTwoZero_support_positivePairDegree_one`, `theorem standardTwoZero_support_positivePair_exactly_one`, `theorem standardTwoZero_isWeightedHomogeneous_positivePair_one`, `theorem standardTwoZero_euler_decomposition`, `theorem standardTwoZero_pderiv_two_zeroPairSupported`, `theorem standardTwoZero_pderiv_three_zeroPairSupported`, `theorem pderiv_eq_zero_of_all_supported_exponents_zero`, `theorem standardTwoZero_positivePositiveHessian_zero`
 
 ### `HC4.Newton.TerminalWeightPermutation`
@@ -12137,10 +12137,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace.lean`
 - Purpose: The marked-axis first-contact family is an honest weighted face
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`, `HC4.Newton.TerminalPermutedGradient`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`, `HC4.Newton.TerminalPermutedGradient`, `HC4.Newton.TerminalTwoZeroSupport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `def topKernelMarkedAxisNatWeight`, `theorem weight_topKernelMarkedAxisNatWeight`, `theorem topKernelReesSource_hasMarkedAxisReverseWeightBound`, `theorem topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees`, `theorem topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm`, `theorem topKernelMarkedAxisFirstContact_specialFiber_homogeneous`, `structure TopKernelMarkedAxisFirstContactFaceData`, `def topKernelMarkedAxisFirstContactFaceData`
+- Declarations: `def topKernelMarkedAxisNatWeight`, `theorem weight_topKernelMarkedAxisNatWeight`, `theorem topKernelReesSource_hasMarkedAxisReverseWeightBound`, `theorem topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees`, `theorem topKernelMarkedAxisFirstContact_specialFiber_eq_initialForm`, `theorem topKernelMarkedAxisFirstContact_specialFiber_homogeneous`, `theorem topKernelMarkedAxisFirstContact_specialFiber_exponent_zero`, `theorem topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero`, `theorem topKernelMarkedAxisFirstContact_specialFiber_hessianDeterminant_eq_zero`, `structure TopKernelMarkedAxisFirstContactFaceData`, `def topKernelMarkedAxisFirstContactFaceData`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailGeometricFrontier`
 
