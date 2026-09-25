@@ -1,5 +1,6 @@
 import HC4.Newton.FirstContactCrossFacetExtremeRayPositive
 import HC4.Newton.InteriorVertex
+import HC4.Newton.TerminalTwoZeroSupport
 import HC4.Polynomial.ComplementarySupportedEdgeImpossible
 import Mathlib.Tactic
 
@@ -1083,6 +1084,126 @@ theorem CrossFacetFarBoundaryData.rankThree_or_adjacentFacet
         (D.sToR_impossible
           ha hb hcop hcontactScale hBal hcontact hzero R hn hm
           hn0 hn1 hn2 hn3 hf0 hf1 hf2 hf3)
+
+/-- Final Newton-facing outcome after the complementary opposite chords
+have been eliminated.  The adjacent-facet cases are recorded in their actual
+algebraic form: the exact secondary face has acquired a literal coordinate
+kernel. -/
+inductive CrossFacetFarRankThreeOrKernelOutcome
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D) : Prop
+  | rankThree
+      (F : ToricFacet)
+      (geometry : MvRankThreeOnFacet F R.exponent)
+  | kernel
+      (kernelCoordinate : Fin 4)
+      (kernel_eq_zero :
+        MvPolynomial.pderiv kernelCoordinate D.face = 0)
+
+/-- The far-end finite split is equivalently rank-three geometry or a genuine
+coordinate kernel on the exact first-contact child face. -/
+theorem CrossFacetFarBoundaryData.rankThree_or_kernel
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    CrossFacetFarRankThreeOrKernelOutcome D R := by
+  rcases R.rankThree_or_adjacentFacet
+      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+    hthree | hrq | hsp
+  · rcases hthree with ⟨F, hF⟩
+    exact .rankThree F hF
+  · refine .kernel (3 : Fin 4) ?_
+    apply pderiv_eq_zero_of_all_supported_exponents_zero
+    intro d hd
+    have hmem : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hd
+    have hfacet := hrq d hmem
+    simpa [OnFacet, toToricExponent] using hfacet
+  · refine .kernel (2 : Fin 4) ?_
+    apply pderiv_eq_zero_of_all_supported_exponents_zero
+    intro d hd
+    have hmem : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hd
+    have hfacet := hsp d hmem
+    simpa [OnFacet, toToricExponent] using hfacet
+
+/-- Rooted genuine first-contact far-end theorem.
+
+Starting from the actual positive-bump first non-facet contact, retain the
+literal first-contact initial form, its exact secondary face, the actual far
+boundary endpoint, and the final rank-three-or-kernel outcome. All source
+provenance remains explicit. -/
+theorem exists_qs_firstNonfacet_crossFacet_farRankThree_or_kernel
+    {a b m : ℕ} {psi : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet .qs m psi)
+    (hattained : ∃ v ∈ psi.support, ordinaryDegree4 v = m)
+    (hout : HasNonlinearOutsideFacet .qs psi)
+    (hlow : LowDegreeTameAtFacet .qs psi)
+    (hBal : HasBalancedMvSupport a b psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    ∃ (scale bump : ℕ) (G : MvPolynomial (Fin 4) K)
+      (D : CrossFacetInitialData G
+        (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+      (R : CrossFacetFarBoundaryData (a := a) (b := b) D),
+      G = initialForm
+          (scaledContactWeight (0 : Fin 4) scale bump)
+          ((scale * m : ℕ) : ℤ) psi ∧
+      0 < scale ∧
+      0 < bump ∧
+      hessianDeterminant G = 0 ∧
+      HasBalancedMvSupport a b G ∧
+      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) ∧
+      CrossFacetFarRankThreeOrKernelOutcome D R := by
+  rcases exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear
+      ha hb hcop hm hdeg htop hattained hout hlow hBal hMA with
+    ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
+      hzero, hnot, hGBal, hnonlinear, D, H, hAdj, hRay⟩
+  have hsupports := firstContactCarrier_crossFacet_supports
+    (F := .qs) (m := m) (scale := scale) (bump := bump)
+    htop hattained hG hnot
+  have hcontact :
+      ∀ d ∈ G.support,
+        scaledContactExponentWeight (0 : Fin 4) scale bump d =
+          ((scale * m : ℕ) : ℤ) := by
+    simpa [facetOmittedCoordinate] using hsupports.2.2
+  have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
+    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
+  have hnear :=
+    D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
+  let R : CrossFacetFarBoundaryData (a := a) (b := b) D :=
+    D.farBoundaryData
+      ha hb hcop hscale hGBal hcontact hzero hnonlinear
+  have houtcome : CrossFacetFarRankThreeOrKernelOutcome D R :=
+    R.rankThree_or_kernel
+      ha hb hcop hscale D hGBal hcontact hzero hnear
+  exact ⟨scale, bump, G, D, R, hG, hscale, hbump,
+    hzero, hGBal, hnonlinear, houtcome⟩
 
 /-- **Far endpoint extraction for the exact first-contact line.**
 
