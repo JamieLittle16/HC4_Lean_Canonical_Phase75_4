@@ -890,7 +890,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`, `HC4.Newton.InteriorVertex`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `def CrossFacetInitialData.farBoundaryData`
+- Declarations: `structure CrossFacetFarBoundaryData`, `theorem CrossFacetFarBoundaryData.extremeRay_p_or_r`, `theorem CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r`, `def CrossFacetInitialData.farBoundaryData`
 
 ### `HC4.Newton.FirstContactHonestSlice`
 
