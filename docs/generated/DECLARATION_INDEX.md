@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9818**.
+Distinct declaration spellings indexed: **9823**.
 
 ## Repeated declaration spellings
 
@@ -6414,6 +6414,7 @@ Distinct declaration spellings indexed: **9818**.
 - `lineMomentHessian` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `lineMomentHessian_eq_scaled_logarithmicCore` — `theorem` in `HC4.Polynomial.LogHessianMoments`
 - `linearForm_eq_extractionAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
+- `linearForm_eq_longitudinalAxis_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `linearForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
@@ -6554,6 +6555,7 @@ Distinct declaration spellings indexed: **9818**.
 - `longitudinalSignHom_pointedReflection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithMixedDegreePointedReflection`
 - `longitudinalWallFace_secondDerivative_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature`
 - `longitudinalZeroJetCore_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
+- `longitudinal_ratio_ne_zero_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `losslessFinalGeometryFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `losslessFinalGeometryFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowLosslessFinalGeometryFrontier`
 - `losslessFrontier_supplies_compactFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
@@ -6841,6 +6843,7 @@ Distinct declaration spellings indexed: **9818**.
 - `noWall_rightSection_unramifiedSmith_divisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
 - `noWall_unramifiedSmith_coefficientDivisibility` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`
 - `noWall_unramifiedSmith_commonFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedFactor`
+- `noZeroCoordinateSupport_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `no_adjacent_deficits_on_staircase_chord` — `theorem` in `HC4.Polynomial.FiniteStaircaseAdjacentDeficit`
 - `no_certifiedRamifiedRawDefectSpend_of_rawDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectNoRamifiedSpend`
 - `no_common_positive_r_s_support` — `theorem` in `HC4.Toric.SupportIntersection`
@@ -7716,6 +7719,7 @@ Distinct declaration spellings indexed: **9818**.
 - `pureLeftAxis_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pureLeftAxis_of_pderiv_second_eq_zero_of_exactDegree` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pureLeftAxis_support_shape` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
+- `pureLongitudinalTopFace_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `pureLongitudinalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinalTransverseWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinal_constant_or_derivativeResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -8262,6 +8266,7 @@ Distinct declaration spellings indexed: **9818**.
 - `ratioWallWeight_eq_zero_of_eq_base` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `ratioWallWeight_self` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `ratio_eq_zero_of_ne_extraction` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerPureAxis`
+- `ratio_eq_zero_of_ne_zero_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
 - `rationalInfinityValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `rationalNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
