@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9861**.
+Distinct declaration spellings indexed: **9864**.
 
 ## Repeated declaration spellings
 
@@ -3288,6 +3288,7 @@ Distinct declaration spellings indexed: **9861**.
 - `TopFaceHessianRankTwoWitness` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopFaceLinearPowerKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `TopKernelLinearPowerCDGeometricFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDGeometricFrontier`
+- `TopKernelLinearPowerCDSourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
 - `TopKernelMarkedAxisFirstContactFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `TopKernelMarkedAxisFullFacetContactFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `TopKernelMarkedAxisFullFacetKernelSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
@@ -9774,6 +9775,8 @@ Distinct declaration spellings indexed: **9861**.
 - `topKernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRowBreak`
 - `topKernelLinearPowerCDGeometricFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDGeometricFrontier`
 - `topKernelLinearPowerCDGeometricFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDGeometricFrontier`
+- `topKernelLinearPowerCDSourceFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
+- `topKernelLinearPowerCDSourceFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
 - `topKernelMarkedAxisFirstContactFaceData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `topKernelMarkedAxisFirstContactFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseReesCollision`
 - `topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
