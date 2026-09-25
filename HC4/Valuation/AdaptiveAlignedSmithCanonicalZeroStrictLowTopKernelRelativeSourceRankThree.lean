@@ -170,6 +170,32 @@ theorem zeroRelativeClosing_exactActiveFourBlock
     T.terminal.blocker.presented a b c d
   simpa [topKernelReesSource] using hm
 
+/-- **Relative tail fully closed at the represented source.**
+
+After source-lifting the former zero-relative determinant-closing case, every
+relative branch carries literal represented-source rank-three Hessian
+geometry: either a nonzero evaluated 3x3 minor or a nonzero constant 3x3
+minor on an exact-active source chart.  No relative-order residual remains. -/
+theorem TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (G : P.TopKernelThreeSchurRelativeGeometricFrontier S M) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry ∨
+      ∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  rcases G.toSourceRankThreeFrontier with ⟨R⟩
+  cases R with
+  | sourcePointThreeByThree Q =>
+      exact Or.inl ⟨Q⟩
+  | sourceConstantThreeByThree A Q =>
+      exact Or.inr ⟨A, ⟨Q⟩⟩
+  | zeroRelativeDeterminantClosing tail _hz hopen _hres _hdet =>
+      rcases P.zeroRelativeClosing_exactActiveFourBlock S M tail hopen with ⟨A⟩
+      exact Or.inr ⟨A, P.exactActive_threeByThree_of_presentedZero A⟩
+
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
