@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9987**.
+Distinct declaration spellings indexed: **9989**.
 
 ## Repeated declaration spellings
 
@@ -7819,6 +7819,7 @@ Distinct declaration spellings indexed: **9987**.
 - `productCoordinate_source_derivative_constant_of_hessianDeterminant_one` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinate_supported_exponent_eq_product` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `profileCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
+- `profile_natDegree_eq_nearIndex` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `projectedRankTwo_exactActiveFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
 - `projectedRankTwo_or_tangentAtFirstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
@@ -9725,6 +9726,7 @@ Distinct declaration spellings indexed: **9987**.
 - `terminalAxisHessian_row_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `terminalAxisHessian_zero_zero_eq_C_nonzero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `terminalAxisHessian_zero_zero_isUnit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
+- `terminalCertificate` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `terminalConformalFace_dichotomy` — `theorem` in `HC4.Newton.TerminalConformalFace`
 - `terminalConformalFace_totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
 - `terminalDirectRankJump_collision_forces_opposite_pair` — `theorem` in `HC4.Newton.TerminalDirectRankJumpReduction`
