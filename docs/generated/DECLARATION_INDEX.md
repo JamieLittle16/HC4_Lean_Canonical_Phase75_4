@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9952**.
+Distinct declaration spellings indexed: **9955**.
 
 ## Repeated declaration spellings
 
@@ -3288,6 +3288,7 @@ Distinct declaration spellings indexed: **9952**.
 - `ThreeSchurTangentAtFirstBreak.laterKernelOpeningOrder_spec` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelOpening`
 - `ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
 - `ThreeSchurTangentAtFirstBreak.relativeTailFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
+- `ThreeSchurTangentAtFirstBreak.relativeTerminalAwareFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `ThreeSchurTangentAtFirstBreak.relativeTimingFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
 - `ThreeSchurTangentAtFirstBreak.sourceLayer_cross_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentCross`
 - `ThreeSchurTangentAtFirstBreak.tailKernelOpening_or_fullyTangent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurLaterKernelTail`
@@ -3385,7 +3386,9 @@ Distinct declaration spellings indexed: **9952**.
 - `TopKernelThreeSchurRelativeSourceRankThreeFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurRelativeTailFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`
 - `TopKernelThreeSchurRelativeTailFrontier.toGeometricFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
+- `TopKernelThreeSchurRelativeTerminalAwareFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurRelativeTimingFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
+- `TopKernelThreeSchurRelativeTimingFrontier.toTerminalAwareFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelThreeSchurSecondStageFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurSecondStage`
 - `TopKernelThreeSchurZeroRelativeBinaryFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryProvenance`
 - `TopKernelThreeSchurZeroRelativeBinaryFrontier.toFiniteFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeBinaryEndpoint`
