@@ -131,6 +131,86 @@ theorem topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect
   rw [hqcoeff]
   simp
 
+/-- No quadratic source exponent occurs on the marked-axis special fibre:
+that fibre is exactly a zero-longitudinal slice of the maximal ordinary
+degree-`D` top face, and `D ≥ 3`. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_no_quadratic
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (i k : Fin 4) :
+    Finsupp.single k 1 + Finsupp.single i 1 ∉
+      (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support := by
+  intro hmem
+  have hslice :=
+    (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
+      (Finsupp.single k 1 + Finsupp.single i 1)).1 hmem
+  have hdeg :=
+    T.topFace.ordinaryDegree_eq_of_mem_support hslice.1
+  have hquad :
+      HC4.Polynomial.ordinaryDegree4
+        (Finsupp.single k 1 + Finsupp.single i 1) = 2 := by
+    unfold HC4.Polynomial.ordinaryDegree4
+    fin_cases i <;> fin_cases k <;> simp [Fin.sum_univ_four]
+  rw [hquad] at hdeg
+  have hD := T.topFace.degree_ge_three
+  omega
+
+/-- Hence the exact-closing quadratic coefficient is genuinely fresh and its
+whole-family coefficient has exact positive parameter order equal to the
+marked-axis determinant closing exponent. -/
+theorem topKernelMarkedAxisFirstActualLayer_freshQuadratic_of_eq_defect
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (heq :
+      T.topKernelMarkedAxisFirstActualLayerOrder =
+        4 * T.topFace.degree - 6) :
+    ∃ i k : Fin 4,
+      let d := Finsupp.single k 1 + Finsupp.single i 1
+      d ∈ T.topKernelMarkedAxisFirstContactFamily.support ∧
+      d ∉ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support ∧
+      smithFamilyCoefficientParameterOrder
+        T.topKernelMarkedAxisFirstContactFamily d
+          (by assumption) =
+        T.topKernelMarkedAxisFirstActualLayerOrder := by
+  rcases T.topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect
+      heq with ⟨i, k, hcoeff⟩
+  let d := Finsupp.single k 1 + Finsupp.single i 1
+  have hd : d ∈ T.topKernelMarkedAxisFirstContactFamily.support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    intro hz
+    apply hcoeff
+    have hzj := congrArg
+      (fun p : Polynomial K => p.coeff
+        T.topKernelMarkedAxisFirstActualLayerOrder) hz
+    simpa [d] using hzj
+  have hfresh :
+      d ∉ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support := by
+    simpa [d] using
+      T.topKernelMarkedAxisFirstContact_specialFiber_no_quadratic i k
+  have hsplit :=
+    smithFamilyCoefficientParameterOrder_zero_or_firstPositiveActual
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+      hd hcoeff
+  have horder :
+      smithFamilyCoefficientParameterOrder
+          T.topKernelMarkedAxisFirstContactFamily d hd =
+        T.topKernelMarkedAxisFirstActualLayerOrder := by
+    rcases hsplit with hzero | hfirst
+    · exfalso
+      apply hfresh
+      apply
+        (smithFamilyCoefficientOrder_eq_zero_iff_mem_specialFiber
+          T.topKernelMarkedAxisFirstContactFamily hd).1
+      rw [smithFamilyCoefficientOrder_eq
+        T.topKernelMarkedAxisFirstContactFamily hd]
+      exact hzero
+    · simpa [topKernelMarkedAxisFirstActualLayerOrder, d] using hfirst
+  exact ⟨i, k, hd, hfresh, horder⟩
+
 /-- Honest potential-level timing frontier for the marked-axis first-contact
 family.  The equality branch retains a genuine quadratic source coefficient,
 not merely a nonzero Schur entry. -/
