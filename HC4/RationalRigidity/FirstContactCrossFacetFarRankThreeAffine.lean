@@ -1,6 +1,7 @@
 import HC4.Newton.FirstContactCrossFacetFarBoundary
 import HC4.Polynomial.RankThreeAffineSupportRealisation
 import HC4.RationalRigidity.RankThreeAffineLineTerminal
+import HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm
 import Mathlib.Tactic
 
 /-!
@@ -303,6 +304,42 @@ theorem profile_natDegree_eq_nearIndex
     omega
   simpa [near] using Nat.le_antisymm hge hle
 
+/-- The affine support representation retains the original near endpoint
+as its literal top exponent. -/
+theorem affineLineData_topExponent_eq_near
+    (P : CrossFacetFarRankThreeAffineSupportData D R) :
+    P.support.affineLineData.exponent
+        P.support.coefficientProfile.natDegree =
+      Finsupp.mapDomain P.rho D.facetExponent := by
+  let near := Finsupp.mapDomain P.rho D.facetExponent
+  have hnearMem :
+      near ∈ (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
+  have hprofileMem :
+      near (0 : Fin 4) ∈ P.support.coefficientProfile.support :=
+    P.support.coefficientProfile_mem_of_mem hnearMem
+  have hdeg :
+      P.support.coefficientProfile.natDegree = near (0 : Fin 4) := by
+    simpa [near] using P.profile_natDegree_eq_nearIndex
+  have htopMem :
+      P.support.coefficientProfile.natDegree ∈
+        P.support.coefficientProfile.support := by
+    simpa [hdeg] using hprofileMem
+  have hspec := P.support.exponentAt_spec htopMem
+  have hzero :
+      P.support.affineLineData.exponent
+          P.support.coefficientProfile.natDegree (0 : Fin 4) =
+        near (0 : Fin 4) := by
+    change
+      P.support.exponentAt P.support.coefficientProfile.natDegree
+          (0 : Fin 4) =
+        near (0 : Fin 4)
+    rw [hspec.2, hdeg]
+  have heq :=
+    P.support.eq_of_zeroCoordinate_eq hspec.1 hnearMem hzero
+  simpa [near, RankThreeAffineSupportData.affineLineData] using heq
+
 /-- A reoriented far-rank-three support package already reaches the mature
 affine RationalRigidity terminal certificate as soon as the child face is
 Hessian-singular. -/
@@ -346,6 +383,37 @@ theorem terminalCertificate
     exact hcarrierZero
 
   exact hasRankThreePolynomialTerminalCertificate_of_affine_line
+    P.support.affineLineData
+    P.A_pos P.B_pos P.C_pos (by norm_num)
+    hphiDeg hphi0 hlineZero
+
+/-- The same data reaches the complete affine terminal binomial normal
+form while retaining the source-honest exponent representation above. -/
+noncomputable def binomialNormalForm
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (hzero : HC4.Polynomial.hessianDeterminant D.face = 0) :
+    RankThreeTerminalBinomialNormalForm P.support.affineLineData := by
+  have hfarMem :
+      Finsupp.mapDomain P.rho R.exponent ∈
+        (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
+  have hphi0 : P.support.coefficientProfile.coeff 0 ≠ 0 :=
+    P.support.coeff_zero_ne_zero_of_mem_zero hfarMem P.farIndex_zero
+  have hphiDeg : 0 < P.support.coefficientProfile.natDegree := by
+    rw [P.profile_natDegree_eq_nearIndex]
+    exact P.nearIndex_pos
+  have hcarrierZero :
+      HC4.Polynomial.hessianDeterminant
+          (MvPolynomial.rename P.rho D.face) = 0 := by
+    rw [HC4.Newton.hessianDeterminant_rename_perm, hzero]
+    simp
+  have hlineZero :
+      HC4.Polynomial.hessianDeterminant
+          P.support.affineLineData.polynomial = 0 := by
+    rw [P.support.affineLineData_polynomial_eq]
+    exact hcarrierZero
+  exact rankThreeTerminal_binomialNormalForm
     P.support.affineLineData
     P.A_pos P.B_pos P.C_pos (by norm_num)
     hphiDeg hphi0 hlineZero
