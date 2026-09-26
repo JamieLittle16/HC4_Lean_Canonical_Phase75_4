@@ -55,6 +55,14 @@ structure CrossFacetFarRankThreeAffineSupportData
   support :
     RankThreeAffineSupportData
       (MvPolynomial.rename rho D.face) A B C q r s
+  farIndex_zero :
+    (Finsupp.mapDomain rho R.exponent) (0 : Fin 4) = 0
+  nearIndex_pos :
+    0 < (Finsupp.mapDomain rho D.facetExponent) (0 : Fin 4)
+  nearIndex_max :
+    ∀ e ∈ (MvPolynomial.rename rho D.face).support,
+      e (0 : Fin 4) ≤
+        (Finsupp.mapDomain rho D.facetExponent) (0 : Fin 4)
 
 /-- **Far rank-three -> honest affine support.**
 
@@ -229,7 +237,120 @@ theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
     B_pos := hABC.2.1
     C_pos := hABC.2.2
     support := by simpa [carrier] using S
+    farIndex_zero := by
+      rw [Finsupp.mapDomain_equiv_apply, hrho0, hfar_zero]
+    nearIndex_pos := by
+      rw [Finsupp.mapDomain_equiv_apply, hrho0]
+      exact hnear_pos
+    nearIndex_max := by
+      intro e he
+      have heCarrier : e ∈ carrier.support := by
+        simpa [carrier] using he
+      rcases hpreimage heCarrier with ⟨d, hd, hde⟩
+      have he0 : e (0 : Fin 4) = d f := by
+        rw [← hde, Finsupp.mapDomain_equiv_apply, hrho0]
+      have hnear0 :
+          (Finsupp.mapDomain rho D.facetExponent) (0 : Fin 4) =
+            D.facetExponent f := by
+        rw [Finsupp.mapDomain_equiv_apply, hrho0]
+      rw [he0, hnear0]
+      exact
+        D.support_farOmittedCoordinate_le_near
+          ha hb hcontactScale hBal hcontact R f
+          hnear_pos hfar_zero d hd
   }⟩
+
+namespace CrossFacetFarRankThreeAffineSupportData
+
+variable {a b : ℕ}
+variable {G : MvPolynomial (Fin 4) K}
+variable {D : CrossFacetInitialData G
+  (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
+variable {R : CrossFacetFarBoundaryData (a := a) (b := b) D}
+
+/-- The extracted affine coefficient profile has degree exactly the reoriented
+near-end coordinate.  Thus the original near endpoint is the terminal top
+index, not merely some positive coefficient layer. -/
+theorem profile_natDegree_eq_nearIndex
+    (P : CrossFacetFarRankThreeAffineSupportData D R) :
+    P.support.coefficientProfile.natDegree =
+      (Finsupp.mapDomain P.rho D.facetExponent) (0 : Fin 4) := by
+  let near := Finsupp.mapDomain P.rho D.facetExponent
+  have hnearMem :
+      near ∈ (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
+  have hprofileMem :
+      near (0 : Fin 4) ∈ P.support.coefficientProfile.support :=
+    P.support.coefficientProfile_mem_of_mem hnearMem
+  have hle :
+      near (0 : Fin 4) ≤ P.support.coefficientProfile.natDegree :=
+    Polynomial.le_natDegree_of_mem_supp _ hprofileMem
+  have hge :
+      P.support.coefficientProfile.natDegree ≤ near (0 : Fin 4) := by
+    rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
+    intro n hn
+    by_contra hcoeff
+    have hnmem : n ∈ P.support.coefficientProfile.support :=
+      Polynomial.mem_support_iff.mpr hcoeff
+    rcases P.support.exists_exponent_of_coefficientProfile_mem hnmem with
+      ⟨e, he, he0⟩
+    have hmax := P.nearIndex_max e he
+    have hnearn :
+        near (0 : Fin 4) < n := by
+      simpa [near] using hn
+    rw [he0] at hmax
+    omega
+  simpa [near] using Nat.le_antisymm hge hle
+
+/-- A reoriented far-rank-three support package already reaches the mature
+affine RationalRigidity terminal certificate as soon as the child face is
+Hessian-singular. -/
+theorem terminalCertificate
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (hzero : HC4.Polynomial.hessianDeterminant D.face = 0) :
+    HasRankThreePolynomialTerminalCertificate
+      (phi := P.support.coefficientProfile)
+      (P.A : K) (P.B : K) (P.C : K) (1 : K)
+      P.q P.r P.s := by
+  let far := Finsupp.mapDomain P.rho R.exponent
+  let near := Finsupp.mapDomain P.rho D.facetExponent
+
+  have hfarMem :
+      far ∈ (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
+  have hnearMem :
+      near ∈ (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
+
+  have hphi0 : P.support.coefficientProfile.coeff 0 ≠ 0 := by
+    apply P.support.coeff_zero_ne_zero_of_mem_zero hfarMem
+    simpa [far] using P.farIndex_zero
+
+  have hphiDeg : 0 < P.support.coefficientProfile.natDegree := by
+    rw [P.profile_natDegree_eq_nearIndex]
+    simpa [near] using P.nearIndex_pos
+
+  have hcarrierZero :
+      HC4.Polynomial.hessianDeterminant
+          (MvPolynomial.rename P.rho D.face) = 0 := by
+    rw [HC4.Newton.hessianDeterminant_rename_perm, hzero]
+    simp
+
+  have hlineZero :
+      HC4.Polynomial.hessianDeterminant
+          P.support.affineLineData.polynomial = 0 := by
+    rw [P.support.affineLineData_polynomial_eq]
+    exact hcarrierZero
+
+  exact hasRankThreePolynomialTerminalCertificate_of_affine_line
+    P.support.affineLineData
+    P.A_pos P.B_pos P.C_pos (by norm_num)
+    hphiDeg hphi0 hlineZero
+
+end CrossFacetFarRankThreeAffineSupportData
 
 end
 
