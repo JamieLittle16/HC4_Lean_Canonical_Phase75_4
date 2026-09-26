@@ -12120,7 +12120,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - External imports: none
 - Imported by local modules: none
-- Declarations: `structure TopKernelLinearPowerE3FinalResolutionExtractor`, `structure TopKernelLinearPowerE3ConstantFinalResolutionExtractor`, `def TopKernelLinearPowerE3ConstantFinalResolutionExtractor.toE3Extractor`, `theorem exists_finalResolution_of_e3ConstantExtractor`, `theorem exists_finalResolution_of_e3Extractor`
+- Declarations: `structure TopKernelLinearPowerE3FinalResolutionExtractor`, `structure TopKernelLinearPowerE3ConstantFinalResolutionExtractor`, `def TopKernelLinearPowerE3ConstantFinalResolutionExtractor.toE3Extractor`, `structure TopKernelLinearPowerE3TerminalAwareFinalResolutionExtractor`, `theorem exists_finalResolution_of_e3TerminalAwareExtractor`, `structure TopKernelLinearPowerE3TerminalAwareConstantExtractor`, `def TopKernelLinearPowerE3TerminalAwareConstantExtractor.toTerminalAwareExtractor`, `theorem exists_finalResolution_of_e3TerminalAwareConstantExtractor`, `theorem exists_finalResolution_of_e3Extractor`, `theorem exists_finalResolution_of_e3ConstantExtractor`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
 
