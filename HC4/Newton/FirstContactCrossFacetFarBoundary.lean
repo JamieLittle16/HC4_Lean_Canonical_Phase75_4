@@ -107,6 +107,147 @@ theorem CrossFacetInitialData.support_far_affine_proportional
     (mul_eq_zero.mp hscaled).resolve_left hout0
   exact sub_eq_zero.mp hbracket
 
+/-- Rebase the honest affine support line at a far endpoint which omits
+some coordinate `f`.  If the near endpoint is positive in `f`, that
+coordinate becomes a valid affine parameter measured from the far endpoint. -/
+theorem CrossFacetInitialData.support_farOmitted_affine_proportional
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (f : Fin 4)
+    (_hnear_pos : 0 < D.facetExponent f)
+    (hfar_zero : R.exponent f = 0) :
+    ∀ d ∈ D.face.support, ∀ k : Fin 4,
+      (D.facetExponent f : ℤ) *
+          ((d k : ℤ) - (R.exponent k : ℤ)) =
+        (d f : ℤ) *
+          ((D.facetExponent k : ℤ) - (R.exponent k : ℤ)) := by
+  intro d hd k
+  have hk :=
+    D.support_far_affine_proportional
+      ha hb hcontactScale hBal hcontact R d hd k
+  have hf :=
+    D.support_far_affine_proportional
+      ha hb hcontactScale hBal hcontact R d hd f
+  rw [hfar_zero] at hf
+  simp only [Nat.cast_zero, zero_sub] at hf
+  have hr0 :
+      (R.exponent (0 : Fin 4) : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt R.contact_pos)
+  have hscaled :
+      (R.exponent (0 : Fin 4) : ℤ) *
+        ((D.facetExponent f : ℤ) *
+            ((d k : ℤ) - (R.exponent k : ℤ)) -
+          (d f : ℤ) *
+            ((D.facetExponent k : ℤ) - (R.exponent k : ℤ))) = 0 := by
+    linear_combination
+      (D.facetExponent f : ℤ) * hk -
+        ((D.facetExponent k : ℤ) - (R.exponent k : ℤ)) * hf
+  have hbracket :
+      (D.facetExponent f : ℤ) *
+            ((d k : ℤ) - (R.exponent k : ℤ)) -
+          (d f : ℤ) *
+            ((D.facetExponent k : ℤ) - (R.exponent k : ℤ)) = 0 :=
+    (mul_eq_zero.mp hscaled).resolve_left hr0
+  exact sub_eq_zero.mp hbracket
+
+/-- Positivity of the near endpoint in a far-omitted coordinate makes that
+coordinate injective on the honest child-face support. -/
+theorem CrossFacetInitialData.support_eq_of_farOmittedCoordinate_eq
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (f : Fin 4)
+    (hnear_pos : 0 < D.facetExponent f)
+    (hfar_zero : R.exponent f = 0)
+    {p q : Fin 4 →₀ ℕ}
+    (hp : p ∈ D.face.support) (hq : q ∈ D.face.support)
+    (hpq : p f = q f) :
+    p = q := by
+  ext k
+  have hpLine :=
+    D.support_farOmitted_affine_proportional
+      ha hb hcontactScale hBal hcontact R f hnear_pos hfar_zero p hp k
+  have hqLine :=
+    D.support_farOmitted_affine_proportional
+      ha hb hcontactScale hBal hcontact R f hnear_pos hfar_zero q hq k
+  have hvf :
+      (D.facetExponent f : ℤ) ≠ 0 := by
+    exact_mod_cast (Nat.ne_of_gt hnear_pos)
+  have hpqZ : (p f : ℤ) = (q f : ℤ) := by
+    exact_mod_cast hpq
+  rw [hpqZ] at hpLine
+  have hmul :
+      (D.facetExponent f : ℤ) *
+        ((p k : ℤ) - (q k : ℤ)) = 0 := by
+    linear_combination hpLine - hqLine
+  have hkZ : (p k : ℤ) = (q k : ℤ) :=
+    sub_eq_zero.mp ((mul_eq_zero.mp hmul).resolve_left hvf)
+  exact_mod_cast hkZ
+
+/-- Along the reoriented line, the near endpoint is maximal in the coordinate
+omitted by the far rank-three facet. -/
+theorem CrossFacetInitialData.support_farOmittedCoordinate_le_near
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (f : Fin 4)
+    (hnear_pos : 0 < D.facetExponent f)
+    (hfar_zero : R.exponent f = 0) :
+    ∀ d ∈ D.face.support, d f ≤ D.facetExponent f := by
+  intro d hd
+  have hf :=
+    D.support_far_affine_proportional
+      ha hb hcontactScale hBal hcontact R d hd f
+  rw [hfar_zero] at hf
+  simp only [Nat.cast_zero, zero_sub] at hf
+  by_contra hnot
+  have hgtNat : D.facetExponent f < d f := Nat.lt_of_not_ge hnot
+  have hr0Z : (0 : ℤ) < (R.exponent (0 : Fin 4) : ℤ) := by
+    exact_mod_cast R.contact_pos
+  have hgtZ :
+      (D.facetExponent f : ℤ) < (d f : ℤ) := by
+    exact_mod_cast hgtNat
+  have hvfZ : (0 : ℤ) < (D.facetExponent f : ℤ) := by
+    exact_mod_cast hnear_pos
+  have hd0Z : (0 : ℤ) ≤ (d (0 : Fin 4) : ℤ) := by
+    exact_mod_cast Nat.zero_le (d (0 : Fin 4))
+  have hleftPos :
+      (0 : ℤ) <
+        (R.exponent (0 : Fin 4) : ℤ) *
+          ((d f : ℤ) - (D.facetExponent f : ℤ)) :=
+    mul_pos hr0Z (sub_pos.mpr hgtZ)
+  have hrightNonpos :
+      (d (0 : Fin 4) : ℤ) *
+          (-(D.facetExponent f : ℤ)) ≤ 0 :=
+    mul_nonpos_of_nonneg_of_nonpos hd0Z (neg_nonpos.mpr (le_of_lt hvfZ))
+  rw [hf] at hleftPos
+  exact (not_lt_of_ge hrightNonpos hleftPos)
+
 /-- If the near and far endpoints of the honest cross-facet line both
 vanish in one transverse coordinate, then the whole exact secondary face is
 confined to that coordinate facet.  The proof uses the already-certified
