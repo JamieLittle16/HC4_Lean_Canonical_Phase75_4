@@ -67,6 +67,11 @@ structure PureLongitudinalBalanceFreeFirstContactData
         T.representedSpecialFiber
   scale_pos : 0 < scale
   bump_pos : 0 < bump
+  source_weight_bound :
+    IsWeightLE
+      (scaledContactWeight (facetOmittedCoordinate facet) scale bump)
+      ((scale * T.topFace.degree : ℕ) : ℤ)
+      T.representedSpecialFiber
   hessian_zero : hessianDeterminant carrier = 0
   nonlinear :
     ∀ d ∈ carrier.support, 3 ≤ ordinaryDegree4 d
@@ -260,10 +265,10 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
 
   rcases lowDegreeTame_or_exists_omittedQuadraticSquare
       facet T.representedSpecialFiber with htame | hsquare
-  · rcases exists_singular_first_nonfacet_contact_with_nonlinear_support
+  · rcases exists_singular_first_nonfacet_contact_with_nonlinear_support_and_weightBound
         T.topFace.degree_ge_three hdeg htop hout htame hMA with
       ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hd₀pos,
-        hscale, hbump, hzero, hnot, hnonlinear⟩
+        hscale, hbump, hbound, hzero, hnot, hnonlinear⟩
     have hsupp :=
       firstContactCarrier_crossFacet_supports
         htop hattained hG hnot
@@ -280,6 +285,7 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
       carrier_eq := hG
       scale_pos := hscale
       bump_pos := hbump
+      source_weight_bound := hbound
       hessian_zero := hzero
       nonlinear := hnonlinear
       not_on_starting_facet := hnot
