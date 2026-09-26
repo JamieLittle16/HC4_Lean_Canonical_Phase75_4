@@ -12360,7 +12360,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
-- Declarations: `inductive TopKernelThreeSchurPositiveTailGeometricFrontier`, `theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier`, `inductive TopKernelThreeSchurPositiveTailTimingFrontier`, `theorem TopKernelThreeSchurPositiveTailGeometricFrontier.toTimingFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimingFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier`
+- Declarations: `inductive TopKernelThreeSchurPositiveTailGeometricFrontier`, `theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier`, `inductive TopKernelThreeSchurPositiveTailTimingFrontier`, `theorem TopKernelThreeSchurPositiveTailGeometricFrontier.toTimingFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimingFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointCrossing`
 
