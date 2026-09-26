@@ -99,6 +99,60 @@ inductive PureLongitudinalFirstContactFrontier
         ∀ i : Fin 4,
           i ≠ facetOmittedCoordinate facet → d i = 0)
 
+/-- The low-degree square exception is automatically a genuine
+codimension-two source exponent: all coordinates other than the omitted
+square coordinate vanish. -/
+theorem PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {facet : ToricFacet}
+    {d : Fin 4 →₀ ℕ}
+    (homit : facetOmittedCoordinate facet ≠ (0 : Fin 4))
+    (hpure :
+      ∀ i : Fin 4,
+        i ≠ facetOmittedCoordinate facet → d i = 0) :
+    MvExponentOnCodimensionTwoBoundary d := by
+  cases facet with
+  | qs =>
+      exact (homit rfl).elim
+  | pr =>
+      refine ⟨(0 : Fin 4), (2 : Fin 4), by decide, ?_, ?_⟩
+      · exact hpure 0 (by decide)
+      · exact hpure 2 (by decide)
+  | rq =>
+      refine ⟨(0 : Fin 4), (1 : Fin 4), by decide, ?_, ?_⟩
+      · exact hpure 0 (by decide)
+      · exact hpure 1 (by decide)
+  | sp =>
+      refine ⟨(0 : Fin 4), (1 : Fin 4), by decide, ?_, ?_⟩
+      · exact hpure 0 (by decide)
+      · exact hpure 1 (by decide)
+
+/-- Downstream-facing compression of the pure-longitudinal branch: either an
+honest balance-free first-contact cross-facet carrier, or an actual
+codimension-two quadratic source exponent. -/
+inductive PureLongitudinalContactOrCodimensionTwoSource
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | firstContact
+      (data : P.PureLongitudinalBalanceFreeFirstContactData)
+  | codimensionTwoSource
+      (d : Fin 4 →₀ ℕ)
+      (mem_source : d ∈ T.representedSpecialFiber.support)
+      (degree_two : ordinaryDegree4 d = 2)
+      (boundary : MvExponentOnCodimensionTwoBoundary d)
+
+/-- Forget only the irrelevant identity of the square facet; retain either the
+full first-contact packet or honest source codimension-two data. -/
+theorem PureLongitudinalFirstContactFrontier.toContactOrCodimensionTwoSource
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (F : P.PureLongitudinalFirstContactFrontier) :
+    Nonempty P.PureLongitudinalContactOrCodimensionTwoSource := by
+  cases F with
+  | firstContact data =>
+      exact ⟨.firstContact data⟩
+  | quadraticSquare facet homit d hd hdeg htwo hpure =>
+      exact ⟨.codimensionTwoSource d hd hdeg
+        (F.quadraticSquare_codimensionTwo P homit hpure)⟩
+
 /-- The final seam cannot have all nonlinear represented support on X₀, hence
 some nonlinear source monomial has a positive transverse coordinate. -/
 theorem exists_nonlinear_transverse_source
