@@ -12350,7 +12350,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem topKernelMarkedAxisFirstContact_hasPositiveActualLayer`, `def topKernelMarkedAxisFirstActualLayerOrder`, `theorem topKernelMarkedAxisFirstActualLayerOrder_pos`, `theorem topKernelMarkedAxisFirstActualLayerOrder_le_defect`, `theorem topKernelMarkedAxisFirstActualLayer_originHessian_ne_zero_of_eq_defect`, `theorem topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect`, `inductive TopKernelMarkedAxisPotentialTimingFrontier`, `theorem topKernelMarkedAxisPotentialTimingFrontier_nonempty`
+- Declarations: `theorem topKernelMarkedAxisFirstContact_hasPositiveActualLayer`, `def topKernelMarkedAxisFirstActualLayerOrder`, `theorem topKernelMarkedAxisFirstActualLayerOrder_pos`, `theorem topKernelMarkedAxisFirstActualLayerOrder_le_defect`, `theorem topKernelMarkedAxisFirstActualLayer_originHessian_ne_zero_of_eq_defect`, `theorem topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect`, `theorem topKernelMarkedAxisFirstContact_specialFiber_no_quadratic`, `theorem topKernelMarkedAxisFirstActualLayer_freshQuadratic_of_eq_defect`, `inductive TopKernelMarkedAxisPotentialTimingFrontier`, `theorem topKernelMarkedAxisPotentialTimingFrontier_nonempty`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
 
