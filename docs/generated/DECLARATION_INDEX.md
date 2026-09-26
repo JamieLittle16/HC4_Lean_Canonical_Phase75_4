@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9937**.
+Distinct declaration spellings indexed: **9940**.
 
 ## Repeated declaration spellings
 
@@ -3321,6 +3321,8 @@ Distinct declaration spellings indexed: **9937**.
 - `TopKernelLinearPowerE2Frontier.sourceRankThreeGeometry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE2Frontier.toE3RankThreeFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE2Frontier.toE3SourceFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
+- `TopKernelLinearPowerE3ConstantFinalResolutionExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `TopKernelLinearPowerE3ConstantFinalResolutionExtractor.toE3Extractor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3FinalResolutionExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3RankThreeFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE3SourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
@@ -5130,6 +5132,7 @@ Distinct declaration spellings indexed: **9937**.
 - `exists_exposed_ratio_wall` — `theorem` in `HC4.Newton.FiniteSupportRayPlanarRefinement`
 - `exists_exposed_ratio_wall_from_min_fiber` — `theorem` in `HC4.Newton.FiniteSupportLowerHullExposure`
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
+- `exists_finalResolution_of_e3ConstantExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_e3Extractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_firstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finalResolution_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
