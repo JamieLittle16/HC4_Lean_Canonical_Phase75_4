@@ -83,6 +83,10 @@ theorem CrossFacetInitialData.support_far_affine_proportional
   have hfarLine :=
     D.support_crossFacet_affine_proportional
       ha hb hcontactScale hBal hcontact R.exponent R.mem_face k
+  have hfacet0 : D.facetExponent (0 : Fin 4) = 0 :=
+    D.facet_coordinate_zero
+  rw [hfacet0] at hdLine hfarLine
+  simp only [Nat.cast_zero, sub_zero] at hdLine hfarLine
   have hout0 :
       (D.outsideExponent (0 : Fin 4) : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt D.outside_coordinate_pos)
@@ -414,7 +418,7 @@ theorem exists_complementarySegment_index
   have hred : k * j + y = k * M :=
     Nat.mul_left_cancel hh hfactor
   have hkjle : k * j ≤ k * M := by
-    exact ⟨y, hred⟩
+    omega
   have hjle : j ≤ M :=
     Nat.le_of_mul_le_mul_left hkjle hk
   have hySub : y = k * M - k * j :=
@@ -501,7 +505,7 @@ theorem CrossFacetInitialData.qToP_support_equations
     ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
   have h3 := D.support_far_affine_proportional
     ha hb hcontactScale hBal hcontact R d hd (3 : Fin 4)
-  rw [near0, near1, near2, near3, far0, far1, far2, far3] at h1 h2 h3
+  rw [near1, near2, near3, far0, far1, far2, far3] at h1 h2 h3
   have hmZ : (m : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hm)
   have h03Z : (d 0 : ℤ) = (d 3 : ℤ) := by
@@ -602,27 +606,27 @@ theorem CrossFacetInitialData.qToP_impossible
     rw [← hdMap]
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
-        complementaryLineExponentFinsupp, hx, hy, hd03, hd12,
-        Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
+        complementaryLineExponentFinsupp] <;> omega
 
   have hstartExp :
       complementaryLineExponentFinsupp 1 1 1 1 h k M 0 =
         Finsupp.mapDomain rho D.facetExponent := by
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
-        complementaryLineExponentFinsupp, near0, near1, near2, near3,
-        hnEq, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
+        complementaryLineExponentFinsupp] <;> omega
 
   have hendExp :
       complementaryLineExponentFinsupp 1 1 1 1 h k M M =
         Finsupp.mapDomain rho R.exponent := by
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
-        complementaryLineExponentFinsupp, far0, far1, far2, far3,
-        hmEq, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
+        complementaryLineExponentFinsupp] <;> omega
 
   have hstart :
       MvPolynomial.coeff
@@ -691,7 +695,7 @@ theorem CrossFacetInitialData.sToR_support_equations
     ha hb hcontactScale hBal hcontact R d hd (1 : Fin 4)
   have h2 := D.support_far_affine_proportional
     ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
-  rw [near0, near1, near2, near3, far0, far1, far2, far3] at h1 h2
+  rw [near1, near2, far0, far1, far2] at h1 h2
   have hmZ : (m : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hm)
   have hbZ : (b : ℤ) ≠ 0 := by
@@ -873,7 +877,8 @@ theorem CrossFacetInitialData.sToR_impossible
     rw [← hdMap]
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
         complementaryLineExponentFinsupp,
         hx0, hx2, hy1, hy3, hx, hy,
         Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
@@ -883,7 +888,8 @@ theorem CrossFacetInitialData.sToR_impossible
         Finsupp.mapDomain rho D.facetExponent := by
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
         complementaryLineExponentFinsupp,
         near0, near1, near2, near3, hnEq,
         Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
@@ -893,7 +899,8 @@ theorem CrossFacetInitialData.sToR_impossible
         Finsupp.mapDomain rho R.exponent := by
     ext i
     fin_cases i <;>
-      simp [rho, Finsupp.mapDomain_equiv_apply,
+      simp [rho, Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+        Equiv.swap_apply_of_ne_of_ne,
         complementaryLineExponentFinsupp,
         far0, far1, far2, far3, hmEq,
         Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
@@ -935,7 +942,7 @@ Each constructor stores its literal endpoint coordinates, so downstream
 consumers do not need to recover which constructor of
 `CrossFacetNearFarRayPairing` was used. -/
 inductive CrossFacetNearFarBoundaryOutcome
-    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {a b : ℕ}
     {G : MvPolynomial (Fin 4) K}
     (D : CrossFacetInitialData G
       (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
@@ -1150,61 +1157,6 @@ theorem CrossFacetFarBoundaryData.rankThree_or_kernel
     have hfacet := hsp d hmem
     simpa [OnFacet, toToricExponent] using hfacet
 
-/-- Rooted genuine first-contact far-end theorem.
-
-Starting from the actual positive-bump first non-facet contact, retain the
-literal first-contact initial form, its exact secondary face, the actual far
-boundary endpoint, and the final rank-three-or-kernel outcome. All source
-provenance remains explicit. -/
-theorem exists_qs_firstNonfacet_crossFacet_farRankThree_or_kernel
-    {a b m : ℕ} {psi : MvPolynomial (Fin 4) K}
-    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
-    (hm : 3 ≤ m)
-    (hdeg : NonlinearDegreeBound m psi)
-    (htop : TopDegreeOnFacet .qs m psi)
-    (hattained : ∃ v ∈ psi.support, ordinaryDegree4 v = m)
-    (hout : HasNonlinearOutsideFacet .qs psi)
-    (hlow : LowDegreeTameAtFacet .qs psi)
-    (hBal : HasBalancedMvSupport a b psi)
-    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
-    ∃ (scale bump : ℕ) (G : MvPolynomial (Fin 4) K)
-      (D : CrossFacetInitialData G
-        (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
-      (R : CrossFacetFarBoundaryData (a := a) (b := b) D),
-      G = initialForm
-          (scaledContactWeight (0 : Fin 4) scale bump)
-          ((scale * m : ℕ) : ℤ) psi ∧
-      0 < scale ∧
-      0 < bump ∧
-      hessianDeterminant G = 0 ∧
-      HasBalancedMvSupport a b G ∧
-      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) ∧
-      CrossFacetFarRankThreeOrKernelOutcome D R := by
-  rcases exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear
-      ha hb hcop hm hdeg htop hattained hout hlow hBal hMA with
-    ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
-      hzero, hnot, hGBal, hnonlinear, D, H, hAdj, hRay⟩
-  have hsupports := firstContactCarrier_crossFacet_supports
-    (F := .qs) (m := m) (scale := scale) (bump := bump)
-    htop hattained hG hnot
-  have hcontact :
-      ∀ d ∈ G.support,
-        scaledContactExponentWeight (0 : Fin 4) scale bump d =
-          ((scale * m : ℕ) : ℤ) := by
-    simpa [facetOmittedCoordinate] using hsupports.2.2
-  have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
-    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
-  have hnear :=
-    D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
-  let R : CrossFacetFarBoundaryData (a := a) (b := b) D :=
-    D.farBoundaryData
-      ha hb hcop hscale hGBal hcontact hzero hnonlinear
-  have houtcome : CrossFacetFarRankThreeOrKernelOutcome D R :=
-    R.rankThree_or_kernel
-      ha hb hcop hscale D hGBal hcontact hzero hnear
-  exact ⟨scale, bump, G, D, R, hG, hscale, hbump,
-    hzero, hGBal, hnonlinear, houtcome⟩
-
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
@@ -1331,6 +1283,62 @@ noncomputable def CrossFacetInitialData.farBoundaryData
       E.maximal d hd
     simpa [hfar_coord] using hle
   · exact MvPolynomial.mem_support_iff.mp hfarD
+
+/-- Rooted genuine first-contact far-end theorem.
+
+Starting from the actual positive-bump first non-facet contact, retain the
+literal first-contact initial form, its exact secondary face, the actual far
+boundary endpoint, and the final rank-three-or-kernel outcome. All source
+provenance remains explicit. -/
+theorem exists_qs_firstNonfacet_crossFacet_farRankThree_or_kernel
+    {a b m : ℕ} {psi : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet .qs m psi)
+    (hattained : ∃ v ∈ psi.support, ordinaryDegree4 v = m)
+    (hout : HasNonlinearOutsideFacet .qs psi)
+    (hlow : LowDegreeTameAtFacet .qs psi)
+    (hBal : HasBalancedMvSupport a b psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    ∃ (scale bump : ℕ) (G : MvPolynomial (Fin 4) K)
+      (D : CrossFacetInitialData G
+        (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+      (R : CrossFacetFarBoundaryData (a := a) (b := b) D),
+      G = initialForm
+          (scaledContactWeight (0 : Fin 4) scale bump)
+          ((scale * m : ℕ) : ℤ) psi ∧
+      0 < scale ∧
+      0 < bump ∧
+      hessianDeterminant G = 0 ∧
+      HasBalancedMvSupport a b G ∧
+      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) ∧
+      CrossFacetFarRankThreeOrKernelOutcome D R := by
+  rcases exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear
+      ha hb hcop hm hdeg htop hattained hout hlow hBal hMA with
+    ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
+      hzero, hnot, hGBal, hnonlinear, D, H, hAdj, hRay⟩
+  have hsupports := firstContactCarrier_crossFacet_supports
+    (F := .qs) (m := m) (scale := scale) (bump := bump)
+    htop hattained hG hnot
+  have hcontact :
+      ∀ d ∈ G.support,
+        scaledContactExponentWeight (0 : Fin 4) scale bump d =
+          ((scale * m : ℕ) : ℤ) := by
+    simpa [facetOmittedCoordinate] using hsupports.2.2
+  have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
+    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
+  have hnear :=
+    D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
+  let R : CrossFacetFarBoundaryData (a := a) (b := b) D :=
+    D.farBoundaryData
+      ha hb hcop hscale hGBal hcontact hzero hnonlinear
+  have houtcome : CrossFacetFarRankThreeOrKernelOutcome D R :=
+    R.rankThree_or_kernel
+      ha hb hcop hscale D hGBal hcontact hzero hnear
+  exact ⟨scale, bump, G, D, R, hG, hscale, hbump,
+    hzero, hGBal, hnonlinear, houtcome⟩
+
 
 end
 
