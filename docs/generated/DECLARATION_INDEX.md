@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9966**.
+Distinct declaration spellings indexed: **9968**.
 
 ## Repeated declaration spellings
 
@@ -1490,7 +1490,9 @@ Distinct declaration spellings indexed: **9966**.
 - `CrossFacetFarBoundaryData.nearFarRayPairing` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.rankThree_or_adjacentFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.rankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarBoundaryData.terminalRankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarRankThreeOrKernelOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarTerminalRankThreeOrKernelOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `CrossFacetInitialData` — `structure` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `CrossFacetInitialData.auxiliary_cross_le` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetRay`
