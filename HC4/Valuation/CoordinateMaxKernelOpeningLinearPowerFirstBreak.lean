@@ -1,0 +1,151 @@
+import HC4.Valuation.CoordinateMaxKernelOpeningPureAxisHessian
+import HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier
+import HC4.Valuation.RankOneSpecialFiberFirstBreak
+import Mathlib.Tactic
+
+/-!
+# Rank-two first break from the pure-axis linear-power opening
+
+The degenerate coordinate-max child is now known to be a pure extraction-axis
+power.  Its Hessian therefore has a nonzero diagonal entry on that axis.  The
+stored kernel coordinate is distinct from the extraction coordinate.
+
+Move the kernel coordinate to slot `3` in the honest reverse-Rees Hessian.  The
+extraction axis lands in one of active slots `0,1,2`, so one of the active
+special-fibre diagonal coefficients `a_0,d_0,x_0` is nonzero.  The generic
+rank-one-special-fibre first-break theorem then gives concrete rank-two
+geometry at the first actual opening of the kernel row:
+
+* either a principal `2 x 2` minor of the full polynomial Hessian series has a
+  nonzero coefficient at that order; or
+* the coefficient Hessian matrix of the breaking layer has a nonzero
+  principal `2 x 2` minor.
+
+No determinant defect or blocker clock is used.
+-/
+
+namespace HC4.Newton
+
+noncomputable section
+
+open HC4.Polynomial
+open HC4.Valuation
+open scoped Matrix
+
+variable {K : Type*} [Field K] [CharZero K]
+
+namespace CanonicalCoordinateMaxKernelOpeningData
+
+variable {F : MvPolynomial (Fin 4) K}
+variable (D : CanonicalCoordinateMaxKernelOpeningData F)
+
+namespace ChildLinearPowerData
+
+variable {m : ℕ}
+variable (P : D.ChildLinearPowerData m)
+
+/-- After moving the actual kernel coordinate to slot `3`, the pure extraction
+axis supplies a nonzero constant coefficient on one of the three active
+Hessian diagonals. -/
+theorem kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+    (P : D.ChildLinearPowerData m)
+    (hm : 3 ≤ m) :
+    let B := kernelLastFamilyHessianFourBlock
+      D.reverseReesFamily D.kernelCoordinate
+    B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
+  let rho := kernelLastPerm D.kernelCoordinate
+  let B := kernelLastFamilyHessianFourBlock
+    D.reverseReesFamily D.kernelCoordinate
+  let j : Fin 4 := rho.symm D.extractionCoordinate
+
+  have hrhoj : rho j = D.extractionCoordinate := by
+    simp [j]
+  have hne : D.extractionCoordinate ≠ D.kernelCoordinate :=
+    ChildLinearPowerData.extractionCoordinate_ne_kernelCoordinate
+      (D := D) P (by omega)
+  have hjne : j ≠ (3 : Fin 4) := by
+    intro hj
+    have h := hrhoj
+    rw [hj, kernelLastPerm_last] at h
+    exact hne h.symm
+
+  have hentry :
+      (parameterFirstHessian D.reverseReesFamily
+        D.extractionCoordinate D.extractionCoordinate).coeff 0 ≠ 0 := by
+    rw [parameterFirstHessian_coeff]
+    rw [D.reverseReesFamily_layer_zero_eq_child]
+    exact ChildLinearPowerData.extraction_hessian_ne_zero (D := D) P hm
+
+  have hentry' :
+      (parameterFirstHessian D.reverseReesFamily
+        (rho j) (rho j)).coeff 0 ≠ 0 := by
+    simpa [hrhoj] using hentry
+
+  dsimp [B]
+  by_cases hj0 : j = (0 : Fin 4)
+  · have hentry0 := hentry'
+    rw [hj0] at hentry0
+    exact Or.inl hentry0
+  by_cases hj1 : j = (1 : Fin 4)
+  · have hentry1 := hentry'
+    rw [hj1] at hentry1
+    exact Or.inr (Or.inl hentry1)
+  by_cases hj2 : j = (2 : Fin 4)
+  · have hentry2 := hentry'
+    rw [hj2] at hentry2
+    exact Or.inr (Or.inr hentry2)
+  · have hj0v : j.val ≠ 0 := by
+      intro hv
+      apply hj0
+      apply Fin.ext
+      simpa using hv
+    have hj1v : j.val ≠ 1 := by
+      intro hv
+      apply hj1
+      apply Fin.ext
+      simpa using hv
+    have hj2v : j.val ≠ 2 := by
+      intro hv
+      apply hj2
+      apply Fin.ext
+      simpa using hv
+    have hj3v : j.val = 3 := by
+      have hjlt : j.val < 4 := j.isLt
+      omega
+    have hj3 : j = (3 : Fin 4) := by
+      apply Fin.ext
+      simpa using hj3v
+    exact (hjne hj3).elim
+
+/-- **Linear-power first-opening closure.**  The exact source-honest Rees
+family attached to a pure-axis linear-power child necessarily produces
+concrete rank-two geometry at its first actual kernel-row opening. -/
+noncomputable def firstBreakRankTwoOutcome
+    (P : D.ChildLinearPowerData m)
+    (hm : 3 ≤ m)
+    (hnonlinear : ∀ d ∈ F.support, 3 ≤ ordinaryDegree4 d) :
+    let B := kernelLastFamilyHessianFourBlock
+      D.reverseReesFamily D.kernelCoordinate
+    let hrow := D.kernelLastBlock_kernelRow_ne_zero hnonlinear
+    let j := firstFourBlockKernelRowBreakOrder B hrow
+    RankOneSpecialFiberFirstBreakOutcome B j := by
+  let B := kernelLastFamilyHessianFourBlock
+    D.reverseReesFamily D.kernelCoordinate
+  let hrow := D.kernelLastBlock_kernelRow_ne_zero hnonlinear
+  have hzero := D.kernelLastBlock_kernelRow_coeff_zero
+  have hactive :
+      B.a.coeff 0 ≠ 0 ∨ B.d.coeff 0 ≠ 0 ∨ B.x.coeff 0 ≠ 0 := by
+    dsimp [B]
+    exact
+      ChildLinearPowerData.kernelLastBlock_activeDiagonal_coeff_zero_ne_zero
+        (D := D) P hm
+  exact rankOneSpecialFiber_firstKernelRowBreak_rankTwo
+    B hrow hzero.1 hzero.2.1 hzero.2.2.1 hzero.2.2.2 hactive
+
+end ChildLinearPowerData
+
+end CanonicalCoordinateMaxKernelOpeningData
+
+end
+
+end HC4.Newton

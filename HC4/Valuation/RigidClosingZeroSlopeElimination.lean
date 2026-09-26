@@ -55,7 +55,8 @@ theorem kernelInflateHom_hasIntegralKernelCoefficientDivisibility
       (kernelInflateHom (K := K) kernel slope Q) := by
   intro d hd
   refine ⟨MvPolynomial.coeff d Q, ?_⟩
-  exact coeff_kernelInflateHom kernel slope Q d
+  simpa [kernelCoefficientTauPower, pow_mul, mul_comm] using
+    (coeff_kernelInflateHom (K := K) kernel slope Q d)
 
 /-- The generator identity behind translation/inflation commutation. -/
 theorem polynomialFamilyTranslationHom_kernelInflateHom_X

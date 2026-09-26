@@ -1,0 +1,342 @@
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint
+import Mathlib.Tactic
+
+/-!
+# E2: collapse the relative three-Schur tail to source rank-three geometry
+
+The C/D source frontier has one residual family indexed by the exact relative
+order of the later kernel opening.  Almost all of that family is already
+literal represented-source geometry:
+
+* every positive-relative represented-Schur branch is an evaluated nonzero
+  source 3x3 Hessian minor;
+* the positive-relative rank-one endpoint still retains the same represented
+  source Schur witness, hence the same 3x3 minor;
+* in the zero-relative branch, a represented Schur witness gives the same
+  source-point geometry;
+* a zero-relative actual-rank-two chart becomes an exact-active chart, and at
+  the literal zero-defect represented state the generic zero-Schur alternative
+  is impossible, leaving a nonzero constant 3x3 minor.
+
+Consequently only one algebraic residual remains: zero-relative determinant
+closure of the first normalised 3x3 Schur tail.  This file isolates that
+constructor exactly; no terminal conclusion is added.
+-/
+
+namespace HC4.Valuation
+
+noncomputable section
+
+open HC4.Newton
+open HC4.Polynomial
+
+universe u
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
+
+namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+namespace TopFaceLinearPowerKernelData
+
+variable {state : ScaleAwareAdaptiveGeometricRestartState (K := K)}
+variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+  (K := K) state}
+variable {kernelCoordinate : Fin 4}
+
+/-- Source-facing form of the complete relative-tail analysis. -/
+inductive TopKernelThreeSchurRelativeSourceRankThreeFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+  | zeroRelativeDeterminantClosing
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_eq_zero : tail.relativeOrder = 0)
+      (constantKernelOpening :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix
+          tail.physical.index 2 ≠ 0)
+      (residual_eq_zero :
+        S.toExactZeroThreeSchurClock.residualDefect = 0)
+      (det_ne_zero :
+        S.toExactZeroThreeSchurClock.tailConstantMatrix.det ≠ 0)
+
+/-- A positive-tail rank-one endpoint still contains the represented-source
+Schur witness from which it was obtained, so it too gives an evaluated source
+3x3 Hessian minor. -/
+theorem PositiveTailRankOneSourcePointGeometricEndpoint.exists_sourceThreeByThree
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    {R : P.PositiveTailExplicitRankOneClockData B}
+    (G : P.PositiveTailRankOneSourcePointGeometricEndpoint R) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry := by
+  cases G with
+  | preterminal E =>
+      rcases E.sourceGeometry.exists_sourcePointWitness with ⟨W⟩
+      exact ⟨W.toThreeByThreePointGeometry⟩
+  | exactClosing E =>
+      rcases E.sourceGeometry.exists_sourcePointWitness with ⟨W⟩
+      exact ⟨W.toThreeByThreePointGeometry⟩
+
+/-- Every positive-relative geometric endpoint has literal represented-source
+3x3 Hessian-minor geometry. -/
+theorem TopKernelThreeSchurPositiveTailGeometricFrontier.exists_sourceThreeByThree
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    (G : P.TopKernelThreeSchurPositiveTailGeometricFrontier S) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry := by
+  cases G with
+  | representedThreeByThree H =>
+      exact ⟨H⟩
+  | rankOneSourcePoint _binary _rankOne H =>
+      exact H.exists_sourceThreeByThree
+
+/-- **Relative-tail source reduction.**
+
+All positive-relative branches and two of the three zero-relative branches
+already reach honest represented-source rank-three Hessian geometry.  The
+single remaining constructor is the exact zero-relative determinant-closing
+tail. -/
+theorem TopKernelThreeSchurRelativeGeometricFrontier.toSourceRankThreeFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (G : P.TopKernelThreeSchurRelativeGeometricFrontier S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeSourceRankThreeFrontier S M) := by
+  cases G with
+  | positiveRelative _tail _hpos H =>
+      rcases H.exists_sourceThreeByThree with ⟨Q⟩
+      exact ⟨.sourcePointThreeByThree Q⟩
+  | zeroRelative _tail _hz H =>
+      cases H with
+      | determinantClosing tail hz hopen hres hdet =>
+          exact ⟨.zeroRelativeDeterminantClosing
+            tail hz hopen hres hdet⟩
+      | representedSchur _tail _hz _hopen source =>
+          rcases source.exists_threeByThreePointGeometry with ⟨Q⟩
+          exact ⟨.sourcePointThreeByThree Q⟩
+      | actualRankTwo _tail _hz _hopen A =>
+          let C :
+              AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+                T.terminal.blocker.presented :=
+            AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect A
+          rcases P.exactActive_threeByThree_of_presentedZero C with ⟨Q⟩
+          exact ⟨.sourceConstantThreeByThree C Q⟩
+
+
+/-- A nonzero constant tail entry in the zero-relative closing branch lifts
+back through the common first three-Schur factor to an honest represented-
+source Hessian minor, hence to an exact-active source chart. -/
+theorem zeroRelativeClosing_exactActiveFourBlock
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+    (tail : ThreeSchurTangentTailKernelOpeningData S M)
+    (hopen :
+      S.toExactZeroThreeSchurClock.tailConstantMatrix
+        tail.physical.index 2 ≠ 0) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+        T.terminal.blocker.presented) := by
+  let E := S.toExactZeroThreeSchurClock
+  have htail :
+      (E.zeroSeries.tailMatrix E.hasPositiveEntryLayer
+        tail.physical.index 2).coeff 0 ≠ 0 := by
+    simpa [E, ExactZeroThreeSchurClock.tailConstantMatrix] using hopen
+  have hraw :
+      (E.zeroSeries.matrix tail.physical.index 2).coeff
+        S.firstThreeSchurOrder ≠ 0 := by
+    have ht := E.zeroSeries.entry_coeff_first_add_eq_tail
+      E.hasPositiveEntryLayer tail.physical.index 2 0
+    have hfirst :
+        E.zeroSeries.firstPositiveEntryOrder E.hasPositiveEntryLayer =
+          S.firstThreeSchurOrder := by
+      rfl
+    rw [hfirst] at ht
+    simp only [Nat.add_zero] at ht
+    rw [ht]
+    exact htail
+  rcases P.sourceTwoByTwoMinor_of_threeSchurEntry_coeff_ne_zero
+      S tail.physical.index 2 S.firstThreeSchurOrder
+      (by simpa [E] using hraw) with
+    ⟨a, b, c, d, hm⟩
+  apply exactActiveFourBlock_of_specialFiber_twoByTwoMinor_ne_zero
+    T.terminal.blocker.presented a b c d
+  simpa [topKernelReesSource] using hm
+
+/-- **Relative tail fully closed at the represented source.**
+
+After source-lifting the former zero-relative determinant-closing case, every
+relative branch carries literal represented-source rank-three Hessian
+geometry: either a nonzero evaluated 3x3 minor or a nonzero constant 3x3
+minor on an exact-active source chart.  No relative-order residual remains. -/
+theorem TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (G : P.TopKernelThreeSchurRelativeGeometricFrontier S M) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry ∨
+      ∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  rcases G.toSourceRankThreeFrontier with ⟨R⟩
+  cases R with
+  | sourcePointThreeByThree Q =>
+      exact Or.inl ⟨Q⟩
+  | sourceConstantThreeByThree A Q =>
+      exact Or.inr ⟨A, ⟨Q⟩⟩
+  | zeroRelativeDeterminantClosing tail _hz hopen _hres _hdet =>
+      rcases P.zeroRelativeClosing_exactActiveFourBlock S M tail hopen with ⟨A⟩
+      exact Or.inr ⟨A, P.exactActive_threeByThree_of_presentedZero A⟩
+
+/-- The entire source-honest C/D frontier now has the same two rank-three
+source outputs; the former relative constructor introduces no additional
+endpoint type. -/
+theorem TopKernelLinearPowerCDSourceFrontier.sourceRankThreeGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (C : P.TopKernelLinearPowerCDSourceFrontier) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry ∨
+      ∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  cases C with
+  | exactActive A =>
+      exact Or.inr ⟨A, P.exactActive_threeByThree_of_presentedZero A⟩
+  | relative M S _tangent G =>
+      exact G.sourceRankThreeGeometry
+
+/-- **Stronger E3 collapse.**
+
+Every marked-axis constructor in the combined E2 frontier retains the same
+independent source-honest C/D packet.  Since that packet is now completely
+source-rank-three, the marked-axis distinction can be forgotten altogether:
+every linear-power top-kernel branch carries represented-source rank-three
+Hessian geometry. -/
+theorem TopKernelLinearPowerE2Frontier.sourceRankThreeGeometry
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.PositiveTailRepresentedSourceThreeByThreePointGeometry ∨
+      ∃ A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented,
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A) := by
+  cases E with
+  | pureLongitudinal _b _hb _hface _hk cd =>
+      exact cd.sourceRankThreeGeometry
+  | fullFacetCodimensionTwo _hfacet _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+  | fullFacetActualRankTwo _hfacet _geometry cd =>
+      exact cd.sourceRankThreeGeometry
+  | crossFacetNear _data _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+  | crossFacetFar _data _boundary cd =>
+      exact cd.sourceRankThreeGeometry
+
+/-- **Minimal E3 rank-three frontier.**
+
+The stronger source-rank-three collapse above shows that the marked-axis
+support labels are no longer live endpoint alternatives: every E2 branch
+already reaches one of exactly two represented-source Hessian events. -/
+inductive TopKernelLinearPowerE3RankThreeFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+
+/-- Every combined E2 branch lands in the two-constructor E3 rank-three
+frontier.  This is the preferred assembly interface downstream: pure
+longitudinal and codimension-two are classification provenance, not residual
+terminal cases. -/
+theorem TopKernelLinearPowerE2Frontier.toE3RankThreeFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.TopKernelLinearPowerE3RankThreeFrontier := by
+  rcases E.sourceRankThreeGeometry with hpoint | hconstant
+  · rcases hpoint with ⟨Q⟩
+    exact ⟨.sourcePointThreeByThree Q⟩
+  · rcases hconstant with ⟨A, hQ⟩
+    rcases hQ with ⟨Q⟩
+    exact ⟨.sourceConstantThreeByThree A Q⟩
+
+/-- **E3 source-honest compression of one linear-power packet.**
+
+After consuming the C/D analysis, every combined E2 branch is reduced to one
+of four genuinely source-facing objects: the exact pure longitudinal top
+power, a literal codimension-two boundary exponent, an evaluated nonzero
+source 3x3 Hessian minor, or a constant nonzero source 3x3 Hessian minor.
+All Schur-clock and relative-order bookkeeping has disappeared. -/
+inductive TopKernelLinearPowerE3SourceFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | pureLongitudinal
+      (coefficient : K)
+      (coefficient_ne_zero : coefficient ≠ 0)
+      (topFace_eq :
+        T.topFace.face =
+          MvPolynomial.C coefficient *
+            (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
+      (kernel_ne_zero : kernelCoordinate ≠ (0 : Fin 4))
+  | codimensionTwo
+      (exponent : Fin 4 →₀ ℕ)
+      (boundary : MvExponentOnCodimensionTwoBoundary exponent)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+
+/-- Every combined E2 linear-power branch reaches the four-way E3 source
+frontier above. -/
+theorem TopKernelLinearPowerE2Frontier.toE3SourceFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.TopKernelLinearPowerE3SourceFrontier := by
+  have emitCD
+      (C : P.TopKernelLinearPowerCDSourceFrontier) :
+      Nonempty P.TopKernelLinearPowerE3SourceFrontier := by
+    rcases C.sourceRankThreeGeometry with hpoint | hconstant
+    · rcases hpoint with ⟨Q⟩
+      exact ⟨.sourcePointThreeByThree Q⟩
+    · rcases hconstant with ⟨A, hQ⟩
+      rcases hQ with ⟨Q⟩
+      exact ⟨.sourceConstantThreeByThree A Q⟩
+  cases E with
+  | pureLongitudinal b hb hface hk _cd =>
+      exact ⟨.pureLongitudinal b hb hface hk⟩
+  | fullFacetCodimensionTwo _hfacet boundary _cd =>
+      exact ⟨.codimensionTwo _ boundary⟩
+  | fullFacetActualRankTwo _hfacet A _cd =>
+      let C :
+          AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+            T.terminal.blocker.presented :=
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect A
+      rcases P.exactActive_threeByThree_of_presentedZero C with ⟨Q⟩
+      exact ⟨.sourceConstantThreeByThree C Q⟩
+  | crossFacetNear data boundary _cd =>
+      exact ⟨.codimensionTwo
+        (P.markedAxisCrossFacetNormalizedRay data).facetExponent boundary⟩
+  | crossFacetFar data boundary _cd =>
+      exact ⟨.codimensionTwo
+        (P.markedAxisCrossFacetFarExponent data) boundary⟩
+
+end TopFaceLinearPowerKernelData
+end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+
+end
+
+end HC4.Valuation
