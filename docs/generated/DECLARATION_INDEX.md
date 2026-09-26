@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9994**.
+Distinct declaration spellings indexed: **9995**.
 
 ## Repeated declaration spellings
 
@@ -5169,6 +5169,7 @@ Distinct declaration spellings indexed: **9994**.
 - `exists_exposed_singular_nonlinear_boundary_vertex` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `exists_finalResolution_of_e3ConstantExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_e3Extractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `exists_finalResolution_of_e3MarkedAwareConstantExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_e3TerminalAwareConstantExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_e3TerminalAwareExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_firstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
