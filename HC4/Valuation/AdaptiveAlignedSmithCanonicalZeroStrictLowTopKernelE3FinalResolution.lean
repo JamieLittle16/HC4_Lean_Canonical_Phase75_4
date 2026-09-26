@@ -187,6 +187,42 @@ noncomputable def topKernelLinearPowerE3MarkedAwareFrontier
     P.TopKernelLinearPowerE3MarkedAwareFrontier :=
   Classical.choice P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty
 
+/-- **Marked-aware single-obligation E3 assembly.**
+
+Even after retaining the pure-longitudinal balance-free first-contact branch,
+the literal codimension-two source-square branch, and the timing-rich exact
+closing, raw defect zero still supplies the same canonical exact-active source
+chart independently of which marked-aware constructor was reached.  Therefore,
+if one is willing to forget the extra timing, the entire marked-aware frontier
+has exactly the same single unresolved polynomial-level obligation as the older
+source-rank-three compression: resolve one nonzero constant 3x3 source minor. -/
+theorem exists_finalResolution_of_e3MarkedAwareConstantExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3ConstantFinalResolutionExtractor) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+  have hcanonical :
+      Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+    rcases
+        T.terminal.blocker.presented.zeroDefect_exactActiveFourBlock
+          T.presented_zero with
+      ⟨A⟩
+    rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+    exact X.sourceConstant A Q
+  rcases P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty with ⟨G⟩
+  cases G with
+  | pureFirstContact _data =>
+      exact hcanonical
+  | pureCodimensionTwoSource _d _hd _hdeg _hboundary =>
+      exact hcanonical
+  | sourcePointThreeByThree _Q =>
+      exact hcanonical
+  | sourceConstantThreeByThree A Q =>
+      exact X.sourceConstant A Q
+  | exactClosing _layer _clock _tangent _tail _hpos _binary _rankOne _geometry =>
+      exact hcanonical
+
 /-- **Timing-preserving E3 final-resolution extractor.**
 
 The source-point and source-constant branches are retained exactly as in the
