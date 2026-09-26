@@ -97,18 +97,6 @@ theorem TopKernelThreeSchurRelativeGeometricFrontier.toTimingFrontier
       rcases G.toTimingFrontier with ⟨H⟩
       exact ⟨.positiveRelative tail hpos H⟩
 
-/-- Every tangent first-break packet reaches the timing-preserving relative
-frontier.  This is the preferred input for terminal associated-graded
-extraction. -/
-theorem ThreeSchurTangentAtFirstBreak.relativeTimingFrontier
-    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    {S : P.TopKernelThreeSchurClockData}
-    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (R : ThreeSchurTangentAtFirstBreak S M) :
-    Nonempty (P.TopKernelThreeSchurRelativeTimingFrontier S M) := by
-  rcases R.relativeGeometricFrontier with ⟨F⟩
-  exact F.toTimingFrontier
-
 /-- **Unified top-kernel geometric endpoint.**
 
 Every tangent first-break packet reaches one source-honest geometric frontier,
@@ -121,6 +109,20 @@ theorem ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier
     Nonempty (P.TopKernelThreeSchurRelativeGeometricFrontier S M) := by
   rcases R.relativeTailFrontier with ⟨F⟩
   exact F.toGeometricFrontier
+
+/-- Every tangent first-break packet reaches the timing-preserving relative
+frontier.  This is the preferred input for terminal associated-graded
+extraction. -/
+theorem ThreeSchurTangentAtFirstBreak.relativeTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeTimingFrontier S M) := by
+  rcases R.relativeGeometricFrontier with ⟨F⟩
+  exact F.toTimingFrontier
+
+
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
