@@ -719,11 +719,12 @@ theorem CrossFacetInitialData.sToR_support_equations
         (a : ℤ) * (d 0 : ℤ) + (b : ℤ) * (d 1 : ℤ) =
           (b : ℤ) * (d 2 : ℤ) + (a : ℤ) * (d 3 : ℤ) := by
       exact_mod_cast hBalD
-    linear_combination hBalDZ - h20Z
+    linear_combination hBalDZ + h20Z
   have hlineZ :
       (b : ℤ) * (m : ℤ) * (d 1 : ℤ) +
           (a : ℤ) * (n : ℤ) * (d 0 : ℤ) =
         (a : ℤ) * (b : ℤ) * (m : ℤ) * (n : ℤ) := by
+    push_cast at h1
     linear_combination h1
   refine ⟨?_, ?_, ?_⟩
   · exact_mod_cast h20Z
