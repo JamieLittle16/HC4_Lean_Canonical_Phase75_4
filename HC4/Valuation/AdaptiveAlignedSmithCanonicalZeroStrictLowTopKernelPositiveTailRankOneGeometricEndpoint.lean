@@ -236,6 +236,51 @@ structure PositiveTailRankOneClosingSourcePointGeometry
   wholeOpening :
     P.PositiveTailRankOneWholeFamilyFirstTransverseOpening R
 
+/-- The oriented rank-one clock retains exactly the residual determinant
+defect of the binary zero-Schur clock from which it was constructed. -/
+theorem PositiveTailExplicitRankOneClockData.exactRankOneClock_defect
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    (R : P.PositiveTailExplicitRankOneClockData B) :
+    R.exactRankOneClock.defect = B.exactClock.residualDefect := by
+  cases R with
+  | left hres pivot clock clock_eq =>
+      subst clock
+      rfl
+  | right hres pivot clock clock_eq =>
+      subst clock
+      rfl
+
+/-- An exact-closing source-point packet exposes an honest whole-family
+polynomial whose first nonzero parameter coefficient occurs exactly at the
+physical base order plus the remaining determinant defect.  This is the
+timing statement needed by the eventual associated-graded terminal adapter. -/
+theorem PositiveTailRankOneClosingSourcePointGeometry.exists_wholeFirstOpening_at_closingOrder
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {B : P.PositiveTailExplicitBinaryClockData S}
+    {R : P.PositiveTailExplicitRankOneClockData B}
+    (E : P.PositiveTailRankOneClosingSourcePointGeometry R) :
+    ∃ whole : Polynomial (MvPolynomial (Fin 4) K),
+      ∃ order : ℕ,
+        order =
+            B.rankOnePhysicalBaseOrder +
+              B.exactClock.residualDefect ∧
+        (∀ n : ℕ, n < order → whole.coeff n = 0) ∧
+        whole.coeff order ≠ 0 := by
+  have hdef :
+      R.exactRankOneClock.defect =
+        B.exactClock.residualDefect :=
+    R.exactRankOneClock_defect
+  cases E.wholeOpening with
+  | offDiag D whole order horder hzero hopen =>
+      refine ⟨whole, order, ?_, hzero, hopen⟩
+      rw [horder, E.firstOrder_eq, hdef]
+  | kernel D whole order horder hzero hopen =>
+      refine ⟨whole, order, ?_, hzero, hopen⟩
+      rw [horder, E.firstOrder_eq, hdef]
+
 /-- Geometric endpoint of the exact positive-tail rank-one timing split. -/
 inductive PositiveTailRankOneSourcePointGeometricEndpoint
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
