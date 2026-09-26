@@ -505,7 +505,9 @@ theorem CrossFacetInitialData.qToP_support_equations
     ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
   have h3 := D.support_far_affine_proportional
     ha hb hcontactScale hBal hcontact R d hd (3 : Fin 4)
-  rw [near1, near2, near3, far0, far1, far2, far3] at h1 h2 h3
+  rw [near1, far0, far1] at h1
+  rw [near2, far0, far2] at h2
+  rw [near3, far0, far3] at h3
   have hmZ : (m : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hm)
   have h03Z : (d 0 : ℤ) = (d 3 : ℤ) := by
@@ -695,7 +697,8 @@ theorem CrossFacetInitialData.sToR_support_equations
     ha hb hcontactScale hBal hcontact R d hd (1 : Fin 4)
   have h2 := D.support_far_affine_proportional
     ha hb hcontactScale hBal hcontact R d hd (2 : Fin 4)
-  rw [near1, near2, far0, far1, far2] at h1 h2
+  rw [near1, far0, far1] at h1
+  rw [near2, far0, far2] at h2
   have hmZ : (m : ℤ) ≠ 0 := by
     exact_mod_cast (Nat.ne_of_gt hm)
   have hbZ : (b : ℤ) ≠ 0 := by
