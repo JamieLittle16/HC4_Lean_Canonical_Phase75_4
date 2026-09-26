@@ -208,8 +208,8 @@ theorem TopKernelThreeSchurRelativeTimingFrontier.toTerminalAwareFrontier
   cases F with
   | zeroRelative tail hz G =>
       cases G with
-      | determinantClosing _tail _hz hopen _hres _hdet =>
-          rcases P.zeroRelativeClosing_exactActiveFourBlock S M tail hopen with ⟨A⟩
+      | determinantClosing innerTail _hz hopen _hres _hdet =>
+          rcases P.zeroRelativeClosing_exactActiveFourBlock S M innerTail hopen with ⟨A⟩
           rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
           exact ⟨.sourceConstantThreeByThree A Q⟩
       | representedSchur _tail _hz _hopen source =>
