@@ -43,7 +43,13 @@ structure CrossFacetFarRankThreeAffineSupportData
     (D : CrossFacetInitialData G
       (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
     (R : CrossFacetFarBoundaryData (a := a) (b := b) D) where
+  farFacet : ToricFacet
+  rankThree : MvRankThreeOnFacet farFacet R.exponent
   rho : Equiv.Perm (Fin 4)
+  rho_eq :
+    rho = Equiv.swap (0 : Fin 4) (facetOmittedCoordinate farFacet)
+  nearOmitted_pos :
+    0 < D.facetExponent (facetOmittedCoordinate farFacet)
   A : ℕ
   B : ℕ
   C : ℕ
@@ -227,7 +233,11 @@ theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
   }
 
   exact ⟨{
+    farFacet := F
+    rankThree := hthree
     rho := rho
+    rho_eq := rfl
+    nearOmitted_pos := hnear_pos
     A := A
     B := B
     C := C
@@ -268,6 +278,101 @@ variable {G : MvPolynomial (Fin 4) K}
 variable {D : CrossFacetInitialData G
   (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4)}
 variable {R : CrossFacetFarBoundaryData (a := a) (b := b) D}
+
+/-- Canonical codimension-two ray shape after moving the far facet's omitted
+coordinate into slot zero.  Exactly one transverse coordinate remains positive. -/
+def HasPositiveTwoZeroTransverseTop (e : Fin 4 →₀ ℕ) : Prop :=
+  (0 < e (1 : Fin 4) ∧ e (2 : Fin 4) = 0 ∧ e (3 : Fin 4) = 0) ∨
+    (e (1 : Fin 4) = 0 ∧ 0 < e (2 : Fin 4) ∧ e (3 : Fin 4) = 0) ∨
+    (e (1 : Fin 4) = 0 ∧ e (2 : Fin 4) = 0 ∧ 0 < e (3 : Fin 4))
+
+/-- The original positive q/s near ray becomes one of the three canonical
+two-zero transverse top shapes in the affine terminal coordinates. -/
+theorem nearExtreme_topShape
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    HasPositiveTwoZeroTransverseTop
+      (Finsupp.mapDomain P.rho D.facetExponent) := by
+  rw [P.rho_eq]
+  cases hF : P.farFacet with
+  | pr =>
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
+        exact Or.inr (Or.inl ⟨by
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            h0, h1, h2, h3] using hn, by
+          simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3],
+          by simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]⟩)
+      · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
+        right
+        right
+        refine ⟨?_, ?_, ?_⟩
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+          exact Nat.mul_pos (by
+            have hpos := P.nearOmitted_pos
+            rw [hF] at hpos
+            simpa [facetOmittedCoordinate, h1] using hpos) hn
+  | rq =>
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
+        have hpos := P.nearOmitted_pos
+        rw [hF] at hpos
+        simp [facetOmittedCoordinate, h3] at hpos
+      · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
+        left
+        refine ⟨?_, ?_, ?_⟩
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+          exact Nat.mul_pos (by
+            have hpos := P.nearOmitted_pos
+            rw [hF] at hpos
+            simpa [facetOmittedCoordinate, h3] using hpos) hn
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+  | qs =>
+      have hpos := P.nearOmitted_pos
+      rw [hF] at hpos
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
+        simp [facetOmittedCoordinate, h0] at hpos
+      · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
+        simp [facetOmittedCoordinate, h0] at hpos
+  | sp =>
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
+        left
+        refine ⟨?_, ?_, ?_⟩
+        · simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            h0, h1, h2, h3] using hn
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+      · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
+        have hpos := P.nearOmitted_pos
+        rw [hF] at hpos
+        simp [facetOmittedCoordinate, h2] at hpos
 
 /-- The extracted affine coefficient profile has degree exactly the reoriented
 near-end coordinate.  Thus the original near endpoint is the terminal top
