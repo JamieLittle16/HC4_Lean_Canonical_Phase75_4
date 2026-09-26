@@ -102,6 +102,17 @@ theorem TopKernelThreeSchurPositiveTailGeometricFrontier.toTimingFrontier
       | exactClosing E =>
           exact ⟨.rankOneExactClosing binary rankOne E⟩
 
+/-- Assembly-facing positive-relative geometric frontier. -/
+theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
+    (hpos : 0 < D.relativeOrder) :
+    Nonempty (P.TopKernelThreeSchurPositiveTailGeometricFrontier S) := by
+  rcases D.positiveTailSourceHonestFrontier hpos with ⟨F⟩
+  exact F.toGeometricFrontier
+
 /-- Assembly-facing positive-relative timing frontier.  This is the preferred
 interface for the remaining terminal adapter because it does not erase exact
 closing before the associated-graded fibre has been constructed. -/
@@ -114,17 +125,6 @@ theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimingFrontier
     Nonempty (P.TopKernelThreeSchurPositiveTailTimingFrontier S) := by
   rcases D.positiveTailGeometricFrontier hpos with ⟨F⟩
   exact F.toTimingFrontier
-
-/-- Assembly-facing positive-relative geometric frontier. -/
-theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier
-    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
-    {S : P.TopKernelThreeSchurClockData}
-    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
-    (D : ThreeSchurTangentTailKernelOpeningData S M)
-    (hpos : 0 < D.relativeOrder) :
-    Nonempty (P.TopKernelThreeSchurPositiveTailGeometricFrontier S) := by
-  rcases D.positiveTailSourceHonestFrontier hpos with ⟨F⟩
-  exact F.toGeometricFrontier
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
