@@ -1161,6 +1161,122 @@ theorem CrossFacetFarBoundaryData.rankThree_or_kernel
     have hfacet := hsp d hmem
     simpa [OnFacet, toToricExponent] using hfacet
 
+/-- Refined far-end split used by the terminal rank-three adapter.
+
+A far rank-three point is retained as a genuine rank-three terminal candidate
+only when the near endpoint is positive in the far facet's omitted coordinate.
+If both ends vanish in that coordinate, the whole exact child face has a
+literal coordinate kernel instead.  The `.qs` far-rank-three case is
+impossible because the far endpoint has positive contact coordinate zero. -/
+inductive CrossFacetFarTerminalRankThreeOrKernelOutcome
+    {a b : ℕ}
+    {G : MvPolynomial (Fin 4) K}
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D) : Prop
+  | rankThree
+      (F : ToricFacet)
+      (geometry : MvRankThreeOnFacet F R.exponent)
+      (nearOmitted_pos :
+        0 < D.facetExponent (facetOmittedCoordinate F))
+  | kernel
+      (kernelCoordinate : Fin 4)
+      (kernel_eq_zero :
+        MvPolynomial.pderiv kernelCoordinate D.face = 0)
+
+/-- Every far endpoint is either a genuinely transverse rank-three endpoint,
+or the exact child face has already acquired a coordinate kernel. -/
+theorem CrossFacetFarBoundaryData.terminalRankThree_or_kernel
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    CrossFacetFarTerminalRankThreeOrKernelOutcome D R := by
+  rcases R.rankThree_or_adjacentFacet
+      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+    hthree | hrq | hsp
+  · rcases hthree with ⟨F, hF⟩
+    cases F with
+    | pr =>
+        rcases hnear with hq | hs
+        · rcases hq with ⟨n, hn, _h0, h1, _h2, _h3⟩
+          refine .rankThree .pr hF ?_
+          simp [facetOmittedCoordinate, h1, hn]
+        · rcases hs with ⟨n, hn, _h0, h1, _h2, _h3⟩
+          refine .rankThree .pr hF ?_
+          rw [facetOmittedCoordinate, h1]
+          exact Nat.mul_pos ha hn
+    | rq =>
+        have hfar3 : R.exponent (3 : Fin 4) = 0 :=
+          ((mvRankThreeOnFacet_iff .rq R.exponent).1 hF).1
+        rcases hnear with hq | hs
+        · rcases hq with ⟨n, hn, _h0, _h1, _h2, h3⟩
+          refine .kernel (3 : Fin 4) ?_
+          apply pderiv_eq_zero_of_all_supported_exponents_zero
+          intro d hd
+          have hmem : d ∈ D.face.support :=
+            MvPolynomial.mem_support_iff.mpr hd
+          exact D.face_support_coordinate_zero_of_far_zero
+            ha hb hcontactScale hBal hcontact R (3 : Fin 4)
+            h3 hfar3 d hmem
+        · rcases hs with ⟨n, hn, _h0, _h1, _h2, h3⟩
+          refine .rankThree .rq hF ?_
+          rw [facetOmittedCoordinate, h3]
+          exact Nat.mul_pos hb hn
+    | qs =>
+        have hfar0 : R.exponent (0 : Fin 4) = 0 :=
+          ((mvRankThreeOnFacet_iff .qs R.exponent).1 hF).1
+        exact (Nat.ne_of_gt R.contact_pos hfar0).elim
+    | sp =>
+        have hfar2 : R.exponent (2 : Fin 4) = 0 :=
+          ((mvRankThreeOnFacet_iff .sp R.exponent).1 hF).1
+        rcases hnear with hq | hs
+        · rcases hq with ⟨n, hn, _h0, _h1, h2, _h3⟩
+          refine .rankThree .sp hF ?_
+          simpa [facetOmittedCoordinate, h2] using hn
+        · rcases hs with ⟨n, hn, _h0, _h1, h2, _h3⟩
+          refine .kernel (2 : Fin 4) ?_
+          apply pderiv_eq_zero_of_all_supported_exponents_zero
+          intro d hd
+          have hmem : d ∈ D.face.support :=
+            MvPolynomial.mem_support_iff.mpr hd
+          exact D.face_support_coordinate_zero_of_far_zero
+            ha hb hcontactScale hBal hcontact R (2 : Fin 4)
+            h2 hfar2 d hmem
+  · refine .kernel (3 : Fin 4) ?_
+    apply pderiv_eq_zero_of_all_supported_exponents_zero
+    intro d hd
+    have hmem : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hd
+    have hfacet := hrq d hmem
+    simpa [OnFacet, toToricExponent] using hfacet
+  · refine .kernel (2 : Fin 4) ?_
+    apply pderiv_eq_zero_of_all_supported_exponents_zero
+    intro d hd
+    have hmem : d ∈ D.face.support :=
+      MvPolynomial.mem_support_iff.mpr hd
+    have hfacet := hsp d hmem
+    simpa [OnFacet, toToricExponent] using hfacet
+
 /-- **Far endpoint extraction for the exact first-contact line.**
 
 The only nontrivial bookkeeping is singleton exposure.  A coordinate-zero
