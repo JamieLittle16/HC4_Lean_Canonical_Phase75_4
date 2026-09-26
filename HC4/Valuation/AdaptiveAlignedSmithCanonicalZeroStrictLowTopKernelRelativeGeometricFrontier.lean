@@ -64,6 +64,51 @@ theorem TopKernelThreeSchurRelativeTailFrontier.toGeometricFrontier
       rcases tail.positiveTailGeometricFrontier hpos with ⟨G⟩
       exact ⟨.positiveRelative tail hpos G⟩
 
+/-- Timing-preserving version of the relative-order frontier.
+
+The zero-relative side is unchanged.  On the positive-relative side we retain
+the exact rank-one preterminal/closing timing split instead of immediately
+forgetting it in favour of represented-source rank-three geometry. -/
+inductive TopKernelThreeSchurRelativeTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1)
+  | zeroRelative
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_eq_zero : tail.relativeOrder = 0)
+      (geometry : P.TopKernelThreeSchurZeroRelativeGeometricFrontier S M)
+  | positiveRelative
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_pos : 0 < tail.relativeOrder)
+      (geometry : P.TopKernelThreeSchurPositiveTailTimingFrontier S)
+
+/-- Upgrade the geometric frontier without erasing exact positive-tail closing
+timing. -/
+theorem TopKernelThreeSchurRelativeGeometricFrontier.toTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (F : P.TopKernelThreeSchurRelativeGeometricFrontier S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeTimingFrontier S M) := by
+  cases F with
+  | zeroRelative tail hz G =>
+      exact ⟨.zeroRelative tail hz G⟩
+  | positiveRelative tail hpos G =>
+      rcases G.toTimingFrontier with ⟨H⟩
+      exact ⟨.positiveRelative tail hpos H⟩
+
+/-- Every tangent first-break packet reaches the timing-preserving relative
+frontier.  This is the preferred input for terminal associated-graded
+extraction. -/
+theorem ThreeSchurTangentAtFirstBreak.relativeTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeTimingFrontier S M) := by
+  rcases R.relativeGeometricFrontier with ⟨F⟩
+  exact F.toTimingFrontier
+
 /-- **Unified top-kernel geometric endpoint.**
 
 Every tangent first-break packet reaches one source-honest geometric frontier,
