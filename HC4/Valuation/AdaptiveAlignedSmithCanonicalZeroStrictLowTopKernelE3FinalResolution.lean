@@ -53,6 +53,56 @@ structure TopKernelLinearPowerE3FinalResolutionExtractor
         Nonempty
           (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
 
+/-- **Single-obligation E3 extractor.**
+
+At the actual zero-strict-low represented state the raw Hessian clock is
+already zero.  Hence the represented state has an exact-active Hessian chart
+independently of which branch of the C/D source-rank-three analysis was used,
+and every such chart has a nonzero constant 3x3 Hessian minor.
+
+Consequently the evaluated source-point constructor does not create a second
+terminal obligation: both E3 constructors may be routed through the same
+exact-active constant-minor resolver. -/
+structure TopKernelLinearPowerE3ConstantFinalResolutionExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  sourceConstant :
+    ∀ (A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented),
+      AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A →
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+
+/-- The single constant-minor resolver supplies the older two-field E3
+interface.  In the source-point branch we deliberately do not reconstruct a
+second active chart from the evaluated 3x3 minor: raw defect zero already
+provides an honest exact-active chart on this same represented source. -/
+noncomputable def
+    TopKernelLinearPowerE3ConstantFinalResolutionExtractor.toE3Extractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3ConstantFinalResolutionExtractor) :
+    P.TopKernelLinearPowerE3FinalResolutionExtractor where
+  sourcePoint := by
+    intro _Q
+    rcases
+        T.terminal.blocker.presented.zeroDefect_exactActiveFourBlock
+          T.presented_zero with
+      ⟨A⟩
+    rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+    exact X.sourceConstant A Q
+  sourceConstant := by
+    intro A Q
+    exact X.sourceConstant A Q
+
+/-- Every linear-power top-kernel packet is therefore reduced to one genuine
+polynomial-level extraction obligation: resolve one exact-active constant
+3x3 source-minor event. -/
+theorem exists_finalResolution_of_e3ConstantExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3ConstantFinalResolutionExtractor) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) :=
+  P.exists_finalResolution_of_e3Extractor (X.toE3Extractor P)
+
 /-- **Top-kernel E1/E2/E3 assembly.**
 
 Once the two genuine source-rank-three events can be converted to permitted
