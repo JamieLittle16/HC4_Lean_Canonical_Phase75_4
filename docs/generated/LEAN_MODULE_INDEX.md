@@ -12360,7 +12360,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailSourceHonestFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneGeometricEndpoint`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeGeometricFrontier`
-- Declarations: `inductive TopKernelThreeSchurPositiveTailGeometricFrontier`, `theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier`
+- Declarations: `inductive TopKernelThreeSchurPositiveTailGeometricFrontier`, `theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier`, `inductive TopKernelThreeSchurPositiveTailTimingFrontier`, `theorem TopKernelThreeSchurPositiveTailGeometricFrontier.toTimingFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimingFrontier`, `theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneEndpointCrossing`
 
@@ -12470,7 +12470,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurRelativeTailFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailGeometricFrontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeGeometricFrontier`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDGeometricFrontier`
-- Declarations: `inductive TopKernelThreeSchurRelativeGeometricFrontier`, `theorem TopKernelThreeSchurRelativeTailFrontier.toGeometricFrontier`, `theorem ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier`
+- Declarations: `inductive TopKernelThreeSchurRelativeGeometricFrontier`, `theorem TopKernelThreeSchurRelativeTailFrontier.toGeometricFrontier`, `inductive TopKernelThreeSchurRelativeTimingFrontier`, `theorem TopKernelThreeSchurRelativeGeometricFrontier.toTimingFrontier`, `theorem ThreeSchurTangentAtFirstBreak.relativeTimingFrontier`, `theorem ThreeSchurTangentAtFirstBreak.relativeGeometricFrontier`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 
