@@ -166,6 +166,77 @@ theorem exists_singular_first_nonfacet_contact_with_nonlinear_support
   · simpa [G] using hzero
   · simpa [G] using hnot
 
+
+/-- Strengthened first-contact package retaining the exact source weight bound.
+
+This is the provenance-preserving form needed when a Hessian principal minor
+is first detected on the contact carrier and then lifted back to the original
+source by initial-form covariance. -/
+theorem exists_singular_first_nonfacet_contact_with_nonlinear_support_and_weightBound
+    {K : Type*} [Field K] [CharZero K]
+    {F : HC4.Toric.ToricFacet} {m : ℕ}
+    {psi : MvPolynomial (Fin 4) K}
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet F m psi)
+    (hout : HasNonlinearOutsideFacet F psi)
+    (hlow : LowDegreeTameAtFacet F psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    ∃ (d₀ : Fin 4 →₀ ℕ) (scale bump : ℕ)
+      (G : MvPolynomial (Fin 4) K),
+      G = initialForm
+          (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate F) scale bump)
+          ((scale * m : ℕ) : ℤ) psi ∧
+      d₀ ∈ G.support ∧
+      3 ≤ ordinaryDegree4 d₀ ∧
+      0 < d₀ (HC4.Polynomial.facetOmittedCoordinate F) ∧
+      0 < scale ∧
+      0 < bump ∧
+      HC4.Polynomial.IsWeightLE
+        (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate F) scale bump)
+        ((scale * m : ℕ) : ℤ) psi ∧
+      hessianDeterminant G = 0 ∧
+      ¬ HC4.Polynomial.MvSupportOnFacet F G ∧
+      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) := by
+  rcases exists_singular_first_nonfacet_contact
+      hm hdeg htop hout hlow hMA with
+    ⟨d₀, scale, bump, hdpsi, hddeg, hdpos, hscaleEq, hbumpEq,
+      hscale, hbump, hbound, hzero, hdinit, hnot⟩
+  let j := HC4.Polynomial.facetOmittedCoordinate F
+  let G : MvPolynomial (Fin 4) K :=
+    initialForm (scaledContactWeight j scale bump)
+      ((scale * m : ℕ) : ℤ) psi
+  have hcontact :
+      scaledContactExponentWeight j scale bump d₀ =
+        ((scale * m : ℕ) : ℤ) := by
+    have hhom :=
+      initialForm_isWeightedHomogeneous
+        (scaledContactWeight j scale bump)
+        ((scale * m : ℕ) : ℤ) psi
+        (MvPolynomial.mem_support_iff.mp (by simpa [G] using hdinit))
+    rw [weight_scaledContactWeight] at hhom
+    exact hhom
+  have hbumpBound : bump ≤ scale * (m - 3) := by
+    apply bump_le_scale_mul_m_sub_three hscale
+    · simpa [j] using hdpos
+    · exact hddeg
+    · exact hcontact
+  have hlow' :
+      ∀ d ∈ psi.support, ordinaryDegree4 d < 3 → d j ≤ 1 := by
+    simpa [LowDegreeTameAtFacet, j] using hlow
+  have hnonlinear :
+      ∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d := by
+    dsimp [G]
+    exact firstContact_initialForm_support_degree_ge_three
+      hm hscale hbumpBound hlow'
+  refine ⟨d₀, scale, bump, G, rfl, ?_, hddeg, ?_,
+    hscale, hbump, ?_, ?_, ?_, hnonlinear⟩
+  · simpa [G] using hdinit
+  · simpa [j] using hdpos
+  · simpa [j, G] using hbound
+  · simpa [G] using hzero
+  · simpa [G] using hnot
+
 end
 
 end HC4.Newton
