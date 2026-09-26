@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9989**.
+Distinct declaration spellings indexed: **9991**.
 
 ## Repeated declaration spellings
 
@@ -3604,6 +3604,7 @@ Distinct declaration spellings indexed: **9989**.
 - `affineLineData` — `def` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `affineLineData_polynomial_eq` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
 - `affineLineData_polynomial_eq_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
+- `affineLineData_topExponent_eq_near` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `affineTwoRootEulerOperator_eq_zero_of_firstActual_highest_moment_identification` — `theorem` in `HC4.Valuation.PlanarHighestFirstVariationBridge`
@@ -3959,6 +3960,7 @@ Distinct declaration spellings indexed: **9989**.
 - `binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinarySchurSingularity`
 - `binaryWeightedEulerShear_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinarySchurSingularity`
 - `binary_euler_adjugate_quadratic` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `binomialNormalForm` — `def` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `binomialODEModel` — `def` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `binomialODEModel_satisfies` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `block` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingChartProvenance`

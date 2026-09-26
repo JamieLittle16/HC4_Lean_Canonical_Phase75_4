@@ -3603,10 +3603,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity/FirstContactCrossFacetFarRankThreeAffine.lean`
 - Purpose: Far rank-three first-contact line as an honest affine terminal carrier
 - A-labels: none detected
-- Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`
+- Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `theorem profile_natDegree_eq_nearIndex`, `theorem terminalCertificate`
+- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem terminalCertificate`, `def binomialNormalForm`
 
 ### `HC4.RationalRigidity.LineSupportedHessianRigidity`
 
@@ -4085,7 +4085,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.39`
 - Local imports: `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `HC4.RationalRigidity.RankThreeTerminalFacetTransition`, `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
+- Imported by local modules: `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`, `HC4.RationalRigidity.RankThreeTerminalFacetTransition`, `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
 - Declarations: `structure RankThreeTerminalBinomialNormalForm`, `def rankThreeTerminal_binomialNormalForm`
 
 ### `HC4.RationalRigidity.RankThreeTerminalDirectionSplit`
