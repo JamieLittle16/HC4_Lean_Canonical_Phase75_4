@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9991**.
+Distinct declaration spellings indexed: **9993**.
 
 ## Repeated declaration spellings
 
@@ -2081,6 +2081,7 @@ Distinct declaration spellings indexed: **9991**.
 - `HasPositiveTotalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `HasPositiveTransverseLayer` — `def` in `HC4.Newton.FirstSchurLayerLinearization`
 - `HasPositiveTransverseSupport` — `def` in `HC4.Newton.TransverseSupportRigidity`
+- `HasPositiveTwoZeroTransverseTop` — `def` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `HasPositiveWeightTriangularSupport` — `def` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `HasPrimitiveZeroSmithSource` — `def` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `HasPureLeftAxisTransverseDegree` — `def` in `HC4.Newton.AxisHomogeneousNormalForm`
@@ -6916,6 +6917,7 @@ Distinct declaration spellings indexed: **9991**.
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `nat_eq_one_of_firstMixedHessianCoreAtZero_eq_zero` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `nat_pair_sum_two_cases` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
+- `nearExtreme_topShape` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `needs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `negativeLongitudinalAxisPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`

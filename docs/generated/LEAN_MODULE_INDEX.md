@@ -3606,7 +3606,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem terminalCertificate`, `def binomialNormalForm`
+- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `def HasPositiveTwoZeroTransverseTop`, `theorem nearExtreme_topShape`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem terminalCertificate`, `def binomialNormalForm`
 
 ### `HC4.RationalRigidity.LineSupportedHessianRigidity`
 
