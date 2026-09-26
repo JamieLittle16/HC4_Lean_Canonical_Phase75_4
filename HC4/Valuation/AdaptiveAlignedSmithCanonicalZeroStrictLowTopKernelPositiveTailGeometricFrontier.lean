@@ -62,6 +62,59 @@ theorem TopKernelThreeSchurPositiveTailSourceHonestFrontier.toGeometricFrontier
       rcases split.toSourcePointGeometricEndpoint with ⟨G⟩
       exact ⟨.rankOneSourcePoint binary rankOne G⟩
 
+/-- Timing-preserving refinement of the positive-tail geometric frontier.
+
+The older assembly interface deliberately collapsed the exact rank-one timing
+split into a common source-point geometry.  For terminal extraction that loses
+one crucial fact: in the exact-closing branch the first transverse order is
+literally the determinant defect, and the same packet retains an honest
+whole-family first opening.  Keep that branch explicit here while leaving the
+already-useful source-geometry frontier unchanged. -/
+inductive TopKernelThreeSchurPositiveTailTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData) : Type (u + 1)
+  | representedThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | rankOnePreterminal
+      (binary : P.PositiveTailExplicitBinaryClockData S)
+      (rankOne : P.PositiveTailExplicitRankOneClockData binary)
+      (geometry : P.PositiveTailRankOnePreterminalSourcePointGeometry rankOne)
+  | rankOneExactClosing
+      (binary : P.PositiveTailExplicitBinaryClockData S)
+      (rankOne : P.PositiveTailExplicitRankOneClockData binary)
+      (geometry : P.PositiveTailRankOneClosingSourcePointGeometry rankOne)
+
+/-- Recover the timing information which is still present in every constructor
+of the source-point frontier.  In particular the exact-closing constructor
+retains firstOrder = defect and the physical whole-family opening. -/
+theorem TopKernelThreeSchurPositiveTailGeometricFrontier.toTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    (F : P.TopKernelThreeSchurPositiveTailGeometricFrontier S) :
+    Nonempty (P.TopKernelThreeSchurPositiveTailTimingFrontier S) := by
+  cases F with
+  | representedThreeByThree G =>
+      exact ⟨.representedThreeByThree G⟩
+  | rankOneSourcePoint binary rankOne G =>
+      cases G with
+      | preterminal E =>
+          exact ⟨.rankOnePreterminal binary rankOne E⟩
+      | exactClosing E =>
+          exact ⟨.rankOneExactClosing binary rankOne E⟩
+
+/-- Assembly-facing positive-relative timing frontier.  This is the preferred
+interface for the remaining terminal adapter because it does not erase exact
+closing before the associated-graded fibre has been constructed. -/
+theorem ThreeSchurTangentTailKernelOpeningData.positiveTailTimingFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (D : ThreeSchurTangentTailKernelOpeningData S M)
+    (hpos : 0 < D.relativeOrder) :
+    Nonempty (P.TopKernelThreeSchurPositiveTailTimingFrontier S) := by
+  rcases D.positiveTailGeometricFrontier hpos with ⟨F⟩
+  exact F.toTimingFrontier
+
 /-- Assembly-facing positive-relative geometric frontier. -/
 theorem ThreeSchurTangentTailKernelOpeningData.positiveTailGeometricFrontier
     {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
