@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9983**.
+Distinct declaration spellings indexed: **9987**.
 
 ## Repeated declaration spellings
 
@@ -3344,12 +3344,14 @@ Distinct declaration spellings indexed: **9983**.
 - `TopKernelLinearPowerE3ConstantFinalResolutionExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3ConstantFinalResolutionExtractor.toE3Extractor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3FinalResolutionExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `TopKernelLinearPowerE3MarkedAwareFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3RankThreeFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE3SourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE3TerminalAwareConstantExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3TerminalAwareConstantExtractor.toTerminalAwareExtractor` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3TerminalAwareFinalResolutionExtractor` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelLinearPowerE3TerminalAwareFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
+- `TopKernelLinearPowerE3TerminalAwareFrontier.toMarkedAware` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelMarkedAxisFirstContactFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
 - `TopKernelMarkedAxisFullFacetContactFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `TopKernelMarkedAxisFullFacetKernelSplit` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
@@ -9887,6 +9889,8 @@ Distinct declaration spellings indexed: **9983**.
 - `topKernelLinearPowerCDSourceFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerCDSourceFrontier`
 - `topKernelLinearPowerE2Frontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`
 - `topKernelLinearPowerE2Frontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`
+- `topKernelLinearPowerE3MarkedAwareFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `topKernelLinearPowerE3MarkedAwareFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `topKernelLinearPowerE3TerminalAwareFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `topKernelMarkedAxisFirstActualLayerOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisActualLayer`
 - `topKernelMarkedAxisFirstActualLayerOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisActualLayer`
