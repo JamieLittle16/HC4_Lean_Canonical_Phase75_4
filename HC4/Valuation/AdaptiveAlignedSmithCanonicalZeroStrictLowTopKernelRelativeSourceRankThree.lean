@@ -170,6 +170,79 @@ theorem zeroRelativeClosing_exactActiveFourBlock
     T.terminal.blocker.presented a b c d
   simpa [topKernelReesSource] using hm
 
+/-- Terminal-aware form of the complete relative tail.
+
+All branches which merely witness source rank-three geometry remain compressed
+to the two existing source events.  The one exception is the positive-relative
+rank-one exact-closing branch: there the exact equality between first
+transverse order and determinant defect, together with the honest whole-family
+first opening, is retained for the terminal associated-graded adapter. -/
+inductive TopKernelThreeSchurRelativeTerminalAwareFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (S : P.TopKernelThreeSchurClockData)
+    (M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak) : Type (u + 1)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+  | exactClosing
+      (tail : ThreeSchurTangentTailKernelOpeningData S M)
+      (relative_pos : 0 < tail.relativeOrder)
+      (binary : P.PositiveTailExplicitBinaryClockData S)
+      (rankOne : P.PositiveTailExplicitRankOneClockData binary)
+      (geometry : P.PositiveTailRankOneClosingSourcePointGeometry rankOne)
+
+/-- Convert the timing-preserving relative frontier to the exact three-way
+terminal-aware seam.  Preterminal rank-one geometry is intentionally collapsed
+to source rank-three; exact closing is not. -/
+theorem TopKernelThreeSchurRelativeTimingFrontier.toTerminalAwareFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (F : P.TopKernelThreeSchurRelativeTimingFrontier S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeTerminalAwareFrontier S M) := by
+  cases F with
+  | zeroRelative tail hz G =>
+      cases G with
+      | determinantClosing _tail _hz hopen _hres _hdet =>
+          rcases P.zeroRelativeClosing_exactActiveFourBlock S M tail hopen with ⟨A⟩
+          rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+          exact ⟨.sourceConstantThreeByThree A Q⟩
+      | representedSchur _tail _hz _hopen source =>
+          rcases source.exists_threeByThreePointGeometry with ⟨Q⟩
+          exact ⟨.sourcePointThreeByThree Q⟩
+      | actualRankTwo _tail _hz _hopen A =>
+          let C :
+              AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+                T.terminal.blocker.presented :=
+            AdaptiveAlignedSmithCanonicalExactActiveFourBlock.ofDirect A
+          rcases P.exactActive_threeByThree_of_presentedZero C with ⟨Q⟩
+          exact ⟨.sourceConstantThreeByThree C Q⟩
+  | positiveRelative tail hpos G =>
+      cases G with
+      | representedThreeByThree Q =>
+          exact ⟨.sourcePointThreeByThree Q⟩
+      | rankOnePreterminal binary rankOne E =>
+          rcases E.sourceGeometry.exists_sourcePointWitness with ⟨W⟩
+          exact ⟨.sourcePointThreeByThree W.toThreeByThreePointGeometry⟩
+      | rankOneExactClosing binary rankOne E =>
+          exact ⟨.exactClosing tail hpos binary rankOne E⟩
+
+/-- Every tangent first-break packet reaches the terminal-aware relative
+frontier. -/
+theorem ThreeSchurTangentAtFirstBreak.relativeTerminalAwareFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    {S : P.TopKernelThreeSchurClockData}
+    {M : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak}
+    (R : ThreeSchurTangentAtFirstBreak S M) :
+    Nonempty (P.TopKernelThreeSchurRelativeTerminalAwareFrontier S M) := by
+  rcases R.relativeTimingFrontier with ⟨F⟩
+  exact F.toTerminalAwareFrontier
+
 /-- **Relative tail fully closed at the represented source.**
 
 After source-lifting the former zero-relative determinant-closing case, every
