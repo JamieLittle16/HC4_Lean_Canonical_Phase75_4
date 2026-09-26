@@ -166,14 +166,16 @@ theorem topKernelMarkedAxisFirstActualLayer_freshQuadratic_of_eq_defect
       T.topKernelMarkedAxisFirstActualLayerOrder =
         4 * T.topFace.degree - 6) :
     ∃ i k : Fin 4,
-      let d := Finsupp.single k 1 + Finsupp.single i 1
-      d ∈ T.topKernelMarkedAxisFirstContactFamily.support ∧
-      d ∉ (polynomialFamilySpecialFiber
-        T.topKernelMarkedAxisFirstContactFamily).support ∧
-      smithFamilyCoefficientParameterOrder
-        T.topKernelMarkedAxisFirstContactFamily d
-          (by assumption) =
-        T.topKernelMarkedAxisFirstActualLayerOrder := by
+      ∃ hd :
+        Finsupp.single k 1 + Finsupp.single i 1 ∈
+          T.topKernelMarkedAxisFirstContactFamily.support,
+        Finsupp.single k 1 + Finsupp.single i 1 ∉
+            (polynomialFamilySpecialFiber
+              T.topKernelMarkedAxisFirstContactFamily).support ∧
+          smithFamilyCoefficientParameterOrder
+              T.topKernelMarkedAxisFirstContactFamily
+              (Finsupp.single k 1 + Finsupp.single i 1) hd =
+            T.topKernelMarkedAxisFirstActualLayerOrder := by
   rcases T.topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect
       heq with ⟨i, k, hcoeff⟩
   let d := Finsupp.single k 1 + Finsupp.single i 1
@@ -209,7 +211,7 @@ theorem topKernelMarkedAxisFirstActualLayer_freshQuadratic_of_eq_defect
         T.topKernelMarkedAxisFirstContactFamily hd]
       exact hzero
     · simpa [topKernelMarkedAxisFirstActualLayerOrder, d] using hfirst
-  exact ⟨i, k, hd, hfresh, horder⟩
+  exact ⟨i, k, hd, by simpa [d] using hfresh, by simpa [d] using horder⟩
 
 /-- Honest potential-level timing frontier for the marked-axis first-contact
 family.  The equality branch retains a genuine quadratic source coefficient,
