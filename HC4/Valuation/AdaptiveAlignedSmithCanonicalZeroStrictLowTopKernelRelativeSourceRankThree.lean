@@ -269,6 +269,81 @@ theorem TopKernelThreeSchurRelativeGeometricFrontier.sourceRankThreeGeometry
       rcases P.zeroRelativeClosing_exactActiveFourBlock S M tail hopen with ⟨A⟩
       exact Or.inr ⟨A, P.exactActive_threeByThree_of_presentedZero A⟩
 
+/-- Terminal-aware E3 frontier for one complete linear-power packet.
+
+The two represented-source rank-three events are retained exactly as before.
+In addition, if the independent C/D analysis reaches a positive-relative
+rank-one exact closing, its exact timing and whole-family first opening are
+not erased. -/
+inductive TopKernelLinearPowerE3TerminalAwareFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (chart :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry chart)
+  | exactClosing
+      (layer : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+      (clock : P.TopKernelThreeSchurClockData)
+      (tangent : ThreeSchurTangentAtFirstBreak clock layer)
+      (tail : ThreeSchurTangentTailKernelOpeningData clock layer)
+      (relative_pos : 0 < tail.relativeOrder)
+      (binary : P.PositiveTailExplicitBinaryClockData clock)
+      (rankOne : P.PositiveTailExplicitRankOneClockData binary)
+      (geometry : P.PositiveTailRankOneClosingSourcePointGeometry rankOne)
+
+/-- The complete C/D source frontier reaches the terminal-aware E3 seam.
+Only the exact-closing rank-one timing branch remains distinct; every other
+relative case is converted to one of the existing source-rank-three events. -/
+theorem TopKernelLinearPowerCDSourceFrontier.toE3TerminalAwareFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (C : P.TopKernelLinearPowerCDSourceFrontier) :
+    Nonempty P.TopKernelLinearPowerE3TerminalAwareFrontier := by
+  cases C with
+  | exactActive A =>
+      rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+      exact ⟨.sourceConstantThreeByThree A Q⟩
+  | relative M S R G =>
+      rcases G.toTimingFrontier with ⟨H⟩
+      rcases H.toTerminalAwareFrontier with ⟨E⟩
+      cases E with
+      | sourcePointThreeByThree Q =>
+          exact ⟨.sourcePointThreeByThree Q⟩
+      | sourceConstantThreeByThree A Q =>
+          exact ⟨.sourceConstantThreeByThree A Q⟩
+      | exactClosing tail hpos binary rankOne Q =>
+          exact ⟨.exactClosing M S R tail hpos binary rankOne Q⟩
+
+/-- Every combined E2 constructor contains the same independent C/D packet,
+so the terminal-aware E3 frontier is available without case-specific
+assumptions from the marked-axis classification. -/
+theorem TopKernelLinearPowerE2Frontier.toE3TerminalAwareFrontier
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (E : P.TopKernelLinearPowerE2Frontier) :
+    Nonempty P.TopKernelLinearPowerE3TerminalAwareFrontier := by
+  cases E with
+  | pureLongitudinal _b _hb _hface _hk cd =>
+      exact cd.toE3TerminalAwareFrontier
+  | fullFacetCodimensionTwo _hfacet _boundary cd =>
+      exact cd.toE3TerminalAwareFrontier
+  | fullFacetActualRankTwo _hfacet _geometry cd =>
+      exact cd.toE3TerminalAwareFrontier
+  | crossFacetNear _data _boundary cd =>
+      exact cd.toE3TerminalAwareFrontier
+  | crossFacetFar _data _boundary cd =>
+      exact cd.toE3TerminalAwareFrontier
+
+/-- Canonical terminal-aware E3 endpoint for one top-kernel linear-power
+packet. -/
+noncomputable def topKernelLinearPowerE3TerminalAwareFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    P.TopKernelLinearPowerE3TerminalAwareFrontier :=
+  Classical.choice
+    P.topKernelLinearPowerE2Frontier.toE3TerminalAwareFrontier
+
 /-- The entire source-honest C/D frontier now has the same two rank-three
 source outputs; the former relative constructor introduces no additional
 endpoint type. -/
