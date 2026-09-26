@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **9971**.
+Distinct declaration spellings indexed: **9980**.
 
 ## Repeated declaration spellings
 
@@ -1484,6 +1484,7 @@ Distinct declaration spellings indexed: **9971**.
 - `CoordinateMaxInitialData.hessian_zero` — `theorem` in `HC4.Newton.FiniteSupportExposedVertex`
 - `CoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `CrossFacetFarBoundaryData` — `structure` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.extremeRay_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.nearFarBoundaryOutcome` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
@@ -1491,6 +1492,7 @@ Distinct declaration spellings indexed: **9971**.
 - `CrossFacetFarBoundaryData.rankThree_or_adjacentFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.rankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.terminalRankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
+- `CrossFacetFarRankThreeAffineSupportData` — `structure` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `CrossFacetFarRankThreeOrKernelOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarTerminalRankThreeOrKernelOutcome` — `inductive` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetHonestLineCertificate` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
@@ -2361,6 +2363,8 @@ Distinct declaration spellings indexed: **9971**.
 - `PreterminalBinaryFirstDeparture.layerDet_ne_zero_of_mixed` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalBinaryFirstDeparture.mixed_or_affine` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalSchurDepartureData` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
+- `PureLongitudinalBalanceFreeFirstContactData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+- `PureLongitudinalFirstContactFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `QsOtherFacetContactFractionProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
 - `QsOtherFacetContactFractionProfilePackage.impossible_of_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
@@ -5210,6 +5214,7 @@ Distinct declaration spellings indexed: **9971**.
 - `exists_nat_refine_exposed_face_fin4_two_level_lt_clock` — `theorem` in `HC4.Newton.FiniteSupportQuadraticClockRefinement`
 - `exists_nat_refine_exposed_face_ge` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_nonlinear_boundary_exponent_with_coordinate_pos` — `theorem` in `HC4.Newton.PositiveCoordinateSingularBoundaryVertex`
+- `exists_nonlinear_transverse_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `exists_nonzero_maximal_initial` — `theorem` in `HC4.Polynomial.MaximalSingularInitial`
 - `exists_nonzero_maximal_singular_initial` — `theorem` in `HC4.Polynomial.MaximalSingularInitial`
 - `exists_nonzero_principalMinor_at_kernelOrder` — `theorem` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
@@ -7838,12 +7843,15 @@ Distinct declaration spellings indexed: **9971**.
 - `pureLeftAxis_of_leftPivot_b_eq_zero` — `theorem` in `HC4.Newton.RankTwoHomogeneousPacketClassification`
 - `pureLeftAxis_of_pderiv_second_eq_zero_of_exactDegree` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pureLeftAxis_support_shape` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
+- `pureLongitudinalFirstContactFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinalTopFace_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `pureLongitudinalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinalTransverseWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinal_constant_or_derivativeResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `pureLongitudinal_firstContact_or_square_at_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
 - `pureLongitudinal_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
+- `pureLongitudinal_topFaceOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureQuadratic_actualHessian_gradient_injective` — `theorem` in `HC4.Newton.TerminalScalarGradient`
 - `pureRightAxis_of_axisDirectionalDeriv_eq_zero` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
 - `pureRightAxis_of_pderiv_first_eq_zero_of_exactDegree` — `theorem` in `HC4.Newton.AxisHomogeneousNormalForm`
@@ -9860,6 +9868,7 @@ Distinct declaration spellings indexed: **9971**.
 - `topFaceOnFacet_topDegreeOnFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetSource`
 - `topFaceOnMarkedFacet_of_noPositiveZeroCoordinateSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topFace_allTwoByTwoMinors_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
+- `topFace_degree_attained_in_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `topFace_degree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `topFace_hessianPrincipalMinor_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`

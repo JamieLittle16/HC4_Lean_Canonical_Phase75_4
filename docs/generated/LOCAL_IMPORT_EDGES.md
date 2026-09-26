@@ -1288,6 +1288,10 @@ human architecture guide.
   - `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
   - `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
   - `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
+- `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+  - `HC4.Newton.FirstContactCrossFacetFarBoundary`
+  - `HC4.Polynomial.RankThreeAffineSupportRealisation`
+  - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 - `HC4.RationalRigidity.LineSupportedHessianRigidity`
   - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.RationalRigidity.RankThreeHighestDirectionRelation`
@@ -4158,6 +4162,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
@@ -4268,6 +4273,12 @@ human architecture guide.
   - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.Newton.FirstContactCrossFacetCarrier`
+  - `HC4.Newton.FirstContactNonlinearSupport`
+  - `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
