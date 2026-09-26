@@ -93,15 +93,109 @@ noncomputable def
     intro A Q
     exact X.sourceConstant A Q
 
-/-- Every linear-power top-kernel packet is therefore reduced to one genuine
-polynomial-level extraction obligation: resolve one exact-active constant
-3x3 source-minor event. -/
-theorem exists_finalResolution_of_e3ConstantExtractor
+/-- **Timing-preserving E3 final-resolution extractor.**
+
+The source-point and source-constant branches are retained exactly as in the
+older E3 interface.  Crucially, the positive-relative rank-one exact-closing
+branch is *not* collapsed to generic represented-source rank-three geometry:
+its exact clock, tangent tail, binary/rank-one packets and whole-family
+first-opening geometry remain available to the final endpoint producer. -/
+structure TopKernelLinearPowerE3TerminalAwareFinalResolutionExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  sourcePoint :
+    P.PositiveTailRepresentedSourceThreeByThreePointGeometry →
+      Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+  sourceConstant :
+    ∀ (A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented),
+      AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A →
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+  exactClosing :
+    ∀ (layer : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+      (clock : P.TopKernelThreeSchurClockData)
+      (tangent : ThreeSchurTangentAtFirstBreak clock layer)
+      (tail : ThreeSchurTangentTailKernelOpeningData clock layer),
+      0 < tail.relativeOrder →
+      ∀ (binary : P.PositiveTailExplicitBinaryClockData clock)
+        (rankOne : P.PositiveTailExplicitRankOneClockData binary),
+        P.PositiveTailRankOneClosingSourcePointGeometry rankOne →
+          Nonempty
+            (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+
+/-- The terminal-aware E3 frontier feeds the timing-preserving extractor
+without discarding the exact-closing first-opening data. -/
+theorem exists_finalResolution_of_e3TerminalAwareExtractor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
-    (X : P.TopKernelLinearPowerE3ConstantFinalResolutionExtractor) :
+    (X : P.TopKernelLinearPowerE3TerminalAwareFinalResolutionExtractor) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+  rcases P.topKernelLinearPowerE2Frontier_nonempty with ⟨E⟩
+  rcases E.toE3TerminalAwareFrontier with ⟨G⟩
+  cases G with
+  | sourcePointThreeByThree Q =>
+      exact X.sourcePoint Q
+  | sourceConstantThreeByThree A Q =>
+      exact X.sourceConstant A Q
+  | exactClosing layer clock tangent tail hpos binary rankOne geometry =>
+      exact X.exactClosing layer clock tangent tail hpos binary rankOne geometry
+
+/-- At raw defect zero the evaluated source-point event can still be routed
+through the canonical exact-active constant 3x3 chart.  Preserving exact
+closing therefore leaves exactly *two* genuine endpoint obligations:
+the constant source chart and the timing-rich exact-closing branch. -/
+structure TopKernelLinearPowerE3TerminalAwareConstantExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  sourceConstant :
+    ∀ (A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented),
+      AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A →
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+  exactClosing :
+    ∀ (layer : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+      (clock : P.TopKernelThreeSchurClockData)
+      (tangent : ThreeSchurTangentAtFirstBreak clock layer)
+      (tail : ThreeSchurTangentTailKernelOpeningData clock layer),
+      0 < tail.relativeOrder →
+      ∀ (binary : P.PositiveTailExplicitBinaryClockData clock)
+        (rankOne : P.PositiveTailExplicitRankOneClockData binary),
+        P.PositiveTailRankOneClosingSourcePointGeometry rankOne →
+          Nonempty
+            (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+
+/-- Convert the two-obligation terminal-aware interface to the full
+three-constructor timing-preserving extractor. -/
+noncomputable def
+    TopKernelLinearPowerE3TerminalAwareConstantExtractor.toTerminalAwareExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3TerminalAwareConstantExtractor) :
+    P.TopKernelLinearPowerE3TerminalAwareFinalResolutionExtractor where
+  sourcePoint := by
+    intro _Q
+    rcases
+        T.terminal.blocker.presented.zeroDefect_exactActiveFourBlock
+          T.presented_zero with
+      ⟨A⟩
+    rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+    exact X.sourceConstant A Q
+  sourceConstant := by
+    intro A Q
+    exact X.sourceConstant A Q
+  exactClosing := by
+    intro layer clock tangent tail hpos binary rankOne geometry
+    exact X.exactClosing layer clock tangent tail hpos binary rankOne geometry
+
+/-- Timing-preserving assembly with the evaluated source-point constructor
+already absorbed into the zero-defect exact-active chart. -/
+theorem exists_finalResolution_of_e3TerminalAwareConstantExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3TerminalAwareConstantExtractor) :
     Nonempty
       (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) :=
-  P.exists_finalResolution_of_e3Extractor (X.toE3Extractor P)
+  P.exists_finalResolution_of_e3TerminalAwareExtractor
+    (X.toTerminalAwareExtractor P)
 
 /-- **Top-kernel E1/E2/E3 assembly.**
 
@@ -122,6 +216,17 @@ theorem exists_finalResolution_of_e3Extractor
       exact X.sourcePoint Q
   | sourceConstantThreeByThree A Q =>
       exact X.sourceConstant A Q
+
+/-- Every linear-power top-kernel packet is therefore reduced to one genuine
+polynomial-level extraction obligation if one deliberately forgets the
+exact-closing timing.  The terminal-aware interface above is preferred for
+new endpoint work. -/
+theorem exists_finalResolution_of_e3ConstantExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3ConstantFinalResolutionExtractor) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) :=
+  P.exists_finalResolution_of_e3Extractor (X.toE3Extractor P)
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
