@@ -94,6 +94,99 @@ noncomputable def
     intro A Q
     exact X.sourceConstant A Q
 
+/-- **Marked-aware E3 frontier.**
+
+Unlike the older source-rank-three compression, this interface consumes the
+pure-longitudinal marked-axis constructor *before* entering the generic C/D
+fallback.  That branch now retains either an honest balance-free first-contact
+cross-facet carrier or a literal codimension-two source exponent.  All other
+E2 constructors retain the terminal-aware C/D timing frontier. -/
+inductive TopKernelLinearPowerE3MarkedAwareFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | pureFirstContact
+      (data : P.PureLongitudinalBalanceFreeFirstContactData)
+  | pureCodimensionTwoSource
+      (d : Fin 4 →₀ ℕ)
+      (mem_source : d ∈ T.representedSpecialFiber.support)
+      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
+      (boundary : MvExponentOnCodimensionTwoBoundary d)
+  | sourcePointThreeByThree
+      (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
+  | sourceConstantThreeByThree
+      (active :
+        AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented)
+      (geometry :
+        AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry active)
+  | exactClosing
+      (layer : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+      (clock : P.TopKernelThreeSchurClockData)
+      (tangent : ThreeSchurTangentAtFirstBreak clock layer)
+      (tail : ThreeSchurTangentTailKernelOpeningData clock layer)
+      (relative_pos : 0 < tail.relativeOrder)
+      (binary : P.PositiveTailExplicitBinaryClockData clock)
+      (rankOne : P.PositiveTailExplicitRankOneClockData binary)
+      (geometry : P.PositiveTailRankOneClosingSourcePointGeometry rankOne)
+
+/-- The terminal-aware C/D frontier embeds into the marked-aware E3 frontier
+without losing its exact-closing timing. -/
+theorem TopKernelLinearPowerE3TerminalAwareFrontier.toMarkedAware
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (G : P.TopKernelLinearPowerE3TerminalAwareFrontier) :
+    Nonempty P.TopKernelLinearPowerE3MarkedAwareFrontier := by
+  cases G with
+  | sourcePointThreeByThree Q =>
+      exact ⟨.sourcePointThreeByThree Q⟩
+  | sourceConstantThreeByThree A Q =>
+      exact ⟨.sourceConstantThreeByThree A Q⟩
+  | exactClosing layer clock tangent tail hpos binary rankOne geometry =>
+      exact ⟨.exactClosing layer clock tangent tail hpos binary rankOne geometry⟩
+
+/-- **E2 -> marked-aware E3 refinement.**
+
+The pure-longitudinal marked-axis branch is now removed from the generic
+source-3x3 collapse.  Every other E2 constructor continues through the
+terminal-aware C/D classifier. -/
+theorem topKernelLinearPowerE3MarkedAwareFrontier_nonempty
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    Nonempty P.TopKernelLinearPowerE3MarkedAwareFrontier := by
+  have hfallback :
+      ∀ E : P.TopKernelLinearPowerE2Frontier,
+        Nonempty P.TopKernelLinearPowerE3MarkedAwareFrontier := by
+    intro E
+    rcases E.toE3TerminalAwareFrontier with ⟨G⟩
+    exact G.toMarkedAware P
+
+  rcases P.topKernelLinearPowerE2Frontier_nonempty with ⟨E⟩
+  cases E with
+  | pureLongitudinal coefficient hcoeff hface hk cd =>
+      rcases P.pureLongitudinalFirstContactFrontier_nonempty
+          hcoeff hface with ⟨Q⟩
+      rcases Q.toContactOrCodimensionTwoSource P with ⟨R⟩
+      cases R with
+      | firstContact data =>
+          exact ⟨.pureFirstContact data⟩
+      | codimensionTwoSource d hd hdeg hboundary =>
+          exact ⟨.pureCodimensionTwoSource d hd hdeg hboundary⟩
+  | fullFacetCodimensionTwo hfacet hboundary cd =>
+      exact hfallback
+        (.fullFacetCodimensionTwo hfacet hboundary cd)
+  | fullFacetActualRankTwo hfacet geometry cd =>
+      exact hfallback
+        (.fullFacetActualRankTwo hfacet geometry cd)
+  | crossFacetNear data hboundary cd =>
+      exact hfallback
+        (.crossFacetNear data hboundary cd)
+  | crossFacetFar data hboundary cd =>
+      exact hfallback
+        (.crossFacetFar data hboundary cd)
+
+/-- Canonical marked-aware E3 output. -/
+noncomputable def topKernelLinearPowerE3MarkedAwareFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) :
+    P.TopKernelLinearPowerE3MarkedAwareFrontier :=
+  Classical.choice P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty
+
 /-- **Timing-preserving E3 final-resolution extractor.**
 
 The source-point and source-constant branches are retained exactly as in the
