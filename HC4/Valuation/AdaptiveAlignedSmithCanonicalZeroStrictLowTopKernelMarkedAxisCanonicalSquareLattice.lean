@@ -587,6 +587,100 @@ theorem ordinaryDegree_eq_topFaceDegree
   simpa [HC4.Polynomial.ordinaryDegree4,
     Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four] using hdegree
 
+/-- Exact finite shape of the remaining zero-order wall.  Since the
+marked exponent is zero, the total degree is `D`, and at most one unit of
+degree lies away from the fresh-square axis, the wall monomial is either the
+pure axis power or one adjacent linear departure. -/
+theorem pureAxis_or_singleComplement
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    W.exponent = Finsupp.single D.ell T.topFace.degree ∨
+      ∃ r : Fin 4,
+        r ≠ (0 : Fin 4) ∧ r ≠ D.ell ∧
+          W.exponent =
+            Finsupp.single D.ell (T.topFace.degree - 1) +
+              Finsupp.single r 1 := by
+  have h0 := W.markedExponent_zero
+  have hdeg := W.ordinaryDegree_eq_topFaceDegree
+  have hcomp := W.complementDegree_le_one
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  fin_cases hEll : D.ell
+  · exact (D.ell_ne_zero hEll).elim
+  · have hsum : W.exponent 2 + W.exponent 3 ≤ 1 := by
+      simpa [hEll,
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree,
+        Fin.sum_univ_four] using hcomp
+    by_cases h2 : W.exponent (2 : Fin 4) = 0
+    · by_cases h3 : W.exponent (3 : Fin 4) = 0
+      · left
+        ext i
+        fin_cases i <;>
+          simp [hEll, h0, h2, h3, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg ⊢ <;> omega
+      · right
+        refine ⟨(3 : Fin 4), by decide, ?_, ?_⟩
+        · simpa [hEll]
+        · ext i
+          fin_cases i <;>
+            simp [hEll, h0, h2, HC4.Polynomial.ordinaryDegree4,
+              Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+    · right
+      refine ⟨(2 : Fin 4), by decide, ?_, ?_⟩
+      · simpa [hEll]
+      · ext i
+        fin_cases i <;>
+          simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+  · have hsum : W.exponent 1 + W.exponent 3 ≤ 1 := by
+      simpa [hEll,
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree,
+        Fin.sum_univ_four] using hcomp
+    by_cases h1 : W.exponent (1 : Fin 4) = 0
+    · by_cases h3 : W.exponent (3 : Fin 4) = 0
+      · left
+        ext i
+        fin_cases i <;>
+          simp [hEll, h0, h1, h3, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg ⊢ <;> omega
+      · right
+        refine ⟨(3 : Fin 4), by decide, ?_, ?_⟩
+        · simpa [hEll]
+        · ext i
+          fin_cases i <;>
+            simp [hEll, h0, h1, HC4.Polynomial.ordinaryDegree4,
+              Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+    · right
+      refine ⟨(1 : Fin 4), by decide, ?_, ?_⟩
+      · simpa [hEll]
+      · ext i
+        fin_cases i <;>
+          simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+  · have hsum : W.exponent 1 + W.exponent 2 ≤ 1 := by
+      simpa [hEll,
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree,
+        Fin.sum_univ_four] using hcomp
+    by_cases h1 : W.exponent (1 : Fin 4) = 0
+    · by_cases h2 : W.exponent (2 : Fin 4) = 0
+      · left
+        ext i
+        fin_cases i <;>
+          simp [hEll, h0, h1, h2, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg ⊢ <;> omega
+      · right
+        refine ⟨(2 : Fin 4), by decide, ?_, ?_⟩
+        · simpa [hEll]
+        · ext i
+          fin_cases i <;>
+            simp [hEll, h0, h1, HC4.Polynomial.ordinaryDegree4,
+              Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+    · right
+      refine ⟨(1 : Fin 4), by decide, ?_, ?_⟩
+      · simpa [hEll]
+      · ext i
+        fin_cases i <;>
+          simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
+            Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
+
 /-- A zero-order marked-axis canonical square wall is supported in transverse
 complementary degree at most one.  Thus, apart from the square axis itself,
 at most one unit of transverse degree can survive. -/
