@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
 
 /-!
 # Canonical square lattice for the zero-strict-low marked-axis family
@@ -379,6 +380,74 @@ theorem toZeroOrderWall
     order_zero := hzero
     weighted_lt := hlt
   }⟩
+
+namespace TopKernelMarkedAxisCanonicalSquareZeroOrderWall
+
+variable
+  {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+    (K := K) state}
+  {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+
+/-- Exact parameter order zero means that the offending family monomial lies
+on the actual special fibre of the aligned marked-axis family. -/
+theorem mem_specialFiber_support
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    W.exponent ∈ (polynomialFamilySpecialFiber D.family).support := by
+  rw [MvPolynomial.mem_support_iff, coeff_polynomialFamilySpecialFiber]
+  have hc : MvPolynomial.coeff W.exponent D.family ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp W.mem_family
+  have hne :=
+    polynomialParameterOrder_coeff_ne_zero
+      (MvPolynomial.coeff W.exponent D.family) hc
+  have horder :
+      polynomialParameterOrder
+          (MvPolynomial.coeff W.exponent D.family) hc = 0 := by
+    simpa [smithFamilyCoefficientParameterOrder] using W.order_zero
+  change (MvPolynomial.coeff W.exponent D.family).coeff 0 ≠ 0
+  simpa [horder] using hne
+
+/-- A zero-order marked-axis canonical square wall is supported in transverse
+complementary degree at most one.  Thus, apart from the square axis itself,
+at most one unit of transverse degree can survive. -/
+theorem complementDegree_le_one
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+        D.ell W.exponent ≤ 1 := by
+  have hDelta : 0 < 4 * T.topFace.degree - 6 := by
+    have hD := T.topFace.degree_ge_three
+    omega
+  have hweight := W.weighted_lt
+  rw [AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingCanonicalSquareWeight_transverse
+      (4 * T.topFace.degree - 6) D.ell D.ell_ne_zero W.exponent] at hweight
+  by_contra hnot
+  have hdeg :
+      2 ≤
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+          D.ell W.exponent := by
+    omega
+  have hmul :
+      (3 * (4 * T.topFace.degree - 6)) * 2 ≤
+        (3 * (4 * T.topFace.degree - 6)) *
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+            D.ell W.exponent :=
+    Nat.mul_le_mul_left (3 * (4 * T.topFace.degree - 6)) hdeg
+  have h6 :
+      6 * (4 * T.topFace.degree - 6) ≤
+        3 * (4 * T.topFace.degree - 6) *
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+            D.ell W.exponent := by
+    calc
+      6 * (4 * T.topFace.degree - 6) =
+          (3 * (4 * T.topFace.degree - 6)) * 2 := by ring
+      _ ≤ _ := hmul
+  have h46 :
+      4 * (4 * T.topFace.degree - 6) <
+        6 * (4 * T.topFace.degree - 6) := by
+    omega
+  simpa [directClosingCanonicalSquareCommonLevel] using
+    (show False by omega)
+
+end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
 end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
 
