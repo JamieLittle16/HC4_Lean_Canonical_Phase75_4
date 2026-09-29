@@ -444,8 +444,8 @@ theorem complementDegree_le_one
       4 * (4 * T.topFace.degree - 6) <
         6 * (4 * T.topFace.degree - 6) := by
     omega
-  simpa [directClosingCanonicalSquareCommonLevel] using
-    (show False by omega)
+  simp [directClosingCanonicalSquareCommonLevel] at hweight
+  omega
 
 end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
