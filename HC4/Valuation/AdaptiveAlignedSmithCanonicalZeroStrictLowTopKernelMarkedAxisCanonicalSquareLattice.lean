@@ -302,6 +302,84 @@ theorem zeroOrder_or_positiveEarlier
   · exact Or.inr ⟨Nat.pos_of_ne_zero hq,
       by simpa [q] using O.parameterOrder_lt_defect⟩
 
+/-- At exact marked-axis closing the positive-earlier obstruction branch is
+impossible: constant source shear preserves the complete gap below the first
+actual layer.  Hence every failed canonical square coefficient is already
+present on the special fibre. -/
+theorem parameterOrder_eq_zero_of_eq_defect
+    (O : T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D)
+    (heq :
+      T.topKernelMarkedAxisFirstActualLayerOrder =
+        4 * T.topFace.degree - 6) :
+    smithFamilyCoefficientParameterOrder
+        D.family O.exponent O.mem_family = 0 := by
+  rcases O.zeroOrder_or_positiveEarlier with hzero | hpos
+  · exact hzero
+  · rcases hpos with ⟨hqpos, hqlt⟩
+    let q :=
+      smithFamilyCoefficientParameterOrder
+        D.family O.exponent O.mem_family
+    have hq_lt_first :
+        q < T.topKernelMarkedAxisFirstActualLayerOrder := by
+      rw [heq]
+      simpa [q] using hqlt
+    have hlayerZero :
+        familyParameterLayer D.family q = 0 :=
+      D.familyParameterLayer_eq_zero_of_pos_lt_firstActual
+        (by simpa [q] using hqpos) hq_lt_first
+    have hcoeff :
+        (MvPolynomial.coeff O.exponent D.family).coeff q ≠ 0 := by
+      simpa [q, smithFamilyCoefficientParameterOrder] using
+        polynomialParameterOrder_coeff_ne_zero
+          (MvPolynomial.coeff O.exponent D.family)
+          (MvPolynomial.mem_support_iff.mp O.mem_family)
+    have hlayerCoeff :
+        MvPolynomial.coeff O.exponent
+            (familyParameterLayer D.family q) ≠ 0 := by
+      rw [familyParameterLayer_coeff]
+      exact hcoeff
+    rw [hlayerZero] at hlayerCoeff
+    simp at hlayerCoeff
+
+/-- Canonical square failure after timing reduction is a literal special-fibre
+wall: one supported order-zero coefficient lies strictly below the canonical
+source-weight level. -/
+structure TopKernelMarkedAxisCanonicalSquareZeroOrderWall
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  exponent : Fin 4 →₀ ℕ
+  mem_family : exponent ∈ D.family.support
+  order_zero :
+    smithFamilyCoefficientParameterOrder
+      D.family exponent mem_family = 0
+  weighted_lt :
+    Finsupp.weight
+        (directClosingCanonicalSquareWeight
+          (4 * T.topFace.degree - 6) D.ell)
+        exponent <
+      directClosingCanonicalSquareCommonLevel
+        (4 * T.topFace.degree - 6)
+
+/-- Every failed family-integrality gate at exact closing yields the concrete
+zero-order special-fibre wall above. -/
+theorem toZeroOrderWall
+    (O : T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D)
+    (heq :
+      T.topKernelMarkedAxisFirstActualLayerOrder =
+        4 * T.topFace.degree - 6) :
+    Nonempty (T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) := by
+  have hzero := O.parameterOrder_eq_zero_of_eq_defect heq
+  have hlt := O.strictEarlierWeightedClock
+  rw [hzero] at hlt
+  simp only [Nat.mul_zero, zero_add] at hlt
+  exact ⟨{
+    exponent := O.exponent
+    mem_family := O.mem_family
+    order_zero := hzero
+    weighted_lt := hlt
+  }⟩
+
 end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
