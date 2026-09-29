@@ -52,6 +52,55 @@ noncomputable def topKernelMarkedAxisTransverseShearHomBase
   MvPolynomial.eval₂Hom MvPolynomial.C
     (topKernelMarkedAxisTransverseShearVariableBase k ell a)
 
+@[simp] theorem topKernelMarkedAxisTransverseShearHomBase_C
+    (k ell : Fin 4) (a c : K) :
+    topKernelMarkedAxisTransverseShearHomBase k ell a (MvPolynomial.C c) =
+      MvPolynomial.C c := by
+  simp [topKernelMarkedAxisTransverseShearHomBase]
+
+@[simp] theorem topKernelMarkedAxisTransverseShearHomBase_X
+    (k ell : Fin 4) (a : K) (i : Fin 4) :
+    topKernelMarkedAxisTransverseShearHomBase k ell a (MvPolynomial.X i) =
+      topKernelMarkedAxisTransverseShearVariableBase k ell a i := by
+  simp [topKernelMarkedAxisTransverseShearHomBase]
+
+/-- Away from the added direction, the residue-field marked-axis shear has
+the identity chain rule. -/
+theorem pderiv_topKernelMarkedAxisTransverseShearHomBase_of_ne_added
+    (k ell : Fin 4) (hkl : k ≠ ell) (a : K)
+    (j : Fin 4) (hjl : j ≠ ell)
+    (P : MvPolynomial (Fin 4) K) :
+    MvPolynomial.pderiv j
+        (topKernelMarkedAxisTransverseShearHomBase k ell a P) =
+      topKernelMarkedAxisTransverseShearHomBase k ell a
+        (MvPolynomial.pderiv j P) := by
+  apply MvPolynomial.induction_on P
+  · intro c
+    simp
+  · intro p q hp hq
+    simp [hp, hq]
+  · intro p n hp
+    simp only [map_mul, topKernelMarkedAxisTransverseShearHomBase_X,
+      MvPolynomial.pderiv_mul, map_add, hp]
+    by_cases hnk : n = k
+    · subst n
+      by_cases hkj : k = j
+      · subst j
+        simp [topKernelMarkedAxisTransverseShearVariableBase, hkl] <;> ring
+      · have hjk : j ≠ k := Ne.symm hkj
+        simp [topKernelMarkedAxisTransverseShearVariableBase,
+          hkl, hkj, hjk, hjl] <;> ring
+    · by_cases hnj : n = j
+      · subst n
+        have hjk : j ≠ k := by
+          intro h
+          exact hnk h
+        simp [topKernelMarkedAxisTransverseShearVariableBase,
+          hnk, hjk, hjl] <;> ring
+      · have hjn : j ≠ n := Ne.symm hnj
+        simp [topKernelMarkedAxisTransverseShearVariableBase,
+          hnk, hnj, hjn, hjl] <;> ring
+
 /-- Taking an exact parameter layer commutes with a source shear whose
 coefficient is parameter-constant.  This is the layerwise analogue of the
 already-used special-fibre transport theorem. -/
@@ -195,6 +244,37 @@ theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_eq_baseShear
   simpa [TopKernelMarkedAxisAlignedFreshSquareData.family] using
     familyParameterLayer_transverseSourceShearHom_constant
       D.k D.ell D.a T.topKernelMarkedAxisFirstContactFamily 0
+
+/-- The aligned marked-axis special fibre remains independent of the marked
+coordinate.  The added shear direction is transverse, so the marked partial
+derivative commutes with the residue-field source transvection. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_pderiv_zero
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    MvPolynomial.pderiv (0 : Fin 4)
+        (polynomialFamilySpecialFiber D.family) = 0 := by
+  rw [D.specialFiber_eq_baseShear]
+  rw [pderiv_topKernelMarkedAxisTransverseShearHomBase_of_ne_added
+    D.k D.ell D.k_ne_ell D.a (0 : Fin 4) D.ell_ne_zero]
+  rw [T.topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero]
+  simp
+
+/-- Consequently every actual monomial of the aligned special fibre has zero
+marked exponent. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_exponent_zero
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
+    (d : Fin 4 →₀ ℕ)
+    (hd : d ∈ (polynomialFamilySpecialFiber D.family).support) :
+    d (0 : Fin 4) = 0 := by
+  exact exponent_eq_zero_of_pderiv_eq_zero
+    (0 : Fin 4)
+    (polynomialFamilySpecialFiber D.family)
+    D.specialFiber_pderiv_zero
+    d
+    (MvPolynomial.mem_support_iff.mp hd)
 
 /-- Hence the aligned fresh-square special fibre remains ordinarily
 homogeneous of degree `T.topFace.degree`. -/
@@ -489,6 +569,12 @@ theorem mem_specialFiber_support
     simpa [smithFamilyCoefficientParameterOrder] using W.order_zero
   change (MvPolynomial.coeff W.exponent D.family).coeff 0 ≠ 0
   simpa [horder] using hne
+
+/-- The zero-order wall has no marked longitudinal exponent. -/
+theorem markedExponent_zero
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    W.exponent (0 : Fin 4) = 0 :=
+  D.specialFiber_exponent_zero W.exponent W.mem_specialFiber_support
 
 /-- The offending order-zero monomial still lies on the degree-`D`
 ordinary top layer after the constant source shear. -/
