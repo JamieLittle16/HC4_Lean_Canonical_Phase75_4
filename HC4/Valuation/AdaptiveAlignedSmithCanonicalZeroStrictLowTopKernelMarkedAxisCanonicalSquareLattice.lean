@@ -587,6 +587,48 @@ theorem ordinaryDegree_eq_topFaceDegree
   simpa [HC4.Polynomial.ordinaryDegree4,
     Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four] using hdegree
 
+/-- A zero-order marked-axis canonical square wall is supported in transverse
+complementary degree at most one.  Thus, apart from the square axis itself,
+at most one unit of transverse degree can survive. -/
+theorem complementDegree_le_one
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+        D.ell W.exponent ≤ 1 := by
+  have hDelta : 0 < 4 * T.topFace.degree - 6 := by
+    have hD := T.topFace.degree_ge_three
+    omega
+  have hweight := W.weighted_lt
+  rw [AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingCanonicalSquareWeight_transverse
+      (4 * T.topFace.degree - 6) D.ell D.ell_ne_zero W.exponent] at hweight
+  by_contra hnot
+  have hdeg :
+      2 ≤
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+          D.ell W.exponent := by
+    omega
+  have hmul :
+      (3 * (4 * T.topFace.degree - 6)) * 2 ≤
+        (3 * (4 * T.topFace.degree - 6)) *
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+            D.ell W.exponent :=
+    Nat.mul_le_mul_left (3 * (4 * T.topFace.degree - 6)) hdeg
+  have h6 :
+      6 * (4 * T.topFace.degree - 6) ≤
+        3 * (4 * T.topFace.degree - 6) *
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+            D.ell W.exponent := by
+    calc
+      6 * (4 * T.topFace.degree - 6) =
+          (3 * (4 * T.topFace.degree - 6)) * 2 := by ring
+      _ ≤ _ := hmul
+  have h46 :
+      4 * (4 * T.topFace.degree - 6) <
+        6 * (4 * T.topFace.degree - 6) := by
+    omega
+  simp [directClosingCanonicalSquareCommonLevel] at hweight
+  omega
+
+
 /-- Exact finite shape of the remaining zero-order wall.  Since the
 marked exponent is zero, the total degree is `D`, and at most one unit of
 degree lies away from the fresh-square axis, the wall monomial is either the
@@ -680,47 +722,6 @@ theorem pureAxis_or_singleComplement
         fin_cases i <;>
           simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
             Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
-
-/-- A zero-order marked-axis canonical square wall is supported in transverse
-complementary degree at most one.  Thus, apart from the square axis itself,
-at most one unit of transverse degree can survive. -/
-theorem complementDegree_le_one
-    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
-    AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
-        D.ell W.exponent ≤ 1 := by
-  have hDelta : 0 < 4 * T.topFace.degree - 6 := by
-    have hD := T.topFace.degree_ge_three
-    omega
-  have hweight := W.weighted_lt
-  rw [AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingCanonicalSquareWeight_transverse
-      (4 * T.topFace.degree - 6) D.ell D.ell_ne_zero W.exponent] at hweight
-  by_contra hnot
-  have hdeg :
-      2 ≤
-        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
-          D.ell W.exponent := by
-    omega
-  have hmul :
-      (3 * (4 * T.topFace.degree - 6)) * 2 ≤
-        (3 * (4 * T.topFace.degree - 6)) *
-          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
-            D.ell W.exponent :=
-    Nat.mul_le_mul_left (3 * (4 * T.topFace.degree - 6)) hdeg
-  have h6 :
-      6 * (4 * T.topFace.degree - 6) ≤
-        3 * (4 * T.topFace.degree - 6) *
-          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
-            D.ell W.exponent := by
-    calc
-      6 * (4 * T.topFace.degree - 6) =
-          (3 * (4 * T.topFace.degree - 6)) * 2 := by ring
-      _ ≤ _ := hmul
-  have h46 :
-      4 * (4 * T.topFace.degree - 6) <
-        6 * (4 * T.topFace.degree - 6) := by
-    omega
-  simp [directClosingCanonicalSquareCommonLevel] at hweight
-  omega
 
 end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
