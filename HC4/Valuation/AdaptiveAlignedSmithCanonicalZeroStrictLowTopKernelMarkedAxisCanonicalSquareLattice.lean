@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
+import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
 # Canonical square lattice for the zero-strict-low marked-axis family
@@ -126,6 +127,89 @@ theorem TopKernelMarkedAxisAlignedFreshSquareData.familyParameterLayer_eq_zero_o
         simpa [topKernelMarkedAxisFirstActualLayerOrder] using hnlt)
   rw [hzero]
   simp [topKernelMarkedAxisTransverseShearHomBase]
+
+/-- Every residue-field shear variable is an ordinary linear form. -/
+theorem topKernelMarkedAxisTransverseShearVariableBase_isHomogeneous_one
+    (k ell : Fin 4) (a : K) (i : Fin 4) :
+    (topKernelMarkedAxisTransverseShearVariableBase k ell a i).IsHomogeneous 1 := by
+  by_cases hik : i = k
+  · subst i
+    unfold topKernelMarkedAxisTransverseShearVariableBase
+    simp only [if_pos rfl]
+    exact
+      (MvPolynomial.isHomogeneous_X K k).add
+        (MvPolynomial.isHomogeneous_C_mul_X a ell)
+  · unfold topKernelMarkedAxisTransverseShearVariableBase
+    rw [if_neg hik]
+    exact MvPolynomial.isHomogeneous_X K i
+
+/-- The residue-field constant source transvection preserves ordinary source
+homogeneity. -/
+theorem topKernelMarkedAxisTransverseShearHomBase_isHomogeneous
+    {d : ℕ}
+    (k ell : Fin 4) (a : K)
+    (P : MvPolynomial (Fin 4) K)
+    (hP : P.IsHomogeneous d) :
+    (topKernelMarkedAxisTransverseShearHomBase k ell a P).IsHomogeneous d := by
+  have hout :=
+    hP.eval₂
+      MvPolynomial.C
+      (topKernelMarkedAxisTransverseShearVariableBase k ell a)
+      (fun r => MvPolynomial.isHomogeneous_C (Fin 4) r)
+      (fun i =>
+        topKernelMarkedAxisTransverseShearVariableBase_isHomogeneous_one
+          k ell a i)
+  simpa [topKernelMarkedAxisTransverseShearHomBase] using hout
+
+/-- The unsheared marked-axis special fibre is ordinarily homogeneous of the
+maximal top-face degree. -/
+theorem topKernelMarkedAxisFirstContact_specialFiber_isHomogeneous
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    (polynomialFamilySpecialFiber
+      T.topKernelMarkedAxisFirstContactFamily).IsHomogeneous
+        T.topFace.degree := by
+  unfold MvPolynomial.IsHomogeneous MvPolynomial.IsWeightedHomogeneous
+  intro d hcoeff
+  have hd :
+      d ∈ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support :=
+    MvPolynomial.mem_support_iff.mpr hcoeff
+  have htop :=
+    (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero d).1 hd
+  have hdeg := T.topFace.ordinaryDegree_eq_of_mem_support htop.1
+  simpa [HC4.Polynomial.ordinaryDegree4,
+    Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four] using hdeg
+
+/-- Exact special-fibre transport for the aligned fresh-square family. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_eq_baseShear
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    polynomialFamilySpecialFiber D.family =
+      topKernelMarkedAxisTransverseShearHomBase D.k D.ell D.a
+        (polynomialFamilySpecialFiber
+          T.topKernelMarkedAxisFirstContactFamily) := by
+  rw [← familyParameterLayer_zero_eq_polynomialFamilySpecialFiber,
+    ← familyParameterLayer_zero_eq_polynomialFamilySpecialFiber]
+  simpa [TopKernelMarkedAxisAlignedFreshSquareData.family] using
+    familyParameterLayer_transverseSourceShearHom_constant
+      D.k D.ell D.a T.topKernelMarkedAxisFirstContactFamily 0
+
+/-- Hence the aligned fresh-square special fibre remains ordinarily
+homogeneous of degree `T.topFace.degree`. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_isHomogeneous
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    (polynomialFamilySpecialFiber D.family).IsHomogeneous T.topFace.degree := by
+  rw [D.specialFiber_eq_baseShear]
+  exact
+    topKernelMarkedAxisTransverseShearHomBase_isHomogeneous
+      D.k D.ell D.a
+      (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily)
+      T.topKernelMarkedAxisFirstContact_specialFiber_isHomogeneous
 
 /-- Family-integrality certificate for the canonical square exposure attached
 to the new marked-axis fresh-square package.  The moving-section gate is not a
@@ -405,6 +489,17 @@ theorem mem_specialFiber_support
     simpa [smithFamilyCoefficientParameterOrder] using W.order_zero
   change (MvPolynomial.coeff W.exponent D.family).coeff 0 ≠ 0
   simpa [horder] using hne
+
+/-- The offending order-zero monomial still lies on the degree-`D`
+ordinary top layer after the constant source shear. -/
+theorem ordinaryDegree_eq_topFaceDegree
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    HC4.Polynomial.ordinaryDegree4 W.exponent = T.topFace.degree := by
+  have hhom := D.specialFiber_isHomogeneous
+  have hdegree :=
+    hhom (MvPolynomial.mem_support_iff.mp W.mem_specialFiber_support)
+  simpa [HC4.Polynomial.ordinaryDegree4,
+    Finsupp.weight_apply, Finsupp.sum_fintype, Fin.sum_univ_four] using hdegree
 
 /-- A zero-order marked-axis canonical square wall is supported in transverse
 complementary degree at most one.  Thus, apart from the square axis itself,
