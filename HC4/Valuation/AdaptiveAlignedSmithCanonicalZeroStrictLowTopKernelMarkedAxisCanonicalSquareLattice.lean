@@ -723,6 +723,116 @@ theorem pureAxis_or_singleComplement
           simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
             Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
 
+/-- Exact complementary-degree face carried by the surviving zero-order
+marked-axis square wall.  Because the square axis is transverse, there is only
+the transverse branch of the older canonical-wall face construction. -/
+structure TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  wall : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D
+  complementDegree : ℕ
+  complementDegree_eq :
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+      D.ell wall.exponent = complementDegree
+  complementDegree_le_one : complementDegree ≤ 1
+  face : MvPolynomial (Fin 4) K
+  face_eq :
+    face =
+      HC4.Polynomial.initialForm
+        (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+          D.ell)
+        (-(complementDegree : ℤ))
+        (polynomialFamilySpecialFiber D.family)
+  face_ne_zero : face ≠ 0
+  support_complementDegree :
+    ∀ e ∈ face.support,
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+        D.ell e = complementDegree
+  complementHessian_zero :
+    ∀ i j : Fin 4,
+      i ≠ (0 : Fin 4) → i ≠ D.ell →
+      j ≠ (0 : Fin 4) → j ≠ D.ell →
+        MvPolynomial.pderiv j (MvPolynomial.pderiv i face) = 0
+
+namespace TopKernelMarkedAxisCanonicalSquareZeroOrderWall
+
+/-- Promote the single offending monomial to the complete exact
+complementary-degree initial face containing it. -/
+theorem toWallFaceData
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (W : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWall D) :
+    Nonempty (T.TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData D) := by
+  let m :=
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+      D.ell W.exponent
+  let F0 := polynomialFamilySpecialFiber D.family
+  let face :=
+    HC4.Polynomial.initialForm
+      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+        D.ell)
+      (-(m : ℤ)) F0
+  have hweight :
+      Finsupp.weight
+          (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+            D.ell)
+          W.exponent =
+        -(m : ℤ) := by
+    exact
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.weight_directClosingTransverseComplementWeight
+        D.ell W.exponent
+  have hface_ne : face ≠ 0 := by
+    exact
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.initialForm_ne_zero_of_support_weight
+        F0
+        (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+          D.ell)
+        (-(m : ℤ))
+        W.exponent
+        W.mem_specialFiber_support
+        hweight
+  have hsupport :
+      ∀ e ∈ face.support,
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+          D.ell e = m := by
+    intro e he
+    exact
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.support_initialForm_transverseComplementDegree_eq
+        D.ell F0 m (by simpa [face] using he)
+  have hm_le : m ≤ 1 := by
+    simpa [m] using W.complementDegree_le_one
+  have hsupp_le :
+      ∀ e ∈ face.support,
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+          D.ell e ≤ 1 := by
+    intro e he
+    rw [hsupport e he]
+    exact hm_le
+  have hhess :
+      ∀ i j : Fin 4,
+        i ≠ (0 : Fin 4) → i ≠ D.ell →
+        j ≠ (0 : Fin 4) → j ≠ D.ell →
+          MvPolynomial.pderiv j (MvPolynomial.pderiv i face) = 0 := by
+    intro i j hi0 hiel hj0 hjel
+    exact
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.pderiv_pderiv_eq_zero_of_transverseComplementDegree_le_one
+        D.ell face hsupp_le i j hi0 hiel hj0 hjel
+  exact ⟨{
+    wall := W
+    complementDegree := m
+    complementDegree_eq := rfl
+    complementDegree_le_one := hm_le
+    face := face
+    face_eq := rfl
+    face_ne_zero := hface_ne
+    support_complementDegree := hsupport
+    complementHessian_zero := hhess
+  }⟩
+
+end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
+
 end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
 end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
