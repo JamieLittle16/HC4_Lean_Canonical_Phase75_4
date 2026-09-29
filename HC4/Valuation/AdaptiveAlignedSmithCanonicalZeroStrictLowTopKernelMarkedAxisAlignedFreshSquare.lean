@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming
 import HC4.Valuation.AdaptiveAlignedSmithAxisPreservingQuadraticNormalization
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport
+import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice
 import Mathlib.Tactic
 
 /-!
@@ -166,6 +167,88 @@ theorem squareExactOrder
       simpa [family, squareExponent] using
         D.squareCoeff_lower_zero q hqpos hqlt
   exact Nat.le_antisymm hqle hjle
+
+/-- The inverse source shear fixes the marked constant section exactly.
+This is stronger than the special-point statement stored in the package and
+removes the moving-section divisibility gate from the canonical square
+exposure. -/
+theorem rightSection_eq_markedConstantSection
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    D.rightSection =
+      polynomialConstantSection
+        (coordinateAxisPoint (K := K) (0 : Fin 4)) := by
+  funext i
+  unfold rightSection transverseSourceUnshearSection polynomialConstantSection
+  by_cases hik : i = D.k
+  · subst i
+    have hell0 : D.ell ≠ (0 : Fin 4) := D.ell_ne_zero
+    simp [D.k_ne_ell, hell0, coordinateAxisPoint]
+  · simp [hik, coordinateAxisPoint]
+
+/-- The old direct-closing canonical square weight has zero weight on the
+distinguished fresh square in the new marked-axis package as well. -/
+theorem canonicalSquareWeight_squareExponent
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    Finsupp.weight
+        (directClosingCanonicalSquareWeight
+          (4 * T.topFace.degree - 6) D.ell)
+        D.squareExponent = 0 := by
+  simp [squareExponent, directClosingCanonicalSquareWeight,
+    Finsupp.weight_single]
+
+/-- Ramifying and pulling back the marked right section is automatically
+integral for the canonical square weight: coordinate zero has weight zero,
+and every other coordinate of the section is the zero polynomial. -/
+theorem canonicalSquare_rightSectionIntegrality
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    HasIntegralAdaptiveSmithSection
+      (directClosingCanonicalSquareWeight
+        (4 * T.topFace.degree - 6) D.ell)
+      (parameterRamificationSection
+        (K := K) directClosingCanonicalSquareRamification D.rightSection) := by
+  rw [D.rightSection_eq_markedConstantSection]
+  intro i
+  by_cases hi : i = (0 : Fin 4)
+  · subst i
+    simp [parameterRamificationSection, polynomialConstantSection,
+      coordinateAxisPoint]
+  · have hz :
+        parameterRamificationSection
+            (K := K) directClosingCanonicalSquareRamification
+            (polynomialConstantSection
+              (coordinateAxisPoint (K := K) (0 : Fin 4))) i = 0 := by
+      simp [parameterRamificationSection, polynomialConstantSection,
+        coordinateAxisPoint, hi]
+    rw [hz]
+    exact dvd_zero _
+
+/-- At exact marked-axis Hessian closing the fresh square lies exactly on the
+canonical terminal level.  Thus the section gate and the contact arithmetic
+are fully discharged; only family coefficient integrality remains. -/
+theorem canonicalSquare_contactLevel_of_eq_defect
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
+    (heq :
+      T.topKernelMarkedAxisFirstActualLayerOrder =
+        4 * T.topFace.degree - 6) :
+    directClosingCanonicalSquareRamification *
+          T.topKernelMarkedAxisFirstActualLayerOrder +
+        Finsupp.weight
+          (directClosingCanonicalSquareWeight
+            (4 * T.topFace.degree - 6) D.ell)
+          D.squareExponent =
+      directClosingCanonicalSquareCommonLevel
+        (4 * T.topFace.degree - 6) := by
+  rw [D.canonicalSquareWeight_squareExponent, heq]
+  simp [directClosingCanonicalSquareRamification,
+    directClosingCanonicalSquareCommonLevel]
 
 end TopKernelMarkedAxisAlignedFreshSquareData
 
