@@ -66,6 +66,48 @@ theorem topKernelMarkedAxisFirstActualLayerOrder_pos
       T.topKernelMarkedAxisFirstContactFamily
       T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
 
+/-- **Sharp reverse-Rees timing bound.**
+
+The marked-axis potential is literally a bounded reverse-Rees family at level
+`topFace.degree`.  Hence every nonzero parameter layer occurs at order at
+most that level, in particular the least positive actual layer does. -/
+theorem topKernelMarkedAxisFirstActualLayerOrder_le_topFaceDegree
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    T.topKernelMarkedAxisFirstActualLayerOrder ≤ T.topFace.degree := by
+  have hne :
+      familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 := by
+    simpa [topKernelMarkedAxisFirstActualLayerOrder] using
+      firstPositiveActualParameterLayer_ne_zero
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+  rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees] at hne
+  exact
+    (reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
+      topKernelMarkedAxisNatWeight
+      T.topFace.degree
+      T.topKernelMarkedAxisFirstActualLayerOrder
+      T.topKernelReesSource
+      T.topKernelReesSource_hasMarkedAxisReverseWeightBound
+      hne).1
+
+/-- **The marked-axis potential is always strictly preclosing.**
+
+Since the maximal ordinary top degree is at least three,
+`D < 4D - 6`.  Combined with the exact reverse-Rees layer bound above, the
+first actual potential layer can never coincide with the Hessian closing
+clock. -/
+theorem topKernelMarkedAxisFirstActualLayerOrder_lt_defect
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    T.topKernelMarkedAxisFirstActualLayerOrder <
+      4 * T.topFace.degree - 6 := by
+  have hle := T.topKernelMarkedAxisFirstActualLayerOrder_le_topFaceDegree
+  have hD := T.topFace.degree_ge_three
+  omega
+
 /-- Causality for the honest marked-axis potential family: its first actual
 source deformation occurs no later than its exact pure Hessian closing clock. -/
 theorem topKernelMarkedAxisFirstActualLayerOrder_le_defect
@@ -246,6 +288,15 @@ theorem topKernelMarkedAxisPotentialTimingFrontier_nonempty
   · rcases T.topKernelMarkedAxisFirstActualLayer_hasQuadraticCoefficient_of_eq_defect
       heq with ⟨i, k, hcoeff⟩
     exact ⟨.exactClosingQuadratic heq i k hcoeff⟩
+
+/-- The potential timing frontier has no exact-closing constructor in the
+actual marked-axis reverse-Rees family. -/
+theorem topKernelMarkedAxisPotentialTimingFrontier_preclosing
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    T.topKernelMarkedAxisFirstActualLayerOrder <
+      4 * T.topFace.degree - 6 :=
+  T.topKernelMarkedAxisFirstActualLayerOrder_lt_defect
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
