@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10020**.
+Distinct declaration spellings indexed: **10027**.
 
 ## Repeated declaration spellings
 
@@ -3357,6 +3357,7 @@ Distinct declaration spellings indexed: **10020**.
 - `TopKernelLinearPowerE3TerminalAwareFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
 - `TopKernelLinearPowerE3TerminalAwareFrontier.toMarkedAware` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `TopKernelMarkedAxisAlignedFreshSquareData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
+- `TopKernelMarkedAxisAlignedFreshSquareData.familyParameterLayer_eq_zero_of_pos_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisAlignedSquareTimingFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `TopKernelMarkedAxisCanonicalSquareFamilyObstruction` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
@@ -5458,6 +5459,7 @@ Distinct declaration spellings indexed: **10020**.
 - `familyParameterLayer_sub_exact` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalResidualLayers`
 - `familyParameterLayer_sub_generic` — `theorem` in `HC4.Valuation.PlanarContactFirstVariationBridge`
 - `familyParameterLayer_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
+- `familyParameterLayer_transverseSourceShearHom_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `familyParameterLayer_two_constant_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalComplementLayers`
 - `familyParameterLayer_unitTransverseInflateFamily_coeff_add_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryCouplingCorrection`
 - `familyParameterLayer_zero_eq_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
@@ -7299,6 +7301,7 @@ Distinct declaration spellings indexed: **10020**.
 - `parameterLayer_quotient_fiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerFiber`
 - `parameterLayer_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInterior`
 - `parameterLayer_support_source_and_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarContactFirstInterior`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarFirstLayer`
+- `parameterOrder_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `parameterRamificationFamily` — `def` in `HC4.Valuation.ParameterRamification`
 - `parameterRamificationFamily_coefficientDivisibility` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `parameterRamificationFamily_hasHessianDefect` — `theorem` in `HC4.Valuation.ParameterRamification`
@@ -9575,6 +9578,7 @@ Distinct declaration spellings indexed: **10020**.
 - `stationary_scaledOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationary_scaledOrder_eq_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
 - `step` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
+- `strictEarlierWeightedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `strictInterior_pair_eq_of_unitLeft_extrema_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberPairOrders`
 - `strictLowBlocker` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
 - `strictLowBlocker_aligned` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBlocker`
@@ -9959,6 +9963,8 @@ Distinct declaration spellings indexed: **10020**.
 - `topKernelMarkedAxisPotentialTimingFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
 - `topKernelMarkedAxisSupportFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
 - `topKernelMarkedAxisSupportFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisSupportFrontier`
+- `topKernelMarkedAxisTransverseShearHomBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `topKernelMarkedAxisTransverseShearVariableBase` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `topKernelMarkedAxis_exists_actualPositiveLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisActualLayer`
 - `topKernelMarkedAxis_exists_alignedFreshSquare_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `topKernelMarkedAxis_qsRankThreeRefinement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
@@ -10289,6 +10295,7 @@ Distinct declaration spellings indexed: **10020**.
 - `zeroOffDiag_eq_X_pow_first_mul_tail` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
 - `zeroOrderCanonicalFamilyWall_longitudinal_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrderCanonicalFamilyWall_transverse_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
+- `zeroOrder_or_positiveEarlier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `zeroPolynomialSection` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
 - `zeroPolynomialSection_smithDivisibility` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `zeroRamifiedSection_hasIntegralAdaptiveSmithSection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`

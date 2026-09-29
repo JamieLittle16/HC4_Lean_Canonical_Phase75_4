@@ -12260,7 +12260,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - External imports: none
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `structure TopKernelMarkedAxisCanonicalSquareIntegralityData`, `structure TopKernelMarkedAxisCanonicalSquareFamilyObstruction`, `theorem topKernelMarkedAxisCanonicalSquare_integral_or_obstruction`, `def exposedFamily`, `def leftSection`, `def rightSection`, `theorem exposedFamily_hasHessianDefect`, `theorem exposedFamily_exactCollision`, `theorem topKernelMarkedAxisCanonicalSquareExposure_or_obstruction_of_eq_defect`
+- Declarations: `def topKernelMarkedAxisTransverseShearVariableBase`, `def topKernelMarkedAxisTransverseShearHomBase`, `theorem familyParameterLayer_transverseSourceShearHom_constant`, `theorem TopKernelMarkedAxisAlignedFreshSquareData.familyParameterLayer_eq_zero_of_pos_lt_firstActual`, `structure TopKernelMarkedAxisCanonicalSquareIntegralityData`, `structure TopKernelMarkedAxisCanonicalSquareFamilyObstruction`, `theorem topKernelMarkedAxisCanonicalSquare_integral_or_obstruction`, `theorem strictEarlierWeightedClock`, `theorem parameterOrder_lt_defect`, `theorem zeroOrder_or_positiveEarlier`, `def exposedFamily`, `def leftSection`, `def rightSection`, `theorem exposedFamily_hasHessianDefect`, `theorem exposedFamily_exactCollision`, `theorem topKernelMarkedAxisCanonicalSquareExposure_or_obstruction_of_eq_defect`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
 
