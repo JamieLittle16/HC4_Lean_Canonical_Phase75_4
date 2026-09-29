@@ -423,6 +423,39 @@ theorem topKernelMarkedAxis_exists_alignedFreshSquare_of_eq_defect
   · simpa [Q, P, right] using hcoll
   · simpa [right] using hright
 
+/-- Timing frontier with the exact-closing branch upgraded from a bare
+quadratic coefficient to the fully aligned fresh-square source package. -/
+inductive TopKernelMarkedAxisAlignedSquareTimingFrontier
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) : Type (u + 1)
+  | preclosing
+      (order_lt :
+        T.topKernelMarkedAxisFirstActualLayerOrder <
+          4 * T.topFace.degree - 6)
+  | exactClosing
+      (order_eq :
+        T.topKernelMarkedAxisFirstActualLayerOrder =
+          4 * T.topFace.degree - 6)
+      (square : T.TopKernelMarkedAxisAlignedFreshSquareData)
+
+/-- The honest marked-axis potential always reaches either strict preclosing,
+or an exact-closing source which already carries the aligned fresh square,
+the exact Hessian clock and the marked moving collision. -/
+theorem topKernelMarkedAxisAlignedSquareTimingFrontier_nonempty
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state) :
+    Nonempty T.TopKernelMarkedAxisAlignedSquareTimingFrontier := by
+  rcases T.topKernelMarkedAxisPotentialTimingFrontier_nonempty with
+    F
+  rcases F with ⟨F⟩
+  cases F with
+  | preclosing hlt =>
+      exact ⟨.preclosing hlt⟩
+  | exactClosingQuadratic heq _i _k _hcoeff =>
+      rcases T.topKernelMarkedAxis_exists_alignedFreshSquare_of_eq_defect heq with
+        ⟨D⟩
+      exact ⟨.exactClosing heq D⟩
+
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
 end
