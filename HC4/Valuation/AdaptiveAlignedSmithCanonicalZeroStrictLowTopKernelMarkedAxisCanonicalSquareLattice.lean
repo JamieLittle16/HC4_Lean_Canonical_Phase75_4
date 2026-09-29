@@ -95,6 +95,122 @@ theorem topKernelMarkedAxisCanonicalSquare_integral_or_obstruction
       not_divisible := hnot
     }⟩
 
+namespace TopKernelMarkedAxisCanonicalSquareFamilyObstruction
+
+variable
+  {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+    (K := K) state}
+  {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+
+/-- Failure of family integrality is equivalent to a genuinely earlier
+weighted coefficient clock on the canonical square ray. -/
+theorem strictEarlierWeightedClock
+    (O : T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D) :
+    directClosingCanonicalSquareRamification *
+          smithFamilyCoefficientParameterOrder
+            D.family O.exponent O.mem_family +
+        Finsupp.weight
+          (directClosingCanonicalSquareWeight
+            (4 * T.topFace.degree - 6) D.ell)
+          O.exponent <
+      directClosingCanonicalSquareCommonLevel
+        (4 * T.topFace.degree - 6) := by
+  let q :=
+    smithFamilyCoefficientParameterOrder
+      D.family O.exponent O.mem_family
+  let w :=
+    Finsupp.weight
+      (directClosingCanonicalSquareWeight
+        (4 * T.topFace.degree - 6) D.ell)
+      O.exponent
+  let total := directClosingCanonicalSquareRamification * q + w
+  have hqdiv :
+      Polynomial.X ^ q ∣ MvPolynomial.coeff O.exponent D.family := by
+    simpa [q] using
+      smithFamilyCoefficientParameterOrder_dvd
+        D.family O.exponent O.mem_family
+  have hramdiv :
+      Polynomial.X ^
+          (directClosingCanonicalSquareRamification * q) ∣
+        parameterRamificationHom (K := K)
+          directClosingCanonicalSquareRamification
+          (MvPolynomial.coeff O.exponent D.family) := by
+    exact parameterRamification_pow_dvd
+      directClosingCanonicalSquareRamification q
+      (MvPolynomial.coeff O.exponent D.family) hqdiv
+  rcases hramdiv with ⟨r, hr⟩
+  have htotaldiv :
+      Polynomial.X ^ total ∣
+        adaptiveSmithExposureCoefficientFactor
+          directClosingCanonicalSquareRamification
+          (directClosingCanonicalSquareWeight
+            (4 * T.topFace.degree - 6) D.ell)
+          D.family O.exponent := by
+    refine ⟨r, ?_⟩
+    unfold adaptiveSmithExposureCoefficientFactor
+    dsimp [total, w]
+    rw [hr, pow_add]
+    ring
+  change total <
+    directClosingCanonicalSquareCommonLevel
+      (4 * T.topFace.degree - 6)
+  by_contra hlt
+  have hle :
+      directClosingCanonicalSquareCommonLevel
+          (4 * T.topFace.degree - 6) ≤ total :=
+    Nat.le_of_not_gt hlt
+  have hpow :
+      Polynomial.X ^
+          (directClosingCanonicalSquareCommonLevel
+            (4 * T.topFace.degree - 6)) ∣
+        (Polynomial.X : Polynomial K) ^ total :=
+    polynomial_X_pow_dvd_X_pow_of_le
+      (K := K)
+      (directClosingCanonicalSquareCommonLevel
+        (4 * T.topFace.degree - 6))
+      total hle
+  exact O.not_divisible (dvd_trans hpow htotaldiv)
+
+/-- In particular the offending coefficient occurs strictly before the
+marked-axis determinant-closing order. -/
+theorem parameterOrder_lt_defect
+    (O : T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D) :
+    smithFamilyCoefficientParameterOrder
+        D.family O.exponent O.mem_family <
+      4 * T.topFace.degree - 6 := by
+  have hlt := O.strictEarlierWeightedClock
+  have hw :
+      0 ≤ Finsupp.weight
+        (directClosingCanonicalSquareWeight
+          (4 * T.topFace.degree - 6) D.ell)
+        O.exponent := Nat.zero_le _
+  simp [directClosingCanonicalSquareRamification,
+    directClosingCanonicalSquareCommonLevel] at hlt
+  omega
+
+/-- Every family obstruction is therefore either already on the special
+fibre (order zero) or is a genuine positive parameter layer strictly before
+the closing clock. -/
+theorem zeroOrder_or_positiveEarlier
+    (O : T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D) :
+    smithFamilyCoefficientParameterOrder
+        D.family O.exponent O.mem_family = 0 ∨
+      (0 <
+          smithFamilyCoefficientParameterOrder
+            D.family O.exponent O.mem_family ∧
+        smithFamilyCoefficientParameterOrder
+            D.family O.exponent O.mem_family <
+          4 * T.topFace.degree - 6) := by
+  let q :=
+    smithFamilyCoefficientParameterOrder
+      D.family O.exponent O.mem_family
+  by_cases hq : q = 0
+  · exact Or.inl hq
+  · exact Or.inr ⟨Nat.pos_of_ne_zero hq,
+      by simpa [q] using O.parameterOrder_lt_defect⟩
+
+end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
+
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
 variable
