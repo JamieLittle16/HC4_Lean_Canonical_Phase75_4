@@ -552,7 +552,6 @@ theorem profile_natDegree_ne_one
         rcases Nat.mul_eq_one.mp hbn with ⟨hbOne, hnOne⟩
         have hnearDeg : ordinaryDegree4 D.facetExponent = a + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hbOne, hnOne]
-          omega
         have hfarBal' :
             a * R.exponent 0 + R.exponent 1 = R.exponent 2 := by
           simpa [IsBalancedExponent, hr3, hbOne] using hfarBal
