@@ -918,8 +918,9 @@ theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel
   cases R.terminalRankThree_or_kernel
       ha hb hcop hcontactScale D hBal hcontact hzero hnear with
   | rankThree F hthree hnearPos =>
-      rcases R.exists_rankThreeAffineSupportData
-          ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
+      rcases
+          HC4.RationalRigidity.CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
+            ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
         ⟨P⟩
       left
       refine ⟨P, ?_, ?_⟩
@@ -963,8 +964,9 @@ theorem CrossFacetFarBoundaryData.kernel_of_positiveFirstContact
           D.facetExponent 3 = b * n)) :
     ∃ kernelCoordinate : Fin 4,
       MvPolynomial.pderiv kernelCoordinate D.face = 0 := by
-  rcases R.affineTerminalCodimensionTwo_or_kernel
-      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+  rcases
+      HC4.RationalRigidity.CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel
+        ha hb hcop hcontactScale D hBal hcontact hzero R hnear with
     hterminal | hkernel
   · rcases hterminal with ⟨P, hcert, hcodim⟩
     have hfarMem :
@@ -1040,8 +1042,9 @@ theorem exists_qs_firstNonfacet_crossFacet_childKernel
   let R : CrossFacetFarBoundaryData (a := a) (b := b) D :=
     D.farBoundaryData
       ha hb hcop hscale hGBal hcontact hzero hnonlinear
-  rcases R.kernel_of_positiveFirstContact
-      ha hb hcop hscale hbump D hGBal hcontact hzero hnear with
+  rcases
+      HC4.RationalRigidity.CrossFacetFarBoundaryData.kernel_of_positiveFirstContact
+        ha hb hcop hscale hbump D hGBal hcontact hzero R hnear with
     ⟨kernelCoordinate, hkernel⟩
   exact ⟨scale, bump, G, D, R, kernelCoordinate,
     hG, hscale, hbump, hzero, hGBal, hnonlinear, hkernel⟩
@@ -1087,8 +1090,9 @@ theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel
   cases R.terminalRankThree_or_kernel
       ha hb hcop hcontactScale D hBal hcontact hzero hnear with
   | rankThree F hthree hnearPos =>
-      rcases R.exists_rankThreeAffineSupportData
-          ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
+      rcases
+          HC4.RationalRigidity.CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
+            ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
         ⟨P⟩
       left
       refine ⟨P, ?_⟩
