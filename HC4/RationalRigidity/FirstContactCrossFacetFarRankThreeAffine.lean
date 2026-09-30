@@ -887,6 +887,69 @@ theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel
   | kernel kernelCoordinate hkernel =>
       exact Or.inr ⟨kernelCoordinate, hkernel⟩
 
+/-- **Positive-bump far first-contact has a literal coordinate kernel.**
+
+The affine branch of `affineTerminalCodimensionTwo_or_kernel` is now
+impossible.  Its terminal profile has positive degree, cannot have degree one,
+cannot preserve ordinary degree because the contact bump is positive, and has
+a literal codimension-two top exponent.  The carrier-independent affine RR
+contradiction therefore eliminates it.  Hence only the exact child-face kernel
+branch survives. -/
+theorem CrossFacetFarBoundaryData.kernel_of_positiveFirstContact
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    ∃ kernelCoordinate : Fin 4,
+      MvPolynomial.pderiv kernelCoordinate D.face = 0 := by
+  rcases R.affineTerminalCodimensionTwo_or_kernel
+      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+    hterminal | hkernel
+  · rcases hterminal with ⟨P, hcert, hcodim⟩
+    have hfarMem :
+        Finsupp.mapDomain P.rho R.exponent ∈
+          (MvPolynomial.rename P.rho D.face).support := by
+      rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+      exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
+    have hphi0 : P.support.coefficientProfile.coeff 0 ≠ 0 :=
+      P.support.coeff_zero_ne_zero_of_mem_zero hfarMem P.farIndex_zero
+    have hphiDeg : 0 < P.support.coefficientProfile.natDegree := by
+      rw [P.profile_natDegree_eq_nearIndex]
+      exact P.nearIndex_pos
+    have hdegOne :
+        P.support.coefficientProfile.natDegree ≠ 1 :=
+      P.profile_natDegree_ne_one
+        ha hb hcontactScale hcontactBump hBal hcontact hnear
+    have hsum_ne : (1 : K) + P.q + P.r + P.s ≠ 0 :=
+      P.affineDirection_sum_ne_zero
+        hcontactScale hcontactBump hcontact
+    exact False.elim
+      (rankThree_affineTerminal_codimensionTwoTop_impossible
+        (K := K) P.support.affineLineData
+        P.A_pos P.B_pos P.C_pos hphiDeg hphi0 hcert
+        hdegOne hsum_ne hcodim)
+  · exact hkernel
+
 /-- **Terminal far first-contact = affine RR certificate or literal kernel.**
 
 This is the direct splice between the strengthened Newton far-boundary
