@@ -4,6 +4,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -1188,6 +1189,131 @@ theorem TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData.toZeroJetPlan
   | transverseAffineTail face face_eq face_ne_zero pure_affine hessian_zero =>
       exact False.elim
         (D.transverseAffineTail_impossible face face_eq face_ne_zero pure_affine)
+
+/-- Exact binary planarisation of the surviving marked-axis base-plane
+core.  Collision orientation is deliberately not stored here: the entire
+binary singular-Hessian analysis below is carrier-independent. -/
+structure TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  face : MvPolynomial (Fin 4) K
+  binaryFace : MvPolynomial (Fin 2) K
+  face_eq_rename :
+    MvPolynomial.rename
+      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
+        D.ell D.ell_ne_zero)
+      binaryFace = face
+  face_ne_zero : face ≠ 0
+  binaryFace_ne_zero : binaryFace ≠ 0
+  binary_det_zero :
+    binaryDirectionalHessianDet (0 : Fin 2) 1 binaryFace = 0
+  face_linear_zero :
+    ∀ i : Fin 4,
+      MvPolynomial.coeff (Finsupp.single i 1) face = 0
+
+/-- Every linear coefficient on a marked-axis zero-jet core vanishes. -/
+theorem TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData.face_linear_zero
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData D)
+    (i : Fin 4) :
+    MvPolynomial.coeff (Finsupp.single i 1) L.face = 0 := by
+  rw [L.face_eq, HC4.Polynomial.coeff_initialForm]
+  split
+  · exact D.specialFiber_linearCoeff_zero i
+  · rfl
+
+/-- Exact binary planarisation of the genuine marked-axis zero-jet core. -/
+theorem TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData.toBinaryStationaryCore
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData D) :
+    Nonempty (T.TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData D) := by
+  rcases
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseSupport_exists_binaryPlanarisation
+        D.ell_ne_zero L.base_support with
+    ⟨Q, hQrename⟩
+  have hQne : Q ≠ 0 := by
+    intro hQ
+    apply L.face_ne_zero
+    rw [← hQrename, hQ]
+    simp
+  have hdetTransport :=
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.binaryDirectionalHessianDet_rename_transverseBaseEmbedding
+      D.ell D.ell_ne_zero Q
+  have hrenameDet :
+      MvPolynomial.rename
+          (AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
+            D.ell D.ell_ne_zero)
+          (binaryDirectionalHessianDet (0 : Fin 2) 1 Q) = 0 := by
+    rw [← hdetTransport, hQrename, L.base_det_zero]
+  have hdetQ :
+      binaryDirectionalHessianDet (0 : Fin 2) 1 Q = 0 := by
+    apply MvPolynomial.rename_injective
+      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
+        D.ell D.ell_ne_zero)
+      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
+        D.ell D.ell_ne_zero).injective
+    simpa using hrenameDet
+  exact ⟨{
+    face := L.face
+    binaryFace := Q
+    face_eq_rename := hQrename
+    face_ne_zero := L.face_ne_zero
+    binaryFace_ne_zero := hQne
+    binary_det_zero := hdetQ
+    face_linear_zero := L.face_linear_zero
+  }⟩
+
+/-- The ambient zero linear jet descends through the injective marked-axis
+binary planarisation. -/
+theorem TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData.binaryFace_linear_zero
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (B : T.TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData D)
+    (i : Fin 2) :
+    MvPolynomial.coeff (Finsupp.single i 1) B.binaryFace = 0 := by
+  let emb :=
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseBaseEmbedding
+      D.ell D.ell_ne_zero
+  have hder := congrArg (MvPolynomial.pderiv (emb i)) B.face_eq_rename
+  have hcomm :=
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.pderiv_rename_transverseBaseEmbedding
+      D.ell D.ell_ne_zero i B.binaryFace
+  rw [hcomm] at hder
+  have hc0 := congrArg
+    (fun P : MvPolynomial (Fin 4) K => MvPolynomial.coeff 0 P) hder
+  change MvPolynomial.coeff 0
+      (MvPolynomial.rename emb (MvPolynomial.pderiv i B.binaryFace)) =
+    MvPolynomial.coeff 0 (MvPolynomial.pderiv (emb i) B.face) at hc0
+  have hrename :
+      MvPolynomial.coeff 0
+          (MvPolynomial.rename emb (MvPolynomial.pderiv i B.binaryFace)) =
+        MvPolynomial.coeff 0 (MvPolynomial.pderiv i B.binaryFace) := by
+    simpa only [MvPolynomial.constantCoeff_eq] using
+      (MvPolynomial.constantCoeff_rename emb
+        (MvPolynomial.pderiv i B.binaryFace))
+  rw [hrename] at hc0
+  rw [coeff_pderiv_backport, coeff_pderiv_backport] at hc0
+  simp only [zero_add, Nat.cast_one, one_mul] at hc0
+  have hamb := B.face_linear_zero (emb i)
+  rw [hamb] at hc0
+  simpa using hc0
+
+/-- **Marked-axis entry to the complete carrier-independent binary Hesse
+frontier.** -/
+theorem TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData.curvedEliminatedFrontier
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (B : T.TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData D) :
+    Nonempty (BinarySingularHessianCurvedEliminatedFrontier B.binaryFace) := by
+  exact binarySingularHessian_curvedEliminatedFrontier
+    B.binaryFace B.binaryFace_ne_zero B.binary_det_zero B.binaryFace_linear_zero
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
