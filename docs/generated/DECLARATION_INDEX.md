@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10092**.
+Distinct declaration spellings indexed: **10093**.
 
 ## Repeated declaration spellings
 
@@ -5292,6 +5292,7 @@ Distinct declaration spellings indexed: **10092**.
 - `exists_positive_tail_factorisation` — `theorem` in `HC4.Polynomial.ComplementaryEdgeRigidity`
 - `exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
+- `exists_qs_firstNonfacet_crossFacet_childKernel` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
