@@ -2714,6 +2714,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRightRecenteredKernelExit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockPacket`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetChildKernel`
+  - `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
   - `HC4.Newton.SingularBoundaryRankSplit`
   - `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
