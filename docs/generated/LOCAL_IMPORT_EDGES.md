@@ -4215,6 +4215,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCrossFacetRefinement`
