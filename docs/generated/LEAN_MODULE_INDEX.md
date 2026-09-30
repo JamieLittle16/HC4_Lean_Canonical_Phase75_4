@@ -7949,7 +7949,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - Declarations: `theorem qs_childKernel_of_balanced`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
@@ -12307,10 +12307,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact.lean`
 - Purpose: E2: the full marked-facet branch has a genuine lower first contact
 - A-labels: `A19.87`
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetChildKernel`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetReduced`
-- Declarations: `theorem nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet`, `def fullMarkedFacetFirstNonfacetCrossFacetData`, `def fullMarkedFacetRayFacetExponent`, `def fullMarkedFacetRayCoefficientDegree`, `inductive TopKernelMarkedAxisFullFacetContactFrontier`, `theorem fullMarkedFacetContactFrontier_nonempty`
+- Declarations: `theorem nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet`, `def fullMarkedFacetFirstNonfacetCrossFacetData`, `theorem fullMarkedFacetFirstNonfacet_childKernel_of_balanced`, `def fullMarkedFacetRayFacetExponent`, `def fullMarkedFacetRayCoefficientDegree`, `inductive TopKernelMarkedAxisFullFacetContactFrontier`, `theorem fullMarkedFacetContactFrontier_nonempty`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetReduced`
 

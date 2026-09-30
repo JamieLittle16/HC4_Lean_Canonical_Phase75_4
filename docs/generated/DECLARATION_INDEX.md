@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10106**.
+Distinct declaration spellings indexed: **10107**.
 
 ## Repeated declaration spellings
 
@@ -6005,6 +6005,7 @@ Distinct declaration spellings indexed: **10106**.
 - `fullDet_zero_through_order` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `fullMarkedFacetContactFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetFirstNonfacetCrossFacetData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
+- `fullMarkedFacetFirstNonfacet_childKernel_of_balanced` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetKernelSplit` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement`
 - `fullMarkedFacetRayCoefficientDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
 - `fullMarkedFacetRayFacetExponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetContact`
