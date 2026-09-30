@@ -445,6 +445,32 @@ theorem affineLineData_topExponent_eq_near
     P.support.eq_of_zeroCoordinate_eq hspec.1 hnearMem hzero
   simpa [near, RankThreeAffineSupportData.affineLineData] using heq
 
+/-- The affine terminal top exponent is already codimension two in the
+actual first-contact geometry.  The coefficient-profile top exponent is
+literally the reoriented near q/s ray, and that ray has two zero transverse
+coordinates. -/
+theorem affineLineData_topExponent_codimensionTwo
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    HC4.Newton.MvExponentOnCodimensionTwoBoundary
+      (P.support.affineLineData.exponent
+        P.support.coefficientProfile.natDegree) := by
+  rw [P.affineLineData_topExponent_eq_near]
+  rcases P.nearExtreme_topShape hnear with h23 | h13 | h12
+  · exact ⟨(2 : Fin 4), (3 : Fin 4), by decide, h23.2.1, h23.2.2⟩
+  · exact ⟨(1 : Fin 4), (3 : Fin 4), by decide, h13.1, h13.2.2⟩
+  · exact ⟨(1 : Fin 4), (2 : Fin 4), by decide, h12.1, h12.2.1⟩
+
 /-- A reoriented far-rank-three support package already reaches the mature
 affine RationalRigidity terminal certificate as soon as the child face is
 Hessian-singular. -/
