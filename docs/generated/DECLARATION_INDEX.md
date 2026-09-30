@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10081**.
+Distinct declaration spellings indexed: **10082**.
 
 ## Repeated declaration spellings
 
@@ -3010,6 +3010,7 @@ Distinct declaration spellings indexed: **10081**.
 - `RankThreeAffineLineData.term_eq_monomial` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineSupportData` — `structure` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
 - `RankThreeAffineTerminalNormalForm` — `structure` in `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
+- `RankThreeAffineTerminalNormalForm.coeff_ne_zero` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
 - `RankThreeAffineTerminalScalarData` — `structure` in `HC4.RationalRigidity.RankThreeAffineTerminalScalarData`
 - `RankThreeAffineTerminalScalarData.impossible_of_two_fixed` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalScalarData`
 - `RankThreeAffineTerminalTopStratum` — `inductive` in `HC4.RationalRigidity.RankThreeAffineTerminalBoundaryStratum`

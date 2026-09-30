@@ -3716,7 +3716,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeTranslatedPurePower`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.RationalRigidity.RankThreeAffineTerminalBoundaryStratum`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
-- Declarations: `structure RankThreeAffineTerminalNormalForm`, `theorem rankThreeAffineTerminal_normalForm`
+- Declarations: `structure RankThreeAffineTerminalNormalForm`, `theorem RankThreeAffineTerminalNormalForm.coeff_ne_zero`, `theorem rankThreeAffineTerminal_normalForm`
 
 ### `HC4.RationalRigidity.RankThreeAffineTerminalScalarData`
 
