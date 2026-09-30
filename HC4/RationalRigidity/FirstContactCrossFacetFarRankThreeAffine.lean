@@ -950,6 +950,61 @@ theorem CrossFacetFarBoundaryData.kernel_of_positiveFirstContact
         hdegOne hsum_ne hcodim)
   · exact hkernel
 
+/-- **Rooted positive first-contact kernel theorem.**
+
+Starting from the actual strict-low/non-facet `.qs` source contact, retain the
+exact initial form, the exact secondary face, the actual far endpoint, and the
+literal coordinate kernel forced by the completed affine RR elimination. -/
+theorem exists_qs_firstNonfacet_crossFacet_childKernel
+    {a b m : ℕ} {psi : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m psi)
+    (htop : TopDegreeOnFacet .qs m psi)
+    (hattained : ∃ v ∈ psi.support, ordinaryDegree4 v = m)
+    (hout : HasNonlinearOutsideFacet .qs psi)
+    (hlow : LowDegreeTameAtFacet .qs psi)
+    (hBal : HasBalancedMvSupport a b psi)
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere psi) :
+    ∃ (scale bump : ℕ) (G : MvPolynomial (Fin 4) K)
+      (D : CrossFacetInitialData G
+        (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+      (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+      (kernelCoordinate : Fin 4),
+      G = initialForm
+          (scaledContactWeight (0 : Fin 4) scale bump)
+          ((scale * m : ℕ) : ℤ) psi ∧
+      0 < scale ∧
+      0 < bump ∧
+      hessianDeterminant G = 0 ∧
+      HasBalancedMvSupport a b G ∧
+      (∀ d ∈ G.support, 3 ≤ ordinaryDegree4 d) ∧
+      MvPolynomial.pderiv kernelCoordinate D.face = 0 := by
+  rcases exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear
+      ha hb hcop hm hdeg htop hattained hout hlow hBal hMA with
+    ⟨d₀, scale, bump, G, hG, hd₀G, hd₀deg, hscale, hbump,
+      hzero, hnot, hGBal, hnonlinear, D, H, hAdj, hRay⟩
+  have hsupports := firstContactCarrier_crossFacet_supports
+    (F := .qs) (m := m) (scale := scale) (bump := bump)
+    htop hattained hG hnot
+  have hcontact :
+      ∀ d ∈ G.support,
+        scaledContactExponentWeight (0 : Fin 4) scale bump d =
+          ((scale * m : ℕ) : ℤ) := by
+    simpa [facetOmittedCoordinate] using hsupports.2.2
+  have hfacetDeg : 3 ≤ ordinaryDegree4 D.facetExponent :=
+    hnonlinear D.facetExponent (D.support_subset D.facet_mem_face)
+  have hnear :=
+    D.qs_extremeRay_facet_coordinates_pos hAdj hRay hfacetDeg
+  let R : CrossFacetFarBoundaryData (a := a) (b := b) D :=
+    D.farBoundaryData
+      ha hb hcop hscale hGBal hcontact hzero hnonlinear
+  rcases R.kernel_of_positiveFirstContact
+      ha hb hcop hscale hbump D hGBal hcontact hzero hnear with
+    ⟨kernelCoordinate, hkernel⟩
+  exact ⟨scale, bump, G, D, R, kernelCoordinate,
+    hG, hscale, hbump, hzero, hGBal, hnonlinear, hkernel⟩
+
 /-- **Terminal far first-contact = affine RR certificate or literal kernel.**
 
 This is the direct splice between the strengthened Newton far-boundary
