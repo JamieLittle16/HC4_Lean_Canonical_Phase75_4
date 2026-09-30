@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -889,6 +890,86 @@ theorem TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData.mixedRepair_or_a
     intro U V hV0 hVell
     by_contra hUV
     exact hmixed ⟨U, V, hV0, hVell, hUV⟩
+
+/-- Marked-axis low-dimensional wall face after every possible Hessian
+curvature exit has been consumed.  The Hessian is supported on the base plane
+spanned by the marked coordinate and the fresh-square coordinate, and its
+binary determinant on that plane vanishes. -/
+structure TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  affine : T.TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData D
+  hessian_support :
+    ∀ i j : Fin 4,
+      (i ≠ (0 : Fin 4) ∧ i ≠ D.ell) ∨
+      (j ≠ (0 : Fin 4) ∧ j ≠ D.ell) →
+        HC4.Polynomial.hessian affine.wallFace.face i j = 0
+  base_det_zero :
+    binaryDirectionalHessianDet (0 : Fin 4) D.ell affine.wallFace.face = 0
+
+/-- **Final marked-axis affine-face curvature dichotomy.**
+
+Once complementary mixed curvature has vanished, the only possible remaining
+rank-two source is the intrinsic binary Hessian determinant on the base plane
+`(0, ell)`.  A nonzero determinant is the already-green rank-two repair
+packet; otherwise the exact wall face is genuinely low-dimensional. -/
+theorem TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData.basePlaneRepair_or_lowDimensional
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (A : T.TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData D)
+    (complexity : ℕ) :
+    (∃ (face : MvPolynomial (Fin 4) K) (i j : Fin 4),
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.DirectClosingWallFaceBasePlaneRankTwoRepairData
+        complexity face i j) ∨
+      Nonempty (T.TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData D) := by
+  by_cases hdet :
+      binaryDirectionalHessianDet (0 : Fin 4) D.ell A.wallFace.face = 0
+  · right
+    refine ⟨{
+      affine := A
+      hessian_support := ?_
+      base_det_zero := hdet
+    }⟩
+    exact
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseAffineWallFace_hessian_support
+        D.ell A.wallFace.face A.mixed_zero
+  · left
+    exact ⟨A.wallFace.face, (0 : Fin 4), D.ell,
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingWallFaceBasePlaneRankTwoRepairData_of_det_ne_zero
+        complexity A.wallFace.face (0 : Fin 4) D.ell hdet⟩
+
+/-- Literal affine-gradient form of the surviving marked-axis wall.  Every
+gradient component complementary to the base plane is a scalar polynomial. -/
+structure TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  low : T.TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData D
+  complement_gradient_constant :
+    ∀ i : Fin 4,
+      i ≠ (0 : Fin 4) → i ≠ D.ell →
+        MvPolynomial.pderiv i low.affine.wallFace.face =
+          MvPolynomial.C
+            (MvPolynomial.coeff 0
+              (MvPolynomial.pderiv i low.affine.wallFace.face))
+
+/-- Promote the rank-at-most-one Hessian packet to the same literal
+affine-gradient normal form used by the mature low-dimensional stationary
+chain. -/
+theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData.toGradientData
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData D) :
+    T.TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData D := by
+  exact {
+    low := L
+    complement_gradient_constant :=
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseLowDimensional_gradient_constant
+        D.ell L.affine.wallFace.face L.hessian_support
+  }
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
