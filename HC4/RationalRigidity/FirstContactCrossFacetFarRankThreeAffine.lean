@@ -2,6 +2,7 @@ import HC4.Newton.FirstContactCrossFacetFarBoundary
 import HC4.Polynomial.RankThreeAffineSupportRealisation
 import HC4.RationalRigidity.RankThreeAffineLineTerminal
 import HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm
+import HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit
 import Mathlib.Tactic
 
 /-!
@@ -373,6 +374,126 @@ theorem nearExtreme_topShape
         have hpos := P.nearOmitted_pos
         rw [hF] at hpos
         simp [facetOmittedCoordinate, h2] at hpos
+
+/-- The affine support representation retains the actual far endpoint as
+its literal coefficient-profile index zero. -/
+theorem affineLineData_zeroExponent_eq_far
+    (P : CrossFacetFarRankThreeAffineSupportData D R) :
+    P.support.affineLineData.exponent 0 =
+      Finsupp.mapDomain P.rho R.exponent := by
+  let far := Finsupp.mapDomain P.rho R.exponent
+  have hfarMem :
+      far ∈ (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
+  have hprofileMem :
+      0 ∈ P.support.coefficientProfile.support := by
+    have h :=
+      P.support.coefficientProfile_mem_of_mem hfarMem
+    simpa [far, P.farIndex_zero] using h
+  have hspec := P.support.exponentAt_spec hprofileMem
+  have hzero :
+      P.support.affineLineData.exponent 0 (0 : Fin 4) =
+        far (0 : Fin 4) := by
+    change P.support.exponentAt 0 (0 : Fin 4) = far (0 : Fin 4)
+    rw [hspec.2]
+    simpa [far] using P.farIndex_zero
+  have heq :=
+    P.support.eq_of_zeroCoordinate_eq hspec.1 hfarMem hzero
+  simpa [far, RankThreeAffineSupportData.affineLineData] using heq
+
+/-- Reindexing the four variables by the far-facet swap preserves ordinary
+total degree. -/
+theorem ordinaryDegree4_mapDomain_rho
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (e : Fin 4 →₀ ℕ) :
+    ordinaryDegree4 (Finsupp.mapDomain P.rho e) = ordinaryDegree4 e := by
+  rw [P.rho_eq]
+  cases hF : P.farFacet <;>
+    simp [ordinaryDegree4, facetOmittedCoordinate,
+      Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+      Equiv.swap_apply_of_ne_of_ne] <;> omega
+
+/-- **Positive first-contact bump excludes an ordinary-degree-preserving
+affine RR direction.**
+
+The terminal affine line has literal far and near endpoints.  A zero sum of
+its affine direction would give those endpoints the same ordinary degree.
+But both lie on the same positive-bump contact face, with contact coordinate
+zero at the near endpoint and strictly positive at the far endpoint; hence
+the far endpoint has strictly smaller ordinary degree. -/
+theorem affineDirection_sum_ne_zero
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    {contactScale contactBump : ℕ} {contactLevel : ℤ}
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel) :
+    (1 : K) + P.q + P.r + P.s ≠ 0 := by
+  intro hsum
+  let L := P.support.affineLineData
+  let phi := P.support.coefficientProfile
+  have hfarMem :
+      Finsupp.mapDomain P.rho R.exponent ∈
+        (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
+  have hnearMem :
+      Finsupp.mapDomain P.rho D.facetExponent ∈
+        (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
+  have hzeroMem : 0 ∈ phi.support := by
+    have h := P.support.coefficientProfile_mem_of_mem hfarMem
+    simpa [phi, P.farIndex_zero] using h
+  have htopMem : phi.natDegree ∈ phi.support := by
+    have hnearProfile :=
+      P.support.coefficientProfile_mem_of_mem hnearMem
+    rw [P.profile_natDegree_eq_nearIndex]
+    simpa [phi] using hnearProfile
+  have hdegZero :
+      ordinaryDegree4 (L.exponent 0) = P.A + P.B + P.C := by
+    exact
+      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+        L hsum hzeroMem
+  have hdegTop :
+      ordinaryDegree4 (L.exponent phi.natDegree) = P.A + P.B + P.C := by
+    exact
+      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+        L hsum htopMem
+  have hdegEq :
+      ordinaryDegree4 R.exponent = ordinaryDegree4 D.facetExponent := by
+    have hzeroEq := P.affineLineData_zeroExponent_eq_far
+    have htopEq := P.affineLineData_topExponent_eq_near
+    have hpermFar := P.ordinaryDegree4_mapDomain_rho R.exponent
+    have hpermNear := P.ordinaryDegree4_mapDomain_rho D.facetExponent
+    dsimp [L] at hdegZero hdegTop hzeroEq htopEq
+    rw [hzeroEq, hpermFar] at hdegZero
+    rw [htopEq, hpermNear] at hdegTop
+    omega
+
+  have hfarContact :=
+    hcontact R.exponent (D.support_subset R.mem_face)
+  have hnearContact :=
+    hcontact D.facetExponent D.facet_mem
+  have hs : (0 : ℤ) < (contactScale : ℤ) := by
+    exact_mod_cast hcontactScale
+  have hbump : (0 : ℤ) < (contactBump : ℤ) := by
+    exact_mod_cast hcontactBump
+  have hr0 : (0 : ℤ) < (R.exponent (0 : Fin 4) : ℤ) := by
+    exact_mod_cast R.contact_pos
+  unfold scaledContactExponentWeight at hfarContact hnearContact
+  rw [D.facet_coordinate_zero] at hnearContact
+  simp only [Nat.cast_zero, mul_zero, add_zero] at hnearContact
+  have hltZ :
+      (ordinaryDegree4 R.exponent : ℤ) <
+        (ordinaryDegree4 D.facetExponent : ℤ) := by
+    nlinarith
+  have hlt :
+      ordinaryDegree4 R.exponent < ordinaryDegree4 D.facetExponent := by
+    exact_mod_cast hltZ
+  exact (Nat.ne_of_lt hlt) hdegEq
 
 /-- The extracted affine coefficient profile has degree exactly the reoriented
 near-end coordinate.  Thus the original near endpoint is the terminal top
