@@ -34,6 +34,93 @@ open HC4.Polynomial
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
+/-- If the affine direction has ordinary degree zero, every actually
+supported exponent stays on the ordinary-degree hyperplane of the rank-three
+base exponent.  This is the carrier-independent bridge from the scalar
+relation `u1 + Q + R + S = 0` to the homogeneous terminal lemmas below. -/
+theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+    {A B C u1 : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C u1 Q R S phi)
+    (hsum : (u1 : K) + Q + R + S = 0)
+    {j : ℕ} (hj : j ∈ phi.support) :
+    ordinaryDegree4 (L.exponent j) = A + B + C := by
+  have haff := L.affine j hj
+  have h0 := congrFun haff (0 : Fin 4)
+  have h1 := congrFun haff (1 : Fin 4)
+  have h2 := congrFun haff (2 : Fin 4)
+  have h3 := congrFun haff (3 : Fin 4)
+  have hdegK :
+      ((ordinaryDegree4 (L.exponent j) : ℕ) : K) =
+        ((A + B + C : ℕ) : K) := by
+    simp [ordinaryDegree4, Nat.cast_add]
+    rw [h0, h1, h2, h3]
+    simp [rankThreeLogBaseExponent, rankThreeLogDirection]
+    push_cast
+    linear_combination (j : K) * hsum
+  exact_mod_cast hdegK
+
+/-- **Finite balance-free affine-terminal frontier.**
+
+The generic highest-direction relation has one apparently non-geometric
+alternative, `1 + Q + R + S = 0`.  On an honest affine support line this
+means every supported exponent has the same ordinary degree.  The existing
+homogeneous terminal theorem therefore converts that last scalar alternative
+into either a fixed transverse direction or an actual codimension-two top
+endpoint.
+
+Thus the terminal certificate leaves only the literal finite alternatives:
+degree one, one fixed transverse slope, or codimension-two boundary. -/
+theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    phi.natDegree = 1 ∨
+      Q = 0 ∨ R = 0 ∨ S = 0 ∨
+        HC4.Newton.MvExponentOnCodimensionTwoBoundary
+          (L.exponent phi.natDegree) := by
+  have hsplit :=
+    rankThree_terminal_degreeOne_or_directionDegenerate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcert
+  rcases hsplit with hD | hQ | hR | hS | hsum
+  · exact Or.inl hD
+  · exact Or.inr (Or.inl hQ)
+  · exact Or.inr (Or.inr (Or.inl hR))
+  · exact Or.inr (Or.inr (Or.inr (Or.inl hS)))
+  · have hstep :=
+      rankThree_unit_longitudinal_step_of_certificate
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcert
+    have h1mem : 1 ∈ phi.support :=
+      Polynomial.mem_support_iff.mpr hstep.2
+    have hphi : phi ≠ 0 := by
+      intro hz
+      rw [hz] at hphi0
+      simp at hphi0
+    have htopMem : phi.natDegree ∈ phi.support := by
+      rw [Polynomial.mem_support_iff]
+      change phi.leadingCoeff ≠ 0
+      exact (Polynomial.leadingCoeff_ne_zero).2 hphi
+    have hdegOne :
+        ordinaryDegree4 (L.exponent 1) = A + B + C :=
+      L.ordinaryDegree_eq_base_of_direction_sum_zero hsum h1mem
+    have hdegTop :
+        ordinaryDegree4 (L.exponent phi.natDegree) = A + B + C :=
+      L.ordinaryDegree_eq_base_of_direction_sum_zero hsum htopMem
+    rcases rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
+        (K := K) L hA hB hC hphiDeg hphi0 hcert hdegOne hdegTop with
+      hQ | hR | hS | hcodim
+    · exact Or.inr (Or.inl hQ)
+    · exact Or.inr (Or.inr (Or.inl hR))
+    · exact Or.inr (Or.inr (Or.inr (Or.inl hS)))
+    · exact Or.inr (Or.inr (Or.inr (Or.inr hcodim)))
+
 /-- **Homogeneous affine terminal: fixed transverse direction or codimension
 two.**
 
