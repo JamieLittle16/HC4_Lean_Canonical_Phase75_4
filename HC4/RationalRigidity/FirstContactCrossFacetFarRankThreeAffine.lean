@@ -314,22 +314,22 @@ theorem nearExtreme_topShape
         left
         refine ⟨?_, ?_, ?_⟩
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
         · simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3] using hn
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3] using hn
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         right
         right
         refine ⟨?_, ?_, ?_⟩
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
         · have hbn : 0 < b * n := Nat.mul_pos hb hn
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3] using hbn
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3] using hbn
   | rq =>
       rw [P.rho_eq, hF]
       rcases hnear with hq | hs
@@ -342,11 +342,11 @@ theorem nearExtreme_topShape
         refine ⟨?_, ?_, ?_⟩
         · have han : 0 < a * n := Nat.mul_pos ha hn
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3] using han
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3] using han
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
   | qs =>
       have hpos := P.nearOmitted_pos
       rw [hF] at hpos
@@ -362,11 +362,11 @@ theorem nearExtreme_topShape
         left
         refine ⟨?_, ?_, ?_⟩
         · simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3] using hn
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3] using hn
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            facetOmittedCoordinate, h0, h1, h2, h3]
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         have hpos := P.nearOmitted_pos
         rw [hF] at hpos
@@ -518,7 +518,8 @@ theorem profile_natDegree_ne_one
           rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
             facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
-        rcases Nat.mul_eq_one.mp han with ⟨haOne, hnOne⟩
+        have haOne : a = 1 := by omega
+        have hnOne : n = 1 := by omega
         have hnearDeg : ordinaryDegree4 D.facetExponent = b + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, haOne, hnOne]
           omega
@@ -549,7 +550,8 @@ theorem profile_natDegree_ne_one
           rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
             facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
-        rcases Nat.mul_eq_one.mp hbn with ⟨hbOne, hnOne⟩
+        have hbOne : b = 1 := by omega
+        have hnOne : n = 1 := by omega
         have hnearDeg : ordinaryDegree4 D.facetExponent = a + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hbOne, hnOne]
         have hfarBal' :
@@ -643,7 +645,7 @@ theorem affineDirection_sum_ne_zero
           ((P.A + P.B + P.C : ℕ) : K) := by
       unfold ordinaryDegree4
       push_cast
-      linear_combination h0 + h1 + h2 + h3 -
+      linear_combination h1 + h2 + h3 +
         (e (0 : Fin 4) : K) * hsum
     exact_mod_cast hdegK
 
