@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFullFacetRefinement
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetChildKernel
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal
 import Mathlib.Tactic
 
@@ -77,6 +78,32 @@ noncomputable def fullMarkedFacetFirstNonfacetCrossFacetData
           T.terminal.blocker.presented.family) :=
     P.nonlinearOutsideMarkedFacet_of_topFaceOnMarkedFacet hfacet
   exact T.firstNonfacetCrossFacetData_qs htop hout
+
+
+/-- **Full marked-facet branch -> exact child-face coordinate kernel.**
+
+Once torus balance is supplied by the outer source problem, the canonical
+strict-low lower first-contact packet does not need to continue through the
+older rank-three boundary reduction.  The completed affine-RR endgame applies
+to that exact packet and leaves a literal coordinate kernel on its secondary
+child face. -/
+theorem fullMarkedFacetFirstNonfacet_childKernel_of_balanced
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (hfacet : HC4.Polynomial.MvSupportOnFacet .qs T.topFace.face)
+    {a b : ℕ}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hBal :
+      HC4.Polynomial.HasBalancedMvSupport a b
+        (polynomialFamilySpecialFiber
+          T.terminal.blocker.presented.family)) :
+    ∃ childKernelCoordinate : Fin 4,
+      MvPolynomial.pderiv childKernelCoordinate
+        (P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet).crossFacet.face =
+          0 := by
+  let C := P.fullMarkedFacetFirstNonfacetCrossFacetData hfacet
+  rcases C.qs_childKernel_of_balanced ha hb hcop hBal with
+    ⟨_R, childKernelCoordinate, hkernel⟩
+  exact ⟨childKernelCoordinate, hkernel⟩
 
 /-- Facet endpoint of the canonical lower first-contact ray.  Naming this
 projection keeps later dependent endpoint types stable under elaboration. -/
