@@ -911,7 +911,9 @@ theorem rankThree_affineTerminal_codimensionTwoTop_impossible
         have hDBC_K : (phi.natDegree : K) = (B : K) + (C : K) := by
           linear_combination (phi.natDegree : K) * hrsum + htop2 + htop3
         have hDBC : phi.natDegree = B + C := by exact_mod_cast hDBC_K
-        have hDB := L.natDegree_dvd_B_of_top_second_zero h1mem htopMem h23.1
+        have hDB :=
+          HC4.RationalRigidity.RankThreeAffineLineData.natDegree_dvd_B_of_top_second_zero
+            L h1mem htopMem h23.1
         have hle : phi.natDegree ≤ B := Nat.le_of_dvd hB hDB
         omega
   · rcases hpairs with h12 | h13 | h23
@@ -946,7 +948,9 @@ theorem rankThree_affineTerminal_codimensionTwoTop_impossible
         have hDAC_K : (phi.natDegree : K) = (A : K) + (C : K) := by
           linear_combination (phi.natDegree : K) * hqsum + htop1 + htop3
         have hDAC : phi.natDegree = A + C := by exact_mod_cast hDAC_K
-        have hDA := L.natDegree_dvd_A_of_top_first_zero h1mem htopMem h13.1
+        have hDA :=
+          HC4.RationalRigidity.RankThreeAffineLineData.natDegree_dvd_A_of_top_first_zero
+            L h1mem htopMem h13.1
         have hle : phi.natDegree ≤ A := Nat.le_of_dvd hA hDA
         omega
     · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
@@ -981,7 +985,9 @@ theorem rankThree_affineTerminal_codimensionTwoTop_impossible
         have hDAB_K : (phi.natDegree : K) = (A : K) + (B : K) := by
           linear_combination (phi.natDegree : K) * hqrsum + htop1 + htop2
         have hDAB : phi.natDegree = A + B := by exact_mod_cast hDAB_K
-        have hDA := L.natDegree_dvd_A_of_top_first_zero h1mem htopMem h12.1
+        have hDA :=
+          HC4.RationalRigidity.RankThreeAffineLineData.natDegree_dvd_A_of_top_first_zero
+            L h1mem htopMem h12.1
         have hle : phi.natDegree ≤ A := Nat.le_of_dvd hA hDA
         omega
     · have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
