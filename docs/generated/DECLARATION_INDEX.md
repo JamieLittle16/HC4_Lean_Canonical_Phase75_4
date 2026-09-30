@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10097**.
+Distinct declaration spellings indexed: **10105**.
 
 ## Repeated declaration spellings
 
@@ -1516,6 +1516,7 @@ Distinct declaration spellings indexed: **10097**.
 - `CrossFacetInitialData.coeff_face_eq_source_of_mem` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `CrossFacetInitialData.coeff_qsCoefficientPolynomial_of_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
 - `CrossFacetInitialData.exists_faceExponent_of_qsCoefficientPolynomial_mem` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRR`
+- `CrossFacetInitialData.exists_singularWeightedKernelOpeningData` — `theorem` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `CrossFacetInitialData.face_on_rq_of_near_q_far_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.face_on_sp_of_near_s_far_p` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetInitialData.face_support_coordinate_zero_of_far_zero` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
@@ -5302,6 +5303,7 @@ Distinct declaration spellings indexed: **10097**.
 - `exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `exists_qs_firstNonfacet_crossFacet_childKernel` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+- `exists_qs_firstNonfacet_crossFacet_childKernelOpening` — `theorem` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `exists_qs_firstNonfacet_crossFacet_childKernel_withWeightBound` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
@@ -5716,6 +5718,7 @@ Distinct declaration spellings indexed: **10097**.
 - `firstClosingKernelStage_terminal_or_residual_or_offender` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstClosingKernelStage_terminal_or_residual_or_offender_forBlock` — `theorem` in `HC4.Valuation.RigidClosingFirstKernelStage`
 - `firstContactCarrier_crossFacet_supports` — `theorem` in `HC4.Newton.FirstContactCrossFacetCarrier`
+- `firstContactCrossFacetWeightShift` — `def` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `firstContactHessianGeometry_of_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLinearFirstContactMixedHessian`
 - `firstContactKernelNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
 - `firstContactRationalNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedFirstContactNormalization`
@@ -6991,6 +6994,8 @@ Distinct declaration spellings indexed: **10097**.
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `nat_eq_one_of_firstMixedHessianCoreAtZero_eq_zero` — `theorem` in `HC4.Polynomial.LineSupportedHessianExtremal`
 - `nat_pair_sum_two_cases` — `theorem` in `HC4.Newton.RankOnePersistentPacket`
+- `naturalFirstContactCrossFacetWeight` — `def` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
+- `naturalFirstContactCrossFacetWeight_cast` — `theorem` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `nearExtreme_topShape` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `needs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
@@ -9107,6 +9112,8 @@ Distinct declaration spellings indexed: **10097**.
 - `shiftedEuler_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `shiftedEuler_translatePolynomial` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `shiftedEuler_zero` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
+- `shiftedFirstContactCrossFacetWeight` — `def` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
+- `shiftedFirstContactCrossFacetWeight_nonneg` — `theorem` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `shiftedPolynomialAutonomousLogODE_translate` — `theorem` in `HC4.Polynomial.AutonomousODETranslation`
 - `shiftedPolynomialAutonomousLogODE_zero_of_ratFunc_identity` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousClearing`
 - `shiftedPositiveParameterRemainder_afterNormalization` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
@@ -10297,6 +10304,7 @@ Distinct declaration spellings indexed: **10097**.
 - `weight_four_nat` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRaySchurWeightBounds`
 - `weight_le_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `weight_natCast_eq` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
+- `weight_naturalFirstContactCrossFacetWeight` — `theorem` in `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
 - `weight_one_cons_smithTransverseExponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
 - `weight_pureLongitudinalTransverseWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `weight_qsContactTransverseIntegerWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrLeadingTransverseSlice`

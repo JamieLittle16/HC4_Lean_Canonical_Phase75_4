@@ -4948,6 +4948,9 @@ human architecture guide.
   - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.FirstActualDeformationLayerShift`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+- `HC4.Valuation.FirstContactCrossFacetChildKernelOpening`
+  - `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+  - `HC4.Valuation.SingularWeightedKernelOpening`
 - `HC4.Valuation.FirstKernelBreakRankTwo`
   - `HC4.Newton.FirstSchurLayerLinearization`
   - `HC4.Valuation.SmithFrontierFourBlockExtraction`
