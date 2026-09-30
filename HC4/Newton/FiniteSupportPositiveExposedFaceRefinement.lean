@@ -60,6 +60,96 @@ theorem IsExposedFace.restrict_ambient
   · intro x hxF
     exact hG.weight_le (hFS hxF)
 
+/-- **Positive four-dimensional refinement without a clock condition.**
+
+If a finite source support is first exposed by a strictly positive integer
+weight at a positive level, then any further signed exposure inside that face
+can be absorbed into one sufficiently large natural multiple of the primary
+weight.  The resulting direct exposure has strictly positive coordinate
+weights and a strictly positive level.  No Hessian-clock hypothesis is needed.
+
+This is the appropriate refinement lemma for singular-parent kernel openings:
+the parent family is already Hessian-singular, so only an honest natural
+reverse-Rees weight is required. -/
+theorem exists_nat_refine_exposed_face_fin4_positive
+    (S : Finset (Fin 4 →₀ ℕ)) (hS : S.Nonempty)
+    {F G : Set (Fin 4 →₀ ℕ)}
+    {w v : Fin 4 → ℤ} {c d : ℤ}
+    (hF : IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) F
+      (fun x => Finsupp.weight w x) c)
+    (hG : IsExposedFace F G
+      (fun x => Finsupp.weight v x) d)
+    (hwpos : ∀ i : Fin 4, 0 < w i)
+    (hcpos : 0 < c) :
+    ∃ M : ℕ,
+      0 < M ∧
+      IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) G
+        (fun x =>
+          Finsupp.weight (fun i => (M : ℤ) * w i + v i) x)
+        ((M : ℤ) * c + d) ∧
+      (∀ i : Fin 4, 0 < (M : ℤ) * w i + v i) ∧
+      0 < (M : ℤ) * c + d := by
+  let gain : Fin 5 → ℤ :=
+    ![-v 0, -v 1, -v 2, -v 3, -d]
+  have huniv : (Finset.univ : Finset (Fin 5)).Nonempty := by simp
+  rcases exists_positive_nat_strict_upper_bound_on_finset
+      (Finset.univ : Finset (Fin 5)) huniv gain with
+    ⟨B, _hBpos, hgain⟩
+  have hg0 : -v 0 < (B : ℤ) := by
+    simpa [gain] using hgain (0 : Fin 5) (by simp)
+  have hg1 : -v 1 < (B : ℤ) := by
+    simpa [gain] using hgain (1 : Fin 5) (by simp)
+  have hg2 : -v 2 < (B : ℤ) := by
+    simpa [gain] using hgain (2 : Fin 5) (by simp)
+  have hg3 : -v 3 < (B : ℤ) := by
+    simpa [gain] using hgain (3 : Fin 5) (by simp)
+  have hgd : -d < (B : ℤ) := by
+    simpa [gain] using hgain (4 : Fin 5) (by simp)
+
+  rcases exists_nat_refine_exposed_face_ge S hS hF hG B with
+    ⟨M, hBM, hMpos, hfaceRaw⟩
+  have hBMz : (B : ℤ) ≤ (M : ℤ) := by exact_mod_cast hBM
+  have hMz : (0 : ℤ) < (M : ℤ) := by exact_mod_cast hMpos
+  have hface :
+      IsExposedFace (↑S : Set (Fin 4 →₀ ℕ)) G
+        (fun x =>
+          Finsupp.weight (fun i => (M : ℤ) * w i + v i) x)
+        ((M : ℤ) * c + d) := by
+    simpa only [finsupp_weight_fin4_linear_combination] using hfaceRaw
+
+  have hM_mul_weight : ∀ i : Fin 4, (M : ℤ) ≤ (M : ℤ) * w i := by
+    intro i
+    have hwi0 : (0 : ℤ) < w i := hwpos i
+    have hwi : (1 : ℤ) ≤ w i := by omega
+    have hnonneg :
+        0 ≤ (M : ℤ) * (w i - 1) :=
+      mul_nonneg (le_of_lt hMz) (by omega)
+    nlinarith
+  have hneg : ∀ i : Fin 4, -v i < (M : ℤ) := by
+    intro i
+    fin_cases i
+    · exact lt_of_lt_of_le hg0 hBMz
+    · exact lt_of_lt_of_le hg1 hBMz
+    · exact lt_of_lt_of_le hg2 hBMz
+    · exact lt_of_lt_of_le hg3 hBMz
+  have hcoord : ∀ i : Fin 4, 0 < (M : ℤ) * w i + v i := by
+    intro i
+    have hMi := hM_mul_weight i
+    have hvi := hneg i
+    linarith
+
+  have hMc : (M : ℤ) ≤ (M : ℤ) * c := by
+    have hc : (1 : ℤ) ≤ c := by omega
+    have hnonneg : 0 ≤ (M : ℤ) * (c - 1) :=
+      mul_nonneg (le_of_lt hMz) (by omega)
+    nlinarith
+  have hdM : -d < (M : ℤ) := lt_of_lt_of_le hgd hBMz
+  have hlevel : 0 < (M : ℤ) * c + d := by
+    linarith
+
+  exact ⟨M, hMpos, hface, hcoord, hlevel⟩
+
+
 /-- **Positive four-dimensional refinement.**
 
 Suppose a finite source support is first exposed by a strictly positive integer
