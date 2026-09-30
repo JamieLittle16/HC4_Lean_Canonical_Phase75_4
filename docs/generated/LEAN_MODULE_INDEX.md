@@ -3686,7 +3686,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
-- Declarations: `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
+- Declarations: `theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero`, `theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
 
 ### `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 

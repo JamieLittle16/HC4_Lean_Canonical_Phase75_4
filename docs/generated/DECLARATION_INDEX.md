@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10071**.
+Distinct declaration spellings indexed: **10073**.
 
 ## Repeated declaration spellings
 
@@ -2998,6 +2998,7 @@ Distinct declaration spellings indexed: **10071**.
 - `RankThreeAffineLineData.exponent_zero_eq` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.fractionCoreDetZero_of_hessian_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `RankThreeAffineLineData.mvEuler_term` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
+- `RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `RankThreeAffineLineData.polynomial` — `def` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.polynomialMoment_det_zero_of_hessian_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `RankThreeAffineLineData.specialisation_det_eulerScaledHessian` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
@@ -8371,6 +8372,7 @@ Distinct declaration spellings indexed: **10071**.
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
+- `rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
