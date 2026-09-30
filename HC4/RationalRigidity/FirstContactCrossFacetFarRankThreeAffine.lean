@@ -833,10 +833,11 @@ theorem terminalCertificate
     rw [P.support.affineLineData_polynomial_eq]
     exact hcarrierZero
 
-  exact hasRankThreePolynomialTerminalCertificate_of_affine_line
-    P.support.affineLineData
-    P.A_pos P.B_pos P.C_pos (by norm_num)
-    hphiDeg hphi0 hlineZero
+  simpa only [Nat.cast_one] using
+    (hasRankThreePolynomialTerminalCertificate_of_affine_line
+      P.support.affineLineData
+      P.A_pos P.B_pos P.C_pos (by norm_num)
+      hphiDeg hphi0 hlineZero)
 
 set_option maxHeartbeats 4000000 in
 /-- The same data reaches the complete affine terminal binomial normal
