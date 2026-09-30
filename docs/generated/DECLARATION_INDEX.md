@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10077**.
+Distinct declaration spellings indexed: **10078**.
 
 ## Repeated declaration spellings
 
@@ -1488,6 +1488,7 @@ Distinct declaration spellings indexed: **10077**.
 - `CoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `CrossFacetFarBoundaryData` — `structure` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+- `CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `CrossFacetFarBoundaryData.extremeRay_coordinates_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `CrossFacetFarBoundaryData.extremeRay_p_or_r` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
