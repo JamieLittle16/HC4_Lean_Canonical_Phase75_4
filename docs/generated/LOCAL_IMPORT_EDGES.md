@@ -5164,6 +5164,8 @@ human architecture guide.
   - `HC4.Valuation.SingularFirstKernelBreakRankTwo`
 - `HC4.Valuation.SingularWeightedKernelOpening`
   - `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`
+- `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+  - `HC4.Valuation.SingularWeightedKernelOpening`
 - `HC4.Valuation.SmithConformalCovariance`
   - `HC4.Newton.SmithValuationTiltAdapter`
   - `HC4.Valuation.IntegralKernelSlopeExtraction`

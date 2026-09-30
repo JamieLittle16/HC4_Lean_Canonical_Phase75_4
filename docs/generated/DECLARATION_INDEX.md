@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10107**.
+Distinct declaration spellings indexed: **10112**.
 
 ## Repeated declaration spellings
 
@@ -141,7 +141,7 @@ Distinct declaration spellings indexed: **10107**.
 - `hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `hessianDeterminant_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`, `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
-- `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `hessianTwoByTwoMinor` — `def` in `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`, `def` in `HC4.Valuation.WeightedHessianMinorInitial`
 - `hessian_fourOrdinaryDegreeComponent_eq_zero_of_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticHomogeneousCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
@@ -168,9 +168,9 @@ Distinct declaration spellings indexed: **10107**.
 - `kernelLastBlock_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpening`
 - `kernel_coeff_eq_zero_of_lt_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`, `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `kernel_coeff_firstOrder_eq_zero_of_preterminal` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
-- `layerMinor0_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
-- `layerMinor1_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
-- `layerMinor2_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `layerMinor0_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+- `layerMinor1_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+- `layerMinor2_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `leftPoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `leftPoint_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `leftSection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -1726,6 +1726,7 @@ Distinct declaration spellings indexed: **10107**.
 - `ExactOrdinaryLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `ExactOrdinaryLayerMinorAtFirstBreak.actualRankTwoChart_of_degree_eq_two` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
 - `ExactOrdinaryLayerMinorAtFirstBreak.sourceDegree_ge_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
+- `ExactParentWeightLayerMinorAtFirstBreak` — `structure` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `ExactRankOneSchurClockAt` — `structure` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `ExactScalarSchurThreeClock` — `structure` in `HC4.Newton.ScalarPivotThreeSchurClock`
 - `ExactSmithExponentMixedDegreeData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
@@ -3289,6 +3290,7 @@ Distinct declaration spellings indexed: **10107**.
 - `SmithTwoExtremeBalance` — `def` in `HC4.Newton.SmithExtremeBalance`
 - `SourceCoordinateSpecialKernelData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `SourceCoordinateSpecialKernelData.reesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `SourceLayerFrontier` — `inductive` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `SourceSupportAlternative` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamData`
 - `SparseOnPQCone` — `def` in `HC4.Toric.SparseEigenSupport`
 - `SparseOnRLevel` — `def` in `HC4.Toric.SparseEigenSupport`
@@ -5180,6 +5182,7 @@ Distinct declaration spellings indexed: **10107**.
 - `exactMarkedAxisCollision_of_noSecondZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `exactNonlinearMixedLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakKernelLinear`
 - `exactOrder_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `exactParentWeightLayerMinor_of_activeThree` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `exactRankOneSchurClockAt_determinant_coeff_defect_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurResidualClosingKernel`
 - `exactRankOneSchurClockAt_kernel_coeff_defect_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurResidualClosingKernel`
 - `exactRankOneSchurClockAt_kernel_coeff_firstOrder_ne_zero_of_closing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyZeroSchurResidualClosingKernel`
@@ -6204,7 +6207,7 @@ Distinct declaration spellings indexed: **10107**.
 - `hessianPrincipalMinor_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `hessianPrincipalMinor_constantPolynomialFamily` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `hessianPrincipalMinor_eq_binaryDirectionalHessianDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
-- `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `hessianPrincipalMinor_monomial_ne_zero_of_two_positive` — `theorem` in `HC4.Polynomial.MonomialHessianPrincipalMinor`
 - `hessianPrincipalMinor_ne_zero_of_crossFacetRay` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`
 - `hessianPrincipalMinor_ne_zero_of_endpointActiveMinor_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
@@ -6567,11 +6570,11 @@ Distinct declaration spellings indexed: **10107**.
 - `killBinaryTransverseLinear_support_degree_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killBinaryTransverseLinear_topFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `killed_or_order_strict` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSectionGauge`
-- `layerMinor0_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `layerMinor0_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `layerMinor0_eq_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
-- `layerMinor1_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `layerMinor1_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `layerMinor1_eq_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
-- `layerMinor2_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
+- `layerMinor2_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `layerMinor2_eq_kernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `layerMinorAtFirstBreak_exactSourceWeightComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`
 - `layer_eq_sourceWedgeInitialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
@@ -9348,6 +9351,8 @@ Distinct declaration spellings indexed: **10107**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
+- `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+- `sourceLayerFrontier_nonempty` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLeftRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceMinor0_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
