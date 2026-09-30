@@ -2,6 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -969,6 +970,33 @@ theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData.toGradientD
     complement_gradient_constant :=
       AdaptiveAlignedSmithRankOneClosingSourceCarrier.transverseLowDimensional_gradient_constant
         D.ell L.affine.wallFace.face L.hessian_support
+  }
+
+/-- Literal planar-affine support normal form for the surviving marked-axis
+wall.  Every supported monomial either lies in the base plane `(0, ell)` or
+is one pure affine monomial in a complementary variable. -/
+structure TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  gradient : T.TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData D
+  support_shape :
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransversePlanarAffineSupport
+      D.ell gradient.low.affine.wallFace.face
+
+/-- Promote the derivative-level marked-axis core to the exact support normal
+form used by the mature planar reduction. -/
+theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAffineData
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData D) :
+    T.TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData D := by
+  exact {
+    gradient := L
+    support_shape :=
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.transversePlanarAffineSupport_of_gradient_constant
+        D.ell L.low.affine.wallFace.face L.complement_gradient_constant
   }
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
