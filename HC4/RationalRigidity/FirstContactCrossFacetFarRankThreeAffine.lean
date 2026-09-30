@@ -551,6 +551,61 @@ noncomputable def binomialNormalForm
 
 end CrossFacetFarRankThreeAffineSupportData
 
+/-- **Terminal far first-contact = codimension-two affine RR terminal or
+literal kernel.**
+
+This strengthens the certificate/kernel splice by retaining the exact
+geometric fact already proved above: in the genuine first-contact branch the
+top exponent of the affine RR profile is literally the reoriented near q/s
+ray, hence is codimension two.  Downstream consumers therefore receive the
+terminal certificate and its actual codimension-two top endpoint together. -/
+theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    (∃ P : CrossFacetFarRankThreeAffineSupportData D R,
+        HasRankThreePolynomialTerminalCertificate
+          (phi := P.support.coefficientProfile)
+          (P.A : K) (P.B : K) (P.C : K) (1 : K)
+          P.q P.r P.s ∧
+        HC4.Newton.MvExponentOnCodimensionTwoBoundary
+          (P.support.affineLineData.exponent
+            P.support.coefficientProfile.natDegree)) ∨
+      ∃ kernelCoordinate : Fin 4,
+        MvPolynomial.pderiv kernelCoordinate D.face = 0 := by
+  cases R.terminalRankThree_or_kernel
+      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+  | rankThree F hthree hnearPos =>
+      rcases R.exists_rankThreeAffineSupportData
+          ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
+        ⟨P⟩
+      left
+      refine ⟨P, ?_, ?_⟩
+      · exact P.terminalCertificate (D.hessian_zero hzero)
+      · exact P.affineLineData_topExponent_codimensionTwo hnear
+  | kernel kernelCoordinate hkernel =>
+      exact Or.inr ⟨kernelCoordinate, hkernel⟩
+
 /-- **Terminal far first-contact = affine RR certificate or literal kernel.**
 
 This is the direct splice between the strengthened Newton far-boundary
