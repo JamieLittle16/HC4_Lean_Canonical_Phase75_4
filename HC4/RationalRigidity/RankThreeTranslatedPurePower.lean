@@ -40,6 +40,45 @@ theorem natDegree_translatePolynomial
       (p := p) (q := Polynomial.X + Polynomial.C alpha) hmul
     simpa [HC4.Polynomial.translatePolynomial] using hcomp
 
+/-- Translation is inverted by the opposite scalar. -/
+theorem translatePolynomial_neg_translatePolynomial
+    (alpha : K) (p : Polynomial K) :
+    HC4.Polynomial.translatePolynomial (-alpha)
+        (HC4.Polynomial.translatePolynomial alpha p) = p := by
+  simp [HC4.Polynomial.translatePolynomial, Polynomial.comp_assoc]
+
+/-- Recover the unshifted polynomial from a translated pure power. -/
+theorem eq_C_mul_X_add_C_neg_pow_of_translate_eq_pure_power
+    {alpha c : K} {p : Polynomial K} {D : ℕ}
+    (h :
+      HC4.Polynomial.translatePolynomial alpha p =
+        Polynomial.C c * Polynomial.X ^ D) :
+    p = Polynomial.C c * (Polynomial.X + Polynomial.C (-alpha)) ^ D := by
+  have hback := congrArg
+    (HC4.Polynomial.translatePolynomial (-alpha)) h
+  rw [translatePolynomial_neg_translatePolynomial] at hback
+  simpa [HC4.Polynomial.translatePolynomial, Polynomial.comp_assoc] using hback
+
+/-- **Full support of a translated pure power.**
+
+If translation by a nonzero scalar turns `p` into a nonzero scalar multiple
+of `X^D`, then every coefficient from degree `0` through `D` of the
+original polynomial is nonzero. -/
+theorem coeff_ne_zero_of_translate_eq_pure_power
+    {alpha c : K} {p : Polynomial K} {D j : ℕ}
+    (halpha : alpha ≠ 0) (hc : c ≠ 0)
+    (h :
+      HC4.Polynomial.translatePolynomial alpha p =
+        Polynomial.C c * Polynomial.X ^ D)
+    (hj : j ≤ D) :
+    p.coeff j ≠ 0 := by
+  have hp := eq_C_mul_X_add_C_neg_pow_of_translate_eq_pure_power h
+  rw [hp, Polynomial.coeff_C_mul, Polynomial.coeff_X_add_C_pow]
+  apply mul_ne_zero hc
+  apply mul_ne_zero
+  · exact pow_ne_zero _ (neg_ne_zero.mpr halpha)
+  · exact_mod_cast (Nat.choose_pos hj).ne'
+
 /-- **Translated pure-power reconstruction.**
 Every genuine rank-three polynomial terminal has a nonzero root `alpha` such
 that translation to that root is a nonzero scalar multiple of `X^D`, where
