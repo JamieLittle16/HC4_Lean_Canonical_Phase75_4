@@ -525,6 +525,56 @@ noncomputable def binomialNormalForm
 
 end CrossFacetFarRankThreeAffineSupportData
 
+/-- **Terminal far first-contact = affine RR certificate or literal kernel.**
+
+This is the direct splice between the strengthened Newton far-boundary
+classifier and the mature affine RationalRigidity stack.  A genuinely
+transverse far rank-three point reconstructs an honest affine support line and
+therefore carries the polynomial terminal certificate.  The only alternative
+is that the exact child face already has a coordinate kernel. -/
+theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel
+    {a b contactScale contactBump : ℕ} {contactLevel : ℤ}
+    {G : MvPolynomial (Fin 4) K}
+    (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
+    (hcontactScale : 0 < contactScale)
+    (D : CrossFacetInitialData G
+      (crossFacetOppositeCoordinate (0 : Fin 4)) (0 : Fin 4))
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hzero : hessianDeterminant G = 0)
+    (R : CrossFacetFarBoundaryData (a := a) (b := b) D)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    (∃ P : CrossFacetFarRankThreeAffineSupportData D R,
+        HasRankThreePolynomialTerminalCertificate
+          (phi := P.support.coefficientProfile)
+          (P.A : K) (P.B : K) (P.C : K) (1 : K)
+          P.q P.r P.s) ∨
+      ∃ kernelCoordinate : Fin 4,
+        MvPolynomial.pderiv kernelCoordinate D.face = 0 := by
+  cases R.terminalRankThree_or_kernel
+      ha hb hcop hcontactScale D hBal hcontact hzero hnear with
+  | rankThree F hthree hnearPos =>
+      rcases R.exists_rankThreeAffineSupportData
+          ha hb hcontactScale D hBal hcontact R F hthree hnearPos with
+        ⟨P⟩
+      left
+      refine ⟨P, ?_⟩
+      exact P.terminalCertificate (D.hessian_zero hzero)
+  | kernel kernelCoordinate hkernel =>
+      exact Or.inr ⟨kernelCoordinate, hkernel⟩
+
 end
 
 end HC4.RationalRigidity
