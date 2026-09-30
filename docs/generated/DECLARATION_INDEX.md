@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10085**.
+Distinct declaration spellings indexed: **10087**.
 
 ## Repeated declaration spellings
 
@@ -5514,6 +5514,7 @@ Distinct declaration spellings indexed: **10085**.
 - `family_originHessian_det_coeff_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `family_originHessian_det_eq_X_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `family_originHessian_entry_hasGap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingGapJet`
+- `far_ordinaryDegree_lt_near` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `fibre` — `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `fieldExponentHessianCore` — `def` in `HC4.Polynomial.FiniteStaircasePureModeMixedDeterminant`
 - `fin4_adaptiveSmithInflateSection_monomialProduct` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
@@ -7886,6 +7887,7 @@ Distinct declaration spellings indexed: **10085**.
 - `productCoordinate_supported_exponent_eq_product` — `theorem` in `HC4.Newton.ProductCoordinateHessian`
 - `profileCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `profile_natDegree_eq_nearIndex` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+- `profile_natDegree_ne_one` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
 - `projectedRankTwo_exactActiveFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
 - `projectedRankTwo_or_tangentAtFirstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
