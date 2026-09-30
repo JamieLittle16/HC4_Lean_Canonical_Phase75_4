@@ -4211,6 +4211,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
