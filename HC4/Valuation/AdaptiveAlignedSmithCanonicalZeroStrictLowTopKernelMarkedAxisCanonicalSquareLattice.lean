@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -836,6 +837,58 @@ end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
 end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
+
+/-- Marked-axis affine/separated refinement of the exact zero-order wall face.
+All complementary pure Hessian entries already vanish on the wall face; this
+package records that every mixed derivative in a complementary direction
+vanishes as well. -/
+structure TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  wallFace : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData D
+  mixed_zero :
+    ∀ U V : Fin 4,
+      V ≠ (0 : Fin 4) → V ≠ D.ell →
+        directionalMixedDerivative U V wallFace.face = 0
+
+/-- **Marked-axis wall-face curvature dichotomy.**
+
+The new zero-order wall face is already the transverse branch of the older
+canonical-square face construction.  Hence one nonzero mixed derivative is
+immediately the already-green rank-one-to-rank-two repair source.  If no such
+mixed derivative exists, retain the complete exact face together with
+affine/separated mixed vanishing. -/
+theorem TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData.mixedRepair_or_affineSeparated
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (F : T.TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData D)
+    (complexity : ℕ) :
+    (∃ (face : MvPolynomial (Fin 4) K) (U V : Fin 4),
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.DirectClosingWallFaceMixedRepairData
+        complexity face U V) ∨
+      Nonempty (T.TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData D) := by
+  by_cases hmixed :
+      ∃ U V : Fin 4,
+        V ≠ (0 : Fin 4) ∧ V ≠ D.ell ∧
+          directionalMixedDerivative U V F.face ≠ 0
+  · rcases hmixed with ⟨U, V, hV0, hVell, hUV⟩
+    have hVV : directionalSecondDerivative V F.face = 0 := by
+      unfold directionalSecondDerivative
+      exact F.complementHessian_zero V V hV0 hVell hV0 hVell
+    left
+    exact ⟨F.face, U, V,
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingWallFaceMixedRepairData_of_mixed
+        complexity F.face U V hVV hUV⟩
+  · right
+    refine ⟨{
+      wallFace := F
+      mixed_zero := ?_
+    }⟩
+    intro U V hV0 hVell
+    by_contra hUV
+    exact hmixed ⟨U, V, hV0, hVell, hUV⟩
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
