@@ -1103,6 +1103,92 @@ theorem TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toStationaryP
         AdaptiveAlignedSmithRankOneClosingSourceCarrier.transversePureAffine_hessian_zero
           D.ell F.face hpure L.gradient.complement_gradient_constant
 
+/-- Ordinary homogeneity of degree at least three kills every linear
+coefficient on the aligned marked-axis special fibre. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_linearCoeff_zero
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
+    (i : Fin 4) :
+    MvPolynomial.coeff (Finsupp.single i 1)
+        (polynomialFamilySpecialFiber D.family) = 0 := by
+  apply D.specialFiber_isHomogeneous.coeff_eq_zero
+  have hD := T.topFace.degree_ge_three
+  simp [Finsupp.degree]
+  omega
+
+/-- A pure affine marked-axis wall tail is impossible: its nonzero face would
+contain a pure linear monomial, while every linear coefficient of the aligned
+special fibre vanishes. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.transverseAffineTail_impossible
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
+    (face : MvPolynomial (Fin 4) K)
+    (face_eq :
+      face =
+        HC4.Polynomial.initialForm
+          (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+            D.ell)
+          (-1)
+          (polynomialFamilySpecialFiber D.family))
+    (face_ne_zero : face ≠ 0)
+    (pure_affine :
+      AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransversePureAffineSupport
+        D.ell face) :
+    False := by
+  rcases MvPolynomial.support_nonempty.mpr face_ne_zero with ⟨d, hd⟩
+  rcases pure_affine d hd with ⟨i, hi0, hiell, hdi⟩
+  subst d
+  have hcoeff :
+      MvPolynomial.coeff (Finsupp.single i 1) face ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  rw [face_eq, HC4.Polynomial.coeff_initialForm] at hcoeff
+  have hzero := D.specialFiber_linearCoeff_zero i
+  simp [hzero] at hcoeff
+
+/-- Genuine marked-axis planar core after the affine tail has been removed.
+Only complementary degree zero survives. -/
+structure TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1) where
+  face : MvPolynomial (Fin 4) K
+  face_eq :
+    face =
+      HC4.Polynomial.initialForm
+        (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+          D.ell)
+        0
+        (polynomialFamilySpecialFiber D.family)
+  face_ne_zero : face ≠ 0
+  base_support :
+    AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransverseBaseSupport
+      D.ell face
+  base_det_zero :
+    binaryDirectionalHessianDet (0 : Fin 4) D.ell face = 0
+
+/-- Remove the impossible degree-one affine tail from the marked-axis
+stationary split. -/
+theorem TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData.toZeroJetPlanarCore
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData D) :
+    T.TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData D := by
+  cases L with
+  | transverseCore face face_eq face_ne_zero base_support base_det_zero =>
+      exact {
+        face := face
+        face_eq := face_eq
+        face_ne_zero := face_ne_zero
+        base_support := base_support
+        base_det_zero := base_det_zero
+      }
+  | transverseAffineTail face face_eq face_ne_zero pure_affine hessian_zero =>
+      exact False.elim
+        (D.transverseAffineTail_impossible face face_eq face_ne_zero pure_affine)
+
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
 variable
