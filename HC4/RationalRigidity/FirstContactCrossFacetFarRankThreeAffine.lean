@@ -518,8 +518,20 @@ theorem profile_natDegree_ne_one
           rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
             facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
-        have haOne : a = 1 := by omega
-        have hnOne : n = 1 := by omega
+        have haLower : 1 ≤ a := by omega
+        have hnLower : 1 ≤ n := by omega
+        have haUpper : a ≤ 1 := by
+          calc
+            a = a * 1 := by simp
+            _ ≤ a * n := Nat.mul_le_mul_left a hnLower
+            _ ≤ 1 := by omega
+        have hnUpper : n ≤ 1 := by
+          calc
+            n = 1 * n := by simp
+            _ ≤ a * n := Nat.mul_le_mul_right n haLower
+            _ ≤ 1 := by omega
+        have haOne : a = 1 := Nat.le_antisymm haUpper haLower
+        have hnOne : n = 1 := Nat.le_antisymm hnUpper hnLower
         have hnearDeg : ordinaryDegree4 D.facetExponent = b + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, haOne, hnOne]
           omega
@@ -550,8 +562,20 @@ theorem profile_natDegree_ne_one
           rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
             facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
-        have hbOne : b = 1 := by omega
-        have hnOne : n = 1 := by omega
+        have hbLower : 1 ≤ b := by omega
+        have hnLower : 1 ≤ n := by omega
+        have hbUpper : b ≤ 1 := by
+          calc
+            b = b * 1 := by simp
+            _ ≤ b * n := Nat.mul_le_mul_left b hnLower
+            _ ≤ 1 := by omega
+        have hnUpper : n ≤ 1 := by
+          calc
+            n = 1 * n := by simp
+            _ ≤ b * n := Nat.mul_le_mul_right n hbLower
+            _ ≤ 1 := by omega
+        have hbOne : b = 1 := Nat.le_antisymm hbUpper hbLower
+        have hnOne : n = 1 := Nat.le_antisymm hnUpper hnLower
         have hnearDeg : ordinaryDegree4 D.facetExponent = a + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hbOne, hnOne]
         have hfarBal' :
