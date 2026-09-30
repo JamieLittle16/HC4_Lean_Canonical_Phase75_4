@@ -790,10 +790,10 @@ theorem affineLineData_topExponent_codimensionTwo
   · exact ⟨(1 : Fin 4), (3 : Fin 4), by decide, h13.1, h13.2.2⟩
   · exact ⟨(1 : Fin 4), (2 : Fin 4), by decide, h12.1, h12.2.1⟩
 
+set_option maxHeartbeats 4000000 in
 /-- A reoriented far-rank-three support package already reaches the mature
 affine RationalRigidity terminal certificate as soon as the child face is
 Hessian-singular. -/
-set_option maxHeartbeats 800000 in
 theorem terminalCertificate
     (P : CrossFacetFarRankThreeAffineSupportData D R)
     (hzero : HC4.Polynomial.hessianDeterminant D.face = 0) :
@@ -838,9 +838,9 @@ theorem terminalCertificate
     P.A_pos P.B_pos P.C_pos (by norm_num)
     hphiDeg hphi0 hlineZero
 
+set_option maxHeartbeats 4000000 in
 /-- The same data reaches the complete affine terminal binomial normal
 form while retaining the source-honest exponent representation above. -/
-set_option maxHeartbeats 800000 in
 noncomputable def binomialNormalForm
     (P : CrossFacetFarRankThreeAffineSupportData D R)
     (hzero : HC4.Polynomial.hessianDeterminant D.face = 0) :
