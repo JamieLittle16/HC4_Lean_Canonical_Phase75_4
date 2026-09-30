@@ -5,6 +5,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConver
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalNormalForm
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -1314,6 +1315,62 @@ theorem TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData.curvedElimina
     Nonempty (BinarySingularHessianCurvedEliminatedFrontier B.binaryFace) := by
   exact binarySingularHessian_curvedEliminatedFrontier
     B.binaryFace B.binaryFace_ne_zero B.binary_det_zero B.binaryFace_linear_zero
+
+/-- Final carrier-independent binary normal form for the surviving marked-axis
+wall.  The low-degree branch is forced to degree zero by the zero linear jet;
+every nonlinear curved-eliminated branch is straightened to one exact axis. -/
+inductive TopKernelMarkedAxisCanonicalSquareBinaryTerminalNormalForm
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (B : T.TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData D) :
+    Type (u + 1)
+  | degreeZero
+      (H : MvPolynomial (Fin 2) K)
+      (H_eq : H = binaryOrdinaryDegreeComponent B.binaryFace 0)
+      (H_ne_zero : H ≠ 0)
+      (maximal : ∀ d ∈ B.binaryFace.support, d.degree ≤ 0)
+  | nonlinearAxis
+      (straight : BinarySingularHessianNonlinearAxisStraighteningData B.binaryFace)
+
+/-- Consume the full curved-eliminated binary frontier into the final
+degree-zero-or-one-axis normal form. -/
+theorem TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData.terminalNormalForm
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (B : T.TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData D) :
+    Nonempty (T.TopKernelMarkedAxisCanonicalSquareBinaryTerminalNormalForm B) := by
+  rcases B.curvedEliminatedFrontier with ⟨F⟩
+  cases F with
+  | lowDegree n H hn H_eq H_ne_zero maximal =>
+      have hn0 :=
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.binaryStationaryLowDegree_zeroJet_forces_degree_zero
+          B.binaryFace n H hn H_eq H_ne_zero B.binaryFace_linear_zero
+      subst n
+      exact ⟨.degreeZero H H_eq H_ne_zero maximal⟩
+  | nonlinearCollapsed n H hn H_eq H_ne_zero maximal a c normalForm Q_eq_H =>
+      let straight :=
+        binarySingularHessian_nonlinearAxisStraightening
+          B.binaryFace n H hn H_eq H_ne_zero maximal a c normalForm
+          B.binaryFace_linear_zero B.binary_det_zero
+      exact ⟨.nonlinearAxis straight⟩
+  | nonlinearNextAffine n H hn H_eq H_ne_zero maximal a c normalForm
+      R R_eq R_ne_zero E G E_lt_D E_le_one G_eq G_ne_zero remainder_maximal
+      G_homogeneous transverse_sq_zero =>
+      let straight :=
+        binarySingularHessian_nonlinearAxisStraightening
+          B.binaryFace n H hn H_eq H_ne_zero maximal a c normalForm
+          B.binaryFace_linear_zero B.binary_det_zero
+      exact ⟨.nonlinearAxis straight⟩
+  | nonlinearNextLocked n H hn H_eq H_ne_zero maximal a c normalForm
+      R R_eq R_ne_zero E G E_lt_D E_ge_two G_eq G_ne_zero remainder_maximal
+      G_homogeneous transverse_sq_zero transverse_first_zero =>
+      let straight :=
+        binarySingularHessian_nonlinearAxisStraightening
+          B.binaryFace n H hn H_eq H_ne_zero maximal a c normalForm
+          B.binaryFace_linear_zero B.binary_det_zero
+      exact ⟨.nonlinearAxis straight⟩
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
