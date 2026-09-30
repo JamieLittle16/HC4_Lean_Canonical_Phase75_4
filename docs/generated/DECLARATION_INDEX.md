@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10078**.
+Distinct declaration spellings indexed: **10081**.
 
 ## Repeated declaration spellings
 
@@ -4421,6 +4421,7 @@ Distinct declaration spellings indexed: **10078**.
 - `coeff_n_mul_natDegree_shiftedAutonomousClearedRHS` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `coeff_n_shiftedEuler_X_pow_succ_mul` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
 - `coeff_n_shiftedEuler_ne_zero` — `theorem` in `HC4.Polynomial.AutonomousODEPoleOrder`
+- `coeff_ne_zero_of_translate_eq_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `coeff_one_affineTwoRootEulerOperator_linear` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `coeff_one_complementaryEtaNumerator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_one_det_rankThreePencilPolynomial` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
@@ -5017,6 +5018,7 @@ Distinct declaration spellings indexed: **10078**.
 - `entry_eq_firstFactor_mul_tail` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `entry_nonzero_at_first` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `eq_C_add_C_mul_X_of_natDegree_le_one` — `theorem` in `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
+- `eq_C_mul_X_add_C_neg_pow_of_translate_eq_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `eq_adjacent_lockedAffineFactor_powers_of_firstVariation_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `eq_binomialODEModel_of_separatedBinomialODE` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `eq_binomial_power_of_translate_eq_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
@@ -10050,6 +10052,7 @@ Distinct declaration spellings indexed: **10078**.
 - `translatePolynomial_injective` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `translatePolynomial_neg_comp` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `translatePolynomial_neg_left_inverse` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`, `theorem` in `HC4.RationalRigidity.RankThreeUnshiftedBinomialForm`
+- `translatePolynomial_neg_translatePolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `translated_support_subset_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `transportPlanarRigidPacket` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerClosure`
 - `transportRepair` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoGlobalProgress`

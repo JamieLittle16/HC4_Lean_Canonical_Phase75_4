@@ -4116,7 +4116,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.RationalRigidity.RankThreeRootMultiplicity`
 - External imports: `Mathlib.Algebra.Polynomial.Degree.Lemmas`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
-- Declarations: `theorem natDegree_translatePolynomial`, `theorem exists_rankThree_translated_pure_power`
+- Declarations: `theorem natDegree_translatePolynomial`, `theorem translatePolynomial_neg_translatePolynomial`, `theorem eq_C_mul_X_add_C_neg_pow_of_translate_eq_pure_power`, `theorem coeff_ne_zero_of_translate_eq_pure_power`, `theorem exists_rankThree_translated_pure_power`
 
 ### `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 
