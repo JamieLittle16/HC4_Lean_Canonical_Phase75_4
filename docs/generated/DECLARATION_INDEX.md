@@ -2998,7 +2998,6 @@ Distinct declaration spellings indexed: **10076**.
 - `RankThreeAffineLineData.exponent_zero_eq` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.fractionCoreDetZero_of_hessian_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `RankThreeAffineLineData.mvEuler_term` — `theorem` in `HC4.Polynomial.RankThreeAffineLineRealisation`
-- `RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `RankThreeAffineLineData.polynomial` — `def` in `HC4.Polynomial.RankThreeAffineLineRealisation`
 - `RankThreeAffineLineData.polynomialMoment_det_zero_of_hessian_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `RankThreeAffineLineData.specialisation_det_eulerScaledHessian` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
@@ -8247,6 +8246,7 @@ Distinct declaration spellings indexed: **10076**.
 - `rankOne_to_rankThree_repairProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `rankOne_to_rankTwo_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThreeAffineFractionMomentDetZero_of_polynomialMoment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
+- `rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThreeAffineLine_topExponent_on_boundary_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTopBoundary`
 - `rankThreeAffineMomentHessian_monomial_eq` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentExact`
 - `rankThreeAffineMoment_eq_primitiveBinomialScaledPencil` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
