@@ -40,7 +40,7 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 supported exponent stays on the ordinary-degree hyperplane of the rank-three
 base exponent.  This is the carrier-independent bridge from the scalar
 relation `u1 + Q + R + S = 0` to the homogeneous terminal lemmas below. -/
-theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+theorem rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero
     {A B C u1 : ℕ} {Q R S : K} {phi : Polynomial K}
     (L : RankThreeAffineLineData A B C u1 Q R S phi)
     (hsum : (u1 : K) + Q + R + S = 0)
@@ -508,11 +508,11 @@ theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo
       simpa using hsum
     have hdegOne :
         ordinaryDegree4 (L.exponent 1) = A + B + C :=
-      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+      rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero
         L hsumNat h1mem
     have hdegTop :
         ordinaryDegree4 (L.exponent phi.natDegree) = A + B + C :=
-      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+      rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero
         L hsumNat htopMem
     rcases rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
         (K := K) L hA hB hC hphiDeg hphi0 hcert hdegOne hdegTop with
@@ -563,11 +563,11 @@ theorem rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero
     exact (Polynomial.leadingCoeff_ne_zero).2 hphi
   have hdegOne :
       ordinaryDegree4 (L.exponent 1) = A + B + C :=
-    HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+    rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero
       L hsumNat h1mem
   have hdegTop :
       ordinaryDegree4 (L.exponent phi.natDegree) = A + B + C :=
-    HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
+    rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero
       L hsumNat htopMem
   exact
     rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
