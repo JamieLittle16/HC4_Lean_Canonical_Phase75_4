@@ -156,7 +156,7 @@ theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
         have h := (mvRankThreeOnFacet_iff .rq R.exponent).1 hthree
         simpa [A, B, C, rho, f, facetOmittedCoordinate,
           Equiv.symm_swap, Equiv.swap_apply_of_ne_of_ne] using
-          ⟨h.2.1, h.2.2.1, h.2.2.2⟩
+          ⟨h.2.2.1, h.2.2.2, h.2.1⟩
     | qs =>
         have h0 := (mvRankThreeOnFacet_iff .qs R.exponent).1 hthree
         exact (Nat.ne_of_gt R.contact_pos h0.1).elim
@@ -164,7 +164,7 @@ theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData
         have h := (mvRankThreeOnFacet_iff .sp R.exponent).1 hthree
         simpa [A, B, C, rho, f, facetOmittedCoordinate,
           Equiv.symm_swap, Equiv.swap_apply_of_ne_of_ne] using
-          ⟨h.2.1, h.2.2.1, h.2.2.2⟩
+          ⟨h.2.2.1, h.2.1, h.2.2.2⟩
 
   let S :
       RankThreeAffineSupportData carrier A B C q r s := {
@@ -291,6 +291,7 @@ def HasPositiveTwoZeroTransverseTop (e : Fin 4 →₀ ℕ) : Prop :=
 two-zero transverse top shapes in the affine terminal coordinates. -/
 theorem nearExtreme_topShape
     (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (ha : 0 < a) (hb : 0 < b)
     (hnear :
       (∃ n : ℕ, 0 < n ∧
           D.facetExponent 0 = 0 ∧
@@ -304,34 +305,33 @@ theorem nearExtreme_topShape
           D.facetExponent 3 = b * n)) :
     HasPositiveTwoZeroTransverseTop
       (Finsupp.mapDomain P.rho D.facetExponent) := by
-  rw [P.rho_eq]
   cases hF : P.farFacet with
   | pr =>
+      rw [P.rho_eq, hF]
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
-        exact Or.inr (Or.inl ⟨by
-          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            h0, h1, h2, h3] using hn, by
-          simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3],
-          by simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]⟩)
+        right
+        left
+        refine ⟨?_, ?_, ?_⟩
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            facetOmittedCoordinate, h0, h1, h2, h3]
+        · simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            facetOmittedCoordinate, h0, h1, h2, h3] using hn
+        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            facetOmittedCoordinate, h0, h1, h2, h3]
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         right
         right
         refine ⟨?_, ?_, ?_⟩
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+            facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
-        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
-          exact Nat.mul_pos (by
-            have hpos := P.nearOmitted_pos
-            rw [hF] at hpos
-            simpa [facetOmittedCoordinate, h1] using hpos) hn
+            facetOmittedCoordinate, h0, h1, h2, h3]
+        · have hbn : 0 < b * n := Nat.mul_pos hb hn
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            facetOmittedCoordinate, h0, h1, h2, h3] using hbn
   | rq =>
+      rw [P.rho_eq, hF]
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
         have hpos := P.nearOmitted_pos
@@ -340,16 +340,13 @@ theorem nearExtreme_topShape
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         left
         refine ⟨?_, ?_, ?_⟩
+        · have han : 0 < a * n := Nat.mul_pos ha hn
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            facetOmittedCoordinate, h0, h1, h2, h3] using han
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
-          exact Nat.mul_pos (by
-            have hpos := P.nearOmitted_pos
-            rw [hF] at hpos
-            simpa [facetOmittedCoordinate, h3] using hpos) hn
+            facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
-        · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+            facetOmittedCoordinate, h0, h1, h2, h3]
   | qs =>
       have hpos := P.nearOmitted_pos
       rw [hF] at hpos
@@ -359,17 +356,17 @@ theorem nearExtreme_topShape
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         simp [facetOmittedCoordinate, h0] at hpos
   | sp =>
+      rw [P.rho_eq, hF]
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, h0, h1, h2, h3⟩
         left
         refine ⟨?_, ?_, ?_⟩
         · simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            h0, h1, h2, h3] using hn
+            facetOmittedCoordinate, h0, h1, h2, h3] using hn
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+            facetOmittedCoordinate, h0, h1, h2, h3]
         · simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate, h0, h1, h2, h3]
+            facetOmittedCoordinate, h0, h1, h2, h3]
       · rcases hs with ⟨n, hn, h0, h1, h2, h3⟩
         have hpos := P.nearOmitted_pos
         rw [hF] at hpos
@@ -397,7 +394,7 @@ theorem affineLineData_zeroExponent_eq_far
         far (0 : Fin 4) := by
     change P.support.exponentAt 0 (0 : Fin 4) = far (0 : Fin 4)
     rw [hspec.2]
-    simpa [far] using P.farIndex_zero
+    simpa [far] using P.farIndex_zero.symm
   have heq :=
     P.support.eq_of_zeroCoordinate_eq hspec.1 hfarMem hzero
   simpa [far, RankThreeAffineSupportData.affineLineData] using heq
@@ -475,16 +472,27 @@ theorem profile_natDegree_ne_one
           D.facetExponent 3 = b * n)) :
     P.support.coefficientProfile.natDegree ≠ 1 := by
   intro hdeg
+  have hnearMem :
+      Finsupp.mapDomain P.rho D.facetExponent ∈
+        (MvPolynomial.rename P.rho D.face).support := by
+    rw [MvPolynomial.support_rename_of_injective P.rho.injective]
+    exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
+  have hnearProfile :=
+    P.support.coefficientProfile_mem_of_mem hnearMem
+  have hidxLe :
+      (Finsupp.mapDomain P.rho D.facetExponent) (0 : Fin 4) ≤
+        P.support.coefficientProfile.natDegree :=
+    Polynomial.le_natDegree_of_mem_supp _ hnearProfile
   have hidx :
       (Finsupp.mapDomain P.rho D.facetExponent) (0 : Fin 4) = 1 := by
-    rw [← P.profile_natDegree_eq_nearIndex]
-    exact hdeg
+    have hpos := P.nearIndex_pos
+    omega
   have hdrop :=
     P.far_ordinaryDegree_lt_near
       hcontactScale hcontactBump hcontact
   have hfarBal : IsBalancedExponent a b R.exponent :=
     hBal R.exponent (D.support_subset R.mem_face)
-  rw [P.rho_eq] at hidx
+
   cases hF : P.farFacet with
   | pr =>
       have hthree := (HC4.Newton.mvRankThreeOnFacet_iff .pr R.exponent).1
@@ -493,30 +501,36 @@ theorem profile_natDegree_ne_one
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
         have hnOne : n = 1 := by
+          have h := hidx
+          rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            hn0, hn1, hn2, hn3] using hidx
+            facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
         have hnearDeg : ordinaryDegree4 D.facetExponent = 2 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hnOne]
         have hfarDeg : 3 ≤ ordinaryDegree4 R.exponent := by
-          simp [ordinaryDegree4, hr1]
+          unfold ordinaryDegree4
+          rw [hr1]
           omega
         omega
       · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
         have han : a * n = 1 := by
+          have h := hidx
+          rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            hn0, hn1, hn2, hn3] using hidx
-        have haOne : a = 1 := by omega
-        have hnOne : n = 1 := by omega
-        simp only [IsBalancedExponent, hr1, mul_zero, add_zero] at hfarBal
+            facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
+        rcases Nat.mul_eq_one.mp han with ⟨haOne, hnOne⟩
         have hnearDeg : ordinaryDegree4 D.facetExponent = b + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, haOne, hnOne]
           omega
+        have hfarBal' :
+            R.exponent 0 = b * R.exponent 2 + R.exponent 3 := by
+          simpa [IsBalancedExponent, hr1, haOne] using hfarBal
+        have hbR2 : b ≤ b * R.exponent 2 := by
+          have h1 : 1 ≤ R.exponent 2 := by omega
+          simpa using Nat.mul_le_mul_left b h1
         have hfarDeg : b + 3 ≤ ordinaryDegree4 R.exponent := by
           unfold ordinaryDegree4
-          rw [hr1]
-          rw [haOne] at hfarBal
+          rw [hr1, hfarBal']
           omega
         omega
   | rq =>
@@ -525,34 +539,43 @@ theorem profile_natDegree_ne_one
       rcases hthree with ⟨hr3, hr0p, hr1p, hr2p⟩
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
-        have hpos := P.nearOmitted_pos
-        rw [hF] at hpos
-        simp [facetOmittedCoordinate, hn3] at hpos
+        have h := hidx
+        rw [P.rho_eq, hF] at h
+        simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+          facetOmittedCoordinate, hn0, hn1, hn2, hn3] at h
       · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
         have hbn : b * n = 1 := by
+          have h := hidx
+          rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            hn0, hn1, hn2, hn3] using hidx
-        have hbOne : b = 1 := by omega
-        have hnOne : n = 1 := by omega
-        simp only [IsBalancedExponent, hr3, mul_zero, add_zero] at hfarBal
+            facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
+        rcases Nat.mul_eq_one.mp hbn with ⟨hbOne, hnOne⟩
         have hnearDeg : ordinaryDegree4 D.facetExponent = a + 1 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hbOne, hnOne]
           omega
+        have hfarBal' :
+            a * R.exponent 0 + R.exponent 1 = R.exponent 2 := by
+          simpa [IsBalancedExponent, hr3, hbOne] using hfarBal
+        have haR0 : a ≤ a * R.exponent 0 := by
+          have h1 : 1 ≤ R.exponent 0 := by omega
+          simpa using Nat.mul_le_mul_left a h1
         have hfarDeg : a + 3 ≤ ordinaryDegree4 R.exponent := by
           unfold ordinaryDegree4
-          rw [hr3]
-          rw [hbOne] at hfarBal
+          rw [hr3, ← hfarBal']
           omega
         omega
   | qs =>
-      have hpos := P.nearOmitted_pos
-      rw [hF] at hpos
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
-        simp [facetOmittedCoordinate, hn0] at hpos
+        have h := hidx
+        rw [P.rho_eq, hF] at h
+        simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+          facetOmittedCoordinate, hn0, hn1, hn2, hn3] at h
       · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
-        simp [facetOmittedCoordinate, hn0] at hpos
+        have h := hidx
+        rw [P.rho_eq, hF] at h
+        simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+          facetOmittedCoordinate, hn0, hn1, hn2, hn3] at h
   | sp =>
       have hthree := (HC4.Newton.mvRankThreeOnFacet_iff .sp R.exponent).1
         (by simpa [hF] using P.rankThree)
@@ -560,19 +583,22 @@ theorem profile_natDegree_ne_one
       rcases hnear with hq | hs
       · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
         have hnOne : n = 1 := by
+          have h := hidx
+          rw [P.rho_eq, hF] at h
           simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
-            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
-            hn0, hn1, hn2, hn3] using hidx
+            facetOmittedCoordinate, hn0, hn1, hn2, hn3] using h
         have hnearDeg : ordinaryDegree4 D.facetExponent = 2 := by
           simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hnOne]
         have hfarDeg : 3 ≤ ordinaryDegree4 R.exponent := by
-          simp [ordinaryDegree4, hr2]
+          unfold ordinaryDegree4
+          rw [hr2]
           omega
         omega
       · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
-        have hpos := P.nearOmitted_pos
-        rw [hF] at hpos
-        simp [facetOmittedCoordinate, hn2] at hpos
+        have h := hidx
+        rw [P.rho_eq, hF] at h
+        simp [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+          facetOmittedCoordinate, hn0, hn1, hn2, hn3] at h
 
 /-- **Positive first-contact bump excludes an ordinary-degree-preserving
 affine RR direction.**
@@ -592,67 +618,51 @@ theorem affineDirection_sum_ne_zero
         contactScale contactBump d = contactLevel) :
     (1 : K) + P.q + P.r + P.s ≠ 0 := by
   intro hsum
-  let L := P.support.affineLineData
-  let phi := P.support.coefficientProfile
+  let far := Finsupp.mapDomain P.rho R.exponent
+  let near := Finsupp.mapDomain P.rho D.facetExponent
   have hfarMem :
-      Finsupp.mapDomain P.rho R.exponent ∈
-        (MvPolynomial.rename P.rho D.face).support := by
+      far ∈ (MvPolynomial.rename P.rho D.face).support := by
     rw [MvPolynomial.support_rename_of_injective P.rho.injective]
     exact Finset.mem_image.mpr ⟨R.exponent, R.mem_face, rfl⟩
   have hnearMem :
-      Finsupp.mapDomain P.rho D.facetExponent ∈
-        (MvPolynomial.rename P.rho D.face).support := by
+      near ∈ (MvPolynomial.rename P.rho D.face).support := by
     rw [MvPolynomial.support_rename_of_injective P.rho.injective]
     exact Finset.mem_image.mpr ⟨D.facetExponent, D.facet_mem_face, rfl⟩
-  have hzeroMem : 0 ∈ phi.support := by
-    have h := P.support.coefficientProfile_mem_of_mem hfarMem
-    simpa [phi, P.farIndex_zero] using h
-  have htopMem : phi.natDegree ∈ phi.support := by
-    have hnearProfile :=
-      P.support.coefficientProfile_mem_of_mem hnearMem
-    rw [P.profile_natDegree_eq_nearIndex]
-    simpa [phi] using hnearProfile
-  have hdegZero :
-      ordinaryDegree4 (L.exponent 0) = P.A + P.B + P.C := by
-    exact
-      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
-        L hsum hzeroMem
-  have hdegTop :
-      ordinaryDegree4 (L.exponent phi.natDegree) = P.A + P.B + P.C := by
-    exact
-      HC4.RationalRigidity.RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
-        L hsum htopMem
+
+  have hdegree :
+      ∀ e ∈ (MvPolynomial.rename P.rho D.face).support,
+        ordinaryDegree4 e = P.A + P.B + P.C := by
+    intro e he
+    have haff := P.support.affine e he
+    have h0 := congrFun haff (0 : Fin 4)
+    have h1 := congrFun haff (1 : Fin 4)
+    have h2 := congrFun haff (2 : Fin 4)
+    have h3 := congrFun haff (3 : Fin 4)
+    simp [rankThreeLogBaseExponent, rankThreeLogDirection] at h0 h1 h2 h3
+    have hdegK :
+        ((ordinaryDegree4 e : ℕ) : K) =
+          ((P.A + P.B + P.C : ℕ) : K) := by
+      unfold ordinaryDegree4
+      push_cast
+      linear_combination h0 + h1 + h2 + h3 -
+        (e (0 : Fin 4) : K) * hsum
+    exact_mod_cast hdegK
+
+  have hfarDeg := hdegree far hfarMem
+  have hnearDeg := hdegree near hnearMem
+  have hpermFar := P.ordinaryDegree4_mapDomain_rho R.exponent
+  have hpermNear := P.ordinaryDegree4_mapDomain_rho D.facetExponent
   have hdegEq :
       ordinaryDegree4 R.exponent = ordinaryDegree4 D.facetExponent := by
-    have hzeroEq := P.affineLineData_zeroExponent_eq_far
-    have htopEq := P.affineLineData_topExponent_eq_near
-    have hpermFar := P.ordinaryDegree4_mapDomain_rho R.exponent
-    have hpermNear := P.ordinaryDegree4_mapDomain_rho D.facetExponent
-    dsimp [L] at hdegZero hdegTop hzeroEq htopEq
-    rw [hzeroEq, hpermFar] at hdegZero
-    rw [htopEq, hpermNear] at hdegTop
+    dsimp [far] at hfarDeg
+    dsimp [near] at hnearDeg
+    rw [hpermFar] at hfarDeg
+    rw [hpermNear] at hnearDeg
     omega
 
-  have hfarContact :=
-    hcontact R.exponent (D.support_subset R.mem_face)
-  have hnearContact :=
-    hcontact D.facetExponent D.facet_mem
-  have hs : (0 : ℤ) < (contactScale : ℤ) := by
-    exact_mod_cast hcontactScale
-  have hbump : (0 : ℤ) < (contactBump : ℤ) := by
-    exact_mod_cast hcontactBump
-  have hr0 : (0 : ℤ) < (R.exponent (0 : Fin 4) : ℤ) := by
-    exact_mod_cast R.contact_pos
-  unfold scaledContactExponentWeight at hfarContact hnearContact
-  rw [D.facet_coordinate_zero] at hnearContact
-  simp only [Nat.cast_zero, mul_zero, add_zero] at hnearContact
-  have hltZ :
-      (ordinaryDegree4 R.exponent : ℤ) <
-        (ordinaryDegree4 D.facetExponent : ℤ) := by
-    nlinarith
-  have hlt :
-      ordinaryDegree4 R.exponent < ordinaryDegree4 D.facetExponent := by
-    exact_mod_cast hltZ
+  have hlt :=
+    P.far_ordinaryDegree_lt_near
+      hcontactScale hcontactBump hcontact
   exact (Nat.ne_of_lt hlt) hdegEq
 
 /-- The extracted affine coefficient profile has degree exactly the reoriented
@@ -682,7 +692,9 @@ theorem profile_natDegree_eq_nearIndex
       Polynomial.mem_support_iff.mpr hcoeff
     rcases P.support.exists_exponent_of_coefficientProfile_mem hnmem with
       ⟨e, he, he0⟩
-    have hmax := P.nearIndex_max e he
+    have hmax :
+        e (0 : Fin 4) ≤ near (0 : Fin 4) := by
+      simpa [near] using P.nearIndex_max e he
     have hnearn :
         near (0 : Fin 4) < n := by
       simpa [near] using hn
@@ -732,6 +744,7 @@ literally the reoriented near q/s ray, and that ray has two zero transverse
 coordinates. -/
 theorem affineLineData_topExponent_codimensionTwo
     (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (ha : 0 < a) (hb : 0 < b)
     (hnear :
       (∃ n : ℕ, 0 < n ∧
           D.facetExponent 0 = 0 ∧
@@ -747,7 +760,7 @@ theorem affineLineData_topExponent_codimensionTwo
       (P.support.affineLineData.exponent
         P.support.coefficientProfile.natDegree) := by
   rw [P.affineLineData_topExponent_eq_near]
-  rcases P.nearExtreme_topShape hnear with h23 | h13 | h12
+  rcases P.nearExtreme_topShape ha hb hnear with h23 | h13 | h12
   · exact ⟨(2 : Fin 4), (3 : Fin 4), by decide, h23.2.1, h23.2.2⟩
   · exact ⟨(1 : Fin 4), (3 : Fin 4), by decide, h13.1, h13.2.2⟩
   · exact ⟨(1 : Fin 4), (2 : Fin 4), by decide, h12.1, h12.2.1⟩
@@ -883,7 +896,7 @@ theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel
       left
       refine ⟨P, ?_, ?_⟩
       · exact P.terminalCertificate (D.hessian_zero hzero)
-      · exact P.affineLineData_topExponent_codimensionTwo hnear
+      · exact P.affineLineData_topExponent_codimensionTwo ha hb hnear
   | kernel kernelCoordinate hkernel =>
       exact Or.inr ⟨kernelCoordinate, hkernel⟩
 
