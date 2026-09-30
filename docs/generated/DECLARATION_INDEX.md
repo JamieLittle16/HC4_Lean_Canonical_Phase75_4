@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10050**.
+Distinct declaration spellings indexed: **10054**.
 
 ## Repeated declaration spellings
 
@@ -3364,8 +3364,12 @@ Distinct declaration spellings indexed: **10050**.
 - `TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisAlignedSquareTimingFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisCanonicalSquareAffineSeparatedWallFaceData.basePlaneRepair_or_lowDimensional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareFamilyObstruction` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData.toGradientData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareZeroOrderWall` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareZeroOrderWallFaceData.mixedRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
