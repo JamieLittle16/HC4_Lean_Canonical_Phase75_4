@@ -860,7 +860,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetCarrier`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FirstContactCrossFacetEndpointTransition`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
-- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_exit`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear`
+- Declarations: `theorem exists_qs_firstNonfacet_crossFacet_exit`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear`, `theorem exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear_withWeightBound`
 
 ### `HC4.Newton.FirstContactCrossFacetExtremeRayNormalForm`
 
@@ -3606,7 +3606,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `def HasPositiveTwoZeroTransverseTop`, `theorem nearExtreme_topShape`, `theorem affineLineData_zeroExponent_eq_far`, `theorem ordinaryDegree4_mapDomain_rho`, `theorem far_ordinaryDegree_lt_near`, `theorem profile_natDegree_ne_one`, `theorem affineDirection_sum_ne_zero`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem affineLineData_topExponent_codimensionTwo`, `theorem terminalCertificate`, `def binomialNormalForm`, `theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel`, `theorem CrossFacetFarBoundaryData.kernel_of_positiveFirstContact`, `theorem exists_qs_firstNonfacet_crossFacet_childKernel`, `theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel`
+- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `def HasPositiveTwoZeroTransverseTop`, `theorem nearExtreme_topShape`, `theorem affineLineData_zeroExponent_eq_far`, `theorem ordinaryDegree4_mapDomain_rho`, `theorem far_ordinaryDegree_lt_near`, `theorem profile_natDegree_ne_one`, `theorem affineDirection_sum_ne_zero`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem affineLineData_topExponent_codimensionTwo`, `theorem terminalCertificate`, `def binomialNormalForm`, `theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel`, `theorem CrossFacetFarBoundaryData.kernel_of_positiveFirstContact`, `theorem exists_qs_firstNonfacet_crossFacet_childKernel`, `theorem exists_qs_firstNonfacet_crossFacet_childKernel_withWeightBound`, `theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel`
 
 ### `HC4.RationalRigidity.LineSupportedHessianRigidity`
 

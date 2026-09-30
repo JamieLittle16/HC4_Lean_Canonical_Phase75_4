@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10095**.
+Distinct declaration spellings indexed: **10097**.
 
 ## Repeated declaration spellings
 
@@ -5302,9 +5302,11 @@ Distinct declaration spellings indexed: **10095**.
 - `exists_principalTwoByTwoMinor_ne_zero_of_symmetric_singular` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `exists_projectedSupport_third_pos_saturatedKernelBlowup` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `exists_qs_firstNonfacet_crossFacet_childKernel` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
+- `exists_qs_firstNonfacet_crossFacet_childKernel_withWeightBound` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `exists_qs_firstNonfacet_crossFacet_exit` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
+- `exists_qs_firstNonfacet_crossFacet_extremeRay_nonlinear_withWeightBound` — `theorem` in `HC4.Newton.FirstContactCrossFacetExit`
 - `exists_qs_firstNonfacet_crossFacet_farRankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `exists_qs_firstNonfacet_crossFacet_farTerminalRankThree_or_kernel` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `exists_qs_firstNonfacet_crossFacet_positiveExtremeRay` — `theorem` in `HC4.Newton.FirstContactCrossFacetExtremeRayPositive`
