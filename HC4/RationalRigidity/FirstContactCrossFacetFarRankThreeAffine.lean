@@ -414,6 +414,166 @@ theorem ordinaryDegree4_mapDomain_rho
       Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
       Equiv.swap_apply_of_ne_of_ne] <;> omega
 
+/-- The far endpoint has strictly smaller ordinary degree than the near
+endpoint on a genuine positive-bump contact face. -/
+theorem far_ordinaryDegree_lt_near
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    {contactScale contactBump : ℕ} {contactLevel : ℤ}
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel) :
+    ordinaryDegree4 R.exponent < ordinaryDegree4 D.facetExponent := by
+  have hfarContact :=
+    hcontact R.exponent (D.support_subset R.mem_face)
+  have hnearContact :=
+    hcontact D.facetExponent D.facet_mem
+  have hs : (0 : ℤ) < (contactScale : ℤ) := by
+    exact_mod_cast hcontactScale
+  have hbump : (0 : ℤ) < (contactBump : ℤ) := by
+    exact_mod_cast hcontactBump
+  have hr0 : (0 : ℤ) < (R.exponent (0 : Fin 4) : ℤ) := by
+    exact_mod_cast R.contact_pos
+  unfold scaledContactExponentWeight at hfarContact hnearContact
+  rw [D.facet_coordinate_zero] at hnearContact
+  simp only [Nat.cast_zero, mul_zero, add_zero] at hnearContact
+  have hltZ :
+      (ordinaryDegree4 R.exponent : ℤ) <
+        (ordinaryDegree4 D.facetExponent : ℤ) := by
+    nlinarith
+  exact_mod_cast hltZ
+
+/-- **The far affine profile cannot have degree one.**
+
+If the reoriented near q/s endpoint had profile index one, the possible far
+facets are finite.  In the q-cases the near endpoint has ordinary degree two,
+while a far rank-three point has degree at least three.  In the two surviving
+s-cases, torus balance at the far rank-three point gives an even stronger
+degree increase.  All possibilities contradict the positive-bump degree
+drop. -/
+theorem profile_natDegree_ne_one
+    (P : CrossFacetFarRankThreeAffineSupportData D R)
+    (ha : 0 < a) (hb : 0 < b)
+    {contactScale contactBump : ℕ} {contactLevel : ℤ}
+    (hcontactScale : 0 < contactScale)
+    (hcontactBump : 0 < contactBump)
+    (hBal : HasBalancedMvSupport a b G)
+    (hcontact : ∀ d ∈ G.support,
+      scaledContactExponentWeight (0 : Fin 4)
+        contactScale contactBump d = contactLevel)
+    (hnear :
+      (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = n ∧
+          D.facetExponent 2 = n ∧
+          D.facetExponent 3 = 0) ∨
+        (∃ n : ℕ, 0 < n ∧
+          D.facetExponent 0 = 0 ∧
+          D.facetExponent 1 = a * n ∧
+          D.facetExponent 2 = 0 ∧
+          D.facetExponent 3 = b * n)) :
+    P.support.coefficientProfile.natDegree ≠ 1 := by
+  intro hdeg
+  have hidx :
+      (Finsupp.mapDomain P.rho D.facetExponent) (0 : Fin 4) = 1 := by
+    rw [← P.profile_natDegree_eq_nearIndex]
+    exact hdeg
+  have hdrop :=
+    P.far_ordinaryDegree_lt_near
+      hcontactScale hcontactBump hcontact
+  have hfarBal : IsBalancedExponent a b R.exponent :=
+    hBal R.exponent (D.support_subset R.mem_face)
+  rw [P.rho_eq] at hidx
+  cases hF : P.farFacet with
+  | pr =>
+      have hthree := (HC4.Newton.mvRankThreeOnFacet_iff .pr R.exponent).1
+        (by simpa [hF] using P.rankThree)
+      rcases hthree with ⟨hr1, hr0p, hr2p, hr3p⟩
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have hnOne : n = 1 := by
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            hn0, hn1, hn2, hn3] using hidx
+        have hnearDeg : ordinaryDegree4 D.facetExponent = 2 := by
+          simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hnOne]
+        have hfarDeg : 3 ≤ ordinaryDegree4 R.exponent := by
+          simp [ordinaryDegree4, hr1]
+          omega
+        omega
+      · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have han : a * n = 1 := by
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            hn0, hn1, hn2, hn3] using hidx
+        have haOne : a = 1 := by omega
+        have hnOne : n = 1 := by omega
+        simp only [IsBalancedExponent, hr1, mul_zero, add_zero] at hfarBal
+        have hnearDeg : ordinaryDegree4 D.facetExponent = b + 1 := by
+          simp [ordinaryDegree4, hn0, hn1, hn2, hn3, haOne, hnOne]
+          omega
+        have hfarDeg : b + 3 ≤ ordinaryDegree4 R.exponent := by
+          unfold ordinaryDegree4
+          rw [hr1]
+          rw [haOne] at hfarBal
+          omega
+        omega
+  | rq =>
+      have hthree := (HC4.Newton.mvRankThreeOnFacet_iff .rq R.exponent).1
+        (by simpa [hF] using P.rankThree)
+      rcases hthree with ⟨hr3, hr0p, hr1p, hr2p⟩
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have hpos := P.nearOmitted_pos
+        rw [hF] at hpos
+        simp [facetOmittedCoordinate, hn3] at hpos
+      · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have hbn : b * n = 1 := by
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            hn0, hn1, hn2, hn3] using hidx
+        have hbOne : b = 1 := by omega
+        have hnOne : n = 1 := by omega
+        simp only [IsBalancedExponent, hr3, mul_zero, add_zero] at hfarBal
+        have hnearDeg : ordinaryDegree4 D.facetExponent = a + 1 := by
+          simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hbOne, hnOne]
+          omega
+        have hfarDeg : a + 3 ≤ ordinaryDegree4 R.exponent := by
+          unfold ordinaryDegree4
+          rw [hr3]
+          rw [hbOne] at hfarBal
+          omega
+        omega
+  | qs =>
+      have hpos := P.nearOmitted_pos
+      rw [hF] at hpos
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        simp [facetOmittedCoordinate, hn0] at hpos
+      · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        simp [facetOmittedCoordinate, hn0] at hpos
+  | sp =>
+      have hthree := (HC4.Newton.mvRankThreeOnFacet_iff .sp R.exponent).1
+        (by simpa [hF] using P.rankThree)
+      rcases hthree with ⟨hr2, hr0p, hr1p, hr3p⟩
+      rcases hnear with hq | hs
+      · rcases hq with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have hnOne : n = 1 := by
+          simpa [Finsupp.mapDomain_equiv_apply, Equiv.symm_swap,
+            Equiv.swap_apply_of_ne_of_ne, facetOmittedCoordinate,
+            hn0, hn1, hn2, hn3] using hidx
+        have hnearDeg : ordinaryDegree4 D.facetExponent = 2 := by
+          simp [ordinaryDegree4, hn0, hn1, hn2, hn3, hnOne]
+        have hfarDeg : 3 ≤ ordinaryDegree4 R.exponent := by
+          simp [ordinaryDegree4, hr2]
+          omega
+        omega
+      · rcases hs with ⟨n, hn, hn0, hn1, hn2, hn3⟩
+        have hpos := P.nearOmitted_pos
+        rw [hF] at hpos
+        simp [facetOmittedCoordinate, hn2] at hpos
+
 /-- **Positive first-contact bump excludes an ordinary-degree-preserving
 affine RR direction.**
 
