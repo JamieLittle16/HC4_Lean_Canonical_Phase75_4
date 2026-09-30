@@ -3,6 +3,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
 
 /-!
@@ -998,6 +999,109 @@ theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAff
       AdaptiveAlignedSmithRankOneClosingSourceCarrier.transversePlanarAffineSupport_of_gradient_constant
         D.ell L.low.affine.wallFace.face L.complement_gradient_constant
   }
+
+/-- Exact stationary split of the marked-axis planar-affine wall.  Since
+the marked-axis construction is always transverse, only the base-plane core
+and pure affine-tail constructors are needed. -/
+inductive TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData
+    (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state)
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) : Type (u + 1)
+  | transverseCore
+      (face : MvPolynomial (Fin 4) K)
+      (face_eq :
+        face =
+          HC4.Polynomial.initialForm
+            (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+              D.ell)
+            0
+            (polynomialFamilySpecialFiber D.family))
+      (face_ne_zero : face ≠ 0)
+      (base_support :
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransverseBaseSupport
+          D.ell face)
+      (base_det_zero :
+        binaryDirectionalHessianDet (0 : Fin 4) D.ell face = 0)
+  | transverseAffineTail
+      (face : MvPolynomial (Fin 4) K)
+      (face_eq :
+        face =
+          HC4.Polynomial.initialForm
+            (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
+              D.ell)
+            (-1)
+            (polynomialFamilySpecialFiber D.family))
+      (face_ne_zero : face ≠ 0)
+      (pure_affine :
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransversePureAffineSupport
+          D.ell face)
+      (hessian_zero :
+        ∀ i j : Fin 4, HC4.Polynomial.hessian face i j = 0)
+
+/-- The marked-axis planar-affine face is either a genuine degree-zero
+base-plane core or completely Hessian-invisible affine noise. -/
+theorem TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toStationaryPlanarCore
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+    (L : T.TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData D) :
+    T.TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData D := by
+  let F := L.gradient.low.affine.wallFace
+  have hm_cases : F.complementDegree = 0 ∨ F.complementDegree = 1 := by
+    omega
+  rcases hm_cases with hzero | hone
+  · refine .transverseCore F.face ?_ F.face_ne_zero ?_
+      L.gradient.low.base_det_zero
+    · rw [F.face_eq, hzero]
+      simp
+    · intro d hd i hi0 hiell
+      rcases L.support_shape d hd with hbase | ⟨k, hk0, hkell, hk⟩
+      · exact hbase i hi0 hiell
+      · subst d
+        have hdeg :=
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.support_initialForm_transverseComplementDegree_eq
+            D.ell (polynomialFamilySpecialFiber D.family) 0
+            (by
+              rw [← F.face_eq, hzero]
+              simpa using hd)
+        have hone' :
+            AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+                D.ell (Finsupp.single k 1) = 1 := by
+          have hadd :=
+            AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree_add_single
+              D.ell k hk0 hkell (0 : Fin 4 →₀ ℕ)
+          have hz :
+              AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+                  D.ell (0 : Fin 4 →₀ ℕ) = 0 := by
+            exact
+              AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree_eq_zero_of_baseSupport
+                D.ell 0 (by intro r hr0 hrell; simp)
+          simpa only [zero_add, hz] using hadd
+        omega
+  · have hpure :
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransversePureAffineSupport
+          D.ell F.face := by
+      intro d hd
+      rcases L.support_shape d hd with hbase | hpure
+      · have hdeg :=
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.support_initialForm_transverseComplementDegree_eq
+            D.ell (polynomialFamilySpecialFiber D.family) 1
+            (by
+              rw [← F.face_eq, hone]
+              simpa using hd)
+        have hz :
+            AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
+                D.ell d = 0 :=
+          AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree_eq_zero_of_baseSupport
+            D.ell d hbase
+        omega
+      · exact hpure
+    refine .transverseAffineTail F.face ?_ F.face_ne_zero hpure ?_
+    · rw [F.face_eq, hone]
+      norm_num
+    · exact
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.transversePureAffine_hessian_zero
+          D.ell F.face hpure L.gradient.complement_gradient_constant
 
 namespace TopKernelMarkedAxisCanonicalSquareIntegralityData
 
