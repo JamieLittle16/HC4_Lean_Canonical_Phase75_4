@@ -630,7 +630,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Newton.FiniteSupportDominantClockRefinement`, `HC4.Newton.FiniteSupportQuadraticClockRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarCarrier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceSourceExposure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
-- Declarations: `theorem finsupp_weight_fin4_linear_combination`, `theorem IsExposedFace.restrict_ambient`, `theorem exists_nat_refine_exposed_face_fin4_positive_clock`
+- Declarations: `theorem finsupp_weight_fin4_linear_combination`, `theorem IsExposedFace.restrict_ambient`, `theorem exists_nat_refine_exposed_face_fin4_positive`, `theorem exists_nat_refine_exposed_face_fin4_positive_clock`
 
 ### `HC4.Newton.FiniteSupportQuadraticClockRefinement`
 
