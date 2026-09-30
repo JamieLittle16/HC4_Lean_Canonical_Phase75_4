@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10076**.
+Distinct declaration spellings indexed: **10077**.
 
 ## Repeated declaration spellings
 
@@ -3642,6 +3642,7 @@ Distinct declaration spellings indexed: **10076**.
 - `affineLineData` — `def` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `affineLineData_polynomial_eq` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
 - `affineLineData_polynomial_eq_layer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
+- `affineLineData_topExponent_codimensionTwo` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `affineLineData_topExponent_eq_near` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `affineLine_gradientComponent_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurAffineLineLogGradient`
 - `affineTwoRootEulerOperator` — `def` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
