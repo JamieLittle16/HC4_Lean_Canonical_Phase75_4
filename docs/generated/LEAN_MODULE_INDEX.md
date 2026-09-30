@@ -3683,10 +3683,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity/RankThreeAffineHomogeneousTerminalSplit.lean`
 - Purpose: Balance-free homogeneous affine terminal split
 - A-labels: none detected
-- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
+- Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`, `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`, `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
-- Declarations: `theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero`, `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
+- Declarations: `theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero`, `theorem rankThree_affineTerminal_all_fixed_impossible`, `theorem rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero`, `theorem rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme`, `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
 
 ### `HC4.RationalRigidity.RankThreeAffineLineTerminal`
 
@@ -3745,7 +3745,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+- Imported by local modules: `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - Declarations: `theorem coeff_three_rankThree_raw_first_two_fixed`, `theorem coeff_three_rankThree_raw_outer_two_fixed`, `theorem rankThree_terminal_first_two_fixed_impossible`, `theorem rankThree_terminal_outer_two_fixed_impossible`, `theorem rankThree_terminal_first_two_fixed_impossible_of_eq`, `theorem rankThree_terminal_outer_two_fixed_impossible_of_eq`
 
 ### `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
@@ -3995,7 +3995,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A18.5.35`, `A18.5.41`, `A18.5.52`
 - Local imports: `HC4.RationalRigidity.RankThreeQuadraticTopRelation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`, `HC4.RationalRigidity.RankThreeSupportedSingleDirectionRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
+- Imported by local modules: `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `HC4.RationalRigidity.FiniteStaircaseCrossRoofTerminal`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`, `HC4.RationalRigidity.RankThreeSupportedSingleDirectionRefinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayTerminal`
 - Declarations: `theorem coeff_four_rankThree_raw_Q_zero`, `theorem coeff_four_rankThree_raw_R_zero`, `theorem coeff_four_rankThree_raw_S_zero`, `theorem terminal_quadratic_aux_factor_ne_zero`, `theorem rankThree_terminal_Q_zero_refines`, `theorem rankThree_terminal_R_zero_refines`, `theorem rankThree_terminal_S_zero_refines`
 
 ### `HC4.RationalRigidity.RankThreeSupportedBinomialPower`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10073**.
+Distinct declaration spellings indexed: **10076**.
 
 ## Repeated declaration spellings
 
@@ -8372,7 +8372,10 @@ Distinct declaration spellings indexed: **10073**.
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
+- `rankThree_affineTerminal_all_fixed_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+- `rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+- `rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
