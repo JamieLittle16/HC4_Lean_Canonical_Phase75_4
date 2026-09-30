@@ -724,6 +724,280 @@ theorem rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme
   · exact Or.inr (Or.inl hcodim)
 
 
+/-- A vanishing first transverse coordinate at the top of a unit-step
+affine terminal forces the profile degree to divide the first positive base
+coordinate.  Only the genuinely present coefficient layer one is used. -/
+theorem RankThreeAffineLineData.natDegree_dvd_A_of_top_first_zero
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (h1mem : 1 ∈ phi.support)
+    (htopMem : phi.natDegree ∈ phi.support)
+    (hzero : L.exponent phi.natDegree (1 : Fin 4) = 0) :
+    phi.natDegree ∣ A := by
+  have h1 := congrFun (L.affine 1 h1mem) (1 : Fin 4)
+  have htop := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+  rw [hzero] at htop
+  simp [rankThreeLogBaseExponent, rankThreeLogDirection] at h1 htop
+  have hcast :
+      (((phi.natDegree * L.exponent 1 (1 : Fin 4) + A : ℕ) : K)) =
+        (((phi.natDegree * A : ℕ) : K)) := by
+    push_cast
+    linear_combination (phi.natDegree : K) * h1 - htop
+  have hnat :
+      phi.natDegree * L.exponent 1 (1 : Fin 4) + A =
+        phi.natDegree * A := by
+    exact_mod_cast hcast
+  have hdivSum :
+      phi.natDegree ∣
+        phi.natDegree * L.exponent 1 (1 : Fin 4) + A := by
+    rw [hnat]
+    exact Nat.dvd_mul_right _ _
+  exact (Nat.dvd_add_iff_right (Nat.dvd_mul_right _ _)).2 hdivSum
+
+/-- Cyclic second-coordinate divisibility companion. -/
+theorem RankThreeAffineLineData.natDegree_dvd_B_of_top_second_zero
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (h1mem : 1 ∈ phi.support)
+    (htopMem : phi.natDegree ∈ phi.support)
+    (hzero : L.exponent phi.natDegree (2 : Fin 4) = 0) :
+    phi.natDegree ∣ B := by
+  have h1 := congrFun (L.affine 1 h1mem) (2 : Fin 4)
+  have htop := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+  rw [hzero] at htop
+  simp [rankThreeLogBaseExponent, rankThreeLogDirection] at h1 htop
+  have hcast :
+      (((phi.natDegree * L.exponent 1 (2 : Fin 4) + B : ℕ) : K)) =
+        (((phi.natDegree * B : ℕ) : K)) := by
+    push_cast
+    linear_combination (phi.natDegree : K) * h1 - htop
+  have hnat :
+      phi.natDegree * L.exponent 1 (2 : Fin 4) + B =
+        phi.natDegree * B := by
+    exact_mod_cast hcast
+  have hdivSum :
+      phi.natDegree ∣
+        phi.natDegree * L.exponent 1 (2 : Fin 4) + B := by
+    rw [hnat]
+    exact Nat.dvd_mul_right _ _
+  exact (Nat.dvd_add_iff_right (Nat.dvd_mul_right _ _)).2 hdivSum
+
+/-- Cyclic third-coordinate divisibility companion. -/
+theorem RankThreeAffineLineData.natDegree_dvd_C_of_top_third_zero
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (h1mem : 1 ∈ phi.support)
+    (htopMem : phi.natDegree ∈ phi.support)
+    (hzero : L.exponent phi.natDegree (3 : Fin 4) = 0) :
+    phi.natDegree ∣ C := by
+  have h1 := congrFun (L.affine 1 h1mem) (3 : Fin 4)
+  have htop := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+  rw [hzero] at htop
+  simp [rankThreeLogBaseExponent, rankThreeLogDirection] at h1 htop
+  have hcast :
+      (((phi.natDegree * L.exponent 1 (3 : Fin 4) + C : ℕ) : K)) =
+        (((phi.natDegree * C : ℕ) : K)) := by
+    push_cast
+    linear_combination (phi.natDegree : K) * h1 - htop
+  have hnat :
+      phi.natDegree * L.exponent 1 (3 : Fin 4) + C =
+        phi.natDegree * C := by
+    exact_mod_cast hcast
+  have hdivSum :
+      phi.natDegree ∣
+        phi.natDegree * L.exponent 1 (3 : Fin 4) + C := by
+    rw [hnat]
+    exact Nat.dvd_mul_right _ _
+  exact (Nat.dvd_add_iff_right (Nat.dvd_mul_right _ _)).2 hdivSum
+
+/-- **Codimension-two top contradiction outside the degree-one and
+degree-preserving branches.**
+
+A genuine unit-step affine RR terminal always contains coefficient layer one.
+If two transverse top coordinates vanish, the layer-one exponents force the
+profile degree to divide the corresponding two positive base coordinates.
+The terminal direction split then fixes the remaining slope; its cyclic
+refinement identifies the degree with the sum of those two base coordinates.
+A positive proper summand cannot be divisible by that sum. -/
+theorem rankThree_affineTerminal_codimensionTwoTop_impossible
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (hdegOne : phi.natDegree ≠ 1)
+    (hsum_ne : (1 : K) + Q + R + S ≠ 0)
+    (hcodim : HC4.Newton.MvExponentOnCodimensionTwoBoundary
+      (L.exponent phi.natDegree)) :
+    False := by
+  have hcertNat :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phi) (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
+    simpa using hcert
+  have hstep :=
+    rankThree_unit_longitudinal_step_of_certificate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat
+  have h1mem : 1 ∈ phi.support :=
+    Polynomial.mem_support_iff.mpr hstep.2
+  have hphi : phi ≠ 0 := by
+    intro hz
+    rw [hz] at hphi0
+    simp at hphi0
+  have htopMem : phi.natDegree ∈ phi.support := by
+    rw [Polynomial.mem_support_iff]
+    change phi.leadingCoeff ≠ 0
+    exact (Polynomial.leadingCoeff_ne_zero).2 hphi
+  have htop0 :
+      L.exponent phi.natDegree (0 : Fin 4) = phi.natDegree := by
+    simpa using L.exponent_zero_eq htopMem
+  have hpairs :
+      (L.exponent phi.natDegree (1 : Fin 4) = 0 ∧
+        L.exponent phi.natDegree (2 : Fin 4) = 0) ∨
+      (L.exponent phi.natDegree (1 : Fin 4) = 0 ∧
+        L.exponent phi.natDegree (3 : Fin 4) = 0) ∨
+      (L.exponent phi.natDegree (2 : Fin 4) = 0 ∧
+        L.exponent phi.natDegree (3 : Fin 4) = 0) := by
+    rcases hcodim with ⟨i, j, hij, hi, hj⟩
+    fin_cases i <;> fin_cases j <;> simp_all <;> omega
+
+  have hsplit :=
+    rankThree_terminal_degreeOne_or_directionDegenerate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat
+  rcases hsplit with hD | hQ | hR | hS | hsum
+  · exact hdegOne hD
+  · rcases hpairs with h12 | h13 | h23
+    · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+      rw [h12.1, hQ] at htop1
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1
+      have hA0 : (A : K) = 0 := by linear_combination -htop1
+      exact (by
+        have : A = 0 := by exact_mod_cast hA0
+        omega)
+    · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+      rw [h13.1, hQ] at htop1
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1
+      have hA0 : (A : K) = 0 := by linear_combination -htop1
+      exact (by
+        have : A = 0 := by exact_mod_cast hA0
+        omega)
+    · have href := rankThree_terminal_Q_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hQ
+      rcases href with hR0 | hS0 | hrsum
+      · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+        rw [h23.1, hR0] at htop2
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop2
+        have hB0 : (B : K) = 0 := by linear_combination -htop2
+        have : B = 0 := by exact_mod_cast hB0
+        omega
+      · have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+        rw [h23.2, hS0] at htop3
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop3
+        have hC0 : (C : K) = 0 := by linear_combination -htop3
+        have : C = 0 := by exact_mod_cast hC0
+        omega
+      · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+        have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+        rw [h23.1] at htop2
+        rw [h23.2] at htop3
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop2 htop3
+        have hDBC_K : (phi.natDegree : K) = (B : K) + (C : K) := by
+          linear_combination (phi.natDegree : K) * hrsum + htop2 + htop3
+        have hDBC : phi.natDegree = B + C := by exact_mod_cast hDBC_K
+        have hDB := L.natDegree_dvd_B_of_top_second_zero h1mem htopMem h23.1
+        have hle : phi.natDegree ≤ B := Nat.le_of_dvd hB hDB
+        omega
+  · rcases hpairs with h12 | h13 | h23
+    · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+      rw [h12.2, hR] at htop2
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop2
+      have hB0 : (B : K) = 0 := by linear_combination -htop2
+      have : B = 0 := by exact_mod_cast hB0
+      omega
+    · have href := rankThree_terminal_R_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hR
+      rcases href with hQ0 | hS0 | hqsum
+      · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+        rw [h13.1, hQ0] at htop1
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1
+        have hA0 : (A : K) = 0 := by linear_combination -htop1
+        have : A = 0 := by exact_mod_cast hA0
+        omega
+      · have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+        rw [h13.2, hS0] at htop3
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop3
+        have hC0 : (C : K) = 0 := by linear_combination -htop3
+        have : C = 0 := by exact_mod_cast hC0
+        omega
+      · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+        have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+        rw [h13.1] at htop1
+        rw [h13.2] at htop3
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1 htop3
+        have hDAC_K : (phi.natDegree : K) = (A : K) + (C : K) := by
+          linear_combination (phi.natDegree : K) * hqsum + htop1 + htop3
+        have hDAC : phi.natDegree = A + C := by exact_mod_cast hDAC_K
+        have hDA := L.natDegree_dvd_A_of_top_first_zero h1mem htopMem h13.1
+        have hle : phi.natDegree ≤ A := Nat.le_of_dvd hA hDA
+        omega
+    · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+      rw [h23.1, hR] at htop2
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop2
+      have hB0 : (B : K) = 0 := by linear_combination -htop2
+      have : B = 0 := by exact_mod_cast hB0
+      omega
+  · rcases hpairs with h12 | h13 | h23
+    · have href := rankThree_terminal_S_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hS
+      rcases href with hQ0 | hR0 | hqrsum
+      · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+        rw [h12.1, hQ0] at htop1
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1
+        have hA0 : (A : K) = 0 := by linear_combination -htop1
+        have : A = 0 := by exact_mod_cast hA0
+        omega
+      · have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+        rw [h12.2, hR0] at htop2
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop2
+        have hB0 : (B : K) = 0 := by linear_combination -htop2
+        have : B = 0 := by exact_mod_cast hB0
+        omega
+      · have htop1 := congrFun (L.affine phi.natDegree htopMem) (1 : Fin 4)
+        have htop2 := congrFun (L.affine phi.natDegree htopMem) (2 : Fin 4)
+        rw [h12.1] at htop1
+        rw [h12.2] at htop2
+        simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop1 htop2
+        have hDAB_K : (phi.natDegree : K) = (A : K) + (B : K) := by
+          linear_combination (phi.natDegree : K) * hqrsum + htop1 + htop2
+        have hDAB : phi.natDegree = A + B := by exact_mod_cast hDAB_K
+        have hDA := L.natDegree_dvd_A_of_top_first_zero h1mem htopMem h12.1
+        have hle : phi.natDegree ≤ A := Nat.le_of_dvd hA hDA
+        omega
+    · have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+      rw [h13.2, hS] at htop3
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop3
+      have hC0 : (C : K) = 0 := by linear_combination -htop3
+      have : C = 0 := by exact_mod_cast hC0
+      omega
+    · have htop3 := congrFun (L.affine phi.natDegree htopMem) (3 : Fin 4)
+      rw [h23.2, hS] at htop3
+      simp [rankThreeLogBaseExponent, rankThreeLogDirection] at htop3
+      have hC0 : (C : K) = 0 := by linear_combination -htop3
+      have : C = 0 := by exact_mod_cast hC0
+      omega
+  · exact hsum_ne hsum
+
 /-- **The honest top exponent of a normalized affine terminal leaves the
 starting `.qs` facet.**
 
