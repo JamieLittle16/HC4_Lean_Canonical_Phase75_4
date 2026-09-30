@@ -1291,6 +1291,7 @@ human architecture guide.
 - `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
   - `HC4.Newton.FirstContactCrossFacetFarBoundary`
   - `HC4.Polynomial.RankThreeAffineSupportRealisation`
+  - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
   - `HC4.RationalRigidity.RankThreeAffineLineTerminal`
   - `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
 - `HC4.RationalRigidity.LineSupportedHessianRigidity`

@@ -3603,10 +3603,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/RationalRigidity/FirstContactCrossFacetFarRankThreeAffine.lean`
 - Purpose: Far rank-three first-contact line as an honest affine terminal carrier
 - A-labels: none detected
-- Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`
+- Local imports: `HC4.Newton.FirstContactCrossFacetFarBoundary`, `HC4.Polynomial.RankThreeAffineSupportRealisation`, `HC4.RationalRigidity.RankThreeAffineLineTerminal`, `HC4.RationalRigidity.RankThreeTerminalBinomialNormalForm`, `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `def HasPositiveTwoZeroTransverseTop`, `theorem nearExtreme_topShape`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem affineLineData_topExponent_codimensionTwo`, `theorem terminalCertificate`, `def binomialNormalForm`, `theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel`, `theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel`
+- Declarations: `structure CrossFacetFarRankThreeAffineSupportData`, `theorem CrossFacetFarBoundaryData.exists_rankThreeAffineSupportData`, `def HasPositiveTwoZeroTransverseTop`, `theorem nearExtreme_topShape`, `theorem affineLineData_zeroExponent_eq_far`, `theorem ordinaryDegree4_mapDomain_rho`, `theorem affineDirection_sum_ne_zero`, `theorem profile_natDegree_eq_nearIndex`, `theorem affineLineData_topExponent_eq_near`, `theorem affineLineData_topExponent_codimensionTwo`, `theorem terminalCertificate`, `def binomialNormalForm`, `theorem CrossFacetFarBoundaryData.affineTerminalCodimensionTwo_or_kernel`, `theorem CrossFacetFarBoundaryData.affineTerminalCertificate_or_kernel`
 
 ### `HC4.RationalRigidity.LineSupportedHessianRigidity`
 
@@ -3685,7 +3685,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed`, `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`, `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`, `HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible`, `HC4.RationalRigidity.RankThreeAffineTopBoundary`, `HC4.Polynomial.FourExponent`, `HC4.Newton.SingularBoundaryRankSplit`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`
+- Imported by local modules: `HC4`, `HC4.Newton.FiniteSupportCrossFacetRayCoordinatePermutation`, `HC4.Newton.FiniteSupportCrossFacetRayHomogeneousTerminal`, `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - Declarations: `theorem rankThreeAffineLine_ordinaryDegree_eq_base_of_direction_sum_zero`, `theorem rankThree_affineTerminal_all_fixed_impossible`, `theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo`, `theorem rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo`, `theorem rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero`, `theorem rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme`, `theorem rankThree_affineTerminal_top_otherFacet_or_codimensionTwo`
 
 ### `HC4.RationalRigidity.RankThreeAffineLineTerminal`
