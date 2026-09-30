@@ -1,5 +1,7 @@
 import HC4.RationalRigidity.RankThreeHomogeneousDirectionFixed
 import HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations
+import HC4.RationalRigidity.RankThreeSingleDirectionRefinement
+import HC4.RationalRigidity.RankThreeAffineTwoFixedCyclicImpossible
 import HC4.RationalRigidity.RankThreeAffineTopBoundary
 import HC4.Polynomial.FourExponent
 import HC4.Newton.SingularBoundaryRankSplit
@@ -58,6 +60,259 @@ theorem RankThreeAffineLineData.ordinaryDegree_eq_base_of_direction_sum_zero
     push_cast
     linear_combination (j : K) * hsum
   exact_mod_cast hdegK
+
+/-- A genuine affine terminal cannot have all three transverse affine
+directions fixed.  The terminal top exponent is known to lie on the coordinate
+boundary, while with `Q = R = S = 0` all four coordinates of that exponent
+are strictly positive. -/
+theorem rankThree_affineTerminal_all_fixed_impossible
+    {A B C : ℕ} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 0 0 0 phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) 0 0 0) :
+    False := by
+  have hboundary :=
+    rankThreeAffineLine_topExponent_on_boundary_of_certificate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := (0 : K)) (R := (0 : K)) (S := (0 : K)) (phi := phi)
+      L hA hB hC (by norm_num) hphiDeg hphi0 hcert
+  have hphi : phi ≠ 0 := by
+    intro hz
+    rw [hz] at hphi0
+    simp at hphi0
+  have htopMem : phi.natDegree ∈ phi.support := by
+    rw [Polynomial.mem_support_iff]
+    change phi.leadingCoeff ≠ 0
+    exact (Polynomial.leadingCoeff_ne_zero).2 hphi
+  have haff := L.affine phi.natDegree htopMem
+  have h0 := congrFun haff (0 : Fin 4)
+  have h1 := congrFun haff (1 : Fin 4)
+  have h2 := congrFun haff (2 : Fin 4)
+  have h3 := congrFun haff (3 : Fin 4)
+  have h0pos : 0 < L.exponent phi.natDegree (0 : Fin 4) := by
+    have hz := L.exponent_zero_eq htopMem
+    rw [hz]
+    simp
+    exact hphiDeg
+  have h1pos : 0 < L.exponent phi.natDegree (1 : Fin 4) := by
+    have hcast :
+        ((L.exponent phi.natDegree (1 : Fin 4) : ℕ) : K) = (A : K) := by
+      simpa [rankThreeLogBaseExponent, rankThreeLogDirection] using h1
+    have hnat : L.exponent phi.natDegree (1 : Fin 4) = A := by
+      exact_mod_cast hcast
+    simpa [hnat] using hA
+  have h2pos : 0 < L.exponent phi.natDegree (2 : Fin 4) := by
+    have hcast :
+        ((L.exponent phi.natDegree (2 : Fin 4) : ℕ) : K) = (B : K) := by
+      simpa [rankThreeLogBaseExponent, rankThreeLogDirection] using h2
+    have hnat : L.exponent phi.natDegree (2 : Fin 4) = B := by
+      exact_mod_cast hcast
+    simpa [hnat] using hB
+  have h3pos : 0 < L.exponent phi.natDegree (3 : Fin 4) := by
+    have hcast :
+        ((L.exponent phi.natDegree (3 : Fin 4) : ℕ) : K) = (C : K) := by
+      simpa [rankThreeLogBaseExponent, rankThreeLogDirection] using h3
+    have hnat : L.exponent phi.natDegree (3 : Fin 4) = C := by
+      exact_mod_cast hcast
+    simpa [hnat] using hC
+  rw [mvExponentOnBoundary_iff_coordinate_zero] at hboundary
+  rcases hboundary with h0z | h1z | h2z | h3z
+  · exact (Nat.ne_of_gt h0pos h0z)
+  · exact (Nat.ne_of_gt h1pos h1z)
+  · exact (Nat.ne_of_gt h2pos h2z)
+  · exact (Nat.ne_of_gt h3pos h3z)
+
+/-- In the degree-preserving direction branch, the affine terminal is already
+either codimension two at the top endpoint or one of the three extreme binary
+directions. -/
+theorem rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S)
+    (hsum : (1 : K) + Q + R + S = 0) :
+    HC4.Newton.MvExponentOnCodimensionTwoBoundary
+        (L.exponent phi.natDegree) ∨
+      (Q = 0 ∧ R = 0 ∧ S + 1 = 0) ∨
+      (Q = 0 ∧ S = 0 ∧ R + 1 = 0) ∨
+      (R = 0 ∧ S = 0 ∧ Q + 1 = 0) := by
+  have hstep :=
+    rankThree_unit_longitudinal_step_of_certificate
+      (K := K) (A := A) (B := B) (C := C) (P := 1)
+      (Q := Q) (R := R) (S := S) (phi := phi)
+      hA hB hC (by norm_num) hphiDeg hphi0 hcert
+  have h1mem : 1 ∈ phi.support :=
+    Polynomial.mem_support_iff.mpr hstep.2
+  have hphi : phi ≠ 0 := by
+    intro hz
+    rw [hz] at hphi0
+    simp at hphi0
+  have htopMem : phi.natDegree ∈ phi.support := by
+    rw [Polynomial.mem_support_iff]
+    change phi.leadingCoeff ≠ 0
+    exact (Polynomial.leadingCoeff_ne_zero).2 hphi
+  have hdegOne :
+      ordinaryDegree4 (L.exponent 1) = A + B + C :=
+    L.ordinaryDegree_eq_base_of_direction_sum_zero hsum h1mem
+  have hdegTop :
+      ordinaryDegree4 (L.exponent phi.natDegree) = A + B + C :=
+    L.ordinaryDegree_eq_base_of_direction_sum_zero hsum htopMem
+  exact
+    rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
+      (K := K) L hA hB hC hphiDeg hphi0 hcert hdegOne hdegTop
+
+/-- **Complete balance-free affine terminal frontier.**
+
+All generic scalar alternatives have now been consumed.  A genuine affine
+rank-three terminal is reduced to exactly:
+
+* source coefficient degree one;
+* a codimension-two top endpoint; or
+* one of three extreme binary directions, where two transverse slopes are
+  fixed and the remaining slope is exactly `-1`.
+
+The all-fixed case contradicts the terminal boundary theorem, while generic
+two-fixed cases are excluded by the already-green cyclic affine
+contradictions. -/
+theorem rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme
+    {A B C : ℕ} {Q R S : K} {phi : Polynomial K}
+    (L : RankThreeAffineLineData A B C 1 Q R S phi)
+    (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
+    (hphiDeg : 0 < phi.natDegree)
+    (hphi0 : phi.coeff 0 ≠ 0)
+    (hcert : HasRankThreePolynomialTerminalCertificate
+      (phi := phi) (A : K) (B : K) (C : K) (1 : K) Q R S) :
+    phi.natDegree = 1 ∨
+      HC4.Newton.MvExponentOnCodimensionTwoBoundary
+        (L.exponent phi.natDegree) ∨
+      (Q = 0 ∧ R = 0 ∧ S + 1 = 0) ∨
+      (Q = 0 ∧ S = 0 ∧ R + 1 = 0) ∨
+      (R = 0 ∧ S = 0 ∧ Q + 1 = 0) := by
+  rcases rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo
+      (K := K) L hA hB hC hphiDeg hphi0 hcert with
+    hD | hQ | hR | hS | hcodim
+  · exact Or.inl hD
+  · have href :=
+      rankThree_terminal_Q_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcert hQ
+    rcases href with hR0 | hS0 | hsum
+    · by_cases hSzero : S = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hSone : S + 1 = 0
+        · exact Or.inr (Or.inr (Or.inl ⟨hQ, hR0, hSone⟩))
+        · exact False.elim
+            (rankThree_terminal_first_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hQ hR0 hSzero hSone)
+    · by_cases hRzero : R = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hRone : R + 1 = 0
+        · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨hQ, hS0, hRone⟩)))
+        · exact False.elim
+            (rankThree_terminal_outer_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hQ hS0 hRzero hRone)
+    · have hsumFull : (1 : K) + Q + R + S = 0 := by
+        rw [hQ]
+        simpa [add_assoc] using hsum
+      rcases rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero
+          (K := K) L hA hB hC hphiDeg hphi0 hcert hsumFull with
+        hcodim | h1 | h2 | h3
+      · exact Or.inr (Or.inl hcodim)
+      · exact Or.inr (Or.inr (Or.inl h1))
+      · exact Or.inr (Or.inr (Or.inr (Or.inl h2)))
+      · exact Or.inr (Or.inr (Or.inr (Or.inr h3)))
+  · have href :=
+      rankThree_terminal_R_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcert hR
+    rcases href with hQ0 | hS0 | hsum
+    · by_cases hSzero : S = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hSone : S + 1 = 0
+        · exact Or.inr (Or.inr (Or.inl ⟨hQ0, hR, hSone⟩))
+        · exact False.elim
+            (rankThree_terminal_first_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hQ0 hR hSzero hSone)
+    · by_cases hQzero : Q = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hQone : Q + 1 = 0
+        · exact Or.inr (Or.inr (Or.inr (Or.inr ⟨hR, hS0, hQone⟩)))
+        · exact False.elim
+            (rankThree_terminal_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hR hS0 hQzero hQone)
+    · have hsumFull : (1 : K) + Q + R + S = 0 := by
+        rw [hR]
+        simpa [add_assoc, add_comm, add_left_comm] using hsum
+      rcases rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero
+          (K := K) L hA hB hC hphiDeg hphi0 hcert hsumFull with
+        hcodim | h1 | h2 | h3
+      · exact Or.inr (Or.inl hcodim)
+      · exact Or.inr (Or.inr (Or.inl h1))
+      · exact Or.inr (Or.inr (Or.inr (Or.inl h2)))
+      · exact Or.inr (Or.inr (Or.inr (Or.inr h3)))
+  · have href :=
+      rankThree_terminal_S_zero_refines
+        (K := K) (A := A) (B := B) (C := C) (P := 1)
+        (Q := Q) (R := R) (S := S) (phi := phi)
+        hA hB hC (by norm_num) hphiDeg hphi0 hcert hS
+    rcases href with hQ0 | hR0 | hsum
+    · by_cases hRzero : R = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hRone : R + 1 = 0
+        · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨hQ0, hS, hRone⟩)))
+        · exact False.elim
+            (rankThree_terminal_outer_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hQ0 hS hRzero hRone)
+    · by_cases hQzero : Q = 0
+      · subst Q; subst R; subst S
+        exact False.elim
+          (rankThree_affineTerminal_all_fixed_impossible
+            (K := K) L hA hB hC hphiDeg hphi0 hcert)
+      · by_cases hQone : Q + 1 = 0
+        · exact Or.inr (Or.inr (Or.inr (Or.inr ⟨hR0, hS, hQone⟩)))
+        · exact False.elim
+            (rankThree_terminal_two_fixed_impossible_of_eq
+              hA hB hC (by norm_num) hphiDeg hphi0 hcert
+              hR0 hS hQzero hQone)
+    · have hsumFull : (1 : K) + Q + R + S = 0 := by
+        rw [hS]
+        simpa [add_assoc] using hsum
+      rcases rankThree_affineTerminal_extreme_or_codimensionTwo_of_direction_sum_zero
+          (K := K) L hA hB hC hphiDeg hphi0 hcert hsumFull with
+        hcodim | h1 | h2 | h3
+      · exact Or.inr (Or.inl hcodim)
+      · exact Or.inr (Or.inr (Or.inl h1))
+      · exact Or.inr (Or.inr (Or.inr (Or.inl h2)))
+      · exact Or.inr (Or.inr (Or.inr (Or.inr h3)))
+  · exact Or.inr (Or.inl hcodim)
 
 /-- **Homogeneous affine terminal: fixed transverse direction or codimension
 two.**
