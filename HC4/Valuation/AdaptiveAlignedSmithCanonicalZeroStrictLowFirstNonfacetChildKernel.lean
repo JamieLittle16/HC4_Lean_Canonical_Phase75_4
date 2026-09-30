@@ -50,12 +50,12 @@ theorem qs_childKernel_of_balanced
     {a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hcop : a.Coprime b)
     (hBal :
-      HasBalancedMvSupport a b
+      HC4.Polynomial.HasBalancedMvSupport a b
         (polynomialFamilySpecialFiber T.terminal.blocker.presented.family)) :
     ∃ (R : CrossFacetFarBoundaryData (a := a) (b := b) C.crossFacet)
       (kernelCoordinate : Fin 4),
       MvPolynomial.pderiv kernelCoordinate C.crossFacet.face = 0 := by
-  have hFaceBal : HasBalancedMvSupport a b C.face := by
+  have hFaceBal : HC4.Polynomial.HasBalancedMvSupport a b C.face := by
     rw [C.face_eq]
     exact hBal.initialForm _ _
 
@@ -63,10 +63,10 @@ theorem qs_childKernel_of_balanced
       ∀ d ∈ C.face.support,
         scaledContactExponentWeight (0 : Fin 4) C.scale C.bump d =
           ((C.scale * T.topFace.degree : ℕ) : ℤ) := by
-    simpa [facetOmittedCoordinate] using C.contact_eq
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using C.contact_eq
 
   have hfacetDeg :
-      3 ≤ ordinaryDegree4 C.crossFacet.facetExponent :=
+      3 ≤ HC4.Polynomial.ordinaryDegree4 C.crossFacet.facetExponent :=
     C.support_degree_ge_three
       C.crossFacet.facetExponent C.crossFacet.facet_mem
 
@@ -86,8 +86,8 @@ theorem qs_childKernel_of_balanced
 
   rcases
       HC4.RationalRigidity.CrossFacetFarBoundaryData.kernel_of_positiveFirstContact
-        R ha hb hcop C.scale_pos C.bump_pos C.crossFacet
-        hFaceBal hcontact C.hessian_zero hnear with
+        ha hb hcop C.scale_pos C.bump_pos C.crossFacet
+        hFaceBal hcontact C.hessian_zero R hnear with
     ⟨kernelCoordinate, hkernel⟩
   exact ⟨R, kernelCoordinate, hkernel⟩
 
