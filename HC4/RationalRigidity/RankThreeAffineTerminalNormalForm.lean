@@ -44,6 +44,16 @@ structure RankThreeAffineTerminalNormalForm
       Polynomial.C scalar * Polynomial.X ^ phi.natDegree
   topBoundary : MvExponentOnBoundary (L.exponent phi.natDegree)
 
+/-- Every coefficient layer of the affine terminal profile is present. -/
+theorem RankThreeAffineTerminalNormalForm.coeff_ne_zero
+    {A B C P : ℕ} {Q R S : K} {phi : Polynomial K}
+    {L : RankThreeAffineLineData A B C P Q R S phi}
+    (N : RankThreeAffineTerminalNormalForm L)
+    {j : ℕ} (hj : j ≤ phi.natDegree) :
+    phi.coeff j ≠ 0 := by
+  exact coeff_ne_zero_of_translate_eq_pure_power
+    N.root_ne N.scalar_ne N.translatedPurePower hj
+
 /-- **Affine terminal normal form.**  All scalar autonomous analysis is now
 hidden behind one lossless package for the terminal toric/pencil endgame. -/
 theorem rankThreeAffineTerminal_normalForm
