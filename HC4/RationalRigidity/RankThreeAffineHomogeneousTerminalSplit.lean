@@ -174,13 +174,11 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
     push_cast at hdeg1K
     linear_combination hdeg1K
 
-  have hsumNat : ((1 : ℕ) : K) + Q + R + S = 0 := by
-    simpa using hsum
   have hrel :=
     rankThree_terminal_homogeneous_direction_relation
       (K := K) (A := A) (B := B) (C := C) (P := 1)
       (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsumNat
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum
 
   have hbaseOne :
       (A : K) + (B : K) + (C : K) - 1 ≠ 0 := by
@@ -331,7 +329,7 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
       rankThree_terminal_homogeneous_Q_zero_relation
         (K := K) (A := A) (B := B) (C := C) (P := 1)
         (Q := Q) (R := R) (S := S) (phi := phi)
-        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsumNat hQ
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum hQ
     rcases mul_eq_zero.mp hrel with h0 | htail
     · rcases mul_eq_zero.mp h0 with h0 | hbase
       · rcases mul_eq_zero.mp h0 with h0 | hRp1
@@ -371,7 +369,7 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
       rankThree_terminal_homogeneous_R_zero_relation
         (K := K) (A := A) (B := B) (C := C) (P := 1)
         (Q := Q) (R := R) (S := S) (phi := phi)
-        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsumNat hR
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum hR
     rcases mul_eq_zero.mp hrel with h0 | htail
     · rcases mul_eq_zero.mp h0 with h0 | hbase
       · rcases mul_eq_zero.mp h0 with h0 | hQp1
@@ -411,7 +409,7 @@ theorem rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo
       rankThree_terminal_homogeneous_S_zero_relation
         (K := K) (A := A) (B := B) (C := C) (P := 1)
         (Q := Q) (R := R) (S := S) (phi := phi)
-        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsumNat hS
+        hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum hS
     rcases mul_eq_zero.mp hrel with h0 | htail
     · rcases mul_eq_zero.mp h0 with h0 | hbase
       · rcases mul_eq_zero.mp h0 with h0 | hQp1
