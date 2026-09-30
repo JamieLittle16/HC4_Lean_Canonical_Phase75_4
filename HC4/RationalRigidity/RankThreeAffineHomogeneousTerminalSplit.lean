@@ -174,11 +174,13 @@ theorem rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo
     push_cast at hdeg1K
     linear_combination hdeg1K
 
+  have hsumNat : ((1 : ℕ) : K) + Q + R + S = 0 := by
+    simpa using hsum
   have hrel :=
     rankThree_terminal_homogeneous_direction_relation
       (K := K) (A := A) (B := B) (C := C) (P := 1)
       (Q := Q) (R := R) (S := S) (phi := phi)
-      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsum
+      hA hB hC (by norm_num) hphiDeg hphi0 hcertNat hsumNat
 
   have hbaseOne :
       (A : K) + (B : K) + (C : K) - 1 ≠ 0 := by
@@ -599,6 +601,10 @@ theorem rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme
       (Q = 0 ∧ R = 0 ∧ S + 1 = 0) ∨
       (Q = 0 ∧ S = 0 ∧ R + 1 = 0) ∨
       (R = 0 ∧ S = 0 ∧ Q + 1 = 0) := by
+  have hcertNat :
+      HasRankThreePolynomialTerminalCertificate
+        (phi := phi) (A : K) (B : K) (C : K) ((1 : ℕ) : K) Q R S := by
+    simpa using hcert
   rcases rankThree_affineTerminal_degreeOne_or_fixed_or_codimensionTwo
       (K := K) L hA hB hC hphiDeg hphi0 hcert with
     hD | hQ | hR | hS | hcodim
