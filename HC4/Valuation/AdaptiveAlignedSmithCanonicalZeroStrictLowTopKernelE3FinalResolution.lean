@@ -143,6 +143,35 @@ theorem PureLongitudinalMarkedE3Data.positiveTransverseLowLayer
   P.pureLongitudinal_markedAxis_positiveTransverseLowLayer
     D.coefficient_ne_zero D.topFace_eq
 
+/-- In the pure-longitudinal E3 branch the collision-bearing marked-axis
+special fibre is literally zero.  Indeed its support is exactly the
+zero-longitudinal slice of the ordinary top face, while that top face consists
+only of the nonzero monomial `X₀^D` with `D ≥ 3`. -/
+theorem PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    polynomialFamilySpecialFiber T.topKernelMarkedAxisFirstContactFamily = 0 := by
+  apply MvPolynomial.ext
+  intro d
+  by_contra hcoeff
+  have hd :
+      d ∈ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support :=
+    MvPolynomial.mem_support_iff.mpr hcoeff
+  rcases
+      (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero d).1 hd with
+    ⟨htop, hzero⟩
+  have htopCoeff : MvPolynomial.coeff d T.topFace.face ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp htop
+  rw [D.topFace_eq] at htopCoeff
+  have hdEq :
+      d = Finsupp.single (0 : Fin 4) T.topFace.degree := by
+    simpa [D.coefficient_ne_zero] using htopCoeff
+  have hDzero : T.topFace.degree = 0 := by
+    simpa [hdEq] using hzero
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  omega
+
 /-- **Marked-aware E3 frontier.**
 
 Unlike the older source-rank-three compression, this interface consumes the
