@@ -249,6 +249,117 @@ theorem quadraticFamilyHessianMatrix_det_hasGapBefore_firstPositiveActualOrder
   rw [hdet]
   exact H.det.property
 
+/-- If the whole family has zero special fibre, the least positive actual
+parameter order is a genuine common `X`-adic factor of every source
+coefficient. -/
+theorem sourceCoefficient_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (h : HasPositiveActualParameterLayer P)
+    (hspecial : polynomialFamilySpecialFiber P = 0)
+    (d : Fin 4 →₀ ℕ) :
+    Polynomial.X ^ firstPositiveActualParameterOrder P h ∣
+      MvPolynomial.coeff d P := by
+  rw [Polynomial.X_pow_dvd_iff]
+  intro n hnlt
+  by_cases hnzero : n = 0
+  · subst n
+    have hcoeff :=
+      congrArg (MvPolynomial.coeff d) hspecial
+    rw [coeff_polynomialFamilySpecialFiber] at hcoeff
+    simpa [Polynomial.coeff_zero_eq_eval_zero] using hcoeff
+  · exact
+      sourceCoefficient_hasGapBefore_firstPositiveActualOrder
+        P h d n (Nat.pos_of_ne_zero hnzero) hnlt
+
+/-- With zero special fibre, the same common factor divides every entry of the
+source-origin Hessian matrix. -/
+theorem quadraticFamilyHessianMatrix_entry_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (h : HasPositiveActualParameterLayer P)
+    (hspecial : polynomialFamilySpecialFiber P = 0)
+    (i k : Fin 4) :
+    Polynomial.X ^ firstPositiveActualParameterOrder P h ∣
+      quadraticFamilyHessianMatrix P i k := by
+  have hentry :
+      quadraticFamilyHessianMatrix P i k =
+        MvPolynomial.coeff
+            (Finsupp.single k 1 + Finsupp.single i 1) P *
+          (((Finsupp.single k 1) i + 1 : ℕ) :
+            Polynomial K) := by
+    change
+      MvPolynomial.constantCoeff
+          (MvPolynomial.pderiv k (MvPolynomial.pderiv i P)) = _
+    rw [MvPolynomial.constantCoeff_eq]
+    rw [coeff_pderiv_commRing, coeff_pderiv_commRing]
+    simp [add_comm, add_left_comm, add_assoc]
+  rcases
+      sourceCoefficient_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
+        P h hspecial
+          (Finsupp.single k 1 + Finsupp.single i 1) with
+    ⟨q, hq⟩
+  refine ⟨q * ((((Finsupp.single k 1) i + 1 : ℕ) : Polynomial K)), ?_⟩
+  rw [hentry, hq]
+  simp [mul_assoc]
+
+/-- **Fourfold causality for a zero special fibre.**
+
+If the family itself starts at positive parameter order `j`, then each of
+the four Hessian rows carries a common factor `X^j`.  Hence the determinant
+carries `X^(4*j)`.  A pure Hessian clock `X^Delta` therefore forces
+`4*j ≤ Delta`. -/
+theorem four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFiber_zero
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (h : HasPositiveActualParameterLayer P)
+    {Delta : ℕ}
+    (hdef :
+      HasPolynomialFamilyHessianDefect
+        (K := K) P Delta)
+    (hspecial : polynomialFamilySpecialFiber P = 0) :
+    4 * firstPositiveActualParameterOrder P h ≤ Delta := by
+  let j := firstPositiveActualParameterOrder P h
+  have hentry :
+      ∀ i k : Fin 4,
+        Polynomial.X ^ j ∣ quadraticFamilyHessianMatrix P i k := by
+    intro i k
+    simpa [j] using
+      quadraticFamilyHessianMatrix_entry_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
+        P h hspecial i k
+  choose Q hQ using hentry
+  let A : Matrix (Fin 4) (Fin 4) (Polynomial K) :=
+    fun i k => Q i k
+  have hmatrix :
+      quadraticFamilyHessianMatrix P =
+        (Polynomial.X ^ j) • A := by
+    ext i k
+    have hij := hQ i k
+    change quadraticFamilyHessianMatrix P i k =
+      Polynomial.X ^ j * A i k
+    simpa [A] using hij.symm
+  have hdetFactor :
+      (quadraticFamilyHessianMatrix P).det =
+        (Polynomial.X ^ j) ^ 4 * A.det := by
+    rw [hmatrix]
+    simpa using Matrix.det_smul A (Polynomial.X ^ j)
+  have hdvd :
+      Polynomial.X ^ (4 * j) ∣
+        (quadraticFamilyHessianMatrix P).det := by
+    refine ⟨A.det, ?_⟩
+    rw [hdetFactor]
+    simp [Nat.mul_comm, pow_mul]
+  have hdet :
+      (quadraticFamilyHessianMatrix P).det =
+        (Polynomial.X : Polynomial K) ^ Delta := by
+    rw [quadraticFamilyHessianMatrix_det]
+    rw [hdef]
+    simp
+  rw [hdet] at hdvd
+  rw [Polynomial.X_pow_dvd_iff] at hdvd
+  by_contra hnot
+  have hlt : Delta < 4 * j := Nat.lt_of_not_ge hnot
+  have hzero := hdvd Delta hlt
+  rw [Polynomial.coeff_X_pow] at hzero
+  simp at hzero
+
 /-! ## General causality theorem -/
 
 /-- **First actual layer cannot occur after pure Hessian closure.**
