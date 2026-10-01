@@ -96,20 +96,65 @@ noncomputable def
     intro A Q
     exact X.sourceConstant A Q
 
+/-- Lossless E3 packet for the pure-longitudinal marked-axis branch.
+
+The earlier marked-aware interface retained only a generic codimension-two
+source exponent.  That discarded the rigid geometry which actually creates
+this branch.  We now keep the pure top-face identity, the nonzero transverse
+kernel direction, the represented codimension-two source exponent, and the
+exact physical order of the distinguished pure top coefficient in the
+marked-axis first-contact family. -/
+structure PureLongitudinalMarkedE3Data
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  coefficient : K
+  coefficient_ne_zero : coefficient ≠ 0
+  topFace_eq :
+    T.topFace.face =
+      MvPolynomial.C coefficient *
+        (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree
+  kernel_ne_zero : kernelCoordinate ≠ (0 : Fin 4)
+  sourceExponent : Fin 4 →₀ ℕ
+  source_mem : sourceExponent ∈ T.representedSpecialFiber.support
+  source_boundary : MvExponentOnCodimensionTwoBoundary sourceExponent
+  topCoefficientOrder_eq :
+    smithFamilyCoefficientOrder
+        T.topKernelMarkedAxisFirstContactFamily
+        (Finsupp.single (0 : Fin 4) T.topFace.degree) =
+      T.topFace.degree
+  topCoefficientOrder_pos_lt_defect :
+    0 <
+        smithFamilyCoefficientOrder
+          T.topKernelMarkedAxisFirstContactFamily
+          (Finsupp.single (0 : Fin 4) T.topFace.degree) ∧
+      smithFamilyCoefficientOrder
+          T.topKernelMarkedAxisFirstContactFamily
+          (Finsupp.single (0 : Fin 4) T.topFace.degree) <
+        4 * T.topFace.degree - 6
+
+/-- The lossless pure E3 packet still exposes the canonical positive-transverse
+Rees low layer, now with the exact physical order retained alongside it. -/
+theorem PureLongitudinalMarkedE3Data.positiveTransverseLowLayer
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    Nonempty
+      (CanonicalPositiveTransverseReesLowLayer
+        (4 * T.topFace.degree - 6)
+        T.topKernelMarkedAxisFirstContactFamily) :=
+  P.pureLongitudinal_markedAxis_positiveTransverseLowLayer
+    D.coefficient_ne_zero D.topFace_eq
+
 /-- **Marked-aware E3 frontier.**
 
 Unlike the older source-rank-three compression, this interface consumes the
 pure-longitudinal marked-axis constructor *before* entering the generic C/D
-fallback.  The balance-free first-contact analysis has now been source-lifted
-far enough that both of its outcomes give a literal represented-source
-codimension-two exponent.  All other E2 constructors retain the terminal-aware
-C/D timing frontier. -/
+fallback.  The pure branch is now retained losslessly: besides its honest
+represented-source codimension-two exponent it keeps the pure top-face
+identity and the exact preclosing marked-axis coefficient order.  All other
+E2 constructors retain the terminal-aware C/D timing frontier. -/
 inductive TopKernelLinearPowerE3MarkedAwareFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
-  | pureCodimensionTwoSource
-      (d : Fin 4 →₀ ℕ)
-      (mem_source : d ∈ T.representedSpecialFiber.support)
-      (boundary : MvExponentOnCodimensionTwoBoundary d)
+  | pureLongitudinal
+      (data : P.PureLongitudinalMarkedE3Data)
   | sourcePointThreeByThree
       (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
   | sourceConstantThreeByThree
@@ -163,8 +208,20 @@ theorem topKernelLinearPowerE3MarkedAwareFrontier_nonempty
       rcases P.pureLongitudinalFirstContactFrontier_nonempty
           hcoeff hface with ⟨Q⟩
       rcases Q.toCodimensionTwoSourceData P with ⟨R⟩
-      exact ⟨.pureCodimensionTwoSource
-        R.exponent R.mem_source R.boundary⟩
+      exact ⟨.pureLongitudinal {
+        coefficient := coefficient
+        coefficient_ne_zero := hcoeff
+        topFace_eq := hface
+        kernel_ne_zero := hk
+        sourceExponent := R.exponent
+        source_mem := R.mem_source
+        source_boundary := R.boundary
+        topCoefficientOrder_eq :=
+          P.pureLongitudinal_markedAxis_topCoefficientOrder_eq hcoeff hface
+        topCoefficientOrder_pos_lt_defect :=
+          P.pureLongitudinal_markedAxis_topCoefficientOrder_pos_lt_defect
+            hcoeff hface
+      }⟩
   | fullFacetCodimensionTwo hfacet hboundary cd =>
       exact hfallback
         (.fullFacetCodimensionTwo hfacet hboundary cd)
@@ -186,8 +243,9 @@ noncomputable def topKernelLinearPowerE3MarkedAwareFrontier
 
 /-- **Marked-aware single-obligation E3 assembly.**
 
-The pure-longitudinal branch now retains only literal represented-source
-codimension-two support, while the timing-rich exact closing remains explicit.
+The pure-longitudinal branch now retains its full rigid packet: pure top-face
+identity, literal represented-source codimension-two support, and exact
+preclosing marked-axis order.  The timing-rich exact closing remains explicit.
 Raw defect zero still supplies the same canonical exact-active source chart
 independently of which marked-aware constructor was reached.  Therefore, if one
 is willing to forget the extra timing, the entire marked-aware frontier has
@@ -209,7 +267,7 @@ theorem exists_finalResolution_of_e3MarkedAwareConstantExtractor
     exact X.sourceConstant A Q
   rcases P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty with ⟨G⟩
   cases G with
-  | pureCodimensionTwoSource _d _hd _hboundary =>
+  | pureLongitudinal _data =>
       exact hcanonical
   | sourcePointThreeByThree _Q =>
       exact hcanonical
@@ -217,6 +275,65 @@ theorem exists_finalResolution_of_e3MarkedAwareConstantExtractor
       exact X.sourceConstant A Q
   | exactClosing _layer _clock _tangent _tail _hpos _binary _rankOne _geometry =>
       exact hcanonical
+
+/-- Lossless marked-aware final-resolution extractor.
+
+Unlike the older constant-minor compression, this interface does not discard
+the pure-longitudinal packet or the exact-closing timing.  The evaluated
+source-point branch is the only constructor collapsed through the canonical
+raw-zero constant chart. -/
+structure TopKernelLinearPowerE3MarkedAwareFinalResolutionExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  pureLongitudinal :
+    P.PureLongitudinalMarkedE3Data →
+      Nonempty
+        (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+  sourceConstant :
+    ∀ (A : AdaptiveAlignedSmithCanonicalExactActiveFourBlock
+          T.terminal.blocker.presented),
+      AdaptiveAlignedSmithCanonicalExactActiveThreeByThreeGeometry A →
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+  exactClosing :
+    ∀ (layer : P.ExactNonlinearMixedOrdinaryLayerAtFirstBreak)
+      (clock : P.TopKernelThreeSchurClockData)
+      (tangent : ThreeSchurTangentAtFirstBreak clock layer)
+      (tail : ThreeSchurTangentTailKernelOpeningData clock layer),
+      0 < tail.relativeOrder →
+      ∀ (binary : P.PositiveTailExplicitBinaryClockData clock)
+        (rankOne : P.PositiveTailExplicitRankOneClockData binary),
+        P.PositiveTailRankOneClosingSourcePointGeometry rankOne →
+          Nonempty
+            (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T)
+
+/-- The lossless marked-aware frontier feeds the corresponding endpoint
+extractor without forgetting the rigid pure branch. -/
+theorem exists_finalResolution_of_e3MarkedAwareExtractor
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (X : P.TopKernelLinearPowerE3MarkedAwareFinalResolutionExtractor) :
+    Nonempty
+      (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+  have hcanonical :
+      ∀ (_Q : P.PositiveTailRepresentedSourceThreeByThreePointGeometry),
+        Nonempty
+          (AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution T) := by
+    intro _Q
+    rcases
+        T.terminal.blocker.presented.zeroDefect_exactActiveFourBlock
+          T.presented_zero with
+      ⟨A⟩
+    rcases P.exactActive_threeByThree_of_presentedZero A with ⟨Q⟩
+    exact X.sourceConstant A Q
+  rcases P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty with ⟨G⟩
+  cases G with
+  | pureLongitudinal data =>
+      exact X.pureLongitudinal data
+  | sourcePointThreeByThree Q =>
+      exact hcanonical Q
+  | sourceConstantThreeByThree A Q =>
+      exact X.sourceConstant A Q
+  | exactClosing layer clock tangent tail hpos binary rankOne geometry =>
+      exact X.exactClosing layer clock tangent tail hpos binary rankOne geometry
 
 /-- **Timing-preserving E3 final-resolution extractor.**
 
