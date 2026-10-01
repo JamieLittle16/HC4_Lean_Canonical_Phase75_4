@@ -72,8 +72,7 @@ theorem hasCommonParameterFactor_one_of_specialFiber_eq_zero
     unfold polynomialFamilySpecialFiber at hcoeff
     rw [MvPolynomial.coeff_map] at hcoeff
     exact hcoeff
-  rw [Polynomial.X_dvd_iff]
-  simpa using hconst
+  simpa using (Polynomial.X_dvd_iff.mpr hconst)
 
 /-- Chosen quotient coefficient after removing a common parameter factor. -/
 noncomputable def commonParameterCoefficientQuotient
