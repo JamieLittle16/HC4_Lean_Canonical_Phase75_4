@@ -4,6 +4,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelative
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
 import HC4.Valuation.CommonParameterFactorRestart
+import HC4.Valuation.StrictSmithPostTransformFace
 
 /-!
 # E3: exact final-resolution obligations for the top-kernel linear-power seam
@@ -216,6 +217,57 @@ theorem PureLongitudinalMarkedE3Data.commonFactorQuotient
         T.topKernelMarkedAxisFirstContact_exactGradientCollision
   · have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
     omega
+
+/-- Strip the entire common parameter factor of the pure marked-axis family
+in one finite step.
+
+The extracted order is strictly positive because the original special fibre is
+zero.  The maximal quotient has nonzero special fibre by construction, and the
+literal marked collision survives the factor cancellation. -/
+theorem PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ hne : T.topKernelMarkedAxisFirstContactFamily.support.Nonempty,
+      let m :=
+        minimalAdaptiveFamilyParameterOrder
+          T.topKernelMarkedAxisFirstContactFamily hne
+      let hdiv :=
+        minimalAdaptiveFamilyParameterOrder_commonFactor
+          T.topKernelMarkedAxisFirstContactFamily hne
+      0 < m ∧
+        polynomialFamilySpecialFiber
+            (commonParameterFactorFamily
+              m T.topKernelMarkedAxisFirstContactFamily hdiv) ≠ 0 ∧
+        HasPolynomialFamilyExactGradientCollision
+          (commonParameterFactorFamily
+            m T.topKernelMarkedAxisFirstContactFamily hdiv)
+          (zeroPolynomialSection (K := K))
+          (polynomialConstantSection
+            (coordinateAxisPoint (K := K) (0 : Fin 4))) := by
+  rcases D.positiveTransverseLowLayer P with ⟨L⟩
+  let hne : T.topKernelMarkedAxisFirstContactFamily.support.Nonempty :=
+    ⟨L.exponent, L.mem⟩
+  let m :=
+    minimalAdaptiveFamilyParameterOrder
+      T.topKernelMarkedAxisFirstContactFamily hne
+  let hdiv :=
+    minimalAdaptiveFamilyParameterOrder_commonFactor
+      T.topKernelMarkedAxisFirstContactFamily hne
+  refine ⟨hne, ?_, ?_, ?_⟩
+  · exact
+      minimalAdaptiveFamilyParameterOrder_pos_of_specialFiber_eq_zero
+        T.topKernelMarkedAxisFirstContactFamily hne
+        (D.markedAxisSpecialFiber_eq_zero P)
+  · exact
+      polynomialFamilySpecialFiber_maximalCommonParameterFactor_ne_zero
+        T.topKernelMarkedAxisFirstContactFamily hne
+  · exact
+      polynomialFamilyExactGradientCollision_commonParameterFactor
+        m T.topKernelMarkedAxisFirstContactFamily hdiv
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4)))
+        T.topKernelMarkedAxisFirstContact_exactGradientCollision
 
 /-- **Marked-aware E3 frontier.**
 
