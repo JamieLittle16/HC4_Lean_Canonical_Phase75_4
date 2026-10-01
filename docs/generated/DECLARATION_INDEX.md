@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10126**.
+Distinct declaration spellings indexed: **10128**.
 
 ## Repeated declaration spellings
 
@@ -224,6 +224,7 @@ Distinct declaration spellings indexed: **10126**.
 - `presented_specialFiber_hessianPrincipalMinor_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
 - `preterminal_canonicalStrictRepair_or_affineSeparated` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminal_rankTwoProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `produces` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated`
 - `pureLongitudinal_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`
 - `rankFrontier` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningRankFrontier`, `def` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `def` in `HC4.Valuation.SingularWeightedKernelOpening`
 - `rankThreeEtaDenominator_vertical` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
@@ -2387,6 +2388,7 @@ Distinct declaration spellings indexed: **10126**.
 - `PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalFirstContactFrontier.toCodimensionTwoSourceData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalFirstContactFrontier.toContactOrCodimensionTwoSource` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+- `PureLongitudinalMarkedAxisLowerFaceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `QsOtherFacetContactFractionProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
 - `QsOtherFacetContactFractionProfilePackage.impossible_of_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
@@ -7898,7 +7900,7 @@ Distinct declaration spellings indexed: **10126**.
 - `prod_rigidMatrixNormalizationFactor` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `prod_smithConformalDerivativeCoefficient` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `prod_sub_prod_isWeightLT` — `theorem` in `HC4.Polynomial.TopProduct`
-- `produces` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated`
+- `produces` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithDegreeTwoSaturated`
 - `productCoordinateHessianBlock` — `def` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinateHessianCofactor` — `def` in `HC4.Newton.ProductCoordinateHessian`
 - `productCoordinateIndex` — `def` in `HC4.Newton.ProductCoordinateHessian`
@@ -7957,6 +7959,7 @@ Distinct declaration spellings indexed: **10126**.
 - `pureLongitudinal_markedAxis_firstActualLayer_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_firstActual_sourceWeightBound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+- `pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_positiveTransverseLowLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_specialFiber_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_topCoefficientOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
