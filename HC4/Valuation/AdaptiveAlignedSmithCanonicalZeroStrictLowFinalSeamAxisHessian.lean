@@ -103,7 +103,7 @@ theorem finalSeamOriginHessian_eq_coeff_zero
           (HC4.Polynomial.hessian T.rightRecenteredSpecialFiber i j)) =
       (longitudinalAxisRestriction
         (HC4.Polynomial.hessian T.rightRecenteredSpecialFiber i j)).coeff 0
-  simp
+  rw [← Polynomial.coeff_zero_eq_eval_zero]
 
 /-- Mixed partial symmetry survives both axis restriction and endpoint
 evaluation. -/
