@@ -78,7 +78,7 @@ noncomputable def
   | noWallDefectDrop D =>
       let target := source.noWallUnramifiedPrimitiveTarget D.primitive
       have hle : 4 * D.primitive.m ≤ source.rawDefect :=
-        four_mul_le_defect_of_commonParameterFactor
+        alignedSmith_four_mul_le_defect_of_commonParameterFactor
           D.primitive.m
           D.primitive.smithData.smithFamily
           D.primitive.commonFactor
