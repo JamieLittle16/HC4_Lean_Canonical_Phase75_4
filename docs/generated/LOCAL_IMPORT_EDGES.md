@@ -4302,6 +4302,7 @@ human architecture guide.
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.MongeAmpere.MaximalInitial`
   - `HC4.Newton.FirstContactCrossFacetCarrier`
   - `HC4.Newton.FirstContactNonlinearSupport`
   - `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
