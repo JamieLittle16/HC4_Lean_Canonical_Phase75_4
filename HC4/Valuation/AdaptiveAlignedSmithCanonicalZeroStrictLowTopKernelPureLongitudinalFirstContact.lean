@@ -336,6 +336,95 @@ theorem pureLongitudinal_markedAxis_positiveTransverseLowLayer
     pattern := Or.inl hpattern
   }⟩
 
+/-- The distinguished pure top monomial has exact parameter order equal to
+the maximal ordinary degree in the marked-axis first-contact family.
+
+This sharpens the preceding low-layer witness: its coefficient is literally
+`X^D * C(c)` with `c ≠ 0`, so no larger parameter power divides it. -/
+theorem pureLongitudinal_markedAxis_topCoefficientOrder_eq
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    smithFamilyCoefficientOrder
+        T.topKernelMarkedAxisFirstContactFamily
+        (Finsupp.single (0 : Fin 4) T.topFace.degree) =
+      T.topFace.degree := by
+  let d : Fin 4 →₀ ℕ :=
+    Finsupp.single (0 : Fin 4) T.topFace.degree
+  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+    simp [d, ordinaryDegree4, Fin.sum_univ_four]
+  have hdTop :
+      MvPolynomial.coeff d T.topFace.face ≠ 0 := by
+    rw [topFace_eq]
+    simpa [d] using coefficient_ne_zero
+  have hdSourceCoeff :
+      MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
+    rw [← T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
+    exact hdTop
+  have hdSource : d ∈ T.topKernelReesSource.support :=
+    MvPolynomial.mem_support_iff.mpr hdSourceCoeff
+  have hfamilyCoeff :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily =
+        Polynomial.X ^ T.topFace.degree *
+          Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
+    rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
+      reverseWeightedReesFamily_coeff, if_pos hdSource,
+      weight_topKernelMarkedAxisNatWeight]
+    simp [d]
+  have hfamilyCoeffNe :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
+    rw [hfamilyCoeff]
+    exact mul_ne_zero
+      (pow_ne_zero _ Polynomial.X_ne_zero)
+      (Polynomial.C_ne_zero.mpr hdSourceCoeff)
+  have hdFamily :
+      d ∈ T.topKernelMarkedAxisFirstContactFamily.support :=
+    MvPolynomial.mem_support_iff.mpr hfamilyCoeffNe
+  have hcoeffAtDegree :
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily).coeff
+        T.topFace.degree ≠ 0 := by
+    rw [hfamilyCoeff]
+    simpa using hdSourceCoeff
+  rw [smithFamilyCoefficientOrder_eq
+    T.topKernelMarkedAxisFirstContactFamily hdFamily]
+  apply Nat.le_antisymm
+  · exact polynomialParameterOrder_le_of_coeff_ne_zero
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily)
+      hfamilyCoeffNe hcoeffAtDegree
+  · apply polynomial_X_pow_dvd_le_parameterOrder
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily)
+      hfamilyCoeffNe T.topFace.degree
+    rw [hfamilyCoeff]
+    refine ⟨Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource), ?_⟩
+    rfl
+
+/-- Consequently the distinguished pure top coefficient occurs at a genuinely
+positive order strictly before the marked-axis determinant-closing clock. -/
+theorem pureLongitudinal_markedAxis_topCoefficientOrder_pos_lt_defect
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    0 <
+        smithFamilyCoefficientOrder
+          T.topKernelMarkedAxisFirstContactFamily
+          (Finsupp.single (0 : Fin 4) T.topFace.degree) ∧
+      smithFamilyCoefficientOrder
+          T.topKernelMarkedAxisFirstContactFamily
+          (Finsupp.single (0 : Fin 4) T.topFace.degree) <
+        4 * T.topFace.degree - 6 := by
+  rw [P.pureLongitudinal_markedAxis_topCoefficientOrder_eq
+    coefficient_ne_zero topFace_eq]
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  omega
+
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
