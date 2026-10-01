@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10110**.
+Distinct declaration spellings indexed: **10111**.
 
 ## Repeated declaration spellings
 
@@ -2380,6 +2380,7 @@ Distinct declaration spellings indexed: **10110**.
 - `PreterminalBinaryFirstDeparture.mixed_or_affine` — `theorem` in `HC4.Newton.FirstSchurPreterminalBinaryAdapter`
 - `PreterminalSchurDepartureData` — `structure` in `HC4.Newton.FirstSchurLayerLinearization`
 - `PureLongitudinalBalanceFreeFirstContactData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+- `PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalContactOrCodimensionTwoSource` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalFirstContactFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
