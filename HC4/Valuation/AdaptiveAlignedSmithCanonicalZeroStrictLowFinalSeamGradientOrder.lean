@@ -52,7 +52,9 @@ theorem of_derivative_of_coeff_zero
         rw [Polynomial.coeff_derivative] at hz
         have hcast : (((r + 1 : ℕ) : K)) ≠ 0 := by
           exact_mod_cast Nat.succ_ne_zero r
-        exact (mul_eq_zero.mp hz).resolve_right hcast
+        have hcast' : (r : K) + 1 ≠ 0 := by
+          simpa using hcast
+        exact (mul_eq_zero.mp hz).resolve_right hcast'
   · intro hz
     apply hder.2
     rw [Polynomial.coeff_derivative, hz]
