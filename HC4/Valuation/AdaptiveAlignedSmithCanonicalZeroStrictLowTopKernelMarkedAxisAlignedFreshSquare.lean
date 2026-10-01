@@ -27,6 +27,7 @@ namespace HC4.Valuation
 noncomputable section
 
 open HC4.Newton
+open AdaptiveAlignedSmithRankOneClosingSourceCarrier
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
@@ -159,8 +160,8 @@ theorem squareExactOrder
     have hqlt : q < T.topKernelMarkedAxisFirstActualLayerOrder :=
       Nat.lt_of_not_ge hnot
     by_cases hq0 : q = 0
-    · subst q
-      apply hqcoeff
+    · apply hqcoeff
+      rw [hq0]
       simpa [family, squareExponent] using D.squareCoeff_zero
     · have hqpos : 0 < q := Nat.pos_of_ne_zero hq0
       apply hqcoeff
@@ -332,7 +333,6 @@ theorem topKernelMarkedAxis_exists_alignedFreshSquare_of_eq_defect
     rw [quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient]
     rw [familyParameterLayer_coeff]
     simp [d]
-    ring
 
   have hsquare0 :
       (MvPolynomial.coeff d Q).coeff 0 = 0 := by
