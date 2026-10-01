@@ -3,6 +3,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
+import HC4.Valuation.CommonParameterFactorRestart
 
 /-!
 # E3: exact final-resolution obligations for the top-kernel linear-power seam
@@ -171,6 +172,50 @@ theorem PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero
     simpa [hdEq] using hzero
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
   omega
+
+/-- The zero special fibre yields an honest common-factor quotient family.
+
+Removing one parameter factor preserves the literal constant marked collision
+and lowers the pure Hessian defect by exactly four.  Since the top degree is at
+least three, the residual defect is still positive. -/
+theorem PureLongitudinalMarkedE3Data.commonFactorQuotient
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ hdiv :
+        HasCommonParameterFactor 1 T.topKernelMarkedAxisFirstContactFamily,
+      HasPolynomialFamilyHessianDefect
+        (K := K)
+        (commonParameterFactorFamily
+          1 T.topKernelMarkedAxisFirstContactFamily hdiv)
+        ((4 * T.topFace.degree - 6) - 4) ∧
+      HasPolynomialFamilyExactGradientCollision
+        (commonParameterFactorFamily
+          1 T.topKernelMarkedAxisFirstContactFamily hdiv)
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) ∧
+      0 < (4 * T.topFace.degree - 6) - 4 := by
+  let hdiv :
+      HasCommonParameterFactor 1 T.topKernelMarkedAxisFirstContactFamily :=
+    hasCommonParameterFactor_one_of_specialFiber_eq_zero
+      T.topKernelMarkedAxisFirstContactFamily
+      (D.markedAxisSpecialFiber_eq_zero P)
+  refine ⟨hdiv, ?_, ?_, ?_⟩
+  · exact
+      commonParameterFactor_one_hasHessianDefect_sub_four
+        T.topKernelMarkedAxisFirstContactFamily
+        hdiv
+        (4 * T.topFace.degree - 6)
+        T.topKernelMarkedAxisFirstContact_hasHessianDefect
+  · exact
+      polynomialFamilyExactGradientCollision_commonParameterFactor
+        1 T.topKernelMarkedAxisFirstContactFamily hdiv
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4)))
+        T.topKernelMarkedAxisFirstContact_exactGradientCollision
+  · have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+    omega
 
 /-- **Marked-aware E3 frontier.**
 
