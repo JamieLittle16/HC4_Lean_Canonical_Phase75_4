@@ -131,7 +131,7 @@ theorem noWallUnramifiedPrimitive_sameScaleProgress
     CertifiedSameScaleEpisodeProgress RR
       (source.noWallUnramifiedPrimitiveTarget D) source := by
   have hle : 4 * D.m ≤ source.rawDefect :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       D.m D.smithData.smithFamily D.commonFactor source.rawDefect
       D.smithData.smithFamily_hessianDefect
   have hlt : source.rawDefect - 4 * D.m < source.rawDefect := by
