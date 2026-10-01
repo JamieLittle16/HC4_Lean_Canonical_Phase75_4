@@ -53,6 +53,12 @@ variable {kernelCoordinate : Fin 4}
 /-- Honest balance-free first-contact data produced below a pure X₀ top face. -/
 structure PureLongitudinalBalanceFreeFirstContactData
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  coefficient : K
+  coefficient_ne_zero : coefficient ≠ 0
+  topFace_eq :
+    T.topFace.face =
+      MvPolynomial.C coefficient *
+        (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree
   facet : ToricFacet
   omitted_ne_zero :
     facetOmittedCoordinate facet ≠ (0 : Fin 4)
@@ -221,6 +227,67 @@ theorem topFace_degree_attained_in_source
         T.representedSpecialFiber hdInit
   exact ⟨d, hdSource, hdeg⟩
 
+/-- The near endpoint of the balance-free first-contact carrier is not a
+new lower-degree point.  Because its bumped coordinate vanishes, the exact
+contact equation forces it back to maximal ordinary degree.  The retained pure
+longitudinal top-face equality then makes it an honest represented-source
+codimension-two exponent. -/
+theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalBalanceFreeFirstContactData) :
+    D.crossFacet.facetExponent ∈ T.representedSpecialFiber.support ∧
+      ordinaryDegree4 D.crossFacet.facetExponent = T.topFace.degree ∧
+      MvExponentOnCodimensionTwoBoundary D.crossFacet.facetExponent := by
+  let d : Fin 4 →₀ ℕ := D.crossFacet.facetExponent
+  have hdCarrier : d ∈ D.carrier.support := by
+    simpa [d] using D.crossFacet.facet_mem
+  have hdSource : d ∈ T.representedSpecialFiber.support := by
+    have h := hdCarrier
+    rw [D.carrier_eq] at h
+    exact support_initialForm_subset
+      (scaledContactWeight (facetOmittedCoordinate D.facet) D.scale D.bump)
+      ((D.scale * T.topFace.degree : ℕ) : ℤ)
+      T.representedSpecialFiber h
+  have hcontact := D.contact d hdCarrier
+  have hcoord :
+      d (facetOmittedCoordinate D.facet) = 0 := by
+    simpa [d] using D.crossFacet.facet_coordinate_zero
+  unfold scaledContactExponentWeight at hcontact
+  rw [hcoord] at hcontact
+  simp only [Nat.cast_zero, mul_zero, add_zero] at hcontact
+  push_cast at hcontact
+  have hscaleZ : (0 : ℤ) < D.scale := by
+    exact_mod_cast D.scale_pos
+  have hdegZ :
+      (ordinaryDegree4 d : ℤ) = (T.topFace.degree : ℤ) := by
+    nlinarith
+  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+    exact_mod_cast hdegZ
+  have hdTop : d ∈ T.topFace.face.support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    rw [T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
+    exact MvPolynomial.mem_support_iff.mp hdSource
+  have hpr :
+      MvSupportOnFacet .pr T.topFace.face :=
+    P.pureLongitudinal_topFaceOnFacet
+      D.coefficient_ne_zero D.topFace_eq .pr (by decide)
+  have hsp :
+      MvSupportOnFacet .sp T.topFace.face :=
+    P.pureLongitudinal_topFaceOnFacet
+      D.coefficient_ne_zero D.topFace_eq .sp (by decide)
+  have h1 : d (1 : Fin 4) = 0 := by
+    have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hdTop)
+    simpa [facetOmittedCoordinate] using hz
+  have h2 : d (2 : Fin 4) = 0 := by
+    have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hdTop)
+    simpa [facetOmittedCoordinate] using hz
+  refine ⟨?_, ?_, ?_⟩
+  · simpa [d] using hdSource
+  · simpa [d] using hdeg
+  · simpa [d] using
+      (show MvExponentOnCodimensionTwoBoundary d from
+        ⟨(1 : Fin 4), (2 : Fin 4), by decide, h1, h2⟩)
+
 /-- Run the balance-free first-contact selector on one transverse facet. -/
 private theorem pureLongitudinal_firstContact_or_square_at_facet
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -277,6 +344,9 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
         (facetOmittedCoordinate facet) :=
       crossFacetInitialData hsupp.1 hsupp.2.1
     refine ⟨.firstContact {
+      coefficient := coefficient
+      coefficient_ne_zero := coefficient_ne_zero
+      topFace_eq := topFace_eq
       facet := facet
       omitted_ne_zero := homit
       scale := scale
