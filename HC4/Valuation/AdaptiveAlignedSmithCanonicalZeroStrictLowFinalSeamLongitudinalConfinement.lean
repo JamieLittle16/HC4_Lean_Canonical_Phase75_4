@@ -77,16 +77,14 @@ theorem represented_transverseLinear_natDegree_le_one_of_nonlinearLongitudinal
   let d : Fin 4 →₀ ℕ := (Finsupp.single j 1).cons n
   have hd : d ∈ T.representedSpecialFiber.support := by
     exact MvPolynomial.mem_support_iff.mpr (by simpa [d] using hne)
-  have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
-    dsimp [d]
-    fin_cases j <;>
-      simp [HC4.Polynomial.ordinaryDegree4] <;>
-      omega
-  have haxis := hconf d hd hdeg
+  have hzero : d (0 : Fin 4) = n := by
+    simp [d]
   have hjone : d j.succ = 1 := by
-    dsimp [d]
-    rw [Finsupp.cons_succ]
-    simp
+    simp [d]
+  have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
+    simp only [HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
+    fin_cases j <;> omega
+  have haxis := hconf d hd hdeg
   fin_cases j
   · have hjzero : d (1 : Fin 4) = 0 := haxis.1
     exact (by omega)
@@ -299,6 +297,7 @@ theorem impossible_of_representedNonlinearSupportLongitudinal
     simpa using hevalConst
 
   have hcoll := T.finalSeamData.exactCollision (0 : Fin 4)
+  unfold mvGradientComponentAt at hcoll
   rw [eval_pderiv_zero_finCons_zero_eq_eval_axisRestriction_derivative,
     eval_pderiv_zero_finCons_zero_eq_eval_axisRestriction_derivative] at hcoll
   have hgrad : Polynomial.eval 0 G = Polynomial.eval 1 G := by
