@@ -7,6 +7,7 @@ import HC4.MongeAmpere.MaximalInitial
 import HC4.Newton.FiniteSupportSingularBoundaryVertex
 import HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel
 import HC4.Newton.FiniteSupportSingularBoundaryKernelOpening
+import HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -735,6 +736,128 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_nonlinearDegreeBound
     P.pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
       coefficient_ne_zero topFace_eq d hd
   omega
+
+/-- Every monomial on the first actual marked-axis layer has the exact
+transverse degree `D-q`. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_exactTransverseDegree
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    ∀ d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support,
+      d 1 + d 2 + d 3 =
+        T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder := by
+  intro d hd
+  have hfaceEq :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+      coefficient_ne_zero topFace_eq
+  have hdInit := hd
+  rw [hfaceEq] at hdInit
+  have hcoeff := MvPolynomial.mem_support_iff.mp hdInit
+  rw [HC4.Polynomial.coeff_initialForm] at hcoeff
+  have hweight :
+      Finsupp.weight
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+        ((T.topFace.degree -
+          T.topKernelMarkedAxisFirstActualLayerOrder : ℕ) : ℤ) := by
+    by_contra hne
+    simp [hne] at hcoeff
+  rw [weight_topKernelMarkedAxisIntWeight] at hweight
+  exact_mod_cast hweight
+
+/-- If the first canonical kernel opening of the nonlinear lower face opens
+the longitudinal coordinate, then the child is genuinely ordinary-homogeneous
+of the lower transverse degree.  This uses only support provenance and the
+literal child kernel. -/
+theorem pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
+    (D : CanonicalCoordinateMaxKernelOpeningData
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder))
+    (hk : D.kernelCoordinate = (0 : Fin 4)) :
+    D.child.IsHomogeneous
+      (T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder) := by
+  intro d hdcoeff
+  have hd : d ∈ D.child.support :=
+    MvPolynomial.mem_support_iff.mpr hdcoeff
+  have hdLower :
+      d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support :=
+    D.child_support_subset_source hd
+  have htrans :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_exactTransverseDegree
+      coefficient_ne_zero topFace_eq d hdLower
+  have hkernel0 :
+      MvPolynomial.pderiv (0 : Fin 4) D.child = 0 := by
+    simpa [hk] using D.child_kernel
+  have h0 : d (0 : Fin 4) = 0 :=
+    exponent_eq_zero_of_pderiv_eq_zero
+      (0 : Fin 4) D.child hkernel0 d hdcoeff
+  unfold ordinaryDegree4
+  rw [Fin.sum_univ_four, h0]
+  omega
+
+/-- Longitudinal first kernel opening on the pure lower face is therefore
+already in the mature homogeneous rank-two/linear-power dichotomy. -/
+theorem pureLongitudinal_lowerFirstOpening_rankTwo_or_linearPower_of_kernel_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
+    (D : CanonicalCoordinateMaxKernelOpeningData
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder))
+    (hk : D.kernelCoordinate = (0 : Fin 4)) :
+    D.ChildHessianRankTwoWitness ∨
+      Nonempty
+        (D.ChildLinearPowerData
+          (T.topFace.degree -
+            T.topKernelMarkedAxisFirstActualLayerOrder)) := by
+  rcases D.childHessian_rankTwoWitness_or_rankAtMostOne with htwo | hall
+  · exact Or.inl htwo
+  · right
+    have hhom :=
+      P.pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero
+        coefficient_ne_zero topFace_eq D hk
+    have hm :
+        2 ≤ T.topFace.degree -
+          T.topKernelMarkedAxisFirstActualLayerOrder :=
+      (P.pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+        coefficient_ne_zero topFace_eq).1
+    rcases rankOneHomogeneousLogGradientData_of_allMinors
+        D.child
+        (T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder)
+        hhom D.child_ne_zero hm hall with
+      ⟨L⟩
+    rcases rankOneHomogeneousLogGradientData_four_global L with
+      ⟨ratio, hratio⟩
+    rcases homogeneous_eq_C_mul_gradientRatioLinearForm_pow
+        (T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder)
+        D.child hhom (by omega)
+        L.pivot L.pivot_ne_zero ratio hratio with
+      ⟨a, ha⟩
+    exact ⟨{
+      coefficient := a
+      ratio := ratio
+      eq_power := ha
+    }⟩
 
 /-- The complementary transverse degree of that first actual layer is
 nontrivial and strictly smaller than the original pure top degree. -/
