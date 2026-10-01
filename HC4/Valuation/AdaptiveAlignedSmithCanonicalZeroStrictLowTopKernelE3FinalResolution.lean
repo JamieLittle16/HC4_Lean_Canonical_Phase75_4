@@ -6,6 +6,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalReso
 import HC4.Valuation.CommonParameterFactorRestart
 import HC4.Valuation.StrictSmithPostTransformFace
 import HC4.Valuation.PrimitiveSmithEndpoint
+import HC4.Valuation.StrictSmithFirstContactGeometry
 
 /-!
 # E3: exact final-resolution obligations for the top-kernel linear-power seam
@@ -133,6 +134,57 @@ structure PureLongitudinalMarkedE3Data
           T.topKernelMarkedAxisFirstContactFamily
           (Finsupp.single (0 : Fin 4) T.topFace.degree) <
         4 * T.topFace.degree - 6
+
+/-- Exact coefficient order of every represented-source monomial in the
+marked-axis reverse-Rees family.
+
+The parameter order is precisely the gap from the top level to the monomial's
+total transverse degree.  This is the key identity relating maximal common
+parameter extraction to maximal attained transverse degree. -/
+theorem PureLongitudinalMarkedE3Data.markedAxis_sourceCoefficientOrder
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    {d : Fin 4 →₀ ℕ}
+    (hd : d ∈ T.topKernelReesSource.support) :
+    smithFamilyCoefficientOrder
+        T.topKernelMarkedAxisFirstContactFamily d =
+      T.topFace.degree - (d 1 + d 2 + d 3) := by
+  let q := T.topFace.degree - (d 1 + d 2 + d 3)
+  have hsource :
+      MvPolynomial.coeff d T.topKernelReesSource ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  have hcoeff :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily =
+        Polynomial.X ^ q *
+          Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
+    rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
+      reverseWeightedReesFamily_coeff, if_pos hd,
+      weight_topKernelMarkedAxisNatWeight]
+    rfl
+  have hcoeffNe :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
+    rw [hcoeff]
+    exact mul_ne_zero
+      (pow_ne_zero q Polynomial.X_ne_zero)
+      (Polynomial.C_ne_zero.mpr hsource)
+  have hdFamily :
+      d ∈ T.topKernelMarkedAxisFirstContactFamily.support :=
+    MvPolynomial.mem_support_iff.mpr hcoeffNe
+  rw [smithFamilyCoefficientOrder_eq
+    T.topKernelMarkedAxisFirstContactFamily hdFamily]
+  unfold smithFamilyCoefficientParameterOrder
+  have hprimitive :
+      Polynomial.constantCoeff
+          (Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource)) ≠ 0 := by
+    simpa using hsource
+  have horder :=
+    polynomialParameterOrder_eq_of_exact_X_power_factorisation
+      (K := K)
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily)
+      hcoeffNe q
+      (Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource))
+      hprimitive hcoeff
+  simpa [q] using horder
 
 /-- The lossless pure E3 packet still exposes the canonical positive-transverse
 Rees low layer, now with the exact physical order retained alongside it. -/
