@@ -235,6 +235,12 @@ theorem PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient
         minimalAdaptiveFamilyParameterOrder_commonFactor
           T.topKernelMarkedAxisFirstContactFamily hne
       0 < m ∧
+        HasPolynomialFamilyHessianDefect
+          (K := K)
+          (commonParameterFactorFamily
+            m T.topKernelMarkedAxisFirstContactFamily hdiv)
+          ((4 * T.topFace.degree - 6) - 4 * m) ∧
+        0 < (4 * T.topFace.degree - 6) - 4 * m ∧
         polynomialFamilySpecialFiber
             (commonParameterFactorFamily
               m T.topKernelMarkedAxisFirstContactFamily hdiv) ≠ 0 ∧
@@ -253,11 +259,31 @@ theorem PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient
   let hdiv :=
     minimalAdaptiveFamilyParameterOrder_commonFactor
       T.topKernelMarkedAxisFirstContactFamily hne
-  refine ⟨hne, ?_, ?_, ?_⟩
-  · exact
-      minimalAdaptiveFamilyParameterOrder_pos_of_specialFiber_eq_zero
-        T.topKernelMarkedAxisFirstContactFamily hne
-        (D.markedAxisSpecialFiber_eq_zero P)
+  have hmpos : 0 < m :=
+    minimalAdaptiveFamilyParameterOrder_pos_of_specialFiber_eq_zero
+      T.topKernelMarkedAxisFirstContactFamily hne
+      (D.markedAxisSpecialFiber_eq_zero P)
+  have hdef :
+      HasPolynomialFamilyHessianDefect
+        (K := K)
+        (commonParameterFactorFamily
+          m T.topKernelMarkedAxisFirstContactFamily hdiv)
+        ((4 * T.topFace.degree - 6) - 4 * m) :=
+    commonParameterFactor_hasHessianDefect_sub_four_mul
+      m T.topKernelMarkedAxisFirstContactFamily hdiv
+      (4 * T.topFace.degree - 6)
+      T.topKernelMarkedAxisFirstContact_hasHessianDefect
+  have hle :
+      4 * m ≤ 4 * T.topFace.degree - 6 :=
+    four_mul_le_defect_of_commonParameterFactor
+      m T.topKernelMarkedAxisFirstContactFamily hdiv
+      (4 * T.topFace.degree - 6)
+      T.topKernelMarkedAxisFirstContact_hasHessianDefect
+  have hrespos :
+      0 < (4 * T.topFace.degree - 6) - 4 * m := by
+    have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+    omega
+  refine ⟨hne, hmpos, hdef, hrespos, ?_, ?_⟩
   · exact
       polynomialFamilySpecialFiber_maximalCommonParameterFactor_ne_zero
         T.topKernelMarkedAxisFirstContactFamily hne
