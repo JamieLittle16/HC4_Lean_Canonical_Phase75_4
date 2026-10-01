@@ -5,6 +5,7 @@ import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
 import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.MongeAmpere.MaximalInitial
 import HC4.Newton.FiniteSupportSingularBoundaryVertex
+import HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -767,6 +768,172 @@ theorem pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty
           T.topKernelMarkedAxisFirstContactFamily
           T.topKernelMarkedAxisFirstActualLayerOrder)
         hfaceNe hzero hnonlinear)⟩
+
+/-- At nonlinear lower transverse degree, every supported first-actual-layer
+monomial is genuinely nonlinear in ordinary degree as well.  This is the
+source-facing form needed by the canonical singular-boundary carrier. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_support_degree_ge_three
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
+    (hrthree :
+      3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder) :
+    ∀ d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support,
+      3 ≤ ordinaryDegree4 d := by
+  intro d hd
+  let r :=
+    T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  have hfaceEq :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+      coefficient_ne_zero topFace_eq
+  have hdInit := hd
+  rw [hfaceEq] at hdInit
+  have hcoeff := MvPolynomial.mem_support_iff.mp hdInit
+  rw [HC4.Polynomial.coeff_initialForm] at hcoeff
+  have hweight :
+      Finsupp.weight
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+        (r : ℤ) := by
+    by_contra hne
+    simp [hne, r] at hcoeff
+  rw [weight_topKernelMarkedAxisIntWeight] at hweight
+  have htrans :
+      d 1 + d 2 + d 3 = r := by
+    exact_mod_cast hweight
+  unfold ordinaryDegree4
+  rw [Fin.sum_univ_four]
+  dsimp [r] at htrans hrthree
+  omega
+
+/-- Lossless nonlinear lower-face packet.  Unlike the older boundary frontier,
+this record retains the exact hypotheses used to construct the canonical
+exposed singular boundary vertex, so a codimension-two outcome can immediately
+recover the canonical carrier kernel. -/
+structure PureLongitudinalMarkedAxisLowerNonlinearData
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  level_ge_three :
+    3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  face_ne :
+    familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0
+  hessian_zero :
+    hessianDeterminant
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder) = 0
+  support_degree_ge_three :
+    ∀ d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support,
+      3 ≤ ordinaryDegree4 d
+
+/-- Canonical exposed boundary vertex attached to the retained nonlinear lower
+face. -/
+noncomputable def PureLongitudinalMarkedAxisLowerNonlinearData.vertex
+    {P : T.TopFaceLinearPowerKernelData kernelCoordinate}
+    (N : P.PureLongitudinalMarkedAxisLowerNonlinearData) :
+    ExposedSingularNonlinearBoundaryVertexData
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder) :=
+  exposedSingularNonlinearBoundaryVertex
+    (familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder)
+    N.face_ne N.hessian_zero N.support_degree_ge_three
+
+/-- Strengthened pure-longitudinal lower-face frontier.
+
+The quadratic lower face is retained explicitly.  At nonlinear degree, the
+canonical exposed boundary vertex is either rank three on one coordinate
+facet, or codimension two; in the latter case the canonical coordinate-max
+construction gives a literal coordinate kernel on its retained singular
+carrier. -/
+inductive PureLongitudinalMarkedAxisLowerBoundaryFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | quadratic
+      (level_eq_two :
+        T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+  | rankThree
+      (data : P.PureLongitudinalMarkedAxisLowerNonlinearData)
+      (facet : ToricFacet)
+      (rankThree : MvRankThreeOnFacet facet data.vertex.exponent)
+  | coordinateKernel
+      (data : P.PureLongitudinalMarkedAxisLowerNonlinearData)
+      (kernelCoordinate : Fin 3)
+      (kernel :
+        MvPolynomial.pderiv (Fin.castSucc kernelCoordinate)
+          data.vertex.carrier = 0)
+
+/-- **Pure-longitudinal lower-face rank/kernel compression.**
+
+The first actual marked-axis source layer is either transverse quadratic, or
+its genuinely nonlinear singular boundary geometry already reaches a
+rank-three facet or a literal carrier coordinate kernel.  No balance relation,
+terminal cocharacter, or repair progress is used. -/
+theorem pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    Nonempty P.PureLongitudinalMarkedAxisLowerBoundaryFrontier := by
+  let r :=
+    T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  rcases
+      P.pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+        coefficient_ne_zero topFace_eq with
+    ⟨hrtwo, _hrlt⟩
+  by_cases hr : r = 2
+  · exact ⟨.quadratic (by simpa [r] using hr)⟩
+  · have hrthree : 3 ≤ r := by omega
+    have hfaceNe :
+        familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
+      firstPositiveActualParameterLayer_ne_zero
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+    have hzero :=
+      P.pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
+        coefficient_ne_zero topFace_eq
+    have hnonlinear :=
+      P.pureLongitudinal_markedAxis_firstActualLayer_support_degree_ge_three
+        coefficient_ne_zero topFace_eq (by simpa [r] using hrthree)
+    let N : P.PureLongitudinalMarkedAxisLowerNonlinearData := {
+      level_ge_three := by simpa [r] using hrthree
+      face_ne := hfaceNe
+      hessian_zero := hzero
+      support_degree_ge_three := hnonlinear
+    }
+    have hsplit :
+        (∃ facet : ToricFacet, MvRankThreeOnFacet facet N.vertex.exponent) ∨
+          MvExponentOnCodimensionTwoBoundary N.vertex.exponent :=
+      mvBoundary_rankThreeFacet_or_codimensionTwo N.vertex.exponent_boundary
+    rcases hsplit with hthree | hcodim
+    · rcases hthree with ⟨facet, hfacet⟩
+      exact ⟨.rankThree N facet hfacet⟩
+    · have hkernel :=
+        exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo
+          (familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder)
+          N.face_ne N.hessian_zero N.support_degree_ge_three
+          (by
+            simpa [PureLongitudinalMarkedAxisLowerNonlinearData.vertex]
+              using hcodim)
+      rcases hkernel with ⟨i, hi⟩
+      exact ⟨.coordinateKernel N i (by
+        simpa [PureLongitudinalMarkedAxisLowerNonlinearData.vertex] using hi)⟩
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
