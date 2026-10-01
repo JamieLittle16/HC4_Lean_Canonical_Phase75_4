@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10146**.
+Distinct declaration spellings indexed: **10148**.
 
 ## Repeated declaration spellings
 
@@ -2395,6 +2395,7 @@ Distinct declaration spellings indexed: **10146**.
 - `PureLongitudinalMarkedE3Data` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.commonFactorQuotient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.positiveTransverseLowLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `QsOtherFacetContactFractionProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
@@ -6896,6 +6897,7 @@ Distinct declaration spellings indexed: **10146**.
 - `minimalAdaptiveFamilyParameterOrder_commonFactor` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `minimalAdaptiveFamilyParameterOrder_le` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `minimalAdaptiveFamilyParameterOrder_mem_image` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
+- `minimalAdaptiveFamilyParameterOrder_pos_of_specialFiber_eq_zero` — `theorem` in `HC4.Valuation.StrictSmithPostTransformFace`
 - `minimalCubicPacket_pderiv_zero_zero_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `minimalPacket_hessian_eval_eq_zero_of_coord_three` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `minimalPacket_hessian_square_lowestLayer_factorisation` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
