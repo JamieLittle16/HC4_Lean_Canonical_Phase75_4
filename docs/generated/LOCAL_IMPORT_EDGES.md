@@ -4304,6 +4304,7 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.MongeAmpere.MaximalInitial`
   - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
+  - `HC4.Newton.FiniteSupportSingularBoundaryKernelOpening`
   - `HC4.Newton.FiniteSupportSingularBoundaryVertex`
   - `HC4.Newton.FirstContactCrossFacetCarrier`
   - `HC4.Newton.FirstContactNonlinearSupport`
