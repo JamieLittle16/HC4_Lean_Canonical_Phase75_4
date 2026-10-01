@@ -164,6 +164,39 @@ theorem PureLongitudinalFirstContactFrontier.toContactOrCodimensionTwoSource
       exact ⟨.codimensionTwoSource d hd hdeg
         (F.quadraticSquare_codimensionTwo P homit hpure)⟩
 
+/-- Source-only compression of the pure-longitudinal branch.  At this stage
+the degree provenance is no longer needed: both the honest first-contact near
+endpoint and the low-degree square are literal represented-source exponents on
+two coordinate boundaries. -/
+structure PureLongitudinalCodimensionTwoSourceData
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  exponent : Fin 4 →₀ ℕ
+  mem_source : exponent ∈ T.representedSpecialFiber.support
+  boundary : MvExponentOnCodimensionTwoBoundary exponent
+
+/-- Every pure-longitudinal first-contact frontier already contains honest
+represented-source codimension-two data.  In the first-contact branch the
+near endpoint is forced back to the pure top face; in the square branch this
+is the literal omitted-coordinate square. -/
+theorem PureLongitudinalFirstContactFrontier.toCodimensionTwoSourceData
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (F : P.PureLongitudinalFirstContactFrontier) :
+    Nonempty P.PureLongitudinalCodimensionTwoSourceData := by
+  cases F with
+  | firstContact data =>
+      rcases data.near_sourceCodimensionTwo P with ⟨hd, _hdeg, hboundary⟩
+      exact ⟨{
+        exponent := data.crossFacet.facetExponent
+        mem_source := hd
+        boundary := hboundary
+      }⟩
+  | quadraticSquare facet homit d hd _hdeg _htwo hpure =>
+      exact ⟨{
+        exponent := d
+        mem_source := hd
+        boundary := F.quadraticSquare_codimensionTwo P homit hpure
+      }⟩
+
 /-- The final seam cannot have all nonlinear represented support on X₀, hence
 some nonlinear source monomial has a positive transverse coordinate. -/
 theorem exists_nonlinear_transverse_source
