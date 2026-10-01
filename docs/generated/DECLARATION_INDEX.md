@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10116**.
+Distinct declaration spellings indexed: **10119**.
 
 ## Repeated declaration spellings
 
@@ -5998,6 +5998,7 @@ Distinct declaration spellings indexed: **10116**.
 - `four_facet_cycle_normal_form` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `four_le_canonicalSmith_rawExponent` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `four_le_defect_of_commonParameterFactor_one` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
+- `four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFiber_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `four_mul_le_defect_of_commonParameterFactor` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`, `theorem` in `HC4.Valuation.CommonParameterFactorGeneralDefect`
 - `fourthZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `freshDirectClosingQuadratic_exactOrder_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingQuadraticSupport`
@@ -8160,6 +8161,7 @@ Distinct declaration spellings indexed: **10116**.
 - `quadraticFamilyHessianMatrix_coeff_tripleTransverseSourceShear_ellell` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `quadraticFamilyHessianMatrix_det` — `theorem` in `HC4.Valuation.QuadraticFamilyCollision`
 - `quadraticFamilyHessianMatrix_det_hasGapBefore_firstPositiveActualOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
+- `quadraticFamilyHessianMatrix_entry_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
 - `quadraticFamilyHessianMatrix_entry_hasGapBefore_firstPositiveActualOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `quadraticFamilyHessianMatrix_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
@@ -9348,6 +9350,7 @@ Distinct declaration spellings indexed: **10116**.
 - `sourceCoefficientOrder_eq_zero_of_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `sourceCoefficientOrder_eq_zero_or_firstActual_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `sourceCoefficientParameterOrder` — `def` in `HC4.Valuation.RigidClosingFirstKernelStage`
+- `sourceCoefficient_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `sourceCoefficient_hasGapBefore_firstPositiveActualOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `sourceCoordinateData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelProvenanceAssembly`
 - `sourceCoordinateKernelVector` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
