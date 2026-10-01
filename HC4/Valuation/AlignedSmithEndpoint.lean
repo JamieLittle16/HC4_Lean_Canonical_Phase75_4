@@ -594,6 +594,92 @@ theorem rightTransverse_zero_of_noGenuineWall
     ⟨alignedSmithSectionWallStep i (b i), ?_⟩
   simp [alignedSmithGenuineWalls, hsection]
 
+/-! ## General common-factor defect budget -/
+
+/-- **Four-variable common-factor budget, local endpoint form.**
+
+If every coefficient of a four-variable potential contains `X^n` and its
+Hessian determinant is exactly `X^Delta`, then `4*n <= Delta`.
+
+This declaration deliberately has an endpoint-specific name: another imported
+development may expose the historical generic name during a fresh elaboration,
+so keeping the proof local under a distinct name avoids a namespace collision. -/
+theorem alignedSmith_four_mul_le_defect_of_commonParameterFactor
+    (n : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdiv : HasCommonParameterFactor n P)
+    (Delta : ℕ)
+    (hdef :
+      HasPolynomialFamilyHessianDefect
+        (K := K) P Delta) :
+    4 * n ≤ Delta := by
+  let Q :=
+    commonParameterFactorFamily n P hdiv
+  have hfactor :
+      P =
+        MvPolynomial.C (Polynomial.X ^ n) * Q :=
+    commonParameterFactorFamily_factorisation
+      n P hdiv
+  have hdet :=
+    congrArg HC4.Polynomial.hessianDeterminant
+      hfactor
+  rw [hessianDeterminant_C_mul] at hdet
+  unfold HasPolynomialFamilyHessianDefect at hdef
+  rw [hdef] at hdet
+  have hdvdMv :
+      (MvPolynomial.C
+          (Polynomial.X ^ (4 * n)) :
+          MvPolynomial (Fin 4) (Polynomial K)) ∣
+        MvPolynomial.C
+          (Polynomial.X ^ Delta) := by
+    refine
+      ⟨HC4.Polynomial.hessianDeterminant Q, ?_⟩
+    simpa [MvPolynomial.C_pow, ← pow_mul,
+      Nat.mul_comm, Nat.mul_left_comm,
+      Nat.mul_assoc] using hdet
+  have hdvdPoly :
+      (Polynomial.X ^ (4 * n) : Polynomial K) ∣
+        Polynomial.X ^ Delta := by
+    have hall :=
+      (MvPolynomial.C_dvd_iff_dvd_coeff
+        (Polynomial.X ^ (4 * n))
+        (MvPolynomial.C
+          (Polynomial.X ^ Delta) :
+          MvPolynomial (Fin 4) (Polynomial K))).mp
+        hdvdMv
+    simpa only [MvPolynomial.coeff_zero_C] using
+      (hall (0 : Fin 4 →₀ ℕ))
+  rcases hdvdPoly with ⟨R, hR⟩
+  have hRne : R ≠ 0 := by
+    intro hz
+    rw [hz, mul_zero] at hR
+    exact
+      (pow_ne_zero Delta Polynomial.X_ne_zero)
+        hR
+  have hX :
+      (Polynomial.X ^ (4 * n) : Polynomial K) ≠ 0 :=
+    pow_ne_zero (4 * n) Polynomial.X_ne_zero
+  have hdeg :
+      Delta = 4 * n + R.natDegree := by
+    calc
+      Delta =
+          (Polynomial.X ^ Delta :
+            Polynomial K).natDegree := by
+              simp
+      _ =
+          ((Polynomial.X ^ (4 * n) :
+            Polynomial K) * R).natDegree := by
+              rw [hR]
+      _ =
+          (Polynomial.X ^ (4 * n) :
+            Polynomial K).natDegree +
+              R.natDegree := by
+                exact
+                  Polynomial.natDegree_mul
+                    hX hRne
+      _ = 4 * n + R.natDegree := by simp
+  omega
+
 /-! ## Cancelling arbitrary parameter-power margins -/
 
 /-- If `X^(n+m)` divides `X^n*q`, then `X^m` divides `q`. -/
@@ -915,7 +1001,7 @@ theorem exists_zeroSmithDerivative_of_noGenuineWall
         (alignedSmithRamificationIndex * Delta)
         Pram hsmith hramDef
   have hbudget :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K)
       (2 * N) Q hcommon
       (alignedSmithRamificationIndex * Delta)
