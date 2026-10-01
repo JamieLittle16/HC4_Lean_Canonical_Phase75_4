@@ -4308,6 +4308,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
