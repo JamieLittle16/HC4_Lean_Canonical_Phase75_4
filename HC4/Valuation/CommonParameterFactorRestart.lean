@@ -432,6 +432,175 @@ theorem commonParameterFactor_one_hasHessianDefect_sub_four
     · exact hzero
   exact (sub_eq_zero.mp hsub).symm
 
+/-- Factoring a common parameter power `tau^m` from a four-variable
+potential forces at least `4m` powers of `tau` in its pure Hessian
+determinant defect. -/
+theorem four_mul_le_defect_of_commonParameterFactor
+    (m : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdiv : HasCommonParameterFactor m P)
+    (Delta : ℕ)
+    (hdef :
+      HasPolynomialFamilyHessianDefect
+        (K := K) P Delta) :
+    4 * m ≤ Delta := by
+  let Q :=
+    commonParameterFactorFamily m P hdiv
+  have hfactor :
+      P =
+        MvPolynomial.C (Polynomial.X ^ m) * Q := by
+    exact
+      commonParameterFactorFamily_factorisation
+        (K := K) m P hdiv
+  have hdet :=
+    congrArg HC4.Polynomial.hessianDeterminant
+      hfactor
+  rw [hessianDeterminant_C_mul] at hdet
+  unfold HasPolynomialFamilyHessianDefect at hdef
+  rw [hdef] at hdet
+  have hdvdMv :
+      (MvPolynomial.C
+          (Polynomial.X ^ (4 * m)) :
+          MvPolynomial (Fin 4) (Polynomial K)) ∣
+        MvPolynomial.C
+          (Polynomial.X ^ Delta) := by
+    refine
+      ⟨HC4.Polynomial.hessianDeterminant Q, ?_⟩
+    simpa [MvPolynomial.C_pow, ← pow_mul, Nat.mul_comm] using hdet
+  have hdvdPoly :
+      (Polynomial.X ^ (4 * m) : Polynomial K) ∣
+        Polynomial.X ^ Delta := by
+    have hall :=
+      (MvPolynomial.C_dvd_iff_dvd_coeff
+        (Polynomial.X ^ (4 * m))
+        (MvPolynomial.C
+          (Polynomial.X ^ Delta) :
+          MvPolynomial (Fin 4) (Polynomial K))).mp
+        hdvdMv
+    simpa only [MvPolynomial.coeff_zero_C] using
+      (hall (0 : Fin 4 →₀ ℕ))
+  rcases hdvdPoly with ⟨R, hR⟩
+  have hRne : R ≠ 0 := by
+    intro hz
+    rw [hz, mul_zero] at hR
+    exact
+      (pow_ne_zero Delta Polynomial.X_ne_zero)
+        hR
+  have hX :
+      (Polynomial.X ^ (4 * m) : Polynomial K) ≠ 0 :=
+    pow_ne_zero (4 * m) Polynomial.X_ne_zero
+  have hdeg :
+      Delta = 4 * m + R.natDegree := by
+    calc
+      Delta =
+          (Polynomial.X ^ Delta :
+            Polynomial K).natDegree := by
+              simp
+      _ =
+          ((Polynomial.X ^ (4 * m) :
+            Polynomial K) * R).natDegree := by
+              rw [hR]
+      _ =
+          (Polynomial.X ^ (4 * m) :
+            Polynomial K).natDegree +
+              R.natDegree := by
+                exact
+                  Polynomial.natDegree_mul
+                    hX hRne
+      _ = 4 * m + R.natDegree := by simp
+  omega
+
+/-- Exact Hessian defect after removing an arbitrary common parameter power.
+
+If `P = tau^m Q` and `det Hess(P) = tau^Delta`, then
+`det Hess(Q) = tau^(Delta - 4m)`. -/
+theorem commonParameterFactor_hasHessianDefect_sub_four_mul
+    (m : ℕ)
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdiv : HasCommonParameterFactor m P)
+    (Delta : ℕ)
+    (hdef :
+      HasPolynomialFamilyHessianDefect
+        (K := K) P Delta) :
+    HasPolynomialFamilyHessianDefect
+      (K := K)
+      (commonParameterFactorFamily m P hdiv)
+      (Delta - 4 * m) := by
+  let Q :=
+    commonParameterFactorFamily m P hdiv
+  have hle :
+      4 * m ≤ Delta :=
+    four_mul_le_defect_of_commonParameterFactor
+      m P hdiv Delta hdef
+  have hfactor :
+      P =
+        MvPolynomial.C (Polynomial.X ^ m) * Q := by
+    exact
+      commonParameterFactorFamily_factorisation
+        (K := K) m P hdiv
+  have hdet :=
+    congrArg HC4.Polynomial.hessianDeterminant
+      hfactor
+  rw [hessianDeterminant_C_mul] at hdet
+  unfold HasPolynomialFamilyHessianDefect at hdef ⊢
+  rw [hdef] at hdet
+  have hexp :
+      m * 4 + (Delta - 4 * m) = Delta := by
+    omega
+  have hpow :
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+        MvPolynomial.C
+          (Polynomial.X ^ (Delta - 4 * m)) =
+      MvPolynomial.C
+        (Polynomial.X ^ Delta) := by
+    rw [← MvPolynomial.C_pow,
+        ← MvPolynomial.C_mul]
+    congr 1
+    rw [← pow_mul, ← pow_add, hexp]
+  have hcancel :
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+        MvPolynomial.C
+          (Polynomial.X ^ (Delta - 4 * m)) =
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+        HC4.Polynomial.hessianDeterminant Q := by
+    calc
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+          MvPolynomial.C
+            (Polynomial.X ^ (Delta - 4 * m)) =
+        MvPolynomial.C
+          (Polynomial.X ^ Delta) := hpow
+      _ =
+        (MvPolynomial.C (Polynomial.X ^ m) :
+          MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+          HC4.Polynomial.hessianDeterminant Q := by
+            simpa [Q] using hdet
+  have hfac :
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 ≠ 0 := by
+    exact
+      pow_ne_zero 4
+        (MvPolynomial.C_ne_zero.mpr
+          (pow_ne_zero m Polynomial.X_ne_zero))
+  have hz :
+      (MvPolynomial.C (Polynomial.X ^ m) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 4 *
+        (MvPolynomial.C
+            (Polynomial.X ^ (Delta - 4 * m)) -
+          HC4.Polynomial.hessianDeterminant Q) = 0 := by
+    rw [mul_sub, hcancel, sub_self]
+  have hsub :
+      MvPolynomial.C
+          (Polynomial.X ^ (Delta - 4 * m)) -
+        HC4.Polynomial.hessianDeterminant Q = 0 := by
+    rcases mul_eq_zero.mp hz with hzero | hzero
+    · exact False.elim (hfac hzero)
+    · exact hzero
+  exact (sub_eq_zero.mp hsub).symm
+
 /-- **A single common parameter factor is a strict global restart.**
 
 The new repair coordinate is arbitrary because the first component of
