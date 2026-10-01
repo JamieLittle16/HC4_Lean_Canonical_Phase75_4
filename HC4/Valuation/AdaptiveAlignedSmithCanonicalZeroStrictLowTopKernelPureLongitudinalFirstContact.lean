@@ -4,6 +4,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayer
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
 import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.MongeAmpere.MaximalInitial
+import HC4.Newton.FiniteSupportSingularBoundaryVertex
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -683,6 +684,89 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
     rw [Fin.sum_univ_four]
     simp [topKernelMarkedAxisNatWeight]
     omega
+
+/-- Finite frontier for the first nonzero lower transverse face forced by
+the pure-longitudinal branch.  The only low-degree exception is transverse
+degree two; at degree at least three the existing finite singular-support
+theorem produces an honest exposed nonlinear boundary vertex. -/
+inductive PureLongitudinalMarkedAxisLowerFaceFrontier
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
+  | quadratic
+      (level_eq_two :
+        T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+  | nonlinearBoundary
+      (level_ge_three :
+        3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder)
+      (vertex :
+        ExposedSingularNonlinearBoundaryVertexData
+          (familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder))
+
+/-- The pure-longitudinal branch reaches the finite lower-face frontier above:
+either a concrete transverse quadratic layer, or an honest nonlinear singular
+boundary vertex at strictly smaller transverse degree. -/
+theorem pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    Nonempty P.PureLongitudinalMarkedAxisLowerFaceFrontier := by
+  let r :=
+    T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  rcases
+      P.pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+        coefficient_ne_zero topFace_eq with
+    ⟨hrtwo, _hrlt⟩
+  by_cases hr : r = 2
+  · exact ⟨.quadratic (by simpa [r] using hr)⟩
+  · have hrthree : 3 ≤ r := by omega
+    have hfaceNe :
+        familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
+      firstPositiveActualParameterLayer_ne_zero
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+    have hzero :=
+      P.pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
+        coefficient_ne_zero topFace_eq
+    have hnonlinear :
+        ∀ d ∈ (familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder).support,
+          3 ≤ ordinaryDegree4 d := by
+      intro d hd
+      have hfaceEq :=
+        P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+          coefficient_ne_zero topFace_eq
+      have hdInit := hd
+      rw [hfaceEq] at hdInit
+      have hcoeff := MvPolynomial.mem_support_iff.mp hdInit
+      rw [HC4.Polynomial.coeff_initialForm] at hcoeff
+      have hweight :
+          Finsupp.weight
+              (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+            (r : ℤ) := by
+        by_contra hne
+        simp [hne, r] at hcoeff
+      rw [weight_topKernelMarkedAxisIntWeight] at hweight
+      have htrans :
+          d 1 + d 2 + d 3 = r := by
+        exact_mod_cast hweight
+      unfold ordinaryDegree4
+      rw [Fin.sum_univ_four]
+      omega
+    exact ⟨.nonlinearBoundary
+      (by simpa [r] using hrthree)
+      (exposedSingularNonlinearBoundaryVertex
+        (familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder)
+        hfaceNe hzero hnonlinear)⟩
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
