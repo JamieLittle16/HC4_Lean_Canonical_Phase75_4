@@ -69,8 +69,11 @@ theorem hasCommonParameterFactor_one_of_specialFiber_eq_zero
     congrArg (MvPolynomial.coeff d) hzero
   have hconst :
       Polynomial.constantCoeff (MvPolynomial.coeff d P) = 0 := by
-    simpa [coeff_polynomialFamilySpecialFiber] using hcoeff
-  simpa using (Polynomial.X_dvd_iff.mpr hconst)
+    unfold polynomialFamilySpecialFiber at hcoeff
+    rw [MvPolynomial.coeff_map] at hcoeff
+    exact hcoeff
+  rw [Polynomial.X_dvd_iff]
+  simpa using hconst
 
 /-- Chosen quotient coefficient after removing a common parameter factor. -/
 noncomputable def commonParameterCoefficientQuotient
