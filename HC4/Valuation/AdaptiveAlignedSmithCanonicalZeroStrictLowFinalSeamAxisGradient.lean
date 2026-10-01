@@ -81,17 +81,19 @@ theorem finalSeamAxisGradientComponent_eval_neg_one
     rw [eval_zero_pderiv_eq_linearCoeff]
     exact R.linearCoeff_zero i
   have hcoll := R.exactCollision i
+  unfold mvGradientComponentAt at hcoll
   have hright :
       MvPolynomial.eval
           (fun j => - coordinateAxisPoint (K := K) (0 : Fin 4) j)
           (MvPolynomial.pderiv i T.rightRecenteredSpecialFiber) = 0 := by
-    rw [← hcoll]
-    exact hleft
+    exact hcoll.symm.trans hleft
   have hpoint :
       (fun j => - coordinateAxisPoint (K := K) (0 : Fin 4) j) =
         Fin.cons (-1 : K) (fun _ : Fin 3 => (0 : K)) := by
     funext j
-    fin_cases j <;> simp [coordinateAxisPoint]
+    refine Fin.cases ?_ (fun k => ?_) j
+    · simp [coordinateAxisPoint]
+    · simp [coordinateAxisPoint]
   rw [hpoint] at hright
   have haxis :=
     eval_finCons_zero_eq_longitudinalAxisRestriction
@@ -145,7 +147,7 @@ theorem finalSeamAxisGradientComponent_twoEndpoint_factor
       T.finalSeamAxisGradientComponent i =
         (Polynomial.X * (Polynomial.X + Polynomial.C (1 : K))) * B := by
   rcases T.finalSeamAxisGradientComponent_twoEndpoint_dvd i with ⟨B, hB⟩
-  exact ⟨B, hB.symm⟩
+  exact ⟨B, hB⟩
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
