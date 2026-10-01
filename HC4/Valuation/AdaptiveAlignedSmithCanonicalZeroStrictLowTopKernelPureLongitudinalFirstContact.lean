@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -240,6 +241,100 @@ theorem pureLongitudinal_topFaceOnFacet
   exact exponent_eq_zero_of_pderiv_eq_zero
     (facetOmittedCoordinate facet) T.topFace.face hderiv d
     (MvPolynomial.mem_support_iff.mp hd)
+
+/-- In the pure-longitudinal branch, the top monomial itself is a concrete
+low layer for the determinant-closing positive-transverse Rees transform of
+the marked-axis collision family.
+
+Its transverse degree is zero and its parameter order is at most the top
+degree `D`, while the marked-axis Hessian clock is `4D - 6`.  Since
+`D ≥ 3`, this monomial violates the closing coefficient bound strictly.
+Thus the auxiliary positive-clock family reaches the mature low-layer
+interface without any balance assumption. -/
+theorem pureLongitudinal_markedAxis_positiveTransverseLowLayer
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    Nonempty
+      (CanonicalPositiveTransverseReesLowLayer
+        (4 * T.topFace.degree - 6)
+        T.topKernelMarkedAxisFirstContactFamily) := by
+  let d : Fin 4 →₀ ℕ :=
+    Finsupp.single (0 : Fin 4) T.topFace.degree
+  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+    simp [d, ordinaryDegree4, Fin.sum_univ_four]
+  have hdTop :
+      MvPolynomial.coeff d T.topFace.face ≠ 0 := by
+    rw [topFace_eq]
+    simpa [d] using coefficient_ne_zero
+  have hdSourceCoeff :
+      MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
+    rw [← T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
+    exact hdTop
+  have hdSource : d ∈ T.topKernelReesSource.support :=
+    MvPolynomial.mem_support_iff.mpr hdSourceCoeff
+  have hfamilyCoeff :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily =
+        Polynomial.X ^ T.topFace.degree *
+          Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
+    rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
+      reverseWeightedReesFamily_coeff, if_pos hdSource,
+      weight_topKernelMarkedAxisNatWeight]
+    simp [d]
+  have hfamilyCoeffNe :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
+    rw [hfamilyCoeff]
+    exact mul_ne_zero
+      (pow_ne_zero _ Polynomial.X_ne_zero)
+      (Polynomial.C_ne_zero.mpr hdSourceCoeff)
+  have hdFamily :
+      d ∈ T.topKernelMarkedAxisFirstContactFamily.support :=
+    MvPolynomial.mem_support_iff.mpr hfamilyCoeffNe
+  have hcoeffAtDegree :
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily).coeff
+        T.topFace.degree ≠ 0 := by
+    rw [hfamilyCoeff]
+    simpa using hdSourceCoeff
+  have horderLe :
+      smithFamilyCoefficientOrder
+          T.topKernelMarkedAxisFirstContactFamily d ≤
+        T.topFace.degree := by
+    rw [smithFamilyCoefficientOrder_eq
+      T.topKernelMarkedAxisFirstContactFamily hdFamily]
+    exact polynomialParameterOrder_le_of_coeff_ne_zero
+      (MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily)
+      hfamilyCoeffNe hcoeffAtDegree
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  have hearly :
+      2 * smithFamilyCoefficientOrder
+            T.topKernelMarkedAxisFirstContactFamily d +
+          Finsupp.weight
+            (canonicalPositiveTransverseReesWeight
+              (4 * T.topFace.degree - 6)) d <
+        2 * (4 * T.topFace.degree - 6) := by
+    rw [canonicalPositiveTransverseReesWeight_finsupp]
+    have htrans : canonicalTransverseDegree d = 0 := by
+      simp [canonicalTransverseDegree, d]
+    rw [htrans]
+    simp only [Nat.mul_zero, Nat.add_zero]
+    omega
+  have htransLe : canonicalTransverseDegree d ≤ 1 := by
+    simp [canonicalTransverseDegree, d]
+  have hpattern :
+      IsPureLongitudinalSmithPattern
+        (smithSupportExponentOf (1 : Fin 4) 2 3 d) := by
+    simp [IsPureLongitudinalSmithPattern, smithSupportExponentOf, d]
+  exact ⟨{
+    exponent := d
+    mem := hdFamily
+    early := hearly
+    transverseDegree_le_one := htransLe
+    pattern := Or.inl hpattern
+  }⟩
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
