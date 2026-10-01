@@ -329,17 +329,17 @@ theorem four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFi
     fun i k => Q i k
   have hmatrix :
       quadraticFamilyHessianMatrix P =
-        (Polynomial.X ^ j) • A := by
+        ((Polynomial.X : Polynomial K) ^ j) • A := by
     ext i k
     have hij := hQ i k
     change quadraticFamilyHessianMatrix P i k =
-      Polynomial.X ^ j * A i k
+      (Polynomial.X : Polynomial K) ^ j * A i k
     simpa [A] using hij.symm
   have hdetFactor :
       (quadraticFamilyHessianMatrix P).det =
-        (Polynomial.X ^ j) ^ 4 * A.det := by
+        ((Polynomial.X : Polynomial K) ^ j) ^ 4 * A.det := by
     rw [hmatrix]
-    simpa using Matrix.det_smul A (Polynomial.X ^ j)
+    simpa using Matrix.det_smul A ((Polynomial.X : Polynomial K) ^ j)
   have hdvd :
       Polynomial.X ^ (4 * j) ∣
         (quadraticFamilyHessianMatrix P).det := by
