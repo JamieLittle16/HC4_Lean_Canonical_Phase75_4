@@ -3,6 +3,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitud
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
 import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
+import HC4.MongeAmpere.MaximalInitial
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -641,6 +642,47 @@ theorem pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
   have hqpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
   have hD := T.topFace.degree_ge_three
   omega
+
+/-- The first actual lower transverse face is Hessian-singular.  The improved
+`D-q` reverse-weight bound makes it a genuine maximal initial form of the
+represented determinant-one source, and `D-q ≥ 2` makes the induced Hessian
+weight strictly positive. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    hessianDeterminant
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder) = 0 := by
+  rw [P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+    coefficient_ne_zero topFace_eq]
+  apply HC4.MongeAmpere.maximal_initial_hessianDeterminant_eq_zero
+  · intro d hd
+    have hnat :=
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        coefficient_ne_zero topFace_eq d hd
+    rw [weight_topKernelMarkedAxisIntWeight,
+      weight_topKernelMarkedAxisNatWeight]
+    exact_mod_cast hnat
+  · unfold HC4.MongeAmpere.IsPolynomialMongeAmpere
+    exact T.topKernelReesSource_hessianDeterminant_eq_one
+  · rcases
+      P.pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+        coefficient_ne_zero topFace_eq with
+      ⟨hrtwo, _hrlt⟩
+    have hrtwoZ :
+        (2 : ℤ) ≤
+          (T.topFace.degree -
+            T.topKernelMarkedAxisFirstActualLayerOrder : ℕ) := by
+      exact_mod_cast hrtwo
+    rw [Fin.sum_univ_four]
+    simp [topKernelMarkedAxisNatWeight]
+    omega
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
