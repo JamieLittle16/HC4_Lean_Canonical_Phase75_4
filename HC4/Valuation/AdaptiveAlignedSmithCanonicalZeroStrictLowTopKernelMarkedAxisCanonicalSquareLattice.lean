@@ -7,6 +7,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalNormalForm
 import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil
+import HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock
 
 /-!
 # Canonical square lattice for the zero-strict-low marked-axis family
@@ -33,6 +34,7 @@ namespace HC4.Valuation
 noncomputable section
 
 open HC4.Newton
+open AdaptiveAlignedSmithRankOneClosingSourceCarrier
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
@@ -107,81 +109,156 @@ theorem pderiv_topKernelMarkedAxisTransverseShearHomBase_of_ne_added
         simp [topKernelMarkedAxisTransverseShearVariableBase,
           hnk, hnj, hjn, hjl] <;> ring
 
-/-- Taking an exact parameter layer commutes with a source shear whose
-coefficient is parameter-constant.  This is the layerwise analogue of the
-already-used special-fibre transport theorem. -/
-theorem familyParameterLayer_transverseSourceShearHom_constant
+/-- Parameter-zero special fibre commutes with a source shear whose
+coefficient is parameter-constant. -/
+theorem polynomialFamilySpecialFiber_topKernelMarkedAxisTransverseSourceShearHom_constant
     (k ell : Fin 4) (a : K)
-    (P : MvPolynomial (Fin 4) (Polynomial K))
-    (n : ℕ) :
-    familyParameterLayer
-        (transverseSourceShearHom (K := K) k ell (Polynomial.C a) P) n =
+    (P : MvPolynomial (Fin 4) (Polynomial K)) :
+    polynomialFamilySpecialFiber
+        (transverseSourceShearHom (K := K) k ell (Polynomial.C a) P) =
       topKernelMarkedAxisTransverseShearHomBase k ell a
-        (familyParameterLayer P n) := by
+        (polynomialFamilySpecialFiber P) := by
   apply MvPolynomial.induction_on P
-  · intro c
-    simp [familyParameterLayer,
+  · intro r
+    simp [polynomialFamilySpecialFiber,
       topKernelMarkedAxisTransverseShearHomBase]
   · intro p q hp hq
-    simpa [familyParameterLayer, map_add] using
+    simpa [polynomialFamilySpecialFiber, map_add] using
       congrArg₂ (fun x y => x + y) hp hq
   · intro p i hp
     have hvar :
-        familyParameterLayer
+        polynomialFamilySpecialFiber
             (transverseSourceShearHom (K := K) k ell (Polynomial.C a)
-              (MvPolynomial.X i)) n =
+              (MvPolynomial.X i)) =
           topKernelMarkedAxisTransverseShearHomBase k ell a
-            (familyParameterLayer (MvPolynomial.X i) n) := by
-      by_cases hn : n = 0
-      · subst n
-        by_cases hi : i = k
-        · subst i
-          simp [familyParameterLayer,
-            transverseSourceShearHom,
-            transverseSourceShearVariable,
-            topKernelMarkedAxisTransverseShearHomBase,
-            topKernelMarkedAxisTransverseShearVariableBase]
-        · simp [familyParameterLayer,
-            transverseSourceShearHom,
-            transverseSourceShearVariable,
-            topKernelMarkedAxisTransverseShearHomBase,
-            topKernelMarkedAxisTransverseShearVariableBase, hi]
-      · by_cases hi : i = k
-        · subst i
-          simp [familyParameterLayer,
-            transverseSourceShearHom,
-            transverseSourceShearVariable,
-            topKernelMarkedAxisTransverseShearHomBase,
-            topKernelMarkedAxisTransverseShearVariableBase, hn]
-        · simp [familyParameterLayer,
-            transverseSourceShearHom,
-            transverseSourceShearVariable,
-            topKernelMarkedAxisTransverseShearHomBase,
-            topKernelMarkedAxisTransverseShearVariableBase, hi, hn]
+            (polynomialFamilySpecialFiber (MvPolynomial.X i)) := by
+      by_cases hi : i = k
+      · subst i
+        simp [polynomialFamilySpecialFiber,
+          transverseSourceShearVariable,
+          topKernelMarkedAxisTransverseShearHomBase,
+          topKernelMarkedAxisTransverseShearVariableBase]
+      · simp [polynomialFamilySpecialFiber,
+          transverseSourceShearVariable,
+          topKernelMarkedAxisTransverseShearHomBase,
+          topKernelMarkedAxisTransverseShearVariableBase, hi]
     have hmul := congrArg₂ (fun x y => x * y) hp hvar
-    simpa [familyParameterLayer, map_mul] using hmul
+    simpa [polynomialFamilySpecialFiber, map_mul] using hmul
 
-/-- The aligned fresh-square family inherits the gap before the marked first
-actual layer: constant source shearing cannot create an earlier parameter
-layer. -/
-theorem TopKernelMarkedAxisAlignedFreshSquareData.familyParameterLayer_eq_zero_of_pos_lt_firstActual
+/-- The parameter-constant embedding sends the marked-axis residue-field shear
+variable to the polynomial-family shear variable. -/
+theorem constantPolynomialFamily_topKernelMarkedAxisTransverseShearVariableBase
+    (k ell : Fin 4) (a : K) (i : Fin 4) :
+    constantPolynomialFamily
+        (topKernelMarkedAxisTransverseShearVariableBase k ell a i) =
+      transverseSourceShearVariable (K := K) k ell (Polynomial.C a) i := by
+  by_cases hi : i = k
+  · subst i
+    simp [constantPolynomialFamily,
+      topKernelMarkedAxisTransverseShearVariableBase,
+      transverseSourceShearVariable]
+  · simp [constantPolynomialFamily,
+      topKernelMarkedAxisTransverseShearVariableBase,
+      transverseSourceShearVariable, hi]
+
+/-- Embedding a residue-field source as a parameter-constant family commutes
+with the marked-axis constant transverse shear. -/
+theorem topKernelMarkedAxisTransverseSourceShearHom_constantPolynomialFamily
+    (k ell : Fin 4) (a : K)
+    (F : MvPolynomial (Fin 4) K) :
+    transverseSourceShearHom (K := K) k ell (Polynomial.C a)
+        (constantPolynomialFamily F) =
+      constantPolynomialFamily
+        (topKernelMarkedAxisTransverseShearHomBase k ell a F) := by
+  apply MvPolynomial.induction_on F
+  · intro r
+    simp [constantPolynomialFamily,
+      topKernelMarkedAxisTransverseShearHomBase]
+  · intro P Q hP hQ
+    have hadd := congrArg₂ (fun x y => x + y) hP hQ
+    simpa [constantPolynomialFamily, map_add] using hadd
+  · intro P i hP
+    have hvar :=
+      constantPolynomialFamily_topKernelMarkedAxisTransverseShearVariableBase
+        (K := K) k ell a i
+    have hmul := congrArg₂ (fun x y => x * y) hP hvar.symm
+    simpa [constantPolynomialFamily, map_mul,
+      topKernelMarkedAxisTransverseShearHomBase] using hmul
+
+/-- The marked-axis single-shear family retains the exact
+`P₀ + X^j R` gap at the first positive actual parameter order. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.family_firstActual_gap_factorisation
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    D.family =
+      constantPolynomialFamily
+        (topKernelMarkedAxisTransverseShearHomBase D.k D.ell D.a
+          (polynomialFamilySpecialFiber
+            T.topKernelMarkedAxisFirstContactFamily)) +
+      MvPolynomial.C
+          (Polynomial.X ^ T.topKernelMarkedAxisFirstActualLayerOrder) *
+        transverseSourceShearHom
+          (K := K) D.k D.ell (Polynomial.C D.a)
+          (firstActualDeformationFamily
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer) := by
+  rw [TopKernelMarkedAxisAlignedFreshSquareData.family]
+  nth_rewrite 1 [
+    firstActualDeformationFamily_factorisation
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer]
+  simp only [map_add, map_mul, transverseSourceShearHom_C,
+    topKernelMarkedAxisTransverseSourceShearHom_constantPolynomialFamily]
+  rfl
+
+/-- Every coefficient of the marked-axis single-shear family is a constant
+plus a multiple of the first positive actual parameter power. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.family_coefficient_firstActual_gap
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
     (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
-    {n : ℕ}
-    (hnpos : 0 < n)
-    (hnlt : n < T.topKernelMarkedAxisFirstActualLayerOrder) :
-    familyParameterLayer D.family n = 0 := by
-  rw [familyParameterLayer_transverseSourceShearHom_constant]
-  have hzero :=
-    familyParameterLayer_eq_zero_of_pos_lt_firstPositiveActual
-      T.topKernelMarkedAxisFirstContactFamily
-      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
-      hnpos
-      (by
-        simpa [topKernelMarkedAxisFirstActualLayerOrder] using hnlt)
-  rw [hzero]
-  simp [topKernelMarkedAxisTransverseShearHomBase]
+    (d : Fin 4 →₀ ℕ) :
+    ∃ a : K, ∃ r : Polynomial K,
+      MvPolynomial.coeff d D.family =
+        Polynomial.C a +
+          Polynomial.X ^ T.topKernelMarkedAxisFirstActualLayerOrder * r := by
+  have h := congrArg (MvPolynomial.coeff d) D.family_firstActual_gap_factorisation
+  rw [MvPolynomial.coeff_add, coeff_constantPolynomialFamily,
+    MvPolynomial.coeff_C_mul] at h
+  exact
+    ⟨MvPolynomial.coeff d
+        (topKernelMarkedAxisTransverseShearHomBase D.k D.ell D.a
+          (polynomialFamilySpecialFiber
+            T.topKernelMarkedAxisFirstContactFamily)),
+      MvPolynomial.coeff d
+        (transverseSourceShearHom
+          (K := K) D.k D.ell (Polynomial.C D.a)
+          (firstActualDeformationFamily
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)),
+      h⟩
+
+/-- No supported coefficient of the constant source shear can acquire a
+strictly positive parameter order below the original first actual clock. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.sourceCoefficientOrder_eq_zero_of_lt_firstActual
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData)
+    (d : Fin 4 →₀ ℕ)
+    (hd : d ∈ D.family.support)
+    (hlt :
+      smithFamilyCoefficientParameterOrder D.family d hd <
+        T.topKernelMarkedAxisFirstActualLayerOrder) :
+    smithFamilyCoefficientParameterOrder D.family d hd = 0 := by
+  have hp : MvPolynomial.coeff d D.family ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  exact
+    polynomialParameterOrder_eq_zero_of_constant_add_X_pow
+      (MvPolynomial.coeff d D.family) hp
+      T.topKernelMarkedAxisFirstActualLayerOrder
+      (D.family_coefficient_firstActual_gap d)
+      (by simpa [smithFamilyCoefficientParameterOrder] using hlt)
 
 /-- Every residue-field shear variable is an ordinary linear form. -/
 theorem topKernelMarkedAxisTransverseShearVariableBase_isHomogeneous_one
@@ -245,11 +322,9 @@ theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_eq_baseShear
       topKernelMarkedAxisTransverseShearHomBase D.k D.ell D.a
         (polynomialFamilySpecialFiber
           T.topKernelMarkedAxisFirstContactFamily) := by
-  rw [← familyParameterLayer_zero_eq_polynomialFamilySpecialFiber,
-    ← familyParameterLayer_zero_eq_polynomialFamilySpecialFiber]
   simpa [TopKernelMarkedAxisAlignedFreshSquareData.family] using
-    familyParameterLayer_transverseSourceShearHom_constant
-      D.k D.ell D.a T.topKernelMarkedAxisFirstContactFamily 0
+    polynomialFamilySpecialFiber_topKernelMarkedAxisTransverseSourceShearHom_constant
+      D.k D.ell D.a T.topKernelMarkedAxisFirstContactFamily
 
 /-- The aligned marked-axis special fibre remains independent of the marked
 coordinate.  The added shear direction is transverse, so the marked partial
@@ -262,7 +337,7 @@ theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_pderiv_zero
         (polynomialFamilySpecialFiber D.family) = 0 := by
   rw [D.specialFiber_eq_baseShear]
   rw [pderiv_topKernelMarkedAxisTransverseShearHomBase_of_ne_added
-    D.k D.ell D.k_ne_ell D.a (0 : Fin 4) D.ell_ne_zero]
+    D.k D.ell D.k_ne_ell D.a (0 : Fin 4) (Ne.symm D.ell_ne_zero)]
   rw [T.topKernelMarkedAxisFirstContact_specialFiber_pderiv_zero]
   simp
 
@@ -494,23 +569,11 @@ theorem parameterOrder_eq_zero_of_eq_defect
         q < T.topKernelMarkedAxisFirstActualLayerOrder := by
       rw [heq]
       simpa [q] using hqlt
-    have hlayerZero :
-        familyParameterLayer D.family q = 0 :=
-      D.familyParameterLayer_eq_zero_of_pos_lt_firstActual
-        (by simpa [q] using hqpos) hq_lt_first
-    have hcoeff :
-        (MvPolynomial.coeff O.exponent D.family).coeff q ≠ 0 := by
-      simpa [q, smithFamilyCoefficientParameterOrder] using
-        polynomialParameterOrder_coeff_ne_zero
-          (MvPolynomial.coeff O.exponent D.family)
-          (MvPolynomial.mem_support_iff.mp O.mem_family)
-    have hlayerCoeff :
-        MvPolynomial.coeff O.exponent
-            (familyParameterLayer D.family q) ≠ 0 := by
-      rw [familyParameterLayer_coeff]
-      exact hcoeff
-    rw [hlayerZero] at hlayerCoeff
-    simp at hlayerCoeff
+    exact
+      D.sourceCoefficientOrder_eq_zero_of_lt_firstActual
+        O.exponent O.mem_family hq_lt_first
+
+end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
 
 /-- Canonical square failure after timing reduction is a literal special-fibre
 wall: one supported order-zero coefficient lies strictly below the canonical
@@ -532,6 +595,13 @@ structure TopKernelMarkedAxisCanonicalSquareZeroOrderWall
       directClosingCanonicalSquareCommonLevel
         (4 * T.topFace.degree - 6)
 
+namespace TopKernelMarkedAxisCanonicalSquareFamilyObstruction
+
+variable
+  {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+    (K := K) state}
+  {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
+
 /-- Every failed family-integrality gate at exact closing yields the concrete
 zero-order special-fibre wall above. -/
 theorem toZeroOrderWall
@@ -550,6 +620,8 @@ theorem toZeroOrderWall
     order_zero := hzero
     weighted_lt := hlt
   }⟩
+
+end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
 
 namespace TopKernelMarkedAxisCanonicalSquareZeroOrderWall
 
@@ -651,7 +723,9 @@ theorem pureAxis_or_singleComplement
   have hdeg := W.ordinaryDegree_eq_topFaceDegree
   have hcomp := W.complementDegree_le_one
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
-  fin_cases hEll : D.ell
+  let ell : Fin 4 := D.ell
+  have hEll : D.ell = ell := rfl
+  fin_cases ell
   · exact (D.ell_ne_zero hEll).elim
   · have hsum : W.exponent 2 + W.exponent 3 ≤ 1 := by
       simpa [hEll,
@@ -838,10 +912,6 @@ theorem toWallFaceData
   }⟩
 
 end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
-
-end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
-
-end TopKernelMarkedAxisCanonicalSquareFamilyObstruction
 
 /-- Marked-axis affine/separated refinement of the exact zero-order wall face.
 All complementary pure Hessian entries already vanish on the wall face; this
@@ -1116,7 +1186,11 @@ theorem TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_linearCoeff_zero
         (polynomialFamilySpecialFiber D.family) = 0 := by
   apply D.specialFiber_isHomogeneous.coeff_eq_zero
   have hD := T.topFace.degree_ge_three
-  simp [Finsupp.degree]
+  have hdeg :
+      (Finsupp.single i 1 : Fin 4 →₀ ℕ).degree = 1 := by
+    rw [finsuppDegree_eq_ordinaryDegree4]
+    fin_cases i <;>
+      simp [HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
   omega
 
 /-- A pure affine marked-axis wall tail is impossible: its nonzero face would
