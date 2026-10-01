@@ -1,6 +1,7 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
+import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -422,6 +423,112 @@ theorem pureLongitudinal_markedAxis_topCoefficientOrder_pos_lt_defect
         4 * T.topFace.degree - 6 := by
   rw [P.pureLongitudinal_markedAxis_topCoefficientOrder_eq
     coefficient_ne_zero topFace_eq]
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  omega
+
+/-- In the pure-longitudinal branch the marked-axis associated graded is
+literally zero.  The marked fibre only retains top-face exponents with
+coordinate `0` equal to zero, whereas the pure `X₀^D` top face has no such
+nonzero exponent for `D ≥ 3`. -/
+theorem pureLongitudinal_markedAxis_specialFiber_eq_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily = 0 := by
+  apply MvPolynomial.ext
+  intro d
+  have hnot :
+      d ∉ (polynomialFamilySpecialFiber
+        T.topKernelMarkedAxisFirstContactFamily).support := by
+    intro hd
+    have hslice :=
+      (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
+        d).1 hd
+    have hpr :
+        MvSupportOnFacet .pr T.topFace.face :=
+      P.pureLongitudinal_topFaceOnFacet
+        coefficient_ne_zero topFace_eq .pr (by decide)
+    have hsp :
+        MvSupportOnFacet .sp T.topFace.face :=
+      P.pureLongitudinal_topFaceOnFacet
+        coefficient_ne_zero topFace_eq .sp (by decide)
+    have hrq :
+        MvSupportOnFacet .rq T.topFace.face :=
+      P.pureLongitudinal_topFaceOnFacet
+        coefficient_ne_zero topFace_eq .rq (by decide)
+    have h1 : d (1 : Fin 4) = 0 := by
+      have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hslice.1)
+      simpa [facetOmittedCoordinate] using hz
+    have h2 : d (2 : Fin 4) = 0 := by
+      have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hslice.1)
+      simpa [facetOmittedCoordinate] using hz
+    have h3 : d (3 : Fin 4) = 0 := by
+      have hz := (onFacet_toToricExponent_iff .rq d).1 (hrq d hslice.1)
+      simpa [facetOmittedCoordinate] using hz
+    have hdeg :=
+      T.topFace.face_support_ordinaryDegree_eq hslice.1
+    have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+    simp [ordinaryDegree4, Fin.sum_univ_four,
+      hslice.2, h1, h2, h3] at hdeg
+    omega
+  rw [MvPolynomial.notMem_support_iff.mp hnot]
+  simp
+
+/-- The zero marked fibre sharpens first-layer causality from `q ≤ Delta` to
+`4q ≤ Delta`.  Since the marked-axis clock is `4D-6`, its first positive
+actual layer occurs at least two orders before the pure top coefficient. -/
+theorem pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    T.topKernelMarkedAxisFirstActualLayerOrder ≤ T.topFace.degree - 2 := by
+  have hspecial :=
+    P.pureLongitudinal_markedAxis_specialFiber_eq_zero
+      coefficient_ne_zero topFace_eq
+  have hfour :=
+    four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFiber_zero
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily_hasHessianDefect
+      hspecial
+  have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  change
+    T.topKernelMarkedAxisFirstActualLayerOrder ≤ T.topFace.degree - 2
+  change
+    4 * T.topKernelMarkedAxisFirstActualLayerOrder ≤
+      T.topKernelOrdinaryReesDefect + 2 at hfour
+  unfold topKernelOrdinaryReesDefect at hfour
+  omega
+
+/-- In particular the first actual marked-axis source layer is strictly
+earlier than the distinguished pure `X₀^D` coefficient, whose exact order is
+`D`. -/
+theorem pureLongitudinal_markedAxis_firstActualLayerOrder_lt_topCoefficientOrder
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    T.topKernelMarkedAxisFirstActualLayerOrder <
+      smithFamilyCoefficientOrder
+        T.topKernelMarkedAxisFirstContactFamily
+        (Finsupp.single (0 : Fin 4) T.topFace.degree) := by
+  rw [P.pureLongitudinal_markedAxis_topCoefficientOrder_eq
+    coefficient_ne_zero topFace_eq]
+  have hle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      coefficient_ne_zero topFace_eq
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
   omega
 
