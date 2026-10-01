@@ -5,6 +5,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLong
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
 import HC4.Valuation.CommonParameterFactorRestart
 import HC4.Valuation.StrictSmithPostTransformFace
+import HC4.Valuation.PrimitiveSmithEndpoint
 
 /-!
 # E3: exact final-resolution obligations for the top-kernel linear-power seam
