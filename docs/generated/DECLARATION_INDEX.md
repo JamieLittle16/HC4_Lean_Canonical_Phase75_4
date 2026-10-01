@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10144**.
+Distinct declaration spellings indexed: **10145**.
 
 ## Repeated declaration spellings
 
@@ -6107,6 +6107,7 @@ Distinct declaration spellings indexed: **10144**.
 - `hasAlignedRecenteredSameExponentCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition`
 - `hasBalancedSupport_mapCoeffs_iff` — `theorem` in `HC4.Toric.CoefficientDescent`
 - `hasCanonicalContinuationFromSeparatedRightWall_of_geometricData` — `theorem` in `HC4.Valuation.PointedShearContinuation`
+- `hasCommonParameterFactor_one_of_specialFiber_eq_zero` — `theorem` in `HC4.Valuation.CommonParameterFactorRestart`
 - `hasConstantBinaryKernel_of_alignLeft_stationary` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `hasConstantBinaryKernel_of_alignRight_stationary` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `hasConstantDet_pullback` — `theorem` in `HC4.LinearAlgebra.Congruence`
