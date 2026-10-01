@@ -330,22 +330,27 @@ theorem four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFi
   have hmatrix :
       quadraticFamilyHessianMatrix P =
         ((Polynomial.X : Polynomial K) ^ j) • A := by
-    ext i k
-    have hij := hQ i k
-    change quadraticFamilyHessianMatrix P i k =
-      (Polynomial.X : Polynomial K) ^ j * A i k
-    simpa [A] using hij.symm
+    funext i k
+    simpa [A] using hQ i k
   have hdetFactor :
       (quadraticFamilyHessianMatrix P).det =
         ((Polynomial.X : Polynomial K) ^ j) ^ 4 * A.det := by
     rw [hmatrix]
     simpa using Matrix.det_smul A ((Polynomial.X : Polynomial K) ^ j)
+  have hpow :
+      (Polynomial.X : Polynomial K) ^ (4 * j) =
+        ((Polynomial.X : Polynomial K) ^ j) ^ 4 := by
+    rw [show 4 * j = j * 4 by omega, pow_mul]
   have hdvd :
       Polynomial.X ^ (4 * j) ∣
         (quadraticFamilyHessianMatrix P).det := by
     refine ⟨A.det, ?_⟩
-    rw [hdetFactor]
-    simp [Nat.mul_comm, pow_mul]
+    calc
+      (quadraticFamilyHessianMatrix P).det =
+          ((Polynomial.X : Polynomial K) ^ j) ^ 4 * A.det :=
+        hdetFactor
+      _ = (Polynomial.X : Polynomial K) ^ (4 * j) * A.det := by
+        rw [hpow]
   have hdet :
       (quadraticFamilyHessianMatrix P).det =
         (Polynomial.X : Polynomial K) ^ Delta := by
