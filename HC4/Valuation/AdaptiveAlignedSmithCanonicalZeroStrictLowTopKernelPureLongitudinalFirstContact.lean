@@ -626,6 +626,116 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
       T.topKernelMarkedAxisFirstActualLayerOrder T.topKernelReesSource
       T.topKernelReesSource_hasMarkedAxisReverseWeightBound hlayer).2
 
+/-- Every monomial on the first actual marked-axis layer has ordinary degree
+strictly below the original maximal top degree.
+
+Indeed the layer is an exact transverse-weight face of the represented source.
+A monomial of ordinary degree `D` would therefore lie on the original pure
+top face `c * X₀^D`, forcing all transverse exponents to vanish.  But every
+monomial on the lower face has positive transverse degree `D - q ≥ 2`. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    ∀ d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support,
+      ordinaryDegree4 d < T.topFace.degree := by
+  intro d hd
+  let r :=
+    T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  have hfaceEq :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+      coefficient_ne_zero topFace_eq
+  have hdInit := hd
+  rw [hfaceEq] at hdInit
+  have hdSource :
+      d ∈ T.representedSpecialFiber.support := by
+    exact support_initialForm_subset
+      (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+      (r : ℤ) T.representedSpecialFiber
+      (by simpa [r] using hdInit)
+  have hle : ordinaryDegree4 d ≤ T.topFace.degree := by
+    by_cases hthree : 3 ≤ ordinaryDegree4 d
+    · have hbound :
+          NonlinearDegreeBound T.topFace.degree T.representedSpecialFiber :=
+        T.representedSpecialFiber_nonlinearDegreeBound_topFace
+      exact hbound d hdSource hthree
+    · have hD := T.topFace.degree_ge_three
+      omega
+  by_contra hnot
+  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+    omega
+  have hdTop : d ∈ T.topFace.face.support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    rw [T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
+    exact MvPolynomial.mem_support_iff.mp hdSource
+  have hpr :
+      MvSupportOnFacet .pr T.topFace.face :=
+    P.pureLongitudinal_topFaceOnFacet
+      coefficient_ne_zero topFace_eq .pr (by decide)
+  have hsp :
+      MvSupportOnFacet .sp T.topFace.face :=
+    P.pureLongitudinal_topFaceOnFacet
+      coefficient_ne_zero topFace_eq .sp (by decide)
+  have hrq :
+      MvSupportOnFacet .rq T.topFace.face :=
+    P.pureLongitudinal_topFaceOnFacet
+      coefficient_ne_zero topFace_eq .rq (by decide)
+  have h1 : d (1 : Fin 4) = 0 := by
+    have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hdTop)
+    simpa [facetOmittedCoordinate] using hz
+  have h2 : d (2 : Fin 4) = 0 := by
+    have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hdTop)
+    simpa [facetOmittedCoordinate] using hz
+  have h3 : d (3 : Fin 4) = 0 := by
+    have hz := (onFacet_toToricExponent_iff .rq d).1 (hrq d hdTop)
+    simpa [facetOmittedCoordinate] using hz
+  have hcoeff := MvPolynomial.mem_support_iff.mp hdInit
+  rw [HC4.Polynomial.coeff_initialForm] at hcoeff
+  have hweight :
+      Finsupp.weight
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ)) d =
+        (r : ℤ) := by
+    by_contra hne
+    simp [hne, r] at hcoeff
+  rw [weight_topKernelMarkedAxisIntWeight] at hweight
+  have htrans :
+      d 1 + d 2 + d 3 = r := by
+    exact_mod_cast hweight
+  rcases
+      P.pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+        coefficient_ne_zero topFace_eq with
+    ⟨hrtwo, _hrlt⟩
+  dsimp [r] at htrans hrtwo
+  rw [h1, h2, h3] at htrans
+  omega
+
+/-- The lower transverse face therefore carries a strict ordinary nonlinear
+degree cap as well. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_nonlinearDegreeBound
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    NonlinearDegreeBound
+      (T.topFace.degree - 1)
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder) := by
+  intro d hd hthree
+  have hlt :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
+      coefficient_ne_zero topFace_eq d hd
+  omega
+
 /-- The complementary transverse degree of that first actual layer is
 nontrivial and strictly smaller than the original pure top degree. -/
 theorem pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
