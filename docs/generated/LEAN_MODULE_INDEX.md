@@ -5619,7 +5619,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.17`, `A19.27`
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`, `HC4.Valuation.CanonicalSmithDefectExposure`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingLowLayerElimination`
+- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceNativeFirstContactReduction`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalSurvivingLowLayerElimination`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - Declarations: `theorem coefficientOrder_lt`, `theorem specialFiber_or_firstPositiveActual_lt`, `theorem specialFiber_or_earlierActualLayer`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesProgress`
@@ -12507,10 +12507,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact.lean`
 - Purpose: E3: balance-free first contact below a pure longitudinal top face
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FirstContactCrossFacetCarrier`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`, `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`, `HC4.Newton.FirstContactNonlinearSupport`, `HC4.Newton.FirstContactCrossFacetCarrier`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `structure PureLongitudinalBalanceFreeFirstContactData`, `inductive PureLongitudinalFirstContactFrontier`, `theorem PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo`, `inductive PureLongitudinalContactOrCodimensionTwoSource`, `theorem PureLongitudinalFirstContactFrontier.toContactOrCodimensionTwoSource`, `structure PureLongitudinalCodimensionTwoSourceData`, `theorem PureLongitudinalFirstContactFrontier.toCodimensionTwoSourceData`, `theorem exists_nonlinear_transverse_source`, `theorem pureLongitudinal_topFaceOnFacet`, `theorem topFace_degree_attained_in_source`, `theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo`, `theorem pureLongitudinal_firstContact_or_square_at_facet`, `theorem pureLongitudinalFirstContactFrontier_nonempty`
+- Declarations: `structure PureLongitudinalBalanceFreeFirstContactData`, `inductive PureLongitudinalFirstContactFrontier`, `theorem PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo`, `inductive PureLongitudinalContactOrCodimensionTwoSource`, `theorem PureLongitudinalFirstContactFrontier.toContactOrCodimensionTwoSource`, `structure PureLongitudinalCodimensionTwoSourceData`, `theorem PureLongitudinalFirstContactFrontier.toCodimensionTwoSourceData`, `theorem exists_nonlinear_transverse_source`, `theorem pureLongitudinal_topFaceOnFacet`, `theorem pureLongitudinal_markedAxis_positiveTransverseLowLayer`, `theorem topFace_degree_attained_in_source`, `theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo`, `theorem pureLongitudinal_firstContact_or_square_at_facet`, `theorem pureLongitudinalFirstContactFrontier_nonempty`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 

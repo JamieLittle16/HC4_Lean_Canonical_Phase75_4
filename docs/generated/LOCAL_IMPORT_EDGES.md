@@ -4305,6 +4305,7 @@ human architecture guide.
   - `HC4.Newton.FirstContactCrossFacetCarrier`
   - `HC4.Newton.FirstContactNonlinearSupport`
   - `HC4.Newton.FirstNonfacetLowDegreeSquareSplit`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
