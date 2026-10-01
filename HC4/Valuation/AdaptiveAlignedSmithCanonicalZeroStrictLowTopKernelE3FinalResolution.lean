@@ -328,7 +328,7 @@ theorem PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient
       T.topKernelMarkedAxisFirstContact_hasHessianDefect
   have hle :
       4 * m ≤ 4 * T.topFace.degree - 6 :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       m T.topKernelMarkedAxisFirstContactFamily hdiv
       (4 * T.topFace.degree - 6)
       T.topKernelMarkedAxisFirstContact_hasHessianDefect
