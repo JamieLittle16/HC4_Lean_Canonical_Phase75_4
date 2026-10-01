@@ -140,6 +140,41 @@ theorem exists_sourceCoefficient_minimalAdaptiveFamilyParameterOrder
   rcases Finset.mem_image.mp hmem with ⟨d, hd, heq⟩
   exact ⟨d, hd, heq⟩
 
+/-- If the original family has zero special fibre, then the finite minimum
+of its nonzero coefficient orders is strictly positive. -/
+theorem minimalAdaptiveFamilyParameterOrder_pos_of_specialFiber_eq_zero
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hne : P.support.Nonempty)
+    (hzero : polynomialFamilySpecialFiber P = 0) :
+    0 < minimalAdaptiveFamilyParameterOrder P hne := by
+  rcases exists_sourceCoefficient_minimalAdaptiveFamilyParameterOrder P hne with
+    ⟨d, hd, horder⟩
+  by_contra hnot
+  have hmin0 : minimalAdaptiveFamilyParameterOrder P hne = 0 :=
+    Nat.eq_zero_of_not_pos hnot
+  have hdOrder0 : adaptiveSourceCoefficientParameterOrder P d = 0 := by
+    rw [horder, hmin0]
+  have hfactor :=
+    adaptiveSourceCoefficient_exactFactorization P hd
+  have hcoeffEq :
+      MvPolynomial.coeff d P =
+        adaptiveSourceCoefficientPrimitivePart P d := by
+    simpa [hdOrder0] using hfactor
+  have hprimitive :
+      Polynomial.constantCoeff
+          (adaptiveSourceCoefficientPrimitivePart P d) ≠ 0 :=
+    adaptiveSourceCoefficientPrimitivePart_constantCoeff_ne_zero P hd
+  have hconst :
+      Polynomial.constantCoeff (MvPolynomial.coeff d P) ≠ 0 := by
+    rw [hcoeffEq]
+    exact hprimitive
+  have hspecial :
+      d ∈ (polynomialFamilySpecialFiber P).support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    simpa [coeff_polynomialFamilySpecialFiber] using hconst
+  rw [hzero] at hspecial
+  simp at hspecial
+
 /-- The common parameter order is a lower bound for every nonzero source
 coefficient order. -/
 theorem minimalAdaptiveFamilyParameterOrder_le
