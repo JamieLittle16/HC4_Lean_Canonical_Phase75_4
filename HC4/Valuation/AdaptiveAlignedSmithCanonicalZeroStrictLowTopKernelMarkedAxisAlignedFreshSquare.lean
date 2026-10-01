@@ -198,8 +198,7 @@ theorem canonicalSquareWeight_squareExponent
         (directClosingCanonicalSquareWeight
           (4 * T.topFace.degree - 6) D.ell)
         D.squareExponent = 0 := by
-  simp [squareExponent, directClosingCanonicalSquareWeight,
-    Finsupp.weight_single]
+  simp [squareExponent]
 
 /-- Ramifying and pulling back the marked right section is automatically
 integral for the canonical square weight: coordinate zero has weight zero,
