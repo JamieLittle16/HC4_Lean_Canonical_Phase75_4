@@ -1875,7 +1875,7 @@ theorem oddWSeparatedRightWall_strictCanonicalRestart
       I hIhom hcommon
   have hbudget :
       4 * 2 ≤ Delta + 6 :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K) 2 I hcommon (Delta + 6) hIdef
   have hDelta : 2 ≤ Delta := by
     omega
