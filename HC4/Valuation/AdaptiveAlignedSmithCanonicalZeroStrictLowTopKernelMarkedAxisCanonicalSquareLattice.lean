@@ -723,8 +723,7 @@ theorem pureAxis_or_singleComplement
   have hdeg := W.ordinaryDegree_eq_topFaceDegree
   have hcomp := W.complementDegree_le_one
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
-  let ell : Fin 4 := D.ell
-  have hEll : D.ell = ell := rfl
+  generalize hEll : D.ell = ell at hcomp ⊢
   fin_cases ell
   · exact (D.ell_ne_zero hEll).elim
   · have hsum : W.exponent 2 + W.exponent 3 ≤ 1 := by
@@ -803,6 +802,8 @@ theorem pureAxis_or_singleComplement
           simp [hEll, h0, HC4.Polynomial.ordinaryDegree4,
             Fin.sum_univ_four] at hdeg hsum ⊢ <;> omega
 
+end TopKernelMarkedAxisCanonicalSquareZeroOrderWall
+
 /-- Exact complementary-degree face carried by the surviving zero-order
 marked-axis square wall.  Because the square axis is transverse, there is only
 the transverse branch of the older canonical-wall face construction. -/
@@ -866,10 +867,10 @@ theorem toWallFaceData
   have hface_ne : face ≠ 0 := by
     exact
       AdaptiveAlignedSmithRankOneClosingSourceCarrier.initialForm_ne_zero_of_support_weight
-        F0
         (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
           D.ell)
         (-(m : ℤ))
+        F0
         W.exponent
         W.mem_specialFiber_support
         hweight
