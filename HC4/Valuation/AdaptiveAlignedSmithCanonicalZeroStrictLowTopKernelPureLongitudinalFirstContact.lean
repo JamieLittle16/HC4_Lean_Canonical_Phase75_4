@@ -8,6 +8,7 @@ import HC4.Newton.FiniteSupportSingularBoundaryVertex
 import HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel
 import HC4.Newton.FiniteSupportSingularBoundaryKernelOpening
 import HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification
+import HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -858,6 +859,46 @@ theorem pureLongitudinal_lowerFirstOpening_rankTwo_or_linearPower_of_kernel_zero
       ratio := ratio
       eq_power := ha
     }⟩
+
+/-- A longitudinal first kernel-opening step on a nonlinear lower face is
+already completely rank-two resolved: either the child itself has a nonzero
+Hessian `2 x 2` minor, or its homogeneous linear-power alternative opens to
+rank-two geometry at the canonical first kernel-row break. -/
+theorem pureLongitudinal_lowerFirstOpening_longitudinal_rankTwoResolved
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
+    (N : P.PureLongitudinalMarkedAxisLowerNonlinearData)
+    (D : CanonicalCoordinateMaxKernelOpeningData
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder))
+    (hk : D.kernelCoordinate = (0 : Fin 4)) :
+    D.ChildHessianRankTwoWitness ∨
+      ∃ LP :
+          D.ChildLinearPowerData
+            (T.topFace.degree -
+              T.topKernelMarkedAxisFirstActualLayerOrder),
+        let B := kernelLastFamilyHessianFourBlock
+          D.reverseReesFamily D.kernelCoordinate
+        let hrow := D.kernelLastBlock_kernelRow_ne_zero
+          N.support_degree_ge_three
+        let j := firstFourBlockKernelRowBreakOrder B hrow
+        RankOneSpecialFiberFirstBreakOutcome B j := by
+  rcases
+      P.pureLongitudinal_lowerFirstOpening_rankTwo_or_linearPower_of_kernel_zero
+        coefficient_ne_zero topFace_eq D hk with
+    htwo | hpower
+  · exact Or.inl htwo
+  · rcases hpower with ⟨LP⟩
+    right
+    refine ⟨LP, ?_⟩
+    exact LP.firstBreakRankTwoOutcome
+      N.level_ge_three N.support_degree_ge_three
 
 /-- The complementary transverse degree of that first actual layer is
 nontrivial and strictly smaller than the original pure top degree. -/
