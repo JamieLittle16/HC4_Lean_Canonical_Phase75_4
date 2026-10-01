@@ -2,6 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
+import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -530,6 +531,115 @@ theorem pureLongitudinal_markedAxis_firstActualLayerOrder_lt_topCoefficientOrder
     P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
       coefficient_ne_zero topFace_eq
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
+  omega
+
+/-- Minimality of the first actual marked-axis layer improves the original
+marked-axis reverse-weight bound from level `D` to level `D-q`.  Every
+represented-source monomial occurs in the reverse-Rees family at parameter
+order `D - wt(d)`; the zero special fibre makes that order positive, and the
+least-positive-layer property forces it to be at least `q`. -/
+theorem pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    HasReverseWeightBound
+      topKernelMarkedAxisNatWeight
+      (T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder)
+      T.topKernelReesSource := by
+  intro d hd
+  let q := T.topKernelMarkedAxisFirstActualLayerOrder
+  let n := T.topFace.degree -
+    Finsupp.weight topKernelMarkedAxisNatWeight d
+  have hsourceCoeff :
+      MvPolynomial.coeff d T.topKernelReesSource ≠ 0 :=
+    MvPolynomial.mem_support_iff.mp hd
+  have hboundD :
+      Finsupp.weight topKernelMarkedAxisNatWeight d ≤
+        T.topFace.degree :=
+    T.topKernelReesSource_hasMarkedAxisReverseWeightBound d hd
+  have hfamilyCoeff :
+      MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily =
+        Polynomial.X ^ n *
+          Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
+    rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
+      reverseWeightedReesFamily_coeff, if_pos hd]
+    rfl
+  have hcoeffn :
+      (MvPolynomial.coeff d
+        T.topKernelMarkedAxisFirstContactFamily).coeff n ≠ 0 := by
+    rw [hfamilyCoeff]
+    simpa [n] using hsourceCoeff
+  have hspecial :=
+    P.pureLongitudinal_markedAxis_specialFiber_eq_zero
+      coefficient_ne_zero topFace_eq
+  have hdiv :
+      Polynomial.X ^ q ∣
+        MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily := by
+    simpa [q, topKernelMarkedAxisFirstActualLayerOrder] using
+      sourceCoefficient_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+        hspecial d
+  rw [Polynomial.X_pow_dvd_iff] at hdiv
+  have hqle : q ≤ n := by
+    by_contra hnot
+    exact hcoeffn (hdiv n (Nat.lt_of_not_ge hnot))
+  dsimp [q, n] at hqle ⊢
+  omega
+
+/-- The first actual marked-axis layer is therefore an exact lower
+transverse-weight initial form of the represented determinant-one source. -/
+theorem pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder =
+      initialForm
+        (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+        ((T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder : ℕ) : ℤ)
+        T.topKernelReesSource := by
+  have hlayer :
+      familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
+    firstPositiveActualParameterLayer_ne_zero
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+  rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees] at hlayer ⊢
+  exact
+    (reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
+      topKernelMarkedAxisNatWeight T.topFace.degree
+      T.topKernelMarkedAxisFirstActualLayerOrder T.topKernelReesSource
+      T.topKernelReesSource_hasMarkedAxisReverseWeightBound hlayer).2
+
+/-- The complementary transverse degree of that first actual layer is
+nontrivial and strictly smaller than the original pure top degree. -/
+theorem pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    2 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder ∧
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder <
+        T.topFace.degree := by
+  have hqle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      coefficient_ne_zero topFace_eq
+  have hqpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
+  have hD := T.topFace.degree_ge_three
   omega
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
