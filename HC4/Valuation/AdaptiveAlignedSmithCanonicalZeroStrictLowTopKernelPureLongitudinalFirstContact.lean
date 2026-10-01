@@ -6,6 +6,7 @@ import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.MongeAmpere.MaximalInitial
 import HC4.Newton.FiniteSupportSingularBoundaryVertex
 import HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel
+import HC4.Newton.FiniteSupportSingularBoundaryKernelOpening
 import HC4.Newton.FirstNonfacetLowDegreeSquareSplit
 import HC4.Newton.FirstContactNonlinearSupport
 import HC4.Newton.FirstContactCrossFacetCarrier
@@ -854,8 +855,8 @@ noncomputable def PureLongitudinalMarkedAxisLowerNonlinearData.vertex
 The quadratic lower face is retained explicitly.  At nonlinear degree, the
 canonical exposed boundary vertex is either rank three on one coordinate
 facet, or codimension two; in the latter case the canonical coordinate-max
-construction gives a literal coordinate kernel on its retained singular
-carrier. -/
+construction retains either a kernel on the whole lower face or the first
+exact coordinate-max opening where that kernel appears. -/
 inductive PureLongitudinalMarkedAxisLowerBoundaryFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
   | quadratic
@@ -865,18 +866,19 @@ inductive PureLongitudinalMarkedAxisLowerBoundaryFrontier
       (data : P.PureLongitudinalMarkedAxisLowerNonlinearData)
       (facet : ToricFacet)
       (rankThree : MvRankThreeOnFacet facet data.vertex.exponent)
-  | coordinateKernel
+  | kernelOpening
       (data : P.PureLongitudinalMarkedAxisLowerNonlinearData)
-      (kernelCoordinate : Fin 3)
-      (kernel :
-        MvPolynomial.pderiv (Fin.castSucc kernelCoordinate)
-          data.vertex.carrier = 0)
+      (outcome :
+        CanonicalCodimensionTwoKernelOutcome
+          (familyParameterLayer
+            T.topKernelMarkedAxisFirstContactFamily
+            T.topKernelMarkedAxisFirstActualLayerOrder))
 
 /-- **Pure-longitudinal lower-face rank/kernel compression.**
 
 The first actual marked-axis source layer is either transverse quadratic, or
 its genuinely nonlinear singular boundary geometry already reaches a
-rank-three facet or a literal carrier coordinate kernel.  No balance relation,
+rank-three facet or the canonical top-kernel/first-opening packet.  No balance relation,
 terminal cocharacter, or repair progress is used. -/
 theorem pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -922,8 +924,8 @@ theorem pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
     rcases hsplit with hthree | hcodim
     · rcases hthree with ⟨facet, hfacet⟩
       exact ⟨.rankThree N facet hfacet⟩
-    · have hkernel :=
-        exposedSingularNonlinearBoundaryVertex_carrier_has_coordinateKernel_of_codimensionTwo
+    · have houtcome :=
+        exposedSingularNonlinearBoundaryVertex_codimensionTwoKernelOutcome
           (familyParameterLayer
             T.topKernelMarkedAxisFirstContactFamily
             T.topKernelMarkedAxisFirstActualLayerOrder)
@@ -931,9 +933,7 @@ theorem pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
           (by
             simpa [PureLongitudinalMarkedAxisLowerNonlinearData.vertex]
               using hcodim)
-      rcases hkernel with ⟨i, hi⟩
-      exact ⟨.coordinateKernel N i (by
-        simpa [PureLongitudinalMarkedAxisLowerNonlinearData.vertex] using hi)⟩
+      exact ⟨.kernelOpening N houtcome⟩
 
 /-- The actual maximal ordinary degree is attained in the represented source. -/
 theorem topFace_degree_attained_in_source
