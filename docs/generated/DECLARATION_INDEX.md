@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10149**.
+Distinct declaration spellings indexed: **10150**.
 
 ## Repeated declaration spellings
 
@@ -3776,6 +3776,7 @@ Distinct declaration spellings indexed: **10149**.
 - `alignedSmith_coefficientDivisibility_of_nonnegative` — `theorem` in `HC4.Valuation.AlignedSmithFirstStop`
 - `alignedSmith_commonFactor_of_margin` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `alignedSmith_commonFactor_two_mul_of_delta_ge_two` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
+- `alignedSmith_four_mul_le_defect_of_commonParameterFactor` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `alignedSmith_genuineEndpoint_dichotomy` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
 - `alignedSmith_primitiveEndpoint_dichotomy` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `alignedSmith_sectionDivisibility_of_nonnegative` — `theorem` in `HC4.Valuation.AlignedSmithFirstStop`
