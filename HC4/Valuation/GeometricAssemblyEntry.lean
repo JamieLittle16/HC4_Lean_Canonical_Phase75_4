@@ -762,7 +762,7 @@ theorem separatedRightSectionWall_hasHessianDefect_twenty_mul_sub_two
   have hbudget :
       4 * 10 ≤
         alignedSmithRamificationIndex * Delta :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K) 10 Q hcommon
       (alignedSmithRamificationIndex * Delta)
       hQdef
@@ -1153,7 +1153,7 @@ theorem separatedYZSectionWall_hasHessianDefect_twenty_mul_sub_four
   have hbudget :
       4 * 20 ≤
         alignedSmithRamificationIndex * Delta :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K) 20 Q hcommon
       (alignedSmithRamificationIndex * Delta)
       hQdef
