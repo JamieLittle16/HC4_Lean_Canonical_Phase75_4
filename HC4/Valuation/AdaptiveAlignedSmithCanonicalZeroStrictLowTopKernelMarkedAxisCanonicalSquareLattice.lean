@@ -1032,7 +1032,7 @@ structure TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData
 /-- Promote the rank-at-most-one Hessian packet to the same literal
 affine-gradient normal form used by the mature low-dimensional stationary
 chain. -/
-theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData.toGradientData
+noncomputable def TopKernelMarkedAxisCanonicalSquareLowDimensionalWallFaceData.toGradientData
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
     {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
@@ -1059,7 +1059,7 @@ structure TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData
 
 /-- Promote the derivative-level marked-axis core to the exact support normal
 form used by the mature planar reduction. -/
-theorem TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAffineData
+noncomputable def TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAffineData
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
     {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
@@ -1112,7 +1112,7 @@ inductive TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData
 
 /-- The marked-axis planar-affine face is either a genuine degree-zero
 base-plane core or completely Hessian-invisible affine noise. -/
-theorem TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toStationaryPlanarCore
+noncomputable def TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toStationaryPlanarCore
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
     {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
@@ -1246,7 +1246,7 @@ structure TopKernelMarkedAxisCanonicalSquareZeroJetStationaryPlanarCoreData
 
 /-- Remove the impossible degree-one affine tail from the marked-axis
 stationary split. -/
-theorem TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData.toZeroJetPlanarCore
+noncomputable def TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData.toZeroJetPlanarCore
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
     {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
@@ -1419,7 +1419,7 @@ theorem TopKernelMarkedAxisCanonicalSquareBinaryStationaryCoreData.terminalNorma
   cases F with
   | lowDegree n H hn H_eq H_ne_zero maximal =>
       have hn0 :=
-        AdaptiveAlignedSmithRankOneClosingSourceCarrier.binaryStationaryLowDegree_zeroJet_forces_degree_zero
+        binaryStationaryLowDegree_zeroJet_forces_degree_zero
           B.binaryFace n H hn H_eq H_ne_zero B.binaryFace_linear_zero
       subst n
       exact ⟨.degreeZero H H_eq H_ne_zero maximal⟩
