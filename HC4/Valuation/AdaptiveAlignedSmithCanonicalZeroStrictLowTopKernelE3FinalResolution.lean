@@ -100,17 +100,15 @@ noncomputable def
 
 Unlike the older source-rank-three compression, this interface consumes the
 pure-longitudinal marked-axis constructor *before* entering the generic C/D
-fallback.  That branch now retains either an honest balance-free first-contact
-cross-facet carrier or a literal codimension-two source exponent.  All other
-E2 constructors retain the terminal-aware C/D timing frontier. -/
+fallback.  The balance-free first-contact analysis has now been source-lifted
+far enough that both of its outcomes give a literal represented-source
+codimension-two exponent.  All other E2 constructors retain the terminal-aware
+C/D timing frontier. -/
 inductive TopKernelLinearPowerE3MarkedAwareFrontier
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1)
-  | pureFirstContact
-      (data : P.PureLongitudinalBalanceFreeFirstContactData)
   | pureCodimensionTwoSource
       (d : Fin 4 →₀ ℕ)
       (mem_source : d ∈ T.representedSpecialFiber.support)
-      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
       (boundary : MvExponentOnCodimensionTwoBoundary d)
   | sourcePointThreeByThree
       (geometry : P.PositiveTailRepresentedSourceThreeByThreePointGeometry)
@@ -164,12 +162,9 @@ theorem topKernelLinearPowerE3MarkedAwareFrontier_nonempty
   | pureLongitudinal coefficient hcoeff hface hk cd =>
       rcases P.pureLongitudinalFirstContactFrontier_nonempty
           hcoeff hface with ⟨Q⟩
-      rcases Q.toContactOrCodimensionTwoSource P with ⟨R⟩
-      cases R with
-      | firstContact data =>
-          exact ⟨.pureFirstContact data⟩
-      | codimensionTwoSource d hd hdeg hboundary =>
-          exact ⟨.pureCodimensionTwoSource d hd hdeg hboundary⟩
+      rcases Q.toCodimensionTwoSourceData P with ⟨R⟩
+      exact ⟨.pureCodimensionTwoSource
+        R.exponent R.mem_source R.boundary⟩
   | fullFacetCodimensionTwo hfacet hboundary cd =>
       exact hfallback
         (.fullFacetCodimensionTwo hfacet hboundary cd)
@@ -191,12 +186,12 @@ noncomputable def topKernelLinearPowerE3MarkedAwareFrontier
 
 /-- **Marked-aware single-obligation E3 assembly.**
 
-Even after retaining the pure-longitudinal balance-free first-contact branch,
-the literal codimension-two source-square branch, and the timing-rich exact
-closing, raw defect zero still supplies the same canonical exact-active source
-chart independently of which marked-aware constructor was reached.  Therefore,
-if one is willing to forget the extra timing, the entire marked-aware frontier
-has exactly the same single unresolved polynomial-level obligation as the older
+The pure-longitudinal branch now retains only literal represented-source
+codimension-two support, while the timing-rich exact closing remains explicit.
+Raw defect zero still supplies the same canonical exact-active source chart
+independently of which marked-aware constructor was reached.  Therefore, if one
+is willing to forget the extra timing, the entire marked-aware frontier has
+exactly the same single unresolved polynomial-level obligation as the older
 source-rank-three compression: resolve one nonzero constant 3x3 source minor. -/
 theorem exists_finalResolution_of_e3MarkedAwareConstantExtractor
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
@@ -214,9 +209,7 @@ theorem exists_finalResolution_of_e3MarkedAwareConstantExtractor
     exact X.sourceConstant A Q
   rcases P.topKernelLinearPowerE3MarkedAwareFrontier_nonempty with ⟨G⟩
   cases G with
-  | pureFirstContact _data =>
-      exact hcanonical
-  | pureCodimensionTwoSource _d _hd _hdeg _hboundary =>
+  | pureCodimensionTwoSource _d _hd _hboundary =>
       exact hcanonical
   | sourcePointThreeByThree _Q =>
       exact hcanonical
