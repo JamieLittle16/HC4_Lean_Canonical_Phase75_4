@@ -81,17 +81,16 @@ theorem represented_transverseLinear_natDegree_le_one_of_nonlinearLongitudinal
     simp [d]
   have hjone : d j.succ = 1 := by
     simp [d]
+  have hn2 : 2 ≤ n := by omega
+  have hsumge :
+      d (0 : Fin 4) + d j.succ ≤
+        d 0 + d 1 + d 2 + d 3 := by
+    fin_cases j <;> simp <;> omega
   have hdeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
     simp only [HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
-    fin_cases j <;> omega
+    omega
   have haxis := hconf d hd hdeg
-  fin_cases j
-  · have hjzero : d (1 : Fin 4) = 0 := haxis.1
-    exact (by omega)
-  · have hjzero : d (2 : Fin 4) = 0 := haxis.2.1
-    exact (by omega)
-  · have hjzero : d (3 : Fin 4) = 0 := haxis.2.2
-    exact (by omega)
+  fin_cases j <;> simp_all
 
 /-- The represented blocker retains the normalized zero-left gradient on the
 same literal special fibre used by the final seam. -/
