@@ -1,9 +1,13 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerE2Frontier
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamLongitudinalConfinement
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesLowLayerOrder
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality
 import HC4.Valuation.BoundedReverseWeightedReesLayerSupport
 import HC4.MongeAmpere.MaximalInitial
+import HC4.Polynomial.FourExponent
+import HC4.Polynomial.WeightedInitial
+import HC4.Newton.ScaledContact
 import HC4.Newton.FiniteSupportSingularBoundaryVertex
 import HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel
 import HC4.Newton.FiniteSupportSingularBoundaryKernelOpening
@@ -70,36 +74,36 @@ structure PureLongitudinalBalanceFreeFirstContactData
         (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree
   facet : ToricFacet
   omitted_ne_zero :
-    facetOmittedCoordinate facet ≠ (0 : Fin 4)
+    HC4.Polynomial.facetOmittedCoordinate facet ≠ (0 : Fin 4)
   scale : ℕ
   bump : ℕ
   carrier : MvPolynomial (Fin 4) K
   carrier_eq :
     carrier =
-      initialForm
-        (scaledContactWeight (facetOmittedCoordinate facet) scale bump)
+      HC4.Polynomial.initialForm
+        (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate facet) scale bump)
         ((scale * T.topFace.degree : ℕ) : ℤ)
         T.representedSpecialFiber
   scale_pos : 0 < scale
   bump_pos : 0 < bump
   source_weight_bound :
-    IsWeightLE
-      (scaledContactWeight (facetOmittedCoordinate facet) scale bump)
+    HC4.Polynomial.IsWeightLE
+      (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate facet) scale bump)
       ((scale * T.topFace.degree : ℕ) : ℤ)
       T.representedSpecialFiber
-  hessian_zero : hessianDeterminant carrier = 0
+  hessian_zero : HC4.Polynomial.hessianDeterminant carrier = 0
   nonlinear :
-    ∀ d ∈ carrier.support, 3 ≤ ordinaryDegree4 d
+    ∀ d ∈ carrier.support, 3 ≤ HC4.Polynomial.ordinaryDegree4 d
   not_on_starting_facet :
-    ¬ MvSupportOnFacet facet carrier
+    ¬ HC4.Polynomial.MvSupportOnFacet facet carrier
   crossFacet :
     CrossFacetInitialData carrier
-      (crossFacetOppositeCoordinate (facetOmittedCoordinate facet))
-      (facetOmittedCoordinate facet)
+      (crossFacetOppositeCoordinate (HC4.Polynomial.facetOmittedCoordinate facet))
+      (HC4.Polynomial.facetOmittedCoordinate facet)
   contact :
     ∀ d ∈ carrier.support,
       scaledContactExponentWeight
-        (facetOmittedCoordinate facet) scale bump d =
+        (HC4.Polynomial.facetOmittedCoordinate facet) scale bump d =
         ((scale * T.topFace.degree : ℕ) : ℤ)
 
 /-- Exhaustive balance-free frontier for the pure longitudinal top-face case. -/
@@ -110,14 +114,14 @@ inductive PureLongitudinalFirstContactFrontier
   | quadraticSquare
       (facet : ToricFacet)
       (omitted_ne_zero :
-        facetOmittedCoordinate facet ≠ (0 : Fin 4))
+        HC4.Polynomial.facetOmittedCoordinate facet ≠ (0 : Fin 4))
       (d : Fin 4 →₀ ℕ)
       (mem_source : d ∈ T.representedSpecialFiber.support)
-      (degree_two : ordinaryDegree4 d = 2)
-      (omitted_two : d (facetOmittedCoordinate facet) = 2)
+      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
+      (omitted_two : d (HC4.Polynomial.facetOmittedCoordinate facet) = 2)
       (pure :
         ∀ i : Fin 4,
-          i ≠ facetOmittedCoordinate facet → d i = 0)
+          i ≠ HC4.Polynomial.facetOmittedCoordinate facet → d i = 0)
 
 /-- The low-degree square exception is automatically a genuine
 codimension-two source exponent: all coordinates other than the omitted
@@ -126,10 +130,10 @@ theorem PureLongitudinalFirstContactFrontier.quadraticSquare_codimensionTwo
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     {facet : ToricFacet}
     {d : Fin 4 →₀ ℕ}
-    (homit : facetOmittedCoordinate facet ≠ (0 : Fin 4))
+    (homit : HC4.Polynomial.facetOmittedCoordinate facet ≠ (0 : Fin 4))
     (hpure :
       ∀ i : Fin 4,
-        i ≠ facetOmittedCoordinate facet → d i = 0) :
+        i ≠ HC4.Polynomial.facetOmittedCoordinate facet → d i = 0) :
     MvExponentOnCodimensionTwoBoundary d := by
   cases facet with
   | qs =>
@@ -157,7 +161,7 @@ inductive PureLongitudinalContactOrCodimensionTwoSource
   | codimensionTwoSource
       (d : Fin 4 →₀ ℕ)
       (mem_source : d ∈ T.representedSpecialFiber.support)
-      (degree_two : ordinaryDegree4 d = 2)
+      (degree_two : HC4.Polynomial.ordinaryDegree4 d = 2)
       (boundary : MvExponentOnCodimensionTwoBoundary d)
 
 /-- Forget only the irrelevant identity of the square facet; retain either the
@@ -212,7 +216,7 @@ theorem exists_nonlinear_transverse_source
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
     ∃ d ∈ T.representedSpecialFiber.support,
-      3 ≤ ordinaryDegree4 d ∧
+      3 ≤ HC4.Polynomial.ordinaryDegree4 d ∧
         (0 < d (1 : Fin 4) ∨
           0 < d (2 : Fin 4) ∨
           0 < d (3 : Fin 4)) := by
@@ -221,9 +225,7 @@ theorem exists_nonlinear_transverse_source
   have hconf : T.RepresentedNonlinearSupportLongitudinal := by
     intro d hd hdeg
     have h := hnone d hd hdeg
-    exact ⟨Nat.eq_zero_of_not_pos h.1,
-      Nat.eq_zero_of_not_pos h.2.1,
-      Nat.eq_zero_of_not_pos h.2.2⟩
+    exact ⟨by omega, by omega, by omega⟩
   exact T.impossible_of_representedNonlinearSupportLongitudinal hconf
 
 /-- A pure longitudinal top face lies on every coordinate facet whose omitted
@@ -237,17 +239,17 @@ theorem pureLongitudinal_topFaceOnFacet
         MvPolynomial.C coefficient *
           (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
     (facet : ToricFacet)
-    (homit : facetOmittedCoordinate facet ≠ (0 : Fin 4)) :
-    MvSupportOnFacet facet T.topFace.face := by
+    (homit : HC4.Polynomial.facetOmittedCoordinate facet ≠ (0 : Fin 4)) :
+    HC4.Polynomial.MvSupportOnFacet facet T.topFace.face := by
   have hderiv :
-      MvPolynomial.pderiv (facetOmittedCoordinate facet)
+      MvPolynomial.pderiv (HC4.Polynomial.facetOmittedCoordinate facet)
           T.topFace.face = 0 := by
     rw [topFace_eq, MvPolynomial.pderiv_C_mul]
     simp [homit]
   intro d hd
   rw [onFacet_toToricExponent_iff]
   exact exponent_eq_zero_of_pderiv_eq_zero
-    (facetOmittedCoordinate facet) T.topFace.face hderiv d
+    (HC4.Polynomial.facetOmittedCoordinate facet) T.topFace.face hderiv d
     (MvPolynomial.mem_support_iff.mp hd)
 
 /-- In the pure-longitudinal branch, the top monomial itself is a concrete
@@ -273,12 +275,12 @@ theorem pureLongitudinal_markedAxis_positiveTransverseLowLayer
         T.topKernelMarkedAxisFirstContactFamily) := by
   let d : Fin 4 →₀ ℕ :=
     Finsupp.single (0 : Fin 4) T.topFace.degree
-  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
-    simp [d, ordinaryDegree4, Fin.sum_univ_four]
+  have hdeg : HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
+    simp [d, HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
   have hdTop :
       MvPolynomial.coeff d T.topFace.face ≠ 0 := by
-    rw [topFace_eq]
-    simpa [d] using coefficient_ne_zero
+    rw [topFace_eq, MvPolynomial.coeff_C_mul]
+    simpa [d, MvPolynomial.coeff_X_pow] using coefficient_ne_zero
   have hdSourceCoeff :
       MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
     rw [← T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
@@ -363,12 +365,12 @@ theorem pureLongitudinal_markedAxis_topCoefficientOrder_eq
       T.topFace.degree := by
   let d : Fin 4 →₀ ℕ :=
     Finsupp.single (0 : Fin 4) T.topFace.degree
-  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
-    simp [d, ordinaryDegree4, Fin.sum_univ_four]
+  have hdeg : HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
+    simp [d, HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four]
   have hdTop :
       MvPolynomial.coeff d T.topFace.face ≠ 0 := by
-    rw [topFace_eq]
-    simpa [d] using coefficient_ne_zero
+    rw [topFace_eq, MvPolynomial.coeff_C_mul]
+    simpa [d, MvPolynomial.coeff_X_pow] using coefficient_ne_zero
   have hdSourceCoeff :
       MvPolynomial.coeff d T.topKernelReesSource ≠ 0 := by
     rw [← T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
@@ -457,30 +459,30 @@ theorem pureLongitudinal_markedAxis_specialFiber_eq_zero
       (T.topKernelMarkedAxisFirstContact_specialFiber_support_iff_topFace_zero
         d).1 hd
     have hpr :
-        MvSupportOnFacet .pr T.topFace.face :=
+        HC4.Polynomial.MvSupportOnFacet .pr T.topFace.face :=
       P.pureLongitudinal_topFaceOnFacet
         coefficient_ne_zero topFace_eq .pr (by decide)
     have hsp :
-        MvSupportOnFacet .sp T.topFace.face :=
+        HC4.Polynomial.MvSupportOnFacet .sp T.topFace.face :=
       P.pureLongitudinal_topFaceOnFacet
         coefficient_ne_zero topFace_eq .sp (by decide)
     have hrq :
-        MvSupportOnFacet .rq T.topFace.face :=
+        HC4.Polynomial.MvSupportOnFacet .rq T.topFace.face :=
       P.pureLongitudinal_topFaceOnFacet
         coefficient_ne_zero topFace_eq .rq (by decide)
     have h1 : d (1 : Fin 4) = 0 := by
       have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hslice.1)
-      simpa [facetOmittedCoordinate] using hz
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
     have h2 : d (2 : Fin 4) = 0 := by
       have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hslice.1)
-      simpa [facetOmittedCoordinate] using hz
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
     have h3 : d (3 : Fin 4) = 0 := by
       have hz := (onFacet_toToricExponent_iff .rq d).1 (hrq d hslice.1)
-      simpa [facetOmittedCoordinate] using hz
+      simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
     have hdeg :=
       T.topFace.face_support_ordinaryDegree_eq hslice.1
     have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
-    simp [ordinaryDegree4, Fin.sum_univ_four,
+    simp [HC4.Polynomial.ordinaryDegree4, Fin.sum_univ_four,
       hslice.2, h1, h2, h3] at hdeg
     omega
   rw [MvPolynomial.notMem_support_iff.mp hnot]
@@ -504,8 +506,8 @@ theorem pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
   have hfour :=
     four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFiber_zero
       T.topKernelMarkedAxisFirstContactFamily
-      T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
-      T.topKernelMarkedAxisFirstContactFamily_hasHessianDefect
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+      T.topKernelMarkedAxisFirstContact_hasHessianDefect
       hspecial
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
   change
@@ -588,7 +590,7 @@ theorem pureLongitudinal_markedAxis_firstActual_sourceWeightBound
     simpa [q, topKernelMarkedAxisFirstActualLayerOrder] using
       sourceCoefficient_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero
         T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
         hspecial d
   rw [Polynomial.X_pow_dvd_iff] at hdiv
   have hqle : q ≤ n := by
@@ -610,7 +612,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
     familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder =
-      initialForm
+      HC4.Polynomial.initialForm
         (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
         ((T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder : ℕ) : ℤ)
         T.topKernelReesSource := by
@@ -620,7 +622,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
           T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
     firstPositiveActualParameterLayer_ne_zero
       T.topKernelMarkedAxisFirstContactFamily
-      T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
   rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees] at hlayer ⊢
   exact
     (reverseWeightedReesFamily_parameterLayer_eq_initialForm_of_ne_zero
@@ -646,7 +648,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
     ∀ d ∈ (familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder).support,
-      ordinaryDegree4 d < T.topFace.degree := by
+      HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree := by
   intro d hd
   let r :=
     T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
@@ -661,8 +663,8 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
       (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
       (r : ℤ) T.representedSpecialFiber
       (by simpa [r] using hdInit)
-  have hle : ordinaryDegree4 d ≤ T.topFace.degree := by
-    by_cases hthree : 3 ≤ ordinaryDegree4 d
+  have hle : HC4.Polynomial.ordinaryDegree4 d ≤ T.topFace.degree := by
+    by_cases hthree : 3 ≤ HC4.Polynomial.ordinaryDegree4 d
     · have hbound :
           NonlinearDegreeBound T.topFace.degree T.representedSpecialFiber :=
         T.representedSpecialFiber_nonlinearDegreeBound_topFace
@@ -670,33 +672,33 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
     · have hD := T.topFace.degree_ge_three
       omega
   by_contra hnot
-  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+  have hdeg : HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
     omega
   have hdTop : d ∈ T.topFace.face.support := by
     apply MvPolynomial.mem_support_iff.mpr
     rw [T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
     exact MvPolynomial.mem_support_iff.mp hdSource
   have hpr :
-      MvSupportOnFacet .pr T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet .pr T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       coefficient_ne_zero topFace_eq .pr (by decide)
   have hsp :
-      MvSupportOnFacet .sp T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet .sp T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       coefficient_ne_zero topFace_eq .sp (by decide)
   have hrq :
-      MvSupportOnFacet .rq T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet .rq T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       coefficient_ne_zero topFace_eq .rq (by decide)
   have h1 : d (1 : Fin 4) = 0 := by
     have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hdTop)
-    simpa [facetOmittedCoordinate] using hz
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
   have h2 : d (2 : Fin 4) = 0 := by
     have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hdTop)
-    simpa [facetOmittedCoordinate] using hz
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
   have h3 : d (3 : Fin 4) = 0 := by
     have hz := (onFacet_toToricExponent_iff .rq d).1 (hrq d hdTop)
-    simpa [facetOmittedCoordinate] using hz
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
   have hcoeff := MvPolynomial.mem_support_iff.mp hdInit
   rw [HC4.Polynomial.coeff_initialForm] at hcoeff
   have hweight :
@@ -807,7 +809,7 @@ theorem pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero
   have h0 : d (0 : Fin 4) = 0 :=
     exponent_eq_zero_of_pderiv_eq_zero
       (0 : Fin 4) D.child hkernel0 d hdcoeff
-  unfold ordinaryDegree4
+  unfold HC4.Polynomial.ordinaryDegree4
   rw [Fin.sum_univ_four, h0]
   omega
 
@@ -932,7 +934,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
       T.topFace.face =
         MvPolynomial.C coefficient *
           (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
-    hessianDeterminant
+    HC4.Polynomial.hessianDeterminant
       (familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder) = 0 := by
@@ -1006,7 +1008,7 @@ theorem pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty
             T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
       firstPositiveActualParameterLayer_ne_zero
         T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
     have hzero :=
       P.pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
         coefficient_ne_zero topFace_eq
@@ -1014,7 +1016,7 @@ theorem pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty
         ∀ d ∈ (familyParameterLayer
             T.topKernelMarkedAxisFirstContactFamily
             T.topKernelMarkedAxisFirstActualLayerOrder).support,
-          3 ≤ ordinaryDegree4 d := by
+          3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
       intro d hd
       have hfaceEq :=
         P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
@@ -1033,7 +1035,7 @@ theorem pureLongitudinal_markedAxis_lowerFaceFrontier_nonempty
       have htrans :
           d 1 + d 2 + d 3 = r := by
         exact_mod_cast hweight
-      unfold ordinaryDegree4
+      unfold HC4.Polynomial.ordinaryDegree4
       rw [Fin.sum_univ_four]
       omega
     exact ⟨.nonlinearBoundary
@@ -1060,7 +1062,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_support_degree_ge_three
     ∀ d ∈ (familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder).support,
-      3 ≤ ordinaryDegree4 d := by
+      3 ≤ HC4.Polynomial.ordinaryDegree4 d := by
   intro d hd
   let r :=
     T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
@@ -1081,7 +1083,7 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_support_degree_ge_three
   have htrans :
       d 1 + d 2 + d 3 = r := by
     exact_mod_cast hweight
-  unfold ordinaryDegree4
+  unfold HC4.Polynomial.ordinaryDegree4
   rw [Fin.sum_univ_four]
   dsimp [r] at htrans hrthree
   omega
@@ -1099,7 +1101,7 @@ structure PureLongitudinalMarkedAxisLowerNonlinearData
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0
   hessian_zero :
-    hessianDeterminant
+    HC4.Polynomial.hessianDeterminant
       (familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder) = 0
@@ -1107,7 +1109,7 @@ structure PureLongitudinalMarkedAxisLowerNonlinearData
     ∀ d ∈ (familyParameterLayer
         T.topKernelMarkedAxisFirstContactFamily
         T.topKernelMarkedAxisFirstActualLayerOrder).support,
-      3 ≤ ordinaryDegree4 d
+      3 ≤ HC4.Polynomial.ordinaryDegree4 d
 
 /-- Canonical exposed boundary vertex attached to the retained nonlinear lower
 face. -/
@@ -1178,7 +1180,7 @@ theorem pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
             T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0 :=
       firstPositiveActualParameterLayer_ne_zero
         T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstContact_hasPositiveActualParameterLayer
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
     have hzero :=
       P.pureLongitudinal_markedAxis_firstActualLayer_hessian_zero
         coefficient_ne_zero topFace_eq
@@ -1214,7 +1216,7 @@ theorem topFace_degree_attained_in_source
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
     ∃ d ∈ T.representedSpecialFiber.support,
-      ordinaryDegree4 d = T.topFace.degree := by
+      HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
   rcases MvPolynomial.support_nonempty.mpr T.topFace.face_ne_zero with
     ⟨d, hdFace⟩
   have hdeg := T.topFace.ordinaryDegree_eq_of_mem_support hdFace
@@ -1237,7 +1239,7 @@ theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (D : P.PureLongitudinalBalanceFreeFirstContactData) :
     D.crossFacet.facetExponent ∈ T.representedSpecialFiber.support ∧
-      ordinaryDegree4 D.crossFacet.facetExponent = T.topFace.degree ∧
+      HC4.Polynomial.ordinaryDegree4 D.crossFacet.facetExponent = T.topFace.degree ∧
       MvExponentOnCodimensionTwoBoundary D.crossFacet.facetExponent := by
   let d : Fin 4 →₀ ℕ := D.crossFacet.facetExponent
   have hdCarrier : d ∈ D.carrier.support := by
@@ -1246,12 +1248,12 @@ theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo
     have h := hdCarrier
     rw [D.carrier_eq] at h
     exact support_initialForm_subset
-      (scaledContactWeight (facetOmittedCoordinate D.facet) D.scale D.bump)
+      (scaledContactWeight (HC4.Polynomial.facetOmittedCoordinate D.facet) D.scale D.bump)
       ((D.scale * T.topFace.degree : ℕ) : ℤ)
       T.representedSpecialFiber h
   have hcontact := D.contact d hdCarrier
   have hcoord :
-      d (facetOmittedCoordinate D.facet) = 0 := by
+      d (HC4.Polynomial.facetOmittedCoordinate D.facet) = 0 := by
     simpa [d] using D.crossFacet.facet_coordinate_zero
   unfold scaledContactExponentWeight at hcontact
   rw [hcoord] at hcontact
@@ -1260,28 +1262,28 @@ theorem PureLongitudinalBalanceFreeFirstContactData.near_sourceCodimensionTwo
   have hscaleZ : (0 : ℤ) < D.scale := by
     exact_mod_cast D.scale_pos
   have hdegZ :
-      (ordinaryDegree4 d : ℤ) = (T.topFace.degree : ℤ) := by
+      (HC4.Polynomial.ordinaryDegree4 d : ℤ) = (T.topFace.degree : ℤ) := by
     nlinarith
-  have hdeg : ordinaryDegree4 d = T.topFace.degree := by
+  have hdeg : HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree := by
     exact_mod_cast hdegZ
   have hdTop : d ∈ T.topFace.face.support := by
     apply MvPolynomial.mem_support_iff.mpr
     rw [T.topFace.coeff_eq_source_of_ordinaryDegree_eq d hdeg]
     exact MvPolynomial.mem_support_iff.mp hdSource
   have hpr :
-      MvSupportOnFacet .pr T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet .pr T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       D.coefficient_ne_zero D.topFace_eq .pr (by decide)
   have hsp :
-      MvSupportOnFacet .sp T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet .sp T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       D.coefficient_ne_zero D.topFace_eq .sp (by decide)
   have h1 : d (1 : Fin 4) = 0 := by
     have hz := (onFacet_toToricExponent_iff .pr d).1 (hpr d hdTop)
-    simpa [facetOmittedCoordinate] using hz
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
   have h2 : d (2 : Fin 4) = 0 := by
     have hz := (onFacet_toToricExponent_iff .sp d).1 (hsp d hdTop)
-    simpa [facetOmittedCoordinate] using hz
+    simpa [HC4.Polynomial.facetOmittedCoordinate] using hz
   refine ⟨?_, ?_, ?_⟩
   · simpa [d] using hdSource
   · simpa [d] using hdeg
@@ -1299,14 +1301,14 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
         MvPolynomial.C coefficient *
           (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree)
     (facet : ToricFacet)
-    (homit : facetOmittedCoordinate facet ≠ (0 : Fin 4))
+    (homit : HC4.Polynomial.facetOmittedCoordinate facet ≠ (0 : Fin 4))
     (dstar : Fin 4 →₀ ℕ)
     (hdstar : dstar ∈ T.representedSpecialFiber.support)
-    (hdstarDeg : 3 ≤ ordinaryDegree4 dstar)
-    (hdstarPos : 0 < dstar (facetOmittedCoordinate facet)) :
+    (hdstarDeg : 3 ≤ HC4.Polynomial.ordinaryDegree4 dstar)
+    (hdstarPos : 0 < dstar (HC4.Polynomial.facetOmittedCoordinate facet)) :
     Nonempty P.PureLongitudinalFirstContactFrontier := by
   have htopFace :
-      MvSupportOnFacet facet T.topFace.face :=
+      HC4.Polynomial.MvSupportOnFacet facet T.topFace.face :=
     P.pureLongitudinal_topFaceOnFacet
       coefficient_ne_zero topFace_eq facet homit
   have htop :
@@ -1328,7 +1330,7 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
     T.representedSpecialFiber_isPolynomialMongeAmpere
   have hattained :
       ∃ d ∈ T.representedSpecialFiber.support,
-        ordinaryDegree4 d = T.topFace.degree :=
+        HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree :=
     T.topFace_degree_attained_in_source
 
   rcases lowDegreeTame_or_exists_omittedQuadraticSquare
@@ -1341,8 +1343,8 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
       firstContactCarrier_crossFacet_supports
         htop hattained hG hnot
     let D : CrossFacetInitialData G
-        (crossFacetOppositeCoordinate (facetOmittedCoordinate facet))
-        (facetOmittedCoordinate facet) :=
+        (crossFacetOppositeCoordinate (HC4.Polynomial.facetOmittedCoordinate facet))
+        (HC4.Polynomial.facetOmittedCoordinate facet) :=
       crossFacetInitialData hsupp.1 hsupp.2.1
     refine ⟨.firstContact {
       coefficient := coefficient
@@ -1385,13 +1387,13 @@ theorem pureLongitudinalFirstContactFrontier_nonempty
     ⟨d, hd, hdeg, h1 | h2 | h3⟩
   · exact P.pureLongitudinal_firstContact_or_square_at_facet
       coefficient_ne_zero topFace_eq .pr (by decide)
-      d hd hdeg (by simpa [facetOmittedCoordinate] using h1)
+      d hd hdeg (by simpa [HC4.Polynomial.facetOmittedCoordinate] using h1)
   · exact P.pureLongitudinal_firstContact_or_square_at_facet
       coefficient_ne_zero topFace_eq .sp (by decide)
-      d hd hdeg (by simpa [facetOmittedCoordinate] using h2)
+      d hd hdeg (by simpa [HC4.Polynomial.facetOmittedCoordinate] using h2)
   · exact P.pureLongitudinal_firstContact_or_square_at_facet
       coefficient_ne_zero topFace_eq .rq (by decide)
-      d hd hdeg (by simpa [facetOmittedCoordinate] using h3)
+      d hd hdeg (by simpa [HC4.Polynomial.facetOmittedCoordinate] using h3)
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
