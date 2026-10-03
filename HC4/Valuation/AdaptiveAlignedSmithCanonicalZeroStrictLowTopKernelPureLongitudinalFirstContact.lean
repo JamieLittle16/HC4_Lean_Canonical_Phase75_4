@@ -600,6 +600,27 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
       T.topKernelMarkedAxisFirstActualLayerOrder T.topKernelReesSource
       T.topKernelReesSource_hasMarkedAxisReverseWeightBound hlayer).2
 
+/-- The complementary transverse degree of that first actual layer is
+nontrivial and strictly smaller than the original pure top degree. -/
+theorem pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    2 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder ∧
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder <
+        T.topFace.degree := by
+  have hqle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      coefficient_ne_zero topFace_eq
+  have hqpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
+  have hD := T.topFace.degree_ge_three
+  omega
+
+
 /-- Every monomial on the first actual marked-axis layer has ordinary degree
 strictly below the original maximal top degree.
 
@@ -779,9 +800,12 @@ theorem pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero
   have h0 : d (0 : Fin 4) = 0 :=
     exponent_eq_zero_of_pderiv_eq_zero
       (0 : Fin 4) D.child hkernel0 d hdcoeff
-  simp only [HC4.Polynomial.ordinaryDegree4]
-  rw [h0]
-  omega
+  rw [Finsupp.weight_apply, Finsupp.sum_fintype]
+  · rw [Fin.sum_univ_four]
+    simp [h0]
+    exact htrans
+  · intro i
+    simp
 
 /-- Longitudinal first kernel opening on the pure lower face is therefore
 already in the mature homogeneous rank-two/linear-power dichotomy. -/
@@ -832,6 +856,30 @@ theorem pureLongitudinal_lowerFirstOpening_rankTwo_or_linearPower_of_kernel_zero
       eq_power := ha
     }⟩
 
+/-- Lossless nonlinear lower-face packet.  Unlike the older boundary frontier,
+this record retains the exact hypotheses used to construct the canonical
+exposed singular boundary vertex, so a codimension-two outcome can immediately
+recover the canonical carrier kernel. -/
+structure PureLongitudinalMarkedAxisLowerNonlinearData
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
+  level_ge_three :
+    3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  face_ne :
+    familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0
+  hessian_zero :
+    HC4.Polynomial.hessianDeterminant
+      (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder) = 0
+  support_degree_ge_three :
+    ∀ d ∈ (familyParameterLayer
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstActualLayerOrder).support,
+      3 ≤ HC4.Polynomial.ordinaryDegree4 d
+
+
 /-- A longitudinal first kernel-opening step on a nonlinear lower face is
 already completely rank-two resolved: either the child itself has a nonzero
 Hessian `2 x 2` minor, or its homogeneous linear-power alternative opens to
@@ -871,26 +919,6 @@ theorem pureLongitudinal_lowerFirstOpening_longitudinal_rankTwoResolved
     refine ⟨LP, ?_⟩
     exact LP.firstBreakRankTwoOutcome
       N.level_ge_three N.support_degree_ge_three
-
-/-- The complementary transverse degree of that first actual layer is
-nontrivial and strictly smaller than the original pure top degree. -/
-theorem pureLongitudinal_markedAxis_firstActual_transverseDegree_bounds
-    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
-    {coefficient : K}
-    (coefficient_ne_zero : coefficient ≠ 0)
-    (topFace_eq :
-      T.topFace.face =
-        MvPolynomial.C coefficient *
-          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
-    2 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder ∧
-      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder <
-        T.topFace.degree := by
-  have hqle :=
-    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
-      coefficient_ne_zero topFace_eq
-  have hqpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
-  have hD := T.topFace.degree_ge_three
-  omega
 
 /-- The first actual lower transverse face is Hessian-singular.  The improved
 `D-q` reverse-weight bound makes it a genuine maximal initial form of the
@@ -1055,29 +1083,6 @@ theorem pureLongitudinal_markedAxis_firstActualLayer_support_degree_ge_three
   simp only [HC4.Polynomial.ordinaryDegree4]
   dsimp [r] at htrans hrthree
   omega
-
-/-- Lossless nonlinear lower-face packet.  Unlike the older boundary frontier,
-this record retains the exact hypotheses used to construct the canonical
-exposed singular boundary vertex, so a codimension-two outcome can immediately
-recover the canonical carrier kernel. -/
-structure PureLongitudinalMarkedAxisLowerNonlinearData
-    (P : T.TopFaceLinearPowerKernelData kernelCoordinate) : Type (u + 1) where
-  level_ge_three :
-    3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
-  face_ne :
-    familyParameterLayer
-        T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstActualLayerOrder ≠ 0
-  hessian_zero :
-    HC4.Polynomial.hessianDeterminant
-      (familyParameterLayer
-        T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstActualLayerOrder) = 0
-  support_degree_ge_three :
-    ∀ d ∈ (familyParameterLayer
-        T.topKernelMarkedAxisFirstContactFamily
-        T.topKernelMarkedAxisFirstActualLayerOrder).support,
-      3 ≤ HC4.Polynomial.ordinaryDegree4 d
 
 /-- Canonical exposed boundary vertex attached to the retained nonlinear lower
 face. -/
@@ -1333,7 +1338,7 @@ private theorem pureLongitudinal_firstContact_or_square_at_facet
   have hattained :
       ∃ d ∈ T.representedSpecialFiber.support,
         HC4.Polynomial.ordinaryDegree4 d = T.topFace.degree :=
-    T.topFace_degree_attained_in_source
+    topFace_degree_attained_in_source T
 
   rcases lowDegreeTame_or_exists_omittedQuadraticSquare
       facet T.representedSpecialFiber with htame | hsquare
@@ -1385,7 +1390,7 @@ theorem pureLongitudinalFirstContactFrontier_nonempty
         MvPolynomial.C coefficient *
           (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
     Nonempty P.PureLongitudinalFirstContactFrontier := by
-  rcases T.exists_nonlinear_transverse_source with
+  rcases exists_nonlinear_transverse_source T with
     ⟨d, hd, hdeg, h1 | h2 | h3⟩
   · exact P.pureLongitudinal_firstContact_or_square_at_facet
       coefficient_ne_zero topFace_eq .pr (by decide)
