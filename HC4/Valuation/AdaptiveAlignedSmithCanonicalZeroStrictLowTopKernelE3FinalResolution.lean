@@ -160,7 +160,6 @@ theorem PureLongitudinalMarkedE3Data.markedAxis_sourceCoefficientOrder
     rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
       reverseWeightedReesFamily_coeff, if_pos hd]
     rw [weight_topKernelMarkedAxisNatWeight d]
-    rfl
   have hcoeffNe :
       MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
     rw [hcoeff]
