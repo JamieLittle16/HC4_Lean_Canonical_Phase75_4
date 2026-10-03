@@ -917,8 +917,11 @@ theorem pureLongitudinal_lowerFirstOpening_longitudinal_rankTwoResolved
   · rcases hpower with ⟨LP⟩
     right
     refine ⟨LP, ?_⟩
-    exact LP.firstBreakRankTwoOutcome
-      N.level_ge_three N.support_degree_ge_three
+    exact
+      CanonicalCoordinateMaxKernelOpeningData.ChildLinearPowerData.firstBreakRankTwoOutcome
+        (D := D)
+        (m := T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder)
+        LP N.level_ge_three N.support_degree_ge_three
 
 /-- The first actual lower transverse face is Hessian-singular.  The improved
 `D-q` reverse-weight bound makes it a genuine maximal initial form of the
