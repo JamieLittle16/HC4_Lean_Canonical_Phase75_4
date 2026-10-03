@@ -158,8 +158,7 @@ theorem PureLongitudinalMarkedE3Data.markedAxis_sourceCoefficientOrder
         Polynomial.X ^ q *
           Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
     rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
-      reverseWeightedReesFamily_coeff, if_pos hd,
-      weight_topKernelMarkedAxisNatWeight]
+      reverseWeightedReesFamily_coeff, if_pos hd]
   have hcoeffNe :
       MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
     rw [hcoeff]
@@ -217,11 +216,20 @@ theorem PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero
     ⟨htop, hzero⟩
   have htopCoeff : MvPolynomial.coeff d T.topFace.face ≠ 0 :=
     MvPolynomial.mem_support_iff.mp htop
-  rw [D.topFace_eq] at htopCoeff
+  rw [D.topFace_eq, MvPolynomial.coeff_C_mul] at htopCoeff
+  have hpow :
+      MvPolynomial.coeff d
+          ((MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) ≠ 0 := by
+    intro hz
+    apply htopCoeff
+    simp [hz]
+  have hdEqRev :
+      Finsupp.single (0 : Fin 4) T.topFace.degree = d := by
+    rw [MvPolynomial.coeff_X_pow] at hpow
+    simpa using hpow
   have hdEq :
-      d = Finsupp.single (0 : Fin 4) T.topFace.degree := by
-    rw [MvPolynomial.coeff_X_pow] at htopCoeff
-    simpa using htopCoeff
+      d = Finsupp.single (0 : Fin 4) T.topFace.degree :=
+    hdEqRev.symm
   have hDzero : T.topFace.degree = 0 := by
     simpa [hdEq] using hzero
   have hD : 3 ≤ T.topFace.degree := T.topFace.degree_ge_three
