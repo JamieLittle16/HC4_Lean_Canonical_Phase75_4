@@ -1134,16 +1134,7 @@ noncomputable def TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toS
           AdaptiveAlignedSmithRankOneClosingSourceCarrier.support_initialForm_transverseComplementDegree_eq
             D.ell (polynomialFamilySpecialFiber D.family) 0
             (by
-              have hface0 :
-                  F.face =
-                    HC4.Polynomial.initialForm
-                      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
-                        D.ell)
-                      0
-                      (polynomialFamilySpecialFiber D.family) := by
-                simpa [hzero] using F.face_eq
-              rw [← hface0]
-              exact hd)
+              simpa [F.face_eq, hzero] using hd)
         have hone' :
             AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
                 D.ell (Finsupp.single k 1) = 1 := by
@@ -1169,16 +1160,7 @@ noncomputable def TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toS
           AdaptiveAlignedSmithRankOneClosingSourceCarrier.support_initialForm_transverseComplementDegree_eq
             D.ell (polynomialFamilySpecialFiber D.family) 1
             (by
-              have hface1 :
-                  F.face =
-                    HC4.Polynomial.initialForm
-                      (AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementWeight
-                        D.ell)
-                      (-1)
-                      (polynomialFamilySpecialFiber D.family) := by
-                simpa [hone] using F.face_eq
-              rw [← hface1]
-              exact hd)
+              simpa [F.face_eq, hone] using hd)
         have hz :
             AdaptiveAlignedSmithRankOneClosingSourceCarrier.directClosingTransverseComplementDegree
                 D.ell d = 0 :=
