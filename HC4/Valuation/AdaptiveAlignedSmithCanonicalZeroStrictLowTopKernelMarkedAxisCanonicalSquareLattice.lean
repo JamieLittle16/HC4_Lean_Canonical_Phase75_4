@@ -1120,9 +1120,8 @@ noncomputable def TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toS
     (L : T.TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData D) :
     T.TopKernelMarkedAxisCanonicalSquareStationaryPlanarCoreData D := by
   let F := L.gradient.low.affine.wallFace
-  have hm_cases : F.complementDegree = 0 ∨ F.complementDegree = 1 := by
-    omega
-  rcases hm_cases with hzero | hone
+  have hcomp : F.complementDegree ≤ 1 := F.complementDegree_le_one
+  by_cases hzero : F.complementDegree = 0
   · refine .transverseCore F.face ?_ F.face_ne_zero ?_
       L.gradient.low.base_det_zero
     · rw [F.face_eq, hzero]
@@ -1151,7 +1150,9 @@ noncomputable def TopKernelMarkedAxisCanonicalSquarePlanarAffineWallFaceData.toS
                 D.ell 0 (by intro r hr0 hrell; simp)
           simpa only [zero_add, hz] using hadd
         omega
-  · have hpure :
+  · have hone : F.complementDegree = 1 := by
+      omega
+    have hpure :
         AdaptiveAlignedSmithRankOneClosingSourceCarrier.IsTransversePureAffineSupport
           D.ell F.face := by
       intro d hd
