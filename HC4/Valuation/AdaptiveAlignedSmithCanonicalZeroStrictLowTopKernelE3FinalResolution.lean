@@ -159,7 +159,17 @@ theorem PureLongitudinalMarkedE3Data.markedAxis_sourceCoefficientOrder
           Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
     rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
       reverseWeightedReesFamily_coeff, if_pos hd]
-    rw [weight_topKernelMarkedAxisNatWeight d]
+    have he :
+        T.topFace.degree -
+            Finsupp.weight topKernelMarkedAxisNatWeight d =
+          q := by
+      dsimp [q]
+      rw [weight_topKernelMarkedAxisNatWeight d]
+    exact congrArg
+      (fun n : ℕ =>
+        Polynomial.X ^ n *
+          Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource))
+      he
   have hcoeffNe :
       MvPolynomial.coeff d T.topKernelMarkedAxisFirstContactFamily ≠ 0 := by
     rw [hcoeff]
@@ -222,8 +232,7 @@ theorem PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero
       MvPolynomial.coeff d
           ((MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) ≠ 0 := by
     intro hz
-    apply htopCoeff
-    rw [hz, mul_zero]
+    exact htopCoeff (mul_eq_zero.mpr (Or.inr hz))
   have hdEqRev :
       Finsupp.single (0 : Fin 4) T.topFace.degree = d := by
     rw [MvPolynomial.coeff_X_pow] at hpow
