@@ -748,7 +748,7 @@ theorem kernelInflateHom_isHomogeneous
   have hsource :
       MvPolynomial.coeff d P ≠ 0 := by
     intro hz
-    rw [hz, mul_zero] at hdI
+    rw [hz, zero_mul] at hdI
     exact hdI rfl
   exact hP hsource
 
@@ -1875,7 +1875,7 @@ theorem oddWSeparatedRightWall_strictCanonicalRestart
       I hIhom hcommon
   have hbudget :
       4 * 2 ≤ Delta + 6 :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K) 2 I hcommon (Delta + 6) hIdef
   have hDelta : 2 ≤ Delta := by
     omega

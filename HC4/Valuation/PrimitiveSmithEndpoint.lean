@@ -220,7 +220,7 @@ theorem commonParameterFactor_hasHessianDefect_sub_four_mul
     commonParameterFactorFamily n P hdiv
   have hle :
       4 * n ≤ Delta :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K) n P hdiv Delta hdef
   have hfactor :
       P =

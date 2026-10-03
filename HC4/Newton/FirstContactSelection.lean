@@ -1,5 +1,6 @@
 import HC4.Newton.ScaledContact
 import Mathlib.Data.Finset.Max
+import Mathlib.Tactic
 
 /-!
 # Constructing the first nonlinear contact from finite support
@@ -187,6 +188,78 @@ theorem selected_contact_isWeightLE
   · have hdeg2 : ordinaryDegree4 d ≤ 2 := by omega
     have hj1 := hlow d hd (by omega)
     exact (lowDegree_below_scaled_contact hscale hdeg2 hj1 hbumpBound hm).le
+
+/-- Minimal first contact remains a global source-weight bound even when the
+fixed quadratic part contains the pure square in the bumped coordinate,
+provided the nonlinear outside support contains one comparison exponent with
+multiplicity at least two in that coordinate.
+
+Minimality against that comparison exponent gives the strengthened margin
+
+`2 * bump ≤ scale * (m - 3)`.
+
+That margin puts every degree-at-most-two source monomial strictly below the
+contact level, including the pure square. -/
+theorem selected_contact_isWeightLE_of_two_outside_comparison
+    {K : Type*} [CommRing K]
+    {m : ℕ} {j : Fin 4} {p : MvPolynomial (Fin 4) K}
+    (hm : 3 ≤ m)
+    {d₀ dstar : Fin 4 →₀ ℕ}
+    (hd₀ : d₀ ∈ nonlinearOutsideSupport j p)
+    (hmin : ∀ d ∈ nonlinearOutsideSupport j p,
+      contactSlope m j d₀ ≤ contactSlope m j d)
+    (hdeg : ∀ d ∈ p.support, 3 ≤ ordinaryDegree4 d → ordinaryDegree4 d ≤ m)
+    (htop : ∀ d ∈ p.support, ordinaryDegree4 d = m → d j = 0)
+    (hstar : dstar ∈ nonlinearOutsideSupport j p)
+    (hstarTwo : 2 ≤ dstar j) :
+    let scale := d₀ j
+    let bump := m - ordinaryDegree4 d₀
+    HC4.Polynomial.IsWeightLE
+      (scaledContactWeight j scale bump) (scale * m : ℕ) p := by
+  intro scale bump
+  rw [isWeightLE_scaledContactWeight_iff]
+  have hlevel := selected_contact_level hd₀ hdeg htop
+  dsimp only at hlevel
+  have hscale : 0 < d₀ j := hlevel.1
+  have hstarPos : 0 < dstar j :=
+    (mem_nonlinearOutsideSupport.mp hstar).2.2
+  have hcrossStar :
+      (m - ordinaryDegree4 d₀) * dstar j ≤
+        (m - ordinaryDegree4 dstar) * d₀ j :=
+    (contactSlope_le_iff_cross hscale hstarPos).mp (hmin dstar hstar)
+  have hstarDeg : 3 ≤ ordinaryDegree4 dstar :=
+    (mem_nonlinearOutsideSupport.mp hstar).2.1
+  have hsub :
+      m - ordinaryDegree4 dstar ≤ m - 3 :=
+    Nat.sub_le_sub_left hstarDeg m
+  have hdoubleRaw :
+      2 * (m - ordinaryDegree4 d₀) ≤ d₀ j * (m - 3) := by
+    calc
+      2 * (m - ordinaryDegree4 d₀) =
+          (m - ordinaryDegree4 d₀) * 2 := by ring
+      _ ≤ (m - ordinaryDegree4 d₀) * dstar j :=
+        Nat.mul_le_mul_left (m - ordinaryDegree4 d₀) hstarTwo
+      _ ≤ (m - ordinaryDegree4 dstar) * d₀ j := hcrossStar
+      _ ≤ (m - 3) * d₀ j :=
+        Nat.mul_le_mul_right (d₀ j) hsub
+      _ = d₀ j * (m - 3) := by ring
+  intro d hd
+  by_cases hnonlin : 3 ≤ ordinaryDegree4 d
+  · have hdegdm := hdeg d hd hnonlin
+    by_cases hj0 : d j = 0
+    · unfold scaledContactExponentWeight
+      simp [hj0]
+      exact_mod_cast Nat.mul_le_mul_left (d₀ j) hdegdm
+    · have hjpos : 0 < d j := Nat.pos_of_ne_zero hj0
+      have hdOut : d ∈ nonlinearOutsideSupport j p := by
+        exact mem_nonlinearOutsideSupport.mpr ⟨hd, hnonlin, hjpos⟩
+      exact selected_contact_outside_le hd₀ hmin hdeg hdOut
+  · have hdeg2 : ordinaryDegree4 d ≤ 2 := by omega
+    have hj2 : d j ≤ 2 := by
+      fin_cases j <;> simp [ordinaryDegree4] at hdeg2 ⊢ <;> omega
+    exact
+      (lowDegree_below_scaled_contact_of_two_mul_bump_le
+        hscale hdeg2 hj2 hdoubleRaw hm).le
 
 /-- A first-contact witness is constructible from every nonempty outside
 nonlinear support. -/

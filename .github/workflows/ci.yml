@@ -19,6 +19,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Regenerate proof inventory for diagnostic build
+        run: |
+          python3 tools/generate_proof_inventory.py
+          git diff -- docs/generated/LEAN_MODULE_INDEX.md docs/generated/DECLARATION_INDEX.md docs/generated/LOCAL_IMPORT_EDGES.md
+
       # Installs the version pinned in lean-toolchain, restores the Lake cache,
       # fetches Mathlib's compiled cache, and runs `lake build`.
       - name: Build HC4
@@ -40,7 +45,7 @@ jobs:
 
       - name: Reject proof escape hatches
         run: |
-          if rg -n '\\b(sorry|admit|axiom|unsafe)\\b' -g '*.lean' HC4; then
+          if rg -n '\b(sorry|admit|axiom|unsafe)\b' -g '*.lean' HC4; then
             echo "Forbidden proof escape found in HC4 sources." >&2
             exit 1
           fi

@@ -48,108 +48,63 @@ open HC4.Newton
 
 variable {K : Type*} [Field K]
 
-/-! ## Coefficients and injectivity of kernel inflation -/
+/-! ## Zero determinant preservation
 
-/-- Kernel inflation acts diagonally on a single source monomial. -/
-theorem kernelInflateHom_monomial
+The coefficientwise monomial formula and injectivity of `kernelInflateHom`
+are canonical infrastructure from `KernelInflationHessianDefect`; reuse them
+here rather than redeclaring a second copy.  Keeping those declarations in one
+module also prevents generated-inventory refreshes from reintroducing duplicate
+environment names.
+-/
+
+/-- **Integral kernel blow-up preserves identically singular Hessian families.**
+
+This zero-determinant corollary belongs here, after injectivity of kernel
+inflation has been established. From the reinflation factorisation, cancel the
+nonzero diagonal parameter factor and then use injectivity of inflation. -/
+theorem hessianDeterminant_integralKernelBlowup_eq_zero
     (kernel : Fin 4)
     (slope : ℕ)
-    (d : Fin 4 →₀ ℕ)
-    (c : Polynomial K) :
-    kernelInflateHom (K := K) kernel slope
-        (MvPolynomial.monomial d c) =
-      MvPolynomial.monomial d
-        (kernelCoefficientTauPower
-          (K := K) kernel slope d * c) := by
-  apply MvPolynomial.funext
-  intro a
-  rw [eval_kernelInflateHom]
-  simp only [MvPolynomial.eval_monomial]
-  rw [Finsupp.prod_fintype
-    d
-    (fun n e =>
-      kernelBlowupSection kernel slope a n ^ e)
-    (by
-      intro i
-      simp)]
-  rw [Finsupp.prod_fintype
-    d
-    (fun n e => a n ^ e)
-    (by
-      intro i
-      simp)]
-  rw [fin4_kernelBlowupSection_monomialProduct]
-  ring
-
-/-- **Coefficient formula for kernel inflation.**
-
-Kernel inflation preserves the source exponent `d` and multiplies its
-coefficient by exactly the expected power of the parameter. -/
-theorem coeff_kernelInflateHom
-    (kernel : Fin 4)
-    (slope : ℕ)
-    (Q : MvPolynomial (Fin 4) (Polynomial K))
-    (d : Fin 4 →₀ ℕ) :
-    MvPolynomial.coeff d
-        (kernelInflateHom (K := K) kernel slope Q) =
-      kernelCoefficientTauPower
-          (K := K) kernel slope d *
-        MvPolynomial.coeff d Q := by
-  refine
-    MvPolynomial.induction_on'
-      (P := fun Q =>
-        MvPolynomial.coeff d
-            (kernelInflateHom (K := K) kernel slope Q) =
-          kernelCoefficientTauPower
-              (K := K) kernel slope d *
-            MvPolynomial.coeff d Q)
-      Q ?_ ?_
-  · intro u c
-    rw [kernelInflateHom_monomial]
-    by_cases hud : u = d
-    · subst u
-      simp
-    · have hdu : d ≠ u := Ne.symm hud
-      simp [MvPolynomial.coeff_monomial, hud, hdu]
-  · intro p q hp hq
-    simp only [map_add, MvPolynomial.coeff_add]
-    rw [hp, hq]
-    ring
-
-/-- **Kernel inflation is injective.**
-
-No source monomials are merged, and every diagonal coefficient multiplier
-is a nonzero power of `tau`. -/
-theorem kernelInflateHom_injective
-    (kernel : Fin 4)
-    (slope : ℕ) :
-    Function.Injective
-      (kernelInflateHom (K := K) kernel slope) := by
-  intro P Q hPQ
-  apply MvPolynomial.ext
-  intro d
-  have hcoeff :=
-    congrArg (MvPolynomial.coeff d) hPQ
-  rw [
-    coeff_kernelInflateHom,
-    coeff_kernelInflateHom] at hcoeff
-  let u : Polynomial K :=
-    kernelCoefficientTauPower
-      (K := K) kernel slope d
-  have hu : u ≠ 0 := by
-    unfold u kernelCoefficientTauPower
-    exact
-      pow_ne_zero
-        (slope * d kernel)
-        Polynomial.X_ne_zero
-  have hz :
-      u *
-        (MvPolynomial.coeff d P -
-          MvPolynomial.coeff d Q) = 0 := by
-    rw [mul_sub, hcoeff, sub_self]
-  rcases mul_eq_zero.mp hz with hzero | hsub
-  · exact False.elim (hu hzero)
-  · exact sub_eq_zero.mp hsub
+    (P : MvPolynomial (Fin 4) (Polynomial K))
+    (hdiv :
+      HasIntegralKernelCoefficientDivisibility
+        kernel slope P)
+    (hzero : HC4.Polynomial.hessianDeterminant P = 0) :
+    HC4.Polynomial.hessianDeterminant
+        (integralKernelBlowupFamily
+          kernel slope P hdiv) = 0 := by
+  let Htilde :=
+    HC4.Polynomial.hessianDeterminant
+      (integralKernelBlowupFamily
+        kernel slope P hdiv)
+  have hfactor :=
+    hessianDeterminant_integralKernelBlowup_factor
+      kernel slope P hdiv
+  rw [hzero] at hfactor
+  have hbase :
+      (MvPolynomial.C
+          (Polynomial.X ^ slope) :
+        MvPolynomial (Fin 4) (Polynomial K)) ^ 2 ≠ 0 := by
+    exact pow_ne_zero 2
+      (MvPolynomial.C_ne_zero.mpr
+        (pow_ne_zero slope Polynomial.X_ne_zero))
+  have hinflated :
+      kernelInflateHom (K := K) kernel slope Htilde = 0 := by
+    have hprod :
+        (MvPolynomial.C
+            (Polynomial.X ^ slope) :
+          MvPolynomial (Fin 4) (Polynomial K)) ^ 2 *
+          kernelInflateHom (K := K) kernel slope Htilde = 0 := by
+      simpa [Htilde] using hfactor.symm
+    exact (mul_eq_zero.mp hprod).resolve_left hbase
+  have himages :
+      kernelInflateHom (K := K) kernel slope Htilde =
+        kernelInflateHom (K := K) kernel slope 0 := by
+    simpa using hinflated
+  have htarget : Htilde = 0 :=
+    kernelInflateHom_injective
+      (K := K) kernel slope himages
+  simpa [Htilde] using htarget
 
 /-! ## The factorisation forces `2q <= Delta` -/
 

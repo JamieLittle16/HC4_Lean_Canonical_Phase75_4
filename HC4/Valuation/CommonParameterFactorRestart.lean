@@ -55,6 +55,25 @@ def HasCommonParameterFactor
   ∀ d ∈ P.support,
     Polynomial.X ^ n ∣ MvPolynomial.coeff d P
 
+/-- A family with zero special fibre has a common positive parameter factor.
+
+Coefficientwise, vanishing of the special fibre says exactly that the constant
+coefficient of every supported source coefficient is zero; equivalently each
+coefficient is divisible by `X`. -/
+theorem hasCommonParameterFactor_one_of_specialFiber_eq_zero
+    (P : MvPolynomial σ (Polynomial K))
+    (hzero : polynomialFamilySpecialFiber P = 0) :
+    HasCommonParameterFactor 1 P := by
+  intro d hd
+  have hcoeff :=
+    congrArg (MvPolynomial.coeff d) hzero
+  have hconst :
+      Polynomial.constantCoeff (MvPolynomial.coeff d P) = 0 := by
+    unfold polynomialFamilySpecialFiber at hcoeff
+    rw [MvPolynomial.coeff_map] at hcoeff
+    exact hcoeff
+  simpa using (Polynomial.X_dvd_iff.mpr hconst)
+
 /-- Chosen quotient coefficient after removing a common parameter factor. -/
 noncomputable def commonParameterCoefficientQuotient
     (n : ℕ)

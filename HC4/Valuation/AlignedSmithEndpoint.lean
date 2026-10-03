@@ -596,16 +596,15 @@ theorem rightTransverse_zero_of_noGenuineWall
 
 /-! ## General common-factor defect budget -/
 
-/-- **Four-variable common-factor budget.**
+/-- **Four-variable common-factor budget, local endpoint form.**
 
 If every coefficient of a four-variable potential contains `X^n` and its
-Hessian determinant is exactly `X^Delta`, then
+Hessian determinant is exactly `X^Delta`, then `4*n <= Delta`.
 
-    4*n <= Delta.
-
-Phase 93.61 proved the case `n=1`.  The general form is what lets an
-arbitrarily long no-wall Smith motion contradict a fixed defect. -/
-theorem four_mul_le_defect_of_commonParameterFactor
+This declaration deliberately has an endpoint-specific name: another imported
+development may expose the historical generic name during a fresh elaboration,
+so keeping the proof local under a distinct name avoids a namespace collision. -/
+theorem alignedSmith_four_mul_le_defect_of_commonParameterFactor
     (n : ℕ)
     (P : MvPolynomial (Fin 4) (Polynomial K))
     (hdiv : HasCommonParameterFactor n P)
@@ -1002,7 +1001,7 @@ theorem exists_zeroSmithDerivative_of_noGenuineWall
         (alignedSmithRamificationIndex * Delta)
         Pram hsmith hramDef
   have hbudget :=
-    four_mul_le_defect_of_commonParameterFactor
+    alignedSmith_four_mul_le_defect_of_commonParameterFactor
       (K := K)
       (2 * N) Q hcommon
       (alignedSmithRamificationIndex * Delta)

@@ -166,6 +166,136 @@ theorem exists_singular_first_nonfacet_contact
     hscale, hbump, hbound, hdet, hd₀init, hnotFacet⟩
   simpa [j] using hd₀j
 
+
+/-- **First non-facet contact with a quadratic-square comparison witness.**
+
+The usual low-degree-tameness hypothesis can be dropped when the nonlinear
+outside support contains one exponent with at least two copies of the omitted
+coordinate.  Minimality of the selected contact against that exponent gives
+the doubled-bump margin which places every quadratic source monomial strictly
+below contact, including the pure omitted-coordinate square. -/
+theorem exists_singular_first_nonfacet_contact_of_two_outside_comparison
+    {K : Type*} [CommRing K] [Nontrivial K]
+    {F : ToricFacet} {m : ℕ} {ψ : MvPolynomial (Fin 4) K}
+    (hm : 3 ≤ m)
+    (hdeg : NonlinearDegreeBound m ψ)
+    (htop : TopDegreeOnFacet F m ψ)
+    (hout : HasNonlinearOutsideFacet F ψ)
+    (dstar : Fin 4 →₀ ℕ)
+    (hdstar : dstar ∈ nonlinearOutsideSupport
+      (facetOmittedCoordinate F) ψ)
+    (hdstarTwo : 2 ≤ dstar (facetOmittedCoordinate F))
+    (hMA : HC4.MongeAmpere.IsPolynomialMongeAmpere ψ) :
+    ∃ (d₀ : Fin 4 →₀ ℕ) (scale bump : ℕ),
+      d₀ ∈ ψ.support ∧ 3 ≤ ordinaryDegree4 d₀ ∧
+      0 < d₀ (facetOmittedCoordinate F) ∧
+      scale = d₀ (facetOmittedCoordinate F) ∧
+      bump = m - ordinaryDegree4 d₀ ∧
+      0 < scale ∧ 0 < bump ∧
+      2 * bump ≤ scale * (m - 3) ∧
+      HC4.Polynomial.IsWeightLE
+        (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+        (scale * m : ℕ) ψ ∧
+      HC4.Polynomial.hessianDeterminant
+        (HC4.Polynomial.initialForm
+          (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+          (scale * m : ℕ) ψ) = 0 ∧
+      d₀ ∈ (HC4.Polynomial.initialForm
+          (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+          (scale * m : ℕ) ψ).support ∧
+      ¬ MvSupportOnFacet F
+        (HC4.Polynomial.initialForm
+          (scaledContactWeight (facetOmittedCoordinate F) scale bump)
+          (scale * m : ℕ) ψ) := by
+  let j := facetOmittedCoordinate F
+  have hout' : (nonlinearOutsideSupport j ψ).Nonempty := by
+    simpa [j] using nonlinearOutsideSupport_nonempty_of_hasNonlinearOutsideFacet hout
+  have hdeg' : ∀ d ∈ ψ.support, 3 ≤ ordinaryDegree4 d → ordinaryDegree4 d ≤ m := by
+    simpa [NonlinearDegreeBound] using hdeg
+  have htop' : ∀ d ∈ ψ.support, ordinaryDegree4 d = m → d j = 0 := by
+    simpa [j] using topDegree_omittedCoordinate_zero htop
+  have hdstar' : dstar ∈ nonlinearOutsideSupport j ψ := by
+    simpa [j] using hdstar
+  have hdstarTwo' : 2 ≤ dstar j := by
+    simpa [j] using hdstarTwo
+  rcases exists_minimal_contactExponent (m := m) hout' with ⟨d₀, hd₀, hmin⟩
+  let scale := d₀ j
+  let bump := m - ordinaryDegree4 d₀
+  have hlevel := selected_contact_level hd₀ hdeg' htop'
+  dsimp only at hlevel
+  have hscale : 0 < scale := by simpa [scale] using hlevel.1
+  have hbump : 0 < bump := by simpa [bump] using hlevel.2.1
+  have hcontact₀ :
+      scaledContactExponentWeight j scale bump d₀ = (scale * m : ℕ) := by
+    simpa [scale, bump] using hlevel.2.2
+  have hbound : HC4.Polynomial.IsWeightLE
+      (scaledContactWeight j scale bump) (scale * m : ℕ) ψ := by
+    simpa [scale, bump] using
+      selected_contact_isWeightLE_of_two_outside_comparison
+        hm hd₀ hmin hdeg' htop' hdstar' hdstarTwo'
+  have hstarPos : 0 < dstar j :=
+    (mem_nonlinearOutsideSupport.mp hdstar').2.2
+  have hcrossStar :
+      (m - ordinaryDegree4 d₀) * dstar j ≤
+        (m - ordinaryDegree4 dstar) * d₀ j :=
+    (contactSlope_le_iff_cross
+      (mem_nonlinearOutsideSupport.mp hd₀).2.2 hstarPos).mp
+      (hmin dstar hdstar')
+  have hstarDeg : 3 ≤ ordinaryDegree4 dstar :=
+    (mem_nonlinearOutsideSupport.mp hdstar').2.1
+  have hsub :
+      m - ordinaryDegree4 dstar ≤ m - 3 :=
+    Nat.sub_le_sub_left hstarDeg m
+  have hdouble :
+      2 * bump ≤ scale * (m - 3) := by
+    dsimp [scale, bump]
+    calc
+      2 * (m - ordinaryDegree4 d₀) =
+          (m - ordinaryDegree4 d₀) * 2 := by ring
+      _ ≤ (m - ordinaryDegree4 d₀) * dstar j :=
+        Nat.mul_le_mul_left (m - ordinaryDegree4 d₀) hdstarTwo'
+      _ ≤ (m - ordinaryDegree4 dstar) * d₀ j := hcrossStar
+      _ ≤ (m - 3) * d₀ j :=
+        Nat.mul_le_mul_right (d₀ j) hsub
+      _ = d₀ j * (m - 3) := by ring
+  have hcontactBound : bump + 3 * scale ≤ scale * m := by
+    have hbumpSingle : bump ≤ scale * (m - 3) := by
+      have hbumpDouble : bump ≤ 2 * bump := by omega
+      exact le_trans hbumpDouble hdouble
+    calc
+      bump + 3 * scale ≤ scale * (m - 3) + 3 * scale :=
+        Nat.add_le_add_right hbumpSingle _
+      _ = scale * ((m - 3) + 3) := by ring
+      _ = scale * m := by rw [Nat.sub_add_cancel hm]
+  have hdet : HC4.Polynomial.hessianDeterminant
+      (HC4.Polynomial.initialForm (scaledContactWeight j scale bump)
+        (scale * m : ℕ) ψ) = 0 :=
+    scaledContact_hessianDeterminant_eq_zero_of_isWeightLE
+      hscale hcontactBound hbound hMA
+  have hd₀supp : d₀ ∈ ψ.support := (mem_nonlinearOutsideSupport.mp hd₀).1
+  have hd₀nonlin : 3 ≤ ordinaryDegree4 d₀ :=
+    (mem_nonlinearOutsideSupport.mp hd₀).2.1
+  have hd₀j : 0 < d₀ j := (mem_nonlinearOutsideSupport.mp hd₀).2.2
+  have hd₀weight :
+      Finsupp.weight (scaledContactWeight j scale bump) d₀ = (scale * m : ℕ) := by
+    rw [weight_scaledContactWeight]
+    exact hcontact₀
+  have hd₀init : d₀ ∈ (HC4.Polynomial.initialForm
+      (scaledContactWeight j scale bump) (scale * m : ℕ) ψ).support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    rw [HC4.Polynomial.coeff_initialForm]
+    simp [hd₀weight, MvPolynomial.mem_support_iff.mp hd₀supp]
+  have hnotFacet : ¬ MvSupportOnFacet F
+      (HC4.Polynomial.initialForm
+        (scaledContactWeight j scale bump) (scale * m : ℕ) ψ) := by
+    intro hFacet
+    have hz := (onFacet_toToricExponent_iff F d₀).1 (hFacet d₀ hd₀init)
+    change d₀ j = 0 at hz
+    omega
+  refine ⟨d₀, scale, bump, hd₀supp, hd₀nonlin, ?_, rfl, rfl,
+    hscale, hbump, hdouble, hbound, hdet, hd₀init, hnotFacet⟩
+  simpa [j] using hd₀j
+
 end
 
 end HC4.Newton

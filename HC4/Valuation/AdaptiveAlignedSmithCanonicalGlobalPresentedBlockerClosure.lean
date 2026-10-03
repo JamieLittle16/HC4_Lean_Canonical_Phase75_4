@@ -118,18 +118,61 @@ theorem AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction.exists_direc
   rcases kernel.toRigidMixedLayerCrossData with ⟨mixed⟩
   exact mixed.exists_ramifiedSpend_currentScale S clock_eq
 
+/-! ## Equality-safe packet transport -/
+
+/-- A planar packet bundled with the dependent rigidity certificate attached to
+its actual `degree` and `packet` fields. -/
+structure TransportedPlanarRigidPacket
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Type (u + 1) where
+  packet : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint (K := K) B
+  rigid : HasRigidRankOnePacket
+    (0 : Fin 4) 1 2 packet.degree packet.packet
+
+/-- Transport a planar rigid packet across literal blocker equality in one
+equality elimination, so no residual cast appears in the rigidity proof. -/
+noncomputable def transportPlanarRigidPacket
+    {degreeCap : ℕ}
+    {B₁ B₂ : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
+    (h : B₁ = B₂)
+    (P : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint (K := K) B₂)
+    (hrigid : HasRigidRankOnePacket
+      (0 : Fin 4) 1 2 P.degree P.packet) :
+    TransportedPlanarRigidPacket (K := K) B₁ := by
+  cases h
+  exact { packet := P, rigid := hrigid }
+
+/-- A `w²` packet bundled with its dependent rigidity certificate. -/
+structure TransportedWSquareRigidPacket
+    {degreeCap : ℕ}
+    (B : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap) : Type (u + 1) where
+  packet : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B
+  rigid : HasRigidRankOnePacket
+    (0 : Fin 4) 3 2 packet.degree packet.packet
+
+/-- Transport a `w²` rigid packet across literal blocker equality in one
+equality elimination. -/
+noncomputable def transportWSquareRigidPacket
+    {degreeCap : ℕ}
+    {B₁ B₂ : AdaptiveAlignedSmithBlockerEndpoint (K := K) degreeCap}
+    (h : B₁ = B₂)
+    (P : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) B₂)
+    (hrigid : HasRigidRankOnePacket
+      (0 : Fin 4) 3 2 P.degree P.packet) :
+    TransportedWSquareRigidPacket (K := K) B₁ := by
+  cases h
+  exact { packet := P, rigid := hrigid }
+
 /-! ## Geometry retained by current-scale rank promotion -/
 
-/-- A zero-Schur blocker already has a literal nonzero active `2 x 2` Hessian
-minor in its retained invertible chart. -/
+/-- A zero-Schur blocker already retains the exact honest chart together with
+its nonzero active minor and three zero-Schur certificates.  No duplicate
+proof fields are needed here: they are fields of `chart.zeroData` itself. -/
 structure AdaptiveAlignedSmithCanonicalPresentedZeroSchurRankTwoGeometry
     {source : ScaleAwareAdaptiveGeometricRestartState (K := K)}
-    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source) : Prop where
+    (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source) :
+    Type (u + 1) where
   chart : AdaptiveAlignedRightRecenteredZeroSchurChartData D.blocker
-  activeDet_coeff_zero_ne_zero : chart.zeroData.activeDet.coeff 0 ≠ 0
-  schurA_coeff_zero : chart.zeroData.schurA.coeff 0 = 0
-  schurB_coeff_zero : chart.zeroData.schurB.coeff 0 = 0
-  schurC_coeff_zero : chart.zeroData.schurC.coeff 0 = 0
 
 /-- The final stationary rank-two witness is either B38 residual geometry or
 the literal zero-Schur active minor.  `blocker_eq` ties either stationary
@@ -275,10 +318,6 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.soundClosure
   | zeroSchurClosing chart closing =>
       let G0 : AdaptiveAlignedSmithCanonicalPresentedZeroSchurRankTwoGeometry D := {
         chart := chart
-        activeDet_coeff_zero_ne_zero := chart.zeroData.activeDet_coeff_zero_ne_zero
-        schurA_coeff_zero := chart.zeroData.schurA_coeff_zero
-        schurB_coeff_zero := chart.zeroData.schurB_coeff_zero
-        schurC_coeff_zero := chart.zeroData.schurC_coeff_zero
       }
       let GG : AdaptiveAlignedSmithCanonicalPresentedStationaryRankTwoGeometry
           D S complexity := {
@@ -297,18 +336,15 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.soundClosure
       exact (S.not_rawSpecialFiber_transverseFree hfreeS).elim
 
   | planarRigid hall P hrigid =>
-      let P' : AdaptiveAlignedSmithQuadraticCompetitorPacketEndpoint
-          (K := K) S.blocker := by
-        rw [hblock]
-        exact P
+      let T := transportPlanarRigidPacket (K := K) hblock P hrigid
+      let P' := T.packet
+      have hrigid' : HasRigidRankOnePacket
+          (0 : Fin 4) 1 2 P'.degree P'.packet := T.rigid
       have hall' :
           ∀ rho : Equiv.Perm (Fin 4),
             (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
               rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
         simpa [hblock] using hall
-      have hrigid' : HasRigidRankOnePacket
-          (0 : Fin 4) 1 2 P'.degree P'.packet := by
-        simpa [P'] using hrigid
       let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
         source := S.toTerminalSourcePacket
         hall := hall'
@@ -319,17 +355,15 @@ theorem AdaptiveAlignedSmithCanonicalPresentedBlocker.soundClosure
         ((h.toGlobalStrictMacro RR).prepend_internal RR D.sourcePresentation)
 
   | wSquareRigid hall P hrigid =>
-      let P' : AdaptiveAlignedSmithWSquarePacketEndpoint (K := K) S.blocker := by
-        rw [hblock]
-        exact P
+      let T := transportWSquareRigidPacket (K := K) hblock P hrigid
+      let P' := T.packet
+      have hrigid' : HasRigidRankOnePacket
+          (0 : Fin 4) 3 2 P'.degree P'.packet := T.rigid
       have hall' :
           ∀ rho : Equiv.Perm (Fin 4),
             (adaptiveAlignedEndpointRightRecenteredSpecialHessianFourBlock
               rho S.blocker.aligned.endpoint).AllTwoByTwoMinorsZero := by
         simpa [hblock] using hall
-      have hrigid' : HasRigidRankOnePacket
-          (0 : Fin 4) 3 2 P'.degree P'.packet := by
-        simpa [P'] using hrigid
       let R : AdaptiveAlignedSmithCanonicalSourceCompleteRigidObstruction S := {
         source := S.toTerminalSourcePacket
         hall := hall'
