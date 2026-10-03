@@ -232,8 +232,7 @@ theorem PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero
       MvPolynomial.coeff d
           (((MvPolynomial.X (0 : Fin 4) :
               MvPolynomial (Fin 4) K)) ^ T.topFace.degree) ≠ 0 := by
-    intro hz
-    exact htopCoeff (mul_eq_zero.mpr (Or.inr hz))
+    exact (mul_ne_zero.mp htopCoeff).2
   have hdEqRev :
       Finsupp.single (0 : Fin 4) T.topFace.degree = d := by
     rw [MvPolynomial.coeff_X_pow] at hpow
