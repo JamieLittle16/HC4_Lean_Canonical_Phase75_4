@@ -2,6 +2,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -150,6 +151,26 @@ theorem PureLongitudinalMarkedE3Data.lowerSourceDegreeWitness
         2 ≤ d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) ∧
         d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder :=
   P.pureLongitudinal_firstActual_exists_lowerSourceDegree
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- Pure-longitudinal E3 retains the *entire* lower singular collision,
+not merely the lower source exponent.  The first actual potential is nonzero,
+Hessian-singular, strictly below maximal source degree, and carries the same
+distinct marked gradient collision at 0 and e₀. -/
+theorem PureLongitudinalMarkedE3Data.lowerSingularCollisionPacket
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let L := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    L ≠ 0 ∧
+      HC4.Polynomial.hessianDeterminant L = 0 ∧
+      HasExactGradientCollision L
+        (fun _ : Fin 4 => (0 : K))
+        (coordinateAxisPoint (K := K) (0 : Fin 4)) ∧
+      (∀ d ∈ L.support,
+        HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree) :=
+  P.pureLongitudinal_firstActualLayer_singularCollisionPacket
     D.coefficient_ne_zero D.topFace_eq
 
 /-- Exact coefficient order of every represented-source monomial in the
