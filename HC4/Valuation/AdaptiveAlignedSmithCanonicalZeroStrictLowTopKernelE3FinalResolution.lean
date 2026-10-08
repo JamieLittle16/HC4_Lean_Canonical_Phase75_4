@@ -3,6 +3,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -201,6 +202,27 @@ theorem PureLongitudinalMarkedE3Data.reducedClockCollisionFamily
     P.pureLongitudinal_firstActualQuotient_exactCollision
       D.coefficient_ne_zero D.topFace_eq,
     hpos, hlt⟩
+
+/-- On the reached pure E3 branch the first-actual quotient is
+the honest lower-level reverse-Rees family of the *same represented source*,
+at weight cap `D-j`.  In particular it is not merely an unspecified
+lower-degree collision polynomial. -/
+theorem PureLongitudinalMarkedE3Data.relevelledReverseRees
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight
+      r T.topKernelReesSource :=
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+    firstActualDeformationFamily
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer =
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        r T.topKernelReesSource hbound :=
+  P.pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees
+    D.coefficient_ne_zero D.topFace_eq
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
