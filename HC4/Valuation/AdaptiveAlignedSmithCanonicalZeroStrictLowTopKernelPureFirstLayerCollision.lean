@@ -1,5 +1,6 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer
+import HC4.Valuation.PrimitiveSmithEndpoint
 import HC4.Valuation.PolynomialFamilyCollisionSpecialFiber
 import Mathlib.Tactic
 
