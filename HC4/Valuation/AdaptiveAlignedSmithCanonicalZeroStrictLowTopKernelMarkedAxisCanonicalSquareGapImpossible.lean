@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice
+import HC4.Valuation.PrimitiveSmithEndpoint
 import Mathlib.Tactic
 
 /-!
