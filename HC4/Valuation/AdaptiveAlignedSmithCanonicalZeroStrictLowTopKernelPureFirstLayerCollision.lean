@@ -48,7 +48,7 @@ theorem firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber
   have hfactor : F = MvPolynomial.C (Polynomial.X ^ j) * Q := by
     have h := firstActualDeformationFamily_factorisation F hpositive
     rw [hzero] at h
-    simpa [j, Q] using h
+    simpa [j, Q, constantPolynomialFamily] using h
   intro i
   have heval (p : Fin 4 → Polynomial K) :
       MvPolynomial.eval p (MvPolynomial.pderiv i F) =
