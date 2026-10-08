@@ -53,7 +53,9 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
           T.topKernelMarkedAxisFirstActualLayerOrder = T.topFace.degree ∧
         d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder := by
   let j : ℕ := T.topKernelMarkedAxisFirstActualLayerOrder
-  rcases T.topKernelMarkedAxisFirstActualLayerOrder_realised with
+  rcases firstPositiveActualParameterOrder_realised
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer with
     ⟨d, hfamily, hcoef⟩
   have hsource : d ∈ T.topKernelReesSource.support := by
     by_contra hnot
