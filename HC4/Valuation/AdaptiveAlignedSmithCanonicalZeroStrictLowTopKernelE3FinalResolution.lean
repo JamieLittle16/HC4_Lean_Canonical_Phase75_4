@@ -4,6 +4,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -222,6 +223,29 @@ theorem PureLongitudinalMarkedE3Data.relevelledReverseRees
       reverseWeightedReesFamily topKernelMarkedAxisNatWeight
         r T.topKernelReesSource hbound :=
   P.pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- The reached pure E3 packet constructs two honest A18 scale-aware
+auxiliary states with the same represented source and the same marked
+collision.  The strict clock descent between them is certified by the
+existing global macro order.  It is deliberately NOT an edge from the
+zero-clock represented source itself. -/
+theorem PureLongitudinalMarkedE3Data.auxiliaryMacroStep
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ s t : ScaleAwareAdaptiveGeometricRestartState (K := K),
+      s.family = T.topKernelMarkedAxisFirstContactFamily ∧
+      t.family =
+        firstActualDeformationFamily T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer ∧
+      s.degreeCap = T.topFace.degree ∧
+      t.degreeCap = T.topFace.degree ∧
+      s.scale = T.terminal.blocker.presented.scale ∧
+      t.scale = s.scale ∧
+      t.repair = s.repair ∧
+      t.rawDefect < s.rawDefect ∧
+      AdaptiveAlignedSmithCanonicalGlobalMacroProgress t s :=
+  P.pureLongitudinal_exists_auxiliaryMacroStep
     D.coefficient_ne_zero D.topFace_eq
 
 /-- Exact coefficient order of every represented-source monomial in the
