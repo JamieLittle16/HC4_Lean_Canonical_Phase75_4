@@ -3391,6 +3391,8 @@ Distinct declaration spellings indexed: **10162**.
 - `TopKernelMarkedAxisAlignedFreshSquareData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `TopKernelMarkedAxisAlignedFreshSquareData.family_coefficient_firstActual_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisAlignedFreshSquareData.family_firstActual_gap_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
+- `TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `TopKernelMarkedAxisAlignedFreshSquareData.sourceCoefficientOrder_eq_zero_of_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_eq_baseShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisAlignedFreshSquareData.specialFiber_exponent_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
@@ -3408,7 +3410,6 @@ Distinct declaration spellings indexed: **10162**.
 - `TopKernelMarkedAxisCanonicalSquareBinaryTerminalNormalForm` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareFamilyObstruction` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
-- `TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible_of_exactClosing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAffineData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
@@ -5435,7 +5436,6 @@ Distinct declaration spellings indexed: **10162**.
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_balanced_monomial_rankThree_or_extremeRay` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_monomial_on_boundary_of_zero_hessian` — `theorem` in `HC4.Newton.InteriorVertex`
-- `exposure_specialFiber_coeff_zero_of_canonical_residue` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `exposure_specialFiber_coeff_zero_of_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `ext` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `extendCoeffs` — `def` in `HC4.Toric.ClassifiedDescent`

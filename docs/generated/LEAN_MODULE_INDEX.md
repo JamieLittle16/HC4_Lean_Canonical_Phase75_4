@@ -12270,7 +12270,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `theorem exposure_specialFiber_coeff_zero_of_gap`, `theorem canonicalSquare_complement_weight_multiple`, `theorem canonicalSquare_weight_ne_commonLevel`, `theorem TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible_of_exactClosing`, `theorem topKernelMarkedAxisCanonicalSquare_obstruction_of_eq_defect`, `theorem exposure_specialFiber_coeff_zero_of_canonical_residue`, `theorem TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible`, `theorem topKernelMarkedAxisCanonicalSquare_obstruction`
+- Declarations: `theorem exposure_specialFiber_coeff_zero_of_gap`, `theorem canonicalSquare_complement_weight_multiple`, `theorem canonicalSquare_weight_ne_commonLevel`, `theorem TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible_of_exactClosing`, `theorem topKernelMarkedAxisCanonicalSquare_obstruction_of_eq_defect`, `def TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction`, `theorem topKernelMarkedAxisCanonicalSquare_obstruction`, `theorem TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction_order`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 
