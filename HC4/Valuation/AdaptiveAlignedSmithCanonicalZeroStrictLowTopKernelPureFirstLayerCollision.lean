@@ -140,6 +140,96 @@ theorem pureLongitudinal_firstActualLayer_exactCollision
   simpa [F, hp, topKernelMarkedAxisFirstActualLayerOrder,
     polynomialSectionSpecialPoint, zeroPolynomialSection] using hspecial
 
+/-- The pure top-face case admits an *honest strict Hessian-clock
+descent* on the collision-bearing first-actual quotient: writing
+`r = D - j`, the quotient has exact determinant clock `4r-6`
+rather than `4D-6`, and `2 ≤ r < D`.
+
+This preserves the full polynomial family, not merely its first coefficient.
+A separate restart adapter is still required to turn this clock decrease
+into global HC4 repair progress. -/
+theorem pureLongitudinal_firstActualQuotient_reducedClock
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    HasPolynomialFamilyHessianDefect (K := K)
+      (firstActualDeformationFamily
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)
+      (4 * r - 6) ∧
+      0 < 4 * r - 6 ∧
+      4 * r - 6 < 4 * T.topFace.degree - 6 := by
+  let F := T.topKernelMarkedAxisFirstContactFamily
+  let hp := T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+  let j := T.topKernelMarkedAxisFirstActualLayerOrder
+  let r := T.topFace.degree - j
+  have hzero : polynomialFamilySpecialFiber F = 0 :=
+    P.pureLongitudinal_markedAxis_specialFiber_eq_zero
+      coefficient_ne_zero topFace_eq
+  have hdef :
+      HasPolynomialFamilyHessianDefect (K := K)
+        F (4 * T.topFace.degree - 6) := by
+    simpa [F, topKernelOrdinaryReesDefect] using
+      T.topKernelMarkedAxisFirstContact_hasHessianDefect
+  have hquot :=
+    firstActualDeformationFamily_hasHessianDefect_of_zeroSpecialFiber
+      F hp hzero (4 * T.topFace.degree - 6) hdef
+  have hjle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      coefficient_ne_zero topFace_eq
+  have hjpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
+  have hD := T.topFace.degree_ge_three
+  have harith :
+      (4 * T.topFace.degree - 6) - 4 * j = 4 * r - 6 := by
+    dsimp [j, r]
+    omega
+  have hclock :
+      HasPolynomialFamilyHessianDefect (K := K)
+        (firstActualDeformationFamily F hp)
+        (4 * r - 6) := by
+    simpa [F, hp, j, harith, topKernelMarkedAxisFirstActualLayerOrder]
+      using hquot
+  dsimp only
+  refine ⟨?_, ?_, ?_⟩
+  · exact hclock
+  · dsimp [r, j]
+    omega
+  · dsimp [r, j]
+    omega
+
+/-- The same reduced-clock quotient retains the two distinct constant
+marked collision points throughout the parameter family. -/
+theorem pureLongitudinal_firstActualQuotient_exactCollision
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    HasPolynomialFamilyExactGradientCollision
+      (firstActualDeformationFamily
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)
+      (zeroPolynomialSection (K := K))
+      (polynomialConstantSection
+        (coordinateAxisPoint (K := K) (0 : Fin 4))) :=
+  firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber
+    T.topKernelMarkedAxisFirstContactFamily
+    T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+    (P.pureLongitudinal_markedAxis_specialFiber_eq_zero
+      coefficient_ne_zero topFace_eq)
+    (zeroPolynomialSection (K := K))
+    (polynomialConstantSection
+      (coordinateAxisPoint (K := K) (0 : Fin 4)))
+    T.topKernelMarkedAxisFirstContact_exactGradientCollision
+
 /-- The pure E3 first actual layer is a nonzero lower-degree
 Hessian-singular potential with an exact marked gradient collision. -/
 theorem pureLongitudinal_firstActualLayer_singularCollisionPacket
