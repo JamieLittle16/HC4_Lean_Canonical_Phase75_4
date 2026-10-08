@@ -12530,7 +12530,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`, `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`, `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `theorem firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber`, `theorem pureLongitudinal_firstActualLayer_exactCollision`, `theorem pureLongitudinal_firstActualLayer_singularCollisionPacket`
+- Declarations: `theorem firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber`, `theorem firstActualDeformationFamily_hasHessianDefect_of_zeroSpecialFiber`, `theorem pureLongitudinal_firstActualLayer_exactCollision`, `theorem pureLongitudinal_firstActualLayer_singularCollisionPacket`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 

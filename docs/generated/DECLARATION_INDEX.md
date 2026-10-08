@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10166**.
+Distinct declaration spellings indexed: **10167**.
 
 ## Repeated declaration spellings
 
@@ -5693,6 +5693,7 @@ Distinct declaration spellings indexed: **10166**.
 - `firstActualDeformationFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `firstActualDeformationFamily_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+- `firstActualDeformationFamily_hasHessianDefect_of_zeroSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `firstActualDeformationFamily_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
 - `firstActualDeformationFamily_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
