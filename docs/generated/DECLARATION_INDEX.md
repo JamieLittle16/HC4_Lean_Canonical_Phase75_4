@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10170**.
+Distinct declaration spellings indexed: **10173**.
 
 ## Repeated declaration spellings
 
@@ -2400,6 +2400,7 @@ Distinct declaration spellings indexed: **10170**.
 - `PureLongitudinalMarkedE3Data.maximalCommonFactorQuotient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.positiveTransverseLowLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.reducedClockCollisionFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `QsLowerBoundaryOutcome` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
 - `QsOtherFacetContactFractionProfilePackage` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfile`
 - `QsOtherFacetContactFractionProfilePackage.impossible_of_residual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactFractionProfileRigidity`
@@ -7979,6 +7980,7 @@ Distinct declaration spellings indexed: **10170**.
 - `pureLongitudinal_constant_or_derivativeResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `pureLongitudinal_firstActualLayer_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstActualLayer_singularCollisionPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+- `pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
 - `pureLongitudinal_firstActualQuotient_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstActualQuotient_reducedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstContact_or_square_at_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
@@ -8750,6 +8752,7 @@ Distinct declaration spellings indexed: **10170**.
 - `reverseWeightedReesFamily_parameterLayer_eq_zero_of_level_lt` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_parameterLayer_mem_iff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
 - `reverseWeightedReesFamily_parameterLayer_zero_coeff` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
+- `reverseWeightedReesFamily_relevel_factor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
 - `reverseWeightedReesFamily_scaledGradient_eval` — `theorem` in `HC4.Valuation.BoundedReverseWeightedRees`
 - `reverseWeightedReesFamily_sourceMinor_of_familyMinor_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
 - `reverseWeightedReesFamily_sourceSchurA_of_familySchurA_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
