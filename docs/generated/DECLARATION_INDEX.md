@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10159**.
+Distinct declaration spellings indexed: **10162**.
 
 ## Repeated declaration spellings
 
@@ -3408,6 +3408,7 @@ Distinct declaration spellings indexed: **10159**.
 - `TopKernelMarkedAxisCanonicalSquareBinaryTerminalNormalForm` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareFamilyObstruction` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible_of_exactClosing` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `TopKernelMarkedAxisCanonicalSquareLowDimensionalGradientData.toPlanarAffineData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
@@ -5434,6 +5435,7 @@ Distinct declaration spellings indexed: **10159**.
 - `exposed_balanced_monomial_qs_positive` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_balanced_monomial_rankThree_or_extremeRay` — `theorem` in `HC4.Newton.ExposedBalancedBoundaryStratum`
 - `exposed_monomial_on_boundary_of_zero_hessian` — `theorem` in `HC4.Newton.InteriorVertex`
+- `exposure_specialFiber_coeff_zero_of_canonical_residue` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `exposure_specialFiber_coeff_zero_of_gap` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `ext` — `theorem` in `HC4.Newton.GeneralFourBlockSchur`
 - `extendCoeffs` — `def` in `HC4.Toric.ClassifiedDescent`
@@ -10053,6 +10055,7 @@ Distinct declaration spellings indexed: **10159**.
 - `topKernelMarkedAxisAlignedSquareTimingFrontier_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `topKernelMarkedAxisCanonicalSquareExposure_or_obstruction_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `topKernelMarkedAxisCanonicalSquare_integral_or_obstruction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `topKernelMarkedAxisCanonicalSquare_obstruction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `topKernelMarkedAxisCanonicalSquare_obstruction_of_eq_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
 - `topKernelMarkedAxisFirstActualLayerOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisActualLayer`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
 - `topKernelMarkedAxisFirstActualLayerOrder_le_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
