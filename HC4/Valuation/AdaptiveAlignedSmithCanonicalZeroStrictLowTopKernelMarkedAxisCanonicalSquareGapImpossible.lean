@@ -123,7 +123,8 @@ private theorem canonicalSquare_complement_weight_multiple
   fin_cases ell
   · exact (hell rfl).elim
   · refine ⟨d (2 : Fin 4) + d (3 : Fin 4), ?_, ?_⟩
-    · simpa using (show 0 < d (2 : Fin 4) + d (3 : Fin 4) by omega)
+    · simpa at hpos
+      omega
     · simp [Finsupp.weight_apply, Finsupp.sum_fintype,
         Fin.sum_univ_four, directClosingCanonicalSquareWeight]
       ring
