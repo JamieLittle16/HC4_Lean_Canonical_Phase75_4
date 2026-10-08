@@ -4174,6 +4174,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
   - `HC4.Valuation.CommonParameterFactorRestart`
@@ -4315,6 +4316,10 @@ human architecture guide.
   - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+  - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.MongeAmpere.MaximalInitial`
   - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`

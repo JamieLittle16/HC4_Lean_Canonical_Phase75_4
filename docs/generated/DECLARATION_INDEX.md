@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10162**.
+Distinct declaration spellings indexed: **10166**.
 
 ## Repeated declaration spellings
 
@@ -2393,6 +2393,7 @@ Distinct declaration spellings indexed: **10162**.
 - `PureLongitudinalMarkedAxisLowerNonlinearData.vertex` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `PureLongitudinalMarkedE3Data` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.commonFactorQuotient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.lowerSingularCollisionPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.lowerSourceDegreeWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.markedAxisSpecialFiber_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.markedAxis_sourceCoefficientOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
@@ -5690,6 +5691,7 @@ Distinct declaration spellings indexed: **10162**.
 - `finsupp_weight_qsOtherFacetPair_combination` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `finsupp_weight_sub_scaled_fin4` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarWallRatio`
 - `firstActualDeformationFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+- `firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `firstActualDeformationFamily_factorisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `firstActualDeformationFamily_parameterLayer` — `theorem` in `HC4.Valuation.FirstActualDeformationLayerShift`
@@ -7973,6 +7975,8 @@ Distinct declaration spellings indexed: **10162**.
 - `pureLongitudinalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinalTransverseWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinal_constant_or_derivativeResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `pureLongitudinal_firstActualLayer_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+- `pureLongitudinal_firstActualLayer_singularCollisionPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstContact_or_square_at_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_lowerFirstOpening_longitudinal_rankTwoResolved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
