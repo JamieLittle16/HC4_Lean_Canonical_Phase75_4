@@ -173,6 +173,35 @@ theorem PureLongitudinalMarkedE3Data.lowerSingularCollisionPacket
   P.pureLongitudinal_firstActualLayer_singularCollisionPacket
     D.coefficient_ne_zero D.topFace_eq
 
+/-- The marked-aware pure E3 branch admits a strict **potential-family**
+Hessian-clock descent while preserving its marked collision.  With
+`r = topFace.degree - firstActualLayerOrder`, the quotient has determinant
+`τ^(4r-6)` and retains the exact collision at `0` and `e₀`.
+This is a concrete descent packet, not yet an ambient-state restart. -/
+theorem PureLongitudinalMarkedE3Data.reducedClockCollisionFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let Q := firstActualDeformationFamily
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+    HasPolynomialFamilyHessianDefect (K := K) Q (4 * r - 6) ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) ∧
+      0 < 4 * r - 6 ∧
+      4 * r - 6 < 4 * T.topFace.degree - 6 := by
+  dsimp
+  rcases P.pureLongitudinal_firstActualQuotient_reducedClock
+      D.coefficient_ne_zero D.topFace_eq with
+    ⟨hdef, hpos, hlt⟩
+  exact ⟨hdef,
+    P.pureLongitudinal_firstActualQuotient_exactCollision
+      D.coefficient_ne_zero D.topFace_eq,
+    hpos, hlt⟩
+
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
 
