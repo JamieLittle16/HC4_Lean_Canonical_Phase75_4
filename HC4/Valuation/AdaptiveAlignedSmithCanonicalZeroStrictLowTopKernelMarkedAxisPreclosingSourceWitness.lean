@@ -1,4 +1,5 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import Mathlib.Tactic
 
 /-!
@@ -45,7 +46,10 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state) :
     ∃ d ∈ T.representedSpecialFiber.support,
-      d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) +
+      d ∈ (familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder).support ∧
+        d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) +
           T.topKernelMarkedAxisFirstActualLayerOrder = T.topFace.degree ∧
         d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder := by
   let j : ℕ := T.topKernelMarkedAxisFirstActualLayerOrder
@@ -59,6 +63,12 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
         reverseWeightedReesFamily_coeff, if_neg hnot]
     rw [hfamilyZero] at hcoef
     simp at hcoef
+  have hfirst :
+      d ∈ (familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder).support := by
+    rw [MvPolynomial.mem_support_iff, familyParameterLayer_coeff]
+    exact hcoef
   have hweightLe :
       Finsupp.weight topKernelMarkedAxisNatWeight d ≤ T.topFace.degree :=
     T.topKernelReesSource_hasMarkedAxisReverseWeightBound d hsource
@@ -97,7 +107,8 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
       d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder := by
     unfold HC4.Polynomial.ordinaryDegree4 at hdeg
     omega
-  exact ⟨d, by simpa [topKernelReesSource] using hsource, htrans, hlong⟩
+  exact ⟨d, by simpa [topKernelReesSource] using hsource,
+    hfirst, htrans, hlong⟩
 
 /-- In particular every actual marked-axis terminal has an honest represented
 source monomial whose transverse degree lies strictly below the top degree,
@@ -110,10 +121,42 @@ theorem topKernelMarkedAxis_firstActual_exists_strictlyLowerTransverseWitness
         T.topFace.degree ∧
       d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder := by
   rcases T.topKernelMarkedAxis_firstActual_exists_representedSourceWitness with
-    ⟨d, hd, hdegree, hlong⟩
+    ⟨d, hd, _hfirst, hdegree, hlong⟩
   refine ⟨d, hd, ?_, hlong⟩
   have hjpos := T.topKernelMarkedAxisFirstActualLayerOrder_pos
   omega
+
+/-- In the pure-longitudinal top-face branch the first actual witness is
+*strictly below the maximal ordinary source degree*, not merely below the
+maximal transverse degree.  Its transverse degree is at least two.  This
+retains a concrete represented-source monomial for any later genuine
+degree-decreasing repair. -/
+theorem TopFaceLinearPowerKernelData.pureLongitudinal_firstActual_exists_lowerSourceDegree
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    {kernelCoordinate : Fin 4}
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    {coefficient : K}
+    (coefficient_ne_zero : coefficient ≠ 0)
+    (topFace_eq :
+      T.topFace.face =
+        MvPolynomial.C coefficient *
+          (MvPolynomial.X (0 : Fin 4)) ^ T.topFace.degree) :
+    ∃ d ∈ T.representedSpecialFiber.support,
+      HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree ∧
+        2 ≤ d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) ∧
+        d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder := by
+  rcases T.topKernelMarkedAxis_firstActual_exists_representedSourceWitness with
+    ⟨d, hsource, hfirst, htrans, hlong⟩
+  have hdegree :=
+    P.pureLongitudinal_markedAxis_firstActualLayer_ordinaryDegree_lt_topFace
+      coefficient_ne_zero topFace_eq d hfirst
+  have hqle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      coefficient_ne_zero topFace_eq
+  have hD := T.topFace.degree_ge_three
+  exact ⟨d, hsource, hdegree, by omega, hlong⟩
+
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
