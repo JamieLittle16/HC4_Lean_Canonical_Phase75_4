@@ -32,9 +32,10 @@ open HC4.Newton
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
-/-- A family with zero special fibre has a first-actual quotient preserving
-any exact gradient collision between polynomial sections.  This is a
-polynomial identity, not merely a collision at one parameter value. -/
+/-- If a polynomial family has zero special fibre, its entire first
+positive parameter power divides it.  The existing exact-collision covariance
+of `commonParameterFactorFamily` therefore applies directly to the canonical
+first-actual quotient, without an independent cancellation argument. -/
 theorem firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber
     (F : MvPolynomial (Fin 4) (Polynomial K))
     (hpositive : HasPositiveActualParameterLayer F)
@@ -43,21 +44,49 @@ theorem firstActualDeformationFamily_exactCollision_of_zeroSpecialFiber
     (hcollision : HasPolynomialFamilyExactGradientCollision F a b) :
     HasPolynomialFamilyExactGradientCollision
       (firstActualDeformationFamily F hpositive) a b := by
-  let j := firstPositiveActualParameterOrder F hpositive
-  let Q := firstActualDeformationFamily F hpositive
-  have hfactor : F = MvPolynomial.C (Polynomial.X ^ j) * Q := by
-    have h := firstActualDeformationFamily_factorisation F hpositive
-    rw [hzero] at h
-    simpa [j, Q, constantPolynomialFamily] using h
-  intro i
-  have heval (p : Fin 4 → Polynomial K) :
-      MvPolynomial.eval p (MvPolynomial.pderiv i F) =
-        Polynomial.X ^ j * MvPolynomial.eval p (MvPolynomial.pderiv i Q) := by
-    rw [hfactor]
-    simp [MvPolynomial.pderiv_C_mul]
-  have hc := hcollision i
-  rw [heval a, heval b] at hc
-  exact mul_left_cancel₀ (pow_ne_zero j Polynomial.X_ne_zero) hc
+  have hrem : positiveParameterRemainder F = F := by
+    unfold positiveParameterRemainder
+    rw [hzero]
+    simp [constantPolynomialFamily]
+  have hcollRem :
+      HasPolynomialFamilyExactGradientCollision
+        (positiveParameterRemainder F) a b := by
+    simpa [hrem] using hcollision
+  exact
+    polynomialFamilyExactGradientCollision_commonParameterFactor
+      (firstPositiveActualParameterOrder F hpositive)
+      (positiveParameterRemainder F)
+      (positiveParameterRemainder_hasCommonParameterFactor_firstActual F hpositive)
+      a b hcollRem
+
+/-- Exact four-variable Hessian clock after removing the earliest positive
+parameter power from a zero-special-fibre family.  This reuses the already
+proved arbitrary-power common-factor determinant law. -/
+theorem firstActualDeformationFamily_hasHessianDefect_of_zeroSpecialFiber
+    (F : MvPolynomial (Fin 4) (Polynomial K))
+    (hpositive : HasPositiveActualParameterLayer F)
+    (hzero : polynomialFamilySpecialFiber F = 0)
+    (Delta : ℕ)
+    (hdef : HasPolynomialFamilyHessianDefect (K := K) F Delta) :
+    HasPolynomialFamilyHessianDefect (K := K)
+      (firstActualDeformationFamily F hpositive)
+      (Delta - 4 * firstPositiveActualParameterOrder F hpositive) := by
+  have hrem : positiveParameterRemainder F = F := by
+    unfold positiveParameterRemainder
+    rw [hzero]
+    simp [constantPolynomialFamily]
+  have hdefRem :
+      HasPolynomialFamilyHessianDefect (K := K)
+        (positiveParameterRemainder F) Delta := by
+    simpa [hrem] using hdef
+  exact
+    commonParameterFactor_hasHessianDefect_sub_four_mul
+      (K := K)
+      (firstPositiveActualParameterOrder F hpositive)
+      (positiveParameterRemainder F)
+      (positiveParameterRemainder_hasCommonParameterFactor_firstActual F hpositive)
+      Delta hdefRem
+
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 namespace TopFaceLinearPowerKernelData
