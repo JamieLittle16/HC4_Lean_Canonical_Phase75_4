@@ -251,157 +251,86 @@ theorem topKernelMarkedAxisCanonicalSquare_obstruction_of_eq_defect
   · exact hobstruction
 
 
-/-! ## The non-vacuous canonical arithmetic obstruction
+/-! ## The actual preclosing canonical-square obstruction
 
-The earlier exact-closing variant has a hypothesis that the honest reverse-Rees
-degree bound excludes.  The following stronger argument needs NO gap or
-exact-closing assumption: the Hessian defect is 4D-6 = 2 (mod 4), while the
-canonical exposure ramifies by 4.  An exposed constant coefficient with
-positive complementary degree would need 4q + 3Delta*n = 4Delta.
-For n = 1 this demands 4q = Delta, impossible modulo 4; for n >= 2
-the positive source weight already exceeds the divided level.
+The first-actual-layer clock is always strictly below the Hessian defect:
+`j ≤ D < 4D - 6 = Delta`.  The fresh-square exponent has source weight
+zero and its family coefficient at order `j` is nonzero.  After the canonical
+fourfold ramification it is still nonzero at order `4*j < 4*Delta`, so
+the required common-level divisibility fails *at that explicit exponent*.
 
-Thus the special fibre can only depend on the two zero-weight coordinates,
-which is incompatible with an exposed determinant-one Hessian. -/
+This is a genuine preclosing certificate, rather than the unreachable
+exact-closing subcase considered above. -/
 
-/-- A positive complementary source degree cannot contribute to the
-constant parameter coefficient of a canonical 4-fold integral exposure
-when the Hessian defect is not divisible by four. -/
-private theorem exposure_specialFiber_coeff_zero_of_canonical_residue
-    (Delta : ℕ) (hDelta : 0 < Delta) (hnotdiv : ¬ (4 : ℕ) ∣ Delta)
-    (W : Fin 4 → ℕ) (P : MvPolynomial (Fin 4) (Polynomial K))
-    (hint : HasIntegralAdaptiveSmithExposure 4 W (4 * Delta) P)
-    (d : Fin 4 →₀ ℕ) (n : ℕ) (hn : 0 < n)
-    (hweight : Finsupp.weight W d = 3 * Delta * n) :
-    MvPolynomial.coeff d
-        (polynomialFamilySpecialFiber
-          (adaptiveSmithExposureFamily 4 W (4 * Delta) P hint)) = 0 := by
-  let c : Polynomial K := MvPolynomial.coeff d P
-  let Q : MvPolynomial (Fin 4) (Polynomial K) :=
-    adaptiveSmithExposureFamily 4 W (4 * Delta) P hint
-  have hid := adaptiveSmithExposureFamily_coefficient_identity
-    4 W (4 * Delta) P hint d
-  change
-    Polynomial.X ^ (4 * Delta) * MvPolynomial.coeff d Q =
-      Polynomial.X ^ Finsupp.weight W d *
-        parameterRamificationHom (K := K) 4 c at hid
-  rw [hweight] at hid
-  have hright :
-      (Polynomial.X ^ (3 * Delta * n) *
-        parameterRamificationHom (K := K) 4 c).coeff (4 * Delta) = 0 := by
-    by_cases hn1 : n = 1
-    · subst n
-      have hle : 3 * Delta ≤ 4 * Delta := by omega
-      rw [Polynomial.coeff_X_pow_mul']
-      simp only [if_pos hle]
-      have hsub : 4 * Delta - 3 * Delta = Delta := by omega
-      rw [hsub, parameterRamificationHom_eq_expand]
-      rw [Polynomial.coeff_expand (R := K) (by norm_num) c Delta]
-      simp [hnotdiv]
-    · have hn2 : 2 ≤ n := by omega
-      have hle : (3 * Delta) * 2 ≤ (3 * Delta) * n :=
-        Nat.mul_le_mul_left (3 * Delta) hn2
-      have hgt : 4 * Delta < 3 * Delta * n := by omega
-      rw [Polynomial.coeff_X_pow_mul']
-      simp [Nat.not_le_of_gt hgt]
-  have hleft :
-      (Polynomial.X ^ (4 * Delta) * MvPolynomial.coeff d Q).coeff
-          (4 * Delta) =
-        (MvPolynomial.coeff d Q).coeff 0 := by
-    rw [Polynomial.coeff_X_pow_mul']
-    simp
-  have hc := congrArg (fun p : Polynomial K => p.coeff (4 * Delta)) hid
-  change
-    (Polynomial.X ^ (4 * Delta) * MvPolynomial.coeff d Q).coeff
-        (4 * Delta) =
-      (Polynomial.X ^ (3 * Delta * n) *
-        parameterRamificationHom (K := K) 4 c).coeff (4 * Delta) at hc
-  rw [hleft, hright] at hc
-  simpa [Q, coeff_polynomialFamilySpecialFiber] using hc
-
-/-- **Uniform non-integrality of the canonical square exposure.**
-
-Unlike the exact-closing predecessor, this theorem does not assume the
-impossible equation `firstActualLayerOrder = defect`.  It applies to every
-fresh-square packet, regardless of its first actual layer order. -/
-theorem TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible
+/-- The distinguished fresh square is itself a concrete counterexample to
+the canonical-square coefficientwise integrality gate.  Its failure occurs
+at the true positive first-actual clock, strictly before Hessian closure. -/
+noncomputable def TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction
     {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state}
-    {D : T.TopKernelMarkedAxisAlignedFreshSquareData}
-    (G : T.TopKernelMarkedAxisCanonicalSquareIntegralityData D) :
-    False := by
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D := by
   let Delta : ℕ := 4 * T.topFace.degree - 6
-  let W : Fin 4 → ℕ := directClosingCanonicalSquareWeight Delta D.ell
-  let j : Fin 4 := if D.ell = (1 : Fin 4) then 2 else 1
-  let F : MvPolynomial (Fin 4) K :=
-    polynomialFamilySpecialFiber G.exposedFamily
-  have hDelta : 0 < Delta := by
-    have hdeg := T.topFace.degree_ge_three
-    dsimp [Delta]
+  let j : ℕ := T.topKernelMarkedAxisFirstActualLayerOrder
+  have hjlt : 4 * j < 4 * Delta := by
+    have h := T.topKernelMarkedAxisFirstActualLayerOrder_lt_defect
+    dsimp [j, Delta]
     omega
-  have hnotdiv : ¬ (4 : ℕ) ∣ Delta := by
-    intro hdiv
-    rcases hdiv with ⟨n, hn⟩
-    have hdeg := T.topFace.degree_ge_three
-    dsimp [Delta] at hn
-    omega
-  have hintegral : HasIntegralAdaptiveSmithExposure
-      4 W (4 * Delta) D.family := by
-    simpa [Delta, W, directClosingCanonicalSquareRamification,
-      directClosingCanonicalSquareCommonLevel] using G.familyIntegrality
-  have hcoeff : ∀ d : Fin 4 →₀ ℕ, 0 < d j →
-      MvPolynomial.coeff d F = 0 := by
-    intro d hd
-    rcases canonicalSquare_complement_weight_multiple
-        Delta D.ell D.ell_ne_zero d (by simpa [j] using hd) with
-      ⟨n, hn, hweight⟩
-    have hzero :=
-      exposure_specialFiber_coeff_zero_of_canonical_residue
-        (K := K) Delta hDelta hnotdiv W D.family hintegral
-        d n hn (by simpa [W] using hweight)
-    simpa [F, W, Delta,
-      TopKernelMarkedAxisCanonicalSquareIntegralityData.exposedFamily,
-      directClosingCanonicalSquareRamification,
-      directClosingCanonicalSquareCommonLevel] using hzero
-  have hderiv : MvPolynomial.pderiv j F = 0 := by
-    apply MvPolynomial.ext
-    intro d
-    rw [coeff_pderiv_commSemiring]
-    have hdpos :
-        0 < ((d + Finsupp.single j 1 : Fin 4 →₀ ℕ) j) := by
-      simp
-    rw [hcoeff (d + Finsupp.single j 1) hdpos]
-    simp
-  have hzero : HC4.Polynomial.hessianDeterminant F = 0 := by
-    unfold HC4.Polynomial.hessianDeterminant
-    apply Matrix.det_eq_zero_of_row_eq_zero j
-    intro k
-    simp [HC4.Polynomial.hessian_apply, hderiv]
-  have hone : HC4.Polynomial.hessianDeterminant F = 1 := by
-    dsimp [F]
-    rw [hessianDeterminant_polynomialFamilySpecialFiber]
-    have hdef := G.exposedFamily_hasHessianDefect
-    unfold HasPolynomialFamilyHessianDefect at hdef
-    rw [hdef]
-    simp
-  have hbad : (1 : MvPolynomial (Fin 4) K) = 0 :=
-    hone.symm.trans hzero
-  exact one_ne_zero hbad
+  have hsquare :
+      (MvPolynomial.coeff D.squareExponent D.family).coeff j ≠ 0 := by
+    simpa [j, TopKernelMarkedAxisAlignedFreshSquareData.squareExponent,
+      TopKernelMarkedAxisAlignedFreshSquareData.family] using
+      D.squareCoeff_closing_ne
+  have hram :
+      (parameterRamificationHom (K := K) 4
+        (MvPolynomial.coeff D.squareExponent D.family)).coeff (4 * j) ≠ 0 := by
+    rw [parameterRamificationHom_eq_expand]
+    rw [Polynomial.coeff_expand_mul' (R := K) (by norm_num)]
+    exact hsquare
+  refine {
+    exponent := D.squareExponent
+    mem_family := D.squareSupport
+    not_divisible := ?_
+  }
+  intro hdiv
+  change
+    Polynomial.X ^ (4 * Delta) ∣
+      Polynomial.X ^
+          Finsupp.weight
+            (directClosingCanonicalSquareWeight Delta D.ell)
+            D.squareExponent *
+        parameterRamificationHom (K := K) 4
+          (MvPolynomial.coeff D.squareExponent D.family) at hdiv
+  rw [D.canonicalSquareWeight_squareExponent] at hdiv
+  simp only [pow_zero, one_mul] at hdiv
+  have hzero :=
+    (Polynomial.X_pow_dvd_iff.mp hdiv) (4 * j) hjlt
+  exact hram hzero
 
-/-- Every aligned fresh-square packet has a genuine failed family coefficient
-for the canonical square weight, without a first-actual-layer timing
-assumption.  This is the non-vacuous wall-facing successor of the preceding
-exact-closing result. -/
+/-- The canonical square family obstruction exists for every aligned
+fresh-square packet, without any equality between the first actual layer
+and the Hessian closing order.  Moreover the witness is precisely the
+fresh-square exponent of positive preclosing order. -/
 theorem topKernelMarkedAxisCanonicalSquare_obstruction
     (T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
       (K := K) state)
     (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
-    Nonempty (T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D) := by
-  rcases T.topKernelMarkedAxisCanonicalSquare_integral_or_obstruction D with
-    hintegral | hobstruction
-  · rcases hintegral with ⟨G⟩
-    exact G.impossible.elim
-  · exact hobstruction
+    Nonempty (T.TopKernelMarkedAxisCanonicalSquareFamilyObstruction D) :=
+  ⟨D.freshSquareObstruction⟩
+
+/-- The explicit obstruction's parameter order is the first actual
+positive layer, hence is strictly below the determinant closing clock. -/
+theorem TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction_order
+    {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
+      (K := K) state}
+    (D : T.TopKernelMarkedAxisAlignedFreshSquareData) :
+    smithFamilyCoefficientParameterOrder
+        D.family
+        D.freshSquareObstruction.exponent
+        D.freshSquareObstruction.mem_family =
+      T.topKernelMarkedAxisFirstActualLayerOrder := by
+  simpa [TopKernelMarkedAxisAlignedFreshSquareData.freshSquareObstruction] using
+    D.squareExactOrder
 
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 
