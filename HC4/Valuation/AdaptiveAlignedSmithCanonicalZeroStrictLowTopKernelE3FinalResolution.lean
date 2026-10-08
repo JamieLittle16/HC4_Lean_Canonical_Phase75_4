@@ -137,6 +137,21 @@ structure PureLongitudinalMarkedE3Data
           (Finsupp.single (0 : Fin 4) T.topFace.degree) <
         4 * T.topFace.degree - 6
 
+/-- Reachable pure-longitudinal E3 geometry includes a concrete
+represented-source monomial strictly below maximal ordinary degree.  Its
+transverse degree is at least two and its longitudinal exponent is bounded
+by the true first positive marked-axis order.  This is the source-level
+degree-drop witness; it is not yet a complete restart or terminal proof. -/
+theorem PureLongitudinalMarkedE3Data.lowerSourceDegreeWitness
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ d ∈ T.representedSpecialFiber.support,
+      HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree ∧
+        2 ≤ d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) ∧
+        d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder :=
+  P.pureLongitudinal_firstActual_exists_lowerSourceDegree
+    D.coefficient_ne_zero D.topFace_eq
+
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
 
