@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10173**.
+Distinct declaration spellings indexed: **10176**.
 
 ## Repeated declaration spellings
 
@@ -7151,6 +7151,7 @@ Distinct declaration spellings indexed: **10173**.
 - `nonlinearDegreeBound_polynomialFamilyPointedReflection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `nonlinearDegreeBound_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `nonlinearDegreeBound_polynomialFamilyTranslationHom` — `theorem` in `HC4.Valuation.NonlinearDegreeBoundPreservation`
+- `nonlinearDegreeBound_reverseWeightedReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
 - `nonlinearDegreeBound_totalDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCollisionAutoDegree`
 - `nonlinearDegreeBound_transverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `nonlinearDegreeBound_unitTransverseInflateFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectReentry`
@@ -7978,6 +7979,7 @@ Distinct declaration spellings indexed: **10173**.
 - `pureLongitudinalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinalTransverseWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `pureLongitudinal_constant_or_derivativeResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
+- `pureLongitudinal_exists_auxiliaryMacroStep` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
 - `pureLongitudinal_firstActualLayer_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstActualLayer_singularCollisionPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
@@ -8759,6 +8761,7 @@ Distinct declaration spellings indexed: **10173**.
 - `reverseWeightedReesFamily_sourceSchurB_of_familySchurB_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
 - `reverseWeightedReesFamily_sourceSchurC_of_familySchurC_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesSchurNonvanishingLift`
 - `reverseWeightedReesFamily_sourceTwoByTwoMinor_of_familyMinor_ne_zero` — `theorem` in `HC4.Valuation.ReverseWeightedReesHessianTwoByTwoMinor`
+- `reverseWeightedReesFamily_support_subset_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
 - `reverseWeightedRees_familyParameterLayer_schurA_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_familyParameterLayer_schurB_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`
 - `reverseWeightedRees_familyParameterLayer_schurC_eq_initialForm` — `theorem` in `HC4.Valuation.ReverseReesSchurAssociatedGraded`

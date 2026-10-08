@@ -4317,6 +4317,10 @@ human architecture guide.
   - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
+  - `HC4.Valuation.NonlinearDegreeBoundPreservation`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
