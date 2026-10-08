@@ -87,7 +87,9 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
     by_contra hne
     have hbad := hcoef
     rw [hcoeff, mul_comm, Polynomial.coeff_C_mul_X_pow] at hbad
-    simp [j, hne, Ne.symm hne] at hbad
+    have hneq : T.topKernelMarkedAxisFirstActualLayerOrder ≠ q :=
+      Ne.symm hne
+    simp [hneq] at hbad
   have htrans :
       d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) +
         T.topKernelMarkedAxisFirstActualLayerOrder = T.topFace.degree := by
