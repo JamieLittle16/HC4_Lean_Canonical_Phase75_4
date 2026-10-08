@@ -193,8 +193,11 @@ theorem pureLongitudinal_firstActualQuotient_reducedClock
       HasPolynomialFamilyHessianDefect (K := K)
         (firstActualDeformationFamily F hp)
         (4 * r - 6) := by
-    simpa [F, hp, j, harith, topKernelMarkedAxisFirstActualLayerOrder]
-      using hquot
+    change HasPolynomialFamilyHessianDefect (K := K)
+      (firstActualDeformationFamily F hp)
+      ((4 * T.topFace.degree - 6) - 4 * j) at hquot
+    rw [harith] at hquot
+    exact hquot
   dsimp only
   refine ⟨?_, ?_, ?_⟩
   · exact hclock
