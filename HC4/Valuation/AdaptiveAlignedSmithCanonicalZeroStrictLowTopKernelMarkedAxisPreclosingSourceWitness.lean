@@ -82,14 +82,13 @@ theorem topKernelMarkedAxis_firstActual_exists_representedSourceWitness
           Polynomial.C (MvPolynomial.coeff d T.topKernelReesSource) := by
     rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees,
       reverseWeightedReesFamily_coeff, if_pos hsource]
-    rfl
   have hq : q = j := by
     by_contra hne
     have hbad := hcoef
     rw [hcoeff, mul_comm, Polynomial.coeff_C_mul_X_pow] at hbad
     have hneq : T.topKernelMarkedAxisFirstActualLayerOrder ≠ q :=
       Ne.symm hne
-    simp [hneq] at hbad
+    exact hneq hbad.1
   have htrans :
       d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) +
         T.topKernelMarkedAxisFirstActualLayerOrder = T.topFace.degree := by
