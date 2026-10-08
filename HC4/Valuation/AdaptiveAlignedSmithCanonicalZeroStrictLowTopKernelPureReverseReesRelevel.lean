@@ -106,8 +106,11 @@ theorem pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees
       T.topKernelMarkedAxisFirstContactFamily
       T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
     rw [hzero] at h
-    simpa [Q, j, topKernelMarkedAxisFirstActualLayerOrder,
-      constantPolynomialFamily] using h
+    change
+      T.topKernelMarkedAxisFirstContactFamily =
+        constantPolynomialFamily (0 : MvPolynomial (Fin 4) K) +
+          MvPolynomial.C (Polynomial.X ^ j) * Q at h
+    simpa [constantPolynomialFamily] using h
   have hjle : j ≤ T.topFace.degree := by
     exact T.topKernelMarkedAxisFirstActualLayerOrder_le_topFaceDegree
   have hRfact :
