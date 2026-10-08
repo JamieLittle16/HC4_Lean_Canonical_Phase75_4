@@ -92,16 +92,23 @@ private theorem exposure_specialFiber_coeff_zero_of_gap
   have hconstant :
       (Polynomial.C a * Polynomial.X ^ w).coeff m = 0 := by
     rw [Polynomial.coeff_C_mul_X_pow]
-    simp [Ne.symm hwne]
+    have hmw : m ≠ w := by
+      intro heq
+      exact hwne heq.symm
+    simp [hmw]
   have hpositive :
       (Polynomial.X ^ (w + m) *
         parameterRamificationHom (K := K) R r).coeff m = 0 := by
-    have hgt : m < w + m := by
-      dsimp [w] at hwpos
-      omega
+    have hgt : m < w + m := by omega
     rw [Polynomial.coeff_X_pow_mul']
     simp [Nat.not_le_of_gt hgt]
   have hc := congrArg (fun p : Polynomial K => p.coeff m) hid
+  change
+    (Polynomial.X ^ m *
+      MvPolynomial.coeff d (adaptiveSmithExposureFamily R W m P hint)).coeff m =
+    (Polynomial.C a * Polynomial.X ^ w +
+      Polynomial.X ^ (w + m) * parameterRamificationHom (K := K) R r).coeff m
+      at hc
   rw [hleft, Polynomial.coeff_add, hconstant, hpositive] at hc
   have hz :
       (MvPolynomial.coeff d
@@ -123,19 +130,19 @@ private theorem canonicalSquare_complement_weight_multiple
   fin_cases ell
   · exact (hell rfl).elim
   · refine ⟨d (2 : Fin 4) + d (3 : Fin 4), ?_, ?_⟩
-    · simpa at hpos
+    · change 0 < d (2 : Fin 4) at hpos
       omega
     · simp [Finsupp.weight_apply, Finsupp.sum_fintype,
         Fin.sum_univ_four, directClosingCanonicalSquareWeight]
       ring
   · refine ⟨d (1 : Fin 4) + d (3 : Fin 4), ?_, ?_⟩
-    · simpa at hpos
+    · change 0 < d (1 : Fin 4) at hpos
       omega
     · simp [Finsupp.weight_apply, Finsupp.sum_fintype,
         Fin.sum_univ_four, directClosingCanonicalSquareWeight]
       ring
   · refine ⟨d (1 : Fin 4) + d (2 : Fin 4), ?_, ?_⟩
-    · simpa at hpos
+    · change 0 < d (1 : Fin 4) at hpos
       omega
     · simp [Finsupp.weight_apply, Finsupp.sum_fintype,
         Fin.sum_univ_four, directClosingCanonicalSquareWeight]
@@ -144,7 +151,7 @@ private theorem canonicalSquare_complement_weight_multiple
 /-- No positive multiple of 3*Delta can equal 4*Delta when Delta is
 strictly positive. -/
 private theorem canonicalSquare_weight_ne_commonLevel
-    (Delta n : ℕ) (hDelta : 0 < Delta) (hn : 0 < n) :
+    (Delta n : ℕ) (hDelta : 0 < Delta) (_hn : 0 < n) :
     3 * Delta * n ≠ 4 * Delta := by
   intro heq
   have hmul : Delta * (3 * n) = Delta * 4 := by
@@ -206,7 +213,9 @@ theorem TopKernelMarkedAxisCanonicalSquareIntegralityData.impossible_of_exactClo
     apply MvPolynomial.ext
     intro d
     rw [coeff_pderiv_commSemiring]
-    have hdpos : 0 < (d + Finsupp.single j 1) j := by simp
+    have hdpos :
+        0 < ((d + Finsupp.single j 1 : Fin 4 →₀ ℕ) j) := by
+      simp
     rw [hcoeff (d + Finsupp.single j 1) hdpos]
     simp
   have hzero : HC4.Polynomial.hessianDeterminant F = 0 := by
