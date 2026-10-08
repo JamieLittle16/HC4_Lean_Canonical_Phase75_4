@@ -4321,6 +4321,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
+  - `HC4.Valuation.PrimitiveSmithEndpoint`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.MongeAmpere.MaximalInitial`
   - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
