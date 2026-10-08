@@ -2,7 +2,7 @@ name: Lean CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, 'research/canonical-square-gap-obstruction']
   pull_request:
     branches: [main, master]
   workflow_dispatch:
