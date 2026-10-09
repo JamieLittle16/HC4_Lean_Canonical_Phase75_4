@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10196**.
+Distinct declaration spellings indexed: **10199**.
 
 ## Repeated declaration spellings
 
@@ -5332,6 +5332,7 @@ Distinct declaration spellings indexed: **10196**.
 - `exists_parameterFirstHessian_kernelRow_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpening`
 - `exists_parameterLayer_affineCoordinates` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineCoordinates`
 - `exists_parent_hessianRow_entry_ne_zero` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningReverseRees`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpening`
+- `exists_polynomialHessianRankTwo_of_transverseOriginRankTwo` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
 - `exists_positiveTail_of_X_pow_dvd` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `exists_positive_nat_strict_upper_bound_on_finset` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
 - `exists_positive_tail_factorisation` — `theorem` in `HC4.Polynomial.ComplementaryEdgeRigidity`
@@ -7708,6 +7709,7 @@ Distinct declaration spellings indexed: **10196**.
 - `polynomialFamilyZeroCollision_specialFiber` — `theorem` in `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `polynomialFamily_eq_constantPolynomialFamily_of_no_positiveActualLayer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
 - `polynomialFamily_ne_zero_of_hessianDefect` — `theorem` in `HC4.Valuation.MaximalCommonParameterTerminalNormalization`
+- `polynomialHessianMinor_ne_zero_of_originMinor_ne_zero` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
 - `polynomialHessian_symmetric` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `polynomialLift` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `polynomialMatrix3_gap_det_ne_zero_of_middleDiagonal` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
@@ -8014,6 +8016,7 @@ Distinct declaration spellings indexed: **10196**.
 - `pureLongitudinal_markedAxis_topCoefficientOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_markedAxis_topCoefficientOrder_pos_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_nonlinearConfined_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowConfinementPatternSplit`
+- `pureLongitudinal_quadraticFirstActualLayer_polynomialRankTwo` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
 - `pureLongitudinal_quadraticFirstActualLayer_transverseRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo`
 - `pureLongitudinal_quadraticRelevel_threeLayers` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel`
 - `pureLongitudinal_sourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPureResidualSupport`

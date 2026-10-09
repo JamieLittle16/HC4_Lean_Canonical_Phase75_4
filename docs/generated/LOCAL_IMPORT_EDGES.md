@@ -5126,6 +5126,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticFamilyCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
+- `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
