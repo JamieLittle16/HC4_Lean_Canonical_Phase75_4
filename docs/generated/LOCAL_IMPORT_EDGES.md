@@ -5112,6 +5112,7 @@ human architecture guide.
 - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
   - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
   - `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
   - `HC4.Valuation.BoundedReverseWeightedRees`
