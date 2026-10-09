@@ -6,6 +6,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirs
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -271,6 +272,48 @@ theorem PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation
       D.coefficient_ne_zero D.topFace_eq,
     P.pureLongitudinal_firstActualQuotient_not_lowerDegreeBound
       D.coefficient_ne_zero D.topFace_eq⟩
+
+/-- **Finite quadratic alternative of the reachable pure E3 packet.**
+
+If the first nonzero marked-axis face has transverse degree two, the ENTIRE
+relevelled Hessian family has only parameter orders 0, 1, 2.  Each order is
+exactly the corresponding transverse-weight source component, and the whole
+family retains its tau² determinant and exact marked collision.  This is the
+complete source-honest finite quadratic input for the endpoint calculation. -/
+theorem PureLongitudinalMarkedE3Data.quadraticThreeLayerFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+        T.topKernelReesSource :=
+      by
+        simpa [hr] using
+          P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+            D.coefficient_ne_zero D.topFace_eq
+    let Q :=
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        2 T.topKernelReesSource hbound
+    (∀ n : ℕ, 2 < n → familyParameterLayer Q n = 0) ∧
+      familyParameterLayer Q 0 =
+        initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (2 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 1 =
+        initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (1 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 2 =
+        initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (0 : ℤ) T.topKernelReesSource ∧
+      HasPolynomialFamilyHessianDefect (K := K) Q 2 ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) :=
+  P.pureLongitudinal_quadraticRelevel_threeLayers
+    D.coefficient_ne_zero D.topFace_eq hr
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
