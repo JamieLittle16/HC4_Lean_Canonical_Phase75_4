@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10191**.
+Distinct declaration spellings indexed: **10192**.
 
 ## Repeated declaration spellings
 
@@ -8229,6 +8229,7 @@ Distinct declaration spellings indexed: **10191**.
 - `quadraticFamilyHessianMatrix_det_hasGapBefore_firstPositiveActualOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `quadraticFamilyHessianMatrix_entry_X_pow_firstPositiveActualOrder_dvd_of_specialFiber_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
+- `quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient_domain` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
 - `quadraticFamilyHessianMatrix_entry_hasGapBefore_firstPositiveActualOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `quadraticFamilyHessianMatrix_symmetric` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `quadraticFamilyHessianMatrix_transverseSourceShear_ellell` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`

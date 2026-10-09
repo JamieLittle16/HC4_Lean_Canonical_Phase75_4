@@ -15100,7 +15100,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticAxisFourBlockRankTwo`, `HC4.Valuation.BoundedReverseWeightedRees`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`, `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`, `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `theorem quadraticAxisReverseRees_originHessian_entry`, `theorem quadraticAxisReverseRees_originHessian_block`, `theorem quadraticAxisReverseRees_sourceTransverseRankTwo`
+- Declarations: `theorem quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient_domain`, `theorem quadraticAxisReverseRees_originHessian_entry`, `theorem quadraticAxisReverseRees_originHessian_block`, `theorem quadraticAxisReverseRees_sourceTransverseRankTwo`
 
 ### `HC4.Valuation.QuadraticFamilyCollision`
 
