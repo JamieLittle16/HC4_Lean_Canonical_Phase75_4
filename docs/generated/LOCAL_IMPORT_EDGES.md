@@ -5108,6 +5108,8 @@ human architecture guide.
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.AlignedSmithEndpoint`
+- `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+  - `HC4.Newton.GeneralFourBlockSchur`
 - `HC4.Valuation.QuadraticFamilyCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
