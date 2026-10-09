@@ -97,7 +97,7 @@ theorem exists_polynomialHessianRankTwo_of_transverseOriginRankTwo
     exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 1 3 3 h'
   · refine ⟨1, 1, 2, 3, ?_⟩
     have h' : H 1 1 * H 2 3 - H 1 3 * H 2 1 ≠ 0 := by
-      rw [hsym 2 1]
+      rw [hsym 2 1, mul_comm (H 1 3) (H 1 2)]
       exact h
     exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 1 2 3 h'
   · refine ⟨1, 1, 2, 2, ?_⟩
