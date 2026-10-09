@@ -5,6 +5,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAx
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -247,6 +248,29 @@ theorem PureLongitudinalMarkedE3Data.auxiliaryMacroStep
       AdaptiveAlignedSmithCanonicalGlobalMacroProgress t s :=
   P.pureLongitudinal_exists_auxiliaryMacroStep
     D.coefficient_ne_zero D.topFace_eq
+
+/-- Exact **degree-cap separation** at the reachable E3 pure packet.
+
+The normalized first-actual special fibre admits a strict nonlinear
+ordinary-degree cap D-1, but the whole collision-bearing quotient cannot
+admit that cap, because the original c*X₀^D survives at parameter order
+D-j.  This rules out claiming a full-family degree-drop restart here. -/
+theorem PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    NonlinearDegreeBound (T.topFace.degree - 1)
+      (polynomialFamilySpecialFiber
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)) ∧
+      ¬ NonlinearDegreeBound (T.topFace.degree - 1)
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer) :=
+  ⟨P.pureLongitudinal_firstActualQuotient_specialFiber_lowerDegree
+      D.coefficient_ne_zero D.topFace_eq,
+    P.pureLongitudinal_firstActualQuotient_not_lowerDegreeBound
+      D.coefficient_ne_zero D.topFace_eq⟩
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
