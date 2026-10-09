@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10192**.
+Distinct declaration spellings indexed: **10194**.
 
 ## Repeated declaration spellings
 
@@ -8203,6 +8203,8 @@ Distinct declaration spellings indexed: **10192**.
 - `quadraticAxisReverseRees_originHessian_block` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
 - `quadraticAxisReverseRees_originHessian_entry` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
 - `quadraticAxisReverseRees_sourceTransverseRankTwo` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+- `quadraticAxisReverseRees_specialFiber_transverseHessian_entry` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesSpecialFiberRankTwo`
+- `quadraticAxisReverseRees_specialFiber_transverseRankTwo` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesSpecialFiberRankTwo`
 - `quadraticContact_has_transverse_zero_of_avoids_markedAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
 - `quadraticContact_indices_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticZeroFullSplit`
 - `quadraticContact_weightSum` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactQuadraticWeightRestriction`
