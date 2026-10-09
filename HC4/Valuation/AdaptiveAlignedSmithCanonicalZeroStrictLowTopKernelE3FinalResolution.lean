@@ -9,6 +9,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegr
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
 import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo
+import HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -366,6 +367,25 @@ theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerRankTwo
     H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
     H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 :=
   P.pureLongitudinal_quadraticFirstActualLayer_transverseRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Polynomial rank-two geometry on the genuinely reached quadratic
+E3 lower face.**  The rank witness is an actual nonzero polynomial
+2x2 Hessian minor, not merely a pointwise rank label. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPolynomialRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    ∃ i j k l : Fin 4,
+      HC4.Polynomial.hessian G i j *
+          HC4.Polynomial.hessian G k l -
+        HC4.Polynomial.hessian G i l *
+          HC4.Polynomial.hessian G k j ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_polynomialRankTwo
     D.coefficient_ne_zero D.topFace_eq hr
 
 /-- Exact coefficient order of every represented-source monomial in the
