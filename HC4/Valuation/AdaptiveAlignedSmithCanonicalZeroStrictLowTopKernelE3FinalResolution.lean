@@ -7,6 +7,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReve
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
+import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -314,6 +315,32 @@ theorem PureLongitudinalMarkedE3Data.quadraticThreeLayerFamily
           (coordinateAxisPoint (K := K) (0 : Fin 4))) :=
   P.pureLongitudinal_quadraticRelevel_threeLayers
     D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Actual represented-source rank-two conclusion in the quadratic E3
+branch.** The literal cap-two reverse-Rees family has determinant tau², so
+its origin Hessian transverse 3x3 block has a genuine nonzero 2x2 minor.
+The conclusion is about the original represented determinant-one source,
+not an auxiliary source or an inferred repair step. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let H := quadraticFamilyHessianMatrix T.topKernelReesSource
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticAxisReverseRees_sourceTransverseRankTwo
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
