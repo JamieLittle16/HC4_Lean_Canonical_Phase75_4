@@ -115,10 +115,6 @@ theorem pureLongitudinal_exists_auxiliaryMacroStep
   have hsourceClock :
       HasPolynomialFamilyHessianDefect (K := K)
         T.topKernelMarkedAxisFirstContactFamily (4 * D - 6) := by
-    have hclock : T.topKernelOrdinaryReesDefect + 2 = 4 * D - 6 := by
-      dsimp [D, topKernelOrdinaryReesDefect]
-      omega
-    rw [← hclock]
     exact T.topKernelMarkedAxisFirstContact_hasHessianDefect
   have htargetClock : HasPolynomialFamilyHessianDefect (K := K)
       Q (4 * r - 6) := by
@@ -187,11 +183,8 @@ theorem pureLongitudinal_exists_auxiliaryMacroStep
         (coordinateAxisPoint (K := K) (0 : Fin 4))
   }
   have hcap : 4 * r - 6 < 4 * D - 6 := by
-    have hbounds :=
-      P.pureLongitudinal_firstActual_transverseDegree_bounds
-        coefficient_ne_zero topFace_eq
-    dsimp [r, D, j]
-    omega
+    exact (P.pureLongitudinal_firstActualQuotient_reducedClock
+      coefficient_ne_zero topFace_eq).2.2
   have hmacro : AdaptiveAlignedSmithCanonicalGlobalMacroProgress t s := by
     unfold AdaptiveAlignedSmithCanonicalGlobalMacroProgress
       AdaptiveAlignedSmithCanonicalGlobalMacroKey.Lt
