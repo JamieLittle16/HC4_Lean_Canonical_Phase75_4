@@ -176,7 +176,7 @@ theorem quadraticAxisReverseRees_sourceTransverseRankTwo
       (Polynomial.C (H 2 3))
       (Polynomial.C (H 3 3))
       Polynomial.X_ne_zero hdetB
-  simpa only [map_sub, map_mul, Polynomial.C_ne_zero] using hminor
+  simpa only [← map_mul, ← map_sub, Polynomial.C_ne_zero] using hminor
 
 end
 
