@@ -4186,6 +4186,7 @@ human architecture guide.
   - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+  - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
   - `HC4.Valuation.StrictSmithFirstContactGeometry`
   - `HC4.Valuation.StrictSmithPostTransformFace`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
