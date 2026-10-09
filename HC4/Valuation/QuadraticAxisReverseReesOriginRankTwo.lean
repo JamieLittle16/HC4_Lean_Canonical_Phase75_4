@@ -1,5 +1,6 @@
 import HC4.Valuation.QuadraticAxisFourBlockRankTwo
 import HC4.Valuation.BoundedReverseWeightedRees
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace
 import HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest
 import HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer
 import Mathlib.Tactic
@@ -45,12 +46,13 @@ theorem quadraticAxisReverseRees_originHessian_entry
       Finsupp.weight topKernelMarkedAxisNatWeight d =
         topKernelMarkedAxisNatWeight i +
           topKernelMarkedAxisNatWeight k := by
+    rw [weight_topKernelMarkedAxisNatWeight]
     fin_cases i <;> fin_cases k <;>
       simp [d, topKernelMarkedAxisNatWeight,
-        Finsupp.weight_apply, Finsupp.sum_fintype,
-        Fin.sum_univ_four, Finsupp.add_apply, Finsupp.single_apply]
-  rw [quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient,
-    quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient]
+        Finsupp.add_apply, Finsupp.single_apply] <;> omega
+  rw [quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient
+      (reverseWeightedReesFamily topKernelMarkedAxisNatWeight 2 F hbound) i k,
+    quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient F i k]
   change
       MvPolynomial.coeff d
           (reverseWeightedReesFamily topKernelMarkedAxisNatWeight 2 F hbound) *
