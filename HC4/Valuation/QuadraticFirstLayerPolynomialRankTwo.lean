@@ -79,22 +79,32 @@ theorem exists_polynomialHessianRankTwo_of_transverseOriginRankTwo
   dsimp only at hminor
   rcases hminor with h | h | h | h | h | h
   · refine ⟨2, 2, 3, 3, ?_⟩
-    apply polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G
-    simpa only [hsym 3 2] using h
+    have h' : H 2 2 * H 3 3 - H 2 3 * H 3 2 ≠ 0 := by
+      rw [hsym 3 2]
+      exact h
+    exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 2 2 3 3 h'
   · refine ⟨1, 2, 3, 3, ?_⟩
-    apply polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G
-    simpa only [hsym 3 2] using h
+    have h' : H 1 2 * H 3 3 - H 1 3 * H 3 2 ≠ 0 := by
+      rw [hsym 3 2]
+      exact h
+    exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 2 3 3 h'
   · refine ⟨1, 2, 2, 3, ?_⟩
     exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G _ _ _ _ h
   · refine ⟨1, 1, 3, 3, ?_⟩
-    apply polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G
-    simpa only [hsym 3 1] using h
+    have h' : H 1 1 * H 3 3 - H 1 3 * H 3 1 ≠ 0 := by
+      rw [hsym 3 1]
+      exact h
+    exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 1 3 3 h'
   · refine ⟨1, 1, 2, 3, ?_⟩
-    apply polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G
-    simpa only [hsym 2 1] using h
+    have h' : H 1 1 * H 2 3 - H 1 3 * H 2 1 ≠ 0 := by
+      rw [hsym 2 1]
+      exact h
+    exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 1 2 3 h'
   · refine ⟨1, 1, 2, 2, ?_⟩
-    apply polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G
-    simpa only [hsym 2 1] using h
+    have h' : H 1 1 * H 2 2 - H 1 2 * H 2 1 ≠ 0 := by
+      rw [hsym 2 1]
+      exact h
+    exact polynomialHessianMinor_ne_zero_of_originMinor_ne_zero G 1 1 2 2 h'
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 namespace TopFaceLinearPowerKernelData
