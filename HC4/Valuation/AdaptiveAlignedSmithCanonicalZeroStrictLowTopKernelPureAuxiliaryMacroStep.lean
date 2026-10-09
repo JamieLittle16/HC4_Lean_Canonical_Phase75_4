@@ -107,11 +107,11 @@ theorem pureLongitudinal_exists_auxiliaryMacroStep
       T.topKernelMarkedAxisFirstContactFamily := by
     rw [T.topKernelMarkedAxisFirstContactFamily_eq_reverseWeightedRees]
     exact nonlinearDegreeBound_reverseWeightedReesFamily
-      topKernelMarkedAxisNatWeight D F
+      topKernelMarkedAxisNatWeight D D F
       T.topKernelReesSource_hasMarkedAxisReverseWeightBound hdegF
   have hdegQ : NonlinearDegreeBound D Q :=
     nonlinearDegreeBound_reverseWeightedReesFamily
-      topKernelMarkedAxisNatWeight r F hnew hdegF
+      topKernelMarkedAxisNatWeight r D F hnew hdegF
   have hsourceClock :
       HasPolynomialFamilyHessianDefect (K := K)
         T.topKernelMarkedAxisFirstContactFamily (4 * D - 6) := by
