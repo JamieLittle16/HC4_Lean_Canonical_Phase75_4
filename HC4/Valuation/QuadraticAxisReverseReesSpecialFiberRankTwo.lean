@@ -66,9 +66,42 @@ theorem quadraticAxisReverseRees_specialFiber_transverseRankTwo
     H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
     H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
     H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 := by
-  dsimp only
-  simpa only [quadraticAxisReverseRees_specialFiber_transverseHessian_entry] using
-    (quadraticAxisReverseRees_sourceTransverseRankTwo F hbound hdet)
+  let G := polynomialFamilySpecialFiber
+    (reverseWeightedReesFamily topKernelMarkedAxisNatWeight 2 F hbound)
+  let H := quadraticFamilyHessianMatrix G
+  have h11 : H 1 1 = quadraticFamilyHessianMatrix F 1 1 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (0 : Fin 3) (0 : Fin 3))
+  have h12 : H 1 2 = quadraticFamilyHessianMatrix F 1 2 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (0 : Fin 3) (1 : Fin 3))
+  have h13 : H 1 3 = quadraticFamilyHessianMatrix F 1 3 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (0 : Fin 3) (2 : Fin 3))
+  have h22 : H 2 2 = quadraticFamilyHessianMatrix F 2 2 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (1 : Fin 3) (1 : Fin 3))
+  have h23 : H 2 3 = quadraticFamilyHessianMatrix F 2 3 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (1 : Fin 3) (2 : Fin 3))
+  have h33 : H 3 3 = quadraticFamilyHessianMatrix F 3 3 := by
+    simpa only [H, G] using
+      (quadraticAxisReverseRees_specialFiber_transverseHessian_entry
+        F hbound (2 : Fin 3) (2 : Fin 3))
+  change
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0
+  rw [h11, h12, h13, h22, h23, h33]
+  exact quadraticAxisReverseRees_sourceTransverseRankTwo F hbound hdet
 
 end
 
