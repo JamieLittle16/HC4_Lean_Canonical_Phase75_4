@@ -10,6 +10,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuad
 import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo
 import HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo
+import HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -386,6 +387,34 @@ theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPolynomialRankTwo
         HC4.Polynomial.hessian G i l *
           HC4.Polynomial.hessian G k j ≠ 0 :=
   P.pureLongitudinal_quadraticFirstActualLayer_polynomialRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- Fixed finite principal Schur pivots on the ACTUAL quadratic E3 face.
+
+The three ordinary transverse principal minors are supplemented by the
+three principal minors after one fixed transverse basis shear.  Hence the
+previous mixed-minor disjunction does not have to be misused as a principal
+active chart.  Constructing the family-level chart and terminal descent is
+a separate remaining obligation. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPrincipalPivot
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 ∨
+    (H 1 1 + 2 * H 1 2 + H 2 2) * H 3 3 -
+      (H 1 3 + H 2 3) * (H 1 3 + H 2 3) ≠ 0 ∨
+    (H 1 1 + 2 * H 1 3 + H 3 3) * H 2 2 -
+      (H 1 2 + H 2 3) * (H 1 2 + H 2 3) ≠ 0 ∨
+    (H 2 2 + 2 * H 2 3 + H 3 3) * H 1 1 -
+      (H 1 2 + H 1 3) * (H 1 2 + H 1 3) ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_fixedPrincipalPivot
     D.coefficient_ne_zero D.topFace_eq hr
 
 /-- Exact coefficient order of every represented-source monomial in the
