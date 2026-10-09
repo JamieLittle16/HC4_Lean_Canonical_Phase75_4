@@ -28,6 +28,24 @@ open HC4.Polynomial
 universe u
 variable {K : Type u} [Field K] [CharZero K]
 
+/-- Domain-general form of the source-origin quadratic coefficient identity.
+The older coefficient lemma assumes a field, whereas the reverse-Rees
+family has coefficient ring `Polynomial K`, an integral domain. -/
+theorem quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient_domain
+    {R : Type*} [CommRing R] [IsDomain R]
+    (Q : MvPolynomial (Fin 4) R)
+    (i k : Fin 4) :
+    quadraticFamilyHessianMatrix Q i k =
+      MvPolynomial.coeff
+          (Finsupp.single k 1 + Finsupp.single i 1) Q *
+        (((Finsupp.single k 1) i + 1 : ℕ) : R) := by
+  change
+    MvPolynomial.constantCoeff
+      (MvPolynomial.pderiv k (MvPolynomial.pderiv i Q)) = _
+  rw [MvPolynomial.constantCoeff_eq]
+  rw [coeff_pderiv_commRing, coeff_pderiv_commRing]
+  simp [add_comm, add_left_comm, add_assoc]
+
 /-- Each origin Hessian entry of a cap-two marked-axis reverse-Rees family
 is a single monomial in the parameter with source-Hessian coefficient. -/
 theorem quadraticAxisReverseRees_originHessian_entry
@@ -50,9 +68,9 @@ theorem quadraticAxisReverseRees_originHessian_entry
     fin_cases i <;> fin_cases k <;>
       simp [d, topKernelMarkedAxisNatWeight,
         Finsupp.add_apply, Finsupp.single_apply] <;> omega
-  rw [quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient
+  rw [quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient_domain
       (reverseWeightedReesFamily topKernelMarkedAxisNatWeight 2 F hbound) i k,
-    quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient F i k]
+    quadraticFamilyHessianMatrix_entry_eq_quadraticCoefficient_domain F i k]
   change
       MvPolynomial.coeff d
           (reverseWeightedReesFamily topKernelMarkedAxisNatWeight 2 F hbound) *
