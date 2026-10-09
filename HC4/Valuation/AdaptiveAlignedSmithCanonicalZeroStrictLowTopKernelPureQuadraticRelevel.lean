@@ -60,15 +60,15 @@ theorem pureLongitudinal_quadraticRelevel_threeLayers
         2 T.topKernelReesSource hbound
     (∀ n : ℕ, 2 < n → familyParameterLayer Q n = 0) ∧
       familyParameterLayer Q 0 =
-        initialForm
+        HC4.Polynomial.initialForm
           (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
           (2 : ℤ) T.topKernelReesSource ∧
       familyParameterLayer Q 1 =
-        initialForm
+        HC4.Polynomial.initialForm
           (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
           (1 : ℤ) T.topKernelReesSource ∧
       familyParameterLayer Q 2 =
-        initialForm
+        HC4.Polynomial.initialForm
           (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
           (0 : ℤ) T.topKernelReesSource ∧
       HasPolynomialFamilyHessianDefect (K := K) Q 2 ∧
