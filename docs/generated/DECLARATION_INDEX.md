@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10177**.
+Distinct declaration spellings indexed: **10180**.
 
 ## Repeated declaration spellings
 
@@ -7985,7 +7985,10 @@ Distinct declaration spellings indexed: **10177**.
 - `pureLongitudinal_firstActualLayer_singularCollisionPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
 - `pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
 - `pureLongitudinal_firstActualQuotient_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+- `pureLongitudinal_firstActualQuotient_not_lowerDegreeBound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
 - `pureLongitudinal_firstActualQuotient_reducedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+- `pureLongitudinal_firstActualQuotient_specialFiber_lowerDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
+- `pureLongitudinal_firstActualQuotient_topCoefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
 - `pureLongitudinal_firstContact_or_square_at_facet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_lowerFirstOpening_child_isHomogeneous_of_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `pureLongitudinal_lowerFirstOpening_longitudinal_rankTwoResolved` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
