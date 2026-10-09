@@ -8,6 +8,7 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxi
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
 import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -341,6 +342,31 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseRankTwo
   exact quadraticAxisReverseRees_sourceTransverseRankTwo
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one
+
+/-- **New first-actual-face rank-two geometry at the reachable
+quadratic E3 terminal.**
+
+This is stronger and more useful than the earlier represented-source rank
+witness: the Hessian-singular first nonzero marked-axis face itself has a
+nonzero transverse origin Hessian 2x2 minor.  It is therefore not a
+rank-one/quadratic-square lower-face packet. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_transverseRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
