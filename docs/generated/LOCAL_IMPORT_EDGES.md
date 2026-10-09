@@ -5110,6 +5110,11 @@ human architecture guide.
   - `HC4.Valuation.AlignedSmithEndpoint`
 - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
   - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
+  - `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
+  - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `HC4.Valuation.QuadraticFamilyCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
