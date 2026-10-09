@@ -4349,6 +4349,8 @@ human architecture guide.
   - `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
   - `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
   - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
   - `HC4.Valuation.BoundedReverseWeightedRees`
