@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10215**.
+Distinct declaration spellings indexed: **10223**.
 
 ## Repeated declaration spellings
 
@@ -8214,6 +8214,7 @@ Distinct declaration spellings indexed: **10215**.
 - `quadraticAutonomous_top_relation` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `quadraticAxisFourBlock` — `def` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisFourBlockCore` — `def` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+- `quadraticAxisFourBlockCore_eq_transverseAdjugateSchur` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticAxisFourBlock_determinantCore` — `theorem` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisFourBlock_exists_transverseMinor` — `theorem` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisReverseRees_originHessian_block` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
@@ -8278,7 +8279,14 @@ Distinct declaration spellings indexed: **10215**.
 - `quadraticSmithSubface_free_three` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `quadraticSmithSubface_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubface_pderiv_three_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `quadraticTransverseAdjugateVector0` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseAdjugateVector1` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseAdjugateVector2` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseAdjugate_row0` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseAdjugate_row1` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseAdjugate_row2` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
 - `quadratic_clearedSquare_of_leftPivot` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
