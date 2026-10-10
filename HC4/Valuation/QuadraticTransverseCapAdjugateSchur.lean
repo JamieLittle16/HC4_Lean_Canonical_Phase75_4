@@ -127,7 +127,7 @@ theorem quadraticTransverse_singularThreeBlock_unimodularKernel
       v₀ * quadraticTransverseAdjugateVector0 C v₀ v₁ v₂ +
         v₁ * quadraticTransverseAdjugateVector1 C v₀ v₁ v₂ +
         v₂ * quadraticTransverseAdjugateVector2 C v₀ v₁ v₂ = -1 := by
-    linear_combination -hschur
+    linear_combination hschur
   refine ⟨hpair, ?_, ?_, ?_⟩
   · rw [quadraticTransverseAdjugate_row0, hthree]
     simp
