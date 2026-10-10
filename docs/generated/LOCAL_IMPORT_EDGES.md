@@ -5133,6 +5133,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+  - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10204**.
+Distinct declaration spellings indexed: **10209**.
 
 ## Repeated declaration spellings
 
@@ -4811,6 +4811,8 @@ Distinct declaration spellings indexed: **10204**.
 - `cross_relation_of_oneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `cross_relation_of_weightedOneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `cubicAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `cubicNilpotent_drift_mul_eq_zero_iff` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+- `cubicNilpotent_drift_twoSidedInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `cubicRigidMatrixExposure_div_scale_eq_pred` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `currentScaleCompleteRankTwo_of_rightRecentered_tripleShear_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCurrentScaleCompleteFirstContact`
 - `currentScaleFirstContact_of_rightRecentered_tripleShear_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalCurrentScaleFirstContact`
@@ -7783,6 +7785,8 @@ Distinct declaration spellings indexed: **10204**.
 - `polynomial_map_injective_of_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `polynomial_natDegree_eq_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_natDegree_pos_of_later_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpointNondegeneracy`
+- `polynomial_nonzeroConstantDerivative_no_unitIntervalCollision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+- `polynomial_squareFactor_unit_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `polynomial_taylor_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
 - `positiveCoordinateSupport` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `positiveCoordinateSupport_nonempty_of_not_supportOnFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetCarrier`
@@ -10212,6 +10216,7 @@ Distinct declaration spellings indexed: **10204**.
 - `transversePlanarAffineSupport_of_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
 - `transversePureAffine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `transversePureAffine_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
+- `transverseQuadratic_rankTwo_constantKernelDrift_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `transverseReesDerivativeCoefficient` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `transverseReesDerivativeCoefficient_eq_X_pow_shift` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `transverseReesDerivativeParameterShift` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
