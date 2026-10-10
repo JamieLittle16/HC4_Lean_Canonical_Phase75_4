@@ -15170,7 +15170,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
-- Declarations: `theorem polynomial_squareFactor_unit_constant`, `theorem polynomial_nonzeroConstantDerivative_no_unitIntervalCollision`, `theorem transverseQuadratic_rankTwo_constantKernelDrift_impossible`, `theorem cubicNilpotent_drift_twoSidedInverse`, `theorem cubicNilpotent_drift_mul_eq_zero_iff`
+- Declarations: `theorem polynomial_squareFactor_unit_constant`, `theorem polynomial_nonzeroConstantDerivative_no_unitIntervalCollision`, `theorem transverseQuadratic_rankTwo_constantKernelDrift_impossible`, `theorem cubicNilpotent_drift_twoSidedInverse`, `theorem cubicNilpotent_drift_mul_eq_zero_iff`, `theorem cubicNilpotent_drift_smul_injective`, `theorem cubicNilpotent_drift_smul_eq_zero_iff`
 
 ### `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 
