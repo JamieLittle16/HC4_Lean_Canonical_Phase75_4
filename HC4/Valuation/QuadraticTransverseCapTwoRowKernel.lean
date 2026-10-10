@@ -83,6 +83,52 @@ theorem quadraticTransverse_twoRowPrincipalKernel_wedges
   · exact (mul_eq_zero.mp h02mul).resolve_left hd
   · exact (mul_eq_zero.mp h12mul).resolve_left hd
 
+/-- **Rank-two principal-Schur collision endpoint.**
+
+This is the complete polynomial contradiction after extracting the actual
+transverse principal pivot and the two differentiated kernel rows of the
+represented source. The two row systems are required *explicitly*: a
+Hessian rank-two witness alone does not imply them. No endpoint producer
+or abstract progress assumption appears in the statement. -/
+theorem quadraticTransverseCap_rankTwo_principalKernelCollision_impossible
+    {K : Type*} [Field K] [CharZero K]
+    (a p q d r : Polynomial K)
+    (w b : Fin 3 → Polynomial K)
+    (hdelta : a * d - p * p ≠ 0)
+    (hw0 : a * w 0 + p * w 1 + q * w 2 = 0)
+    (hw1 : p * w 0 + d * w 1 + r * w 2 = 0)
+    (hwd0 : a * Polynomial.derivative (w 0) +
+        p * Polynomial.derivative (w 1) +
+        q * Polynomial.derivative (w 2) = 0)
+    (hwd1 : p * Polynomial.derivative (w 0) +
+        d * Polynomial.derivative (w 1) +
+        r * Polynomial.derivative (w 2) = 0)
+    (hpair :
+      (∑ i : Fin 3, w i * Polynomial.derivative (b i)) = -1)
+    (hcoll : ∀ i : Fin 3,
+      Polynomial.eval (1 : K) (b i) =
+        Polynomial.eval (0 : K) (b i)) :
+    False := by
+  obtain ⟨h01, h02, h12⟩ :=
+    quadraticTransverse_twoRowPrincipalKernel_wedges
+      a p q d r w (fun i => Polynomial.derivative (w i))
+      hdelta hw0 hw1 hwd0 hwd1
+  have hwedge : ∀ i j : Fin 3,
+      w i * Polynomial.derivative (w j) =
+        w j * Polynomial.derivative (w i) := by
+    intro i j
+    fin_cases i <;> fin_cases j
+    all_goals first
+      | rfl
+      | exact sub_eq_zero.mp h01
+      | exact sub_eq_zero.mp h02
+      | exact sub_eq_zero.mp h12
+      | exact (sub_eq_zero.mp h01).symm
+      | exact (sub_eq_zero.mp h02).symm
+      | exact (sub_eq_zero.mp h12).symm
+  exact polynomial_unimodularKernel_markedDrift_impossible
+    w b hpair hwedge hcoll
+
 end
 
 end HC4.Valuation
