@@ -35,6 +35,7 @@ certificate, not postulated from a fraction field.
 
 For the next source adapter, `w` is `adj(C)b'` and the kernel-wedge
 condition follows from generic transverse rank two. -/
+omit [CharZero K] in
 theorem polynomial_unimodularKernel_derivative_eq_zero
     (w v : Fin 3 → Polynomial K)
     (hpair : (∑ i : Fin 3, w i * v i) = -1)
@@ -117,7 +118,7 @@ theorem polynomial_unimodularKernel_markedDrift_impossible
       Polynomial.eval (1 : K) B =
           ∑ i : Fin 3,
             Polynomial.eval (1 : K) (w i * b i) := by
-              simp only [B, Polynomial.eval_finsetSum]
+              simp only [B, Polynomial.eval_finset_sum]
       _ = ∑ i : Fin 3,
             Polynomial.eval (0 : K) (w i * b i) := by
               apply Finset.sum_congr rfl
@@ -125,7 +126,7 @@ theorem polynomial_unimodularKernel_markedDrift_impossible
               rw [Polynomial.eval_mul, Polynomial.eval_mul, hwconst i]
               simp [hcoll i]
       _ = Polynomial.eval (0 : K) B := by
-            simp only [B, Polynomial.eval_finsetSum]
+            simp only [B, Polynomial.eval_finset_sum]
   have hBder' :
       Polynomial.derivative B = Polynomial.C (-1 : K) := by
     simpa using hBder
