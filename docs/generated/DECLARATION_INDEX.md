@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10212**.
+Distinct declaration spellings indexed: **10213**.
 
 ## Repeated declaration spellings
 
@@ -8276,6 +8276,7 @@ Distinct declaration spellings indexed: **10212**.
 - `quadraticSmithSubface_free_three` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `quadraticSmithSubface_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubface_pderiv_three_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
 - `quadratic_clearedSquare_of_leftPivot` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
