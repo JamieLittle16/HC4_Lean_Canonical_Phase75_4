@@ -1,5 +1,23 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
+import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo
+import HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo
+import HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot
+import HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift
+import HC4.Valuation.QuadraticTransverseCapTwoRowKernel
+import HC4.Valuation.QuadraticTransverseCapAdjugateSchur
+import HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision
+import HC4.Valuation.QuadraticTransverseCapSourceSupport
+import HC4.Valuation.QuadraticTransverseCapSchurOddCancellation
+import HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -134,6 +152,277 @@ structure PureLongitudinalMarkedE3Data
           T.topKernelMarkedAxisFirstContactFamily
           (Finsupp.single (0 : Fin 4) T.topFace.degree) <
         4 * T.topFace.degree - 6
+
+/-- Reachable pure-longitudinal E3 geometry includes a concrete
+represented-source monomial strictly below maximal ordinary degree.  Its
+transverse degree is at least two and its longitudinal exponent is bounded
+by the true first positive marked-axis order.  This is the source-level
+degree-drop witness; it is not yet a complete restart or terminal proof. -/
+theorem PureLongitudinalMarkedE3Data.lowerSourceDegreeWitness
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ d ∈ T.representedSpecialFiber.support,
+      HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree ∧
+        2 ≤ d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) ∧
+        d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder :=
+  P.pureLongitudinal_firstActual_exists_lowerSourceDegree
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- Pure-longitudinal E3 retains the *entire* lower singular collision,
+not merely the lower source exponent.  The first actual potential is nonzero,
+Hessian-singular, strictly below maximal source degree, and carries the same
+distinct marked gradient collision at 0 and e₀. -/
+theorem PureLongitudinalMarkedE3Data.lowerSingularCollisionPacket
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let L := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    L ≠ 0 ∧
+      HC4.Polynomial.hessianDeterminant L = 0 ∧
+      HasExactGradientCollision L
+        (fun _ : Fin 4 => (0 : K))
+        (coordinateAxisPoint (K := K) (0 : Fin 4)) ∧
+      (∀ d ∈ L.support,
+        HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree) :=
+  P.pureLongitudinal_firstActualLayer_singularCollisionPacket
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- The marked-aware pure E3 branch admits a strict **potential-family**
+Hessian-clock descent while preserving its marked collision.  With
+`r = topFace.degree - firstActualLayerOrder`, the quotient has determinant
+`τ^(4r-6)` and retains the exact collision at `0` and `e₀`.
+This is a concrete descent packet, not yet an ambient-state restart. -/
+theorem PureLongitudinalMarkedE3Data.reducedClockCollisionFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let Q := firstActualDeformationFamily
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+    HasPolynomialFamilyHessianDefect (K := K) Q (4 * r - 6) ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) ∧
+      0 < 4 * r - 6 ∧
+      4 * r - 6 < 4 * T.topFace.degree - 6 := by
+  dsimp
+  rcases P.pureLongitudinal_firstActualQuotient_reducedClock
+      D.coefficient_ne_zero D.topFace_eq with
+    ⟨hdef, hpos, hlt⟩
+  exact ⟨hdef,
+    P.pureLongitudinal_firstActualQuotient_exactCollision
+      D.coefficient_ne_zero D.topFace_eq,
+    hpos, hlt⟩
+
+/-- On the reached pure E3 branch the first-actual quotient is
+the honest lower-level reverse-Rees family of the *same represented source*,
+at weight cap `D-j`.  In particular it is not merely an unspecified
+lower-degree collision polynomial. -/
+theorem PureLongitudinalMarkedE3Data.relevelledReverseRees
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight
+      r T.topKernelReesSource :=
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+    firstActualDeformationFamily
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer =
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        r T.topKernelReesSource hbound :=
+  P.pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- The reached pure E3 packet constructs two honest A18 scale-aware
+auxiliary states with the same represented source and the same marked
+collision.  The strict clock descent between them is certified by the
+existing global macro order.  It is deliberately NOT an edge from the
+zero-clock represented source itself. -/
+theorem PureLongitudinalMarkedE3Data.auxiliaryMacroStep
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ s t : ScaleAwareAdaptiveGeometricRestartState (K := K),
+      s.family = T.topKernelMarkedAxisFirstContactFamily ∧
+      t.family =
+        firstActualDeformationFamily T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer ∧
+      s.degreeCap = T.topFace.degree ∧
+      t.degreeCap = T.topFace.degree ∧
+      s.scale = T.terminal.blocker.presented.scale ∧
+      t.scale = s.scale ∧
+      t.repair = s.repair ∧
+      t.rawDefect < s.rawDefect ∧
+      AdaptiveAlignedSmithCanonicalGlobalMacroProgress t s :=
+  P.pureLongitudinal_exists_auxiliaryMacroStep
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- Exact **degree-cap separation** at the reachable E3 pure packet.
+
+The normalized first-actual special fibre admits a strict nonlinear
+ordinary-degree cap D-1, but the whole collision-bearing quotient cannot
+admit that cap, because the original c*X₀^D survives at parameter order
+D-j.  This rules out claiming a full-family degree-drop restart here. -/
+theorem PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    NonlinearDegreeBound (T.topFace.degree - 1)
+      (polynomialFamilySpecialFiber
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)) ∧
+      ¬ NonlinearDegreeBound (T.topFace.degree - 1)
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer) :=
+  ⟨P.pureLongitudinal_firstActualQuotient_specialFiber_lowerDegree
+      D.coefficient_ne_zero D.topFace_eq,
+    P.pureLongitudinal_firstActualQuotient_not_lowerDegreeBound
+      D.coefficient_ne_zero D.topFace_eq⟩
+
+/-- **Finite quadratic alternative of the reachable pure E3 packet.**
+
+If the first nonzero marked-axis face has transverse degree two, the ENTIRE
+relevelled Hessian family has only parameter orders 0, 1, 2.  Each order is
+exactly the corresponding transverse-weight source component, and the whole
+family retains its tau² determinant and exact marked collision.  This is the
+complete source-honest finite quadratic input for the endpoint calculation. -/
+theorem PureLongitudinalMarkedE3Data.quadraticThreeLayerFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+        T.topKernelReesSource :=
+      by
+        simpa [hr] using
+          P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+            D.coefficient_ne_zero D.topFace_eq
+    let Q :=
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        2 T.topKernelReesSource hbound
+    (∀ n : ℕ, 2 < n → familyParameterLayer Q n = 0) ∧
+      familyParameterLayer Q 0 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (2 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 1 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (1 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 2 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (0 : ℤ) T.topKernelReesSource ∧
+      HasPolynomialFamilyHessianDefect (K := K) Q 2 ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) :=
+  P.pureLongitudinal_quadraticRelevel_threeLayers
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Actual represented-source rank-two conclusion in the quadratic E3
+branch.** The literal cap-two reverse-Rees family has determinant tau², so
+its origin Hessian transverse 3x3 block has a genuine nonzero 2x2 minor.
+The conclusion is about the original represented determinant-one source,
+not an auxiliary source or an inferred repair step. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let H := quadraticFamilyHessianMatrix T.topKernelReesSource
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticAxisReverseRees_sourceTransverseRankTwo
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+
+/-- **New first-actual-face rank-two geometry at the reachable
+quadratic E3 terminal.**
+
+This is stronger and more useful than the earlier represented-source rank
+witness: the Hessian-singular first nonzero marked-axis face itself has a
+nonzero transverse origin Hessian 2x2 minor.  It is therefore not a
+rank-one/quadratic-square lower-face packet. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_transverseRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Polynomial rank-two geometry on the genuinely reached quadratic
+E3 lower face.**  The rank witness is an actual nonzero polynomial
+2x2 Hessian minor, not merely a pointwise rank label. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPolynomialRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    ∃ i j k l : Fin 4,
+      HC4.Polynomial.hessian G i j *
+          HC4.Polynomial.hessian G k l -
+        HC4.Polynomial.hessian G i l *
+          HC4.Polynomial.hessian G k j ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_polynomialRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- Fixed finite principal Schur pivots on the ACTUAL quadratic E3 face.
+
+The three ordinary transverse principal minors are supplemented by the
+three principal minors after one fixed transverse basis shear.  Hence the
+previous mixed-minor disjunction does not have to be misused as a principal
+active chart.  Constructing the family-level chart and terminal descent is
+a separate remaining obligation. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPrincipalPivot
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 ∨
+    (H 1 1 + 2 * H 1 2 + H 2 2) * H 3 3 -
+      (H 1 3 + H 2 3) * (H 1 3 + H 2 3) ≠ 0 ∨
+    (H 1 1 + 2 * H 1 3 + H 3 3) * H 2 2 -
+      (H 1 2 + H 2 3) * (H 1 2 + H 2 3) ≠ 0 ∨
+    (H 2 2 + 2 * H 2 3 + H 3 3) * H 1 1 -
+      (H 1 2 + H 1 3) * (H 1 2 + H 1 3) ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_fixedPrincipalPivot
+    D.coefficient_ne_zero D.topFace_eq hr
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
