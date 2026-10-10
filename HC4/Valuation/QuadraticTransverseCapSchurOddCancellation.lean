@@ -77,7 +77,7 @@ theorem quadraticAxisFourBlockCore_oddPairing_zero_of_unit
         z₀ * quadraticTransverseAdjugateVector0 C v₀ v₁ v₂ +
         z₁ * quadraticTransverseAdjugateVector1 C v₀ v₁ v₂ +
         z₂ * quadraticTransverseAdjugateVector2 C v₀ v₁ v₂) = 0 := by
-    linear_combination -hodd
+    linear_combination hodd
   exact (mul_eq_zero.mp hfour).resolve_left (by norm_num)
 
 end
