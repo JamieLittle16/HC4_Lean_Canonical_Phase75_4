@@ -182,3 +182,60 @@ and the existing E3 fields are *inputs*; they do not by themselves establish
 any of the three final-resolution constructors. The newly pushed Lean edits
 require a local `lake build`; GitHub's documentation-only `generate`
 workflow does not test Lean.
+
+## 7. Follow-up formal algebra packet (2026-10-10; new commits unverified)
+
+The rank-two case now has a shorter source-honest route than the square-factor
+argument of §4. Set
+`v=b'(x)`, `w=adj(C)v`. When `det C=0`, the constant term of
+the exact four-block determinant equation gives **`v·w=-1`** and
+the adjugate equation gives **`Cw=0`**. In addition the coefficient
+linear in the transverse variables gives `C'w=0`. Differentiating
+`Cw=0` therefore gives **`Cw'=0`**.
+
+The already-proved actual transverse rank-two witness supplies a nonzero
+2x2 minor; the new finite principal-pivot packet supplies one after at most
+one transverse shear. The two-row domain identity then forces
+`w_i w'_j=w_j w'_i`. Since `∑ w_i v_i=-1`, we may write
+
+```text
+s = ∑ v_i w'_i
+w'_j = -s w_j.
+```
+
+Consequently `w_j` divides `w'_j` in `K[x]`. By the existing
+mathlib `Polynomial.dvd_derivative_iff`, each `w'_j=0`.
+Now `B=∑ w_j b_j` has derivative `B'=-1`, contrary to
+`b_j(1)=b_j(0)`. **No rational kernel-vector constant-field
+classification or square-factor argument is needed.**
+
+New Lean declarations (subject to local verification):
+
+- `quadraticTransverse_singularThreeBlock_unimodularKernel`:
+  the exact commutative-ring `adj(C)v` Schur certificate.
+- `quadraticTransverse_twoRowPrincipalKernel_wedges`:
+  nonzero principal 2x2 pivot + two shared kernel rows ⇒ all
+  three kernel wedges vanish over an integral domain.
+- `polynomial_unimodularKernel_derivative_eq_zero`:
+  unimodularity and wedge zero ⇒ the polynomial kernel vector is constant.
+- `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible`:
+  assembles the latter two algebraic steps and exact marked collision.
+- `cubicNilpotent_drift_smul_injective`:
+  generic-rank-three interval drift factor is injective on any left module.
+
+**Remaining source-honest extraction:** expand the *actual represented
+source* to transverse quadratic normal form; transport the exact
+determinant-one identity as a polynomial identity in the longitudinal
+coordinate and three transverse variables; extract its constant/linear/
+quadratic transverse coefficients. Show the marked collision gives exactly
+`b_i(1)=b_i(0)`. In the rank-two branch, instantiate the adjugate
+certificate and prove `C'w=0`, hence the differentiated kernel-row
+conditions; combine with the previously proved rank-two witness and fixed
+principal pivot. In the rank-three branch, prove `(C^{-1})''=0`, then
+the nilpotent interval normal form and apply the module drift lemma.
+
+The **quadratic case is not closed yet**. These algebraic lemmas do not
+construct an `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`.
+The `r≥3` pure branch and other E3 endpoint events remain open.
+Both the targeted E3 build and the root `lake build` must pass at the
+new commit before calling the edits Lean-certified.
