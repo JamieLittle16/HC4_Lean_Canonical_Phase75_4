@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10209**.
+Distinct declaration spellings indexed: **10211**.
 
 ## Repeated declaration spellings
 
@@ -7788,6 +7788,8 @@ Distinct declaration spellings indexed: **10209**.
 - `polynomial_nonzeroConstantDerivative_no_unitIntervalCollision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `polynomial_squareFactor_unit_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `polynomial_taylor_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
+- `polynomial_unimodularKernel_derivative_eq_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+- `polynomial_unimodularKernel_markedDrift_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
 - `positiveCoordinateSupport` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `positiveCoordinateSupport_nonempty_of_not_supportOnFacet` — `theorem` in `HC4.Newton.FirstContactCrossFacetCarrier`
 - `positiveEntryOrders` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`

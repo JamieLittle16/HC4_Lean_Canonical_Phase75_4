@@ -4187,6 +4187,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
   - `HC4.Valuation.StrictSmithFirstContactGeometry`
   - `HC4.Valuation.StrictSmithPostTransformFace`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
@@ -5133,6 +5134,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
