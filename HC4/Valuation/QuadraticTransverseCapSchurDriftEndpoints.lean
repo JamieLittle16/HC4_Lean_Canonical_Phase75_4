@@ -127,6 +127,38 @@ theorem cubicNilpotent_drift_mul_eq_zero_iff
   · intro hv
     simp [hv]
 
+/-- In the generic rank-three case, the interval drift operator is
+injective on *any* left module carrying the nilpotent transverse
+operator, not only on a 3x3 matrix ring. This is the exact linear-algebra
+consumer for the later coefficient transport from b'(x). -/
+theorem cubicNilpotent_drift_smul_injective
+    {R : Type*} [Ring R]
+    {M : Type*} [AddCommGroup M] [Module R M]
+    (N : R)
+    (hN : N ^ 3 = 0) :
+    Function.Injective (fun v : M => (1 - N + N ^ 2) • v) := by
+  intro v w hvw
+  have hleft :=
+    (cubicNilpotent_drift_twoSidedInverse N hN).2
+  have h := congrArg (fun z : M => (1 + N) • z) hvw
+  simpa only [← mul_smul, hleft, one_smul] using h
+
+/-- In particular, vanishing of the polynomial interval drift forces
+vanishing of the source's initial transverse derivative vector. -/
+theorem cubicNilpotent_drift_smul_eq_zero_iff
+    {R : Type*} [Ring R]
+    {M : Type*} [AddCommGroup M] [Module R M]
+    (N : R)
+    (hN : N ^ 3 = 0)
+    (v : M) :
+    (1 - N + N ^ 2) • v = 0 ↔ v = 0 := by
+  constructor
+  · intro hv
+    exact (cubicNilpotent_drift_smul_injective N hN)
+      (by simpa using hv)
+  · intro hv
+    simp [hv]
+
 end
 
 end HC4.Valuation
