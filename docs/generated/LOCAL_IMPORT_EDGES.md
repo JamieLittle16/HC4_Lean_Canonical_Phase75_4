@@ -5144,6 +5144,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+- `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
   - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
