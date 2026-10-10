@@ -26,7 +26,7 @@ namespace HC4.Valuation
 noncomputable section
 
 universe u
-variable {K : Type u} [Field K] [CharZero K]
+variable {K : Type u} [Field K]
 
 /-- A unimodular polynomial vector whose formal derivative is parallel
 to itself has identically zero derivative. The factor of proportionality
@@ -35,7 +35,6 @@ certificate, not postulated from a fraction field.
 
 For the next source adapter, `w` is `adj(C)b'` and the kernel-wedge
 condition follows from generic transverse rank two. -/
-omit [CharZero K] in
 theorem polynomial_unimodularKernel_derivative_eq_zero
     (w v : Fin 3 → Polynomial K)
     (hpair : (∑ i : Fin 3, w i * v i) = -1)
@@ -73,6 +72,8 @@ theorem polynomial_unimodularKernel_derivative_eq_zero
     refine ⟨-s, ?_⟩
     simpa only [mul_comm] using hparallel
   exact Polynomial.dvd_derivative_iff.mp hdiv
+
+variable [CharZero K]
 
 /-- The whole generic-rank-two quadratic-axis endpoint, expressed as
 explicit polynomial coefficient consequences of the source determinant:
