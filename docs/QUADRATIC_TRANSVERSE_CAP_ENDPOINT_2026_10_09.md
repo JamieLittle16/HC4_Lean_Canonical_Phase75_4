@@ -239,3 +239,45 @@ construct an `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 The `r≥3` pure branch and other E3 endpoint events remain open.
 Both the targeted E3 build and the root `lake build` must pass at the
 new commit before calling the edits Lean-certified.
+
+
+## 8. Actual represented-source adapter and five-section rank-two endpoint (2026-10-10; unverified build)
+
+New modules imported through `AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`:
+
+1. `QuadraticTransverseCapSourceMarkedCollision.lean` directly consumes
+   `T.topKernelReesSource_exactCollision` and the **existing**
+   `longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision`
+   to obtain the three exact polynomial equalities
+   `b_i(1)=b_i(0)` of the *original represented source*.
+2. `QuadraticTransverseCapSourceSupport.lean` consumes the **same
+   represented source's** quadratic marked-axis reverse-weight bound,
+   and shows `longitudinalCoefficientPolynomial b c d F=0` whenever
+   `b+c+d≥3`. This is the all-longitudinal-orders transverse cap,
+   not merely a graded quadratic first face.
+3. `QuadraticTransverseCapSchurOddCancellation.lean` gives an exact
+   ring identity for the *difference* of the Schur determinant cores at
+   opposite transverse sections. For `det C=0` and unit determinants
+   at the two sections, the mixed pairing
+   `(C'e_i)·adj(C)b'=0`. The two longitudinal Hessian entries need
+   **not** be equal and cancel because they multiply `det C=0`.
+4. `QuadraticTransverseCapRankTwoOppositeSections.lean` packages the
+   **complete polynomial rank-two algebra** with only five Schur-unit
+   equations (axis, ±e₁, ±e₂), generic transverse determinant zero,
+   one actual leading principal 2x2 pivot, and the real marked
+   collision. The theorem constructs `w=adj(C)b'`, derives
+   `Cw=0`, `C'w=0`, differentiates to `Cw'=0`, invokes the
+   principal-pivot wedge identity, and concludes the nonzero drift
+   contradicts `b(1)=b(0)`. No generic rank-two endpoint is assumed.
+
+Still open in the **actual E3 quadratic source**: provide the
+canonical polynomial block `C(x)` and `b(x)` from longitudinal
+coefficients; relate the five four-block Schur identities exactly to
+`hessianDeterminant T.topKernelReesSource = 1`; transport one of the
+six fixed principal pivot alternatives into the source coordinates
+(with shear when required); split rank-two `det C=0` from rank-three
+`det C≠0`; formalize the rank-three reciprocal-matrix ODE and
+nilpotent polynomial drift. No producer-free JC2⇒HC4 theorem
+is yet derived by these intermediate constructions.
+
+New declarations remain **unverified until a local Lean build**.
