@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10333**.
+Distinct declaration spellings indexed: **10337**.
 
 ## Repeated declaration spellings
 
@@ -8313,6 +8313,7 @@ Distinct declaration spellings indexed: **10333**.
 - `quadraticTransverseCapSourceGlobalFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `quadraticTransverseCapSourceGlobalHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `quadraticTransverseCapSourceGlobalSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+- `quadraticTransverseCapSourceGlobalThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCapSourceLinearCoefficients` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisHessian_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
 - `quadraticTransverseCapSource_axisLongitudinal_secondTransverseJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
@@ -8331,13 +8332,16 @@ Distinct declaration spellings indexed: **10333**.
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadraticTransverseCap_rankTwo_sevenSchurSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
 - `quadraticTransverseCap_two_actualSectionSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `quadraticTransverseCap_two_globalThreeBlock_pderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_mixedHessian_basisSection` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
+- `quadraticTransverseCap_two_mixedHessian_crossTransverse_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_mixedHessian_secondTransverse_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `quadraticTransverseCap_two_rankThree_constantDetZeroMixed_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
 - `quadraticTransverseCap_two_sectionHessian_succ_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_sectionMixedRow_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCap_two_sectionThreeBlock_fixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_singularSource_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `quadraticTransverseCap_two_sourceGlobalSchur_secondJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_tripleTransversePderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_zero_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseSourceSectionFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
