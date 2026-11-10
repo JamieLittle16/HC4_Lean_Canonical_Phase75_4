@@ -53,15 +53,12 @@ private theorem schur_derivative_adjugateVector
   rcases hzero with ⟨ha, hb, hc, hd, he, hf⟩
   constructor
   · simp [quadraticTransverseAdjugateVector0, E.leibniz,
-      ha, hb, hc, hd, he, hf, smul_eq_mul]
-    ring
+      ha, hb, hc, hd, he, hf, smul_eq_mul] <;> ring
   constructor
   · simp [quadraticTransverseAdjugateVector1, E.leibniz,
-      ha, hb, hc, hd, he, hf, smul_eq_mul]
-    ring
+      ha, hb, hc, hd, he, hf, smul_eq_mul] <;> ring
   · simp [quadraticTransverseAdjugateVector2, E.leibniz,
-      ha, hb, hc, hd, he, hf, smul_eq_mul]
-    ring
+      ha, hb, hc, hd, he, hf, smul_eq_mul] <;> ring
 
 /-- When the 3x3 block is constant in the chosen derivative,
 the exact Schur first derivative is the determinant times
@@ -85,8 +82,7 @@ theorem quadraticTransverse_schur_firstDerivative
     quadraticTransverseAdjugateVector0,
     quadraticTransverseAdjugateVector1,
     quadraticTransverseAdjugateVector2,
-    D.leibniz, ha, hb, hc, hd, he, hf, smul_eq_mul]
-  ring
+    D.leibniz, ha, hb, hc, hd, he, hf, smul_eq_mul] <;> ring
 
 /-- The general twice-differentiated Schur identity: the coefficient
 tensor is a genuine adjugate quadratic form on the two mixed
@@ -139,8 +135,7 @@ theorem quadraticTransverse_schur_secondDerivative
         D v₂ * quadraticTransverseAdjugateVector2 C
           (E v₀) (E v₁) (E v₂)) := by
                simp [E.leibniz, hdet, hw₀, hw₁, hw₂,
-                 hv₀, hv₁, hv₂, smul_eq_mul]
-               ring
+                 hv₀, hv₁, hv₂, smul_eq_mul] <;> ring
 
 end
 
