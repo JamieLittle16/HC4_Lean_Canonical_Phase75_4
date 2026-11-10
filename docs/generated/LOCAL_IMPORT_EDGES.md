@@ -5157,6 +5157,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `HC4.Valuation.QuadraticTransverseCapSourceAxisJetEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianSchurDerivative`
+- `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisJetEndpoint`
 - `HC4.Valuation.QuadraticTransverseCapSourceHessianSchurDerivative`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianSections`
 - `HC4.Valuation.QuadraticTransverseCapSourceHessianSections`
