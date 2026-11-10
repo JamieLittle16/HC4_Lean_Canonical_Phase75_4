@@ -60,9 +60,6 @@ theorem quadraticTransverseCapSource_axisThreeBlock_origin
       ((quadraticTransverseCapSourceAxisThreeBlock F).matrix i j) =
       quadraticFamilyHessianMatrix F i.succ j.succ := by
   fin_cases i <;> fin_cases j <;>
-    simp only [GeneralThreeBlock.matrix, Matrix.cons_val_zero,
-      Matrix.cons_val_one, Matrix.cons_val_two]
-  all_goals
     simpa [quadraticTransverseCapSourceAxisThreeBlock,
       quadraticTransverseCapSourceAxisFourBlock,
       GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
