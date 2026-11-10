@@ -97,7 +97,9 @@ theorem quadraticTransverse_clearedRiccati_fieldRiccati
                 intro i j
                 simp only [Matrix.map_apply, Matrix.smul_apply, map_nsmul]
           _ = 2 • (P.map f * A.adjugate * P.map f) := by
-                rw [Matrix.map_mul, Matrix.map_mul, RingHom.map_adjugate]
+                have hadjMap : C.adjugate.map f = A.adjugate := by
+                  simpa only [A] using (RingHom.map_adjugate f C)
+                rw [Matrix.map_mul, Matrix.map_mul, hadjMap]
   have hcancel :
       A.det • (Q.map f) =
         A.det • (2 • (U * M * U)) := by
