@@ -587,3 +587,77 @@ grep is NOT the same as a green Lean build.
 lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
 lake build
 ```
+
+
+## 13. Actual E3 determinant-one source extraction of BOTH Riccati coefficients (2026-11-10; needs build)
+
+**Green baseline** (user confirmed): `c803158a3263841ac0ed468786fa24a6206148ec`. The present changes are NEW and have not yet been compiled.
+
+The central rank-three quadratic proof task had been to prove, not
+merely assume, the source equations
+
+```text
+D C'' = 2 C' adj(C) C'
+D b'' = 2 C' adj(C) b'
+D = det C .
+```
+
+Five new modules are imported into the *actual canonical E3 file*:
+
+* `QuadraticTransverseCapSourceRiccatiJets.lean` packages the
+  GLOBAL original Hessian as a symmetric four-block, proves
+  that its four-block Schur core is literally 1, and identifies
+  the twice-transverse derivative of the actual longitudinal H00
+  with the univariate second derivative Cij'' after source-axis
+  restriction. No cap-two or rank assumption is needed for the
+  commuting-derivatives identity.
+* `QuadraticTransverseCapSchurSecondDerivative.lean` proves
+  general abstract K-derivation lemmas for the first and second
+  derivatives of the 4x4 Schur core when the six transverse-block
+  entries are constant under those derivations. It identifies the
+  quadratic coefficient as an adjugate pairing; no polynomial
+  inverse or field-fraction derivative is needed.
+* `QuadraticTransverseCapSourceSchurSecondJet.lean` applies the
+  abstract derivative lemmas with the ORIGINAL source transverse
+  partial derivations (mathlib represents `MvPolynomial.pderiv`
+  as an actual `Derivation`). The whole-source cap-two
+  kills every transverse derivative of C and mixed second
+  derivative of the H0i row, including all cross directions.
+  This extracts the source-global Schur quadratic coefficient.
+* `QuadraticTransverseCapSourceRiccatiCleared.lean` applies the
+  established source-axis restriction homomorphism to that
+  global identity. The result
+  `quadraticTransverseCap_two_sourceRiccati_cleared` states
+  the nine exact polynomial entrywise equations
+  `D Cij'' = 2 (C' adj(C) C')ij`. No Riccati
+  equation is assumed.
+* `QuadraticTransverseCapSourceRiccatiLinear.lean` similarly
+  differentiates the original global Schur identity ONCE.
+  By the pre-existing source transverse-linear coefficient
+  lemma, the axis of `∂yj H00` is `bj''`.
+  This gives the three exact univariate equations
+  `D bj'' = 2 (C' adj(C) b')j`.
+
+The actual E3 wrappers
+`PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_cleared`
+and `PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_linearCleared`
+use the already-green source cap proof and represented determinant-one
+identity. If the new code compiles, the ENTIRE source Riccati
+extraction seam is closed without a terminal producer.
+
+**Still open after this milestone:**
+(1) construct the actual K-derivation of `RatFunc K` with D(X)=1;
+(2) transport the now-source-proved polynomial Riccati equations
+to the source's genuine rational inverse; then use the already
+green rational matrix rigidity and affine descent;
+(3) solve the linear b' ODE via the affine/nilpotent inverse
+normal form and apply the original marked collision;
+(4) advance other E3 branches and higher transverse degree.
+
+These five files have no `sorry` or new axioms, but they
+are NOT Lean-certified until the user's full build passes:
+
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build
+```
