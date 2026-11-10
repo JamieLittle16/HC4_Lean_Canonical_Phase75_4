@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10229**.
+Distinct declaration spellings indexed: **10236**.
 
 ## Repeated declaration spellings
 
@@ -8215,6 +8215,7 @@ Distinct declaration spellings indexed: **10229**.
 - `quadraticAutonomous_top_relation` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `quadraticAxisFourBlock` — `def` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisFourBlockCore` — `def` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+- `quadraticAxisFourBlockCore_eq_generalFourBlock` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticAxisFourBlockCore_eq_transverseAdjugateSchur` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticAxisFourBlockCore_oddPairing` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
 - `quadraticAxisFourBlockCore_oddPairing_zero_of_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
@@ -8288,6 +8289,12 @@ Distinct declaration spellings indexed: **10229**.
 - `quadraticTransverseAdjugate_row0` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row1` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row2` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseCapSourceAxisFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSourceAxisFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSourceAxisHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSourceAxisThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSourceLinearCoefficients` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
