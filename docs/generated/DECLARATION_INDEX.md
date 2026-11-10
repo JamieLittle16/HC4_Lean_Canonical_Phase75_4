@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10301**.
+Distinct declaration spellings indexed: **10308**.
 
 ## Repeated declaration spellings
 
@@ -8347,6 +8347,13 @@ Distinct declaration spellings indexed: **10301**.
 - `quadraticTransverse_cubicSecond` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
 - `quadraticTransverse_cubicTrace` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
 - `quadraticTransverse_det_one_add_X_matrix` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
+- `quadraticTransverse_fieldMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldMatrixDerivative_neg` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldMatrixDerivative_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldReciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_field_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_polynomialMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mapC` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
