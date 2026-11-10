@@ -15250,7 +15250,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`, `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem transverseCapTwo_sourceCoeff_zero`, `theorem transverseCapTwo_thirdTransverseDerivative_zero`, `theorem AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceThirdTransverseDerivative_zero`
+- Declarations: `theorem transverseCapTwo_sourceCoeff_zero`, `theorem transverseCapTwo_thirdTransverseDerivative_zero`, `theorem transverseCapTwo_transverseHessian_pderiv_zero`, `theorem AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceThirdTransverseDerivative_zero`
 
 ### `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 
