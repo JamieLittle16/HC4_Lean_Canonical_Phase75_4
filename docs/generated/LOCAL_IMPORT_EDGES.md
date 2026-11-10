@@ -5161,6 +5161,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
 - `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisJetEndpoint`
+- `HC4.Valuation.QuadraticTransverseCapSourceAxisRankTwoClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisJetExtraction`
 - `HC4.Valuation.QuadraticTransverseCapSourceHessianSchurDerivative`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianSections`
 - `HC4.Valuation.QuadraticTransverseCapSourceHessianSections`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10253**.
+Distinct declaration spellings indexed: **10255**.
 
 ## Repeated declaration spellings
 
@@ -1047,6 +1047,7 @@ Distinct declaration spellings indexed: **10253**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceAxisThreeBlock_nonsingular` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisRankTwoClosure`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceThirdTransverseDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceTransverseCap` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.impossible_of_JC2_of_finalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
@@ -8307,6 +8308,7 @@ Distinct declaration spellings indexed: **10253**.
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadraticTransverseCap_rankTwo_sevenSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
+- `quadraticTransverseCap_sourceAxisThreeBlock_singular_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisRankTwoClosure`
 - `quadraticTransverse_adjugateKernel_line` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
