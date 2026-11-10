@@ -281,3 +281,63 @@ nilpotent polynomial drift. No producer-free JC2⇒HC4 theorem
 is yet derived by these intermediate constructions.
 
 New declarations remain **unverified until a local Lean build**.
+
+
+## 9. Original-source longitudinal sections and singular principal pivot (2026-11-10; new code unverified)
+
+The source-honest adapter has advanced in three distinct, formal targets:
+
+- `QuadraticTransverseCapSourceAxisSchur.lean` constructs the actual
+  four-block Hessian over `K[x]` by applying the pre-existing
+  `longitudinalAxisRestrictionRingHom` to the actual source
+  `hessian F`. Its `quadraticTransverseCapSource_axisSchur_unit`
+  transports `hessianDeterminant F=1` and identifies the three
+  mixed row entries **exactly** as `b_i'(x)`.
+  This discharges the **axis** unit Schur equation, without a
+  replacement source.
+- `QuadraticTransverseCapSourceSections.lean` extends that
+  ring-hom determinant transport to **any constant transverse
+  section** `y\in K³`. In particular all four sections `±e₁, ±e₂`
+  retain the exact determinant-one Hessian over `K[x]`.
+  **Still to prove:** under the actual transverse degree cap,
+  the 3x3 section Hessian is the same `C(x)` and the mixed entries
+  become `b'(x)±C'(x)e_i`. The unit determinant equations for
+  raw section blocks do not automatically discharge the normalized
+  Schur identities of the opposite-section endpoint.
+- `QuadraticTransverseCapSourceOriginPivot.lean` identifies the
+  x=0 specialization of the six entries of the **polynomial**
+  transverse block with the existing represented-source origin
+  Hessian; hence the source-origin 2x2 witness lifts to a
+  nonzero polynomial 2x2 minor of `C(x)`. The actual E3 wrapper
+  is `quadratic_sourceAxisPolynomialRankTwo`.
+
+**New algebraic simplification in the singular branch:**
+For `det C=0` over a domain, every nonzero 2x2 minor of a
+symmetric 3x3 block implies a nonzero **principal** 2x2 minor, with
+no source shearing required. The three exact square identities are:
+
+```text
+(bf-ce)^2 = (af-c^2)(df-e^2) - f det(C)
+(be-cd)^2 = (ad-b^2)(df-e^2) - d det(C)
+(ae-bc)^2 = (ad-b^2)(af-c^2) - a det(C)
+```
+
+If all three principal minors vanished, these identities and `det C=0`
+would force all mixed minors to vanish, contrary to source rank >=2.
+This is isolated in
+`QuadraticTransverseCapSingularPrincipalPivot.lean` and consumed
+by `PureLongitudinalMarkedE3Data.quadratic_sourceSingularPrincipalPivot`.
+
+**Important caveat:** The algebraic five-section rank-two endpoint
+currently selects the principal `(0,1)` transverse pivot `ad-b²`.
+The singular principal-pivot theorem gives a **three-way** alternative
+`df-e² !=0 ∨ af-c² !=0 ∨ ad-b² !=0`. We must either permute
+the transverse coordinates honestly or derive the derivative-kernel
+rows at **all three pairs** `±e_i` (seven sections including the axis)
+and use the appropriate two rows. Never treat a generic principal
+pivot as if it were already the `ad-b²` pivot.
+
+The rest of the source adapter, the generic rank-three analysis, the
+higher transverse-cap branches, and a producer-free `JC2 → HC4`
+conclusion remain open. The newly added code has **not yet been
+Lean-compiled locally** as of this note.
