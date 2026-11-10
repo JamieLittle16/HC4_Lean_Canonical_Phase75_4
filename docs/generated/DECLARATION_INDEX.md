@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10330**.
+Distinct declaration spellings indexed: **10333**.
 
 ## Repeated declaration spellings
 
@@ -8386,6 +8386,8 @@ Distinct declaration spellings indexed: **10330**.
 - `quadraticTransverse_ratFunc_derivation_polynomialCompatibility` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
 - `quadraticTransverse_reciprocal_polynomial_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `quadraticTransverse_reciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `quadraticTransverse_schur_firstDerivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
+- `quadraticTransverse_schur_secondDerivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_source_axisLongitudinalHessian` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
 - `quadraticTransverse_source_eval_section_eq_axis` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
@@ -9229,6 +9231,7 @@ Distinct declaration spellings indexed: **10330**.
 - `schurPivot_of_determinantCore_eq_zero` — `theorem` in `HC4.Newton.RankTwoFourBlockSchur`, `theorem` in `HC4.Newton.RankTwoFourBlockSchur`
 - `schurTangentialOrder_of_lt_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerTangency`
 - `schur_coeffs_eq_zero_of_clock_le` — `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
+- `schur_derivative_adjugateVector` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
 - `schur_offDiag_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockRankTwoGeometry`
 - `secondDerivative_comp_lockedBinomialAffineNormalize` — `theorem` in `HC4.Polynomial.LockedBinomialAffineFirstVariationRigidity`
 - `secondDirectionalDerivative_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
