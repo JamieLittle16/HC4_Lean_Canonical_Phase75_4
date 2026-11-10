@@ -28,6 +28,7 @@ variable {K : Type*} [Field K] [CharZero K]
 K[x] has a constant nonzero polynomial determinant. This follows
 from the concrete determinant of the inverse product, not from
 mere generic rank three. -/
+omit [CharZero K] in
 theorem quadraticTransverse_polynomialMatrixInverse_det_constant
     (C M : Matrix (Fin 3) (Fin 3) (Polynomial K))
     (hCM : C * M = 1) :
