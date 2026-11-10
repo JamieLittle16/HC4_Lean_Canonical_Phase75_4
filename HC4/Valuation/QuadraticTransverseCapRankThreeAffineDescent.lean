@@ -69,12 +69,14 @@ theorem quadraticTransverse_polynomialMatrix_inverse_descends
     rw [Matrix.map_mul]
     exact hPC
   constructor
-  · ext i j
+  · apply Matrix.ext
+    intro i j
     apply hf
     have h := congrArg
       (fun H : Matrix (Fin 3) (Fin 3) L => H i j) hleft
     simpa [Matrix.map_apply, Matrix.one_apply] using h
-  · ext i j
+  · apply Matrix.ext
+    intro i j
     apply hf
     have h := congrArg
       (fun H : Matrix (Fin 3) (Fin 3) L => H i j) hright
