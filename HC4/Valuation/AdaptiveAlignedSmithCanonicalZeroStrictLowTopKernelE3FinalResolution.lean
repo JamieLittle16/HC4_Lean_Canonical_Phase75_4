@@ -24,6 +24,7 @@ import HC4.Valuation.QuadraticTransverseCapSourceOriginPivot
 import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
 import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
 import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
+import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -554,6 +555,57 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceAnySectionSchurUnit
   exact quadraticTransverseCap_two_actualSectionSchur_unit
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one y
+
+/-- **Source-honest elimination of the singular transverse
+quadratic-cap branch.**
+
+In the actual reachable E3 quadratic relevel, the represented
+determinant-one source has transverse degree at most two and the
+original exact marked gradient collision. If the polynomial
+three-by-three transverse Hessian determinant vanished, the complete
+seven-section source Schur/kernel-drift theorem would give False.
+
+This is an actual contradiction for the singular case, not a
+terminal resolution constructor or a polynomial rank-two witness. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (hsingular :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = 0) :
+    False := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  apply quadraticTransverseCap_two_singularSource_impossible
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    hsingular
+  intro j
+  exact T.topKernelReesSource_transverseLinearMarkedCollision j
+
+/-- Every reachable pure quadratic E3 relevel has a GENERICALLY
+INVERTIBLE polynomial transverse Hessian three-block C(x).
+
+This is strictly stronger than the previously established rank-two
+minor: det C is a nonzero polynomial. The proof eliminates the
+singular rank-two branch using the actual represented source and
+its exact marked collision; no JC2 or endpoint-producer hypothesis
+occurs in this theorem. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    (quadraticTransverseCapSourceAxisThreeBlock
+      T.topKernelReesSource).determinantCore ≠ 0 := by
+  intro hzero
+  exact D.quadratic_sourceSingularTransverse_impossible
+    P hr hzero
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
