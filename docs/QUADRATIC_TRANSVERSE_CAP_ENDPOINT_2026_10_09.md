@@ -341,3 +341,85 @@ The rest of the source adapter, the generic rank-three analysis, the
 higher transverse-cap branches, and a producer-free `JC2 → HC4`
 conclusion remain open. The newly added code has **not yet been
 Lean-compiled locally** as of this note.
+
+
+## 10. New singular-quadratic source closure (2026-11-10; LOCAL BUILD REQUIRED)
+
+A more substantial proof chain now lies on the **actual canonical E3
+import path**. The newly written theorem
+
+`PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero`
+
+asserts that at the reachable pure quadratic relevel `r=2`, the
+transverse Hessian three-block
+
+```text
+C(x) = Hessian_{transverse,transverse}
+       (T.topKernelReesSource)(x,0,0,0)
+```
+
+has **nonzero polynomial determinant**. This is stronger than the previous
+source-origin rank-two witness. It is derived without assuming a new
+final-resolution constructor, abstract endpoint producer, or fabricated
+source, but must **pass Lean compilation** before being called certified.
+
+The source-honest singular branch follows this precise chain:
+
+1. `QuadraticTransverseCapThreePrincipalKernel.lean` handles **all
+   three original principal 2x2 pivots**, by finite index permutations
+   of the already-green two-row kernel theorem.
+2. `QuadraticTransverseCapSevenSectionEndpoint.lean` combines the axis
+   and all six opposite-section Schur equations to give the exact
+   rank-two drift contradiction independently of pivot placement.
+3. `QuadraticTransverseCapSourceHessianFlat.lean` proves the real
+   cap-two source has zero third transverse partials. Therefore the
+   transverse Hessian block is the same **polynomial C(x)** on every
+   constant transverse section; the proof uses source support and
+   the existing characteristic-zero evaluation-independence lemma.
+4. `QuadraticTransverseCapAffineSection.lean` proves the exact
+   affine-evaluation identity for any polynomial whose second
+   partial derivative in one coordinate vanishes, using
+   `P-X_i ∂_iP` and the existing evaluation-independence lemma.
+5. `QuadraticTransverseCapSourceMixedSections.lean` applies that
+   identity to the actual mixed Hessian, whose second transverse
+   derivative vanishes by the cap-two source condition and commuting
+   longitudinal with transverse formal derivatives.
+6. `QuadraticTransverseCapSourceSchurProfile.lean` identifies the
+   source-axis coefficient vector `b(x)`, transverse Hessian
+   matrix `C(x)`, and actual mixed section row:
+   `H_{0i}(x,t e_j) = b_i'(x)+t C_{ij}'(x)`.
+7. `QuadraticTransverseCapSourceSingularClosure.lean` now
+   derives the **seven honest scalar Schur identities** from
+   `hessianDeterminant F = 1`, the cap-two source, and its
+   exact marked collision. With `det C=0`, the already-proved
+   source-origin minor and the singular-principal-pivot theorem
+   supply the rank-two endpoint. The endpoint yields `False`.
+8. The canonical E3 wrapper
+   `PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible`
+   consumes only the *actual* E3 source cap, its determinant-one
+   theorem, and its marked collision. The next wrapper
+   `quadratic_sourceTransverseDet_ne_zero` eliminates the
+   singular transverse branch.
+
+If this entire chain compiles, the `r=2` pure E3 obstruction is now
+reduced to the **generic transverse rank-three case**,
+`det C(x) ≠ 0` in `K[x]`. The candidate rank-three proof in
+earlier sections proceeds through `M=C^{-1}=A+xB` over `K(x)`,
+nilpotence of `N=A^{-1}B`, and the interval drift operator
+`I-N+N²`. The last operator's injectivity is already isolated in
+`cubicNilpotent_drift_smul_injective`, but the source-level
+matrix reciprocal ODE, polynomiality/unimodularity, nilpotence
+and longitudinal collision transport remain unformalised.
+
+The broader `r≥3` pure branches and other E3 terminal events
+also remain open; there is **no producer-free
+`PlanarJC2Injectivity K → HC4(K)` theorem yet**.
+
+**Compiling the new code is essential:** unlike the preceding green
+head, the commits from `98fba367` through this note have not been
+checked by Lean in the assistant environment.
+
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build
+```
