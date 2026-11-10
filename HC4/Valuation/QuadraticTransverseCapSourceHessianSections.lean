@@ -41,18 +41,29 @@ theorem transverseCapTwo_sourceHessian_transverseSection_independent
     | succ k =>
       exfalso
       obtain ⟨d, hd, hpos⟩ :=
-        (MvPolynomial.mem_vars_iff_mem_support (p := Q) k.succ).mp hk
+        (MvPolynomial.mem_vars (p := Q) k.succ).mp hk
       have hd0 : d k.succ = 0 :=
         transverseCapTwo_sourceHessian_support_longitudinal
           F hbound i j d hd k
       exact (Finsupp.mem_support_iff.mp hpos) hd0
   have hC : f₁.comp (MvPolynomial.C : K →+* MvPolynomial (Fin 4) K) =
       f₂.comp (MvPolynomial.C : K →+* MvPolynomial (Fin 4) K) := by
-    ext a
-    simp [f₁, f₂, quadraticSourceSectionRingHom]
+    apply RingHom.ext
+    intro a
+    change
+      Polynomial.map (MvPolynomial.eval y)
+          (MvPolynomial.finSuccEquiv K 3 (MvPolynomial.C a)) =
+        Polynomial.map (MvPolynomial.eval (fun _ : Fin 3 => (0 : K)))
+          (MvPolynomial.finSuccEquiv K 3 (MvPolynomial.C a))
+    simp [MvPolynomial.finSuccEquiv_apply]
   have hX : f₁ (MvPolynomial.X (0 : Fin 4)) =
       f₂ (MvPolynomial.X (0 : Fin 4)) := by
-    simp [f₁, f₂, quadraticSourceSectionRingHom]
+    change
+      Polynomial.map (MvPolynomial.eval y)
+          (MvPolynomial.finSuccEquiv K 3 (MvPolynomial.X 0)) =
+        Polynomial.map (MvPolynomial.eval (fun _ : Fin 3 => (0 : K)))
+          (MvPolynomial.finSuccEquiv K 3 (MvPolynomial.X 0))
+    simp only [MvPolynomial.finSuccEquiv_X_zero, Polynomial.map_X]
   have hsections : f₁ Q = f₂ Q := by
     exact MvPolynomial.hom_congr_vars hC
       (by
