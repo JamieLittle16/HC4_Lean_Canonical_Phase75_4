@@ -64,11 +64,59 @@ theorem quadraticTransverseCapSource_axisThreeBlock_origin
     Polynomial.eval (0 : K)
       ((quadraticTransverseCapSourceAxisThreeBlock F).matrix i j) =
       quadraticFamilyHessianMatrix F i.succ j.succ := by
-  fin_cases i <;> fin_cases j <;>
-    simpa [quadraticTransverseCapSourceAxisThreeBlock,
+  have hforward (a b : Fin 4) :
+      Polynomial.eval (0 : K)
+        (longitudinalAxisRestriction
+          (MvPolynomial.pderiv b (MvPolynomial.pderiv a F))) =
+        quadraticFamilyHessianMatrix F a b := by
+    simpa only [Matrix.map_apply,
+      longitudinalAxisRestrictionRingHom_apply,
+      HC4.Polynomial.hessian_apply] using
+      (quadraticTransverseCapSource_axisHessian_origin F a b)
+  have hbackward (a b : Fin 4) :
+      Polynomial.eval (0 : K)
+        (longitudinalAxisRestriction
+          (MvPolynomial.pderiv b (MvPolynomial.pderiv a F))) =
+        quadraticFamilyHessianMatrix F b a := by
+    rw [pderiv_comm_commRing a b F]
+    exact hforward b a
+  fin_cases i <;> fin_cases j
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
       quadraticTransverseCapSourceAxisFourBlock,
       GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
-      (quadraticTransverseCapSource_axisHessian_origin F _ _)
+        (hforward 1 1)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hforward 1 2)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hforward 1 3)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hbackward 1 2)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hforward 2 2)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hforward 2 3)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hbackward 1 3)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hbackward 2 3)
+  · simpa [quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralThreeBlock.matrix, GeneralFourBlock.ofSymmetricMatrix] using
+        (hforward 3 3)
 
 /-- The source-origin nonzero transverse 2x2 Hessian minor genuinely lifts
 to a nonzero POLYNOMIAL 2x2 minor of the actual longitudinal-axis
