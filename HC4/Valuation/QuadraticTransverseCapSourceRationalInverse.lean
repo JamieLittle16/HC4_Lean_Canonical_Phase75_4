@@ -74,8 +74,8 @@ theorem quadraticTransverseCapSource_rationalThreeMatrix_inverse
   have hnonzero : C.det ≠ 0 :=
     quadraticTransverseCapSource_rationalThreeMatrix_det_ne_zero F hdet
   have hunit : IsUnit C.det := isUnit_iff_ne_zero.mpr hnonzero
-  exact ⟨C⁻¹, Matrix.mul_nonsing_inv hunit,
-    Matrix.nonsing_inv_mul hunit⟩
+  exact ⟨C⁻¹, Matrix.mul_nonsing_inv C hunit,
+    Matrix.nonsing_inv_mul C hunit⟩
 
 end
 
