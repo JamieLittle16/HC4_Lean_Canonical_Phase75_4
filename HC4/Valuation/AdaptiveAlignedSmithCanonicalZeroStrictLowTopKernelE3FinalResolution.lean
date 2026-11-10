@@ -425,6 +425,45 @@ theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPrincipalPivot
   P.pureLongitudinal_quadraticFirstActualLayer_fixedPrincipalPivot
     D.coefficient_ne_zero D.topFace_eq hr
 
+/-- **Reachable quadratic E3 represented-source Schur packet.**
+
+The axis four-block is the Hessian of the SAME represented source,
+restricted through a ring homomorphism. Its determinant is literally one.
+The transverse-linear coefficients retain the exact original 0~e₀ marked
+collision, and the whole represented source (not just the graded face)
+has transverse degree at most two.
+
+These are the source-honest inputs to the rank-two five-section endpoint.
+Derivation of the four opposite-section identities is still outstanding. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisSchurCollisionCap
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let F := T.topKernelReesSource
+    let H := quadraticTransverseCapSourceAxisFourBlock F
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    let b := quadraticTransverseCapSourceLinearCoefficients F
+    (quadraticAxisFourBlockCore H.a
+        (Polynomial.derivative (b 0))
+        (Polynomial.derivative (b 1))
+        (Polynomial.derivative (b 2))
+        C.a C.b C.c C.d C.e C.f = 1) ∧
+      (∀ j : Fin 3,
+        Polynomial.eval (1 : K) (b j) =
+          Polynomial.eval (0 : K) (b j)) ∧
+      (∀ i j k : ℕ, 3 ≤ i + j + k →
+        longitudinalCoefficientPolynomial i j k F = 0) := by
+  dsimp only
+  refine ⟨quadraticTransverseCapSource_axisSchur_unit
+      T.topKernelReesSource
+      T.topKernelReesSource_hessianDeterminant_eq_one, ?_, ?_⟩
+  · intro j
+    exact T.topKernelReesSource_transverseLinearMarkedCollision j
+  · intro i j k hlarge
+    exact P.pureLongitudinal_quadratic_sourceTransverseCap
+      D.coefficient_ne_zero D.topFace_eq hr i j k hlarge
+
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
 
