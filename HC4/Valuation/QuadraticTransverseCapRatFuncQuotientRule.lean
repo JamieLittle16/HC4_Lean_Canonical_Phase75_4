@@ -65,8 +65,7 @@ theorem quadraticTransverse_ratQuotientXDerivative_scale
     rw [map_mul, mul_pow]
   dsimp [quadraticTransverse_ratQuotientXDerivative]
   rw [hnum, hden]
-  field_simp [hfa, hfq]
-  ring
+  exact mul_div_mul_left _ _ (pow_ne_zero 2 hfa)
 
 /-- The quotient rule, well-defined on the actual rational function
 field via the pinned `RatFunc.liftOn'` scaling-invariance API.
