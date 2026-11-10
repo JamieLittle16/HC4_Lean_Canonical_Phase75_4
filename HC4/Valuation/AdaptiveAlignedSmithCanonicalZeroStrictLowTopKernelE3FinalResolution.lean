@@ -21,6 +21,7 @@ import HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections
 import HC4.Valuation.QuadraticTransverseCapSourceAxisSchur
 import HC4.Valuation.QuadraticTransverseCapSourceSections
 import HC4.Valuation.QuadraticTransverseCapSourceOriginPivot
+import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -493,6 +494,33 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisPolynomialRankTwo
   exact quadraticTransverseCapSource_axisThreeBlock_polynomialRankTwo
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one
+
+/-- **The quadratic E3 singular transverse source needs no shear pivot.**
+
+In the det(C)=0 branch, the already-established polynomial rank-two
+witness forces one of the three original principal 2x2 polynomial
+minors to be nonzero. This directly meets the pivot shape needed
+by the denominator-free rank-two Schur/kernel contradiction. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceSingularPrincipalPivot
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (hsingular :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = 0) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock T.topKernelReesSource
+    C.d * C.f - C.e * C.e ≠ 0 ∨
+    C.a * C.f - C.c * C.c ≠ 0 ∨
+    C.a * C.d - C.b * C.b ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCapSource_singular_principalPivot
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one hsingular
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
