@@ -32,12 +32,8 @@ theorem quadraticTransverse_affineMatrix_factor
       (Polynomial.X : Polynomial K) • B.map Polynomial.C =
     A.map Polynomial.C *
       (1 + (Polynomial.X : Polynomial K) • N.map Polynomial.C) := by
-  ext i j
-  fin_cases i <;> fin_cases j <;>
-    simp [hB, Matrix.mul_apply, Fin.sum_univ_three,
-      Matrix.add_apply, Matrix.smul_apply, Matrix.map_apply,
-      Matrix.one_apply] <;>
-    ring
+  rw [hB]
+  simp only [Matrix.map_mul, mul_add, mul_one, Matrix.mul_smul]
 
 /-- A genuinely unimodular affine 3x3 reciprocal has cubic-nilpotent
 normalised slope N=A⁻¹B. Here the algebraic factorisation B=A N
