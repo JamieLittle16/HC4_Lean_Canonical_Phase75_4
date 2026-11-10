@@ -15310,7 +15310,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
 - External imports: `Mathlib.FieldTheory.RatFunc.Basic`, `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `def quadraticTransverse_ratQuotientXDerivative`, `theorem quadraticTransverse_ratQuotientXDerivative_scale`, `def quadraticTransverse_ratFuncCandidateXDerivative`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mk`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_polynomial`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_X`, `theorem quadraticTransverse_ratQuotientXDerivative_add`, `theorem quadraticTransverse_ratQuotientXDerivative_mul`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_add`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mul`
+- Declarations: `def quadraticTransverse_ratQuotientXDerivative`, `theorem quadraticTransverse_ratQuotientXDerivative_scale`, `def quadraticTransverse_ratFuncCandidateXDerivative`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mk`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_polynomial`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_X`, `theorem quadraticTransverse_ratQuotientXDerivative_add`, `theorem quadraticTransverse_ratQuotientXDerivative_mul`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_add`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mul`, `def quadraticTransverse_ratFuncXDerivation`, `theorem quadraticTransverse_ratFuncXDerivation_X`
 
 ### `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 
