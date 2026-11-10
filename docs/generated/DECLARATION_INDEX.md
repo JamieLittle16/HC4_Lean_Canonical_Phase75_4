@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10267**.
+Distinct declaration spellings indexed: **10271**.
 
 ## Repeated declaration spellings
 
@@ -8294,6 +8294,7 @@ Distinct declaration spellings indexed: **10267**.
 - `quadraticTransverseAdjugate_row0` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row1` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row2` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseCapFourBlock_mixedRow` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSourceAxisFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSourceAxisFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSourceAxisHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
@@ -8301,8 +8302,10 @@ Distinct declaration spellings indexed: **10267**.
 - `quadraticTransverseCapSourceLinearCoefficients` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisHessian_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
 - `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSource_axisThreeBlock_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSource_axisThreeBlock_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
 - `quadraticTransverseCapSource_axisThreeBlock_polynomialRankTwo` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `quadraticTransverseCapSource_sectionMixedRow_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSource_singular_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
 - `quadraticTransverseCap_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
@@ -8312,6 +8315,7 @@ Distinct declaration spellings indexed: **10267**.
 - `quadraticTransverseCap_two_mixedHessian_basisSection` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `quadraticTransverseCap_two_mixedHessian_secondTransverse_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `quadraticTransverseCap_two_sectionHessian_succ_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `quadraticTransverseCap_two_sectionMixedRow_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCap_two_sectionThreeBlock_fixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_tripleTransversePderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_zero_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`

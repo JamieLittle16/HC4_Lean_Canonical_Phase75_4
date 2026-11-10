@@ -5183,6 +5183,9 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
   - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
+  - `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `HC4.Valuation.QuadraticTransverseCapSourceSections`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
