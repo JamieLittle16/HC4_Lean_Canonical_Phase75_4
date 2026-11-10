@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10311**.
+Distinct declaration spellings indexed: **10312**.
 
 ## Repeated declaration spellings
 
@@ -8355,6 +8355,7 @@ Distinct declaration spellings indexed: **10311**.
 - `quadraticTransverse_fieldMatrixDerivative_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_fieldMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_fieldReciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+- `quadraticTransverse_fieldRiccati_polynomialInverse_constantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_field_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_polynomialMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mapC` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
