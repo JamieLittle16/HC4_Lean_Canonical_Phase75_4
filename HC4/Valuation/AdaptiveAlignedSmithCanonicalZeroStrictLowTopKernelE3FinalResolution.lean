@@ -23,6 +23,7 @@ import HC4.Valuation.QuadraticTransverseCapSourceSections
 import HC4.Valuation.QuadraticTransverseCapSourceOriginPivot
 import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
 import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
+import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -522,6 +523,37 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceSingularPrincipalPivot
   exact quadraticTransverseCapSource_singular_principalPivot
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one hsingular
+
+/-- **The actual quadratic E3 represented source has a common transverse
+polynomial Hessian block on EVERY transverse section.**
+
+This applies the whole-source transverse cap to prove the six entries
+of C(x) are section-independent and transports the real determinant-one
+identity to every section. Unlike the earlier seven-section algebraic
+endpoint, no Schur-unit equation is assumed here: the equation is
+derived from T.topKernelReesSource_hessianDeterminant_eq_one.
+
+It remains to identify the three mixed Hessian entries as
+b'(x) + C'(x) y in the actual source coefficient library. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAnySectionSchurUnit
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (y : Fin 3 → K) :
+    let F := T.topKernelReesSource
+    let H := quadraticTransverseSourceSectionFourBlock F y
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    quadraticAxisFourBlockCore H.a H.b H.p H.q
+      C.a C.b C.c C.d C.e C.f = 1 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCap_two_actualSectionSchur_unit
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one y
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
