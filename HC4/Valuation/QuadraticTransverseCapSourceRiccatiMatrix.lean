@@ -94,8 +94,11 @@ theorem quadraticTransverseCap_two_sourceRiccati_matrixCleared
     simpa only [hP i 0, hP i 1, hP i 2] using hpair
   simp only [Matrix.smul_apply, smul_eq_mul]
   rw [hpairs]
-  simpa [P, Q, A, quadraticTransverse_polynomialMatrixDerivative,
-    two_smul, two_mul] using hsrc
+  have htwo (x : Polynomial K) :
+      (2 : ℕ) • x = (2 : Polynomial K) * x := by
+    simp [two_smul, two_mul]
+  rw [htwo]
+  simpa [P, Q, A, quadraticTransverse_polynomialMatrixDerivative] using hsrc
 
 end
 
