@@ -99,7 +99,7 @@ theorem quadraticAxisFourBlockCore_transverse_pderiv_frozenBlock
   have htwo :
       MvPolynomial.pderiv i.succ
         (2 : MvPolynomial (Fin 4) K) = 0 := by
-    simpa using
+    simpa only [map_ofNat] using
       (MvPolynomial.pderiv_C (i := i.succ) (a := (2 : K)))
   simp [map_add, map_sub, ha, hb, hc, hd, he, hf, htwo]
   ring
