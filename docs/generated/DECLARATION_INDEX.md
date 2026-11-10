@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10271**.
+Distinct declaration spellings indexed: **10272**.
 
 ## Repeated declaration spellings
 
@@ -8317,6 +8317,7 @@ Distinct declaration spellings indexed: **10271**.
 - `quadraticTransverseCap_two_sectionHessian_succ_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_sectionMixedRow_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCap_two_sectionThreeBlock_fixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `quadraticTransverseCap_two_singularSource_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
 - `quadraticTransverseCap_two_tripleTransversePderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_zero_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseSourceSectionFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
