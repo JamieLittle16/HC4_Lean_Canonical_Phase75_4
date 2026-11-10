@@ -72,6 +72,19 @@ theorem transverseCapTwo_thirdTransverseDerivative_zero
   rw [hz]
   ring
 
+/-- Every transverse Hessian entry of the actual quadratic source has
+zero derivative in every transverse direction. This is the precise
+differential statement needed for section-independent transverse blocks. -/
+theorem transverseCapTwo_transverseHessian_pderiv_zero
+    (F : MvPolynomial (Fin 4) K)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2 F)
+    (i j k : Fin 3) :
+    MvPolynomial.pderiv k.succ
+      (HC4.Polynomial.hessian F i.succ j.succ) = 0 := by
+  simpa [HC4.Polynomial.hessian_apply] using
+    (transverseCapTwo_thirdTransverseDerivative_zero
+      F hbound k j i)
+
 variable [CharZero K] [IsAlgClosed K]
 
 /-- Specialization to the ACTUAL represented source of the reachable
