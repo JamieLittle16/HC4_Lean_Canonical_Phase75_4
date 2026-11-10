@@ -172,6 +172,87 @@ theorem quadraticTransverseCap_two_sectionHessian_succ_succ
       quadraticTransverseSourceSectionRingHom_eval]
   exact quadraticTransverse_source_eval_section_eq_axis P hzero x y
 
+/-- All SIX entries of the transverse Hessian three-block on ANY actual
+section are literally those of the SOURCE-AXIS polynomial block C(x).
+
+This is not an associated-graded statement; it holds for the entire
+represented degree-two-transverse source and every constant section. -/
+theorem quadraticTransverseCap_two_sectionThreeBlock_fixed
+    [CharZero K]
+    (F : MvPolynomial (Fin 4) K)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2 F)
+    (y : Fin 3 → K) :
+    let H := quadraticTransverseSourceSectionFourBlock F y
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    H.d = C.a ∧ H.r = C.b ∧ H.s = C.c ∧
+      H.x = C.d ∧ H.y = C.e ∧ H.z = C.f := by
+  dsimp only
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (0 : Fin 3) (0 : Fin 3) y)
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (0 : Fin 3) (1 : Fin 3) y)
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (0 : Fin 3) (2 : Fin 3) y)
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (1 : Fin 3) (1 : Fin 3) y)
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (1 : Fin 3) (2 : Fin 3) y)
+  · simpa [quadraticTransverseSourceSectionFourBlock,
+      quadraticTransverseCapSourceAxisThreeBlock,
+      quadraticTransverseCapSourceAxisFourBlock,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.map_apply] using
+        (quadraticTransverseCap_two_sectionHessian_succ_succ
+          F hbound (2 : Fin 3) (2 : Fin 3) y)
+
+/-- Every actual transverse section has the SAME source-axis 3x3 block
+C(x) in its Schur determinant, with only its longitudinal and mixed
+row entries varying. No assumption about those remaining entries is
+introduced here. -/
+theorem quadraticTransverseCap_two_actualSectionSchur_unit
+    [CharZero K]
+    (F : MvPolynomial (Fin 4) K)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2 F)
+    (hdet : HC4.Polynomial.hessianDeterminant F = 1)
+    (y : Fin 3 → K) :
+    let H := quadraticTransverseSourceSectionFourBlock F y
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    quadraticAxisFourBlockCore H.a H.b H.p H.q
+      C.a C.b C.c C.d C.e C.f = 1 := by
+  dsimp only
+  let H := quadraticTransverseSourceSectionFourBlock F y
+  let C := quadraticTransverseCapSourceAxisThreeBlock F
+  obtain ⟨hd, hr, hs, hx, hy, hz⟩ :=
+    quadraticTransverseCap_two_sectionThreeBlock_fixed F hbound y
+  have hunit :
+      quadraticAxisFourBlockCore H.a H.b H.p H.q
+        H.d H.r H.s H.x H.y H.z = 1 := by
+    rw [quadraticAxisFourBlockCore_eq_generalFourBlock]
+    exact quadraticTransverseSourceSectionFourBlock_unit F hdet y
+  rw [hd, hr, hs, hx, hy, hz] at hunit
+  exact hunit
+
+
 end
 
 end HC4.Valuation
