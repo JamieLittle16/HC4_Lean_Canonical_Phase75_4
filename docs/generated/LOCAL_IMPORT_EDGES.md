@@ -5140,6 +5140,9 @@ human architecture guide.
 - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
 - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
