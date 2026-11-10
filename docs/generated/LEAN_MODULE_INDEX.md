@@ -15180,7 +15180,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`, `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`, `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
-- Declarations: `theorem quadraticTransverse_affineFieldMatrix_polynomialLift`, `theorem quadraticTransverse_polynomialMatrix_inverse_descends`, `theorem quadraticTransverse_affineFieldInverse_polynomialAndConstantDet`, `theorem quadraticTransverse_fieldRiccati_polynomialInverse_constantDet`
+- Declarations: `theorem quadraticTransverse_affineFieldMatrix_polynomialLift`, `theorem quadraticTransverse_polynomialMatrix_inverse_descends`, `theorem quadraticTransverse_affineFieldInverse_polynomialAndConstantDet`, `theorem quadraticTransverse_fieldRiccati_polynomialInverse_constantDet`, `theorem quadraticTransverse_compatibleDerivation_integralInverse`
 
 ### `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 
