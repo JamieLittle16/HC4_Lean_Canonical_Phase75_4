@@ -15340,7 +15340,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - External imports: `Mathlib.RingTheory.Derivation.Basic`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
-- Declarations: `theorem schur_derivative_adjugateVector`, `theorem quadraticTransverse_schur_firstDerivative`, `theorem quadraticTransverse_schur_secondDerivative`
+- Declarations: `theorem quadraticTransverse_derivation_two_zero`, `theorem schur_derivative_adjugateVector`, `theorem quadraticTransverse_schur_firstDerivative`, `theorem quadraticTransverse_schur_secondDerivative`
 
 ### `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
 
