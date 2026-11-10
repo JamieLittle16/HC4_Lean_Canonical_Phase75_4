@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10243**.
+Distinct declaration spellings indexed: **10245**.
 
 ## Repeated declaration spellings
 
@@ -10235,6 +10235,7 @@ Distinct declaration spellings indexed: **10243**.
 - `transverseBaseSupport_vars_subset_range` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `transverseCapTwo_longitudinalCoefficient_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 - `transverseCapTwo_sourceCoeff_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
+- `transverseCapTwo_sourceHessian_support_longitudinal` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSupport`
 - `transverseCapTwo_thirdTransverseDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
 - `transverseCapTwo_transverseHessian_pderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
 - `transverseDegree_add_kernelShift_eq_one_sub_shiftedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`
@@ -10519,6 +10520,7 @@ Distinct declaration spellings indexed: **10243**.
 - `zeroOrderCanonicalFamilyWall_longitudinal_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrderCanonicalFamilyWall_transverse_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrder_or_positiveEarlier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `zeroPartial_sourceSupport_coordinate_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSupport`
 - `zeroPolynomialSection` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
 - `zeroPolynomialSection_smithDivisibility` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `zeroRamifiedSection_hasIntegralAdaptiveSmithSection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`
