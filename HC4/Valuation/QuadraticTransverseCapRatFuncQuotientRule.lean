@@ -233,6 +233,52 @@ theorem quadraticTransverse_ratFuncCandidateXDerivative_mul
       simpa only [RatFunc.mk_eq_div] using
         quadraticTransverse_ratQuotientXDerivative_mul p q r s hq hs
 
+
+/-- The genuine K-linear derivation d/dX on the rational-function field.
+Its existence is proved from the well-defined quotient-rule candidate:
+additivity and Leibniz are fraction identities, while K-linearity
+follows from the derivative of every ground-field constant being zero. -/
+noncomputable def quadraticTransverse_ratFuncXDerivation :
+    Derivation K (RatFunc K) (RatFunc K) where
+  toFun := quadraticTransverse_ratFuncCandidateXDerivative
+  map_add' := quadraticTransverse_ratFuncCandidateXDerivative_add
+  map_smul' := by
+    intro c x
+    have hc :
+        quadraticTransverse_ratFuncCandidateXDerivative
+          (algebraMap K (RatFunc K) c) = 0 := by
+      rw [IsScalarTower.algebraMap_apply K (Polynomial K) (RatFunc K) c,
+        ← Polynomial.C_eq_algebraMap,
+        quadraticTransverse_ratFuncCandidateXDerivative_polynomial]
+      simp
+    change quadraticTransverse_ratFuncCandidateXDerivative (c • x) =
+      c • quadraticTransverse_ratFuncCandidateXDerivative x
+    simp only [Algebra.smul_def]
+    rw [quadraticTransverse_ratFuncCandidateXDerivative_mul, hc]
+    ring
+  map_one_eq_zero' := by
+    change quadraticTransverse_ratFuncCandidateXDerivative (1 : RatFunc K) = 0
+    simpa using
+      (quadraticTransverse_ratFuncCandidateXDerivative_polynomial
+        (1 : Polynomial K))
+  leibniz' := by
+    intro x y
+    change quadraticTransverse_ratFuncCandidateXDerivative (x * y) =
+      x • quadraticTransverse_ratFuncCandidateXDerivative y +
+        y • quadraticTransverse_ratFuncCandidateXDerivative x
+    rw [quadraticTransverse_ratFuncCandidateXDerivative_mul]
+    simp only [Algebra.smul_def]
+    ring
+
+/-- The canonical rational derivation sends the genuine indeterminate
+to one; no differential-field hypothesis is needed. -/
+theorem quadraticTransverse_ratFuncXDerivation_X :
+    (quadraticTransverse_ratFuncXDerivation (K := K))
+      (RatFunc.X : RatFunc K) = 1 := by
+  change quadraticTransverse_ratFuncCandidateXDerivative
+    (RatFunc.X : RatFunc K) = 1
+  exact quadraticTransverse_ratFuncCandidateXDerivative_X
+
 end
 
 end HC4.Valuation
