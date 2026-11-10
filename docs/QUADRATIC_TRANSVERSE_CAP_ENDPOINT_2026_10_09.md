@@ -661,3 +661,58 @@ are NOT Lean-certified until the user's full build passes:
 lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
 lake build
 ```
+
+
+## 14. Matrix packaging and source-to-rational transport (2026-11-10; new build needed)
+
+**User-confirmed green baseline:** `196523723b1f5d377b78be4d5bbbcec1d1a3ce2e`.
+The previous two entire-source polynomial coefficient equations,
+`quadratic_sourceRiccati_cleared` for C and
+`quadratic_sourceRiccati_linearCleared` for b, are Lean certified
+by that build. The following additions remain uncompiled.
+
+- `QuadraticTransverseCapSourceRiccatiMatrix.lean` upgrades the
+  9 scalar C-coefficient equations into the standard matrix form
+  `det(C) • C'' = 2 • (C' * adjugate(C) * C')`
+  over K[x]. This is a purely polynomial consequence of the
+  ORIGINAL represented source; no inverse exists in its assumptions.
+- `QuadraticTransverseCapRankThreeRiccatiTransport.lean`
+  transports this denominator-cleared equation through an injective
+  polynomial embedding with a compatible K-derivation. Given the
+  genuine *rational* two-sided inverse M, the matrix adjugate
+  identity yields `D²(C) = 2 D(C) M D(C)` after cancelling
+  the nonzero determinant. No polynomial invertibility is assumed.
+- `QuadraticTransverseCapSourceRiccatiRational.lean` builds the
+  source-honest K(x) Riccati identity by reusing the previously
+  verified `quadraticTransverseCapSource_rationalThreeMatrix_inverse`
+  and `RatFunc` derivation polynomial-compatibility lemma.
+  It then derives a genuine K[x] two-sided inverse, and nonzero
+  *constant* det(C), from the sole remaining rational
+  differential-algebra input `D(RatFunc.X)=1`.
+- E3 now includes
+  `PureLongitudinalMarkedE3Data.quadratic_sourceConstantTransverseDet_of_derivation`,
+  showing det(C) is a nonzero constant for the actual E3
+  quadratic represented source, conditional only on the existence
+  of the canonical rational X-derivation.
+
+The **immediate remaining gap** is the concrete construction of
+a K-linear `Derivation K (RatFunc K) (RatFunc K)` taking X to 1.
+Pinned mathlib has `RatFunc.liftOn'` with multiplication-invariance
+and `RatFunc.induction_on'` on nonzero polynomial denominators.
+A quotient-rule construction via those APIs appears viable:
+```text
+D(p/q) = (p' q - p q') / q² .
+```
+Need prove representation invariance, additive/multiplicative
+Leibniz, and K-linearity to build an actual Derivation.
+
+After that, the *linear* source Riccati ODE still requires the
+nilpotent-affine reciprocal solution and marked transverse collision
+to force b'=0, followed by the already-written longitudinal
+contradiction. No producer-free HC4 theorem is yet claimed.
+
+**Build new head before treating it as verified:**
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build
+```
