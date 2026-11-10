@@ -70,8 +70,11 @@ theorem quadraticTransverse_cubicDerivative_markedInterval
     simp [model]
   have hmodel0 : Polynomial.eval (0 : K) model = 0 := by
     simp [model]
-  simpa [Polynomial.eval_sub, hmodel1, hmodel0,
-    sub_eq_add_neg, add_assoc, add_left_comm, add_comm] using heval
+  have heval' :
+      Polynomial.eval (1 : K) b - (u - v + w) =
+        Polynomial.eval (0 : K) b := by
+    simpa [Polynomial.eval_sub, hmodel1, hmodel0] using heval
+  linear_combination heval'
 
 /-- **Rank-three transverse marked drift endpoint.**
 
