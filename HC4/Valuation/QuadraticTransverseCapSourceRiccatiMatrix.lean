@@ -93,11 +93,9 @@ theorem quadraticTransverseCap_two_sourceRiccati_matrixCleared
           (P 0 j) (P 1 j) (P 2 j) := by
     simpa only [hP i 0, hP i 1, hP i 2] using hpair
   simp only [Matrix.smul_apply, smul_eq_mul]
-  change C.determinantCore * Q i j =
-    2 * (P * A.adjugate * P) i j
   rw [hpairs]
-  simpa [P, Q, A,
-    quadraticTransverse_polynomialMatrixDerivative] using hsrc
+  simpa [P, Q, A, quadraticTransverse_polynomialMatrixDerivative,
+    two_smul, two_mul] using hsrc
 
 end
 
