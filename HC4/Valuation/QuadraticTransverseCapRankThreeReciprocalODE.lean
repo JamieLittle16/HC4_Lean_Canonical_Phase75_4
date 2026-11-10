@@ -42,9 +42,12 @@ private theorem dmat_neg
 
 private theorem dmat_one :
     dmat (1 : Matrix (Fin 3) (Fin 3) (Polynomial K)) = 0 := by
-  ext i j
-  simp [dmat, quadraticTransverse_polynomialMatrixDerivative,
-    Matrix.one_apply]
+  classical
+  apply Matrix.ext
+  intro i j
+  change Polynomial.derivative
+    (if i = j then (1 : Polynomial K) else 0) = 0
+  split_ifs <;> simp
 
 /-- **Noncommutative reciprocal Riccati identity.**
 
