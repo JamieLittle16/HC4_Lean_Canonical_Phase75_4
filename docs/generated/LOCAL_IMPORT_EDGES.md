@@ -5188,6 +5188,9 @@ human architecture guide.
   - `HC4.Newton.TerminalOneZeroAmbientDecoupling`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
   - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
