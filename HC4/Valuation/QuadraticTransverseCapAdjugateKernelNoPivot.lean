@@ -12,7 +12,7 @@ transverse shear or fraction-field localization is required.
 
 When det(C)=0 and the whole Hessian determinant is one, v.w=-1.
 The odd parts of the seven determinant-one sections (the axis and
-+/- each transverse basis vector) give C'w=0. Differentiating Cw=0
+the positive and negative transverse basis sections) give C'w=0. Differentiating Cw=0
 gives Cw'=0, so the adjugate identity with z=w' forces the polynomial
 kernel vector's derivative wedges to vanish. The existing polynomial
 unimodular-kernel drift theorem then contradicts the marked collision.
