@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10279**.
+Distinct declaration spellings indexed: **10285**.
 
 ## Repeated declaration spellings
 
@@ -5034,6 +5034,10 @@ Distinct declaration spellings indexed: **10279**.
 - `distinctExactGradientCollision_of_normalizedGradientCovariance` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `div_eq_div_iff_cross` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `div_eval_eq_of_sub_eval_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
+- `dmat` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `dmat_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `dmat_neg` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `dmat_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `doubleFin4Weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayProfileRees`
 - `doublingGradientMap` — `def` in `HC4.PlanarDoublingInjectivity`
 - `doublingGradientMap_injective` — `theorem` in `HC4.PlanarDoublingInjectivity`
@@ -8337,6 +8341,8 @@ Distinct declaration spellings indexed: **10279**.
 - `quadraticTransverse_polynomialMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomial_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+- `quadraticTransverse_reciprocal_polynomial_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `quadraticTransverse_reciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_source_eval_section_eq_axis` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverse_threePrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
