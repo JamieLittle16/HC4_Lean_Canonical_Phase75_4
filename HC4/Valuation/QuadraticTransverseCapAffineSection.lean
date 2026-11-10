@@ -93,13 +93,13 @@ theorem quadraticTransverseSource_affineBasisSection
     simp [p]
   have heq : ∀ k : Fin 4, k ≠ j.succ → p k = q k := by
     intro k hk
-    refine Fin.cases ?_ (fun a => ?_) k
-    · rfl
-    · have haj : a ≠ j := by
-        intro he
-        apply hk
-        simp [he]
-      simp [p, q, y, haj]
+    cases k using Fin.cases with
+    | zero => rfl
+    | succ a =>
+      by_cases haj : a = j
+      · subst a
+        exact (hk rfl).elim
+      · simp [p, q, y, haj]
   have hval :=
     mvPolynomial_eval_affine_of_secondPderiv_zero
       P j.succ hsecond p q hp heq
@@ -127,7 +127,9 @@ theorem quadraticTransverseSource_affineBasisSection
             Polynomial.C t *
               longitudinalAxisRestrictionRingHom (K := K)
                 (MvPolynomial.pderiv j.succ P)) := by
-          simp [hpoly]
+          simp only [Polynomial.eval_add, Polynomial.eval_mul,
+            Polynomial.eval_C]
+          rw [hpoly P, hpoly (MvPolynomial.pderiv j.succ P)]
 
 end
 
