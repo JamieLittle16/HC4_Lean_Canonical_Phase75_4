@@ -66,11 +66,11 @@ theorem quadraticTransverseCapSource_rationalRiccati_constantDet
   have hCM :
       Cpoly.map (algebraMap (Polynomial K) (RatFunc K)) * M = 1 := by
     change Crat * Crat⁻¹ = 1
-    exact Matrix.mul_nonsing_inv hunit
+    exact Matrix.mul_nonsing_inv Crat hunit
   have hMC :
       M * Cpoly.map (algebraMap (Polynomial K) (RatFunc K)) = 1 := by
     change Crat⁻¹ * Crat = 1
-    exact Matrix.nonsing_inv_mul hunit
+    exact Matrix.nonsing_inv_mul Crat hunit
   obtain ⟨P, hCP, hPC, d, hd, hDconst⟩ :=
     quadraticTransverse_ratFuncRiccati_polynomialInverse_of_derivation_X
       D hX Cpoly M hCM hMC hRiccati
