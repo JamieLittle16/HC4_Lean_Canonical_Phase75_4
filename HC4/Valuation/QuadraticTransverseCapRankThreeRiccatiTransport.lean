@@ -90,10 +90,14 @@ theorem quadraticTransverse_clearedRiccati_fieldRiccati
         exact congrArg (fun Z : Matrix (Fin 3) (Fin 3) (Polynomial K) =>
           Z.map f) hcleared
       _ = 2 • (P.map f * A.adjugate * P.map f) := by
-        ext i j
-        simp only [Matrix.map_apply, Matrix.smul_apply,
-          Matrix.map_mul, RingHom.map_adjugate, map_mul,
-          map_ofNat]
+        calc
+          (2 • (P * C.adjugate * P)).map f =
+              2 • ((P * C.adjugate * P).map f) := by
+                apply Matrix.ext
+                intro i j
+                simp only [Matrix.map_apply, Matrix.smul_apply, map_nsmul]
+          _ = 2 • (P.map f * A.adjugate * P.map f) := by
+                rw [Matrix.map_mul, Matrix.map_mul, RingHom.map_adjugate]
   have hcancel :
       A.det • (Q.map f) =
         A.det • (2 • (U * M * U)) := by
