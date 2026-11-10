@@ -4193,6 +4193,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSections`
   - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
   - `HC4.Valuation.StrictSmithFirstContactGeometry`
@@ -5161,6 +5162,8 @@ human architecture guide.
   - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
   - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `HC4.Valuation.QuadraticTransverseCapSourceSections`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`

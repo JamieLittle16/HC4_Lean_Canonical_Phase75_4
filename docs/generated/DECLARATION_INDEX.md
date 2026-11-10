@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10237**.
+Distinct declaration spellings indexed: **10242**.
 
 ## Repeated declaration spellings
 
@@ -8298,6 +8298,11 @@ Distinct declaration spellings indexed: **10237**.
 - `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `quadraticTransverseSourceSectionFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverseSourceSectionFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverseSourceSectionHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverseSourceSectionRingHom` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverseSource_fourOppositeSections_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
