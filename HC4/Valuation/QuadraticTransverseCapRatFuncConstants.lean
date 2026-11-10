@@ -96,7 +96,8 @@ theorem quadraticTransverse_ratFunc_derivation_constants
     simp
   have hpzero : Polynomial.derivative p = 0 := by
     apply RatFunc.algebraMap_injective K
-    simpa using hpcancel
+    change f (Polynomial.derivative p) = f 0
+    simpa only [map_zero] using hpcancel
   have hpconst : p = Polynomial.C (p.coeff 0) :=
     Polynomial.eq_C_of_derivative_eq_zero hpzero
   have hc : q.coeff 0 ≠ 0 := by
@@ -109,7 +110,7 @@ theorem quadraticTransverse_ratFunc_derivation_constants
     z = f p / f q := hrepr.symm
     _ = f (Polynomial.C (p.coeff 0)) /
           f (Polynomial.C (q.coeff 0)) := by
-            rw [hpconst, hqconst]
+            conv_lhs => rw [hpconst, hqconst]
     _ = f (Polynomial.C (p.coeff 0 / q.coeff 0)) := by
       apply (div_eq_iff
         (RatFunc.algebraMap_ne_zero
