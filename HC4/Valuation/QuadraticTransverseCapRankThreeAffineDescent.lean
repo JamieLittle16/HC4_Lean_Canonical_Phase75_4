@@ -169,6 +169,85 @@ theorem quadraticTransverse_fieldRiccati_polynomialInverse_constantDet
   exact quadraticTransverse_affineFieldInverse_polynomialAndConstantDet
     f hf hC x hX C M hCM hMC A B hM
 
+/-- **Polynomial inverse descent directly from compatible rational
+differentiation and polynomial-valued constants.**
+
+This version does not require identifying the ground-field scalar
+embedding with an abstract Algebra map. It is ideal for RatFunc K,
+where both the derivative compatibility and the constants result
+can be expressed in terms of the same polynomial ring embedding.
+
+Once the Riccati equation and these ordinary differential-field
+facts are supplied, polynomial invertibility and constant
+determinant follow as THEOREMS. -/
+theorem quadraticTransverse_compatibleDerivation_integralInverse
+    (f : Polynomial K →+* L)
+    (hf : Function.Injective f)
+    (D : Derivation K L L)
+    (hpoly : ∀ p : Polynomial K,
+      D (f p) = f (Polynomial.derivative p))
+    (hconstants :
+      ∀ z : L, D z = 0 → ∃ c : K, z = f (Polynomial.C c))
+    (C : Matrix (Fin 3) (Fin 3) (Polynomial K))
+    (M : Matrix (Fin 3) (Fin 3) L)
+    (hCM : C.map f * M = 1)
+    (hMC : M * C.map f = 1)
+    (hRiccati :
+      quadraticTransverse_fieldMatrixDerivative D
+          (quadraticTransverse_fieldMatrixDerivative D (C.map f)) =
+        2 * ((quadraticTransverse_fieldMatrixDerivative D (C.map f) * M) *
+          quadraticTransverse_fieldMatrixDerivative D (C.map f))) :
+    ∃ P : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      C * P = 1 ∧ P * C = 1 ∧
+        ∃ d : K, d ≠ 0 ∧ C.det = Polynomial.C d := by
+  have hsecond :=
+    quadraticTransverse_fieldReciprocal_secondDerivative_zero
+      D (C.map f) M hCM hMC hRiccati
+  have hX : D (f Polynomial.X) = 1 := by
+    rw [hpoly]
+    simp
+  have hderC (c : K) : D (f (Polynomial.C c)) = 0 := by
+    rw [hpoly]
+    simp
+  have hex : ∀ i j : Fin 3, ∃ a b : K,
+      M i j = f (Polynomial.C a +
+        Polynomial.C b * Polynomial.X) := by
+    intro i j
+    have hsecondij : D (D (M i j)) = 0 :=
+      congrArg (fun N : Matrix (Fin 3) (Fin 3) L => N i j) hsecond
+    obtain ⟨b, hb⟩ := hconstants (D (M i j)) hsecondij
+    have hzero :
+        D (M i j - f (Polynomial.C b) * f Polynomial.X) = 0 := by
+      rw [map_sub, D.leibniz]
+      simp [hderC, hX, hb, smul_eq_mul]
+    obtain ⟨a, ha⟩ := hconstants
+      (M i j - f (Polynomial.C b) * f Polynomial.X) hzero
+    refine ⟨a, b, ?_⟩
+    have haff :
+        M i j = f (Polynomial.C a) +
+          f (Polynomial.C b) * f Polynomial.X :=
+      sub_eq_iff_eq_add.mp ha
+    simpa only [map_add, map_mul] using haff
+  classical
+  choose a b hab using hex
+  let P : Matrix (Fin 3) (Fin 3) (Polynomial K) :=
+    fun i j => Polynomial.C (a i j) +
+      Polynomial.C (b i j) * Polynomial.X
+  have hPM : P.map f = M := by
+    ext i j
+    change f (Polynomial.C (a i j) +
+      Polynomial.C (b i j) * Polynomial.X) = M i j
+    exact (hab i j).symm
+  have hCP : C.map f * P.map f = 1 := by rw [hPM]; exact hCM
+  have hPC : P.map f * C.map f = 1 := by rw [hPM]; exact hMC
+  obtain ⟨hleft, hright⟩ :=
+    quadraticTransverse_polynomialMatrix_inverse_descends
+      f hf C P hCP hPC
+  obtain ⟨d, hd, hdet⟩ :=
+    quadraticTransverse_polynomialMatrixInverse_det_constant
+      C P hleft
+  exact ⟨P, hleft, hright, d, hd, hdet⟩
+
 end
 
 end HC4.Valuation
