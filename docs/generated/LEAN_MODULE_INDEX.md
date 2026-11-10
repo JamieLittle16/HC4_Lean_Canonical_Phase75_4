@@ -15309,7 +15309,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
 - External imports: `Mathlib.FieldTheory.RatFunc.Basic`, `Mathlib.Tactic`
-- Imported by local modules: none
+- Imported by local modules: `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
 - Declarations: `def quadraticTransverse_ratQuotientXDerivative`, `theorem quadraticTransverse_ratQuotientXDerivative_scale`, `def quadraticTransverse_ratFuncCandidateXDerivative`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mk`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_polynomial`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_X`, `theorem quadraticTransverse_ratQuotientXDerivative_add`, `theorem quadraticTransverse_ratQuotientXDerivative_mul`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_add`, `theorem quadraticTransverse_ratFuncCandidateXDerivative_mul`, `def quadraticTransverse_ratFuncXDerivation`, `theorem quadraticTransverse_ratFuncXDerivation_X`
 
 ### `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
@@ -15487,10 +15487,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/QuadraticTransverseCapSourceRiccatiRational.lean`
 - Purpose: Actual source Riccati over K(x), with NO Riccati hypothesis
 - A-labels: none detected
-- Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`, `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
+- Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`, `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`, `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
-- Declarations: `theorem quadraticTransverseCap_two_sourceRiccati_rational`, `theorem quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation`
+- Declarations: `theorem quadraticTransverseCap_two_sourceRiccati_rational`, `theorem quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation`, `theorem quadraticTransverseCap_two_source_constantDet`
 
 ### `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 
