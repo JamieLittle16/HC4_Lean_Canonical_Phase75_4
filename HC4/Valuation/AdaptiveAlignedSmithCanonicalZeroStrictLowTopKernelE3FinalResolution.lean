@@ -25,6 +25,7 @@ import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
 import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
 import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
 import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
+import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -606,6 +607,81 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
   intro hzero
   exact PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
     P D hr hzero
+
+/-- **The real rank-three quadratic E3 source has longitudinal
+marked collision as a univariate derivative identity.**
+
+This is the original collision 0~e₀ and original axis source
+coefficient, not a collision manufactured after a Rees
+specialisation. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceLongitudinalMarkedCollision
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    Polynomial.eval (1 : K)
+      (Polynomial.derivative
+        (longitudinalAxisRestriction T.topKernelReesSource)) =
+    Polynomial.eval (0 : K)
+      (Polynomial.derivative
+        (longitudinalAxisRestriction T.topKernelReesSource)) := by
+  have hzero :
+      (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) =
+        (fun _ : Fin 4 => (0 : K)) := by
+    funext i
+    fin_cases i <;> rfl
+  have hright :
+      (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
+        coordinateAxisPoint (K := K) (0 : Fin 4) := by
+    funext i
+    fin_cases i <;> simp [coordinateAxisPoint]
+  have hcoll :
+      HasExactGradientCollision T.topKernelReesSource
+        (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
+        (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) := by
+    rw [hzero, hright]
+    exact T.topKernelReesSource_exactCollision
+  exact quadraticTransverse_source_longitudinalMarkedCollision
+    T.topKernelReesSource hcoll
+
+/-- **Final source-honest scalar rank-three consumer.**
+
+The remaining reciprocal matrix work must yield precisely the
+following *polynomial consequences* on the actual represented
+source: C.detCore = a nonzero field constant and all three b_i'
+are zero. Once those statements are proved, the real source
+Hessian determinant and exact marked collision give False.
+
+This is NOT an assumed E3 final-resolution producer, and it
+does not pretend generic transverse rank three already implies
+these two consequences. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_rankThreeConstantDetZeroMixed_impossible
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (d : K)
+    (hd : d ≠ 0)
+    (hCdet :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = Polynomial.C d)
+    (hzeroMixed : ∀ i : Fin 3,
+      Polynomial.derivative
+        (quadraticTransverseCapSourceLinearCoefficients
+          T.topKernelReesSource i) = 0) :
+    False := by
+  apply quadraticTransverseCap_two_rankThree_constantDetZeroMixed_impossible
+    T.topKernelReesSource
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    d hd hCdet hzeroMixed
+  have hzero :
+      (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) =
+        (fun _ : Fin 4 => (0 : K)) := by
+    funext i
+    fin_cases i <;> rfl
+  have hright :
+      (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
+        coordinateAxisPoint (K := K) (0 : Fin 4) := by
+    funext i
+    fin_cases i <;> simp [coordinateAxisPoint]
+  rw [hzero, hright]
+  exact T.topKernelReesSource_exactCollision
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
