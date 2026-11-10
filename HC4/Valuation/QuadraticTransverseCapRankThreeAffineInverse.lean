@@ -44,7 +44,8 @@ theorem quadraticTransverse_polynomial_secondDerivative_zero_affine
   calc
     p = q + Polynomial.C b * Polynomial.X := by dsimp [q]; ring
     _ = Polynomial.C (q.coeff 0) +
-        Polynomial.C b * Polynomial.X := by rw [hconst]
+        Polynomial.C b * Polynomial.X :=
+          congrArg (fun t : Polynomial K => t + Polynomial.C b * Polynomial.X) hconst
 
 /-- Entrywise zero second derivative gives an affine polynomial
 matrix. Both coefficient matrices A and B genuinely lie in K;
@@ -84,7 +85,8 @@ theorem quadraticTransverse_polynomialMatrixDerivative_mul
     quadraticTransverse_polynomialMatrixDerivative (M * N) =
       quadraticTransverse_polynomialMatrixDerivative M * N +
         M * quadraticTransverse_polynomialMatrixDerivative N := by
-  ext i j
+  apply Matrix.ext
+  intro i j
   change
     Polynomial.derivative
         (∑ k : Fin 3, M i k * N k j) =
