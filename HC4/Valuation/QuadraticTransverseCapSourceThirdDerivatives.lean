@@ -62,10 +62,8 @@ theorem transverseCapTwo_thirdTransverseDerivative_zero
       Finsupp.single j.succ 1) +
       Finsupp.single k.succ 1
   have hlarge : 3 ≤ d 1 + d 2 + d 3 := by
-    dsimp [d]
-    simp only [Finsupp.add_apply]
     fin_cases i <;> fin_cases j <;> fin_cases k <;>
-      simp [Finsupp.single_apply] <;> omega
+      simp [d, Finsupp.single_apply] <;> omega
   have hz : MvPolynomial.coeff d F = 0 :=
     transverseCapTwo_sourceCoeff_zero F hbound d hlarge
   change MvPolynomial.coeff d F * _ * _ * _ = 0
