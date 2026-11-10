@@ -30,6 +30,7 @@ import HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent
 import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
 import HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge
 import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -682,6 +683,51 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_cleared
   exact quadraticTransverseCap_two_sourceRiccati_cleared
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one i j
+
+/-- **Actual E3 transverse-linear Riccati coefficient.**
+
+In the same represented source and quadratic relevel as the matrix
+Riccati theorem, the transverse-linear source coefficient vector b(x)
+satisfies the exact denominator-cleared equation in K[x]. It is
+extracted by differentiating the ORIGINAL determinant-one source
+Schur polynomial once, then restricting to the real source axis.
+No extra b-equation hypothesis is used. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_linearCleared
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (j : Fin 3) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock
+      T.topKernelReesSource
+    let b := quadraticTransverseCapSourceLinearCoefficients
+      T.topKernelReesSource
+    C.determinantCore *
+      Polynomial.derivative (Polynomial.derivative (b j)) =
+      2 * (
+        Polynomial.derivative (C.matrix 0 j) *
+          quadraticTransverseAdjugateVector0 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2)) +
+        Polynomial.derivative (C.matrix 1 j) *
+          quadraticTransverseAdjugateVector1 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2)) +
+        Polynomial.derivative (C.matrix 2 j) *
+          quadraticTransverseAdjugateVector2 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2))) := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        Q.coefficient_ne_zero Q.topFace_eq
+  exact quadraticTransverseCap_two_sourceRiccati_linearCleared
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one j
 
 /-- **The remaining RICCATI seam in the represented E3 quadratic source.**
 
