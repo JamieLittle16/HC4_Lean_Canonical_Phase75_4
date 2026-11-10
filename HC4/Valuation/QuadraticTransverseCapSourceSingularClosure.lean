@@ -70,7 +70,7 @@ theorem quadraticTransverseCap_two_singularSource_impossible
       C.a * C.f - C.c * C.c ≠ 0 ∨
       C.a * C.d - C.b * C.b ≠ 0 :=
     quadraticTransverseCapSource_singular_principalPivot
-      F hbound hdet hsing
+      F hbound hdet hsingular
   have haxis :
       quadraticAxisFourBlockCore H₀.a
         (Polynomial.derivative (b 0))
