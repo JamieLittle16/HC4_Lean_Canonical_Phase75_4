@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10356**.
+Distinct declaration spellings indexed: **10358**.
 
 ## Repeated declaration spellings
 
@@ -8398,7 +8398,9 @@ Distinct declaration spellings indexed: **10356**.
 - `quadraticTransverse_rankThree_constantDet_longitudinalCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - `quadraticTransverse_rankThree_nilpotentDrift_collision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
 - `quadraticTransverse_ratFuncCandidateXDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
+- `quadraticTransverse_ratFuncCandidateXDerivative_X` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
 - `quadraticTransverse_ratFuncCandidateXDerivative_mk` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
+- `quadraticTransverse_ratFuncCandidateXDerivative_polynomial` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
 - `quadraticTransverse_ratFuncRiccati_polynomialInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
 - `quadraticTransverse_ratFuncRiccati_polynomialInverse_of_derivation_X` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
 - `quadraticTransverse_ratFunc_constants_of_derivation_X` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
