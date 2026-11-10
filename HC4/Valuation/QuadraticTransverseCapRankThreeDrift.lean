@@ -54,7 +54,8 @@ theorem quadraticTransverse_cubicDerivative_markedInterval
           Polynomial.C (3 * w) * Polynomial.X ^ 2 := by
     dsimp [model]
     simp [Polynomial.derivative_mul, Polynomial.derivative_X_pow_succ]
-    ring
+    simp only [map_ofNat]
+    ring_nf
   have hzero :
       Polynomial.derivative (b - model) = 0 := by
     rw [map_sub, hder, hmodel]
@@ -114,6 +115,8 @@ theorem quadraticTransverse_rankThree_nilpotentDrift_collision
       Pi.zero_apply] using hdrift i
   have hinv := (cubicNilpotent_drift_twoSidedInverse N hN).2
   have h := congrArg (fun z : Fin 3 → K => (1 + N).mulVec z) hmatrix
+  change (1 + N).mulVec ((1 - N + N ^ 2).mulVec v) =
+    (1 + N).mulVec 0 at h
   rw [← Matrix.mulVec_mulVec, hinv, Matrix.one_mulVec,
     Matrix.mulVec_zero] at h
   exact h
