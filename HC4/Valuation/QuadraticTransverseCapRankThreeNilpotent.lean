@@ -82,15 +82,15 @@ theorem quadraticTransverse_cubicNilpotent_of_affineDet_one
   have hp := quadraticTransverse_det_one_add_X_matrix N
   rw [hdet] at hp
   have htrace : quadraticTransverse_cubicTrace N = 0 := by
-    have h := congrArg (fun p : Polynomial K => p.coeff 1) hp
+    have h := congrArg (fun p : Polynomial K => p.coeff 1) hp.symm
     simpa [Polynomial.coeff_add, Polynomial.coeff_C_mul,
       Polynomial.coeff_X_pow] using h
   have hsecond : quadraticTransverse_cubicSecond N = 0 := by
-    have h := congrArg (fun p : Polynomial K => p.coeff 2) hp
+    have h := congrArg (fun p : Polynomial K => p.coeff 2) hp.symm
     simpa [Polynomial.coeff_add, Polynomial.coeff_C_mul,
       Polynomial.coeff_X_pow] using h
   have hdetzero : N.det = 0 := by
-    have h := congrArg (fun p : Polynomial K => p.coeff 3) hp
+    have h := congrArg (fun p : Polynomial K => p.coeff 3) hp.symm
     simpa [Polynomial.coeff_add, Polynomial.coeff_C_mul,
       Polynomial.coeff_X_pow] using h
   have hCH := quadraticTransverse_cubicMatrix_CH N
