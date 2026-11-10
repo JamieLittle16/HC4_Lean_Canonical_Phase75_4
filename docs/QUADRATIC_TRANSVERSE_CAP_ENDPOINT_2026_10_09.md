@@ -423,3 +423,87 @@ checked by Lean in the assistant environment.
 lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
 lake build
 ```
+
+
+## 11. Generic transverse-rank-three algebra packet (2026-11-10; awaiting local Lean build)
+
+The previous verified E3 head `4adebaf9` rigorously eliminated the
+SINGULAR source-axis transverse 3x3 Hessian case:
+`PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero`
+is now green as reported by the user. Thus `D(x)=det C(x)` is
+a nonzero polynomial in `K[x]`. The remaining r=2 case is
+GENERICALLY invertible over `K(x)`, not necessarily over `K[x]`.
+This distinction is mathematically important.
+
+The following new Lean source modules isolate further rank-three
+consequences without assuming a final-resolution producer:
+
+- `QuadraticTransverseCapRankThreeAffineInverse.lean`:
+  zero second derivative of a polynomial (or polynomial matrix)
+  implies genuine affine form `A+xB`; also establishes the
+  NONCOMMUTATIVE Leibniz rule for polynomial matrices.
+- `QuadraticTransverseCapRankThreeReciprocalODE.lean`:
+  if `C,M` are polynomial 3x3 matrices with `CM=MC=I`
+  and `C''=2C'MC'`, then `M''=0` and thus `M=A+xB`.
+  An inverse only over `K(x)` is NOT enough to invoke this
+  polynomial-only theorem directly. The next adapter must carry
+  rational derivatives or first prove polynomiality of M.
+- `QuadraticTransverseCapRankThreeNilpotent.lean`:
+  exact 3x3 determinant expansion
+  `det(I+xN)=1+tr(N)x+sigma₂(N)x²+det(N)x³`,
+  a concrete cubic Cayley-Hamilton identity, and
+  `det(I+xN)=1 ⇒ N³=0`, without assuming nilpotence.
+- `QuadraticTransverseCapRankThreeAffineDet.lean`:
+  explicit factorisation `A+xB=A(I+xN)` when `B=AN`
+  and hence cubic nilpotence of N from exact constant
+  polynomial determinant and `det A != 0`.
+- `QuadraticTransverseCapRankThreeDrift.lean`:
+  from the concrete derivative formula
+  `b'(x)=(I-2xN+3x²N²)v`, `N³=0`,
+  and `b(1)=b(0)`, deduce `v=0`.
+  This proves the marked interval integration algebra.
+- `QuadraticTransverseCapRankThreeLongitudinalDrift.lean`:
+  a polynomial matrix inverse forces its determinant to be a
+  nonzero constant, and `a''=nonzero constant` is
+  incompatible with `a'(1)=a'(0)`.
+- `QuadraticTransverseCapSourceLongitudinalDrift.lean`:
+  connects the final scalar contradiction to the ORIGINAL
+  four-variable Hessian source via the actual axis restriction
+  and exact longitudinal collision. E3 now imports this
+  source-level scalar endpoint and provides
+  `quadratic_sourceLongitudinalMarkedCollision` and
+  `quadratic_rankThreeConstantDetZeroMixed_impossible`.
+
+**The precise remaining rank-three mathematics** is source extraction
+and rational-integrality transport, not more generic rank labels:
+
+(1) Use transverse degree <= 2 and the represented-source
+`det Hess F=1` to extract the exact coefficient identities
+
+```text
+D C'' = 2 C' adj(C) C' ,
+D b'' = 2 C' adj(C) b' ,
+D = det C != 0.
+```
+
+(2) Pass to `K(x)`. There `M=C^{-1}` exists, the first
+equation yields `M''=0`, and characteristic zero implies
+`M=A+xB` with A,B over K. Since
+`det M * det C=1` and both determinants are now POLYNOMIALS,
+`det M` and `det C` are nonzero constants. Hence M is a
+polynomial inverse, A invertible, and N=A⁻¹B has N³=0.
+
+(3) The second equation yields
+`((I+xN)^2 b')'=0`, giving the explicit derivative normal
+form already consumed by the nilpotent marked-drift theorem.
+With b'=0 and D constant, the represented-source scalar endpoint
+gives the contradiction to its original 0~e0 collision.
+
+These are research dependencies, NOT facts yet proved in Lean.
+No JC2=>HC4 theorem or unrestricted HC4 proof is claimed.
+The new modules and E3 wrapper **need compilation**.
+
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build
+```
