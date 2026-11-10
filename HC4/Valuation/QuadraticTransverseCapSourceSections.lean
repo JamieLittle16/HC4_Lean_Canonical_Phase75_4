@@ -105,6 +105,30 @@ theorem quadraticTransverseSource_fourOppositeSections_unit
     quadraticTransverseSourceSectionFourBlock_unit F hdet _,
     quadraticTransverseSourceSectionFourBlock_unit F hdet _⟩
 
+/-- Three *arbitrary* opposite transverse basis pairs, including the
+third pair omitted by the earlier five-section algebra, are exact unit
+Hessian determinants of the SAME source. -/
+theorem quadraticTransverseSource_allThreeOppositePairs_unit
+    (F : MvPolynomial (Fin 4) K)
+    (hdet : HC4.Polynomial.hessianDeterminant F = 1) :
+    ∀ j : Fin 3,
+      (quadraticTransverseSourceSectionFourBlock F
+        (fun i : Fin 3 => if i = j then 1 else 0)).determinantCore = 1 ∧
+      (quadraticTransverseSourceSectionFourBlock F
+        (fun i : Fin 3 => if i = j then -1 else 0)).determinantCore = 1 := by
+  intro j
+  exact ⟨quadraticTransverseSourceSectionFourBlock_unit F hdet _,
+    quadraticTransverseSourceSectionFourBlock_unit F hdet _⟩
+
+/-- The zero transverse section is literally the old
+longitudinal-axis ring-hom restriction. -/
+theorem quadraticTransverseSourceSectionRingHom_zero :
+    quadraticTransverseSourceSectionRingHom
+        (fun _ : Fin 3 => (0 : K)) =
+      longitudinalAxisRestrictionRingHom (K := K) := by
+  rfl
+
+
 end
 
 end HC4.Valuation
