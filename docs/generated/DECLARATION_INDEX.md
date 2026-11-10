@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10308**.
+Distinct declaration spellings indexed: **10311**.
 
 ## Repeated declaration spellings
 
@@ -8339,6 +8339,8 @@ Distinct declaration spellings indexed: **10308**.
 - `quadraticTransverseSource_allThreeOppositePairs_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverseSource_axisMixedTransverse_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `quadraticTransverseSource_fourOppositeSections_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverse_affineFieldInverse_polynomialAndConstantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+- `quadraticTransverse_affineFieldMatrix_polynomialLift` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_affineMatrix_factor` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affineMatrix_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_cubicDerivative_markedInterval` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
@@ -8358,6 +8360,7 @@ Distinct declaration spellings indexed: **10308**.
 - `quadraticTransverse_polynomialMatrixDerivative_mapC` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixInverse_det_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
+- `quadraticTransverse_polynomialMatrix_inverse_descends` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_polynomialMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomial_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_rankThree_constantDet_longitudinalCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`

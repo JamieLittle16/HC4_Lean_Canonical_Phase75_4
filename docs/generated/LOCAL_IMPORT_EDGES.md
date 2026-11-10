@@ -5153,6 +5153,9 @@ human architecture guide.
   - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `HC4.Valuation.QuadraticTransverseCapAffineSection`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
 - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
