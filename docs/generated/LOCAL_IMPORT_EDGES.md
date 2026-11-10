@@ -5178,6 +5178,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
