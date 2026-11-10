@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10325**.
+Distinct declaration spellings indexed: **10330**.
 
 ## Repeated declaration spellings
 
@@ -8309,8 +8309,13 @@ Distinct declaration spellings indexed: **10325**.
 - `quadraticTransverseCapSourceAxisFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSourceAxisHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSourceAxisThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `quadraticTransverseCapSourceGlobalFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+- `quadraticTransverseCapSourceGlobalFourBlock_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+- `quadraticTransverseCapSourceGlobalHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+- `quadraticTransverseCapSourceGlobalSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `quadraticTransverseCapSourceLinearCoefficients` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisHessian_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `quadraticTransverseCapSource_axisLongitudinal_secondTransverseJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisThreeBlock_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSource_axisThreeBlock_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`

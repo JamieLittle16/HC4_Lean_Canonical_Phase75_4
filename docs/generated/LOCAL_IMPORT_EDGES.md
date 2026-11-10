@@ -5218,6 +5218,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
   - `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
