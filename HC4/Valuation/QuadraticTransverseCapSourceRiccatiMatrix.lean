@@ -28,6 +28,7 @@ variable {K : Type*} [Field K]
 /-- The explicit three-by-three adjugate quadratic pairing occurring
 in the source Schur coefficient equals the corresponding ordinary
 matrix product. This ring identity is independent of the source. -/
+set_option maxHeartbeats 1000000 in
 theorem quadraticTransverse_threeBlock_adjugatePairing_eq_matrixProduct
     {R : Type*} [CommRing R]
     (C : GeneralThreeBlock R)
@@ -40,12 +41,12 @@ theorem quadraticTransverse_threeBlock_adjugatePairing_eq_matrixProduct
         (P 0 j) (P 1 j) (P 2 j) +
       P i 2 * quadraticTransverseAdjugateVector2 C
         (P 0 j) (P 1 j) (P 2 j) := by
-  fin_cases i <;> fin_cases j <;>
-    simp [Matrix.mul_apply, Fin.sum_univ_three,
-      GeneralThreeBlock.matrix, Matrix.adjugate_fin_three,
-      quadraticTransverseAdjugateVector0,
-      quadraticTransverseAdjugateVector1,
-      quadraticTransverseAdjugateVector2] <;> ring
+  classical
+  simp [Matrix.mul_apply, Fin.sum_univ_three,
+    GeneralThreeBlock.matrix, Matrix.adjugate_fin_three,
+    quadraticTransverseAdjugateVector0,
+    quadraticTransverseAdjugateVector1,
+    quadraticTransverseAdjugateVector2] <;> ring
 
 /-- The original source's *polynomial* transverse Hessian satisfies
 the full rank-three Riccati equation with determinant clearing.
@@ -68,7 +69,8 @@ theorem quadraticTransverseCap_two_sourceRiccati_matrixCleared
   let A := C.matrix
   let P := quadraticTransverse_polynomialMatrixDerivative A
   let Q := quadraticTransverse_polynomialMatrixDerivative P
-  ext i j
+  apply Matrix.ext
+  intro i j
   have hsrc :=
     quadraticTransverseCap_two_sourceRiccati_cleared F hbound hdet i j
   dsimp only at hsrc
