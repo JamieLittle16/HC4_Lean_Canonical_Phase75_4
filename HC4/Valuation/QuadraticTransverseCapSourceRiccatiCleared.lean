@@ -67,18 +67,12 @@ theorem quadraticTransverseCapSource_globalMixedDerivative_axis
          | 2 => H.q)) =
       Polynomial.derivative (C.matrix m j) := by
   dsimp only
+  have hsource :=
+    quadraticTransverseSource_axisMixedTransverse_derivative F m j
+  rw [quadraticTransverseCapSource_axisThreeBlock_entry F m j] at hsource
   fin_cases m <;>
     simpa [quadraticTransverseCapSourceGlobalFourBlock,
-      GeneralFourBlock.ofSymmetricMatrix] using
-      (show
-        longitudinalAxisRestrictionRingHom (K := K)
-          (MvPolynomial.pderiv j.succ
-            (HC4.Polynomial.hessian F 0 (Fin.succ m))) =
-          Polynomial.derivative
-            ((quadraticTransverseCapSourceAxisThreeBlock F).matrix m j)
-        from by
-          rw [← quadraticTransverseCapSource_axisThreeBlock_entry F m j]
-          exact quadraticTransverseSource_axisMixedTransverse_derivative F m j)
+      GeneralFourBlock.ofSymmetricMatrix] using hsource
 
 /-- The ACTUAL source Hessian determinant forces every
 denominator-cleared transverse Riccati matrix entry in K[x].
@@ -118,8 +112,15 @@ theorem quadraticTransverseCap_two_sourceRiccati_cleared
     longitudinalAxisRestrictionRingHom (K := K)
   obtain ⟨ha, hb, hc, hd, he, hf⟩ :=
     quadraticTransverseCapSource_globalThreeBlock_axisEntries F
+  change φ G.a = C.a at ha
+  change φ G.b = C.b at hb
+  change φ G.c = C.c at hc
+  change φ G.d = C.d at hd
+  change φ G.e = C.e at he
+  change φ G.f = C.f at hf
   have hdetmap : φ G.determinantCore = C.determinantCore := by
-    simp [GeneralThreeBlock.determinantCore,
+    simp only [GeneralThreeBlock.determinantCore,
+      map_add, map_sub, map_mul, map_ofNat,
       ha, hb, hc, hd, he, hf]
   have hmix₀ (k : Fin 3) :
       φ (MvPolynomial.pderiv k.succ H.b) =
@@ -163,7 +164,8 @@ theorem quadraticTransverseCap_two_sourceRiccati_cleared
           (Polynomial.derivative (C.matrix 0 j))
           (Polynomial.derivative (C.matrix 1 j))
           (Polynomial.derivative (C.matrix 2 j)) := by
-    simp [quadraticTransverseAdjugateVector0,
+    simp only [quadraticTransverseAdjugateVector0,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf,
       hmix₀ j, hmix₁ j, hmix₂ j]
   have hadj₁ :
@@ -175,7 +177,8 @@ theorem quadraticTransverseCap_two_sourceRiccati_cleared
           (Polynomial.derivative (C.matrix 0 j))
           (Polynomial.derivative (C.matrix 1 j))
           (Polynomial.derivative (C.matrix 2 j)) := by
-    simp [quadraticTransverseAdjugateVector1,
+    simp only [quadraticTransverseAdjugateVector1,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf,
       hmix₀ j, hmix₁ j, hmix₂ j]
   have hadj₂ :
@@ -187,14 +190,14 @@ theorem quadraticTransverseCap_two_sourceRiccati_cleared
           (Polynomial.derivative (C.matrix 0 j))
           (Polynomial.derivative (C.matrix 1 j))
           (Polynomial.derivative (C.matrix 2 j)) := by
-    simp [quadraticTransverseAdjugateVector2,
+    simp only [quadraticTransverseAdjugateVector2,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf,
       hmix₀ j, hmix₁ j, hmix₂ j]
   have hsource :=
     quadraticTransverseCap_two_sourceGlobalSchur_secondJet
       F hbound hdet i j
   have hmapped := congrArg φ hsource
-  dsimp only at hmapped
   simp only [map_mul, map_add, map_sub, map_ofNat] at hmapped
   rw [hquad, hdetmap, hmix₀ i, hmix₁ i, hmix₂ i,
       hadj₀, hadj₁, hadj₂] at hmapped
