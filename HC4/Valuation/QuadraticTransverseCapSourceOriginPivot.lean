@@ -78,7 +78,7 @@ theorem quadraticTransverseCapSource_axisThreeBlock_origin
         (longitudinalAxisRestriction
           (MvPolynomial.pderiv b (MvPolynomial.pderiv a F))) =
         quadraticFamilyHessianMatrix F b a := by
-    rw [pderiv_comm_commRing a b F]
+    rw [← pderiv_comm_commRing a b F]
     exact hforward b a
   fin_cases i <;> fin_cases j
   · simpa [quadraticTransverseCapSourceAxisThreeBlock,
