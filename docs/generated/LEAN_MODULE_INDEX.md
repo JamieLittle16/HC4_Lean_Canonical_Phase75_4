@@ -15260,7 +15260,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`, `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
-- Declarations: `def quadraticTransverseSourceSectionRingHom`, `def quadraticTransverseSourceSectionFourBlock`, `theorem quadraticTransverseSourceSectionHessian_symmetric`, `theorem quadraticTransverseSourceSectionFourBlock_unit`, `theorem quadraticTransverseSource_fourOppositeSections_unit`
+- Declarations: `def quadraticTransverseSourceSectionRingHom`, `def quadraticTransverseSourceSectionFourBlock`, `theorem quadraticTransverseSourceSectionHessian_symmetric`, `theorem quadraticTransverseSourceSectionFourBlock_unit`, `theorem quadraticTransverseSource_fourOppositeSections_unit`, `theorem quadraticTransverseSource_allThreeOppositePairs_unit`, `theorem quadraticTransverseSourceSectionRingHom_zero`
 
 ### `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 
