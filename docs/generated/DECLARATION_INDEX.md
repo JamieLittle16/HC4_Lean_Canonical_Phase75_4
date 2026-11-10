@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10246**.
+Distinct declaration spellings indexed: **10248**.
 
 ## Repeated declaration spellings
 
@@ -8300,6 +8300,7 @@ Distinct declaration spellings indexed: **10246**.
 - `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisThreeBlock_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
 - `quadraticTransverseCapSource_axisThreeBlock_polynomialRankTwo` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `quadraticTransverseCapSource_singular_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadraticTransverseSourceSectionFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
@@ -9906,6 +9907,7 @@ Distinct declaration spellings indexed: **10246**.
 - `symmetricSmithTilt_positive_of_binaryBase_one` — `theorem` in `HC4.Valuation.BinarySmithOrderExtraction`
 - `symmetricTargetGrade_exponent_cases_of_noWLinear` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `symmetricTargetGrade_of_separatorDelta_one_one_nonpositive` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
+- `symmetricThreeBlock_singular_minor_implies_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
 - `symmetricThreeBlock_sixMinors_fixedPrincipalPivots` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `tVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `tVarnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`

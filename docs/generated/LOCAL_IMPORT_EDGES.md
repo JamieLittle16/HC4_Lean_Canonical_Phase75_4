@@ -5155,6 +5155,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
   - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
+  - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
 - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
