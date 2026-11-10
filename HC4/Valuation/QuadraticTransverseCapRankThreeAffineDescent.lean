@@ -121,6 +121,54 @@ theorem quadraticTransverse_affineFieldInverse_polynomialAndConstantDet
       C P hleft
   exact ⟨P, hleft, hright, d, hd, hconst⟩
 
+/-- **Riccati-to-polynomial-inverse bridge over a differential field.**
+
+The hypotheses are exactly:
+  * a field of rational coefficients L carrying an honest K-derivation;
+  * an indeterminate x with D x = 1 and constants exactly K;
+  * the injected polynomial transverse Hessian C with a two-sided
+    inverse M over L;
+  * the genuine matrix Riccati equation D²C = 2 (DC) M (DC).
+
+The output is a two-sided inverse already in K[x] and a CONSTANT
+nonzero polynomial determinant for C. Neither integrality nor
+constancy is assumed. This is the reusable algebraic core of the
+generic-rank-three quadratic case.
+
+The remaining work is to establish the differential-field facts
+for L=RatFunc K and to obtain the Riccati equation from the
+actual source's y² Hessian determinant coefficient. -/
+theorem quadraticTransverse_fieldRiccati_polynomialInverse_constantDet
+    (f : Polynomial K →+* L)
+    (hf : Function.Injective f)
+    (hC : ∀ c : K, f (Polynomial.C c) = algebraMap K L c)
+    (x : L)
+    (hX : f Polynomial.X = x)
+    (D : Derivation K L L)
+    (hx : D x = 1)
+    (hconstants :
+      ∀ z : L, D z = 0 → ∃ c : K, z = algebraMap K L c)
+    (C : Matrix (Fin 3) (Fin 3) (Polynomial K))
+    (M : Matrix (Fin 3) (Fin 3) L)
+    (hCM : C.map f * M = 1)
+    (hMC : M * C.map f = 1)
+    (hRiccati :
+      quadraticTransverse_fieldMatrixDerivative D
+          (quadraticTransverse_fieldMatrixDerivative D (C.map f)) =
+        2 * ((quadraticTransverse_fieldMatrixDerivative D (C.map f) * M) *
+          quadraticTransverse_fieldMatrixDerivative D (C.map f))) :
+    ∃ P : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      C * P = 1 ∧ P * C = 1 ∧
+        ∃ d : K, d ≠ 0 ∧ C.det = Polynomial.C d := by
+  have hsecond :=
+    quadraticTransverse_fieldReciprocal_secondDerivative_zero
+      D (C.map f) M hCM hMC hRiccati
+  obtain ⟨A, B, hM⟩ :=
+    quadraticTransverse_fieldMatrix_secondDerivative_zero_affine
+      D x hx hconstants M hsecond
+  exact quadraticTransverse_affineFieldInverse_polynomialAndConstantDet
+    f hf hC x hX C M hCM hMC A B hM
+
 end
 
 end HC4.Valuation
