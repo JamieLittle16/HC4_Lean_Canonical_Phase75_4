@@ -828,7 +828,9 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceLongitudinalMarkedCollision
       (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
         coordinateAxisPoint (K := K) (0 : Fin 4) := by
     funext i
-    fin_cases i <;> simp [coordinateAxisPoint]
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · simp [coordinateAxisPoint, Fin.cons]
+    · simp [coordinateAxisPoint, Fin.cons]
   have hcoll :
       HasExactGradientCollision T.topKernelReesSource
         (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
@@ -875,7 +877,9 @@ theorem PureLongitudinalMarkedE3Data.quadratic_rankThreeConstantDetZeroMixed_imp
       (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
         coordinateAxisPoint (K := K) (0 : Fin 4) := by
     funext i
-    fin_cases i <;> simp [coordinateAxisPoint]
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · simp [coordinateAxisPoint, Fin.cons]
+    · simp [coordinateAxisPoint, Fin.cons]
   rw [hzero, hright]
   exact T.topKernelReesSource_exactCollision
 
