@@ -4193,6 +4193,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
   - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
