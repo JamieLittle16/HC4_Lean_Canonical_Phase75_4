@@ -74,7 +74,7 @@ theorem quadraticTransverse_reciprocal_secondDerivative_zero
   have hMprime : dmat M = -((M * dmat C) * M) := by
     calc
       dmat M = (dmat M * C) * M := by
-        rw [← mul_assoc, hCM, mul_one]
+        rw [mul_assoc, hCM, mul_one]
       _ = (-(M * dmat C)) * M := by rw [hneg]
       _ = -((M * dmat C) * M) := by
         noncomm_ring
