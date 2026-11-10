@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10294**.
+Distinct declaration spellings indexed: **10296**.
 
 ## Repeated declaration spellings
 
@@ -8347,8 +8347,10 @@ Distinct declaration spellings indexed: **10294**.
 - `quadraticTransverse_polynomialMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mapC` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+- `quadraticTransverse_polynomialMatrixInverse_det_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - `quadraticTransverse_polynomialMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomial_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+- `quadraticTransverse_rankThree_constantDet_longitudinalCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - `quadraticTransverse_rankThree_nilpotentDrift_collision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
 - `quadraticTransverse_reciprocal_polynomial_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `quadraticTransverse_reciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
