@@ -69,7 +69,13 @@ theorem quadraticTransverseCap_zero_pderiv_succ
   intro m hm
   have hle := hbound m (MvPolynomial.mem_support_iff.mpr hm)
   rw [weight_topKernelMarkedAxisNatWeight] at hle
-  fin_cases j <;> omega
+  fin_cases j
+  · change m (1 : Fin 4) = 0
+    omega
+  · change m (2 : Fin 4) = 0
+    omega
+  · change m (3 : Fin 4) = 0
+    omega
 
 /-- The entire third transverse derivative of the honest
 quadratic-cap represented source vanishes, for all three transverse
@@ -112,21 +118,33 @@ theorem quadraticTransverse_source_eval_section_eq_axis
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (1 : Fin 4) P (hzero 0) p0 p1
     intro i hi
-    fin_cases i <;> simp [p0, p1] at *
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · rfl
+    · simp only [p0, p1, Fin.cons_succ]
+      fin_cases k <;> simp_all
   have h12 : MvPolynomial.eval p1 P = MvPolynomial.eval p2 P := by
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (2 : Fin 4) P (hzero 1) p1 p2
     intro i hi
-    fin_cases i <;> simp [p1, p2] at *
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · rfl
+    · simp only [p1, p2, Fin.cons_succ]
+      fin_cases k <;> simp_all
   have h23 : MvPolynomial.eval p2 P = MvPolynomial.eval p3 P := by
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (3 : Fin 4) P (hzero 2) p2 p3
     intro i hi
-    fin_cases i <;> simp [p2, p3] at *
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · rfl
+    · simp only [p2, p3, Fin.cons_succ]
+      fin_cases k <;> simp_all
   have hp3 :
       p3 = Fin.cons x (fun _ : Fin 3 => (0 : K)) := by
     funext i
-    fin_cases i <;> rfl
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · rfl
+    · simp only [p3, Fin.cons_succ]
+      fin_cases k <;> simp
   calc
     MvPolynomial.eval (Fin.cons x y) P =
         MvPolynomial.eval p0 P := rfl
