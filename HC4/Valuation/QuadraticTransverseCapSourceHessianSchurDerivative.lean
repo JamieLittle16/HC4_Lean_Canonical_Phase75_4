@@ -96,9 +96,8 @@ theorem quadraticAxisFourBlockCore_transverse_pderiv_frozenBlock
     quadraticTransverseAdjugateVector0
     quadraticTransverseAdjugateVector1
     quadraticTransverseAdjugateVector2
-  simp only [map_add, map_sub, map_neg, MvPolynomial.pderiv_mul,
-    ha, hb, hc, hd, he, hf,
-    mul_zero, zero_mul, add_zero, zero_add, sub_zero, zero_sub]
+  simp [map_add, map_sub, map_neg, MvPolynomial.pderiv_mul,
+    ha, hb, hc, hd, he, hf]
   ring
 
 end
