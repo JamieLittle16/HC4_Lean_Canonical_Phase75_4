@@ -117,7 +117,7 @@ theorem quadraticTransverse_ratFunc_derivation_constants
       calc
         f (Polynomial.C (p.coeff 0)) =
           f (Polynomial.C ((p.coeff 0 / q.coeff 0) * q.coeff 0)) := by
-            rw [div_mul_cancel₀ hc]
+            rw [div_mul_cancel₀ _ hc]
         _ = f (Polynomial.C (p.coeff 0 / q.coeff 0)) *
               f (Polynomial.C (q.coeff 0)) := by
                 rw [map_mul, map_mul]
