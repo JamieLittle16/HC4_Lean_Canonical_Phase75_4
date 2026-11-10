@@ -507,3 +507,83 @@ The new modules and E3 wrapper **need compilation**.
 lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
 lake build
 ```
+
+
+## 12. Actual quadratic E3 rational inverse and rational Riccati integrality (2026-11-10; build pending)
+
+**Last user-confirmed green head:** `4adebaf9b840f906c587a5478f28c327bbc1e24f`,
+which established the actual source singular-transverse elimination and
+`quadratic_sourceTransverseDet_ne_zero`. The subsequent rank-three
+modules (starting with `dfd668f` and continuing here) still REQUIRE
+local Lean compilation.
+
+This continuation adds five genuinely mathematical interfaces:
+
+1. `QuadraticTransverseCapSourceRationalInverse.lean`: constructs
+   `C(x)^{-1}` as the actual TWO-SIDED inverse of the green E3
+   polynomial transverse Hessian matrix over `RatFunc K`.
+   No polynomial inverse or determinant constancy is presumed.
+2. `QuadraticTransverseCapRankThreeFieldDerivation.lean`: proves
+   `(C^{-1})''=0` from the matrix Riccati equation
+   `C''=2C' C^{-1} C'` for **any differential coefficient field**,
+   and proves entrywise affine form `A+xB` when the derivation's
+   constant field is the ground field.
+3. `QuadraticTransverseCapRankThreeAffineDescent.lean`: proves that
+   if the field-valued inverse has entries `a+b x`, these are
+   images of actual polynomials; two-sided invertibility DESCENDS
+   through an injective polynomial embedding. In particular
+   `det C\in K^×` is then a *conclusion*, not a hypothesis.
+   The later `compatibleDerivation_integralInverse` theorem
+   combines reciprocal Riccati, polynomial differentiation, field
+   constants, and polynomial inverse descent without extra
+   integrality assumptions.
+4. `QuadraticTransverseCapRatFuncConstants.lean` and
+   `QuadraticTransverseCapRatFuncDerivationX.lean`: if a
+   `K`-derivation of `RatFunc K` satisfies `D(X)=1`,
+   the pinned `Derivation.comp_aeval_eq` chain rule proves
+   polynomial differentiation compatibility. The normalized
+   coprime `RatFunc.num/denom` calculation proves its constants
+   are exactly `K`. This removes an unproved constants-field
+   hypothesis from the generic-rank-three algebra.
+5. `QuadraticTransverseCapSourceRankThreeRiccatiBridge.lean`
+   and the corresponding E3 theorem
+   `PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_constantDet`:
+   instantiate that result on the SAME represented-source
+   transverse Hessian, once its explicit Riccati identity is
+   supplied. The output is a polynomial two-sided inverse and
+   nonzero constant transverse determinant for the source.
+
+**Remaining exact mathematical seams:**
+
+A. Construct a `K`-derivation of `RatFunc K` with
+   `D(RatFunc.X)=1`; `RatFunc.liftOn'` and the quotient rule
+   are candidate routes. The polynomial compatibility and
+   constants-field proof are now conditional consequences of this
+   one construction.
+
+B. Extract, WITHOUT NEW HYPOTHESES, the y-quadratic coefficient
+   of the ACTUAL represented-source identity `det Hess F=1`:
+   `(det C) C'' = 2 C' adj(C) C'`, then transport it via
+   the rational derivation to the source Riccati equation.
+   Existing source cap-two, fixed transverse Hessian,
+   affine mixed-section, and all-section determinant-one
+   lemmas provide the prerequisites; the coefficient comparison
+   itself is **not yet formalised**.
+
+C. Extract the y-linear coefficient
+   `(det C) b'' = 2 C' adj(C) b'`. From the affine reciprocal
+   form, solve this to obtain the already written nilpotent
+   derivative model for `b'`, then use the marked transverse
+   and longitudinal collisions to reach the scalar contradiction.
+
+D. Complete any r>=3 and other E3 frontiers before claiming
+   producer-free `PlanarJC2Injectivity K -> HC4(K)`.
+
+No new axioms or `sorry` were deliberately introduced. However,
+**source files contain unverified Lean proof scripts**. A zero-sorry
+grep is NOT the same as a green Lean build.
+
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build
+```
