@@ -42,7 +42,7 @@ theorem zeroPartial_sourceSupport_coordinate_zero
       MvPolynomial.coeff m (MvPolynomial.pderiv j Q) = 0 := by
     rw [hzero]
     rfl
-  rw [MvPolynomial.coeff_pderiv, hshift] at hcoef
+  rw [HC4.Newton.coeff_pderiv_mixedDegree, hshift] at hcoef
   have hfactor : ((m j + 1 : ℕ) : K) ≠ 0 := by
     exact_mod_cast (Nat.succ_ne_zero (m j))
   have hsource : MvPolynomial.coeff d Q = 0 :=
