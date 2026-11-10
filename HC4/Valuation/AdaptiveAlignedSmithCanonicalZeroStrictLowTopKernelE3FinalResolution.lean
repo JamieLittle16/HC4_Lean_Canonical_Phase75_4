@@ -31,6 +31,7 @@ import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
 import HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge
 import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared
 import HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -728,6 +729,43 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_linearCleared
   exact quadraticTransverseCap_two_sourceRiccati_linearCleared
     T.topKernelReesSource hbound
     T.topKernelReesSource_hessianDeterminant_eq_one j
+
+/-- **Actual E3 quadratic source has CONSTANT transverse determinant
+once the canonical rational X-derivation is supplied.**
+
+The two polynomial source Riccati coefficients and rational inverse
+are already derived, with no abstract Riccati or integrality
+hypotheses. Only the K-derivation on RatFunc K with D(X)=1 remains
+at this interface.
+
+The resulting polynomial inverse and constant nonzero determinant
+are genuine source conclusions. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceConstantTransverseDet_of_derivation
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (deriv : Derivation K (RatFunc K) (RatFunc K))
+    (hX : deriv (RatFunc.X : RatFunc K) = 1) :
+    ∃ A : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix * A = 1 ∧
+      A * (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix = 1 ∧
+      ∃ d : K, d ≠ 0 ∧
+        (quadraticTransverseCapSourceAxisThreeBlock
+          T.topKernelReesSource).determinantCore = Polynomial.C d := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        Q.coefficient_ne_zero Q.topFace_eq
+  exact quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P Q hr)
+    deriv hX
 
 /-- **The remaining RICCATI seam in the represented E3 quadratic source.**
 
