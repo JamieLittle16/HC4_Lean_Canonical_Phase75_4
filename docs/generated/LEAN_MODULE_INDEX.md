@@ -15280,7 +15280,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - External imports: `Mathlib.FieldTheory.RatFunc.Basic`, `Mathlib.RingTheory.Derivation.Basic`, `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem from`, `theorem quadraticTransverse_ratFunc_derivation_constants`
+- Declarations: `theorem from`, `theorem quadraticTransverse_ratFunc_derivation_constants`, `theorem quadraticTransverse_ratFuncRiccati_polynomialInverse`
 
 ### `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 
