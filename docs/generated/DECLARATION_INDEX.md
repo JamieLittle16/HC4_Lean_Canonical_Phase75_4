@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10231**.
+Distinct declaration spellings indexed: **10239**.
 
 ## Repeated declaration spellings
 
@@ -8282,6 +8282,14 @@ Distinct declaration spellings indexed: **10231**.
 - `quadraticSmithSubface_free_three` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `quadraticSmithSubface_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubface_pderiv_three_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `quadraticSourceAxisThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_axis_mixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_schurCore_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionRingHom` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionRingHom_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSource_axisSchurCore_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
 - `quadraticTransverseAdjugateVector0` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugateVector1` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugateVector2` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`

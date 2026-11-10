@@ -5159,6 +5159,9 @@ human architecture guide.
   - `HC4.Newton.MixedDegreeAxisCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
   - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
+  - `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
 - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
