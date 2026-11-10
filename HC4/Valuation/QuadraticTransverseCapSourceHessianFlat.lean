@@ -118,26 +118,35 @@ theorem quadraticTransverse_source_eval_section_eq_axis
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (1 : Fin 4) P (hzero 0) p0 p1
     intro i hi
-    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
-    · rfl
-    · simp only [p0, p1, Fin.cons_succ]
-      fin_cases k <;> simp_all
+    cases i using Fin.cases with
+    | zero => rfl
+    | succ k =>
+      fin_cases k
+      · exact (hi rfl).elim
+      · rfl
+      · rfl
   have h12 : MvPolynomial.eval p1 P = MvPolynomial.eval p2 P := by
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (2 : Fin 4) P (hzero 1) p1 p2
     intro i hi
-    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
-    · rfl
-    · simp only [p1, p2, Fin.cons_succ]
-      fin_cases k <;> simp_all
+    cases i using Fin.cases with
+    | zero => rfl
+    | succ k =>
+      fin_cases k
+      · rfl
+      · exact (hi rfl).elim
+      · rfl
   have h23 : MvPolynomial.eval p2 P = MvPolynomial.eval p3 P := by
     apply HC4.Newton.eval_eq_of_pderiv_eq_zero
       (3 : Fin 4) P (hzero 2) p2 p3
     intro i hi
-    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
-    · rfl
-    · simp only [p2, p3, Fin.cons_succ]
-      fin_cases k <;> simp_all
+    cases i using Fin.cases with
+    | zero => rfl
+    | succ k =>
+      fin_cases k
+      · rfl
+      · rfl
+      · exact (hi rfl).elim
   have hp3 :
       p3 = Fin.cons x (fun _ : Fin 3 => (0 : K)) := by
     funext i
