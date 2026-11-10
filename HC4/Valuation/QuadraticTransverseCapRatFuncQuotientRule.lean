@@ -65,7 +65,7 @@ theorem quadraticTransverse_ratQuotientXDerivative_scale
     rw [map_mul, mul_pow]
   dsimp [quadraticTransverse_ratQuotientXDerivative]
   rw [hnum, hden]
-  field_simp
+  field_simp [hfa, hfq]
   ring
 
 /-- The quotient rule, well-defined on the actual rational function
