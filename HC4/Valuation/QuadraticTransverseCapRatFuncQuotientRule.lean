@@ -125,6 +125,114 @@ theorem quadraticTransverse_ratFuncCandidateXDerivative_X :
   rw [hX, quadraticTransverse_ratFuncCandidateXDerivative_polynomial]
   simp
 
+
+/-- The quotient-rule expression respects the common-denominator
+formula for addition of two nonzero-denominator polynomial fractions. -/
+theorem quadraticTransverse_ratQuotientXDerivative_add
+    (p q r s : Polynomial K) (hq : q ≠ 0) (hs : s ≠ 0) :
+    quadraticTransverse_ratQuotientXDerivative
+        (p * s + r * q) (q * s) =
+      quadraticTransverse_ratQuotientXDerivative p q +
+        quadraticTransverse_ratQuotientXDerivative r s := by
+  let f : Polynomial K →+* RatFunc K :=
+    algebraMap (Polynomial K) (RatFunc K)
+  have hqf : f q ≠ 0 := RatFunc.algebraMap_ne_zero hq
+  have hsf : f s ≠ 0 := RatFunc.algebraMap_ne_zero hs
+  change
+    (f (Polynomial.derivative (p * s + r * q)) * f (q * s) -
+      f (p * s + r * q) * f (Polynomial.derivative (q * s))) /
+        (f (q * s)) ^ 2 =
+      (f (Polynomial.derivative p) * f q -
+        f p * f (Polynomial.derivative q)) / (f q) ^ 2 +
+      (f (Polynomial.derivative r) * f s -
+        f r * f (Polynomial.derivative s)) / (f s) ^ 2
+  simp only [Polynomial.derivative_add, Polynomial.derivative_mul,
+    map_add, map_mul]
+  field_simp [hqf, hsf]
+  <;> ring
+
+/-- The quotient-rule expression respects multiplication of polynomial
+fractions, with exactly the two Leibniz terms. -/
+theorem quadraticTransverse_ratQuotientXDerivative_mul
+    (p q r s : Polynomial K) (hq : q ≠ 0) (hs : s ≠ 0) :
+    quadraticTransverse_ratQuotientXDerivative
+        (p * r) (q * s) =
+      quadraticTransverse_ratQuotientXDerivative p q *
+          (algebraMap (Polynomial K) (RatFunc K)) r /
+            (algebraMap (Polynomial K) (RatFunc K)) s +
+        ((algebraMap (Polynomial K) (RatFunc K)) p /
+          (algebraMap (Polynomial K) (RatFunc K)) q) *
+          quadraticTransverse_ratQuotientXDerivative r s := by
+  let f : Polynomial K →+* RatFunc K :=
+    algebraMap (Polynomial K) (RatFunc K)
+  have hqf : f q ≠ 0 := RatFunc.algebraMap_ne_zero hq
+  have hsf : f s ≠ 0 := RatFunc.algebraMap_ne_zero hs
+  change
+    (f (Polynomial.derivative (p * r)) * f (q * s) -
+      f (p * r) * f (Polynomial.derivative (q * s))) /
+        (f (q * s)) ^ 2 =
+      ((f (Polynomial.derivative p) * f q -
+        f p * f (Polynomial.derivative q)) / (f q) ^ 2) *
+        (f r / f s) +
+      (f p / f q) *
+        ((f (Polynomial.derivative r) * f s -
+          f r * f (Polynomial.derivative s)) / (f s) ^ 2)
+  simp only [Polynomial.derivative_mul, map_add, map_mul]
+  field_simp [hqf, hsf]
+  <;> ring
+
+/-- The rational quotient-rule candidate is additive on ALL of K(X):
+this is proved by reducing both inputs to honest nonzero-denominator
+polynomial fractions, not by postulating a derivation. -/
+theorem quadraticTransverse_ratFuncCandidateXDerivative_add
+    (x y : RatFunc K) :
+    quadraticTransverse_ratFuncCandidateXDerivative (x + y) =
+      quadraticTransverse_ratFuncCandidateXDerivative x +
+        quadraticTransverse_ratFuncCandidateXDerivative y := by
+  induction x using RatFunc.induction_on' with
+  | _ p q hq =>
+    induction y using RatFunc.induction_on' with
+    | _ r s hs =>
+      have hqs : q * s ≠ 0 := mul_ne_zero hq hs
+      have hsum :
+          RatFunc.mk p q + RatFunc.mk r s =
+            RatFunc.mk (p * s + r * q) (q * s) := by
+        simp only [RatFunc.mk_eq_div, map_mul, map_add]
+        field_simp [RatFunc.algebraMap_ne_zero hq,
+          RatFunc.algebraMap_ne_zero hs]
+        <;> ring
+      rw [hsum,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk
+          (p * s + r * q) (q * s) hqs,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk p q hq,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk r s hs]
+      exact quadraticTransverse_ratQuotientXDerivative_add p q r s hq hs
+
+/-- The rational quotient-rule candidate obeys the Leibniz rule
+on ALL of K(X). -/
+theorem quadraticTransverse_ratFuncCandidateXDerivative_mul
+    (x y : RatFunc K) :
+    quadraticTransverse_ratFuncCandidateXDerivative (x * y) =
+      quadraticTransverse_ratFuncCandidateXDerivative x * y +
+        x * quadraticTransverse_ratFuncCandidateXDerivative y := by
+  induction x using RatFunc.induction_on' with
+  | _ p q hq =>
+    induction y using RatFunc.induction_on' with
+    | _ r s hs =>
+      have hqs : q * s ≠ 0 := mul_ne_zero hq hs
+      have hprod :
+          RatFunc.mk p q * RatFunc.mk r s =
+            RatFunc.mk (p * r) (q * s) := by
+        simp only [RatFunc.mk_eq_div, map_mul]
+        ring
+      rw [hprod,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk
+          (p * r) (q * s) hqs,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk p q hq,
+        quadraticTransverse_ratFuncCandidateXDerivative_mk r s hs]
+      simpa only [RatFunc.mk_eq_div] using
+        quadraticTransverse_ratQuotientXDerivative_mul p q r s hq hs
+
 end
 
 end HC4.Valuation
