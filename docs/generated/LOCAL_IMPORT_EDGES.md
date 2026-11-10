@@ -4188,6 +4188,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
   - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
   - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
@@ -4198,6 +4199,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
   - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
   - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
   - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
