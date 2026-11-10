@@ -604,8 +604,8 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
     (quadraticTransverseCapSourceAxisThreeBlock
       T.topKernelReesSource).determinantCore ≠ 0 := by
   intro hzero
-  exact D.quadratic_sourceSingularTransverse_impossible
-    P hr hzero
+  exact PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
+    P D hr hzero
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
