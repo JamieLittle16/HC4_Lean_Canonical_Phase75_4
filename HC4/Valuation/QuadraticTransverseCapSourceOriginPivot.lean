@@ -23,6 +23,11 @@ noncomputable section
 open HC4.Newton
 open HC4.Polynomial
 
+/- Avoid imported simp rewrites of raw pderiv 2/3 into two-zero aliases when
+   matching the literal origin Hessian entries. -/
+attribute [-simp] standardTwoZero_pderiv_two_eq_A
+attribute [-simp] standardTwoZero_pderiv_three_eq_C
+
 variable {K : Type*} [Field K]
 
 /-- Evaluation at the longitudinal origin of the axis-restricted
