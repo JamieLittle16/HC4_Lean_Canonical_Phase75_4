@@ -158,8 +158,8 @@ theorem quadraticTransverse_ratQuotientXDerivative_mul
     quadraticTransverse_ratQuotientXDerivative
         (p * r) (q * s) =
       quadraticTransverse_ratQuotientXDerivative p q *
-          (algebraMap (Polynomial K) (RatFunc K)) r /
-            (algebraMap (Polynomial K) (RatFunc K)) s +
+          ((algebraMap (Polynomial K) (RatFunc K)) r /
+            (algebraMap (Polynomial K) (RatFunc K)) s) +
         ((algebraMap (Polynomial K) (RatFunc K)) p /
           (algebraMap (Polynomial K) (RatFunc K)) q) *
           quadraticTransverse_ratQuotientXDerivative r s := by
@@ -223,8 +223,7 @@ theorem quadraticTransverse_ratFuncCandidateXDerivative_mul
       have hprod :
           RatFunc.mk p q * RatFunc.mk r s =
             RatFunc.mk (p * r) (q * s) := by
-        simp only [RatFunc.mk_eq_div, map_mul]
-        ring
+        simp only [RatFunc.mk_eq_div, map_mul, div_mul_div_comm]
       rw [hprod,
         quadraticTransverse_ratFuncCandidateXDerivative_mk
           (p * r) (q * s) hqs,
