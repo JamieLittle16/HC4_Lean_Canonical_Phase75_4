@@ -5251,6 +5251,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
 - `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
