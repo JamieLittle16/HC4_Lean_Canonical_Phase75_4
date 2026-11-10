@@ -117,7 +117,7 @@ theorem quadraticTransverse_rankThree_nilpotentDrift_collision
   have h := congrArg (fun z : Fin 3 → K => (1 + N).mulVec z) hmatrix
   change (1 + N).mulVec ((1 - N + N ^ 2).mulVec v) =
     (1 + N).mulVec 0 at h
-  rw [← Matrix.mulVec_mulVec, hinv, Matrix.one_mulVec,
+  rw [Matrix.mulVec_mulVec, hinv, Matrix.one_mulVec,
     Matrix.mulVec_zero] at h
   exact h
 
