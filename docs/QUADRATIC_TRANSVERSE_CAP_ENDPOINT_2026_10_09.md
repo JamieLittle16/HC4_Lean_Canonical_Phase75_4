@@ -716,3 +716,62 @@ contradiction. No producer-free HC4 theorem is yet claimed.
 lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
 lake build
 ```
+
+
+## 15. Genuine source coefficient Riccati to rational matrix; derivative quotient candidate (2026-11-10; build pending)
+
+**User-confirmed clean baseline:** `196523723b1f5d377b78be4d5bbbcec1d1a3ce2e`.
+The newly written files in this section require independent local Lean verification.
+
+- `QuadraticTransverseCapSourceRiccatiMatrix.lean` proves the exact
+  matrix expression `det(C) C''=2 C' adj(C) C'` for the ACTUAL
+  represented source over K[x], by packaging all nine already-green
+  source coefficient identities with a direct symmetric 3x3
+  adjugate computation.
+- `QuadraticTransverseCapRankThreeRiccatiTransport.lean` proves
+  that under any K-derivation on an extension field compatible with
+  polynomial differentiation, the denominator-cleared equation
+  implies the reciprocal matrix Riccati equation for the
+  genuine field inverse. The nonzero determinant cancels after
+  transport; a polynomial inverse is NOT assumed.
+- `QuadraticTransverseCapSourceRiccatiRational.lean` instantiates
+  that bridge on the SAME actual source transverse Hessian over
+  RatFunc K, using the pre-existing green source rational inverse.
+  Its main theorem
+  `quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation`
+  now derives a polynomial two-sided inverse and constant nonzero
+  det C from only an ordinary `D(X)=1` rational derivation, not
+  from an assumed Riccati ODE.
+- The E3 wrapper
+  `PureLongitudinalMarkedE3Data.quadratic_sourceConstantTransverseDet_of_derivation`
+  consumes that theorem at the reachable quadratic relevel.
+
+The actual `D(X)=1` derivation is being constructed in a
+**separate module**, deliberately not imported into E3 until
+its laws have been proved:
+`QuadraticTransverseCapRatFuncQuotientRule.lean`.
+It defines the quotient-rule rational derivative
+`(p' q-p q')/q²` via the pinned `RatFunc.liftOn'` scale
+invariance, and states compatibility with embedded polynomials,
+including `D(RatFunc.X)=1`.
+**Still needed there:** proofs of additivity, multiplication
+Leibniz, K-linearity; only after these may the candidate be
+upgraded to a real `Derivation`.
+
+After the derivative is constructed and the E3 constant-det
+conclusion becomes unconditional, the *linear* Riccati ODE
+for b' must be solved in the nilpotent affine inverse
+coordinates. The original marked transverse collision then
+forces b'=0, and the already-written source longitudinal
+collision proves False.
+
+These commits have no `sorry` inserted deliberately, but
+new proof text is NOT certified merely because it contains no
+`sorry`. Build both the E3 imports and the standalone
+quotient-rule module:
+
+```bash
+lake build HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution
+lake build HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule
+lake build
+```
