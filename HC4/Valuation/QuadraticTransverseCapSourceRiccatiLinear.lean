@@ -158,8 +158,15 @@ theorem quadraticTransverseCap_two_sourceRiccati_linearCleared
     longitudinalAxisRestrictionRingHom (K := K)
   obtain ⟨ha, hb, hc, hd, he, hf⟩ :=
     quadraticTransverseCapSource_globalThreeBlock_axisEntries F
+  change φ G.a = C.a at ha
+  change φ G.b = C.b at hb
+  change φ G.c = C.c at hc
+  change φ G.d = C.d at hd
+  change φ G.e = C.e at he
+  change φ G.f = C.f at hf
   have hdetmap : φ G.determinantCore = C.determinantCore := by
-    simp [GeneralThreeBlock.determinantCore,
+    simp only [GeneralThreeBlock.determinantCore,
+      map_add, map_sub, map_mul, map_ofNat,
       ha, hb, hc, hd, he, hf]
   have hmix₀ (k : Fin 3) :
       φ (MvPolynomial.pderiv k.succ H.b) =
@@ -209,7 +216,8 @@ theorem quadraticTransverseCap_two_sourceRiccati_linearCleared
           (Polynomial.derivative (b 0))
           (Polynomial.derivative (b 1))
           (Polynomial.derivative (b 2)) := by
-    simp [quadraticTransverseAdjugateVector0,
+    simp only [quadraticTransverseAdjugateVector0,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf, hv₀, hv₁, hv₂]
   have hadj₁ :
       φ (quadraticTransverseAdjugateVector1 G H.b H.p H.q) =
@@ -217,7 +225,8 @@ theorem quadraticTransverseCap_two_sourceRiccati_linearCleared
           (Polynomial.derivative (b 0))
           (Polynomial.derivative (b 1))
           (Polynomial.derivative (b 2)) := by
-    simp [quadraticTransverseAdjugateVector1,
+    simp only [quadraticTransverseAdjugateVector1,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf, hv₀, hv₁, hv₂]
   have hadj₂ :
       φ (quadraticTransverseAdjugateVector2 G H.b H.p H.q) =
@@ -225,13 +234,13 @@ theorem quadraticTransverseCap_two_sourceRiccati_linearCleared
           (Polynomial.derivative (b 0))
           (Polynomial.derivative (b 1))
           (Polynomial.derivative (b 2)) := by
-    simp [quadraticTransverseAdjugateVector2,
+    simp only [quadraticTransverseAdjugateVector2,
+      map_add, map_sub, map_mul,
       ha, hb, hc, hd, he, hf, hv₀, hv₁, hv₂]
   have hsource :=
     quadraticTransverseCap_two_sourceGlobalSchur_firstJet
       F hbound hdet j
   have hmapped := congrArg φ hsource
-  dsimp only at hmapped
   simp only [map_mul, map_add, map_sub, map_ofNat] at hmapped
   rw [hjet, hdetmap, hmix₀ j, hmix₁ j, hmix₂ j,
       hadj₀, hadj₁, hadj₂] at hmapped
