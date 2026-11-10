@@ -94,7 +94,7 @@ theorem quadraticTransverse_polynomialMatrixDerivative_mul
           M i k * Polynomial.derivative (N k j))
   rw [map_sum]
   simp_rw [Polynomial.derivative_mul]
-  exact (Finset.sum_add_distrib).symm
+  exact Finset.sum_add_distrib
 
 /-- The derivative of a matrix with constant polynomial entries
 is identically zero, as required for affine reciprocal matrices. -/
