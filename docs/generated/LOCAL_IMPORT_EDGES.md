@@ -5149,6 +5149,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapAffineSection`
+  - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
   - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`

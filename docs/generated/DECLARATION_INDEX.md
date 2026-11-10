@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10262**.
+Distinct declaration spellings indexed: **10264**.
 
 ## Repeated declaration spellings
 
@@ -7016,6 +7016,7 @@ Distinct declaration spellings indexed: **10262**.
 - `mvHessianComponentAt_eq_sum_support` — `theorem` in `HC4.Newton.TerminalActualHessian`
 - `mvHessianComponentAt_origin_ne_zero_quadraticCoeff` — `theorem` in `HC4.Newton.TerminalActualHessian`
 - `mvPolynomial_eq_C_mul_of_affineLine_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
+- `mvPolynomial_eval_affine_of_secondPderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAffineSection`
 - `mvPolynomial_fin4_eq_C_mul_of_affineLine_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `mvPolynomial_fin4_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `mvPolynomial_finTwo_eq_C_mul_of_affineLine_proportional` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
@@ -8318,6 +8319,7 @@ Distinct declaration spellings indexed: **10262**.
 - `quadraticTransverseSourceSectionRingHom` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverseSourceSectionRingHom_eval` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseSourceSectionRingHom_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `quadraticTransverseSource_affineBasisSection` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAffineSection`
 - `quadraticTransverseSource_allThreeOppositePairs_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverseSource_fourOppositeSections_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
