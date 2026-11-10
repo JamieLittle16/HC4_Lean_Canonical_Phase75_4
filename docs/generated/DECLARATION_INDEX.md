@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10341**.
+Distinct declaration spellings indexed: **10346**.
 
 ## Repeated declaration spellings
 
@@ -2413,6 +2413,7 @@ Distinct declaration spellings indexed: **10341**.
 - `PureLongitudinalMarkedE3Data.quadratic_sourceRationalThreeInverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_cleared` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_constantDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_linearCleared` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quadratic_sourceSingularPrincipalPivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
@@ -7253,6 +7254,7 @@ Distinct declaration spellings indexed: **10341**.
 - `oddWSeparatedRightWall_strictAdaptiveRestart` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMixedDegreeBoundaryReduction`
 - `oddWSeparatedRightWall_strictCanonicalRestart` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `oddWSeparatedRightWall_transverseInflate_commonFactor_two` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
+- `of` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
 - `ofDirect` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationComposition`
 - `ofExactCollision` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionRecentering`
 - `ofInternal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentationComposition`
@@ -8317,6 +8319,7 @@ Distinct declaration spellings indexed: **10341**.
 - `quadraticTransverseCapSourceGlobalThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCapSourceLinearCoefficients` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisHessian_origin` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `quadraticTransverseCapSource_axisLongitudinal_firstTransverseJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
 - `quadraticTransverseCapSource_axisLongitudinal_secondTransverseJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `quadraticTransverseCapSource_axisSchur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
 - `quadraticTransverseCapSource_axisThreeBlock_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
@@ -8344,8 +8347,10 @@ Distinct declaration spellings indexed: **10341**.
 - `quadraticTransverseCap_two_sectionMixedRow_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCap_two_sectionThreeBlock_fixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_singularSource_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `quadraticTransverseCap_two_sourceGlobalSchur_firstJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
 - `quadraticTransverseCap_two_sourceGlobalSchur_secondJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_sourceRiccati_cleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+- `quadraticTransverseCap_two_sourceRiccati_linearCleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
 - `quadraticTransverseCap_two_tripleTransversePderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_zero_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseSourceSectionFourBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
