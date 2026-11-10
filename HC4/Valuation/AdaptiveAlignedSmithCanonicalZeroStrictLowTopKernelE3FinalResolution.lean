@@ -28,6 +28,7 @@ import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
 import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift
 import HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent
 import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
+import HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -634,6 +635,43 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceRationalThreeInverse
     T.topKernelReesSource
     (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
       P D hr)
+
+/-- **The remaining RICCATI seam in the represented E3 quadratic source.**
+
+Once the actual quadratic-source y² Hessian determinant coefficient is
+proved to satisfy the stated matrix Riccati identity and the rational
+indeterminate derivation is available, the original transverse Hessian
+acquires a polynomial two-sided inverse and CONSTANT determinant.
+
+This theorem does not assume polynomial invertibility, constant
+determinant, or any abstract E3 final-resolution producer. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_constantDet
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (deriv : Derivation K (RatFunc K) (RatFunc K))
+    (hX : deriv (RatFunc.X : RatFunc K) = 1)
+    (hRiccati :
+      let C := quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource
+      let M := C⁻¹
+      quadraticTransverse_fieldMatrixDerivative deriv
+          (quadraticTransverse_fieldMatrixDerivative deriv C) =
+        2 * ((quadraticTransverse_fieldMatrixDerivative deriv C * M) *
+          quadraticTransverse_fieldMatrixDerivative deriv C)) :
+    ∃ A : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix * A = 1 ∧
+      A * (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix = 1 ∧
+      ∃ d : K, d ≠ 0 ∧
+        (quadraticTransverseCapSourceAxisThreeBlock
+          T.topKernelReesSource).determinantCore = Polynomial.C d := by
+  exact quadraticTransverseCapSource_rationalRiccati_constantDet
+    T.topKernelReesSource
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P Q hr) deriv hX hRiccati
 
 /-- **The real rank-three quadratic E3 source has longitudinal
 marked collision as a univariate derivative identity.**
