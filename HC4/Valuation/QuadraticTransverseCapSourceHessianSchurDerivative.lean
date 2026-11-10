@@ -96,8 +96,12 @@ theorem quadraticAxisFourBlockCore_transverse_pderiv_frozenBlock
     quadraticTransverseAdjugateVector0
     quadraticTransverseAdjugateVector1
     quadraticTransverseAdjugateVector2
-  simp [map_add, map_sub, map_neg, MvPolynomial.pderiv_mul,
-    ha, hb, hc, hd, he, hf]
+  have htwo :
+      MvPolynomial.pderiv i.succ
+        (2 : MvPolynomial (Fin 4) K) = 0 := by
+    simpa using
+      (MvPolynomial.pderiv_C (i := i.succ) (a := (2 : K)))
+  simp [map_add, map_sub, ha, hb, hc, hd, he, hf, htwo]
   ring
 
 end
