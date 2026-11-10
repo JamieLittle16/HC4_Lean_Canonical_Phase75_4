@@ -25,10 +25,11 @@ open HC4.Newton
 
 variable {K : Type*} [Field K]
 
+set_option maxHeartbeats 1000000
+
 /-- The explicit three-by-three adjugate quadratic pairing occurring
 in the source Schur coefficient equals the corresponding ordinary
 matrix product. This ring identity is independent of the source. -/
-set_option maxHeartbeats 1000000 in
 theorem quadraticTransverse_threeBlock_adjugatePairing_eq_matrixProduct
     {R : Type*} [CommRing R]
     (C : GeneralThreeBlock R)
@@ -91,6 +92,7 @@ theorem quadraticTransverseCap_two_sourceRiccati_matrixCleared
         P 2 i * quadraticTransverseAdjugateVector2 C
           (P 0 j) (P 1 j) (P 2 j) := by
     simpa only [hP i 0, hP i 1, hP i 2] using hpair
+  simp only [Matrix.smul_apply, smul_eq_mul]
   change C.determinantCore * Q i j =
     2 * (P * A.adjugate * P) i j
   rw [hpairs]
