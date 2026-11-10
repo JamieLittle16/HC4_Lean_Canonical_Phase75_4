@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10229**.
+Distinct declaration spellings indexed: **10255**.
 
 ## Repeated declaration spellings
 
@@ -1047,6 +1047,8 @@ Distinct declaration spellings indexed: **10229**.
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolutionProperty` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceAxisThreeBlock_nonsingular` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisRankTwoClosure`
+- `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceThirdTransverseDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.TopFaceLinearPowerKernelData.pureLongitudinal_quadratic_sourceTransverseCap` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.impossible_of_JC2_of_finalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
 - `AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData.toReachableFinalGeometryData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalGeometryAssembly`
@@ -8218,6 +8220,7 @@ Distinct declaration spellings indexed: **10229**.
 - `quadraticAxisFourBlockCore_eq_transverseAdjugateSchur` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticAxisFourBlockCore_oddPairing` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
 - `quadraticAxisFourBlockCore_oddPairing_zero_of_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+- `quadraticAxisFourBlockCore_transverse_pderiv_frozenBlock` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSchurDerivative`
 - `quadraticAxisFourBlock_determinantCore` — `theorem` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisFourBlock_exists_transverseMinor` — `theorem` in `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `quadraticAxisReverseRees_originHessian_block` — `theorem` in `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
@@ -8282,14 +8285,31 @@ Distinct declaration spellings indexed: **10229**.
 - `quadraticSmithSubface_free_three` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `quadraticSmithSubface_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `quadraticSmithSubface_pderiv_three_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `quadraticSourceAxisThreeBlock` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_axis_mixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_schurCore_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionHessian_symmetric` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionRingHom` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSourceSectionRingHom_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSource_axisMixedTransverseDerivative_eq_blockDerivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
+- `quadraticSource_axisSchurCore_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSectionSchur`
+- `quadraticSource_fullHessian_schurCore_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSchurDerivative`
+- `quadraticSource_mixedHessian_transverseDerivative_commute` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
+- `quadraticSource_rankTwo_axisAdjugateJet_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisJetExtraction`
+- `quadraticSource_transverseSchurDerivative_equation` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisMixedDerivative`
 - `quadraticTransverseAdjugateVector0` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugateVector1` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugateVector2` — `def` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row0` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row1` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverseAdjugate_row2` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `quadraticTransverseCap_rankTwo_axisJet_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisJetEndpoint`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `quadraticTransverseCap_rankTwo_sevenSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
+- `quadraticTransverseCap_sourceAxisThreeBlock_singular_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceAxisRankTwoClosure`
+- `quadraticTransverse_adjugateKernel_line` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateKernelNoPivot`
 - `quadraticTransverse_singularThreeBlock_unimodularKernel` — `theorem` in `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`
@@ -10223,6 +10243,11 @@ Distinct declaration spellings indexed: **10229**.
 - `transverseBaseSupport_exists_binaryPlanarisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `transverseBaseSupport_vars_subset_range` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `transverseCapTwo_longitudinalCoefficient_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSupport`
+- `transverseCapTwo_sourceCoeff_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
+- `transverseCapTwo_sourceHessian_support_longitudinal` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSupport`
+- `transverseCapTwo_sourceHessian_transverseSection_independent` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSections`
+- `transverseCapTwo_thirdTransverseDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
+- `transverseCapTwo_transverseHessian_pderiv_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceThirdDerivatives`
 - `transverseDegree_add_kernelShift_eq_one_sub_shiftedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`
 - `transverseFree_implies_free_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `transverseFree_or_exists_positiveTransverseProjectedSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
@@ -10505,6 +10530,7 @@ Distinct declaration spellings indexed: **10229**.
 - `zeroOrderCanonicalFamilyWall_longitudinal_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrderCanonicalFamilyWall_transverse_degree_le_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareZeroOrderFamilyWallShape`
 - `zeroOrder_or_positiveEarlier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+- `zeroPartial_sourceSupport_coordinate_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianSupport`
 - `zeroPolynomialSection` — `def` in `HC4.Valuation.GeometricAssemblyEntry`
 - `zeroPolynomialSection_smithDivisibility` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
 - `zeroRamifiedSection_hasIntegralAdaptiveSmithSection` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`

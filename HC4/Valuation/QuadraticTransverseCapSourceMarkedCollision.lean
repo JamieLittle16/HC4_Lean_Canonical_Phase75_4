@@ -49,7 +49,7 @@ theorem topKernelReesSource_transverseLinearMarkedCollision
       (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
         coordinateAxisPoint (K := K) (0 : Fin 4) := by
     funext i
-    fin_cases i <;> simp [coordinateAxisPoint]
+    fin_cases i <;> simp [coordinateAxisPoint] <;> rfl
   have hcoll :
       HasExactGradientCollision T.topKernelReesSource
         (Fin.cons (0 : K) (fun _ : Fin 3 => 0))

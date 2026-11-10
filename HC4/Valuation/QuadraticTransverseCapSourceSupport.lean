@@ -1,5 +1,6 @@
 import HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import Mathlib.Tactic
 
 /-!
@@ -43,12 +44,41 @@ theorem transverseCapTwo_longitudinalCoefficient_zero
     MvPolynomial.mem_support_iff.mpr hc
   have hw := hbound ((smithTransverseExponent b c d).cons a) hmem
   rw [weight_topKernelMarkedAxisNatWeight] at hw
+  have hb :
+      ((smithTransverseExponent b c d).cons a) (1 : Fin 4) = b := by
+    change
+      ((smithTransverseExponent b c d).cons a)
+        (Fin.succ (0 : Fin 3)) = b
+    rw [Finsupp.cons_succ]
+    exact smithTransverseExponent_zero b c d
+  have hc' :
+      ((smithTransverseExponent b c d).cons a) (2 : Fin 4) = c := by
+    change
+      ((smithTransverseExponent b c d).cons a)
+        (Fin.succ (1 : Fin 3)) = c
+    rw [Finsupp.cons_succ]
+    exact smithTransverseExponent_one b c d
+  have hd :
+      ((smithTransverseExponent b c d).cons a) (3 : Fin 4) = d := by
+    change
+      ((smithTransverseExponent b c d).cons a)
+        (Fin.succ (2 : Fin 3)) = d
+    rw [Finsupp.cons_succ]
+    exact smithTransverseExponent_two b c d
   have hcoords :
       ((smithTransverseExponent b c d).cons a) (1 : Fin 4) +
         ((smithTransverseExponent b c d).cons a) (2 : Fin 4) +
         ((smithTransverseExponent b c d).cons a) (3 : Fin 4) =
         b + c + d := by
-    simp [Finsupp.cons_succ]
+    rw [hb, hc', hd]
+  have hsmall : b + c + d ≤ 2 := by
+    calc
+      b + c + d =
+          ((smithTransverseExponent b c d).cons a) (1 : Fin 4) +
+          ((smithTransverseExponent b c d).cons a) (2 : Fin 4) +
+          ((smithTransverseExponent b c d).cons a) (3 : Fin 4) :=
+        hcoords.symm
+      _ ≤ 2 := hw
   omega
 
 /-- The REAL quadratic relevel source, rather than just its
