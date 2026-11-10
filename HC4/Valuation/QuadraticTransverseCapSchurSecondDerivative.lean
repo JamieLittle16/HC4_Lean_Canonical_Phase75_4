@@ -32,6 +32,13 @@ open HC4.Newton
 
 variable {K R : Type*} [Field K] [CommRing R] [Algebra K R]
 
+/-- K-linear derivations annihilate the numeral two. -/
+private theorem quadraticTransverse_derivation_two_zero
+    (D : Derivation K R R) : D (2 : R) = 0 := by
+  have htwo : (2 : R) = 1 + 1 := by ring
+  rw [htwo, map_add]
+  simp
+
 /-- A derivative annihilates all scalar 3x3 adjugate entries when
 it annihilates the six independent transverse-block entries. -/
 private theorem schur_derivative_adjugateVector
@@ -78,11 +85,13 @@ theorem quadraticTransverse_schur_firstDerivative
            D v₁ * quadraticTransverseAdjugateVector1 C v₀ v₁ v₂ +
            D v₂ * quadraticTransverseAdjugateVector2 C v₀ v₁ v₂) := by
   rcases hzero with ⟨ha, hb, hc, hd, he, hf⟩
+  have htwo : D (2 : R) = 0 :=
+    quadraticTransverse_derivation_two_zero D
   simp [quadraticAxisFourBlockCore, GeneralThreeBlock.determinantCore,
     quadraticTransverseAdjugateVector0,
     quadraticTransverseAdjugateVector1,
     quadraticTransverseAdjugateVector2,
-    D.leibniz, ha, hb, hc, hd, he, hf, smul_eq_mul] <;> ring
+    D.leibniz, ha, hb, hc, hd, he, hf, htwo, smul_eq_mul] <;> ring
 
 /-- The general twice-differentiated Schur identity: the coefficient
 tensor is a genuine adjugate quadratic form on the two mixed
@@ -116,8 +125,10 @@ theorem quadraticTransverse_schur_secondDerivative
     schur_derivative_adjugateVector E C v₀ v₁ v₂ hE
   have hdet : E C.determinantCore = 0 := by
     rcases hE with ⟨ha, hb, hc, hd, he, hf⟩
+    have htwo : E (2 : R) = 0 :=
+      quadraticTransverse_derivation_two_zero E
     simp [GeneralThreeBlock.determinantCore, E.leibniz,
-      ha, hb, hc, hd, he, hf, smul_eq_mul]
+      ha, hb, hc, hd, he, hf, htwo, smul_eq_mul]
   calc
     E (D (quadraticAxisFourBlockCore H v₀ v₁ v₂
         C.a C.b C.c C.d C.e C.f)) =
@@ -134,8 +145,10 @@ theorem quadraticTransverse_schur_secondDerivative
           (E v₀) (E v₁) (E v₂) +
         D v₂ * quadraticTransverseAdjugateVector2 C
           (E v₀) (E v₁) (E v₂)) := by
+               have htwo : E (2 : R) = 0 :=
+                 quadraticTransverse_derivation_two_zero E
                simp [E.leibniz, hdet, hw₀, hw₁, hw₂,
-                 hv₀, hv₁, hv₂, smul_eq_mul] <;> ring
+                 hv₀, hv₁, hv₂, htwo, smul_eq_mul] <;> ring
 
 end
 
