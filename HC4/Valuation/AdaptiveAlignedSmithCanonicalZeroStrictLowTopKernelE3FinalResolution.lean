@@ -466,6 +466,34 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisSchurCollisionCap
     exact P.pureLongitudinal_quadratic_sourceTransverseCap
       D.coefficient_ne_zero D.topFace_eq hr i j k hlarge
 
+/-- **Nonzero polynomial transverse 2x2 minor on the actual E3 source axis.**
+
+The origin-Hessian rank-two witness has been transported to the
+original represented source's polynomial transverse Hessian block C(x).
+This provides generic rank at least two over K(x), not merely rank two
+at the first associated-graded origin. A principal pivot and the remaining
+Schur-section identifications are separate steps. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisPolynomialRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock T.topKernelReesSource
+    C.d * C.f - C.e * C.e ≠ 0 ∨
+    C.b * C.f - C.c * C.e ≠ 0 ∨
+    C.b * C.e - C.c * C.d ≠ 0 ∨
+    C.a * C.f - C.c * C.c ≠ 0 ∨
+    C.a * C.e - C.b * C.c ≠ 0 ∨
+    C.a * C.d - C.b * C.b ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCapSource_axisThreeBlock_polynomialRankTwo
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
 
