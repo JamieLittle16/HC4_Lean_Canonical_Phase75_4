@@ -71,9 +71,11 @@ theorem quadraticTransverse_fieldMatrixDerivative_one
     (D : Derivation K L L) :
     quadraticTransverse_fieldMatrixDerivative D
       (1 : Matrix (Fin 3) (Fin 3) L) = 0 := by
-  ext i j
-  simp [quadraticTransverse_fieldMatrixDerivative,
-    Matrix.one_apply]
+  classical
+  apply Matrix.ext
+  intro i j
+  change D (if i = j then (1 : L) else 0) = 0
+  split_ifs <;> simp
 
 /-- **Reciprocal Riccati rigidity over ANY differential field.**
 
@@ -94,10 +96,18 @@ theorem quadraticTransverse_fieldReciprocal_secondDerivative_zero
     quadraticTransverse_fieldMatrixDerivative D
       (quadraticTransverse_fieldMatrixDerivative D M) = 0 := by
   let dd := quadraticTransverse_fieldMatrixDerivative D
+  have hmul (X Y : Matrix (Fin 3) (Fin 3) L) :
+      dd (X * Y) = dd X * Y + X * dd Y :=
+    quadraticTransverse_fieldMatrixDerivative_mul D X Y
+  have hnegfun (X : Matrix (Fin 3) (Fin 3) L) :
+      dd (-X) = -dd X :=
+    quadraticTransverse_fieldMatrixDerivative_neg D X
+  have hone : dd (1 : Matrix (Fin 3) (Fin 3) L) = 0 :=
+    quadraticTransverse_fieldMatrixDerivative_one D
+  have hr : dd (dd C) = 2 * ((dd C * M) * dd C) := hRiccati
   have hprod : dd M * C + M * dd C = 0 := by
     have h := congrArg dd hMC
-    rw [quadraticTransverse_fieldMatrixDerivative_mul,
-      quadraticTransverse_fieldMatrixDerivative_one] at h
+    rw [hmul, hone] at h
     exact h
   have hneg : dd M * C = -(M * dd C) :=
     eq_neg_of_add_eq_zero_left hprod
@@ -109,13 +119,12 @@ theorem quadraticTransverse_fieldReciprocal_secondDerivative_zero
       _ = -((M * dd C) * M) := by noncomm_ring
   calc
     dd (dd M) = -dd ((M * dd C) * M) := by
-      rw [hMprime, quadraticTransverse_fieldMatrixDerivative_neg]
+      rw [hMprime, hnegfun]
     _ = -(((dd M * dd C + M * dd (dd C)) * M) +
         (M * dd C) * dd M) := by
-          rw [quadraticTransverse_fieldMatrixDerivative_mul,
-            quadraticTransverse_fieldMatrixDerivative_mul]
+          rw [hmul, hmul]
     _ = 0 := by
-      rw [hMprime, hRiccati]
+      rw [hMprime, hr]
       noncomm_ring
 
 /-- If an arbitrary differential field has exactly K as its field
