@@ -4195,6 +4195,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+  - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
   - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
