@@ -26,6 +26,8 @@ import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
 import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
 import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
 import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift
+import HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent
+import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -607,6 +609,31 @@ theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
   intro hzero
   exact PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
     P D hr hzero
+
+/-- **Source-honest GENERIC RANK-THREE quadratic E3 rational inverse.**
+
+The same original represented source whose singular transverse case
+has been eliminated now has an actual two-sided inverse of its
+transverse 3x3 Hessian over K(x). This is constructed from the
+GREEN det C != 0 theorem; no polynomial inverse is presumed.
+
+Deriving the Riccati equation from the actual Hessian and
+establishing its rational differential-field rigidity are the
+remaining steps before this inverse can descend to K[x]. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRationalThreeInverse
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    ∃ M : Matrix (Fin 3) (Fin 3) (RatFunc K),
+      quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource * M = 1 ∧
+      M * quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource = 1 := by
+  exact quadraticTransverseCapSource_rationalThreeMatrix_inverse
+    T.topKernelReesSource
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P D hr)
 
 /-- **The real rank-three quadratic E3 source has longitudinal
 marked collision as a univariate derivative identity.**
