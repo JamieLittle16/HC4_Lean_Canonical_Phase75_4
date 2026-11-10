@@ -122,6 +122,45 @@ theorem quadraticTransverse_ratFunc_derivation_constants
               f (Polynomial.C (q.coeff 0)) := by
                 rw [map_mul, map_mul]
 
+/-- **Full rank-three integrality from the RATIONAL Riccati identity.**
+
+Assuming only that D really differentiates rational polynomials and
+the genuine Riccati equation holds for the matrix C over K(x),
+the inverse already belongs to K[x], and det C is a nonzero
+constant. The constants-field argument is proved above from
+coprime numerator/denominator; it is NOT an additional assumption.
+
+The outstanding proofs are the construction of the compatible
+rational derivation D and extraction of Riccati from the ACTUAL
+four-variable represented Hessian. -/
+theorem quadraticTransverse_ratFuncRiccati_polynomialInverse
+    (D : Derivation K (RatFunc K) (RatFunc K))
+    (hpoly : ∀ p : Polynomial K,
+      D ((algebraMap (Polynomial K) (RatFunc K)) p) =
+        (algebraMap (Polynomial K) (RatFunc K))
+          (Polynomial.derivative p))
+    (C : Matrix (Fin 3) (Fin 3) (Polynomial K))
+    (M : Matrix (Fin 3) (Fin 3) (RatFunc K))
+    (hCM : C.map (algebraMap (Polynomial K) (RatFunc K)) * M = 1)
+    (hMC : M * C.map (algebraMap (Polynomial K) (RatFunc K)) = 1)
+    (hRiccati :
+      quadraticTransverse_fieldMatrixDerivative D
+          (quadraticTransverse_fieldMatrixDerivative D
+            (C.map (algebraMap (Polynomial K) (RatFunc K)))) =
+        2 * ((quadraticTransverse_fieldMatrixDerivative D
+                (C.map (algebraMap (Polynomial K) (RatFunc K))) * M) *
+          quadraticTransverse_fieldMatrixDerivative D
+            (C.map (algebraMap (Polynomial K) (RatFunc K))))) :
+    ∃ P : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      C * P = 1 ∧ P * C = 1 ∧
+        ∃ d : K, d ≠ 0 ∧ C.det = Polynomial.C d := by
+  exact quadraticTransverse_compatibleDerivation_integralInverse
+    (algebraMap (Polynomial K) (RatFunc K))
+    (RatFunc.algebraMap_injective K)
+    D hpoly
+    (quadraticTransverse_ratFunc_derivation_constants D hpoly)
+    C M hCM hMC hRiccati
+
 end
 
 end HC4.Valuation
