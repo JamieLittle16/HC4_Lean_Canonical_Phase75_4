@@ -15240,7 +15240,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapSourceSections`, `HC4.Newton.TerminalTwoZeroSupport`, `HC4.Newton.TerminalOneZeroAmbientDecoupling`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem quadraticTransverseCap_pderiv_succ`, `theorem quadraticTransverseCap_zero_pderiv_succ`, `theorem quadraticTransverseCap_two_tripleTransversePderiv_zero`, `theorem quadraticTransverse_source_eval_section_eq_axis`, `theorem quadraticTransverseSourceSectionRingHom_eval`, `theorem quadraticTransverseCap_two_sectionHessian_succ_succ`
+- Declarations: `theorem quadraticTransverseCap_pderiv_succ`, `theorem quadraticTransverseCap_zero_pderiv_succ`, `theorem quadraticTransverseCap_two_tripleTransversePderiv_zero`, `theorem quadraticTransverse_source_eval_section_eq_axis`, `theorem quadraticTransverseSourceSectionRingHom_eval`, `theorem quadraticTransverseCap_two_sectionHessian_succ_succ`, `theorem quadraticTransverseCap_two_sectionThreeBlock_fixed`, `theorem quadraticTransverseCap_two_actualSectionSchur_unit`
 
 ### `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
 
