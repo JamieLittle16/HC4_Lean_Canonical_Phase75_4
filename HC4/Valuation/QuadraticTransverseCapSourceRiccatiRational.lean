@@ -62,10 +62,10 @@ theorem quadraticTransverseCap_two_sourceRiccati_rational
   have hunit : IsUnit A.det := isUnit_iff_ne_zero.mpr hA
   have hAM : P.map f * M = 1 := by
     change A * A⁻¹ = 1
-    exact Matrix.mul_nonsing_inv hunit
+    exact Matrix.mul_nonsing_inv A hunit
   have hMA : M * P.map f = 1 := by
     change A⁻¹ * A = 1
-    exact Matrix.nonsing_inv_mul hunit
+    exact Matrix.nonsing_inv_mul A hunit
   have hcleared :
       P.det • quadraticTransverse_polynomialMatrixDerivative
           (quadraticTransverse_polynomialMatrixDerivative P) =
