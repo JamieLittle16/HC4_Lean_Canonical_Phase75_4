@@ -4191,6 +4191,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
