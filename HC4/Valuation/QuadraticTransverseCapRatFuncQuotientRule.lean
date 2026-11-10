@@ -98,6 +98,34 @@ theorem quadraticTransverse_ratFuncCandidateXDerivative_mk
     (fun {r s a} hs ha =>
       quadraticTransverse_ratQuotientXDerivative_scale r s a hs ha)
 
+/-- On embedded polynomials, the rational quotient-rule candidate
+agrees exactly with the already-existing formal polynomial derivative.
+This is the first compatibility law needed for the eventual
+K-derivation. -/
+theorem quadraticTransverse_ratFuncCandidateXDerivative_polynomial
+    (p : Polynomial K) :
+    quadraticTransverse_ratFuncCandidateXDerivative
+        ((algebraMap (Polynomial K) (RatFunc K)) p) =
+      (algebraMap (Polynomial K) (RatFunc K))
+        (Polynomial.derivative p) := by
+  rw [← RatFunc.mk_one p]
+  rw [quadraticTransverse_ratFuncCandidateXDerivative_mk p 1 one_ne_zero]
+  simp [quadraticTransverse_ratQuotientXDerivative]
+
+/-- In particular, the quotient-rule candidate differentiates the
+genuine rational indeterminate X to 1. To qualify as a
+`Derivation`, its additive and product rules must still be proved. -/
+theorem quadraticTransverse_ratFuncCandidateXDerivative_X :
+    quadraticTransverse_ratFuncCandidateXDerivative
+      (RatFunc.X : RatFunc K) = 1 := by
+  have hX :
+      (RatFunc.X : RatFunc K) =
+        (algebraMap (Polynomial K) (RatFunc K)) Polynomial.X := by
+    rw [← RatFunc.aeval_X_left_eq_algebraMap]
+    simp
+  rw [hX, quadraticTransverse_ratFuncCandidateXDerivative_polynomial]
+  simp
+
 end
 
 end HC4.Valuation
