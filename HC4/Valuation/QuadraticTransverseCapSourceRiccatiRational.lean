@@ -1,5 +1,6 @@
 import HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport
 import HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge
+import HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule
 import Mathlib.Tactic
 
 /-!
@@ -106,6 +107,29 @@ theorem quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation
     F hCdet D hX
     (quadraticTransverseCap_two_sourceRiccati_rational
       F hbound hHessDet hCdet D hX)
+
+
+/-- The actual represented source has a nonzero CONSTANT polynomial
+transverse determinant in the rank-three quadratic-cap case. Unlike
+the earlier interface, this theorem assumes NO rational derivation:
+the canonical quotient-rule derivation and its X-compatibility are
+constructed independently of the source geometry. -/
+theorem quadraticTransverseCap_two_source_constantDet
+    (F : MvPolynomial (Fin 4) K)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2 F)
+    (hHessDet : HC4.Polynomial.hessianDeterminant F = 1)
+    (hCdet :
+      (quadraticTransverseCapSourceAxisThreeBlock F).determinantCore ≠ 0) :
+    ∃ A : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      (quadraticTransverseCapSourceAxisThreeBlock F).matrix * A = 1 ∧
+      A * (quadraticTransverseCapSourceAxisThreeBlock F).matrix = 1 ∧
+        ∃ d : K, d ≠ 0 ∧
+          (quadraticTransverseCapSourceAxisThreeBlock F).determinantCore =
+            Polynomial.C d := by
+  exact quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation
+    F hbound hHessDet hCdet
+    (quadraticTransverse_ratFuncXDerivation (K := K))
+    (quadraticTransverse_ratFuncXDerivation_X (K := K))
 
 end
 
