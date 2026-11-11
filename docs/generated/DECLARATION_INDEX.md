@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10374**.
+Distinct declaration spellings indexed: **10376**.
 
 ## Repeated declaration spellings
 
@@ -8352,6 +8352,7 @@ Distinct declaration spellings indexed: **10374**.
 - `quadraticTransverseCap_two_sourceGlobalSchur_secondJet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_sourceRiccati_cleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
 - `quadraticTransverseCap_two_sourceRiccati_linearCleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
+- `quadraticTransverseCap_two_sourceRiccati_linearMatrixCleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
 - `quadraticTransverseCap_two_sourceRiccati_matrixCleared` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiMatrix`
 - `quadraticTransverseCap_two_sourceRiccati_rational` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
 - `quadraticTransverseCap_two_source_constantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
@@ -8433,6 +8434,7 @@ Distinct declaration spellings indexed: **10374**.
 - `quadraticTransverse_source_eval_section_eq_axis` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverse_source_longitudinalMarkedCollision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
 - `quadraticTransverse_threeBlock_adjugatePairing_eq_matrixProduct` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiMatrix`
+- `quadraticTransverse_threeBlock_linearAdjugatePairing` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
 - `quadraticTransverse_threePrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
 - `quadraticTransverse_twoRowPrincipalKernel_wedges` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `quadratic_below_scaled_contact` — `theorem` in `HC4.Newton.ScaledContact`

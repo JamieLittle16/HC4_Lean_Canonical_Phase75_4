@@ -5239,6 +5239,9 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
   - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
 - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiMatrix`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
