@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10378**.
+Distinct declaration spellings indexed: **10381**.
 
 ## Repeated declaration spellings
 
@@ -8344,6 +8344,8 @@ Distinct declaration spellings indexed: **10378**.
 - `quadraticTransverseCap_two_mixedHessian_crossTransverse_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
 - `quadraticTransverseCap_two_mixedHessian_secondTransverse_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
 - `quadraticTransverseCap_two_rankThree_constantDetZeroMixed_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+- `quadraticTransverseCap_two_rankThree_sourceMixedDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
+- `quadraticTransverseCap_two_rankThree_source_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
 - `quadraticTransverseCap_two_sectionHessian_succ_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_two_sectionMixedRow_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCap_two_sectionThreeBlock_fixed` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
@@ -8377,6 +8379,7 @@ Distinct declaration spellings indexed: **10378**.
 - `quadraticTransverse_affineMatrix_factor` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affineMatrix_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affinePolynomial_eq_of_twoValues` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+- `quadraticTransverse_clearedLinearRiccati_polynomialInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
 - `quadraticTransverse_clearedRiccati_fieldRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`
 - `quadraticTransverse_compatibleDerivation_integralInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_cubicDerivative_markedInterval` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
