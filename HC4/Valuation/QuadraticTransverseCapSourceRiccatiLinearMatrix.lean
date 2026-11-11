@@ -32,14 +32,13 @@ theorem quadraticTransverse_threeBlock_linearAdjugatePairing
       P i 1 * quadraticTransverseAdjugateVector1 G (v 0) (v 1) (v 2) +
       P i 2 * quadraticTransverseAdjugateVector2 G (v 0) (v 1) (v 2) := by
   classical
-  fin_cases i <;>
-    simp [Matrix.mulVec_apply_eq_sum, Matrix.mul_apply,
-      Fin.sum_univ_three, GeneralThreeBlock.matrix,
-      Matrix.adjugate_fin_three,
-      quadraticTransverseAdjugateVector0,
-      quadraticTransverseAdjugateVector1,
-      quadraticTransverseAdjugateVector2] <;>
-    ring
+  change (∑ j : Fin 3, (P * G.matrix.adjugate) i j * v j) = _
+  simp [Matrix.mul_apply, Fin.sum_univ_three,
+    GeneralThreeBlock.matrix, Matrix.adjugate_fin_three,
+    quadraticTransverseAdjugateVector0,
+    quadraticTransverseAdjugateVector1,
+    quadraticTransverseAdjugateVector2]
+  <;> ring
 
 /-- The exact source linear Riccati equation, now in matrix-vector
 notation. The polynomial Hessian C, source coefficient vector b,
