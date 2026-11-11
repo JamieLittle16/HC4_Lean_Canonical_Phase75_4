@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10376**.
+Distinct declaration spellings indexed: **10374**.
 
 ## Repeated declaration spellings
 
@@ -5042,7 +5042,6 @@ Distinct declaration spellings indexed: **10376**.
 - `div_eq_div_iff_cross` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `div_eval_eq_of_sub_eval_zero` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `dmat` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
-- `dmat_affineN` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `dmat_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `dmat_neg` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `dmat_one` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
@@ -5063,9 +5062,6 @@ Distinct declaration spellings indexed: **10376**.
 - `dualMatrix_firstAdjugateIdentity_of_det_eq_eps` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
 - `dvd_two_mul_of_laurent_weight_relation` — `theorem` in `HC4.Toric.FourSidedCharacter`
 - `dvd_two_of_coprime_dvd_two_mul` — `theorem` in `HC4.Toric.ExceptionalGrading`
-- `dvec` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
-- `dvec_add` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
-- `dvec_mulVec` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `earlySchurFirstKeyContext` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyInterface`
 - `earlySchur_positiveTransverseSourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyInterface`
 - `earlySchur_rankTwoGeometry_or_constantLineRS2Preassembly` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalEarlySchurRankTwoGeometry`
@@ -8375,11 +8371,10 @@ Distinct declaration spellings indexed: **10376**.
 - `quadraticTransverseSource_fourOppositeSections_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverse_affineFieldInverse_polynomialAndConstantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_affineFieldMatrix_polynomialLift` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+- `quadraticTransverse_affineMatrixVector_markedCollision_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `quadraticTransverse_affineMatrix_factor` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affineMatrix_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affinePolynomial_eq_of_twoValues` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
-- `quadraticTransverse_affineVector_odeCollision_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
-- `quadraticTransverse_affineVector_twoValues_constant` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `quadraticTransverse_clearedRiccati_fieldRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`
 - `quadraticTransverse_compatibleDerivation_integralInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_cubicDerivative_markedInterval` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
@@ -8406,6 +8401,9 @@ Distinct declaration spellings indexed: **10376**.
 - `quadraticTransverse_polynomialMatrix_inverse_descends` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_polynomialMatrix_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialToRatFunc` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+- `quadraticTransverse_polynomialVectorDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+- `quadraticTransverse_polynomialVectorDerivative_add` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+- `quadraticTransverse_polynomialVectorDerivative_mulVec` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `quadraticTransverse_polynomial_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_rankThree_constantDet_longitudinalCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
 - `quadraticTransverse_rankThree_nilpotentDrift_collision` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`

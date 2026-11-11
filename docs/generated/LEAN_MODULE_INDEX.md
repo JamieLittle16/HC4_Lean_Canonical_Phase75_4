@@ -15205,12 +15205,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 
 - Path: `HC4/Valuation/QuadraticTransverseCapRankThreeAffineVectorCollision.lean`
-- Purpose: Affine transverse vector collision: a shortcut through second derivatives
+- Purpose: Affine inverse and marked-vector collision
 - A-labels: none detected
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem quadraticTransverse_affinePolynomial_eq_of_twoValues`, `theorem quadraticTransverse_affineVector_twoValues_constant`, `def dvec`, `theorem dvec_add`, `theorem dvec_mulVec`, `theorem dmat_affineN`, `theorem quadraticTransverse_affineVector_odeCollision_constant`
+- Declarations: `theorem quadraticTransverse_affinePolynomial_eq_of_twoValues`, `def quadraticTransverse_polynomialVectorDerivative`, `theorem quadraticTransverse_polynomialVectorDerivative_add`, `theorem quadraticTransverse_polynomialVectorDerivative_mulVec`, `theorem quadraticTransverse_affineMatrixVector_markedCollision_zero`
 
 ### `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
 
