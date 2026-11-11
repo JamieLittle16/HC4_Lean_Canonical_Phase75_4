@@ -5215,6 +5215,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
   - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
+- `HC4.Valuation.QuadraticTransverseCapSourceFullClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
 - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
   - `HC4.Newton.TerminalOneZeroAmbientDecoupling`
   - `HC4.Newton.TerminalTwoZeroSupport`
