@@ -49,8 +49,11 @@ theorem quadraticTransverse_polynomialInverse_affine_of_clearedRiccati
       _ = C.det • M := by simp
   have hcancel : C.det • Q = C.det • (2 • (P * M * P)) := by
     rw [hAdj] at hcleared
-    convert hcleared using 1
-    simp [Matrix.mul_smul, Matrix.smul_mul, smul_comm, smul_smul]
+    change C.det • Q = 2 • (P * (C.det • M) * P) at hcleared
+    calc
+      C.det • Q = 2 • (P * (C.det • M) * P) := hcleared
+      _ = C.det • (2 • (P * M * P)) := by
+        simp only [Matrix.mul_smul, Matrix.smul_mul, smul_comm]
   have hmatrix : Q = 2 • (P * M * P) := by
     apply Matrix.ext
     intro i j
@@ -92,8 +95,10 @@ theorem quadraticTransverse_polynomialAffineInverse_nilpotentSlope
           (Polynomial.X : Polynomial K) • B.map Polynomial.C := by
     apply Matrix.ext
     intro i j
-    simpa [Matrix.add_apply, Matrix.smul_apply, Matrix.map_apply,
-      smul_eq_mul, mul_comm] using hAB i j
+    change M i j = Polynomial.C (A i j) +
+      (Polynomial.X : Polynomial K) * Polynomial.C (B i j)
+    rw [mul_comm (Polynomial.X : Polynomial K) (Polynomial.C (B i j))]
+    exact hAB i j
   have hM₀ : M.map e = A := by
     rw [hM]
     apply Matrix.ext
@@ -103,8 +108,9 @@ theorem quadraticTransverse_polynomialAffineInverse_nilpotentSlope
   have hAC₀ : A * C₀ = 1 := by
     have h := congrArg
       (fun Z : Matrix (Fin 3) (Fin 3) (Polynomial K) => Z.map e) hMC
-    rw [Matrix.map_mul] at h
-    simpa only [hM₀, C₀, Matrix.map_one] using h
+    change (M * C).map e = (1 : Matrix (Fin 3) (Fin 3) (Polynomial K)).map e at h
+    rw [Matrix.map_mul, Matrix.map_one, hM₀] at h
+    exact h
   let N : Matrix (Fin 3) (Fin 3) K := C₀ * B
   have hB : B = A * N := by
     dsimp [N]
@@ -114,6 +120,7 @@ theorem quadraticTransverse_polynomialAffineInverse_nilpotentSlope
       M C hMC
   have hdet_eval : A.det = d := by
     have he := (e.map_det M).symm
+    change (M.map e).det = e M.det at he
     rw [hM₀, hdetM] at he
     simpa [e] using he
   have hdetA : A.det ≠ 0 := by
