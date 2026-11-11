@@ -142,8 +142,8 @@ theorem quadraticTransverse_affineMatrixVector_markedCollision_zero
     have h := congrArg (fun w : Fin 3 → Polynomial K => C.mulVec w) hMb
     change C.mulVec (M.mulVec b) = C.mulVec (M.mulVec vconst) at h
     rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec] at h
-    rw [hCM, Matrix.one_mulVec] at h
-    exact h
+    rw [hCM] at h
+    simpa only [Matrix.one_mulVec] using h
   intro i
   rw [congrFun hb i]
   simp [vconst]
