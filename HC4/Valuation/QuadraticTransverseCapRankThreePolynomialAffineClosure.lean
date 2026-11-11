@@ -52,8 +52,12 @@ theorem quadraticTransverse_polynomialInverse_affine_of_clearedRiccati
     change C.det • Q = 2 • (P * (C.det • M) * P) at hcleared
     calc
       C.det • Q = 2 • (P * (C.det • M) * P) := hcleared
-      _ = C.det • (2 • (P * M * P)) := by
-        simp only [Matrix.mul_smul, Matrix.smul_mul, smul_comm]
+      _ = 2 • ((C.det • (P * M)) * P) := by
+        rw [Matrix.mul_smul]
+      _ = 2 • (C.det • (P * M * P)) := by
+        rw [Matrix.smul_mul]
+      _ = C.det • (2 • (P * M * P)) :=
+        smul_comm (2 : ℕ) C.det (P * M * P)
   have hmatrix : Q = 2 • (P * M * P) := by
     apply Matrix.ext
     intro i j
@@ -110,7 +114,9 @@ theorem quadraticTransverse_polynomialAffineInverse_nilpotentSlope
       (fun Z : Matrix (Fin 3) (Fin 3) (Polynomial K) => Z.map e) hMC
     change (M * C).map e = (1 : Matrix (Fin 3) (Fin 3) (Polynomial K)).map e at h
     rw [Matrix.map_mul, Matrix.map_one, hM₀] at h
-    exact h
+    · exact h
+    · exact map_zero e
+    · exact map_one e
   let N : Matrix (Fin 3) (Fin 3) K := C₀ * B
   have hB : B = A * N := by
     dsimp [N]
