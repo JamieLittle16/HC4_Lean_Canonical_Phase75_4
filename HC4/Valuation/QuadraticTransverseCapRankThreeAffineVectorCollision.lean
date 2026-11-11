@@ -124,5 +124,92 @@ theorem quadraticTransverse_affineVector_twoValues_constant
   rw [congrFun hb i]
   simp [vconst]
 
+
+/-- Entrywise polynomial-vector differentiation. -/
+private def dvec (w : Fin 3 → Polynomial K) : Fin 3 → Polynomial K :=
+  fun i => Polynomial.derivative (w i)
+
+private theorem dvec_add (v w : Fin 3 → Polynomial K) :
+    dvec (v + w) = dvec v + dvec w := by
+  funext i
+  simp [dvec]
+
+/-- Product rule for a polynomial matrix acting on a polynomial vector. -/
+private theorem dvec_mulVec
+    (M : Matrix (Fin 3) (Fin 3) (Polynomial K))
+    (w : Fin 3 → Polynomial K) :
+    dvec (M.mulVec w) =
+      (quadraticTransverse_polynomialMatrixDerivative M).mulVec w +
+        M.mulVec (dvec w) := by
+  funext i
+  change
+    Polynomial.derivative (∑ j : Fin 3, M i j * w j) =
+      (∑ j : Fin 3, Polynomial.derivative (M i j) * w j) +
+        (∑ j : Fin 3, M i j * Polynomial.derivative (w j))
+  rw [map_sum]
+  simp_rw [Polynomial.derivative_mul]
+  exact Finset.sum_add_distrib
+
+/-- The derivative of I + X N is the constant matrix N. -/
+private theorem dmat_affineN
+    (N : Matrix (Fin 3) (Fin 3) K) :
+    quadraticTransverse_polynomialMatrixDerivative
+      (1 + (Polynomial.X : Polynomial K) • N.map Polynomial.C) =
+        N.map Polynomial.C := by
+  ext i j
+  simp [quadraticTransverse_polynomialMatrixDerivative,
+    Matrix.add_apply, Matrix.smul_apply, Matrix.map_apply,
+    Matrix.one_apply, Polynomial.derivative_mul]
+
+/-- **Affine-vector ODE closure.** The first-order coefficient equation
+T*b'' = -2N*b' is sufficient to make (T*b)'' vanish.  Consequently
+a polynomially invertible T and the marked collision make b constant.
+
+No nilpotence or explicit ODE solution is required. -/
+theorem quadraticTransverse_affineVector_odeCollision_constant
+    (N : Matrix (Fin 3) (Fin 3) K)
+    (U : Matrix (Fin 3) (Fin 3) (Polynomial K))
+    (b : Fin 3 → Polynomial K)
+    (hUT :
+      U * (1 + (Polynomial.X : Polynomial K) • N.map Polynomial.C) = 1)
+    (hode :
+      (1 + (Polynomial.X : Polynomial K) • N.map Polynomial.C).mulVec
+          (dvec (dvec b)) =
+        -((N.map Polynomial.C).mulVec (dvec b) +
+          (N.map Polynomial.C).mulVec (dvec b)))
+    (hcoll : ∀ i : Fin 3,
+      Polynomial.eval (1 : K) (b i) =
+        Polynomial.eval (0 : K) (b i)) :
+    ∀ i : Fin 3, Polynomial.derivative (b i) = 0 := by
+  let T : Matrix (Fin 3) (Fin 3) (Polynomial K) :=
+    1 + (Polynomial.X : Polynomial K) • N.map Polynomial.C
+  let Np := N.map Polynomial.C
+  have hTderiv :
+      quadraticTransverse_polynomialMatrixDerivative T = Np :=
+    dmat_affineN N
+  have hNderiv :
+      quadraticTransverse_polynomialMatrixDerivative Np = 0 :=
+    quadraticTransverse_polynomialMatrixDerivative_mapC N
+  have hfirst :
+      dvec (T.mulVec b) =
+        Np.mulVec b + T.mulVec (dvec b) := by
+    rw [dvec_mulVec, hTderiv]
+  have hsecond :
+      dvec (dvec (T.mulVec b)) =
+        Np.mulVec (dvec b) +
+          (Np.mulVec (dvec b) + T.mulVec (dvec (dvec b))) := by
+    rw [hfirst, dvec_add, dvec_mulVec, dvec_mulVec,
+      hNderiv, hTderiv]
+    simp
+  have hzero :
+      dvec (dvec (T.mulVec b)) = 0 := by
+    rw [hsecond, hode]
+    abel
+  apply quadraticTransverse_affineVector_twoValues_constant N U b hUT
+  · intro i
+    have hi := congrFun hzero i
+    simpa [dvec] using hi
+  · exact hcoll
+
 end
 end HC4.Valuation
