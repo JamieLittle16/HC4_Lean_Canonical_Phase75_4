@@ -5175,6 +5175,9 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
+  - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
 - `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`

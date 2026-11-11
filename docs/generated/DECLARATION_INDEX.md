@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10376**.
+Distinct declaration spellings indexed: **10378**.
 
 ## Repeated declaration spellings
 
@@ -8372,6 +8372,7 @@ Distinct declaration spellings indexed: **10376**.
 - `quadraticTransverseSource_fourOppositeSections_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSections`
 - `quadraticTransverse_affineFieldInverse_polynomialAndConstantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_affineFieldMatrix_polynomialLift` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+- `quadraticTransverse_affineInverse_linearODE_productSecond_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
 - `quadraticTransverse_affineMatrixVector_markedCollision_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
 - `quadraticTransverse_affineMatrix_factor` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affineMatrix_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
@@ -8395,6 +8396,7 @@ Distinct declaration spellings indexed: **10376**.
 - `quadraticTransverse_field_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_polynomialAffineInverse_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
 - `quadraticTransverse_polynomialInverse_affine_of_clearedRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
+- `quadraticTransverse_polynomialInverse_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
 - `quadraticTransverse_polynomialMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mapC` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
 - `quadraticTransverse_polynomialMatrixDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
