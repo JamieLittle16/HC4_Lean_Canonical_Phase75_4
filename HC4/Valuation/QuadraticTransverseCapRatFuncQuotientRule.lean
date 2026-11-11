@@ -262,12 +262,9 @@ noncomputable def quadraticTransverse_ratFuncXDerivation :
         (1 : Polynomial K))
   leibniz' := by
     intro x y
-    change quadraticTransverse_ratFuncCandidateXDerivative (x * y) =
-      x • quadraticTransverse_ratFuncCandidateXDerivative y +
-        y • quadraticTransverse_ratFuncCandidateXDerivative x
-    rw [quadraticTransverse_ratFuncCandidateXDerivative_mul]
-    simp only [Algebra.smul_def]
-    ring
+    simpa only [Algebra.smul_def, algebraMap_self, id_eq, mul_comm,
+      add_comm] using
+      (quadraticTransverse_ratFuncCandidateXDerivative_mul (K := K) x y)
 
 /-- The canonical rational derivation sends the genuine indeterminate
 to one; no differential-field hypothesis is needed. -/
