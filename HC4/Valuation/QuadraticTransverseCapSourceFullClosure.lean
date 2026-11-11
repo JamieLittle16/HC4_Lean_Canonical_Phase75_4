@@ -18,6 +18,8 @@ a specialization of the represented family's leading term.
 namespace HC4.Valuation
 noncomputable section
 
+open HC4.Newton
+
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- A genuine four-variable determinant-one Hessian polynomial,
@@ -39,12 +41,9 @@ theorem quadraticTransverseCap_two_source_markedCollision_impossible
   · apply quadraticTransverseCap_two_singularSource_impossible
       F hbound hdet hCdet
     intro i
-    change Polynomial.eval (1 : K)
-        (longitudinalCoefficientPolynomialAt (Finsupp.single i 1) F) =
-      Polynomial.eval (0 : K)
-        (longitudinalCoefficientPolynomialAt (Finsupp.single i 1) F)
-    exact longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision
-      i F hcoll
+    simpa only [quadraticTransverseCapSourceLinearCoefficients] using
+      (longitudinalCoefficient_single_eval_one_eq_eval_zero_of_collision
+        i F hcoll)
   · exact quadraticTransverseCap_two_rankThree_source_impossible
       F hbound hdet hCdet hcoll
 
