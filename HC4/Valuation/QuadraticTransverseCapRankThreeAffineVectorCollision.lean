@@ -98,11 +98,13 @@ theorem quadraticTransverse_affineMatrixVector_markedCollision_zero
   have hconstSecond (i : Fin 3) :
       Polynomial.derivative (Polynomial.derivative
         (M.mulVec vconst i)) = 0 := by
-    rw [Matrix.mulVec_apply_eq_sum]
+    change Polynomial.derivative (Polynomial.derivative
+      (∑ j : Fin 3, M i j * Polynomial.C (v₀ j))) = 0
     simp only [map_sum]
     apply Finset.sum_eq_zero
     intro j _
-    simp [vconst, Polynomial.derivative_mul, hMaffine i j]
+    simp only [Polynomial.derivative_mul, Polynomial.derivative_C,
+      mul_zero, add_zero, hMaffine i j, zero_mul]
   have heval (t : K) (w : Fin 3 → Polynomial K) (i : Fin 3) :
       Polynomial.eval t (M.mulVec w i) =
         ∑ j : Fin 3,
@@ -138,6 +140,7 @@ theorem quadraticTransverse_affineMatrixVector_markedCollision_zero
       (hMbaffine i) (hconstSecond i) (hzero i) (hone i)
   have hb : b = vconst := by
     have h := congrArg (fun w : Fin 3 → Polynomial K => C.mulVec w) hMb
+    change C.mulVec (M.mulVec b) = C.mulVec (M.mulVec vconst) at h
     rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec] at h
     rw [hCM, Matrix.one_mulVec] at h
     exact h
