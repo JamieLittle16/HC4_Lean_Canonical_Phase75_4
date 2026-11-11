@@ -15210,7 +15210,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem quadraticTransverse_affinePolynomial_eq_of_twoValues`, `theorem quadraticTransverse_affineVector_twoValues_constant`
+- Declarations: `theorem quadraticTransverse_affinePolynomial_eq_of_twoValues`, `theorem quadraticTransverse_affineVector_twoValues_constant`, `def dvec`, `theorem dvec_add`, `theorem dvec_mulVec`, `theorem dmat_affineN`, `theorem quadraticTransverse_affineVector_odeCollision_constant`
 
 ### `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
 
