@@ -39,6 +39,17 @@ theorem quadraticTransverse_affineInverse_linearODE_productSecond_zero
   let δ := quadraticTransverse_polynomialVectorDerivative (K := K)
   let D := quadraticTransverse_polynomialMatrixDerivative (K := K)
   let v := δ b
+  have hmul (A : Matrix (Fin 3) (Fin 3) (Polynomial K))
+      (w : Fin 3 → Polynomial K) :
+      δ (A.mulVec w) = (D A).mulVec w + A.mulVec (δ w) :=
+    quadraticTransverse_polynomialVectorDerivative_mulVec A w
+  have hadd (w z : Fin 3 → Polynomial K) :
+      δ (w + z) = δ w + δ z :=
+    quadraticTransverse_polynomialVectorDerivative_add w z
+  have hMsecond' : D (D M) = 0 := hMsecond
+  have hMprime' : D M = -(M * P * M) := hMprime
+  have hlinear' :
+      δ v = (P * M).mulVec v + (P * M).mulVec v := hlinear
   have hproduct :
       δ (δ (M.mulVec b)) =
         (D (D M)).mulVec b + (D M).mulVec v +
@@ -46,18 +57,14 @@ theorem quadraticTransverse_affineInverse_linearODE_productSecond_zero
     calc
       δ (δ (M.mulVec b)) =
           δ ((D M).mulVec b + M.mulVec v) := by
-            rw [quadraticTransverse_polynomialVectorDerivative_mulVec M b]
+            rw [hmul M b]
       _ = (D (D M)).mulVec b + (D M).mulVec v +
           ((D M).mulVec v + M.mulVec (δ v)) := by
-            rw [quadraticTransverse_polynomialVectorDerivative_add,
-              quadraticTransverse_polynomialVectorDerivative_mulVec,
-              quadraticTransverse_polynomialVectorDerivative_mulVec]
+            rw [hadd, hmul, hmul]
   have hzero : δ (δ (M.mulVec b)) = 0 := by
-    rw [hproduct, hMsecond, Matrix.zero_mulVec, zero_add]
-    rw [hlinear]
-    rw [Matrix.mulVec_add, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec]
-    rw [hMprime]
-    simp only [Matrix.neg_mulVec, Matrix.mul_assoc]
+    rw [hproduct, hMsecond', Matrix.zero_mulVec, zero_add, hlinear']
+    simp only [hMprime', Matrix.mulVec_add, Matrix.mulVec_mulVec,
+      Matrix.neg_mulVec, Matrix.mul_assoc]
     abel
   intro i
   have hi := congrFun hzero i
@@ -80,9 +87,11 @@ theorem quadraticTransverse_polynomialInverse_derivative
       (if i = j then (1 : Polynomial K) else 0) = 0
     split_ifs <;> simp
   have hproduct : D M * C + M * D C = 0 := by
-    have h := congrArg D hMC
-    rw [quadraticTransverse_polynomialMatrixDerivative_mul, hone] at h
-    exact h
+    calc
+      D M * C + M * D C = D (M * C) :=
+        (quadraticTransverse_polynomialMatrixDerivative_mul M C).symm
+      _ = D 1 := congrArg D hMC
+      _ = 0 := hone
   have hneg : D M * C = -(M * D C) :=
     eq_neg_of_add_eq_zero_left hproduct
   calc
