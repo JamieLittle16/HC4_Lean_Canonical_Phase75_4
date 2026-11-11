@@ -18,6 +18,7 @@ namespace HC4.Valuation
 
 noncomputable section
 open HC4.Newton
+open HC4.Toric
 
 universe u
 variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
@@ -62,13 +63,13 @@ theorem PureLongitudinalMarkedE3Data.nonlinearRankThreeOrKernelOpening
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (D : P.PureLongitudinalMarkedE3Data) :
     (∃ (N : P.PureLongitudinalMarkedAxisLowerNonlinearData)
-        (facet : ToricFacet),
+        (facet : HC4.Toric.ToricFacet),
         MvRankThreeOnFacet facet N.vertex.exponent) ∨
       (∃ (N : P.PureLongitudinalMarkedAxisLowerNonlinearData),
-        CanonicalCodimensionTwoKernelOutcome
+        Nonempty (CanonicalCodimensionTwoKernelOutcome
           (familyParameterLayer
             T.topKernelMarkedAxisFirstContactFamily
-            T.topKernelMarkedAxisFirstActualLayerOrder)) := by
+            T.topKernelMarkedAxisFirstActualLayerOrder))) := by
   rcases P.pureLongitudinal_markedAxis_lowerBoundaryFrontier_nonempty
       D.coefficient_ne_zero D.topFace_eq with ⟨F⟩
   cases F with
@@ -77,7 +78,7 @@ theorem PureLongitudinalMarkedE3Data.nonlinearRankThreeOrKernelOpening
   | rankThree N facet hthree =>
       exact Or.inl ⟨N, facet, hthree⟩
   | kernelOpening N outcome =>
-      exact Or.inr ⟨N, outcome⟩
+      exact Or.inr ⟨N, ⟨outcome⟩⟩
 
 end TopFaceLinearPowerKernelData
 end AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
