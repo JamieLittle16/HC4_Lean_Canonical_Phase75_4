@@ -262,8 +262,8 @@ noncomputable def quadraticTransverse_ratFuncXDerivation :
         (1 : Polynomial K))
   leibniz' := by
     intro x y
-    simpa only [Algebra.smul_def, algebraMap_self, id_eq, mul_comm,
-      add_comm] using
+    simpa only [Algebra.smul_def, Algebra.algebraMap_self_apply,
+      mul_comm, add_comm] using
       (quadraticTransverse_ratFuncCandidateXDerivative_mul (K := K) x y)
 
 /-- The canonical rational derivation sends the genuine indeterminate
