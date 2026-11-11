@@ -42,7 +42,7 @@ theorem hessianPrincipalMinor_polynomialFamilySpecialFiber
         (HC4.Polynomial.hessianPrincipalMinor Q i j) := by
   unfold HC4.Polynomial.hessianPrincipalMinor
   simp only [hessian_polynomialFamilySpecialFiber,
-    RingHom.mapMatrix_apply, map_mul, map_sub]
+    Matrix.map_apply, map_mul, map_sub]
 
 /-- A principal minor nonzero on the special fibre is nonzero
 in the entire polynomial family; this implication is valid even
