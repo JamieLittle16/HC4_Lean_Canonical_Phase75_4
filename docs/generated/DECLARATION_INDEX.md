@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10417**.
+Distinct declaration spellings indexed: **10418**.
 
 ## Repeated declaration spellings
 
@@ -2402,6 +2402,7 @@ Distinct declaration spellings indexed: **10417**.
 - `PureLongitudinalMarkedE3Data.firstActualRankTwo_sourceRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
 - `PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3OffAxisDeterminantJet`
 - `PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantFirstSix_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3OffAxisDeterminantJet`
+- `PureLongitudinalMarkedE3Data.firstActualRelevelledNextLayer_eq_initialForm` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3OffAxisDeterminantJet`
 - `PureLongitudinalMarkedE3Data.firstActualTransverseDegree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`
 - `PureLongitudinalMarkedE3Data.firstActualTwoByTwoMinor_sourceGradedIdentity` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3GradedSourceMinor`
 - `PureLongitudinalMarkedE3Data.firstActualTwoByTwoMinor_sourceLift` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`

@@ -12260,7 +12260,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`, `HC4.Valuation.FirstSchurDepartureBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantClock`, `theorem PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantFirstSix_zero`
+- Declarations: `theorem PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantClock`, `theorem PureLongitudinalMarkedE3Data.firstActualRelevelledNextLayer_eq_initialForm`, `theorem PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantFirstSix_zero`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3QuadraticElimination`
 
