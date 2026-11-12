@@ -116,7 +116,7 @@ theorem PureLongitudinalMarkedE3Data.removeFirstFace_exactCollision
   have hFi := hF i
   have hLi := hL i
   unfold HC4.Newton.mvGradientComponentAt at hFi hLi ⊢
-  simp only [MvPolynomial.pderiv_sub, map_sub]
+  simp only [map_sub]
   rw [hFi, hLi]
 
 end TopFaceLinearPowerKernelData
