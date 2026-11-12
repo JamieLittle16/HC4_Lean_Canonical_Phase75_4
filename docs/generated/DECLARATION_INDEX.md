@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10409**.
+Distinct declaration spellings indexed: **10412**.
 
 ## Repeated declaration spellings
 
@@ -2397,6 +2397,7 @@ Distinct declaration spellings indexed: **10409**.
 - `PureLongitudinalMarkedE3Data.codimensionTwoLowerFace_kernelOrOpeningSourceMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceMinorBridge`
 - `PureLongitudinalMarkedE3Data.codimensionTwoLowerFace_sourceRankTwoFrontier` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceRankTwoFrontier`
 - `PureLongitudinalMarkedE3Data.commonFactorQuotient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.firstActualHessian_axisRestriction_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
 - `PureLongitudinalMarkedE3Data.firstActualPrincipalMinor_sourceLift` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`
 - `PureLongitudinalMarkedE3Data.firstActualRankTwo_sourceRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
 - `PureLongitudinalMarkedE3Data.firstActualTransverseDegree_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`
@@ -2436,6 +2437,7 @@ Distinct declaration spellings indexed: **10409**.
 - `PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.reducedClockCollisionFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.sourceGradedMinor_axisRestriction_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
 - `PureLongitudinalMarkedE3NonlinearConcreteFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
 - `PureLongitudinalMarkedE3NonlinearGradedSourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearGradedSourceFrontier`
 - `PureLongitudinalMarkedE3NonlinearSourceRankTwoFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearSourceRankTwoFrontier`
@@ -10414,6 +10416,7 @@ Distinct declaration spellings indexed: **10409**.
 - `transverseLowDimensional_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
 - `transversePair_zero_of_codimensionTwoBoundary` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `transversePlanarAffineSupport_of_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
+- `transversePositiveInitialForm_axisRestriction_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
 - `transversePureAffine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `transversePureAffine_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `transverseQuadratic_rankTwo_constantKernelDrift_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
