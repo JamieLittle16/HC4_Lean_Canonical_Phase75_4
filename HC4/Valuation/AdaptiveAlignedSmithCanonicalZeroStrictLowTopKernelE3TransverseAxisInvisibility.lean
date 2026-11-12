@@ -49,7 +49,8 @@ theorem transversePositiveInitialForm_axisRestriction_zero
           ((0 : Fin 3 →₀ ℕ).cons a) = 0 := by
     rw [weight_topKernelMarkedAxisIntWeight]
     simp
-  simp [hw, ne_of_gt hm]
+  have hzero : (0 : ℤ) ≠ m := ne_of_lt hm
+  simp [hw, hzero]
 
 namespace AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
 namespace TopFaceLinearPowerKernelData
