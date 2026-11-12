@@ -69,7 +69,7 @@ theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq
   rw [hsub, map_sub]
   have hz :=
     D.firstActualHessian_axisRestriction_zero P i j
-  rw [longitudinalAxisRestrictionRingHom_apply] 
+  simp only [longitudinalAxisRestrictionRingHom_apply]
   rw [hz]
   simp
 
