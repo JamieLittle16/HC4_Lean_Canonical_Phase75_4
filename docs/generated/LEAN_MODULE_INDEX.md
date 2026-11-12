@@ -12210,7 +12210,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`, `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq`, `theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_det_one`, `theorem PureLongitudinalMarkedE3Data.removeFirstFace_exactCollision`
+- Declarations: `theorem PureLongitudinalMarkedE3Data.firstActualGradient_axisRestriction_zero`, `theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq`, `theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_det_one`, `theorem PureLongitudinalMarkedE3Data.removeFirstFace_exactCollision`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
 
