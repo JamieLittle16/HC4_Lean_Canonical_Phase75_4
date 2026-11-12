@@ -4170,7 +4170,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`
-  - `HC4.Valuation.WeightedHessianMinorInitial`
+  - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`

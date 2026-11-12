@@ -12137,10 +12137,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Valuation/AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift.lean`
 - Purpose: Source-honest lifting of arbitrary Hessian two-by-two minors in nonlinear E3
 - A-labels: none detected
-- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`, `HC4.Valuation.WeightedHessianMinorInitial`
+- Local imports: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`, `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem canonicalCoordinateMaxOpening_parentMinor_of_childMinor`, `theorem canonicalCoordinateMaxOpening_parentRankTwo_of_childRankTwo`, `theorem PureLongitudinalMarkedE3Data.firstActualTwoByTwoMinor_sourceLift`, `theorem PureLongitudinalMarkedE3Data.firstActualRankTwo_sourceRankTwo`
+- Declarations: `theorem e3InitialForm_hessianTwoByTwoMinor_eq`, `theorem e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero`, `theorem canonicalCoordinateMaxOpening_parentMinor_of_childMinor`, `theorem canonicalCoordinateMaxOpening_parentRankTwo_of_childRankTwo`, `theorem PureLongitudinalMarkedE3Data.firstActualTwoByTwoMinor_sourceLift`, `theorem PureLongitudinalMarkedE3Data.firstActualRankTwo_sourceRankTwo`
 
 ### `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 
@@ -16149,7 +16149,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
+- Imported by local modules: none
 - Declarations: `def hessianTwoByTwoMinor`, `theorem initialForm_hessianTwoByTwoMinor_eq`, `theorem hessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero`
 
 ### `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
@@ -16159,7 +16159,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.117`, `A19.118`
 - Local imports: `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`, `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`, `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`, `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`, `HC4.Valuation.WeightedHessianMinorInitial`
+- Imported by local modules: `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactRayPivotLift`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceClosure`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSourceSchur`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetSuperfacePivot`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`, `HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift`, `HC4.Valuation.FiniteSupportPositiveCoordinatesHessianMinor`, `HC4.Valuation.WeightedHessianMinorInitial`
 - Declarations: `theorem initialForm_hessianPrincipalMinor_eq`, `theorem hessianPrincipalMinor_ne_zero_of_initialForm_ne_zero`
 
 ### `HC4.Valuation.ZeroGradientNormalization`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10394**.
+Distinct declaration spellings indexed: **10396**.
 
 ## Repeated declaration spellings
 
@@ -5072,6 +5072,8 @@ Distinct declaration spellings indexed: **10394**.
 - `dualMatrix_firstAdjugateIdentity_of_det_eq_eps` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
 - `dvd_two_mul_of_laurent_weight_relation` — `theorem` in `HC4.Toric.FourSidedCharacter`
 - `dvd_two_of_coprime_dvd_two_mul` — `theorem` in `HC4.Toric.ExceptionalGrading`
+- `e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
+- `e3InitialForm_hessianTwoByTwoMinor_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
 - `earlySchurFirstKeyContext` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyInterface`
 - `earlySchur_positiveTransverseSourceSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyInterface`
 - `earlySchur_rankTwoGeometry_or_constantLineRS2Preassembly` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalEarlySchurRankTwoGeometry`
