@@ -28,7 +28,7 @@ open HC4.Newton
 open HC4.Polynomial
 
 universe u
-variable {K : Type u} [Field K] [CharZero K]
+variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 
 /-- A nonzero non-principal or principal Hessian two-by-two minor on any
 of the three genuine coordinate-max faces of the canonical singular
@@ -57,10 +57,10 @@ theorem canonicalThreeCoordinateMaxFaces_minor_source
         hessianTwoByTwoMinor
           (coordinateMaxInitialData G hG a).face i j k l ≠ 0) :
       hessianTwoByTwoMinor G i j k l ≠ 0 := by
-    apply e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero
+    exact e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero
       (coordinateMaxInitialData G hG a).weight_bound i j k l
-    rw [← (coordinateMaxInitialData G hG a).face_eq]
-    exact hm
+      (by
+        simpa only [(coordinateMaxInitialData G hG a).face_eq] using hm)
   rcases hface with h0 | h1 | h2
   · exact lift F hF (0 : Fin 4) h0
   · exact lift F hF (0 : Fin 4)
