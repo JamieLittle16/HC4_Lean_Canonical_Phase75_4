@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10396**.
+Distinct declaration spellings indexed: **10398**.
 
 ## Repeated declaration spellings
 
@@ -4120,6 +4120,7 @@ Distinct declaration spellings indexed: **10396**.
 - `canonicalGeometricState_terminalEndpoint_impossible_of_JC2` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `canonicalMaximallyNormalizedStrictSmithFamily` — `def` in `HC4.Valuation.StrictSmithFirstContactMinimum`
 - `canonicalOneStepSmithResidualExponent` — `def` in `HC4.Valuation.CanonicalSmithDefectExposure`
+- `canonicalOpeningRankTwo_source_of_threeFaceProvenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningChainMinorLift`
 - `canonicalPositiveTransverseReesFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier`
 - `canonicalPositiveTransverseReesFamily_hessianDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier`
 - `canonicalPositiveTransverseReesLowLayer_of_not_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier`
@@ -4209,6 +4210,7 @@ Distinct declaration spellings indexed: **10396**.
 - `canonicalSymmetricMinimal_departureFrontier_with_leftSection` — `theorem` in `HC4.Valuation.ZeroLeftDepartureFrontier`
 - `canonicalSymmetricMinimal_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `canonicalSymmetricMinimal_losslessFrontier` — `theorem` in `HC4.Valuation.LosslessSmithFrontier`
+- `canonicalThreeCoordinateMaxFaces_minor_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningChainMinorLift`
 - `canonicalTransverseDegree` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesFrontier`
 - `canonicalWeight_transverse` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
 - `canonicalWeight_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
