@@ -4231,6 +4231,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3GradedSourceMinor`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearSourceRankTwoFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceRankTwoFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3OffAxisDeterminantJet`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
+  - `HC4.Valuation.FirstSchurDepartureBridge`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3QuadraticElimination`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
   - `HC4.Valuation.QuadraticTransverseCapSourceFullClosure`
