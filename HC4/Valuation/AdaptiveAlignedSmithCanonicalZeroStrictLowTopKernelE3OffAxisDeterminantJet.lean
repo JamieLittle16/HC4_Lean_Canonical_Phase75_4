@@ -88,6 +88,40 @@ theorem PureLongitudinalMarkedE3Data.firstActualRelevelledDeterminantClock
       hbound T.topKernelReesSource_hessianDeterminant_eq_one hnonneg
     simpa [Q, hsum] using hdef
 
+/-- The first lower parameter coefficient of the relevelled family is
+*exactly* the transverse-weight r-1 component of the unchanged source.
+This identifies the first off-axis determinant perturbation without
+assuming that this lower layer is nonzero. -/
+theorem PureLongitudinalMarkedE3Data.firstActualRelevelledNextLayer_eq_initialForm
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let r := T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+    let hbound :=
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+    let Q := reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+      r T.topKernelReesSource hbound
+    familyParameterLayer Q 1 =
+      HC4.Polynomial.initialForm
+        (fun a => (topKernelMarkedAxisNatWeight a : ℤ))
+        (((r - 1 : ℕ) : ℤ)) T.topKernelReesSource := by
+  let r := T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder
+  let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight r
+      T.topKernelReesSource :=
+    P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+      D.coefficient_ne_zero D.topFace_eq
+  let Q := reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+    r T.topKernelReesSource hbound
+  have hr : 1 ≤ r := by
+    have hthree : 3 ≤ r := D.firstActualTransverseDegree_ge_three P
+    omega
+  change familyParameterLayer Q 1 =
+    HC4.Polynomial.initialForm
+      (fun a => (topKernelMarkedAxisNatWeight a : ℤ))
+      (((r - 1 : ℕ) : ℤ)) T.topKernelReesSource
+  exact reverseWeightedReesFamily_parameterLayer_eq_initialForm
+    topKernelMarkedAxisNatWeight r 1 T.topKernelReesSource hbound hr
+
 /-- The exact first *six* actual parameter layers of the relevelled
 determinant vanish, as polynomials in all four source variables.  A
 determinant-coefficient compatibility identity, not merely an
