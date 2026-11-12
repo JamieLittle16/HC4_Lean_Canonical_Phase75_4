@@ -34,7 +34,7 @@ variable {K : Type u} [Field K] [CharZero K] [IsAlgClosed K]
 2×2 Hessian minor convention Hᵢₖ Hⱼₗ - Hᵢₗ Hⱼₖ.
 This local lemma avoids importing the distinct, older minor definition
 whose binder order clashes with the reverse-Rees minor API. -/
-private theorem e3InitialForm_hessianTwoByTwoMinor_eq
+theorem e3InitialForm_hessianTwoByTwoMinor_eq
     {w : Fin 4 → ℤ} {m : ℤ}
     {F : MvPolynomial (Fin 4) K}
     (hF : HC4.Polynomial.IsWeightLE w m F)
