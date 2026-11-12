@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10398**.
+Distinct declaration spellings indexed: **10400**.
 
 ## Repeated declaration spellings
 
@@ -4089,6 +4089,8 @@ Distinct declaration spellings indexed: **10398**.
 - `cancel_stationaryRamifiedFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
 - `canonicalAdaptiveAlignedSmithRepairRanking` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
 - `canonicalAdaptiveSmithWall_or_strictImprovement` — `theorem` in `HC4.Valuation.CanonicalAdaptiveSmithWall`
+- `canonicalCodimensionTwoKernel_or_firstOpening_withProvenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningProvenance`
+- `canonicalCodimensionTwoKernel_or_sourceRankTwo_of_childRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningProvenance`
 - `canonicalCoordinateMaxOpening_parentMinor_of_childMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
 - `canonicalCoordinateMaxOpening_parentRankTwo_of_childRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
 - `canonicalDegreeRamification` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalUniformRamification`
