@@ -4223,6 +4223,9 @@ human architecture guide.
   - `HC4.Valuation.StrictSmithPostTransformFace`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3GradedSourceMinor`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearSourceRankTwoFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`

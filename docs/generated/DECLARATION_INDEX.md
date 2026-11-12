@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10414**.
+Distinct declaration spellings indexed: **10417**.
 
 ## Repeated declaration spellings
 
@@ -2439,6 +2439,9 @@ Distinct declaration spellings indexed: **10414**.
 - `PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.reducedClockCollisionFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
+- `PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
+- `PureLongitudinalMarkedE3Data.removeFirstFace_exactCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
 - `PureLongitudinalMarkedE3Data.sourceGradedMinor_axisRestriction_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
 - `PureLongitudinalMarkedE3NonlinearConcreteFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
 - `PureLongitudinalMarkedE3NonlinearGradedSourceFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearGradedSourceFrontier`
