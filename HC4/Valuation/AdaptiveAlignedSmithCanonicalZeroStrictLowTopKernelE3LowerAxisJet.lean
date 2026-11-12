@@ -38,6 +38,30 @@ variable {T : AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminalData
   (K := K) state}
 variable {kernelCoordinate : Fin 4}
 
+/-- The first nonlinear face also has *zero entire gradient* on
+the longitudinal axis.  The marked-gradient collision on this face
+is consequently automatic at every pair of axis points; no special
+two-point cancellation is needed for the high transverse term. -/
+theorem PureLongitudinalMarkedE3Data.firstActualGradient_axisRestriction_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (i : Fin 4) :
+    longitudinalAxisRestriction
+      (MvPolynomial.pderiv i
+        (familyParameterLayer
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstActualLayerOrder)) = 0 := by
+  rw [P.pureLongitudinal_markedAxis_firstActualLayer_eq_initialForm
+      D.coefficient_ne_zero D.topFace_eq]
+  rw [HC4.Polynomial.pderiv_initialForm]
+  have hr : 3 ≤
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder :=
+    D.firstActualTransverseDegree_ge_three P
+  have hi : (topKernelMarkedAxisNatWeight i : ℤ) ≤ 1 := by
+    fin_cases i <;> norm_num [topKernelMarkedAxisNatWeight]
+  apply transversePositiveInitialForm_axisRestriction_zero
+  omega
+
 /-- Removing the first nonlinear transverse face from the source changes
 no Hessian matrix entry after restricting to the longitudinal axis. -/
 theorem PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq
