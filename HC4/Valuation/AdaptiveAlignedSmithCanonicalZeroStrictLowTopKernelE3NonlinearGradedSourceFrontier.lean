@@ -142,7 +142,6 @@ nonzero exact transverse-weight component of degree at least two. -/
 theorem PureLongitudinalMarkedE3Data.gradedSourceRankTwo_witness
     (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
     (D : P.PureLongitudinalMarkedE3Data)
-    (N : P.PureLongitudinalMarkedAxisLowerNonlinearData)
     (i j k l : Fin 4)
     (hminor :
       hessianTwoByTwoMinor
