@@ -67,7 +67,7 @@ private theorem e3InitialForm_hessianTwoByTwoMinor_eq
 
 /-- Nonvanishing of an arbitrary Hessian minor on a maximal weighted face
 forces the same minor to be nonzero on the original polynomial. -/
-private theorem e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero
+theorem e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero
     {w : Fin 4 → ℤ} {m : ℤ}
     {F : MvPolynomial (Fin 4) K}
     (hF : HC4.Polynomial.IsWeightLE w m F)
