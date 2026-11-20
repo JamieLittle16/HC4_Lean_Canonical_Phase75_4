@@ -56,6 +56,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankThreeCubicJordanSquare`
+  - `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
@@ -1178,6 +1180,11 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicJordanSquare`
   - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicJordanSquare`
+- `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Polynomial.DerivativeWeight`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
