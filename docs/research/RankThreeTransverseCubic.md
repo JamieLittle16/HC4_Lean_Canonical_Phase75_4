@@ -288,9 +288,11 @@ Its outer-product factors give a fixed direction and invariant
 covector. Euler's homogeneous identity then gives a nonzero square
 derivative on the reference cubic.
 
-The final transport of that square back to the source is not yet
-formalised in the general linear chart. The unverified draft is
-deliberately outside the import graph and this PR commit.
+A basis-free **paper** proof of the square pullback, using the explicit
+inverse \`(I+tN)⁻¹ = I-tN+t²N²\` to obtain an injective substitution,
+is recorded in [RankThreeCubicLinearSourcePullback](RankThreeCubicLinearSourcePullback.md).
+The corresponding general linear-chart source theorem is not yet Lean
+compiled; the unverified draft remains outside the import graph.
 
 It remains to extract the linear velocity from an arbitrary pole-free
 rational characteristic. In the pole case, one must construct the local
