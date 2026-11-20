@@ -122,6 +122,29 @@ fibre-coefficient assembly and low-dimensional applications.
 The linked targeted Lean build succeeded. A full repository
 `lake build` after root import has not yet been verified.
 
+## Strengthened result: reference square supplied by gradient transport
+
+The companion module
+`HC4/Polynomial/RankThreeCubicLinearSquareAssembly.lean` proves
+`exists_source_square_of_nonzero_linear_characteristic` in Lean 4.24.
+It assumes only a nonzero constant matrix `N`, the actual linear
+characteristic's transverse gradient transport, regularity of the
+reference transverse Hessian, and homogeneity of the reference cubic.
+
+The theorem derives `det(I+tN)=1` from Hessian transport, obtains
+`N³=0`, and factors the last nonzero power as `N^r=dℓᵀ`.
+Its Hessian-self-adjointness lemma, together with
+`(HN)ᵀ=HN` and `Hᵀ=H`, shows `HN^r` is symmetric for both
+`r=1,2`. The existing rank-one-square theorem then supplies
+`d·∇C=c(ℓ·y)²` with `c≠0`. The already verified source-pullback
+theorem concludes the corresponding identity on the actual cubic `L`.
+The resulting `d,ℓ` are nonzero and satisfy `Nd=0, ℓᵀN=0`.
+
+The [targeted Lean run](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44819572594)
+succeeded. This does not imply the whole HC4 root or updated audit
+has been rebuilt, nor does it establish the classification of arbitrary
+rational velocities.
+
 ## What this does *not* settle
 
 The constructed characteristic initially lives in the rational

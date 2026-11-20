@@ -298,6 +298,21 @@ its transport identity, and the already proved reference-square data;
 it is not a classification of arbitrary rational characteristics.
 See [the source-pullback proof](RankThreeCubicLinearSourcePullback.md).
 
+The subsequent `RankThreeCubicLinearSquareAssembly.lean` module now
+composes the earlier results **without assuming a reference square**.
+A nonzero linear velocity with a regular reference transverse Hessian,
+a homogeneous reference cubic, and the actual gradient-transport equation
+forces a nilpotent `N`, a nonzero rank-one power `N^r=dℓᵀ`
+(with `r=1` or `r=2`), and an actual-source identity
+`d·∇ᵧ L=c(ℓ·y)^2` with `d,ℓ,c` nonzero.
+The matrix self-adjointness required by the reference-square theorem is
+derived from the transported Hessian, and its propagation to `N²`
+is checked directly. The
+[targeted Lean CI run](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44819572594)
+passed. This closes the **nonzero linear-characteristic square step**,
+not the general rational-characteristic classification or the
+remaining determinant-fibre injectivity proof.
+
 It remains to extract the linear velocity from an arbitrary pole-free
 rational characteristic. In the pole case, one must construct the local
 ring at a denominator prime, descend the residue singular point to the

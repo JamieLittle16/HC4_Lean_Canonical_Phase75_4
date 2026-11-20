@@ -624,3 +624,6 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.square_pullback_of_transport
 #print axioms HC4.Polynomial.RankThreeCubic.linearLineEval_invariant_transverseForm
 #print axioms HC4.Polynomial.RankThreeCubic.source_square_of_linear_characteristic
+
+#print axioms HC4.Polynomial.RankThreeCubic.reference_hessian_selfAdjoint_of_linear_transport
+#print axioms HC4.Polynomial.RankThreeCubic.exists_source_square_of_nonzero_linear_characteristic

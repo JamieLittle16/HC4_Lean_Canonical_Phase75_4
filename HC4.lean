@@ -421,3 +421,6 @@ import HC4.Polynomial.RankThreeCubicNilpotentSquare
 
 -- Basis-free inverse and source square for a nilpotent cubic characteristic.
 import HC4.Polynomial.RankThreeCubicLinearSourcePullback
+
+-- Derive the original-source fixed square from nonzero linear gradient transport.
+import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
