@@ -399,3 +399,6 @@ import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
 -- Exact quadratic truncation across the missing cubic and quartic grades.
 import HC4.Valuation.QuadraticTransverseGap
 
+-- Source-level first determinant jet on a singular transverse axis.
+import HC4.Valuation.TransverseAxisCubicCorrection
+

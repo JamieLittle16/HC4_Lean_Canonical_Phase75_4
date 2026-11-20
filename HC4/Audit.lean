@@ -577,3 +577,8 @@ import HC4
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.corrected_profile_rows
 #print axioms HC4.Valuation.TransverseGap.quadraticDeterminant_one_of_highWeightPerturbation
 #print axioms HC4.Valuation.TransverseGap.quadraticTruncation_inherits_of_gap
+#print axioms HC4.Polynomial.restricted_derivation_det_eq_trace
+#print axioms HC4.Valuation.TransverseAxis.cubicCorrection_eq_neg_two_kernelDrift
+#print axioms HC4.Valuation.TransverseAxis.exists_cubicCorrection_ne_zero_of_singular
+#print axioms HC4.Valuation.TransverseAxis.cubicCorrection_selfPairing_eq_zero_of_singular
+#print axioms HC4.Valuation.TransverseAxis.cubicGrade_ne_zero_of_singular_axis
