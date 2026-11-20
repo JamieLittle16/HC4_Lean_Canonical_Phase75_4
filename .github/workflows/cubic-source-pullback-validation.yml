@@ -22,3 +22,5 @@ jobs:
         run: lake exe cache get
       - name: Compile source pullback
         run: lake build HC4.Polynomial.RankThreeCubicLinearSourcePullback HC4.Polynomial.RankThreeCubicLinearSquareAssembly
+      - name: Audit the source square theorem
+        run: lake env lean HC4/Polynomial/RankThreeCubicLinearSquareAssemblyAudit.lean
