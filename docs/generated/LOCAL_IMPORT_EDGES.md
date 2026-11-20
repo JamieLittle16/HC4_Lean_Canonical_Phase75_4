@@ -317,6 +317,7 @@ human architecture guide.
   - `HC4.Valuation.StrictSmithMaximalNormalization`
   - `HC4.Valuation.StrictSmithPostTransformFace`
   - `HC4.Valuation.SymmetricSmithImprovementRestart`
+  - `HC4.Valuation.TransverseAxisCubicCorrection`
   - `HC4.Valuation.ZeroGradientNormalization`
   - `HC4.Valuation.ZeroLeftDepartureFrontier`
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
@@ -1014,6 +1015,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightBounds`
 - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Polynomial.DeterminantFirstJet`
+  - _(no local imports)_
 - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.DerivativeWeight`
 - `HC4.Polynomial.FiniteStaircaseAdjacentDeficit`
@@ -5459,6 +5462,14 @@ human architecture guide.
 - `HC4.Valuation.SymmetricSmithImprovementRestart`
   - `HC4.Newton.SymmetricSmithMinimality`
   - `HC4.Valuation.CommonParameterFactorRestart`
+- `HC4.Valuation.TransverseAxisCubicCorrection`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.MixedDegreeAxisCollision`
+  - `HC4.Polynomial.DeterminantFirstJet`
+  - `HC4.Valuation.QuadraticTransverseGap`
+  - `HC4.Valuation.TransverseAxisKernelDrift`
+- `HC4.Valuation.TransverseAxisKernelDrift`
+  - _(no local imports)_
 - `HC4.Valuation.WeightedHessianMinorInitial`
   - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
