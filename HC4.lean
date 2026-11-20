@@ -402,3 +402,6 @@ import HC4.Valuation.QuadraticTransverseGap
 -- Source-level first determinant jet on a singular transverse axis.
 import HC4.Valuation.TransverseAxisCubicCorrection
 
+
+-- Determinant pencils and pivot rigidity for the cap-three rank-two cubic.
+import HC4.Polynomial.RankTwoCubicFibrePencils

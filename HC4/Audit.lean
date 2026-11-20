@@ -582,3 +582,11 @@ import HC4
 #print axioms HC4.Valuation.TransverseAxis.exists_cubicCorrection_ne_zero_of_singular
 #print axioms HC4.Valuation.TransverseAxis.cubicCorrection_selfPairing_eq_zero_of_singular
 #print axioms HC4.Valuation.TransverseAxis.cubicGrade_ne_zero_of_singular_axis
+
+#print axioms HC4.Polynomial.RankTwoCubic.ternary_kernelDiagonal_firstJet
+#print axioms HC4.Polynomial.RankTwoCubic.ternary_affineCubic_firstDifference
+#print axioms HC4.Polynomial.RankTwoCubic.affineFibre_secondDifference
+#print axioms HC4.Polynomial.RankTwoCubic.straightenedFibre_firstDifference
+#print axioms HC4.Polynomial.RankTwoCubic.longitudinalBorder_det
+#print axioms HC4.Polynomial.RankTwoCubic.partialLegendre_secondDifference
+#print axioms HC4.Polynomial.RankTwoCubic.derivative_eq_zero_of_reciprocalSecondIdentity
