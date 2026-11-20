@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10495**.
+Distinct declaration spellings indexed: **10503**.
 
 ## Repeated declaration spellings
 
@@ -4985,6 +4985,7 @@ Distinct declaration spellings indexed: **10495**.
 - `det_rigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_shiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `det_sparseRankThreePencil` — `theorem` in `HC4.Polynomial.RankThreePencils`
+- `det_squareFibreAffinePencil` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `det_swappedRankThreeEulerHessian_eq_zero_of_hessianDeterminant_eq_zero` — `theorem` in `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
 - `det_transverseSourceShearMatrices` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `det_twoFunctionEulerHessianMatrix` — `theorem` in `HC4.Polynomial.TwoFunctionEulerHessian`
@@ -6325,6 +6326,7 @@ Distinct declaration spellings indexed: **10495**.
 - `hessianDeterminant_zeroJetNormalizedFamily` — `theorem` in `HC4.Valuation.ZeroGradientNormalization`
 - `hessianFour_counterexample_hasPlanarKellerCollision_of_relativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`
 - `hessianFour_counterexample_hasPlanarKellerCollision_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`
+- `hessianKernel_acceleration` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `hessianKernel_firstRow` — `theorem` in `HC4.Newton.FixedKernelHessian`
 - `hessianKernel_secondRow` — `theorem` in `HC4.Newton.FixedKernelHessian`
 - `hessianLayer_eq_zero_of_pos_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerHessianBridge`
@@ -7884,6 +7886,7 @@ Distinct declaration spellings indexed: **10495**.
 - `polynomial_exists_two_support_of_derivative_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_eval_neg_one_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
 - `polynomial_exists_two_support_of_not_monomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactExponentMixedBlocker`
+- `polynomial_factor_eq_one` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `polynomial_firstOpening_of_mul_eq_X_pow_mul` — `theorem` in `HC4.Newton.PolynomialFirstOpeningTransport`
 - `polynomial_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalImpossible`
 - `polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
@@ -9842,6 +9845,11 @@ Distinct declaration spellings indexed: **10495**.
 - `squareContact_weightedDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareExactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `squareExponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `squareFibreAffinePencil` — `def` in `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `squareFibreAffine_firstDifference_zeroOther` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `squareFibreAffine_secondDifference` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `squareFibreLegendrePencil` — `def` in `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `squareFibreLegendre_coeff_three` — `theorem` in `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `squareGeometry_of_detCore_eq_zero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareGeometry_of_rankOneRelation` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
