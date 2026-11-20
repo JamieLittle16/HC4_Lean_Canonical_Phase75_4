@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10563**.
+Distinct declaration spellings indexed: **10566**.
 
 ## Repeated declaration spellings
 
@@ -9001,6 +9001,8 @@ Distinct declaration spellings indexed: **10563**.
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `referenceSlice_pderiv` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+- `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+- `reference_hessian_selfAdjoint_of_linear_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `reference_square_of_jordan_velocity` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `refine_exposed_face` — `theorem` in `HC4.Newton.ExposedFaces`
 - `refine_exposed_face_membership` — `theorem` in `HC4.Newton.ExposedFaces`
@@ -10207,6 +10209,7 @@ Distinct declaration spellings indexed: **10563**.
 - `symmetricTargetGrade_of_separatorDelta_one_one_nonpositive` — `theorem` in `HC4.Newton.SmithSymmetricBalanceRefinement`
 - `symmetricThreeBlock_singular_minor_implies_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
 - `symmetricThreeBlock_sixMinors_fixedPrincipalPivots` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+- `symmetric_mul_square` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `tVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `tVarnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `tVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
