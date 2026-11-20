@@ -124,18 +124,24 @@ theorem exists_source_square_of_nonzero_linear_characteristic
       simpa using hHN
     · subst r
       exact symmetric_mul_square H A hH hHN
-  have hfac' : A ^ r =
-      Matrix.vecMulVec (fun i => MvPolynomial.C (d i))
-        (fun i => MvPolynomial.C (l i)) := by
-    change (N.map MvPolynomial.C) ^ r = _
-    rw [← Matrix.map_pow, hfac]
-    ext i j
-    simp [Matrix.vecMulVec]
+  let T : Matrix (Fin 3) (Fin 3) (MvPolynomial (Fin 3) K) :=
+    Matrix.vecMulVec (fun i => MvPolynomial.C (d i))
+      (fun i => MvPolynomial.C (l i))
+  have hmap (i j : Fin 3) :
+      (A ^ r) i j = MvPolynomial.C ((N ^ r) i j) := by
+    rcases hr with hr | hr
+    · subst r
+      simp [A]
+    · subst r
+      simp only [pow_two, A, Matrix.mul_apply, Matrix.map_apply,
+        map_sum, map_mul]
+  have hfac' : A ^ r = T := by
+    apply Matrix.ext
+    intro i j
+    rw [hmap, hfac]
+    simp [T, Matrix.vecMulVec]
   have hsquare : ∀ i j : Fin 3,
-      (H * Matrix.vecMulVec (fun i => MvPolynomial.C (d i))
-        (fun i => MvPolynomial.C (l i))) i j =
-      (H * Matrix.vecMulVec (fun i => MvPolynomial.C (d i))
-        (fun i => MvPolynomial.C (l i))) j i := by
+      (H * T) i j = (H * T) j i := by
     intro i j
     rw [← hfac']
     exact (congrArg (fun M : Matrix (Fin 3) (Fin 3)
