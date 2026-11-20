@@ -21,23 +21,25 @@ variable {K : Type*} [Field K]
 private theorem nilpotent_shear_inverse_matrix
     (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) (t : K) :
     (1 + t • N) * (1 - t • N + (t • N) ^ 2) = 1 := by
-  have hpow : (t • N) ^ 3 = 0 := by
+  let A : Matrix (Fin 3) (Fin 3) K := t • N
+  have hpow : A ^ 3 = 0 := by
+    change (t • N) ^ 3 = 0
     rw [smul_pow, hN, smul_zero]
+  change (1 + A) * (1 - A + A ^ 2) = 1
   calc
-    (1 + t • N) * (1 - t • N + (t • N) ^ 2) = 1 + (t • N) ^ 3 := by
-      noncomm_ring
+    (1 + A) * (1 - A + A ^ 2) = 1 + A ^ 3 := by noncomm_ring
     _ = 1 := by rw [hpow, add_zero]
 
 private theorem nilpotent_shear_inverse_mulVec
     (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) (t : K)
     (v : Fin 3 → K) :
     (1 + t • N) *ᵥ ((1 - t • N + (t • N) ^ 2) *ᵥ v) = v := by
-  rw [← Matrix.mulVec_mulVec, nilpotent_shear_inverse_matrix N hN t,
+  rw [Matrix.mulVec_mulVec, nilpotent_shear_inverse_matrix N hN t,
     Matrix.one_mulVec]
 
 /-- Injectivity of the actual three-transverse-variable characteristic
 substitution, without choosing a Jordan basis. -/
-theorem linearLineEval_injective_of_cube_zero
+theorem linearLineEval_injective_of_cube_zero [CharZero K]
     (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) :
     Function.Injective
       (linearLineEval a N : MvPolynomial (Unit ⊕ Fin 3) K →
