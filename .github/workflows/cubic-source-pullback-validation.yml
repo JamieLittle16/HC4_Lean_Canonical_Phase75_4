@@ -1,0 +1,24 @@
+name: Verify cubic source pullback (temporary branch)
+on:
+  push:
+    branches:
+      - research/cubic-source-pullback-validation
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean-pullback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Lean and Mathlib
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Download Mathlib cache
+        run: lake exe cache get
+      - name: Compile source pullback
+        run: lake build HC4.Polynomial.RankThreeCubicLinearSourcePullback
