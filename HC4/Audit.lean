@@ -575,3 +575,5 @@ import HC4
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.wall_row
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.curve_row
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.corrected_profile_rows
+#print axioms HC4.Valuation.TransverseGap.quadraticDeterminant_one_of_highWeightPerturbation
+#print axioms HC4.Valuation.TransverseGap.quadraticTruncation_inherits_of_gap

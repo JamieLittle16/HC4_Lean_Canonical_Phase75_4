@@ -396,3 +396,6 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRan
 -- Lift nonzero Hessian pivots through the canonical three-exposure ray extractor.
 import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
 
+-- Exact quadratic truncation across the missing cubic and quartic grades.
+import HC4.Valuation.QuadraticTransverseGap
+
