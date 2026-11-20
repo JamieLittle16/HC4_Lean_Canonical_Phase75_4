@@ -3182,7 +3182,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - External imports: none
 - Imported by local modules: none
-- Declarations: `theorem symmetric_mul_square`, `theorem reference_hessian_eq_mapped_transverse`, `theorem reference_hessian_selfAdjoint_of_linear_transport`
+- Declarations: `theorem symmetric_mul_square`, `theorem reference_hessian_eq_mapped_transverse`, `theorem reference_hessian_selfAdjoint_of_linear_transport`, `theorem exists_source_square_of_nonzero_linear_characteristic`
 
 ### `HC4.Polynomial.RankThreeCubicLinearTransport`
 
