@@ -590,3 +590,9 @@ import HC4
 #print axioms HC4.Polynomial.RankTwoCubic.longitudinalBorder_det
 #print axioms HC4.Polynomial.RankTwoCubic.partialLegendre_secondDifference
 #print axioms HC4.Polynomial.RankTwoCubic.derivative_eq_zero_of_reciprocalSecondIdentity
+
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreLegendre_coeff_three
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreAffine_secondDifference
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreAffine_firstDifference_zeroOther
+#print axioms HC4.Polynomial.RankThreeCubic.polynomial_factor_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.hessianKernel_acceleration

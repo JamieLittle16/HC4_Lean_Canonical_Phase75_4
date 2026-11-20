@@ -405,3 +405,6 @@ import HC4.Valuation.TransverseAxisCubicCorrection
 
 -- Determinant pencils and pivot rigidity for the cap-three rank-two cubic.
 import HC4.Polynomial.RankTwoCubicFibrePencils
+
+-- Straight characteristic and fixed-square fibre identities for the full-rank cubic.
+import HC4.Polynomial.RankThreeCubicFibrePencils
