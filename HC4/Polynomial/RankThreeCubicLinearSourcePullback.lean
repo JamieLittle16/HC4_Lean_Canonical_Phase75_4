@@ -173,7 +173,7 @@ theorem linearLineEval_invariant_transverseForm
           _root_.Polynomial.X := by
             simp [constantLinearForm, map_sum, map_mul, Finset.sum_add_distrib,
               Finset.sum_mul, mul_add, mul_assoc]
-    _ = _root_.Polynomial.C (constantLinearForm l) := by rw [hcore]; ring
+    _ = _root_.Polynomial.C (constantLinearForm l) := by simp [hcore]
 
 /-- The fixed-square identity on the reference cubic pulls back to the
 actual cubic polynomial along a nilpotent linear characteristic. -/
@@ -200,11 +200,26 @@ theorem source_square_of_linear_characteristic [CharZero K]
           (MvPolynomial.C (d i) : MvPolynomial (Unit ⊕ Fin 3) K) *
             pderiv (.inr i) L) =
         _root_.Polynomial.C (constantDirectional d (referenceSlice a L)) := by
-    simp [constantDirectional, hgrad, referenceSlice_pderiv,
-      linearLineEval, lineEval, IsScalarTower.algebraMap_apply K
-      (MvPolynomial (Fin 3) K)
-      (_root_.Polynomial (MvPolynomial (Fin 3) K)),
-      _root_.Polynomial.algebraMap_eq]
+    have hc (r : K) :
+        linearLineEval a N (MvPolynomial.C r) =
+          _root_.Polynomial.C (MvPolynomial.C r) := by
+      simp [linearLineEval, lineEval,
+        IsScalarTower.algebraMap_apply K (MvPolynomial (Fin 3) K)
+          (_root_.Polynomial (MvPolynomial (Fin 3) K)),
+        _root_.Polynomial.algebraMap_eq]
+    calc
+      _ = ∑ i : Fin 3,
+            linearLineEval a N (MvPolynomial.C (d i)) *
+              linearLineEval a N (pderiv (.inr i) L) := by
+              simp only [map_sum, map_mul]
+      _ = ∑ i : Fin 3,
+            _root_.Polynomial.C (MvPolynomial.C (d i)) *
+              _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)) := by
+              apply Finset.sum_congr rfl
+              intro i _
+              rw [hc, hgrad i]
+      _ = _root_.Polynomial.C (constantDirectional d (referenceSlice a L)) := by
+              simp [constantDirectional, referenceSlice_pderiv, map_sum, map_mul]
   exact square_pullback_of_transport a N hN _ _ _ _ c hdir
     (linearLineEval_invariant_transverseForm a N l hl) hsq
 
