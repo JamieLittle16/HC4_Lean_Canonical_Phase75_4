@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10560**.
+Distinct declaration spellings indexed: **10561**.
 
 ## Repeated declaration spellings
 
@@ -9906,6 +9906,7 @@ Distinct declaration spellings indexed: **10560**.
 - `squareGeometry_of_detCore_eq_zero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareGeometry_of_rankOneRelation` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
+- `square_pullback_of_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `staircaseLogDirection` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `staircase_heightDrop_gt_pairGain` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `staircase_source_deficit_chord_identity` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
