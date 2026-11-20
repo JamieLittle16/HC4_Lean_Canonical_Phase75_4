@@ -91,7 +91,7 @@ theorem linearLineEval_injective_of_cube_zero [CharZero K]
       | inr k =>
         have hsum : e (∑ m, MvPolynomial.C (N k m) * X m) =
             ∑ m, N k m * z m := by simp [map_sum, map_mul, hC, hX]
-        simpa [hX, hsum, v, mul_comm] using hcoords k
+        simpa [hX, hsum, hC, v, mul_comm] using hcoords k
     simpa only [AlgHom.comp_apply, MvPolynomial.aeval_X] using hf i
   have he := congrArg ev hpq
   change (ev.comp (linearLineEval a N)) p =
