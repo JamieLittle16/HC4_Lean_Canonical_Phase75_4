@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10557**.
+Distinct declaration spellings indexed: **10563**.
 
 ## Repeated declaration spellings
 
@@ -6781,6 +6781,8 @@ Distinct declaration spellings indexed: **10557**.
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
+- `linearLineEval_injective_of_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `linearLineEval_invariant_transverseForm` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearPowerProfile` — `def` in `HC4.Newton.LinearPowerRecurrence`
@@ -7195,6 +7197,8 @@ Distinct declaration spellings indexed: **10557**.
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nested_factor_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
+- `nilpotent_shear_inverse_matrix` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `nilpotent_shear_inverse_mulVec` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `noClosingSourceCarrier_of_defect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
 - `noCounterexample_of_JC2_canonicalEntry_and_frontierExhaustion` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_completeCanonicalReduction` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
@@ -9801,6 +9805,7 @@ Distinct declaration spellings indexed: **10557**.
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_square_of_jordan_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
+- `source_square_of_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `sp_actualRankTwoChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `sp_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`
@@ -9903,6 +9908,7 @@ Distinct declaration spellings indexed: **10557**.
 - `squareGeometry_of_detCore_eq_zero` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareGeometry_of_rankOneRelation` — `theorem` in `HC4.Newton.BinaryPivotGeometry`
 - `squareSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
+- `square_pullback_of_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `staircaseLogDirection` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `staircase_heightDrop_gt_pairGain` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `staircase_source_deficit_chord_identity` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
