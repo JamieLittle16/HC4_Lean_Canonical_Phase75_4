@@ -1,0 +1,4 @@
+import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
+
+#print axioms HC4.Polynomial.RankThreeCubic.reference_hessian_selfAdjoint_of_linear_transport
+#print axioms HC4.Polynomial.RankThreeCubic.exists_source_square_of_nonzero_linear_characteristic
