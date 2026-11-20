@@ -596,3 +596,18 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.squareFibreAffine_firstDifference_zeroOther
 #print axioms HC4.Polynomial.RankThreeCubic.polynomial_factor_eq_one
 #print axioms HC4.Polynomial.RankThreeCubic.hessianKernel_acceleration
+
+#print axioms HC4.Polynomial.RankThreeCubic.localizationDerivation_algebraMap
+#print axioms HC4.Polynomial.RankThreeCubic.lineEval_eq_C_of_derivation_eq_zero
+#print axioms HC4.Polynomial.RankThreeCubic.exists_lineEval_gradient_eq
+#print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_lineEval_gradient_eq
+#print axioms HC4.Polynomial.RankThreeCubic.transverseCubic_hessian_det_eq_zero
+#print axioms HC4.Polynomial.RankThreeCubic.exists_regular_transverseGenericPoint
+#print axioms HC4.Polynomial.RankThreeCubic.exists_transverseCubic_characteristic
+#print axioms HC4.Polynomial.RankThreeCubic.selfAdjoint_of_linearCharacteristic
+#print axioms HC4.Polynomial.RankThreeCubic.reference_square_of_jordan_velocity
+#print axioms HC4.Polynomial.RankThreeCubic.jordanLineEval_injective
+#print axioms HC4.Polynomial.RankThreeCubic.source_square_of_jordan_transport
+#print axioms HC4.Polynomial.RankThreeCubic.quadraticFamilyEval_eq_zero_at_poleResidue
+#print axioms HC4.Polynomial.RankThreeCubic.constant_scalar_and_square_root_of_transport
+#print axioms HC4.Polynomial.RankThreeCubic.primitive_pair_constant_of_square_transport

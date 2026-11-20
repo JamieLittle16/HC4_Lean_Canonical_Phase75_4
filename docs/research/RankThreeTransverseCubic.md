@@ -262,12 +262,33 @@ top cubic has rank one, or give a reduction from unrestricted HC4.
 
 ## Formalisation boundary
 
-The companion Lean module verifies the cubic coefficient for the
-single partial Legendre transform, the two affine-fibre determinant
-differences, the constant polynomial factor step for the
-characteristic Jacobian, and the derivation identity putting the
-kernel acceleration back into the kernel. The rank-two companion
-module verifies polynomial reciprocal rigidity. The characteristic construction, the pole and fixed-square argument, the coefficient
-assembly for the actual source, and the low-dimensional injectivity
-applications are paper arguments here. This note does not address
-higher transverse degrees.
+The characteristics module proves the straight characteristic identity (1)
+for the **actual** cubic grade of a constant Hessian determinant source of
+transverse degree at most three. It derives the singular full Hessian from
+weight six, chooses a longitudinal ground-field basepoint with generically
+invertible transverse Hessian, and constructs the characteristic by
+localizing at the transverse determinant. Instead of a formal exponential,
+it proves the substitution identity by induction on polynomial coefficients.
+
+The Jordan square module checks the self-adjointness calculation from
+a linear-characteristic transport equation and extracts the square in
+either constant Jordan chart. It also checks that transport in these
+charts carries the square back to the source. The pole residue module
+checks the homogeneous quadratic residue calculation at a pole. The
+square lock module checks constancy of the scalar and the primitive binary
+covector once the rank-one pivot and transport identities are available.
+
+The global classification of the characteristic direction is still a
+paper argument. In the polynomial case, one must derive the constant
+nilpotent Jordan chart and its differentiated transport equation from
+(1). In the pole case, one must construct the local ring at a denominator
+prime, descend the residue singular point to the ground field after
+extending scalars, exclude a nonsingular binary quadratic there, and
+derive the two transport identities used for the square lock.
+
+The fibre pencils module verifies the subsequent cubic coefficient for
+the single partial Legendre transform, the two affine-fibre determinant
+differences, and the kernel acceleration identity. The rank-two companion
+module verifies polynomial reciprocal rigidity. The coefficient assembly
+for the source and low-dimensional injectivity applications are not
+formalised here.

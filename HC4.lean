@@ -408,3 +408,9 @@ import HC4.Polynomial.RankTwoCubicFibrePencils
 
 -- Straight characteristic and fixed-square fibre identities for the full-rank cubic.
 import HC4.Polynomial.RankThreeCubicFibrePencils
+
+-- Actual straight characteristic and the fixed-square chart calculations.
+import HC4.Polynomial.RankThreeCubicCharacteristics
+import HC4.Polynomial.RankThreeCubicJordanSquare
+import HC4.Polynomial.RankThreeCubicPoleResidue
+import HC4.Polynomial.RankThreeCubicSquareLock
