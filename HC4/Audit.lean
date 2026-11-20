@@ -611,3 +611,11 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.quadraticFamilyEval_eq_zero_at_poleResidue
 #print axioms HC4.Polynomial.RankThreeCubic.constant_scalar_and_square_root_of_transport
 #print axioms HC4.Polynomial.RankThreeCubic.primitive_pair_constant_of_square_transport
+
+#print axioms HC4.Polynomial.RankThreeCubic.derivation_aeval
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_pderiv
+#print axioms HC4.Polynomial.RankThreeCubic.transverseHessian_transport_of_linear_gradient
+#print axioms HC4.Polynomial.RankThreeCubic.det_linearCharacteristic_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.matrix_pow_card_eq_zero_of_det_linear_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.exists_nilpotent_rankOnePower
+#print axioms HC4.Polynomial.RankThreeCubic.reference_directional_eq_square_of_rankOne

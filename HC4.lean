@@ -414,3 +414,7 @@ import HC4.Polynomial.RankThreeCubicCharacteristics
 import HC4.Polynomial.RankThreeCubicJordanSquare
 import HC4.Polynomial.RankThreeCubicPoleResidue
 import HC4.Polynomial.RankThreeCubicSquareLock
+
+-- Linear characteristic transport, nilpotence, and rank-one square extraction.
+import HC4.Polynomial.RankThreeCubicLinearTransport
+import HC4.Polynomial.RankThreeCubicNilpotentSquare

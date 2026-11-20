@@ -94,7 +94,7 @@ theorem squareFibreAffine_firstDifference_zeroOther
 
 /-- An affine characteristic substitution with a polynomial
 longitudinal slice cannot absorb a nonconstant determinant factor. -/
-theorem polynomial_factor_eq_one {K : Type*} [Field K]
+theorem polynomial_factor_eq_one {K : Type*} [CommRing K] [IsDomain K]
     {p q : Polynomial K} {c : K}
     (hc : c ≠ 0) (hmul : p * q = C c) (hq : q.coeff 0 = 1) :
     q = 1 := by

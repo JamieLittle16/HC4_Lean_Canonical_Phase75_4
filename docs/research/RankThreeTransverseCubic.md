@@ -278,13 +278,26 @@ checks the homogeneous quadratic residue calculation at a pole. The
 square lock module checks constancy of the scalar and the primitive binary
 covector once the rank-one pivot and transport identities are available.
 
-The global classification of the characteristic direction is still a
-paper argument. In the polynomial case, one must derive the constant
-nilpotent Jordan chart and its differentiated transport equation from
-(1). In the pole case, one must construct the local ring at a denominator
-prime, descend the residue singular point to the ground field after
-extending scalars, exclude a nonsingular binary quadratic there, and
-derive the two transport identities used for the square lock.
+The linear transport and nilpotent square modules remove the need to
+construct a Jordan basis for the reference-square calculation. Lean
+differentiates the gradient transport to get the Hessian transport,
+forces the determinant of the linear velocity pencil to be one, and
+uses Cayley–Hamilton to obtain nilpotence. In dimension three the
+last nonzero power is square-zero, so rank-nullity makes it rank one.
+Its outer-product factors give a fixed direction and invariant
+covector. Euler's homogeneous identity then gives a nonzero square
+derivative on the reference cubic.
+
+The final transport of that square back to the source is not yet
+formalised in the general linear chart. The unverified draft is
+deliberately outside the import graph and this PR commit.
+
+It remains to extract the linear velocity from an arbitrary pole-free
+rational characteristic. In the pole case, one must construct the local
+ring at a denominator prime, descend the residue singular point to the
+ground field after extending scalars, exclude a nonsingular binary
+quadratic there, and derive the two transport identities used for the
+square lock.
 
 The fibre pencils module verifies the subsequent cubic coefficient for
 the single partial Legendre transform, the two affine-fibre determinant

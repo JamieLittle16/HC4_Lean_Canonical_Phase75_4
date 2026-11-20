@@ -90,12 +90,12 @@ section StraightLine
 
 variable {K F ι : Type*} [CommRing K] [CommRing F] [Algebra K F]
 
-private def coeffDeriv (D : Derivation K F F) :
+def coeffDeriv (D : Derivation K F F) :
     Derivation K (_root_.Polynomial F) (_root_.Polynomial F) :=
   (_root_.PolynomialModule.equivPolynomialSelf.toLinearMap.compDer D.mapCoeffs)
 
 @[simp]
-private theorem coeff_coeffDeriv (D : Derivation K F F) (p : _root_.Polynomial F)
+theorem coeff_coeffDeriv (D : Derivation K F F) (p : _root_.Polynomial F)
     (n : ℕ) : (coeffDeriv D p).coeff n = D (p.coeff n) := rfl
 
 /-- Polynomial substitution along an affine line over the coefficient
