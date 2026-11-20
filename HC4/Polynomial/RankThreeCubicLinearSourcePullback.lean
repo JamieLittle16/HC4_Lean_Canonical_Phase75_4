@@ -123,5 +123,90 @@ theorem square_pullback_of_transport [CharZero K]
     _ = linearLineEval a N (MvPolynomial.C c * U ^ 2) := by
         rw [map_mul, map_pow, hU, hc]
 
+/-- A transverse linear form is invariant under the characteristic shear
+when its coefficient row annihilates the velocity matrix. -/
+theorem linearLineEval_invariant_transverseForm
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (l : Fin 3 → K) (hl : l ᵥ* N = 0) :
+    linearLineEval a N
+      (∑ i : Fin 3, (MvPolynomial.C (l i) :
+        MvPolynomial (Unit ⊕ Fin 3) K) * X (.inr i)) =
+      _root_.Polynomial.C (constantLinearForm l) := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  have hzero (j : Fin 3) : ∑ i : Fin 3, l i * N i j = 0 := by
+    simpa [Matrix.vecMul, dotProduct] using congrFun hl j
+  have hcore : (∑ i : Fin 3, MvPolynomial.C (l i) *
+      (∑ j : Fin 3, MvPolynomial.C (N i j) * (X j : B))) = 0 := by
+    calc
+      _ = ∑ i : Fin 3, ∑ j : Fin 3,
+          MvPolynomial.C (l i * N i j) * (X j : B) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [← mul_assoc, ← map_mul]
+      _ = ∑ j : Fin 3, ∑ i : Fin 3,
+          MvPolynomial.C (l i * N i j) * (X j : B) := by rw [Finset.sum_comm]
+      _ = ∑ j : Fin 3, MvPolynomial.C (∑ i : Fin 3, l i * N i j) * X j := by
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [← Finset.sum_mul, map_sum]
+      _ = 0 := by simp [hzero]
+  have heval :
+      linearLineEval a N
+        (∑ i : Fin 3, (MvPolynomial.C (l i) :
+          MvPolynomial (Unit ⊕ Fin 3) K) * X (.inr i)) =
+        ∑ i : Fin 3, _root_.Polynomial.C (MvPolynomial.C (l i)) *
+          (_root_.Polynomial.C (X i : B) +
+            _root_.Polynomial.C (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) *
+              _root_.Polynomial.X) := by
+    simp [linearLineEval, lineEval, IsScalarTower.algebraMap_apply K B
+      (_root_.Polynomial B), _root_.Polynomial.algebraMap_eq]
+  rw [heval]
+  calc
+    _ = _root_.Polynomial.C (constantLinearForm l) +
+        _root_.Polynomial.C
+          (∑ i : Fin 3, MvPolynomial.C (l i) *
+            (∑ j : Fin 3, MvPolynomial.C (N i j) * (X j : B))) *
+          _root_.Polynomial.X := by
+            simp [constantLinearForm, map_sum, map_mul, Finset.sum_add_distrib,
+              Finset.sum_mul, mul_add, mul_assoc]
+    _ = _root_.Polynomial.C (constantLinearForm l) := by rw [hcore]; ring
+
+/-- The fixed-square identity on the reference cubic pulls back to the
+actual cubic polynomial along a nilpotent linear characteristic. -/
+theorem source_square_of_linear_characteristic [CharZero K]
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (d l : Fin 3 → K) (c : K)
+    (hgrad : ∀ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)))
+    (hl : l ᵥ* N = 0)
+    (hsq : constantDirectional d (referenceSlice a L) =
+      MvPolynomial.C c * constantLinearForm l ^ 2) :
+    (∑ i : Fin 3,
+      (MvPolynomial.C (d i) : MvPolynomial (Unit ⊕ Fin 3) K) *
+        pderiv (.inr i) L) =
+      MvPolynomial.C c *
+        (∑ i : Fin 3,
+          (MvPolynomial.C (l i) : MvPolynomial (Unit ⊕ Fin 3) K) *
+          X (.inr i)) ^ 2 := by
+  have hdir :
+      linearLineEval a N
+        (∑ i : Fin 3,
+          (MvPolynomial.C (d i) : MvPolynomial (Unit ⊕ Fin 3) K) *
+            pderiv (.inr i) L) =
+        _root_.Polynomial.C (constantDirectional d (referenceSlice a L)) := by
+    simp [constantDirectional, hgrad, referenceSlice_pderiv,
+      linearLineEval, lineEval, IsScalarTower.algebraMap_apply K
+      (MvPolynomial (Fin 3) K)
+      (_root_.Polynomial (MvPolynomial (Fin 3) K)),
+      _root_.Polynomial.algebraMap_eq]
+  exact square_pullback_of_transport a N hN _ _ _ _ c hdir
+    (linearLineEval_invariant_transverseForm a N l hl) hsq
+
 end
 end HC4.Polynomial.RankThreeCubic
