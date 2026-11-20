@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10561**.
+Distinct declaration spellings indexed: **10563**.
 
 ## Repeated declaration spellings
 
@@ -6782,6 +6782,7 @@ Distinct declaration spellings indexed: **10561**.
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `linearLineEval_injective_of_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `linearLineEval_invariant_transverseForm` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearPowerProfile` — `def` in `HC4.Newton.LinearPowerRecurrence`
@@ -9804,6 +9805,7 @@ Distinct declaration spellings indexed: **10561**.
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_square_of_jordan_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
+- `source_square_of_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `sp_actualRankTwoChart` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetActualRankTwo`
 - `sp_transverseDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`

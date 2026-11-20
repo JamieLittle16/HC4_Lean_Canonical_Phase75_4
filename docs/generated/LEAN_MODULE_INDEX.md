@@ -3172,7 +3172,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicLinearTransport`, `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `theorem nilpotent_shear_inverse_matrix`, `theorem nilpotent_shear_inverse_mulVec`, `theorem linearLineEval_injective_of_cube_zero`, `theorem square_pullback_of_transport`
+- Declarations: `theorem nilpotent_shear_inverse_matrix`, `theorem nilpotent_shear_inverse_mulVec`, `theorem linearLineEval_injective_of_cube_zero`, `theorem square_pullback_of_transport`, `theorem linearLineEval_invariant_transverseForm`, `theorem source_square_of_linear_characteristic`
 
 ### `HC4.Polynomial.RankThreeCubicLinearTransport`
 
