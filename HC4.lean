@@ -418,3 +418,6 @@ import HC4.Polynomial.RankThreeCubicSquareLock
 -- Linear characteristic transport, nilpotence, and rank-one square extraction.
 import HC4.Polynomial.RankThreeCubicLinearTransport
 import HC4.Polynomial.RankThreeCubicNilpotentSquare
+
+-- Basis-free inverse and source square for a nilpotent cubic characteristic.
+import HC4.Polynomial.RankThreeCubicLinearSourcePullback

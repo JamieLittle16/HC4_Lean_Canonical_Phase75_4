@@ -619,3 +619,8 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.matrix_pow_card_eq_zero_of_det_linear_eq_one
 #print axioms HC4.Polynomial.RankThreeCubic.exists_nilpotent_rankOnePower
 #print axioms HC4.Polynomial.RankThreeCubic.reference_directional_eq_square_of_rankOne
+
+#print axioms HC4.Polynomial.RankThreeCubic.linearLineEval_injective_of_cube_zero
+#print axioms HC4.Polynomial.RankThreeCubic.square_pullback_of_transport
+#print axioms HC4.Polynomial.RankThreeCubic.linearLineEval_invariant_transverseForm
+#print axioms HC4.Polynomial.RankThreeCubic.source_square_of_linear_characteristic

@@ -288,11 +288,15 @@ Its outer-product factors give a fixed direction and invariant
 covector. Euler's homogeneous identity then gives a nonzero square
 derivative on the reference cubic.
 
-A basis-free **paper** proof of the square pullback, using the explicit
-inverse \`(I+tN)⁻¹ = I-tN+t²N²\` to obtain an injective substitution,
-is recorded in [RankThreeCubicLinearSourcePullback](RankThreeCubicLinearSourcePullback.md).
-The corresponding general linear-chart source theorem is not yet Lean
-compiled; the unverified draft remains outside the import graph.
+The basis-free square pullback is now Lean-compiled in
+`RankThreeCubicLinearSourcePullback.lean`. It proves the nilpotent
+characteristic substitution injective via the finite polynomial inverse,
+then uses gradient transport and the invariant covector to derive the
+square derivative on the **actual** source. The named theorem
+`source_square_of_linear_characteristic` assumes a linear velocity,
+its transport identity, and the already proved reference-square data;
+it is not a classification of arbitrary rational characteristics.
+See [the source-pullback proof](RankThreeCubicLinearSourcePullback.md).
 
 It remains to extract the linear velocity from an arbitrary pole-free
 rational characteristic. In the pole case, one must construct the local

@@ -1,6 +1,8 @@
 # Nilpotent linear characteristic: basis-free source-square pullback
 
-**Status:** Complete algebraic proof on paper; not yet a Lean declaration.
+**Status:** The nilpotent linear-characteristic source pullback is now
+formalised in Lean 4.24; the targeted [GitHub Actions run](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44815620085) succeeded.
+The broader rational-characteristic classification remains open.
 **Scope:** The *polynomial* characteristic branch of the cap-three, full
 transverse-rank argument. This note does not classify arbitrary rational
 velocities or solve the pole branch.
@@ -92,35 +94,33 @@ transport all have prior mathematical provenance. The *general*
 linear-to-reference-square assembly still requires wiring the
 self-adjointness of \(H(C)N^r\) from that of \(H(C)N\).
 
-## Suggested Lean implementation (not yet compiled)
+## Lean-verified implementation
 
-1. In a new module importing `RankThreeCubicNilpotentSquare`,
-   define the two polynomial algebra homomorphisms above. Keep the
-   matrix-vector calculations at dimension three but the
-   substitution on `Unit ⊕ Fin 3`.
-2. Prove
-   `linearLineEval_leftInverse_of_cube_zero`: the inverse
-   `Polynomial (MvPolynomial (Fin 3) K) →ₐ[K]
-   MvPolynomial (Unit ⊕ Fin 3) K` composed with
-   `linearLineEval a N` is the identity. Prove equality of
-   algebra homomorphisms by the \(x\)-generator and three
-   transverse generators, using \((I+tN)U(t)=I\).
-3. Derive `linearLineEval_injective_of_cube_zero` from the
-   left inverse.
-4. Show that `linearLineEval a N` sends
-   `∑ i, C (d i) * pderiv (.inr i) L` to the constant
-   polynomial of the reference directional derivative, by
-   `hgrad`. Show that the transverse linear form \(\ell^Ty\)
-   is invariant under the substitution using \(\ell^TN=0\).
-5. Cancel the injective substitution to obtain (2).
-6. Wire `selfAdjoint_of_linearCharacteristic` into the rank-one
-   power using \(H(C)N=N^TH(C)\), hence
-   \(H(C)N^r=(N^T)^rH(C)\). Pass that result to
-   `reference_directional_eq_square_of_rankOne`, then the
-   source pullback theorem.
-7. Run `lake build HC4.Polynomial.RankThreeCubicLinearSourcePullback`,
-   `lake build HC4`, and `#print axioms` on the actual
-   source-level theorem before importing it into the main closure.
+The module `HC4/Polynomial/RankThreeCubicLinearSourcePullback.lean` proves:
+
+* `linearLineEval_injective_of_cube_zero`: in characteristic zero,
+  a constant matrix with `N ^ 3 = 0` defines an injective
+  characteristic substitution. This is established by evaluating
+  at arbitrary points using `I-tN+(tN)^2` and polynomial extensionality;
+  the proof does not need an explicit global inverse algebra homomorphism.
+* `square_pullback_of_transport`: an invariant reference square
+  pulls back through the injective substitution.
+* `linearLineEval_invariant_transverseForm`: a covector
+  satisfying `l ᵥ* N = 0` defines an invariant linear form.
+* `source_square_of_linear_characteristic`: from `N^3=0`,
+  the actual cubic gradient-transport equation, `l ᵥ* N=0`, and
+  the reference square, obtain the square directional derivative
+  identity on the **original source polynomial**.
+
+The source theorem's explicit hypotheses are data to be constructed
+from the upstream characteristic argument, not extra terminal
+assumptions proving HC4. An arbitrary rational velocity has not yet
+been shown to enter the nilpotent linear chart; the pole branch remains
+open. The cap-three injectivity proof also still requires the
+fibre-coefficient assembly and low-dimensional applications.
+
+The linked targeted Lean build succeeded. A full repository
+`lake build` after root import has not yet been verified.
 
 ## What this does *not* settle
 
