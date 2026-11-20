@@ -1180,6 +1180,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicJordanSquare`
   - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+  - `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `HC4.Polynomial.RankThreeCubicNilpotentSquare`

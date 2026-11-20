@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10557**.
+Distinct declaration spellings indexed: **10560**.
 
 ## Repeated declaration spellings
 
@@ -6781,6 +6781,7 @@ Distinct declaration spellings indexed: **10557**.
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
+- `linearLineEval_injective_of_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearPowerProfile` — `def` in `HC4.Newton.LinearPowerRecurrence`
@@ -7195,6 +7196,8 @@ Distinct declaration spellings indexed: **10557**.
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nested_factor_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
+- `nilpotent_shear_inverse_matrix` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `nilpotent_shear_inverse_mulVec` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `noClosingSourceCarrier_of_defect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
 - `noCounterexample_of_JC2_canonicalEntry_and_frontierExhaustion` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
 - `noCounterexample_of_JC2_completeCanonicalReduction` — `theorem` in `HC4.Valuation.FinalRestartAssembly`
