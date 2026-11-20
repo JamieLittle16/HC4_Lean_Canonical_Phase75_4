@@ -27,7 +27,7 @@ private theorem symmetric_mul_square
     (H * N ^ 2).transpose = ((H * N) * N).transpose := by rw [pow_two, Matrix.mul_assoc]
     _ = N.transpose * (H * N).transpose := by rw [Matrix.transpose_mul]
     _ = N.transpose * (H * N) := by rw [hHN]
-    _ = (H * N) * N := by rw [Matrix.mul_assoc, hcomm]
+    _ = (H * N) * N := by rw [← Matrix.mul_assoc, hcomm]
     _ = H * N ^ 2 := by rw [pow_two, Matrix.mul_assoc]
 
 private theorem reference_hessian_eq_mapped_transverse
@@ -37,7 +37,7 @@ private theorem reference_hessian_eq_mapped_transverse
       hessian (referenceSlice a L) := by
   ext i j
   simp only [RingHom.mapMatrix_apply, Matrix.submatrix_apply, hessian_apply]
-  rw [← referenceSlice_pderiv a j, ← referenceSlice_pderiv a i]
+  rw [referenceSlice_pderiv a i, referenceSlice_pderiv a j]
 
 /-- The coefficient of the characteristic time makes the original
 reference Hessian self-adjoint against the linear velocity. -/
