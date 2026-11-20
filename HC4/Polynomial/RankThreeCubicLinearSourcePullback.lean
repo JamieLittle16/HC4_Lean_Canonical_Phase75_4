@@ -58,10 +58,11 @@ theorem linearLineEval_injective_of_cube_zero [CharZero K]
   have hz : (1 + t • N) *ᵥ z = v :=
     nilpotent_shear_inverse_mulVec N hN t v
   have hcoords (i : Fin 3) : z i + t * ∑ j, N i j * z j = v i := by
-    have h := congrFun hz i
-    simpa [Matrix.mulVec, dotProduct, Matrix.add_mulVec, Matrix.smul_mulVec,
-      Matrix.one_mulVec, Finset.mul_sum, mul_comm, mul_left_comm, mul_assoc]
-      using h
+    have h' : z + t • (N *ᵥ z) = v := by
+      simpa only [Matrix.add_mulVec, Matrix.one_mulVec, Matrix.smul_mulVec] using hz
+    have hi := congrFun h' i
+    simpa only [Pi.add_apply, Pi.smul_apply, smul_eq_mul,
+      Matrix.mulVec, dotProduct] using hi
   have h : ev.comp (linearLineEval a N) = MvPolynomial.aeval b := by
     ext i
     have hC (r : K) : e (MvPolynomial.C r) = r := e.commutes r
@@ -90,7 +91,7 @@ theorem linearLineEval_injective_of_cube_zero [CharZero K]
       | inr k =>
         have hsum : e (∑ m, MvPolynomial.C (N k m) * X m) =
             ∑ m, N k m * z m := by simp [map_sum, map_mul, hC, hX]
-        simpa [hX, hsum, v] using hcoords k
+        simpa [hX, hsum, v, mul_comm] using hcoords k
     simpa only [AlgHom.comp_apply, MvPolynomial.aeval_X] using hf i
   have he := congrArg ev hpq
   change (ev.comp (linearLineEval a N)) p =
