@@ -294,6 +294,7 @@ human architecture guide.
   - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
+  - `HC4.Valuation.QuadraticTransverseGap`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Valuation.ReverseReesSchurParameterBudget`
   - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
@@ -5312,6 +5313,10 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
 - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+- `HC4.Valuation.QuadraticTransverseGap`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.ExactCollisionFirstWall`
+  - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
