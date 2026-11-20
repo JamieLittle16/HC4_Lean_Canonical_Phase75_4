@@ -99,5 +99,29 @@ theorem linearLineEval_injective_of_cube_zero [CharZero K]
   rw [h] at he
   exact he
 
+/-- An invariant square on the reference characteristic pulls back to
+an identity on the original source polynomial. -/
+theorem square_pullback_of_transport [CharZero K]
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (P U : MvPolynomial (Unit ⊕ Fin 3) K)
+    (Q V : MvPolynomial (Fin 3) K) (c : K)
+    (hP : linearLineEval a N P = _root_.Polynomial.C Q)
+    (hU : linearLineEval a N U = _root_.Polynomial.C V)
+    (hsq : Q = MvPolynomial.C c * V ^ 2) :
+    P = MvPolynomial.C c * U ^ 2 := by
+  have hc : linearLineEval a N (MvPolynomial.C c) =
+      _root_.Polynomial.C (MvPolynomial.C c) := by
+    simp [linearLineEval, lineEval,
+      IsScalarTower.algebraMap_apply K (MvPolynomial (Fin 3) K)
+        (_root_.Polynomial (MvPolynomial (Fin 3) K)),
+      _root_.Polynomial.algebraMap_eq]
+  apply linearLineEval_injective_of_cube_zero a N hN
+  calc
+    linearLineEval a N P = _root_.Polynomial.C Q := hP
+    _ = _root_.Polynomial.C (MvPolynomial.C c) *
+        (_root_.Polynomial.C V) ^ 2 := by rw [hsq, map_mul, map_pow]
+    _ = linearLineEval a N (MvPolynomial.C c * U ^ 2) := by
+        rw [map_mul, map_pow, hU, hc]
+
 end
 end HC4.Polynomial.RankThreeCubic
