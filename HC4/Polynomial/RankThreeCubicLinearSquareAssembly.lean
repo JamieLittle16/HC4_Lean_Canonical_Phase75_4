@@ -35,8 +35,10 @@ private theorem reference_hessian_eq_mapped_transverse
     (referenceSlice a).toRingHom.mapMatrix
         ((hessian L).submatrix Sum.inr Sum.inr) =
       hessian (referenceSlice a L) := by
-  ext i j
-  simp only [RingHom.mapMatrix_apply, Matrix.submatrix_apply, hessian_apply]
+  apply Matrix.ext
+  intro i j
+  change referenceSlice a (pderiv (.inr j) (pderiv (.inr i) L)) =
+    pderiv j (pderiv i (referenceSlice a L))
   rw [referenceSlice_pderiv a i, referenceSlice_pderiv a j]
 
 /-- The coefficient of the characteristic time makes the original
@@ -57,21 +59,20 @@ theorem reference_hessian_selfAdjoint_of_linear_transport
     ((hessian L).submatrix Sum.inr Sum.inr)
   have hs : ∀ i j, T i j = T j i := by
     intro i j
-    simp only [T, RingHom.mapMatrix_apply, Matrix.submatrix_apply, hessian_apply]
+    change linearLineEval a N (pderiv (.inr j) (pderiv (.inr i) L)) =
+      linearLineEval a N (pderiv (.inr i) (pderiv (.inr j) L))
     rw [HC4.Newton.pderiv_comm_backport]
   have htransport := transverseHessian_transport_of_linear_gradient a N L hgrad
   have hsym := selfAdjoint_of_linearCharacteristic T M (N.map MvPolynomial.C)
     hs htransport
   have hM : M = hessian (referenceSlice a L) :=
     reference_hessian_eq_mapped_transverse a L
-  change (hessian (referenceSlice a L) * N.map MvPolynomial.C).transpose =
-    hessian (referenceSlice a L) * N.map MvPolynomial.C
-  apply Matrix.ext
-  intro i j
-  change (hessian (referenceSlice a L) * N.map MvPolynomial.C) j i =
-    (hessian (referenceSlice a L) * N.map MvPolynomial.C) i j
-  rw [← hM]
-  exact (hsym j i)
+  have he : (M * N.map MvPolynomial.C).transpose =
+      M * N.map MvPolynomial.C := by
+    apply Matrix.ext
+    intro i j
+    exact hsym j i
+  simpa only [hM] using he
 
 /-- A nonzero nilpotent linear characteristic gives a fixed square
 derivative on the original four-variable cubic grade, without
