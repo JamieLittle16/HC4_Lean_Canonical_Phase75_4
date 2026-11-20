@@ -21,4 +21,4 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get
       - name: Compile source pullback
-        run: lake build HC4.Polynomial.RankThreeCubicLinearSourcePullback
+        run: lake build HC4.Polynomial.RankThreeCubicLinearSourcePullback HC4.Polynomial.RankThreeCubicLinearSquareAssembly
