@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10645**.
+Distinct declaration spellings indexed: **10646**.
 
 ## Repeated declaration spellings
 
@@ -20,11 +20,11 @@ Distinct declaration spellings indexed: **10645**.
 - `HasPositiveEntryLayer` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `P` — `abbrev` in `HC4.Valuation.QuadraticTransverseGap`, `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`
-- `PB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
-- `PF` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+- `PB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
+- `PF` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `R` — `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`, `abbrev` in `HC4.Valuation.TransverseAxisKernelDrift`
 - `RankFrontier` — `inductive` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `inductive` in `HC4.Valuation.SingularWeightedKernelOpening`
-- `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
+- `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
@@ -2327,8 +2327,8 @@ Distinct declaration spellings indexed: **10645**.
 - `OppositeFacets` — `def` in `HC4.Toric.BoundaryGeometry`
 - `P` — `abbrev` in `HC4.Valuation.QuadraticTransverseGap`, `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `P3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
-- `PB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
-- `PF` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+- `PB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
+- `PF` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `PlanarJC2Injectivity` — `def` in `HC4.PlanarJC2Interface`
 - `PlanarKellerCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `PlanarKellerCollisionData.impossible_of_JC2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
@@ -3147,7 +3147,7 @@ Distinct declaration spellings indexed: **10645**.
 - `RepresentedNonlinearSupportOnSingleAxis` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
 - `ReverseClosed` — `def` in `HC4.Toric.SymmetricEigenSupport`
 - `RightAxisPivot` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
-- `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
+- `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `SameEpisodeScale` — `def` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `SatisfiesDirectionalRecurrence` — `def` in `HC4.Newton.FiniteDirectionalRecurrence`
 - `ScaleAwareAdaptiveGeometricRestartState` — `structure` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -9832,6 +9832,7 @@ Distinct declaration spellings indexed: **10645**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCubic_negativeMixedHessian_homogeneous_two` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `sourceCubic_thirdTransverse_lineEval_polynomialTime` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `sourceCubic_transportedGradient_quadraticFamily` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
 - `sourceCubic_transverseGradient_quadraticIdentity` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `sourceCubic_transverseHessian_det_homogeneous_three` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
