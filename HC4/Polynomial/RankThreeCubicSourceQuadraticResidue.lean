@@ -131,7 +131,9 @@ theorem exists_sourceCubic_baseQuadraticTransport
         _root_.Polynomial.C (2 : F3 K) =
           _root_.Polynomial.C (1 + 1) := by norm_num
         _ = _root_.Polynomial.C (1 : F3 K) +
-            _root_.Polynomial.C (1 : F3 K) := map_add _ _ _
+            _root_.Polynomial.C (1 : F3 K) :=
+              map_add (_root_.Polynomial.C :
+                F3 K →+* _root_.Polynomial (F3 K)) 1 1
         _ = (1 : _root_.Polynomial (F3 K)) + 1 := by simp only [map_one]
         _ = 2 := by norm_num
     calc
