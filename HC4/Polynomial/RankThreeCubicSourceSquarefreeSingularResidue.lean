@@ -19,7 +19,7 @@ time coefficients. The same component has a principal 2x2 minor.
 Squarefreeness and nonpolynomiality here are case hypotheses
 from the existing source cubic trichotomy, not new HC4 endpoint
 assumptions. No claim that the singular-direction case is
-contradictory has yet been made.
+contradictory has yet been made. The residue is Cramer's actual numerator.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
