@@ -119,9 +119,21 @@ theorem exists_sourceCubic_baseQuadraticTransport
       _root_.Polynomial.C
         (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
     rw [← referenceSlice_fractionEvaluation]
-    have hg2 : g (2 : B3 K) = (2 : F3 K) := by simp
+    have hg2 : g (2 : B3 K) = (2 : F3 K) := by
+      calc
+        g (2 : B3 K) = g (1 + 1) := by norm_num
+        _ = g 1 + g 1 := map_add g 1 1
+        _ = 1 + 1 := by simp only [map_one]
+        _ = 2 := by norm_num
     have hC2 : _root_.Polynomial.C (2 : F3 K) =
-        (2 : _root_.Polynomial (F3 K)) := by simp
+        (2 : _root_.Polynomial (F3 K)) := by
+      calc
+        _root_.Polynomial.C (2 : F3 K) =
+          _root_.Polynomial.C (1 + 1) := by norm_num
+        _ = _root_.Polynomial.C (1 : F3 K) +
+            _root_.Polynomial.C (1 : F3 K) := map_add _ _ _
+        _ = (1 : _root_.Polynomial (F3 K)) + 1 := by simp only [map_one]
+        _ = 2 := by norm_num
     calc
       (2 : _root_.Polynomial (F3 K)) *
           _root_.Polynomial.C (g (referenceSlice a (pderiv (.inr i) L))) =
@@ -130,7 +142,18 @@ theorem exists_sourceCubic_baseQuadraticTransport
             rw [← hC2, ← _root_.Polynomial.C_mul]
       _ = _root_.Polynomial.C
           (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
-            rw [map_mul, hg2]
+            have hh :
+                g (2 * referenceSlice a (pderiv (.inr i) L)) =
+                  (2 : F3 K) *
+                    g (referenceSlice a (pderiv (.inr i) L)) := by
+              calc
+                g (2 * referenceSlice a (pderiv (.inr i) L)) =
+                    g (2 : B3 K) *
+                      g (referenceSlice a (pderiv (.inr i) L)) :=
+                        map_mul g _ _
+                _ = (2 : F3 K) *
+                    g (referenceSlice a (pderiv (.inr i) L)) := by rw [hg2]
+            exact congrArg _root_.Polynomial.C hh.symm
   refine ⟨Q, hQ, ?_⟩
   change quadraticFamilyEval (fun j k => (Q j k).map g)
       (fun j =>
