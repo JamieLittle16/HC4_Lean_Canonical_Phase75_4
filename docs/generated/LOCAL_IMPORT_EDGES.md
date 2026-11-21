@@ -61,6 +61,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Polynomial.RankThreeCubicPoleCofactor`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
@@ -1204,6 +1205,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.RankThreeCubicPoleCofactor`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
