@@ -109,7 +109,7 @@ theorem homogeneous_three_det_of_linear_homogeneous_matrix
 
 /-- Source honest degree bound: a cubic transverse initial form has
 a homogeneous cubic determinant on every longitudinal slice. -/
-theorem sourceCubic_transverseHessian_det_homogeneous_three
+theorem sourceCubic_transverseHessian_det_homogeneous_three [CharZero K]
     (a : K) (F : MvPolynomial (Unit ⊕ Fin 3) K) :
     (sourceTransverseHessian a
       (initialForm transverseCubicWeight 3 F)).det.IsHomogeneous 3 :=
@@ -120,7 +120,7 @@ theorem sourceCubic_transverseHessian_det_homogeneous_three
 /-- If the source cubic slice has a nonsquarefree transverse Hessian
 determinant, the actual source supplies a repeated *degree-one*
 irreducible factor. There is no independently assumed degree bound. -/
-theorem exists_sourceCubic_repeated_linear_factor
+theorem exists_sourceCubic_repeated_linear_factor [CharZero K]
     (a : K) (F : MvPolynomial (Unit ⊕ Fin 3) K)
     (hreg : (sourceTransverseHessian a
       (initialForm transverseCubicWeight 3 F)).det ≠ 0)
