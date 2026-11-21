@@ -458,3 +458,6 @@ import HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy
 
 -- A source-level cubic pole residue admits a principal Hessian Schur pivot.
 import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+
+-- Retain actual full-gradient transport with the source cubic principal-residue trichotomy.
+import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
