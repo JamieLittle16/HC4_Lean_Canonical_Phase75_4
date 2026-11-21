@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10644**.
+Distinct declaration spellings indexed: **10645**.
 
 ## Repeated declaration spellings
 
@@ -6969,6 +6969,7 @@ Distinct declaration spellings indexed: **10644**.
 - `longitudinalOneData` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
 - `longitudinalOneData_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPointedCollisionAxisNormalization`
 - `longitudinalPlanarAffineSupport_of_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
+- `longitudinalPolynomial_eval_map` — `theorem` in `HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap`
 - `longitudinalPureAffine_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `longitudinalPureAffine_pderiv_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCore`
 - `longitudinalRankTwoInitialBlock` — `def` in `HC4.Newton.LongitudinalRankTwoInitialCoefficient`
