@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10615**.
+Distinct declaration spellings indexed: **10616**.
 
 ## Repeated declaration spellings
 
@@ -5458,6 +5458,7 @@ Distinct declaration spellings indexed: **10615**.
 - `exists_nonzero_maximal_singular_initial` — `theorem` in `HC4.Polynomial.MaximalSingularInitial`
 - `exists_nonzero_principalMinor_at_kernelOrder` — `theorem` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
 - `exists_nonzero_principalMinor_at_order` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`
+- `exists_nonzero_residueKernel_of_normalized_denominator` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_nonzero_root_multiplicity_factorisation` — `theorem` in `HC4.Polynomial.AutonomousODERootFactorisation`
 - `exists_normalizedKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `exists_of_layer_ne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineProfile`
