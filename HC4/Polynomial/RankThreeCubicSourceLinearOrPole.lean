@@ -45,12 +45,12 @@ theorem exists_sourceCubic_linearVelocity_or_nonPolynomial
     ∃ (a : K) (V : Unit ⊕ Fin 3 → Frac' K),
       (sourceTransverseHessian a L).det ≠ 0 ∧
       V (.inl ()) = 1 ∧
-      (sourceTransverseHessian a L).map
+      ((sourceTransverseHessian a L).map
           (algebraMap (B' K) (Frac' K)) *ᵥ
             (fun j : Fin 3 => V (.inr j)) =
         fun i : Fin 3 =>
           (algebraMap (B' K) (Frac' K))
-            (sourceNegativeMixedHessian a L i) ∧
+            (sourceNegativeMixedHessian a L i)) ∧
       ((∃ N : Matrix (Fin 3) (Fin 3) K,
           ∀ i : Fin 3,
             V (.inr i) =
