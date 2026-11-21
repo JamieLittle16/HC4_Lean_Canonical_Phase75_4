@@ -36,7 +36,6 @@ theorem polynomial_sourceConstants_map_fraction
       ((_root_.Polynomial.mapRingHom (MvPolynomial.C : K →+* PB K)) q) =
       (_root_.Polynomial.mapRingHom (algebraMap K (PF K))) q := by
   ext n
-  simp only [_root_.Polynomial.coeff_map]
   exact IsScalarTower.algebraMap_apply K (PB K) (PF K) (q.coeff n)
 
 /-- Every actual source triple transverse derivative has a
