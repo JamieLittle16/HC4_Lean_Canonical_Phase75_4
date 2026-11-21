@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10599**.
+Distinct declaration spellings indexed: **10609**.
 
 ## Repeated declaration spellings
 
@@ -1941,6 +1941,7 @@ Distinct declaration spellings indexed: **10599**.
 - `FourBoundaryCycle.forward_vertices_are_p_r_q_s` — `theorem` in `HC4.Newton.FourBoundaryCycle`
 - `FourBoundaryCycle.vertices_on_transition_rays` — `theorem` in `HC4.Newton.FourBoundaryCycle`
 - `FourOrdinaryLayerPrincipalRankTwoWitness` — `structure` in `HC4.Valuation.FourOrdinaryReverseReesFirstKernelBreak`
+- `Frac3` — `abbrev` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `FrontierClearedPreterminalSchurCertificate` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierClearedRankOneSchurSeries` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `FrontierExactFourBlockSchurData` — `structure` in `HC4.Valuation.FirstSchurDepartureBridge`
@@ -2325,6 +2326,7 @@ Distinct declaration spellings indexed: **10599**.
 - `PointedPolynomialFamilyKernelRestartCertificate` — `structure` in `HC4.Valuation.PolynomialFamilyKernelRestart`
 - `PointedPolynomialFamilyKernelRestartCertificate.specialPointsDistinct` — `theorem` in `HC4.Valuation.PolynomialFamilyKernelRestart`
 - `PointedPolynomialFamilyKernelRestartCertificate.toKernelRestartCertificate` — `theorem` in `HC4.Valuation.PolynomialFamilyKernelRestart`
+- `Poly3` — `abbrev` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `PolynomialBranch` — `inductive` in `HC4.ClassifiedFamilies.PolynomialEndpoint`
 - `PolynomialFamilyKernelRestartCertificate` — `structure` in `HC4.Valuation.PolynomialFamilyKernelRestart`
 - `PolynomialFamilyKernelRestartCertificate.defect_lt` — `theorem` in `HC4.Valuation.PolynomialFamilyKernelRestart`
@@ -5504,6 +5506,7 @@ Distinct declaration spellings indexed: **10599**.
 - `exists_sourceCoordinateProjectiveWedge_of_full_two_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `exists_sourceCubic_fractionHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `exists_sourceCubic_poleFree_linear_velocity` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `exists_source_square_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
@@ -6581,6 +6584,7 @@ Distinct declaration spellings indexed: **10599**.
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
 - `innerPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `integer_min_or_unit_gap` — `theorem` in `HC4.Newton.FiniteValuationTilt`
+- `integer_weight_eq_nat_weight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `integralAdaptiveSmithSection` — `def` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `integralAdaptiveSmithSection_constantCoeff_zero_of_weight_lt_ramification` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExposureNoBoundary`
 - `integralAdaptiveSmithSection_special_zero_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesUnramifiedReentry`
@@ -7192,6 +7196,7 @@ Distinct declaration spellings indexed: **10599**.
 - `natDegree_translatePolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `natLevel` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
 - `natLevel_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`
+- `natTransverseWeight` — `def` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `natWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
 - `natWeight_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`
 - `nat_double_or_double_add_one` — `theorem` in `HC4.Valuation.SeparatedRightWallScaleDescent`
@@ -9018,7 +9023,10 @@ Distinct declaration spellings indexed: **10599**.
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `referenceSlice_homogeneous_of_natWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
+- `referenceSlice_homogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `referenceSlice_monomial_homogeneous` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `referenceSlice_pderiv` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
@@ -9802,6 +9810,7 @@ Distinct declaration spellings indexed: **10599**.
 - `sourceMinor2_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `sourceMinor2_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `sourceNegativeMixedHessian_homogeneous` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_diag_eq_two_mul_squareCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelAxisFrontier`
@@ -9819,6 +9828,7 @@ Distinct declaration spellings indexed: **10599**.
 - `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `sourceTransverseHessian_homogeneous` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceWeightedDegree`
 - `sourceTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `sourceTwoByTwoMinor_of_parameterFirst_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
 - `sourceTwoByTwoMinor_of_threeSchurEntry_coeff_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
