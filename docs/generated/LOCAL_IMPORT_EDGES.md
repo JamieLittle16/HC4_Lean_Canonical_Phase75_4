@@ -1205,6 +1205,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+- `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+  - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicSourceDegrees`

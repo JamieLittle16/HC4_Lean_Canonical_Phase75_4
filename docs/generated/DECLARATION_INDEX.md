@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10609**.
+Distinct declaration spellings indexed: **10615**.
 
 ## Repeated declaration spellings
 
@@ -1331,6 +1331,7 @@ Distinct declaration spellings indexed: **10609**.
 - `AtLeast` — `def` in `HC4.Valuation.QuadraticTransverseGap`
 - `AtMost` — `def` in `HC4.Valuation.QuadraticTransverseGap`
 - `B` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+- `B3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `Balanced` — `def` in `HC4.Toric.InvariantSemigroup`
 - `BinaryMaximalLayerResidualFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`
 - `BinarySchurBlock` — `structure` in `HC4.Newton.BinarySchurPivot`
@@ -1763,6 +1764,7 @@ Distinct declaration spellings indexed: **10609**.
 - `ExposedPureAxisResidual` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `ExposedSingularNonlinearBoundaryVertexData` — `structure` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `ExposedSingularNonlinearBoundaryVertexData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.SingularBoundaryRankSplit`
+- `F3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `FF3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `FacetOutcome` — `inductive` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.facet` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
@@ -5416,11 +5418,13 @@ Distinct declaration spellings indexed: **10609**.
 - `exists_first_twoOpening_of_first_oneAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 - `exists_fourBlockKernelRowBreakAt` — `theorem` in `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `exists_fullVector_coordinate_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
+- `exists_genuinePolePrime_of_nonPolynomial_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `exists_globalRankThreeProgress_of_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
 - `exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `exists_honestFirstContactEndpoint_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `exists_irreducible_reduced_denominator_factor` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
 - `exists_kernel_quadratic_ne_zero_of_adjugate_sandwich` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelFreshness`
 - `exists_layerExponent_of_coefficientProfile_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
@@ -5513,6 +5517,7 @@ Distinct declaration spellings indexed: **10609**.
 - `exists_sourceCubic_fractionHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `exists_sourceCubic_linearVelocity_or_nonPolynomial` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - `exists_sourceCubic_linear_or_determinantalQuotient_kernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+- `exists_sourceCubic_linear_or_genuinePolePrime` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_sourceCubic_linear_or_nonunit_determinant` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
@@ -9015,6 +9020,7 @@ Distinct declaration spellings indexed: **10609**.
 - `reducedLogarithmicEtaNumerator` — `def` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
 - `reducedLogarithmicEtaValue` — `def` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
 - `reducedLogarithmicEta_cross_of_source_cross` — `theorem` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
+- `reduced_denominator_dvd_hessianDet` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `reduced_polynomial_pair_of_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `reduced_polynomial_pair_of_monic_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `reduced_polynomial_pair_of_monic_two_chart_cleared_identity` — `theorem` in `HC4.RationalRigidity.ChartCertificates`
