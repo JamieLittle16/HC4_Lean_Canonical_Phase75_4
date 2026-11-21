@@ -1,0 +1,23 @@
+name: Validate pole-free cubic characteristic
+on:
+  push:
+    branches: [research/cubic-polefree-linear-bridge]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean-polefree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Lean 4
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Restore Mathlib cache
+        run: lake exe cache get
+      - name: Compile pole-free polynomial rigidity
+        run: lake build HC4.Polynomial.RankThreeCubicPoleFreeLinear
