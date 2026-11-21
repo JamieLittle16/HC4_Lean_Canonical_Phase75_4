@@ -7,7 +7,8 @@ import Mathlib
 A surviving Cramer numerator coordinate modulo an irreducible factor
 forces a surviving adjugate entry modulo the same factor.
 This is the nonzero 2x2-minor geometry needed to sharpen the
-squarefree residue-kernel branch.
+squarefree residue-kernel branch. The cofactor witness is obtained
+from the *same* Cramer numerator that supplies the residue vector.
 
 We do not assume a principal minor: an adjugate entry can be an
 off-principal cofactor. The source-derived conclusion has the
