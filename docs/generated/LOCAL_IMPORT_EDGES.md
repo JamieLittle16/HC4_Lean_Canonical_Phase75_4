@@ -63,6 +63,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicPoleResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
@@ -1202,9 +1203,15 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `HC4.Polynomial.RankThreeCubicSourceLinearOrPoleAudit`
+  - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
