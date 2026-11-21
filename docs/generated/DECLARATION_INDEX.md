@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10567**.
+Distinct declaration spellings indexed: **10579**.
 
 ## Repeated declaration spellings
 
@@ -1328,6 +1328,7 @@ Distinct declaration spellings indexed: **10567**.
 - `AnchoredJC2SensitiveTerminalCollisionData.hasPlanarKellerCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
 - `AtLeast` — `def` in `HC4.Valuation.QuadraticTransverseGap`
 - `AtMost` — `def` in `HC4.Valuation.QuadraticTransverseGap`
+- `B` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `Balanced` — `def` in `HC4.Toric.InvariantSemigroup`
 - `BinaryMaximalLayerResidualFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`
 - `BinarySchurBlock` — `structure` in `HC4.Newton.BinarySchurPivot`
@@ -4611,6 +4612,7 @@ Distinct declaration spellings indexed: **10567**.
 - `coeff_three_weightedRankThreeEndpointPencil_two_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedEndpointCubic`
 - `coeff_top_snd_snd_det_secondVariationJetMatrix` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
 - `coeff_top_snd_snd_mul_four_secondVariationJetEntry` — `theorem` in `HC4.Polynomial.FiniteStaircaseSecondVariationTopCoefficient`
+- `coeff_transverseEuler` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `coeff_transverseSourceReesFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `coeff_twoRootEulerOperator` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `coeff_two_degree_reducedLogarithmicEtaNumerator_eq_zero` — `theorem` in `HC4.RationalRigidity.LogarithmicInfinityCertificate`
@@ -5410,6 +5412,9 @@ Distinct declaration spellings indexed: **10567**.
 - `exists_layerExponent_of_coefficientProfile_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `exists_leftStaggeredBreakData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `exists_lineEval_gradient_eq` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `exists_linear_matrix_of_poleFree_cubicCramer` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `exists_linear_matrix_of_poleFree_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `exists_linear_matrix_of_poleFree_hessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
@@ -6628,6 +6633,8 @@ Distinct declaration spellings indexed: **10567**.
 - `intersection_exposed` — `theorem` in `HC4.Newton.ExposedFaces`
 - `introduced_exponent_eq_one_of_rankThree_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `lemma` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `isHomogeneous_one_of_cubic_quartic_division` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `isHomogeneous_one_of_transverseEuler_eq_self` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `isMongeAmpere_pullback` — `theorem` in `HC4.LinearAlgebra.Congruence`
 - `isPoleMinimalAgainstSmithSeparators_iff_no_strictImprovement` — `theorem` in `HC4.Valuation.ParameterRamification`
 - `isPolynomialMongeAmpere_rename_perm` — `theorem` in `HC4.Newton.TerminalCoordinatePermutation`
@@ -6779,6 +6786,7 @@ Distinct declaration spellings indexed: **10567**.
 - `linearForm_eq_extractionAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
 - `linearForm_eq_longitudinalAxis_of_markedAxisFibre_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisEmptyRigidity`
 - `linearForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`, `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerRigidity`
+- `linearForm_of_isHomogeneous_one` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `linearGradientPullback` — `def` in `HC4.Valuation.LinearCovariance`
 - `linearGradientPullback_eq_of_eq` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
@@ -10553,6 +10561,10 @@ Distinct declaration spellings indexed: **10567**.
 - `transverseCubicWeight` — `def` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `transverseCubic_hessian_det_eq_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `transverseDegree_add_kernelShift_eq_one_sub_shiftedWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernelLeadingLayer`
+- `transverseEuler` — `def` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `transverseEuler_add` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `transverseEuler_mul` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `transverseEuler_sum` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `transverseFree_implies_free_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `transverseFree_or_exists_positiveTransverseProjectedSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `transverseGenericPoint` — `def` in `HC4.Polynomial.RankThreeCubicCharacteristics`
