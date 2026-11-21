@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10606**.
+Distinct declaration spellings indexed: **10609**.
 
 ## Repeated declaration spellings
 
@@ -5353,6 +5353,7 @@ Distinct declaration spellings indexed: **10606**.
 - `exists_activeProjectiveWedgePointData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `exists_active_ratio_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelLinearPowerFirstBreak`
 - `exists_actualPositiveLayerWitness` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
+- `exists_adjugate_numerator_not_dvd_of_nonPolynomial_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_aligned_firstPositiveTransverseOrder_eq_of_offDiag_gap_open` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `exists_anchored_lineEval_gradient_eq` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `exists_axisPreservingShear_layerTransverseDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithAxisPreservingQuadraticNormalization`
@@ -5368,6 +5369,7 @@ Distinct declaration spellings indexed: **10606**.
 - `exists_cubicCorrection_ne_zero_of_singular` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `exists_denominatorClearedSpecialSchurKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
 - `exists_denominatorClearedSpecialSchurKernelData_with_sourceWedge_of_rawWedge` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
+- `exists_determinantalQuotient_kernel_of_nonPolynomial_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_diagonal_ne_zero_of_allTwoByTwoMinorsZero` — `theorem` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningScalarPivot`
 - `exists_diagonal_ne_zero_of_rankOne` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `exists_endpointResidualNormalForm` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -5510,6 +5512,7 @@ Distinct declaration spellings indexed: **10606**.
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `exists_sourceCubic_fractionHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `exists_sourceCubic_linearVelocity_or_nonPolynomial` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+- `exists_sourceCubic_linear_or_determinantalQuotient_kernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_sourceCubic_linear_or_nonunit_determinant` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`

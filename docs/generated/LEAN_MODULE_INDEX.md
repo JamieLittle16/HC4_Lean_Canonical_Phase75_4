@@ -3222,7 +3222,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `abbrev P3`, `abbrev FF3`, `theorem fractionKernel_adjugate_numerator_identity`, `theorem det_not_isUnit_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_nonunit_determinant`
+- Declarations: `abbrev P3`, `abbrev FF3`, `theorem fractionKernel_adjugate_numerator_identity`, `theorem det_not_isUnit_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_nonunit_determinant`, `theorem exists_adjugate_numerator_not_dvd_of_nonPolynomial_fractionKernel`, `theorem exists_determinantalQuotient_kernel_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_determinantalQuotient_kernel`
 
 ### `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 
