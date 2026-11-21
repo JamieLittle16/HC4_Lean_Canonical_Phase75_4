@@ -23,3 +23,13 @@ jobs:
         run: lake build HC4.Polynomial.RankThreeCubicPoleFreeLinear
       - name: Audit theorem axioms
         run: lake env lean HC4/Polynomial/RankThreeCubicPoleFreeLinearAudit.lean
+      - name: Compile entire HC4 import graph
+        run: lake build HC4
+      - name: Audit repository declarations
+        run: lake env lean HC4/Audit.lean
+      - name: Reject proof escapes
+        run: |
+          if rg -n '\\b(sorry|admit|axiom|unsafe)\\b' -g '*.lean' HC4; then
+            echo "Forbidden proof escape found in HC4 sources." >&2
+            exit 1
+          fi
