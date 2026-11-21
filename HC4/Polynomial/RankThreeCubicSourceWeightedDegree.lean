@@ -53,8 +53,9 @@ private theorem referenceSlice_monomial_homogeneous
     exact (hz i).pow (d i)
   have hmono : (MvPolynomial.C c *
       (d.prod fun i k => z i ^ k)).IsHomogeneous
-        (∑ i ∈ d.support, natTransverseWeight i * d i) :=
-    (MvPolynomial.isHomogeneous_C _ _).mul hprod
+        (∑ i ∈ d.support, natTransverseWeight i * d i) := by
+    simpa only [zero_add] using
+      ((MvPolynomial.isHomogeneous_C (Fin 3) c).mul hprod)
   change (MvPolynomial.aeval z (monomial d c)).IsHomogeneous _
   rw [MvPolynomial.aeval_monomial]
   simpa only [Finsupp.weight_apply, Finsupp.sum, nsmul_eq_mul, mul_comm]
@@ -89,7 +90,7 @@ private theorem integer_weight_eq_nat_weight
     cases u
     simp [transverseCubicWeight, natTransverseWeight]
   | inr j =>
-    simp [transverseCubicWeight, natTransverseWeight, nsmul_eq_mul]
+    simp [transverseCubicWeight, natTransverseWeight]
 
 /-- Longitudinal specialization converts the original integer-weight
 initial-form grading into ordinary transverse homogeneity. -/
@@ -115,7 +116,7 @@ theorem sourceTransverseHessian_homogeneous
   have hone : (pderiv (.inr j)
       (pderiv (.inr i) (initialForm transverseCubicWeight 3 F))).IsWeightedHomogeneous
       transverseCubicWeight (1 : ℤ) := by
-    convert hd using 1 <;> norm_num [transverseCubicWeight]
+    convert hd using 1
   exact referenceSlice_homogeneous_of_transverseWeight a _ 1 hone
 
 /-- The mixed longitudinal-transverse Hessian of the cubic initial
@@ -130,7 +131,7 @@ theorem sourceNegativeMixedHessian_homogeneous
   have htwo : (pderiv (.inl ())
       (pderiv (.inr i) (initialForm transverseCubicWeight 3 F))).IsWeightedHomogeneous
       transverseCubicWeight (2 : ℤ) := by
-    convert hd using 1 <;> norm_num [transverseCubicWeight]
+    convert hd using 1
   exact (referenceSlice_homogeneous_of_transverseWeight a _ 2 htwo).neg
 
 /-- The source-generated characteristic has either a genuine pole or
