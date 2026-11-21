@@ -119,15 +119,18 @@ theorem exists_sourceCubic_baseQuadraticTransport
       _root_.Polynomial.C
         (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
     rw [← referenceSlice_fractionEvaluation]
+    have hg2 : g (2 : B3 K) = (2 : F3 K) := by simp
+    have hC2 : _root_.Polynomial.C (2 : F3 K) =
+        (2 : _root_.Polynomial (F3 K)) := by simp
     calc
       (2 : _root_.Polynomial (F3 K)) *
           _root_.Polynomial.C (g (referenceSlice a (pderiv (.inr i) L))) =
         _root_.Polynomial.C
           ((2 : F3 K) * g (referenceSlice a (pderiv (.inr i) L))) := by
-            simp
+            rw [← hC2, ← _root_.Polynomial.C_mul]
       _ = _root_.Polynomial.C
           (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
-            simp [map_mul]
+            rw [map_mul, hg2]
   refine ⟨Q, hQ, ?_⟩
   change quadraticFamilyEval (fun j k => (Q j k).map g)
       (fun j =>
