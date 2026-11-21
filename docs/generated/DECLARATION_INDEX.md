@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10601**.
+Distinct declaration spellings indexed: **10605**.
 
 ## Repeated declaration spellings
 
@@ -1763,6 +1763,7 @@ Distinct declaration spellings indexed: **10601**.
 - `ExposedPureAxisResidual` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `ExposedSingularNonlinearBoundaryVertexData` — `structure` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `ExposedSingularNonlinearBoundaryVertexData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.SingularBoundaryRankSplit`
+- `FF3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `FacetOutcome` — `inductive` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.facet` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.toClassifiedBranch` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
@@ -2318,6 +2319,7 @@ Distinct declaration spellings indexed: **10601**.
 - `OnSLevel` — `def` in `HC4.Toric.CharacterSupport`
 - `OppositeFacets` — `def` in `HC4.Toric.BoundaryGeometry`
 - `P` — `abbrev` in `HC4.Valuation.QuadraticTransverseGap`, `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`
+- `P3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `PlanarJC2Injectivity` — `def` in `HC4.PlanarJC2Interface`
 - `PlanarKellerCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `PlanarKellerCollisionData.impossible_of_JC2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
@@ -4985,6 +4987,7 @@ Distinct declaration spellings indexed: **10601**.
 - `det_normalizedHessianCongruence` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_normalizedHessianCongruence_of_conformal` — `theorem` in `HC4.Valuation.LinearCovariance`
 - `det_normalizedShiftedRigidMatrixCurveHessian` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `det_not_isUnit_of_nonPolynomial_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `det_oneFiberReflectedEulerHessian_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberReflectedPencil`
 - `det_oneFiberReflectedThreeLayerMomentPencil_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberThreeLayerReflection`
 - `det_oneZeroHessianBlockMatrix` — `theorem` in `HC4.Newton.OneZeroBlockDeterminant`
@@ -5507,6 +5510,7 @@ Distinct declaration spellings indexed: **10601**.
 - `exists_sourceCoordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSourceCoordinateKernel`
 - `exists_sourceCubic_fractionHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `exists_sourceCubic_linearVelocity_or_nonPolynomial` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+- `exists_sourceCubic_linear_or_nonunit_determinant` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `exists_source_square_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
