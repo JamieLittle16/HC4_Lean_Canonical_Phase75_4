@@ -3217,12 +3217,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 
 - Path: `HC4/Polynomial/RankThreeCubicPoleDeterminant.lean`
-- Purpose: A genuinely rational cubic characteristic forces nonunit transverse determinant
+- Purpose: Cramer's identity and the cubic characteristic pole divisor
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.RankThreeCubicPoleDeterminantAudit`
-- Declarations: `abbrev P3`, `abbrev FF3`, `theorem det_not_isUnit_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_nonunit_determinant`
+- Declarations: `abbrev P3`, `abbrev FF3`, `theorem fractionKernel_adjugate_numerator_identity`, `theorem det_not_isUnit_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_nonunit_determinant`
 
 ### `HC4.Polynomial.RankThreeCubicPoleDeterminantAudit`
 

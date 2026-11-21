@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10605**.
+Distinct declaration spellings indexed: **10606**.
 
 ## Repeated declaration spellings
 
@@ -6167,6 +6167,7 @@ Distinct declaration spellings indexed: **10605**.
 - `four_mul_firstPositiveActualParameterOrder_le_hessianDefect_of_specialFiber_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerCausality`
 - `four_mul_le_defect_of_commonParameterFactor` — `theorem` in `HC4.Valuation.CommonParameterFactorGeneralDefect`
 - `fourthZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
+- `fractionKernel_adjugate_numerator_identity` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `freshDirectClosingQuadratic_exactOrder_defect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingQuadraticSupport`
 - `from` — `theorem` in `HC4.RationalRigidity.PolynomialAutonomousQuadraticExtraction`, `lemma` in `HC4.RationalRigidity.RankThreeInfinityAssembly`, `theorem` in `HC4.Valuation.PolynomialFamilyKernelRestart`, `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
 - `frontierHessianFourBlock` — `def` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
