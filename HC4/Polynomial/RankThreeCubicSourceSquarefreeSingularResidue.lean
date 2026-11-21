@@ -117,7 +117,7 @@ theorem exists_sourceCubic_squarefreePole_nonzeroSingularResidue
         rfl
       _ = 0 := by rw [map_mul, hdetzero, zero_mul]
   letI : (Ideal.span {p} : Ideal (B3 K)).IsPrime :=
-    Ideal.isPrime_span_singleton_of_prime hp.prime
+    (Ideal.span_singleton_prime hp.ne_zero).2 hp.prime
   have hquad (i : Fin 3) :
       ∃ Q : Fin 3 → Fin 3 → _root_.Polynomial (B3 K),
         (∀ j k : Fin 3,
