@@ -1,0 +1,24 @@
+name: Validate cubic pole determinant obstruction
+on:
+  push:
+    branches: [research/cubic-pole-determinant-nonunit]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Download Mathlib cache
+        run: lake exe cache get
+      - name: Build determinant nonunit obstruction
+        run: lake build HC4.Polynomial.RankThreeCubicPoleDeterminant
+      - name: Axiom audit
+        run: lake env lean HC4/Polynomial/RankThreeCubicPoleDeterminantAudit.lean
