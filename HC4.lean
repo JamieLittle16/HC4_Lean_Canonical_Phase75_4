@@ -468,6 +468,9 @@ import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
 -- Full cubic gradient transport rewritten as the source-derived quadratic family.
 import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
 
+-- Exact quadratic residue equation for the Cramer numerator over determinant-zero domains.
+import HC4.Polynomial.RankThreeCubicCramerQuadraticResidue
+
 -- Triple transverse derivatives of the cubic source descend to longitudinal polynomials.
 import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
 
