@@ -38,7 +38,9 @@ theorem exists_principal_cofactor_not_dvd
   by_contra h
   push_neg at h
   have hdiag (i : Fin 3) : p ∣ B i i := h i
-  have hBSym : B.IsSymm := Matrix.IsSymm.adjugate hSym
+  have hBSym : B.IsSymm := by
+    change H.adjugate.transpose = H.adjugate
+    rw [Matrix.adjugate_transpose, hSym]
   have hadjadj : B.adjugate = H.det • H := by
     simpa [B] using (Matrix.adjugate_adjugate H
       (by decide : Fintype.card (Fin 3) ≠ 1))
@@ -93,16 +95,15 @@ theorem exists_principal_cofactor_not_dvd
     simpa only [hBSym.apply (1 : Fin 3) (2 : Fin 3)] using h12
   have hall (i j : Fin 3) : p ∣ B i j := by
     fin_cases i <;> fin_cases j
-    all_goals first
-      | exact hdiag 0
-      | exact hdiag 1
-      | exact hdiag 2
-      | exact h01
-      | exact h02
-      | exact h12
-      | exact h10
-      | exact h20
-      | exact h21
+    · exact hdiag 0
+    · exact h01
+    · exact h02
+    · exact h10
+    · exact hdiag 1
+    · exact h12
+    · exact h20
+    · exact h21
+    · exact hdiag 2
   obtain ⟨i, j, hij⟩ := hcof
   exact hij (hall i j)
 
