@@ -69,15 +69,17 @@ theorem sourceCubic_thirdTransverse_lineEval_polynomialTime
           _root_.Polynomial.C (V x) * _root_.Polynomial.X))
       (MvPolynomial.rename (Sum.inl : Unit → Unit ⊕ Fin 3) T) = _
     rw [MvPolynomial.aeval_rename]
-    congr 1
-    funext u
-    cases u
-    change _root_.Polynomial.C
-      (transverseGenericPoint a (.inl ())) +
-        _root_.Polynomial.C (V (.inl ())) *
-          _root_.Polynomial.X = _
-    rw [hV]
-    simp [transverseGenericPoint]
+    have heval :
+        ((fun x : Unit ⊕ Fin 3 =>
+          _root_.Polynomial.C (transverseGenericPoint a x) +
+            _root_.Polynomial.C (V x) * _root_.Polynomial.X) ∘ Sum.inl) =
+          (fun _ : Unit =>
+            _root_.Polynomial.C (algebraMap K (PF K) a) +
+              _root_.Polynomial.X) := by
+      funext u
+      cases u
+      simp [Function.comp_def, transverseGenericPoint, hV]
+    rw [heval]
   calc
     lineEval (transverseGenericPoint a) V Q =
       lineEval (transverseGenericPoint a) V
