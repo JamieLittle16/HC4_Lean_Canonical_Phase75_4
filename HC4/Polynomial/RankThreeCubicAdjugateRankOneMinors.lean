@@ -8,7 +8,7 @@ Over a commutative ring, if det H = 0 for a 3x3 matrix, every 2x2
 minor of adj(H) vanishes. This follows from the adjugate-of-adjugate
 identity and does not require dividing by a principal minor.
 
-The identities are the algebraic input for factoring the adjugate
+These identities are the algebraic input for factoring the adjugate
 at the cubic pole: at a rank-two point it is a rank-one matrix.
 No matrix rank or field inversion is assumed in this module.
 -/
