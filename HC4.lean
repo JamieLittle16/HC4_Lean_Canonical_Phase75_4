@@ -467,3 +467,6 @@ import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
 
 -- Full cubic gradient transport rewritten as the source-derived quadratic family.
 import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
+
+-- Triple transverse derivatives of the cubic source descend to longitudinal polynomials.
+import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
