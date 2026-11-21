@@ -1,8 +1,5 @@
 import HC4.Polynomial.RankThreeCubicPoleDeterminant
-import Mathlib.RingTheory.Localization.NumDen
-import Mathlib.RingTheory.UniqueFactorizationDomain.Defs
-import Mathlib.RingTheory.UniqueFactorizationDomain.GCDMonoid
-import Mathlib.Tactic
+import Mathlib
 
 /-!
 # Genuine irreducible denominator factors for cubic rational characteristics
