@@ -147,12 +147,12 @@ theorem exists_sourceCubic_poleFree_linear_velocity [CharZero K]
     ∃ (a : K) (V : Unit ⊕ Fin 3 → Frac3 K),
       (sourceTransverseHessian a L).det ≠ 0 ∧
       V (.inl ()) = 1 ∧
-      (∀ i : Fin 3, ∃ p : Poly3 K,
+      ((∀ i : Fin 3, ∃ p : Poly3 K,
           algebraMap (Poly3 K) (Frac3 K) p = V (.inr i)) →
       ∃ N : Matrix (Fin 3) (Fin 3) K,
         ∀ i : Fin 3, V (.inr i) =
           algebraMap (Poly3 K) (Frac3 K)
-            (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) := by
+            (∑ j : Fin 3, MvPolynomial.C (N i j) * X j)) := by
   obtain ⟨a, V, hreg, hlong, heq⟩ :=
     exists_sourceCubic_fractionHessianEquation F hcap hdet htrans
   refine ⟨a, V, hreg, hlong, ?_⟩
