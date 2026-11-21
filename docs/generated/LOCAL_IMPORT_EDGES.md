@@ -1233,6 +1233,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
