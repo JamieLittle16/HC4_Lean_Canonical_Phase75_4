@@ -1,0 +1,29 @@
+name: HC4 cubic source singular trichotomy validation
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build source cubic singular-residue trichotomy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Targeted Lean compilation
+        uses: leanprover/lean-action@v1
+        with:
+          build: true
+          build-args: HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
+          test: false
+          lint: false
+      - name: Check no proof escape hatches
+        run: |
+          if grep -En '\\b(sorry|admit|axiom|unsafe)\\b' HC4/Polynomial/RankThreeCubicSourceSingularTrichotomy.lean; then
+            exit 1
+          fi
