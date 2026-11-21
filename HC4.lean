@@ -487,3 +487,6 @@ import HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime
 
 -- Actual cubic source third derivatives and full gradient transport give the Cramer quadratic residue.
 import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
+
+-- Full cubic source: squarefree pole yields a nonzero Cramer singular residue and principal pivot.
+import HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue
