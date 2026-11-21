@@ -55,10 +55,11 @@ theorem referenceSlice_fractionEvaluation
     | inr j => rfl
   change f (MvPolynomial.aeval z p) =
     MvPolynomial.aeval (transverseGenericPoint a) p
-  rw [MvPolynomial.comp_aeval_apply]
-  congr 1
-  funext i
-  exact hz i
+  have hz' : (fun i : Unit ⊕ Fin 3 => f (z i)) =
+      transverseGenericPoint a := by
+    funext i
+    exact hz i
+  rw [MvPolynomial.comp_aeval_apply, hz']
 
 /-- The Hessian equation for the actual source's anchored
 characteristic, in fraction-field coordinates. There is no independent
