@@ -13,7 +13,8 @@ the scalar extension of an honest ground-field polynomial in K[t].
 
 This is the precise coefficient-descent theorem needed for reducing
 the source cubic quadratic gradient transport at an irreducible
-determinant factor. It does not assert the pole residue contradiction.
+determinant factor. The polynomial witness is obtained before any
+localisation at that factor. It does not assert the pole residue contradiction.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
