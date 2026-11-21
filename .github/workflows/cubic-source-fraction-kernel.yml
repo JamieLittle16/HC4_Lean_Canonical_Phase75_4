@@ -1,0 +1,25 @@
+name: Validate anchored cubic fraction-field kernel
+on:
+  push:
+    branches: [research/cubic-source-fraction-kernel]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Lean 4
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Restore Mathlib
+        run: lake exe cache get
+      - name: Build anchored source fraction kernel
+        run: lake build HC4.Polynomial.RankThreeCubicSourceFractionKernel
+      - name: Audit anchored source fraction kernel
+        run: lake env lean HC4/Polynomial/RankThreeCubicSourceFractionKernelAudit.lean
