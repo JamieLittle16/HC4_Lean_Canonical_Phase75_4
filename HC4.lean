@@ -433,3 +433,6 @@ import HC4.Polynomial.RankThreeCubicAnchoredKernel
 
 -- Source-derived, regular fraction-field transverse Hessian equation at cubic cap.
 import HC4.Polynomial.RankThreeCubicSourceFractionKernel
+
+-- Actual cubic source degree-one Hessian and degree-two mixed Hessian weights.
+import HC4.Polynomial.RankThreeCubicSourceDegrees

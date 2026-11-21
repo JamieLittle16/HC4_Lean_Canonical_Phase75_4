@@ -642,3 +642,8 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.sourceFractionHessianEquation_of_gradientTransport
 #print axioms HC4.Polynomial.RankThreeCubic.sourceTransverseHessian_det_ne_zero_of_generic
 #print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_fractionHessianEquation
+
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_of_transverseEuler_eq_nsmul
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_isHomogeneous_of_transverseWeight
+#print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_transverseHessian_homogeneous_one
+#print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_negativeMixedHessian_homogeneous_two

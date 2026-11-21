@@ -133,3 +133,28 @@ The next precise obligations are to prove that the source block
 homogeneous entries using the cubic initial-form weight, and then to
 apply `exists_linear_matrix_of_poleFree_fractionKernel` to the
 pole-free case. Genuine denominator primes remain open.
+
+## Source-weight-to-transverse-degree bridge (Lean-verified)
+
+The `RankThreeCubicSourceDegrees.lean` module converts the cubic
+source's integer transverse weight into a natural weighted Euler
+identity. After restricting the longitudinal variable to any
+ground-field value, that identity becomes ordinary transverse Euler
+homogeneity. The theorem
+`referenceSlice_isHomogeneous_of_transverseWeight` proves this for
+**arbitrary natural degrees**, and its two source corollaries show that
+`sourceTransverseHessian a (initialForm ... 3 F)` has degree-one
+homogeneous entries and
+`sourceNegativeMixedHessian a (initialForm ... 3 F)` has degree-two
+homogeneous entries. The earlier Euler converse was generalized and
+Lean-checked as `isHomogeneous_of_transverseEuler_eq_nsmul`.
+
+The [targeted Lean 4.24 build and four-theorem axiom audit](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44902392674)
+passed with only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The source now supplies the polynomial matrix equation, the
+nonvanishing determinant and both degree conditions required by
+`exists_linear_matrix_of_poleFree_fractionKernel`. What remains
+is an explicit **source-level linear-or-pole dichotomy** applying
+these statements together, and then the analysis of actual
+non-polynomial rational characteristic coordinates.

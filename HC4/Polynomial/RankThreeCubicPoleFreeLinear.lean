@@ -67,6 +67,22 @@ private theorem coeff_transverseEuler (p : B K) (m : Fin 3 →₀ ℕ) :
         simp [MvPolynomial.coeff_monomial]
       · simp [MvPolynomial.coeff_monomial, h, Ne.symm h]
 
+/-- The coefficientwise converse to Euler's homogeneous identity:
+over a characteristic-zero field, `Euler(p)=n•p` forces all
+monomials of `p` to have total degree `n`. -/
+theorem isHomogeneous_of_transverseEuler_eq_nsmul
+    (p : B K) (n : ℕ) (hp : transverseEuler p = n • p) :
+    p.IsHomogeneous n := by
+  intro m hm
+  have hc := coeff_transverseEuler p m
+  rw [hp, MvPolynomial.coeff_smul, nsmul_eq_mul] at hc
+  have hz : ((m.degree : K) - (n : K)) * coeff m p = 0 := by
+    linear_combination -hc
+  have hdeg : (m.degree : K) = (n : K) :=
+    sub_eq_zero.mp ((mul_eq_zero.mp hz).resolve_right hm)
+  have hn : m.degree = n := by exact_mod_cast hdeg
+  simpa only [Finsupp.degree_eq_weight_one] using hn
+
 /-- Conversely to Euler's homogeneous identity, Euler(f)=f makes
 a polynomial homogeneous of degree one in characteristic zero. -/
 theorem isHomogeneous_one_of_transverseEuler_eq_self
