@@ -326,3 +326,21 @@ differences, and the kernel acceleration identity. The rank-two companion
 module verifies polynomial reciprocal rigidity. The coefficient assembly
 for the source and low-dimensional injectivity applications are not
 formalised here.
+
+## Pole-free rational characteristic now reduces to a linear one in Lean
+
+The module `RankThreeCubicPoleFreeLinear.lean` uses the transverse
+Euler operator to prove the following structural lemma. Suppose a
+\(3\times3\) polynomial matrix \(H(y)\) has nonzero determinant and
+homogeneous degree-one entries, a vector \(r(y)\) is homogeneous of
+degree two, and a **polynomial** velocity satisfies \(H(y)W(y)=r(y)\).
+Then \(W(y)=Ny\) for a constant matrix \(N\). This is proved
+without adjugate formulas. A companion theorem over an arbitrary
+field embedding, including \(\operatorname{Frac}(K[y])\), says the
+same for a rational kernel velocity with polynomial representatives.
+
+This supplies the previously missing **pole-free-to-linear** algebraic
+step. The remaining source-assembly work is to derive the precise
+homogeneous matrix equation from the anchored characteristic and to
+realise the polynomial-representative or denominator-prime dichotomy;
+the pole branch and final injectivity proof are still open.
