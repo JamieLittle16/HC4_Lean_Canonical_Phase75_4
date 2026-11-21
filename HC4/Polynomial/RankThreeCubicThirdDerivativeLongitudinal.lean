@@ -52,7 +52,13 @@ theorem transverseWeightZero_supported_only_longitudinal
   intro m hm j
   have hw := hP hm
   rw [transverseCubicWeight_eq_transverseSum] at hw
-  fin_cases j <;> omega
+  have h0 : m (.inr (0 : Fin 3)) = 0 := by omega
+  have h1 : m (.inr (1 : Fin 3)) = 0 := by omega
+  have h2 : m (.inr (2 : Fin 3)) = 0 := by omega
+  fin_cases j
+  · simpa using h0
+  · simpa using h1
+  · simpa using h2
 
 /-- Source weight zero yields an actual polynomial in the sole
 longitudinal variable; no localization or denominator is involved. -/
@@ -66,8 +72,8 @@ theorem exists_longitudinal_polynomial_of_transverseWeightZero
     transverseWeightZero_supported_only_longitudinal P hP
   have hnotin (j : Fin 3) : Sum.inr j ∉ P.vars := by
     intro hmem
-    obtain ⟨m, hm, hvar⟩ :=
-      (MvPolynomial.mem_vars_iff_mem_support (Sum.inr j)).mp hmem
+    rw [MvPolynomial.vars_eq_support_biUnion_support] at hmem
+    obtain ⟨m, hm, hvar⟩ := Finset.mem_biUnion.mp hmem
     have hc : MvPolynomial.coeff m P ≠ 0 :=
       MvPolynomial.mem_support_iff.mp hm
     have he : m (.inr j) = 0 := hsupp m hc j
