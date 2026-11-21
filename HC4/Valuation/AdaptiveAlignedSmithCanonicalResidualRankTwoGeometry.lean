@@ -62,7 +62,9 @@ inductive AdaptiveAlignedSmithCanonicalResidualRankTwoGeometry
       (wall : C.DirectClosingCanonicalSquareZeroOrderFamilyWallShape heq)
       (face : MvPolynomial (Fin 4) K)
       (U V : Fin 4)
-      (repair : C.DirectClosingWallFaceMixedRepairData complexity face U V)
+      (repair :
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.DirectClosingWallFaceMixedRepairData
+          complexity face U V)
 
   | wallBasePlane
       (C : AdaptiveAlignedSmithRankOneClosingSourceCarrier S.blocker)
@@ -70,8 +72,9 @@ inductive AdaptiveAlignedSmithCanonicalResidualRankTwoGeometry
       (wall : C.DirectClosingCanonicalSquareZeroOrderFamilyWallShape heq)
       (face : MvPolynomial (Fin 4) K)
       (i j : Fin 4)
-      (repair : C.DirectClosingWallFaceBasePlaneRankTwoRepairData
-        complexity face i j)
+      (repair :
+        AdaptiveAlignedSmithRankOneClosingSourceCarrier.DirectClosingWallFaceBasePlaneRankTwoRepairData
+          complexity face i j)
 
   | rawSchurDerivative
       (C : AdaptiveAlignedSmithRankOneClosingSourceCarrier S.blocker)

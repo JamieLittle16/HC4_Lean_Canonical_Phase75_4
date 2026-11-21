@@ -84,6 +84,48 @@ theorem lowDegree_below_scaled_contact
   push_cast
   nlinarith
 
+/-- A degree-at-most-two monomial may contain two copies of the bumped
+coordinate and still lie strictly below contact when the selected contact has
+the stronger doubled-bump margin.  This is the form needed when the fixed
+quadratic part contains the pure square in the bumped coordinate. -/
+theorem lowDegree_below_scaled_contact_of_two_mul_bump_le
+    {j : Fin 4} {scale bump m : ℕ} {d : Fin 4 →₀ ℕ}
+    (hscale : 0 < scale)
+    (hdeg : ordinaryDegree4 d ≤ 2)
+    (hj : d j ≤ 2)
+    (hbump : 2 * bump ≤ scale * (m - 3))
+    (hm : 3 ≤ m) :
+    scaledContactExponentWeight j scale bump d < (scale * m : ℕ) := by
+  have hscaleDeg :
+      scale * ordinaryDegree4 d ≤ scale * 2 :=
+    Nat.mul_le_mul_left scale hdeg
+  have hbumpCoord :
+      bump * d j ≤ bump * 2 :=
+    Nat.mul_le_mul_left bump hj
+  have hsum :
+      scale * ordinaryDegree4 d + bump * d j ≤
+        scale * 2 + bump * 2 :=
+    Nat.add_le_add hscaleDeg hbumpCoord
+  have hmargin :
+      scale * 2 + bump * 2 ≤ scale * (m - 1) := by
+    calc
+      scale * 2 + bump * 2 = 2 * scale + 2 * bump := by ring
+      _ ≤ 2 * scale + scale * (m - 3) :=
+        Nat.add_le_add_left hbump _
+      _ = scale * (2 + (m - 3)) := by ring
+      _ = scale * (m - 1) := by
+        congr 1
+        omega
+  have hstrictNat : scale * (m - 1) < scale * m := by
+    have hmpos : 0 < m := by omega
+    have hm1 : m - 1 < m := by omega
+    exact Nat.mul_lt_mul_of_pos_left hm1 hscale
+  unfold scaledContactExponentWeight
+  have hNat :
+      scale * ordinaryDegree4 d + bump * d j < scale * m :=
+    lt_of_le_of_lt (le_trans hsum hmargin) hstrictNat
+  exact_mod_cast hNat
+
 /-- A top-facet monomial of ordinary degree `m` has contact weight `scale*m`. -/
 theorem scaledContact_top_facet
     {j : Fin 4} {scale bump m : ℕ} {d : Fin 4 →₀ ℕ}
