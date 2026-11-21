@@ -1215,6 +1215,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+- `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+  - `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
 - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
