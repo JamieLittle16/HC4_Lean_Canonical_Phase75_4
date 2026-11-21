@@ -90,7 +90,18 @@ theorem exists_sourceCubic_cramerQuadraticResidue
           _root_.Polynomial.C (g (MvPolynomial.X j)) +
             _root_.Polynomial.X *
               _root_.Polynomial.C (V (.inr j)) := by
-      simp [T, lineEval, z, transverseGenericPoint, mul_comm]
+      calc
+        T (MvPolynomial.X (.inr j)) =
+            _root_.Polynomial.C (z (.inr j)) +
+              _root_.Polynomial.C (V (.inr j)) * _root_.Polynomial.X := by
+              simp [T, lineEval]
+        _ = _root_.Polynomial.C (g (MvPolynomial.X j)) +
+              _root_.Polynomial.X * _root_.Polynomial.C (V (.inr j)) := by
+              change _root_.Polynomial.C (g (MvPolynomial.X j)) +
+                  _root_.Polynomial.C (V (.inr j)) * _root_.Polynomial.X =
+                _root_.Polynomial.C (g (MvPolynomial.X j)) +
+                  _root_.Polynomial.X * _root_.Polynomial.C (V (.inr j))
+              ring
     have hCoeff (j k : Fin 3) :
         (Q i j k).map g =
           T (pderiv (.inr k) (pderiv (.inr j) P)) := by
@@ -99,9 +110,14 @@ theorem exists_sourceCubic_cramerQuadraticResidue
           _root_.Polynomial.C (MvPolynomial.aeval z P) =
         _root_.Polynomial.C (g b) := by
       have hbase : g b = (2 : PF K) * MvPolynomial.aeval z P := by
-        simp [b, map_mul, referenceSlice_fractionEvaluation]
-      rw [hbase]
-      norm_num [map_mul]
+        calc
+          g b = g (2 : PB K) * g (referenceSlice a P) := by
+            simp only [b, map_mul]
+          _ = (2 : PF K) * MvPolynomial.aeval z P := by
+            rw [map_ofNat, referenceSlice_fractionEvaluation]
+      have htwo : (2 : _root_.Polynomial (PF K)) =
+          _root_.Polynomial.C (2 : PF K) := by norm_num
+      rw [htwo, ← map_mul, hbase]
     have ht := sourceCubic_transportedGradient_quadraticFamily
       F a V hgrad i
     have hq :
