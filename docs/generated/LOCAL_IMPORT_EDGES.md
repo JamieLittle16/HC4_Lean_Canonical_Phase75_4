@@ -1213,6 +1213,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
   - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+- `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
