@@ -42,7 +42,7 @@ theorem exists_irreducible_reduced_denominator_factor
   have hnonunit : ¬ IsUnit d := by
     intro hu
     have hinteger : IsLocalization.IsInteger (B3 K) x :=
-      (IsFractionRing.isUnit_den_iff (B3 K)).mp hu
+      (IsFractionRing.isUnit_den_iff (A := B3 K) x).mp hu
     change x ∈ g.rangeS at hinteger
     obtain ⟨a, ha⟩ := hinteger
     exact hx a ha
