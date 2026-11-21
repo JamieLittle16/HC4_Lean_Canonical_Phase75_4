@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10631**.
+Distinct declaration spellings indexed: **10634**.
 
 ## Repeated declaration spellings
 
@@ -2324,6 +2324,8 @@ Distinct declaration spellings indexed: **10631**.
 - `OppositeFacets` — `def` in `HC4.Toric.BoundaryGeometry`
 - `P` — `abbrev` in `HC4.Valuation.QuadraticTransverseGap`, `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `P3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+- `PB` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+- `PF` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
 - `PlanarJC2Injectivity` — `def` in `HC4.PlanarJC2Interface`
 - `PlanarKellerCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithMarkedAxisTerminal`
 - `PlanarKellerCollisionData.impossible_of_JC2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPlanarTerminalFrontier`
@@ -5534,6 +5536,7 @@ Distinct declaration spellings indexed: **10631**.
 - `exists_sourceCubic_linear_or_repeated_linear_or_primeResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_sourceCubic_repeated_linear_factor` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_sourceCubic_repeated_linear_factor_of_degree_bound` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+- `exists_sourceCubic_transport_linear_or_repeated_or_principal` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `exists_source_square_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
