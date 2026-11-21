@@ -396,3 +396,62 @@ import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRan
 -- Lift nonzero Hessian pivots through the canonical three-exposure ray extractor.
 import HC4.Valuation.FiniteSupportCrossFacetRayHessianMinorLift
 
+-- Exact quadratic truncation across the missing cubic and quartic grades.
+import HC4.Valuation.QuadraticTransverseGap
+
+-- Source-level first determinant jet on a singular transverse axis.
+import HC4.Valuation.TransverseAxisCubicCorrection
+
+
+-- Determinant pencils and pivot rigidity for the cap-three rank-two cubic.
+import HC4.Polynomial.RankTwoCubicFibrePencils
+
+-- Straight characteristic and fixed-square fibre identities for the full-rank cubic.
+import HC4.Polynomial.RankThreeCubicFibrePencils
+
+-- Actual straight characteristic and the fixed-square chart calculations.
+import HC4.Polynomial.RankThreeCubicCharacteristics
+import HC4.Polynomial.RankThreeCubicJordanSquare
+import HC4.Polynomial.RankThreeCubicPoleResidue
+import HC4.Polynomial.RankThreeCubicSquareLock
+
+-- Linear characteristic transport, nilpotence, and rank-one square extraction.
+import HC4.Polynomial.RankThreeCubicLinearTransport
+import HC4.Polynomial.RankThreeCubicNilpotentSquare
+
+-- Basis-free inverse and source square for a nilpotent cubic characteristic.
+import HC4.Polynomial.RankThreeCubicLinearSourcePullback
+
+-- Derive the original-source fixed square from nonzero linear gradient transport.
+import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
+
+-- Pole-free rational cubic characteristics have constant linear transverse velocity.
+import HC4.Polynomial.RankThreeCubicPoleFreeLinear
+
+-- Recover the actual Hessian-kernel equation from anchored gradient characteristics.
+import HC4.Polynomial.RankThreeCubicAnchoredKernel
+
+-- Source-derived, regular fraction-field transverse Hessian equation at cubic cap.
+import HC4.Polynomial.RankThreeCubicSourceFractionKernel
+
+-- Actual cubic source degree-one Hessian and degree-two mixed Hessian weights.
+import HC4.Polynomial.RankThreeCubicSourceDegrees
+
+-- Source-honest full-rank cubic characteristic linear-or-nonpolynomial dichotomy.
+import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
+
+-- Exact adjugate numerator and determinant support of rational cubic poles.
+import HC4.Polynomial.RankThreeCubicPoleDeterminant
+
+-- Genuine reduced denominator pole factors and source-derived squarefree residue geometry.
+import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
+import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
+
+-- Cubic source nonsquarefree determinant has a repeated degree-one irreducible divisor.
+import HC4.Polynomial.RankThreeCubicRepeatedFactor
+
+-- Squarefree cubic pole has nonzero source residue and actual nonzero Hessian cofactor.
+import HC4.Polynomial.RankThreeCubicPoleCofactor
+
+-- Source-honest cubic pole trichotomy: linear, repeated degree-one factor, or nonzero residue/cofactor.
+import HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy

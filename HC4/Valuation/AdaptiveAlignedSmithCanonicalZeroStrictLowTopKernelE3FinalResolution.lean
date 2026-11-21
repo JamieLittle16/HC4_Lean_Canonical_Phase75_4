@@ -1,5 +1,37 @@
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel
+import HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo
+import HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo
+import HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot
+import HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift
+import HC4.Valuation.QuadraticTransverseCapTwoRowKernel
+import HC4.Valuation.QuadraticTransverseCapAdjugateSchur
+import HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision
+import HC4.Valuation.QuadraticTransverseCapSourceSupport
+import HC4.Valuation.QuadraticTransverseCapSchurOddCancellation
+import HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections
+import HC4.Valuation.QuadraticTransverseCapSourceAxisSchur
+import HC4.Valuation.QuadraticTransverseCapSourceSections
+import HC4.Valuation.QuadraticTransverseCapSourceOriginPivot
+import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
+import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
+import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
+import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
+import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift
+import HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent
+import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
+import HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact
 import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution
@@ -134,6 +166,722 @@ structure PureLongitudinalMarkedE3Data
           T.topKernelMarkedAxisFirstContactFamily
           (Finsupp.single (0 : Fin 4) T.topFace.degree) <
         4 * T.topFace.degree - 6
+
+/-- Reachable pure-longitudinal E3 geometry includes a concrete
+represented-source monomial strictly below maximal ordinary degree.  Its
+transverse degree is at least two and its longitudinal exponent is bounded
+by the true first positive marked-axis order.  This is the source-level
+degree-drop witness; it is not yet a complete restart or terminal proof. -/
+theorem PureLongitudinalMarkedE3Data.lowerSourceDegreeWitness
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ d ∈ T.representedSpecialFiber.support,
+      HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree ∧
+        2 ≤ d (1 : Fin 4) + d (2 : Fin 4) + d (3 : Fin 4) ∧
+        d (0 : Fin 4) ≤ T.topKernelMarkedAxisFirstActualLayerOrder :=
+  P.pureLongitudinal_firstActual_exists_lowerSourceDegree
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- Pure-longitudinal E3 retains the *entire* lower singular collision,
+not merely the lower source exponent.  The first actual potential is nonzero,
+Hessian-singular, strictly below maximal source degree, and carries the same
+distinct marked gradient collision at 0 and e₀. -/
+theorem PureLongitudinalMarkedE3Data.lowerSingularCollisionPacket
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let L := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    L ≠ 0 ∧
+      HC4.Polynomial.hessianDeterminant L = 0 ∧
+      HasExactGradientCollision L
+        (fun _ : Fin 4 => (0 : K))
+        (coordinateAxisPoint (K := K) (0 : Fin 4)) ∧
+      (∀ d ∈ L.support,
+        HC4.Polynomial.ordinaryDegree4 d < T.topFace.degree) :=
+  P.pureLongitudinal_firstActualLayer_singularCollisionPacket
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- The marked-aware pure E3 branch admits a strict **potential-family**
+Hessian-clock descent while preserving its marked collision.  With
+`r = topFace.degree - firstActualLayerOrder`, the quotient has determinant
+`τ^(4r-6)` and retains the exact collision at `0` and `e₀`.
+This is a concrete descent packet, not yet an ambient-state restart. -/
+theorem PureLongitudinalMarkedE3Data.reducedClockCollisionFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let Q := firstActualDeformationFamily
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer
+    HasPolynomialFamilyHessianDefect (K := K) Q (4 * r - 6) ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) ∧
+      0 < 4 * r - 6 ∧
+      4 * r - 6 < 4 * T.topFace.degree - 6 := by
+  dsimp
+  rcases P.pureLongitudinal_firstActualQuotient_reducedClock
+      D.coefficient_ne_zero D.topFace_eq with
+    ⟨hdef, hpos, hlt⟩
+  exact ⟨hdef,
+    P.pureLongitudinal_firstActualQuotient_exactCollision
+      D.coefficient_ne_zero D.topFace_eq,
+    hpos, hlt⟩
+
+/-- On the reached pure E3 branch the first-actual quotient is
+the honest lower-level reverse-Rees family of the *same represented source*,
+at weight cap `D-j`.  In particular it is not merely an unspecified
+lower-degree collision polynomial. -/
+theorem PureLongitudinalMarkedE3Data.relevelledReverseRees
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    let j := T.topKernelMarkedAxisFirstActualLayerOrder
+    let r := T.topFace.degree - j
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight
+      r T.topKernelReesSource :=
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+    firstActualDeformationFamily
+        T.topKernelMarkedAxisFirstContactFamily
+        T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer =
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        r T.topKernelReesSource hbound :=
+  P.pureLongitudinal_firstActualQuotient_eq_relevelledReverseRees
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- The reached pure E3 packet constructs two honest A18 scale-aware
+auxiliary states with the same represented source and the same marked
+collision.  The strict clock descent between them is certified by the
+existing global macro order.  It is deliberately NOT an edge from the
+zero-clock represented source itself. -/
+theorem PureLongitudinalMarkedE3Data.auxiliaryMacroStep
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    ∃ s t : ScaleAwareAdaptiveGeometricRestartState (K := K),
+      s.family = T.topKernelMarkedAxisFirstContactFamily ∧
+      t.family =
+        firstActualDeformationFamily T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer ∧
+      s.degreeCap = T.topFace.degree ∧
+      t.degreeCap = T.topFace.degree ∧
+      s.scale = T.terminal.blocker.presented.scale ∧
+      t.scale = s.scale ∧
+      t.repair = s.repair ∧
+      t.rawDefect < s.rawDefect ∧
+      AdaptiveAlignedSmithCanonicalGlobalMacroProgress t s :=
+  P.pureLongitudinal_exists_auxiliaryMacroStep
+    D.coefficient_ne_zero D.topFace_eq
+
+/-- Exact **degree-cap separation** at the reachable E3 pure packet.
+
+The normalized first-actual special fibre admits a strict nonlinear
+ordinary-degree cap D-1, but the whole collision-bearing quotient cannot
+admit that cap, because the original c*X₀^D survives at parameter order
+D-j.  This rules out claiming a full-family degree-drop restart here. -/
+theorem PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    NonlinearDegreeBound (T.topFace.degree - 1)
+      (polynomialFamilySpecialFiber
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer)) ∧
+      ¬ NonlinearDegreeBound (T.topFace.degree - 1)
+        (firstActualDeformationFamily
+          T.topKernelMarkedAxisFirstContactFamily
+          T.topKernelMarkedAxisFirstContact_hasPositiveActualLayer) :=
+  ⟨P.pureLongitudinal_firstActualQuotient_specialFiber_lowerDegree
+      D.coefficient_ne_zero D.topFace_eq,
+    P.pureLongitudinal_firstActualQuotient_not_lowerDegreeBound
+      D.coefficient_ne_zero D.topFace_eq⟩
+
+/-- **Finite quadratic alternative of the reachable pure E3 packet.**
+
+If the first nonzero marked-axis face has transverse degree two, the ENTIRE
+relevelled Hessian family has only parameter orders 0, 1, 2.  Each order is
+exactly the corresponding transverse-weight source component, and the whole
+family retains its tau² determinant and exact marked collision.  This is the
+complete source-honest finite quadratic input for the endpoint calculation. -/
+theorem PureLongitudinalMarkedE3Data.quadraticThreeLayerFamily
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+        T.topKernelReesSource :=
+      by
+        simpa [hr] using
+          P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+            D.coefficient_ne_zero D.topFace_eq
+    let Q :=
+      reverseWeightedReesFamily topKernelMarkedAxisNatWeight
+        2 T.topKernelReesSource hbound
+    (∀ n : ℕ, 2 < n → familyParameterLayer Q n = 0) ∧
+      familyParameterLayer Q 0 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (2 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 1 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (1 : ℤ) T.topKernelReesSource ∧
+      familyParameterLayer Q 2 =
+        HC4.Polynomial.initialForm
+          (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          (0 : ℤ) T.topKernelReesSource ∧
+      HasPolynomialFamilyHessianDefect (K := K) Q 2 ∧
+      HasPolynomialFamilyExactGradientCollision Q
+        (zeroPolynomialSection (K := K))
+        (polynomialConstantSection
+          (coordinateAxisPoint (K := K) (0 : Fin 4))) :=
+  P.pureLongitudinal_quadraticRelevel_threeLayers
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Actual represented-source rank-two conclusion in the quadratic E3
+branch.** The literal cap-two reverse-Rees family has determinant tau², so
+its origin Hessian transverse 3x3 block has a genuine nonzero 2x2 minor.
+The conclusion is about the original represented determinant-one source,
+not an auxiliary source or an inferred repair step. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let H := quadraticFamilyHessianMatrix T.topKernelReesSource
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticAxisReverseRees_sourceTransverseRankTwo
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+
+/-- **New first-actual-face rank-two geometry at the reachable
+quadratic E3 terminal.**
+
+This is stronger and more useful than the earlier represented-source rank
+witness: the Hessian-singular first nonzero marked-axis face itself has a
+nonzero transverse origin Hessian 2x2 minor.  It is therefore not a
+rank-one/quadratic-square lower-face packet. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 3 3 - H 1 3 * H 2 3 ≠ 0 ∨
+    H 1 2 * H 2 3 - H 1 3 * H 2 2 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 3 - H 1 2 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_transverseRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Polynomial rank-two geometry on the genuinely reached quadratic
+E3 lower face.**  The rank witness is an actual nonzero polynomial
+2x2 Hessian minor, not merely a pointwise rank label. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPolynomialRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    ∃ i j k l : Fin 4,
+      HC4.Polynomial.hessian G i j *
+          HC4.Polynomial.hessian G k l -
+        HC4.Polynomial.hessian G i l *
+          HC4.Polynomial.hessian G k j ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_polynomialRankTwo
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- Fixed finite principal Schur pivots on the ACTUAL quadratic E3 face.
+
+The three ordinary transverse principal minors are supplemented by the
+three principal minors after one fixed transverse basis shear.  Hence the
+previous mixed-minor disjunction does not have to be misused as a principal
+active chart.  Constructing the family-level chart and terminal descent is
+a separate remaining obligation. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_firstActualLayerPrincipalPivot
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let G := familyParameterLayer
+      T.topKernelMarkedAxisFirstContactFamily
+      T.topKernelMarkedAxisFirstActualLayerOrder
+    let H := quadraticFamilyHessianMatrix G
+    H 2 2 * H 3 3 - H 2 3 * H 2 3 ≠ 0 ∨
+    H 1 1 * H 3 3 - H 1 3 * H 1 3 ≠ 0 ∨
+    H 1 1 * H 2 2 - H 1 2 * H 1 2 ≠ 0 ∨
+    (H 1 1 + 2 * H 1 2 + H 2 2) * H 3 3 -
+      (H 1 3 + H 2 3) * (H 1 3 + H 2 3) ≠ 0 ∨
+    (H 1 1 + 2 * H 1 3 + H 3 3) * H 2 2 -
+      (H 1 2 + H 2 3) * (H 1 2 + H 2 3) ≠ 0 ∨
+    (H 2 2 + 2 * H 2 3 + H 3 3) * H 1 1 -
+      (H 1 2 + H 1 3) * (H 1 2 + H 1 3) ≠ 0 :=
+  P.pureLongitudinal_quadraticFirstActualLayer_fixedPrincipalPivot
+    D.coefficient_ne_zero D.topFace_eq hr
+
+/-- **Reachable quadratic E3 represented-source Schur packet.**
+
+The axis four-block is the Hessian of the SAME represented source,
+restricted through a ring homomorphism. Its determinant is literally one.
+The transverse-linear coefficients retain the exact original 0~e₀ marked
+collision, and the whole represented source (not just the graded face)
+has transverse degree at most two.
+
+These are the source-honest inputs to the rank-two five-section endpoint.
+Derivation of the four opposite-section identities is still outstanding. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisSchurCollisionCap
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let F := T.topKernelReesSource
+    let H := quadraticTransverseCapSourceAxisFourBlock F
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    let b := quadraticTransverseCapSourceLinearCoefficients F
+    (quadraticAxisFourBlockCore H.a
+        (Polynomial.derivative (b 0))
+        (Polynomial.derivative (b 1))
+        (Polynomial.derivative (b 2))
+        C.a C.b C.c C.d C.e C.f = 1) ∧
+      (∀ j : Fin 3,
+        Polynomial.eval (1 : K) (b j) =
+          Polynomial.eval (0 : K) (b j)) ∧
+      (∀ i j k : ℕ, 3 ≤ i + j + k →
+        longitudinalCoefficientPolynomial i j k F = 0) := by
+  dsimp only
+  refine ⟨quadraticTransverseCapSource_axisSchur_unit
+      T.topKernelReesSource
+      T.topKernelReesSource_hessianDeterminant_eq_one, ?_, ?_⟩
+  · intro j
+    exact T.topKernelReesSource_transverseLinearMarkedCollision j
+  · intro i j k hlarge
+    exact P.pureLongitudinal_quadratic_sourceTransverseCap
+      D.coefficient_ne_zero D.topFace_eq hr i j k hlarge
+
+/-- **Nonzero polynomial transverse 2x2 minor on the actual E3 source axis.**
+
+The origin-Hessian rank-two witness has been transported to the
+original represented source's polynomial transverse Hessian block C(x).
+This provides generic rank at least two over K(x), not merely rank two
+at the first associated-graded origin. A principal pivot and the remaining
+Schur-section identifications are separate steps. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAxisPolynomialRankTwo
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock T.topKernelReesSource
+    C.d * C.f - C.e * C.e ≠ 0 ∨
+    C.b * C.f - C.c * C.e ≠ 0 ∨
+    C.b * C.e - C.c * C.d ≠ 0 ∨
+    C.a * C.f - C.c * C.c ≠ 0 ∨
+    C.a * C.e - C.b * C.c ≠ 0 ∨
+    C.a * C.d - C.b * C.b ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCapSource_axisThreeBlock_polynomialRankTwo
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+
+/-- **The quadratic E3 singular transverse source needs no shear pivot.**
+
+In the det(C)=0 branch, the already-established polynomial rank-two
+witness forces one of the three original principal 2x2 polynomial
+minors to be nonzero. This directly meets the pivot shape needed
+by the denominator-free rank-two Schur/kernel contradiction. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceSingularPrincipalPivot
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (hsingular :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = 0) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock T.topKernelReesSource
+    C.d * C.f - C.e * C.e ≠ 0 ∨
+    C.a * C.f - C.c * C.c ≠ 0 ∨
+    C.a * C.d - C.b * C.b ≠ 0 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCapSource_singular_principalPivot
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one hsingular
+
+/-- **The actual quadratic E3 represented source has a common transverse
+polynomial Hessian block on EVERY transverse section.**
+
+This applies the whole-source transverse cap to prove the six entries
+of C(x) are section-independent and transports the real determinant-one
+identity to every section. Unlike the earlier seven-section algebraic
+endpoint, no Schur-unit equation is assumed here: the equation is
+derived from T.topKernelReesSource_hessianDeterminant_eq_one.
+
+It remains to identify the three mixed Hessian entries as
+b'(x) + C'(x) y in the actual source coefficient library. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceAnySectionSchurUnit
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (y : Fin 3 → K) :
+    let F := T.topKernelReesSource
+    let H := quadraticTransverseSourceSectionFourBlock F y
+    let C := quadraticTransverseCapSourceAxisThreeBlock F
+    quadraticAxisFourBlockCore H.a H.b H.p H.q
+      C.a C.b C.c C.d C.e C.f = 1 := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  exact quadraticTransverseCap_two_actualSectionSchur_unit
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one y
+
+/-- **Source-honest elimination of the singular transverse
+quadratic-cap branch.**
+
+In the actual reachable E3 quadratic relevel, the represented
+determinant-one source has transverse degree at most two and the
+original exact marked gradient collision. If the polynomial
+three-by-three transverse Hessian determinant vanished, the complete
+seven-section source Schur/kernel-drift theorem would give False.
+
+This is an actual contradiction for the singular case, not a
+terminal resolution constructor or a polynomial rank-two witness. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (hsingular :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = 0) :
+    False := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  apply quadraticTransverseCap_two_singularSource_impossible
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    hsingular
+  intro j
+  exact T.topKernelReesSource_transverseLinearMarkedCollision j
+
+/-- Every reachable pure quadratic E3 relevel has a GENERICALLY
+INVERTIBLE polynomial transverse Hessian three-block C(x).
+
+This is strictly stronger than the previously established rank-two
+minor: det C is a nonzero polynomial. The proof eliminates the
+singular rank-two branch using the actual represented source and
+its exact marked collision; no JC2 or endpoint-producer hypothesis
+occurs in this theorem. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    (quadraticTransverseCapSourceAxisThreeBlock
+      T.topKernelReesSource).determinantCore ≠ 0 := by
+  intro hzero
+  exact PureLongitudinalMarkedE3Data.quadratic_sourceSingularTransverse_impossible
+    P D hr hzero
+
+/-- **Source-honest GENERIC RANK-THREE quadratic E3 rational inverse.**
+
+The same original represented source whose singular transverse case
+has been eliminated now has an actual two-sided inverse of its
+transverse 3x3 Hessian over K(x). This is constructed from the
+GREEN det C != 0 theorem; no polynomial inverse is presumed.
+
+Deriving the Riccati equation from the actual Hessian and
+establishing its rational differential-field rigidity are the
+remaining steps before this inverse can descend to K[x]. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRationalThreeInverse
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    ∃ M : Matrix (Fin 3) (Fin 3) (RatFunc K),
+      quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource * M = 1 ∧
+      M * quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource = 1 := by
+  exact quadraticTransverseCapSource_rationalThreeMatrix_inverse
+    T.topKernelReesSource
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P D hr)
+
+/-- **ACTUAL SOURCE RICCATI, with no Riccati hypothesis.**
+
+At the reachable E3 quadratic relevel, the ORIGINAL determinant-one
+represented source's whole-family transverse-degree-two cap forces
+the exact denominator-cleared y² coefficient equation for all
+nine transverse matrix entries.
+
+This is the source-level Riccati equation in K[x] and contains
+no new derivative, inverse, or closing-producer hypothesis. Its
+transport to the already-proved rational inverse is a separate
+algebraic step. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_cleared
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (i j : Fin 3) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock
+      T.topKernelReesSource
+    C.determinantCore *
+        Polynomial.derivative (Polynomial.derivative (C.matrix i j)) =
+      2 * (
+        Polynomial.derivative (C.matrix 0 i) *
+          quadraticTransverseAdjugateVector0 C
+            (Polynomial.derivative (C.matrix 0 j))
+            (Polynomial.derivative (C.matrix 1 j))
+            (Polynomial.derivative (C.matrix 2 j)) +
+        Polynomial.derivative (C.matrix 1 i) *
+          quadraticTransverseAdjugateVector1 C
+            (Polynomial.derivative (C.matrix 0 j))
+            (Polynomial.derivative (C.matrix 1 j))
+            (Polynomial.derivative (C.matrix 2 j)) +
+        Polynomial.derivative (C.matrix 2 i) *
+          quadraticTransverseAdjugateVector2 C
+            (Polynomial.derivative (C.matrix 0 j))
+            (Polynomial.derivative (C.matrix 1 j))
+            (Polynomial.derivative (C.matrix 2 j))) := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        Q.coefficient_ne_zero Q.topFace_eq
+  exact quadraticTransverseCap_two_sourceRiccati_cleared
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one i j
+
+/-- **Actual E3 transverse-linear Riccati coefficient.**
+
+In the same represented source and quadratic relevel as the matrix
+Riccati theorem, the transverse-linear source coefficient vector b(x)
+satisfies the exact denominator-cleared equation in K[x]. It is
+extracted by differentiating the ORIGINAL determinant-one source
+Schur polynomial once, then restricting to the real source axis.
+No extra b-equation hypothesis is used. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_linearCleared
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (j : Fin 3) :
+    let C := quadraticTransverseCapSourceAxisThreeBlock
+      T.topKernelReesSource
+    let b := quadraticTransverseCapSourceLinearCoefficients
+      T.topKernelReesSource
+    C.determinantCore *
+      Polynomial.derivative (Polynomial.derivative (b j)) =
+      2 * (
+        Polynomial.derivative (C.matrix 0 j) *
+          quadraticTransverseAdjugateVector0 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2)) +
+        Polynomial.derivative (C.matrix 1 j) *
+          quadraticTransverseAdjugateVector1 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2)) +
+        Polynomial.derivative (C.matrix 2 j) *
+          quadraticTransverseAdjugateVector2 C
+            (Polynomial.derivative (b 0))
+            (Polynomial.derivative (b 1))
+            (Polynomial.derivative (b 2))) := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        Q.coefficient_ne_zero Q.topFace_eq
+  exact quadraticTransverseCap_two_sourceRiccati_linearCleared
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one j
+
+/-- **Actual E3 quadratic source has CONSTANT transverse determinant
+once the canonical rational X-derivation is supplied.**
+
+The two polynomial source Riccati coefficients and rational inverse
+are already derived, with no abstract Riccati or integrality
+hypotheses. Only the K-derivation on RatFunc K with D(X)=1 remains
+at this interface.
+
+The resulting polynomial inverse and constant nonzero determinant
+are genuine source conclusions. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceConstantTransverseDet_of_derivation
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (deriv : Derivation K (RatFunc K) (RatFunc K))
+    (hX : deriv (RatFunc.X : RatFunc K) = 1) :
+    ∃ A : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix * A = 1 ∧
+      A * (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix = 1 ∧
+      ∃ d : K, d ≠ 0 ∧
+        (quadraticTransverseCapSourceAxisThreeBlock
+          T.topKernelReesSource).determinantCore = Polynomial.C d := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        Q.coefficient_ne_zero Q.topFace_eq
+  exact quadraticTransverseCap_two_source_constantDet_of_ratFuncDerivation
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P Q hr)
+    deriv hX
+
+/-- **The remaining RICCATI seam in the represented E3 quadratic source.**
+
+Once the actual quadratic-source y² Hessian determinant coefficient is
+proved to satisfy the stated matrix Riccati identity and the rational
+indeterminate derivation is available, the original transverse Hessian
+acquires a polynomial two-sided inverse and CONSTANT determinant.
+
+This theorem does not assume polynomial invertibility, constant
+determinant, or any abstract E3 final-resolution producer. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceRiccati_constantDet
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (Q : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2)
+    (deriv : Derivation K (RatFunc K) (RatFunc K))
+    (hX : deriv (RatFunc.X : RatFunc K) = 1)
+    (hRiccati :
+      let C := quadraticTransverseCapSource_rationalThreeMatrix
+        T.topKernelReesSource
+      let M := C⁻¹
+      quadraticTransverse_fieldMatrixDerivative deriv
+          (quadraticTransverse_fieldMatrixDerivative deriv C) =
+        2 * ((quadraticTransverse_fieldMatrixDerivative deriv C * M) *
+          quadraticTransverse_fieldMatrixDerivative deriv C)) :
+    ∃ A : Matrix (Fin 3) (Fin 3) (Polynomial K),
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix * A = 1 ∧
+      A * (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).matrix = 1 ∧
+      ∃ d : K, d ≠ 0 ∧
+        (quadraticTransverseCapSourceAxisThreeBlock
+          T.topKernelReesSource).determinantCore = Polynomial.C d := by
+  exact quadraticTransverseCapSource_rationalRiccati_constantDet
+    T.topKernelReesSource
+    (PureLongitudinalMarkedE3Data.quadratic_sourceTransverseDet_ne_zero
+      P Q hr) deriv hX hRiccati
+
+/-- **The real rank-three quadratic E3 source has longitudinal
+marked collision as a univariate derivative identity.**
+
+This is the original collision 0~e₀ and original axis source
+coefficient, not a collision manufactured after a Rees
+specialisation. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_sourceLongitudinalMarkedCollision
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    Polynomial.eval (1 : K)
+      (Polynomial.derivative
+        (longitudinalAxisRestriction T.topKernelReesSource)) =
+    Polynomial.eval (0 : K)
+      (Polynomial.derivative
+        (longitudinalAxisRestriction T.topKernelReesSource)) := by
+  have hzero :
+      (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) =
+        (fun _ : Fin 4 => (0 : K)) := by
+    funext i
+    fin_cases i <;> rfl
+  have hright :
+      (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
+        coordinateAxisPoint (K := K) (0 : Fin 4) := by
+    funext i
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · simp [coordinateAxisPoint, Fin.cons]
+    · simp [coordinateAxisPoint, Fin.cons]
+  have hcoll :
+      HasExactGradientCollision T.topKernelReesSource
+        (Fin.cons (0 : K) (fun _ : Fin 3 => 0))
+        (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) := by
+    rw [hzero, hright]
+    exact T.topKernelReesSource_exactCollision
+  exact quadraticTransverse_source_longitudinalMarkedCollision
+    T.topKernelReesSource hcoll
+
+/-- **Final source-honest scalar rank-three consumer.**
+
+The remaining reciprocal matrix work must yield precisely the
+following *polynomial consequences* on the actual represented
+source: C.detCore = a nonzero field constant and all three b_i'
+are zero. Once those statements are proved, the real source
+Hessian determinant and exact marked collision give False.
+
+This is NOT an assumed E3 final-resolution producer, and it
+does not pretend generic transverse rank three already implies
+these two consequences. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_rankThreeConstantDetZeroMixed_impossible
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (d : K)
+    (hd : d ≠ 0)
+    (hCdet :
+      (quadraticTransverseCapSourceAxisThreeBlock
+        T.topKernelReesSource).determinantCore = Polynomial.C d)
+    (hzeroMixed : ∀ i : Fin 3,
+      Polynomial.derivative
+        (quadraticTransverseCapSourceLinearCoefficients
+          T.topKernelReesSource i) = 0) :
+    False := by
+  apply quadraticTransverseCap_two_rankThree_constantDetZeroMixed_impossible
+    T.topKernelReesSource
+    T.topKernelReesSource_hessianDeterminant_eq_one
+    d hd hCdet hzeroMixed
+  have hzero :
+      (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) =
+        (fun _ : Fin 4 => (0 : K)) := by
+    funext i
+    fin_cases i <;> rfl
+  have hright :
+      (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
+        coordinateAxisPoint (K := K) (0 : Fin 4) := by
+    funext i
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · simp [coordinateAxisPoint, Fin.cons]
+    · simp [coordinateAxisPoint, Fin.cons]
+  rw [hzero, hright]
+  exact T.topKernelReesSource_exactCollision
 
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.

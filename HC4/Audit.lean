@@ -575,3 +575,81 @@ import HC4
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.wall_row
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.curve_row
 #print axioms HC4.Polynomial.StationaryDeterminantComparisonObstruction.corrected_profile_rows
+#print axioms HC4.Valuation.TransverseGap.quadraticDeterminant_one_of_highWeightPerturbation
+#print axioms HC4.Valuation.TransverseGap.quadraticTruncation_inherits_of_gap
+#print axioms HC4.Polynomial.restricted_derivation_det_eq_trace
+#print axioms HC4.Valuation.TransverseAxis.cubicCorrection_eq_neg_two_kernelDrift
+#print axioms HC4.Valuation.TransverseAxis.exists_cubicCorrection_ne_zero_of_singular
+#print axioms HC4.Valuation.TransverseAxis.cubicCorrection_selfPairing_eq_zero_of_singular
+#print axioms HC4.Valuation.TransverseAxis.cubicGrade_ne_zero_of_singular_axis
+
+#print axioms HC4.Polynomial.RankTwoCubic.ternary_kernelDiagonal_firstJet
+#print axioms HC4.Polynomial.RankTwoCubic.ternary_affineCubic_firstDifference
+#print axioms HC4.Polynomial.RankTwoCubic.affineFibre_secondDifference
+#print axioms HC4.Polynomial.RankTwoCubic.straightenedFibre_firstDifference
+#print axioms HC4.Polynomial.RankTwoCubic.longitudinalBorder_det
+#print axioms HC4.Polynomial.RankTwoCubic.partialLegendre_secondDifference
+#print axioms HC4.Polynomial.RankTwoCubic.derivative_eq_zero_of_reciprocalSecondIdentity
+
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreLegendre_coeff_three
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreAffine_secondDifference
+#print axioms HC4.Polynomial.RankThreeCubic.squareFibreAffine_firstDifference_zeroOther
+#print axioms HC4.Polynomial.RankThreeCubic.polynomial_factor_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.hessianKernel_acceleration
+
+#print axioms HC4.Polynomial.RankThreeCubic.localizationDerivation_algebraMap
+#print axioms HC4.Polynomial.RankThreeCubic.lineEval_eq_C_of_derivation_eq_zero
+#print axioms HC4.Polynomial.RankThreeCubic.exists_lineEval_gradient_eq
+#print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_lineEval_gradient_eq
+#print axioms HC4.Polynomial.RankThreeCubic.transverseCubic_hessian_det_eq_zero
+#print axioms HC4.Polynomial.RankThreeCubic.exists_regular_transverseGenericPoint
+#print axioms HC4.Polynomial.RankThreeCubic.exists_transverseCubic_characteristic
+#print axioms HC4.Polynomial.RankThreeCubic.selfAdjoint_of_linearCharacteristic
+#print axioms HC4.Polynomial.RankThreeCubic.reference_square_of_jordan_velocity
+#print axioms HC4.Polynomial.RankThreeCubic.jordanLineEval_injective
+#print axioms HC4.Polynomial.RankThreeCubic.source_square_of_jordan_transport
+#print axioms HC4.Polynomial.RankThreeCubic.quadraticFamilyEval_eq_zero_at_poleResidue
+#print axioms HC4.Polynomial.RankThreeCubic.constant_scalar_and_square_root_of_transport
+#print axioms HC4.Polynomial.RankThreeCubic.primitive_pair_constant_of_square_transport
+
+#print axioms HC4.Polynomial.RankThreeCubic.derivation_aeval
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_pderiv
+#print axioms HC4.Polynomial.RankThreeCubic.transverseHessian_transport_of_linear_gradient
+#print axioms HC4.Polynomial.RankThreeCubic.det_linearCharacteristic_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.matrix_pow_card_eq_zero_of_det_linear_eq_one
+#print axioms HC4.Polynomial.RankThreeCubic.exists_nilpotent_rankOnePower
+#print axioms HC4.Polynomial.RankThreeCubic.reference_directional_eq_square_of_rankOne
+
+#print axioms HC4.Polynomial.RankThreeCubic.linearLineEval_injective_of_cube_zero
+#print axioms HC4.Polynomial.RankThreeCubic.square_pullback_of_transport
+#print axioms HC4.Polynomial.RankThreeCubic.linearLineEval_invariant_transverseForm
+#print axioms HC4.Polynomial.RankThreeCubic.source_square_of_linear_characteristic
+
+#print axioms HC4.Polynomial.RankThreeCubic.reference_hessian_selfAdjoint_of_linear_transport
+#print axioms HC4.Polynomial.RankThreeCubic.exists_source_square_of_nonzero_linear_characteristic
+
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_transverseEuler_eq_self
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_cubic_quartic_division
+#print axioms HC4.Polynomial.RankThreeCubic.linearForm_of_isHomogeneous_one
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_cubicCramer
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_hessianEquation
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_fractionKernel
+
+#print axioms HC4.Polynomial.RankThreeCubic.coeff_one_lineEval_eq_directional
+#print axioms HC4.Polynomial.RankThreeCubic.anchored_gradient_implies_hessian_kernel
+
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_fractionEvaluation
+#print axioms HC4.Polynomial.RankThreeCubic.sourceFractionHessianEquation_of_gradientTransport
+#print axioms HC4.Polynomial.RankThreeCubic.sourceTransverseHessian_det_ne_zero_of_generic
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_fractionHessianEquation
+
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_of_transverseEuler_eq_nsmul
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_isHomogeneous_of_transverseWeight
+#print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_transverseHessian_homogeneous_one
+#print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_negativeMixedHessian_homogeneous_two
+
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linearVelocity_or_nonPolynomial
+
+#print axioms HC4.Polynomial.RankThreeCubic.fractionKernel_adjugate_numerator_identity
+#print axioms HC4.Polynomial.RankThreeCubic.det_not_isUnit_of_nonPolynomial_fractionKernel
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linear_or_nonunit_determinant

@@ -53,6 +53,27 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.Polynomial.RankThreeCubicFibrePencils`
+  - `HC4.Polynomial.RankThreeCubicJordanSquare`
+  - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+  - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+  - `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Polynomial.RankThreeCubicPoleCofactor`
+  - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+  - `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+  - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+  - `HC4.Polynomial.RankThreeCubicPoleResidue`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+  - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+  - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+  - `HC4.Polynomial.RankThreeCubicSquareLock`
+  - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
@@ -294,6 +315,7 @@ human architecture guide.
   - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
+  - `HC4.Valuation.QuadraticTransverseGap`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Valuation.ReverseReesSchurParameterBudget`
   - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
@@ -316,6 +338,7 @@ human architecture guide.
   - `HC4.Valuation.StrictSmithMaximalNormalization`
   - `HC4.Valuation.StrictSmithPostTransformFace`
   - `HC4.Valuation.SymmetricSmithImprovementRestart`
+  - `HC4.Valuation.TransverseAxisCubicCorrection`
   - `HC4.Valuation.ZeroGradientNormalization`
   - `HC4.Valuation.ZeroLeftDepartureFrontier`
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
@@ -1013,6 +1036,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightBounds`
 - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Polynomial.DeterminantFirstJet`
+  - _(no local imports)_
 - `HC4.Polynomial.DeterminantWeight`
   - `HC4.Polynomial.DerivativeWeight`
 - `HC4.Polynomial.FiniteStaircaseAdjacentDeficit`
@@ -1158,6 +1183,55 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
+- `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.MongeAmpere.SchurReduction`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Polynomial.MaximalHessianInitial`
+  - `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicFibrePencils`
+  - `HC4.Polynomial.RankTwoCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicJordanSquare`
+  - `HC4.Polynomial.DerivativeWeight`
+  - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+  - `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+- `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+  - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicJordanSquare`
+- `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.RankThreeCubicPoleCofactor`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+- `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+  - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+- `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicPoleCofactor`
+  - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+- `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+  - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+- `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+  - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+- `HC4.Polynomial.RankThreeCubicPoleResidue`
+  - `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+  - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+- `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+- `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+  - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `HC4.Polynomial.RankThreeCubicSquareLock`
+  - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
   - `HC4.Polynomial.RankThreeEndpointActiveMinor`
@@ -1205,6 +1279,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.RankTwoCubicFibrePencils`
+  - _(no local imports)_
 - `HC4.Polynomial.RankTwoKernelSecondVariation`
   - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
@@ -4168,16 +4244,84 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBalanceFreeRayRankTwo`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`
+  - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningChainMinorLift`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningProvenance`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningChainMinorLift`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceMinorBridge`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CanonicalOpeningProvenance`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceRankTwoFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceMinorBridge`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularFinalResolution`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRelativeSourceRankThree`
   - `HC4.Valuation.CommonParameterFactorRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
+  - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+  - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+  - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+  - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
+  - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
+  - `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+  - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+  - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
+  - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
   - `HC4.Valuation.StrictSmithFirstContactGeometry`
   - `HC4.Valuation.StrictSmithPostTransformFace`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3GradedSourceMinor`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearSourceRankTwoFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3QuadraticElimination`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearGradedSourceFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3GradedSourceMinor`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearSourceRankTwoFrontier`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3CodimensionTwoSourceRankTwoFrontier`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3OffAxisDeterminantJet`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
+  - `HC4.Valuation.FirstSchurDepartureBridge`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3QuadraticElimination`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+  - `HC4.Valuation.QuadraticTransverseCapSourceFullClosure`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3SourceMinorLift`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearConcreteFrontier`
+  - `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
+  - `HC4.Valuation.ReverseWeightedReesHessianPrincipalMinor`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3TransverseAxisInvisibility`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3NonlinearGradedSourceFrontier`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelExactClock`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakNonlinear`
   - `HC4.Valuation.BoundedReverseWeightedRees`
@@ -4221,6 +4365,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingCanonicalSquareLattice`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerSupport`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareGapImpossible`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
+  - `HC4.Valuation.PrimitiveSmithEndpoint`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalPlanarAffineNormalForm`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
@@ -4268,6 +4415,9 @@ human architecture guide.
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPreclosingSourceWitness`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisPotentialTiming`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisQsRankThree`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowQsBoundaryClosure`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
@@ -4307,6 +4457,17 @@ human architecture guide.
   - `HC4.Newton.NestedRankOneThreeSchurPairOrientations`
   - `HC4.Newton.NestedRankOneThreeSchurTailScaling`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailRankOneClock`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
+  - `HC4.Valuation.NonlinearDegreeBoundPreservation`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureAuxiliaryMacroStep`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
+  - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
+  - `HC4.Valuation.PrimitiveSmithEndpoint`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.MongeAmpere.MaximalInitial`
   - `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
@@ -4326,6 +4487,14 @@ human architecture guide.
   - `HC4.Valuation.BoundedReverseWeightedReesLayerSupport`
   - `HC4.Valuation.CoordinateMaxKernelOpeningDegenerateClassification`
   - `HC4.Valuation.CoordinateMaxKernelOpeningLinearPowerFirstBreak`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
+  - `HC4.Valuation.QuadraticAxisReverseReesSpecialFiberRankTwo`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticRelevel`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureDegreeCapObstruction`
+- `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureReverseReesRelevel`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureFirstLayerCollision`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
 - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoResolvedOpening`
@@ -5079,9 +5248,150 @@ human architecture guide.
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.AlignedSmithEndpoint`
+- `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+  - `HC4.Newton.GeneralFourBlockSchur`
+- `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneFirstActualLayerDirectTest`
+  - `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
+  - `HC4.Valuation.BoundedReverseWeightedRees`
+  - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+- `HC4.Valuation.QuadraticAxisReverseReesSpecialFiberRankTwo`
+  - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
 - `HC4.Valuation.QuadraticFamilyCollision`
   - `HC4.Valuation.KernelInflationHessianDefect`
   - `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
+- `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureQuadraticFirstLayerRankTwo`
+- `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+  - `HC4.Newton.GeneralThreeBlockScalarSchur`
+  - `HC4.Valuation.QuadraticFirstLayerPolynomialRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+  - `HC4.Newton.GeneralThreeBlockScalarSchur`
+  - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
+- `HC4.Valuation.QuadraticTransverseCapAffineSection`
+  - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeDrift`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
+  - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
+  - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeNilpotent`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+- `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+- `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiMatrix`
+- `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+- `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
+  - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
+- `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
+  - `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
+- `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
+  - `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
+- `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+  - `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
+- `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+- `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
+  - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
+  - `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
+  - `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
+- `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
+  - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+  - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSupport`
+- `HC4.Valuation.QuadraticTransverseCapSourceFullClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+  - `HC4.Newton.TerminalOneZeroAmbientDecoupling`
+  - `HC4.Newton.TerminalTwoZeroSupport`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
+- `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+  - `HC4.Newton.MixedDegreeAxisCollision`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelReverseRees`
+  - `HC4.Valuation.QuadraticTransverseCapAdjugateSchur`
+- `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
+  - `HC4.Valuation.QuadraticTransverseCapAffineSection`
+- `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+  - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+- `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
+  - `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+- `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinearMatrix`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiMatrix`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiLinear`
+- `HC4.Valuation.QuadraticTransverseCapSourceRiccatiRational`
+  - `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`
+  - `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
+- `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
+  - `HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMixedSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceSchurSecondJet`
+  - `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
+- `HC4.Valuation.QuadraticTransverseCapSourceSections`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
+- `HC4.Valuation.QuadraticTransverseCapSourceSingularClosure`
+  - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
+- `HC4.Valuation.QuadraticTransverseCapSourceSupport`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+- `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
+  - `HC4.Newton.GeneralThreeBlockScalarSchur`
+  - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+  - `HC4.Valuation.QuadraticTransverseCapRankTwoKernelDrift`
+- `HC4.Valuation.QuadraticTransverseGap`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.ExactCollisionFirstWall`
+  - `HC4.Polynomial.HessianDeterminant`
 - `HC4.Valuation.RankOneSpecialFiberFirstBreak`
   - `HC4.Valuation.SingularFirstKernelBreakSelector`
 - `HC4.Valuation.RankThreeLineSpecialisationHessianDeterminantSwap`
@@ -5224,6 +5534,14 @@ human architecture guide.
 - `HC4.Valuation.SymmetricSmithImprovementRestart`
   - `HC4.Newton.SymmetricSmithMinimality`
   - `HC4.Valuation.CommonParameterFactorRestart`
+- `HC4.Valuation.TransverseAxisCubicCorrection`
+  - `HC4.Newton.CharZeroHessianKernelRigidity`
+  - `HC4.Newton.MixedDegreeAxisCollision`
+  - `HC4.Polynomial.DeterminantFirstJet`
+  - `HC4.Valuation.QuadraticTransverseGap`
+  - `HC4.Valuation.TransverseAxisKernelDrift`
+- `HC4.Valuation.TransverseAxisKernelDrift`
+  - _(no local imports)_
 - `HC4.Valuation.WeightedHessianMinorInitial`
   - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
