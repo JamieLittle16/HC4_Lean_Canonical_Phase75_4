@@ -290,7 +290,9 @@ noncomputable def toScaleSoundStationaryBlocker
     (D : AdaptiveAlignedSmithCanonicalPresentedBlocker (K := K) source)
     (Z : AdaptiveRecenteredAllTransverseZeroRationalSlope D.blocker) :
     AdaptiveAlignedSmithCanonicalScaleSoundStationaryBlocker D.presented := by
-  rcases D.blocker.exists_mixedDegreeEndpoint_eq with ⟨M, hM⟩
+  let hexists := D.blocker.exists_mixedDegreeEndpoint_eq
+  let M := Classical.choose hexists
+  have hM : M.blocker = D.blocker := Classical.choose_spec hexists
   have hR : 1 ≤ alignedSmithRamificationIndex :=
     Nat.one_le_iff_ne_zero.mpr (Nat.ne_of_gt alignedSmithRamificationIndex_pos)
   have hbound :
@@ -332,7 +334,10 @@ theorem rationalNormalizationOutcome
     hstrict | hzero
   · exact .strictMacro hstrict
   · let S := D.toScaleSoundStationaryBlocker hzero
-    exact .stationary hzero S rfl
+    have hblocker : S.blocker = D.blocker := by
+      dsimp [S, toScaleSoundStationaryBlocker,
+        AdaptiveAlignedSmithCanonicalScaleSoundStationaryBlocker.blocker]
+    exact .stationary hzero S hblocker
 
 end AdaptiveAlignedSmithCanonicalPresentedBlocker
 

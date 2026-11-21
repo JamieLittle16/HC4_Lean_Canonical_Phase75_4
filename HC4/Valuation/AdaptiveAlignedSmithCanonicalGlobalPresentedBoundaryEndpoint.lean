@@ -116,13 +116,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.toPresentedEndpoin
         blocker := B
         defect_eq := by
           rw [hEq]
-          simpa [presented] using P.defect_eq
+          rfl
         family_eq := by
           rw [hEq]
-          simpa [presented] using P.family_eq
+          rfl
         movingSection_eq := by
           rw [hEq]
-          simpa [presented] using P.movingSection_eq
+          rfl
       }
 
   | primitiveSurviving B₀ htail P W hEq =>
@@ -135,13 +135,13 @@ theorem AdaptiveAlignedSmithCanonicalAlignedBoundaryHeadTrace.toPresentedEndpoin
         wall := W.original
         defect_eq := by
           rw [hEq]
-          simpa [presented] using P.defect_eq
+          rfl
         family_eq := by
           rw [hEq]
-          simpa [presented] using P.family_eq
+          rfl
         movingSection_eq := by
           rw [hEq]
-          simpa [presented] using P.movingSection_eq
+          rfl
       }
 
   | coupledBlocker B₀ htail P E hdef hfam hsec B hEq =>

@@ -69,6 +69,25 @@ theorem matrix_mulVec_clearedKernelLift
       Fin.sum_univ_four, schurA, schurB, schurC, activeDet] <;>
     ring
 
+/-- If the active determinant and the binary vector are both nonzero, the
+denominator-cleared four-coordinate lift is nonzero. -/
+theorem clearedKernelLift_ne_zero_of_activeDet_ne_zero
+    [NoZeroDivisors R]
+    (H : GeneralFourBlock R)
+    (u v : R)
+    (hactive : H.activeDet ≠ 0)
+    (huv : u ≠ 0 ∨ v ≠ 0) :
+    H.clearedKernelLift u v ≠ 0 := by
+  rcases huv with hu | hv
+  · intro hzero
+    have hcoord := congrFun hzero (2 : Fin 4)
+    simp [clearedKernelLift] at hcoord
+    exact hcoord.elim hactive hu
+  · intro hzero
+    have hcoord := congrFun hzero (3 : Fin 4)
+    simp [clearedKernelLift] at hcoord
+    exact hcoord.elim hactive hv
+
 /-- A cleared Schur-kernel vector lifts to an actual kernel vector of the full
 four-block, still without division. -/
 theorem mulVec_clearedKernelLift_eq_zero
