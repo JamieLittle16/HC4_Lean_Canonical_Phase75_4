@@ -1,0 +1,8 @@
+import HC4.Polynomial.RankThreeCubicPoleFreeLinear
+
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_transverseEuler_eq_self
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_cubic_quartic_division
+#print axioms HC4.Polynomial.RankThreeCubic.linearForm_of_isHomogeneous_one
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_cubicCramer
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_hessianEquation
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_fractionKernel
