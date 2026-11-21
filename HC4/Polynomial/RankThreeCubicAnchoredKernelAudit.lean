@@ -1,0 +1,4 @@
+import HC4.Polynomial.RankThreeCubicAnchoredKernel
+
+#print axioms HC4.Polynomial.RankThreeCubic.coeff_one_lineEval_eq_directional
+#print axioms HC4.Polynomial.RankThreeCubic.anchored_gradient_implies_hessian_kernel
