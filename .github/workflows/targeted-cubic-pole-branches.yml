@@ -1,0 +1,29 @@
+name: HC4 cubic pole branches targeted verification
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build cubic pole repeated-factor theorem
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build targeted Lean module
+        uses: leanprover/lean-action@v1
+        with:
+          build: true
+          build-args: HC4.Polynomial.RankThreeCubicRepeatedFactor
+          test: false
+          lint: false
+      - name: Reject proof escape hatches
+        run: |
+          if grep -En '\\b(sorry|admit|axiom|unsafe)\\b' HC4/Polynomial/RankThreeCubicRepeatedFactor.lean; then
+            exit 1
+          fi
