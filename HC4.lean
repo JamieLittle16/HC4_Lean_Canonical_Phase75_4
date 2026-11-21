@@ -464,3 +464,6 @@ import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
 
 -- Exact source double-Euler representation of the cubic transverse gradient.
 import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
+
+-- Full cubic gradient transport rewritten as the source-derived quadratic family.
+import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
