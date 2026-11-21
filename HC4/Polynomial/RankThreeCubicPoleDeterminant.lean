@@ -215,7 +215,7 @@ theorem exists_determinantalQuotient_kernel_of_nonPolynomial_fractionKernel
     apply Ideal.Quotient.eq_zero_iff_mem.mpr
     exact Ideal.mem_span_singleton_self _
   have hadj : H *ᵥ (H.adjugate *ᵥ r) = H.det • r := by
-    rw [← Matrix.mulVec_mulVec, Matrix.mul_adjugate,
+    rw [Matrix.mulVec_mulVec, Matrix.mul_adjugate,
       Matrix.smul_mulVec, Matrix.one_mulVec]
   have hker : (H.map q) *ᵥ S = 0 := by
     funext j
