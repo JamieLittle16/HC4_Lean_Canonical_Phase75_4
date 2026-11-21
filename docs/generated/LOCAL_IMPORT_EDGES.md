@@ -63,7 +63,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+  - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
   - `HC4.Polynomial.RankThreeCubicPoleResidue`
+  - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
