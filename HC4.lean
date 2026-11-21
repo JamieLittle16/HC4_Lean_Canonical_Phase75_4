@@ -470,3 +470,6 @@ import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
 
 -- Triple transverse derivatives of the cubic source descend to longitudinal polynomials.
 import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
+
+-- Longitudinal polynomial evaluation commutes with scalar extension to the fraction field.
+import HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap
