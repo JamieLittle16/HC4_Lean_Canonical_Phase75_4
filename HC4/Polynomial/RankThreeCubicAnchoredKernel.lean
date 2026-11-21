@@ -26,11 +26,10 @@ private def timeDerivative : Derivation K (_root_.Polynomial F) (_root_.Polynomi
   toFun := _root_.Polynomial.derivative
   map_add' x y := _root_.Polynomial.derivative_add
   map_smul' a p := by
-    change _root_.Polynomial.derivative
-        (_root_.Polynomial.C (algebraMap K F a) * p) =
-        _root_.Polynomial.C (algebraMap K F a) *
-          _root_.Polynomial.derivative p
-    exact _root_.Polynomial.derivative_C_mul _ _
+    simp only [Algebra.smul_def,
+      IsScalarTower.algebraMap_apply K F (_root_.Polynomial F),
+      _root_.Polynomial.algebraMap_eq,
+      _root_.Polynomial.derivative_C_mul]
   map_one_eq_zero' := _root_.Polynomial.derivative_one
   leibniz' x y := by
     simpa only [smul_eq_mul] using
@@ -83,8 +82,9 @@ theorem coeff_one_lineEval_eq_directional
   have hleft : (D (E p)).coeff 0 = (E p).coeff 1 := by
     change (_root_.Polynomial.derivative (E p)).coeff 0 = _
     simpa using (_root_.Polynomial.coeff_derivative (E p) 0)
-  rw [hleft] at h
-  simp only [_root_.Polynomial.coeff_sum] at h
+  change (D (E p)).coeff 0 =
+    (∑ i : ι, E (pderiv i p) * _root_.Polynomial.C (V i)).coeff 0 at h
+  rw [hleft, _root_.Polynomial.coeff_sum] at h
   have hterm (i : ι) :
       (E (pderiv i p) * _root_.Polynomial.C (V i)).coeff 0 =
         MvPolynomial.aeval z (pderiv i p) * V i := by
@@ -105,8 +105,11 @@ theorem anchored_gradient_implies_hessian_kernel
         MvPolynomial.aeval z (pderiv j (pderiv i L)) * V j = 0 := by
   intro i
   have h := coeff_one_lineEval_eq_directional z V (pderiv i L)
-  rw [hgrad i] at h
-  simpa using h.symm
+  have hzero : (lineEval z V (pderiv i L)).coeff 1 = 0 := by
+    rw [hgrad i]
+    simp
+  rw [hzero] at h
+  exact h.symm
 
 end
 end HC4.Polynomial.RankThreeCubic
