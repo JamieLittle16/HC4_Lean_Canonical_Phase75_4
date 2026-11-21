@@ -55,12 +55,14 @@ theorem det_not_isUnit_of_nonPolynomial_fractionKernel
     have h := congrArg
       (fun M : Matrix (Fin 3) (Fin 3) (FF3 K) => M *ᵥ V)
       (Matrix.adjugate_mul (H.map g))
-    simpa only [Matrix.mulVec_mulVec, Matrix.smul_mulVec,
+    simpa only [← Matrix.mulVec_mulVec, Matrix.smul_mulVec,
       Matrix.one_mulVec, hkernel] using h.symm
   have hmapadj (i : Fin 3) :
       ((H.map g).adjugate *ᵥ (fun j => g (r j))) i =
         g ((H.adjugate *ᵥ r) i) := by
-    rw [← g.map_adjugate H]
+    have hm : (H.map g).adjugate = (H.adjugate).map g := by
+      simpa only [RingHom.mapMatrix] using (g.map_adjugate H).symm
+    rw [hm]
     simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
   have hdetmap : (H.map g).det = g H.det := by
     simpa only [RingHom.mapMatrix] using (RingHom.map_det g H).symm
