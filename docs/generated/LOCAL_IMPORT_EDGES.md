@@ -60,6 +60,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
