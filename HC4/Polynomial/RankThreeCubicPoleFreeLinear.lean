@@ -144,7 +144,9 @@ theorem exists_linear_matrix_of_poleFree_cubicCramer
 
 private theorem transverseEuler_sum (v : Fin 3 → B K) :
     transverseEuler (∑ j, v j) = ∑ j, transverseEuler (v j) := by
-  simp [transverseEuler, map_sum, Finset.mul_sum, Finset.sum_comm]
+  unfold transverseEuler
+  simp_rw [map_sum, Finset.mul_sum]
+  rw [Finset.sum_comm]
 
 /-- An invertible homogeneous degree-one Hessian block has no
 nonlinear polynomial kernel correction. If H W = r and r is quadratic,
@@ -162,7 +164,7 @@ theorem exists_linear_matrix_of_poleFree_hessianEquation
   classical
   have hHE (i j : Fin 3) : transverseEuler (H i j) = H i j := by
     simpa [transverseEuler] using (hH i j).sum_X_mul_pderiv
-  have hRE (i : Fin 3) : transverseEuler (r i) = (2 : K) * r i := by
+  have hRE (i : Fin 3) : transverseEuler (r i) = (2 : B K) * r i := by
     simpa [transverseEuler, nsmul_eq_mul] using (hr i).sum_X_mul_pderiv
   have hi (i : Fin 3) : (∑ j : Fin 3, H i j * W j) = r i := by
     simpa only [Matrix.mulVec, dotProduct] using congrFun heq i
