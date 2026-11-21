@@ -32,8 +32,11 @@ private def timeDerivative : Derivation K (_root_.Polynomial F) (_root_.Polynomi
       _root_.Polynomial.derivative_C_mul, RingHom.id_apply]
   map_one_eq_zero' := _root_.Polynomial.derivative_one
   leibniz' x y := by
-    simpa only [smul_eq_mul] using
-      (_root_.Polynomial.derivative_mul (f := x) (g := y))
+    change _root_.Polynomial.derivative (x * y) =
+      x * _root_.Polynomial.derivative y +
+        y * _root_.Polynomial.derivative x
+    rw [_root_.Polynomial.derivative_mul]
+    ring
 
 /-- The constant coefficient of the line evaluation is the ordinary
 evaluation at its starting point. -/
@@ -85,7 +88,17 @@ theorem coeff_one_lineEval_eq_directional
   change (D (E p)).coeff 0 =
     (∑ i : ι, E (pderiv i p) * _root_.Polynomial.C (V i)).coeff 0 at h
   rw [hleft] at h
-  simp only [map_sum] at h
+  have hcoeff_sum (s : Finset ι)
+      (f : ι → _root_.Polynomial F) :
+      (∑ i ∈ s, f i).coeff 0 = ∑ i ∈ s, (f i).coeff 0 := by
+    classical
+    induction s using Finset.induction_on with
+    | empty => simp
+    | @insert j s hjs ih =>
+      simp only [Finset.sum_insert hjs, _root_.Polynomial.coeff_add, ih]
+  have hs := hcoeff_sum Finset.univ
+    (fun i : ι => E (pderiv i p) * _root_.Polynomial.C (V i))
+  simpa only [Finset.sum_univ] using (h.trans hs)
   have hterm (i : ι) :
       (E (pderiv i p) * _root_.Polynomial.C (V i)).coeff 0 =
         MvPolynomial.aeval z (pderiv i p) * V i := by
@@ -107,12 +120,10 @@ theorem anchored_gradient_implies_hessian_kernel
   intro i
   have h := coeff_one_lineEval_eq_directional z V (pderiv i L)
   have hzero : (lineEval z V (pderiv i L)).coeff 1 = 0 := by
-    calc
-      (lineEval z V (pderiv i L)).coeff 1 =
-          (_root_.Polynomial.C
-            (MvPolynomial.aeval z (pderiv i L)) : _root_.Polynomial F).coeff 1 :=
-              congrArg (fun q : _root_.Polynomial F => q.coeff 1) (hgrad i)
-      _ = 0 := by simp
+    have hC (u : F) : (_root_.Polynomial.C u : _root_.Polynomial F).coeff 1 = 0 := by
+      simp only [_root_.Polynomial.coeff_C, if_neg (by decide : (0 : ℕ) ≠ 1)]
+    exact (congrArg (fun q : _root_.Polynomial F => q.coeff 1) (hgrad i)).trans
+      (hC (MvPolynomial.aeval z (pderiv i L)))
   rw [hzero] at h
   exact h.symm
 
