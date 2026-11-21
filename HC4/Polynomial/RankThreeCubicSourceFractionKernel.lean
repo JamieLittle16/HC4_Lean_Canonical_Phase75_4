@@ -105,6 +105,32 @@ theorem sourceFractionHessianEquation_of_gradientTransport
   rw [hrow, map_neg, referenceSlice_fractionEvaluation]
   linear_combination hsplit
 
+/-- Generic nonsingularity of the source transverse Hessian on a
+longitudinal slice descends to the polynomial transverse Hessian after
+that specialization. -/
+theorem sourceTransverseHessian_det_ne_zero_of_generic
+    (a : K) (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint a)
+      (((hessian L).submatrix Sum.inr Sum.inr).det) ≠ 0) :
+    (sourceTransverseHessian a L).det ≠ 0 := by
+  let f := algebraMap (CubicB K) (CubicF K)
+  let e : MvPolynomial (Unit ⊕ Fin 3) K →ₐ[K] CubicF K :=
+    MvPolynomial.aeval (transverseGenericPoint a)
+  have hMat : (sourceTransverseHessian a L).map f =
+      ((hessian L).submatrix Sum.inr Sum.inr).map e.toRingHom := by
+    ext i j
+    change f (referenceSlice a (pderiv (.inr j) (pderiv (.inr i) L))) =
+      e (pderiv (.inr j) (pderiv (.inr i) L))
+    exact referenceSlice_fractionEvaluation a _
+  have hdet : f ((sourceTransverseHessian a L).det) =
+      e (((hessian L).submatrix Sum.inr Sum.inr).det) := by
+    have h := congrArg Matrix.det hMat
+    simpa only [← RingHom.map_det] using h
+  intro hz
+  apply hreg
+  rw [hz, map_zero] at hdet
+  exact hdet.symm
+
 /-- The genuine cubic grade of a source with constant Hessian
 determinant and a generically nonsingular transverse Hessian admits
 a normalized characteristic satisfying its *source-derived* fraction
@@ -118,6 +144,7 @@ theorem exists_sourceCubic_fractionHessianEquation [CharZero K]
         Sum.inr Sum.inr).det ≠ 0) :
     let L := initialForm transverseCubicWeight 3 F
     ∃ (a : K) (V : Unit ⊕ Fin 3 → CubicF K),
+      (sourceTransverseHessian a L).det ≠ 0 ∧
       V (.inl ()) = 1 ∧
       (sourceTransverseHessian a L).map
           (algebraMap (CubicB K) (CubicF K)) *ᵥ
@@ -125,10 +152,13 @@ theorem exists_sourceCubic_fractionHessianEquation [CharZero K]
         fun i : Fin 3 =>
           (algebraMap (CubicB K) (CubicF K))
             (sourceNegativeMixedHessian a L i) := by
-  obtain ⟨a, V, hV, hgrad⟩ :=
-    exists_transverseCubic_characteristic F hcap hdet htrans
-  exact ⟨a, V, hV,
-    sourceFractionHessianEquation_of_gradientTransport a
+  obtain ⟨a, ha⟩ := exists_regular_transverseGenericPoint htrans
+  obtain ⟨V, hV, hgrad⟩ :=
+    exists_transverseCubic_characteristic_at a F hcap hdet ha
+  exact ⟨a, V,
+    sourceTransverseHessian_det_ne_zero_of_generic a
+      (initialForm transverseCubicWeight 3 F) ha,
+    hV, sourceFractionHessianEquation_of_gradientTransport a
       (initialForm transverseCubicWeight 3 F) V hV hgrad⟩
 
 end
