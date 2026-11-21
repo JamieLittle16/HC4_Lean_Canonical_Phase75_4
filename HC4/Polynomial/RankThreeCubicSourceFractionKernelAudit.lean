@@ -2,4 +2,5 @@ import HC4.Polynomial.RankThreeCubicSourceFractionKernel
 
 #print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_fractionEvaluation
 #print axioms HC4.Polynomial.RankThreeCubic.sourceFractionHessianEquation_of_gradientTransport
+#print axioms HC4.Polynomial.RankThreeCubic.sourceTransverseHessian_det_ne_zero_of_generic
 #print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_fractionHessianEquation
