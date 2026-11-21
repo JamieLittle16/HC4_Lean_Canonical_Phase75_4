@@ -1,0 +1,25 @@
+name: Validate cubic source linear-or-pole dichotomy
+on:
+  push:
+    branches: [research/cubic-source-linear-or-pole]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Download Mathlib cache
+        run: lake exe cache get
+      - name: Compile actual cubic dichotomy
+        run: lake build HC4.Polynomial.RankThreeCubicSourceLinearOrPole
+      - name: Audit actual cubic dichotomy
+        run: lake env lean HC4/Polynomial/RankThreeCubicSourceLinearOrPoleAudit.lean
