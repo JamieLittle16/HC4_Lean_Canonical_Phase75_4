@@ -442,3 +442,7 @@ import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
 
 -- Exact adjugate numerator and determinant support of rational cubic poles.
 import HC4.Polynomial.RankThreeCubicPoleDeterminant
+
+-- Genuine reduced denominator pole factors and source-derived squarefree residue geometry.
+import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
+import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
