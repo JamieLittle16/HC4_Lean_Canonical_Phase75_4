@@ -79,5 +79,98 @@ theorem exists_sourceCubic_repeated_linear_factor_of_degree_bound
   exists_degree_one_repeated_irreducible_of_cubic_degree
     (sourceTransverseHessian a L).det hreg hdeg hnot
 
+/-- The determinant of a three-by-three matrix of homogeneous
+degree-one polynomials is homogeneous of degree three. -/
+theorem homogeneous_three_det_of_linear_homogeneous_matrix
+    (H : Matrix (Fin 3) (Fin 3) (B3 K))
+    (hH : ∀ i j : Fin 3, (H i j).IsHomogeneous 1) :
+    H.det.IsHomogeneous 3 := by
+  classical
+  have htriple (i j k l m n : Fin 3) :
+      (H i j * H k l * H m n).IsHomogeneous 3 := by
+    simpa only [Nat.reduceAdd] using
+      ((hH i j).mul (hH k l)).mul (hH m n)
+  rw [Matrix.det_fin_three]
+  repeat'
+    first
+    | apply MvPolynomial.IsHomogeneous.add
+    | apply MvPolynomial.IsHomogeneous.sub
+    | exact htriple _ _ _ _ _ _
+
+/-- Source honest degree bound: a cubic transverse initial form has
+a homogeneous cubic determinant on every longitudinal slice. -/
+theorem sourceCubic_transverseHessian_det_homogeneous_three
+    (a : K) (F : MvPolynomial (Unit ⊕ Fin 3) K) :
+    (sourceTransverseHessian a
+      (initialForm transverseCubicWeight 3 F)).det.IsHomogeneous 3 :=
+  homogeneous_three_det_of_linear_homogeneous_matrix
+    (sourceTransverseHessian a (initialForm transverseCubicWeight 3 F))
+    (sourceCubic_transverseHessian_homogeneous_one a F)
+
+/-- If the source cubic slice has a nonsquarefree transverse Hessian
+determinant, the actual source supplies a repeated *degree-one*
+irreducible factor. There is no independently assumed degree bound. -/
+theorem exists_sourceCubic_repeated_linear_factor
+    (a : K) (F : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hreg : (sourceTransverseHessian a
+      (initialForm transverseCubicWeight 3 F)).det ≠ 0)
+    (hnot : ¬ Squarefree (sourceTransverseHessian a
+      (initialForm transverseCubicWeight 3 F)).det) :
+    ∃ p : B3 K, Irreducible p ∧
+      p * p ∣ (sourceTransverseHessian a
+        (initialForm transverseCubicWeight 3 F)).det ∧
+      p.totalDegree = 1 :=
+  exists_degree_one_repeated_irreducible_of_cubic_degree
+    (sourceTransverseHessian a (initialForm transverseCubicWeight 3 F)).det
+    hreg
+    (sourceCubic_transverseHessian_det_homogeneous_three a F).totalDegree_le
+    hnot
+
+/-- Cubic characteristic geometry is either linear, supported on a
+repeated degree-one determinant factor, or represented by a nonzero
+kernel on an irreducible determinant component. This package has
+no hidden squarefreeness or source-degree hypothesis. -/
+theorem exists_sourceCubic_linear_or_repeated_linear_or_primeResidue
+    [CharZero K]
+    (F : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (htrans : ((hessian (initialForm transverseCubicWeight 3 F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0) :
+    let L := initialForm transverseCubicWeight 3 F
+    ∃ (a : K) (V : Unit ⊕ Fin 3 → FractionRing (B3 K)),
+      (sourceTransverseHessian a L).det ≠ 0 ∧
+      V (.inl ()) = 1 ∧
+      ((sourceTransverseHessian a L).map
+          (algebraMap (B3 K) (FractionRing (B3 K))) *ᵥ
+            (fun j : Fin 3 => V (.inr j)) =
+        fun i : Fin 3 =>
+          algebraMap (B3 K) (FractionRing (B3 K))
+            (sourceNegativeMixedHessian a L i)) ∧
+      ((∃ N : Matrix (Fin 3) (Fin 3) K,
+          ∀ i : Fin 3,
+            V (.inr i) =
+              algebraMap (B3 K) (FractionRing (B3 K))
+                (∑ j : Fin 3, MvPolynomial.C (N i j) * X j))
+        ∨ (∃ p : B3 K, Irreducible p ∧
+            p * p ∣ (sourceTransverseHessian a L).det ∧
+            p.totalDegree = 1)
+        ∨ (∃ p : B3 K, Irreducible p ∧
+            p ∣ (sourceTransverseHessian a L).det ∧
+            ∃ S : Fin 3 → (B3 K ⧸ Ideal.span {p}),
+              S ≠ 0 ∧
+              ((sourceTransverseHessian a L).map
+                (Ideal.Quotient.mk (Ideal.span {p}))) *ᵥ S = 0)) := by
+  obtain ⟨a, V, hreg, hlong, heq, hcase⟩ :=
+    exists_sourceCubic_linear_or_nonsquarefree_or_primeResidue
+      F hcap hdet htrans
+  refine ⟨a, V, hreg, hlong, heq, ?_⟩
+  rcases hcase with hlin | hnot | hres
+  · exact Or.inl hlin
+  · exact Or.inr (Or.inl
+      (exists_sourceCubic_repeated_linear_factor a F hreg hnot))
+  · exact Or.inr (Or.inr hres)
+
+
 end
 end HC4.Polynomial.RankThreeCubic
