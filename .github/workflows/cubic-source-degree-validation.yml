@@ -1,0 +1,25 @@
+name: Verify source cubic transverse degrees
+on:
+  push:
+    branches: [research/cubic-source-transverse-degrees]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Restore Mathlib cache
+        run: lake exe cache get
+      - name: Build source degree theorem
+        run: lake build HC4.Polynomial.RankThreeCubicSourceDegrees
+      - name: Audit degree theorems
+        run: lake env lean HC4/Polynomial/RankThreeCubicSourceDegreesAudit.lean
