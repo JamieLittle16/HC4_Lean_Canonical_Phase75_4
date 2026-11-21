@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10656**.
+Distinct declaration spellings indexed: **10657**.
 
 ## Repeated declaration spellings
 
@@ -7660,6 +7660,7 @@ Distinct declaration spellings indexed: **10656**.
 - `pderiv_comm_commRing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `pderiv_constantLinearForm` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `pderiv_constantSourceDirectionalDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyConstantKernelTransverse`
+- `pderiv_det_fin_three` — `theorem` in `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`
 - `pderiv_directional_eq_hessian_mulVec` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `pderiv_elementaryShearHom_of_ne_zero` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `pderiv_eq_zero_of_all_supported_exponents_zero` — `theorem` in `HC4.Newton.TerminalTwoZeroSupport`

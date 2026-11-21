@@ -1209,6 +1209,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
 - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`
+  - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicJordanSquare`
   - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
