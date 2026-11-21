@@ -106,7 +106,8 @@ theorem transverseSourceQuadraticEuler
         (X (.inr j) : SB K) * pderiv (.inr j) P =
             X (.inr j) *
               (∑ k : Fin 3, (X (.inr k) : SB K) *
-                pderiv (.inr k) (pderiv (.inr j) P)) := by rw [he1 j]
+                pderiv (.inr k) (pderiv (.inr j) P)) := by
+              exact congrArg (fun q : SB K => (X (.inr j) : SB K) * q) (he1 j)
         _ = ∑ k : Fin 3, X (.inr j) * X (.inr k) *
               pderiv (.inr k) (pderiv (.inr j) P) := by
           rw [Finset.mul_sum]
