@@ -1220,6 +1220,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
+- `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
+  - `HC4.Polynomial.RankThreeCubicPoleResidue`
+  - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
