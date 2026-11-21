@@ -471,6 +471,9 @@ import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
 -- Exact quadratic residue equation for the Cramer numerator over determinant-zero domains.
 import HC4.Polynomial.RankThreeCubicCramerQuadraticResidue
 
+-- Actual Cramer numerator survives at a genuine squarefree determinant pole.
+import HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero
+
 -- Triple transverse derivatives of the cubic source descend to longitudinal polynomials.
 import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
 
