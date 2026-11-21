@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10579**.
+Distinct declaration spellings indexed: **10583**.
 
 ## Repeated declaration spellings
 
@@ -3872,6 +3872,7 @@ Distinct declaration spellings indexed: **10579**.
 - `allTransverseZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactClockFinalLocalCore`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryEliminationInterface`
 - `allTwoByTwoMinorsZero_of_centerFactor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `allTwoByTwoMinorsZero_of_rankOneCoreRelations` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
+- `anchored_gradient_implies_hessian_kernel` — `theorem` in `HC4.Polynomial.RankThreeCubicAnchoredKernel`
 - `applies` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointBinaryClosure`
 - `avoids` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `axisBlock` — `def` in `HC4.Valuation.TransverseAxisKernelDrift`
@@ -4548,6 +4549,7 @@ Distinct declaration spellings indexed: **10579**.
 - `coeff_one_det_rankTwoToRankThreeRoofPencil` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
 - `coeff_one_determinant_of_zero_complement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrFirstVariation`
 - `coeff_one_highestBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
+- `coeff_one_lineEval_eq_directional` — `theorem` in `HC4.Polynomial.RankThreeCubicAnchoredKernel`
 - `coeff_one_lockedBinomialMomentHessian` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_Q_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousQFixedRelation`
 - `coeff_one_rankThreeEtaDenominatorPolynomial_unit_of_homogeneous_R_zero` — `theorem` in `HC4.RationalRigidity.RankThreeHomogeneousOtherFixedRelations`
@@ -4638,6 +4640,7 @@ Distinct declaration spellings indexed: **10579**.
 - `coeff_zero_complementaryEtaDenominator` — `theorem` in `HC4.Polynomial.ComplementaryLogHessian`
 - `coeff_zero_det_fin_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `coeff_zero_det_polynomialMatrix` — `theorem` in `HC4.Polynomial.MatrixPolynomialTopCoefficient`
+- `coeff_zero_lineEval` — `theorem` in `HC4.Polynomial.RankThreeCubicAnchoredKernel`
 - `coeff_zero_ne_zero_of_mem_zero` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`
 - `coeff_zero_positiveParameterRemainder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingRelativeFirstLayer`
 - `coeff_zero_pow` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
@@ -10377,6 +10380,7 @@ Distinct declaration spellings indexed: **10579**.
 - `tiltedParameterPenalty` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `tiltedParameterPenalty_add_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `tilted_binary_nonCancellation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`
+- `timeDerivative` — `def` in `HC4.Polynomial.RankThreeCubicAnchoredKernel`
 - `to` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticWeight`
 - `toAssociatedGradedCollisionData_of_specialFiberEndpoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalClockSplitResolution`
 - `toBinaryClockPivot0` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`

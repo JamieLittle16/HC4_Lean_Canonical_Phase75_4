@@ -53,6 +53,7 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankThreeCubicJordanSquare`
@@ -1173,6 +1174,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
+- `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.MongeAmpere.SchurReduction`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
