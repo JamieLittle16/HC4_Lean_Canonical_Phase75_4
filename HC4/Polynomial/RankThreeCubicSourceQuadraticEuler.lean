@@ -25,7 +25,7 @@ open scoped BigOperators
 noncomputable section
 
 -- Two nested weighted Euler expansions are elaboration-heavy for MvPolynomial.
-set_option maxHeartbeats 500000
+set_option maxHeartbeats 1000000
 
 variable {K : Type*} [Field K] [CharZero K]
 
@@ -121,19 +121,19 @@ additional source assumption. -/
 theorem sourceCubic_transverseGradient_quadraticIdentity
     (F : SB K) (i : Fin 3) :
     let L := initialForm transverseCubicWeight 3 F
-    (2 : SB K) * pderiv (.inr i) L =
+    let P := pderiv (.inr i) L
+    (2 : SB K) * P =
       ∑ j : Fin 3, ∑ k : Fin 3,
         (X (.inr j) : SB K) * X (.inr k) *
-          pderiv (.inr k) (pderiv (.inr j) (pderiv (.inr i) L)) := by
+          pderiv (.inr k) (pderiv (.inr j) P) := by
   let L := initialForm transverseCubicWeight 3 F
+  let P := pderiv (.inr i) L
   have hL : L.IsWeightedHomogeneous transverseCubicWeight 3 :=
     initialForm_isWeightedHomogeneous transverseCubicWeight 3 F
-  have hP : (pderiv (.inr i) L).IsWeightedHomogeneous
-      transverseCubicWeight 2 := by
+  have hP : P.IsWeightedHomogeneous transverseCubicWeight 2 := by
     have h := pderiv_isWeightedHomogeneous hL (.inr i)
-    simpa [transverseCubicWeight] using h
-  exact transverseSourceQuadraticEuler
-    (pderiv (.inr i) L) hP
+    simpa [P, transverseCubicWeight] using h
+  exact transverseSourceQuadraticEuler P hP
 
 end
 end HC4.Polynomial.RankThreeCubic
