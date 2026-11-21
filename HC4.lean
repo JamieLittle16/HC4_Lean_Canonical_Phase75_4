@@ -461,3 +461,6 @@ import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
 
 -- Retain actual full-gradient transport with the source cubic principal-residue trichotomy.
 import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
+
+-- Exact source double-Euler representation of the cubic transverse gradient.
+import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
