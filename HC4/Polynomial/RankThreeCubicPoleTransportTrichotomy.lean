@@ -6,6 +6,8 @@ import Mathlib
 
 The earlier source trichotomy retained the fraction-field transverse
 Hessian equation but dropped the full straight characteristic identity.
+The witness must be retained at the *same* basepoint and for the
+*same* normalized rational characteristic as the pole residue.
 That identity is essential for the *second-order* pole-residue argument:
 the Hessian equation alone does not imply cubic singularity.
 
