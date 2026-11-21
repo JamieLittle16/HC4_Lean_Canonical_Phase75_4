@@ -20,7 +20,7 @@ The full gradient-transport identity, source Hessian equation and pole
 geometry use the *same* a and V. There is no extra assumed squarefreeness,
 characteristic regularity, or singular-direction endpoint.
 
-This is a reduction, not a contradiction eliminating the pole.
+This is a source-level classification, not a contradiction eliminating the pole.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
