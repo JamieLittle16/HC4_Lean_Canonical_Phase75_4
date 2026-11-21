@@ -38,7 +38,7 @@ theorem exists_principal_cofactor_not_dvd
   by_contra h
   push_neg at h
   have hdiag (i : Fin 3) : p ∣ B i i := h i
-  have hBSym : B.IsSymm := hSym.adjugate
+  have hBSym : B.IsSymm := Matrix.IsSymm.adjugate hSym
   have hadjadj : B.adjugate = H.det • H := by
     simpa [B] using (Matrix.adjugate_adjugate H
       (by decide : Fintype.card (Fin 3) ≠ 1))
@@ -74,15 +74,15 @@ theorem exists_principal_cofactor_not_dvd
     rw [hminor00] at hd
     convert hd using 1 <;> ring
   have h01 : p ∣ B 0 1 :=
-    hp.dvd_of_dvd_pow (by
+    hp.dvd_of_dvd_pow (n := 2) (by
       simpa only [pow_two, hBSym.apply (0 : Fin 3) (1 : Fin 3)]
         using hprod01)
   have h02 : p ∣ B 0 2 :=
-    hp.dvd_of_dvd_pow (by
+    hp.dvd_of_dvd_pow (n := 2) (by
       simpa only [pow_two, hBSym.apply (0 : Fin 3) (2 : Fin 3)]
         using hprod02)
   have h12 : p ∣ B 1 2 :=
-    hp.dvd_of_dvd_pow (by
+    hp.dvd_of_dvd_pow (n := 2) (by
       simpa only [pow_two, hBSym.apply (1 : Fin 3) (2 : Fin 3)]
         using hprod12)
   have h10 : p ∣ B 1 0 := by
