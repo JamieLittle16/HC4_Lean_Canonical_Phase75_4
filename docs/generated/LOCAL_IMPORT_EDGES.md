@@ -79,6 +79,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
   - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
@@ -1262,6 +1263,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
+- `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
 - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
   - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
   - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
