@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   verify:
-    name: Build cubic pole repeated-factor theorem
+    name: Build combined cubic pole source trichotomy
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -19,11 +19,11 @@ jobs:
         uses: leanprover/lean-action@v1
         with:
           build: true
-          build-args: HC4.Polynomial.RankThreeCubicRepeatedFactor
+          build-args: HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy
           test: false
           lint: false
       - name: Reject proof escape hatches
         run: |
-          if grep -En '\\b(sorry|admit|axiom|unsafe)\\b' HC4/Polynomial/RankThreeCubicRepeatedFactor.lean; then
+          if grep -En '\\b(sorry|admit|axiom|unsafe)\\b' HC4/Polynomial/RankThreeCubicPoleFinalTrichotomy.lean; then
             exit 1
           fi
