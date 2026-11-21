@@ -1195,6 +1195,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
+- `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
+  - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
@@ -1261,6 +1263,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
+- `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
 - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
