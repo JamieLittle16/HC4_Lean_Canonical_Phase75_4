@@ -40,10 +40,18 @@ theorem quadraticFamilyEval_zero_coefficients
     (n : ℕ) :
     (∑ i : Fin 3, ∑ j : Fin 3,
       (Q i j).coeff n * S i * S j) = 0 := by
+  have hterm (i j : Fin 3) :
+      (Q i j * _root_.Polynomial.C (S i) *
+        _root_.Polynomial.C (S j)).coeff n =
+        (Q i j).coeff n * S i * S j := by
+    rw [mul_assoc, ← _root_.Polynomial.C_mul,
+      _root_.Polynomial.coeff_mul_C]
+    ring
   have hc := congrArg
     (fun p : _root_.Polynomial R => p.coeff n) hzero
-  simpa [quadraticFamilyEval, _root_.Polynomial.coeff_mul_C,
-    mul_assoc] using hc
+  simp only [quadraticFamilyEval, _root_.Polynomial.coeff_sum,
+    _root_.Polynomial.coeff_zero] at hc
+  simpa only [hterm] using hc
 
 /-- The source's nonzero Cramer pole residue satisfies the quadratic
 gradient equations coefficient by coefficient in characteristic time,
