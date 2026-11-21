@@ -427,3 +427,6 @@ import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
 
 -- Pole-free rational cubic characteristics have constant linear transverse velocity.
 import HC4.Polynomial.RankThreeCubicPoleFreeLinear
+
+-- Recover the actual Hessian-kernel equation from anchored gradient characteristics.
+import HC4.Polynomial.RankThreeCubicAnchoredKernel

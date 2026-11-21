@@ -85,3 +85,18 @@ passed. Each theorem depends only on the standard Lean axioms
 `lake build HC4` and repository-wide audit were additionally scheduled
 on the isolated validation branch; consult the workflow run rather
 than inferring their result from the targeted build.
+
+## Anchored source-characteristic Hessian kernel (Lean-verified)
+
+In `RankThreeCubicAnchoredKernel.lean`, the first coefficient of a line
+substitution is proved to be the directional derivative at the starting
+point. Hence the gradient-transport identity on the **actual** cubic
+produces the Hessian-kernel equation `Hessian L(z) * V = 0` at the
+anchored generic point. This theorem neither assumes a polynomial
+characteristic nor silently inserts the kernel equation.
+
+The [targeted Lean build and axiom audit](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44900126494)
+passed (only `propext`, `Classical.choice`, `Quot.sound`).
+The remaining source-to-pole-free assembly must translate the anchored
+fraction-field evaluation into the homogeneous transverse matrix and
+mixed-derivative data, and separately handle denominator primes.

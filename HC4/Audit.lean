@@ -634,3 +634,6 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_cubicCramer
 #print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_hessianEquation
 #print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_fractionKernel
+
+#print axioms HC4.Polynomial.RankThreeCubic.coeff_one_lineEval_eq_directional
+#print axioms HC4.Polynomial.RankThreeCubic.anchored_gradient_implies_hessian_kernel
