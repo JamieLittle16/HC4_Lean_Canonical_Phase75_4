@@ -42,7 +42,7 @@ theorem exists_irreducible_reduced_denominator_factor
   have hnonunit : ¬ IsUnit d := by
     intro hu
     have hinteger : IsLocalization.IsInteger (B3 K) x :=
-      (IsFractionRing.isUnit_den_iff (B3 K) x).mp hu
+      (IsFractionRing.isUnit_den_iff (B3 K)).mp hu
     change x ∈ g.rangeS at hinteger
     obtain ⟨a, ha⟩ := hinteger
     exact hx a ha
@@ -73,8 +73,9 @@ theorem reduced_denominator_dvd_hessianDet
   let n : B3 K := IsFractionRing.num (B3 K) (V i)
   let d : B3 K := IsFractionRing.den (B3 K) (V i)
   have hdn : g d ≠ 0 := by
-    apply (IsFractionRing.injective (B3 K) (F3 K)).ne
-    exact nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B3 K) (V i))
+    simpa only [map_zero] using
+      (IsFractionRing.injective (B3 K) (F3 K)).ne
+        (nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B3 K) (V i)))
   have hfrac : V i * g d = g n := by
     have hrepr : g n / g d = V i :=
       IsFractionRing.mk'_num_den' (B3 K) (V i)
