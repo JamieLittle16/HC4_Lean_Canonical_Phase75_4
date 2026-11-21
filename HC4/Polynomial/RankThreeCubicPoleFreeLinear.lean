@@ -140,5 +140,60 @@ theorem exists_linear_matrix_of_poleFree_cubicCramer
     (isHomogeneous_one_of_cubic_quartic_division q (W i) (r i)
       hq (hr i) hqn (hdiv i))
 
+private theorem transverseEuler_sum (v : Fin 3 → B K) :
+    transverseEuler (∑ j, v j) = ∑ j, transverseEuler (v j) := by
+  simp [transverseEuler, map_sum, Finset.mul_sum, Finset.sum_comm]
+
+/-- An invertible homogeneous degree-one Hessian block has no
+nonlinear polynomial kernel correction. If H W = r and r is quadratic,
+then any polynomial solution W is linear. This avoids adjugate
+expansion and is the exact source-side pole-free rigidity step. -/
+theorem exists_linear_matrix_of_poleFree_hessianEquation
+    (H : Matrix (Fin 3) (Fin 3) (B K))
+    (r W : Fin 3 → B K)
+    (hH : ∀ i j, (H i j).IsHomogeneous 1)
+    (hr : ∀ i, (r i).IsHomogeneous 2)
+    (hdet : H.det ≠ 0)
+    (heq : H *ᵥ W = r) :
+    ∃ N : Matrix (Fin 3) (Fin 3) K,
+      ∀ i, W i = ∑ j : Fin 3, MvPolynomial.C (N i j) * X j := by
+  classical
+  have hHE (i j : Fin 3) : transverseEuler (H i j) = H i j := by
+    simpa [transverseEuler] using (hH i j).sum_X_mul_pderiv
+  have hRE (i : Fin 3) : transverseEuler (r i) = (2 : K) * r i := by
+    simpa [transverseEuler, nsmul_eq_mul] using (hr i).sum_X_mul_pderiv
+  have hi (i : Fin 3) : (∑ j : Fin 3, H i j * W j) = r i := by
+    simpa only [Matrix.mulVec, dotProduct] using congrFun heq i
+  have hE (i : Fin 3) :
+      (∑ j : Fin 3, H i j * transverseEuler (W j)) = r i := by
+    have h := congrArg transverseEuler (hi i)
+    rw [transverseEuler_sum] at h
+    simp_rw [transverseEuler_mul, hHE] at h
+    rw [hRE i, Finset.sum_add_distrib, hi i] at h
+    linear_combination h
+  let U : Fin 3 → B K := fun j => transverseEuler (W j) - W j
+  have hker : H *ᵥ U = 0 := by
+    funext i
+    change (∑ j : Fin 3, H i j * U j) = 0
+    calc
+      (∑ j : Fin 3, H i j * U j) =
+          (∑ j : Fin 3, H i j * transverseEuler (W j)) -
+          ∑ j : Fin 3, H i j * W j := by
+            simp [U, mul_sub, Finset.sum_sub_distrib]
+      _ = 0 := by rw [hE i, hi i, sub_self]
+  have hscalar : H.det • U = 0 := by
+    rw [← Matrix.one_mulVec U, ← Matrix.smul_mulVec, ← Matrix.adjugate_mul,
+      ← Matrix.mulVec_mulVec, hker, Matrix.mulVec_zero]
+  have hEuler (i : Fin 3) : transverseEuler (W i) = W i := by
+    have hh := congrFun hscalar i
+    change H.det * (transverseEuler (W i) - W i) = 0 at hh
+    exact sub_eq_zero.mp ((mul_eq_zero.mp hh).resolve_left hdet)
+  let N : Matrix (Fin 3) (Fin 3) K :=
+    fun i j => coeff 0 (pderiv j (W i))
+  refine ⟨N, ?_⟩
+  intro i
+  exact linearForm_of_isHomogeneous_one (W i)
+    (isHomogeneous_one_of_transverseEuler_eq_self (W i) (hEuler i))
+
 end
 end HC4.Polynomial.RankThreeCubic
