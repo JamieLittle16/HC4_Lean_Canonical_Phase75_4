@@ -455,3 +455,6 @@ import HC4.Polynomial.RankThreeCubicPoleCofactor
 
 -- Source-honest cubic pole trichotomy: linear, repeated degree-one factor, or nonzero residue/cofactor.
 import HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy
+
+-- A source-level cubic pole residue admits a principal Hessian Schur pivot.
+import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
