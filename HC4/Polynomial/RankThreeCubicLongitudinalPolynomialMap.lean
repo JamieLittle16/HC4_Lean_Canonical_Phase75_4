@@ -41,10 +41,14 @@ theorem longitudinalPolynomial_eval_map
   | add p q hp hq =>
       simpa only [map_add] using congrArg₂ (· + ·) hp hq
   | mul_X p i hp =>
-      simp only [map_mul, MvPolynomial.aeval_X,
-        _root_.Polynomial.map_add, _root_.Polynomial.map_C,
-        _root_.Polynomial.map_X]
+      simp only [map_mul, MvPolynomial.aeval_X]
       rw [hp]
+      have hX :
+          (_root_.Polynomial.mapRingHom (algebraMap K F))
+            (_root_.Polynomial.C a + _root_.Polynomial.X) =
+              _root_.Polynomial.C (algebraMap K F a) +
+                _root_.Polynomial.X := by simp
+      rw [hX]
 
 end
 end HC4.Polynomial.RankThreeCubic
