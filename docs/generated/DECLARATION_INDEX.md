@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10634**.
+Distinct declaration spellings indexed: **10639**.
 
 ## Repeated declaration spellings
 
@@ -3144,6 +3144,7 @@ Distinct declaration spellings indexed: **10634**.
 - `RepresentedNonlinearSupportOnSingleAxis` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSingleAxis`
 - `ReverseClosed` — `def` in `HC4.Toric.SymmetricEigenSupport`
 - `RightAxisPivot` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
+- `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `SameEpisodeScale` — `def` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `SatisfiesDirectionalRecurrence` — `def` in `HC4.Newton.FiniteDirectionalRecurrence`
 - `ScaleAwareAdaptiveGeometricRestartState` — `structure` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
@@ -4909,6 +4910,7 @@ Distinct declaration spellings indexed: **10634**.
 - `cubicGrade_ne_zero_of_singular_axis` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicJet` — `def` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicJet_initialForm` — `lemma` in `HC4.Valuation.TransverseAxisCubicCorrection`
+- `cubicNatWeight_cast` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `cubicNilpotent_drift_mul_eq_zero_iff` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `cubicNilpotent_drift_smul_eq_zero_iff` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `cubicNilpotent_drift_smul_injective` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
@@ -9824,6 +9826,7 @@ Distinct declaration spellings indexed: **10634**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCubic_negativeMixedHessian_homogeneous_two` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `sourceCubic_transverseGradient_quadraticIdentity` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `sourceCubic_transverseHessian_det_homogeneous_three` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `sourceCubic_transverseHessian_homogeneous_one` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `sourceDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
@@ -10659,6 +10662,8 @@ Distinct declaration spellings indexed: **10634**.
 - `transverseSlice_eq_canonicalAmplitude` — `theorem` in `HC4.Newton.LinearPowerPacketNormalForm`
 - `transverseSlice_eq_linearPowerProfile` — `theorem` in `HC4.Newton.TransverseSliceClassification`
 - `transverseSlice_satisfiesDirectionalRecurrence` — `theorem` in `HC4.Newton.TransverseSliceClassification`
+- `transverseSourceEuler` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
+- `transverseSourceQuadraticEuler` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `transverseSourceReesFamily` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesLayer`
 - `transverseSourceReesFamily_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
 - `transverseSourceReesFamily_sub` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
