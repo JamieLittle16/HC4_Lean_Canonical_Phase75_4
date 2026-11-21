@@ -490,3 +490,6 @@ import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
 
 -- Full cubic source: squarefree pole yields a nonzero Cramer singular residue and principal pivot.
 import HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue
+
+-- Source cubic: linear velocity, repeated linear Hessian factor, or nonzero singular Cramer residue.
+import HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
