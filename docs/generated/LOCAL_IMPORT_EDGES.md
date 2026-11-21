@@ -1192,6 +1192,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+  - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
