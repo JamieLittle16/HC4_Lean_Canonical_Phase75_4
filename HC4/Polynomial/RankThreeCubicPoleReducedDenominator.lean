@@ -119,6 +119,49 @@ theorem exists_genuinePolePrime_of_nonPolynomial_fractionKernel
     reduced_denominator_dvd_hessianDet H r V hkernel i
   exact ⟨i, p, hp, dvd_trans hpd hdd, hpd, hpn⟩
 
+/-- Reduce a *properly normalized* common-denominator Hessian
+equation modulo a factor of that denominator. A surviving numerator
+coordinate gives an honest nonzero kernel vector over the factor
+quotient. The normalization and its nonvanishing coordinate are
+explicit inputs here; no source pole-order claim is smuggled in. -/
+theorem exists_nonzero_residueKernel_of_normalized_denominator
+    (H : Matrix (Fin 3) (Fin 3) (B3 K))
+    (r A : Fin 3 → B3 K)
+    (d p : B3 K)
+    (hcleared : H *ᵥ A = d • r)
+    (hpd : p ∣ d)
+    (hnonzero : ∃ i : Fin 3, ¬ p ∣ A i) :
+    ∃ S : Fin 3 → (B3 K ⧸ Ideal.span {p}),
+      S ≠ 0 ∧
+      (H.map (Ideal.Quotient.mk (Ideal.span {p}))) *ᵥ S = 0 := by
+  classical
+  let I : Ideal (B3 K) := Ideal.span {p}
+  let q : B3 K →+* (B3 K ⧸ I) := Ideal.Quotient.mk I
+  let S : Fin 3 → (B3 K ⧸ I) := fun i => q (A i)
+  have hdzero : q d = 0 := by
+    apply Ideal.Quotient.eq_zero_iff_mem.mpr
+    exact Ideal.mem_span_singleton.mpr hpd
+  obtain ⟨i, hi⟩ := hnonzero
+  have hSi : S i ≠ 0 := by
+    intro hz
+    apply hi
+    exact Ideal.mem_span_singleton.mp
+      (Ideal.Quotient.eq_zero_iff_mem.mp hz)
+  have hS : S ≠ 0 := by
+    intro hz
+    exact hSi (by simpa using congrFun hz i)
+  have hker : (H.map q) *ᵥ S = 0 := by
+    funext j
+    change (∑ k : Fin 3, q (H j k) * q (A k)) = 0
+    calc
+      _ = q ((H *ᵥ A) j) := by
+        simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
+      _ = q (d * r j) := by
+        rw [hcleared]
+        rfl
+      _ = 0 := by rw [map_mul, hdzero, zero_mul]
+  exact ⟨S, hS, hker⟩
+
 /-- The actual full-transverse-rank cubic source yields either a
 constant-linear rational characteristic or an irreducible pole prime
 of its *source* transverse Hessian determinant. The non-cancellation
