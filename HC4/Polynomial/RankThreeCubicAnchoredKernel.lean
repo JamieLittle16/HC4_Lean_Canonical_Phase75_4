@@ -98,14 +98,14 @@ theorem coeff_one_lineEval_eq_directional
       simp only [Finset.sum_insert hjs, _root_.Polynomial.coeff_add, ih]
   have hs := hcoeff_sum Finset.univ
     (fun i : ι => E (pderiv i p) * _root_.Polynomial.C (V i))
-  simpa only [Finset.sum_univ] using (h.trans hs)
+  have hsum := h.trans hs
   have hterm (i : ι) :
       (E (pderiv i p) * _root_.Polynomial.C (V i)).coeff 0 =
         MvPolynomial.aeval z (pderiv i p) * V i := by
     rw [mul_comm, _root_.Polynomial.coeff_C_mul]
     rw [coeff_zero_lineEval]
     ring
-  simpa only [hterm] using h
+  simpa only [hterm] using hsum
 
 /-- The anchored straight-gradient identity supplies the normalized
 Hessian-kernel equation, not an additional assumption. -/
@@ -121,7 +121,7 @@ theorem anchored_gradient_implies_hessian_kernel
   have h := coeff_one_lineEval_eq_directional z V (pderiv i L)
   have hzero : (lineEval z V (pderiv i L)).coeff 1 = 0 := by
     have hC (u : F) : (_root_.Polynomial.C u : _root_.Polynomial F).coeff 1 = 0 := by
-      simp only [_root_.Polynomial.coeff_C, if_neg (by decide : (0 : ℕ) ≠ 1)]
+      simp only [_root_.Polynomial.coeff_C, if_neg (by decide : (1 : ℕ) ≠ 0)]
     exact (congrArg (fun q : _root_.Polynomial F => q.coeff 1) (hgrad i)).trans
       (hC (MvPolynomial.aeval z (pderiv i L)))
   rw [hzero] at h
