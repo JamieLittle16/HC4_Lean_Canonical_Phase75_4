@@ -195,5 +195,37 @@ theorem exists_linear_matrix_of_poleFree_hessianEquation
   exact linearForm_of_isHomogeneous_one (W i)
     (isHomogeneous_one_of_transverseEuler_eq_self (W i) (hEuler i))
 
+/-- A fraction-field characteristic with no pole has a degree-one
+polynomial representative and therefore a constant linear velocity,
+provided its defining Hessian equation has the source's homogeneous
+degrees. No rational denominator classification is assumed here:
+the pole-free hypothesis is explicitly an embedded polynomial
+representative for each velocity coordinate. -/
+theorem exists_linear_matrix_of_poleFree_fractionKernel
+    {F : Type*} [Field F] (g : B K →+* F) (hg : Function.Injective g)
+    (H : Matrix (Fin 3) (Fin 3) (B K)) (r : Fin 3 → B K)
+    (V : Fin 3 → F)
+    (hH : ∀ i j, (H i j).IsHomogeneous 1)
+    (hr : ∀ i, (r i).IsHomogeneous 2)
+    (hdet : H.det ≠ 0)
+    (hkernel : (H.map g) *ᵥ V = fun i => g (r i))
+    (hpoleFree : ∀ i, ∃ p : B K, g p = V i) :
+    ∃ N : Matrix (Fin 3) (Fin 3) K,
+      ∀ i, V i = g (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) := by
+  classical
+  choose W hW using hpoleFree
+  have hpoly : H *ᵥ W = r := by
+    funext i
+    apply hg
+    calc
+      g ((H *ᵥ W) i) = ((H.map g) *ᵥ V) i := by
+        simp [Matrix.mulVec, dotProduct, map_sum, map_mul, hW]
+      _ = g (r i) := congrFun hkernel i
+  obtain ⟨N, hN⟩ :=
+    exists_linear_matrix_of_poleFree_hessianEquation H r W hH hr hdet hpoly
+  refine ⟨N, ?_⟩
+  intro i
+  rw [← hW i, hN i]
+
 end
 end HC4.Polynomial.RankThreeCubic
