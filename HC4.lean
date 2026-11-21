@@ -479,3 +479,5 @@ import HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap
 
 -- The normalized cubic characteristic transports third derivatives within embedded K[t].
 import HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime
+-- Source third derivative coefficients lift from K[t] into K[y][t].
+import HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime
