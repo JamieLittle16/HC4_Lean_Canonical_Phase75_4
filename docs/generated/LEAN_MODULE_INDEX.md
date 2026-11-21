@@ -3240,7 +3240,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: Genuine irreducible denominator factors for cubic rational characteristics
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicPoleDeterminant`
-- External imports: `Mathlib.RingTheory.Localization.NumDen`, `Mathlib.RingTheory.UniqueFactorizationDomain.Defs`, `Mathlib.RingTheory.UniqueFactorizationDomain.GCDMonoid`, `Mathlib.Tactic`
+- External imports: `Mathlib`
 - Imported by local modules: none
 - Declarations: `abbrev B3`, `abbrev F3`, `theorem exists_irreducible_reduced_denominator_factor`, `theorem reduced_denominator_dvd_hessianDet`, `theorem exists_genuinePolePrime_of_nonPolynomial_fractionKernel`, `theorem exists_sourceCubic_linear_or_genuinePolePrime`
 
