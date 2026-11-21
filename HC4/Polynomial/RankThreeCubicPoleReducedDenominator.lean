@@ -48,7 +48,7 @@ theorem exists_irreducible_reduced_denominator_factor
       (IsFractionRing.isUnit_den_iff (B3 K) x).mp hu
     change x ∈ g.rangeS at hinteger
     obtain ⟨a, ha⟩ := hinteger
-    exact hx a ha.symm
+    exact hx a ha
   have hd0 : d ≠ 0 :=
     nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B3 K) x)
   obtain ⟨p, hp, hpd⟩ :=
