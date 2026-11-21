@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10648**.
+Distinct declaration spellings indexed: **10646**.
 
 ## Repeated declaration spellings
 
@@ -5542,8 +5542,6 @@ Distinct declaration spellings indexed: **10648**.
 - `exists_sourceCubic_linear_or_repeated_linear_or_primeResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_sourceCubic_repeated_linear_factor` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_sourceCubic_repeated_linear_factor_of_degree_bound` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
-- `exists_sourceCubic_thirdDerivative_groundPolynomialFamily` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
-- `exists_sourceCubic_thirdDerivative_groundPolynomialTime` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `exists_sourceCubic_thirdTransverse_longitudinal` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `exists_sourceCubic_transport_linear_or_repeated_or_principal` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
@@ -6834,7 +6832,6 @@ Distinct declaration spellings indexed: **10648**.
 - `liftTransversePolynomial_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `lineEval` — `def` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `lineEval_eq_C_of_derivation_eq_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
-- `lineEval_renamed_longitudinal_eq_groundPolynomial` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `lineMomentHessian` — `def` in `HC4.Polynomial.LogHessianMoments`
 - `lineMomentHessian_eq_scaled_logarithmicCore` — `theorem` in `HC4.Polynomial.LogHessianMoments`
 - `linearForm_eq_extractionAxis` — `theorem` in `HC4.Valuation.CoordinateMaxKernelOpeningPureAxisNormalForm`
@@ -9835,6 +9832,7 @@ Distinct declaration spellings indexed: **10648**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCubic_negativeMixedHessian_homogeneous_two` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `sourceCubic_thirdTransverse_lineEval_polynomialTime` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `sourceCubic_transportedGradient_quadraticFamily` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
 - `sourceCubic_transverseGradient_quadraticIdentity` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
 - `sourceCubic_transverseHessian_det_homogeneous_three` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`

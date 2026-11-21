@@ -3397,12 +3397,12 @@ Lean itself remains authoritative for elaborated names and dependencies.
 ### `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 
 - Path: `HC4/Polynomial/RankThreeCubicThirdDerivativePolynomialTime.lean`
-- Purpose: Actual cubic third derivatives have pole-free time coefficients
+- Purpose: Source cubic third-derivative time coefficients have no poles
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`, `HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: none
-- Declarations: `abbrev PB`, `abbrev PF`, `abbrev SB`, `theorem lineEval_renamed_longitudinal_eq_groundPolynomial`, `theorem exists_sourceCubic_thirdDerivative_groundPolynomialTime`, `theorem exists_sourceCubic_thirdDerivative_groundPolynomialFamily`
+- Declarations: `abbrev SB`, `abbrev PB`, `abbrev PF`, `theorem sourceCubic_thirdTransverse_lineEval_polynomialTime`
 
 ### `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 
