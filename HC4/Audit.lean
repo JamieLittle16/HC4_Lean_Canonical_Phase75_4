@@ -627,3 +627,10 @@ import HC4
 
 #print axioms HC4.Polynomial.RankThreeCubic.reference_hessian_selfAdjoint_of_linear_transport
 #print axioms HC4.Polynomial.RankThreeCubic.exists_source_square_of_nonzero_linear_characteristic
+
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_transverseEuler_eq_self
+#print axioms HC4.Polynomial.RankThreeCubic.isHomogeneous_one_of_cubic_quartic_division
+#print axioms HC4.Polynomial.RankThreeCubic.linearForm_of_isHomogeneous_one
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_cubicCramer
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_hessianEquation
+#print axioms HC4.Polynomial.RankThreeCubic.exists_linear_matrix_of_poleFree_fractionKernel
