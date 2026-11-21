@@ -1252,6 +1252,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
+  - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
