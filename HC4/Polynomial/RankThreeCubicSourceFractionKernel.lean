@@ -116,8 +116,8 @@ theorem sourceTransverseHessian_det_ne_zero_of_generic
   let f := algebraMap (CubicB K) (CubicF K)
   let e : MvPolynomial (Unit ⊕ Fin 3) K →ₐ[K] CubicF K :=
     MvPolynomial.aeval (transverseGenericPoint a)
-  have hMat : (sourceTransverseHessian a L).map f =
-      ((hessian L).submatrix Sum.inr Sum.inr).map e.toRingHom := by
+  have hMat : f.mapMatrix (sourceTransverseHessian a L) =
+      e.toRingHom.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr) := by
     ext i j
     change f (referenceSlice a (pderiv (.inr j) (pderiv (.inr i) L))) =
       e (pderiv (.inr j) (pderiv (.inr i) L))
