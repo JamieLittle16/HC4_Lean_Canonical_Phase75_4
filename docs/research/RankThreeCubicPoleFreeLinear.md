@@ -158,3 +158,37 @@ nonvanishing determinant and both degree conditions required by
 is an explicit **source-level linear-or-pole dichotomy** applying
 these statements together, and then the analysis of actual
 non-polynomial rational characteristic coordinates.
+
+## Complete source-level pole-free-or-nonpolynomial split (Lean-verified)
+
+The module `RankThreeCubicSourceLinearOrPole.lean` composes all
+earlier source results into the actual *full-transverse-rank cubic*
+characteristic. Under only the source cap-three hypothesis, a
+constant Hessian determinant and generically nonzero transverse
+Hessian determinant of the cubic grade, it constructs a longitudinal
+slice `a` and rational characteristic `V`, preserving
+the normalized longitudinal component, the nonzero determinant of
+the **polynomial** transverse Hessian and the exact fraction-field
+matrix equation.
+
+It then proves an unconditional disjunction:
+
+1. There exists a constant `3×3` matrix `N` such that the
+   three transverse rational velocity components equal the
+   images of the polynomial linear forms `∑ⱼ Nᵢⱼ yⱼ`.
+2. One of those three rational velocity components is *not* the
+   image of any polynomial in `K[y₁,y₂,y₃]`.
+
+The first branch follows by applying
+`exists_linear_matrix_of_poleFree_fractionKernel` to the
+now **source-derived** invertible homogeneous-degree-one Hessian
+matrix and homogeneous-degree-two mixed row; no pole-free
+assumption was smuggled into the overall theorem. The second
+branch is the exact failure of polynomial representability.
+It does **not yet** identify an irreducible denominator factor or
+exclude the pole case.
+
+The [targeted Lean 4.24 build and axiom audit](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44903135130)
+passed with only `propext`, `Classical.choice` and
+`Quot.sound`. The full HC4 import-graph build remains a separate
+verification obligation, not inferred from this module build.

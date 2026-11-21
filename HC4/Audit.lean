@@ -647,3 +647,5 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_isHomogeneous_of_transverseWeight
 #print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_transverseHessian_homogeneous_one
 #print axioms HC4.Polynomial.RankThreeCubic.sourceCubic_negativeMixedHessian_homogeneous_two
+
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linearVelocity_or_nonPolynomial

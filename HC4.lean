@@ -436,3 +436,6 @@ import HC4.Polynomial.RankThreeCubicSourceFractionKernel
 
 -- Actual cubic source degree-one Hessian and degree-two mixed Hessian weights.
 import HC4.Polynomial.RankThreeCubicSourceDegrees
+
+-- Source-honest full-rank cubic characteristic linear-or-nonpolynomial dichotomy.
+import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
