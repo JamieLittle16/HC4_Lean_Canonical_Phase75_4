@@ -3272,7 +3272,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - External imports: `Mathlib`
 - Imported by local modules: none
-- Declarations: `abbrev B3`, `theorem exists_degree_one_repeated_irreducible_of_cubic_degree`, `theorem exists_sourceCubic_repeated_linear_factor_of_degree_bound`
+- Declarations: `abbrev B3`, `theorem exists_degree_one_repeated_irreducible_of_cubic_degree`, `theorem exists_sourceCubic_repeated_linear_factor_of_degree_bound`, `theorem homogeneous_three_det_of_linear_homogeneous_matrix`, `theorem sourceCubic_transverseHessian_det_homogeneous_three`, `theorem exists_sourceCubic_repeated_linear_factor`, `theorem exists_sourceCubic_linear_or_repeated_linear_or_primeResidue`
 
 ### `HC4.Polynomial.RankThreeCubicSourceDegrees`
 

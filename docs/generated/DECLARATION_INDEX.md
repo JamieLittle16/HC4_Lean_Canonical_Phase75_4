@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10620**.
+Distinct declaration spellings indexed: **10624**.
 
 ## Repeated declaration spellings
 
@@ -5525,6 +5525,8 @@ Distinct declaration spellings indexed: **10620**.
 - `exists_sourceCubic_linear_or_genuinePolePrime` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_sourceCubic_linear_or_nonsquarefree_or_primeResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `exists_sourceCubic_linear_or_nonunit_determinant` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
+- `exists_sourceCubic_linear_or_repeated_linear_or_primeResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+- `exists_sourceCubic_repeated_linear_factor` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_sourceCubic_repeated_linear_factor_of_degree_bound` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
@@ -6532,6 +6534,7 @@ Distinct declaration spellings indexed: **10620**.
 - `homogeneous_projectedSupport_wLinear_forces_blocker` — `theorem` in `HC4.Newton.SmithRefinedFacePolynomial`
 - `homogeneous_rankAtMostOne_gradient_hessian_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
 - `homogeneous_smithQuadraticPattern_longitudinalExponent` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
+- `homogeneous_three_det_of_linear_homogeneous_matrix` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `homogeneous_transverse_contributor_eq_blocker` — `theorem` in `HC4.Newton.SmithFirstWallTransverse`
 - `homogeneous_two_eq_single_coordinate_square` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `homogeneous_two_exactGradientCollision_eq_domain` — `theorem` in `HC4.Valuation.QuadraticFamilyCollision`
@@ -9812,6 +9815,7 @@ Distinct declaration spellings indexed: **10620**.
 - `sourceCore` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCore_entry` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `sourceCubic_negativeMixedHessian_homogeneous_two` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
+- `sourceCubic_transverseHessian_det_homogeneous_three` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `sourceCubic_transverseHessian_homogeneous_one` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `sourceDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
 - `sourceFractionHessianEquation_of_gradientTransport` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
