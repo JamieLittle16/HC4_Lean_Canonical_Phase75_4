@@ -83,6 +83,13 @@ theorem exists_sourceCubic_baseQuadraticTransport
           _root_.Polynomial.X *
             _root_.Polynomial.C (V (.inr j)) := by
     change
+      (MvPolynomial.aeval
+        (fun x : Unit ⊕ Fin 3 =>
+          _root_.Polynomial.C (transverseGenericPoint a x) +
+            _root_.Polynomial.C (V x) * _root_.Polynomial.X))
+        (MvPolynomial.X (.inr j)) = _
+    rw [MvPolynomial.aeval_X]
+    change
       _root_.Polynomial.C (g (MvPolynomial.X j)) +
         _root_.Polynomial.C (V (.inr j)) * _root_.Polynomial.X =
       _root_.Polynomial.C (g (MvPolynomial.X j)) +
@@ -112,7 +119,15 @@ theorem exists_sourceCubic_baseQuadraticTransport
       _root_.Polynomial.C
         (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
     rw [← referenceSlice_fractionEvaluation]
-    simp [map_mul]
+    calc
+      (2 : _root_.Polynomial (F3 K)) *
+          _root_.Polynomial.C (g (referenceSlice a (pderiv (.inr i) L))) =
+        _root_.Polynomial.C
+          ((2 : F3 K) * g (referenceSlice a (pderiv (.inr i) L))) := by
+            simp
+      _ = _root_.Polynomial.C
+          (g (2 * referenceSlice a (pderiv (.inr i) L))) := by
+            simp [map_mul]
   refine ⟨Q, hQ, ?_⟩
   change quadraticFamilyEval (fun j k => (Q j k).map g)
       (fun j =>
