@@ -9,7 +9,7 @@ quadratic gradient equations as identities of time polynomials over
 K[y]/(p). Taking coefficients shows that the *same nonzero Cramer residue*
 is annihilated by every longitudinal coefficient of each quadratic family.
 
-This is a componentwise strengthening of the source-pole certificate, not
+This is a coefficientwise strengthening of the source-pole certificate, not
 a proof that the nonzero singular residue is impossible. In particular,
 we do not assert that the cubic pencil is smooth.
 -/
