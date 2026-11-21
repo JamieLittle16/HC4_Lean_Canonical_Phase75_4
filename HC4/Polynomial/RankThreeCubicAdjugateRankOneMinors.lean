@@ -41,24 +41,32 @@ theorem adjugate_rankOne_cross_products
   have h00 : B 1 1 * B 2 2 - B 1 2 * B 2 1 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hzero 0 0
   have h01 : B 0 2 * B 2 1 - B 0 1 * B 2 2 = 0 := by
-    simpa [Matrix.adjugate_fin_three] using hzero 0 1
+    have hz := hzero 0 1
+    simp [Matrix.adjugate_fin_three] at hz
+    linear_combination hz
   have h02 : B 0 1 * B 1 2 - B 0 2 * B 1 1 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hzero 0 2
   have h10 : B 1 2 * B 2 0 - B 1 0 * B 2 2 = 0 := by
-    simpa [Matrix.adjugate_fin_three] using hzero 1 0
+    have hz := hzero 1 0
+    simp [Matrix.adjugate_fin_three] at hz
+    linear_combination hz
   have h11 : B 0 0 * B 2 2 - B 0 2 * B 2 0 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hzero 1 1
   have h12 : B 0 2 * B 1 0 - B 0 0 * B 1 2 = 0 := by
-    simpa [Matrix.adjugate_fin_three] using hzero 1 2
+    have hz := hzero 1 2
+    simp [Matrix.adjugate_fin_three] at hz
+    linear_combination hz
   have h20 : B 1 0 * B 2 1 - B 1 1 * B 2 0 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hzero 2 0
   have h21 : B 0 1 * B 2 0 - B 0 0 * B 2 1 = 0 := by
-    simpa [Matrix.adjugate_fin_three] using hzero 2 1
+    have hz := hzero 2 1
+    simp [Matrix.adjugate_fin_three] at hz
+    linear_combination hz
   have h22 : B 0 0 * B 1 1 - B 0 1 * B 1 0 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hzero 2 2
   change B k k * B i j = B i k * B k j
   fin_cases k <;> fin_cases i <;> fin_cases j
-  all_goals first
+  all_goals solve
     | ring
     | linear_combination h00
     | linear_combination h01
