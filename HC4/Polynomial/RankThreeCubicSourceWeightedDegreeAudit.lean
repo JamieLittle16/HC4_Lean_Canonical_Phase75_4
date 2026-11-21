@@ -1,0 +1,7 @@
+import HC4.Polynomial.RankThreeCubicSourceWeightedDegree
+
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_homogeneous_of_natWeight
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_homogeneous_of_transverseWeight
+#print axioms HC4.Polynomial.RankThreeCubic.sourceTransverseHessian_homogeneous
+#print axioms HC4.Polynomial.RankThreeCubic.sourceNegativeMixedHessian_homogeneous
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_poleFree_linear_velocity
