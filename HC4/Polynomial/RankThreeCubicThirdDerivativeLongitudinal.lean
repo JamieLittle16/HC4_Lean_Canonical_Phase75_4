@@ -13,7 +13,8 @@ is independent of the transverse variables.
 This module gives a direct *source polynomial* representation of each
 third derivative as a polynomial in the one longitudinal variable.
 This is not an added endpoint hypothesis and requires no rational
-characteristic or determinant squarefreeness.
+characteristic or determinant squarefreeness. The result is a source
+polynomial representation, not merely a fraction-field statement.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
