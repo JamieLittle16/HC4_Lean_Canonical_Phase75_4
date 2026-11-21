@@ -92,10 +92,10 @@ theorem sourceCubic_transverseHessian_homogeneous_one
   let L := initialForm transverseCubicWeight 3 F
   have hL : L.IsWeightedHomogeneous transverseCubicWeight 3 :=
     initialForm_isWeightedHomogeneous transverseCubicWeight 3 F
-  have h1 : (pderiv (.inr j) (pderiv (.inr i) L)).
-      IsWeightedHomogeneous transverseCubicWeight (1 : ℤ) := by
+  have h1 : MvPolynomial.IsWeightedHomogeneous transverseCubicWeight
+      (pderiv (Sum.inr j) (pderiv (Sum.inr i) L)) (1 : ℤ) := by
     have h := pderiv_isWeightedHomogeneous
-      (pderiv_isWeightedHomogeneous hL (.inr i)) (.inr j)
+      (pderiv_isWeightedHomogeneous hL (Sum.inr i)) (Sum.inr j)
     simpa [transverseCubicWeight] using h
   exact referenceSlice_isHomogeneous_of_transverseWeight a _ 1 h1
 
@@ -111,10 +111,10 @@ theorem sourceCubic_negativeMixedHessian_homogeneous_two
   let L := initialForm transverseCubicWeight 3 F
   have hL : L.IsWeightedHomogeneous transverseCubicWeight 3 :=
     initialForm_isWeightedHomogeneous transverseCubicWeight 3 F
-  have h2 : (pderiv (.inl ()) (pderiv (.inr i) L)).
-      IsWeightedHomogeneous transverseCubicWeight (2 : ℤ) := by
+  have h2 : MvPolynomial.IsWeightedHomogeneous transverseCubicWeight
+      (pderiv (Sum.inl ()) (pderiv (Sum.inr i) L)) (2 : ℤ) := by
     have h := pderiv_isWeightedHomogeneous
-      (pderiv_isWeightedHomogeneous hL (.inr i)) (.inl ())
+      (pderiv_isWeightedHomogeneous hL (Sum.inr i)) (Sum.inl ())
     simpa [transverseCubicWeight] using h
   exact (referenceSlice_isHomogeneous_of_transverseWeight a _ 2 h2).neg
 
