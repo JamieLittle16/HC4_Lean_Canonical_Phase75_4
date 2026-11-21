@@ -1,0 +1,3 @@
+import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
+
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linearVelocity_or_nonPolynomial
