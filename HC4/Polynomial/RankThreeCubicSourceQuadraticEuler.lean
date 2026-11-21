@@ -24,6 +24,9 @@ open scoped BigOperators
 
 noncomputable section
 
+-- Two nested weighted Euler expansions are elaboration-heavy for MvPolynomial.
+set_option maxHeartbeats 2000000
+
 variable {K : Type*} [Field K] [CharZero K]
 
 private abbrev SB (K : Type*) [Field K] :=
@@ -83,8 +86,9 @@ theorem transverseSourceQuadraticEuler
       pderiv (.inr j) P =
         ∑ k : Fin 3, (X (.inr k) : SB K) *
           pderiv (.inr k) (pderiv (.inr j) P) := by
-    simpa only [one_nsmul] using
-      (transverseSourceEuler (pderiv (.inr j) P) 1 (hPj j)).symm
+    have he := (transverseSourceEuler
+      (pderiv (.inr j) P) 1 (hPj j)).symm
+    simpa only [one_nsmul] using he
   calc
     (2 : SB K) * P = (2 : ℕ) • P := by simp [nsmul_eq_mul]
     _ = ∑ j : Fin 3, (X (.inr j) : SB K) * pderiv (.inr j) P :=
