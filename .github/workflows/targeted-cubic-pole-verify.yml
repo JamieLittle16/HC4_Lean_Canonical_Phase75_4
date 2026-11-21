@@ -1,0 +1,30 @@
+name: HC4 targeted cubic pole Lean validation
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-cubic-pole:
+    name: Verify reduced-denominator cubic pole theorem
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build targeted cubic pole module
+        uses: leanprover/lean-action@v1
+        with:
+          build: true
+          build-args: HC4.Polynomial.RankThreeCubicPoleReducedDenominator
+          test: false
+          lint: false
+      - name: Reject proof escape hatches in new module
+        run: |
+          if grep -En '\\b(sorry|admit|axiom|unsafe)\\b' HC4/Polynomial/RankThreeCubicPoleReducedDenominator.lean; then
+            echo "Unexpected proof escape hatch" >&2
+            exit 1
+          fi
