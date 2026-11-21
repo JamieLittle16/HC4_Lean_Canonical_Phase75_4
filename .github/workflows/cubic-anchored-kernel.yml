@@ -21,3 +21,5 @@ jobs:
         run: lake exe cache get
       - name: Compile anchored kernel
         run: lake build HC4.Polynomial.RankThreeCubicAnchoredKernel
+      - name: Audit kernel extraction axioms
+        run: lake env lean HC4/Polynomial/RankThreeCubicAnchoredKernelAudit.lean
