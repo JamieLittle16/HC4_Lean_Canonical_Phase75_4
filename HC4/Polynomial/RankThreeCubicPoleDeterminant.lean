@@ -2,13 +2,15 @@ import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
 import Mathlib.Tactic
 
 /-!
-# A genuinely rational cubic characteristic forces nonunit transverse determinant
+# Cramer's identity and the cubic characteristic pole divisor
 
 For a polynomial matrix H, a solution W over the fraction field of
 H W = r is polynomial whenever det H is a unit in the polynomial ring.
-The contrapositive puts the nonpolynomial branch of the cubic source
-dichotomy on a genuine determinant divisor. This does not yet select
-an irreducible prime or give a contradiction.
+The adjugate identity gives the exact polynomial numerator and
+ensures any genuine pole must be supported by the determinant.
+The source determinant is already nonunit by cubic homogeneity, so the
+nonunit corollary alone is not a new exclusion. No irreducible prime
+or terminal contradiction is claimed.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
@@ -22,6 +24,46 @@ variable {K : Type*} [Field K]
 
 private abbrev P3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev FF3 (K : Type*) [Field K] := FractionRing (P3 K)
+
+/-- Exact Cramer's numerator identity for any polynomial transverse
+matrix equation solved by a rational characteristic. This is the
+denominator control needed in the pole branch: every coordinate of
+the velocity is the adjugate numerator divided by `det H`. -/
+theorem fractionKernel_adjugate_numerator_identity
+    (H : Matrix (Fin 3) (Fin 3) (P3 K))
+    (r : Fin 3 → P3 K)
+    (V : Fin 3 → FF3 K)
+    (hkernel : (H.map (algebraMap (P3 K) (FF3 K))) *ᵥ V =
+      fun i => algebraMap (P3 K) (FF3 K) (r i))
+    (i : Fin 3) :
+    algebraMap (P3 K) (FF3 K) H.det * V i =
+      algebraMap (P3 K) (FF3 K) ((H.adjugate *ᵥ r) i) := by
+  classical
+  let g : P3 K →+* FF3 K := algebraMap (P3 K) (FF3 K)
+  have hk : (H.map g) *ᵥ V = fun j => g (r j) := hkernel
+  have hadj :
+      (H.map g).det • V =
+        (H.map g).adjugate *ᵥ (fun j => g (r j)) := by
+    have h := congrArg
+      (fun M : Matrix (Fin 3) (Fin 3) (FF3 K) => M *ᵥ V)
+      (Matrix.adjugate_mul (H.map g))
+    have hh : (H.map g).det • V =
+        (H.map g).adjugate *ᵥ ((H.map g) *ᵥ V) := by
+      simpa only [← Matrix.mulVec_mulVec, Matrix.smul_mulVec,
+        Matrix.one_mulVec] using h.symm
+    rw [hk] at hh
+    exact hh
+  have hmapadj :
+      ((H.map g).adjugate *ᵥ (fun j => g (r j))) i =
+        g ((H.adjugate *ᵥ r) i) := by
+    have hm : (H.map g).adjugate = (H.adjugate).map g := by
+      simpa only [RingHom.mapMatrix] using (g.map_adjugate H).symm
+    rw [hm]
+    simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
+  have hdetmap : (H.map g).det = g H.det := by
+    simpa only [RingHom.mapMatrix] using (RingHom.map_det g H).symm
+  have hi := congrFun hadj i
+  simpa only [Pi.smul_apply, smul_eq_mul, hdetmap, hmapadj] using hi
 
 /-- A non-polynomial solution to a polynomial matrix equation cannot
 occur when the matrix determinant is a unit. This holds without any
@@ -49,27 +91,9 @@ theorem det_not_isUnit_of_nonPolynomial_fractionKernel
       g c * g H.det = g (c * H.det) := (map_mul g c H.det).symm
       _ = g 1 := by rw [hc]
       _ = 1 := by simp
-  have hadj :
-      (H.map g).det • V =
-        (H.map g).adjugate *ᵥ (fun i => g (r i)) := by
-    have h := congrArg
-      (fun M : Matrix (Fin 3) (Fin 3) (FF3 K) => M *ᵥ V)
-      (Matrix.adjugate_mul (H.map g))
-    simpa only [← Matrix.mulVec_mulVec, Matrix.smul_mulVec,
-      Matrix.one_mulVec, hkernel] using h.symm
-  have hmapadj (i : Fin 3) :
-      ((H.map g).adjugate *ᵥ (fun j => g (r j))) i =
-        g ((H.adjugate *ᵥ r) i) := by
-    have hm : (H.map g).adjugate = (H.adjugate).map g := by
-      simpa only [RingHom.mapMatrix] using (g.map_adjugate H).symm
-    rw [hm]
-    simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
-  have hdetmap : (H.map g).det = g H.det := by
-    simpa only [RingHom.mapMatrix] using (RingHom.map_det g H).symm
   have hscalar (i : Fin 3) :
-      g H.det * V i = g ((H.adjugate *ᵥ r) i) := by
-    have h := congrFun hadj i
-    simpa only [Pi.smul_apply, smul_eq_mul, hdetmap, hmapadj i] using h
+      g H.det * V i = g ((H.adjugate *ᵥ r) i) :=
+    fractionKernel_adjugate_numerator_identity H r V hkernel i
   obtain ⟨i, hi⟩ := hnonpolynomial
   let p : P3 K := c * (H.adjugate *ᵥ r) i
   have hp : g p = V i := by
