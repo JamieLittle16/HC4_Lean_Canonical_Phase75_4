@@ -29,7 +29,7 @@ jobs:
         run: lake env lean HC4/Audit.lean
       - name: Reject proof escapes
         run: |
-          if rg -n '\\b(sorry|admit|axiom|unsafe)\\b' -g '*.lean' HC4; then
+          if rg -n '\b(sorry|admit|axiom|unsafe)\b' -g '*.lean' HC4; then
             echo "Forbidden proof escape found in HC4 sources." >&2
             exit 1
           fi
