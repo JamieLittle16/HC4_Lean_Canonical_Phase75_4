@@ -1173,6 +1173,11 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeBinomialPencilBridge`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
   - `HC4.Polynomial.RankThreeLinearCoefficient`
+- `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicAnchoredKernelAudit`
+  - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
 - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.MongeAmpere.SchurReduction`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
