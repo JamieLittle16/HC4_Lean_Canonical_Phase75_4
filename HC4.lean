@@ -446,3 +446,6 @@ import HC4.Polynomial.RankThreeCubicPoleDeterminant
 -- Genuine reduced denominator pole factors and source-derived squarefree residue geometry.
 import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
 import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
+
+-- Cubic source nonsquarefree determinant has a repeated degree-one irreducible divisor.
+import HC4.Polynomial.RankThreeCubicRepeatedFactor
