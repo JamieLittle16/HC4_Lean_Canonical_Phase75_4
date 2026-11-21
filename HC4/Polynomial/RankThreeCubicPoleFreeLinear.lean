@@ -41,7 +41,7 @@ private theorem transverseEuler_mul (p q : B K) :
   unfold transverseEuler
   calc
     (∑ i : Fin 3, X i * pderiv i (p * q)) =
-        ∑ i : Fin 3, (X i * pderiv i p) * q + p * (X i * pderiv i q) := by
+        ∑ i : Fin 3, ((X i * pderiv i p) * q + p * (X i * pderiv i q)) := by
           apply Finset.sum_congr rfl
           intro i _
           simp only [Derivation.leibniz, smul_eq_mul]
@@ -61,11 +61,11 @@ private theorem coeff_transverseEuler (p : B K) (m : Fin 3 →₀ ℕ) :
       have he := hh.sum_X_mul_pderiv
       change transverseEuler (MvPolynomial.monomial d a : B K) =
         d.degree • MvPolynomial.monomial d a at he
-      rw [he]
+      rw [he, MvPolynomial.coeff_smul, nsmul_eq_mul]
       by_cases h : m = d
       · subst m
-        simp [MvPolynomial.coeff_monomial, nsmul_eq_mul]
-      · simp [MvPolynomial.coeff_monomial, h, nsmul_eq_mul]
+        simp [MvPolynomial.coeff_monomial]
+      · simp [MvPolynomial.coeff_monomial, h, Ne.symm h]
 
 /-- Conversely to Euler's homogeneous identity, Euler(f)=f makes
 a polynomial homogeneous of degree one in characteristic zero. -/
@@ -89,9 +89,9 @@ theorem isHomogeneous_one_of_cubic_quartic_division
     (hq : q.IsHomogeneous 3) (hr : r.IsHomogeneous 4)
     (hqne : q ≠ 0) (hprod : q * p = r) :
     p.IsHomogeneous 1 := by
-  have hqe : transverseEuler q = (3 : K) * q := by
+  have hqe : transverseEuler q = (3 : B K) * q := by
     simpa [transverseEuler, nsmul_eq_mul] using hq.sum_X_mul_pderiv
-  have hre : transverseEuler r = (4 : K) * r := by
+  have hre : transverseEuler r = (4 : B K) * r := by
     simpa [transverseEuler, nsmul_eq_mul] using hr.sum_X_mul_pderiv
   have hE := congrArg transverseEuler hprod
   rw [transverseEuler_mul, hqe, hre, ← hprod] at hE
@@ -114,11 +114,13 @@ theorem linearForm_of_isHomogeneous_one
       ((totalDegree_zero_iff_isHomogeneous (Fin 3)).mpr (hd i))
   have he := hp.sum_X_mul_pderiv
   simp only [one_smul] at he
-  rw [← he]
-  simp_rw [hconst]
-  apply Finset.sum_congr rfl
-  intro i _
-  ring
+  calc
+    p = ∑ i : Fin 3, X i * pderiv i p := he.symm
+    _ = ∑ i : Fin 3, MvPolynomial.C (coeff 0 (pderiv i p)) * X i := by
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [hconst i]
+      ring
 
 /-- Pole-free cubic Cramer data is a constant-matrix linear velocity.
 
