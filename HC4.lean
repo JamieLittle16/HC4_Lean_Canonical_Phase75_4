@@ -424,3 +424,6 @@ import HC4.Polynomial.RankThreeCubicLinearSourcePullback
 
 -- Derive the original-source fixed square from nonzero linear gradient transport.
 import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
+
+-- Pole-free rational transverse cubic characteristics become constant linear velocities.
+import HC4.Polynomial.RankThreeCubicPoleFreeLinear
