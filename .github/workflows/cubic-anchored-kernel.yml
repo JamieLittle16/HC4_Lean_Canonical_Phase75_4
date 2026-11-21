@@ -1,0 +1,23 @@
+name: Validate anchored cubic characteristic kernel
+on:
+  push:
+    branches: [research/cubic-anchored-kernel-bridge]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Lean
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          test: false
+          lint: false
+      - name: Restore Mathlib
+        run: lake exe cache get
+      - name: Compile anchored kernel
+        run: lake build HC4.Polynomial.RankThreeCubicAnchoredKernel
