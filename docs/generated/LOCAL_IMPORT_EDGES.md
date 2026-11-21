@@ -79,6 +79,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
