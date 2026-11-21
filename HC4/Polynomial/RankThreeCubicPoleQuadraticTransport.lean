@@ -12,7 +12,9 @@ a quadratic-family equation along its rational characteristic with
 no independent polynomial-velocity assumption.
 
 The third-derivative family is initially expressed in the fraction
-field. Showing these coefficients descend to source polynomial
+field; its source provenance is nevertheless exact, since the family
+is constructed by applying the same line-evaluation homomorphism to
+third derivatives of the original cubic initial form. Showing these coefficients descend to source polynomial
 time families at the chosen pole is the next, separate obligation.
 Until then this theorem is not a pole-residue contradiction.
 -/
