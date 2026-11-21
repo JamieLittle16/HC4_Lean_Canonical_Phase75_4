@@ -3242,7 +3242,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicAnchoredKernel`, `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.RankThreeCubicSourceFractionKernelAudit`
-- Declarations: `abbrev CubicB`, `abbrev CubicF`, `def sourceTransverseHessian`, `def sourceNegativeMixedHessian`, `theorem referenceSlice_fractionEvaluation`, `theorem sourceFractionHessianEquation_of_gradientTransport`, `theorem exists_sourceCubic_fractionHessianEquation`
+- Declarations: `abbrev CubicB`, `abbrev CubicF`, `def sourceTransverseHessian`, `def sourceNegativeMixedHessian`, `theorem referenceSlice_fractionEvaluation`, `theorem sourceFractionHessianEquation_of_gradientTransport`, `theorem sourceTransverseHessian_det_ne_zero_of_generic`, `theorem exists_sourceCubic_fractionHessianEquation`
 
 ### `HC4.Polynomial.RankThreeCubicSourceFractionKernelAudit`
 
