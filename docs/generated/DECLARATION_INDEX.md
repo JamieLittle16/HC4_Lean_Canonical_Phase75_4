@@ -7,16 +7,16 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10646**.
+Distinct declaration spellings indexed: **10647**.
 
 ## Repeated declaration spellings
 
 - `AdaptiveAlignedSmithCanonicalRankOneReesReducedTrace.exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `AllTwoByTwoMinorsZero` — `def` in `HC4.Newton.GeneralThreeBlockScalarSchur`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `B` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
-- `B3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+- `B3` — `abbrev` in `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `CubicB` — `abbrev` in `HC4.Polynomial.RankThreeCubicSourceDegrees`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
-- `F3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+- `F3` — `abbrev` in `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HasPositiveEntryLayer` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroSchurFirstEntryClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `HasSecondMarkedTerminalZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactMarkedSupport`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `P` — `abbrev` in `HC4.Valuation.QuadraticTransverseGap`, `abbrev` in `HC4.Valuation.TransverseAxisCubicCorrection`
@@ -1336,7 +1336,7 @@ Distinct declaration spellings indexed: **10646**.
 - `AtLeast` — `def` in `HC4.Valuation.QuadraticTransverseGap`
 - `AtMost` — `def` in `HC4.Valuation.QuadraticTransverseGap`
 - `B` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
-- `B3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+- `B3` — `abbrev` in `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `Balanced` — `def` in `HC4.Toric.InvariantSemigroup`
 - `BinaryMaximalLayerResidualFrontier` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTopLayerPeeling`
 - `BinarySchurBlock` — `structure` in `HC4.Newton.BinarySchurPivot`
@@ -1769,7 +1769,7 @@ Distinct declaration spellings indexed: **10646**.
 - `ExposedPureAxisResidual` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `ExposedSingularNonlinearBoundaryVertexData` — `structure` in `HC4.Newton.FiniteSupportSingularBoundaryVertex`
 - `ExposedSingularNonlinearBoundaryVertexData.rankThreeFacet_or_codimensionTwo` — `theorem` in `HC4.Newton.SingularBoundaryRankSplit`
-- `F3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+- `F3` — `abbrev` in `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `FF3` — `abbrev` in `HC4.Polynomial.RankThreeCubicPoleDeterminant`
 - `FacetOutcome` — `inductive` in `HC4.ClassifiedFamilies.FacetAssembly`
 - `FacetOutcome.facet` — `def` in `HC4.ClassifiedFamilies.FacetAssembly`
@@ -4883,6 +4883,7 @@ Distinct declaration spellings indexed: **10646**.
 - `coupledLowBlocker_gradient_y_at` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledLowBlocker_gradient_z_at` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledY_ne_Z` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
+- `cramerNumerator_quadraticResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
 - `crossFacetContactFacet` — `def` in `HC4.Newton.FirstContactCrossFacetEndpointStratum`
 - `crossFacetInitialData` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `crossFacetOppositeCoordinate` — `def` in `HC4.Newton.FirstContactCrossFacetAffineLine`
