@@ -493,3 +493,6 @@ import HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue
 
 -- Source cubic: linear velocity, repeated linear Hessian factor, or nonzero singular Cramer residue.
 import HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
+
+-- Every longitudinal coefficient of the cubic pole quadratic family annihilates the same residue.
+import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
