@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10576**.
+Distinct declaration spellings indexed: **10578**.
 
 ## Repeated declaration spellings
 
@@ -5413,6 +5413,7 @@ Distinct declaration spellings indexed: **10576**.
 - `exists_leftStaggeredBreakData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
 - `exists_lineEval_gradient_eq` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `exists_linear_matrix_of_poleFree_cubicCramer` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `exists_linear_matrix_of_poleFree_hessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
@@ -10562,6 +10563,7 @@ Distinct declaration spellings indexed: **10576**.
 - `transverseEuler` — `def` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `transverseEuler_add` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `transverseEuler_mul` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `transverseEuler_sum` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `transverseFree_implies_free_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `transverseFree_or_exists_positiveTransverseProjectedSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalCurvature`
 - `transverseGenericPoint` — `def` in `HC4.Polynomial.RankThreeCubicCharacteristics`
