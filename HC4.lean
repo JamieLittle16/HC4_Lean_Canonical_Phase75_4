@@ -449,3 +449,6 @@ import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
 
 -- Cubic source nonsquarefree determinant has a repeated degree-one irreducible divisor.
 import HC4.Polynomial.RankThreeCubicRepeatedFactor
+
+-- Squarefree cubic pole has nonzero source residue and actual nonzero Hessian cofactor.
+import HC4.Polynomial.RankThreeCubicPoleCofactor
