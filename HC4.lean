@@ -439,3 +439,6 @@ import HC4.Polynomial.RankThreeCubicSourceDegrees
 
 -- Source-honest full-rank cubic characteristic linear-or-nonpolynomial dichotomy.
 import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
+
+-- Exact adjugate numerator and determinant support of rational cubic poles.
+import HC4.Polynomial.RankThreeCubicPoleDeterminant

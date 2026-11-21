@@ -192,3 +192,33 @@ The [targeted Lean 4.24 build and axiom audit](https://github.com/JamieLittle16/
 passed with only `propext`, `Classical.choice` and
 `Quot.sound`. The full HC4 import-graph build remains a separate
 verification obligation, not inferred from this module build.
+
+## Exact Cramer numerator control for a genuine pole
+
+`HC4/Polynomial/RankThreeCubicPoleDeterminant.lean` formalises
+the exact vector identity, for any polynomial transverse matrix
+`H`, polynomial mixed-derivative vector `r`, and fraction-field
+solution `W` of `H W = r`:
+
+\[
+(\det H)W=\operatorname{adj}(H)r.
+\]
+
+The identity is **Lean-verified**, rather than merely inferred
+from a schematic Cramer argument. It identifies explicit polynomial
+numerators and a common determinant denominator. The module also
+proves that a genuinely non-polynomial coordinate of `W` forces
+`det H` to be a nonunit, and combines this with the existing
+source-level linear-or-nonpolynomial dichotomy.
+
+**Scope qualification:** in this full-rank cubic situation,
+`det H` is already a nonzero homogeneous cubic, hence nonunit.
+Consequently the nonunit corollary by itself is not a new exclusion;
+the valuable result is the exact numerator identity, which can be
+used when localising at an irreducible denominator factor. Existence,
+selection and residue analysis of such a factor remain open.
+
+The [targeted Lean build and three-theorem axiom audit](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44905035750)
+passed using only `propext`, `Classical.choice`, and
+`Quot.sound`. A full HC4 import-graph build after this import
+has not been certified by that targeted run.
