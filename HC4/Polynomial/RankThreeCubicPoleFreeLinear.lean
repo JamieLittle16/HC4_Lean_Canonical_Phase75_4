@@ -120,6 +120,7 @@ theorem linearForm_of_isHomogeneous_one
       apply Finset.sum_congr rfl
       intro i _
       rw [hconst i]
+      simp only [MvPolynomial.coeff_zero_C]
       ring
 
 /-- Pole-free cubic Cramer data is a constant-matrix linear velocity.
