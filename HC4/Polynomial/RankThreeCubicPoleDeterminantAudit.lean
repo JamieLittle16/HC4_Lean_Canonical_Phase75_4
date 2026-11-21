@@ -1,0 +1,4 @@
+import HC4.Polynomial.RankThreeCubicPoleDeterminant
+
+#print axioms HC4.Polynomial.RankThreeCubic.det_not_isUnit_of_nonPolynomial_fractionKernel
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linear_or_nonunit_determinant
