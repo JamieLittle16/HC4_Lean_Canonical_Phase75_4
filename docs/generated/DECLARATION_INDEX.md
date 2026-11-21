@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10591**.
+Distinct declaration spellings indexed: **10592**.
 
 ## Repeated declaration spellings
 
@@ -6639,6 +6639,7 @@ Distinct declaration spellings indexed: **10591**.
 - `intersection_exposed` — `theorem` in `HC4.Newton.ExposedFaces`
 - `introduced_exponent_eq_one_of_rankThree_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `is` — `theorem` in `HC4.Newton.FirstContactCrossFacetAffineRRTerminal`, `lemma` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `isHomogeneous_of_transverseEuler_eq_nsmul` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `isHomogeneous_one_of_cubic_quartic_division` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `isHomogeneous_one_of_transverseEuler_eq_self` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `isMongeAmpere_pullback` — `theorem` in `HC4.LinearAlgebra.Congruence`
