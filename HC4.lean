@@ -473,3 +473,6 @@ import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
 
 -- Longitudinal polynomial evaluation commutes with scalar extension to the fraction field.
 import HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap
+
+-- The normalized cubic characteristic transports third derivatives within embedded K[t].
+import HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime
