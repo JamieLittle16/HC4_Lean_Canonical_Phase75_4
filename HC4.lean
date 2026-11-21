@@ -430,3 +430,6 @@ import HC4.Polynomial.RankThreeCubicPoleFreeLinear
 
 -- Recover the actual Hessian-kernel equation from anchored gradient characteristics.
 import HC4.Polynomial.RankThreeCubicAnchoredKernel
+
+-- Source-derived, regular fraction-field transverse Hessian equation at cubic cap.
+import HC4.Polynomial.RankThreeCubicSourceFractionKernel

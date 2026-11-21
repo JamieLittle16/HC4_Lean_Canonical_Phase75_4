@@ -100,3 +100,36 @@ passed (only `propext`, `Classical.choice`, `Quot.sound`).
 The remaining source-to-pole-free assembly must translate the anchored
 fraction-field evaluation into the homogeneous transverse matrix and
 mixed-derivative data, and separately handle denominator primes.
+
+## Source-derived fraction-field Hessian system (Lean-verified)
+
+The `RankThreeCubicSourceFractionKernel.lean` module now makes the
+previously abstract Hessian equation **source honest**.
+
+For any cap-three constant-Hessian-determinant source whose cubic initial
+form has generically full transverse Hessian rank, the source itself
+constructs a longitudinal slice `a` and normalized rational
+characteristic `V`. Its transverse polynomial Hessian block `H_a`
+satisfies `det H_a ≠ 0`, and, writing
+`W_j = V (.inr j)` and `r_a` for minus the mixed
+longitudinal/transverse derivative of the **actual** cubic initial form,
+the theorem proves in the transverse polynomial fraction field
+`(H_a.map algebraMap) *ᵥ W = algebraMap ∘ r_a`.
+
+The independent matrix-kernel assumption is therefore eliminated;
+the proof derives it by taking the first time coefficient of the
+already constructed gradient characteristic. The generic slice is
+explicitly chosen so that the polynomial Hessian determinant remains
+nonzero, rather than losing this property through an existential
+witness.
+
+The [Lean 4.24 targeted build and four-theorem axiom audit](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/actions/runs/44901484156)
+succeeded, with only `propext`, `Classical.choice`, and
+`Quot.sound`. This is **not** a claim that the entire `HC4`
+import graph was rebuilt on that commit.
+
+The next precise obligations are to prove that the source block
+`H_a` has degree-one homogeneous entries and `r_a` has degree-two
+homogeneous entries using the cubic initial-form weight, and then to
+apply `exists_linear_matrix_of_poleFree_fractionKernel` to the
+pole-free case. Genuine denominator primes remain open.

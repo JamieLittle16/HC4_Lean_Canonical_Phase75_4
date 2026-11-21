@@ -637,3 +637,8 @@ import HC4
 
 #print axioms HC4.Polynomial.RankThreeCubic.coeff_one_lineEval_eq_directional
 #print axioms HC4.Polynomial.RankThreeCubic.anchored_gradient_implies_hessian_kernel
+
+#print axioms HC4.Polynomial.RankThreeCubic.referenceSlice_fractionEvaluation
+#print axioms HC4.Polynomial.RankThreeCubic.sourceFractionHessianEquation_of_gradientTransport
+#print axioms HC4.Polynomial.RankThreeCubic.sourceTransverseHessian_det_ne_zero_of_generic
+#print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_fractionHessianEquation
