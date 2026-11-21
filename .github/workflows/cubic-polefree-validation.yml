@@ -21,3 +21,5 @@ jobs:
         run: lake exe cache get
       - name: Compile pole-free polynomial rigidity
         run: lake build HC4.Polynomial.RankThreeCubicPoleFreeLinear
+      - name: Audit theorem axioms
+        run: lake env lean HC4/Polynomial/RankThreeCubicPoleFreeLinearAudit.lean
