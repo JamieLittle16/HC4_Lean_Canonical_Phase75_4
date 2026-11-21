@@ -46,8 +46,18 @@ theorem exists_degree_one_repeated_irreducible_of_cubic_degree
   have hp0 : p ≠ 0 := hp.ne_zero
   have hdegsq : (p * p).totalDegree = p.totalDegree + p.totalDegree :=
     MvPolynomial.totalDegree_mul_of_isDomain hp0 hp0
-  have hle : (p * p).totalDegree ≤ D.totalDegree :=
-    MvPolynomial.totalDegree_le_of_dvd_of_isDomain hpp hD
+  have hle : (p * p).totalDegree ≤ D.totalDegree := by
+    obtain ⟨c, hc⟩ := hpp
+    have hc0 : c ≠ 0 := by
+      intro hz
+      apply hD
+      rw [hc, hz, mul_zero]
+    have hprod : ((p * p) * c).totalDegree =
+        (p * p).totalDegree + c.totalDegree :=
+      MvPolynomial.totalDegree_mul_of_isDomain (mul_ne_zero hp0 hp0) hc0
+    calc
+      (p * p).totalDegree ≤ (p * p).totalDegree + c.totalDegree := by omega
+      _ = D.totalDegree := by rw [hc, hprod]
   have hpos : 0 < p.totalDegree := by
     by_contra hn
     have hzero : p.totalDegree = 0 := Nat.eq_zero_of_not_pos hn
