@@ -49,7 +49,7 @@ theorem quadraticFamilyEval_zero_coefficients
     ring
   have hc := congrArg
     (fun p : _root_.Polynomial R => p.coeff n) hzero
-  simp only [quadraticFamilyEval, _root_.Polynomial.coeff_sum,
+  simp only [quadraticFamilyEval, _root_.Polynomial.finsetSum_coeff,
     _root_.Polynomial.coeff_zero] at hc
   simpa only [hterm] using hc
 
