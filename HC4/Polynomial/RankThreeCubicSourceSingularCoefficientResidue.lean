@@ -49,9 +49,9 @@ theorem quadraticFamilyEval_zero_coefficients
     ring
   have hc := congrArg
     (fun p : _root_.Polynomial R => p.coeff n) hzero
-  simp only [quadraticFamilyEval, _root_.Polynomial.finsetSum_coeff,
-    _root_.Polynomial.coeff_zero] at hc
-  simpa only [hterm] using hc
+  simpa only [quadraticFamilyEval, Fin.sum_univ_three,
+    _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_zero,
+    hterm] using hc
 
 /-- The source's nonzero Cramer pole residue satisfies the quadratic
 gradient equations coefficient by coefficient in characteristic time,
