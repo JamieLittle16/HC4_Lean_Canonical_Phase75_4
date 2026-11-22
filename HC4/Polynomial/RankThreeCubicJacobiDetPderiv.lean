@@ -9,7 +9,7 @@ matrix with multivariate polynomial entries, without assuming that
 the matrix is invertible. The resulting formula is valid at singular
 points and hence at every irreducible factor of its determinant.
 
-The formula identifies the gradient of a transverse Hessian
+This formula identifies the gradient of a transverse Hessian
 determinant with the contraction of its adjugate and the
 third-derivative matrices. It will be combined with the source
 cubic pole quadratic-residue equations in a separate theorem.
