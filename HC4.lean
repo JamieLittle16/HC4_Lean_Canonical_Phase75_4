@@ -740,3 +740,6 @@ import HC4.Polynomial.RankThreeCubicFixedTangentTensorNormalForm
 
 -- Exactly-double fixed-tangent cubic normal form and mixed-source gradient rigidity.
 import HC4.Polynomial.RankThreeCubicMixedGradientCoefficientRigidity
+
+-- Normalize the source-derived fixed tangent to the canonical cubic tensor axis.
+import HC4.Polynomial.RankThreeCubicFixedTangentFrameCompletion
