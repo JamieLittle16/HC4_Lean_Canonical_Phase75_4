@@ -137,8 +137,12 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
       simpa only [one_nsmul] using heuler.symm
     change (∑ t : Fin 3,
       q (MvPolynomial.X t) * q (pderiv t (H i j))) = q (H i j)
-    rw [hlin]
-    simp only [map_sum, map_mul]
+    calc
+      (∑ t : Fin 3, q (MvPolynomial.X t) * q (pderiv t (H i j))) =
+          q (∑ t : Fin 3, (MvPolynomial.X t : B3 K) *
+            pderiv t (H i j)) := by
+              simp only [map_sum, map_mul]
+      _ = q (H i j) := congrArg q hlin.symm
   have hswap₂ (t i j : Fin 3) : D t i j = D t j i := by
     have hsym := sourceTransverseHessian_isSymm a L
     have h := congrArg (fun P : B3 K => q (pderiv t P))
@@ -195,6 +199,8 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
           (H.map (MvPolynomial.aeval v).toRingHom).det := by
             rw [hTensorEval v]
       _ = MvPolynomial.aeval v H.det := by
+            change (H.map (MvPolynomial.aeval v).toRingHom).det =
+              (MvPolynomial.aeval v).toRingHom H.det
             rw [RingHom.map_det]
       _ = MvPolynomial.aeval v ((p * p) * c) := by rw [hfactor]
       _ = cubicPoleLinearFunctional ellR v *
@@ -206,15 +212,17 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
       (Ideal.mem_span_singleton.mpr (dvd_refl p))
   have hpX : cubicPoleLinearFunctional ellR x = 0 := by
     calc
-      cubicPoleLinearFunctional ellR x = q p := by
-        rw [hpoly]
-        simp only [map_sum, map_mul]
-        unfold cubicPoleLinearFunctional
-        apply Finset.sum_congr rfl
-        intro i _
-        dsimp [ellR, x]
-        rw [hqC]
-        ring
+      cubicPoleLinearFunctional ellR x =
+          q (∑ i : Fin 3, (MvPolynomial.X i : B3 K) *
+            MvPolynomial.C (ell i)) := by
+          simp only [map_sum, map_mul]
+          unfold cubicPoleLinearFunctional
+          apply Finset.sum_congr rfl
+          intro i _
+          dsimp [ellR, x]
+          rw [hqC]
+          ring
+      _ = q p := congrArg q hpoly.symm
       _ = 0 := hqP
   have hcX : cubicPoleLinearFunctional gammaR x = q c := by
     rw [hcLinear]
