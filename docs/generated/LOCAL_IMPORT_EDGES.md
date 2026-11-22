@@ -90,6 +90,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
+  - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
@@ -1297,6 +1298,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleCofactor`
 - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+- `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+  - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
