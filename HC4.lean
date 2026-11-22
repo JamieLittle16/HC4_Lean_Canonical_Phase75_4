@@ -611,3 +611,12 @@ import HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction
 
 -- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
 import HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure
+
+-- Repeated linear cubic factor homogeneity and actual-source rank-one pole elimination.
+import HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler
+
+-- Repeated linear cubic factor homogeneity and actual-source rank-one pole elimination.
+import HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous
+
+-- Repeated linear cubic factor homogeneity and actual-source rank-one pole elimination.
+import HC4.Polynomial.RankThreeCubicSourceRankOneElimination
