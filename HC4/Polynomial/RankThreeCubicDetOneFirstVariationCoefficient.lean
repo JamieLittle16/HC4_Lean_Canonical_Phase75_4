@@ -53,14 +53,14 @@ unperturbed determinant is zero. -/
 theorem coeff_one_det_C_add_X_C_eq_sum_updateCol
     (A B : Matrix ι ι R) :
     (Matrix.det (A.map Polynomial.C +
-      Polynomial.X • B.map Polynomial.C)).coeff 1 =
+      (Polynomial.X : Polynomial R) • B.map Polynomial.C)).coeff 1 =
       ∑ j : ι, (A.updateCol j (fun i => B i j)).det := by
   classical
   let M : Matrix ι ι (Polynomial R) :=
-    A.map Polynomial.C + Polynomial.X • B.map Polynomial.C
+    A.map Polynomial.C + (Polynomial.X : Polynomial R) • B.map Polynomial.C
   have hMentry (i j : ι) :
       M i j = Polynomial.C (A i j) +
-        Polynomial.X * Polynomial.C (B i j) := by
+        (Polynomial.X : Polynomial R) * Polynomial.C (B i j) := by
     rfl
   have hcoeff (π : Equiv.Perm ι) :
       ((Equiv.Perm.sign π) •
@@ -103,7 +103,7 @@ cubic Hessian whose determinant is identically zero. -/
 theorem coeff_one_det_C_add_X_C_eq_adjugate_trace
     (A B : Matrix ι ι R) :
     (Matrix.det (A.map Polynomial.C +
-      Polynomial.X • B.map Polynomial.C)).coeff 1 =
+      (Polynomial.X : Polynomial R) • B.map Polynomial.C)).coeff 1 =
       (A.adjugate * B).trace := by
   rw [coeff_one_det_C_add_X_C_eq_sum_updateCol]
   exact sum_det_updateCol_eq_adjugate_trace A B
