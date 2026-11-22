@@ -109,4 +109,5 @@ theorem exists_sourceCubic_squarefreePole_factor_dvd_allJacobiDerivatives
   exact Ideal.mem_span_singleton.mp
     (Ideal.Quotient.eq_zero_iff_mem.mp (hvanish i))
 
+end
 end HC4.Polynomial.RankThreeCubic
