@@ -512,3 +512,6 @@ import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
 -- Independent cubic squarefree-pole Jacobi bridge and source derivative obstruction.
 import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
 import HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction
+
+-- Source-honest cubic squarefree-pole contradiction (characteristic zero).
+import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
