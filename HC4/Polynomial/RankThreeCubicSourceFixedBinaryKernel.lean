@@ -71,6 +71,10 @@ theorem sourceCubic_genuineRankTwo_fixedBinaryKernel_or_exactTriple
           (∑ i : Fin 3, ell i * M i 1) = 0 ∧
           (∑ i : Fin 3, ell i * M i 2) = 0 ∧
           (r ≠ 0 ∨ t ≠ 0) ∧
+          (∀ x y : K, ∀ j : Fin 3,
+            (M.transpose *
+              H.map (MvPolynomial.aeval
+                (M.mulVec ![(0 : K), x, y])).toRingHom * M).adjugate 0 j = 0) ∧
           ∀ x y : K,
             let B := M.transpose *
               H.map (MvPolynomial.aeval
@@ -144,11 +148,11 @@ theorem sourceCubic_genuineRankTwo_fixedBinaryKernel_or_exactTriple
           cubicTensorHessianAt D (M.mulVec ![(0 : K), x, y]) *
           M).adjugate 0 0 = 0 := by
       rw [← hEval (M.mulVec ![(0 : K), x, y])]
-      exact hnormal x y
+      exact hnormal x y 0
     obtain ⟨r, t, hrt, hker⟩ :=
       cubicTensor_adaptedPlane_constantTangentKernel
         D hswap₁ hswap₂ M hnormalD
-    refine ⟨M, r, t, hM, hM1, hM2, hrt, ?_⟩
+    refine ⟨M, r, t, hM, hM1, hM2, hrt, hnormal, ?_⟩
     intro x y
     have h := hker x y
     rw [hEval (M.mulVec ![(0 : K), x, y])]
