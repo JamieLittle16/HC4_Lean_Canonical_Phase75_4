@@ -52,7 +52,7 @@ theorem transverseCubicWeight_nonnegative
 /-- Strictly negative transverse weight is impossible for a
 nonzero polynomial. No finite-field evaluation argument is used. -/
 omit [CharZero K] in
-theorem transverseCubicWeight_lt_zero_implies_zero
+lemma transverseCubicWeight_lt_zero_implies_zero
     (P : SB K)
     (hP : IsWeightLT transverseCubicWeight 0 P) :
     P = 0 := by
@@ -81,11 +81,17 @@ theorem sourceCubic_lowerRemainder_threeTransverseDerivatives_zero
   let E : SB K := F - initialForm transverseCubicWeight 3 F
   have hE : IsWeightLT transverseCubicWeight 3 E :=
     sub_initialForm_isWeightLT hcap
+  have hweight :
+      3 - transverseCubicWeight (.inr i) -
+        transverseCubicWeight (.inr j) -
+        transverseCubicWeight (.inr k) = (0 : ℤ) := by
+    norm_num [transverseCubicWeight]
   have hder :
       IsWeightLT transverseCubicWeight 0
         (pderiv (.inr k) (hessian E (.inr i) (.inr j))) := by
     have h := (hE.hessian_entry (.inr i) (.inr j)).pderiv (.inr k)
-    simpa [transverseCubicWeight] using h
+    rw [hweight] at h
+    exact h
   exact transverseCubicWeight_lt_zero_implies_zero
     (pderiv (.inr k) (hessian E (.inr i) (.inr j))) hder
 
