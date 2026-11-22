@@ -40,7 +40,9 @@ theorem symmetricThree_tangentKernel_full_or_tangentBlockZero
   classical
   have h21 : H 2 1 = H 1 2 := hSym.apply 1 2
   have h01 : H 0 2 * H 1 2 - H 0 1 * H 2 2 = 0 := by
-    simpa [Matrix.adjugate_fin_three, h21] using hN01
+    have hz := hN01
+    simp [Matrix.adjugate_fin_three, h21] at hz
+    linear_combination hz
   have h02 : H 0 1 * H 1 2 - H 0 2 * H 1 1 = 0 := by
     simpa [Matrix.adjugate_fin_three] using hN02
   have hQ2' : H 1 2 * r + H 2 2 * t = 0 := by
