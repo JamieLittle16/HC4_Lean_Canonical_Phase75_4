@@ -85,6 +85,9 @@ theorem sourceCubic_genuinePole_detOne_transverseRepair_or_originQuadraticKernel
         fun j => q (MvPolynomial.C (w0 j))
       let v : Unit ⊕ Fin 3 → (B3 K ⧸ Ideal.span {p}) :=
         Sum.elim (fun _ : Unit => 0) W
+      let T : Matrix (Fin 3) (Fin 3) K :=
+        fun i j => MvPolynomial.aeval (fun _ : Fin 3 => (0 : K))
+          (referenceSlice a (hessian L2 (.inr i) (.inr j)))
       W ≠ 0 ∧
       A *ᵥ v = 0 ∧
       (A.adjugate * C).trace = 0 ∧
@@ -97,7 +100,8 @@ theorem sourceCubic_genuinePole_detOne_transverseRepair_or_originQuadraticKernel
           (∀ i : Fin 3, ∑ j : Fin 3,
             (MvPolynomial.aeval (fun _ : Fin 3 => (0 : K))
               (referenceSlice a (hessian L2 (.inr i) (.inr j)))) *
-                w0 j = 0))))
+                w0 j = 0) ∧
+          T.det = 0)))
     ∨
     (∃ lambda : K, lambda ≠ 0 ∧
       H.det = MvPolynomial.C lambda * (p * p * p)) := by
@@ -120,6 +124,9 @@ theorem sourceCubic_genuinePole_detOne_transverseRepair_or_originQuadraticKernel
     let W : Fin 3 → R := fun j => q (MvPolynomial.C (w0 j))
     let v : Unit ⊕ Fin 3 → R :=
       Sum.elim (fun _ : Unit => 0) W
+    let T : Matrix (Fin 3) (Fin 3) K :=
+      fun i j => MvPolynomial.aeval (fun _ : Fin 3 => (0 : K))
+        (referenceSlice a (hessian L2 (.inr i) (.inr j)))
     refine Or.inl ⟨ell, M, r, t, hlin, hM, hrt,
       hWne, hAker, htrace, ?_⟩
     by_cases hC : ∃ i : Fin 3, (C *ᵥ v) (.inr i) ≠ 0
@@ -131,9 +138,21 @@ theorem sourceCubic_genuinePole_detOne_transverseRepair_or_originQuadraticKernel
       rcases hcase with htrans | ⟨hunit, hdvd⟩
       · exact False.elim (hC htrans)
       · right
-        refine ⟨hunit, hdvd, hrows, ?_⟩
-        exact sourceCubic_quadraticTransverseKernel_descends_to_origin
-          F a p ell hlin w0 hrows
+        have hbase : ∀ i : Fin 3, ∑ j : Fin 3,
+            T i j * w0 j = 0 :=
+          sourceCubic_quadraticTransverseKernel_descends_to_origin
+            F a p ell hlin w0 hrows
+        have hw0 : w0 ≠ 0 := by
+          intro hz
+          apply hWne
+          funext j
+          simp [W, w0, hz]
+        have hTker : T *ᵥ w0 = 0 := by
+          funext i
+          simpa only [Matrix.mulVec, dotProduct, Pi.zero_apply] using hbase i
+        have hTdet : T.det = 0 :=
+          Matrix.exists_mulVec_eq_zero_iff.mp ⟨w0, hw0, hTker⟩
+        exact ⟨hunit, hdvd, hrows, hbase, hTdet⟩
   · exact Or.inr htriple
 
 end
