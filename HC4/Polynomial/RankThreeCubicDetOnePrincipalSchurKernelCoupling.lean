@@ -55,6 +55,7 @@ direction and longitudinal response satisfy a precise square relation.
 This statement remains denominator-free. The active pivot must be
 nonzero only to cancel a factor in the last step. -/
 theorem detOne_principalSchur_kernelPairing_square
+    [IsDomain R]
     (H : GeneralFourBlock R) (u v t : R)
     (hdet : H.determinantCore = 1)
     (hzero : H.schurC = 0)
