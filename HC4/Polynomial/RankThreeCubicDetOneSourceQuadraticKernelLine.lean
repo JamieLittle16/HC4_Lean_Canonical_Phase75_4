@@ -76,7 +76,7 @@ theorem sourceCubic_detOne_originQuadraticKernel_isLine
           ∑ j : Fin 3, T i j * w0 j := by
         apply Finset.sum_congr rfl
         intro j _
-        rw [hblock i j]
+        exact congrArg (fun x : K => x * w0 j) (hblock i j)
       _ = 0 := hTker i
   have hcoupling :=
     borderedInvertible_transverseKernel_longitudinalPairing_ne_zero
@@ -94,7 +94,7 @@ theorem sourceCubic_detOne_originQuadraticKernel_isLine
         ∑ j : Fin 3, T i j * z j := by
       apply Finset.sum_congr rfl
       intro j _
-      rw [hblock i j]
+      exact congrArg (fun x : K => x * z j) (hblock i j)
     _ = 0 := hTz
 
 end
