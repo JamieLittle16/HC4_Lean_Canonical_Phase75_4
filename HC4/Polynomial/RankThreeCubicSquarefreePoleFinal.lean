@@ -95,8 +95,12 @@ theorem pderiv_ne_zero_of_mem_vars
   have hc0 : p.coeff m ≠ 0 := mem_support_iff.mp hm
   have hcoef : (pderiv i p).coeff (m - Finsupp.single i 1) ≠ 0 := by
     rw [coeff_pderiv_at, Finsupp.sub_add_single_one_cancel hm0]
-    exact mul_ne_zero hc0
-      (Nat.cast_ne_zero.mpr (Nat.succ_ne_zero _))
+    have hn : ((m - Finsupp.single i 1) i + 1 : ℕ) ≠ 0 :=
+      Nat.succ_ne_zero _
+    have hk : (((m - Finsupp.single i 1) i + 1 : ℕ) : K) ≠ 0 :=
+      Nat.cast_ne_zero.mpr hn
+    exact mul_ne_zero hc0 (by
+      simpa only [Nat.cast_add, Nat.cast_one] using hk)
   intro hz
   apply hcoef
   rw [hz]
