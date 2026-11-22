@@ -97,7 +97,7 @@ theorem sourceCubic_lowerRemainder_slicedTransverseHessian_pderiv_zero
     pderiv k (referenceSlice a
       (hessian (F - initialForm transverseCubicWeight 3 F)
         (.inr i) (.inr j))) = 0 := by
-  rw [← referenceSlice_pderiv a k]
+  rw [referenceSlice_pderiv a k]
   rw [sourceCubic_lowerRemainder_threeTransverseDerivatives_zero F hcap i j k]
   simp
 
