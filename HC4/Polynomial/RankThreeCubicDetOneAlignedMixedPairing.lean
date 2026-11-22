@@ -59,7 +59,7 @@ theorem alignedResidue_mixedPairing_eq_zero_iff
     rw [hz, zero_mul] at hcross
     exact (mul_eq_zero.mp hcross.symm).resolve_right hSk
   · intro hz
-    rw [hz, mul_zero] at hcross
+    rw [hz, zero_mul] at hcross
     exact (mul_eq_zero.mp hcross).resolve_right hWk
 
 end
