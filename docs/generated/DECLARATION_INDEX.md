@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10743**.
+Distinct declaration spellings indexed: **10745**.
 
 ## Repeated declaration spellings
 
@@ -3745,6 +3745,8 @@ Distinct declaration spellings indexed: **10743**.
 - `adaptiveWall_blocker_or_integralSurvivingWall` — `theorem` in `HC4.Newton.MixedDegreeFirstWallCompetition`
 - `add` — `def` in `HC4.Toric.InvariantSemigroup`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `add_of_shift_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
+- `additivePencil_exactDoublePole_kernel_tangent` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency`
+- `additivePencil_repeatedPole_kernel_tangent_or_cofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency`
 - `adjacentFacets_comm` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `adjacent_transition_on_extreme_ray` — `theorem` in `HC4.Newton.BoundaryCycle`
 - `adjugate_axisBlock_zero` — `lemma` in `HC4.Valuation.TransverseAxisKernelDrift`
