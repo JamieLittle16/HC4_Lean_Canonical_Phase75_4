@@ -137,9 +137,7 @@ theorem squarefree_irreducible_factor_not_all_pderivs
   have hpdiff := dvd_sub hpder hpsecond
   have hprod : p ∣ (pderiv i p) * h := by
     convert hpdiff using 1 <;> ring
-  rcases (hp.prime.dvd_mul).mp hprod with hleft | hright
-  · exact hpi hleft
-  · exact hnot hright
+  exact (hp.prime.not_dvd_mul hpi hnot) hprod
 
 /-- The *actual source cubic* cannot have both a squarefree
 transverse Hessian determinant and a nonpolynomial normalized
