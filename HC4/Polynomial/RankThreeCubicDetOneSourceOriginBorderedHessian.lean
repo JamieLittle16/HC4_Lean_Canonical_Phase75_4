@@ -88,7 +88,9 @@ theorem sourceCubic_detOne_originBordered_transverse_eq_quadratic
   have hh :=
     congrFun (congrFun (sourceCubic_hessian_three_two_lower_decomposition F)
       (.inr i)) (.inr j)
-  rw [hh, map_add, map_add, hL3 i j, hRlow i j]
+  rw [hh]
+  simp only [Matrix.add_apply, map_add]
+  rw [hL3 i j, hRlow i j]
   ring
 
 end
