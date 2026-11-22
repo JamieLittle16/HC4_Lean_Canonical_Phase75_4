@@ -533,3 +533,6 @@ import HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm
 
 -- Exact linear residual factor of the cubic source's sole genuine pole.
 import HC4.Polynomial.RankThreeCubicSourceExactPoleDegree
+
+-- Coefficientwise source transport after normalized repeated-pole cancellation.
+import HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue
