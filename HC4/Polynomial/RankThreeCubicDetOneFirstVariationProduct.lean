@@ -15,7 +15,8 @@ works over an arbitrary commutative ring (without divisions).
 
 namespace HC4.Polynomial
 
-open Polynomial
+-- Use the global polynomial namespace, not HC4.Polynomial itself.
+open _root_.Polynomial
 open scoped BigOperators
 noncomputable section
 
