@@ -67,7 +67,9 @@ theorem cubicPoleToyGradient_transport
     linear_combination (1 / 2 : K) * hw
   ext i
   fin_cases i <;>
-    simp [cubicPoleToyGradient, hshift, hzw] <;> ring
+    simp [cubicPoleToyGradient, hshift] <;>
+    (try ring) <;>
+    linear_combination (t / 2 : K) * hw
 
 /-- For z ≠ 0 this is exactly the rational source characteristic,
 not a merely formal new velocity. -/
@@ -79,7 +81,6 @@ theorem cubicPoleToyGradient_transport_fraction
       cubicPoleToyGradient 0 z u v := by
   apply cubicPoleToyGradient_transport
   field_simp [hz]
-  ring
 
 /-- The transverse Hessian at longitudinal anchor x=0. -/
 def cubicPoleToyHessian
