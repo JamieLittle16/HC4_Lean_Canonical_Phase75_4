@@ -689,3 +689,15 @@ import HC4.Polynomial.RankThreeCubicTangentKernelExtension
 
 -- Exact-double cubic pole: fixed binary kernel extends unless the tangent Hessian block vanishes.
 import HC4.Polynomial.RankThreeCubicSourceTangentKernelExtension
+
+-- Whole-plane algebraic rigidity for the source rank-two exactly-double cubic pole.
+import HC4.Polynomial.RankThreeCubicAdditiveDichotomy
+
+-- Whole-plane algebraic rigidity for the source rank-two exactly-double cubic pole.
+import HC4.Polynomial.RankThreeCubicPencilGlobalKernel
+
+-- Whole-plane algebraic rigidity for the source rank-two exactly-double cubic pole.
+import HC4.Polynomial.RankThreeCubicSourceLinearPlanePencil
+
+-- Whole-plane algebraic rigidity for the source rank-two exactly-double cubic pole.
+import HC4.Polynomial.RankThreeCubicSourceUniformTangentKernel
