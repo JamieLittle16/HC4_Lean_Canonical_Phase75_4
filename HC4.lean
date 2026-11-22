@@ -716,3 +716,18 @@ import HC4.Polynomial.RankThreeCubicZeroBinarySourceCofactor
 
 -- Eliminate the source cubic zero-tangent-block double-pole exception.
 import HC4.Polynomial.RankThreeCubicSourceFullTangentKernelOrTriple
+
+-- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
+import HC4.Polynomial.RankThreeCubicResidueKernelDirection
+
+-- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
+import HC4.Polynomial.RankThreeCubicAdaptedPlaneLinearVanishing
+
+-- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
+import HC4.Polynomial.RankThreeCubicFixedKernelPolynomialLift
+
+-- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
+import HC4.Polynomial.RankThreeCubicFixedKernelResidueLift
+
+-- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
+import HC4.Polynomial.RankThreeCubicSourceResidueFixedTangentAlignment
