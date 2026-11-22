@@ -575,3 +575,9 @@ import HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction
 
 -- Full adjugate contractions for all longitudinal transport coefficients at rank-two cubic pole.
 import HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility
+
+-- Integral cubic Hessian rank-one pencil rigidity and determinant collapse.
+import HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil
+
+-- Integral cubic Hessian rank-one pencil rigidity and determinant collapse.
+import HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil
