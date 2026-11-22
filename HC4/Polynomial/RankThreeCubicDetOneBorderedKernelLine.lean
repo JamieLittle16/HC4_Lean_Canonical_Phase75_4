@@ -67,7 +67,7 @@ theorem borderedInvertible_transverseKernel_isLine
     ∀ z : Fin 3 → K,
       (∀ i : Fin 3,
         (∑ j : Fin 3, B (.inr i) (.inr j) * z j) = 0) →
-      ∃ λ : K, ∀ j : Fin 3, z j = λ * w j := by
+      ∃ c : K, ∀ j : Fin 3, z j = c * w j := by
   classical
   let cw : K := ∑ j : Fin 3, B (.inl ()) (.inr j) * w j
   have hcwnz : cw ≠ 0 :=
