@@ -43,7 +43,7 @@ theorem principalSchur_kernelPairing_identity
             (H.a * u + H.b * v + H.q * t) +
           (H.a * H.r - H.b * H.p) *
             (H.b * u + H.d * v + H.s * t) := by
-    unfold GeneralFourBlock.activeDet GeneralFourBlock.schurB
+    simp only [GeneralFourBlock.schurB, GeneralFourBlock.activeDet]
     ring
   rw [h0, h1] at halg
   simp only [mul_zero, add_zero] at halg
@@ -75,7 +75,7 @@ theorem detOne_principalSchur_kernelPairing_square
       H.activeDet ^ 2 * (H.p * u + H.r * v + H.y * t) ^ 2 =
         (H.activeDet * (H.p * u + H.r * v + H.y * t)) ^ 2 := by ring
       _ = (H.schurB * t) ^ 2 := by rw [hrel]
-      _ = -H.activeDet * t ^ 2 := by rw [mul_pow, hsq]; ring
+      _ = -H.activeDet * t ^ 2 := by rw [mul_pow, hsq]
   have hcancel :
       H.activeDet * (H.activeDet * (H.p * u + H.r * v + H.y * t) ^ 2) =
         H.activeDet * (-(t ^ 2)) := by
