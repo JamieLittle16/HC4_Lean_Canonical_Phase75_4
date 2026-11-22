@@ -53,7 +53,7 @@ theorem detOne_matrix_correction_nonzero_on_kernel
   have h := congrArg (fun M : Matrix ι ι R => M *ᵥ w) hadj
   change (((A + E).adjugate * (A + E)) *ᵥ w) =
       (1 : Matrix ι ι R) *ᵥ w at h
-  rw [Matrix.mulVec_mulVec, hsum] at h
+  rw [← Matrix.mulVec_mulVec, hsum] at h
   have hzero : w = 0 := by simpa using h.symm
   exact hw hzero
 
