@@ -1380,6 +1380,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
   - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
   - `HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
