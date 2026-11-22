@@ -73,7 +73,9 @@ theorem sourceCubic_hessian_three_two_lower_decomposition
   have hF : L3 + L2 + R = F := by
     dsimp [R]
     ring
-  ext i j
+  apply Matrix.ext
+  intro i j
+  change hessian F i j = hessian L3 i j + hessian L2 i j + hessian R i j
   have hf := congrArg (fun P : SB K => hessian P i j) hF
   simpa only [hessian_apply, map_add] using hf.symm
 
