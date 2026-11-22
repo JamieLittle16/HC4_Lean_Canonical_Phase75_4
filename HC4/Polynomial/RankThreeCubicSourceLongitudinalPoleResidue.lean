@@ -81,7 +81,8 @@ theorem sourceCubic_normalizedPole_longitudinalMixedRow_divisible
     simpa [Fintype.sum_sum_type, hV] using h
   have hfrac :
       g d + (∑ i : Fin 3, g (b i) * V (.inr i)) = 0 := by
-    simpa only [d, b, referenceSlice_fractionEvaluation] using hfull
+    dsimp only [d, b, g]
+    simpa only [referenceSlice_fractionEvaluation] using hfull
   have hsum :
       (∑ i : Fin 3, g (b i) * V (.inr i)) = -g d := by
     linear_combination hfrac
@@ -92,7 +93,8 @@ theorem sourceCubic_normalizedPole_longitudinalMixedRow_divisible
           ∑ i : Fin 3, g (b i) * g (T i) := by
             simp only [map_sum, map_mul]
       _ = g s * (∑ i : Fin 3, g (b i) * V (.inr i)) := by
-            simp only [Fin.sum_univ_three, hscale]
+            simp only [Fin.sum_univ_three]
+            rw [hscale 0, hscale 1, hscale 2]
             ring
       _ = g (-s * d) := by
             rw [hsum]
