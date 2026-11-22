@@ -584,3 +584,12 @@ import HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil
 
 -- Integrability excludes rank-one transverse planes for nondegenerate ternary cubic Hessians.
 import HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction
+
+-- Actual-source coordinate hyperplane rank-one obstruction via symmetric cubic tensor.
+import HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne
+
+-- Actual-source coordinate hyperplane rank-one obstruction via symmetric cubic tensor.
+import HC4.Polynomial.RankThreeCubicTensorRankOnePlane
+
+-- Actual-source coordinate hyperplane rank-one obstruction via symmetric cubic tensor.
+import HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure
