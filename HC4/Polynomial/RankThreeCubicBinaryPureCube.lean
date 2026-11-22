@@ -99,9 +99,10 @@ theorem binaryCubic_pureCube_of_reducedHessian_threeZeros
     have hd : d = b ^ 3 / a ^ 2 := by
       rw [hc] at had
       apply (eq_div_iff (pow_ne_zero 2 ha)).2
-      apply (mul_left_cancel₀ ha)
-      field_simp [ha] at had ⊢
-      nlinarith [had]
+      calc
+        d * a ^ 2 = a * (a * d) := by ring
+        _ = a * (b * (b ^ 2 / a)) := by rw [had]
+        _ = b ^ 3 := by field_simp [ha] <;> ring
     intro u v
     rw [hc, hd]
     field_simp [ha]
