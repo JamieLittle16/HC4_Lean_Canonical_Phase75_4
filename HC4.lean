@@ -704,3 +704,15 @@ import HC4.Polynomial.RankThreeCubicSourceUniformTangentKernel
 
 -- Finite Hessian normal-coefficient obstruction to zero binary plane at an exact double pole.
 import HC4.Polynomial.RankThreeCubicZeroBinaryDeterminant
+
+-- Eliminate the source cubic zero-tangent-block double-pole exception.
+import HC4.Polynomial.RankThreeCubicTensorZeroBinaryTriple
+
+-- Eliminate the source cubic zero-tangent-block double-pole exception.
+import HC4.Polynomial.RankThreeCubicAdaptedNormalProportional
+
+-- Eliminate the source cubic zero-tangent-block double-pole exception.
+import HC4.Polynomial.RankThreeCubicZeroBinarySourceCofactor
+
+-- Eliminate the source cubic zero-tangent-block double-pole exception.
+import HC4.Polynomial.RankThreeCubicSourceFullTangentKernelOrTriple
