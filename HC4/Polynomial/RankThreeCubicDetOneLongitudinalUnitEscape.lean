@@ -38,7 +38,7 @@ theorem detOne_pureLongitudinal_output_isUnit
     rw [Matrix.adjugate_mul, hdet]
     simp
   have hrecover : B.adjugate *ᵥ (B *ᵥ v) = v := by
-    rw [← Matrix.mulVec_mulVec, hadj]
+    rw [Matrix.mulVec_mulVec, hadj]
     simp
   have hk := congrFun hrecover (.inr k)
   change
