@@ -551,3 +551,9 @@ import HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue
 
 -- Prime residue Hessian rank-one / principal rank-two alternatives.
 import HC4.Polynomial.RankThreeCubicSourcePoleRankSplit
+
+-- Nonzero principal-pivot coordinate for the actual rank-two normalized pole residue.
+import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
+
+-- Nonzero principal-pivot coordinate for the actual rank-two normalized pole residue.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue
