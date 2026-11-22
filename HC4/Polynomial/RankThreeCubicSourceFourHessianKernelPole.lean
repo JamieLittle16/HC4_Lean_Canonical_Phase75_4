@@ -46,13 +46,9 @@ theorem fourHessian_zeroLongitudinalVector_of_rows
   cases i with
   | inl u =>
       cases u
-      simpa only [Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-        Finset.sum_const_zero, mul_zero, zero_add,
-        Sum.elim_inr, Sum.elim_inl] using hmixed
+      simpa [Matrix.mulVec, dotProduct, Fintype.sum_sum_type] using hmixed
   | inr i =>
-      simpa only [Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-        Finset.sum_const_zero, mul_zero, zero_add,
-        Sum.elim_inr, Sum.elim_inl] using htrans i
+      simpa [Matrix.mulVec, dotProduct, Fintype.sum_sum_type] using htrans i
 
 variable {K : Type*} [Field K] [CharZero K]
 private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
@@ -141,8 +137,9 @@ theorem sourceCubic_genuinePole_fourHessianFixedTangent_or_exactTriple
     have htrans (i : Fin 3) :
         (∑ j : Fin 3, C (.inr i) (.inr j) * W j) = 0 := by
       have hh := congrFun hWker i
-      simpa only [Matrix.mulVec, dotProduct, C,
-        sourceTransverseHessian] using hh
+      change (∑ j : Fin 3, q (H i j) * W j) = 0 at hh
+      change (∑ j : Fin 3, q (H i j) * W j) = 0
+      exact hh
     refine Or.inl ⟨M, r, t, hM, hrt, ?_⟩
     exact fourHessian_zeroLongitudinalVector_of_rows C W hmixed htrans
   · exact Or.inr htriple
