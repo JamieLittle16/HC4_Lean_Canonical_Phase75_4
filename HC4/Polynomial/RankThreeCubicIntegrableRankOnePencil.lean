@@ -36,22 +36,22 @@ theorem integrable_ternaryHessian_det_zero_of_proportional_slices
     (hAB : ∀ i : Fin 3, A i 2 = B i 1)
     (hCA : ∀ i : Fin 3, C i 1 = A i 0)
     (hCB : ∀ i : Fin 3, C i 2 = B i 0)
-    (λ : R)
-    (hB : ∀ i j : Fin 3, B i j = λ * A i j)
+    (scale : R)
+    (hB : ∀ i j : Fin 3, B i j = scale * A i j)
     (x y z : R) :
-    (fun i j : Fin 3 => x * C i j + y * A i j + z * B i j).det = 0 := by
+    ((fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) : Matrix (Fin 3) (Fin 3) R).det = 0 := by
   classical
   let H : Matrix (Fin 3) (Fin 3) R :=
     fun i j => x * C i j + y * A i j + z * B i j
-  have hAcol (i : Fin 3) : A i 2 = λ * A i 1 := by
+  have hAcol (i : Fin 3) : A i 2 = scale * A i 1 := by
     rw [hAB i]
     exact hB i 1
-  have hCcol (i : Fin 3) : C i 2 = λ * C i 1 := by
+  have hCcol (i : Fin 3) : C i 2 = scale * C i 1 := by
     rw [hCB i, hB i 0, hCA i]
-  have hBcol (i : Fin 3) : B i 2 = λ * B i 1 := by
+  have hBcol (i : Fin 3) : B i 2 = scale * B i 1 := by
     rw [hB i 2, hB i 1, hAcol i]
     ring
-  have hcol (i : Fin 3) : H i 2 = λ * H i 1 := by
+  have hcol (i : Fin 3) : H i 2 = scale * H i 1 := by
     dsimp [H]
     rw [hCcol i, hAcol i, hBcol i]
     ring
@@ -80,22 +80,22 @@ theorem integrable_ternaryHessian_det_zero_of_rankOne_pencil_pivot
       (A + B) k k * (A + B) i j =
         (A + B) i k * (A + B) k j)
     (x y z : K) :
-    (fun i j : Fin 3 => x * C i j + y * A i j + z * B i j).det = 0 := by
+    ((fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) : Matrix (Fin 3) (Fin 3) R).det = 0 := by
   classical
   have hprop :=
     symmetric_rankOne_pencil_proportional
       A B hA_symm hB_symm k hak hA hB hABrank
-  let λ : K := B k k / A k k
-  have hscalar (i j : Fin 3) : B i j = λ * A i j := by
+  let scale : K := B k k / A k k
+  have hscalar (i j : Fin 3) : B i j = scale * A i j := by
     apply mul_left_cancel₀ hak
     calc
       A k k * B i j = B k k * A i j := hprop i j
-      _ = A k k * (λ * A i j) := by
-        dsimp [λ]
+      _ = A k k * (scale * A i j) := by
+        dsimp [scale]
         field_simp [hak]
         ring
   exact integrable_ternaryHessian_det_zero_of_proportional_slices
-    C A B hAB hCA hCB λ hscalar x y z
+    C A B hAB hCA hCB scale hscalar x y z
 
 end
 end HC4.Polynomial.RankThreeCubic
