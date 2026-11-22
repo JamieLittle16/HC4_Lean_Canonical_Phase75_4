@@ -46,14 +46,20 @@ theorem coeff_one_prod_C_add_X_C
   have hdev (i : ι) : (f i).derivative.eval 0 = b i := by
     simp [f, _root_.Polynomial.derivative_add,
       _root_.Polynomial.derivative_mul]
+  have hprod :
+      derivative (∏ i ∈ s, f i) =
+        ∑ i ∈ s, (∏ j ∈ s.erase i, f j) * derivative (f i) := by
+    simpa only [] using
+      (_root_.Polynomial.derivative_prod
+        (s := (s : Multiset ι)) (f := f))
   change (∏ i ∈ s, f i).coeff 1 = _
-  rw [coeff_one_eq_derivative_eval_zero,
-    _root_.Polynomial.derivative_prod_finset,
-    _root_.Polynomial.eval_finsetSum]
+  rw [coeff_one_eq_derivative_eval_zero, hprod,
+    _root_.Polynomial.eval_finset_sum]
   apply Finset.sum_congr rfl
   intro i hi
-  simp only [eval_mul, eval_prod]
-  simp_rw [hev, hdev]
+  rw [_root_.Polynomial.eval_mul, _root_.Polynomial.eval_prod,
+    hdev]
+  simp_rw [hev]
   ring
 
 end
