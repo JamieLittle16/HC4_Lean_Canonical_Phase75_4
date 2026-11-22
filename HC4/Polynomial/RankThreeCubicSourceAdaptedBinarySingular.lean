@@ -44,7 +44,7 @@ private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
 becomes a vanishing principal cofactor throughout an invertibly
 adapted coordinate plane. This is the polynomial evaluation
 bridge, independent of the underlying source. -/
-theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
+theorem normalAdjugate_divisible_adaptedPlaneRow_zero
     (H : Matrix (Fin 3) (Fin 3) (B3 K))
     (p : B3 K) (ell : Fin 3 → K)
     (hpoly : p = ∑ i : Fin 3,
@@ -58,9 +58,10 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
       p ∣ (∑ i : Fin 3,
         MvPolynomial.C (ell i) * H.adjugate i j))
     (u v : K) :
-    (M.transpose *
+    ∀ j : Fin 3,
+      (M.transpose *
         H.map (MvPolynomial.aeval (M.mulVec ![(0 : K), u, v])).toRingHom *
-        M).adjugate 0 0 = 0 := by
+        M).adjugate 0 j = 0 := by
   classical
   let w : Fin 3 → K := ![(0 : K), u, v]
   let x : Fin 3 → K := M.mulVec w
@@ -101,8 +102,30 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
     rw [hmap]
     simpa only [map_sum, map_mul, hevC,
       Matrix.map_apply] using heval
-  exact tangentFrame_normalAdjugate_principal_zero
+  exact tangentFrame_normalAdjugate_row_zero
     (H.map ev) M ell hell hM hM1 hM2 hzero
+
+/-- The earlier principal-cofactor statement follows by selecting
+column zero of the full adapted normal-adjugate row. -/
+theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
+    (H : Matrix (Fin 3) (Fin 3) (B3 K))
+    (p : B3 K) (ell : Fin 3 → K)
+    (hpoly : p = ∑ i : Fin 3,
+      (MvPolynomial.X i : B3 K) * MvPolynomial.C (ell i))
+    (hell : ell ≠ 0)
+    (M : Matrix (Fin 3) (Fin 3) K)
+    (hM : M.det ≠ 0)
+    (hM1 : (∑ i : Fin 3, ell i * M i 1) = 0)
+    (hM2 : (∑ i : Fin 3, ell i * M i 2) = 0)
+    (hnormal : ∀ j : Fin 3,
+      p ∣ (∑ i : Fin 3,
+        MvPolynomial.C (ell i) * H.adjugate i j))
+    (u v : K) :
+    (M.transpose *
+        H.map (MvPolynomial.aeval (M.mulVec ![(0 : K), u, v])).toRingHom *
+        M).adjugate 0 0 = 0 :=
+  normalAdjugate_divisible_adaptedPlaneRow_zero
+    H p ell hpoly hell M hM hM1 hM2 hnormal u v 0
 
 /-- The actual cubic source characteristic is linear, or the
 genuine principal rank-two pole has either an exact scalar
@@ -137,11 +160,11 @@ theorem sourceCubic_genuineRankTwo_adaptedBinarySingular_or_exactTriple
           M.det ≠ 0 ∧
           (∑ i : Fin 3, ell i * M i 1) = 0 ∧
           (∑ i : Fin 3, ell i * M i 2) = 0 ∧
-          (∀ x y : K,
+          (∀ x y : K, ∀ j : Fin 3,
             (M.transpose *
                 H.map
                   (MvPolynomial.aeval (M.mulVec ![(0 : K), x, y])).toRingHom *
-                M).adjugate 0 0 = 0))
+                M).adjugate 0 j = 0))
        ∨
        ∃ lambda : K, lambda ≠ 0 ∧
          H.det = MvPolynomial.C lambda * (p * p * p)) := by
@@ -164,7 +187,7 @@ theorem sourceCubic_genuineRankTwo_adaptedBinarySingular_or_exactTriple
       exists_invertible_frame_annihilating_linearFunctional ell hell
     refine ⟨M, hM, hM1, hM2, ?_⟩
     intro x y
-    exact normalAdjugate_divisible_adaptedPlaneCofactor_zero
+    exact normalAdjugate_divisible_adaptedPlaneRow_zero
       H p ell hpoly hell M hM hM1 hM2 hnormal x y
   · exact Or.inr htriple
 
