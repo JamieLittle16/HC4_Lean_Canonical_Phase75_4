@@ -39,16 +39,14 @@ theorem tangentFrame_normal_adjugate_row
     funext i
     fin_cases i
     · simp [t, Matrix.vecMul, dotProduct, Fin.sum_univ_three]
-    · simpa only [Matrix.vecMul, dotProduct] using hM1
-    · simpa only [Matrix.vecMul, dotProduct] using hM2
+    · simpa [Matrix.vecMul, dotProduct] using hM1
+    · simpa [Matrix.vecMul, dotProduct] using hM2
   have hprod : (ell ᵥ* M) ᵥ* M.adjugate = M.det • ell := by
     rw [Matrix.vecMul_vecMul, Matrix.mul_adjugate,
       Matrix.vecMul_smul, Matrix.vecMul_one]
   have hj := congrFun hprod j
   rw [hrow] at hj
-  simpa only [Matrix.vecMul, dotProduct, Fin.sum_univ_three,
-    Matrix.smul_apply, Pi.smul_apply, smul_eq_mul,
-    zero_mul, add_zero] using hj
+  simpa [Matrix.vecMul, dotProduct, Fin.sum_univ_three] using hj
 
 /-- The first pole-normal component of an invertible adapted
 frame is necessarily nonzero. -/
