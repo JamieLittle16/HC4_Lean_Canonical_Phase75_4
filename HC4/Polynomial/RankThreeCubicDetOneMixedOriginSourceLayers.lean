@@ -38,7 +38,7 @@ theorem homogeneous_positive_origin_zero
       MvPolynomial.coeff (0 : Fin 3 →₀ ℕ) P = 0 :=
     hP.coeff_eq_zero (by simp [Finsupp.degree])
   have hconst : MvPolynomial.constantCoeff P = 0 := hcoeff
-  simpa only [MvPolynomial.aeval_zero', map_zero] using hconst
+  simp [MvPolynomial.aeval_zero', hconst]
 
 /-- A weighted-homogeneous source layer of transverse weight
 n+1 has a mixed source Hessian entry of transverse degree n;
