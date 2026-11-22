@@ -54,7 +54,7 @@ theorem alignedKernel_quadraticZero_implies_adjugateContraction
       B k k * B i j = B i k * B j k := by
     have h := adjugate_rankOne_cross_products H hdet k i j
     change B k k * B i j = B i k * B k j at h
-    rw [hBsymm.apply k j] at h
+    rw [← hBsymm.apply k j] at h
     exact h
   have hweighted :
       B k k * (∑ i : Fin 3, ∑ j : Fin 3,
