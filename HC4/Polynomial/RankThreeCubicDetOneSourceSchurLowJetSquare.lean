@@ -124,7 +124,7 @@ theorem sourceCubic_detOne_originSchur_lowJetSquare
       _ = flow.coeff 0 := by rw [hc]; simp
   have hprimary :
       H0.activeDet * flow.coeff 0 = H0.schurB * w0 k := by
-    rwa [hpairSource] at hpair
+    simpa only [hpairSource] using hpair
   have hTvec : T *ᵥ w0 = 0 := by
     funext i
     simpa only [Matrix.mulVec, dotProduct, Pi.zero_apply] using hTker i
