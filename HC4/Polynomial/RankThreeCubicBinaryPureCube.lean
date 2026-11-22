@@ -65,6 +65,51 @@ theorem binaryCubicReducedHessianDet_threeZeros
     simpa using h
   exact ⟨sub_eq_zero.mp hac, sub_eq_zero.mp had, sub_eq_zero.mp hbd⟩
 
+/-- The same three Hessian zeros yield a *constant* nonzero
+kernel direction for the entire binary Hessian pencil. This
+consequence uses only coefficient equations and needs no
+division, making it the preferred input for the rank-two
+pole-plane kernel rigidity argument. -/
+theorem binaryCubic_reducedHessian_threeZeros_constantKernel
+    {K : Type*} [Field K]
+    (a b c d : K)
+    (h10 : binaryCubicReducedHessianDet a b c d 1 0 = 0)
+    (h01 : binaryCubicReducedHessianDet a b c d 0 1 = 0)
+    (h11 : binaryCubicReducedHessianDet a b c d 1 1 = 0) :
+    ∃ r t : K,
+      (r ≠ 0 ∨ t ≠ 0) ∧
+      ∀ u v : K,
+        ((a * u + b * v) * r +
+          (b * u + c * v) * t = 0) ∧
+        ((b * u + c * v) * r +
+          (c * u + d * v) * t = 0) := by
+  obtain ⟨hac, had, hbd⟩ :=
+    binaryCubicReducedHessianDet_threeZeros a b c d h10 h01 h11
+  by_cases ha : a = 0
+  · have hb2 : b ^ 2 = 0 := by simpa [ha] using hac.symm
+    have hb : b = 0 := pow_eq_zero hb2
+    have hc2 : c ^ 2 = 0 := by simpa [hb] using hbd.symm
+    have hc : c = 0 := pow_eq_zero hc2
+    refine ⟨1, 0, Or.inl one_ne_zero, ?_⟩
+    intro u v
+    simp [ha, hb, hc]
+  · refine ⟨b, -a, Or.inr (neg_ne_zero.mpr ha), ?_⟩
+    intro u v
+    constructor
+    · calc
+        (a * u + b * v) * b +
+          (b * u + c * v) * (-a) =
+            (b ^ 2 - a * c) * v := by ring
+        _ = 0 := by rw [sub_eq_zero.mpr hac.symm]; ring
+    · calc
+        (b * u + c * v) * b +
+          (c * u + d * v) * (-a) =
+            (b ^ 2 - a * c) * u +
+              (b * c - a * d) * v := by ring
+        _ = 0 := by
+          rw [sub_eq_zero.mpr hac.symm, sub_eq_zero.mpr had.symm]
+          ring
+
 /-- If the reduced binary cubic Hessian is identically singular,
 the binary cubic is either supported solely in v³ or is an
 explicit cube a*(u + (b/a)*v)^3.
