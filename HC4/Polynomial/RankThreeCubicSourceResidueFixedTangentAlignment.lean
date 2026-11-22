@@ -77,6 +77,10 @@ theorem sourceCubic_genuineRankTwo_residue_alignedFixedTangent_or_exactTriple
           (∑ i : Fin 3, ell i * M i 1) = 0 ∧
           (∑ i : Fin 3, ell i * M i 2) = 0 ∧
           (r ≠ 0 ∨ t ≠ 0) ∧
+          (∀ x y : K,
+            let A := H.map (MvPolynomial.aeval
+              (M.mulVec ![(0 : K), x, y])).toRingHom
+            (M.transpose * A * M) *ᵥ ![(0 : K), r, t] = 0) ∧
           p ∣ s ∧
           (∀ l : Fin 3,
             algebraMap (B3 K) (F3 K) (T l) =
@@ -159,7 +163,7 @@ theorem sourceCubic_genuineRankTwo_residue_alignedFixedTangent_or_exactTriple
         S i * W k = W i * S k :=
       principalCofactor_twoKernelVectors_crossMultiply
         (H.map q) S W hSker hWker hdet k hcof
-    refine ⟨M, r, t, s, T, hM, hM1, hM2, hrt, hps, hscale, ?_⟩
+    refine ⟨M, r, t, s, T, hM, hM1, hM2, hrt, hframe, hps, hscale, ?_⟩
     exact ⟨hSk, hcross⟩
   · exact Or.inr htriple
 
