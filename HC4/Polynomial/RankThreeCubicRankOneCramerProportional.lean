@@ -8,7 +8,7 @@ If a symmetric matrix B over a domain satisfies
 with B(k,k) nonzero, then its column-space vector S = B r satisfies
   B(k,k) S(i) S(j) = B(i,j) S(k)^2.
 
-This algebraic lemma relates the quadratic source residue in the
+This elementary algebraic lemma relates the quadratic source residue in the
 actual Cramer numerator to the adjugate contraction appearing in
 Jacobi's determinant derivative. The rank-one hypothesis is
 explicit here; it will be derived from det(H)=0 separately.
