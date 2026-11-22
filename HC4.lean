@@ -761,3 +761,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair
 
 -- Identify the determinant-one source pole correction with the exact lower-weight Hessian.
 import HC4.Polynomial.RankThreeCubicDetOneWeightedRepair
+
+-- Source-weight bound forces transverse-constant Hessian repair at genuine poles.
+import HC4.Polynomial.RankThreeCubicDetOneRepairBlockDegree
