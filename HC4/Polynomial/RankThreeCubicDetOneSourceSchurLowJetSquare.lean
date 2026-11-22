@@ -87,6 +87,7 @@ theorem sourceCubic_detOne_originSchur_lowJetSquare
     ∑ j : Fin 3,
       referenceSlice a (hessian Rlow (.inl ()) (.inr j)) *
         MvPolynomial.C (w0 j)
+  change T.adjugate k k ≠ 0 → _
   intro hk
   obtain ⟨hdetB, hblock⟩ :=
     sourceCubic_detOne_originBordered_transverse_eq_quadratic
@@ -141,7 +142,7 @@ theorem sourceCubic_detOne_originSchur_lowJetSquare
       H0.activeDet ^ 2 * (flow.coeff 0) ^ 2 =
         (H0.activeDet * flow.coeff 0) ^ 2 := by ring
       _ = (H0.schurB * w0 k) ^ 2 := by rw [hprimary]
-      _ = -H0.activeDet * (w0 k) ^ 2 := by rw [mul_pow, hsq, ← hactive]; ring
+      _ = -H0.activeDet * (w0 k) ^ 2 := by rw [mul_pow, hsq, ← hactive]
   have hcancel :
       H0.activeDet * (H0.activeDet * (flow.coeff 0) ^ 2) =
         H0.activeDet * (-(w0 k ^ 2)) := by
