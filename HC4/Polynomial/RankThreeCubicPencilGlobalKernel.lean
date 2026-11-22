@@ -59,8 +59,11 @@ theorem linearMatrixPencil_zeroTangentBlock_or_normalKernel_global
       simp [f, hp, Matrix.add_apply]
   have hgadd (x y : K × K) :
       g (x + y) = g x + g y := by
-    rw [show P (x + y) = P x + P y from hPadd x y]
-    simp [g, Matrix.add_apply]
+    change P (x + y) 0 1 * r + P (x + y) 0 2 * t =
+      (P x 0 1 * r + P x 0 2 * t) +
+        (P y 0 1 * r + P y 0 2 * t)
+    rw [hPadd x y]
+    simp only [Matrix.add_apply]
     ring
   have hpoint' (x : K × K) : f x = 0 ∨ g x = 0 := by
     rcases hpoint x.1 x.2 with hQ | hw
