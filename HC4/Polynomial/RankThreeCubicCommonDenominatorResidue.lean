@@ -4,15 +4,23 @@ import Mathlib.Tactic
 /-!
 # A genuine pole has a nonzero common-denominator residue
 
-For three rational functions over K[y₁,y₂,y₃], use the least
-common multiple of their *reduced denominators*. It is a polynomial
-common denominator. If an irreducible p divides any one reduced
-denominator, then p divides the common denominator, and some
-common-denominator numerator survives reduction modulo p.
+Mathlib v4.24.0 does not supply a normalized GCD-monoid
+instance for multivariate polynomials. We therefore select a
+nonzero common multiple of the three reduced coordinate
+denominators of *least total degree*, rather than use their LCM.
 
-This provides the missing nonzero residue in the repeated-pole
-branch without a chosen p-adic order or an additional endpoint
-hypothesis. It applies to the source's actual rational characteristic.
+The product of the denominators supplies an initial common
+multiple, so the minimum exists. An irreducible p appearing in
+a reduced denominator must divide any chosen common multiple.
+
+If every common-denominator numerator vanished modulo p,
+reduced numerator-denominator coprimality would imply that
+each complementary denominator factor is divisible by p.
+Cancelling p would then give a strictly lower-degree nonzero
+common denominator, contradicting minimality.
+
+This constructs a nonzero residue from the actual rational
+coordinates, without assuming a p-adic normalization.
 -/
 
 namespace HC4.Polynomial.RankThreeCubic
@@ -27,10 +35,10 @@ variable {K : Type*} [Field K]
 private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
 
-/-- Every irreducible prime of one reduced coordinate denominator
-supports a *nonzero* residue of the common-denominator numerators
-of a finite rational vector. The common denominator is the LCM of
-the three reduced coordinate denominators. -/
+/-- A reduced denominator pole yields a nonzero residue of
+numerators with a common polynomial denominator. The common
+denominator is chosen to have minimum total degree among
+nonzero common multiples; no multivariate GCD instance is needed. -/
 theorem exists_commonDenominator_nonzeroResidue_at_genuinePole
     (V : Fin 3 → F3 K)
     (p : B3 K)
@@ -48,15 +56,28 @@ theorem exists_commonDenominator_nonzeroResidue_at_genuinePole
   let n : Fin 3 → B3 K := fun i => IsFractionRing.num (B3 K) (V i)
   let d : Fin 3 → B3 K :=
     fun i => (IsFractionRing.den (B3 K) (V i) : B3 K)
-  let s : B3 K := (Finset.univ : Finset (Fin 3)).lcm d
   have hd0 (i : Fin 3) : d i ≠ 0 :=
     nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B3 K) (V i))
-  have hs0 : s ≠ 0 := by
-    apply (Finset.lcm_ne_zero_iff).2
-    intro i _
-    exact hd0 i
-  have hds (i : Fin 3) : d i ∣ s :=
-    Finset.dvd_lcm (s := Finset.univ) (f := d) (Finset.mem_univ i)
+  let commonDegree (k : ℕ) : Prop :=
+    ∃ s : B3 K, s ≠ 0 ∧ (∀ i : Fin 3, d i ∣ s) ∧ s.totalDegree = k
+  have hex : ∃ k : ℕ, commonDegree k := by
+    let s₀ : B3 K := ∏ i : Fin 3, d i
+    have hs₀ : s₀ ≠ 0 := by
+      dsimp [s₀]
+      exact Finset.prod_ne_zero_iff.mpr (by
+        intro i _
+        exact hd0 i)
+    have hds₀ (i : Fin 3) : d i ∣ s₀ := by
+      dsimp [s₀]
+      exact Finset.dvd_prod_of_mem d (Finset.mem_univ i)
+    exact ⟨s₀.totalDegree, s₀, hs₀, hds₀, rfl⟩
+  obtain ⟨s, hs0, hds, hsdeg⟩ :
+      commonDegree (Nat.find hex) := Nat.find_spec hex
+  have hminimal (u : B3 K) (hu0 : u ≠ 0)
+      (hdu : ∀ i : Fin 3, d i ∣ u) :
+      s.totalDegree ≤ u.totalDegree := by
+    rw [hsdeg]
+    exact Nat.find_min' hex ⟨u, hu0, hdu, rfl⟩
   let t : Fin 3 → B3 K := fun i => Classical.choose (hds i)
   have ht (i : Fin 3) : s = d i * t i :=
     Classical.choose_spec (hds i)
@@ -94,6 +115,10 @@ theorem exists_commonDenominator_nonzeroResidue_at_genuinePole
         exact hps
       exact (hp.prime.not_dvd_mul hpdi hpt) hptotal
   obtain ⟨u, hu⟩ := hps
+  have hu0 : u ≠ 0 := by
+    intro hz
+    apply hs0
+    rw [hu, hz, mul_zero]
   have hdsu (i : Fin 3) : d i ∣ u := by
     obtain ⟨v, hv⟩ := htdiv i
     have hp_eq : p * u = p * (d i * v) := by
@@ -103,20 +128,26 @@ theorem exists_commonDenominator_nonzeroResidue_at_genuinePole
         _ = d i * (p * v) := by rw [hv]
         _ = p * (d i * v) := by ring
     exact ⟨v, mul_left_cancel₀ hp.ne_zero hp_eq⟩
-  have hsu : s ∣ u := by
-    apply Finset.lcm_dvd
-    intro i _
-    exact hdsu i
-  obtain ⟨w, hw⟩ := hsu
-  have hp_one : p ∣ (1 : B3 K) := by
-    refine ⟨w, ?_⟩
-    have heq : s * (1 : B3 K) = s * (p * w) := by
-      calc
-        s * 1 = s := by ring
-        _ = p * u := hu
-        _ = p * (s * w) := by rw [hw]
-        _ = s * (p * w) := by ring
-    exact mul_left_cancel₀ hs0 heq
-  exact hp.not_isUnit (isUnit_of_dvd_one hp_one)
+  have hmin : s.totalDegree ≤ u.totalDegree :=
+    hminimal u hu0 hdsu
+  have hpdeg : 0 < p.totalDegree := by
+    by_contra hzero
+    have hp0deg : p.totalDegree = 0 :=
+      Nat.eq_zero_of_not_pos hzero
+    have hconst : p = MvPolynomial.C (p.coeff 0) :=
+      MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hp0deg
+    have hcoeff : p.coeff 0 ≠ 0 := by
+      intro hz
+      apply hp.ne_zero
+      rw [hconst, hz, map_zero]
+    have hunit : IsUnit p :=
+      (MvPolynomial.isUnit_iff_totalDegree_of_isReduced).2
+        ⟨isUnit_iff_ne_zero.mpr hcoeff, hp0deg⟩
+    exact hp.not_isUnit hunit
+  have hprod : s.totalDegree = p.totalDegree + u.totalDegree := by
+    rw [hu]
+    exact MvPolynomial.totalDegree_mul_of_isDomain hp.ne_zero hu0
+  omega
 
+end
 end HC4.Polynomial.RankThreeCubic
