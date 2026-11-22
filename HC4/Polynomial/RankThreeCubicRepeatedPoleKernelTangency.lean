@@ -54,14 +54,22 @@ theorem additivePencil_repeatedPole_kernel_tangent_or_cofactor_zero
     (hHS : (H S) *ᵥ S = 0) :
     p S = 0 ∨ c x = 0 := by
   classical
-  have hk : S k ∈ nonZeroDivisors R :=
-    mem_nonZeroDivisors_of_ne_zero hSk
-  have hdetS : (H S).det = 0 :=
-    Matrix.det_eq_zero_of_mulVec_eq_zero_of_mem_nonZeroDivisors hHS hk
+  -- A nonzero kernel coordinate forces det(A)=0 by the adjugate
+  -- identity. This works with the Matrix API in Lean/mathlib v4.24.
+  have hdetOfKernel (A : Matrix (Fin 3) (Fin 3) R)
+      (hAS : A *ᵥ S = 0) : A.det = 0 := by
+    have hsmul : A.det • S = 0 := by
+      rw [← Matrix.one_mulVec S, ← Matrix.smul_mulVec,
+        ← Matrix.adjugate_mul, ← Matrix.mulVec_mulVec,
+        hAS, Matrix.mulVec_zero]
+    have hentry := congrFun hsmul k
+    change A.det * S k = 0 at hentry
+    exact (mul_eq_zero.mp hentry).resolve_right hSk
+  have hdetS : (H S).det = 0 := hdetOfKernel (H S) hHS
   have hsum : (H (x + S)) *ᵥ S = 0 := by
     rw [hHadd, Matrix.add_mulVec, hHx, hHS, zero_add]
   have hdetSum : (H (x + S)).det = 0 :=
-    Matrix.det_eq_zero_of_mulVec_eq_zero_of_mem_nonZeroDivisors hsum hk
+    hdetOfKernel (H (x + S)) hsum
   have hz1 : p S * p S * c S = 0 := by
     rw [← hfactor S]
     exact hdetS
