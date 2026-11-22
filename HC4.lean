@@ -593,3 +593,21 @@ import HC4.Polynomial.RankThreeCubicTensorRankOnePlane
 
 -- Actual-source coordinate hyperplane rank-one obstruction via symmetric cubic tensor.
 import HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicHessianCongruence
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicTensorLinearChange
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicTensorAdaptedFrame
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicLinearPoleFrame
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction
+
+-- Arbitrary-frame tensor rank-one obstruction and source homogeneous linear pole closure.
+import HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure
