@@ -81,6 +81,15 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
           algebraMap (B3 K) (F3 K) s * V (.inr l)) ∧
       p = ∑ i : Fin 3,
         (MvPolynomial.X i : B3 K) * MvPolynomial.C (ell i) ∧
+      (let q : B3 K →+* (B3 K ⧸ Ideal.span {p}) :=
+        Ideal.Quotient.mk (Ideal.span {p})
+       let S : Fin 3 → (B3 K ⧸ Ideal.span {p}) :=
+        fun i => q (T i)
+       S k ≠ 0 ∧
+         (H.map q) *ᵥ S = 0 ∧
+         (∀ i : Fin 3,
+           q (H.adjugate k k) * S i =
+             q (H.adjugate i k) * S k)) ∧
       ((p ∣ ∑ i : Fin 3, MvPolynomial.C (ell i) * T i) ∨ p ∣ c) := by
   classical
   let L : SB K := initialForm transverseCubicWeight 3 F
@@ -105,7 +114,7 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
   obtain ⟨k, hk⟩ :=
     sourceCubic_genuinePole_has_principalRankTwo
       F a V hV hgrad hregular j p hp hpd hpn
-  obtain ⟨s, T, hps, hscale, hSk, hSker, _halign, hquad⟩ :=
+  obtain ⟨s, T, hps, hscale, hSk, hSker, halign, hquad⟩ :=
     sourceCubic_genuinePole_rankTwo_adjugateAlignedResidue
       F a V hV hgrad j p hp hpd hpn k hk
   let R := B3 K ⧸ Ideal.span {p}
@@ -239,7 +248,8 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
     cubicTensor_repeatedPole_kernel_tangent_or_triple
       D hswap₁ hswap₂ ellR gammaR hFactorTensor
       x S k hSk hpX hkerTensor hquadTensor
-  refine ⟨k, c, s, T, ell, hfactor, hc0, hk, hps, hscale, hpoly, ?_⟩
+  refine ⟨k, c, s, T, ell, hfactor, hc0, hk, hps, hscale, hpoly,
+    ⟨hSk, hSker, halign⟩, ?_⟩
   rcases hSplit with htangent | htriple
   · left
     have hqTang :
