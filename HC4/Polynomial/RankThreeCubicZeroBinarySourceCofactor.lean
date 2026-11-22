@@ -44,8 +44,7 @@ theorem frame_linearFunctional_at
       (∑ i : Fin 3, ell i * M i 1) * u +
       (∑ i : Fin 3, ell i * M i 2) * v := by
   classical
-  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_three]
-  ring
+  simp [Matrix.mulVec, dotProduct, Fin.sum_univ_three] <;> ring
 
 /-- Polynomial linear form evaluation equals its scalar dot
 product, using the verified homogeneous-linear pole lemma. -/
@@ -122,12 +121,15 @@ theorem homogeneousLinearCubic_zeroBinaryBlock_implies_p_dvd_cofactor
   have hdetEval (x : Fin 3 → K) :
       (H.map (MvPolynomial.aeval x).toRingHom).det =
         MvPolynomial.aeval x H.det := by
-    simpa only [RingHom.map_det, RingHom.mapMatrix_apply]
+    change (H.map (MvPolynomial.aeval x).toRingHom).det =
+      (MvPolynomial.aeval x).toRingHom H.det
+    simp only [RingHom.map_det, RingHom.mapMatrix_apply]
   have hpEval (z u v : K) :
       MvPolynomial.aeval (M.mulVec ![z, u, v]) p = t * z := by
     rw [polynomialLinearForm_evaluation_dot p ell hpform,
       frame_linearFunctional_at]
     simp only [hM1, hM2, zero_mul, add_zero]
+    rfl
   have hcEval (z u v : K) :
       MvPolynomial.aeval (M.mulVec ![z, u, v]) c =
         g0 * z + g1 * u + g2 * v := by
@@ -149,7 +151,8 @@ theorem homogeneousLinearCubic_zeroBinaryBlock_implies_p_dvd_cofactor
       _ = M.det ^ 2 *
         ((t * z) * (t * z) * (g0 * z + g1 * u + g2 * v)) := by
           rw [hfactor]
-          simp only [map_mul, hpEval, hcEval]
+          simp only [map_mul]
+          rw [hpEval z u v, hcEval z u v]
           ring
       _ = z ^ 2 * ((pref * g0) * z + (pref * g1) * u +
           (pref * g2) * v) := by ring
