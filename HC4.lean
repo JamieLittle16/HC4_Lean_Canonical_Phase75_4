@@ -527,3 +527,6 @@ import HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor
 
 -- Unique associated prime class of source cubic characteristic denominator poles.
 import HC4.Polynomial.RankThreeCubicUniqueGenuinePole
+
+-- All actual cubic denominator poles lie on one associated linear hyperplane.
+import HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm
