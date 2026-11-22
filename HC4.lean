@@ -548,3 +548,6 @@ import HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue
 
 -- Source dichotomy: linear characteristic or single genuine pole with nonzero normalized residue.
 import HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue
+
+-- Prime residue Hessian rank-one / principal rank-two alternatives.
+import HC4.Polynomial.RankThreeCubicSourcePoleRankSplit
