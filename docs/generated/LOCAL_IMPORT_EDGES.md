@@ -1401,6 +1401,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
+- `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
+  - `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`
+  - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
 - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
