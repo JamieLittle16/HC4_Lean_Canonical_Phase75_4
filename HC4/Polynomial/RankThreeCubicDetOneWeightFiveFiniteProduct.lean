@@ -21,7 +21,7 @@ open MvPolynomial
 open scoped BigOperators
 noncomputable section
 
-variable {σ K ι : Type*} [CommRing K] [DecidableEq σ]
+variable {σ K ι : Type*} [CommRing K] [DecidableEq σ] [DecidableEq ι]
 
 theorem initialForm_prod_first_lower
     (s : Finset ι) (w : σ → ℤ) (b : ι → ℤ)
