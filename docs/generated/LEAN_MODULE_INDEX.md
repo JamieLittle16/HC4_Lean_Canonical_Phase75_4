@@ -3141,7 +3141,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 - Declarations: `theorem adjugate_rankOne_cross_products`
 
 ### `HC4.Polynomial.RankThreeCubicAnchoredKernel`
@@ -3299,7 +3299,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankThreeCubicPoleJacobiBridge.lean`
 - Purpose: Cubic source: the rank-one Cramer residue controls Jacobi derivatives
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`, `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`, `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
+- Local imports: `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`, `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`, `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`, `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
 - Declarations: `abbrev B3`, `abbrev F3`, `abbrev SB`, `theorem cubic_lineEval_coeff_zero`, `theorem cubic_sourceThirdDerivative_timeZero`, `theorem cubic_rankOneCramer_Jacobi_zero`

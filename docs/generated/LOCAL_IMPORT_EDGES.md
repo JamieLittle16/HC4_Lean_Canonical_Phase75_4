@@ -1245,6 +1245,7 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+  - `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
   - `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`
   - `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`
   - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
