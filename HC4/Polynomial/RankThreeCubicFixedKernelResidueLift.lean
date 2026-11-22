@@ -19,7 +19,7 @@ open MvPolynomial
 open scoped Matrix BigOperators
 noncomputable section
 
-variable {K : Type*} [Field K]
+variable {K : Type*} [Field K] [CharZero K]
 private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 
 /-- A fixed tangent kernel of a homogeneous-linear Hessian
