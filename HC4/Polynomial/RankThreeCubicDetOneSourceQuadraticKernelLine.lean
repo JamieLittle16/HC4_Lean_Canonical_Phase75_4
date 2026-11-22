@@ -71,7 +71,13 @@ theorem sourceCubic_detOne_originQuadraticKernel_isLine
   have hBrows : ∀ i : Fin 3,
       (∑ j : Fin 3, B0 (.inr i) (.inr j) * w0 j) = 0 := by
     intro i
-    simpa only [hblock] using hTker i
+    calc
+      (∑ j : Fin 3, B0 (.inr i) (.inr j) * w0 j) =
+          ∑ j : Fin 3, T i j * w0 j := by
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [hblock i j]
+      _ = 0 := hTker i
   have hcoupling :=
     borderedInvertible_transverseKernel_longitudinalPairing_ne_zero
       B0 hBne w0 hw0 hBrows
@@ -81,7 +87,15 @@ theorem sourceCubic_detOne_originQuadraticKernel_isLine
     B0 hBne w0 hw0 hBrows z
   intro i
   have hi := congrFun hz i
-  simpa only [Matrix.mulVec, dotProduct, Pi.zero_apply, hblock] using hi
+  have hTz : (∑ j : Fin 3, T i j * z j) = 0 := by
+    simpa only [Matrix.mulVec, dotProduct, Pi.zero_apply] using hi
+  calc
+    (∑ j : Fin 3, B0 (.inr i) (.inr j) * z j) =
+        ∑ j : Fin 3, T i j * z j := by
+      apply Finset.sum_congr rfl
+      intro j _
+      rw [hblock i j]
+    _ = 0 := hTz
 
 end
 end HC4.Polynomial.RankThreeCubic
