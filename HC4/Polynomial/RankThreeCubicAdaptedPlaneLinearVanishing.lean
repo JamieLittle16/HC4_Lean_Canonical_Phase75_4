@@ -21,7 +21,7 @@ open MvPolynomial
 open scoped Matrix BigOperators
 noncomputable section
 
-variable {K : Type*} [Field K]
+variable {K : Type*} [Field K] [CharZero K]
 private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 
 /-- A linear polynomial vanishing on two independent tangent
@@ -78,9 +78,10 @@ theorem adaptedFrame_linearForm_dvd_of_tangentColumns_zero
           intro i _
           simp only [map_mul]
           ring
-  exact ⟨MvPolynomial.C k, by change P = p * MvPolynomial.C k
-                            rw [hP]
-                            ring⟩
+  refine ⟨MvPolynomial.C k, ?_⟩
+  change P = p * MvPolynomial.C k
+  rw [hP]
+  ring
 
 end
 end HC4.Polynomial.RankThreeCubic
