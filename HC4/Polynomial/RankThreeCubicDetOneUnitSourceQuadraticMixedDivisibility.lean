@@ -110,6 +110,7 @@ theorem sourceCubic_unitLongitudinal_implies_secondLayer_mixed_dvd
           have hj := congrFun (congrFun hh (.inl ())) (.inr j)
           rw [hj]
           simp only [Matrix.add_apply, map_add]
+          rfl
       _ = f3 + f2 + flow := by
           simp only [add_mul, Finset.sum_add_distrib]
           rfl
