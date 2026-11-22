@@ -140,7 +140,8 @@ theorem sourceCubic_genuinePole_fourHessianFixedTangent_or_exactTriple
       change (∑ j : Fin 3, q (H i j) * W j) = 0 at hh
       change (∑ j : Fin 3, q (H i j) * W j) = 0
       exact hh
-    refine Or.inl ⟨M, r, t, hM, hrt, ?_⟩
+    left
+    refine ⟨M, r, t, hM, hrt, ?_⟩
     exact fourHessian_zeroLongitudinalVector_of_rows C W hmixed htrans
   · exact Or.inr htriple
 
