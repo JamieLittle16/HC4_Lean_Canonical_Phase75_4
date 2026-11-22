@@ -647,3 +647,18 @@ import HC4.Polynomial.RankThreeCubicSourceLinearTensorEvaluation
 
 -- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple
+
+-- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
+import HC4.Polynomial.RankThreeCubicAdjugatePoleNormal
+
+-- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
+import HC4.Polynomial.RankThreeCubicSourceNormalAdjugateOrTriple
+
+-- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
+import HC4.Polynomial.RankThreeCubicSourceNormalQuadraticOrTriple
+
+-- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
+import HC4.Polynomial.RankThreeCubicExactTriplePoleNormalForm
+
+-- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
+import HC4.Polynomial.RankThreeCubicSourceExactDoubleOrTriple
