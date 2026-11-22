@@ -160,5 +160,63 @@ theorem homogeneousCubic_repeatedDegreeOneFactor_linearForm
   rw [hlinear, hz]
   simp
 
+
+/-- The complementary degree-one factor is homogeneous linear too.
+Once p(0)=0, the cubic Euler identity forces c(0)=0. -/
+theorem homogeneousCubic_repeatedDegreeOneFactor_cofactorConstantCoeff_zero
+    (D p c : B3 K)
+    (hDhom : D.IsHomogeneous 3)
+    (hfact : D = (p * p) * c)
+    (hp0 : p ≠ 0)
+    (hc0 : c ≠ 0)
+    (hpdeg : p.totalDegree = 1)
+    (hcdeg : c.totalDegree = 1) :
+    c.coeff 0 = 0 := by
+  classical
+  have hpc : p.coeff 0 = 0 :=
+    homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero
+      D p c hDhom hfact hp0 hc0 hpdeg hcdeg
+  have hpEuler : euler3 p = p := by
+    have h := degreeOne_affineEuler p hpdeg
+    simpa only [hpc, map_zero, sub_zero] using h
+  have hcEuler : euler3 c = c - MvPolynomial.C (c.coeff 0) :=
+    degreeOne_affineEuler c hcdeg
+  have hDEuler : euler3 ((p * p) * c) =
+      (3 : B3 K) * ((p * p) * c) := by
+    have h := hDhom.sum_X_mul_pderiv
+    have he : euler3 D = (3 : B3 K) * D := by
+      simpa only [euler3, nsmul_eq_mul] using h
+    simpa only [hfact] using he
+  rw [euler3_mul, euler3_mul, hpEuler, hcEuler] at hDEuler
+  have hprod : (p * p) * MvPolynomial.C (c.coeff 0) = 0 := by
+    linear_combination -hDEuler
+  have hp2 : p * p ≠ 0 := mul_ne_zero hp0 hp0
+  have hC : MvPolynomial.C (c.coeff 0) = (0 : B3 K) :=
+    (mul_eq_zero.mp hprod).resolve_left hp2
+  exact MvPolynomial.C_eq_zero.mp hC
+
+/-- The complementary cofactor has a genuine homogeneous linear
+coordinate representation, derived from the repeated cubic
+Hessian factorisation rather than assumed. -/
+theorem homogeneousCubic_repeatedDegreeOneFactor_cofactorLinearForm
+    (D p c : B3 K)
+    (hDhom : D.IsHomogeneous 3)
+    (hfact : D = (p * p) * c)
+    (hp0 : p ≠ 0)
+    (hc0 : c ≠ 0)
+    (hpdeg : p.totalDegree = 1)
+    (hcdeg : c.totalDegree = 1) :
+    ∃ gamma : Fin 3 → K,
+      c = ∑ i : Fin 3,
+        (MvPolynomial.X i : B3 K) * MvPolynomial.C (gamma i) := by
+  classical
+  let gamma : Fin 3 → K := fun i => (pderiv i c).coeff 0
+  have hzero : c.coeff 0 = 0 :=
+    homogeneousCubic_repeatedDegreeOneFactor_cofactorConstantCoeff_zero
+      D p c hDhom hfact hp0 hc0 hpdeg hcdeg
+  refine ⟨gamma, ?_⟩
+  have hrepr := degreeOne_affineRepresentation c hcdeg
+  simpa only [hzero, map_zero, zero_add] using hrepr
+
 end
 end HC4.Polynomial.RankThreeCubic
