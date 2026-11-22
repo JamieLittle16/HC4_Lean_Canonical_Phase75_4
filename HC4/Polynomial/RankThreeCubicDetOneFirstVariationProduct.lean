@@ -51,7 +51,7 @@ theorem coeff_one_prod_C_add_X_C
         ∑ i ∈ s, (∏ j ∈ s.erase i, f j) * derivative (f i) := by
     simpa only [] using
       (_root_.Polynomial.derivative_prod
-        (s := (s : Multiset ι)) (f := f))
+        (s := s.val) (f := f))
   change (∏ i ∈ s, f i).coeff 1 = _
   rw [coeff_one_eq_derivative_eval_zero, hprod,
     _root_.Polynomial.eval_finset_sum]
