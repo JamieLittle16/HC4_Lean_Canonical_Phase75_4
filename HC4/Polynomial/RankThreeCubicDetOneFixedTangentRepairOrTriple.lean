@@ -148,6 +148,7 @@ theorem sourceCubic_genuinePole_detOne_fixedTangentRepair_or_exactTriple
         have hx := sourceCubic_hessian_three_two_lower_decomposition F
         exact congrFun (congrFun hx i) j
       rw [hh, map_add, map_add]
+      ring
     have hdetSum : (A + (C + D)).det = 1 := by
       rw [hmatrix]
       exact hdetB
