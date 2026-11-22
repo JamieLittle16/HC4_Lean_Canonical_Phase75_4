@@ -677,3 +677,9 @@ import HC4.Polynomial.RankThreeCubicAdaptedNormalCofactor
 
 -- Source double-pole normal cofactor transferred to the actual adapted binary Hessian.
 import HC4.Polynomial.RankThreeCubicSourceAdaptedBinarySingular
+
+-- Source-honest constant tangential kernel for the exact double cubic pole.
+import HC4.Polynomial.RankThreeCubicTensorFrameBinaryKernel
+
+-- Source-honest constant tangential kernel for the exact double cubic pole.
+import HC4.Polynomial.RankThreeCubicSourceFixedBinaryKernel
