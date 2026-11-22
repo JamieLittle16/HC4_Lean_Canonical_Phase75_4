@@ -58,8 +58,10 @@ theorem degreeOne_affineEuler
           simp only [map_add, pderiv_C, zero_add]
     _ = Q := heuler
     _ = P - MvPolynomial.C (P.coeff 0) := by
-          rw [hP]
-          ring
+          calc
+            Q = (MvPolynomial.C (P.coeff 0) + Q) -
+                MvPolynomial.C (P.coeff 0) := by ring
+            _ = P - MvPolynomial.C (P.coeff 0) := by rw [← hP]
 
 /-- Every degree-one polynomial is affine-linear, with the linear
 coefficients obtained from its first partial derivatives. -/
@@ -93,10 +95,13 @@ theorem degreeOne_affineRepresentation
     _ = MvPolynomial.C (P.coeff 0) +
         ∑ i : Fin 3, (MvPolynomial.X i : B3 K) *
           MvPolynomial.C ((pderiv i P).coeff 0) := by
-          congr 1
+          apply congrArg (fun T : B3 K =>
+            MvPolynomial.C (P.coeff 0) + T)
           apply Finset.sum_congr rfl
           intro i _
-          rw [hconst i]
+          exact congrArg
+            (fun T : B3 K => (MvPolynomial.X i : B3 K) * T)
+            (hconst i)
 
 end
 end HC4.Polynomial.RankThreeCubic
