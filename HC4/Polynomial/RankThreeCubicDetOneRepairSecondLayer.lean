@@ -122,5 +122,34 @@ theorem sourceCubic_secondLayer_hessian_entry
   exact hessian_initialForm_entry transverseCubicWeight 2
     (F - initialForm transverseCubicWeight 3 F) i j
 
+/-- The weight-two component of the cubic remainder is just
+the actual weight-two component of the original source F.
+The already-extracted weight-three component cannot interfere. -/
+theorem sourceCubic_remainder_secondLayer_eq_sourceSecondLayer
+    (F : SB K) :
+    initialForm transverseCubicWeight 2
+        (F - initialForm transverseCubicWeight 3 F) =
+      initialForm transverseCubicWeight 2 F := by
+  have hzero :
+      initialForm transverseCubicWeight 2
+        (initialForm transverseCubicWeight 3 F) = 0 :=
+    initialForm_eq_zero_of_isWeightedHomogeneous
+      (initialForm_isWeightedHomogeneous transverseCubicWeight 3 F)
+      2 (by norm_num)
+  rw [map_sub, hzero, sub_zero]
+
+/-- The complete source-derived transverse Hessian repair is
+precisely the Hessian of the original quadratic transverse layer. -/
+theorem sourceCubic_repair_transverseHessian_eq_sourceSecondLayer
+    (F : SB K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    (i j : Fin 3) :
+    hessian (F - initialForm transverseCubicWeight 3 F)
+        (.inr i) (.inr j) =
+      hessian (initialForm transverseCubicWeight 2 F)
+        (.inr i) (.inr j) := by
+  rw [← sourceCubic_remainder_secondLayer_eq_sourceSecondLayer F]
+  exact sourceCubic_repair_transverseHessian_eq_secondLayer F hcap i j
+
 end
 end HC4.Polynomial.RankThreeCubic
