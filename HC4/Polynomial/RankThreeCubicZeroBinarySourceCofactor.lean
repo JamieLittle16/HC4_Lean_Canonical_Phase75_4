@@ -153,7 +153,6 @@ theorem homogeneousLinearCubic_zeroBinaryBlock_implies_p_dvd_cofactor
           rw [hfactor]
           simp only [map_mul]
           rw [hpEval z u v, hcEval z u v]
-          ring
       _ = z ^ 2 * ((pref * g0) * z + (pref * g1) * u +
           (pref * g2) * v) := by ring
   obtain ⟨hB, hC⟩ :=
