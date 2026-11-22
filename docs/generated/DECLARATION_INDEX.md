@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10728**.
+Distinct declaration spellings indexed: **10729**.
 
 ## Repeated declaration spellings
 
@@ -7984,6 +7984,7 @@ Distinct declaration spellings indexed: **10728**.
 - `polynomialHessian_symmetric` — `theorem` in `HC4.Valuation.PermutedPolynomialHessianFourBlock`
 - `polynomialLift` — `def` in `HC4.Polynomial.TwoFunctionEulerCalculus`
 - `polynomialMatrix3_gap_det_ne_zero_of_middleDiagonal` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
+- `polynomialMatrix_adjugate_zero_at_root` — `theorem` in `HC4.Polynomial.RankThreeCubicPolynomialCofactorSpecialization`
 - `polynomialPairRatFunc` — `def` in `HC4.RationalRigidity.CanonicalReducedFraction`
 - `polynomialParameterOrder` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`
 - `polynomialParameterOrderCandidates` — `def` in `HC4.Valuation.AlignedSmithWallArithmetic`

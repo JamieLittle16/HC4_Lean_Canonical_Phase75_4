@@ -1313,6 +1313,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `HC4.Polynomial.RankThreeCubicPolynomialCofactorSpecialization`
+  - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
 - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
   - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
@@ -1346,7 +1348,7 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue`
   - `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
 - `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
-  - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
+  - `HC4.Polynomial.RankThreeCubicPolynomialCofactorSpecialization`
   - `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
 - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
