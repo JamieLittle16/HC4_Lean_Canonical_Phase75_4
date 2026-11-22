@@ -51,10 +51,8 @@ theorem exists_invertible_frame_annihilating_linearFunctional
           simp [M, Matrix.det_fin_three]
         rw [hd]
         exact one_ne_zero
-      · simp only [Fin.sum_univ_three]
-        simp [M, h0, h1]
-      · simp only [Fin.sum_univ_three]
-        simp [M, h0, h1]
+      · simp [M, Fin.sum_univ_three, h0, h1] <;> field_simp [h2] <;> ring
+      · simp [M, Fin.sum_univ_three, h0, h1] <;> field_simp [h2] <;> ring
     · let M : Matrix (Fin 3) (Fin 3) K :=
         ![![0, 1, 0],
           ![1, -(ell 0 / ell 1), -(ell 2 / ell 1)],
@@ -64,10 +62,8 @@ theorem exists_invertible_frame_annihilating_linearFunctional
           simp [M, Matrix.det_fin_three]
         rw [hd]
         exact neg_ne_zero.mpr one_ne_zero
-      · simp only [Fin.sum_univ_three]
-        simp [M, h0]
-      · simp only [Fin.sum_univ_three]
-        simp [M, h0]
+      · simp [M, Fin.sum_univ_three, h0] <;> field_simp [h1] <;> ring
+      · simp [M, Fin.sum_univ_three, h0] <;> field_simp [h1] <;> ring
   · let M : Matrix (Fin 3) (Fin 3) K :=
       ![![1, -(ell 1 / ell 0), -(ell 2 / ell 0)],
         ![0, 1, 0],
@@ -77,16 +73,8 @@ theorem exists_invertible_frame_annihilating_linearFunctional
         simp [M, Matrix.det_fin_three]
       rw [hd]
       exact one_ne_zero
-    · simp only [Fin.sum_univ_three]
-      simp only [M, Matrix.cons_val_zero, Matrix.cons_val_one,
-        Matrix.cons_val_two]
-      field_simp [h0]
-      ring
-    · simp only [Fin.sum_univ_three]
-      simp only [M, Matrix.cons_val_zero, Matrix.cons_val_one,
-        Matrix.cons_val_two]
-      field_simp [h0]
-      ring
+    · simp [M, Fin.sum_univ_three] <;> field_simp [h0] <;> ring
+    · simp [M, Fin.sum_univ_three] <;> field_simp [h0] <;> ring
 
 end
 end HC4.Polynomial.RankThreeCubic
