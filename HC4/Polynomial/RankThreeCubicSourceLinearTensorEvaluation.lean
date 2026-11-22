@@ -59,11 +59,16 @@ theorem homogeneousLinearHessian_tensor_evaluation
     rw [MvPolynomial.aeval_C, hqC]
   change MvPolynomial.aeval v (H i j) =
     ∑ t : Fin 3, v t * q (pderiv t (H i j))
-  rw [hEuler]
-  simp only [map_sum, map_mul, MvPolynomial.aeval_X]
-  apply Finset.sum_congr rfl
-  intro t _
-  rw [hevalDer t]
+  calc
+    MvPolynomial.aeval v (H i j) =
+        MvPolynomial.aeval v
+          (∑ t : Fin 3, (MvPolynomial.X t : B3 K) * pderiv t (H i j)) :=
+      congrArg (MvPolynomial.aeval v) hEuler
+    _ = ∑ t : Fin 3, v t * q (pderiv t (H i j)) := by
+      simp only [map_sum, map_mul, MvPolynomial.aeval_X]
+      apply Finset.sum_congr rfl
+      intro t _
+      rw [hevalDer t]
 
 /-- Evaluating a genuinely homogeneous linear polynomial in any
 K-algebra is exactly the scalar-valued linear functional defined
