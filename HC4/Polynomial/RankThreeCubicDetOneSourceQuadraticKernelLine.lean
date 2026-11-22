@@ -52,7 +52,7 @@ theorem sourceCubic_detOne_originQuadraticKernel_isLine
       ev.mapMatrix (hessian F)
     (∑ j : Fin 3, B0 (.inl ()) (.inr j) * w0 j) ≠ 0 ∧
       (∀ z : Fin 3 → K, T *ᵥ z = 0 →
-        ∃ λ : K, ∀ j : Fin 3, z j = λ * w0 j) := by
+        ∃ c : K, ∀ j : Fin 3, z j = c * w0 j) := by
   classical
   let L2 : SB K := initialForm transverseCubicWeight 2 F
   let ev : SB K →+* K :=
