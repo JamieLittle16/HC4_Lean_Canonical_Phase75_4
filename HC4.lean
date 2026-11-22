@@ -752,3 +752,6 @@ import HC4.Polynomial.RankThreeCubicSourceLongitudinalPoleResidue
 
 -- Upgrade genuine double-pole tangent alignment to a full cubic-source Hessian kernel.
 import HC4.Polynomial.RankThreeCubicSourceFullKernelPole
+
+-- The source-derived fixed tangent is a kernel of the full cubic Hessian modulo p.
+import HC4.Polynomial.RankThreeCubicSourceFourHessianKernelPole
