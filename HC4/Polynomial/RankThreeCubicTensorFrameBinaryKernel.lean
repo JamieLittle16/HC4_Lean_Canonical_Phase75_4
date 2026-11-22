@@ -24,6 +24,8 @@ namespace HC4.Polynomial.RankThreeCubic
 open scoped Matrix BigOperators
 noncomputable section
 
+set_option maxHeartbeats 2500000
+
 /-- Pull a symmetric cubic tensor back through a linear frame. -/
 def cubicTensorInFrame
     {K : Type*} [CommRing K]
