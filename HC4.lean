@@ -749,3 +749,6 @@ import HC4.Polynomial.RankThreeCubicPoleTransportSharpness
 
 -- Retain the actual longitudinal source Hessian row in the pole residue.
 import HC4.Polynomial.RankThreeCubicSourceLongitudinalPoleResidue
+
+-- Upgrade genuine double-pole tangent alignment to a full cubic-source Hessian kernel.
+import HC4.Polynomial.RankThreeCubicSourceFullKernelPole
