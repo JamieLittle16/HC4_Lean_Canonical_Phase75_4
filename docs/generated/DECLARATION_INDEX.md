@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10658**.
+Distinct declaration spellings indexed: **10659**.
 
 ## Repeated declaration spellings
 
@@ -3748,6 +3748,7 @@ Distinct declaration spellings indexed: **10658**.
 - `adjacentFacets_comm` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `adjacent_transition_on_extreme_ray` — `theorem` in `HC4.Newton.BoundaryCycle`
 - `adjugate_axisBlock_zero` — `lemma` in `HC4.Valuation.TransverseAxisKernelDrift`
+- `adjugate_rankOne_cross_products` — `theorem` in `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
 - `admissibleIntegralKernelSlope_le_bound` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `admissibleIntegralKernelSlope_le_maximal` — `theorem` in `HC4.Valuation.IntegralKernelSlopeExtraction`
 - `aeval_rankThreeEtaDenominatorPolynomial` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
