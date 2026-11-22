@@ -620,3 +620,12 @@ import HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous
 
 -- Repeated linear cubic factor homogeneity and actual-source rank-one pole elimination.
 import HC4.Polynomial.RankThreeCubicSourceRankOneElimination
+
+-- Remaining cubic source pole: forced rank-two and all-time cofactor transport.
+import HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport
+
+-- Remaining cubic source pole: forced rank-two and all-time cofactor transport.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm
+
+-- Remaining cubic source pole: forced rank-two and all-time cofactor transport.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime
