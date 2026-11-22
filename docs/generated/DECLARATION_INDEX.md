@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10660**.
+Distinct declaration spellings indexed: **10662**.
 
 ## Repeated declaration spellings
 
@@ -8703,8 +8703,10 @@ Distinct declaration spellings indexed: **10660**.
 - `rankOneClearedThreeSchurMatrixX_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `rankOneClearedThreeSchurMatrix_coeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurClock`
 - `rankOneClearedThreeSchurMatrix_eq_zero` — `theorem` in `HC4.Newton.RankOneThreeSchur`
+- `rankOneCramer_quadratic_zero_implies_adjugate_contraction_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
+- `rankOneMatrix_mulVec_proportional_products` — `theorem` in `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
 - `rankOneOrder2031` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `rankOneOrder2130` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
 - `rankOneOrder2301` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRecenteredHessianAllMinors`
