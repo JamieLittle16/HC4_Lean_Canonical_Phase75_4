@@ -76,6 +76,12 @@ theorem sourceCubic_genuineRankTwo_uniformTangentBlockZero_or_fullKernel_or_trip
           (∑ i : Fin 3, ell i * M i 1) = 0 ∧
           (∑ i : Fin 3, ell i * M i 2) = 0 ∧
           (r ≠ 0 ∨ t ≠ 0) ∧
+          (∀ x y : K,
+            let B := M.transpose *
+              H.map (MvPolynomial.aeval
+                (M.mulVec ![(0 : K), x, y])).toRingHom * M
+            (B 1 1 * r + B 1 2 * t = 0) ∧
+              (B 2 1 * r + B 2 2 * t = 0)) ∧
           ((∀ x y : K,
               let B := M.transpose *
                 H.map (MvPolynomial.aeval
@@ -98,7 +104,7 @@ theorem sourceCubic_genuineRankTwo_uniformTangentBlockZero_or_fullKernel_or_trip
     sourceCubic_genuineRankTwo_fullKernelOrZeroBinaryPointwise_or_triple
       F a V hV hgrad hregular u p hp hpd hpn
   refine ⟨ell, k, hpoly, hk, ?_⟩
-  rcases hsplit with ⟨M, r, t, hM, hM1, hM2, hrt, hpoint⟩ | htriple
+  rcases hsplit with ⟨M, r, t, hM, hM1, hM2, hrt, hker, hpoint⟩ | htriple
   · left
     let B : K → K → Matrix (Fin 3) (Fin 3) K :=
       fun x y => M.transpose *
@@ -122,12 +128,12 @@ theorem sourceCubic_genuineRankTwo_uniformTangentBlockZero_or_fullKernel_or_trip
     obtain hQ | hW :=
       linearMatrixPencil_zeroTangentBlock_or_normalKernel_global
         A C r t hpoint'
-    · refine ⟨M, r, t, hM, hM1, hM2, hrt, Or.inl ?_⟩
+    · refine ⟨M, r, t, hM, hM1, hM2, hrt, hker, Or.inl ?_⟩
       intro x y
       change B x y 1 1 = 0 ∧ B x y 1 2 = 0 ∧ B x y 2 2 = 0
       rw [hpencil x y]
       exact hQ x y
-    · refine ⟨M, r, t, hM, hM1, hM2, hrt, Or.inr ?_⟩
+    · refine ⟨M, r, t, hM, hM1, hM2, hrt, hker, Or.inr ?_⟩
       intro x y
       change B x y 0 1 * r + B x y 0 2 * t = 0
       rw [hpencil x y]
