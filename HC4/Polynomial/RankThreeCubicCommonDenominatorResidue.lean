@@ -116,7 +116,7 @@ theorem exists_commonDenominator_nonzeroResidue_at_genuinePole
         _ = p * u := hu
         _ = p * (s * w) := by rw [hw]
         _ = s * (p * w) := by ring
-    exact (mul_left_cancel₀ hs0 heq).symm
+    exact mul_left_cancel₀ hs0 heq
   exact hp.not_isUnit (isUnit_of_dvd_one hp_one)
 
 end HC4.Polynomial.RankThreeCubic
