@@ -1387,6 +1387,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
   - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime`
+  - `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
 - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
   - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
