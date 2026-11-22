@@ -524,3 +524,6 @@ import HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole
 
 -- Degree-one residual cofactor at a source-honest genuine repeated pole.
 import HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor
+
+-- Unique associated prime class of source cubic characteristic denominator poles.
+import HC4.Polynomial.RankThreeCubicUniqueGenuinePole
