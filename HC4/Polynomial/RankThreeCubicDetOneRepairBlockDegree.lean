@@ -51,19 +51,21 @@ theorem transverseCubicWeight_nonnegative
 
 /-- Strictly negative transverse weight is impossible for a
 nonzero polynomial. No finite-field evaluation argument is used. -/
+omit [CharZero K] in
 theorem transverseCubicWeight_lt_zero_implies_zero
     (P : SB K)
     (hP : IsWeightLT transverseCubicWeight 0 P) :
     P = 0 := by
   classical
-  ext d
-  by_cases hz : MvPolynomial.coeff d P = 0
-  · simp [hz]
-  · have hd : d ∈ P.support :=
-      MvPolynomial.mem_support_iff.mpr hz
-    have hlt : Finsupp.weight transverseCubicWeight d < 0 := hP hd
-    have hge := transverseCubicWeight_nonnegative d
-    omega
+  apply MvPolynomial.ext
+  intro d
+  simp only [MvPolynomial.coeff_zero]
+  by_contra hn
+  have hmem : d ∈ P.support :=
+    MvPolynomial.mem_support_iff.mpr hn
+  have hlt : Finsupp.weight transverseCubicWeight d < 0 :=
+    hP hmem
+  exact (not_lt_of_ge (transverseCubicWeight_nonnegative d)) hlt
 
 /-- After removing the cubic initial form, every third transverse
 derivative of the actual source remainder vanishes identically.
