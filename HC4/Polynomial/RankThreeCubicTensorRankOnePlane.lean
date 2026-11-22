@@ -28,6 +28,12 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
+/-- One coefficient-matrix slice of a symmetric cubic tensor. -/
+private def cubicTensorSlice {K : Type*} [Field K]
+    (D : Fin 3 → Fin 3 → Fin 3 → K)
+    (a : Fin 3) : Matrix (Fin 3) (Fin 3) K :=
+  fun i j => D a i j
+
 /-- A symmetric cubic third-derivative tensor cannot have a
 generically nonsingular Hessian if three points on the
 coordinate plane all have vanishing 2x2 cofactors. -/
@@ -36,10 +42,10 @@ theorem integrable_ternaryTensor_det_zero_of_plane_cofactor_zero
     (D : Fin 3 → Fin 3 → Fin 3 → K)
     (hswap₁ : ∀ i j k : Fin 3, D i j k = D j i k)
     (hswap₂ : ∀ i j k : Fin 3, D i j k = D i k j)
-    (hA : (fun i j : Fin 3 => D 1 i j : Matrix (Fin 3) (Fin 3) K).adjugate = 0)
-    (hB : (fun i j : Fin 3 => D 2 i j : Matrix (Fin 3) (Fin 3) K).adjugate = 0)
-    (hAB : ((fun i j : Fin 3 => D 1 i j : Matrix (Fin 3) (Fin 3) K) +
-      (fun i j : Fin 3 => D 2 i j : Matrix (Fin 3) (Fin 3) K)).adjugate = 0)
+    (hA : (cubicTensorSlice D 1).adjugate = 0)
+    (hB : (cubicTensorSlice D 2).adjugate = 0)
+    (hAB : ((cubicTensorSlice D 1) +
+      (cubicTensorSlice D 2)).adjugate = 0)
     (x y z : K) :
     Matrix.det (fun i j : Fin 3 =>
       x * D 0 i j + y * D 1 i j + z * D 2 i j) = 0 := by
@@ -89,10 +95,10 @@ theorem integrable_ternaryTensor_surviving_plane_cofactor
     (hregular : ∃ x y z : K,
       Matrix.det (fun i j : Fin 3 =>
         x * D 0 i j + y * D 1 i j + z * D 2 i j) ≠ 0) :
-    (fun i j : Fin 3 => D 1 i j : Matrix (Fin 3) (Fin 3) K).adjugate ≠ 0 ∨
-    (fun i j : Fin 3 => D 2 i j : Matrix (Fin 3) (Fin 3) K).adjugate ≠ 0 ∨
-    ((fun i j : Fin 3 => D 1 i j : Matrix (Fin 3) (Fin 3) K) +
-      (fun i j : Fin 3 => D 2 i j : Matrix (Fin 3) (Fin 3) K)).adjugate ≠ 0 := by
+    (cubicTensorSlice D 1).adjugate ≠ 0 ∨
+    (cubicTensorSlice D 2).adjugate ≠ 0 ∨
+    ((cubicTensorSlice D 1) +
+      (cubicTensorSlice D 2)).adjugate ≠ 0 := by
   classical
   let A : Matrix (Fin 3) (Fin 3) K := fun i j => D 1 i j
   let B : Matrix (Fin 3) (Fin 3) K := fun i j => D 2 i j
