@@ -70,7 +70,7 @@ theorem tangentFrame_normal_first_ne_zero
 pole normal implies that the *adapted* principal 00 cofactor
 vanishes. This is the coordinate-change transfer for the
 binary tangential Hessian. -/
-theorem tangentFrame_normalAdjugate_principal_zero
+theorem tangentFrame_normalAdjugate_row_zero
     {K : Type*} [Field K]
     (H M : Matrix (Fin 3) (Fin 3) K)
     (ell : Fin 3 → K)
@@ -80,7 +80,7 @@ theorem tangentFrame_normalAdjugate_principal_zero
     (hM2 : (∑ i : Fin 3, ell i * M i 2) = 0)
     (hnormal : ∀ j : Fin 3,
       (∑ i : Fin 3, ell i * H.adjugate i j) = 0) :
-    (M.transpose * H * M).adjugate 0 0 = 0 := by
+    ∀ j : Fin 3, (M.transpose * H * M).adjugate 0 j = 0 := by
   classical
   let t : K := ∑ i : Fin 3, ell i * M i 0
   have ht : t ≠ 0 :=
@@ -118,8 +118,25 @@ theorem tangentFrame_normalAdjugate_principal_zero
       Matrix.adjugate_mul_distrib]
     rw [← Matrix.adjugate_transpose]
     rw [← Matrix.mul_assoc]
+  intro j
   rw [hadj]
   simp only [Matrix.mul_apply, hrow, zero_mul, Finset.sum_const_zero]
+
+/-- The principal cofactor statement follows from the stronger
+normal-row annihilation under adapted congruence. -/
+theorem tangentFrame_normalAdjugate_principal_zero
+    {K : Type*} [Field K]
+    (H M : Matrix (Fin 3) (Fin 3) K)
+    (ell : Fin 3 → K)
+    (hell : ell ≠ 0)
+    (hM : M.det ≠ 0)
+    (hM1 : (∑ i : Fin 3, ell i * M i 1) = 0)
+    (hM2 : (∑ i : Fin 3, ell i * M i 2) = 0)
+    (hnormal : ∀ j : Fin 3,
+      (∑ i : Fin 3, ell i * H.adjugate i j) = 0) :
+    (M.transpose * H * M).adjugate 0 0 = 0 :=
+  tangentFrame_normalAdjugate_row_zero
+    H M ell hell hM hM1 hM2 hnormal 0
 
 end
 end HC4.Polynomial.RankThreeCubic
