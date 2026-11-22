@@ -39,7 +39,7 @@ theorem integrable_ternaryHessian_det_zero_of_proportional_slices
     (scale : R)
     (hB : ∀ i j : Fin 3, B i j = scale * A i j)
     (x y z : R) :
-    ((fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) : Matrix (Fin 3) (Fin 3) R).det = 0 := by
+    Matrix.det (fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) = 0 := by
   classical
   let H : Matrix (Fin 3) (Fin 3) R :=
     fun i j => x * C i j + y * A i j + z * B i j
@@ -50,7 +50,6 @@ theorem integrable_ternaryHessian_det_zero_of_proportional_slices
     rw [hCB i, hB i 0, hCA i]
   have hBcol (i : Fin 3) : B i 2 = scale * B i 1 := by
     rw [hB i 2, hB i 1, hAcol i]
-    ring
   have hcol (i : Fin 3) : H i 2 = scale * H i 1 := by
     dsimp [H]
     rw [hCcol i, hAcol i, hBcol i]
@@ -80,7 +79,7 @@ theorem integrable_ternaryHessian_det_zero_of_rankOne_pencil_pivot
       (A + B) k k * (A + B) i j =
         (A + B) i k * (A + B) k j)
     (x y z : K) :
-    ((fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) : Matrix (Fin 3) (Fin 3) R).det = 0 := by
+    Matrix.det (fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) = 0 := by
   classical
   have hprop :=
     symmetric_rankOne_pencil_proportional
@@ -93,7 +92,6 @@ theorem integrable_ternaryHessian_det_zero_of_rankOne_pencil_pivot
       _ = A k k * (scale * A i j) := by
         dsimp [scale]
         field_simp [hak]
-        ring
   exact integrable_ternaryHessian_det_zero_of_proportional_slices
     C A B hAB hCA hCB scale hscalar x y z
 
