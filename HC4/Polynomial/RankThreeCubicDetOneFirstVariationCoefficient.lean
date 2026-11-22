@@ -17,7 +17,7 @@ determinant calculation. No det(A) ≠ 0 assumption is present.
 
 namespace HC4.Polynomial
 
-open Polynomial
+open _root_.Polynomial
 open scoped Matrix BigOperators
 noncomputable section
 
@@ -40,7 +40,7 @@ theorem updateCol_perm_product_eq_single_linear_term
   rw [← Finset.mul_prod_erase (Finset.univ : Finset ι)
     (fun k : ι => if k = j then B (π k) j else A (π k) k)
     (Finset.mem_univ j)]
-  simp only [if_pos rfl]
+  simp only
   congr 1
   apply Finset.prod_congr rfl
   intro k hk
@@ -68,7 +68,7 @@ theorem coeff_one_det_C_add_X_C_eq_sum_updateCol
       (Equiv.Perm.sign π) •
         (∑ j : ι, B (π j) j *
           ∏ k ∈ Finset.univ.erase j, A (π k) k) := by
-    rw [Polynomial.coeff_smul_apply]
+    rw [_root_.Polynomial.coeff_smul]
     simp_rw [hMentry]
     rw [coeff_one_prod_C_add_X_C]
   change M.det.coeff 1 = _
@@ -78,7 +78,7 @@ theorem coeff_one_det_C_add_X_C_eq_sum_updateCol
           (Equiv.Perm.sign π) •
             (∑ j : ι, B (π j) j *
               ∏ k ∈ Finset.univ.erase j, A (π k) k) := by
-        rw [Matrix.det_apply, Polynomial.finsetSum_coeff]
+        rw [Matrix.det_apply, _root_.Polynomial.finset_sum_coeff]
         apply Finset.sum_congr rfl
         intro π _
         exact hcoeff π
