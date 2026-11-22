@@ -502,3 +502,6 @@ import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
 
 -- Singular-safe Jacobi partial derivative of a 3x3 transverse Hessian determinant.
 import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
+
+-- A genuine nonzero Cramer vector inherits the symmetric rank-one adjugate factorization.
+import HC4.Polynomial.RankThreeCubicRankOneCramerProportional
