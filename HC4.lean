@@ -662,3 +662,6 @@ import HC4.Polynomial.RankThreeCubicExactTriplePoleNormalForm
 
 -- Refined source rank-two obstruction: normal cofactor degeneracy versus exact triple pole.
 import HC4.Polynomial.RankThreeCubicSourceExactDoubleOrTriple
+
+-- Full source cubic obstruction: exact double cofactor-normal degeneracy or scalar triple pole.
+import HC4.Polynomial.RankThreeCubicSourceFinalRankTwoObstruction
