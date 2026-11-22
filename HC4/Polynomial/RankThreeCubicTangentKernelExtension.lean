@@ -1,3 +1,4 @@
+import Mathlib.LinearAlgebra.Matrix.Symmetric
 import Mathlib.Tactic
 
 /-!
