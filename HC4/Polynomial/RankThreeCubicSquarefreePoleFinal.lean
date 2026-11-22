@@ -93,13 +93,10 @@ theorem pderiv_ne_zero_of_mem_vars
   obtain ⟨m, hm, hmi⟩ := (mem_vars i).mp hi
   have hm0 : m i ≠ 0 := Finsupp.mem_support_iff.mp hmi
   have hc0 : p.coeff m ≠ 0 := mem_support_iff.mp hm
-  have heq : (m - Finsupp.single i 1) i + 1 = m i := by
-    have hh := Finsupp.sub_add_single_one_cancel hm0
-    have heval := congrArg (fun n : Fin 3 →₀ ℕ => n i) hh
-    simpa using heval
   have hcoef : (pderiv i p).coeff (m - Finsupp.single i 1) ≠ 0 := by
-    rw [coeff_pderiv_at, Finsupp.sub_add_single_one_cancel hm0, heq]
-    exact mul_ne_zero hc0 (Nat.cast_ne_zero.mpr hm0)
+    rw [coeff_pderiv_at, Finsupp.sub_add_single_one_cancel hm0]
+    exact mul_ne_zero hc0
+      (Nat.cast_ne_zero.mpr (Nat.succ_ne_zero _))
   intro hz
   apply hcoef
   rw [hz]
