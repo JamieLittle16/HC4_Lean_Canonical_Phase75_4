@@ -53,7 +53,7 @@ theorem fixedTangent_nonzero_in_irreducibleQuotient
     funext i
     apply hψ
     have hi := congrFun hW i
-    simpa only [ψ, q, v, Pi.zero_apply] using hi
+    simpa [ψ, v] using hi
   have hv : v = 0 :=
     Matrix.eq_zero_of_mulVec_eq_zero hM hMv
   have hr : r = 0 := by
