@@ -111,7 +111,7 @@ theorem sourceCubic_genuinePole_detOne_strictLowerWeightRepair
     ext i j
     change φ (hessian E i j) =
       φ (hessian F i j) - φ (hessian L i j)
-    rw [hHess, map_sub]
+    rw [hHess i j, map_sub]
   refine ⟨k, S, hSk, hprofile, hAw, ?_⟩
   rw [hmatrix]
   exact hrepair
