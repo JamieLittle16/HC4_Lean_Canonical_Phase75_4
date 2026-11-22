@@ -665,3 +665,9 @@ import HC4.Polynomial.RankThreeCubicSourceExactDoubleOrTriple
 
 -- Full source cubic obstruction: exact double cofactor-normal degeneracy or scalar triple pole.
 import HC4.Polynomial.RankThreeCubicSourceFinalRankTwoObstruction
+
+-- Binary Hessian degeneracy and constant tangential kernel for the source cubic pole frame.
+import HC4.Polynomial.RankThreeCubicBinaryPureCube
+
+-- Binary Hessian degeneracy and constant tangential kernel for the source cubic pole frame.
+import HC4.Polynomial.RankThreeCubicCoordinatePlaneBinary
