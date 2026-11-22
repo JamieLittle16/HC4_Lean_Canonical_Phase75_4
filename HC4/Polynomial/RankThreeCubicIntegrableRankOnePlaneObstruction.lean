@@ -73,7 +73,7 @@ theorem integrable_ternaryHessian_det_zero_of_rankOne_plane
       (A + B) k k * (A + B) i j =
         (A + B) i k * (A + B) k j)
     (x y z : K) :
-    (fun i j : Fin 3 => x * C i j + y * A i j + z * B i j).det = 0 := by
+    ((fun i j : Fin 3 => x * C i j + y * A i j + z * B i j) : Matrix (Fin 3) (Fin 3) K).det = 0 := by
   classical
   by_cases ha0 : A = 0
   · let H : Matrix (Fin 3) (Fin 3) K :=
