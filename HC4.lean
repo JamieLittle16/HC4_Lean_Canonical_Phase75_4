@@ -671,3 +671,9 @@ import HC4.Polynomial.RankThreeCubicBinaryPureCube
 
 -- Binary Hessian degeneracy and constant tangential kernel for the source cubic pole frame.
 import HC4.Polynomial.RankThreeCubicCoordinatePlaneBinary
+
+-- Source double-pole normal cofactor transferred to the actual adapted binary Hessian.
+import HC4.Polynomial.RankThreeCubicAdaptedNormalCofactor
+
+-- Source double-pole normal cofactor transferred to the actual adapted binary Hessian.
+import HC4.Polynomial.RankThreeCubicSourceAdaptedBinarySingular
