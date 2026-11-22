@@ -67,7 +67,7 @@ theorem sum_det_updateRow_eq_adjugate_trace
           intro i _
           exact mul_comm _ _
     _ = (A.adjugate * B).trace := by
-          simp only [Matrix.trace, Matrix.mul_apply, dotProduct]
+          simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, dotProduct]
 
 end
 end HC4.Polynomial
