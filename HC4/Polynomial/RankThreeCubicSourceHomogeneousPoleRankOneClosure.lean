@@ -1,5 +1,5 @@
 import HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction
-import HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure
+import HC4.Polynomial.RankThreeCubicPolynomialCofactorSpecialization
 import Mathlib.Tactic
 
 /-!
@@ -29,7 +29,7 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-set_option maxHeartbeats 1500000
+set_option maxHeartbeats 2500000
 
 variable {K : Type*} [Field K] [CharZero K]
 private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
@@ -145,14 +145,7 @@ theorem sourceCubic_homogeneousLinearPole_rankOne_impossible
       (hpv : MvPolynomial.aeval v p = 0) :
       (cubicTensorHessianAt D v).adjugate = 0 := by
     rw [hTensor v]
-    have hmap : (H.map (MvPolynomial.aeval v).toRingHom).adjugate =
-        H.adjugate.map (MvPolynomial.aeval v).toRingHom :=
-      ((MvPolynomial.aeval v).toRingHom.map_adjugate H).symm
-    rw [hmap]
-    ext i j
-    change MvPolynomial.aeval v (H.adjugate i j) = 0
-    obtain ⟨u, hu⟩ := hcof i j
-    rw [hu, map_mul, hpv, zero_mul]
+    exact polynomialMatrix_adjugate_zero_at_root H p hcof v hpv
   have hM12 : (∑ t : Fin 3,
       ell t * (M t 1 + M t 2)) = 0 := by
     simp only [mul_add, Finset.sum_add_distrib]
