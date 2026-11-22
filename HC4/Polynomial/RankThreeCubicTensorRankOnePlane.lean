@@ -29,7 +29,7 @@ open scoped Matrix BigOperators
 noncomputable section
 
 /-- One coefficient-matrix slice of a symmetric cubic tensor. -/
-private def cubicTensorSlice {K : Type*} [Field K]
+def cubicTensorSlice {K : Type*} [Field K]
     (D : Fin 3 → Fin 3 → Fin 3 → K)
     (a : Fin 3) : Matrix (Fin 3) (Fin 3) K :=
   fun i j => D a i j
