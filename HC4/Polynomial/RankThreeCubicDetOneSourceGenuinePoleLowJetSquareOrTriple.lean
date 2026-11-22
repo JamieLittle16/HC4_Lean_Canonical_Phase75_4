@@ -1,3 +1,4 @@
+import HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleSchurSquareOrTriple
 import HC4.Polynomial.RankThreeCubicDetOneSourceSchurLowJetSquare
 import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
 import HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor
