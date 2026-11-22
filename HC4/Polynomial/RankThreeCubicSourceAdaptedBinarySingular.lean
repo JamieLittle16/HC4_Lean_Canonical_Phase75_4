@@ -65,6 +65,12 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
   let w : Fin 3 → K := ![(0 : K), u, v]
   let x : Fin 3 → K := M.mulVec w
   let ev : B3 K →+* K := (MvPolynomial.aeval x).toRingHom
+  have hevX (i : Fin 3) : ev (MvPolynomial.X i) = x i := by
+    change MvPolynomial.aeval x (MvPolynomial.X i) = x i
+    simp
+  have hevC (c : K) : ev (MvPolynomial.C c) = c := by
+    change MvPolynomial.aeval x (MvPolynomial.C c) = c
+    simp
   have hplane : (∑ i : Fin 3, ell i * x i) = 0 := by
     have h1 := hM1
     have h2 := hM2
@@ -78,8 +84,7 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
         (MvPolynomial.X i : B3 K) * MvPolynomial.C (ell i)) :=
           congrArg ev hpoly
       _ = ∑ i : Fin 3, ell i * x i := by
-          simp only [map_sum, map_mul, MvPolynomial.aeval_X,
-            MvPolynomial.aeval_C]
+          simp only [map_sum, map_mul, hevX, hevC]
           apply Finset.sum_congr rfl
           intro i _
           ring
@@ -94,7 +99,7 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
           MvPolynomial.C (ell i) * H.adjugate i j) = 0 := by
       rw [hz, map_mul, hpx, zero_mul]
     rw [hmap]
-    simpa only [map_sum, map_mul, MvPolynomial.aeval_C,
+    simpa only [map_sum, map_mul, hevC,
       Matrix.map_apply] using heval
   exact tangentFrame_normalAdjugate_principal_zero
     (H.map ev) M ell hell hM hM1 hM2 hzero
