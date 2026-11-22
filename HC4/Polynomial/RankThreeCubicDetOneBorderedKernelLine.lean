@@ -106,7 +106,7 @@ theorem borderedInvertible_transverseKernel_isLine
       ring
     | inr j =>
       rw [hzrows j, hwrows j]
-      ring
+      simp only [Pi.zero_apply]
   have hvzero : vd = 0 := Matrix.eq_zero_of_mulVec_eq_zero hB hzero
   have hproportional (j : Fin 3) : cw * z j = cz * w j := by
     have hj := congrFun hvzero (.inr j)
@@ -119,7 +119,6 @@ theorem borderedInvertible_transverseKernel_isLine
     cw * z j = cz * w j := hproportional j
     _ = cw * ((cz / cw) * w j) := by
       field_simp [hcwnz]
-      ring
 
 end
 end HC4.Polynomial.RankThreeCubic
