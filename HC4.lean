@@ -683,3 +683,9 @@ import HC4.Polynomial.RankThreeCubicTensorFrameBinaryKernel
 
 -- Source-honest constant tangential kernel for the exact double cubic pole.
 import HC4.Polynomial.RankThreeCubicSourceFixedBinaryKernel
+
+-- Exact-double cubic pole: fixed binary kernel extends unless the tangent Hessian block vanishes.
+import HC4.Polynomial.RankThreeCubicTangentKernelExtension
+
+-- Exact-double cubic pole: fixed binary kernel extends unless the tangent Hessian block vanishes.
+import HC4.Polynomial.RankThreeCubicSourceTangentKernelExtension
