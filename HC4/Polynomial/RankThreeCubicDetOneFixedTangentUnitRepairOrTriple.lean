@@ -159,8 +159,11 @@ theorem sourceCubic_genuinePole_detOne_transverseRepair_or_unitLongitudinal_or_t
           exact hC ⟨i, hn⟩
         have hBrows (i : Fin 3) : (B *ᵥ v) (.inr i) = 0 := by
           rw [hBdecomp, Matrix.add_mulVec, Matrix.add_mulVec]
-          have hArow := congrFun hAker (.inr i)
-          simp [hArow, hCrows i, hDrow i]
+          have hArow : (A *ᵥ v) (.inr i) = 0 := by
+            have hx := congrFun hAker (.inr i)
+            simpa only [Pi.zero_apply] using hx
+          simp only [Pi.add_apply, hArow, hCrows i, hDrow i,
+            zero_add, add_zero]
         obtain ⟨k, hk⟩ := hunitPivot
         exact detOne_pureLongitudinal_output_isUnit
           B v k hdetB hk hBrows
