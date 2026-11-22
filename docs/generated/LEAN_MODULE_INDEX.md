@@ -3532,7 +3532,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
-- Declarations: `abbrev B3`, `def euler3`, `theorem euler3_mul`, `theorem homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero`, `theorem homogeneousCubic_repeatedDegreeOneFactor_linearForm`
+- Declarations: `abbrev B3`, `def euler3`, `theorem euler3_mul`, `theorem homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero`, `theorem homogeneousCubic_repeatedDegreeOneFactor_linearForm`, `theorem homogeneousCubic_repeatedDegreeOneFactor_cofactorConstantCoeff_zero`, `theorem homogeneousCubic_repeatedDegreeOneFactor_cofactorLinearForm`
 
 ### `HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency`
 

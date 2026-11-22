@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10751**.
+Distinct declaration spellings indexed: **10753**.
 
 ## Repeated declaration spellings
 
@@ -6561,6 +6561,8 @@ Distinct declaration spellings indexed: **10751**.
 - `highest_pairLevel_eq_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `highest_weight_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `highest_weight_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `homogeneousCubic_repeatedDegreeOneFactor_cofactorConstantCoeff_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
+- `homogeneousCubic_repeatedDegreeOneFactor_cofactorLinearForm` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
 - `homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
 - `homogeneousCubic_repeatedDegreeOneFactor_linearForm` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
 - `homogeneous_axisRestriction_eq_monomial_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
