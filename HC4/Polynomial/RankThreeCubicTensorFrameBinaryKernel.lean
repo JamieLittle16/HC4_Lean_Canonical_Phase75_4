@@ -118,11 +118,14 @@ theorem cubicTensor_adaptedPlane_constantTangentKernel
       (cubicTensorHessianAt E ![(0 : K), u, v]) 1 2 * t = 0 ∧
     (cubicTensorHessianAt E ![(0 : K), u, v]) 2 1 * r +
       (cubicTensorHessianAt E ![(0 : K), u, v]) 2 2 * t = 0
-  simp only [cubicTensorHessianAt, Fin.sum_univ_three, Matrix.cons_val_one,
-    Matrix.cons_val_two, Matrix.cons_val_zero, zero_mul, zero_add]
-  -- The two off-diagonal entries are equal by tensor symmetry.
-  rw [hs23 1 2 1, hs12 2 1 2]
-  exact hs
+  have h211 : E 2 1 1 = E 1 1 2 :=
+    (hs12 2 1 1).trans (hs23 1 2 1)
+  have h212 : E 2 1 2 = E 1 2 2 := hs12 2 1 2
+  have h121 : E 1 2 1 = E 1 1 2 := hs23 1 2 1
+  have h221 : E 2 2 1 = E 1 2 2 :=
+    (hs23 2 2 1).trans (hs12 2 1 2)
+  simpa [cubicTensorHessianAt, Fin.sum_univ_three,
+    h211, h212, h121, h221, mul_comm] using hs
 
 end
 end HC4.Polynomial.RankThreeCubic
