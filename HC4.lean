@@ -569,3 +569,9 @@ import HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn
 
 -- Coefficientwise higher-time source cubic pole constraints on one adjugate column.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport
+
+-- Full adjugate contractions for all longitudinal transport coefficients at rank-two cubic pole.
+import HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction
+
+-- Full adjugate contractions for all longitudinal transport coefficients at rank-two cubic pole.
+import HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility
