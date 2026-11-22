@@ -731,3 +731,12 @@ import HC4.Polynomial.RankThreeCubicFixedKernelResidueLift
 
 -- Align the genuine source pole residue with its fixed full tangent Hessian kernel.
 import HC4.Polynomial.RankThreeCubicSourceResidueFixedTangentAlignment
+
+-- Exactly-double fixed-tangent cubic normal form and mixed-source gradient rigidity.
+import HC4.Polynomial.RankThreeCubicFixedTangentNormalForm
+
+-- Exactly-double fixed-tangent cubic normal form and mixed-source gradient rigidity.
+import HC4.Polynomial.RankThreeCubicFixedTangentTensorNormalForm
+
+-- Exactly-double fixed-tangent cubic normal form and mixed-source gradient rigidity.
+import HC4.Polynomial.RankThreeCubicMixedGradientCoefficientRigidity
