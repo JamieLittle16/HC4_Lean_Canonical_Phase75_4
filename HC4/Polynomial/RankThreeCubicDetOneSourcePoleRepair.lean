@@ -51,6 +51,8 @@ theorem detOne_matrix_correction_nonzero_on_kernel
     rw [Matrix.adjugate_mul, hdet]
     simp
   have h := congrArg (fun M : Matrix ι ι R => M *ᵥ w) hadj
+  change (((A + E).adjugate * (A + E)) *ᵥ w) =
+      (1 : Matrix ι ι R) *ᵥ w at h
   rw [Matrix.mulVec_mulVec, hsum] at h
   have hzero : w = 0 := by simpa using h.symm
   exact hw hzero
@@ -142,14 +144,18 @@ theorem sourceCubic_genuinePole_detOne_forces_lowerLayerRepair
     change S k = 0 at hkzero
     exact hSk hkzero
   let φ : SB K →+* R := q.comp (referenceSlice a).toRingHom
-  have hBmap : B = (hessian F).map φ := by
+  have hBmap : B = φ.mapMatrix (hessian F) := by
     ext i j
     rfl
   have hdetB : B.det = 1 := by
-    rw [hBmap, ← RingHom.map_det]
-    change φ (hessianDeterminant F) = 1
-    rw [hdetOne]
-    simp
+    calc
+      B.det = φ (hessian F).det := by
+        rw [hBmap]
+        exact (RingHom.map_det φ (hessian F)).symm
+      _ = 1 := by
+        change φ (hessianDeterminant F) = 1
+        rw [hdetOne]
+        simp
   have hsum : A + (B - A) = B := by abel
   have hdetSum : (A + (B - A)).det = 1 := by
     rw [hsum]
