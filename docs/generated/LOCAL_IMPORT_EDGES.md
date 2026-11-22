@@ -1255,6 +1255,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
+- `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
+  - `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
 - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
 - `HC4.Polynomial.RankThreeCubicHessianCongruence`
