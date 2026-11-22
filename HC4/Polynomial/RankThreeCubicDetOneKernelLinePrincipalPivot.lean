@@ -44,8 +44,7 @@ theorem symmetricThree_kernelLine_principalCofactor_at
   have hNdet : N.det = 0 := by
     have hadj := Matrix.adjugate_fin_succ_eq_det_submatrix T k k
     have hprod : (-1 : K) ^ ((k : ℕ) + (k : ℕ)) * N.det = 0 := by
-      rw [← hadj]
-      exact hcof
+      simpa only [N] using hadj.symm.trans hcof
     have hsign : (-1 : K) ^ ((k : ℕ) + (k : ℕ)) ≠ 0 :=
       pow_ne_zero _ (by norm_num)
     exact (mul_eq_zero.mp hprod).resolve_left hsign
