@@ -54,17 +54,25 @@ human architecture guide.
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
   - `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
+  - `HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn`
   - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+  - `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+  - `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
+  - `HC4.Polynomial.RankThreeCubicHessianCongruence`
+  - `HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil`
+  - `HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction`
   - `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`
   - `HC4.Polynomial.RankThreeCubicJordanSquare`
+  - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
   - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap`
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+  - `HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleCofactor`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
@@ -76,18 +84,30 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleResidue`
   - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
   - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
+  - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
+  - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
   - `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
   - `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`
+  - `HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction`
   - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
+  - `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`
+  - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+  - `HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
+  - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
+  - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
   - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
@@ -96,10 +116,16 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+  - `HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil`
+  - `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
+  - `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
+  - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
+  - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
+  - `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
@@ -1212,24 +1238,38 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeLinearCoefficient`
 - `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
 - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`
+  - `HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue`
 - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.MongeAmpere.SchurReduction`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Polynomial.MaximalHessianInitial`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
+  - `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`
 - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
 - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
+- `HC4.Polynomial.RankThreeCubicHessianCongruence`
+  - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
+- `HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil`
+  - `HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil`
+- `HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction`
+  - `HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil`
 - `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicJordanSquare`
   - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
+  - `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
 - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
@@ -1242,6 +1282,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
   - `HC4.Newton.CharZeroHessianKernelRigidity`
   - `HC4.Polynomial.DerivativeWeight`
+- `HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
 - `HC4.Polynomial.RankThreeCubicPoleCofactor`
   - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HC4.Polynomial.RankThreeCubicPoleDeterminant`
@@ -1270,16 +1313,29 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
+  - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
+- `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
+  - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
 - `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`
   - `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
+- `HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction`
+  - `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
 - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
 - `HC4.Polynomial.RankThreeCubicSimplePoleNumerator`
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
+- `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`
+  - `HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction`
+- `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
+  - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
 - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
@@ -1287,6 +1343,11 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue`
+  - `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
+- `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
+  - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
+  - `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
 - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
@@ -1295,15 +1356,27 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
   - `HC4.Polynomial.RankThreeCubicSimplePoleNumerator`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+- `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
+  - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`
 - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
+  - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
+  - `HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
+  - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
   - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
+- `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue`
 - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
   - `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
 - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
@@ -1323,6 +1396,16 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
+- `HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil`
+  - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
+- `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
+  - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
+- `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
+  - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
+- `HC4.Polynomial.RankThreeCubicTensorLinearChange`
+  - `HC4.Polynomial.RankThreeCubicHessianCongruence`
+- `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
+  - `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
@@ -1332,6 +1415,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
   - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
+- `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
+  - `HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction`
 - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
   - `HC4.Polynomial.RankThreeEndpointActiveMinor`
