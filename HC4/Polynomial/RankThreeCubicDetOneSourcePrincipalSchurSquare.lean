@@ -74,9 +74,9 @@ theorem sourceCubic_detOne_originPrincipalSchur_square
   have hBsym : B0.IsSymm := by
     apply Matrix.IsSymm.ext
     intro i j
-    change ev (pderiv j (pderiv i F)) =
-      ev (pderiv i (pderiv j F))
-    rw [HC4.Newton.pderiv_comm_backport j i F]
+    change ev (pderiv i (pderiv j F)) =
+      ev (pderiv j (pderiv i F))
+    rw [HC4.Newton.pderiv_comm_backport i j F]
   have hBT : B0.submatrix Sum.inr Sum.inr = T := by
     ext i j
     exact hblock i j
