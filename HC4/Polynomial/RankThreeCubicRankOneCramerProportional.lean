@@ -51,7 +51,7 @@ theorem rankOneMatrix_mulVec_proportional_products
           Finset.mul_sum, mul_assoc]
   have hi : B k k * S i = B i k * S k := hlinear i
   have hj : B k k * S j = B j k * S k := hlinear j
-  have hsym : B j k = B k j := hSym.apply j k
+  have hsym : B j k = B k j := hSym.apply k j
   have hsq : B k k * (B k k * S i * S j) =
       B k k * (B i j * S k * S k) := by
     calc
