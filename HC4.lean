@@ -530,3 +530,6 @@ import HC4.Polynomial.RankThreeCubicUniqueGenuinePole
 
 -- All actual cubic denominator poles lie on one associated linear hyperplane.
 import HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm
+
+-- Exact linear residual factor of the cubic source's sole genuine pole.
+import HC4.Polynomial.RankThreeCubicSourceExactPoleDegree
