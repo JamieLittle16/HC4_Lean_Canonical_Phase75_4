@@ -27,37 +27,70 @@ private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
 private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
 
-/-- Differentiation lowers degree in the differentiated variable
-whenever that variable occurs with positive degree. -/
-theorem degreeOf_pderiv_lt_of_degreeOf_pos
-    (p : B3 K) (i : Fin 3) (hpos : 0 < p.degreeOf i) :
-    (pderiv i p).degreeOf i < p.degreeOf i := by
+/-- Coefficient formula for multivariate partial differentiation,
+backported explicitly for the repository's Mathlib v4.24.0 pin. -/
+private theorem coeff_pderiv_at
+    (i : Fin 3) (p : B3 K) (m : Fin 3 →₀ ℕ) :
+    (pderiv i p).coeff m =
+      p.coeff (m + Finsupp.single i 1) * (m i + 1) := by
   classical
-  have hle : (pderiv i p).degreeOf i ≤ p.degreeOf i - 1 := by
-    apply degreeOf_le_iff.mpr
+  induction p using MvPolynomial.induction_on' with
+  | add p q hp hq =>
+      simp [hp, hq, add_mul]
+  | monomial n a =>
+      rw [pderiv_monomial, coeff_monomial, coeff_monomial]
+      by_cases h : n = m + Finsupp.single i 1
+      · subst n
+        simp
+      · simp only [h, ↓reduceIte, zero_mul]
+        by_cases hn : n i = 0
+        · simp [hn]
+        · have hne : n - Finsupp.single i 1 ≠ m := by
+            intro hh
+            apply h
+            calc
+              n = n - Finsupp.single i 1 + Finsupp.single i 1 :=
+                (Finsupp.sub_add_single_one_cancel hn).symm
+              _ = m + Finsupp.single i 1 := by rw [hh]
+          simp [hne]
+
+/-- Every first partial has strictly smaller total degree than a
+nonconstant polynomial in characteristic zero (including a zero partial). -/
+theorem totalDegree_pderiv_lt_of_totalDegree_pos
+    (p : B3 K) (i : Fin 3) (hpos : 0 < p.totalDegree) :
+    (pderiv i p).totalDegree < p.totalDegree := by
+  classical
+  have hle : (pderiv i p).totalDegree ≤ p.totalDegree - 1 := by
+    change (pderiv i p).support.sup (fun m => m.sum (fun _ e => e)) ≤ _
+    apply Finset.sup_le
     intro m hm
     have hc : (pderiv i p).coeff m ≠ 0 :=
       mem_support_iff.mp hm
     have hc' : p.coeff (m + Finsupp.single i 1) ≠ 0 := by
-      rw [coeff_pderiv] at hc
+      rw [coeff_pderiv_at] at hc
       exact (mul_ne_zero_iff.mp hc).1
     have hsupp : m + Finsupp.single i 1 ∈ p.support :=
       mem_support_iff.mpr hc'
-    have hbound :=
-      monomial_le_degreeOf i hsupp
-    have heq : (m + Finsupp.single i 1) i = m i + 1 := by
-      simp
-    rw [heq] at hbound
+    let d : Fin 3 →₀ ℕ := m + Finsupp.single i 1
+    have hdi : d i ≠ 0 := by simp [d]
+    have hsub : d - Finsupp.single i 1 = m := by simp [d]
+    have hweight :
+        m.sum (fun _ e => e) + 1 = d.sum (fun _ e => e) := by
+      have hw := Finsupp.weight_sub_single_add
+        (w := fun _ : Fin 3 => (1 : ℕ)) hdi
+      simpa [Finsupp.weight_apply, hsub, smul_eq_mul] using hw
+    have hbound : d.sum (fun _ e => e) ≤ p.totalDegree :=
+      le_totalDegree hsupp
     omega
   omega
 
-/-- If a multivariate polynomial has a genuinely occurring variable,
-its partial derivative in that variable is nonzero in characteristic zero. -/
+/-- A genuinely occurring variable has nonzero partial derivative in
+characteristic zero. Uses the actual coefficient, not an assumed gradient. -/
 theorem pderiv_ne_zero_of_mem_vars
     (p : B3 K) (i : Fin 3) (hi : i ∈ p.vars) :
     pderiv i p ≠ 0 := by
   classical
-  obtain ⟨m, hm, hmi⟩ := (mem_vars_iff_mem_support i).mp hi
+  obtain ⟨m, hm, hmi⟩ := (mem_vars i).mp hi
   have hm0 : m i ≠ 0 := Finsupp.mem_support_iff.mp hmi
   have hc0 : p.coeff m ≠ 0 := mem_support_iff.mp hm
   have heq : (m - Finsupp.single i 1) i + 1 = m i := by
@@ -65,35 +98,44 @@ theorem pderiv_ne_zero_of_mem_vars
     have heval := congrArg (fun n : Fin 3 →₀ ℕ => n i) hh
     simpa using heval
   have hcoef : (pderiv i p).coeff (m - Finsupp.single i 1) ≠ 0 := by
-    rw [coeff_pderiv, Finsupp.sub_add_single_one_cancel hm0, heq]
+    rw [coeff_pderiv_at, Finsupp.sub_add_single_one_cancel hm0, heq]
     exact mul_ne_zero hc0 (Nat.cast_ne_zero.mpr hm0)
   intro hz
   apply hcoef
   rw [hz]
   simp
 
-/-- An irreducible multivariate polynomial in characteristic zero does
-not divide at least one of its first partial derivatives. -/
+/-- An irreducible multivariate polynomial in characteristic zero
+cannot divide all of its first partial derivatives. -/
 theorem exists_pderiv_not_dvd_of_irreducible
     (p : B3 K) (hp : Irreducible p) :
     ∃ i : Fin 3, ¬ p ∣ pderiv i p := by
   classical
-  have hvars : p.vars ≠ ∅ := by
-    intro hzero
-    have hpC : p = MvPolynomial.C (p.coeff 0) :=
-      (vars_eq_empty_iff_eq_C).mp hzero
-    have hc : p.coeff 0 ≠ 0 := by
-      intro hc0
+  have hpos : 0 < p.totalDegree := by
+    by_contra hn
+    have hz : p.totalDegree = 0 := Nat.eq_zero_of_not_pos hn
+    have hconst : p = C (p.coeff 0) :=
+      MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hz
+    have hc0 : p.coeff 0 ≠ 0 := by
+      intro hc
       apply hp.ne_zero
-      simp [hpC, hc0]
-    have hu : IsUnit p := by
-      rw [hpC]
-      exact IsUnit.map MvPolynomial.C (isUnit_iff_ne_zero.mpr hc)
+      rw [hconst, hc, map_zero]
+    have hu : IsUnit p :=
+      (MvPolynomial.isUnit_iff_totalDegree_of_isReduced).2
+        ⟨isUnit_iff_ne_zero.mpr hc0, hz⟩
     exact hp.not_isUnit hu
+  have hvars : p.vars ≠ ∅ := by
+    intro hz
+    have hdegrees : p.degrees = 0 := by
+      have hd : p.degrees.toFinset = ∅ := by
+        simpa only [vars_def] using hz
+      simpa only [Multiset.toFinset_eq_empty] using hd
+    have hdeg : p.totalDegree = 0 := by
+      apply Nat.eq_zero_of_le_zero
+      simpa [hdegrees] using p.totalDegree_le_degrees_card
+    omega
   obtain ⟨i, hi⟩ : p.vars.Nonempty :=
-    Finset.ne_empty_iff_nonempty.mp hvars
-  have hpos : 0 < p.degreeOf i :=
-    Nat.pos_of_ne_zero ((mem_vars_iff_degreeOf_ne_zero).mp hi)
+    Finset.nonempty_iff_ne_empty.mpr hvars
   have hder0 : pderiv i p ≠ 0 :=
     pderiv_ne_zero_of_mem_vars p i hi
   refine ⟨i, ?_⟩
@@ -104,10 +146,10 @@ theorem exists_pderiv_not_dvd_of_irreducible
     apply hder0
     rw [hu, hzero, mul_zero]
   have hdeg :
-      (pderiv i p).degreeOf i = p.degreeOf i + u.degreeOf i := by
+      (pderiv i p).totalDegree = p.totalDegree + u.totalDegree := by
     rw [hu]
-    exact degreeOf_mul_eq hp.ne_zero hu0
-  have hlt := degreeOf_pderiv_lt_of_degreeOf_pos p i hpos
+    exact MvPolynomial.totalDegree_mul_of_isDomain hp.ne_zero hu0
+  have hlt := totalDegree_pderiv_lt_of_totalDegree_pos p i hpos
   omega
 
 /-- A squarefree polynomial cannot have an irreducible factor dividing
