@@ -1330,6 +1330,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
 - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
+- `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
+  - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
 - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
 - `HC4.Polynomial.RankThreeCubicSimplePoleNumerator`
