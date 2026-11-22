@@ -11,7 +11,7 @@ a transverse variable commutes with longitudinal specialization.
 Commutation of polynomial partial derivatives then identifies it
 exactly with the third derivative used in source quadratic transport.
 
-This source-to-matrix identity is the derivative-level bridge needed
+This source-to-matrix identity is the exact derivative-level bridge needed
 before applying Jacobi to a cubic Cramer residue. It has no extra
 source, pole or chart assumptions.
 -/
