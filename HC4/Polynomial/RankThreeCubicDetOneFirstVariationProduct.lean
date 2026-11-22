@@ -27,7 +27,8 @@ coefficient of its derivative, over any commutative ring. -/
 theorem coeff_one_eq_derivative_eval_zero
     (P : Polynomial R) :
     P.coeff 1 = P.derivative.eval 0 := by
-  rw [← coeff_zero_eq_eval_zero, coeff_derivative]
+  rw [← _root_.Polynomial.coeff_zero_eq_eval_zero,
+    _root_.Polynomial.coeff_derivative]
   simp
 
 /-- The degree-one coefficient of a product of affine polynomials
@@ -43,10 +44,12 @@ theorem coeff_one_prod_C_add_X_C
   have hev (i : ι) : (f i).eval 0 = a i := by
     simp [f]
   have hdev (i : ι) : (f i).derivative.eval 0 = b i := by
-    simp [f, derivative_add, derivative_mul]
+    simp [f, _root_.Polynomial.derivative_add,
+      _root_.Polynomial.derivative_mul]
   change (∏ i ∈ s, f i).coeff 1 = _
-  rw [coeff_one_eq_derivative_eval_zero, derivative_prod_finset,
-    eval_finset_sum]
+  rw [coeff_one_eq_derivative_eval_zero,
+    _root_.Polynomial.derivative_prod_finset,
+    _root_.Polynomial.eval_finsetSum]
   apply Finset.sum_congr rfl
   intro i hi
   simp only [eval_mul, eval_prod]
