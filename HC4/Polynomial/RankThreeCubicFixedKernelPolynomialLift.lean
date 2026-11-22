@@ -59,7 +59,9 @@ theorem homogeneousOne_polynomial_linearForm
         MvPolynomial.C ((pderiv j P).coeff 0) := by
           apply Finset.sum_congr rfl
           intro j _
-          rw [hder j]
+          exact congrArg
+            (fun q : B3 K => (MvPolynomial.X j : B3 K) * q)
+            (hder j)
 
 /-- A congruent fixed kernel descends from an invertible
 frame to the original matrix at the same point. -/
@@ -74,7 +76,6 @@ theorem invertibleFrame_congruenceKernel_descends
     simpa only [Matrix.det_transpose] using hM
   have hnull : M.transpose *ᵥ (H *ᵥ (M.mulVec w)) = 0 := by
     rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec]
-    rw [← Matrix.mul_assoc]
     exact hker
   by_contra hne
   exact ht (Matrix.exists_mulVec_eq_zero_iff.mp
