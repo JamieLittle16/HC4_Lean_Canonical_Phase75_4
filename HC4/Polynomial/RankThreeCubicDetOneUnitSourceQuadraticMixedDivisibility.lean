@@ -108,7 +108,8 @@ theorem sourceCubic_unitLongitudinal_implies_secondLayer_mixed_dvd
           intro j _
           have hh := sourceCubic_hessian_three_two_lower_decomposition F
           have hj := congrFun (congrFun hh (.inl ())) (.inr j)
-          rw [hj, map_add, map_add]
+          rw [hj]
+          simp only [Matrix.add_apply, map_add]
       _ = f3 + f2 + flow := by
           simp only [add_mul, Finset.sum_add_distrib]
           rfl
