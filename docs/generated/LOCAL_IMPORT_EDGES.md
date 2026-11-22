@@ -1433,6 +1433,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
 - `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
   - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
+- `HC4.Polynomial.RankThreeCubicTensorKernelLeaf`
+  - `HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency`
+  - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
 - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
   - `HC4.Polynomial.RankThreeCubicHessianCongruence`
 - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
