@@ -521,3 +521,6 @@ import HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated
 
 -- Genuine repeated linear denominator-pole refinement of cubic source classification.
 import HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole
+
+-- Degree-one residual cofactor at a source-honest genuine repeated pole.
+import HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor
