@@ -743,3 +743,6 @@ import HC4.Polynomial.RankThreeCubicMixedGradientCoefficientRigidity
 
 -- Normalize the source-derived fixed tangent to the canonical cubic tensor axis.
 import HC4.Polynomial.RankThreeCubicFixedTangentFrameCompletion
+
+-- Audit: double-pole cubic gradient transport alone is not a closing contradiction.
+import HC4.Polynomial.RankThreeCubicPoleTransportSharpness
