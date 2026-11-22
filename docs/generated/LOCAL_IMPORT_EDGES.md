@@ -92,6 +92,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction`
   - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
+  - `HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency`
   - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`
   - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
@@ -102,6 +103,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
+  - `HC4.Polynomial.RankThreeCubicSourceLinearTensorEvaluation`
   - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
@@ -112,6 +114,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
@@ -126,8 +129,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil`
   - `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
   - `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
+  - `HC4.Polynomial.RankThreeCubicTensorKernelLeaf`
   - `HC4.Polynomial.RankThreeCubicTensorLinearChange`
   - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
+  - `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
@@ -1402,6 +1407,11 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime`
   - `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourceLinearTensorEvaluation`
+  - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
 - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
   - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
