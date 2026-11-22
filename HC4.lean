@@ -499,3 +499,6 @@ import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
 
 -- Singular transverse determinant forces all 2x2 adjugate minors to vanish.
 import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
+
+-- Singular-safe Jacobi partial derivative of a 3x3 transverse Hessian determinant.
+import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
