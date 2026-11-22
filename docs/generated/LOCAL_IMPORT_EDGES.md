@@ -81,6 +81,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrPole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
@@ -1281,6 +1282,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
 - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
 - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
   - `HC4.Polynomial.RankThreeCubicAnchoredKernel`
   - `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
