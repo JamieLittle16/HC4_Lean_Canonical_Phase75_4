@@ -505,3 +505,6 @@ import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
 
 -- A genuine nonzero Cramer vector inherits the symmetric rank-one adjugate factorization.
 import HC4.Polynomial.RankThreeCubicRankOneCramerProportional
+
+-- Nonzero rank-one Cramer quadratic residue forces the Jacobi adjugate contraction to vanish.
+import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
