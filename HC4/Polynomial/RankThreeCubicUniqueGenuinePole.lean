@@ -55,9 +55,17 @@ theorem repeated_prime_dvd_repeated_prime_of_cubic_degree
   have hq2deg : (q * q).totalDegree = 2 := by
     rw [MvPolynomial.totalDegree_mul_of_isDomain hq.ne_zero hq.ne_zero,
       hqdeg]
+  have hle : (q * q).totalDegree ≤ c.totalDegree := by
+    obtain ⟨u, hu⟩ := hqc
+    have hu0 : u ≠ 0 := by
+      intro hz
+      apply hc0
+      rw [hu, hz, mul_zero]
+    have hmul : c.totalDegree = (q * q).totalDegree + u.totalDegree := by
+      rw [hu]
+      exact MvPolynomial.totalDegree_mul_of_isDomain
+        (mul_ne_zero hq.ne_zero hq.ne_zero) hu0
     omega
-  have hle : (q * q).totalDegree ≤ c.totalDegree :=
-    MvPolynomial.totalDegree_le_of_dvd_of_isDomain hqc hc0
   omega
 
 /-- Uniqueness of the repeated irreducible cubic factor, up to
