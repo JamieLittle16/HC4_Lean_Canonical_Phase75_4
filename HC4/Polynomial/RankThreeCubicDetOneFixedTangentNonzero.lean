@@ -48,6 +48,7 @@ theorem fixedTangent_nonzero_in_irreducibleQuotient
   have hψ : Function.Injective ψ :=
     RingHom.injective ψ
   let v : Fin 3 → K := ![(0 : K), r, t]
+  change (fun i : Fin 3 => ψ ((M *ᵥ v) i)) ≠ (0 : Fin 3 → R)
   intro hW
   have hMv : M *ᵥ v = 0 := by
     funext i
