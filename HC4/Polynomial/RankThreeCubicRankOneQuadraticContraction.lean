@@ -52,7 +52,7 @@ theorem rankOneCramer_quadratic_zero_implies_adjugate_contraction_zero
     have hne : B k k * S i₀ * S i₀ ≠ 0 :=
       mul_ne_zero (mul_ne_zero hkk hi₀) hi₀
     apply hne
-    simpa only [hzero, mul_zero] using hprod
+    simpa only [S, hzero, mul_zero] using hprod
   have hweighted :
       B k k * (∑ i : Fin 3, ∑ j : Fin 3,
         Q i j * S i * S j) =
