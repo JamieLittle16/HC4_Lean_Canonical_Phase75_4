@@ -40,13 +40,13 @@ theorem cubic_repeatedFactor_has_linear_cofactor
     (hpp : p * p ∣ D) :
     ∃ c : B3 K, D = (p * p) * c ∧ c ≠ 0 ∧ c.totalDegree ≤ 1 := by
   classical
+  have hpdeg : p.totalDegree = 1 :=
+    degree_one_of_specified_repeated_factor D p hD hdeg hp hpp
   obtain ⟨c, hc⟩ := hpp
   have hc0 : c ≠ 0 := by
     intro hz
     apply hD
     rw [hc, hz, mul_zero]
-  have hpdeg : p.totalDegree = 1 :=
-    degree_one_of_specified_repeated_factor D p hD hdeg hp hpp
   have hmul :
       D.totalDegree = (p * p).totalDegree + c.totalDegree := by
     rw [hc]
