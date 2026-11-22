@@ -557,3 +557,9 @@ import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
 
 -- Nonzero principal-pivot coordinate for the actual rank-two normalized pole residue.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue
+
+-- Source-honest rank-two repeated pole kernel/adjugate alignment.
+import HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection
+
+-- Source-honest rank-two repeated pole kernel/adjugate alignment.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment
