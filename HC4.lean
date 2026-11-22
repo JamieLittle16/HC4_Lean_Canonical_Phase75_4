@@ -536,3 +536,6 @@ import HC4.Polynomial.RankThreeCubicSourceExactPoleDegree
 
 -- Coefficientwise source transport after normalized repeated-pole cancellation.
 import HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue
+
+-- Cancel one repeated Cramer factor and retain source quadratic residue equations.
+import HC4.Polynomial.RankThreeCubicCancelledCramerResidue
