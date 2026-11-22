@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10748**.
+Distinct declaration spellings indexed: **10751**.
 
 ## Repeated declaration spellings
 
@@ -4931,6 +4931,8 @@ Distinct declaration spellings indexed: **10748**.
 - `cubicNilpotent_drift_smul_eq_zero_iff` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `cubicNilpotent_drift_smul_injective` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
 - `cubicNilpotent_drift_twoSidedInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurDriftEndpoints`
+- `cubicPoleLinearFunctional` — `def` in `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
+- `cubicPoleLinearFunctional_add` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
 - `cubicRigidMatrixExposure_div_scale_eq_pred` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
 - `cubicTensorHessianAt` — `def` in `HC4.Polynomial.RankThreeCubicTensorLinearChange`
 - `cubicTensorHessianAt_add` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorKernelLeaf`
@@ -4945,6 +4947,7 @@ Distinct declaration spellings indexed: **10748**.
 - `cubicTensor_rankOnePlane_congruence_det_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
 - `cubicTensor_rankOnePlane_det_zero_on_frame` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
 - `cubicTensor_rankOnePlane_global_det_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorGeneralPlaneContradiction`
+- `cubicTensor_repeatedPole_kernel_tangent_or_triple` — `theorem` in `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
 - `cubic_homogeneous_repeatedFactor_exact_linear_cofactor` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
 - `cubic_lineEval_coeff_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 - `cubic_rankOneCramer_Jacobi_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`

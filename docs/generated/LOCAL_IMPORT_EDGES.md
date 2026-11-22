@@ -1440,6 +1440,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicHessianCongruence`
 - `HC4.Polynomial.RankThreeCubicTensorRankOnePlane`
   - `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
+- `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
+  - `HC4.Polynomial.RankThreeCubicTensorKernelLeaf`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
 - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
