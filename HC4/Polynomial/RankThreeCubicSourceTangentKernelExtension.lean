@@ -111,7 +111,7 @@ theorem sourceCubic_genuineRankTwo_fullKernelOrZeroBinaryPointwise_or_triple
       change B.transpose = B
       dsimp [B]
       simp only [Matrix.transpose_mul, Matrix.transpose_transpose,
-        hSymA, Matrix.mul_assoc]
+        hSymA.eq, Matrix.mul_assoc]
     have h01 : B.adjugate 0 1 = 0 := hrow x y 1
     have h02 : B.adjugate 0 2 = 0 := hrow x y 2
     have hq := hker x y
