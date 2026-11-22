@@ -52,6 +52,9 @@ theorem cubicTensor_zeroBinaryBlock_exactNormalForm
   have h222 : D 2 2 2 = 0 := by
     have h := (hzero 0 1).2.2
     simpa [cubicTensorHessianAt, Fin.sum_univ_three] using h
+  have h010 : D 0 1 0 = D 0 0 1 := hswap₂ 0 1 0
+  have h020 : D 0 2 0 = D 0 0 2 := hswap₂ 0 2 0
+  have h021 : D 0 2 1 = D 0 1 2 := hswap₂ 0 2 1
   have h100 : D 1 0 0 = D 0 0 1 := by
     exact (hswap₁ 1 0 0).trans (hswap₂ 0 1 0)
   have h200 : D 2 0 0 = D 0 0 2 := by
@@ -87,7 +90,7 @@ theorem cubicTensor_zeroBinaryBlock_exactNormalForm
       Fin.sum_univ_three, h111, h112, h122, h222,
       h100, h200, h101, h201, h102, h202,
       h110, h210, h211, h212, h120, h220,
-      h121, h221] <;> ring
+      h121, h221, h010, h020, h021] <;> ring
 
 /-- The zero binary block forces an exact scalar triple-normal
 determinant whenever the determinant is known to have a
