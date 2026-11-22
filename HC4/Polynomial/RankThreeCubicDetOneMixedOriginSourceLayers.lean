@@ -109,8 +109,15 @@ theorem sourceCubic_mixedOrigin_eq_subTwo_mixedOrigin
     have hx := sourceCubic_hessian_three_two_lower_decomposition F
     exact congrFun (congrFun hx (.inl ())) (.inr j)
   obtain ⟨hL3, hL2⟩ := sourceCubic_topTwo_mixedOrigin_zero F a j
-  rw [hh]
-  simp only [map_add, hL3, hL2, zero_add]
+  let ev : SB K →+* K :=
+    ((MvPolynomial.aeval (fun _ : Fin 3 => (0 : K))).toRingHom).comp
+      (referenceSlice a).toRingHom
+  have hL3' : ev (hessian L3 (.inl ()) (.inr j)) = 0 := hL3
+  have hL2' : ev (hessian L2 (.inl ()) (.inr j)) = 0 := hL2
+  change ev (hessian F (.inl ()) (.inr j)) =
+    ev (hessian Rlow (.inl ()) (.inr j))
+  rw [hh, map_add, map_add, hL3', hL2']
+  simp
 
 /-- The same equality holds after pairing with any constant
 transverse vector, without assuming that vector is a pole kernel. -/
