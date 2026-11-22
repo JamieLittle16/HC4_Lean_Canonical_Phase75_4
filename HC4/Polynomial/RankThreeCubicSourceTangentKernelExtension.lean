@@ -70,6 +70,12 @@ theorem sourceCubic_genuineRankTwo_fullKernelOrZeroBinaryPointwise_or_triple
           (∑ i : Fin 3, ell i * M i 1) = 0 ∧
           (∑ i : Fin 3, ell i * M i 2) = 0 ∧
           (r ≠ 0 ∨ t ≠ 0) ∧
+          (∀ x y : K,
+            let B := M.transpose *
+              H.map (MvPolynomial.aeval
+                (M.mulVec ![(0 : K), x, y])).toRingHom * M
+            (B 1 1 * r + B 1 2 * t = 0) ∧
+              (B 2 1 * r + B 2 2 * t = 0)) ∧
           ∀ x y : K,
             let B := M.transpose *
               H.map (MvPolynomial.aeval
@@ -89,7 +95,7 @@ theorem sourceCubic_genuineRankTwo_fullKernelOrZeroBinaryPointwise_or_triple
   refine ⟨ell, k, hpoly, hk, ?_⟩
   rcases hsplit with ⟨M, r, t, hM, hM1, hM2, hrt, hrow, hker⟩ | htriple
   · left
-    refine ⟨M, r, t, hM, hM1, hM2, hrt, ?_⟩
+    refine ⟨M, r, t, hM, hM1, hM2, hrt, hker, ?_⟩
     intro x y
     let w : Fin 3 → K := M.mulVec ![(0 : K), x, y]
     let ev : B3 K →+* K := (MvPolynomial.aeval w).toRingHom
