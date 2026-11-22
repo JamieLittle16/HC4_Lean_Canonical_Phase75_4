@@ -106,7 +106,7 @@ theorem borderedInvertible_transverseKernel_isLine
       ring
     | inr j =>
       rw [hzrows j, hwrows j]
-      simp only [Pi.zero_apply]
+      simp only [Pi.zero_apply, mul_zero, sub_self]
   have hvzero : vd = 0 := Matrix.eq_zero_of_mulVec_eq_zero hB hzero
   have hproportional (j : Fin 3) : cw * z j = cz * w j := by
     have hj := congrFun hvzero (.inr j)
