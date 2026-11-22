@@ -93,7 +93,7 @@ theorem symmetric_rankOne_pencil_proportional
       · exact hz
     intro i j
     have hBrow : B k j = 0 := by
-      rw [hB_symm.apply k j]
+      rw [← hB_symm.apply k j]
       exact hBcol j
     have hsum :
         A k k * (A i j + B i j) = A i k * A k j := by
