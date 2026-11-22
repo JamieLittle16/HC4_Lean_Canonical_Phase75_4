@@ -545,3 +545,6 @@ import HC4.Polynomial.RankThreeCubicCommonDenominatorResidue
 
 -- Construct the nonzero normalized cubic pole residue from reduced denominators.
 import HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue
+
+-- Source dichotomy: linear characteristic or single genuine pole with nonzero normalized residue.
+import HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue
