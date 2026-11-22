@@ -746,3 +746,6 @@ import HC4.Polynomial.RankThreeCubicFixedTangentFrameCompletion
 
 -- Audit: double-pole cubic gradient transport alone is not a closing contradiction.
 import HC4.Polynomial.RankThreeCubicPoleTransportSharpness
+
+-- Retain the actual longitudinal source Hessian row in the pole residue.
+import HC4.Polynomial.RankThreeCubicSourceLongitudinalPoleResidue
