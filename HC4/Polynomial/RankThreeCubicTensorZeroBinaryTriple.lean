@@ -132,5 +132,39 @@ theorem cubicTensor_zeroBinaryBlock_squareFactor_forces_tripleDet
     alpha beta gamma m n l z u v hdisc]
   ring
 
+
+/-- In the same situation, a putative square-normal times
+linear factor must have *no tangential terms*. This is the
+coefficient form best suited to proving p divides the source
+complementary linear factor after returning from the frame. -/
+theorem cubicTensor_zeroBinaryBlock_squareFactor_tangentCoefficients_zero
+    {K : Type*} [Field K] [CharZero K]
+    (D : Fin 3 → Fin 3 → Fin 3 → K)
+    (hswap₁ : ∀ i j k : Fin 3, D i j k = D j i k)
+    (hswap₂ : ∀ i j k : Fin 3, D i j k = D i k j)
+    (hzero : ∀ u v : K,
+      let H := cubicTensorHessianAt D ![(0 : K), u, v]
+      H 1 1 = 0 ∧ H 1 2 = 0 ∧ H 2 2 = 0)
+    (A B C : K)
+    (hfactor : ∀ z u v : K,
+      (cubicTensorHessianAt D ![z, u, v]).det =
+        z ^ 2 * (A * z + B * u + C * v)) :
+    B = 0 ∧ C = 0 := by
+  obtain ⟨lambda, htriple⟩ :=
+    cubicTensor_zeroBinaryBlock_squareFactor_forces_tripleDet
+      D hswap₁ hswap₂ hzero A B C hfactor
+  have hA : A = lambda := by
+    have h := (hfactor 1 0 0).symm.trans (htriple 1 0 0)
+    simpa using h
+  have hB : A + B = lambda := by
+    have h := (hfactor 1 1 0).symm.trans (htriple 1 1 0)
+    simpa using h
+  have hC : A + C = lambda := by
+    have h := (hfactor 1 0 1).symm.trans (htriple 1 0 1)
+    simpa using h
+  constructor
+  · linear_combination hB - hA
+  · linear_combination hC - hA
+
 end
 end HC4.Polynomial.RankThreeCubic
