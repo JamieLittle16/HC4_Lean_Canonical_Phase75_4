@@ -46,7 +46,7 @@ theorem tangentFrame_normal_adjugate_row
       Matrix.vecMul_smul, Matrix.vecMul_one]
   have hj := congrFun hprod j
   rw [hrow] at hj
-  simpa [Matrix.vecMul, dotProduct, Fin.sum_univ_three] using hj
+  simpa [t, Matrix.vecMul, dotProduct, Fin.sum_univ_three] using hj
 
 /-- The first pole-normal component of an invertible adapted
 frame is necessarily nonzero. -/
