@@ -758,3 +758,6 @@ import HC4.Polynomial.RankThreeCubicSourceFourHessianKernelPole
 
 -- The nonzero source pole residue forces a lower-layer Hessian repair under det=1.
 import HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair
+
+-- Identify the determinant-one source pole correction with the exact lower-weight Hessian.
+import HC4.Polynomial.RankThreeCubicDetOneWeightedRepair
