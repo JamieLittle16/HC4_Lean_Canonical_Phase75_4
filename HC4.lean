@@ -508,3 +508,7 @@ import HC4.Polynomial.RankThreeCubicRankOneCramerProportional
 
 -- Nonzero rank-one Cramer quadratic residue forces the Jacobi adjugate contraction to vanish.
 import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
+
+-- Independent cubic squarefree-pole Jacobi bridge and source derivative obstruction.
+import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
+import HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction
