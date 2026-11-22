@@ -60,7 +60,7 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
   have hderConst (t i j : Fin 3) :
       pderiv t (H i j) = MvPolynomial.C (D t i j) := by
     have hdeg0 : (pderiv t (H i j)).totalDegree = 0 :=
-      MvPolynomial.totalDegree_zero_iff_isHomogeneous.mpr
+      (MvPolynomial.totalDegree_zero_iff_isHomogeneous (Fin 3)).2
         ((hhom i j).pderiv)
     exact MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hdeg0
   have hlinear (i j : Fin 3) :
@@ -81,7 +81,7 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
         ∑ t : Fin 3, v t * D t i j := by
     rw [hlinear i j]
     simp only [map_sum, map_mul, MvPolynomial.aeval_X,
-      MvPolynomial.aeval_C]
+      MvPolynomial.aeval_C, Algebra.algebraMap_self_apply]
   have hswap₂ (t i j : Fin 3) : D t i j = D t j i := by
     have hsym := sourceTransverseHessian_isSymm a L
     have h := congrArg (fun P : B3 K => (pderiv t P).coeff 0)
@@ -95,7 +95,7 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
               (pderiv (.inr j) (pderiv (.inr i) L))) := by
       change pderiv t (referenceSlice a
         (pderiv (.inr j) (pderiv (.inr i) L))) = _
-      exact (referenceSlice_pderiv a t _).symm
+      exact referenceSlice_pderiv a t _
     have hright :
         pderiv i (H t j) =
           referenceSlice a
@@ -103,7 +103,7 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
               (pderiv (.inr j) (pderiv (.inr t) L))) := by
       change pderiv i (referenceSlice a
         (pderiv (.inr j) (pderiv (.inr t) L))) = _
-      exact (referenceSlice_pderiv a i _).symm
+      exact referenceSlice_pderiv a i _
     have hcomm :
         pderiv (.inr t)
           (pderiv (.inr j) (pderiv (.inr i) L)) =
@@ -120,6 +120,7 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
       (H.map (MvPolynomial.aeval v).toRingHom).adjugate = 0 := by
     let φ : B3 K →ₐ[K] K := MvPolynomial.aeval v
     have hx : φ (MvPolynomial.X (0 : Fin 3)) = 0 := by
+      change MvPolynomial.aeval v (MvPolynomial.X (0 : Fin 3)) = 0
       simpa only [MvPolynomial.aeval_X] using hv
     have hz (i j : Fin 3) : φ (H.adjugate i j) = 0 := by
       obtain ⟨u, hu⟩ := hcof i j
@@ -177,7 +178,9 @@ theorem sourceCubic_coordinatePole_rankOne_impossible
       rw [hmat]
       exact integrable_ternaryTensor_det_zero_of_plane_cofactor_zero
         D hswap₁ hswap₂ hAadj hBadj hABadj (v 0) (v 1) (v 2)
-    simpa only [RingHom.map_det] using hz
+    change (MvPolynomial.aeval v).toRingHom H.det = 0
+    rw [RingHom.map_det]
+    exact hz
   have hdetZero : H.det = 0 := by
     apply (sourceCubic_transverseHessian_det_homogeneous_three a F).eq_zero_of_forall_eval_eq_zero
     intro v
