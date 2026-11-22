@@ -77,5 +77,19 @@ theorem sourceCubic_hessian_three_two_lower_decomposition
   have hf := congrArg (fun P : SB K => hessian P i j) hF
   simpa only [hessian_apply, map_add] using hf.symm
 
+/-- The weight-five component of the original Hessian determinant
+is zero whenever the original determinant is one. This is the
+source side of the forthcoming first-correction coefficient identity. -/
+theorem sourceCubic_detOne_weightFive_initialForm_zero
+    (F : SB K) (hdetOne : hessianDeterminant F = 1) :
+    initialForm transverseCubicWeight 5 (hessianDeterminant F) = 0 := by
+  rw [hdetOne]
+  have hz :=
+    initialForm_eq_zero_of_isWeightedHomogeneous
+      (MvPolynomial.isWeightedHomogeneous_C
+        transverseCubicWeight (1 : K))
+      5 (by norm_num)
+  simpa only [map_one] using hz
+
 end
 end HC4.Polynomial.RankThreeCubic
