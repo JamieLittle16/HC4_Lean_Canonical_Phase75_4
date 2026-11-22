@@ -1368,6 +1368,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+- `HC4.Polynomial.RankThreeCubicSourceLinearTensorEvaluation`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency`
 - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
   - `HC4.Polynomial.RankThreeCubicSimplePoleNumerator`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
