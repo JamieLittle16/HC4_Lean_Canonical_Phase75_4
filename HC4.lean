@@ -581,3 +581,6 @@ import HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil
 
 -- Integral cubic Hessian rank-one pencil rigidity and determinant collapse.
 import HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil
+
+-- Integrability excludes rank-one transverse planes for nondegenerate ternary cubic Hessians.
+import HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction
