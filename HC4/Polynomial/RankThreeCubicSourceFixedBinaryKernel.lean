@@ -151,7 +151,8 @@ theorem sourceCubic_genuineRankTwo_fixedBinaryKernel_or_exactTriple
     refine ⟨M, r, t, hM, hM1, hM2, hrt, ?_⟩
     intro x y
     have h := hker x y
-    simpa only [hEval (M.mulVec ![(0 : K), x, y])] using h
+    rw [hEval (M.mulVec ![(0 : K), x, y])]
+    exact h
   · exact Or.inr htriple
 
 end
