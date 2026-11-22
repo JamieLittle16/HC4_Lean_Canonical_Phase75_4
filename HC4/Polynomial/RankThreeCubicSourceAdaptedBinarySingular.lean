@@ -66,9 +66,12 @@ theorem normalAdjugate_divisible_adaptedPlaneCofactor_zero
   let x : Fin 3 → K := M.mulVec w
   let ev : B3 K →+* K := (MvPolynomial.aeval x).toRingHom
   have hplane : (∑ i : Fin 3, ell i * x i) = 0 := by
+    have h1 := hM1
+    have h2 := hM2
+    simp only [Fin.sum_univ_three] at h1 h2
     dsimp [x, w]
-    simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_three]
-    linear_combination u * hM1 + v * hM2
+    simp [Matrix.mulVec, dotProduct, Fin.sum_univ_three]
+    linear_combination u * h1 + v * h2
   have hpx : ev p = 0 := by
     calc
       ev p = ev (∑ i : Fin 3,
