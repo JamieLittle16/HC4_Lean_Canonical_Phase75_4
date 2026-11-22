@@ -496,3 +496,6 @@ import HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
 
 -- Every longitudinal coefficient of the cubic pole quadratic family annihilates the same residue.
 import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
+
+-- Singular transverse determinant forces all 2x2 adjugate minors to vanish.
+import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
