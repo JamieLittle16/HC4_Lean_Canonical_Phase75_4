@@ -629,3 +629,6 @@ import HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm
 
 -- Remaining cubic source pole: forced rank-two and all-time cofactor transport.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime
+
+-- Intrinsic tangent chart for the forced source rank-two cubic pole.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoAdaptedFrame
