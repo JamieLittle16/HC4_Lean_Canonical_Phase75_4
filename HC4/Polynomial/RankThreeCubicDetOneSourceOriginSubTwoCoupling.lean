@@ -97,5 +97,43 @@ theorem sourceCubic_detOne_originQuadraticKernel_subTwoCoupling_ne_zero
   rw [heq] at hc
   exact hc
 
+/-- The forced strictly subquadratic mixed source response is
+not merely a nonzero polynomial: it has transverse degree zero
+and its actual ground-field constant coefficient is nonzero. -/
+theorem sourceCubic_detOne_originQuadraticKernel_subTwoScalar_ne_zero
+    (F : SB K) (a : K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    (hdetOne : hessianDeterminant F = 1)
+    (w0 : Fin 3 → K) (hw0 : w0 ≠ 0)
+    (hTker : ∀ i : Fin 3,
+      (∑ j : Fin 3,
+        (MvPolynomial.aeval (fun _ : Fin 3 => (0 : K))
+          (referenceSlice a
+            (hessian (initialForm transverseCubicWeight 2 F)
+              (.inr i) (.inr j)))) * w0 j) = 0) :
+    let Rlow : SB K :=
+      (F - initialForm transverseCubicWeight 3 F) -
+        initialForm transverseCubicWeight 2 F
+    let flow : B3 K :=
+      ∑ j : Fin 3,
+        referenceSlice a (hessian Rlow (.inl ()) (.inr j)) *
+          MvPolynomial.C (w0 j)
+    flow.coeff 0 ≠ 0 := by
+  classical
+  let Rlow : SB K :=
+    (F - initialForm transverseCubicWeight 3 F) -
+      initialForm transverseCubicWeight 2 F
+  let flow : B3 K :=
+    ∑ j : Fin 3,
+      referenceSlice a (hessian Rlow (.inl ()) (.inr j)) *
+        MvPolynomial.C (w0 j)
+  have hnonzero : MvPolynomial.aeval (fun _ : Fin 3 => (0 : K)) flow ≠ 0 :=
+    sourceCubic_detOne_originQuadraticKernel_subTwoCoupling_ne_zero
+      F a hcap hdetOne w0 hw0 hTker
+  have hc : flow = MvPolynomial.C (flow.coeff 0) :=
+    sourceCubic_subTwo_mixedDirectional_eq_C F hcap a w0
+  rw [hc] at hnonzero
+  simpa only [MvPolynomial.aeval_C] using hnonzero
+
 end
 end HC4.Polynomial.RankThreeCubic
