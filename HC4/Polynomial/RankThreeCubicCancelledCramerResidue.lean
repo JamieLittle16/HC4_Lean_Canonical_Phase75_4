@@ -51,8 +51,9 @@ theorem cramer_cancel_common_factor_hscale
         algebraMap (B3 K) (F3 K) s * V j := by
   classical
   let g : B3 K →+* F3 K := algebraMap (B3 K) (F3 K)
-  have hgp : g p ≠ 0 :=
-    (IsFractionRing.injective (B3 K) (F3 K)).ne hp0
+  have hgp : g p ≠ 0 := by
+    simpa only [map_zero] using
+      (IsFractionRing.injective (B3 K) (F3 K)).ne hp0
   intro j
   have hcramer :=
     fractionKernel_adjugate_numerator_identity H r V hkernel j
