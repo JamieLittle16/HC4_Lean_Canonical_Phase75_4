@@ -107,14 +107,17 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
   - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
   - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
   - `HC4.Polynomial.RankThreeCubicSquareLock`
   - `HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
