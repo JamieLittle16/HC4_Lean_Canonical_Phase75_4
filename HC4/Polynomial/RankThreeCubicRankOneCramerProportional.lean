@@ -1,4 +1,5 @@
-import Mathlib.Tactic
+import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+import Mathlib
 
 /-!
 # The Cramer numerator inherits rank-one adjugate geometry
