@@ -632,3 +632,18 @@ import HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime
 
 -- Intrinsic tangent chart for the forced source rank-two cubic pole.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoAdaptedFrame
+
+-- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
+import HC4.Polynomial.RankThreeCubicRepeatedPoleKernelTangency
+
+-- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
+import HC4.Polynomial.RankThreeCubicTensorKernelLeaf
+
+-- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
+import HC4.Polynomial.RankThreeCubicTensorRepeatedPoleTangency
+
+-- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
+import HC4.Polynomial.RankThreeCubicSourceLinearTensorEvaluation
+
+-- Source rank-two pole geometric dichotomy: tangent normalized residue or triple Hessian factor.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple
