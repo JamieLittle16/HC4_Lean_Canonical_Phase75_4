@@ -139,7 +139,8 @@ theorem sourceCubic_genuinePole_detOne_forces_lowerLayerRepair
   have hw : w ≠ 0 := by
     intro hz
     have hkzero := congrFun hz (.inr k)
-    exact hSk (by simpa only [w, S] using hkzero)
+    change S k = 0 at hkzero
+    exact hSk hkzero
   let φ : SB K →+* R := q.comp (referenceSlice a).toRingHom
   have hBmap : B = (hessian F).map φ := by
     ext i j
