@@ -71,16 +71,16 @@ theorem adjugate_rankOne_cross_products
   all_goals solve
     | ring
     | (change B 0 0 * B 1 1 = B 1 0 * B 0 1; linear_combination h22)
-    | (change B 0 0 * B 1 2 = B 1 0 * B 0 2; linear_combination h12)
-    | (change B 0 0 * B 2 1 = B 2 0 * B 0 1; linear_combination h21)
+    | (change B 0 0 * B 1 2 = B 1 0 * B 0 2; linear_combination -h12)
+    | (change B 0 0 * B 2 1 = B 2 0 * B 0 1; linear_combination -h21)
     | (change B 0 0 * B 2 2 = B 2 0 * B 0 2; linear_combination h11)
     | (change B 1 1 * B 0 0 = B 0 1 * B 1 0; linear_combination h22)
-    | (change B 1 1 * B 0 2 = B 0 1 * B 1 2; linear_combination h02)
-    | (change B 1 1 * B 2 0 = B 2 1 * B 1 0; linear_combination h20)
+    | (change B 1 1 * B 0 2 = B 0 1 * B 1 2; linear_combination -h02)
+    | (change B 1 1 * B 2 0 = B 2 1 * B 1 0; linear_combination -h20)
     | (change B 1 1 * B 2 2 = B 2 1 * B 1 2; linear_combination h00)
     | (change B 2 2 * B 0 0 = B 0 2 * B 2 0; linear_combination h11)
-    | (change B 2 2 * B 0 1 = B 0 2 * B 2 1; linear_combination h01)
-    | (change B 2 2 * B 1 0 = B 1 2 * B 2 0; linear_combination h10)
+    | (change B 2 2 * B 0 1 = B 0 2 * B 2 1; linear_combination -h01)
+    | (change B 2 2 * B 1 0 = B 1 2 * B 2 0; linear_combination -h10)
     | (change B 2 2 * B 1 1 = B 1 2 * B 2 1; linear_combination h00)
 
 end
