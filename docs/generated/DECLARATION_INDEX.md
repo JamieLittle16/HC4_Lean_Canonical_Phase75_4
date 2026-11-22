@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10672**.
+Distinct declaration spellings indexed: **10673**.
 
 ## Repeated declaration spellings
 
@@ -4576,6 +4576,7 @@ Distinct declaration spellings indexed: **10672**.
 - `coeff_one_taylor_one_twoEndpointResidual` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `coeff_order_determinant` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `coeff_parallelStaircaseMomentHessian_monomial` — `theorem` in `HC4.Polynomial.FiniteStaircasePureModeMomentLeading`
+- `coeff_pderiv_at` — `theorem` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
 - `coeff_pderiv_backport` — `theorem` in `HC4.Newton.CharZeroHessianKernelRigidity`
 - `coeff_pderiv_commRing` — `theorem` in `HC4.Valuation.SmithFrontierFourBlockExtraction`
 - `coeff_pderiv_commSemiring` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
@@ -4935,7 +4936,6 @@ Distinct declaration spellings indexed: **10672**.
 - `defect_le_alignedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`
 - `defect_mem_closingKernel_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelContact`
 - `defect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
-- `degreeOf_pderiv_lt_of_degreeOf_pos` — `theorem` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
 - `degreeOneRaw_codimensionTwoPair_forcesAll` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_firstThirdZero_forcesSecond` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_firstTwoZero_forcesThird` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
@@ -10622,6 +10622,7 @@ Distinct declaration spellings indexed: **10672**.
 - `topKernel_rankTwo_or_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `top_profile_coefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleTop`
 - `toric_exponent_relation` — `theorem` in `HC4.Toric.InvariantSemigroup`
+- `totalDegree_pderiv_lt_of_totalDegree_pos` — `theorem` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
 - `totalDegree_rigidTopBinaryPlaneSpecialisation_monomial_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `trace_axisBlock_singular` — `theorem` in `HC4.Valuation.TransverseAxisKernelDrift`

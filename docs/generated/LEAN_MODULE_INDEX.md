@@ -3522,7 +3522,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
-- Declarations: `abbrev B3`, `abbrev F3`, `abbrev SB`, `theorem degreeOf_pderiv_lt_of_degreeOf_pos`, `theorem pderiv_ne_zero_of_mem_vars`, `theorem exists_pderiv_not_dvd_of_irreducible`, `theorem squarefree_irreducible_factor_not_all_pderivs`, `theorem sourceCubic_squarefreePole_impossible`
+- Declarations: `abbrev B3`, `abbrev F3`, `abbrev SB`, `theorem coeff_pderiv_at`, `theorem totalDegree_pderiv_lt_of_totalDegree_pos`, `theorem pderiv_ne_zero_of_mem_vars`, `theorem exists_pderiv_not_dvd_of_irreducible`, `theorem squarefree_irreducible_factor_not_all_pderivs`, `theorem sourceCubic_squarefreePole_impossible`
 
 ### `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
 
