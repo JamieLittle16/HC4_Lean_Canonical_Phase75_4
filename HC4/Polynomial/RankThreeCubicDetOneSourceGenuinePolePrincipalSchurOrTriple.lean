@@ -1,3 +1,4 @@
+import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
 import HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor
 import HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling
 import HC4.Polynomial.RankThreeCubicSourceNormalAdjugateOrTriple
