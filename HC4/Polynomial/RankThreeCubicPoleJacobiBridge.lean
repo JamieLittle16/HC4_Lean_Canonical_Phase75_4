@@ -135,7 +135,7 @@ theorem cubic_rankOneCramer_Jacobi_zero
     apply Matrix.IsSymm.ext
     intro i j
     change q (H j i) = q (H i j)
-    exact congrArg q (hSym.apply i j).symm
+    exact congrArg q (hSym.apply i j)
   have hBsymm : B.IsSymm := by
     change M.adjugate.transpose = M.adjugate
     rw [Matrix.adjugate_transpose, hMsymm]
@@ -180,7 +180,7 @@ theorem cubic_rankOneCramer_Jacobi_zero
         change q (H.adjugate l j) * q (pderiv i (H j l)) =
           q (pderiv i (H j l)) * q (H.adjugate j l)
         have hcof : H.adjugate l j = H.adjugate j l :=
-          (hAdjSymm.apply j l).symm
+          hAdjSymm.apply j l
         rw [hcof]
         ring
     _ = 0 := hcontraction
