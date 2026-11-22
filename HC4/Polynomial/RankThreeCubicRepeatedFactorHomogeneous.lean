@@ -41,8 +41,8 @@ private theorem euler3_mul (P Q : B3 K) :
     (∑ i : Fin 3, (MvPolynomial.X i : B3 K) *
       (pderiv i P * Q + P * pderiv i Q)) =
       ∑ i : Fin 3,
-        ((MvPolynomial.X i : B3 K) * pderiv i P) * Q +
-          P * ((MvPolynomial.X i : B3 K) * pderiv i Q) := by
+        (((MvPolynomial.X i : B3 K) * pderiv i P) * Q +
+          P * ((MvPolynomial.X i : B3 K) * pderiv i Q)) := by
             apply Finset.sum_congr rfl
             intro i _
             ring
@@ -104,20 +104,15 @@ theorem homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero
         MvPolynomial.C (c.coeff 0) * p = 0 :=
     (mul_eq_zero.mp hmul).resolve_left hp0
   by_contra ha
-  have hconst0 (P : B3 K) :
-      MvPolynomial.aeval (0 : Fin 3 → K) P = P.coeff 0 := by
-    simpa only [MvPolynomial.aeval_zero,
-      Algebra.algebraMap_self_apply] using
-      (MvPolynomial.aeval_zero (S₁ := K) P)
   have hrelation0 :
       (2 : K) * p.coeff 0 * c.coeff 0 +
         c.coeff 0 * p.coeff 0 = 0 := by
     have h := congrArg
-      (fun P : B3 K => MvPolynomial.aeval (0 : Fin 3 → K) P)
+      (fun P : B3 K => (MvPolynomial.constantCoeff : B3 K →+* K) P)
       hrelation
     simpa only [map_add, map_mul, map_zero, map_ofNat,
-      MvPolynomial.aeval_C, Algebra.algebraMap_self_apply,
-      hconst0] using h
+      MvPolynomial.constantCoeff_C, MvPolynomial.constantCoeff_eq]
+      using h
   have hab : p.coeff 0 * c.coeff 0 = 0 := by
     have hthree : (3 : K) * (p.coeff 0 * c.coeff 0) = 0 := by
       calc
@@ -131,7 +126,7 @@ theorem homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero
     have hrel := hrelation
     rw [hb, map_zero, zero_mul, add_zero] at hrel
     have htwo : (2 : B3 K) * MvPolynomial.C (p.coeff 0) ≠ 0 := by
-      exact mul_ne_zero (by norm_num) (map_ne_zero (MvPolynomial.C : K →+* B3 K) ha)
+      exact mul_ne_zero (by norm_num) (MvPolynomial.C_ne_zero.mpr ha)
     exact (mul_eq_zero.mp hrel).resolve_left htwo
   exact hc0 hcvanish
 
