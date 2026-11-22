@@ -563,3 +563,9 @@ import HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection
 
 -- Source-honest rank-two repeated pole kernel/adjugate alignment.
 import HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment
+
+-- Coefficientwise higher-time source cubic pole constraints on one adjugate column.
+import HC4.Polynomial.RankThreeCubicAlignedQuadraticColumn
+
+-- Coefficientwise higher-time source cubic pole constraints on one adjugate column.
+import HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport
