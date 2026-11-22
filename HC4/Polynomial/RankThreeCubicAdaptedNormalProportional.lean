@@ -58,7 +58,9 @@ theorem tangentFrame_linearFunctional_proportional
   calc
     gamma j = (g * ell j) / t := by
       apply (eq_div_iff ht).2
-      simpa only [mul_comm] using hscale'.symm
+      calc
+        gamma j * t = t * gamma j := mul_comm _ _
+        _ = g * ell j := hscale'
     _ = (g / t) * ell j := by ring
 
 end
