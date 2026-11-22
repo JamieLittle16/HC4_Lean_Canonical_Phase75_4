@@ -70,5 +70,53 @@ theorem cubicZeroBinaryHessian_det_triple_of_discriminant_zero
   rw [sub_eq_zero.mpr hdisc]
   ring
 
+
+/-- Over a characteristic-zero field, if the determinant of a
+zero-binary-block cubic Hessian has a square normal factor
+with an affine-linear quotient, then the binary quadratic
+discriminant vanishes. In particular its determinant has a
+*cubic* normal factor by the preceding theorem.
+
+This is the finite coefficient obstruction; the source-specific
+step must still transport its original factorisation into
+the adapted coordinates. -/
+theorem cubicZeroBinaryHessian_discriminant_zero_of_squareNormalFactor
+    {K : Type*} [Field K] [CharZero K]
+    (alpha beta gamma m n l A B C : K)
+    (hfactor : ∀ z u v : K,
+      (cubicZeroBinaryHessian alpha beta gamma m n l z u v).det =
+        z ^ 2 * (A * z + B * u + C * v)) :
+    m * l = n ^ 2 := by
+  have hlin (u v : K) :
+      (m * l - n ^ 2) *
+        (m * u ^ 2 + 2 * n * u * v + l * v ^ 2) = 0 := by
+    have h1 := hfactor 1 u v
+    have hm1 := hfactor (-1) u v
+    have h2 := hfactor 2 u v
+    rw [cubicZeroBinaryHessian_det_expansion] at h1 hm1 h2
+    norm_num at h1 hm1 h2
+    have h6 :
+        (6 : K) * ((m * l - n ^ 2) *
+          (m * u ^ 2 + 2 * n * u * v + l * v ^ 2)) = 0 := by
+      linear_combination -(6 * h1 - 2 * hm1 - h2)
+    exact (mul_eq_zero.mp h6).resolve_left (by norm_num)
+  have hm : (m * l - n ^ 2) * m = 0 := by
+    simpa using hlin 1 0
+  have hl : (m * l - n ^ 2) * l = 0 := by
+    simpa using hlin 0 1
+  have hn : (m * l - n ^ 2) * (m + 2 * n + l) = 0 := by
+    convert hlin 1 1 using 1 <;> ring
+  by_cases hd : m * l - n ^ 2 = 0
+  · exact sub_eq_zero.mp hd
+  · have hm0 : m = 0 := (mul_eq_zero.mp hm).resolve_left hd
+    have hl0 : l = 0 := (mul_eq_zero.mp hl).resolve_left hd
+    have hn0 : n = 0 := by
+      have h2n : (m * l - n ^ 2) * (2 * n) = 0 := by
+        simpa [hm0, hl0] using hn
+      have h : (2 : K) * n = 0 :=
+        (mul_eq_zero.mp h2n).resolve_left hd
+      exact (mul_eq_zero.mp h).resolve_left (by norm_num)
+    exact False.elim (hd (by simp [hm0, hl0, hn0]))
+
 end
 end HC4.Polynomial.RankThreeCubic
