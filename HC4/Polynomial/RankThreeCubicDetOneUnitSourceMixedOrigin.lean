@@ -70,6 +70,8 @@ theorem unitLongitudinal_sourceMixedOrigin_ne_zero
   have hresp : (B *ᵥ v) (.inl ()) = q f := by
     simp [B, v, W, f, Matrix.mulVec, dotProduct,
       Fintype.sum_sum_type, φ, q, map_sum, map_mul]
+  change IsUnit ((B *ᵥ v) (.inl ())) →
+    MvPolynomial.aeval (fun _ : Fin 3 => (0 : K)) f ≠ 0
   intro hunit
   have hu : IsUnit (q f) := by
     rw [← hresp]
