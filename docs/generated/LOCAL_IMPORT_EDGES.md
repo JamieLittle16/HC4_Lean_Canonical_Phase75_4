@@ -87,6 +87,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
+  - `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
   - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
   - `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
@@ -97,6 +98,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
+  - `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.QuasiTranslation`
@@ -1299,6 +1301,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`
   - `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`
   - `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`
+- `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`
+  - `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
 - `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
   - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
 - `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`
@@ -1323,6 +1327,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`
   - `HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
+- `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
+  - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
 - `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
   - `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
   - `HC4.Polynomial.RankThreeEndpointActiveMinor`
