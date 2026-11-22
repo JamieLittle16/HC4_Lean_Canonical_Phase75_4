@@ -87,9 +87,9 @@ theorem binaryCubic_reducedHessian_threeZeros_constantKernel
     binaryCubicReducedHessianDet_threeZeros a b c d h10 h01 h11
   by_cases ha : a = 0
   · have hb2 : b ^ 2 = 0 := by simpa [ha] using hac.symm
-    have hb : b = 0 := pow_eq_zero hb2
+    have hb : b = 0 := eq_zero_of_pow_eq_zero hb2
     have hc2 : c ^ 2 = 0 := by simpa [hb] using hbd.symm
-    have hc : c = 0 := pow_eq_zero hc2
+    have hc : c = 0 := eq_zero_of_pow_eq_zero hc2
     refine ⟨1, 0, Or.inl one_ne_zero, ?_⟩
     intro u v
     simp [ha, hb, hc]
@@ -134,9 +134,9 @@ theorem binaryCubic_pureCube_of_reducedHessian_threeZeros
   by_cases ha : a = 0
   · left
     have hb2 : b ^ 2 = 0 := by simpa [ha] using hac.symm
-    have hb : b = 0 := (pow_eq_zero hb2)
+    have hb : b = 0 := (eq_zero_of_pow_eq_zero hb2)
     have hc2 : c ^ 2 = 0 := by simpa [hb] using hbd.symm
-    have hc : c = 0 := (pow_eq_zero hc2)
+    have hc : c = 0 := (eq_zero_of_pow_eq_zero hc2)
     exact ⟨ha, hb, hc⟩
   · right
     refine ⟨ha, ?_⟩
