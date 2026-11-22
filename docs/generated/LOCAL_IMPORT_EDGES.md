@@ -60,6 +60,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
   - `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
   - `HC4.Polynomial.RankThreeCubicHessianCongruence`
   - `HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil`
@@ -90,6 +91,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`
   - `HC4.Polynomial.RankThreeCubicRankTwoFullAdjugateContraction`
   - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
+  - `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
   - `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`
   - `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`
   - `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
@@ -103,6 +105,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
+  - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
@@ -1370,6 +1373,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
   - `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`
+- `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
+  - `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
   - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
