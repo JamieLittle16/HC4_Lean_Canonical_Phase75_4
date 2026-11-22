@@ -106,6 +106,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`
   - `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
+  - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdaptedFrame`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`
@@ -1380,6 +1381,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
   - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
   - `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
+- `HC4.Polynomial.RankThreeCubicSourceRankTwoAdaptedFrame`
+  - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
+  - `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`
+  - `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`
 - `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`
   - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
   - `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`
