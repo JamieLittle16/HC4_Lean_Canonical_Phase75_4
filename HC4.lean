@@ -539,3 +539,9 @@ import HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue
 
 -- Cancel one repeated Cramer factor and retain source quadratic residue equations.
 import HC4.Polynomial.RankThreeCubicCancelledCramerResidue
+
+-- Construct the nonzero normalized cubic pole residue from reduced denominators.
+import HC4.Polynomial.RankThreeCubicCommonDenominatorResidue
+
+-- Construct the nonzero normalized cubic pole residue from reduced denominators.
+import HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue
