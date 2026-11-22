@@ -37,9 +37,9 @@ theorem sourceTransverseHessian_pderiv_eq_third
   change pderiv i (referenceSlice a
       (pderiv (.inr k) (pderiv (.inr j) L))) = _
   rw [referenceSlice_pderiv]
-  rw [MvPolynomial.pderiv_comm (.inr i) (.inr k)
+  rw [HC4.Newton.pderiv_comm_backport (.inr i) (.inr k)
     (pderiv (.inr j) L)]
-  rw [MvPolynomial.pderiv_comm (.inr i) (.inr j) L]
+  rw [HC4.Newton.pderiv_comm_backport (.inr i) (.inr j) L]
 
 end
 end HC4.Polynomial.RankThreeCubic
