@@ -104,5 +104,70 @@ theorem sourceCubic_repair_transverseEntry_pderiv_zero
   exact transverseCubicWeight_pderiv_eq_zero_of_lt_one _
     (sourceCubic_repair_transverseEntry_strictWeightOne F hcap i j) k
 
+
+/-- The source identity for the transverse-transverse correction
+survives every longitudinal slice. In the transverse polynomial ring
+it says every coordinate derivative of the sliced entry is zero. -/
+theorem sourceCubic_repair_slicedTransverseEntry_pderiv_zero
+    (F : SB K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    (a : K) (i j k : Fin 3) :
+    pderiv k (referenceSlice a
+      (hessian (F - initialForm transverseCubicWeight 3 F)
+        (.inr i) (.inr j))) = 0 := by
+  rw [referenceSlice_pderiv a k]
+  rw [sourceCubic_repair_transverseEntry_pderiv_zero F hcap i j k]
+  simp
+
+/-- Two transverse derivatives kill every source polynomial of
+transverse weight strictly below two. -/
+theorem transverseCubicWeight_two_pderiv_eq_zero_of_lt_two
+    (P : SB K)
+    (hP : IsWeightLT transverseCubicWeight 2 P)
+    (j k : Fin 3) :
+    pderiv (.inr k) (pderiv (.inr j) P) = 0 := by
+  have hfirst := hP.pderiv (.inr j)
+  have hw : (2 : ℤ) - transverseCubicWeight (.inr j) = 1 := by
+    simp [transverseCubicWeight]
+  rw [hw] at hfirst
+  exact transverseCubicWeight_pderiv_eq_zero_of_lt_one _
+    hfirst k
+
+/-- The longitudinal/transverse correcting Hessian entries of the
+actual lower-weight source are at most linear transversely: every
+second transverse derivative vanishes identically. -/
+theorem sourceCubic_repair_mixedEntry_twoTransverseDerivatives_zero
+    (F : SB K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    (i j k : Fin 3) :
+    pderiv (.inr k) (pderiv (.inr j)
+      (hessian (F - initialForm transverseCubicWeight 3 F)
+        (.inl ()) (.inr i))) = 0 := by
+  have hprofile :=
+    (sub_initialForm_isWeightLT hcap).hessian_entry
+      (.inl ()) (.inr i)
+  have hw :
+      (3 : ℤ) - transverseCubicWeight (.inl ()) -
+        transverseCubicWeight (.inr i) = 2 := by
+    simp [transverseCubicWeight]
+  rw [hw] at hprofile
+  exact transverseCubicWeight_two_pderiv_eq_zero_of_lt_two _
+    hprofile j k
+
+/-- The mixed Hessian correction remains transversely affine after
+specializing the longitudinal source variable. -/
+theorem sourceCubic_repair_slicedMixedEntry_twoTransverseDerivatives_zero
+    (F : SB K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    (a : K) (i j k : Fin 3) :
+    pderiv k (pderiv j
+      (referenceSlice a
+        (hessian (F - initialForm transverseCubicWeight 3 F)
+          (.inl ()) (.inr i)))) = 0 := by
+  rw [referenceSlice_pderiv a j, referenceSlice_pderiv a k]
+  rw [sourceCubic_repair_mixedEntry_twoTransverseDerivatives_zero
+    F hcap i j k]
+  simp
+
 end
 end HC4.Polynomial.RankThreeCubic
