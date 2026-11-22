@@ -518,3 +518,6 @@ import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
 
 -- Cubic full-rank two-way source classification.
 import HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated
+
+-- Genuine repeated linear denominator-pole refinement of cubic source classification.
+import HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole
