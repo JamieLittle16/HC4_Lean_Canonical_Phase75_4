@@ -99,5 +99,40 @@ theorem cubicTensor_coordinatePlane_normalCofactor_threeZeros_constantTangentKer
       cubicTensor_coordinatePlane_normalCofactor_eq_binaryDet
         D hswap₁ hswap₂] using h11
 
+
+/-- The restricted ternary cubic's binary part is a pure cube
+whenever the normal principal cofactor vanishes at three plane
+points. This is a coefficient classification: the four
+coefficients are those of the *same symmetric source tensor*,
+not a newly chosen polynomial. -/
+theorem cubicTensor_coordinatePlane_normalCofactor_threeZeros_pureCube
+    {K : Type*} [Field K]
+    (D : Fin 3 → Fin 3 → Fin 3 → K)
+    (hswap₁ : ∀ i j k : Fin 3, D i j k = D j i k)
+    (hswap₂ : ∀ i j k : Fin 3, D i j k = D i k j)
+    (h10 : (cubicTensorHessianAt D ![(0 : K), 1, 0]).adjugate 0 0 = 0)
+    (h01 : (cubicTensorHessianAt D ![(0 : K), 0, 1]).adjugate 0 0 = 0)
+    (h11 : (cubicTensorHessianAt D ![(0 : K), 1, 1]).adjugate 0 0 = 0) :
+    ((D 1 1 1 = 0 ∧ D 1 1 2 = 0 ∧ D 1 2 2 = 0) ∨
+      (D 1 1 1 ≠ 0 ∧
+        ∀ u v : K,
+          D 1 1 1 * u ^ 3 +
+              3 * D 1 1 2 * u ^ 2 * v +
+              3 * D 1 2 2 * u * v ^ 2 +
+              D 2 2 2 * v ^ 3 =
+            D 1 1 1 *
+              (u + (D 1 1 2 / D 1 1 1) * v) ^ 3)) := by
+  apply binaryCubic_pureCube_of_reducedHessian_threeZeros
+    (D 1 1 1) (D 1 1 2) (D 1 2 2) (D 2 2 2)
+  · simpa only [
+      cubicTensor_coordinatePlane_normalCofactor_eq_binaryDet
+        D hswap₁ hswap₂] using h10
+  · simpa only [
+      cubicTensor_coordinatePlane_normalCofactor_eq_binaryDet
+        D hswap₁ hswap₂] using h01
+  · simpa only [
+      cubicTensor_coordinatePlane_normalCofactor_eq_binaryDet
+        D hswap₁ hswap₂] using h11
+
 end
 end HC4.Polynomial.RankThreeCubic
