@@ -19,6 +19,8 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
+set_option maxHeartbeats 1000000
+
 /-- All 2x2 minors of the adjugate vanish when a 3x3 matrix has
 zero determinant, with no symmetry hypothesis and no inverses. -/
 theorem adjugate_rankOne_cross_products
@@ -68,15 +70,18 @@ theorem adjugate_rankOne_cross_products
   fin_cases k <;> fin_cases i <;> fin_cases j
   all_goals solve
     | ring
-    | linear_combination h00
-    | linear_combination h01
-    | linear_combination h02
-    | linear_combination h10
-    | linear_combination h11
-    | linear_combination h12
-    | linear_combination h20
-    | linear_combination h21
-    | linear_combination h22
+    | (change B 0 0 * B 1 1 = B 1 0 * B 0 1; linear_combination h22)
+    | (change B 0 0 * B 1 2 = B 1 0 * B 0 2; linear_combination h12)
+    | (change B 0 0 * B 2 1 = B 2 0 * B 0 1; linear_combination h21)
+    | (change B 0 0 * B 2 2 = B 2 0 * B 0 2; linear_combination h11)
+    | (change B 1 1 * B 0 0 = B 0 1 * B 1 0; linear_combination h22)
+    | (change B 1 1 * B 0 2 = B 0 1 * B 1 2; linear_combination h02)
+    | (change B 1 1 * B 2 0 = B 2 1 * B 1 0; linear_combination h20)
+    | (change B 1 1 * B 2 2 = B 2 1 * B 1 2; linear_combination h00)
+    | (change B 2 2 * B 0 0 = B 0 2 * B 2 0; linear_combination h11)
+    | (change B 2 2 * B 0 1 = B 0 2 * B 2 1; linear_combination h01)
+    | (change B 2 2 * B 1 0 = B 1 2 * B 2 0; linear_combination h10)
+    | (change B 2 2 * B 1 1 = B 1 2 * B 2 1; linear_combination h00)
 
 end
 end HC4.Polynomial.RankThreeCubic
