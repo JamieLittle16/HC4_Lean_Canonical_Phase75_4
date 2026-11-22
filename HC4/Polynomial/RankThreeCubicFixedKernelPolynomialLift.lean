@@ -52,10 +52,14 @@ theorem homogeneousOne_polynomial_linearForm
   have heq : P = ∑ j : Fin 3,
       (MvPolynomial.X j : B3 K) * pderiv j P := by
     simpa only [one_nsmul] using hEuler.symm
-  rw [heq]
-  apply Finset.sum_congr rfl
-  intro j _
-  rw [hder j]
+  calc
+    P = ∑ j : Fin 3, (MvPolynomial.X j : B3 K) *
+        pderiv j P := heq
+    _ = ∑ j : Fin 3, (MvPolynomial.X j : B3 K) *
+        MvPolynomial.C ((pderiv j P).coeff 0) := by
+          apply Finset.sum_congr rfl
+          intro j _
+          rw [hder j]
 
 /-- A congruent fixed kernel descends from an invertible
 frame to the original matrix at the same point. -/
@@ -69,7 +73,9 @@ theorem invertibleFrame_congruenceKernel_descends
   have ht : M.transpose.det ≠ 0 := by
     simpa only [Matrix.det_transpose] using hM
   have hnull : M.transpose *ᵥ (H *ᵥ (M.mulVec w)) = 0 := by
-    simpa only [Matrix.mulVec_mulVec] using hker
+    rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec]
+    rw [← Matrix.mul_assoc]
+    exact hker
   by_contra hne
   exact ht (Matrix.exists_mulVec_eq_zero_iff.mp
     ⟨H *ᵥ (M.mulVec w), hne, hnull⟩)
@@ -88,7 +94,7 @@ theorem homogeneousLinearMatrix_tangentKernel_rows_divisible
     (hM : M.det ≠ 0)
     (hM1 : (∑ i : Fin 3, ell i * M i 1) = 0)
     (hM2 : (∑ i : Fin 3, ell i * M i 2) = 0)
-    (r t : K)
+    (r t : K) [CharZero K]
     (hfixed : ∀ u v : K,
       let A := H.map
         (MvPolynomial.aeval (M.mulVec ![(0 : K), u, v])).toRingHom
@@ -105,7 +111,8 @@ theorem homogeneousLinearMatrix_tangentKernel_rows_divisible
     dsimp [P]
     apply MvPolynomial.IsHomogeneous.sum
     intro j _
-    have hc := MvPolynomial.isHomogeneous_C (W j)
+    have hc : (MvPolynomial.C (W j) : B3 K).IsHomogeneous 0 :=
+      MvPolynomial.isHomogeneous_C (Fin 3) (W j)
     simpa only [add_zero] using (hhom i j).mul hc
   have hrowZero (i : Fin 3) (u v : K) :
       MvPolynomial.aeval (M.mulVec ![(0 : K), u, v]) (P i) = 0 := by
@@ -117,10 +124,10 @@ theorem homogeneousLinearMatrix_tangentKernel_rows_divisible
     have hi := congrFun hH i
     change (∑ j : Fin 3, ev (H i j) * W j) = 0 at hi
     change ev (∑ j : Fin 3, H i j * MvPolynomial.C (W j)) = 0
-    simpa only [map_sum, map_mul,
-      show ∀ j : Fin 3, ev (MvPolynomial.C (W j)) = W j from
-        (fun j => by change MvPolynomial.aeval x
-          (MvPolynomial.C (W j)) = W j; simp)] using hi
+    have hevC (j : Fin 3) : ev (MvPolynomial.C (W j)) = W j := by
+      change MvPolynomial.aeval x (MvPolynomial.C (W j)) = W j
+      simp
+    simpa only [map_sum, map_mul, hevC] using hi
   intro i
   let gamma : Fin 3 → K := fun j => (pderiv j (P i)).coeff 0
   have hform : P i = ∑ j : Fin 3, (MvPolynomial.X j : B3 K) *
