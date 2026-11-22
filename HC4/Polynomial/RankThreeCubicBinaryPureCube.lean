@@ -25,6 +25,15 @@ namespace HC4.Polynomial.RankThreeCubic
 
 noncomputable section
 
+/-- In a field, a square vanishes only when its base vanishes.
+This avoids relying on a version-dependent nilpotence lemma. -/
+private theorem eq_zero_of_square_eq_zero
+    {K : Type*} [Field K] {x : K} (hx : x ^ 2 = 0) : x = 0 := by
+  have hmul : x * x = 0 := by simpa only [pow_two] using hx
+  rcases mul_eq_zero.mp hmul with hz | hz
+  · exact hz
+  · exact hz
+
 /-- The determinant of the binary Hessian after dividing all
 entries by the common nonzero factor 6. -/
 def binaryCubicReducedHessianDet
@@ -87,9 +96,9 @@ theorem binaryCubic_reducedHessian_threeZeros_constantKernel
     binaryCubicReducedHessianDet_threeZeros a b c d h10 h01 h11
   by_cases ha : a = 0
   · have hb2 : b ^ 2 = 0 := by simpa [ha] using hac.symm
-    have hb : b = 0 := eq_zero_of_pow_eq_zero hb2
+    have hb : b = 0 := eq_zero_of_square_eq_zero hb2
     have hc2 : c ^ 2 = 0 := by simpa [hb] using hbd.symm
-    have hc : c = 0 := eq_zero_of_pow_eq_zero hc2
+    have hc : c = 0 := eq_zero_of_square_eq_zero hc2
     refine ⟨1, 0, Or.inl one_ne_zero, ?_⟩
     intro u v
     simp [ha, hb, hc]
@@ -134,13 +143,17 @@ theorem binaryCubic_pureCube_of_reducedHessian_threeZeros
   by_cases ha : a = 0
   · left
     have hb2 : b ^ 2 = 0 := by simpa [ha] using hac.symm
-    have hb : b = 0 := (eq_zero_of_pow_eq_zero hb2)
+    have hb : b = 0 := (eq_zero_of_square_eq_zero hb2)
     have hc2 : c ^ 2 = 0 := by simpa [hb] using hbd.symm
-    have hc : c = 0 := (eq_zero_of_pow_eq_zero hc2)
+    have hc : c = 0 := (eq_zero_of_square_eq_zero hc2)
     exact ⟨ha, hb, hc⟩
   · right
     refine ⟨ha, ?_⟩
-    have hc : c = b ^ 2 / a := (eq_div_iff ha).2 (by simpa only [pow_two] using hac)
+    have hc : c = b ^ 2 / a := by
+      apply (eq_div_iff ha).2
+      calc
+        c * a = a * c := mul_comm c a
+        _ = b ^ 2 := hac
     have hd : d = b ^ 3 / a ^ 2 := by
       rw [hc] at had
       apply (eq_div_iff (pow_ne_zero 2 ha)).2
