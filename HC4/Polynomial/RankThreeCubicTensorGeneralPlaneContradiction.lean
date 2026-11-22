@@ -46,7 +46,7 @@ theorem cubicTensor_rankOnePlane_global_det_zero
   have hMunit : IsUnit M.det := isUnit_iff_ne_zero.mpr hM
   have hMw : M *ᵥ w = v := by
     dsimp [w]
-    rw [← Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv M hMunit,
+    rw [Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv M hMunit,
       Matrix.one_mulVec]
   rw [← hMw]
   exact cubicTensor_rankOnePlane_det_zero_on_frame
