@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
+import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
 import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
 import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
 import Mathlib.Tactic
@@ -129,14 +130,18 @@ theorem cubic_rankOneCramer_Jacobi_zero
     exact (q.map_adjugate H).symm
   have hMdet : M.det = 0 := by
     change (H.map q).det = 0
-    rw [← RingHom.map_det]
-    exact hdetzero
+    simpa only [RingHom.map_det] using hdetzero
   have hMsymm : M.IsSymm := by
     apply Matrix.IsSymm.ext
     intro i j
-    change q (H i j) = q (H j i)
-    exact congrArg q (hSym.apply i j)
-  have hBsymm : B.IsSymm := hMsymm.adjugate
+    change q (H j i) = q (H i j)
+    exact congrArg q (hSym.apply i j).symm
+  have hBsymm : B.IsSymm := by
+    change M.adjugate.transpose = M.adjugate
+    rw [Matrix.adjugate_transpose, hMsymm]
+  have hAdjSymm : H.adjugate.IsSymm := by
+    change H.adjugate.transpose = H.adjugate
+    rw [Matrix.adjugate_transpose, hSym]
   have hcross (i j : Fin 3) :
       B k k * B i j = B i k * B k j :=
     adjugate_rankOne_cross_products M hMdet k i j
@@ -174,8 +179,11 @@ theorem cubic_rankOneCramer_Jacobi_zero
         rw [hmap]
         change q (H.adjugate l j) * q (pderiv i (H j l)) =
           q (pderiv i (H j l)) * q (H.adjugate j l)
-        rw [(hSym.adjugate).apply j l]
+        have hcof : H.adjugate l j = H.adjugate j l :=
+          (hAdjSymm.apply j l).symm
+        rw [hcof]
         ring
     _ = 0 := hcontraction
 
+end
 end HC4.Polynomial.RankThreeCubic
