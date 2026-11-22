@@ -701,3 +701,6 @@ import HC4.Polynomial.RankThreeCubicSourceLinearPlanePencil
 
 -- Whole-plane algebraic rigidity for the source rank-two exactly-double cubic pole.
 import HC4.Polynomial.RankThreeCubicSourceUniformTangentKernel
+
+-- Finite Hessian normal-coefficient obstruction to zero binary plane at an exact double pole.
+import HC4.Polynomial.RankThreeCubicZeroBinaryDeterminant
