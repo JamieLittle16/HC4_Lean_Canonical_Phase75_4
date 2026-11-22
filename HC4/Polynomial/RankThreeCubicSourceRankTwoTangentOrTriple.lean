@@ -201,7 +201,7 @@ theorem sourceCubic_genuineRankTwo_residue_tangent_or_triple
       _ = MvPolynomial.aeval v H.det := by
             change (H.map (MvPolynomial.aeval v).toRingHom).det =
               (MvPolynomial.aeval v).toRingHom H.det
-            rw [RingHom.map_det]
+            simp only [RingHom.map_det, RingHom.mapMatrix_apply]
       _ = MvPolynomial.aeval v ((p * p) * c) := by rw [hfactor]
       _ = cubicPoleLinearFunctional ellR v *
           cubicPoleLinearFunctional ellR v *
