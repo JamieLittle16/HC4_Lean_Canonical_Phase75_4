@@ -74,12 +74,13 @@ theorem cubicTensor_fixedTangentKernel_exactFiveParameterForm
   have h121 : D 1 2 1 = 0 := (hswap₂ 1 2 1).trans h112
   have h221 : D 2 2 1 = 0 := (hswap₂ 2 2 1).trans h212
   have h220 : D 2 2 0 = 0 := (hswap₂ 2 2 0).trans h202
+  have h022 : D 0 2 2 = 0 := (hswap₁ 0 2 2).trans h202
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [cubicTensorHessianAt, cubicFixedTangentHessian,
       Fin.sum_univ_three, h102, h202, h112, h212, h122, h222,
       h010, h020, h100, h200, h101, h110, h012, h021,
-      h120, h201, h210, h211, h121, h221, h220] <;> ring
+      h120, h201, h210, h211, h121, h221, h220, h022] <;> ring_nf
 
 end
 end HC4.Polynomial.RankThreeCubic
