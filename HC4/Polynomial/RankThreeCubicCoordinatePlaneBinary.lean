@@ -67,7 +67,7 @@ theorem cubicTensor_coordinatePlane_normalCofactor_eq_binaryDet
       H 1 1 * H 2 2 - H 1 2 * H 2 1 := by
     simp [Matrix.adjugate_fin_three]
   rw [hcof, h11, h12, h21, h22]
-  rfl
+  simp only [binaryCubicReducedHessianDet, pow_two]
 
 /-- Three vanishing normal cofactors of the coordinate-plane
 cubic Hessian force a fixed nonzero kernel vector for the
