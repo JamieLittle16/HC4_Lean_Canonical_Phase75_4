@@ -37,7 +37,7 @@ theorem pderiv_det_fin_three
   rw [Matrix.det_fin_three]
   simp only [Fin.sum_univ_three, MvPolynomial.pderiv_mul,
     map_add, map_sub]
-  simp only [Matrix.adjugate_fin_three]
+  simp [Matrix.adjugate_fin_three, Fin.sum_univ_three]
   ring
 
 end
