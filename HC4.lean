@@ -515,3 +515,6 @@ import HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction
 
 -- Source-honest cubic squarefree-pole contradiction (characteristic zero).
 import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
+
+-- Cubic full-rank two-way source classification.
+import HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated
