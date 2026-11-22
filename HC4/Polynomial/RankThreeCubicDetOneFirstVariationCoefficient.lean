@@ -40,7 +40,7 @@ theorem updateCol_perm_product_eq_single_linear_term
   rw [← Finset.mul_prod_erase (Finset.univ : Finset ι)
     (fun k : ι => if k = j then B (π k) j else A (π k) k)
     (Finset.mem_univ j)]
-  simp only
+  simp only [if_pos rfl]
   congr 1
   apply Finset.prod_congr rfl
   intro k hk
