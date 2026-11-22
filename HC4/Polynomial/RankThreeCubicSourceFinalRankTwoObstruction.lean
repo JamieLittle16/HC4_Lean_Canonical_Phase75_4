@@ -84,7 +84,7 @@ theorem exists_sourceCubic_linear_or_exactDoubleNormal_or_exactTriple
             Irreducible q →
             q ∣ (IsFractionRing.den (B3 K) (V (.inr v)) : B3 K) →
             ¬ q ∣ IsFractionRing.num (B3 K) (V (.inr v)) →
-            Associated q p)))) := by
+            Associated q p))) := by
   classical
   let L : SB K := initialForm transverseCubicWeight 3 F
   obtain ⟨a, V, hregular, hV, hgrad, hker, hcase⟩ :=
