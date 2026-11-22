@@ -78,7 +78,7 @@ theorem cubicPoleToyGradient_transport_fraction
         (v + t * (u ^ 2 / (2 * z))) =
       cubicPoleToyGradient 0 z u v := by
   apply cubicPoleToyGradient_transport
-  field_simp
+  field_simp [hz]
   ring
 
 /-- The transverse Hessian at longitudinal anchor x=0. -/
