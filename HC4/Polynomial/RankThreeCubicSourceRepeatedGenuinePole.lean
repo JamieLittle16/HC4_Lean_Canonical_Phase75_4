@@ -55,7 +55,7 @@ theorem degree_one_of_specified_repeated_factor
   have hpos : 0 < p.totalDegree := by
     by_contra hn
     have hzero : p.totalDegree = 0 := Nat.eq_zero_of_not_pos hn
-    have hconst : p = C (p.coeff 0) :=
+    have hconst : p = MvPolynomial.C (p.coeff 0) :=
       MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hzero
     have hc0 : p.coeff 0 ≠ 0 := by
       intro hc
