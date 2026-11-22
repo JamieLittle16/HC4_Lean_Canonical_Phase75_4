@@ -1249,7 +1249,7 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
-  - _(no local imports)_
+  - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `HC4.Polynomial.RankThreeCubicRepeatedFactor`
   - `HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue`
 - `HC4.Polynomial.RankThreeCubicSourceDegrees`

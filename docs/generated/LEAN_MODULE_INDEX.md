@@ -3281,7 +3281,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy`
 - External imports: `Mathlib`
-- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy`, `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`, `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`
 - Declarations: `theorem exists_principal_cofactor_not_dvd`, `abbrev B3`, `theorem sourceTransverseHessian_isSymm`, `theorem exists_sourceCubic_linear_or_repeatedLinear_or_principalResidue`
 
 ### `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`
@@ -3339,8 +3339,8 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankThreeCubicRankOneCramerProportional.lean`
 - Purpose: The Cramer numerator inherits rank-one adjugate geometry
 - A-labels: none detected
-- Local imports: none
-- External imports: `Mathlib.Tactic`
+- Local imports: `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- External imports: `Mathlib`
 - Imported by local modules: none
 - Declarations: `theorem rankOneMatrix_mulVec_proportional_products`
 
