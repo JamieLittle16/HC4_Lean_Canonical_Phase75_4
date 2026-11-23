@@ -1465,6 +1465,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
+  - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicPoleQuotientPointEvaluation`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceSchurLowJetSquare`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSourceKernelPairing`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling`
