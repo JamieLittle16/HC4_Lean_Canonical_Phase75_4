@@ -788,3 +788,6 @@ import HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap
 
 -- Single exact two-sided inverse theorem for the quadratic transverse fibre.
 import HC4.Valuation.QuadraticTransverseCapFibreRecovery
+
+-- Actual source quadratic-cap Riccati coefficient, derived from the Hessian determinant.
+import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient
