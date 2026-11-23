@@ -45,22 +45,14 @@ theorem symmetric_kernelLine_adjugateTrace_zero_implies_isotropic
     (htrace : (A.adjugate * C).trace = 0) :
     (∑ i : ι, ∑ j : ι, v i * C i j * v j) = 0 := by
   classical
+  by_cases hv : v = 0
+  · subst v
+    simp
   have hadjSym : A.adjugate.IsSymm := by
     change A.adjugate.transpose = A.adjugate
     rw [Matrix.adjugate_transpose, hSym]
-  have hdet : A.det = 0 := by
-    by_contra hd
-    have hne : v ≠ 0 := by
-      intro hz
-      have hzval := congrFun hz k
-      have hkkzero : A.adjugate k k = 0 := by
-        have hmul : A.adjugate k k * v k = 0 := by
-          rw [hz] ; simp
-        -- Do not infer a nonzero kernel coordinate from hkk alone;
-        -- use invertibility instead in the next step.
-        exact False.elim (hd (Matrix.det_eq_zero_of_mulVec_eq_zero hker hz))
-      exact hkk hkkzero
-    exact hd (Matrix.exists_mulVec_eq_zero_iff.mp ⟨v, hne, hker⟩)
+  have hdet : A.det = 0 :=
+    Matrix.exists_mulVec_eq_zero_iff.mp ⟨v, hv, hker⟩
   have hAadj : A * A.adjugate = 0 := by
     rw [Matrix.mul_adjugate, hdet]
     simp
