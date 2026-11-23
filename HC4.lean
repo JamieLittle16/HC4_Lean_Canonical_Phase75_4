@@ -782,3 +782,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit
 
 -- Preserve the genuine source's surviving rank-two transverse pivot in the full-adjugate-zero branch.
 import HC4.Polynomial.RankThreeCubicDetOneSourceRankTwoPivotCertificate
+
+-- Rank-two cubic pole: exact transverse pivot and determinant coefficient-level second variation.
+import HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap
