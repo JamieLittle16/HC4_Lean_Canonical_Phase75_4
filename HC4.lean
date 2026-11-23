@@ -821,3 +821,6 @@ import HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian
 
 -- Original quadratic-cap regular source polynomial fibres with prescribed transverse gradient.
 import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre
+
+-- Derived moving-fibre Hessian equation for the actual quadratic-cap potential.
+import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift
