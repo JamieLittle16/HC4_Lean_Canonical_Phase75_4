@@ -812,3 +812,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient
 
 -- Source-level regular quadratic-cap gradient: exact fibrewise bijectivity.
 import HC4.Valuation.QuadraticTransverseCapSourceRegularFibre
+
+-- Formal multivariate chain rule for original-source polynomial longitudinal sections.
+import HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule
