@@ -1393,6 +1393,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneThreePointBorderedObstruction`
 - `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseThreeScale`
+- `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`
+  - `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
 - `HC4.Polynomial.RankThreeCubicDetOnePoleRepairDichotomyAlgebra`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleCompatibility`
 - `HC4.Polynomial.RankThreeCubicDetOnePoleRepairDichotomySource`
