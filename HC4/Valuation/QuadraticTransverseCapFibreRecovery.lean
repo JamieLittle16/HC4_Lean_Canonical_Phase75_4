@@ -98,7 +98,7 @@ theorem quadraticFibreGradient_bijective_of_affineDrift
         _ = x := by rw [hlambdaMul, mul_one]
     have hy : U x (p - b x) = y := hpreimage
     exact Prod.ext hx (by simpa [hx] using hy)
-  exact ⟨hleft, hright⟩
+  exact ⟨hleft.injective, hright.surjective⟩
 
 end
 
