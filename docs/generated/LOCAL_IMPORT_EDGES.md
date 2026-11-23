@@ -1437,6 +1437,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
   - `HC4.Polynomial.RankThreeCubicSourceNormalAdjugateOrTriple`
+- `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleTransverseRepairOrTriple`
+  - `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleLowJetSquareOrTriple`
+  - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceMixedAffineDegrees`
   - `HC4.Polynomial.RankThreeCubicDetOnePoleAffineUnitLinearDivisibility`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceOriginBorderedHessian`
@@ -1531,6 +1535,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
   - `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
+- `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
+  - `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicNilpotentSquare`
