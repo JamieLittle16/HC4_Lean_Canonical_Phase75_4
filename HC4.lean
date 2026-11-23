@@ -803,3 +803,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse
 
 -- Dual-number localization constructs the X-derivation and closes regular quadratic-cap transverse invertibility.
 import HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation
+
+-- Source-level regular quadratic transverse cap: the inverse Hessian is affine in x.
+import HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse
