@@ -73,11 +73,39 @@ theorem sourceCubic_cubicTransverseHessian_eval_neg
       -MvPolynomial.aeval z
         (sourceTransverseHessian a
           (initialForm transverseCubicWeight 3 F) i j) := by
-  have hh :=
+  let P : B3 K :=
+    sourceTransverseHessian a
+      (initialForm transverseCubicWeight 3 F) i j
+  have hh : P.IsHomogeneous 1 :=
     sourceCubic_transverseHessian_homogeneous_one a F i j
-  have hscale := hh.aeval_smul (-1 : K) z
-  simpa only [Pi.smul_apply, smul_eq_mul, neg_one_mul,
-    pow_one] using hscale
+  have hEuler : P =
+      ∑ t : Fin 3, (MvPolynomial.X t : B3 K) * pderiv t P := by
+    have he := hh.sum_X_mul_pderiv
+    simpa only [one_nsmul] using he.symm
+  have hconst (t : Fin 3) :
+      pderiv t P = MvPolynomial.C ((pderiv t P).coeff 0) := by
+    have hd : (pderiv t P).totalDegree = 0 :=
+      (MvPolynomial.totalDegree_zero_iff_isHomogeneous (Fin 3)).2
+        hh.pderiv
+    exact MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hd
+  have hleft :
+      MvPolynomial.aeval (fun m => -z m) P =
+        ∑ t : Fin 3, (-z t) * (pderiv t P).coeff 0 := by
+    conv_lhs => rw [hEuler]
+    simp only [map_sum, map_mul, MvPolynomial.aeval_X,
+      hconst, MvPolynomial.aeval_C]
+  have hright :
+      MvPolynomial.aeval z P =
+        ∑ t : Fin 3, z t * (pderiv t P).coeff 0 := by
+    conv_lhs => rw [hEuler]
+    simp only [map_sum, map_mul, MvPolynomial.aeval_X,
+      hconst, MvPolynomial.aeval_C]
+  change MvPolynomial.aeval (fun m => -z m) P =
+    -MvPolynomial.aeval z P
+  rw [hleft, hright, ← Finset.sum_neg_distrib]
+  apply Finset.sum_congr rfl
+  intro t _
+  ring
 
 /-- The full original source transverse Hessian at three symmetric
 transverse evaluations is T, T+A(z), T-A(z), exactly. -/
@@ -129,8 +157,15 @@ theorem sourceCubic_fullTransverseHessian_threeScale
       hessian F (.inr i) (.inr j) =
         hessian L3 (.inr i) (.inr j) +
           hessian L2 (.inr i) (.inr j) := by
-    rw [hF]
-    simp only [hessian_apply, map_add, hR i j, add_zero]
+    calc
+      hessian F (.inr i) (.inr j) =
+          hessian (L3 + L2 + Rlow) (.inr i) (.inr j) := by
+            rw [hF]
+      _ = hessian L3 (.inr i) (.inr j) +
+            hessian L2 (.inr i) (.inr j) +
+              hessian Rlow (.inr i) (.inr j) := by
+            simp only [hessian_apply, map_add]
+      _ = _ := by rw [hR i j, add_zero]
   have hQeval (i j : Fin 3) (y : Fin 3 → K) :
       (ev y) (hessian L2 (.inr i) (.inr j)) =
         T i j := by
