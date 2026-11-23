@@ -5927,6 +5927,9 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
 - `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
+- `HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiJets`
 - `HC4.Valuation.QuadraticTransverseCapSourceAxisSchur`
   - `HC4.Valuation.AdaptiveAlignedSmithRankOneQuadraticCompetitor`
   - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
