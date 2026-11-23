@@ -49,7 +49,8 @@ theorem quadraticTransverseCapSource_polynomialPath_transverseGradient
   classical
   let b := quadraticTransverseCapSourceLinearCoefficients F
   let C := (quadraticTransverseCapSourceAxisThreeBlock F).matrix
-  let q := Fin.cons Polynomial.X y
+  let q : Fin 4 → Polynomial K :=
+    Fin.cons (Polynomial.X : Polynomial K) y
   apply Polynomial.funext
   intro t
   have hpoint :
@@ -120,7 +121,6 @@ theorem quadraticTransverseCapSource_regularPolynomialFibre_gradient
     _ = (b + C *ᵥ y) i := rfl
     _ = Polynomial.C (p i) := by
       rw [hconst]
-      rfl
 
 end
 
