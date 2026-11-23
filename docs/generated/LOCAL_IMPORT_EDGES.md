@@ -68,6 +68,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCoordinatePlaneBinary`
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
+  - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
@@ -1376,6 +1377,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitPivot`
 - `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling`
+- `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
+  - `HC4.Polynomial.MaximalHessianInitial`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
 - `HC4.Polynomial.RankThreeCubicDetOneLongitudinalUnitEscape`
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentRepairOrTriple`
 - `HC4.Polynomial.RankThreeCubicDetOneLowerMixedWeightZero`
