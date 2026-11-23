@@ -806,3 +806,6 @@ import HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation
 
 -- Source-level regular quadratic transverse cap: the inverse Hessian is affine in x.
 import HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse
+
+-- Global transverse-gradient formula for the genuine quadratic-cap source.
+import HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient
