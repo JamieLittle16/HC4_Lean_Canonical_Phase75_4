@@ -61,11 +61,65 @@ theorem sourcePolynomialPath_derivative
         Finset.sum_add_distrib, mul_add]
       rw [ihP, ihQ]
   | mul_X P j ihP =>
-      fin_cases j <;>
-        simp [E, sourcePolynomialPathSubstitution,
-          MvPolynomial.pderiv_mul, Polynomial.derivative_mul,
-          Fin.sum_univ_four, ihP] <;>
-        ring
+      have hX : E (MvPolynomial.X j) = q j := by
+        exact MvPolynomial.aeval_X q j
+      have hpartialX (i : Fin 4) :
+          E (MvPolynomial.pderiv i (MvPolynomial.X j)) =
+            if i = j then (1 : Polynomial K) else 0 := by
+        by_cases hij : i = j
+        · subst i
+          simp
+        · have hji : j ≠ i := Ne.symm hij
+          rw [MvPolynomial.pderiv_X_of_ne hji]
+          simp [hij]
+      have hpartial (i : Fin 4) :
+          E (MvPolynomial.pderiv i (P * MvPolynomial.X j)) =
+            E (MvPolynomial.pderiv i P) * q j +
+              if i = j then E P else 0 := by
+        rw [MvPolynomial.pderiv_mul, map_add, map_mul, map_mul,
+          hX, hpartialX]
+        by_cases hij : i = j <;> simp [hij]
+      have hsum :
+          (∑ i : Fin 4, Polynomial.derivative (q i) *
+              E (MvPolynomial.pderiv i (P * MvPolynomial.X j))) =
+            (∑ i : Fin 4, Polynomial.derivative (q i) *
+              E (MvPolynomial.pderiv i P)) * q j +
+              E P * Polynomial.derivative (q j) := by
+        calc
+          (∑ i : Fin 4, Polynomial.derivative (q i) *
+              E (MvPolynomial.pderiv i (P * MvPolynomial.X j))) =
+              (∑ i : Fin 4,
+                (Polynomial.derivative (q i) *
+                  E (MvPolynomial.pderiv i P)) * q j) +
+              (∑ i : Fin 4,
+                if i = j then Polynomial.derivative (q j) * E P else 0) := by
+                rw [← Finset.sum_add_distrib]
+                apply Finset.sum_congr rfl
+                intro i _
+                rw [hpartial i]
+                by_cases hij : i = j
+                · subst i
+                  simp only [ite_true]
+                  ring
+                · simp only [if_neg hij, mul_add, mul_zero, add_zero]
+                  ring
+          _ = (∑ i : Fin 4, Polynomial.derivative (q i) *
+                  E (MvPolynomial.pderiv i P)) * q j +
+                E P * Polynomial.derivative (q j) := by
+              rw [← Finset.sum_mul]
+              simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+              ring
+      calc
+        Polynomial.derivative (E (P * MvPolynomial.X j)) =
+            Polynomial.derivative (E P * q j) := by rw [map_mul, hX]
+        _ = Polynomial.derivative (E P) * q j +
+              E P * Polynomial.derivative (q j) := by
+                rw [Polynomial.derivative_mul]
+        _ = (∑ i : Fin 4, Polynomial.derivative (q i) *
+              E (MvPolynomial.pderiv i P)) * q j +
+              E P * Polynomial.derivative (q j) := by rw [ihP]
+        _ = (∑ i : Fin 4, Polynomial.derivative (q i) *
+              E (MvPolynomial.pderiv i (P * MvPolynomial.X j))) := hsum.symm
 
 /-- Chain rule specialized to a longitudinal coordinate X and
 polynomial transverse-coordinate path `y(X)`.
