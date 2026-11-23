@@ -149,7 +149,10 @@ theorem quadraticTransverseCapSource_regularPolynomialInverse_of_derivation
         rw [hscaled]
         simp only [smul_smul]
         rw [show Cr.det⁻¹ * ((2 : RatFunc K) * Cr.det) = 2 by
-          field_simp]
+          calc
+            Cr.det⁻¹ * ((2 : RatFunc K) * Cr.det) =
+                (Cr.det⁻¹ * Cr.det) * 2 := by ring
+            _ = 2 := by rw [inv_mul_cancel₀ hnonzero, one_mul]]
   have hRiccati :
       dd (dd Cr) = 2 * ((dd Cr * Cr⁻¹) * dd Cr) := by
     simpa only [two_mul, two_smul] using hinverse
