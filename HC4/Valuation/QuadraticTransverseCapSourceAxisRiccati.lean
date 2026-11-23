@@ -88,12 +88,30 @@ theorem quadraticTransverseCapSource_axisRiccatiCoefficient
       ha, hb, hc, hd, he, hf]
   have hMix0 (t : Fin 3) :
       phi (MvPolynomial.pderiv t.succ H.b) = D 0 t := by
+    change longitudinalAxisRestrictionRingHom (K := K)
+      (MvPolynomial.pderiv t.succ
+        (HC4.Polynomial.hessian F 0 1)) =
+      Polynomial.derivative
+        ((quadraticTransverseCapSourceAxisThreeBlock F).matrix 0 t)
+    rw [← quadraticTransverseCapSource_axisThreeBlock_entry F 0 t]
     exact quadraticTransverseSource_axisMixedTransverse_derivative F 0 t
   have hMix1 (t : Fin 3) :
       phi (MvPolynomial.pderiv t.succ H.p) = D 1 t := by
+    change longitudinalAxisRestrictionRingHom (K := K)
+      (MvPolynomial.pderiv t.succ
+        (HC4.Polynomial.hessian F 0 2)) =
+      Polynomial.derivative
+        ((quadraticTransverseCapSourceAxisThreeBlock F).matrix 1 t)
+    rw [← quadraticTransverseCapSource_axisThreeBlock_entry F 1 t]
     exact quadraticTransverseSource_axisMixedTransverse_derivative F 1 t
   have hMix2 (t : Fin 3) :
       phi (MvPolynomial.pderiv t.succ H.q) = D 2 t := by
+    change longitudinalAxisRestrictionRingHom (K := K)
+      (MvPolynomial.pderiv t.succ
+        (HC4.Polynomial.hessian F 0 3)) =
+      Polynomial.derivative
+        ((quadraticTransverseCapSourceAxisThreeBlock F).matrix 2 t)
+    rw [← quadraticTransverseCapSource_axisThreeBlock_entry F 2 t]
     exact quadraticTransverseSource_axisMixedTransverse_derivative F 2 t
   have hJet :
       phi (MvPolynomial.pderiv j.succ
