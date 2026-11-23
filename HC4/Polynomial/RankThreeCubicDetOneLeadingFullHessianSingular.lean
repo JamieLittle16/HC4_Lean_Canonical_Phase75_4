@@ -57,7 +57,7 @@ theorem sourceCubic_detOne_leadingFullHessian_det_zero
     simpa only [map_one] using hz
   change initialForm transverseCubicWeight 6 (1 : SB K) =
     (hessian (initialForm transverseCubicWeight 3 F)).det at hmax
-  exact hmax.symm.trans htop |>.symm
+  exact hmax.symm.trans htop
 
 /-- The singularity persists under the actual longitudinal
 source slice and reduction modulo any transverse polynomial p.
