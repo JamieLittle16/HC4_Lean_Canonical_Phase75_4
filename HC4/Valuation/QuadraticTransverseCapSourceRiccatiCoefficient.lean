@@ -162,7 +162,7 @@ theorem quadraticTransverseCapSource_globalRiccatiCoefficient
       (hflatC i) (hflatC j)
       hmix0 hmix1 hmix2
   rw [hcore] at hsecond
-  simp only [map_one] at hsecond
+  simp at hsecond
   exact sub_eq_zero.mp hsecond.symm
 
 end
