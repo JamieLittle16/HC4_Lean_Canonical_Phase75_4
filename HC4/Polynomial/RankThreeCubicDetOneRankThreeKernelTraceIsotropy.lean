@@ -66,7 +66,7 @@ theorem symmetric_kernelLine_adjugateTrace_zero_implies_isotropic
   have hlink (j : ι) : c j * v k = c k * v j := by
     calc
       c j * v k = A.adjugate k j := (hc j k).symm
-      _ = A.adjugate j k := hadjSym.apply k j
+      _ = A.adjugate j k := hadjSym.apply j k
       _ = c k * v j := hc k j
   have hck : c k ≠ 0 := by
     intro hz
