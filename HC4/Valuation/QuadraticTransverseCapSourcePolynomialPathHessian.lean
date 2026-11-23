@@ -78,13 +78,14 @@ theorem quadraticTransverseCapSource_polynomialPath_transverseHessian
     simp
   apply Polynomial.funext
   intro t
+  let q : Fin 4 → Polynomial K :=
+    Fin.cons (Polynomial.X : Polynomial K) y
   have hpoint :
-      (fun a : Fin 4 =>
-        Polynomial.eval t ((Fin.cons Polynomial.X y) a)) =
-          Fin.cons t (fun j : Fin 3 => Polynomial.eval t (y j)) := by
+      (fun a : Fin 4 => Polynomial.eval t (q a)) =
+        Fin.cons t (fun j : Fin 3 => Polynomial.eval t (y j)) := by
     funext a
     cases a using Fin.cases with
-    | zero => simp
+    | zero => simp [q]
     | succ k => rfl
   have heval := eval_affine_transverse_of_second_pderivs_zero
     H hsecond t (fun k => Polynomial.eval t (y k))
@@ -95,15 +96,9 @@ theorem quadraticTransverseCapSource_polynomialPath_transverseHessian
           (Fin.cons t (fun _ : Fin 3 => (0 : K))) H := by
     simpa [hflat] using heval
   calc
-    Polynomial.eval t
-        (sourcePolynomialPathSubstitution
-          (Fin.cons Polynomial.X y)
-          (HC4.Polynomial.hessian F i.succ j.succ)) =
-      MvPolynomial.eval
-        (fun a : Fin 4 =>
-          Polynomial.eval t ((Fin.cons Polynomial.X y) a)) H :=
-        sourcePolynomialPathSubstitution_eval H
-          (Fin.cons Polynomial.X y) t
+    Polynomial.eval t (sourcePolynomialPathSubstitution q H) =
+      MvPolynomial.eval (fun a : Fin 4 => Polynomial.eval t (q a)) H :=
+        sourcePolynomialPathSubstitution_eval H q t
     _ = MvPolynomial.eval
         (Fin.cons t (fun _ : Fin 3 => (0 : K))) H := by
           rw [hpoint, heval0]
