@@ -794,3 +794,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient
 
 -- Nine original-source polynomial Riccati identities on the longitudinal axis.
 import HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati
+
+-- The actual quadratic-cap source's division-free matrix Riccati identity.
+import HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati
