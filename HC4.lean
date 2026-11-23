@@ -824,3 +824,6 @@ import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre
 
 -- Derived moving-fibre Hessian equation for the actual quadratic-cap potential.
 import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift
+
+-- Source-level longitudinal chain equation on exact polynomial gradient fibres.
+import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalChain
