@@ -17578,7 +17578,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: The canonical rational X-derivation by square-zero polynomial jets
 - A-labels: none detected
 - Local imports: `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
-- External imports: `Mathlib.Algebra.TrivSqZeroExt.Basic`, `Mathlib.FieldTheory.RatFunc.AsPolynomial`, `Mathlib.RingTheory.Localization.Defs`, `Mathlib.Algebra.Polynomial.Derivation`, `Mathlib.Tactic`
+- External imports: `Mathlib.Algebra.TrivSqZeroExt`, `Mathlib.FieldTheory.RatFunc.AsPolynomial`, `Mathlib.RingTheory.Localization.Defs`, `Mathlib.Algebra.Polynomial.Derivation`, `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `abbrev DualRat`, `abbrev polynomialEmbedding`, `def quadraticTransverse_polynomialDualJet`, `theorem quadraticTransverse_polynomialDualJet_unit`, `def quadraticTransverse_rationalDualJet`, `theorem quadraticTransverse_rationalDualJet_poly`, `theorem quadraticTransverse_rationalDualJet_fst`, `theorem quadraticTransverse_rationalDualJet_ground`, `def quadraticTransverse_canonicalRatFuncDerivation`, `theorem quadraticTransverse_canonicalRatFuncDerivation_X`, `theorem quadraticTransverseCapSource_regularPolynomialInverse`
 
