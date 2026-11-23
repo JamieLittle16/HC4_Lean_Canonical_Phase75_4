@@ -1411,6 +1411,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitRepairOrTriple`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
+- `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurKernelCoupling`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePrincipalSchurSquare`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurSquareAlgebra`
