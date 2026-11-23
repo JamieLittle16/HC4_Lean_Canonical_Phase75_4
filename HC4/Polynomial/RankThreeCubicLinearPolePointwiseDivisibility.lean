@@ -102,8 +102,7 @@ theorem linearPole_dvd_of_forall_pointEval_zero_at
     have hi : qA (s i) = qA (MvPolynomial.X i) := by
       by_cases hik : i = k
       · subst i
-        change qA (MvPolynomial.X k - u) =
-          qA (MvPolynomial.X k)
+        simp only [s, if_pos rfl]
         dsimp [u]
         rw [map_sub, map_mul, hqp, mul_zero, sub_zero]
       · simp only [s, if_neg hik]
