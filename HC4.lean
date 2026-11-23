@@ -785,3 +785,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceRankTwoPivotCertificate
 
 -- Rank-two cubic pole: exact transverse pivot and determinant coefficient-level second variation.
 import HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap
+
+-- Single exact two-sided inverse theorem for the quadratic transverse fibre.
+import HC4.Valuation.QuadraticTransverseCapFibreRecovery
