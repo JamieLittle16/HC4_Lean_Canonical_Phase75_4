@@ -87,7 +87,6 @@ theorem detOne_borderedKernel_principalCofactor_couplingSquare
       _ = (H.schurB * w k) ^ 2 := by rw [hpair]
       _ = -H.activeDet * (w k) ^ 2 := by
         rw [mul_pow, hsq]
-        ring
   have hδ : H.activeDet ≠ 0 := by rw [hactive]; exact hk
   have hcancel :
       H.activeDet * (H.activeDet * g ^ 2) =
