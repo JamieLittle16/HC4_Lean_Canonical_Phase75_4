@@ -818,3 +818,6 @@ import HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule
 
 -- Source Hessian remains constant along all polynomial transverse fibre paths.
 import HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian
+
+-- Original quadratic-cap regular source polynomial fibres with prescribed transverse gradient.
+import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre
