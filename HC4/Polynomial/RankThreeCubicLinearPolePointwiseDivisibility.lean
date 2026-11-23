@@ -72,7 +72,7 @@ theorem linearPole_dvd_of_forall_pointEval_zero_at
           ∑ i : Fin 3, s i * MvPolynomial.C (ell i) := by
             rw [hlin]
             simp only [map_sum, map_mul, MvPolynomial.aeval_X,
-              MvPolynomial.aeval_C, algebraMap_self, id_eq]
+              MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq]
       _ = p - u * MvPolynomial.C (ell k) := hsum
       _ = 0 := by rw [huc, sub_self]
   have hsubzero : MvPolynomial.aeval s f = 0 := by
@@ -99,14 +99,15 @@ theorem linearPole_dvd_of_forall_pointEval_zero_at
       (Ideal.subset_span (Set.mem_singleton p))
   have hqcomp : qA.comp (MvPolynomial.aeval s) = qA := by
     ext i
-    change qA (s i) = qA (MvPolynomial.X i)
-    by_cases hi : i = k
-    · subst i
-      change qA (MvPolynomial.X k - u) =
-        qA (MvPolynomial.X k)
-      dsimp [u]
-      rw [map_sub, map_mul, hqp, mul_zero, sub_zero]
-    · simp only [s, if_neg hi]
+    have hi : qA (s i) = qA (MvPolynomial.X i) := by
+      by_cases hik : i = k
+      · subst i
+        change qA (MvPolynomial.X k - u) =
+          qA (MvPolynomial.X k)
+        dsimp [u]
+        rw [map_sub, map_mul, hqp, mul_zero, sub_zero]
+      · simp only [s, if_neg hik]
+    simpa only [AlgHom.comp_apply, MvPolynomial.aeval_X] using hi
   have hqzero : qA f = 0 := by
     have hident : qA (MvPolynomial.aeval s f) = qA f :=
       AlgHom.congr_fun hqcomp f
