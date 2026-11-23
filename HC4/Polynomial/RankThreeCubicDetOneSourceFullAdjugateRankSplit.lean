@@ -147,12 +147,16 @@ theorem sourceCubic_genuinePole_detOne_isotropicRepair_or_fullAdjugateZero_or_ex
       obtain ⟨k, hnot⟩ :=
         sourceCubic_genuinePole_has_principalRankTwo
           F a V hV hgrad hregular u p hp hpd hpn
-      have hqHkk : (H.map q).adjugate k k ≠ 0 := by
-        rw [(q.map_adjugate H).symm]
+      have hqCof : q (H.adjugate k k) ≠ 0 := by
         intro hz
         apply hnot
         exact Ideal.mem_span_singleton.mp
           (Ideal.Quotient.eq_zero_iff_mem.mp hz)
+      have hHadjMap : (H.map q).adjugate = H.adjugate.map q :=
+        (q.map_adjugate H).symm
+      have hqHkk : (H.map q).adjugate k k ≠ 0 := by
+        rw [hHadjMap]
+        exact hqCof
       have hHmap :
           A.submatrix Sum.inr Sum.inr = H.map q := by
         ext j l
@@ -163,10 +167,14 @@ theorem sourceCubic_genuinePole_detOne_isotropicRepair_or_fullAdjugateZero_or_ex
         exact hqHkk
       have hHker :
           (A.submatrix Sum.inr Sum.inr) *ᵥ W = 0 := by
+        have hrow (j : Fin 3) :
+            (A *ᵥ v) (.inr j) =
+              ((A.submatrix Sum.inr Sum.inr) *ᵥ W) j := by
+          simp [Matrix.mulVec, dotProduct,
+            Fintype.sum_sum_type, v]
+        have hker : A *ᵥ v = 0 := hAker
         funext j
-        have hj := congrFun hAker (.inr j)
-        simpa [A, v, W, Matrix.mulVec, dotProduct,
-          Matrix.submatrix_apply, Fintype.sum_sum_type] using hj
+        exact (hrow j).symm.trans (congrFun hker (.inr j))
       have hwk : W k ≠ 0 :=
         principalCofactor_kernel_coordinate_ne_zero
           (A.submatrix Sum.inr Sum.inr) W k hHkk hHker hWne
