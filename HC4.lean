@@ -809,3 +809,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse
 
 -- Global transverse-gradient formula for the genuine quadratic-cap source.
 import HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient
+
+-- Source-level regular quadratic-cap gradient: exact fibrewise bijectivity.
+import HC4.Valuation.QuadraticTransverseCapSourceRegularFibre
