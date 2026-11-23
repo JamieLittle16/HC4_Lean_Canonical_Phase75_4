@@ -41,7 +41,12 @@ theorem poleQuotient_eq_implies_pointEval_eq
     MvPolynomial.aeval z f = MvPolynomial.aeval z g := by
   have hzero :
       Ideal.Quotient.mk (Ideal.span {p}) (f - g) = 0 := by
-    rw [map_sub, hf, sub_self]
+    let q : B3 K →+* (B3 K ⧸ Ideal.span {p}) :=
+      Ideal.Quotient.mk (Ideal.span {p})
+    change q (f - g) = 0
+    calc
+      q (f - g) = q f - q g := q.map_sub f g
+      _ = 0 := sub_eq_zero.mpr hf
   have hz :=
     poleQuotient_zero_implies_pointEval_zero p (f - g) z hpz hzero
   simpa only [map_sub, sub_eq_zero] using hz
