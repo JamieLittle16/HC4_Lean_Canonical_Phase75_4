@@ -71,6 +71,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
   - `HC4.Polynomial.RankThreeCubicExactTriplePoleNormalForm`
@@ -1473,6 +1474,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor`
   - `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
   - `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
   - `HC4.Polynomial.RankThreeCubicPoleQuotientPointEvaluation`
