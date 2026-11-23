@@ -1,4 +1,4 @@
-import HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine
+import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor
 import Mathlib.Tactic
 
 /-!
@@ -84,28 +84,15 @@ theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic_of_cofacto
     have hj := congrFun hz (.inr j)
     simpa [v] using hj
   have hvk : v (.inr k) ≠ 0 :=
-    principalCofactor_kernelVector_pivot_ne_zero
-      A v hAker hv (.inr k) hkk
+    principalCofactor_kernel_coordinate_ne_zero
+      A v (.inr k) hkk hAker hv
   have hwk : w k ≠ 0 := by
     intro hz
     apply hvk
     change q (MvPolynomial.C (w k)) = 0
     simp [hz]
-  have hunit : ∃ t : R, v (.inr k) * t = 1 := by
-    refine ⟨q (MvPolynomial.C ((w k)⁻¹)), ?_⟩
-    change q (MvPolynomial.C (w k)) *
-      q (MvPolynomial.C ((w k)⁻¹)) = 1
-    calc
-      _ = q (MvPolynomial.C (w k) *
-          MvPolynomial.C ((w k)⁻¹)) := (map_mul q _ _).symm
-      _ = q (MvPolynomial.C (w k * (w k)⁻¹)) := by rw [map_mul]
-      _ = 1 := by rw [mul_inv_cancel₀ hwk]; simp
-  have hline : ∀ z : Unit ⊕ Fin 3 → R, A *ᵥ z = 0 →
-      ∃ c : R, ∀ i, z i = c * v i :=
-    principalCofactor_kernelLine_of_unitCoordinate
-      A v hAker (.inr k) hkk hunit
-  exact sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic
-    F a p ell hlin hp hcap hdetOne w k hAker hline hkk
+  exact sourceCubic_rankThreePoleKernel_isotropic_of_cofactor
+    F a p ell hlin hp hcap hdetOne w k hwk hAker hkk
 
 end
 end HC4.Polynomial.RankThreeCubic
