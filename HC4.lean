@@ -827,3 +827,7 @@ import HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift
 
 -- Source-level longitudinal chain equation on exact polynomial gradient fibres.
 import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalChain
+
+import HC4.Valuation.QuadraticTransverseCapSourceRegularSlope
+
+import HC4.Valuation.QuadraticTransverseCapSourceRegularGradient
