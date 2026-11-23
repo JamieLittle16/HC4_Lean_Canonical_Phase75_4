@@ -46,6 +46,7 @@ fixed nonzero coupling scalar force the leading cofactor to
 vanish, because the diagonal cofactor is quadratic in the
 transverse scaling parameter. -/
 theorem principalCofactor_threeScale_square_forces_zero
+    [IsDomain K]
     (T A : Matrix (Fin 3) (Fin 3) K) (k : Fin 3)
     (g w : K) (hg : g ≠ 0)
     (h0 : T.adjugate k k * g ^ 2 = -(w ^ 2))
