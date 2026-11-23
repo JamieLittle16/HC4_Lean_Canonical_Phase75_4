@@ -69,6 +69,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
   - `HC4.Polynomial.RankThreeCubicExactTriplePoleNormalForm`
   - `HC4.Polynomial.RankThreeCubicFibrePencils`
