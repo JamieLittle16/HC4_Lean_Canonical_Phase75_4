@@ -124,6 +124,7 @@ theorem symmetricFour_fullAdjugate_zero_of_transverseKernel_pivot
     hHline (fun i => B (.inr i) (.inr k)) (hColKernel k)
   have hc0 : c = 0 := by
     have hk := hc k
+    change A.adjugate (.inr k) (.inr k) = c * w k at hk
     rw [hAkk] at hk
     exact (mul_eq_zero.mp hk.symm).resolve_right hwkn
   have hColumnK (i : Fin 3) :
