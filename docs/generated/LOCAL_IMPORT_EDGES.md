@@ -70,6 +70,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
@@ -1431,6 +1432,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
 - `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
   - `HC4.Polynomial.RankThreeCubicDetOneRepairBlockDegree`
+- `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseRepairOriginWitness`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleKernelLineOrTriple`
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentOriginQuadraticKernelOrTriple`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticKernelLine`
