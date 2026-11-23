@@ -71,6 +71,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
@@ -1435,6 +1436,10 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
 - `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
   - `HC4.Polynomial.RankThreeCubicDetOneRepairBlockDegree`
+- `HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit`
+  - `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
+  - `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseRepairOriginWitness`
