@@ -54,7 +54,7 @@ theorem quadraticTransverseCapSource_regularLongitudinalChain
       (∀ i : Fin 3,
         sourcePolynomialPathSubstitution (Fin.cons Polynomial.X y)
           (MvPolynomial.pderiv i.succ F) = Polynomial.C (p i)) ∧
-      (let q := Fin.cons Polynomial.X y
+      (let q : Fin 4 → Polynomial K := Fin.cons (Polynomial.X : Polynomial K) y
        let v : Fin 3 → Polynomial K :=
          fun i => sourcePolynomialPathSubstitution q
            (HC4.Polynomial.hessian F 0 i.succ)
@@ -71,7 +71,7 @@ theorem quadraticTransverseCapSource_regularLongitudinalChain
   obtain ⟨y, hgrad, hdrift⟩ :=
     quadraticTransverseCapSource_regularPolynomialFibre_drift
       F hcap hdet hregular p
-  let q := Fin.cons Polynomial.X y
+  let q : Fin 4 → Polynomial K := Fin.cons (Polynomial.X : Polynomial K) y
   let C := (quadraticTransverseCapSourceAxisThreeBlock F).matrix
   let v : Fin 3 → Polynomial K :=
     fun i => sourcePolynomialPathSubstitution q
