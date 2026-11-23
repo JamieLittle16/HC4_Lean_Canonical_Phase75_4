@@ -432,7 +432,10 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
   - `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati`
+  - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalChain`
   - `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
+  - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre`
+  - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift`
   - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularFibre`
@@ -5954,6 +5957,8 @@ human architecture guide.
   - `HC4.Newton.TerminalOneZeroAmbientDecoupling`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalChain`
+  - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift`
 - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
@@ -5968,6 +5973,10 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
   - `HC4.Valuation.QuadraticAxisReverseReesOriginRankTwo`
   - `HC4.Valuation.QuadraticTransverseCapSourceSections`
+- `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre`
+  - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
+- `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift`
+  - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre`
 - `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
   - `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
 - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
