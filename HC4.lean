@@ -776,3 +776,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit
 
 -- Rank-two full cubic pole: eliminate every adjugate entry from the fixed transverse kernel.
 import HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo
+
+-- Genuine source pole: either isotropic repair at rank three, full adjugate zero, or triple pole.
+import HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit
