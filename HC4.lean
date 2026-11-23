@@ -773,3 +773,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivo
 
 -- Source cubic genuine pole: nonzero quadratic repair and full-Hessian cofactor split.
 import HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit
+
+-- Rank-two full cubic pole: eliminate every adjugate entry from the fixed transverse kernel.
+import HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo
