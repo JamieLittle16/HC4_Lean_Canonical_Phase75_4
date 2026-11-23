@@ -791,3 +791,6 @@ import HC4.Valuation.QuadraticTransverseCapFibreRecovery
 
 -- Actual source quadratic-cap Riccati coefficient, derived from the Hessian determinant.
 import HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient
+
+-- Nine original-source polynomial Riccati identities on the longitudinal axis.
+import HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati
