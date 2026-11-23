@@ -435,6 +435,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
+  - `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
   - `HC4.Valuation.QuadraticTransverseGap`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Valuation.ReverseReesSchurParameterBudget`
@@ -6008,6 +6009,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPureLongitudinalFirstContact`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+- `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
+  - `HC4.Valuation.QuadraticTransverseCapAffineSection`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
 - `HC4.Valuation.QuadraticTransverseCapThreePrincipalKernel`
   - `HC4.Newton.GeneralThreeBlockScalarSchur`
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`

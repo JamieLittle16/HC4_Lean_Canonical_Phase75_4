@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11002**.
+Distinct declaration spellings indexed: **11007**.
 
 ## Repeated declaration spellings
 
@@ -5353,6 +5353,7 @@ Distinct declaration spellings indexed: **11002**.
 - `evalPolynomialMatrix` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerEvaluation`
 - `eval_adaptiveSmithExposureFamily` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `eval_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
+- `eval_affine_transverse_of_second_pderivs_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `eval_allSourceSignHom_neg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
 - `eval_at_infinity_eq_zero_of_autonomous_ratFunc_identity` — `theorem` in `HC4.RationalRigidity.ClearedInfinityEvaluation`
 - `eval_axis_eq_zero_of_positive` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
@@ -5409,6 +5410,7 @@ Distinct declaration spellings indexed: **11002**.
 - `eval_translatePolynomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_transverseSourceShearHom_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `eval_transverseSourceShearVariable_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `eval_transverseStage_eq_axis` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `eval_two_mul_highestBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
 - `eval_two_mul_lockedBinomialMomentHessian_of_root` — `theorem` in `HC4.Polynomial.FiniteStaircaseEndpointDoubleRootEvaluation`
 - `eval_two_mul_parallelStaircaseMoment_of_translate_eq_middleTwoMode` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedMiddleEvaluation`
@@ -8744,6 +8746,7 @@ Distinct declaration spellings indexed: **11002**.
 - `quadraticTransverseCapSource_regularPolynomialInverse_of_derivation` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
 - `quadraticTransverseCapSource_sectionMixedRow_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSource_singular_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
+- `quadraticTransverseCapSource_transverseGradient_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `quadraticTransverseCap_pderiv_succ` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `quadraticTransverseCap_rankTwo_oppositeSections_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
 - `quadraticTransverseCap_rankTwo_principalKernelCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
@@ -10317,6 +10320,7 @@ Distinct declaration spellings indexed: **11002**.
 - `squareSupport` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`
 - `square_pullback_of_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `squarefree_irreducible_factor_not_all_pderivs` — `theorem` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+- `stagePoint_agree_off` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `staircaseLogDirection` — `def` in `HC4.Polynomial.FiniteStaircasePureModeReversedFirstVariation`
 - `staircase_heightDrop_gt_pairGain` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofArithmetic`
 - `staircase_source_deficit_chord_identity` — `theorem` in `HC4.Polynomial.FiniteStaircaseCrossRoofHullArithmetic`
@@ -11050,6 +11054,7 @@ Distinct declaration spellings indexed: **11002**.
 - `transverseSourceShearVariable_isHomogeneous_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `transverseSourceUnshearSection` — `def` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `transverseSourceUnshearSection_negAxis_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
+- `transverseStagePoint` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `transverseWeightZero_supported_only_longitudinal` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `transverseZeroJetCore_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
 - `transverse_nonzero_at_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
