@@ -800,3 +800,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati
 
 -- Regular cap-two source: polynomial inverse of the genuine transverse Hessian, with Riccati derived from F.
 import HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse
+
+-- Dual-number localization constructs the X-derivation and closes regular quadratic-cap transverse invertibility.
+import HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation
