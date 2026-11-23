@@ -75,11 +75,11 @@ theorem quadraticTransverseCapSource_regularTransverseFibre_bijective
     intro y
     change Px *ᵥ (bx + Cx *ᵥ y - bx) = y
     have hsub : bx + Cx *ᵥ y - bx = Cx *ᵥ y := by abel
-    rw [hsub, ← Matrix.mulVec_mulVec, hPCx, Matrix.one_mulVec]
+    rw [hsub, Matrix.mulVec_mulVec, hPCx, Matrix.one_mulVec]
   have hright : Function.RightInverse J G := by
     intro p
     change bx + Cx *ᵥ (Px *ᵥ (p - bx)) = p
-    rw [← Matrix.mulVec_mulVec, hCPx, Matrix.one_mulVec]
+    rw [Matrix.mulVec_mulVec, hCPx, Matrix.one_mulVec]
     abel
   have hG : Function.Bijective G :=
     ⟨hleft.injective, hright.surjective⟩
