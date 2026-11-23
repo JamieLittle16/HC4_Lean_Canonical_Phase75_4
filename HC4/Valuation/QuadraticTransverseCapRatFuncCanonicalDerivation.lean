@@ -26,6 +26,8 @@ noncomputable section
 open scoped nonZeroDivisors
 
 set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 1000000
+set_option maxRecDepth 2048
 
 variable {K : Type*} [Field K]
 
@@ -103,7 +105,8 @@ theorem quadraticTransverse_rationalDualJet_fst
       (RatFunc K) (RatFunc K) (RatFunc K)).toRingHom.comp j
   have heq : p = RingHom.id (RatFunc K) := by
     apply IsLocalization.ringHom_ext ((Polynomial K)⁰)
-    ext q
+    apply RingHom.ext
+    intro q
     change (j (polynomialEmbedding (K := K) q)).fst =
       polynomialEmbedding (K := K) q
     rw [quadraticTransverse_rationalDualJet_poly]
