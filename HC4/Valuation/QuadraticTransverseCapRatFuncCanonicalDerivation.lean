@@ -1,5 +1,5 @@
 import HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse
-import Mathlib.Algebra.TrivSqZeroExt.Basic
+import Mathlib.Algebra.TrivSqZeroExt
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.RingTheory.Localization.Defs
 import Mathlib.Algebra.Polynomial.Derivation
