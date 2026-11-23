@@ -71,6 +71,8 @@ theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic
   classical
   let L3 : SB K := initialForm transverseCubicWeight 3 F
   let L2 : SB K := initialForm transverseCubicWeight 2 F
+  letI : (Ideal.span {p} : Ideal (B3 K)).IsPrime :=
+    (Ideal.span_singleton_prime hp.ne_zero).2 hp.prime
   let R := B3 K ⧸ Ideal.span {p}
   let q : B3 K →+* R := Ideal.Quotient.mk (Ideal.span {p})
   let φ : SB K →+* R := q.comp (referenceSlice a).toRingHom
