@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10971**.
+Distinct declaration spellings indexed: **10974**.
 
 ## Repeated declaration spellings
 
@@ -8328,9 +8328,12 @@ Distinct declaration spellings indexed: **10971**.
 - `primitive_pair_shape_of_quotient_eq_of_le_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `primitive_pair_shape_of_quotient_eq_one_zero` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
 - `primitive_pair_shape_of_quotient_eq_zero_one` — `theorem` in `HC4.Polynomial.RankThreeQuotientFibers`
+- `principalCofactor_kernelLine_of_unitCoordinate` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - `principalCofactor_kernelVector_adjugate_proportional` — `theorem` in `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
 - `principalCofactor_kernelVector_pivot_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `principalCofactor_kernelVector_pivot_of_nonzero` — `theorem` in `HC4.Polynomial.RankThreeCubicResidueKernelDirection`
+- `principalCofactor_kernel_coordinate_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+- `principalCofactor_kernel_zero_of_coordinate_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - `principalCofactor_threeScale_polarization` — `theorem` in `HC4.Polynomial.RankThreeCubicPrincipalCofactorThreeScale`
 - `principalCofactor_threeScale_square_forces_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicPrincipalCofactorThreeScale`
 - `principalCofactor_twoKernelVectors_crossMultiply` — `theorem` in `HC4.Polynomial.RankThreeCubicResidueKernelDirection`
