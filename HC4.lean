@@ -762,3 +762,5 @@ import HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair
 -- Identify the determinant-one source pole correction with the exact lower-weight Hessian.
 import HC4.Polynomial.RankThreeCubicDetOneWeightedRepair
 
+-- Genuine cubic pole: conditionally source-honest rank-three kernel trace isotropy.
+import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic
