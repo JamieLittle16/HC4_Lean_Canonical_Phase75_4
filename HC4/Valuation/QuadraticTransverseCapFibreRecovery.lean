@@ -97,7 +97,11 @@ theorem quadraticFibreGradient_bijective_of_affineDrift
             x * (lambda * lambda⁻¹) := by ring
         _ = x := by rw [hlambdaMul, mul_one]
     have hy : U x (p - b x) = y := hpreimage
-    exact Prod.ext hx (by simpa [hx] using hy)
+    change
+      (((h x y - kappa p) * lambda⁻¹),
+        U ((h x y - kappa p) * lambda⁻¹)
+          (p - b ((h x y - kappa p) * lambda⁻¹))) = (x, y)
+    rw [hx, hpreimage]
   exact ⟨hleft.injective, hright.surjective⟩
 
 end
