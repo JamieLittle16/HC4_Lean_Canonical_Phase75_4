@@ -95,9 +95,10 @@ theorem quadraticTransverseCapSource_regularAffineInverse
         rw [Matrix.mul_smul, Matrix.smul_mul]
   rw [hscaled] at hsource'
   have hRiccati :
-      C'' = 2 * ((C' * P) * C') := by
+      C'' = (2 : Polynomial K) • ((C' * P) * C') := by
     apply Matrix.ext
     intro i j
+    change C'' i j = (2 : Polynomial K) * (((C' * P) * C') i j)
     have hi := congrArg
       (fun M : Matrix (Fin 3) (Fin 3) (Polynomial K) => M i j)
       hsource'
@@ -108,11 +109,14 @@ theorem quadraticTransverseCapSource_regularAffineInverse
       C.det * C'' i j =
           (2 : Polynomial K) * (C.det * ((C' * P) * C') i j) := hi
       _ = C.det * (2 * ((C' * P) * C') i j) := by ring
+  have hRiccatiMatrix :
+      C'' = 2 * ((C' * P) * C') := by
+    simpa only [two_mul, two_smul] using hRiccati
   obtain ⟨A, B, hAffine⟩ :=
     quadraticTransverse_reciprocal_polynomial_affine
       C P hCP hPC (by
         simpa [C', C'', quadraticTransverse_polynomialMatrixDerivative]
-          using hRiccati)
+          using hRiccatiMatrix)
   exact ⟨P, A, B, hCP, hPC, hAffine⟩
 
 end
