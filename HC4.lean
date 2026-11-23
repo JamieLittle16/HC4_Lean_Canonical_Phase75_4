@@ -779,3 +779,6 @@ import HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo
 
 -- Genuine source pole: either isotropic repair at rank three, full adjugate zero, or triple pole.
 import HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit
+
+-- Preserve the genuine source's surviving rank-two transverse pivot in the full-adjugate-zero branch.
+import HC4.Polynomial.RankThreeCubicDetOneSourceRankTwoPivotCertificate
