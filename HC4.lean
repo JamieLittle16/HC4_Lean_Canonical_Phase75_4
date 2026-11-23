@@ -765,3 +765,4 @@ import HC4.Polynomial.RankThreeCubicDetOneWeightedRepair
 -- Genuine cubic pole: conditionally source-honest rank-three kernel trace isotropy.
 import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic
 import HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular
+import HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine
