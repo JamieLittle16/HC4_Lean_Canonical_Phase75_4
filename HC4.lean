@@ -797,3 +797,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati
 
 -- The actual quadratic-cap source's division-free matrix Riccati identity.
 import HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati
+
+-- Regular cap-two source: polynomial inverse of the genuine transverse Hessian, with Riccati derived from F.
+import HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse
