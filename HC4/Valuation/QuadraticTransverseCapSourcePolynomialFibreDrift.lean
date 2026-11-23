@@ -59,7 +59,7 @@ theorem quadraticTransverseCapSource_regularPolynomialFibre_drift
       F hcap hdet hregular p
   refine ⟨y, hgrad, ?_⟩
   intro i
-  let q := Fin.cons Polynomial.X y
+  let q : Fin 4 → Polynomial K := Fin.cons (Polynomial.X : Polynomial K) y
   have hcomm :
       sourcePolynomialPathSubstitution q
         (MvPolynomial.pderiv (0 : Fin 4)
