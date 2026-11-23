@@ -112,6 +112,7 @@ theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic
       q (MvPolynomial.C
         ((referenceSlice a (hessian L2 (.inr i) (.inr j))).coeff 0))
     rw [sourceCubic_secondLayer_transverseSlice_eq_C F a i j]
+    simp only [MvPolynomial.coeff_zero_C]
   let scalar : K :=
     ∑ i : Fin 3, ∑ j : Fin 3, w i * T2 i j * w j
   have hscalarq :
@@ -125,13 +126,6 @@ theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic
     apply Finset.sum_congr rfl
     intro j _
     rw [hCij]
-    change q (MvPolynomial.C (w i)) *
-        q (MvPolynomial.C (T2 i j)) *
-        q (MvPolynomial.C (w j)) =
-      q (MvPolynomial.C (w i)) *
-        q (MvPolynomial.C (T2 i j)) *
-        q (MvPolynomial.C (w j))
-    rfl
   have hzeroq : q (MvPolynomial.C scalar) = 0 :=
     hscalarq.trans htrans
   have hpzero : MvPolynomial.aeval
