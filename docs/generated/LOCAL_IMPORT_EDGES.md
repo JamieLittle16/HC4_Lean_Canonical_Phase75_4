@@ -429,6 +429,7 @@ human architecture guide.
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
+  - `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
@@ -5912,6 +5913,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapRankTwoOppositeSections`
   - `HC4.Valuation.QuadraticTransverseCapSchurOddCancellation`
   - `HC4.Valuation.QuadraticTransverseCapTwoRowKernel`
+- `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
 - `HC4.Valuation.QuadraticTransverseCapRatFuncConstants`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `HC4.Valuation.QuadraticTransverseCapRatFuncDerivationX`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10990**.
+Distinct declaration spellings indexed: **11001**.
 
 ## Repeated declaration spellings
 
@@ -1724,6 +1724,7 @@ Distinct declaration spellings indexed: **10990**.
 - `DirectClosingTransverseAlignedSquareData.toAlignedSquareSource` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `DirectClosingWallFaceBasePlaneRankTwoRepairData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareAffineBasePlane`
 - `DirectClosingWallFaceMixedRepairData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSquareWallFaceCurvature`
+- `DualRat` — `abbrev` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `EarlySchurRankTwoGeometry` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalEarlySchurRankTwoGeometry`
 - `EndpointResidualNormalForm` — `structure` in `HC4.Newton.MixedDegreeAxisCollision`
 - `EndpointResidualNormalForm.exactRecenteredLayer` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -8035,6 +8036,7 @@ Distinct declaration spellings indexed: **10990**.
 - `polynomialBranchInverse_comp_gradient` — `theorem` in `HC4.ClassifiedFamilies.PolynomialEndpoint`
 - `polynomialConstantSection` — `def` in `HC4.Valuation.PolynomialFamilyCollisionSpecialFiber`
 - `polynomialDualJet` — `def` in `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `polynomialEmbedding` — `abbrev` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `polynomialFamilyCollision_specialFiber_zero_axisZero` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `polynomialFamilyExactGradientCollision_adaptiveSmithExposure` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `polynomialFamilyExactGradientCollision_allSourceSign` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -8737,6 +8739,7 @@ Distinct declaration spellings indexed: **10990**.
 - `quadraticTransverseCapSource_rationalThreeMatrix` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `quadraticTransverseCapSource_rationalThreeMatrix_det_ne_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `quadraticTransverseCapSource_rationalThreeMatrix_inverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+- `quadraticTransverseCapSource_regularPolynomialInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `quadraticTransverseCapSource_regularPolynomialInverse_of_derivation` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
 - `quadraticTransverseCapSource_sectionMixedRow_entry` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSchurProfile`
 - `quadraticTransverseCapSource_singular_principalPivot` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot`
@@ -8786,6 +8789,8 @@ Distinct declaration spellings indexed: **10990**.
 - `quadraticTransverse_affineMatrix_factor` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affineMatrix_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDet`
 - `quadraticTransverse_affinePolynomial_eq_of_twoValues` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineVectorCollision`
+- `quadraticTransverse_canonicalRatFuncDerivation` — `def` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `quadraticTransverse_canonicalRatFuncDerivation_X` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `quadraticTransverse_clearedLinearRiccati_polynomialInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeMixedClosure`
 - `quadraticTransverse_clearedRiccati_fieldRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeRiccatiTransport`
 - `quadraticTransverse_compatibleDerivation_integralInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
@@ -8805,6 +8810,8 @@ Distinct declaration spellings indexed: **10990**.
 - `quadraticTransverse_fieldRiccati_polynomialInverse_constantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
 - `quadraticTransverse_field_secondDerivative_zero_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
 - `quadraticTransverse_polynomialAffineInverse_nilpotentSlope` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
+- `quadraticTransverse_polynomialDualJet` — `def` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `quadraticTransverse_polynomialDualJet_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `quadraticTransverse_polynomialInverse_affine_of_clearedRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreePolynomialAffineClosure`
 - `quadraticTransverse_polynomialInverse_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeMixedProductODE`
 - `quadraticTransverse_polynomialMatrixDerivative` — `def` in `HC4.Valuation.QuadraticTransverseCapRankThreeAffineInverse`
@@ -8837,6 +8844,10 @@ Distinct declaration spellings indexed: **10990**.
 - `quadraticTransverse_ratQuotientXDerivative_add` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
 - `quadraticTransverse_ratQuotientXDerivative_mul` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
 - `quadraticTransverse_ratQuotientXDerivative_scale` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncQuotientRule`
+- `quadraticTransverse_rationalDualJet` — `def` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `quadraticTransverse_rationalDualJet_fst` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `quadraticTransverse_rationalDualJet_ground` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `quadraticTransverse_rationalDualJet_poly` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
 - `quadraticTransverse_reciprocal_polynomial_affine` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `quadraticTransverse_reciprocal_secondDerivative_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
 - `quadraticTransverse_schur_firstDerivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSchurSecondDerivative`
