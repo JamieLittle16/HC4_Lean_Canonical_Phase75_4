@@ -433,6 +433,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRegularFibre`
   - `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
   - `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
@@ -5974,6 +5975,8 @@ human architecture guide.
 - `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeReciprocalODE`
   - `HC4.Valuation.QuadraticTransverseCapRatFuncCanonicalDerivation`
+- `HC4.Valuation.QuadraticTransverseCapSourceRegularFibre`
+  - `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `HC4.Valuation.QuadraticTransverseCapSourceRegularPolynomialInverse`
   - `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
