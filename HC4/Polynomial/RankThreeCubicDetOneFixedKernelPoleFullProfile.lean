@@ -140,7 +140,7 @@ theorem sourceCubic_fixedPoleKernel_fullHessian_scalarResponse
     have hresp : (D *ᵥ v) (.inl ()) = q flow := by
       simp [D, v, W, flow, Matrix.mulVec, dotProduct,
         Fintype.sum_sum_type, φ, q, map_sum, map_mul]
-    rw [hresp, hc]
+    exact hresp.trans (congrArg q hc)
   have hBmul : B *ᵥ v = A *ᵥ v + C *ᵥ v + D *ᵥ v := by
     rw [hdecomp, Matrix.add_mulVec, Matrix.add_mulVec]
   have hArows (i : Fin 3) : (A *ᵥ v) (.inr i) = 0 :=
