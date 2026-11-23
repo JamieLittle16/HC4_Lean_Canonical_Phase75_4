@@ -767,3 +767,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic
 import HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular
 import HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine
 import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor
+
+-- Rank-three genuine-pole source isotropy with kernel line derived from the cofactor.
+import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot
