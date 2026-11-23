@@ -429,6 +429,7 @@ human architecture guide.
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
+  - `HC4.Valuation.QuadraticTransverseCapSourceAxisRiccati`
   - `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
   - `HC4.Valuation.QuadraticTransverseGap`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
