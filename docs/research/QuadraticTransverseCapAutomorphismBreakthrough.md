@@ -251,3 +251,84 @@ A genuine rational characteristic pole remains a conceptual
 challenge. The complete cubic theorem must cover all ranks
 without a marked singular-axis assumption. Another cofactor
 calculation without that closure is not the next milestone.
+
+
+## Constructive basis-free singular inverse (2026-11-23 audit)
+
+The constant-kernel proof above also admits a **coordinate-free inverse**
+without extending w to a whole transverse basis. This is the algorithm
+used in the independent exact checker.
+
+Let s denote the longitudinal gradient output and p in K^n the
+transverse output. In the singular case, we have a constant nonzero
+w=adj(C)b' with
+
+    Cw=C'w=0,   b'^T w=-delta,   beta=w^T b(0).
+
+The transverse-gradient equation implies
+
+    w^T p = w^T b(x) = beta-delta*x,
+
+so the longitudinal coordinate is recovered immediately:
+
+    x=(beta-w^T p)/delta.                                 (5)
+
+Choose any k with w_k != 0. The principal (n-1)x(n-1) submatrix
+E=C_{I,I}, I={0,...,n-1}\{k}, has determinant in K^times. This
+follows from the full constant Hessian determinant after a constant
+kernel-aligned basis change, as proved above. Let y0 be the
+unique transverse vector satisfying
+
+    (y0)_k=0,     (y0)_I=E(x)^(-1)(p-b(x))_I.             (6)
+
+It also satisfies the omitted kth equation because
+w^T(p-b(x))=0, Cw=0, and w_k!=0. Hence all solutions of
+C(x)y=p-b(x) are y=y0+t*w.
+
+Since Cw=C'w=C''w=0, along this line
+
+    F_x(x,y0+t*w)=F_x(x,y0)-delta*t.
+
+Therefore the final free coordinate is
+
+    t=(F_x(x,y0)-s)/delta,  y=y0+t*w.                     (7)
+
+(5)--(7) are polynomial in the outputs and are the complete
+two-sided inverse. They also show exactly how the proof scales
+to any number of transverse variables.
+
+## Executable end-to-end regression test
+
+An independent SymPy/QQ exact constructor has been implemented as
+quadratic_cap_inverse.py (conversation artifact). It:
+
+1. Checks the original potential has transverse degree at most two
+   and *nonzero constant* full Hessian determinant.
+2. Computes its ORIGINAL polynomial C(x), b(x), and the discriminating
+   determinant D(x).
+3. In the regular branch constructs C^(-1) over QQ[x], checks the
+   nonzero constant longitudinal fibre slope, and outputs the inverse.
+4. In the singular branch derives and checks the constant w, chooses
+   the surviving principal E, and uses formulas (5)--(7).
+5. Checks BOTH exact polynomial compositions of the gradient and
+   the claimed inverse (not just determinant or injectivity).
+
+Positive tests include: arbitrarily high-degree triangular families;
+a singular kernel with two nonzero coordinates (no aligned coordinate
+assumed); nonconstant but polynomially invertible C(x); a nontrivial
+b(x) with cubic longitudinal drift; and transverse dimensions 1,3,4.
+A cubic-cap input and a nonconstant-determinant input are rejected.
+
+Tests are **exact for the instantiated rational coefficients**,
+but are not a Lean certificate for the universal theorem.
+
+## Literature caution after specific checking
+
+Ni's 2026 Proposition 6.1 (arXiv:2608.14217) establishes a
+*different* degree-unbounded four-variable class, namely potentials
+P(x1,x2,x3)+x4 Q(x1,x2,x3)+a*x4^2 with deg Q <=2
+(and in particular proves the quartic HC4).
+Its existence means that **unbounded degree alone does not establish
+novelty**. We have not found a direct prior statement of the present
+one-longitudinal-variable, transverse-quadratic theorem, but have NOT
+completed a comprehensive literature review or claimed priority.
