@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11011**.
+Distinct declaration spellings indexed: **11013**.
 
 ## Repeated declaration spellings
 
@@ -8737,6 +8737,7 @@ Distinct declaration spellings indexed: **11011**.
 - `quadraticTransverseCapSource_globalRiccatiCoefficient` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
 - `quadraticTransverseCapSource_globalThreeBlock_axisEntries` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
 - `quadraticTransverseCapSource_matrixRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
+- `quadraticTransverseCapSource_polynomialPath_transverseHessian` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
 - `quadraticTransverseCapSource_rationalRiccati_constantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
 - `quadraticTransverseCapSource_rationalThreeMatrix` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `quadraticTransverseCapSource_rationalThreeMatrix_det_ne_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
@@ -10194,6 +10195,7 @@ Distinct declaration spellings indexed: **11011**.
 - `sourceOriginSpecialHessian_det_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourcePolynomialLongitudinalSection_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
 - `sourcePolynomialPathSubstitution` — `def` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
+- `sourcePolynomialPathSubstitution_eval` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
 - `sourcePolynomialPath_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
 - `sourcePresentation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
 - `sourceRankThreeExit_of_preterminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
