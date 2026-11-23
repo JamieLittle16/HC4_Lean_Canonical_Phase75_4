@@ -143,13 +143,17 @@ theorem sourceCubic_fixedPoleKernel_fullHessian_scalarResponse
     rw [hresp, hc]
   have hBmul : B *ᵥ v = A *ᵥ v + C *ᵥ v + D *ᵥ v := by
     rw [hdecomp, Matrix.add_mulVec, Matrix.add_mulVec]
+  have hArows (i : Fin 3) : (A *ᵥ v) (.inr i) = 0 :=
+    congrFun hAker (.inr i)
+  have hAlong : (A *ᵥ v) (.inl ()) = 0 :=
+    congrFun hAker (.inl ())
   constructor
   · intro i
     have hi := congrFun hBmul (.inr i)
-    simpa only [Pi.add_apply, congrFun hAker, hCrows i,
+    simpa only [Pi.add_apply, hArows i, hCrows i,
       hDrows i, Pi.zero_apply, zero_add] using hi
   · have hi := congrFun hBmul (.inl ())
-    simpa only [Pi.add_apply, congrFun hAker, hCmix,
+    simpa only [Pi.add_apply, hAlong, hCmix,
       hDmix, Pi.zero_apply, zero_add] using hi
 
 end
