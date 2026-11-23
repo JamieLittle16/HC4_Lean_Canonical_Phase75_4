@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10977**.
+Distinct declaration spellings indexed: **10979**.
 
 ## Repeated declaration spellings
 
@@ -3754,6 +3754,7 @@ Distinct declaration spellings indexed: **10977**.
 - `adjacentFacets_comm` — `theorem` in `HC4.Newton.FacetCycleClassification`
 - `adjacent_transition_on_extreme_ray` — `theorem` in `HC4.Newton.BoundaryCycle`
 - `adjugate_axisBlock_zero` — `lemma` in `HC4.Valuation.TransverseAxisKernelDrift`
+- `adjugate_entry_zero_of_nonzero_kernel_coordinate_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
 - `adjugate_ne_zero_of_congruence` — `theorem` in `HC4.Polynomial.RankThreeCubicHessianCongruence`
 - `adjugate_rankOne_cross_products` — `theorem` in `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`
 - `adjugate_updateRow_same_col` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFirstVariationCofactor`
@@ -10582,6 +10583,7 @@ Distinct declaration spellings indexed: **10977**.
 - `swappedEuler_eq_unitLeftOneFiberThreeLayerMomentPencil` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberThreeLayerPencil`
 - `swappedRankThreeEulerHessian` — `def` in `HC4.Valuation.RankThreeLineSpecialisationHessianParameterSwap`
 - `symmEntry` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
+- `symmetricFour_fullAdjugate_zero_of_transverseKernel_pivot` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
 - `symmetricMinimalSpecialFiber_hasRepairOrTerminal` — `theorem` in `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `symmetricQuadraticSubface_exists_homogeneousCollisionFibre` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `symmetricSmithPoleMinimal_exists_nonpositive_face_grade` — `theorem` in `HC4.Newton.SymmetricSmithMinimality`

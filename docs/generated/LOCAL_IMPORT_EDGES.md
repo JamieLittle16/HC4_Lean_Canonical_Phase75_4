@@ -1379,6 +1379,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitRepairOrTriple`
   - `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitPivot`
+- `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling`
 - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
