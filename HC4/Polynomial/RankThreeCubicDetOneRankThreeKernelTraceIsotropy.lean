@@ -27,7 +27,7 @@ namespace HC4.Polynomial.RankThreeCubic
 open scoped Matrix BigOperators
 noncomputable section
 
-variable {K : Type*} [Field K]
+variable {K : Type*} [CommRing K] [IsDomain K]
 
 /-- A nonzero rank-three symmetric adjugate, with a
 one-dimensional kernel, makes a trace-zero first correction
