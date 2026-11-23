@@ -23,6 +23,8 @@ open HC4.Polynomial
 open scoped Matrix BigOperators
 
 set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 1000000
+set_option maxRecDepth 2048
 
 variable {K : Type*} [Field K] [CharZero K]
 
@@ -79,7 +81,10 @@ theorem quadraticTransverseCapSource_regularPolynomialInverse_of_derivation
           ((C'.map f * C.adjugate.map f) * C'.map f) := by
             simp only [Matrix.map_mul]
       _ = ((C'.map f * Cr.adjugate) * C'.map f) := by
-            rw [f.map_adjugate C]
+            have hadj : C.adjugate.map f = Cr.adjugate := by
+              change C.adjugate.map f = (C.map f).adjugate
+              exact f.map_adjugate C
+            rw [hadj]
   have hsrc :=
     quadraticTransverseCapSource_matrixRiccati F hcap hdet
   have hsrcIJ (i j : Fin 3) :
@@ -119,16 +124,21 @@ theorem quadraticTransverseCapSource_regularPolynomialInverse_of_derivation
       Cr.adjugate = (Cr⁻¹ * Cr) * Cr.adjugate := by
         rw [Matrix.nonsing_inv_mul Cr hunit, one_mul]
       _ = Cr⁻¹ * (Cr * Cr.adjugate) := by rw [mul_assoc]
+      _ = Cr⁻¹ * (Cr.det • (1 : Matrix (Fin 3) (Fin 3) (RatFunc K))) := by
+        rw [Matrix.mul_adjugate]
       _ = Cr.det • Cr⁻¹ := by
-        rw [Matrix.mul_adjugate, Matrix.mul_smul]
-        simp
+        rw [Matrix.mul_smul, mul_one]
   have hinverse :
       dd (dd Cr) =
         (2 : RatFunc K) • ((dd Cr * Cr⁻¹) * dd Cr) := by
     have hscaled :
         ((dd Cr * Cr.adjugate) * dd Cr) =
           Cr.det • ((dd Cr * Cr⁻¹) * dd Cr) := by
-      rw [hAdj, Matrix.mul_smul, Matrix.smul_mul]
+      calc
+        ((dd Cr * Cr.adjugate) * dd Cr) =
+            ((dd Cr * (Cr.det • Cr⁻¹)) * dd Cr) := by rw [hAdj]
+        _ = Cr.det • ((dd Cr * Cr⁻¹) * dd Cr) := by
+          rw [Matrix.mul_smul, Matrix.smul_mul]
     calc
       dd (dd Cr) = Cr.det⁻¹ • (Cr.det • dd (dd Cr)) := by
         rw [smul_smul, inv_mul_cancel₀ hnonzero, one_smul]
