@@ -770,3 +770,6 @@ import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor
 
 -- Rank-three genuine-pole source isotropy with kernel line derived from the cofactor.
 import HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot
+
+-- Source cubic genuine pole: nonzero quadratic repair and full-Hessian cofactor split.
+import HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit
