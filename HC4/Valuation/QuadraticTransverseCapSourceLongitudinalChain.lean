@@ -89,7 +89,7 @@ theorem quadraticTransverseCapSource_regularLongitudinalChain
       dy = (P * C) *ᵥ dy := by rw [hPC, Matrix.one_mulVec]
       _ = P *ᵥ (C *ᵥ dy) := by rw [Matrix.mulVec_mulVec]
       _ = P *ᵥ (-v) := by rw [hCv]
-      _ = -(P *ᵥ v) := by simp
+      _ = -(P *ᵥ v) := Matrix.mulVec_neg v P
   have hsum :
       (∑ i : Fin 3, dy i * v i) =
         -(∑ i : Fin 3, v i * (P *ᵥ v) i) := by
