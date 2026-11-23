@@ -1348,6 +1348,9 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOneFixedKernelPoleFullProfile`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleLowJetSquareOrTriple`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceMixedAffineDegrees`
+- `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
+  - `HC4.Polynomial.RankThreeCubicLinearHyperplaneVanishingDivisibility`
+  - `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentNonzero`
   - `HC4.Polynomial.RankThreeCubicDetOneAlignedMixedPairing`
   - `HC4.Polynomial.RankThreeCubicSourceFourHessianKernelPole`
