@@ -42,6 +42,7 @@ theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic
     (F : SB K) (a : K) (p : B3 K) (ell : Fin 3 → K)
     (hlin : p = ∑ i : Fin 3,
       (MvPolynomial.X i : B3 K) * MvPolynomial.C (ell i))
+    (hp : Irreducible p)
     (hcap : IsWeightLE transverseCubicWeight 3 F)
     (hdetOne : hessianDeterminant F = 1)
     (w : Fin 3 → K) (k : Fin 3) :
