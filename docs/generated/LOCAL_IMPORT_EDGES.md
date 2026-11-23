@@ -428,6 +428,7 @@ human architecture guide.
   - `HC4.Valuation.PointedShearContinuation`
   - `HC4.Valuation.PolynomialFamilyKernelRestart`
   - `HC4.Valuation.PrimitiveSmithEndpoint`
+  - `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
   - `HC4.Valuation.QuadraticTransverseGap`
   - `HC4.Valuation.ReverseReesHessianParameterBudget`
   - `HC4.Valuation.ReverseReesSchurParameterBudget`
@@ -5871,6 +5872,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticAxisFourBlockRankTwo`
 - `HC4.Valuation.QuadraticTransverseCapAffineSection`
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
+- `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
+  - _(no local imports)_
 - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`

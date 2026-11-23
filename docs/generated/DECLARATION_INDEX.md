@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10983**.
+Distinct declaration spellings indexed: **10986**.
 
 ## Repeated declaration spellings
 
@@ -8677,6 +8677,9 @@ Distinct declaration spellings indexed: **10983**.
 - `quadraticFamilyHessianMatrix_transverseSourceShear_ij_of_ne_added` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingTransverseAlignment`
 - `quadraticFamilyHessianMatrix_transverseSourceShear_kell` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `quadraticFamilyHessianMatrix_transverseSourceShear_kk` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
+- `quadraticFibreGradient` — `def` in `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
+- `quadraticFibreGradientInverse` — `def` in `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
+- `quadraticFibreGradient_bijective_of_affineDrift` — `theorem` in `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
 - `quadraticFirstLayer_fixedTransversePrincipalPivot` — `theorem` in `HC4.Valuation.QuadraticFirstLayerPrincipalSchurPivot`
 - `quadraticLongitudinalHessianBoundary` — `def` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
 - `quadraticLongitudinalHessianBoundary_coeff_five` — `theorem` in `HC4.Newton.QuadraticLongitudinalHessianBoundary`
