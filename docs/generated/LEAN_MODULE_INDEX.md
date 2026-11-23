@@ -3601,18 +3601,18 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
 - External imports: `Mathlib.LinearAlgebra.Matrix.Nondegenerate`, `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`, `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
 - Declarations: `theorem principalCofactor_kernel_zero_of_coordinate_zero`, `theorem principalCofactor_kernel_coordinate_ne_zero`, `theorem principalCofactor_kernelLine_of_unitCoordinate`
 
 ### `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
 
 - Path: `HC4/Polynomial/RankThreeCubicDetOnePrincipalPivotKernelLine.lean`
-- Purpose: A surviving full principal cofactor automatically makes a kernel line
+- Purpose: Compatibility import for the principal-cofactor kernel-line theorem
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
-- External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
-- Declarations: `theorem principalCofactor_kernel_zero_of_pivot_zero`, `theorem principalCofactor_kernelVector_pivot_ne_zero`, `theorem principalCofactor_kernelLine_of_unitCoordinate`
+- Local imports: `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+- External imports: none
+- Imported by local modules: none
+- Declarations: none detected
 
 ### `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurKernelCoupling`
 
@@ -3831,7 +3831,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
 - Declarations: `abbrev B3`, `abbrev SB`, `theorem sourceCubic_rankThreePoleKernel_isotropic_of_cofactor`
 
 ### `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
@@ -3841,7 +3841,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`, `HC4.Polynomial.RankThreeCubicPoleQuotientPointEvaluation`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`, `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
 - Declarations: `abbrev B3`, `abbrev SB`, `theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic`
 
 ### `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
@@ -3849,7 +3849,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot.lean`
 - Purpose: Source rank-three isotropy without an assumed kernel-line interface
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
+- Local imports: `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
 - Declarations: `abbrev B3`, `abbrev SB`, `theorem sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic_of_cofactor`

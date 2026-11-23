@@ -1413,7 +1413,7 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
-  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurKernelCoupling`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePrincipalSchurSquare`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurSquareAlgebra`
@@ -1483,7 +1483,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
   - `HC4.Polynomial.RankThreeCubicPoleQuotientPointEvaluation`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
-  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalPivotKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
 - `HC4.Polynomial.RankThreeCubicDetOneSourceSchurLowJetSquare`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSourceKernelPairing`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling`
