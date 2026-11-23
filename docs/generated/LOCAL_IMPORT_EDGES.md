@@ -5882,6 +5882,8 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
 - `HC4.Valuation.QuadraticTransverseCapFibreRecovery`
   - _(no local imports)_
+- `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
+  - `HC4.Valuation.QuadraticTransverseCapSourceRegularFibre`
 - `HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeFieldDerivation`
   - `HC4.Valuation.QuadraticTransverseCapRankThreeLongitudinalDrift`

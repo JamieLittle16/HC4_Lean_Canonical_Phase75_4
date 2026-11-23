@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11008**.
+Distinct declaration spellings indexed: **11011**.
 
 ## Repeated declaration spellings
 
@@ -10192,6 +10192,9 @@ Distinct declaration spellings indexed: **11008**.
 - `sourceOriginHessianLayer_zero_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_zero_eq_specialFiber` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginSpecialHessian_det_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
+- `sourcePolynomialLongitudinalSection_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
+- `sourcePolynomialPathSubstitution` — `def` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
+- `sourcePolynomialPath_derivative` — `theorem` in `HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule`
 - `sourcePresentation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
 - `sourceRankThreeExit_of_preterminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - `sourceRankThreeExit_of_residualZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
