@@ -68,6 +68,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicCoordinatePlaneBinary`
   - `HC4.Polynomial.RankThreeCubicCramerQuadraticResidue`
   - `HC4.Polynomial.RankThreeCubicDegreeOneAffineEuler`
+  - `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
   - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`
