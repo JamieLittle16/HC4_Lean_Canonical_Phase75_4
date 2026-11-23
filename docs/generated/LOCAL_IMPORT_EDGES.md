@@ -1534,7 +1534,7 @@ human architecture guide.
   - `HC4.Polynomial.DerivativeWeight`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `HC4.Polynomial.RankThreeCubicLinearHyperplaneVanishingDivisibility`
-  - `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
+  - `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
 - `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
   - `HC4.Polynomial.RankThreeCubicTensorAdaptedFrame`
 - `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`

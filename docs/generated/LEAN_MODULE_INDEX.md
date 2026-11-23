@@ -3531,7 +3531,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`, `HC4.Polynomial.RankThreeCubicDetOneThreePointBorderedObstruction`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.RankThreeCubicLinearHyperplaneVanishingDivisibility`, `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
+- Imported by local modules: `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
 - Declarations: `abbrev B3`, `abbrev SB`, `theorem sourceCubic_fixedPoleKernel_cubicCofactor_vanishes_on_plane`
 
 ### `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`
@@ -4079,8 +4079,8 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankThreeCubicLinearHyperplaneVanishingDivisibility.lean`
 - Purpose: Vanishing on a rational linear hyperplane implies polynomial divisibility
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
-- External imports: `Mathlib.Tactic`
+- Local imports: `HC4.Polynomial.RankThreeCubicLinearPolePointwiseDivisibility`
+- External imports: none
 - Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
 - Declarations: `abbrev B3`, `theorem linearHyperplane_dvd_of_vanishes_on_plane`
 
@@ -4101,7 +4101,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - External imports: `Mathlib.Algebra.CharZero.Infinite`, `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`
+- Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`, `HC4.Polynomial.RankThreeCubicLinearHyperplaneVanishingDivisibility`
 - Declarations: `abbrev B3`, `theorem linearPole_dvd_of_forall_pointEval_zero_at`, `theorem linearPole_dvd_of_forall_pointEval_zero`
 
 ### `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
