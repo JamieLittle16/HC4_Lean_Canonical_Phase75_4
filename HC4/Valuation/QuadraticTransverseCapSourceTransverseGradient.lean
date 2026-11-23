@@ -147,6 +147,18 @@ theorem eval_affine_transverse_of_second_pderivs_zero
   have h0 := hstep (0 : Fin 3)
   have h1 := hstep (1 : Fin 3)
   have h2 := hstep (2 : Fin 3)
+  have h0' :
+      MvPolynomial.eval (stage 1) P =
+        MvPolynomial.eval (stage 0) P +
+          y 0 * MvPolynomial.eval (stage 0)
+            (MvPolynomial.pderiv (0 : Fin 3).succ P) := by
+    simpa using h0
+  have h1' :
+      MvPolynomial.eval (stage 2) P =
+        MvPolynomial.eval (stage 1) P +
+          y 1 * MvPolynomial.eval (stage 0)
+            (MvPolynomial.pderiv (1 : Fin 3).succ P) := by
+    simpa using h1
   have hstage :
       MvPolynomial.eval (stage 3) P =
         MvPolynomial.eval (stage 0) P +
@@ -164,7 +176,7 @@ theorem eval_affine_transverse_of_second_pderivs_zero
               (MvPolynomial.pderiv (1 : Fin 3).succ P) +
             y 2 * MvPolynomial.eval (stage 0)
               (MvPolynomial.pderiv (2 : Fin 3).succ P) := by
-        rw [h1]
+        rw [h1']
       _ = MvPolynomial.eval (stage 0) P +
             y 0 * MvPolynomial.eval (stage 0)
               (MvPolynomial.pderiv (0 : Fin 3).succ P) +
@@ -172,7 +184,15 @@ theorem eval_affine_transverse_of_second_pderivs_zero
               (MvPolynomial.pderiv (1 : Fin 3).succ P) +
             y 2 * MvPolynomial.eval (stage 0)
               (MvPolynomial.pderiv (2 : Fin 3).succ P) := by
-        rw [h0]
+        rw [h0']
+      _ = MvPolynomial.eval (stage 0) P +
+            (y 0 * MvPolynomial.eval (stage 0)
+              (MvPolynomial.pderiv (0 : Fin 3).succ P) +
+             y 1 * MvPolynomial.eval (stage 0)
+              (MvPolynomial.pderiv (1 : Fin 3).succ P) +
+             y 2 * MvPolynomial.eval (stage 0)
+              (MvPolynomial.pderiv (2 : Fin 3).succ P)) := by
+        ring
   simpa only [hbegin, hend] using hstage
 
 /-- The actual original source's evaluated transverse gradient has
