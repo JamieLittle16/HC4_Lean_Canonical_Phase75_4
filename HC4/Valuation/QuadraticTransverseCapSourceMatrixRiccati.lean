@@ -84,7 +84,10 @@ theorem quadraticTransverseCapSource_matrixRiccati
           (C' 0 j) (C' 1 j) (C' 2 j)) at hij
   change C.det * C'' i j = (2 : Polynomial K) * ((C' * C.adjugate) * C') i j
   rw [hdetCore, hcontract]
-  simpa only [mul_comm] using hij
+  calc
+    T.determinantCore * C'' i j =
+        C'' i j * T.determinantCore := mul_comm _ _
+    _ = _ := hij
 
 end
 
