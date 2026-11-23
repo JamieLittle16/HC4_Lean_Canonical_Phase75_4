@@ -300,7 +300,7 @@ to any number of transverse variables.
 ## Executable end-to-end regression test
 
 An independent SymPy/QQ exact constructor has been implemented as
-quadratic_cap_inverse.py (conversation artifact). It:
+[scripts/quadratic_cap_inverse.py](../../scripts/quadratic_cap_inverse.py). It:
 
 1. Checks the original potential has transverse degree at most two
    and *nonzero constant* full Hessian determinant.
