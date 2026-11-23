@@ -66,8 +66,8 @@ theorem quadraticTransverseCapSource_axisRiccatiCoefficient
   have he : phi Cg.e = C.e := rfl
   have hf : phi Cg.f = C.f := rfl
   have hdetMap : phi Cg.determinantCore = C.determinantCore := by
-    simp [GeneralThreeBlock.determinantCore,
-      ha, hb, hc, hd, he, hf]
+    simp only [GeneralThreeBlock.determinantCore, map_add, map_sub,
+      map_mul, map_ofNat, ha, hb, hc, hd, he, hf]
   have hAdj0 (v0 v1 v2 : MvPolynomial (Fin 4) K) :
       phi (quadraticTransverseAdjugateVector0 Cg v0 v1 v2) =
         quadraticTransverseAdjugateVector0 C
