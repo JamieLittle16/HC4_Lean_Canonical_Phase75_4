@@ -88,18 +88,35 @@ theorem sourceCubic_cubicTransverseHessian_eval_neg
       (MvPolynomial.totalDegree_zero_iff_isHomogeneous (Fin 3)).2
         hh.pderiv
     exact MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp hd
+  have hderEval (y : Fin 3 → K) (t : Fin 3) :
+      MvPolynomial.aeval y (pderiv t P) =
+        (pderiv t P).coeff 0 := by
+    calc
+      _ = MvPolynomial.aeval y
+            (MvPolynomial.C ((pderiv t P).coeff 0)) :=
+          congrArg (MvPolynomial.aeval y) (hconst t)
+      _ = _ := by simp
+  have heval (y : Fin 3 → K) :
+      MvPolynomial.aeval y P =
+        ∑ t : Fin 3, y t * (pderiv t P).coeff 0 := by
+    calc
+      MvPolynomial.aeval y P =
+          MvPolynomial.aeval y
+            (∑ t : Fin 3, (MvPolynomial.X t : B3 K) * pderiv t P) :=
+        congrArg (MvPolynomial.aeval y) hEuler
+      _ = ∑ t : Fin 3, y t * (pderiv t P).coeff 0 := by
+        rw [map_sum]
+        apply Finset.sum_congr rfl
+        intro t _
+        rw [map_mul, MvPolynomial.aeval_X, hderEval y t]
   have hleft :
       MvPolynomial.aeval (fun m => -z m) P =
-        ∑ t : Fin 3, (-z t) * (pderiv t P).coeff 0 := by
-    conv_lhs => rw [hEuler]
-    simp only [map_sum, map_mul, MvPolynomial.aeval_X,
-      hconst, MvPolynomial.aeval_C]
+        ∑ t : Fin 3, (-z t) * (pderiv t P).coeff 0 :=
+    heval (fun m => -z m)
   have hright :
       MvPolynomial.aeval z P =
-        ∑ t : Fin 3, z t * (pderiv t P).coeff 0 := by
-    conv_lhs => rw [hEuler]
-    simp only [map_sum, map_mul, MvPolynomial.aeval_X,
-      hconst, MvPolynomial.aeval_C]
+        ∑ t : Fin 3, z t * (pderiv t P).coeff 0 :=
+    heval z
   change MvPolynomial.aeval (fun m => -z m) P =
     -MvPolynomial.aeval z P
   rw [hleft, hright, ← Finset.sum_neg_distrib]
