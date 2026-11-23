@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10981**.
+Distinct declaration spellings indexed: **10983**.
 
 ## Repeated declaration spellings
 
@@ -6877,6 +6877,8 @@ Distinct declaration spellings indexed: **10981**.
 - `jordanVelocity` — `def` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `kernelBlock_det_eq_zero_of_polynomialMatrix_gap` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlock_det_eq_zero_of_polynomialMatrix_gap_domain` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `kernelBlock_det_eq_zero_of_secondDetCoeff_gap` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
+- `kernelBlock_det_eq_zero_of_secondDetCoeff_gap_domain` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
 - `kernelBlock_det_eq_zero_of_secondVariation_eq_zero` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlock_det_eq_zero_of_secondVariation_eq_zero_domain` — `theorem` in `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `kernelBlowupSection` — `def` in `HC4.Valuation.IntegralKernelBlowup`
