@@ -1413,6 +1413,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSourceChart`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSourceKernelPairing`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurKernelCoupling`
+- `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseRepairOriginWitness`
 - `HC4.Polynomial.RankThreeCubicDetOneRepairBlockDegree`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`
 - `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`

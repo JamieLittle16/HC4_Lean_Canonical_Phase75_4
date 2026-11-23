@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **10967**.
+Distinct declaration spellings indexed: **10968**.
 
 ## Repeated declaration spellings
 
@@ -10589,6 +10589,7 @@ Distinct declaration spellings indexed: **10967**.
 - `symmetricThree_kernelLine_principalCofactor_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
 - `symmetricThree_kernel_adjugate_lowJet_normalized` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneAdjugateLowJetNormalization`
 - `symmetricThree_tangentKernel_full_or_tangentBlockZero` — `theorem` in `HC4.Polynomial.RankThreeCubicTangentKernelExtension`
+- `symmetric_kernelLine_adjugateTrace_zero_implies_isotropic` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
 - `symmetric_mul_square` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `symmetric_rankOne_nonzero_has_principal_pivot` — `theorem` in `HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction`
 - `symmetric_rankOne_pencil_proportional` — `theorem` in `HC4.Polynomial.RankThreeCubicSymmetricRankOnePencil`
