@@ -43,7 +43,7 @@ theorem quadraticTransverseCapSource_matrixRiccati
       fun i j => Polynomial.derivative (C i j)
     let C'' : Matrix (Fin 3) (Fin 3) (Polynomial K) :=
       fun i j => Polynomial.derivative (Polynomial.derivative (C i j))
-    C.det • C'' = 2 • ((C' * C.adjugate) * C') := by
+    C.det • C'' = (2 : Polynomial K) • ((C' * C.adjugate) * C') := by
   classical
   let T := quadraticTransverseCapSourceAxisThreeBlock F
   let C : Matrix (Fin 3) (Fin 3) (Polynomial K) := T.matrix
