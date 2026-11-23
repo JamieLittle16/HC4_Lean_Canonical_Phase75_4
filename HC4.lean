@@ -815,3 +815,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceRegularFibre
 
 -- Formal multivariate chain rule for original-source polynomial longitudinal sections.
 import HC4.Valuation.QuadraticTransverseCapPolynomialSectionChainRule
+
+-- Source Hessian remains constant along all polynomial transverse fibre paths.
+import HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian
