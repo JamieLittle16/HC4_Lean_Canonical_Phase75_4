@@ -189,6 +189,7 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
+  - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -1912,6 +1913,9 @@ human architecture guide.
   - `HC4.Polynomial.DerivativeBounds`
 - `HC4.Polynomial.TransverseLeadingCharacteristics`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.TransverseLeadingLinearClassification`
+  - `HC4.Polynomial.RankThreeCubicSourceDegrees`
+  - `HC4.Polynomial.TransverseLeadingCharacteristics`
 - `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
   - `HC4.Polynomial.ComplementaryMvMomentRealisation`
   - `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
