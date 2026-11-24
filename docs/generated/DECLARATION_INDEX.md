@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11108**.
+Distinct declaration spellings indexed: **11115**.
 
 ## Repeated declaration spellings
 
@@ -7442,6 +7442,11 @@ Distinct declaration spellings indexed: **11108**.
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nested_factor_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
+- `nilpotentVectorDeriv` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `nilpotentVectorDeriv_mulVec` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `nilpotentVectorDeriv_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `nilpotentVectorDeriv_smul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `nilpotentVectorDeriv_sub` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `nilpotent_shear_inverse_matrix` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `nilpotent_shear_inverse_mulVec` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `noClosingSourceCarrier_of_defect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
@@ -10239,7 +10244,9 @@ Distinct declaration spellings indexed: **11108**.
 - `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_transverseGradient_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_diag_eq_two_mul_squareCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelAxisFrontier`
