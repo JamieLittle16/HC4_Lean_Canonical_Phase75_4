@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11027**.
+Distinct declaration spellings indexed: **11029**.
 
 ## Repeated declaration spellings
 
@@ -5556,6 +5556,8 @@ Distinct declaration spellings indexed: **11027**.
 - `exists_linear_matrix_of_poleFree_cubicCramer` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_linear_matrix_of_poleFree_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_linear_matrix_of_poleFree_hessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `exists_linear_matrix_of_poleFree_homogeneousFractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
+- `exists_linear_matrix_of_poleFree_homogeneousHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_longitudinal_polynomial_of_transverseWeightZero` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`

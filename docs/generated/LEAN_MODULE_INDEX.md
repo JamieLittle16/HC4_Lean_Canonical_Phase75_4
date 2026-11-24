@@ -4342,7 +4342,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - External imports: `Mathlib.RingTheory.MvPolynomial.EulerIdentity`, `Mathlib.Algebra.Module.LinearMap.Polynomial`, `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicAnchoredKernel`, `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
-- Declarations: `abbrev B`, `def transverseEuler`, `theorem transverseEuler_add`, `theorem transverseEuler_mul`, `theorem coeff_transverseEuler`, `theorem isHomogeneous_of_transverseEuler_eq_nsmul`, `theorem isHomogeneous_one_of_transverseEuler_eq_self`, `theorem isHomogeneous_one_of_cubic_quartic_division`, `theorem linearForm_of_isHomogeneous_one`, `theorem exists_linear_matrix_of_poleFree_cubicCramer`, `theorem transverseEuler_sum`, `theorem exists_linear_matrix_of_poleFree_hessianEquation`, `theorem exists_linear_matrix_of_poleFree_fractionKernel`
+- Declarations: `abbrev B`, `def transverseEuler`, `theorem transverseEuler_add`, `theorem transverseEuler_mul`, `theorem coeff_transverseEuler`, `theorem isHomogeneous_of_transverseEuler_eq_nsmul`, `theorem isHomogeneous_one_of_transverseEuler_eq_self`, `theorem isHomogeneous_one_of_cubic_quartic_division`, `theorem linearForm_of_isHomogeneous_one`, `theorem exists_linear_matrix_of_poleFree_cubicCramer`, `theorem transverseEuler_sum`, `theorem exists_linear_matrix_of_poleFree_hessianEquation`, `theorem exists_linear_matrix_of_poleFree_fractionKernel`, `theorem exists_linear_matrix_of_poleFree_homogeneousHessianEquation`, `theorem exists_linear_matrix_of_poleFree_homogeneousFractionKernel`
 
 ### `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 
