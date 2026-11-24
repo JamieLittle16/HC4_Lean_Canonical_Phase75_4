@@ -5458,7 +5458,7 @@ theorem sourceCubic_reverseHessian_mixed_degree_le_two
   · have he : n = 3 := by omega
     subst n
     rw [if_pos (by decide : 3 ≤ 3), hessian_initialForm_entry]
-    have hw : (3 : ℤ) - (3 : ℤ) - transverseCubicWeight (.inl ()) -
+    have hw : ((3 : ℕ) : ℤ) - ((3 : ℕ) : ℤ) - transverseCubicWeight (.inl ()) -
         transverseCubicWeight (.inr i) = -1 := by
       simp [transverseCubicWeight]
     rw [hw, source_negative_transverse_initialForm_zero _ _ (by decide), map_zero]
@@ -5474,13 +5474,13 @@ theorem sourceCubic_commonTransverseKernel_impossible
     {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
     (q : StationarySource K →+* R) (hδ : q (MvPolynomial.C δ) ≠ 0)
     (d : Fin 3 → R) (k : Fin 3) (hk : d k ≠ 0)
-    (hker : let M := (_root_.Polynomial.mapRingHom q).mapMatrix
-        (sourceLeading_reverseHessian F 3)
-      (M.submatrix Sum.inr Sum.inr) *ᵥ
+    (hker : let M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) (_root_.Polynomial R) :=
+        (_root_.Polynomial.mapRingHom q).mapMatrix (sourceLeading_reverseHessian F 3);
+      (M.submatrix (Sum.inr : Fin 3 → Unit ⊕ Fin 3) Sum.inr) *ᵥ
         (fun i => _root_.Polynomial.C (d i)) = 0)
-    (hkk : let M := (_root_.Polynomial.mapRingHom q).mapMatrix
-        (sourceLeading_reverseHessian F 3)
-      ((M.submatrix Sum.inr Sum.inr).adjugate k k).coeff 0 ≠ 0) :
+    (hkk : let M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) (_root_.Polynomial R) :=
+        (_root_.Polynomial.mapRingHom q).mapMatrix (sourceLeading_reverseHessian F 3);
+      ((M.submatrix (Sum.inr : Fin 3 → Unit ⊕ Fin 3) Sum.inr).adjugate k k).coeff 0 ≠ 0) :
     False := by
   classical
   let M := (_root_.Polynomial.mapRingHom q).mapMatrix (sourceLeading_reverseHessian F 3)
