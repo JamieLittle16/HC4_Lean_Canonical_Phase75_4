@@ -2647,6 +2647,8 @@ theorem sourceLeading_lineSchurFrame_kernel_regular
   rw [sourceLeading_lineSchurFrame_transverseDet_zero]
   intro h
   have hc := congrArg (fun p : _root_.Polynomial E => p.coeff 0) h
+  change (lineEval z V ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+    Sum.inr Sum.inr).det).coeff 0 = (0 : _root_.Polynomial E).coeff 0 at hc
   rw [cubic_lineEval_coeff_zero, _root_.Polynomial.coeff_zero] at hc
   exact hz hc
 
