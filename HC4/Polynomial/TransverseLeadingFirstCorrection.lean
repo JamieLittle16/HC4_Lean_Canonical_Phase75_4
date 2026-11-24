@@ -3796,7 +3796,7 @@ theorem sourceNilpotent_originalDegree_le
     _ ≤ _ := by
       apply sourceTotalDegree_sum_le
       intro k hk
-      have hk' := (_root_.Polynomial.le_natDegree_of_mem_supp k hk).trans hP
+      have hk' := (_root_.Polynomial.le_natDegree_of_ne_zero (_root_.Polynomial.mem_support_iff.mp hk)).trans hP
       have hc := sourceLinear_referenceCoeff_totalDegree_le a N Q r hQ k
       have h1 := (sourceNilpotentInverseEval_totalDegree_le a N (P.coeff k)).trans
         (Nat.mul_le_mul_left 3 hc)
@@ -3804,6 +3804,68 @@ theorem sourceNilpotent_originalDegree_le
         (Nat.mul_le_mul_left k (sourceTime_shift_totalDegree_le a))
       exact (MvPolynomial.totalDegree_mul _ _).trans
         (Nat.add_le_add h1 (h2.trans (by simpa using hk')))
+
+
+
+
+/-- A global original-coordinate total-degree bound for a regular
+nilpotent linear characteristic of an actual constant-Hessian source.
+No longitudinal degree bound is an input. -/
+theorem sourceNilpotent_totalDegree_le
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)))) :
+    F.totalDegree ≤ 9*m-8 := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  have hlead : (linearLineEval a N L).derivative.derivative = 0 := by
+    change (lineEval z V L).derivative.derivative = 0
+    rw [transverse_lineEval_derivative]
+    have hg : ∀ i, lineEval z V (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L)) := hgrad
+    simp_rw [hg, ← map_mul]
+    simp [_root_.Polynomial.derivative_sum]
+  have hleadDegree : (linearLineEval a N L).natDegree ≤ 2 :=
+    sourceTime_degree_of_secondDerivative_le _ 0 (by rw [hlead]; simp)
+  have hsum := sourceLeading_reverseLayerSum_eq F m hcap
+  calc
+    _ = (∑ j ∈ Finset.range (m+1),
+      initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F).totalDegree :=
+        congrArg MvPolynomial.totalDegree hsum.symm
+    _ ≤ _ := by
+      apply sourceTotalDegree_sum_le
+      intro j hj
+      have hjm : j ≤ m := by
+        have hh := Finset.mem_range.mp hj
+        omega
+      let Q := initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F
+      have hQ : IsWeightLE transverseCubicWeight ((m-j : ℕ) : ℤ) Q := by
+        intro d hd
+        have he := initialForm_isWeightedHomogeneous transverseCubicWeight
+          ((m : ℤ)-(j : ℤ)) F (MvPolynomial.mem_support_iff.mp hd)
+        rw [Nat.cast_sub hjm]
+        exact he.le
+      by_cases hj0 : j = 0
+      · subst j
+        have hh : Q = L := by simp [Q, L]
+        have hP : (linearLineEval a N Q).natDegree ≤ 2 := by rw [hh]; exact hleadDegree
+        have hd := sourceNilpotent_originalDegree_le a N hN Q (m-0) 2 hQ hP
+        exact hd.trans (by omega)
+      · have hP := sourceNilpotent_allCorrections_timeDegree_le F m hm hcap hdet
+          a N hN hreg hgrad j hjm (by omega)
+        have hd := sourceNilpotent_originalDegree_le a N hN Q (m-j) (9*j-8) hQ hP
+        exact hd.trans (by omega)
 
 
 end
