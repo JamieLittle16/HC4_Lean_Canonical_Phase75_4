@@ -1921,6 +1921,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
