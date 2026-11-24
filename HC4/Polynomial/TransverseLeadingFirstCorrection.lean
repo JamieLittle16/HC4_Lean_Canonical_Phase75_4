@@ -3849,7 +3849,7 @@ theorem sourceNilpotent_totalDegree_le
       _ = (_root_.Polynomial.C (V i * referenceSlice a (pderiv i L)) :
           LineTime K).derivative :=
         congrArg _root_.Polynomial.derivative he
-      _ = 0 := _root_.Polynomial.derivative_C _
+      _ = 0 := _root_.Polynomial.derivative_C
   have hleadDegree : (linearLineEval a N L).natDegree ≤ 2 :=
     sourceTime_degree_of_secondDerivative_le _ 0 (by rw [hlead]; simp)
   have hsum := sourceLeading_reverseLayerSum_eq F m hcap
