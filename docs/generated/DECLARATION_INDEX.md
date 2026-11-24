@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11217**.
+Distinct declaration spellings indexed: **11223**.
 
 ## Repeated declaration spellings
 
@@ -10220,7 +10220,9 @@ Distinct declaration spellings indexed: **11217**.
 - `sourceHessian_fixedPoleKernel_specializes_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`
 - `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLayerFrontier_nonempty` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+- `sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_constantDet_firstCorrection_trace_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_correction_secondDerivative_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstCorrection_affine_along_line` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstCorrection_isotropic_along_line` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstCorrection_isotropic_at_anchor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -11218,9 +11220,11 @@ Distinct declaration spellings indexed: **11217**.
 - `transverseSchurDet_coeff_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchurMixed_coeff_zero_of_gap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_cleared_timeDegree_step` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_coeff_recurrence` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_det_identity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchur_longitudinal_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_longitudinal_zero_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSliceAmplitude` — `def` in `HC4.Newton.LinearPowerPacketNormalForm`
@@ -11267,6 +11271,8 @@ Distinct declaration spellings indexed: **11217**.
 - `transverse_coeff_mul_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_coeff_triple_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_coeff_triple_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverse_gap_mul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverse_gap_triple` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_lineEval_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_nonzero_at_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `transverse_twoEndpointResidual_incompatible_with_recenteredHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
