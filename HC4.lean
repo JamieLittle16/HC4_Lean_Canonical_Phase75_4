@@ -833,3 +833,6 @@ import HC4.Valuation.QuadraticTransverseCapSourceRegularSlope
 import HC4.Valuation.QuadraticTransverseCapSourceRegularGradient
 
 import HC4.Valuation.QuadraticTransverseCapSourceMarkedEndpoint
+
+-- Degree-independent leading Hessian characteristic, from the genuine source determinant.
+import HC4.Polynomial.TransverseLeadingCharacteristics
