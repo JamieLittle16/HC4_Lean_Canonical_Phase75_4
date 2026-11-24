@@ -106,10 +106,16 @@ theorem linearGradientTransport_of_fractionCharacteristic
         have hi := hN i
         change V (.inr i) = g (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) at hi
         simp only [linearLineEval, lineEval, MvPolynomial.aeval_X,
-          Sum.elim_inr, transverseGenericPoint, map_add, map_mul,
-          f, _root_.Polynomial.mapRingHom_apply, _root_.Polynomial.map_C,
-          _root_.Polynomial.map_X, hi]
-        <;> rfl
+          Sum.elim_inr, transverseGenericPoint, map_add, map_mul, hi]
+        change
+          _root_.Polynomial.map g (_root_.Polynomial.C (X i : B K)) +
+            _root_.Polynomial.map g
+              (_root_.Polynomial.C (∑ j : Fin 3, MvPolynomial.C (N i j) * X j)) *
+            _root_.Polynomial.map g (_root_.Polynomial.X : _root_.Polynomial (B K)) =
+          _root_.Polynomial.C (g (X i : B K)) +
+            _root_.Polynomial.C (g (∑ j : Fin 3, MvPolynomial.C (N i j) * X j)) *
+              _root_.Polynomial.X
+        rw [_root_.Polynomial.map_C, _root_.Polynomial.map_C, _root_.Polynomial.map_X]
   intro i
   apply _root_.Polynomial.map_injective g hg
   change f (linearLineEval a N (pderiv i L)) =
