@@ -587,7 +587,8 @@ theorem reference_cubic_det_triple_or_distinct_linear_of_nonzero_characteristic
       apply hr
       funext i
       change r i = 0
-      rw [hc, hz, zero_mul]
+      rw [hc, hz]
+      exact zero_mul (l i)
     have hform : constantLinearForm r = MvPolynomial.C c * constantLinearForm l := by
       rw [hc]
       unfold constantLinearForm
