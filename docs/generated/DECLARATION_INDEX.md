@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11024**.
+Distinct declaration spellings indexed: **11027**.
 
 ## Repeated declaration spellings
 
@@ -2467,6 +2467,7 @@ Distinct declaration spellings indexed: **11024**.
 - `PureLongitudinalMarkedE3Data.quadratic_sourceTransverseRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.quotientDegreeCapSeparation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.reducedClockCollisionFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
+- `PureLongitudinalMarkedE3Data.relevel_ge_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.relevelledReverseRees` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_det_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
 - `PureLongitudinalMarkedE3Data.removeFirstFace_axisHessian_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3LowerAxisJet`
@@ -11017,6 +11018,8 @@ Distinct declaration spellings indexed: **11024**.
 - `transverseHessian_principalMinor_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseRankFrontier`
 - `transverseHessian_rankTwoWitness_or_rankAtMostOne` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyTransverseRankFrontier`
 - `transverseHessian_transport_of_linear_gradient` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
+- `transverseLeading_exists_anchored_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingCharacteristics`
+- `transverseLeading_hessian_det_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingCharacteristics`
 - `transverseLinearForm_eval_smul` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePoleAffineUnitLinearDivisibility`
 - `transverseLock_scaled_pderivs` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `transverseLowDimensional_gradient_constant` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalLowDimensionalStationaryConvergence`
