@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11272**.
+Distinct declaration spellings indexed: **11282**.
 
 ## Repeated declaration spellings
 
@@ -10153,6 +10153,7 @@ Distinct declaration spellings indexed: **11272**.
 - `sourceCubic_detOne_weightFive_initialForm_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`
 - `sourceCubic_exists_cleared_simpleMixedPole` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_fixedMixedResidue_directional_divisibility` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_fixedPoleKernel_allCubicPrincipalCofactors_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
 - `sourceCubic_fixedPoleKernel_cubicCofactor_vanishes_on_plane` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - `sourceCubic_fixedPoleKernel_cubicPrincipalCofactor_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`
@@ -10198,6 +10199,7 @@ Distinct declaration spellings indexed: **11272**.
 - `sourceCubic_genuineRankTwo_residue_alignedFixedTangent_or_exactTriple` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceResidueFixedTangentAlignment`
 - `sourceCubic_genuineRankTwo_residue_tangent_or_triple` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple`
 - `sourceCubic_genuineRankTwo_uniformTangentBlockZero_or_fullKernel_or_triple` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceUniformTangentKernel`
+- `sourceCubic_global_directionalSquare_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_hessian_three_two_lower_decomposition` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`
 - `sourceCubic_homogeneousLinearPole_rankOne_impossible` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`
 - `sourceCubic_mixedOrigin_directional_eq_subTwo` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneMixedOriginSourceLayers`
@@ -10209,6 +10211,8 @@ Distinct declaration spellings indexed: **11272**.
 - `sourceCubic_primeHessian_rankOne_or_principalRankTwo` — `theorem` in `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`
 - `sourceCubic_quadraticTransverseKernel_descends_to_origin` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePoleOriginKernelDescent`
 - `sourceCubic_quadraticTransverseRepair_quotient_eq_C` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseRepairOriginWitness`
+- `sourceCubic_quadratic_directional_eq_zero_of_dvd` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceCubic_quadratic_directional_referenceDegree_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_rankThreePoleKernel_isotropic_of_cofactor` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`
 - `sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`
 - `sourceCubic_rankThreePoleKernel_quadraticTransverse_isotropic_of_cofactor` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`
@@ -10245,6 +10249,11 @@ Distinct declaration spellings indexed: **11272**.
 - `sourceCubic_weightFive_det_eq_adjugate_pairing` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveAdjugateConstraint`
 - `sourceCubic_weightFive_det_eq_cubic_plus_quadratic` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveSourceGap`
 - `sourceDefect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSeparatedTerminalImpossible`
+- `sourceFixedDirectionalSquare` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceFixedDirectionalSquare_add` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceFixedDirectionalSquare_eq_second_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceFixedDirectionalSquare_lineEval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceFixedDirectionalSquare_lowLayer_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceFractionHessianEquation_of_gradientTransport` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceHessian_fixedPoleKernel_specializes_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`
 - `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
@@ -10379,6 +10388,7 @@ Distinct declaration spellings indexed: **11272**.
 - `sourceTime_degree_le_one_of_second_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_degree_of_secondDerivative_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_derivative_constant_of_equal_endpoints` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_eq_zero_of_constant_referenceCoeff_dvd` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_minor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_pair_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
