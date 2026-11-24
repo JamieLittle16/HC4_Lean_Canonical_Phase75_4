@@ -2808,7 +2808,7 @@ theorem sourceLinear_referenceGradient_chain
           (hC j (z (.inr k))) (hC j (v (.inr k)))
       _ = _ := by
         rw [hz j k, hv j k]
-        split_ifs <;> simp
+        split_ifs <;> simp <;> exact mul_comm _ _
   funext j
   change (∑ i : Fin 3, linearLineEval a N (pderiv (.inr i) Q) *
     sourceTimePencil N i j) = coeffDeriv (pderiv j) (linearLineEval a N Q)
