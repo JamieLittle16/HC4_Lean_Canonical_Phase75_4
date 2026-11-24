@@ -5888,12 +5888,12 @@ theorem sourceCubic_fixedMixedResidue_directional_divisibility
     (hdk : IsUnit (d k))
     (horth : ∑ i : Fin 3, l i*d i = 0)
     (hres : ∃ i : Fin 3, ¬ p ∣ v i)
-    (hfixed : let T := (lineEval z V).toRingHom.mapMatrix
-        ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+    (hfixed : let T : Matrix (Fin 3) (Fin 3) (_root_.Polynomial E) :=
+        (lineEval z V).toRingHom.mapMatrix ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
       T *ᵥ d = p • l ∧ ¬ p ∣ T.adjugate k k)
     (hmixed : let H := sourceLeading_lineSchurFrame F 3 z V;
-      let T := (lineEval z V).toRingHom.mapMatrix
-        ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+      let T : Matrix (Fin 3) (Fin 3) (_root_.Polynomial E) :=
+        (lineEval z V).toRingHom.mapMatrix ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
       T *ᵥ v = p • (![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1] : Fin 3 → _root_.Polynomial E)) :
     let H := sourceLeading_lineSchurFrame F 3 z V
     let C := (lineEval z V).toRingHom.mapMatrix
