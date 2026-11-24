@@ -2376,7 +2376,7 @@ theorem sourceLeading_lineBlock_det
     (sourceLeading_reverseHessian F m))).determinantCore = _
   rw [sourceLineBlockOfMatrix_det, ← RingHom.map_det,
     sourceLeading_reverseHessian_constantDet F m hm hcap hdet]
-  · exact _root_.Polynomial.map_monomial _ _ _
+  · exact _root_.Polynomial.map_monomial (lineEval (K := K) z V).toRingHom
   · intro i j
     change φ (sourceLeading_reverseHessian F m i j) =
       φ (sourceLeading_reverseHessian F m j i)
