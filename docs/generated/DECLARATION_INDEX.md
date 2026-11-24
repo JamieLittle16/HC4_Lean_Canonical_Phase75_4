@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11079**.
+Distinct declaration spellings indexed: **11080**.
 
 ## Repeated declaration spellings
 
@@ -10248,6 +10248,7 @@ Distinct declaration spellings indexed: **11079**.
 - `sourceReflection_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
 - `sourceRightRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
