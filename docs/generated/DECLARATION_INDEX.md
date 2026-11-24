@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11106**.
+Distinct declaration spellings indexed: **11108**.
 
 ## Repeated declaration spellings
 
@@ -10237,6 +10237,7 @@ Distinct declaration spellings indexed: **11106**.
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
@@ -10266,6 +10267,7 @@ Distinct declaration spellings indexed: **11106**.
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
+- `sourceTransverseHessian_mulVec_coordinates` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `sourceTransverseRees_clock_and_layers` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseSchurFrame` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
