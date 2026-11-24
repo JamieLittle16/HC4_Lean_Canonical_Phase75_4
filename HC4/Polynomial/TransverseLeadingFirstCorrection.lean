@@ -5167,5 +5167,145 @@ theorem sourceLeading_mixedGap_prime_pow_dvd_Cramer
       z V hV hreg hb hp hq (p^(2*n+1)) hpdet i)
 
 
+
+
+/-! ## Next-order obstruction for a cleared simple mixed pole
+
+A constant-in-Rees-time scaled solution v of C₀ v = p B₁
+allows a denominator-free shear of the first frame column.
+Its mixed entries vanish through order one, forcing its
+longitudinal entry to vanish through order three. The third
+coefficient tests the first transverse repair against v.
+-/
+
+section ClearedMixedPole
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+local notation "RP" => _root_.Polynomial R
+local notation "PC" => _root_.Polynomial.C
+local notation "PX" => _root_.Polynomial.X
+
+/-- Cleared congruence with first column (p,-s*u,-s*v,-s*w).
+Its determinant scales by p²; no invertibility is assumed. -/
+private def mixedPoleClearedFrame (H : GeneralFourBlock RP) (p u v w : R) :
+    GeneralFourBlock RP where
+  a := PC (p*p) * H.a -
+    PX * (PC (2*p) * (PC u * H.b + PC v * H.p + PC w * H.q)) +
+    PX * (PX * (PC (u*u) * H.d + PC (v*v) * H.x + PC (w*w) * H.z +
+      PC (2*u*v) * H.r + PC (2*u*w) * H.s + PC (2*v*w) * H.y))
+  b := PC p * H.b - PX * (PC u * H.d + PC v * H.r + PC w * H.s)
+  p := PC p * H.p - PX * (PC u * H.r + PC v * H.x + PC w * H.y)
+  q := PC p * H.q - PX * (PC u * H.s + PC v * H.y + PC w * H.z)
+  d := H.d
+  r := H.r
+  s := H.s
+  x := H.x
+  y := H.y
+  z := H.z
+
+private theorem mixedPoleClearedFrame_det (H : GeneralFourBlock RP) (p u v w : R) :
+    (mixedPoleClearedFrame H p u v w).determinantCore =
+      PC (p*p) * H.determinantCore := by
+  unfold mixedPoleClearedFrame GeneralFourBlock.determinantCore
+  simp only [map_mul, map_ofNat]
+  ring
+
+/-- The next Schur coefficient forces a cleared simple-pole residue
+to be isotropic against the actual first transverse repair modulo
+its denominator. This uses order three, not just the order-two
+quadratic-pairing constraint. -/
+theorem transverseSchur_clearedMixedPole_repair_dvd
+    (H : GeneralFourBlock RP) (p u v w : R)
+    (hreg : (transverseSchurDet H).coeff 0 ≠ 0)
+    (hb : H.b.coeff 0 = 0) (hp : H.p.coeff 0 = 0) (hq : H.q.coeff 0 = 0)
+    (hu : u*H.d.coeff 0 + v*H.r.coeff 0 + w*H.s.coeff 0 = p*H.b.coeff 1)
+    (hv : u*H.r.coeff 0 + v*H.x.coeff 0 + w*H.y.coeff 0 = p*H.p.coeff 1)
+    (hw : u*H.s.coeff 0 + v*H.y.coeff 0 + w*H.z.coeff 0 = p*H.q.coeff 1)
+    (hdet : ∀ j < 4, H.determinantCore.coeff j = 0) :
+    p ∣ u*u*H.d.coeff 1 + v*v*H.x.coeff 1 + w*w*H.z.coeff 1 +
+      2*u*v*H.r.coeff 1 + 2*u*w*H.s.coeff 1 + 2*v*w*H.y.coeff 1 := by
+  let J := mixedPoleClearedFrame H p u v w
+  have hJdet (j : ℕ) (hj : j < 4) : J.determinantCore.coeff j = 0 := by
+    change (mixedPoleClearedFrame H p u v w).determinantCore.coeff j = 0
+    rw [mixedPoleClearedFrame_det, _root_.Polynomial.coeff_C_mul, hdet j hj, mul_zero]
+  have hJreg : (transverseSchurDet J).coeff 0 ≠ 0 := hreg
+  have hb0 : J.b.coeff 0 = 0 := by
+    simp [J, mixedPoleClearedFrame, _root_.Polynomial.coeff_sub,
+      _root_.Polynomial.coeff_C_mul, hb]
+  have hp0 : J.p.coeff 0 = 0 := by
+    simp [J, mixedPoleClearedFrame, _root_.Polynomial.coeff_sub,
+      _root_.Polynomial.coeff_C_mul, hp]
+  have hq0 : J.q.coeff 0 = 0 := by
+    simp [J, mixedPoleClearedFrame, _root_.Polynomial.coeff_sub,
+      _root_.Polynomial.coeff_C_mul, hq]
+  have hb1 : J.b.coeff 1 = 0 := by
+    change (PC p * H.b - PX * (PC u * H.d + PC v * H.r + PC w * H.s)).coeff (0+1) = 0
+    simp only [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_X_mul,
+      _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C_mul]
+    exact sub_eq_zero.mpr hu.symm
+  have hp1 : J.p.coeff 1 = 0 := by
+    change (PC p * H.p - PX * (PC u * H.r + PC v * H.x + PC w * H.y)).coeff (0+1) = 0
+    simp only [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_X_mul,
+      _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C_mul]
+    exact sub_eq_zero.mpr hv.symm
+  have hq1 : J.q.coeff 1 = 0 := by
+    change (PC p * H.q - PX * (PC u * H.s + PC v * H.y + PC w * H.z)).coeff (0+1) = 0
+    simp only [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_X_mul,
+      _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C_mul]
+    exact sub_eq_zero.mpr hw.symm
+  have hbg (j : ℕ) (hj : j < 2) : J.b.coeff j = 0 := by
+    interval_cases j <;> assumption
+  have hpg (j : ℕ) (hj : j < 2) : J.p.coeff j = 0 := by
+    interval_cases j <;> assumption
+  have hqg (j : ℕ) (hj : j < 2) : J.q.coeff j = 0 := by
+    interval_cases j <;> assumption
+  have ha3 := transverseSchur_longitudinal_zero_of_mixedGap J 2 4
+    hJreg hbg hpg hqg hJdet 3 (by decide) (by decide)
+  change (PC (p*p) * H.a -
+    PX * (PC (2*p) * (PC u * H.b + PC v * H.p + PC w * H.q)) +
+    PX * (PX * (PC (u*u) * H.d + PC (v*v) * H.x + PC (w*w) * H.z +
+      PC (2*u*v) * H.r + PC (2*u*w) * H.s + PC (2*v*w) * H.y))).coeff ((1+1)+1) = 0 at ha3
+  simp only [_root_.Polynomial.coeff_add, _root_.Polynomial.coeff_sub,
+    _root_.Polynomial.coeff_X_mul, _root_.Polynomial.coeff_C_mul] at ha3
+  refine ⟨2*(u*H.b.coeff 2 + v*H.p.coeff 2 + w*H.q.coeff 2) -
+    p*H.a.coeff 3, ?_⟩
+  linear_combination ha3
+
+end ClearedMixedPole
+
+/-- The third-order repair constraint on the actual reverse-Rees
+source frame, with the determinant clock and regular leading
+kernel discharged from source hypotheses. -/
+theorem sourceLeading_clearedMixedPole_repair_dvd
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+      _root_.Polynomial.C
+        (MvPolynomial.aeval z (pderiv i (initialForm transverseCubicWeight (m : ℤ) F))))
+    (p u v w : _root_.Polynomial E) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    (u*H.d.coeff 0 + v*H.r.coeff 0 + w*H.s.coeff 0 = p*H.b.coeff 1) →
+    (u*H.r.coeff 0 + v*H.x.coeff 0 + w*H.y.coeff 0 = p*H.p.coeff 1) →
+    (u*H.s.coeff 0 + v*H.y.coeff 0 + w*H.z.coeff 0 = p*H.q.coeff 1) →
+    p ∣ u*u*H.d.coeff 1 + v*v*H.x.coeff 1 + w*w*H.z.coeff 1 +
+      2*u*v*H.r.coeff 1 + 2*u*w*H.s.coeff 1 + 2*v*w*H.y.coeff 1 := by
+  dsimp only
+  intro hu hv hw
+  let H := sourceLeading_lineSchurFrame F m z V
+  obtain ⟨hb, hp, hq, hr⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hgrad
+  have hd (j : ℕ) (hj : j < 4) : H.determinantCore.coeff j = 0 := by
+    change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff j = 0
+    rw [sourceLeading_lineSchurFrame_det F m (by omega) hcap hdet,
+      _root_.Polynomial.coeff_monomial, if_neg (by omega : 4*m-6 ≠ j)]
+  exact transverseSchur_clearedMixedPole_repair_dvd H p u v w hr hb hp hq hu hv hw hd
+
+
 end
 end HC4.Polynomial.RankThreeCubic
