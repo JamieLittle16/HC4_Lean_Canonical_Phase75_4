@@ -603,5 +603,263 @@ theorem sourceTransverseSchurFrame_preclock_recurrence
   rw [hd, zero_add] at h
   exact h
 
+
+
+/-! ## All-order reverse Hessian coefficients
+
+A time polynomial is reverse graded if its coefficient at k has
+source weight b-k. Evaluation at time one then recovers each
+coefficient by exact source-weight extraction. The grading is
+multiplicative, hence it survives the full Leibniz determinant.
+This avoids an order-by-order expansion or a new endpoint premise.
+-/
+
+section ReverseGrading
+
+variable {σ : Type*}
+
+/-- The coefficient at time k has source weight b-k. -/
+def reverseTimeGraded (w : σ → ℤ) (b : ℤ)
+    (p : _root_.Polynomial (MvPolynomial σ K)) : Prop :=
+  ∀ k : ℕ, (p.coeff k).IsWeightedHomogeneous w (b - (k : ℤ))
+
+theorem reverseTimeGraded_one (w : σ → ℤ) :
+    reverseTimeGraded w 0 (1 : _root_.Polynomial (MvPolynomial σ K)) := by
+  intro k
+  cases k with
+  | zero =>
+    simpa using (MvPolynomial.isWeightedHomogeneous_one K w)
+  | succ k =>
+    rw [_root_.Polynomial.coeff_one, if_neg (Nat.succ_ne_zero k)]
+    exact MvPolynomial.isWeightedHomogeneous_zero K w _
+
+theorem reverseTimeGraded_mul
+    {w : σ → ℤ} {b c : ℤ}
+    {p q : _root_.Polynomial (MvPolynomial σ K)}
+    (hp : reverseTimeGraded w b p) (hq : reverseTimeGraded w c q) :
+    reverseTimeGraded w (b + c) (p * q) := by
+  classical
+  intro k
+  rw [_root_.Polynomial.coeff_mul]
+  apply MvPolynomial.IsWeightedHomogeneous.sum
+  intro ij hij
+  have hsum := Finset.mem_antidiagonal.mp hij
+  have hh := (hp ij.1).mul (hq ij.2)
+  have hw : (b - (ij.1 : ℤ)) + (c - (ij.2 : ℤ)) = b + c - (k : ℤ) := by
+    omega
+  rw [hw] at hh
+  exact hh
+
+theorem reverseTimeGraded_prod
+    {ι : Type*} (s : Finset ι) (w : σ → ℤ) (b : ι → ℤ)
+    (p : ι → _root_.Polynomial (MvPolynomial σ K))
+    (hp : ∀ i ∈ s, reverseTimeGraded w (b i) (p i)) :
+    reverseTimeGraded w (∑ i ∈ s, b i) (∏ i ∈ s, p i) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty =>
+    simpa only [Finset.sum_empty, Finset.prod_empty] using
+      (reverseTimeGraded_one (K := K) w)
+  | @insert a s ha ih =>
+    rw [Finset.sum_insert ha, Finset.prod_insert ha]
+    exact reverseTimeGraded_mul (hp a (Finset.mem_insert_self a s))
+      (ih (fun i hi => hp i (Finset.mem_insert_of_mem hi)))
+
+/-- Every time coefficient is recovered from evaluation at one by
+taking the appropriate exact source-weight component. -/
+theorem reverseTimeGraded_extract
+    {w : σ → ℤ} {b : ℤ}
+    {p : _root_.Polynomial (MvPolynomial σ K)}
+    (hp : reverseTimeGraded w b p) (k : ℕ) :
+    initialForm w (b - (k : ℤ)) (p.eval 1) = p.coeff k := by
+  classical
+  rw [_root_.Polynomial.eval_eq_sum, _root_.Polynomial.sum_def]
+  simp only [one_pow, mul_one, map_sum]
+  rw [Finset.sum_eq_single k]
+  · exact initialForm_eq_self_of_isWeightedHomogeneous (hp k)
+  · intro j _ hj
+    exact initialForm_eq_zero_of_isWeightedHomogeneous (hp j) _ (by omega)
+  · intro hk
+    have hzero : p.coeff k = 0 :=
+      _root_.Polynomial.notMem_support_iff.mp hk
+    rw [hzero, initialForm_zero]
+
+/-- Reverse grading survives the entire determinant, including at a
+singular leading coefficient. The entry grades need only have a common
+sum on permutation terms. -/
+theorem reverseTimeGraded_det
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (w : σ → ℤ) (b : ι → ι → ℤ) (d : ℤ)
+    (M : Matrix ι ι (_root_.Polynomial (MvPolynomial σ K)))
+    (hM : ∀ i j, reverseTimeGraded w (b i j) (M i j))
+    (hweights : ∀ π : Equiv.Perm ι, (∑ j : ι, b (π j) j) = d) :
+    reverseTimeGraded w d M.det := by
+  classical
+  intro k
+  rw [Matrix.det_apply', _root_.Polynomial.finset_sum_coeff]
+  apply MvPolynomial.IsWeightedHomogeneous.sum
+  intro π _
+  let c : K := ↑↑(Equiv.Perm.sign π)
+  change ((_root_.Polynomial.C (MvPolynomial.C c) *
+    ∏ j : ι, M (π j) j).coeff k).IsWeightedHomogeneous w (d - (k : ℤ))
+  rw [_root_.Polynomial.coeff_C_mul]
+  have hprod := reverseTimeGraded_prod (Finset.univ : Finset ι)
+    w (fun j => b (π j) j) (fun j => M (π j) j)
+    (fun j _ => hM (π j) j)
+  rw [hweights π] at hprod
+  simpa only [zero_add] using
+    (MvPolynomial.isWeightedHomogeneous_C w c).mul (hprod k)
+
+end ReverseGrading
+
+/-- An actual bounded source is exactly the sum of its transverse
+grades, ordered from the nominal cap down to zero. -/
+theorem sourceLeading_reverseLayerSum_eq
+    (F : S K) (m : ℕ) (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F) :
+    (∑ k ∈ Finset.range (m + 1),
+      initialForm transverseCubicWeight ((m : ℤ) - (k : ℤ)) F) = F := by
+  classical
+  ext d
+  simp only [MvPolynomial.coeff_sum, coeff_initialForm]
+  by_cases hc : MvPolynomial.coeff d F = 0
+  · simp [hc]
+  · have hle := hcap (MvPolynomial.mem_support_iff.mpr hc)
+    have hnonneg : 0 ≤ Finsupp.weight transverseCubicWeight d := by
+      rw [transverseCubicWeight_eq_transverseSum]
+      positivity
+    let k : ℕ := ((m : ℤ) - Finsupp.weight transverseCubicWeight d).toNat
+    have hk : (k : ℤ) = (m : ℤ) - Finsupp.weight transverseCubicWeight d :=
+      Int.toNat_of_nonneg (by omega)
+    have hkr : k < m + 1 := by omega
+    rw [Finset.sum_eq_single k]
+    · rw [if_pos (by omega)]
+    · intro j _ hj
+      rw [if_neg (by omega)]
+    · intro hnot
+      exact (hnot (Finset.mem_range.mpr hkr)).elim
+
+/-- Hessian of the actual reverse layer family, with a new univariate
+time variable which is NOT differentiated by the source Hessian. -/
+def sourceLeading_reverseHessian
+    (F : S K) (m : ℕ) :
+    Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) (_root_.Polynomial (S K)) :=
+  fun i j => ∑ k ∈ Finset.range (m + 1),
+    _root_.Polynomial.monomial k
+      (hessian (initialForm transverseCubicWeight ((m : ℤ) - (k : ℤ)) F) i j)
+
+theorem sourceLeading_reverseHessian_coeff
+    (F : S K) (m r : ℕ) (i j : Unit ⊕ Fin 3) :
+    (sourceLeading_reverseHessian F m i j).coeff r =
+      if r ≤ m then
+        hessian (initialForm transverseCubicWeight ((m : ℤ) - (r : ℤ)) F) i j
+      else 0 := by
+  classical
+  unfold sourceLeading_reverseHessian
+  rw [_root_.Polynomial.finset_sum_coeff]
+  simp only [_root_.Polynomial.coeff_monomial]
+  by_cases hr : r ≤ m
+  · rw [if_pos hr, Finset.sum_eq_single r]
+    · rw [if_pos rfl]
+    · intro k _ hk
+      rw [if_neg hk]
+    · intro hn
+      exact (hn (Finset.mem_range.mpr (by omega))).elim
+  · rw [if_neg hr]
+    apply Finset.sum_eq_zero
+    intro k hk
+    have hkm := Finset.mem_range.mp hk
+    rw [if_neg (by omega)]
+
+/-- At time one the exact reverse Hessian is the original source
+Hessian, not a repaired or truncated surrogate. -/
+theorem sourceLeading_reverseHessian_eval_one
+    (F : S K) (m : ℕ) (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F) :
+    (_root_.Polynomial.evalRingHom (1 : S K)).mapMatrix
+      (sourceLeading_reverseHessian F m) = hessian F := by
+  classical
+  ext i j
+  change (_root_.Polynomial.evalRingHom (1 : S K))
+      (∑ k ∈ Finset.range (m + 1), _root_.Polynomial.monomial k
+        (hessian (initialForm transverseCubicWeight ((m : ℤ) - (k : ℤ)) F) i j)) =
+    hessian F i j
+  rw [map_sum]
+  simp only [_root_.Polynomial.coe_evalRingHom, _root_.Polynomial.eval_monomial,
+    one_pow, mul_one]
+  calc
+    _ = hessian (∑ k ∈ Finset.range (m + 1),
+        initialForm transverseCubicWeight ((m : ℤ) - (k : ℤ)) F) i j := by
+      simp only [hessian_apply, map_sum]
+    _ = _ := by rw [sourceLeading_reverseLayerSum_eq F m hcap]
+
+/-- All coefficients of the actual reverse Hessian determinant are
+the corresponding exact weighted components of the original source
+determinant. Valid at every transverse cap, without rank assumptions. -/
+theorem sourceLeading_reverseHessian_det_coeff
+    (F : S K) (m : ℕ) (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    (r : ℕ) :
+    (sourceLeading_reverseHessian F m).det.coeff r =
+      initialForm transverseCubicWeight (4 * (m : ℤ) - 6 - (r : ℤ))
+        (hessianDeterminant F) := by
+  classical
+  let w := transverseCubicWeight
+  let M := sourceLeading_reverseHessian F m
+  let b := fun i j : Unit ⊕ Fin 3 => (m : ℤ) - w i - w j
+  have hM (i j : Unit ⊕ Fin 3) : reverseTimeGraded w (b i j) (M i j) := by
+    intro k
+    change ((sourceLeading_reverseHessian F m i j).coeff k).IsWeightedHomogeneous
+      w (b i j - (k : ℤ))
+    rw [sourceLeading_reverseHessian_coeff]
+    split_ifs with hk
+    · have hh := hessian_entry_isWeightedHomogeneous
+        (initialForm_isWeightedHomogeneous w ((m : ℤ) - (k : ℤ)) F) i j
+      have he : (m : ℤ) - (k : ℤ) - w i - w j = b i j - (k : ℤ) := by
+        dsimp [b]
+        ring
+      rw [he] at hh
+      exact hh
+    · exact MvPolynomial.isWeightedHomogeneous_zero K w _
+  have hweights (π : Equiv.Perm (Unit ⊕ Fin 3)) :
+      (∑ j : Unit ⊕ Fin 3, b (π j) j) = 4 * (m : ℤ) - 6 := by
+    have hh := hessianTermWeight_eq w (m : ℤ) π
+    have hc : (Fintype.card (Unit ⊕ Fin 3) : ℤ) = 4 := by decide
+    have hs : (∑ i : Unit ⊕ Fin 3, w i) = 3 := by decide
+    rw [hc, hs] at hh
+    simpa only [b, hessianTermWeight, show (2 : ℤ) * 3 = 6 by norm_num] using hh
+  have hgraded := reverseTimeGraded_det w b (4 * (m : ℤ) - 6) M hM hweights
+  have heval : M.det.eval 1 = hessianDeterminant F := by
+    change (_root_.Polynomial.evalRingHom (1 : S K)) M.det = (hessian F).det
+    rw [RingHom.map_det]
+    change ((_root_.Polynomial.evalRingHom (1 : S K)).mapMatrix
+      (sourceLeading_reverseHessian F m)).det = (hessian F).det
+    rw [sourceLeading_reverseHessian_eval_one F m hcap]
+  have he := reverseTimeGraded_extract hgraded r
+  rw [heval] at he
+  exact he.symm
+
+/-- The full reverse Hessian determinant is a single time monomial
+when the ORIGINAL source has constant Hessian determinant. This is
+an arbitrary-order source identity; it imposes no regular-leading-rank
+or polynomial-characteristic hypothesis. -/
+theorem sourceLeading_reverseHessian_constantDet
+    (F : S K) (m : ℕ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ) :
+    (sourceLeading_reverseHessian F m).det =
+      _root_.Polynomial.monomial (4 * m - 6) (MvPolynomial.C δ) := by
+  classical
+  ext r
+  rw [sourceLeading_reverseHessian_det_coeff F m hcap r, hdet,
+    _root_.Polynomial.coeff_monomial]
+  by_cases hr : 4 * m - 6 = r
+  · rw [if_pos hr]
+    have hw : 4 * (m : ℤ) - 6 - (r : ℤ) = 0 := by omega
+    rw [hw]
+    exact initialForm_eq_self_of_isWeightedHomogeneous
+      (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ)
+  · rw [if_neg hr]
+    exact initialForm_eq_zero_of_isWeightedHomogeneous
+      (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ) _ (by omega)
+
+
 end
 end HC4.Polynomial.RankThreeCubic
