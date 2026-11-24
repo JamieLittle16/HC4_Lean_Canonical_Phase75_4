@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11203**.
+Distinct declaration spellings indexed: **11210**.
 
 ## Repeated declaration spellings
 
@@ -10335,6 +10335,7 @@ Distinct declaration spellings indexed: **11203**.
 - `sourceTime_add_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_coeffDeriv_natDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_degree_of_secondDerivative_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_derivative_constant_of_equal_endpoints` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_minor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_pair_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10578,6 +10579,12 @@ Distinct declaration spellings indexed: **11203**.
 - `stationaryAxisEval_monomial_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_monomial_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_quadratic_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_commonDerivativeDivisor_degree_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_gradient_bezout` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_rankOne_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryCarrierProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `stationaryCarrierProfileFraction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `stationaryCarrierProfileFraction_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
