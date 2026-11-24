@@ -5756,7 +5756,7 @@ theorem fixedMixedResidue_directional_divisibility
     constructor
     · intro htop
       have hm : (1 : R) ∈ I := by rw [htop]; trivial
-      exact hp.not_isUnit (isUnit_iff_dvd_one.mpr (Ideal.mem_span_singleton.mp hm))
+      exact hp.not_dvd_one (Ideal.mem_span_singleton.mp hm)
     · intro x y hxy
       rcases hp.dvd_mul.mp (Ideal.mem_span_singleton.mp hxy) with hx | hy
       · exact Or.inl (Ideal.mem_span_singleton.mpr hx)
