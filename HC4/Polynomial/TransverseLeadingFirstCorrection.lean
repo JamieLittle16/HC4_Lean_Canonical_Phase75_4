@@ -2912,5 +2912,237 @@ theorem sourceNilpotent_mixed_timeDegree_le
   omega
 
 
+
+
+/-! ## Leading transverse adjugate and a quantitative second correction -/
+
+private theorem sourceTimePencil_natDegree_le
+    (N : Matrix (Fin 3) (Fin 3) K) (i j : Fin 3) :
+    (sourceTimePencil N i j).natDegree ≤ 1 := by
+  have hd : ((1 : Matrix (Fin 3) (Fin 3) (LineTime K)) i j).natDegree ≤ 0 := by
+    rw [Matrix.one_apply]
+    split_ifs <;> simp
+  have hlin : ((_root_.Polynomial.X : LineTime K) *
+      sourceTimeMatrix N i j).natDegree ≤ 1 := by
+    change (_root_.Polynomial.X * _root_.Polynomial.C (MvPolynomial.C (N i j))).natDegree ≤ 1
+    exact (_root_.Polynomial.natDegree_mul_C_le _ _).trans (by simp)
+  simp only [sourceTimePencil, Matrix.add_apply, Matrix.smul_apply, smul_eq_mul]
+  exact _root_.Polynomial.natDegree_add_le_of_degree_le (hd.trans (by omega)) hlin
+
+/-- The leading transverse adjugate is affine in characteristic time,
+even when the leading transverse Hessian itself is quadratic in time.
+The determinant is the original nonzero reference determinant. -/
+theorem sourceLinear_leadingAdjugate_transport
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (L : StationarySource K)
+    (hreg : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Fin 3, linearLineEval a N (pderiv (.inr i) L) =
+      _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L))) :
+    let H := (hessian L).submatrix Sum.inr Sum.inr
+    let T := (linearLineEval a N).toRingHom.mapMatrix H
+    let M := (referenceSlice a).toRingHom.mapMatrix H
+    T.det = _root_.Polynomial.C (referenceSlice a H.det) ∧
+      T.adjugate = sourceTimePencil N * M.adjugate.map _root_.Polynomial.C := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let H := (hessian L).submatrix Sum.inr Sum.inr
+  let T := (linearLineEval a N).toRingHom.mapMatrix H
+  let M := (referenceSlice a).toRingHom.mapMatrix H
+  let J := sourceTimePencil N
+  have h : T * J = M.map _root_.Polynomial.C :=
+    transverseHessian_transport_of_linear_gradient a N L hgrad
+  let J0 : Matrix (Fin 3) (Fin 3) (_root_.Polynomial K) :=
+    1 + (_root_.Polynomial.X : _root_.Polynomial K) • N.map _root_.Polynomial.C
+  have hJ0 : J0.det = 1 := det_linearCharacteristic_eq_one a N L hreg hgrad
+  let f := _root_.Polynomial.mapRingHom (MvPolynomial.C : K →+* B)
+  have hmap : f.mapMatrix J0 = J := by
+    ext i j
+    by_cases hij : i = j <;>
+      simp [f, J0, J, sourceTimePencil, sourceTimeMatrix, hij, Matrix.smul_apply,
+        smul_eq_mul, RingHom.mapMatrix_apply, _root_.Polynomial.map_add, _root_.Polynomial.map_mul]
+  have hJ : J.det = 1 := by
+    rw [← hmap, ← RingHom.map_det, hJ0, map_one]
+  have hdet : T.det = _root_.Polynomial.C (referenceSlice a H.det) := by
+    have hh := congrArg Matrix.det h
+    change (T * J).det = (M.map _root_.Polynomial.C).det at hh
+    rw [Matrix.det_mul, hJ, mul_one] at hh
+    calc
+      _ = (M.map _root_.Polynomial.C).det := hh
+      _ = _ := (_root_.Polynomial.C.map_det M).symm.trans
+        (congrArg _root_.Polynomial.C ((referenceSlice a).map_det H).symm)
+  have hadj : (M.map _root_.Polynomial.C).adjugate = J.adjugate * T.adjugate := by
+    rw [← h, Matrix.adjugate_mul_distrib]
+  have hC : (M.map _root_.Polynomial.C).adjugate =
+      M.adjugate.map _root_.Polynomial.C :=
+    (_root_.Polynomial.C.map_adjugate M).symm
+  refine ⟨hdet, ?_⟩
+  calc
+    T.adjugate = (J * J.adjugate) * T.adjugate := by
+      rw [Matrix.mul_adjugate, hJ, one_smul, one_mul]
+    _ = J * (J.adjugate * T.adjugate) := mul_assoc _ _ _
+    _ = J * M.adjugate.map _root_.Polynomial.C := by rw [← hadj, hC]
+
+theorem sourceLinear_leadingAdjugate_timeDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (L : StationarySource K)
+    (hreg : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Fin 3, linearLineEval a N (pderiv (.inr i) L) =
+      _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)))
+    (i j : Fin 3) :
+    (((linearLineEval a N).toRingHom.mapMatrix
+      ((hessian L).submatrix Sum.inr Sum.inr)).adjugate i j).natDegree ≤ 1 := by
+  classical
+  rw [(sourceLinear_leadingAdjugate_transport a N L hreg hgrad).2]
+  rw [Matrix.mul_apply]
+  apply sourceTime_natDegree_sum_le
+  intro k _
+  change (sourceTimePencil N i k *
+    _root_.Polynomial.C (((referenceSlice a).toRingHom.mapMatrix
+      ((hessian L).submatrix Sum.inr Sum.inr)).adjugate k j)).natDegree ≤ 1
+  exact (_root_.Polynomial.natDegree_mul_C_le _ _).trans
+    (sourceTimePencil_natDegree_le N i k)
+
+/-- Express the scalar mixed Schur correction as the quadratic pairing
+with the adjugate of the actual transverse matrix. -/
+private theorem sourceLineFrame_mixed_adjugate {R : Type*} [CommRing R]
+    (H : GeneralFourBlock R) (T : Matrix (Fin 3) (Fin 3) R)
+    (hd : H.d = T 0 0) (hr : H.r = T 0 1) (hs : H.s = T 0 2)
+    (hx : H.x = T 1 1) (hy : H.y = T 1 2) (hz : H.z = T 2 2)
+    (hSym : ∀ i j, T i j = T j i) :
+    transverseSchurMixed H =
+      ∑ i : Fin 3, ∑ j : Fin 3,
+        (![H.b, H.p, H.q] : Fin 3 → R) i * T.adjugate i j *
+          (![H.b, H.p, H.q] : Fin 3 → R) j := by
+  classical
+  have h10 := hSym 1 0
+  have h20 := hSym 2 0
+  have h21 := hSym 2 1
+  rw [Matrix.adjugate_fin_three]
+  simp [transverseSchurMixed, hd, hr, hs, hx, hy, hz,
+    Fin.sum_univ_three, h10, h20, h21] <;> ring
+
+private theorem sourceTime_degree_of_secondDerivative_le
+    {R : Type*} [CommRing R] [IsDomain R] [CharZero R]
+    (P : _root_.Polynomial R) (d : ℕ)
+    (h : P.derivative.derivative.natDegree ≤ d) :
+    P.natDegree ≤ d + 2 := by
+  apply _root_.Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
+  intro k hk
+  have hc : P.derivative.derivative.coeff (k-2) = 0 :=
+    _root_.Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)
+  rw [_root_.Polynomial.coeff_derivative, _root_.Polynomial.coeff_derivative] at hc
+  have he : k - 2 + 1 + 1 = k := by omega
+  rw [he] at hc
+  have h1 : ((k - 2 + 1 : ℕ) : R) ≠ 0 := by exact_mod_cast (by omega : k - 2 + 1 ≠ 0)
+  have h2 : (k : R) ≠ 0 := by exact_mod_cast (by omega : k ≠ 0)
+  have hc' : (P.coeff k * (k : R)) * ((k - 2 + 1 : ℕ) : R) = 0 := by
+    simpa only [Nat.cast_add, Nat.cast_one] using hc
+  exact (mul_eq_zero.mp ((mul_eq_zero.mp hc').resolve_right h1)).resolve_right h2
+
+/-- Actual second lower layer degree bound, not merely a bound on
+abstract Schur variables. The constant leading determinant cancels
+without any localization. -/
+theorem sourceNilpotent_secondCorrection_timeDegree_le_seven
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)))) :
+    (linearLineEval a N (initialForm transverseCubicWeight ((m : ℤ)-2) F)).natDegree ≤ 7 := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  let Q := initialForm transverseCubicWeight ((m : ℤ)-1) F
+  let P := linearLineEval a N (initialForm transverseCubicWeight ((m : ℤ)-2) F)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let T := (linearLineEval a N).toRingHom.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr)
+  have hV : V (.inl ()) = 1 := rfl
+  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hg : ∀ i, lineEval z V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
+  have haff := sourceNilpotent_firstCorrection_affine F (m : ℤ) (by omega)
+    hcap hdet a N hreg hgrad
+  have hQ : (linearLineEval a N Q).natDegree ≤ 1 := by
+    change (linearLineEval a N Q).natDegree ≤ 1
+    have he : linearLineEval a N Q =
+        _root_.Polynomial.C ((linearLineEval a N Q).coeff 0) +
+        _root_.Polynomial.C ((linearLineEval a N Q).coeff 1) * _root_.Polynomial.X := haff
+    calc
+      _ = (_root_.Polynomial.C ((linearLineEval a N Q).coeff 0) +
+        _root_.Polynomial.C ((linearLineEval a N Q).coeff 1) * _root_.Polynomial.X).natDegree :=
+        congrArg _root_.Polynomial.natDegree he
+      _ ≤ 1 := _root_.Polynomial.natDegree_add_le_of_degree_le (by simp)
+        ((_root_.Polynomial.natDegree_C_mul_le _ _).trans (by simp))
+  have hc := sourceLeading_lineSchurFrame_differential_coeff F m 1 (by omega) z V hV
+  obtain ⟨_, hb, hp, hq⟩ := hc
+  let W : Fin 3 → LineTime K := ![H.b.coeff 1, H.p.coeff 1, H.q.coeff 1]
+  have hW (i : Fin 3) : (W i).natDegree ≤ 2 := by
+    fin_cases i
+    · change (H.b.coeff 1).natDegree ≤ 2
+      change H.b.coeff 1 = (linearLineEval a N (pderiv (.inr 0) Q)).derivative at hb
+      rw [hb]
+      exact (sourceNilpotent_mixed_timeDegree_le a N hN Q 0).trans (by omega)
+    · change (H.p.coeff 1).natDegree ≤ 2
+      change H.p.coeff 1 = (linearLineEval a N (pderiv (.inr 1) Q)).derivative at hp
+      rw [hp]
+      exact (sourceNilpotent_mixed_timeDegree_le a N hN Q 1).trans (by omega)
+    · change (H.q.coeff 1).natDegree ≤ 2
+      change H.q.coeff 1 = (linearLineEval a N (pderiv (.inr 2) Q)).derivative at hq
+      rw [hq]
+      exact (sourceNilpotent_mixed_timeDegree_le a N hN Q 2).trans (by omega)
+  have ht : ∀ i : Fin 3, linearLineEval a N (pderiv (.inr i) L) =
+      _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)) := fun i => hgrad (.inr i)
+  have hAdj (i j : Fin 3) : (T.adjugate i j).natDegree ≤ 1 :=
+    sourceLinear_leadingAdjugate_timeDegree_le a N L hreg ht i j
+  have hsum : (∑ i : Fin 3, ∑ j : Fin 3, W i * T.adjugate i j * W j).natDegree ≤ 5 := by
+    apply sourceTime_natDegree_sum_le
+    intro i _
+    apply sourceTime_natDegree_sum_le
+    intro j _
+    exact _root_.Polynomial.natDegree_mul_le_of_le
+      (_root_.Polynomial.natDegree_mul_le_of_le (hW i) (hAdj i j)) (hW j)
+  have hsym (i j : Fin 3) : T i j = T j i := by
+    change linearLineEval a N (pderiv (.inr j) (pderiv (.inr i) L)) =
+      linearLineEval a N (pderiv (.inr i) (pderiv (.inr j) L))
+    rw [HC4.Newton.pderiv_comm_backport]
+  let U : GeneralFourBlock (LineTime K) :=
+    { a := 0, b := H.b.coeff 1, p := H.p.coeff 1, q := H.q.coeff 1,
+      d := H.d.coeff 0, r := H.r.coeff 0, s := H.s.coeff 0,
+      x := H.x.coeff 0, y := H.y.coeff 0, z := H.z.coeff 0 }
+  have he := sourceLeading_lineSchurFrame_coeff F m 0 (Nat.zero_le m) z V
+  simp only [Nat.cast_zero, sub_zero] at he
+  have hu : transverseSchurMixed U = ∑ i : Fin 3, ∑ j : Fin 3,
+      W i * T.adjugate i j * W j := by
+    apply sourceLineFrame_mixed_adjugate U T <;> try exact hsym
+    · exact congrArg GeneralFourBlock.d he
+    · exact congrArg GeneralFourBlock.r he
+    · exact congrArg GeneralFourBlock.s he
+    · exact congrArg GeneralFourBlock.x he
+    · exact congrArg GeneralFourBlock.y he
+    · exact congrArg GeneralFourBlock.z he
+  have hODE := sourceLeading_secondCorrection_lineODE F m hm hcap hdet z V hV hz hg
+  change P.derivative.derivative * (transverseSchurDet H).coeff 0 =
+    transverseSchurMixed U at hODE
+  have hd : (transverseSchurDet H).coeff 0 =
+      _root_.Polynomial.C (referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det) := by
+    change (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 = _
+    rw [sourceLeading_lineSchurFrame_transverseDet_zero]
+    change (linearLineEval a N).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = _
+    rw [RingHom.map_det]
+    exact (sourceLinear_leadingAdjugate_transport a N L hreg ht).1
+  rw [hd, hu] at hODE
+  have hdeg := congrArg _root_.Polynomial.natDegree hODE
+  change (P.derivative.derivative * _root_.Polynomial.C
+    (referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det)).natDegree = _ at hdeg
+  rw [_root_.Polynomial.natDegree_mul_C hreg] at hdeg
+  exact sourceTime_degree_of_secondDerivative_le P 5 (hdeg.trans_le hsum)
+
+
 end
 end HC4.Polynomial.RankThreeCubic
