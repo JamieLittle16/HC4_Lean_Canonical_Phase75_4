@@ -1976,5 +1976,136 @@ theorem sourceNilpotent_longitudinal_third_eq_zero
   exact (mul_eq_zero.mp he.symm).resolve_left hn
 
 
+
+
+/-! ## Exact longitudinal support, with the nilpotence-index refinement
+
+The derivative identities become literal exponent bounds in the
+original source. In the square-zero case the explicit second
+gradient derivative vanishes, so the leading layer is affine in x.
+-/
+
+/-- A nonzero coefficient of positive longitudinal exponent survives
+one derivative at its unique shifted exponent. -/
+private theorem sourceLongitudinal_coeff_derivative_ne_zero
+    (P : StationarySource K) (d : StationaryExponent)
+    (hd : MvPolynomial.coeff d P ≠ 0) (hp : 0 < d (.inl ())) :
+    MvPolynomial.coeff (d - Finsupp.single (Sum.inl ()) 1)
+      (pderiv (.inl ()) P) ≠ 0 := by
+  classical
+  have hle : Finsupp.single (Sum.inl ()) 1 ≤ d := by
+    rw [Finsupp.single_le_iff]
+    omega
+  have he : d - Finsupp.single (Sum.inl ()) 1 +
+      Finsupp.single (Sum.inl ()) 1 = d := tsub_add_cancel_of_le hle
+  rw [HC4.Newton.coeff_pderiv_backport, he]
+  apply mul_ne_zero hd
+  exact_mod_cast Nat.succ_ne_zero ((d - Finsupp.single (Sum.inl ()) 1) (.inl ()))
+
+/-- Two vanishing longitudinal derivatives force each surviving
+monomial of the original polynomial to have longitudinal exponent ≤1. -/
+theorem sourceLongitudinal_support_le_one
+    (P : StationarySource K)
+    (hP : pderiv (.inl ()) (pderiv (.inl ()) P) = 0)
+    (d : StationaryExponent) (hd : MvPolynomial.coeff d P ≠ 0) :
+    d (.inl ()) ≤ 1 := by
+  by_contra hn
+  have hp : 0 < d (.inl ()) := by omega
+  have hc := sourceLongitudinal_coeff_derivative_ne_zero P d hd hp
+  have hz := stationary_support_longitudinal_zero (pderiv (.inl ()) P)
+    hP (d - Finsupp.single (Sum.inl ()) 1) hc
+  simp only [Finsupp.sub_apply, Finsupp.single_eq_same] at hz
+  omega
+
+/-- Three vanishing longitudinal derivatives force each surviving
+monomial of the original polynomial to have longitudinal exponent ≤2. -/
+theorem sourceLongitudinal_support_le_two
+    (P : StationarySource K)
+    (hP : pderiv (.inl ()) (pderiv (.inl ()) (pderiv (.inl ()) P)) = 0)
+    (d : StationaryExponent) (hd : MvPolynomial.coeff d P ≠ 0) :
+    d (.inl ()) ≤ 2 := by
+  by_contra hn
+  have hp : 0 < d (.inl ()) := by omega
+  have hc := sourceLongitudinal_coeff_derivative_ne_zero P d hd hp
+  have hz := sourceLongitudinal_support_le_one (pderiv (.inl ()) P)
+    hP (d - Finsupp.single (Sum.inl ()) 1) hc
+  simp only [Finsupp.sub_apply, Finsupp.single_eq_same] at hz
+  omega
+
+/-- Square-zero linear characteristics force the original homogeneous
+leading potential to be longitudinally affine. -/
+theorem sourceNilpotent_longitudinal_second_eq_zero_of_square_zero
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 2 = 0)
+    (L : StationarySource K) (n : ℕ)
+    (hL : L.IsWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 1))
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L))) :
+    pderiv (.inl ()) (pderiv (.inl ()) L) = 0 := by
+  classical
+  have h3 : N ^ 3 = 0 := by rw [pow_succ N 2, hN, zero_mul]
+  let P := pderiv (.inl ()) (pderiv (.inl ()) L)
+  let A : Matrix (Fin 3) (Fin 3) (StationarySource K) :=
+    N.transpose.map MvPolynomial.C
+  have h2N : N.transpose ^ 2 = 0 := by
+    rw [← Matrix.transpose_pow, hN, Matrix.transpose_zero]
+  have h2A : A ^ 2 = 0 := by
+    have h : (N.transpose ^ 2).map (MvPolynomial.C : K →+* StationarySource K) =
+        (0 : Matrix (Fin 3) (Fin 3) (StationarySource K)) := by
+      rw [h2N]
+      ext i j
+      simp
+    simpa only [A, pow_two, Matrix.map_mul] using h
+  have hs := (sourceNilpotent_transverseGradient_second_third a N h3 L n hL hgrad).1
+  dsimp only at hs
+  have hs' :
+      (fun i : Fin 3 => pderiv (Sum.inl ()) (pderiv (Sum.inl ())
+        (pderiv (Sum.inr i) L))) =
+      ((n : StationarySource K) * ((n : StationarySource K)+1)) •
+        (A ^ 2 *ᵥ (fun i : Fin 3 => pderiv (Sum.inr i) L)) := hs
+  rw [h2A, Matrix.zero_mulVec, smul_zero] at hs'
+  have hz (i : Fin 3) : pderiv (.inr i) P = 0 := by
+    dsimp only [P]
+    simp only [HC4.Newton.pderiv_comm_backport (Sum.inr i) (Sum.inl ())]
+    exact congrFun hs' i
+  have hp := pderiv_isWeightedHomogeneous
+    (pderiv_isWeightedHomogeneous hL (Sum.inl ())) (Sum.inl ())
+  have hp' : P.IsWeightedHomogeneous transverseCubicWeight ((n+1 : ℕ) : ℤ) := by
+    simpa [P, transverseCubicWeight] using hp
+  have he := sourceTransverseEuler_of_weight P (n+1) hp'
+  simp only [hz, mul_zero, Finset.sum_const_zero] at he
+  have hn : ((n+1 : ℕ) : StationarySource K) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
+  exact (mul_eq_zero.mp he.symm).resolve_left hn
+
+/-- A pole-free leading layer has total degree at most m+2, or m+1
+when its characteristic matrix is square-zero. These are bounds on
+the LEADING layer, not on the lower layers of the original source. -/
+theorem sourceNilpotent_leading_totalDegree_support_bound
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : StationarySource K) (n : ℕ)
+    (hL : L.IsWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 1))
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L))) :
+    IsWeightLE (stationaryEdgeWeight 1 1) ((n : ℤ)+3) L ∧
+      (N ^ 2 = 0 → IsWeightLE (stationaryEdgeWeight 1 1) ((n : ℤ)+2) L) := by
+  have hthird := sourceNilpotent_longitudinal_third_eq_zero a N hN L n hL hgrad
+  constructor
+  · intro d hd
+    have hc := MvPolynomial.mem_support_iff.mp hd
+    have hp := sourceLongitudinal_support_le_two L hthird d hc
+    have hq := hL hc
+    rw [stationaryEdge_weight_eq, one_mul, one_mul, hq]
+    omega
+  · intro h2 d hd
+    have hsecond :=
+      sourceNilpotent_longitudinal_second_eq_zero_of_square_zero a N h2 L n hL hgrad
+    have hc := MvPolynomial.mem_support_iff.mp hd
+    have hp := sourceLongitudinal_support_le_one L hsecond d hc
+    have hq := hL hc
+    rw [stationaryEdge_weight_eq, one_mul, one_mul, hq]
+    omega
+
+
 end
 end HC4.Polynomial.RankThreeCubic
