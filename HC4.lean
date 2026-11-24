@@ -839,3 +839,6 @@ import HC4.Polynomial.TransverseLeadingCharacteristics
 
 -- Arbitrary transverse degree: nilpotent linear characteristic or genuine rational pole.
 import HC4.Polynomial.TransverseLeadingLinearClassification
+
+-- Nonzero nilpotent leading characteristic yields a fixed directional power in every degree.
+import HC4.Polynomial.TransverseLeadingFixedPower
