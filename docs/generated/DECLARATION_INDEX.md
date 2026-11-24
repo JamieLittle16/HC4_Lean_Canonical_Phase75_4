@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11187**.
+Distinct declaration spellings indexed: **11202**.
 
 ## Repeated declaration spellings
 
@@ -9320,6 +9320,7 @@ Distinct declaration spellings indexed: **11187**.
 - `reesVectorProjectiveWedge_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `referenceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
@@ -10254,9 +10255,11 @@ Distinct declaration spellings indexed: **11187**.
 - `sourceLineIndex` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLine_secondDerivative_eq_hessian` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_frame_transverse_degree` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLinear_referenceCoeff_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_referenceGradient_chain` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10268,7 +10271,9 @@ Distinct declaration spellings indexed: **11187**.
 - `sourceMinor2_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceNilpotentInverseEval` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotentInverseEval_X_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentInverseEval_X_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotentInverseEval_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentInverseEval_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_affine_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10278,11 +10283,13 @@ Distinct declaration spellings indexed: **11187**.
 - `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leadingHessian_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_mixed_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_originalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_secondCorrection_timeDegree_le_seven` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_time_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10332,14 +10339,22 @@ Distinct declaration spellings indexed: **11187**.
 - `sourceTime_mixed_pair_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mul_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_natDegree_sum_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_referenceCoeff_X` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_referenceCoeff_mul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_referenceCoeff_pow` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_referenceCoeff_prod` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_shift_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_sub_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_transverse_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_transverse_triple` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTotalDegree_sum_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
 - `sourceTransverseHessian_mulVec_coordinates` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTransverseNatGrade` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTransverseNatGrade_sum` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `sourceTransverseRees_clock_and_layers` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseSchurFrame` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
