@@ -3882,5 +3882,168 @@ theorem sourceNilpotent_totalDegree_le
         exact hd.trans (by omega)
 
 
+
+
+/-! ## A collision obstruction directly on the marked gradient curve
+
+The original Hessian determinant implies a Bezout identity for the
+derivative of the actual marked-axis gradient, not just pointwise
+nonvanishing over the ground field. Consequently a collision cannot
+be carried by a rank-one polynomial gradient curve, even when the
+longitudinal degree is large.
+-/
+
+def stationaryAxisTrace : StationarySource K →ₐ[K] _root_.Polynomial K :=
+  lineEval (fun _ => 0) (Sum.elim (fun _ : Unit => 1) (fun _ : Fin 3 => 0))
+
+theorem stationaryAxisTrace_eval (P : StationarySource K) (t : K) :
+    (stationaryAxisTrace P).eval t = stationaryAxisEval t P := by
+  induction P using MvPolynomial.induction_on with
+  | C c => simp [stationaryAxisTrace, stationaryAxisEval, lineEval]
+  | add p q hp hq =>
+    simp only [map_add, _root_.Polynomial.eval_add, hp, hq]
+  | mul_X p i hp =>
+    rw [map_mul, _root_.Polynomial.eval_mul, map_mul, hp]
+    cases i with
+    | inl u => cases u; simp [stationaryAxisTrace, stationaryAxisEval, lineEval]
+    | inr j => simp [stationaryAxisTrace, stationaryAxisEval, lineEval]
+
+theorem stationaryAxisTrace_derivative (P : StationarySource K) :
+    (stationaryAxisTrace P).derivative = stationaryAxisTrace (pderiv (.inl ()) P) := by
+  classical
+  change (lineEval (fun _ => (0 : K))
+    (Sum.elim (fun _ : Unit => 1) (fun _ : Fin 3 => 0)) P).derivative = _
+  rw [transverse_lineEval_derivative, Fintype.sum_sum_type]
+  simp [stationaryAxisTrace]
+
+/-- The cofactor row is an explicit polynomial Bezout certificate
+for the tangent vector of the actual marked gradient curve. -/
+theorem stationaryAxisTrace_gradient_bezout
+    (F : StationarySource K) {δ : K}
+    (hdet : hessianDeterminant F = MvPolynomial.C δ) :
+    let A := (stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)
+    ∑ i : Unit ⊕ Fin 3,
+      (stationaryAxisTrace (pderiv i F)).derivative * A.adjugate (.inl ()) i =
+        _root_.Polynomial.C δ := by
+  classical
+  let A := (stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)
+  have hA : A.det = _root_.Polynomial.C δ := by
+    change ((stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)).det = _
+    rw [← RingHom.map_det]
+    change stationaryAxisTrace (hessianDeterminant F) = _
+    rw [hdet]
+    simp [stationaryAxisTrace, lineEval]
+  change (∑ i : Unit ⊕ Fin 3,
+    (stationaryAxisTrace (pderiv i F)).derivative * A.adjugate (.inl ()) i) = _
+  calc
+    _ = ∑ i : Unit ⊕ Fin 3, A i (.inl ()) * A.adjugate (.inl ()) i := by
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [stationaryAxisTrace_derivative]
+      rfl
+    _ = A.det := (Matrix.det_eq_sum_mul_adjugate_col A (.inl ())).symm
+    _ = _ := hA
+
+/-- No nonconstant polynomial can divide every component of the
+marked gradient tangent. This holds without a regular transverse
+anchor and without any degree cap on the source. -/
+theorem stationaryAxisTrace_commonDerivativeDivisor_degree_zero
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (D : _root_.Polynomial K)
+    (hD : ∀ i : Unit ⊕ Fin 3, D ∣ (stationaryAxisTrace (pderiv i F)).derivative) :
+    D.natDegree = 0 := by
+  classical
+  let A := (stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)
+  choose Q hQ using hD
+  have h := stationaryAxisTrace_gradient_bezout F hdet
+  change (∑ i : Unit ⊕ Fin 3, (stationaryAxisTrace (pderiv i F)).derivative *
+    A.adjugate (.inl ()) i) = _ at h
+  let E := ∑ i : Unit ⊕ Fin 3, Q i * A.adjugate (.inl ()) i
+  have he : D * E = _root_.Polynomial.C δ := by
+    dsimp [E]
+    rw [Finset.mul_sum]
+    calc
+      _ = ∑ i : Unit ⊕ Fin 3, (stationaryAxisTrace (pderiv i F)).derivative *
+          A.adjugate (.inl ()) i := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [hQ i, mul_assoc]
+      _ = _ := h
+  have hne : D * E ≠ 0 := by rw [he]; exact _root_.Polynomial.C_ne_zero.mpr hδ
+  have hd : D ≠ 0 := by
+    intro hz
+    apply hne
+    rw [hz, zero_mul]
+  have he' : E ≠ 0 := by
+    intro hz
+    apply hne
+    rw [hz, mul_zero]
+  have hdegree := congrArg _root_.Polynomial.natDegree he
+  rw [_root_.Polynomial.natDegree_mul' (mul_ne_zero
+    (_root_.Polynomial.leadingCoeff_ne_zero.mpr hd)
+    (_root_.Polynomial.leadingCoeff_ne_zero.mpr he')),
+    _root_.Polynomial.natDegree_C] at hdegree
+  omega
+
+private theorem sourceTime_derivative_constant_of_equal_endpoints
+    (P : _root_.Polynomial K) (c : K)
+    (h : P.derivative = _root_.Polynomial.C c)
+    (he : P.eval 1 = P.eval 0) : P.derivative = 0 := by
+  let Q := P - _root_.Polynomial.C c * _root_.Polynomial.X
+  have hQ : Q.derivative = 0 := by
+    change (P - _root_.Polynomial.C c * _root_.Polynomial.X).derivative = 0
+    rw [map_sub, h, _root_.Polynomial.derivative_mul,
+      _root_.Polynomial.derivative_C, _root_.Polynomial.derivative_X]
+    simp
+  have hc := _root_.Polynomial.eq_C_of_derivative_eq_zero hQ
+  have h1 := congrArg (fun q : _root_.Polynomial K => q.eval 1) hc
+  have h0 := congrArg (fun q : _root_.Polynomial K => q.eval 0) hc
+  change (P - _root_.Polynomial.C c * _root_.Polynomial.X).eval 1 =
+    (_root_.Polynomial.C (Q.coeff 0)).eval 1 at h1
+  change (P - _root_.Polynomial.C c * _root_.Polynomial.X).eval 0 =
+    (_root_.Polynomial.C (Q.coeff 0)).eval 0 at h0
+  simp only [_root_.Polynomial.eval_sub, _root_.Polynomial.eval_mul,
+    _root_.Polynomial.eval_C, _root_.Polynomial.eval_X, mul_one, mul_zero, sub_zero] at h1 h0
+  have hz : c = 0 := by
+    rw [he, h0] at h1
+    linear_combination -h1
+  rw [h, hz, map_zero]
+
+/-- A marked collision cannot have its entire gradient trace in an
+affine line, even if the source and the trace have arbitrary degree.
+The tangent rank-one assumption is stated as an exact polynomial
+identity, not a condition on only one evaluation point. -/
+theorem stationaryAxisTrace_rankOne_markedCollision_impossible
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
+    (D : _root_.Polynomial K) (v : Unit ⊕ Fin 3 → K)
+    (hline : ∀ i, (stationaryAxisTrace (pderiv i F)).derivative =
+      _root_.Polynomial.C (v i) * D) : False := by
+  classical
+  have hD : ∀ i : Unit ⊕ Fin 3, D ∣ (stationaryAxisTrace (pderiv i F)).derivative := by
+    intro i
+    refine ⟨_root_.Polynomial.C (v i), ?_⟩
+    rw [hline i, mul_comm]
+  have hd := stationaryAxisTrace_commonDerivativeDivisor_degree_zero F hδ hdet D hD
+  have hC := _root_.Polynomial.eq_C_of_natDegree_eq_zero hd
+  have hz (i : Unit ⊕ Fin 3) : (stationaryAxisTrace (pderiv i F)).derivative = 0 := by
+    apply sourceTime_derivative_constant_of_equal_endpoints _ (v i * D.coeff 0)
+    · calc
+        _ = _root_.Polynomial.C (v i) * D := hline i
+        _ = _root_.Polynomial.C (v i) * _root_.Polynomial.C (D.coeff 0) :=
+          congrArg (fun p => _root_.Polynomial.C (v i) * p) hC
+        _ = _ := (_root_.Polynomial.C.map_mul _ _).symm
+    · rw [stationaryAxisTrace_eval, stationaryAxisTrace_eval]
+      exact hcoll i
+  have hb := stationaryAxisTrace_gradient_bezout F hdet
+  change (∑ i : Unit ⊕ Fin 3, (stationaryAxisTrace (pderiv i F)).derivative *
+    ((stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)).adjugate (.inl ()) i) = _ at hb
+  simp only [hz, zero_mul, Finset.sum_const_zero] at hb
+  exact hδ (_root_.Polynomial.C_eq_zero.mp hb.symm)
+
+
 end
 end HC4.Polynomial.RankThreeCubic
