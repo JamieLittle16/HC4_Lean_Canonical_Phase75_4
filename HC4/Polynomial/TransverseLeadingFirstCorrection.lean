@@ -2464,5 +2464,223 @@ theorem sourceLeading_lineSchurFrame_second_constraint
   exact transverseSchur_second_constraint H ha0 ha1 hb hp hq (hz 2 (by omega))
 
 
+
+
+/-! ## Differential meaning of the actual characteristic frame -/
+
+private theorem sourceLineFrame_a_eq_sum {R : Type*} [CommRing R]
+    (M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R)
+    (W : Unit ⊕ Fin 3 → R) (hW : W (.inl ()) = 1)
+    (hsym : ∀ i j, M i j = M j i) :
+    (transverseCharacteristicFrame (sourceLineBlockOfMatrix M)
+      (W (.inr 0)) (W (.inr 1)) (W (.inr 2))).a =
+      ∑ i : Unit ⊕ Fin 3, ∑ j : Unit ⊕ Fin 3, W i * M i j * W j := by
+  classical
+  have h01 := hsym (.inr 0) (.inl ())
+  have h02 := hsym (.inr 1) (.inl ())
+  have h03 := hsym (.inr 2) (.inl ())
+  have h12 := hsym (.inr 1) (.inr 0)
+  have h13 := hsym (.inr 2) (.inr 0)
+  have h23 := hsym (.inr 2) (.inr 1)
+  simp [transverseCharacteristicFrame, sourceLineBlockOfMatrix,
+    GeneralFourBlock.ofSymmetricMatrix, sourceLineIndex, Matrix.submatrix_apply,
+    Fintype.sum_sum_type, Fin.sum_univ_three, hW, h01, h02, h03, h12, h13, h23]
+  <;> ring
+
+private theorem sourceLineFrame_mixed_eq_sums {R : Type*} [CommRing R]
+    (M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R)
+    (W : Unit ⊕ Fin 3 → R) (hW : W (.inl ()) = 1)
+    (hsym : ∀ i j, M i j = M j i) :
+    let H := transverseCharacteristicFrame (sourceLineBlockOfMatrix M)
+      (W (.inr 0)) (W (.inr 1)) (W (.inr 2))
+    H.b = (∑ j, W j * M (.inr 0) j) ∧
+    H.p = (∑ j, W j * M (.inr 1) j) ∧
+    H.q = (∑ j, W j * M (.inr 2) j) := by
+  classical
+  have h01 := hsym (.inr 0) (.inl ())
+  have h02 := hsym (.inr 1) (.inl ())
+  have h03 := hsym (.inr 2) (.inl ())
+  have h12 := hsym (.inr 1) (.inr 0)
+  have h13 := hsym (.inr 2) (.inr 0)
+  have h23 := hsym (.inr 2) (.inr 1)
+  refine ⟨?_, ?_, ?_⟩ <;>
+    simp [transverseCharacteristicFrame, sourceLineBlockOfMatrix,
+      GeneralFourBlock.ofSymmetricMatrix, sourceLineIndex, Matrix.submatrix_apply,
+      Fintype.sum_sum_type, Fin.sum_univ_three, hW, h01, h02, h03, h12, h13, h23]
+    <;> ring
+
+private theorem sourceLineFrame_transverseDet_eq {R : Type*} [CommRing R]
+    (M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R)
+    (u v w : R) (hsym : ∀ i j, M i j = M j i) :
+    transverseSchurDet (transverseCharacteristicFrame (sourceLineBlockOfMatrix M)
+      u v w) = (M.submatrix Sum.inr Sum.inr).det := by
+  rw [Matrix.det_fin_three]
+  have h12 := hsym (.inr 1) (.inr 0)
+  have h13 := hsym (.inr 2) (.inr 0)
+  have h23 := hsym (.inr 2) (.inr 1)
+  simp [transverseSchurDet, transverseCharacteristicFrame, sourceLineBlockOfMatrix,
+    GeneralFourBlock.ofSymmetricMatrix, sourceLineIndex, Matrix.submatrix_apply,
+    h12, h13, h23] <;> ring
+
+private theorem transverseSchurDet_coeff_zero {R : Type*} [CommRing R]
+    (H : GeneralFourBlock (_root_.Polynomial R)) :
+    (transverseSchurDet H).coeff 0 = transverseSchurDet (transverseBlockCoeff H 0) := by
+  simp only [transverseSchurDet, transverseBlockCoeff,
+    _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_sub,
+    _root_.Polynomial.mul_coeff_zero]
+
+/-- The second line derivative is the actual source Hessian quadratic
+form along the original affine characteristic. -/
+theorem sourceLine_secondDerivative_eq_hessian
+    {E : Type*} [CommRing E] [Algebra K E]
+    (z V : Unit ⊕ Fin 3 → E) (Q : StationarySource K) :
+    (lineEval z V Q).derivative.derivative =
+      ∑ i : Unit ⊕ Fin 3, ∑ j : Unit ⊕ Fin 3,
+        _root_.Polynomial.C (V i) * lineEval z V (hessian Q i j) *
+          _root_.Polynomial.C (V j) := by
+  classical
+  rw [transverse_lineEval_derivative]
+  simp only [_root_.Polynomial.derivative_sum, _root_.Polynomial.derivative_mul,
+    _root_.Polynomial.derivative_C, zero_mul, zero_add]
+  simp_rw [transverse_lineEval_derivative, Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro i _
+  apply Finset.sum_congr rfl
+  intro j _
+  change _root_.Polynomial.C (V i) *
+    (_root_.Polynomial.C (V j) * lineEval z V (pderiv j (pderiv i Q))) = _
+  rw [hessian_apply]
+  ring
+
+/-- At every actual layer, the longitudinal coefficient of the framed
+Hessian is precisely the second derivative of that layer in time;
+the mixed entries are the first time derivatives of its transverse
+gradient. This does not differentiate a nonconstant frame. -/
+theorem sourceLeading_lineSchurFrame_differential_coeff
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m j : ℕ) (hj : j ≤ m)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let Q := initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F
+    H.a.coeff j = (lineEval z V Q).derivative.derivative ∧
+    H.b.coeff j = (lineEval z V (pderiv (.inr 0) Q)).derivative ∧
+    H.p.coeff j = (lineEval z V (pderiv (.inr 1) Q)).derivative ∧
+    H.q.coeff j = (lineEval z V (pderiv (.inr 2) Q)).derivative := by
+  classical
+  let H := sourceLeading_lineSchurFrame F m z V
+  let Q := initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F
+  let M := (lineEval z V).toRingHom.mapMatrix (hessian Q)
+  let W : Unit ⊕ Fin 3 → _root_.Polynomial E :=
+    fun i => _root_.Polynomial.C (V i)
+  have hW : W (.inl ()) = 1 := by simp [W, hV]
+  have hsym (i k : Unit ⊕ Fin 3) : M i k = M k i := by
+    change lineEval z V (pderiv k (pderiv i Q)) =
+      lineEval z V (pderiv i (pderiv k Q))
+    rw [HC4.Newton.pderiv_comm_backport k i]
+  have hfr : transverseBlockCoeff H j =
+      transverseCharacteristicFrame (sourceLineBlockOfMatrix M)
+        (W (.inr 0)) (W (.inr 1)) (W (.inr 2)) :=
+    sourceLeading_lineSchurFrame_coeff F m j hj z V
+  have ha := sourceLineFrame_a_eq_sum M W hW hsym
+  obtain ⟨hb, hp, hq⟩ := sourceLineFrame_mixed_eq_sums M W hW hsym
+  change (transverseBlockCoeff H j).a = _ ∧
+    (transverseBlockCoeff H j).b = _ ∧
+    (transverseBlockCoeff H j).p = _ ∧
+    (transverseBlockCoeff H j).q = _
+  rw [hfr]
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [ha, sourceLine_secondDerivative_eq_hessian]
+    rfl
+  · rw [hb, transverse_lineEval_derivative]
+    rfl
+  · rw [hp, transverse_lineEval_derivative]
+    rfl
+  · rw [hq, transverse_lineEval_derivative]
+    rfl
+
+/-- The leading transverse determinant in the framed series is the
+actual transverse Hessian determinant transported along the line. -/
+theorem sourceLeading_lineSchurFrame_transverseDet_zero
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (z V : Unit ⊕ Fin 3 → E) :
+    (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 =
+      lineEval z V ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det := by
+  classical
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  let M := (lineEval z V).toRingHom.mapMatrix (hessian L)
+  have hsym (i k : Unit ⊕ Fin 3) : M i k = M k i := by
+    change lineEval z V (pderiv k (pderiv i L)) =
+      lineEval z V (pderiv i (pderiv k L))
+    rw [HC4.Newton.pderiv_comm_backport k i]
+  rw [transverseSchurDet_coeff_zero,
+    sourceLeading_lineSchurFrame_coeff F m 0 (Nat.zero_le m) z V]
+  simp only [Nat.cast_zero, sub_zero]
+  rw [sourceLineFrame_transverseDet_eq _ _ _ _ hsym]
+  change ((lineEval z V).toRingHom.mapMatrix
+    ((hessian L).submatrix Sum.inr Sum.inr)).det = _
+  rw [← RingHom.map_det]
+  rfl
+
+/-- The leading frame conditions follow from the existing gradient
+transport and regular reference anchor, at all transverse degrees. -/
+theorem sourceLeading_lineSchurFrame_kernel_regular
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (z V : Unit ⊕ Fin 3 → E)
+    (hV : V (.inl ()) = 1)
+    (hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+      _root_.Polynomial.C
+        (MvPolynomial.aeval z (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)))) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    H.b.coeff 0 = 0 ∧ H.p.coeff 0 = 0 ∧ H.q.coeff 0 = 0 ∧
+      (transverseSchurDet H).coeff 0 ≠ 0 := by
+  have hd := sourceLeading_lineSchurFrame_differential_coeff F m 0 (Nat.zero_le m) z V hV
+  simp only [Nat.cast_zero, sub_zero] at hd
+  obtain ⟨_, hb, hp, hq⟩ := hd
+  rw [hgrad (.inr 0), _root_.Polynomial.derivative_C] at hb
+  rw [hgrad (.inr 1), _root_.Polynomial.derivative_C] at hp
+  rw [hgrad (.inr 2), _root_.Polynomial.derivative_C] at hq
+  refine ⟨hb, hp, hq, ?_⟩
+  rw [sourceLeading_lineSchurFrame_transverseDet_zero]
+  intro h
+  have hc := congrArg (fun p : _root_.Polynomial E => p.coeff 0) h
+  rw [cubic_lineEval_coeff_zero, _root_.Polynomial.coeff_zero] at hc
+  exact hz hc
+
+/-- Source-honest second-order constraint, with all frame hypotheses
+discharged. The left side is the second time derivative of the
+actual second lower layer, not an independent unknown. -/
+theorem sourceLeading_secondCorrection_lineODE
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+      _root_.Polynomial.C
+        (MvPolynomial.aeval z (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)))) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let Q := initialForm transverseCubicWeight ((m : ℤ)-2) F
+    (lineEval z V Q).derivative.derivative * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := 0, b := H.b.coeff 1, p := H.p.coeff 1,
+           q := H.q.coeff 1, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock (_root_.Polynomial E)) := by
+  obtain ⟨hb, hp, hq, hr⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hgrad
+  have h := sourceLeading_lineSchurFrame_second_constraint F m hm hcap hdet z V hb hp hq hr
+  have ha := (sourceLeading_lineSchurFrame_differential_coeff F m 2 (by omega) z V hV).1
+  dsimp only at h ha ⊢
+  rw [ha] at h
+  simpa only [transverseSchurMixed] using h
+
+
 end
 end HC4.Polynomial.RankThreeCubic
