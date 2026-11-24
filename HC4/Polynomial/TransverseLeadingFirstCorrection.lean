@@ -2684,5 +2684,215 @@ theorem sourceLeading_secondCorrection_lineODE
   simpa only [transverseSchurMixed] using h
 
 
+
+
+/-! ## Time degree estimates in the nilpotent chart
+
+These bounds are on actual polynomials in characteristic time. In
+particular they do not assert that a nonlinear shear preserves the
+Hessian determinant of the original source.
+-/
+
+private abbrev LineTime (K : Type*) [Field K] :=
+  _root_.Polynomial (MvPolynomial (Fin 3) K)
+
+private def sourceTimeMatrix (N : Matrix (Fin 3) (Fin 3) K) :
+    Matrix (Fin 3) (Fin 3) (LineTime K) :=
+  (N.map MvPolynomial.C).map _root_.Polynomial.C
+
+private theorem sourceTimeMatrix_mul
+    (N M : Matrix (Fin 3) (Fin 3) K) :
+    sourceTimeMatrix (N * M) = sourceTimeMatrix N * sourceTimeMatrix M := by
+  simp only [sourceTimeMatrix, Matrix.map_mul]
+
+private theorem sourceTimeMatrix_zero :
+    sourceTimeMatrix (0 : Matrix (Fin 3) (Fin 3) K) = 0 := by
+  ext i j
+  simp [sourceTimeMatrix, Matrix.map_apply]
+
+private theorem sourceTimeMatrix_cube
+    (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) :
+    sourceTimeMatrix N ^ 3 = 0 := by
+  have h : sourceTimeMatrix (N ^ 3) = 0 := by rw [hN, sourceTimeMatrix_zero]
+  have he : sourceTimeMatrix (N ^ 3) = sourceTimeMatrix N ^ 3 := by
+    rw [pow_succ N 2, pow_succ (sourceTimeMatrix N) 2, sourceTimeMatrix_mul,
+      pow_two N, pow_two (sourceTimeMatrix N), sourceTimeMatrix_mul]
+  exact he.symm.trans h
+
+private theorem sourceTimeMatrix_square
+    (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 2 = 0) :
+    sourceTimeMatrix N ^ 2 = 0 := by
+  have h : sourceTimeMatrix (N ^ 2) = 0 := by rw [hN, sourceTimeMatrix_zero]
+  simpa only [pow_two, sourceTimeMatrix_mul] using h
+
+private def sourceTimePencil (N : Matrix (Fin 3) (Fin 3) K) :
+    Matrix (Fin 3) (Fin 3) (LineTime K) :=
+  1 + (_root_.Polynomial.X : LineTime K) • sourceTimeMatrix N
+
+private def sourceTimePencilInv (N : Matrix (Fin 3) (Fin 3) K) :
+    Matrix (Fin 3) (Fin 3) (LineTime K) :=
+  1 - (_root_.Polynomial.X : LineTime K) • sourceTimeMatrix N +
+    (_root_.Polynomial.X : LineTime K)^2 • sourceTimeMatrix (N^2)
+
+private theorem sourceTimePencil_right_inverse
+    (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) :
+    sourceTimePencil N * sourceTimePencilInv N = 1 := by
+  let A := (_root_.Polynomial.X : LineTime K) • sourceTimeMatrix N
+  have h3 : A ^ 3 = 0 := by
+    dsimp only [A]
+    rw [smul_pow, sourceTimeMatrix_cube N hN, smul_zero]
+  have h2 : A ^ 2 =
+      (_root_.Polynomial.X : LineTime K)^2 • sourceTimeMatrix (N^2) := by
+    dsimp only [A]
+    rw [smul_pow, pow_two N, sourceTimeMatrix_mul, pow_two (sourceTimeMatrix N)]
+  unfold sourceTimePencil sourceTimePencilInv
+  change (1 + A) * (1 - A +
+    (_root_.Polynomial.X : LineTime K)^2 • sourceTimeMatrix (N^2)) = 1
+  rw [← h2]
+  calc
+    _ = 1 + A ^ 3 := by noncomm_ring
+    _ = 1 := by rw [h3, add_zero]
+
+/-- Transverse differentiation in the reference variables: the
+actual source gradient times the affine pencil is the gradient of
+the pulled-back polynomial. No gradient constancy is needed here. -/
+theorem sourceLinear_referenceGradient_chain
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (Q : StationarySource K) :
+    (fun i : Fin 3 => linearLineEval a N (pderiv (.inr i) Q)) ᵥ*
+      sourceTimePencil N =
+      fun j : Fin 3 => coeffDeriv (pderiv j) (linearLineEval a N Q) := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let v : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let w : Unit ⊕ Fin 3 → _root_.Polynomial B := fun i =>
+    _root_.Polynomial.C (z i) + _root_.Polynomial.C (v i) * _root_.Polynomial.X
+  have hE : linearLineEval a N = MvPolynomial.aeval w := rfl
+  have hz (j k : Fin 3) : pderiv j (z (.inr k)) = if k = j then 1 else 0 := by
+    by_cases h : k = j
+    · subst k; simp [z]
+    · simp [z, h, pderiv_X_of_ne h]
+  have hv (j k : Fin 3) : pderiv j (v (.inr k)) = MvPolynomial.C (N k j) := by
+    simp only [v, Sum.elim_inr, referenceLinearVector, map_sum, MvPolynomial.pderiv_C_mul]
+    rw [Finset.sum_eq_single j]
+    · simp
+    · intro i _ hi
+      rw [pderiv_X_of_ne hi, mul_zero]
+    · simp
+  have hc (j : Fin 3) : coeffDeriv (pderiv j : Derivation K B B) (w (.inl ())) = 0 := by
+    simp [w, z, v]
+  have ht (j k : Fin 3) :
+      coeffDeriv (pderiv j : Derivation K B B) (w (.inr k)) =
+        sourceTimePencil N k j := by
+    change coeffDeriv (pderiv j : Derivation K B B)
+      (_root_.Polynomial.C (z (.inr k)) +
+      _root_.Polynomial.C (v (.inr k)) * _root_.Polynomial.X) = _
+    simp only [map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
+      mul_zero, zero_add, hz, hv, sourceTimePencil, sourceTimeMatrix,
+      Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply,
+      Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero]
+  funext j
+  change (∑ i : Fin 3, linearLineEval a N (pderiv (.inr i) Q) *
+    sourceTimePencil N i j) = coeffDeriv (pderiv j) (linearLineEval a N Q)
+  rw [hE, derivation_aeval]
+  simp only [Fintype.sum_sum_type, hc, mul_zero, Finset.sum_const_zero, zero_add, ht]
+
+private theorem sourceTime_coeffDeriv_natDegree_le
+    (D : Derivation K (MvPolynomial (Fin 3) K) (MvPolynomial (Fin 3) K))
+    (P : LineTime K) :
+    (coeffDeriv D P).natDegree ≤ P.natDegree := by
+  apply _root_.Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
+  intro k hk
+  rw [coeff_coeffDeriv, _root_.Polynomial.coeff_eq_zero_of_natDegree_lt hk, map_zero]
+
+private theorem sourceTime_natDegree_sum_le
+    {R I : Type*} [CommRing R] (s : Finset I) (f : I → _root_.Polynomial R)
+    (d : ℕ) (h : ∀ i ∈ s, (f i).natDegree ≤ d) :
+    (∑ i ∈ s, f i).natDegree ≤ d := by
+  apply _root_.Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
+  intro k hk
+  rw [_root_.Polynomial.finset_sum_coeff]
+  apply Finset.sum_eq_zero
+  intro i hi
+  exact _root_.Polynomial.coeff_eq_zero_of_natDegree_lt ((h i hi).trans_lt hk)
+
+private theorem sourceTimePencilInv_natDegree_le
+    (N : Matrix (Fin 3) (Fin 3) K) (i j : Fin 3) :
+    (sourceTimePencilInv N i j).natDegree ≤ 2 := by
+  have h1 : (1 : Matrix (Fin 3) (Fin 3) (LineTime K)) i j =
+      if i = j then 1 else 0 := Matrix.one_apply _ _
+  have hd : ((1 : Matrix (Fin 3) (Fin 3) (LineTime K)) i j).natDegree ≤ 0 := by
+    rw [h1]
+    split_ifs <;> simp
+  have hlin : ((_root_.Polynomial.X : LineTime K) *
+      sourceTimeMatrix N i j).natDegree ≤ 1 := by
+    change (_root_.Polynomial.X * _root_.Polynomial.C (MvPolynomial.C (N i j))).natDegree ≤ 1
+    exact (_root_.Polynomial.natDegree_mul_C_le _ _).trans (by simp)
+  have hquad : (((_root_.Polynomial.X : LineTime K)^2) *
+      sourceTimeMatrix (N^2) i j).natDegree ≤ 2 := by
+    change (_root_.Polynomial.X ^ 2 *
+      _root_.Polynomial.C (MvPolynomial.C ((N^2) i j))).natDegree ≤ 2
+    exact (_root_.Polynomial.natDegree_mul_C_le _ _).trans (by simp)
+  simp only [sourceTimePencilInv, Matrix.add_apply, Matrix.sub_apply,
+    Matrix.smul_apply, smul_eq_mul]
+  exact _root_.Polynomial.natDegree_add_le_of_degree_le
+    ((_root_.Polynomial.natDegree_sub_le _ _).trans (max_le (hd.trans (by omega))
+      (hlin.trans (by omega)))) hquad
+
+/-- Each actual transverse partial derivative costs at most two
+characteristic-time degrees, uniformly in the transverse layer.
+This is the cube-zero estimate needed for the degree induction. -/
+theorem sourceNilpotent_transverseGradient_timeDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K) (i : Fin 3) :
+    (linearLineEval a N (pderiv (.inr i) Q)).natDegree ≤
+      (linearLineEval a N Q).natDegree + 2 := by
+  classical
+  let G : Fin 3 → LineTime K := fun j => linearLineEval a N (pderiv (.inr j) Q)
+  let D : Fin 3 → LineTime K := fun j => coeffDeriv (pderiv j) (linearLineEval a N Q)
+  have h : G ᵥ* sourceTimePencil N = D := sourceLinear_referenceGradient_chain a N Q
+  have he : G = D ᵥ* sourceTimePencilInv N := by
+    calc
+      G = G ᵥ* (1 : Matrix (Fin 3) (Fin 3) (LineTime K)) :=
+        (Matrix.vecMul_one G).symm
+      _ = G ᵥ* (sourceTimePencil N * sourceTimePencilInv N) := by
+        rw [sourceTimePencil_right_inverse N hN]
+      _ = (G ᵥ* sourceTimePencil N) ᵥ* sourceTimePencilInv N :=
+        (Matrix.vecMul_vecMul G _ _).symm
+      _ = _ := by rw [h]
+  change (G i).natDegree ≤ _
+  rw [he]
+  change (∑ j : Fin 3, D j * sourceTimePencilInv N j i).natDegree ≤ _
+  apply sourceTime_natDegree_sum_le
+  intro j _
+  exact _root_.Polynomial.natDegree_mul_le_of_le
+    (sourceTime_coeffDeriv_natDegree_le (pderiv j) (linearLineEval a N Q))
+    (sourceTimePencilInv_natDegree_le N j i)
+
+/-- Two actual transverse derivatives cost at most four time degrees.
+The estimate applies to every lower source layer. -/
+theorem sourceNilpotent_transverseHessian_timeDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K) (i j : Fin 3) :
+    (linearLineEval a N (hessian Q (.inr i) (.inr j))).natDegree ≤
+      (linearLineEval a N Q).natDegree + 4 := by
+  change (linearLineEval a N (pderiv (.inr j) (pderiv (.inr i) Q))).natDegree ≤ _
+  have h1 := sourceNilpotent_transverseGradient_timeDegree_le a N hN Q i
+  have h2 := sourceNilpotent_transverseGradient_timeDegree_le a N hN (pderiv (.inr i) Q) j
+  omega
+
+/-- A first mixed characteristic derivative costs at most one time
+degree in the cube-zero chart (including the constant case). -/
+theorem sourceNilpotent_mixed_timeDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K) (i : Fin 3) :
+    (linearLineEval a N (pderiv (.inr i) Q)).derivative.natDegree ≤
+      (linearLineEval a N Q).natDegree + 1 := by
+  have h1 := sourceNilpotent_transverseGradient_timeDegree_le a N hN Q i
+  have h2 := _root_.Polynomial.natDegree_derivative_le
+    (linearLineEval a N (pderiv (.inr i) Q))
+  omega
+
+
 end
 end HC4.Polynomial.RankThreeCubic
