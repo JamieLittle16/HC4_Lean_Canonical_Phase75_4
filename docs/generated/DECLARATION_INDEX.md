@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11080**.
+Distinct declaration spellings indexed: **11091**.
 
 ## Repeated declaration spellings
 
@@ -3397,6 +3397,8 @@ Distinct declaration spellings indexed: **11080**.
 - `SpecialFiberCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
 - `SpecialFiberDefectOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `StaggeredSingularFirstKernelBreakFourBlockData` — `structure` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
+- `StationaryExponent` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `StationarySource` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `TerminalAssociatedGradedCollisionData` — `structure` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `TerminalAssociatedGradedCollisionData.exists_jc2Sensitive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalReduction`
 - `TerminalAssociatedGradedCollisionData.impossible_of_JC2` — `theorem` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
@@ -10249,6 +10251,8 @@ Distinct declaration spellings indexed: **11080**.
 - `sourceRightRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceStationary_supportingEdge_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceStationary_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
@@ -10483,6 +10487,10 @@ Distinct declaration spellings indexed: **11080**.
 - `stationaryDepthEuler_groundScalar_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianEulerReduction`
 - `stationaryDepthEuler_stationaryDepthEuler` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianEulerReduction`
 - `stationaryDepthSecondEuler` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianFamily`
+- `stationaryEdgeWeight` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryEdge_firstDerivative_slice_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryEdge_referenceSlice_eq` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryEdge_weight_eq` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryEulerHessianFourBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
 - `stationaryEulerHessianFourBlock_activeDet_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
 - `stationaryEulerHessianFourBlock_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryEulerSchur`
@@ -10545,13 +10553,16 @@ Distinct declaration spellings indexed: **11080**.
 - `stationaryTotalDegree_mapped` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileHessianEulerReduction`
 - `stationaryWeight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationaryWeight_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
+- `stationary_coeff_X_mul_pderiv` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationary_or_reflectedInteraction` — `theorem` in `HC4.Newton.RankOneSingularSchurContinuation`
 - `stationary_order_add_weight_eq_weight_mul_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryWeightedEuler`
 - `stationary_order_eq_weight_mul_pair_pred` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryWeightedEuler`
 - `stationary_profileIndex_weight_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder`
 - `stationary_profileOrder_add` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfileOrder`
+- `stationary_referenceSlice_zero_of_support` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationary_scaledOrder_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryIndex`
 - `stationary_scaledOrder_eq_of_carrier_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRamification`
+- `stationary_support_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `step` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `straightenedFibre_firstDifference` — `theorem` in `HC4.Polynomial.RankTwoCubicFibrePencils`
 - `strictEarlierWeightedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
