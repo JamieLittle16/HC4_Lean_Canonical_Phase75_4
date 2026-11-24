@@ -5598,6 +5598,7 @@ theorem exists_cleared_mixed_solution_of_cancelled_Cramer
     _ = T.det • b := by
       rw [Matrix.mulVec_mulVec, Matrix.mul_adjugate, Matrix.smul_mulVec, Matrix.one_mulVec]
     _ = (p*e) • b := by rw [hdet]
+  refine ⟨v, ?_⟩
   funext i
   rw [Matrix.mulVec_smul] at h
   have hi := congrFun h i
