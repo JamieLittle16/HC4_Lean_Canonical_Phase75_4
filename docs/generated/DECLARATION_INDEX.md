@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11263**.
+Distinct declaration spellings indexed: **11267**.
 
 ## Repeated declaration spellings
 
@@ -4951,6 +4951,7 @@ Distinct declaration spellings indexed: **11263**.
 - `cross_relation_of_oneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `cross_relation_of_weightedOneZero_pencil_singular` — `theorem` in `HC4.Polynomial.RankThreeWeightedPencils`
 - `cubicAdaptiveRigidMatrixZeroSchurData` — `def` in `HC4.Valuation.AdaptiveRigidMatrixExposure`
+- `cubicClock_commonKernel_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `cubicCorrection` — `def` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicCorrection_eq_neg_two_kernelDrift` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicCorrection_selfPairing_eq_zero_of_singular` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
@@ -10130,6 +10131,7 @@ Distinct declaration spellings indexed: **11263**.
 - `sourceCubic_belowTwo_strictWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
 - `sourceCubic_belowTwo_transverseHessian_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
 - `sourceCubic_cancelledCramer_nonzeroResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`
+- `sourceCubic_commonTransverseKernel_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_coordinatePole_rankOne_impossible` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`
 - `sourceCubic_cubicTransverseHessian_eval_neg` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseThreeScale`
 - `sourceCubic_detOne_cubic_plus_quadratic_weightFive_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveSourceGap`
@@ -10216,6 +10218,7 @@ Distinct declaration spellings indexed: **11263**.
 - `sourceCubic_repair_transverseHessian_eq_secondLayer` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
 - `sourceCubic_repair_transverseHessian_eq_sourceSecondLayer` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
 - `sourceCubic_repeatedFactor_has_principalRankTwo` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`
+- `sourceCubic_reverseHessian_mixed_degree_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_secondLayer_hessian_entry` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`
 - `sourceCubic_secondLayer_mixedDirectional_homogeneous_one` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceMixedAffineDegrees`
 - `sourceCubic_secondLayer_mixedSlice_homogeneous_one` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneSourceMixedAffineDegrees`
@@ -10409,6 +10412,7 @@ Distinct declaration spellings indexed: **11263**.
 - `source_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceSourceExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - `source_contact_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
+- `source_negative_transverse_initialForm_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `source_power_of_linear_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_square_of_jordan_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
