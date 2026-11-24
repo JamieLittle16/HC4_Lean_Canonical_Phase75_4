@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11091**.
+Distinct declaration spellings indexed: **11097**.
 
 ## Repeated declaration spellings
 
@@ -10250,6 +10250,7 @@ Distinct declaration spellings indexed: **11091**.
 - `sourceReflection_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
 - `sourceRightRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `sourceStationary_cubic_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_supportingEdge_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10474,6 +10475,10 @@ Distinct declaration spellings indexed: **11091**.
 - `standardTwoZero_terminal_hasPlanarKellerCollision` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardTwoZero_terminal_not_planarJC2` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardZeroPairEmbedding` — `def` in `HC4.Newton.TerminalTwoZeroPlanarisation`
+- `stationaryAxisEval` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisEval_monomial_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisEval_monomial_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisEval_quadratic_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryCarrierProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `stationaryCarrierProfileFraction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
 - `stationaryCarrierProfileFraction_coeff_zero_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
@@ -11015,6 +11020,7 @@ Distinct declaration spellings indexed: **11091**.
 - `topKernel_rankTwo_or_linearPower` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelRankSplit`
 - `top_profile_coefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberMiddleTop`
 - `toric_exponent_relation` — `theorem` in `HC4.Toric.InvariantSemigroup`
+- `totalDegreeThree_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `totalDegree_pderiv_lt_of_totalDegree_pos` — `theorem` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
 - `totalDegree_rigidTopBinaryPlaneSpecialisation_monomial_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `totalWeight_eq_two_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithFirstContactSquareContactElimination`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
