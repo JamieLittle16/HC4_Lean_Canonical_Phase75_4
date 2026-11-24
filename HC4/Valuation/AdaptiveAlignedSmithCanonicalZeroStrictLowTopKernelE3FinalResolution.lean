@@ -25,6 +25,7 @@ import HC4.Valuation.QuadraticTransverseCapSingularPrincipalPivot
 import HC4.Valuation.QuadraticTransverseCapSevenSectionEndpoint
 import HC4.Valuation.QuadraticTransverseCapSourceHessianFlat
 import HC4.Valuation.QuadraticTransverseCapSourceSingularClosure
+import HC4.Valuation.QuadraticTransverseCapSourceMarkedEndpoint
 import HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift
 import HC4.Valuation.QuadraticTransverseCapRankThreeAffineDescent
 import HC4.Valuation.QuadraticTransverseCapSourceRationalInverse
@@ -880,6 +881,41 @@ theorem PureLongitudinalMarkedE3Data.quadratic_rankThreeConstantDetZeroMixed_imp
     refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
     · simp [coordinateAxisPoint, Fin.cons]
     · simp [coordinateAxisPoint, Fin.cons]
+  rw [hzero, hright]
+  exact T.topKernelReesSource_exactCollision
+
+/-- The quadratic relevel of the actual pure-longitudinal E3 packet
+is impossible, in either transverse Hessian rank branch.
+
+This uses the original source's cap, unit Hessian determinant and
+exact marked collision, with no extra final-resolution extractor,
+zero-mixed-row assumption, or planar JC2 hypothesis. -/
+theorem PureLongitudinalMarkedE3Data.quadratic_impossible
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data)
+    (hr :
+      T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder = 2) :
+    False := by
+  have hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight 2
+      T.topKernelReesSource := by
+    simpa [hr] using
+      P.pureLongitudinal_markedAxis_firstActual_sourceWeightBound
+        D.coefficient_ne_zero D.topFace_eq
+  have hzero :
+      (Fin.cons (0 : K) (fun _ : Fin 3 => 0)) =
+        (fun _ : Fin 4 => (0 : K)) := by
+    funext i
+    fin_cases i <;> rfl
+  have hright :
+      (Fin.cons (1 : K) (fun _ : Fin 3 => 0)) =
+        coordinateAxisPoint (K := K) (0 : Fin 4) := by
+    funext i
+    refine Fin.cases ?_ (fun k : Fin 3 => ?_) i
+    · simp [coordinateAxisPoint, Fin.cons]
+    · simp [coordinateAxisPoint, Fin.cons]
+  apply quadraticTransverseCapSource_markedCollision_impossible
+    T.topKernelReesSource hbound
+    T.topKernelReesSource_hessianDeterminant_eq_one
   rw [hzero, hright]
   exact T.topKernelReesSource_exactCollision
 
