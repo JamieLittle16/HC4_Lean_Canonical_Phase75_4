@@ -4421,7 +4421,7 @@ private theorem sourceAxisTimeEval_linearLineEval_derivative
     exact congrArg (fun c => MvPolynomial.eval (fun _ : Fin 3 => 0) (V i) * c)
       (sourceAxisTimeEval_linearLineEval a u N (pderiv i P))
   simp_rw [he]
-  simp [V, sourceReferenceLinearVector_eval_zero]
+  simp [V, referenceLinearVector]
 
 private theorem sourceTime_degree_le_one_of_second_zero
     (P : LineTime K) (hP : P.derivative.derivative = 0) : P.natDegree ≤ 1 := by
