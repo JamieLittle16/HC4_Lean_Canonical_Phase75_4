@@ -223,7 +223,11 @@ theorem sourceLeading_fixedPower_of_nonzero_linear
     initialForm_isWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 2) F
   have hq : (referenceSlice a L).IsHomogeneous (n + 1 + 1) := by
     apply referenceSlice_isHomogeneous_of_transverseWeight
-    simpa only [Nat.cast_add, Nat.cast_one, add_assoc, one_add_one_eq_two] using hL
+    have he : ((n + 1 + 1 : ℕ) : ℤ) = (n : ℤ) + 2 := by
+      push_cast
+      <;> ring
+    rw [he]
+    exact hL
   exact exists_source_power_of_nonzero_linear_characteristic a N L (n + 1)
     hN hreg hq hgrad
 
