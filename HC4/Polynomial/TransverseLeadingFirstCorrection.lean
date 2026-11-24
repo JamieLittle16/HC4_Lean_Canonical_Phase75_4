@@ -3780,9 +3780,9 @@ theorem sourceNilpotent_inverseFormula
     sourceNilpotent_time_eval]
   exact (_root_.Polynomial.sum_C_mul_X_pow_eq P).symm
 
+set_option maxHeartbeats 1000000 in
 /-- A transverse cap and a time-degree cap in the nilpotent chart
 give a bound on the ORIGINAL polynomial, with no determinant change. -/
-set_option maxHeartbeats 1000000 in
 theorem sourceNilpotent_originalDegree_le
     (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
     (Q : StationarySource K) (r d : ℕ)
@@ -3837,8 +3837,8 @@ theorem sourceNilpotent_totalDegree_le
     rw [transverse_lineEval_derivative]
     have hg : ∀ i, lineEval z V (pderiv i L) =
         _root_.Polynomial.C (referenceSlice a (pderiv i L)) := hgrad
-    simp only [hg, ← map_mul, _root_.Polynomial.derivative_sum,
-      _root_.Polynomial.derivative_C, Finset.sum_const_zero]
+    simp only [hg, _root_.Polynomial.derivative_sum, _root_.Polynomial.derivative_mul,
+      _root_.Polynomial.derivative_C, zero_mul, mul_zero, add_zero, Finset.sum_const_zero]
   have hleadDegree : (linearLineEval a N L).natDegree ≤ 2 :=
     sourceTime_degree_of_secondDerivative_le _ 0 (by rw [hlead]; simp)
   have hsum := sourceLeading_reverseLayerSum_eq F m hcap
