@@ -2016,8 +2016,12 @@ private theorem sourceSupport_secondDerivative_bound
     sourceCoeff_derivative_ne_zero i P d hd hp
   have hz : e i = 0 :=
     HC4.Newton.exponent_eq_zero_of_pderiv_eq_zero i (pderiv i P) hP e hc
-  have he : e i = d i - 1 := by
-    simp only [e, Finsupp.sub_apply, Finsupp.single_eq_same]
+  have hle : Finsupp.single i 1 ≤ d := by
+    rw [Finsupp.single_le_iff]
+    omega
+  have he : e + Finsupp.single i 1 = d := tsub_add_cancel_of_le hle
+  have heval := congrArg (fun z : ι →₀ ℕ => z i) he
+  simp only [Finsupp.add_apply, Finsupp.single_eq_same] at heval
   omega
 
 private theorem sourceSupport_thirdDerivative_bound
@@ -2032,8 +2036,12 @@ private theorem sourceSupport_thirdDerivative_bound
   have hc : MvPolynomial.coeff e (pderiv i P) ≠ 0 :=
     sourceCoeff_derivative_ne_zero i P d hd hp
   have hz : e i ≤ 1 := sourceSupport_secondDerivative_bound i (pderiv i P) hP e hc
-  have he : e i = d i - 1 := by
-    simp only [e, Finsupp.sub_apply, Finsupp.single_eq_same]
+  have hle : Finsupp.single i 1 ≤ d := by
+    rw [Finsupp.single_le_iff]
+    omega
+  have he : e + Finsupp.single i 1 = d := tsub_add_cancel_of_le hle
+  have heval := congrArg (fun z : ι →₀ ℕ => z i) he
+  simp only [Finsupp.add_apply, Finsupp.single_eq_same] at heval
   omega
 
 /-- Two vanishing longitudinal derivatives force each surviving
