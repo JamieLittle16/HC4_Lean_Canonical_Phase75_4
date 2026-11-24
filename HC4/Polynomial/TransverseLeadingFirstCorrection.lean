@@ -1031,5 +1031,284 @@ theorem sourceStationary_regularAnchor_longitudinal_pderiv_zero
   simp
 
 
+
+
+/-! ## Supporting-edge exclusion in the stationary branch
+
+The new weight (a,b,b,b), with 0<a<b, is chosen to touch both the
+old pure transverse top and an offending longitudinal monomial.
+On x=0 both exact source faces have identical restrictions. The
+new face has no x-linear term since a is strictly between 0 and b.
+The stationary-anchor theorem therefore forbids every longitudinal
+monomial on this face. The final support argument chooses the
+maximal offending slope from the finite actual source support.
+-/
+
+private abbrev StationarySource (K : Type*) [Field K] :=
+  MvPolynomial (Unit ⊕ Fin 3) K
+
+private abbrev StationaryExponent := (Unit ⊕ Fin 3) →₀ ℕ
+
+/-- The longitudinal exponent is detected without cancellation by
+the coefficient of X₀ times the longitudinal partial derivative. -/
+theorem stationary_coeff_X_mul_pderiv
+    (P : StationarySource K) (d : StationaryExponent) :
+    MvPolynomial.coeff d (X (.inl ()) * pderiv (.inl ()) P) =
+      (d (.inl ()) : K) * MvPolynomial.coeff d P := by
+  classical
+  induction P using MvPolynomial.induction_on' with
+  | monomial e c =>
+    rw [MvPolynomial.X_mul_pderiv_monomial, MvPolynomial.coeff_smul]
+    by_cases h : e = d
+    · subst e
+      simp [nsmul_eq_mul]
+    · simp [MvPolynomial.coeff_monomial, h]
+  | add p q hp hq =>
+    simp only [map_add, mul_add, MvPolynomial.coeff_add, hp, hq, mul_add]
+
+theorem stationary_support_longitudinal_zero
+    (P : StationarySource K) (hP : pderiv (.inl ()) P = 0)
+    (d : StationaryExponent) (hd : MvPolynomial.coeff d P ≠ 0) :
+    d (.inl ()) = 0 := by
+  have h := stationary_coeff_X_mul_pderiv P d
+  rw [hP, mul_zero, MvPolynomial.coeff_zero] at h
+  have hz : (d (.inl ()) : K) = 0 :=
+    (mul_eq_zero.mp h.symm).resolve_right hd
+  exact_mod_cast hz
+
+/-- Positive longitudinal powers disappear at the honest source slice. -/
+theorem stationary_referenceSlice_zero_of_support
+    (P : StationarySource K)
+    (h : ∀ d : StationaryExponent, MvPolynomial.coeff d P ≠ 0 →
+      d (.inl ()) ≠ 0) :
+    referenceSlice 0 P = 0 := by
+  classical
+  change MvPolynomial.aeval
+    (Sum.elim (fun _ : Unit => MvPolynomial.C (0 : K)) X) P = 0
+  apply MvPolynomial.aeval_eq_zero
+  intro d hd
+  refine ⟨.inl (), Finsupp.mem_support_iff.mpr (h d hd), ?_⟩
+  simp
+
+/-- Supporting edge weight, without clearing or changing the source. -/
+def stationaryEdgeWeight (a b : ℤ) : Unit ⊕ Fin 3 → ℤ :=
+  Sum.elim (fun _ => a) (fun _ => b)
+
+theorem stationaryEdge_weight_eq (a b : ℤ) (d : StationaryExponent) :
+    Finsupp.weight (stationaryEdgeWeight a b) d =
+      a * (d (.inl ()) : ℤ) + b * Finsupp.weight transverseCubicWeight d := by
+  rw [transverseCubicWeight_eq_transverseSum, Finsupp.weight_apply,
+    Finsupp.sum_fintype]
+  · simp [stationaryEdgeWeight, Fintype.sum_sum_type, Fin.sum_univ_three,
+      nsmul_eq_mul] <;> ring
+  · intro i
+    simp
+
+/-- An actual supporting face of slope b/a>1 retains the old
+transverse top exactly on the longitudinal-zero slice. -/
+theorem stationaryEdge_referenceSlice_eq
+    (F : StationarySource K) (m a b : ℤ) (hb : 0 < b) :
+    referenceSlice 0 (initialForm (stationaryEdgeWeight a b) (b*m) F) =
+      referenceSlice 0 (initialForm transverseCubicWeight m F) := by
+  classical
+  let G := initialForm (stationaryEdgeWeight a b) (b*m) F
+  let L := initialForm transverseCubicWeight m F
+  have hz : referenceSlice 0 (G - L) = 0 := by
+    apply stationary_referenceSlice_zero_of_support
+    intro d hd h0
+    apply hd
+    have hw := stationaryEdge_weight_eq a b d
+    rw [h0, Nat.cast_zero, mul_zero, zero_add] at hw
+    have he : Finsupp.weight (stationaryEdgeWeight a b) d = b*m ↔
+        Finsupp.weight transverseCubicWeight d = m := by
+      rw [hw]
+      constructor
+      · intro h
+        exact (mul_left_cancel₀ (ne_of_gt hb) h)
+      · intro h
+        rw [h]
+    change MvPolynomial.coeff d (G - L) = 0
+    simp only [G, L, MvPolynomial.coeff_sub, coeff_initialForm, he, sub_self]
+  rw [map_sub] at hz
+  exact sub_eq_zero.mp hz
+
+/-- No longitudinal linear term survives on a face of slope >1:
+a/b is strictly between zero and one, whereas transverse weights
+are integers. This is a statement about the original polynomial. -/
+theorem stationaryEdge_firstDerivative_slice_zero
+    (F : StationarySource K) (m a b : ℤ) (ha : 0 < a) (hab : a < b) :
+    referenceSlice 0
+      (pderiv (.inl ()) (initialForm (stationaryEdgeWeight a b) (b*m) F)) = 0 := by
+  classical
+  let G := initialForm (stationaryEdgeWeight a b) (b*m) F
+  have hhom := pderiv_isWeightedHomogeneous
+    (initialForm_isWeightedHomogeneous (stationaryEdgeWeight a b) (b*m) F)
+    (Sum.inl ())
+  change (pderiv (.inl ()) G).IsWeightedHomogeneous
+    (stationaryEdgeWeight a b) (b*m-a) at hhom
+  apply stationary_referenceSlice_zero_of_support
+  intro d hd h0
+  have he := hhom hd
+  rw [stationaryEdge_weight_eq, h0, Nat.cast_zero, mul_zero, zero_add] at he
+  have hprod : b * (m - Finsupp.weight transverseCubicWeight d) = a := by
+    nlinarith only [he]
+  have hb : 0 < b := ha.trans hab
+  by_cases h : 1 ≤ m - Finsupp.weight transverseCubicWeight d
+  · have hh := mul_le_mul_of_nonneg_left h (le_of_lt hb)
+    nlinarith only [hh, hprod, hab]
+  · have hh : m - Finsupp.weight transverseCubicWeight d ≤ 0 := by omega
+    have hn := mul_nonpos_of_nonneg_of_nonpos (le_of_lt hb) hh
+    linarith
+
+/-- A steep supporting face of a constant-Hessian source with a
+regular transverse top cannot depend on the longitudinal variable.
+The full face is singular by the actual maximal-weight identity,
+not by an additional endpoint premise. -/
+theorem sourceStationary_supportingEdge_longitudinal_zero
+    (F : StationarySource K) (m a b : ℤ) (hm : 2 ≤ m)
+    (ha : 0 < a) (hab : a < b)
+    (hcap : IsWeightLE (stationaryEdgeWeight a b) (b*m) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint (0 : K))
+      ((hessian (initialForm transverseCubicWeight m F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0) :
+    pderiv (.inl ()) (initialForm (stationaryEdgeWeight a b) (b*m) F) = 0 := by
+  classical
+  let w := stationaryEdgeWeight a b
+  let G := initialForm w (b*m) F
+  let L := initialForm transverseCubicWeight m F
+  have hb : 0 < b := ha.trans hab
+  have hclock : (Fintype.card (Unit ⊕ Fin 3) : ℤ) * (b*m) -
+      2 * ∑ i : Unit ⊕ Fin 3, w i = 4*(b*m)-2*(a+3*b) := by
+    have hc : (Fintype.card (Unit ⊕ Fin 3) : ℤ) = 4 := by decide
+    rw [hc]
+    simp [w, stationaryEdgeWeight, Fintype.sum_sum_type, Fin.sum_univ_three] <;> ring
+  have hpos : 0 < 4*(b*m)-2*(a+3*b) := by
+    have hh := mul_nonneg (le_of_lt hb) (sub_nonneg.mpr hm)
+    nlinarith only [hh, hab]
+  have hsing : (hessian G).det = 0 := by
+    have h := initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm
+      w (b*m) F hcap
+    rw [hclock, hdet, initialForm_eq_zero_of_isWeightedHomogeneous
+      (MvPolynomial.isWeightedHomogeneous_C w δ) _ (ne_of_gt hpos)] at h
+    exact h.symm
+  have hs : referenceSlice 0 G = referenceSlice 0 L :=
+    stationaryEdge_referenceSlice_eq F m a b hb
+  let φ := (MvPolynomial.aeval (transverseGenericPoint (0 : K))).toRingHom
+  have hMat :
+      φ.mapMatrix ((hessian G).submatrix Sum.inr Sum.inr) =
+      φ.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr) := by
+    apply Matrix.ext
+    intro i j
+    change MvPolynomial.aeval (transverseGenericPoint (0 : K))
+        (pderiv (.inr j) (pderiv (.inr i) G)) =
+      MvPolynomial.aeval (transverseGenericPoint (0 : K))
+        (pderiv (.inr j) (pderiv (.inr i) L))
+    rw [← referenceSlice_fractionEvaluation, ← referenceSlice_fractionEvaluation]
+    simp only [← referenceSlice_pderiv, hs]
+  have hregG : MvPolynomial.aeval (transverseGenericPoint (0 : K))
+      ((hessian G).submatrix Sum.inr Sum.inr).det ≠ 0 := by
+    intro hz
+    apply hreg
+    have h := congrArg Matrix.det hMat
+    rw [← RingHom.map_det, ← RingHom.map_det] at h
+    exact h.symm.trans hz
+  have hfirst : referenceSlice 0 (pderiv (.inl ()) G) = 0 :=
+    stationaryEdge_firstDerivative_slice_zero F m a b ha hab
+  have hmix (i : Fin 3) : sourceNegativeMixedHessian 0 G i = 0 := by
+    unfold sourceNegativeMixedHessian
+    rw [HC4.Newton.pderiv_comm_backport (.inl ()) (.inr i) G,
+      ← referenceSlice_pderiv, hfirst, map_zero, neg_zero]
+  exact sourceStationary_regularAnchor_longitudinal_pderiv_zero
+    G 0 hsing hregG hmix hfirst
+
+/-- Stationary regular transverse top implies the full source support
+lies below total degree m. The supporting weight is selected by a
+maximum over the finite ORIGINAL support, so no slope or edge
+existence assumption is added. -/
+theorem sourceStationary_totalDegree_support_bound
+    (F : StationarySource K) (m : ℤ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight m F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hstationary : pderiv (.inl ()) (initialForm transverseCubicWeight m F) = 0)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint (0 : K))
+      ((hessian (initialForm transverseCubicWeight m F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0) :
+    ∀ d ∈ F.support, (d (.inl ()) : ℤ) +
+      Finsupp.weight transverseCubicWeight d ≤ m := by
+  classical
+  let p : StationaryExponent → ℤ := fun d => d (.inl ())
+  let q : StationaryExponent → ℤ := Finsupp.weight transverseCubicWeight
+  have htop (d : StationaryExponent) (hd : d ∈ F.support) (hq : q d = m) :
+      p d = 0 := by
+    have hc : MvPolynomial.coeff d (initialForm transverseCubicWeight m F) ≠ 0 := by
+      rw [coeff_initialForm, if_pos hq]
+      exact MvPolynomial.mem_support_iff.mp hd
+    have hz := stationary_support_longitudinal_zero _ hstationary d hc
+    simp [p, hz]
+  intro d hd
+  change p d + q d ≤ m
+  by_contra hn
+  have hqd : q d ≤ m := hcap hd
+  have hlt : q d < m := by
+    by_contra hnot
+    have he : q d = m := by omega
+    have hz := htop d hd he
+    omega
+  let s := F.support.filter (fun e => q e < m)
+  have hds : d ∈ s := Finset.mem_filter.mpr ⟨hd, hlt⟩
+  let score : StationaryExponent → ℚ := fun e =>
+    (p e : ℚ) / ((m-q e : ℤ) : ℚ)
+  obtain ⟨e, he, hmax⟩ := Finset.exists_max_image s score ⟨d, hds⟩
+  have he' : e ∈ F.support ∧ q e < m := Finset.mem_filter.mp he
+  let a : ℤ := m-q e
+  let b : ℤ := p e
+  have ha : 0 < a := by dsimp [a]; omega
+  have hdpos : 0 < m-q d := by omega
+  have hscore : (1 : ℚ) < score d := by
+    change (1 : ℚ) < (p d : ℚ) / ((m-q d : ℤ) : ℚ)
+    apply (lt_div_iff₀ (show (0 : ℚ) < ((m-q d : ℤ) : ℚ) by
+      exact_mod_cast hdpos)).2
+    rw [one_mul]
+    exact_mod_cast (show m-q d < p d by omega)
+  have hab : a < b := by
+    have hh := hscore.trans_le (hmax d hds)
+    change (1 : ℚ) < (b : ℚ) / (a : ℚ) at hh
+    have hh' := (lt_div_iff₀ (show (0 : ℚ) < (a : ℚ) by exact_mod_cast ha)).mp hh
+    rw [one_mul] at hh'
+    exact_mod_cast hh'
+  have hedge : IsWeightLE (stationaryEdgeWeight a b) (b*m) F := by
+    intro f hf
+    rw [stationaryEdge_weight_eq]
+    change a * p f + b * q f ≤ b*m
+    have hqf : q f ≤ m := hcap hf
+    by_cases heq : q f = m
+    · simp only [htop f hf heq, heq, mul_zero, zero_add, le_refl]
+    · have hflt : q f < m := by omega
+      have hfs : f ∈ s := Finset.mem_filter.mpr ⟨hf, hflt⟩
+      have hh := hmax f hfs
+      change (p f : ℚ) / ((m-q f : ℤ) : ℚ) ≤ (b : ℚ) / (a : ℚ) at hh
+      have hpos : 0 < m-q f := by omega
+      have hc := (div_le_div_iff₀
+        (show (0 : ℚ) < ((m-q f : ℤ) : ℚ) by exact_mod_cast hpos)
+        (show (0 : ℚ) < (a : ℚ) by exact_mod_cast ha)).mp hh
+      have hc' : p f * a ≤ b * (m-q f) := by exact_mod_cast hc
+      nlinarith only [hc']
+  have htouch : Finsupp.weight (stationaryEdgeWeight a b) e = b*m := by
+    rw [stationaryEdge_weight_eq]
+    change a * b + b * q e = b*m
+    dsimp [a]
+    ring
+  have hcoef : MvPolynomial.coeff e
+      (initialForm (stationaryEdgeWeight a b) (b*m) F) ≠ 0 := by
+    rw [coeff_initialForm, if_pos htouch]
+    exact MvPolynomial.mem_support_iff.mp he'.1
+  have hzero := sourceStationary_supportingEdge_longitudinal_zero
+    F m a b hm ha hab hedge hdet hreg
+  have hezero := stationary_support_longitudinal_zero _ hzero e hcoef
+  have hbzero : b = 0 := by simp [b, p, hezero]
+  omega
+
+
 end
 end HC4.Polynomial.RankThreeCubic
