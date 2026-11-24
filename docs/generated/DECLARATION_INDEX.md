@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11270**.
+Distinct declaration spellings indexed: **11272**.
 
 ## Repeated declaration spellings
 
@@ -6300,6 +6300,7 @@ Distinct declaration spellings indexed: **11270**.
 - `first_zeroSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoDepartureSplit`
 - `five_dvd_alignedSmithSectionWallStep` — `theorem` in `HC4.Valuation.GeometricAssemblyEntry`
 - `fixedDegreeRepair_rigid_or_rankTwoContinuation` — `theorem` in `HC4.Valuation.AdaptiveGeometricRestartState`
+- `fixedMixedResidue_directional_divisibility` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `fixedScaleEpisodeProgress_of_rawDefect_lt` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `fixedScaleEpisodeProgress_of_repair_lt` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
 - `fixedScaleEpisodeProgress_of_source_lt` — `theorem` in `HC4.Valuation.FixedScaleRestartEpisodeOrder`
@@ -10151,6 +10152,7 @@ Distinct declaration spellings indexed: **11270**.
 - `sourceCubic_detOne_slicedPole_firstCorrection_trace_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
 - `sourceCubic_detOne_weightFive_initialForm_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`
 - `sourceCubic_exists_cleared_simpleMixedPole` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceCubic_fixedMixedResidue_directional_divisibility` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_fixedPoleKernel_allCubicPrincipalCofactors_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
 - `sourceCubic_fixedPoleKernel_cubicCofactor_vanishes_on_plane` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - `sourceCubic_fixedPoleKernel_cubicPrincipalCofactor_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`
