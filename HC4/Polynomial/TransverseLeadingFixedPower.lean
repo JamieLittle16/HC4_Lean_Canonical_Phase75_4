@@ -502,7 +502,7 @@ theorem homogeneous_cubic_eq_linearSquare_mul_linear
           have hn : Q.totalDegree < 1 := by
             rw [Finset.mem_range] at hi
             omega
-          rw [hproj, if_pos rfl, homogeneousComponent_eq_zero hn, mul_zero]
+          rw [hproj, if_pos rfl, homogeneousComponent_eq_zero 1 Q hn, mul_zero]
       _ = _ := by rw [hproj, if_pos rfl]
   obtain ⟨r, hr⟩ := homogeneous_one_eq_constantLinearForm
     (homogeneousComponent 1 Q) (homogeneousComponent_isHomogeneous 1 Q)
@@ -585,7 +585,9 @@ theorem reference_cubic_det_triple_or_distinct_linear_of_nonzero_characteristic
     have hc0 : c ≠ 0 := by
       intro hz
       apply hr
-      simp [hc, hz]
+      funext i
+      change r i = 0
+      rw [hc, hz, zero_mul]
     have hform : constantLinearForm r = MvPolynomial.C c * constantLinearForm l := by
       rw [hc]
       unfold constantLinearForm
