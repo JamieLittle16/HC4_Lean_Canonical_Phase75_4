@@ -1312,5 +1312,141 @@ theorem sourceStationary_totalDegree_support_bound
   omega
 
 
+
+
+/-! ## Stationary cubic endpoint
+
+The stationary Newton bound gives total degree at most three at
+transverse cap three. A quadratic gradient has its exact marked
+secant equal to the Hessian at the midpoint applied to the marked
+axis. This proves an actual collision obstruction in that branch.
+No general homogeneous-Hessian classification is needed.
+-/
+
+def stationaryAxisEval (t : K) : StationarySource K →ₐ[K] K :=
+  MvPolynomial.aeval (Sum.elim (fun _ : Unit => t) (fun _ : Fin 3 => 0))
+
+private theorem stationaryAxisEval_monomial_zero (t c : K)
+    (d : StationaryExponent) (j : Fin 3) (hj : d (.inr j) ≠ 0) :
+    stationaryAxisEval t (MvPolynomial.monomial d c) = 0 := by
+  classical
+  unfold stationaryAxisEval
+  apply MvPolynomial.aeval_eq_zero
+  intro e he
+  rw [MvPolynomial.coeff_monomial] at he
+  have hde : d = e := by
+    by_contra hn
+    simp [hn] at he
+  subst e
+  exact ⟨.inr j, Finsupp.mem_support_iff.mpr hj, rfl⟩
+
+private theorem stationaryAxisEval_monomial_midpoint
+    (d : StationaryExponent) (c : K)
+    (hd : Finsupp.weight (stationaryEdgeWeight 1 1) d ≤ 2) :
+    stationaryAxisEval 1 (MvPolynomial.monomial d c) -
+      stationaryAxisEval 0 (MvPolynomial.monomial d c) =
+      stationaryAxisEval (1/2) (pderiv (.inl ()) (MvPolynomial.monomial d c)) := by
+  classical
+  by_cases ht : ∃ j : Fin 3, d (.inr j) ≠ 0
+  · obtain ⟨j, hj⟩ := ht
+    rw [stationaryAxisEval_monomial_zero 1 c d j hj,
+      stationaryAxisEval_monomial_zero 0 c d j hj, sub_self, pderiv_monomial]
+    symm
+    apply stationaryAxisEval_monomial_zero (j := j)
+    simpa [Finsupp.sub_apply, Finsupp.single_apply] using hj
+  · push_neg at ht
+    have hsingle : d = Finsupp.single (Sum.inl ()) (d (.inl ())) := by
+      apply Finsupp.ext
+      intro i
+      cases i with
+      | inl u => cases u; simp
+      | inr j => simp [ht j]
+    have hwt := stationaryEdge_weight_eq 1 1 d
+    rw [transverseCubicWeight_eq_transverseSum] at hwt
+    simp only [ht, Nat.cast_zero, add_zero, one_mul, mul_zero] at hwt
+    have hn : d (.inl ()) ≤ 2 := by omega
+    let n := d (.inl ())
+    have hns : n = 0 ∨ n = 1 ∨ n = 2 := by dsimp [n]; omega
+    rw [hsingle]
+    change stationaryAxisEval 1 (MvPolynomial.monomial (Finsupp.single (.inl ()) n) c) -
+      stationaryAxisEval 0 (MvPolynomial.monomial (Finsupp.single (.inl ()) n) c) =
+      stationaryAxisEval (1/2)
+        (pderiv (.inl ()) (MvPolynomial.monomial (Finsupp.single (.inl ()) n) c))
+    rw [pderiv_monomial_single]
+    rcases hns with h | h | h <;> rw [h] <;>
+      simp [← MvPolynomial.C_mul_X_pow_eq_monomial, stationaryAxisEval] <;>
+      ring
+
+/-- The exact marked secant for any polynomial of total degree ≤2. -/
+theorem stationaryAxisEval_quadratic_midpoint
+    (P : StationarySource K)
+    (hcap : IsWeightLE (stationaryEdgeWeight 1 1) 2 P) :
+    stationaryAxisEval 1 P - stationaryAxisEval 0 P =
+      stationaryAxisEval (1/2) (pderiv (.inl ()) P) := by
+  classical
+  have hsum := P.as_sum
+  calc
+    _ = ∑ d ∈ P.support,
+        (stationaryAxisEval 1 (MvPolynomial.monomial d (MvPolynomial.coeff d P)) -
+         stationaryAxisEval 0 (MvPolynomial.monomial d (MvPolynomial.coeff d P))) := by
+      rw [Finset.sum_sub_distrib, ← map_sum, ← map_sum, ← hsum]
+    _ = ∑ d ∈ P.support, stationaryAxisEval (1/2)
+        (pderiv (.inl ()) (MvPolynomial.monomial d (MvPolynomial.coeff d P))) := by
+      apply Finset.sum_congr rfl
+      intro d hd
+      exact stationaryAxisEval_monomial_midpoint d _ (hcap hd)
+    _ = _ := by rw [← map_sum, ← map_sum, ← hsum]
+
+/-- Any total-degree-three determinant-one source excludes the
+marked gradient collision, by its actual midpoint Hessian. -/
+theorem totalDegreeThree_markedCollision_impossible
+    (F : StationarySource K)
+    (hcap : IsWeightLE (stationaryEdgeWeight 1 1) 3 F)
+    {δ : K} (hδ : δ ≠ 0) (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F)) :
+    False := by
+  classical
+  let e := (stationaryAxisEval (1/2 : K)).toRingHom
+  let A := e.mapMatrix (hessian F)
+  have hcol (i : Unit ⊕ Fin 3) : A i (.inl ()) = 0 := by
+    have hp := hcap.pderiv i
+    have hi : stationaryEdgeWeight 1 1 i = 1 := by cases i <;> rfl
+    rw [hi] at hp
+    have hp' : IsWeightLE (stationaryEdgeWeight 1 1) 2 (pderiv i F) := by
+      simpa only [show (3 : ℤ) - 1 = 2 by norm_num] using hp
+    have h := stationaryAxisEval_quadratic_midpoint (pderiv i F) hp'
+    rw [hcoll i, sub_self] at h
+    exact h.symm
+  have hz : A.det = 0 := Matrix.det_eq_zero_of_column_eq_zero (.inl ()) hcol
+  change (e.mapMatrix (hessian F)).det = 0 at hz
+  rw [← RingHom.map_det] at hz
+  change e (hessianDeterminant F) = 0 at hz
+  rw [hdet] at hz
+  apply hδ
+  change stationaryAxisEval (1/2 : K) (MvPolynomial.C δ) = 0 at hz
+  simpa using hz
+
+/-- The actual stationary regular cap-three branch is closed, with
+no auxiliary total-degree assumption: the Newton support bound
+supplies that bound for the original source. -/
+theorem sourceStationary_cubic_markedCollision_impossible
+    (F : StationarySource K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    {δ : K} (hδ : δ ≠ 0) (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hstationary : pderiv (.inl ()) (initialForm transverseCubicWeight 3 F) = 0)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint (0 : K))
+      ((hessian (initialForm transverseCubicWeight 3 F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F)) :
+    False := by
+  apply totalDegreeThree_markedCollision_impossible F _ hδ hdet hcoll
+  intro d hd
+  rw [stationaryEdge_weight_eq, one_mul, one_mul]
+  exact sourceStationary_totalDegree_support_bound F 3 (by norm_num)
+    hcap hdet hstationary hreg d hd
+
+
 end
 end HC4.Polynomial.RankThreeCubic
