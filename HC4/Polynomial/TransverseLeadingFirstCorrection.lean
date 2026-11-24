@@ -3837,8 +3837,19 @@ theorem sourceNilpotent_totalDegree_le
     rw [transverse_lineEval_derivative]
     have hg : ∀ i, lineEval z V (pderiv i L) =
         _root_.Polynomial.C (referenceSlice a (pderiv i L)) := hgrad
-    simp only [hg, _root_.Polynomial.derivative_sum, _root_.Polynomial.derivative_mul,
-      _root_.Polynomial.derivative_C, zero_mul, mul_zero, add_zero, Finset.sum_const_zero]
+    rw [_root_.Polynomial.derivative_sum]
+    apply Finset.sum_eq_zero
+    intro i _
+    rw [hg i]
+    have he : (_root_.Polynomial.C (V i) : LineTime K) *
+        _root_.Polynomial.C (referenceSlice a (pderiv i L)) =
+        _root_.Polynomial.C (V i * referenceSlice a (pderiv i L)) :=
+      (_root_.Polynomial.C.map_mul (V i) (referenceSlice a (pderiv i L))).symm
+    calc
+      _ = (_root_.Polynomial.C (V i * referenceSlice a (pderiv i L)) :
+          LineTime K).derivative :=
+        congrArg _root_.Polynomial.derivative he
+      _ = 0 := _root_.Polynomial.derivative_C _
   have hleadDegree : (linearLineEval a N L).natDegree ≤ 2 :=
     sourceTime_degree_of_secondDerivative_le _ 0 (by rw [hlead]; simp)
   have hsum := sourceLeading_reverseLayerSum_eq F m hcap
