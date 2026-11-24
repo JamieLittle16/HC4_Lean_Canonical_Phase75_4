@@ -842,3 +842,6 @@ import HC4.Polynomial.TransverseLeadingLinearClassification
 
 -- Nonzero nilpotent leading characteristic yields a fixed directional power in every degree.
 import HC4.Polynomial.TransverseLeadingFixedPower
+
+-- First lower grade constraint in arbitrary transverse degree.
+import HC4.Polynomial.TransverseLeadingFirstCorrection
