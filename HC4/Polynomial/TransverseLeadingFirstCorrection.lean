@@ -2787,7 +2787,11 @@ theorem sourceLinear_referenceGradient_chain
         _root_.Polynomial.C (pderiv j b) :=
     coeffDeriv_C (pderiv j : Derivation K B B) b
   have hc (j : Fin 3) : coeffDeriv (pderiv j : Derivation K B B) (w (.inl ())) = 0 := by
-    simp [w, z, v, hC]
+    simp [w, z, v]
+    calc
+      _ = _root_.Polynomial.C (pderiv j (MvPolynomial.C a : B)) :=
+        hC j (MvPolynomial.C a)
+      _ = 0 := by simp
   have ht (j k : Fin 3) :
       coeffDeriv (pderiv j : Derivation K B B) (w (.inr k)) =
         sourceTimePencil N k j := by
@@ -2795,9 +2799,16 @@ theorem sourceLinear_referenceGradient_chain
       (_root_.Polynomial.C (z (.inr k)) +
       _root_.Polynomial.C (v (.inr k)) * _root_.Polynomial.X) = _
     simp only [map_add, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
-      mul_zero, zero_add, hC, hz, hv, sourceTimePencil, sourceTimeMatrix,
-      Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply,
-      Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero]
+      mul_zero, zero_add, sourceTimePencil, sourceTimeMatrix,
+      Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply, Matrix.map_apply]
+    calc
+      _ = _root_.Polynomial.C (pderiv j (z (.inr k))) +
+          _root_.Polynomial.X * _root_.Polynomial.C (pderiv j (v (.inr k))) :=
+        congrArg₂ (fun x y : _root_.Polynomial B => x + _root_.Polynomial.X * y)
+          (hC j (z (.inr k))) (hC j (v (.inr k)))
+      _ = _ := by
+        rw [hz j k, hv j k]
+        split_ifs <;> simp
   funext j
   change (∑ i : Fin 3, linearLineEval a N (pderiv (.inr i) Q) *
     sourceTimePencil N i j) = coeffDeriv (pderiv j) (linearLineEval a N Q)
