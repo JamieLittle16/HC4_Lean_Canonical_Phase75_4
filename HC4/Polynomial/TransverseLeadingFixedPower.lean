@@ -116,7 +116,7 @@ private theorem powerExtraction_reference_hessian_eq_mapped_transverse
     pderiv j (pderiv i (referenceSlice a L))
   rw [referenceSlice_pderiv a i, referenceSlice_pderiv a j]
 
-theorem exists_source_power_of_nonzero_linear_characteristic
+theorem exists_reference_power_of_nonzero_linear_characteristic
     (a : K) (N : Matrix (Fin 3) (Fin 3) K)
     (L : MvPolynomial (Unit ⊕ Fin 3) K) (n : ℕ)
     (hNnonzero : N ≠ 0)
@@ -129,13 +129,9 @@ theorem exists_source_power_of_nonzero_linear_characteristic
     ∃ (d l : Fin 3 → K) (c : K),
       d ≠ 0 ∧ l ≠ 0 ∧ c ≠ 0 ∧
       N *ᵥ d = 0 ∧ l ᵥ* N = 0 ∧
-      (∑ i : Fin 3,
-        (MvPolynomial.C (d i) : MvPolynomial (Unit ⊕ Fin 3) K) *
-          pderiv (.inr i) L) =
-        MvPolynomial.C c *
-          (∑ i : Fin 3,
-            (MvPolynomial.C (l i) : MvPolynomial (Unit ⊕ Fin 3) K) *
-              X (.inr i)) ^ n := by
+      (∑ i : Fin 3, d i * l i) = 0 ∧
+      constantDirectional d (referenceSlice a L) =
+        MvPolynomial.C c * constantLinearForm l ^ n := by
   classical
   have hdetN := det_linearCharacteristic_eq_one a N L hreg hgrad
   have hnil := matrix_pow_card_eq_zero_of_det_linear_eq_one N hdetN
@@ -187,9 +183,52 @@ theorem exists_source_power_of_nonzero_linear_characteristic
       (MvPolynomial (Fin 3) K) => M i j) hpower).symm
   obtain ⟨c, hc, hsq⟩ :=
     reference_directional_eq_power_of_rankOne n q hq hqdet d l hd hl hsquare
+  have hkill : N ^ r *ᵥ d = 0 := by
+    rcases hr with hr | hr
+    · simpa [hr] using hNd
+    · rw [hr, pow_two, ← Matrix.mulVec_mulVec, hNd, Matrix.mulVec_zero]
+  rw [hfac] at hkill
+  obtain ⟨i, hi⟩ : ∃ i, d i ≠ 0 := by contrapose! hd; exact funext hd
+  have he := congrFun hkill i
+  change (∑ j : Fin 3, (d i * l j) * d j) = 0 at he
+  have hz : d i * (∑ j : Fin 3, d j * l j) = 0 := by
+    rw [Finset.mul_sum]
+    calc
+      _ = ∑ j : Fin 3, (d i * l j) * d j := by
+        apply Finset.sum_congr rfl
+        intro j _
+        ring
+      _ = 0 := he
+  exact ⟨d, l, c, hd, hl, hc, hNd, hlN,
+    (mul_eq_zero.mp hz).resolve_left hi, hsq⟩
+
+theorem exists_source_power_of_nonzero_linear_characteristic
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (L : MvPolynomial (Unit ⊕ Fin 3) K) (n : ℕ)
+    (hNnonzero : N ≠ 0)
+    (hreg : referenceSlice a
+      ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hq : (referenceSlice a L).IsHomogeneous (n + 1))
+    (hgrad : ∀ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L))) :
+    ∃ (d l : Fin 3 → K) (c : K),
+      d ≠ 0 ∧ l ≠ 0 ∧ c ≠ 0 ∧
+      N *ᵥ d = 0 ∧ l ᵥ* N = 0 ∧
+      (∑ i : Fin 3,
+        (MvPolynomial.C (d i) : MvPolynomial (Unit ⊕ Fin 3) K) *
+          pderiv (.inr i) L) =
+        MvPolynomial.C c *
+          (∑ i : Fin 3,
+            (MvPolynomial.C (l i) : MvPolynomial (Unit ⊕ Fin 3) K) *
+              X (.inr i)) ^ n := by
+  obtain ⟨d, l, c, hd, hl, hc, hNd, hlN, _, hsq⟩ :=
+    exists_reference_power_of_nonzero_linear_characteristic a N L n hNnonzero hreg hq hgrad
+  have hdetN := det_linearCharacteristic_eq_one a N L hreg hgrad
+  have h3 : N ^ 3 = 0 := by
+    simpa using matrix_pow_card_eq_zero_of_det_linear_eq_one N hdetN
   refine ⟨d, l, c, hd, hl, hc, hNd, hlN, ?_⟩
-  exact source_power_of_linear_characteristic a N h3 L d l c n
-    hgrad hlN hsq
+  exact source_power_of_linear_characteristic a N h3 L d l c n hgrad hlN hsq
 
 /-- For the true leading grade of a constant-determinant source, a
 nonzero linear characteristic gives a fixed directional power of
@@ -230,6 +269,156 @@ theorem sourceLeading_fixedPower_of_nonzero_linear
     exact hL
   exact exists_source_power_of_nonzero_linear_characteristic a N L (n + 1)
     hN hreg hq hgrad
+
+
+
+/-! ## Repeated determinant factor in the nonstationary cubic branch -/
+
+/-- If a symmetric matrix sends a constant direction to a multiple
+of an orthogonal covector, the determinant contains that multiple
+twice. The chosen coordinate is a unit, so row and column operations
+introduce no nonunit factor. -/
+theorem symmetric_det_square_dvd_of_isotropic_direction
+    {R : Type*} [CommRing R]
+    (H : Matrix (Fin 3) (Fin 3) R) (d l : Fin 3 → R) (p e : R)
+    (k : Fin 3) (hk : d k * e = 1)
+    (hSym : ∀ i j, H i j = H j i)
+    (hHd : H *ᵥ d = fun i => p * l i)
+    (horth : ∑ i : Fin 3, d i * l i = 0) :
+    p^2 ∣ H.det := by
+  classical
+  let B := H.updateCol k (H *ᵥ d)
+  let A := B.updateRow k (d ᵥ* B)
+  have hBdet : B.det = d k * H.det := by
+    simpa only [B, Matrix.mulVec, dotProduct, smul_eq_mul, mul_comm]
+      using Matrix.det_updateCol_sum H k d
+  have hAdet : A.det = d k * B.det := by
+    simpa only [A, Matrix.vecMul, dotProduct, Finset.sum_apply, Pi.smul_apply, smul_eq_mul]
+      using Matrix.det_updateRow_sum B k d
+  have hBcol (i : Fin 3) : B i k = p * l i := by
+    have he := congrFun hHd i
+    change (H *ᵥ d) i = p * l i at he
+    simpa [B, Matrix.updateCol_apply] using he
+  have hBother (i j : Fin 3) (hj : j ≠ k) : B i j = H i j := by
+    simp [B, Matrix.updateCol_apply, hj]
+  have hAcol (i : Fin 3) (hi : i ≠ k) : A i k = p * l i := by
+    simp [A, Matrix.updateRow_apply, hi, hBcol]
+  have hArow (j : Fin 3) (hj : j ≠ k) : A k j = p * l j := by
+    have he : A k j = (d ᵥ* B) j := by simp [A, Matrix.updateRow_apply]
+    rw [he]
+    change (∑ i : Fin 3, d i * B i j) = _
+    calc
+      _ = ∑ i : Fin 3, H j i * d i := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [hBother i j hj, hSym i j, mul_comm]
+      _ = _ := congrFun hHd j
+  have hAkk : A k k = 0 := by
+    have he : A k k = (d ᵥ* B) k := by simp [A, Matrix.updateRow_apply]
+    rw [he]
+    change (∑ i : Fin 3, d i * B i k) = 0
+    calc
+      _ = ∑ i : Fin 3, p * (d i * l i) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [hBcol]
+        ring
+      _ = 0 := by rw [← Finset.mul_sum, horth, mul_zero]
+  have hdiv : p^2 ∣ A.det := by
+    fin_cases k
+    · refine ⟨-l 1*l 1*A 2 2 + l 1*A 1 2*l 2 +
+        l 2*l 1*A 2 1 - l 2*A 1 1*l 2, ?_⟩
+      rw [Matrix.det_fin_three, hAkk, hArow 1 (by decide), hArow 2 (by decide),
+        hAcol 1 (by decide), hAcol 2 (by decide)]
+      ring
+    · refine ⟨-A 0 0*l 2*l 2 - l 0*l 0*A 2 2 +
+        l 0*l 2*A 2 0 + A 0 2*l 0*l 2, ?_⟩
+      rw [Matrix.det_fin_three, hAkk, hArow 0 (by decide), hArow 2 (by decide),
+        hAcol 0 (by decide), hAcol 2 (by decide)]
+      ring
+    · refine ⟨-A 0 0*l 1*l 1 + A 0 1*l 1*l 0 +
+        l 0*A 1 0*l 1 - l 0*A 1 1*l 0, ?_⟩
+      rw [Matrix.det_fin_three, hAkk, hArow 0 (by decide), hArow 1 (by decide),
+        hAcol 0 (by decide), hAcol 1 (by decide)]
+      ring
+  obtain ⟨q, hq⟩ := hdiv
+  refine ⟨e^2*q, ?_⟩
+  calc
+    H.det = e^2 * A.det := by
+      rw [hAdet, hBdet]
+      calc
+        H.det = (d k * e)^2 * H.det := by rw [hk]; ring
+        _ = _ := by ring
+    _ = p^2 * (e^2*q) := by rw [hq]; ring
+
+/-- Nonzero nilpotent linear transport of a regular cubic leading
+layer forces a repeated nonconstant linear factor of the actual
+reference transverse Hessian determinant. Thus squarefreeness is
+not a generic assumption available in this branch. -/
+theorem reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hN : N ≠ 0)
+    (hreg : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hq : (referenceSlice a L).IsHomogeneous 3)
+    (hgrad : ∀ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L))) :
+    ∃ l : Fin 3 → K, l ≠ 0 ∧
+      (∀ b : K, constantLinearForm l ≠ MvPolynomial.C b) ∧
+      constantLinearForm l ^ 2 ∣
+        referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det := by
+  classical
+  obtain ⟨d, l, c, hd, hl, hc, _, _, horth, hpow⟩ :=
+    exists_reference_power_of_nonzero_linear_characteristic a N L 2 hN hreg hq hgrad
+  let q := referenceSlice a L
+  let H := hessian q
+  let D : Fin 3 → MvPolynomial (Fin 3) K := fun i => MvPolynomial.C (d i)
+  let E : Fin 3 → MvPolynomial (Fin 3) K := fun i => MvPolynomial.C (2*c*l i)
+  let p := constantLinearForm l
+  have hH (i j : Fin 3) : H i j = H j i := by
+    change pderiv j (pderiv i q) = pderiv i (pderiv j q)
+    rw [HC4.Newton.pderiv_comm_backport]
+  have hD : H *ᵥ D = fun i => p * E i := by
+    funext i
+    change (H *ᵥ D) i = p * E i
+    have he : (H *ᵥ D) i = pderiv i (constantDirectional d q) := by
+      simp only [H, D, constantDirectional, map_sum, pderiv_C_mul,
+        Matrix.mulVec, dotProduct, hessian_apply]
+      apply Finset.sum_congr rfl
+      intro j _
+      rw [HC4.Newton.pderiv_comm_backport i j, mul_comm]
+    rw [he, show constantDirectional d q = MvPolynomial.C c * p^2 from hpow]
+    rw [pderiv_C_mul, pow_two, Derivation.leibniz, smul_eq_mul,
+      show pderiv i p = MvPolynomial.C (l i) from pderiv_constantLinearForm l i]
+    simp only [E, map_mul, map_ofNat]
+    ring
+  have hDE : ∑ i : Fin 3, D i * E i = 0 := by
+    calc
+      _ = ∑ i : Fin 3, MvPolynomial.C (2*c*(d i*l i)) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [D, E, ← map_mul]
+        congr 1
+        ring
+      _ = 0 := by rw [← map_sum, ← Finset.mul_sum, horth, mul_zero, map_zero]
+  obtain ⟨k, hk⟩ : ∃ k, d k ≠ 0 := by contrapose! hd; exact funext hd
+  have hunit : D k * MvPolynomial.C ((d k)⁻¹) = 1 := by
+    rw [D, ← map_mul, mul_inv_cancel₀ hk, map_one]
+  have hdiv := symmetric_det_square_dvd_of_isotropic_direction H D E p
+    (MvPolynomial.C ((d k)⁻¹)) k hunit hH hD hDE
+  have hdet : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det = H.det := by
+    rw [RingHom.map_det]
+    exact congrArg Matrix.det (powerExtraction_reference_hessian_eq_mapped_transverse a L)
+  refine ⟨l, hl, ?_, ?_⟩
+  · intro b hb
+    obtain ⟨i, hi⟩ : ∃ i, l i ≠ 0 := by contrapose! hl; exact funext hl
+    have he := congrArg (pderiv i) hb
+    rw [pderiv_constantLinearForm, pderiv_C] at he
+    exact hi (MvPolynomial.C_eq_zero.mp he)
+  · rw [hdet]
+    exact hdiv
+
 
 end
 end HC4.Polynomial.RankThreeCubic
