@@ -159,7 +159,7 @@ theorem sourceLeading_firstCorrection_isotropic_at_anchor
 of the original polynomial, evaluated by the same affine substitution. -/
 theorem transverse_lineEval_derivative
     {ι E : Type*} [Fintype ι] [DecidableEq ι]
-    [Field E] [Algebra K E]
+    [CommRing E] [Algebra K E]
     (z V : ι → E) (P : MvPolynomial ι K) :
     (lineEval z V P).derivative =
       ∑ i : ι, _root_.Polynomial.C (V i) * lineEval z V (pderiv i P) := by
@@ -1446,6 +1446,131 @@ theorem sourceStationary_cubic_markedCollision_impossible
   rw [stationaryEdge_weight_eq, one_mul, one_mul]
   exact sourceStationary_totalDegree_support_bound F 3 (by norm_num)
     hcap hdet hstationary hreg d hd
+
+
+
+
+/-! ## Pull the nilpotent characteristic back to the actual source
+
+The inverse shear is polynomial. In the original coordinates the
+characteristic velocity is (1, Ny-(x-a)N²y). Its Hessian kernel is
+an exact source polynomial identity; it is not a claim that the
+shear preserves the Hessian determinant of the full source.
+-/
+
+/-- The transverse linear vector associated to a constant matrix. -/
+def sourceLinearVector (M : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    StationarySource K :=
+  ∑ j : Fin 3, MvPolynomial.C (M i j) * X (.inr j)
+
+def referenceLinearVector (M : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    MvPolynomial (Fin 3) K :=
+  ∑ j : Fin 3, MvPolynomial.C (M i j) * X j
+
+/-- Linear matrix forms transform by the actual characteristic pencil. -/
+theorem linearLineEval_sourceLinearVector
+    (a : K) (M N : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    linearLineEval a N (sourceLinearVector M i) =
+      _root_.Polynomial.C (referenceLinearVector M i) +
+        _root_.Polynomial.C (referenceLinearVector (M * N) i) *
+          _root_.Polynomial.X := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  have hC (c : K) :
+      linearLineEval a N (MvPolynomial.C c) =
+        _root_.Polynomial.C (MvPolynomial.C c) := by
+    simp [linearLineEval, lineEval, IsScalarTower.algebraMap_apply K B
+      (_root_.Polynomial B), _root_.Polynomial.algebraMap_eq]
+  have hX (j : Fin 3) :
+      linearLineEval a N (X (.inr j)) =
+        _root_.Polynomial.C (X j : B) +
+        _root_.Polynomial.C (referenceLinearVector N j) * _root_.Polynomial.X := by
+    simp [linearLineEval, lineEval, referenceLinearVector]
+  have hprod :
+      (∑ j : Fin 3, MvPolynomial.C (M i j) * referenceLinearVector N j) =
+        referenceLinearVector (M * N) i := by
+    unfold referenceLinearVector
+    calc
+      _ = ∑ j : Fin 3, ∑ k : Fin 3,
+          MvPolynomial.C (M i j * N j k) * (X k : B) := by
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro k _
+        rw [← mul_assoc, ← map_mul]
+      _ = ∑ k : Fin 3, ∑ j : Fin 3,
+          MvPolynomial.C (M i j * N j k) * (X k : B) := Finset.sum_comm
+      _ = _ := by
+        apply Finset.sum_congr rfl
+        intro k _
+        rw [← Finset.sum_mul, Matrix.mul_apply, map_sum]
+  calc
+    _ = ∑ j : Fin 3, _root_.Polynomial.C (MvPolynomial.C (M i j)) *
+        (_root_.Polynomial.C (X j : B) +
+          _root_.Polynomial.C (referenceLinearVector N j) * _root_.Polynomial.X) := by
+        simp only [sourceLinearVector, map_sum, map_mul, hC, hX]
+    _ = _root_.Polynomial.C (referenceLinearVector M i) +
+        _root_.Polynomial.C
+          (∑ j : Fin 3, MvPolynomial.C (M i j) * referenceLinearVector N j) *
+            _root_.Polynomial.X := by
+        simp only [mul_add, ← mul_assoc, Finset.sum_add_distrib, ← Finset.sum_mul,
+          ← map_mul, ← map_sum, referenceLinearVector]
+    _ = _ := by rw [hprod]
+
+/-- The source velocity of a nilpotent straight characteristic. -/
+def sourceNilpotentVelocity (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (i : Fin 3) : StationarySource K :=
+  sourceLinearVector N i -
+    (X (.inl ()) - MvPolynomial.C a) * sourceLinearVector (N ^ 2) i
+
+theorem linearLineEval_sourceNilpotentVelocity
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) (i : Fin 3) :
+    linearLineEval a N (sourceNilpotentVelocity a N i) =
+      _root_.Polynomial.C (referenceLinearVector N i) := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  have hx : linearLineEval a N (X (.inl ()) - MvPolynomial.C a) =
+      (_root_.Polynomial.X : _root_.Polynomial B) := by
+    simp [linearLineEval, lineEval, IsScalarTower.algebraMap_apply K B
+      (_root_.Polynomial B), _root_.Polynomial.algebraMap_eq]
+  have h2 : N * N = N ^ 2 := (pow_two N).symm
+  have h3 : N ^ 2 * N = 0 := by rw [← pow_succ, hN]
+  have hz : referenceLinearVector (0 : Matrix (Fin 3) (Fin 3) K) i = 0 := by
+    simp [referenceLinearVector]
+  rw [sourceNilpotentVelocity, map_sub, map_mul, hx,
+    linearLineEval_sourceLinearVector, linearLineEval_sourceLinearVector, h2, h3, hz,
+    map_zero, zero_mul, add_zero]
+  ring
+
+/-- The exact gradient-transport identity gives a polynomial kernel
+equation in the ORIGINAL source, simultaneously for all gradient
+components. This is a first-order system with no rational denominators. -/
+theorem sourceNilpotent_gradient_kernel
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : StationarySource K)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L))) :
+    ∀ i : Unit ⊕ Fin 3,
+      pderiv (.inl ()) (pderiv i L) +
+        ∑ j : Fin 3, sourceNilpotentVelocity a N j * pderiv (.inr j) (pderiv i L) = 0 := by
+  classical
+  intro i
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  have he : lineEval (K := K) z V = linearLineEval a N := rfl
+  have h := transverse_lineEval_derivative z V (pderiv i L)
+  rw [he, hgrad i, _root_.Polynomial.derivative_C] at h
+  have h' : linearLineEval a N (pderiv (.inl ()) (pderiv i L)) +
+      ∑ j : Fin 3, _root_.Polynomial.C (referenceLinearVector N j) *
+        linearLineEval a N (pderiv (.inr j) (pderiv i L)) = 0 := by
+    simpa [Fintype.sum_sum_type, V] using h.symm
+  apply linearLineEval_injective_of_cube_zero a N hN
+  simp only [map_add, map_sum, map_mul, linearLineEval_sourceNilpotentVelocity a N hN,
+    map_zero]
+  exact h'
 
 
 end
