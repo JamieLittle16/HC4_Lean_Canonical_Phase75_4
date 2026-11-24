@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11259**.
+Distinct declaration spellings indexed: **11263**.
 
 ## Repeated declaration spellings
 
@@ -7333,6 +7333,8 @@ Distinct declaration spellings indexed: **11259**.
 - `mixedDeparture_hasRepairOrTerminal` — `theorem` in `HC4.Newton.RestartClassification`
 - `mixedNonlinearSource_or_twoPureNonlinearAxes` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamSourceSpread`
 - `mixedOrientation_endpoint_coefficients_impossible` — `theorem` in `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
+- `mixedPoleClearedFrame` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `mixedPoleClearedFrame_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `mixedThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixedThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `mixed_coeff_ne_zero` — `theorem` in `HC4.Valuation.FirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.SingularFirstKernelBreakRankTwo`, `theorem` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
@@ -10240,6 +10242,7 @@ Distinct declaration spellings indexed: **11259**.
 - `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLayerFrontier_nonempty` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_clearedMixedPole_repair_dvd` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_constantDet_firstCorrection_trace_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_correction_secondDerivative_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstCorrection_affine_along_line` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -11254,6 +11257,7 @@ Distinct declaration spellings indexed: **11259**.
 - `transverseSchurMixed_coeff_gap_endpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_zero_of_gap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchur_clearedMixedPole_repair_dvd` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_cleared_timeDegree_step` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_coeff_recurrence` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_det_identity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
