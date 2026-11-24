@@ -2360,7 +2360,9 @@ theorem sourceLeading_lineBlock_det
     (sourceLeading_lineBlock F m z V).determinantCore =
       _root_.Polynomial.monomial (4*m-6)
         (lineEval z V (MvPolynomial.C δ)) := by
-  let φ := _root_.Polynomial.mapRingHom (lineEval z V).toRingHom
+  let φ : _root_.Polynomial (StationarySource K) →+*
+      _root_.Polynomial (_root_.Polynomial E) :=
+    _root_.Polynomial.mapRingHom (lineEval (K := K) z V).toRingHom
   have hsym (i j : Unit ⊕ Fin 3) :
       sourceLeading_reverseHessian F m i j =
         sourceLeading_reverseHessian F m j i := by
@@ -2392,7 +2394,7 @@ theorem sourceLeading_lineBlock_coeff
   apply GeneralFourBlock.ext <;>
     simp only [transverseBlockCoeff, sourceLeading_lineBlock, sourceLineBlockOfMatrix,
       GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply, RingHom.mapMatrix_apply,
-      _root_.Polynomial.coe_mapRingHom, _root_.Polynomial.coeff_map,
+      Matrix.map_apply, _root_.Polynomial.coe_mapRingHom, _root_.Polynomial.coeff_map,
       sourceLeading_reverseHessian_coeff, if_pos hj]
 
 /-- The actual reverse Hessian in the normalized characteristic frame,
