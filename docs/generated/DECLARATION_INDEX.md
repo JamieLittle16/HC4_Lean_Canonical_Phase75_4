@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11252**.
+Distinct declaration spellings indexed: **11255**.
 
 ## Repeated declaration spellings
 
@@ -8333,6 +8333,7 @@ Distinct declaration spellings indexed: **11252**.
 - `preterminal_rankTwoProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `preterminal_secondDerivative_zero` — `theorem` in `HC4.Newton.PreterminalFirstDeparture`
 - `preterminal_source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
+- `prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `primitiveBinomialBaseExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0_map` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
@@ -9909,6 +9910,7 @@ Distinct declaration spellings indexed: **11252**.
 - `singular_codimensionTwoDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoPrimitiveDepartureClassification`
 - `singular_codimensionTwoTrinomial_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoTrinomialClassification`
 - `singular_codimensionTwoWeightedDeparturePencil_leftPrimitive_classification` — `theorem` in `HC4.Polynomial.CodimensionTwoWeightedDepartureClassification`
+- `singular_symmetric_adjugate_mulVec_square` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `slice_finSuccEquiv_eq_longitudinalMonomial` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `smithAxisProjectedSupport` — `def` in `HC4.Valuation.SymmetricSmithImprovementRestart`
 - `smithAxisProjection` — `def` in `HC4.Valuation.SymmetricSmithImprovementRestart`
@@ -10255,6 +10257,7 @@ Distinct declaration spellings indexed: **11252**.
 - `sourceLeading_lineSchurFrame_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_lineSchurFrame_transverseDet_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_mixedGap_endpoint_lineODE` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_mixedGap_prime_dvd_Cramer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_constantDet` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
