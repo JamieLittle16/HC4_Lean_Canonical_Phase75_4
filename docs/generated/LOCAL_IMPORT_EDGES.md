@@ -189,6 +189,7 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
+  - `HC4.Polynomial.TransverseLeadingFirstCorrection`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.QuasiTranslation`
@@ -1914,6 +1915,11 @@ human architecture guide.
   - `HC4.Polynomial.DerivativeBounds`
 - `HC4.Polynomial.TransverseLeadingCharacteristics`
   - `HC4.Polynomial.RankThreeCubicCharacteristics`
+- `HC4.Polynomial.TransverseLeadingFirstCorrection`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
+  - `HC4.Polynomial.TransverseLeadingFixedPower`
 - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
