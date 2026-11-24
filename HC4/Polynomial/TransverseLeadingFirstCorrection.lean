@@ -4889,6 +4889,14 @@ theorem sourceNilpotent_linearLayer_mixedGap_pairing_ne_zero
   have hg : ∀ i, lineEval z V (pderiv i L) =
       _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
   have hr := (sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg).2.2.2
+  change (∀ i < k, H.b.coeff i = 0) →
+    (∀ i < k, H.p.coeff i = 0) →
+    (∀ i < k, H.q.coeff i = 0) →
+    transverseSchurMixed
+      ({ a := 0, b := H.b.coeff k, p := H.p.coeff k,
+         q := H.q.coeff k, d := H.d.coeff 0, r := H.r.coeff 0,
+         s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+         z := H.z.coeff 0 } : GeneralFourBlock (LineTime K)) ≠ 0
   intro hb hp hq hzero
   have he := sourceLeading_mixedGap_endpoint_lineODE F m k (by omega)
     (by omega) (by omega) hcap hdet z V hV hr hb hp hq
