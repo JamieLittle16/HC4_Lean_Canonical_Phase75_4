@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11202**.
+Distinct declaration spellings indexed: **11203**.
 
 ## Repeated declaration spellings
 
@@ -10292,6 +10292,7 @@ Distinct declaration spellings indexed: **11202**.
 - `sourceNilpotent_originalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_secondCorrection_timeDegree_le_seven` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_time_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseGradient_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
