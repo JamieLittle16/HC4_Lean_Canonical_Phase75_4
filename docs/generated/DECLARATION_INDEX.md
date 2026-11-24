@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11267**.
+Distinct declaration spellings indexed: **11270**.
 
 ## Repeated declaration spellings
 
@@ -4955,6 +4955,7 @@ Distinct declaration spellings indexed: **11267**.
 - `cubicCorrection` — `def` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicCorrection_eq_neg_two_kernelDrift` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `cubicCorrection_selfPairing_eq_zero_of_singular` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
+- `cubicDet_complement_dvd_of_dvd_square` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `cubicFixedTangentHessian` — `def` in `HC4.Polynomial.RankThreeCubicFixedTangentNormalForm`
 - `cubicFixedTangentHessian_det` — `theorem` in `HC4.Polynomial.RankThreeCubicFixedTangentNormalForm`
 - `cubicFixedTangentTensor` — `def` in `HC4.Polynomial.RankThreeCubicFixedTangentNormalForm`
@@ -5492,6 +5493,7 @@ Distinct declaration spellings indexed: **11267**.
 - `exists_certifiedFixedScaleStrictSuccessor_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalAllTransverseRationalKernelDispatcher`
 - `exists_certifiedFixedScaleStrictSuccessor_of_positiveSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroSchurRationalKernelDispatcher`
 - `exists_certifiedRamifiedRawDefectSpend_of_positiveRecenteredSaturatedKernelSlope` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRamifiedProgressUpgrade`
+- `exists_cleared_mixed_solution_of_cancelled_Cramer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `exists_cofactor_not_dvd_of_cramer_numerator_not_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleCofactor`
 - `exists_commonDenominator_nonzeroResidue_at_genuinePole` — `theorem` in `HC4.Polynomial.RankThreeCubicCommonDenominatorResidue`
 - `exists_complementarySegment_index` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
@@ -10148,6 +10150,7 @@ Distinct declaration spellings indexed: **11267**.
 - `sourceCubic_detOne_slicedFullCubicHessian_det_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
 - `sourceCubic_detOne_slicedPole_firstCorrection_trace_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
 - `sourceCubic_detOne_weightFive_initialForm_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`
+- `sourceCubic_exists_cleared_simpleMixedPole` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCubic_fixedPoleKernel_allCubicPrincipalCofactors_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`
 - `sourceCubic_fixedPoleKernel_cubicCofactor_vanishes_on_plane` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`
 - `sourceCubic_fixedPoleKernel_cubicPrincipalCofactor_dvd` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`
