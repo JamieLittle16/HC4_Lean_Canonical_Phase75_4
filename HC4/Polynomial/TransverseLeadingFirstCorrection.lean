@@ -4118,7 +4118,11 @@ theorem stationaryAxisTrace_lowLayers_det
   have he : (Matrix.of fun i j : Unit ⊕ Fin 3 =>
       stationaryAxisTrace (hessian (initialForm transverseCubicWeight
         (transverseCubicWeight i + transverseCubicWeight j) F) i j)) = A := by
-    ext i j
+    apply Matrix.ext
+    intro i j
+    change stationaryAxisTrace (hessian (initialForm transverseCubicWeight
+      (transverseCubicWeight i + transverseCubicWeight j) F) i j) =
+        stationaryAxisTrace (hessian F i j)
     exact (stationaryAxisTrace_hessian_layer F i j).symm
   rw [he]
   change ((stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)).det = _
@@ -4151,6 +4155,7 @@ private theorem stationaryAxisTrace_quadratic_secant
   have h1 := congrArg (fun p : _root_.Polynomial K => p.eval 1) he
   have h0 := congrArg (fun p : _root_.Polynomial K => p.eval 0) he
   have hd := congrArg (fun p : _root_.Polynomial K => p.derivative.eval (1/2)) he
+  dsimp only at h1 h0 hd
   rw [h1, h0, hd]
   simp [_root_.Polynomial.derivative_add, _root_.Polynomial.derivative_mul,
     _root_.Polynomial.derivative_pow] <;> ring
