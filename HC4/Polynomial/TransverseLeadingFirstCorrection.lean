@@ -2750,7 +2750,10 @@ private theorem sourceTimePencil_right_inverse
     (_root_.Polynomial.X : LineTime K)^2 • sourceTimeMatrix (N^2)) = 1
   rw [← h2]
   calc
-    _ = 1 + A ^ 3 := by noncomm_ring
+    _ = 1 + A ^ 3 := by
+      simp only [add_mul, one_mul, mul_add, mul_sub, mul_one,
+        pow_succ' A 2, pow_two A]
+      abel
     _ = 1 := by rw [h3, add_zero]
 
 /-- Transverse differentiation in the reference variables: the
@@ -2779,16 +2782,20 @@ theorem sourceLinear_referenceGradient_chain
     · intro i _ hi
       rw [pderiv_X_of_ne hi, mul_zero]
     · simp
+  have hC (j : Fin 3) (b : B) :
+      coeffDeriv (pderiv j : Derivation K B B) (_root_.Polynomial.C b) =
+        _root_.Polynomial.C (pderiv j b) :=
+    coeffDeriv_C (pderiv j : Derivation K B B) b
   have hc (j : Fin 3) : coeffDeriv (pderiv j : Derivation K B B) (w (.inl ())) = 0 := by
-    simp [w, z, v]
+    simp [w, z, v, hC]
   have ht (j k : Fin 3) :
       coeffDeriv (pderiv j : Derivation K B B) (w (.inr k)) =
         sourceTimePencil N k j := by
     change coeffDeriv (pderiv j : Derivation K B B)
       (_root_.Polynomial.C (z (.inr k)) +
       _root_.Polynomial.C (v (.inr k)) * _root_.Polynomial.X) = _
-    simp only [map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
-      mul_zero, zero_add, hz, hv, sourceTimePencil, sourceTimeMatrix,
+    simp only [map_add, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
+      mul_zero, zero_add, hC, hz, hv, sourceTimePencil, sourceTimeMatrix,
       Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply,
       Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero]
   funext j
@@ -2820,7 +2827,7 @@ private theorem sourceTimePencilInv_natDegree_le
     (N : Matrix (Fin 3) (Fin 3) K) (i j : Fin 3) :
     (sourceTimePencilInv N i j).natDegree ≤ 2 := by
   have h1 : (1 : Matrix (Fin 3) (Fin 3) (LineTime K)) i j =
-      if i = j then 1 else 0 := Matrix.one_apply _ _
+      if i = j then 1 else 0 := by rw [Matrix.one_apply]
   have hd : ((1 : Matrix (Fin 3) (Fin 3) (LineTime K)) i j).natDegree ≤ 0 := by
     rw [h1]
     split_ifs <;> simp
