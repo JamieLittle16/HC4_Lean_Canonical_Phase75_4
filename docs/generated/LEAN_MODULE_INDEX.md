@@ -4351,7 +4351,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction`, `HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors`, `HC4.Polynomial.RankThreeCubicJacobiDetPderiv`, `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`
+- Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`, `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - Declarations: `abbrev B3`, `abbrev F3`, `abbrev SB`, `theorem cubic_lineEval_coeff_zero`, `theorem cubic_sourceThirdDerivative_timeZero`, `theorem cubic_rankOneCramer_Jacobi_zero`
 
 ### `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
@@ -5489,10 +5489,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/TransverseLeadingFirstCorrection.lean`
 - Purpose: First lower transverse grade: arbitrary-degree source constraint
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.TransverseLeadingFixedPower`, `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`, `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`, `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+- Local imports: `HC4.Polynomial.TransverseLeadingFixedPower`, `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`, `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`, `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`, `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`
-- Declarations: `abbrev S`, `theorem sourceLeading_firstLower_det_eq_adjugate_pairing`, `theorem sourceLeading_constantDet_firstCorrection_trace_zero`, `theorem longitudinal_principalCofactor_eq_transverseDet`, `theorem sourceLeading_firstCorrection_isotropic_at_anchor`
+- Declarations: `abbrev S`, `theorem sourceLeading_firstLower_det_eq_adjugate_pairing`, `theorem sourceLeading_constantDet_firstCorrection_trace_zero`, `theorem longitudinal_principalCofactor_eq_transverseDet`, `theorem sourceLeading_firstCorrection_isotropic_at_anchor`, `theorem transverse_lineEval_derivative`, `theorem sourceLeading_firstCorrection_isotropic_along_line`, `theorem sourceLeading_firstCorrection_affine_along_line`
 
 ### `HC4.Polynomial.TransverseLeadingFixedPower`
 

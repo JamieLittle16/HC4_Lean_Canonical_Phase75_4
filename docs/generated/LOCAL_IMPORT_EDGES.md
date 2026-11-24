@@ -1919,6 +1919,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
+  - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
 - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11046**.
+Distinct declaration spellings indexed: **11049**.
 
 ## Repeated declaration spellings
 
@@ -10202,6 +10202,8 @@ Distinct declaration spellings indexed: **11046**.
 - `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLayerFrontier_nonempty` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLeading_constantDet_firstCorrection_trace_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_firstCorrection_affine_along_line` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_firstCorrection_isotropic_along_line` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstCorrection_isotropic_at_anchor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_firstLower_det_eq_adjugate_pairing` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_fixedPower_of_nonzero_linear` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
@@ -11097,6 +11099,7 @@ Distinct declaration spellings indexed: **11046**.
 - `transverseStagePoint` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceTransverseGradient`
 - `transverseWeightZero_supported_only_longitudinal` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `transverseZeroJetCore_linearCoeff_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreHesseBridge`
+- `transverse_lineEval_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_nonzero_at_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `transverse_twoEndpointResidual_incompatible_with_recenteredHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
 - `transverse_witnesses` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`
