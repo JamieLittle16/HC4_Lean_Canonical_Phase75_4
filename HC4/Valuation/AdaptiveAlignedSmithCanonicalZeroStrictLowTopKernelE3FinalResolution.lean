@@ -919,6 +919,22 @@ theorem PureLongitudinalMarkedE3Data.quadratic_impossible
   rw [hzero, hright]
   exact T.topKernelReesSource_exactCollision
 
+/-- The surviving pure-longitudinal E3 packet necessarily has
+transverse relevel at least three. The earlier reduced-clock argument
+supplies the lower bound two, and the source-honest quadratic theorem
+excludes equality. -/
+theorem PureLongitudinalMarkedE3Data.relevel_ge_three
+    (P : T.TopFaceLinearPowerKernelData kernelCoordinate)
+    (D : P.PureLongitudinalMarkedE3Data) :
+    3 ≤ T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder := by
+  have hjle :=
+    P.pureLongitudinal_markedAxis_firstActualLayerOrder_le_degree_sub_two
+      D.coefficient_ne_zero D.topFace_eq
+  have hD := T.topFace.degree_ge_three
+  have hne : T.topFace.degree - T.topKernelMarkedAxisFirstActualLayerOrder ≠ 2 :=
+    fun hr => PureLongitudinalMarkedE3Data.quadratic_impossible P D hr
+  omega
+
 /-- Exact coefficient order of every represented-source monomial in the
 marked-axis reverse-Rees family.
 
