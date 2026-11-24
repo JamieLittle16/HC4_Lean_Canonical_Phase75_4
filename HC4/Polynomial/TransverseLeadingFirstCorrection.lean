@@ -5724,5 +5724,258 @@ theorem sourceCubic_exists_cleared_simpleMixedPole
       F 3 (by decide) hcap hdet z V hV hz hgrad p (v 0) (v 1) (v 2) hu hv1 hw1⟩
 
 
+
+
+/-! ## A rank-two mixed residue fixes the quadratic directional jet
+
+On the repeated component the known directional-power witness is a
+fixed kernel vector. A genuine cleared mixed residue is proportional
+to this same vector. Thus third-order isotropy constrains the fixed
+direction, rather than a varying rational numerator. The mixed
+directional pairing is also divisible by the same prime.
+-/
+
+section FixedMixedResidue
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+
+theorem fixedMixedResidue_directional_divisibility
+    (T C : Matrix (Fin 3) (Fin 3) R) (hTs : T.IsSymm)
+    (b d l v : Fin 3 → R) (p : R) (hp : Prime p) (k : Fin 3)
+    (hcof : ¬ p ∣ T.adjugate k k) (hdk : IsUnit (d k))
+    (hd : T *ᵥ d = p • l)
+    (hv : T *ᵥ v = p • b)
+    (horth : ∑ i : Fin 3, l i*d i = 0)
+    (hres : ∃ i : Fin 3, ¬ p ∣ v i)
+    (hpair : p ∣ ∑ i : Fin 3, ∑ j : Fin 3, v i*C i j*v j) :
+    (p ∣ ∑ i : Fin 3, ∑ j : Fin 3, d i*C i j*d j) ∧
+      (p ∣ ∑ i : Fin 3, d i*b i) := by
+  classical
+  let I : Ideal R := Ideal.span {p}
+  letI : I.IsPrime := by
+    constructor
+    · intro htop
+      have hm : (1 : R) ∈ I := by rw [htop]; trivial
+      exact hp.not_isUnit (isUnit_iff_dvd_one.mpr (Ideal.mem_span_singleton.mp hm))
+    · intro x y hxy
+      rcases hp.dvd_mul.mp (Ideal.mem_span_singleton.mp hxy) with hx | hy
+      · exact Or.inl (Ideal.mem_span_singleton.mpr hx)
+      · exact Or.inr (Ideal.mem_span_singleton.mpr hy)
+  let q : R →+* R ⧸ I := Ideal.Quotient.mk I
+  let A := T.map q
+  let D : Fin 3 → R ⧸ I := fun i => q (d i)
+  let V : Fin 3 → R ⧸ I := fun i => q (v i)
+  have hqp : q p = 0 :=
+    Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr dvd_rfl)
+  have hqzero (x : R) : q x = 0 ↔ p ∣ x :=
+    ⟨fun h => Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp h),
+      fun h => Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr h)⟩
+  have hmap (w : Fin 3 → R) (i : Fin 3) :
+      (A *ᵥ (fun j => q (w j))) i = q ((T *ᵥ w) i) := by
+    simp only [A, Matrix.mulVec, dotProduct, Matrix.map_apply, map_sum, map_mul]
+  have hD : A *ᵥ D = 0 := by
+    funext i
+    change (A *ᵥ (fun j => q (d j))) i = 0
+    rw [hmap, hd]
+    change q (p*l i) = 0
+    rw [map_mul, hqp, zero_mul]
+  have hV : A *ᵥ V = 0 := by
+    funext i
+    change (A *ᵥ (fun j => q (v j))) i = 0
+    rw [hmap, hv]
+    change q (p*b i) = 0
+    rw [map_mul, hqp, zero_mul]
+  have hA : A.adjugate k k ≠ 0 := by
+    intro h
+    have he : A.adjugate = T.adjugate.map q := (q.map_adjugate T).symm
+    rw [he] at h
+    exact hcof ((hqzero _).mp h)
+  have hunit : IsUnit (D k) := hdk.map q
+  obtain ⟨c,hc⟩ := principalCofactor_kernelLine_of_unitCoordinate
+    A D k hA hD hunit V hV
+  have hc0 : c ≠ 0 := by
+    intro h
+    obtain ⟨i,hi⟩ := hres
+    apply hi
+    apply (hqzero _).mp
+    change V i = 0
+    rw [hc i,h,zero_mul]
+  have hQ : (∑ i : Fin 3, ∑ j : Fin 3, V i*q (C i j)*V j) = 0 := by
+    have h := (hqzero _).mpr hpair
+    simpa only [map_sum, map_mul, V] using h
+  have hQd : c*c*(∑ i : Fin 3, ∑ j : Fin 3, D i*q (C i j)*D j) = 0 := by
+    calc
+      _ = ∑ i : Fin 3, ∑ j : Fin 3, c*c*(D i*q (C i j)*D j) := by
+        simp only [Finset.mul_sum]
+      _ = ∑ i : Fin 3, ∑ j : Fin 3, V i*q (C i j)*V j := by
+        apply Finset.sum_congr rfl
+        intro i _
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [hc i,hc j]
+        ring
+      _ = 0 := hQ
+  have hdiag : p ∣ ∑ i : Fin 3, ∑ j : Fin 3, d i*C i j*d j := by
+    apply (hqzero _).mp
+    simp only [map_sum,map_mul]
+    exact (mul_eq_zero.mp hQd).resolve_left (mul_ne_zero hc0 hc0)
+  have hdot : ∑ i : Fin 3, d i*b i = ∑ i : Fin 3, l i*v i := by
+    apply mul_left_cancel₀ hp.ne_zero
+    calc
+      _ = ∑ i : Fin 3, d i*(T *ᵥ v) i := by
+        rw [hv,Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro i _
+        change p*(d i*b i) = d i*(p*b i)
+        ring
+      _ = ∑ i : Fin 3, ∑ j : Fin 3, d i*(T i j*v j) := by
+        simp only [Matrix.mulVec,dotProduct,Finset.mul_sum]
+      _ = ∑ j : Fin 3, ∑ i : Fin 3, T j i*d i*v j := by
+        rw [Finset.sum_comm]
+        apply Finset.sum_congr rfl
+        intro j _
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [show T i j = T j i from hTs.apply j i]
+        ring
+      _ = ∑ j : Fin 3, (T *ᵥ d) j*v j := by
+        simp only [Matrix.mulVec,dotProduct,Finset.sum_mul]
+      _ = _ := by
+        rw [hd,Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro j _
+        change (p*l j)*v j = p*(l j*v j)
+        ring
+  refine ⟨hdiag,?_⟩
+  rw [hdot]
+  apply (hqzero _).mp
+  simp only [map_sum,map_mul]
+  calc
+    (∑ i : Fin 3, q (l i)*q (v i)) =
+        ∑ i : Fin 3, c*(q (l i)*D i) := by
+      apply Finset.sum_congr rfl
+      intro i _
+      change q (l i)*V i = _
+      rw [hc i]
+      ring
+    _ = c*(∑ i : Fin 3, q (l i)*D i) := by rw [Finset.mul_sum]
+    _ = 0 := by
+      have hh := congrArg q horth
+      simp only [map_sum,map_mul,map_zero] at hh
+      rw [show (∑ i : Fin 3, q (l i)*D i) = 0 from hh,mul_zero]
+
+end FixedMixedResidue
+
+/-- In the actual cubic source, the residue constraint on the
+quadratic repair is the divisibility of the fixed directional
+second derivative. The mixed directional constraint is on the
+same actual first mixed row. The leading fixed direction and
+surviving cofactor are explicit inputs. -/
+theorem sourceCubic_fixedMixedResidue_directional_divisibility
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight 3 F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight 3 F)) =
+      _root_.Polynomial.C
+        (MvPolynomial.aeval z (pderiv i (initialForm transverseCubicWeight 3 F))))
+    (p : _root_.Polynomial E) (hp : Prime p)
+    (d l v : Fin 3 → _root_.Polynomial E) (k : Fin 3)
+    (hdk : IsUnit (d k))
+    (horth : ∑ i : Fin 3, l i*d i = 0)
+    (hres : ∃ i : Fin 3, ¬ p ∣ v i)
+    (hfixed : let T := (lineEval z V).toRingHom.mapMatrix
+        ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+      T *ᵥ d = p • l ∧ ¬ p ∣ T.adjugate k k)
+    (hmixed : let H := sourceLeading_lineSchurFrame F 3 z V;
+      let T := (lineEval z V).toRingHom.mapMatrix
+        ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+      T *ᵥ v = p • (![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1] : Fin 3 → _root_.Polynomial E)) :
+    let H := sourceLeading_lineSchurFrame F 3 z V
+    let C := (lineEval z V).toRingHom.mapMatrix
+      ((hessian (initialForm transverseCubicWeight 2 F)).submatrix Sum.inr Sum.inr)
+    (p ∣ ∑ i : Fin 3, ∑ j : Fin 3, d i*C i j*d j) ∧
+      (p ∣ ∑ i : Fin 3, d i*(![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1] :
+        Fin 3 → _root_.Polynomial E) i) := by
+  classical
+  let H := sourceLeading_lineSchurFrame F 3 z V
+  let T := (lineEval z V).toRingHom.mapMatrix
+    ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr)
+  let C := (lineEval z V).toRingHom.mapMatrix
+    ((hessian (initialForm transverseCubicWeight 2 F)).submatrix Sum.inr Sum.inr)
+  let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1]
+  have hsym (i j : Fin 3) : T i j = T j i := by
+    change lineEval z V (pderiv (.inr j) (pderiv (.inr i)
+      (initialForm transverseCubicWeight 3 F))) =
+      lineEval z V (pderiv (.inr i) (pderiv (.inr j)
+        (initialForm transverseCubicWeight 3 F)))
+    rw [HC4.Newton.pderiv_comm_backport]
+  have hTs : T.IsSymm := by
+    apply Matrix.IsSymm.ext
+    intro i j
+    exact hsym j i
+  have hCs (i j : Fin 3) : C i j = C j i := by
+    change lineEval z V (pderiv (.inr j) (pderiv (.inr i)
+      (initialForm transverseCubicWeight 2 F))) =
+      lineEval z V (pderiv (.inr i) (pderiv (.inr j)
+        (initialForm transverseCubicWeight 2 F)))
+    rw [HC4.Newton.pderiv_comm_backport]
+  have he0 := sourceLeading_lineSchurFrame_coeff F 3 0 (by decide) z V
+  simp only [Nat.cast_zero, sub_zero] at he0
+  have hd0 : H.d.coeff 0 = T 0 0 := congrArg GeneralFourBlock.d he0
+  have hr0 : H.r.coeff 0 = T 0 1 := congrArg GeneralFourBlock.r he0
+  have hs0 : H.s.coeff 0 = T 0 2 := congrArg GeneralFourBlock.s he0
+  have hx0 : H.x.coeff 0 = T 1 1 := congrArg GeneralFourBlock.x he0
+  have hy0 : H.y.coeff 0 = T 1 2 := congrArg GeneralFourBlock.y he0
+  have hz0 : H.z.coeff 0 = T 2 2 := congrArg GeneralFourBlock.z he0
+  have hu : v 0*H.d.coeff 0 + v 1*H.r.coeff 0 + v 2*H.s.coeff 0 =
+      p*H.b.coeff 1 := by
+    have hh := congrFun hmixed (0 : Fin 3)
+    change (∑ j : Fin 3, T 0 j*v j) = p*H.b.coeff 1 at hh
+    rw [Fin.sum_univ_three] at hh
+    rw [hd0,hr0,hs0]
+    linear_combination hh
+  have hv1 : v 0*H.r.coeff 0 + v 1*H.x.coeff 0 + v 2*H.y.coeff 0 =
+      p*H.p.coeff 1 := by
+    have hh := congrFun hmixed (1 : Fin 3)
+    change (∑ j : Fin 3, T 1 j*v j) = p*H.p.coeff 1 at hh
+    rw [Fin.sum_univ_three, hsym 1 0] at hh
+    rw [hr0,hx0,hy0]
+    linear_combination hh
+  have hw1 : v 0*H.s.coeff 0 + v 1*H.y.coeff 0 + v 2*H.z.coeff 0 =
+      p*H.q.coeff 1 := by
+    have hh := congrFun hmixed (2 : Fin 3)
+    change (∑ j : Fin 3, T 2 j*v j) = p*H.q.coeff 1 at hh
+    rw [Fin.sum_univ_three, hsym 2 0, hsym 2 1] at hh
+    rw [hs0,hy0,hz0]
+    linear_combination hh
+  have he1 := sourceLeading_lineSchurFrame_coeff F 3 1 (by decide) z V
+  have hgrade : ((3 : ℕ) : ℤ) - ((1 : ℕ) : ℤ) = 2 := by decide
+  rw [hgrade] at he1
+  have hd1 : H.d.coeff 1 = C 0 0 := congrArg GeneralFourBlock.d he1
+  have hr1 : H.r.coeff 1 = C 0 1 := congrArg GeneralFourBlock.r he1
+  have hs1 : H.s.coeff 1 = C 0 2 := congrArg GeneralFourBlock.s he1
+  have hx1 : H.x.coeff 1 = C 1 1 := congrArg GeneralFourBlock.x he1
+  have hy1 : H.y.coeff 1 = C 1 2 := congrArg GeneralFourBlock.y he1
+  have hz1 : H.z.coeff 1 = C 2 2 := congrArg GeneralFourBlock.z he1
+  have hpair := sourceLeading_clearedMixedPole_repair_dvd F 3 (by decide)
+    hcap hdet z V hV hz hgrad p (v 0) (v 1) (v 2) hu hv1 hw1
+  have hpair' : p ∣ ∑ i : Fin 3, ∑ j : Fin 3, v i*C i j*v j := by
+    have hh : (∑ i : Fin 3, ∑ j : Fin 3, v i*C i j*v j) =
+        v 0*v 0*H.d.coeff 1 + v 1*v 1*H.x.coeff 1 + v 2*v 2*H.z.coeff 1 +
+          2*v 0*v 1*H.r.coeff 1 + 2*v 0*v 2*H.s.coeff 1 + 2*v 1*v 2*H.y.coeff 1 := by
+      simp only [Fin.sum_univ_three,hCs 1 0,hCs 2 0,hCs 2 1,
+        ← hd1,← hr1,← hs1,← hx1,← hy1,← hz1]
+      ring
+    rw [hh]
+    exact hpair
+  exact fixedMixedResidue_directional_divisibility T C hTs b d l v p hp k
+    hfixed.2 hdk hfixed.1 hmixed horth hres hpair'
+
+
 end
 end HC4.Polynomial.RankThreeCubic
