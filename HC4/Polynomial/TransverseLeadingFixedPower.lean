@@ -528,12 +528,13 @@ theorem reference_cubic_hessian_det_homogeneous
     change (pderiv j (pderiv i (referenceSlice a L))).IsHomogeneous 1
     exact (hq.pderiv (i := i)).pderiv (i := j)
   rw [he, Matrix.det_fin_three]
-  exact (((((hh 0 0).mul (hh 1 1)).mul (hh 2 2)).sub
-    (((hh 0 0).mul (hh 1 2)).mul (hh 2 1))).sub
-    (((hh 0 1).mul (hh 1 0)).mul (hh 2 2))).add
-    (((hh 0 1).mul (hh 1 2)).mul (hh 2 0)) |>.add
-    (((hh 0 2).mul (hh 1 0)).mul (hh 2 1)) |>.sub
-    (((hh 0 2).mul (hh 1 1)).mul (hh 2 0))
+  have h1 := ((hh 0 0).mul (hh 1 1)).mul (hh 2 2)
+  have h2 := ((hh 0 0).mul (hh 1 2)).mul (hh 2 1)
+  have h3 := ((hh 0 1).mul (hh 1 0)).mul (hh 2 2)
+  have h4 := ((hh 0 1).mul (hh 1 2)).mul (hh 2 0)
+  have h5 := ((hh 0 2).mul (hh 1 0)).mul (hh 2 1)
+  have h6 := ((hh 0 2).mul (hh 1 1)).mul (hh 2 0)
+  exact ((((h1.sub h2).sub h3).add h4).add h5).sub h6
 
 /-- Exact factorisation of the actual regular reference determinant.
 Both linear forms are nonzero. -/
