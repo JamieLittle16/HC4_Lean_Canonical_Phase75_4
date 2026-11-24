@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11120**.
+Distinct declaration spellings indexed: **11122**.
 
 ## Repeated declaration spellings
 
@@ -10092,6 +10092,7 @@ Distinct declaration spellings indexed: **11120**.
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
+- `sourceCoeff_derivative_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCoefficientOrder_eq_zero_of_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `sourceCoefficientOrder_eq_zero_or_firstActual_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `sourceCoefficientParameterOrder` — `def` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -10233,7 +10234,6 @@ Distinct declaration spellings indexed: **11120**.
 - `sourceLeftRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceLongitudinal_coeff_derivative_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceMinor0_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
@@ -10275,6 +10275,8 @@ Distinct declaration spellings indexed: **11120**.
 - `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_supportingEdge_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceSupport_secondDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceSupport_thirdDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
