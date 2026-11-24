@@ -4939,6 +4939,7 @@ theorem singular_symmetric_adjugate_mulVec_square
   calc
     _ = ∑ j : Fin 3, ∑ l : Fin 3, (A i j * b j) * (A i l * b l) := by
       simp only [Matrix.mulVec, dotProduct, pow_two, Finset.sum_mul, Finset.mul_sum]
+      exact Finset.sum_comm
     _ = ∑ j : Fin 3, ∑ l : Fin 3, A i i * (b j * A j l * b l) := by
       apply Finset.sum_congr rfl
       intro j _
@@ -4971,7 +4972,7 @@ theorem prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing
   have hz (x : R) (hx : p ∣ x) : q x = 0 :=
     Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr hx)
   have hM : M.det = 0 := by
-    change (T.map q).det = 0
+    change (q.mapMatrix T).det = 0
     rw [← RingHom.map_det]
     exact hz _ hdet
   have hS : M.IsSymm := by
