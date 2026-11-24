@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11097**.
+Distinct declaration spellings indexed: **11103**.
 
 ## Repeated declaration spellings
 
@@ -7018,6 +7018,8 @@ Distinct declaration spellings indexed: **11097**.
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `linearLineEval_injective_of_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `linearLineEval_invariant_transverseForm` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+- `linearLineEval_sourceLinearVector` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `linearLineEval_sourceNilpotentVelocity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_zeroTangentBlock_or_normalKernel_global` — `theorem` in `HC4.Polynomial.RankThreeCubicPencilGlobalKernel`
@@ -9311,6 +9313,7 @@ Distinct declaration spellings indexed: **11097**.
 - `reesVectorProjectiveWedge` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
@@ -10224,6 +10227,7 @@ Distinct declaration spellings indexed: **11097**.
 - `sourceLeading_reverseLayerSum_eq` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeftRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceMinor0_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `sourceMinor0_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceMinor1_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
@@ -10231,6 +10235,8 @@ Distinct declaration spellings indexed: **11097**.
 - `sourceMinor2_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `sourceMinor2_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_diag_eq_two_mul_squareCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelAxisFrontier`
