@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11237**.
+Distinct declaration spellings indexed: **11243**.
 
 ## Repeated declaration spellings
 
@@ -10246,6 +10246,7 @@ Distinct declaration spellings indexed: **11237**.
 - `sourceLeading_lineSchurFrame_kernel_regular` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_lineSchurFrame_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_lineSchurFrame_transverseDet_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_mixedGap_endpoint_lineODE` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_constantDet` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10297,6 +10298,7 @@ Distinct declaration spellings indexed: **11237**.
 - `sourceNilpotent_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leadingHessian_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_linearLayer_mixedGap_pairing_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_markedCollision_forces_earlyMixed` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -11233,6 +11235,7 @@ Distinct declaration spellings indexed: **11237**.
 - `transverseSchurDet` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurDet_coeff_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchurMixed_coeff_gap_endpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_zero_of_gap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_cleared_timeDegree_step` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -11240,6 +11243,7 @@ Distinct declaration spellings indexed: **11237**.
 - `transverseSchur_det_identity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_longitudinal_zero_of_mixedGap` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_longitudinal_zero_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchur_mixedGap_endpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSliceAmplitude` — `def` in `HC4.Newton.LinearPowerPacketNormalForm`
 - `transverseSliceCoeff` — `def` in `HC4.Newton.TransverseSliceClassification`
@@ -11286,7 +11290,9 @@ Distinct declaration spellings indexed: **11237**.
 - `transverse_coeff_triple_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_coeff_triple_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_gap_mul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverse_gap_mul_endpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_gap_triple` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverse_gap_triple_endpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_lineEval_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverse_nonzero_at_first` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
 - `transverse_twoEndpointResidual_incompatible_with_recenteredHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
