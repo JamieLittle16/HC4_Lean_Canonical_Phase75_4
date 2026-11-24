@@ -1846,7 +1846,8 @@ private theorem nilpotentVectorDeriv_second_third
     calc
       _ = (A ^ 2 * A) * A := by
         calc
-          A ^ 2 * A ^ 2 = A ^ 2 * (A * A) := by rw [← pow_two]
+          A ^ 2 * A ^ 2 = A ^ 2 * (A * A) :=
+            congrArg (fun M => A ^ 2 * M) (pow_two A)
           _ = _ := (Matrix.mul_assoc _ _ _).symm
       _ = 0 := by rw [hright, zero_mul]
   have hAV : A *ᵥ V = W := by
@@ -1919,10 +1920,19 @@ theorem sourceNilpotent_transverseGradient_second_third
       rw [h3N]
       ext i j
       simp
-    rw [show (3 : ℕ) = 2+1 by rfl, pow_succ, pow_two, Matrix.map_mul,
-      Matrix.map_mul] at h
-    rw [show (3 : ℕ) = 2+1 by rfl, pow_succ, pow_two]
-    exact h
+    have hA2 : A ^ 2 = (N.transpose ^ 2).map
+        (MvPolynomial.C : K →+* StationarySource K) := by
+      simp only [A, pow_two, Matrix.map_mul]
+    calc
+      A ^ 3 = A ^ 2 * A := pow_succ A 2
+      _ = ((N.transpose ^ 2) * N.transpose).map
+          (MvPolynomial.C : K →+* StationarySource K) := by
+        rw [hA2, Matrix.map_mul]
+      _ = (N.transpose ^ 3).map
+          (MvPolynomial.C : K →+* StationarySource K) :=
+        congrArg (fun M : Matrix (Fin 3) (Fin 3) K =>
+          M.map (MvPolynomial.C : K →+* StationarySource K)) (pow_succ N.transpose 2).symm
+      _ = 0 := h
   have hc : D c = 0 := D.map_natCast n
   have ht : D t = 1 := by simp [D, t, pderiv_X]
   have hAT : (N.map (MvPolynomial.C : K →+* StationarySource K)).transpose = A := by
