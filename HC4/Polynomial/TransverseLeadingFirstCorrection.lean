@@ -3,6 +3,9 @@ import HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice
 import HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy
 import HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine
 import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
+import HC4.Valuation.ParameterFirstLayerBridge
+import HC4.Valuation.ParameterGapSecondJet
+import HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace
 import Mathlib.Tactic
 
 /-!
@@ -338,6 +341,267 @@ theorem sourceLeading_firstCorrection_affine_along_line
     | succ n =>
       simp [_root_.Polynomial.coeff_C, _root_.Polynomial.coeff_C_mul_X, hzero n]
 
+
+end
+end HC4.Polynomial.RankThreeCubic
+
+/-!
+# Arbitrary-order cleared transverse Schur recurrence
+
+All calculations below are on a single actual reverse-Rees Hessian.
+The frame change is a congruence of matrices at the reference point,
+not a nonlinear change of source potential.  The recurrence is
+denominator-free and retains all lower-layer mixed corrections.
+-/
+
+namespace HC4.Polynomial.RankThreeCubic
+
+open HC4.Newton HC4.Valuation
+open scoped BigOperators Matrix
+
+noncomputable section
+
+variable {R : Type*} [CommRing R]
+
+/-- Determinant of the three transverse directions, with the first
+direction reserved for the longitudinal characteristic. -/
+def transverseSchurDet (H : GeneralFourBlock R) : R :=
+  H.d * (H.x * H.z - H.y * H.y) -
+    H.r * (H.r * H.z - H.s * H.y) +
+    H.s * (H.r * H.y - H.s * H.x)
+
+/-- The exact adjugate quadratic correction of the mixed row.  Write
+cross terms as two copies so the coefficient formula is ring-generic. -/
+def transverseSchurMixed (H : GeneralFourBlock R) : R :=
+  H.b * H.b * (H.x * H.z - H.y * H.y) -
+  H.b * H.p * ((H.r * H.z - H.s * H.y) + (H.r * H.z - H.s * H.y)) +
+  H.b * H.q * ((H.r * H.y - H.s * H.x) + (H.r * H.y - H.s * H.x)) +
+  H.p * H.p * (H.d * H.z - H.s * H.s) -
+  H.p * H.q * ((H.d * H.y - H.r * H.s) + (H.d * H.y - H.r * H.s)) +
+  H.q * H.q * (H.d * H.x - H.r * H.r)
+
+theorem transverseSchur_det_identity (H : GeneralFourBlock R) :
+    H.determinantCore = H.a * transverseSchurDet H - transverseSchurMixed H := by
+  unfold GeneralFourBlock.determinantCore transverseSchurDet transverseSchurMixed
+  ring
+
+/-- Replace the longitudinal basis vector by (1,u,v,w), fixing all three
+transverse basis vectors.  This is a determinant-one congruence. -/
+def transverseCharacteristicFrame (H : GeneralFourBlock R) (u v w : R) :
+    GeneralFourBlock R where
+  a := H.a + 2 * u * H.b + 2 * v * H.p + 2 * w * H.q +
+    u ^ 2 * H.d + v ^ 2 * H.x + w ^ 2 * H.z +
+    2 * u * v * H.r + 2 * u * w * H.s + 2 * v * w * H.y
+  b := H.b + u * H.d + v * H.r + w * H.s
+  p := H.p + u * H.r + v * H.x + w * H.y
+  q := H.q + u * H.s + v * H.y + w * H.z
+  d := H.d
+  r := H.r
+  s := H.s
+  x := H.x
+  y := H.y
+  z := H.z
+
+theorem transverseCharacteristicFrame_det (H : GeneralFourBlock R) (u v w : R) :
+    (transverseCharacteristicFrame H u v w).determinantCore = H.determinantCore := by
+  unfold transverseCharacteristicFrame GeneralFourBlock.determinantCore
+  ring
+
+/-- Every coefficient of the longitudinal Hessian is constrained by
+the same convolution equation. Isolate (n,0), retaining all earlier
+longitudinal coefficients and the full adjugate correction. -/
+theorem transverseSchur_coeff_recurrence
+    (H : GeneralFourBlock (_root_.Polynomial R)) (n : ℕ) :
+    H.a.coeff n * (transverseSchurDet H).coeff 0 =
+      H.determinantCore.coeff n + (transverseSchurMixed H).coeff n -
+        ∑ ij ∈ (Finset.antidiagonal n).erase (n, 0),
+          H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2 := by
+  classical
+  have h := congrArg (fun p : _root_.Polynomial R => p.coeff n)
+    (transverseSchur_det_identity H)
+  rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_mul] at h
+  let f : ℕ × ℕ → R := fun ij =>
+    H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2
+  have hm : (n, 0) ∈ Finset.antidiagonal n := by
+    simp [Finset.mem_antidiagonal]
+  have hs := Finset.add_sum_erase (Finset.antidiagonal n) f hm
+  change H.determinantCore.coeff n =
+    (∑ ij ∈ Finset.antidiagonal n, f ij) -
+      (transverseSchurMixed H).coeff n at h
+  rw [← hs] at h
+  change H.a.coeff n * (transverseSchurDet H).coeff 0 =
+    H.determinantCore.coeff n + (transverseSchurMixed H).coeff n -
+      ∑ ij ∈ (Finset.antidiagonal n).erase (n, 0), f ij
+  change H.determinantCore.coeff n =
+    H.a.coeff n * (transverseSchurDet H).coeff 0 +
+      (∑ ij ∈ (Finset.antidiagonal n).erase (n, 0), f ij) -
+      (transverseSchurMixed H).coeff n at h
+  linear_combination -h
+
+/-- At order one there is no positive-order gap hypothesis at all. -/
+private theorem transverse_coeff_mul_one (p q : _root_.Polynomial R) :
+    (p * q).coeff 1 = p.coeff 0 * q.coeff 1 + p.coeff 1 * q.coeff 0 := by
+  have hgap (f : _root_.Polynomial R) :
+      HasNoPositiveParameterCoeffBelow 1 f := by
+    intro n hn hlt
+    omega
+  simpa using coeff_mul_at_gap_endpoint_commRing (R := R)
+    (j := 1) (by decide) (hgap p) (hgap q)
+
+/-- Order two is exactly the three-term product convolution. -/
+private theorem transverse_coeff_mul_two (p q : _root_.Polynomial R) :
+    (p * q).coeff 2 =
+      p.coeff 0 * q.coeff 2 + p.coeff 1 * q.coeff 1 + p.coeff 2 * q.coeff 0 := by
+  have hgap (f : _root_.Polynomial R) :
+      HasNoPositiveParameterCoeffBelow 1 f := by
+    intro n hn hlt
+    omega
+  simpa using coeff_mul_at_twice_gap_endpoint_commRing (R := R)
+    (j := 1) (by decide) (hgap p) (hgap q)
+
+private theorem transverse_coeff_triple_two
+    (p q r : _root_.Polynomial R) (hp : p.coeff 0 = 0) (hq : q.coeff 0 = 0) :
+    (p * q * r).coeff 2 = p.coeff 1 * q.coeff 1 * r.coeff 0 := by
+  rw [transverse_coeff_mul_two, transverse_coeff_mul_two, transverse_coeff_mul_one,
+    _root_.Polynomial.mul_coeff_zero, hp, hq]
+  ring
+
+/-- At order two, the adjugate term uses only the first mixed
+coefficients and the constant transverse block. -/
+theorem transverseSchurMixed_coeff_two
+    (H : GeneralFourBlock (_root_.Polynomial R))
+    (hb : H.b.coeff 0 = 0) (hp : H.p.coeff 0 = 0) (hq : H.q.coeff 0 = 0) :
+    (transverseSchurMixed H).coeff 2 =
+      transverseSchurMixed
+        ({ a := H.a.coeff 2, b := H.b.coeff 1, p := H.p.coeff 1,
+           q := H.q.coeff 1, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock R) := by
+  simp only [transverseSchurMixed, _root_.Polynomial.coeff_add,
+    _root_.Polynomial.coeff_sub,
+    transverse_coeff_triple_two _ _ _ hb hb,
+    transverse_coeff_triple_two _ _ _ hb hp,
+    transverse_coeff_triple_two _ _ _ hb hq,
+    transverse_coeff_triple_two _ _ _ hp hp,
+    transverse_coeff_triple_two _ _ _ hp hq,
+    transverse_coeff_triple_two _ _ _ hq hq,
+    _root_.Polynomial.mul_coeff_zero]
+
+/-- The second Schur constraint at a leading-kernel frame with vanishing
+first longitudinal correction.  It is a genuine mixed correction,
+not a claim that the next layer is again isotropic. -/
+theorem transverseSchur_second_constraint
+    (H : GeneralFourBlock (_root_.Polynomial R))
+    (ha0 : H.a.coeff 0 = 0) (ha1 : H.a.coeff 1 = 0)
+    (hb : H.b.coeff 0 = 0) (hp : H.p.coeff 0 = 0) (hq : H.q.coeff 0 = 0)
+    (hdet : H.determinantCore.coeff 2 = 0) :
+    H.a.coeff 2 * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := H.a.coeff 2, b := H.b.coeff 1, p := H.p.coeff 1,
+           q := H.q.coeff 1, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock R) := by
+  have h := congrArg (fun p : _root_.Polynomial R => p.coeff 2)
+    (transverseSchur_det_identity H)
+  rw [_root_.Polynomial.coeff_sub, transverse_coeff_mul_two,
+    ha0, ha1, zero_mul, zero_mul, zero_add, zero_add,
+    transverseSchurMixed_coeff_two H hb hp hq, hdet] at h
+  exact sub_eq_zero.mp h.symm
+
+/-! The actual Fin 4 source adapter uses the existing marked-axis
+reverse-Rees source directly, preserving its exact Hessian clock and
+every original parameter layer. -/
+
+variable {K : Type*} [Field K] [CharZero K]
+
+/-- The exact Rees Hessian determinant and all source layer coefficients,
+before any change of frame, for an arbitrary transverse cap. -/
+theorem sourceTransverseRees_clock_and_layers
+    (F : MvPolynomial (Fin 4) K) (m : ℕ) (hm : 2 ≤ m)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight m F)
+    (hdet : hessianDeterminant F = 1) :
+    let P := reverseWeightedReesFamily topKernelMarkedAxisNatWeight m F hbound
+    (parameterFirstHessian P).det =
+      (_root_.Polynomial.X : _root_.Polynomial (MvPolynomial (Fin 4) K)) ^ (4*m-6) ∧
+    ∀ n : ℕ, n ≤ m → ∀ i j : Fin 4,
+      (parameterFirstHessian P i j).coeff n =
+        hessian (initialForm (fun i => (topKernelMarkedAxisNatWeight i : ℤ))
+          ((m - n : ℕ) : ℤ) F) i j := by
+  let P := reverseWeightedReesFamily topKernelMarkedAxisNatWeight m F hbound
+  have hnonneg : 2 * ∑ i : Fin 4, topKernelMarkedAxisNatWeight i ≤ 4 * m := by
+    simp [Fin.sum_univ_four, topKernelMarkedAxisNatWeight]
+    omega
+  have hclock : HasPolynomialFamilyHessianDefect (K := K) P (4*m-6) := by
+    have h := reverseWeightedReesFamily_hasHessianDefect
+      topKernelMarkedAxisNatWeight m F hbound hdet hnonneg
+    simpa [P, Fin.sum_univ_four, topKernelMarkedAxisNatWeight] using h
+  refine ⟨parameterFirstHessian_det_eq_X_pow P hclock, ?_⟩
+  intro n hn i j
+  rw [parameterFirstHessian_coeff]
+  rw [reverseWeightedReesFamily_parameterLayer_eq_initialForm
+    topKernelMarkedAxisNatWeight m n F hbound hn]
+
+/-- Evaluate the actual source Hessian series and apply a constant
+normalized characteristic frame.  The velocity may be in any extension
+field (including a fraction field); no nonlinear source substitution. -/
+def sourceTransverseSchurFrame
+    {E : Type*} [Field E]
+    (F : MvPolynomial (Fin 4) K) (m : ℕ)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight m F)
+    (φ : MvPolynomial (Fin 4) K →+* E) (u v w : E) :
+    GeneralFourBlock (_root_.Polynomial E) :=
+  transverseCharacteristicFrame
+    ((familyHessianFourBlock
+      (reverseWeightedReesFamily topKernelMarkedAxisNatWeight m F hbound)).map
+        (_root_.Polynomial.mapRingHom φ))
+    (_root_.Polynomial.C u) (_root_.Polynomial.C v) (_root_.Polynomial.C w)
+
+/-- The normalized frame retains the entire source determinant clock. -/
+theorem sourceTransverseSchurFrame_det
+    {E : Type*} [Field E]
+    (F : MvPolynomial (Fin 4) K) (m : ℕ) (hm : 2 ≤ m)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight m F)
+    (hdet : hessianDeterminant F = 1)
+    (φ : MvPolynomial (Fin 4) K →+* E) (u v w : E) :
+    (sourceTransverseSchurFrame F m hbound φ u v w).determinantCore =
+      (_root_.Polynomial.X : _root_.Polynomial E) ^ (4*m-6) := by
+  let P := reverseWeightedReesFamily topKernelMarkedAxisNatWeight m F hbound
+  have h := (sourceTransverseRees_clock_and_layers F m hm hbound hdet).1
+  have hc : (familyHessianFourBlock P).determinantCore =
+      (_root_.Polynomial.X : _root_.Polynomial (MvPolynomial (Fin 4) K)) ^ (4*m-6) := by
+    rw [← GeneralFourBlock.matrix_det, familyHessianFourBlock_matrix]
+    exact h
+  unfold sourceTransverseSchurFrame
+  rw [transverseCharacteristicFrame_det, GeneralFourBlock.determinantCore_map]
+  change _root_.Polynomial.map φ (familyHessianFourBlock P).determinantCore = _
+  rw [hc]
+  change (_root_.Polynomial.mapRingHom φ)
+    ((_root_.Polynomial.X : _root_.Polynomial (MvPolynomial (Fin 4) K)) ^ (4*m-6)) = _
+  rw [map_pow]
+  change (_root_.Polynomial.map φ _root_.Polynomial.X) ^ (4*m-6) = _
+  rw [_root_.Polynomial.map_X]
+
+/-- Every preclock coefficient satisfies one and the same exact
+source Schur recurrence.  This is not yet a degree reduction. -/
+theorem sourceTransverseSchurFrame_preclock_recurrence
+    {E : Type*} [Field E]
+    (F : MvPolynomial (Fin 4) K) (m : ℕ) (hm : 2 ≤ m)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight m F)
+    (hdet : hessianDeterminant F = 1)
+    (φ : MvPolynomial (Fin 4) K →+* E) (u v w : E)
+    (n : ℕ) (hn : n < 4*m-6) :
+    let H := sourceTransverseSchurFrame F m hbound φ u v w
+    H.a.coeff n * (transverseSchurDet H).coeff 0 =
+      (transverseSchurMixed H).coeff n -
+        ∑ ij ∈ (Finset.antidiagonal n).erase (n, 0),
+          H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2 := by
+  let H := sourceTransverseSchurFrame F m hbound φ u v w
+  have hd : H.determinantCore.coeff n = 0 := by
+    rw [sourceTransverseSchurFrame_det F m hm hbound hdet φ u v w]
+    simp [_root_.Polynomial.coeff_X_pow, Ne.symm (Nat.ne_of_lt hn)]
+  have h := transverseSchur_coeff_recurrence H n
+  rw [hd, zero_add] at h
+  exact h
 
 end
 end HC4.Polynomial.RankThreeCubic
