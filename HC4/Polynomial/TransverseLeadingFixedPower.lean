@@ -325,18 +325,22 @@ theorem symmetric_det_square_dvd_of_isotropic_direction
         ring
       _ = 0 := by rw [← Finset.mul_sum, horth, mul_zero]
   have hdiv : p^2 ∣ A.det := by
-    fin_cases k
-    · refine ⟨-l 1*l 1*A 2 2 + l 1*A 1 2*l 2 +
+    have hkcases : k = 0 ∨ k = 1 ∨ k = 2 := by omega
+    rcases hkcases with hk0 | hk1 | hk2
+    · subst k
+      refine ⟨-l 1*l 1*A 2 2 + l 1*A 1 2*l 2 +
         l 2*l 1*A 2 1 - l 2*A 1 1*l 2, ?_⟩
       rw [Matrix.det_fin_three, hAkk, hArow 1 (by decide), hArow 2 (by decide),
         hAcol 1 (by decide), hAcol 2 (by decide)]
       ring
-    · refine ⟨-A 0 0*l 2*l 2 - l 0*l 0*A 2 2 +
+    · subst k
+      refine ⟨-A 0 0*l 2*l 2 - l 0*l 0*A 2 2 +
         l 0*l 2*A 2 0 + A 0 2*l 0*l 2, ?_⟩
       rw [Matrix.det_fin_three, hAkk, hArow 0 (by decide), hArow 2 (by decide),
         hAcol 0 (by decide), hAcol 2 (by decide)]
       ring
-    · refine ⟨-A 0 0*l 1*l 1 + A 0 1*l 1*l 0 +
+    · subst k
+      refine ⟨-A 0 0*l 1*l 1 + A 0 1*l 1*l 0 +
         l 0*A 1 0*l 1 - l 0*A 1 1*l 0, ?_⟩
       rw [Matrix.det_fin_three, hAkk, hArow 0 (by decide), hArow 1 (by decide),
         hAcol 0 (by decide), hAcol 1 (by decide)]
@@ -398,16 +402,19 @@ theorem reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic
       _ = ∑ i : Fin 3, MvPolynomial.C (2*c*(d i*l i)) := by
         apply Finset.sum_congr rfl
         intro i _
-        rw [D, E, ← map_mul]
+        change MvPolynomial.C (d i) * MvPolynomial.C (2*c*l i) = _
+        rw [← map_mul]
         congr 1
         ring
       _ = 0 := by rw [← map_sum, ← Finset.mul_sum, horth, mul_zero, map_zero]
   obtain ⟨k, hk⟩ : ∃ k, d k ≠ 0 := by contrapose! hd; exact funext hd
   have hunit : D k * MvPolynomial.C ((d k)⁻¹) = 1 := by
-    rw [D, ← map_mul, mul_inv_cancel₀ hk, map_one]
+    change MvPolynomial.C (d k) * MvPolynomial.C ((d k)⁻¹) = 1
+    rw [← map_mul, mul_inv_cancel₀ hk, map_one]
   have hdiv := symmetric_det_square_dvd_of_isotropic_direction H D E p
     (MvPolynomial.C ((d k)⁻¹)) k hunit hH hD hDE
   have hdet : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det = H.det := by
+    change (referenceSlice a).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = H.det
     rw [RingHom.map_det]
     exact congrArg Matrix.det (powerExtraction_reference_hessian_eq_mapped_transverse a L)
   refine ⟨l, hl, ?_, ?_⟩
