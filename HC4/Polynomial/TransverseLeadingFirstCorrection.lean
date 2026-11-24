@@ -2279,5 +2279,188 @@ theorem sourceNilpotent_firstCorrection_inverseFormula
     (sourceNilpotent_firstCorrection_affine F m hm hcap hdet a N hreg hgrad)
 
 
+
+
+/-! ## Actual second lower layer on the characteristic
+
+The two parameters remain distinct: s is the reverse transverse Rees
+parameter and t is time on the characteristic. The determinant clock
+is in s, while every coefficient is a polynomial in t.
+-/
+
+private def sourceLineIndex : Fin 4 ≃ Unit ⊕ Fin 3 where
+  toFun := ![Sum.inl (), Sum.inr 0, Sum.inr 1, Sum.inr 2]
+  invFun := Sum.elim (fun _ => 0) Fin.succ
+  left_inv := by intro i; fin_cases i <;> rfl
+  right_inv := by
+    intro i
+    cases i with
+    | inl u => cases u; rfl
+    | inr j => fin_cases j <;> rfl
+
+private def sourceLineBlockOfMatrix {R : Type*} [CommRing R]
+    (M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R) : GeneralFourBlock R :=
+  GeneralFourBlock.ofSymmetricMatrix (M.submatrix sourceLineIndex sourceLineIndex)
+
+private theorem sourceLineBlockOfMatrix_det {R : Type*} [CommRing R]
+    (M : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R)
+    (hsym : ∀ i j, M i j = M j i) :
+    (sourceLineBlockOfMatrix M).determinantCore = M.det := by
+  rw [← GeneralFourBlock.matrix_det]
+  unfold sourceLineBlockOfMatrix
+  rw [GeneralFourBlock.matrix_ofSymmetricMatrix]
+  · exact Matrix.det_submatrix_equiv_self sourceLineIndex M
+  · intro i j
+    exact hsym _ _
+
+/-- Coefficientwise projection of the actual ten entries; this is not
+a ring homomorphism on the determinant. -/
+def transverseBlockCoeff {R : Type*} [CommRing R]
+    (H : GeneralFourBlock (_root_.Polynomial R)) (j : ℕ) :
+    GeneralFourBlock R where
+  a := H.a.coeff j
+  b := H.b.coeff j
+  d := H.d.coeff j
+  p := H.p.coeff j
+  q := H.q.coeff j
+  r := H.r.coeff j
+  s := H.s.coeff j
+  x := H.x.coeff j
+  y := H.y.coeff j
+  z := H.z.coeff j
+
+/-- A constant-in-Rees-time characteristic frame commutes with taking
+individual Rees coefficients. The entries may depend on line time. -/
+theorem transverseCharacteristicFrame_coeff {R : Type*} [CommRing R]
+    (H : GeneralFourBlock (_root_.Polynomial R)) (u v w : R) (j : ℕ) :
+    transverseBlockCoeff (transverseCharacteristicFrame H
+      (_root_.Polynomial.C u) (_root_.Polynomial.C v) (_root_.Polynomial.C w)) j =
+      transverseCharacteristicFrame (transverseBlockCoeff H j) u v w := by
+  apply GeneralFourBlock.ext <;>
+    simp only [transverseBlockCoeff, transverseCharacteristicFrame,
+      two_mul, add_mul, pow_two, ← _root_.Polynomial.C_mul,
+      _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C_mul]
+
+/-- The actual unframed reverse Hessian, evaluated along an affine
+characteristic. Its coefficients lie in the line-time polynomial ring. -/
+def sourceLeading_lineBlock
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (z V : Unit ⊕ Fin 3 → E) :
+    GeneralFourBlock (_root_.Polynomial (_root_.Polynomial E)) :=
+  sourceLineBlockOfMatrix
+    ((_root_.Polynomial.mapRingHom (lineEval z V).toRingHom).mapMatrix
+      (sourceLeading_reverseHessian F m))
+
+theorem sourceLeading_lineBlock_det
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) :
+    (sourceLeading_lineBlock F m z V).determinantCore =
+      _root_.Polynomial.monomial (4*m-6)
+        (lineEval z V (MvPolynomial.C δ)) := by
+  let φ := _root_.Polynomial.mapRingHom (lineEval z V).toRingHom
+  have hsym (i j : Unit ⊕ Fin 3) :
+      sourceLeading_reverseHessian F m i j =
+        sourceLeading_reverseHessian F m j i := by
+    apply _root_.Polynomial.ext
+    intro k
+    rw [sourceLeading_reverseHessian_coeff, sourceLeading_reverseHessian_coeff]
+    split_ifs
+    · simp only [hessian_apply, HC4.Newton.pderiv_comm_backport j i]
+    · rfl
+  change (sourceLineBlockOfMatrix (φ.mapMatrix
+    (sourceLeading_reverseHessian F m))).determinantCore = _
+  rw [sourceLineBlockOfMatrix_det, ← RingHom.map_det,
+    sourceLeading_reverseHessian_constantDet F m hm hcap hdet]
+  · exact _root_.Polynomial.map_monomial _ _ _
+  · intro i j
+    change φ (sourceLeading_reverseHessian F m i j) =
+      φ (sourceLeading_reverseHessian F m j i)
+    rw [hsym]
+
+/-- The coefficient at j is literally the evaluated Hessian of the
+jth lower source layer. No new potential is introduced. -/
+theorem sourceLeading_lineBlock_coeff
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m j : ℕ) (hj : j ≤ m)
+    (z V : Unit ⊕ Fin 3 → E) :
+    transverseBlockCoeff (sourceLeading_lineBlock F m z V) j =
+      sourceLineBlockOfMatrix ((lineEval z V).toRingHom.mapMatrix
+        (hessian (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F))) := by
+  apply GeneralFourBlock.ext <;>
+    simp only [transverseBlockCoeff, sourceLeading_lineBlock, sourceLineBlockOfMatrix,
+      GeneralFourBlock.ofSymmetricMatrix, Matrix.submatrix_apply, RingHom.mapMatrix_apply,
+      _root_.Polynomial.coe_mapRingHom, _root_.Polynomial.coeff_map,
+      sourceLeading_reverseHessian_coeff, if_pos hj]
+
+/-- The actual reverse Hessian in the normalized characteristic frame,
+constant in s but not assumed constant in t. -/
+def sourceLeading_lineSchurFrame
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (z V : Unit ⊕ Fin 3 → E) :
+    GeneralFourBlock (_root_.Polynomial (_root_.Polynomial E)) :=
+  transverseCharacteristicFrame (sourceLeading_lineBlock F m z V)
+    (_root_.Polynomial.C (_root_.Polynomial.C (V (.inr 0))))
+    (_root_.Polynomial.C (_root_.Polynomial.C (V (.inr 1))))
+    (_root_.Polynomial.C (_root_.Polynomial.C (V (.inr 2))))
+
+theorem sourceLeading_lineSchurFrame_det
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) :
+    (sourceLeading_lineSchurFrame F m z V).determinantCore =
+      _root_.Polynomial.monomial (4*m-6) (lineEval z V (MvPolynomial.C δ)) := by
+  unfold sourceLeading_lineSchurFrame
+  rw [transverseCharacteristicFrame_det, sourceLeading_lineBlock_det F m hm hcap hdet]
+
+theorem sourceLeading_lineSchurFrame_coeff
+    {E : Type*} [CommRing E] [Algebra K E]
+    (F : StationarySource K) (m j : ℕ) (hj : j ≤ m)
+    (z V : Unit ⊕ Fin 3 → E) :
+    transverseBlockCoeff (sourceLeading_lineSchurFrame F m z V) j =
+      transverseCharacteristicFrame
+        (sourceLineBlockOfMatrix ((lineEval z V).toRingHom.mapMatrix
+          (hessian (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F))))
+        (_root_.Polynomial.C (V (.inr 0)))
+        (_root_.Polynomial.C (V (.inr 1)))
+        (_root_.Polynomial.C (V (.inr 2))) := by
+  unfold sourceLeading_lineSchurFrame
+  rw [transverseCharacteristicFrame_coeff, sourceLeading_lineBlock_coeff F m j hj]
+
+/-- Exact second constraint in the actual line-time coefficient ring.
+The kernel-frame hypotheses will be extracted from gradient transport
+and the regular transverse anchor, not supplied as source assumptions. -/
+theorem sourceLeading_lineSchurFrame_second_constraint
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    H.b.coeff 0 = 0 → H.p.coeff 0 = 0 → H.q.coeff 0 = 0 →
+    (transverseSchurDet H).coeff 0 ≠ 0 →
+    H.a.coeff 2 * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := H.a.coeff 2, b := H.b.coeff 1, p := H.p.coeff 1,
+           q := H.q.coeff 1, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock (_root_.Polynomial E)) := by
+  let H := sourceLeading_lineSchurFrame F m z V
+  change H.b.coeff 0 = 0 → H.p.coeff 0 = 0 → H.q.coeff 0 = 0 →
+    (transverseSchurDet H).coeff 0 ≠ 0 → _
+  intro hb hp hq hregular
+  have hd := sourceLeading_lineSchurFrame_det F m (by omega) hcap hdet z V
+  have hz (j : ℕ) (hj : j < 4*m-6) : H.determinantCore.coeff j = 0 := by
+    change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff j = 0
+    rw [hd, _root_.Polynomial.coeff_monomial, if_neg (Ne.symm (Nat.ne_of_lt hj))]
+  obtain ⟨ha0, ha1⟩ := transverseSchur_longitudinal_zero_one
+    H hb hp hq hregular (hz 0 (by omega)) (hz 1 (by omega))
+  exact transverseSchur_second_constraint H ha0 ha1 hb hp hq (hz 2 (by omega))
+
+
 end
 end HC4.Polynomial.RankThreeCubic
