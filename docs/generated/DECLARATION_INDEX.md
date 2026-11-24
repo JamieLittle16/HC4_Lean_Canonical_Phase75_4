@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11255**.
+Distinct declaration spellings indexed: **11259**.
 
 ## Repeated declaration spellings
 
@@ -5273,6 +5273,7 @@ Distinct declaration spellings indexed: **11255**.
 - `dualMatrixSnd_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
 - `dualMatrixSnd_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
 - `dualMatrix_firstAdjugateIdentity_of_det_eq_eps` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingAdjugate`
+- `dvd_adjugate_mulVec_square_of_dvd_mixed_pairing` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `dvd_two_mul_of_laurent_weight_relation` — `theorem` in `HC4.Toric.FourSidedCharacter`
 - `dvd_two_of_coprime_dvd_two_mul` — `theorem` in `HC4.Toric.ExceptionalGrading`
 - `e3HessianTwoByTwoMinor_ne_zero_of_initialForm_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3AllMinorSourceLift`
@@ -8334,6 +8335,7 @@ Distinct declaration spellings indexed: **11255**.
 - `preterminal_secondDerivative_zero` — `theorem` in `HC4.Newton.PreterminalFirstDeparture`
 - `preterminal_source_zero` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `prime_pow_succ_dvd_of_odd_pow_dvd_square` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `primitiveBinomialBaseExponent` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0` — `def` in `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
 - `primitiveBinomialDetCoeff0_map` — `theorem` in `HC4.Polynomial.PrimitiveBinomialAffineMoment`
@@ -10256,8 +10258,10 @@ Distinct declaration spellings indexed: **11255**.
 - `sourceLeading_lineSchurFrame_kernel_regular` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_lineSchurFrame_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_lineSchurFrame_transverseDet_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_mixedGap_dvd_Cramer_square` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_mixedGap_endpoint_lineODE` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_mixedGap_prime_dvd_Cramer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_mixedGap_prime_pow_dvd_Cramer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_constantDet` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
