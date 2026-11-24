@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11210**.
+Distinct declaration spellings indexed: **11217**.
 
 ## Repeated declaration spellings
 
@@ -10580,10 +10580,17 @@ Distinct declaration spellings indexed: **11210**.
 - `stationaryAxisEval_monomial_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_quadratic_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_collision_forces_lowLayer_degree` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace_commonDerivativeDivisor_degree_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace_gradient_bezout` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_gradient_layer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_hessian_layer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_initialForm_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_lowLayers_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_quadraticGradient_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisTrace_quadratic_secant` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisTrace_rankOne_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryCarrierProfile` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryProfile`
 - `stationaryCarrierProfileFraction` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryRigidity`
