@@ -210,6 +210,119 @@ theorem reference_directional_eq_square_of_rankOne [CharZero K]
     exact MvPolynomial.C_eq_zero.mp ((mul_eq_zero.mp he).resolve_left hdet)
   exact ⟨c, hc, hsq⟩
 
+
+/-- A homogeneous polynomial whose partial derivatives are proportional
+to a fixed nonzero covector is a scalar power of its linear form.
+
+Induct on the degree, differentiating in a coordinate with nonzero
+covector entry. Commutation of partials retains the proportionality,
+and the homogeneous Euler identity reconstructs the original polynomial. -/
+theorem homogeneous_eq_linearForm_pow_of_proportional_partials [CharZero K]
+    (l : Fin 3 → K) (j : Fin 3) (hj : l j ≠ 0)
+    (n : ℕ) (P : MvPolynomial (Fin 3) K) (hP : P.IsHomogeneous n)
+    (hprop : ∀ i : Fin 3,
+      MvPolynomial.C (l j) * pderiv i P =
+        MvPolynomial.C (l i) * pderiv j P) :
+    ∃ c : K, P = MvPolynomial.C c * constantLinearForm l ^ n := by
+  classical
+  induction n generalizing P with
+  | zero =>
+    refine ⟨P.coeff 0, ?_⟩
+    have hz : P.totalDegree = 0 :=
+      (totalDegree_zero_iff_isHomogeneous (Fin 3)).mpr hP
+    simpa only [pow_zero, mul_one] using totalDegree_eq_zero_iff_eq_C.mp hz
+  | succ n ih =>
+    have hd : (pderiv j P).IsHomogeneous n := by
+      simpa using (hP.pderiv (i := j))
+    have hdp (i : Fin 3) :
+        MvPolynomial.C (l j) * pderiv i (pderiv j P) =
+          MvPolynomial.C (l i) * pderiv j (pderiv j P) := by
+      have h := congrArg (pderiv j) (hprop i)
+      simp only [pderiv_C_mul] at h
+      rw [HC4.Newton.pderiv_comm_backport j i] at h
+      exact h
+    obtain ⟨b, hb⟩ := ih (pderiv j P) hd hdp
+    let A : MvPolynomial (Fin 3) K := MvPolynomial.C (l j)
+    let L := constantLinearForm l
+    have heuler :
+        (∑ i : Fin 3, X i * pderiv i P) =
+          (↑(n + 1) : MvPolynomial (Fin 3) K) * P := by
+      simpa only [nsmul_eq_mul] using hP.sum_X_mul_pderiv
+    have hE : A * ((↑(n + 1) : MvPolynomial (Fin 3) K) * P) =
+        L * pderiv j P := by
+      dsimp only [L]
+      rw [← heuler, Finset.mul_sum, constantLinearForm, Finset.sum_mul]
+      apply Finset.sum_congr rfl
+      intro i _
+      calc
+        A * (X i * pderiv i P) = X i * (A * pderiv i P) := by ring
+        _ = _ := by rw [show A * pderiv i P =
+            MvPolynomial.C (l i) * pderiv j P from hprop i]; ring
+    let s : K := l j * (↑(n + 1) : K)
+    have hs : s ≠ 0 := mul_ne_zero hj (by exact_mod_cast Nat.succ_ne_zero n)
+    have hsC : (MvPolynomial.C s : MvPolynomial (Fin 3) K) =
+        A * (↑(n + 1) : MvPolynomial (Fin 3) K) := by
+      simp [s, A]
+    refine ⟨b / s, ?_⟩
+    apply mul_left_cancel₀ (MvPolynomial.C_ne_zero.mpr hs)
+    calc
+      MvPolynomial.C s * P =
+          A * ((↑(n + 1) : MvPolynomial (Fin 3) K) * P) := by rw [hsC, mul_assoc]
+      _ = L * pderiv j P := hE
+      _ = MvPolynomial.C b * L ^ (n + 1) := by
+        rw [hb, pow_succ]
+        change L * (MvPolynomial.C b * L ^ n) = _
+        ring
+      _ = MvPolynomial.C s * (MvPolynomial.C (b / s) * L ^ (n + 1)) := by
+        rw [← mul_assoc, ← map_mul, show s * (b / s) = b by
+          rw [mul_comm, div_mul_cancel₀ _ hs]]
+
+/-- The rank-one self-adjointness argument extracts a fixed power in
+every homogeneous degree, not just the square in degree three. -/
+theorem reference_directional_eq_power_of_rankOne [CharZero K]
+    (n : ℕ) (q : MvPolynomial (Fin 3) K) (hq : q.IsHomogeneous (n + 1))
+    (hdet : (hessian q).det ≠ 0)
+    (d l : Fin 3 → K) (hd : d ≠ 0) (hl : l ≠ 0)
+    (hs : let T := hessian q *
+        Matrix.vecMulVec (fun i => MvPolynomial.C (d i)) (fun i => MvPolynomial.C (l i))
+      ∀ i j, T i j = T j i) :
+    ∃ c : K, c ≠ 0 ∧ constantDirectional d q =
+      MvPolynomial.C c * constantLinearForm l ^ n := by
+  classical
+  let P := constantDirectional d q
+  obtain ⟨j, hj⟩ : ∃ j, l j ≠ 0 := by contrapose! hl; exact funext hl
+  have hdeg : P.IsHomogeneous n := by
+    apply IsHomogeneous.sum
+    intro i _
+    simpa using (hq.pderiv (i := i)).C_mul (d i)
+  have hh (i : Fin 3) :
+      MvPolynomial.C (l j) * pderiv i P =
+        MvPolynomial.C (l i) * pderiv j P := by
+    have h := hs i j
+    rw [Matrix.mul_vecMulVec] at h
+    simpa [Matrix.vecMulVec, P, pderiv_directional_eq_hessian_mulVec, mul_comm] using h
+  obtain ⟨c, hpow⟩ :=
+    homogeneous_eq_linearForm_pow_of_proportional_partials l j hj n P hdeg hh
+  have hc : c ≠ 0 := by
+    intro hc0
+    have hzero : P = 0 := by simp [hpow, hc0]
+    let M := hessian q
+    let D : Fin 3 → MvPolynomial (Fin 3) K := fun i => MvPolynomial.C (d i)
+    have hker : M *ᵥ D = 0 := by
+      funext i
+      change (hessian q *ᵥ D) i = 0
+      rw [← pderiv_directional_eq_hessian_mulVec, show constantDirectional d q = P from rfl,
+        hzero, map_zero]
+    have hh : M.det • D = 0 := by
+      rw [← Matrix.one_mulVec D, ← Matrix.smul_mulVec, ← Matrix.adjugate_mul,
+        ← Matrix.mulVec_mulVec, hker, Matrix.mulVec_zero]
+    apply hd
+    funext i
+    have he := congrFun hh i
+    change M.det * MvPolynomial.C (d i) = 0 at he
+    exact MvPolynomial.C_eq_zero.mp ((mul_eq_zero.mp he).resolve_left hdet)
+  exact ⟨c, hc, hpow⟩
+
 end SquareExtraction
 
 end
