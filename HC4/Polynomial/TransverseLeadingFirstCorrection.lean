@@ -3034,7 +3034,9 @@ private theorem sourceTime_degree_of_secondDerivative_le
   have h1 : ((k - 2 + 1 : ℕ) : R) ≠ 0 := by exact_mod_cast (by omega : k - 2 + 1 ≠ 0)
   have h2 : (k : R) ≠ 0 := by exact_mod_cast (by omega : k ≠ 0)
   have hc' : (P.coeff k * (k : R)) * ((k - 2 + 1 : ℕ) : R) = 0 := by
-    simpa only [Nat.cast_add, Nat.cast_one] using hc
+    have heR : ((k - 2 : ℕ) : R) + 1 + 1 = (k : R) := by
+      exact_mod_cast he
+    simpa only [Nat.cast_add, Nat.cast_one, heR] using hc
   exact (mul_eq_zero.mp ((mul_eq_zero.mp hc').resolve_right h1)).resolve_right h2
 
 /-- Actual second lower layer degree bound, not merely a bound on
