@@ -3361,5 +3361,211 @@ theorem transverseSchur_cleared_timeDegree_step [IsDomain R]
 end TimeDegreeInduction
 
 
+
+
+/-- The transported leading transverse Hessian has degree at most
+two, by multiplying the exact transport equation by the polynomial
+inverse pencil. No division by the reference determinant is used. -/
+theorem sourceNilpotent_leadingHessian_timeDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : StationarySource K)
+    (hgrad : ∀ i : Fin 3, linearLineEval a N (pderiv (.inr i) L) =
+      _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)))
+    (i j : Fin 3) :
+    (linearLineEval a N (hessian L (.inr i) (.inr j))).natDegree ≤ 2 := by
+  classical
+  let H := (hessian L).submatrix Sum.inr Sum.inr
+  let T := (linearLineEval a N).toRingHom.mapMatrix H
+  let M := (referenceSlice a).toRingHom.mapMatrix H
+  have h : T * sourceTimePencil N = M.map _root_.Polynomial.C :=
+    transverseHessian_transport_of_linear_gradient a N L hgrad
+  have he : T = M.map _root_.Polynomial.C * sourceTimePencilInv N := by
+    calc
+      T = T * (sourceTimePencil N * sourceTimePencilInv N) := by
+        rw [sourceTimePencil_right_inverse N hN, mul_one]
+      _ = (T * sourceTimePencil N) * sourceTimePencilInv N := (mul_assoc _ _ _).symm
+      _ = _ := by rw [h]
+  change (T i j).natDegree ≤ 2
+  rw [he, Matrix.mul_apply]
+  apply sourceTime_natDegree_sum_le
+  intro k _
+  change (_root_.Polynomial.C (M i k) * sourceTimePencilInv N k j).natDegree ≤ 2
+  exact (_root_.Polynomial.natDegree_C_mul_le _ _).trans
+    (sourceTimePencilInv_natDegree_le N k j)
+
+/-- All six transverse coefficients are entries of the actual evaluated
+source Hessian. Package their common bound for the induction. -/
+private theorem sourceLinear_frame_transverse_degree
+    (F : StationarySource K) (m j : ℕ) (hj : j ≤ m)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (d : ℕ)
+    (hd : ∀ i k : Fin 3, (linearLineEval a N
+      (hessian (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F)
+        (.inr i) (.inr k))).natDegree ≤ d) :
+    let B := MvPolynomial (Fin 3) K
+    let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+    let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+    let H := sourceLeading_lineSchurFrame F m z V
+    (H.d.coeff j).natDegree ≤ d ∧ (H.r.coeff j).natDegree ≤ d ∧
+    (H.s.coeff j).natDegree ≤ d ∧ (H.x.coeff j).natDegree ≤ d ∧
+    (H.y.coeff j).natDegree ≤ d ∧ (H.z.coeff j).natDegree ≤ d := by
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let Q := initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F
+  have he := sourceLeading_lineSchurFrame_coeff F m j hj z V
+  have h00 : H.d.coeff j = linearLineEval a N (hessian Q (.inr 0) (.inr 0)) :=
+    congrArg GeneralFourBlock.d he
+  have h01 : H.r.coeff j = linearLineEval a N (hessian Q (.inr 0) (.inr 1)) :=
+    congrArg GeneralFourBlock.r he
+  have h02 : H.s.coeff j = linearLineEval a N (hessian Q (.inr 0) (.inr 2)) :=
+    congrArg GeneralFourBlock.s he
+  have h11 : H.x.coeff j = linearLineEval a N (hessian Q (.inr 1) (.inr 1)) :=
+    congrArg GeneralFourBlock.x he
+  have h12 : H.y.coeff j = linearLineEval a N (hessian Q (.inr 1) (.inr 2)) :=
+    congrArg GeneralFourBlock.y he
+  have h22 : H.z.coeff j = linearLineEval a N (hessian Q (.inr 2) (.inr 2)) :=
+    congrArg GeneralFourBlock.z he
+  change (H.d.coeff j).natDegree ≤ d ∧ (H.r.coeff j).natDegree ≤ d ∧
+    (H.s.coeff j).natDegree ≤ d ∧ (H.x.coeff j).natDegree ≤ d ∧
+    (H.y.coeff j).natDegree ≤ d ∧ (H.z.coeff j).natDegree ≤ d
+  rw [h00, h01, h02, h11, h12, h22]
+  exact ⟨hd 0 0, hd 0 1, hd 0 2, hd 1 1, hd 1 2, hd 2 2⟩
+
+/-- Uniform degree control of every positive-order actual source layer
+in a regular nilpotent linear characteristic chart. The determinant
+clock and leading transport are the only source hypotheses used.
+The estimate is independent of the original longitudinal degree. -/
+theorem sourceNilpotent_allCorrections_timeDegree_le
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F))))
+    (j : ℕ) (hj : j ≤ m) (hjpos : 0 < j) :
+    (linearLineEval a N (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F)).natDegree
+      ≤ 9*j-8 := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  let Q := fun i : ℕ => initialForm transverseCubicWeight ((m : ℤ)-(i : ℤ)) F
+  let P := fun i : ℕ => linearLineEval a N (Q i)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let c := referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det
+  have hV : V (.inl ()) = 1 := rfl
+  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hg : ∀ i, lineEval z V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
+  have ht : ∀ i : Fin 3, linearLineEval a N (pderiv (.inr i) L) =
+      _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L)) := fun i => hgrad (.inr i)
+  obtain ⟨hb0, hp0, hq0, hregular⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg
+  have hclock (i : ℕ) (hi : i ≤ m) : H.determinantCore.coeff i = 0 := by
+    change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff i = 0
+    rw [sourceLeading_lineSchurFrame_det F m (by omega) hcap hdet,
+      _root_.Polynomial.coeff_monomial, if_neg (by omega : 4*m-6 ≠ i)]
+  obtain ⟨ha0, ha1⟩ := transverseSchur_longitudinal_zero_one H hb0 hp0 hq0
+    hregular (hclock 0 (by omega)) (hclock 1 (by omega))
+  have hconstant : (transverseSchurDet H).coeff 0 = _root_.Polynomial.C c := by
+    change (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 = _
+    rw [sourceLeading_lineSchurFrame_transverseDet_zero]
+    change (linearLineEval a N).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = _
+    rw [RingHom.map_det]
+    exact (sourceLinear_leadingAdjugate_transport a N L hreg ht).1
+  have hdiff (i : ℕ) (hi : i ≤ m) :
+      H.a.coeff i = (P i).derivative.derivative ∧
+      H.b.coeff i = (linearLineEval a N (pderiv (.inr 0) (Q i))).derivative ∧
+      H.p.coeff i = (linearLineEval a N (pderiv (.inr 1) (Q i))).derivative ∧
+      H.q.coeff i = (linearLineEval a N (pderiv (.inr 2) (Q i))).derivative :=
+    sourceLeading_lineSchurFrame_differential_coeff F m i hi z V hV
+  have hbase : (P 1).natDegree ≤ 1 := by
+    have he : P 1 = _root_.Polynomial.C ((P 1).coeff 0) +
+        _root_.Polynomial.C ((P 1).coeff 1) * _root_.Polynomial.X :=
+      sourceNilpotent_firstCorrection_affine F (m : ℤ) (by omega) hcap hdet a N hreg hgrad
+    calc
+      _ = (_root_.Polynomial.C ((P 1).coeff 0) +
+          _root_.Polynomial.C ((P 1).coeff 1) * _root_.Polynomial.X).natDegree :=
+        congrArg _root_.Polynomial.natDegree he
+      _ ≤ 1 := _root_.Polynomial.natDegree_add_le_of_degree_le (by simp)
+        ((_root_.Polynomial.natDegree_C_mul_le _ _).trans (by simp))
+  have hlead (i k : Fin 3) :
+      (linearLineEval a N (hessian (Q 0) (.inr i) (.inr k))).natDegree ≤ 2 := by
+    simpa only [Q, Nat.cast_zero, sub_zero] using
+      sourceNilpotent_leadingHessian_timeDegree_le a N hN L ht i k
+  have hmain (n : ℕ) : n ≤ m → 0 < n → (P n).natDegree ≤ 9*n-8 := by
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+      intro hn hpos
+      by_cases hone : n = 1
+      · subst n
+        exact hbase
+      have htwo : 2 ≤ n := by omega
+      have hprev (i : ℕ) (hi : i < n) (hip : 0 < i) :
+          (P i).natDegree ≤ 9*i-8 := ih i hi (by omega) hip
+      have ha (i : ℕ) (hi : i < n) (hip : 2 ≤ i) :
+          (H.a.coeff i).natDegree ≤ 9*i-10 := by
+        rw [(hdiff i (by omega)).1]
+        have h1 := _root_.Polynomial.natDegree_derivative_le (P i)
+        have h2 := _root_.Polynomial.natDegree_derivative_le (P i).derivative
+        have h3 := hprev i hi (by omega)
+        omega
+      have hmixed (i : ℕ) (hi : i < n) (hip : 0 < i) (k : Fin 3) :
+          (linearLineEval a N (pderiv (.inr k) (Q i))).derivative.natDegree ≤ 9*i-7 := by
+        have he := sourceNilpotent_mixed_timeDegree_le a N hN (Q i) k
+        change _ ≤ (P i).natDegree + 1 at he
+        have hp := hprev i hi hip
+        omega
+      have htrans (i : ℕ) (hi : i < n) :
+          (H.d.coeff i).natDegree ≤ timeTransverseProfile i ∧
+          (H.r.coeff i).natDegree ≤ timeTransverseProfile i ∧
+          (H.s.coeff i).natDegree ≤ timeTransverseProfile i ∧
+          (H.x.coeff i).natDegree ≤ timeTransverseProfile i ∧
+          (H.y.coeff i).natDegree ≤ timeTransverseProfile i ∧
+          (H.z.coeff i).natDegree ≤ timeTransverseProfile i := by
+        apply sourceLinear_frame_transverse_degree F m i (by omega) a N
+        intro k l
+        change (linearLineEval a N (hessian (Q i) (.inr k) (.inr l))).natDegree ≤ _
+        by_cases hi0 : i = 0
+        · subst i
+          simpa only [timeTransverseProfile, if_pos rfl] using hlead k l
+        · have he := sourceNilpotent_transverseHessian_timeDegree_le a N hN (Q i) k l
+          change _ ≤ (P i).natDegree + 4 at he
+          have hp := hprev i hi (by omega)
+          simp only [timeTransverseProfile, if_neg hi0]
+          omega
+      have hb (i : ℕ) (hi : i < n) (hip : 0 < i) :
+          (H.b.coeff i).natDegree ≤ 9*i-7 := by
+        rw [(hdiff i (by omega)).2.1]
+        exact hmixed i hi hip 0
+      have hp (i : ℕ) (hi : i < n) (hip : 0 < i) :
+          (H.p.coeff i).natDegree ≤ 9*i-7 := by
+        rw [(hdiff i (by omega)).2.2.1]
+        exact hmixed i hi hip 1
+      have hq (i : ℕ) (hi : i < n) (hip : 0 < i) :
+          (H.q.coeff i).natDegree ≤ 9*i-7 := by
+        rw [(hdiff i (by omega)).2.2.2]
+        exact hmixed i hi hip 2
+      have hd := transverseSchur_cleared_timeDegree_step H n htwo c hreg hconstant
+        (hclock n hn) ha0 ha1 hb0 hp0 hq0 ha hb hp hq
+        (fun i hi => (htrans i hi).1)
+        (fun i hi => (htrans i hi).2.1)
+        (fun i hi => (htrans i hi).2.2.1)
+        (fun i hi => (htrans i hi).2.2.2.1)
+        (fun i hi => (htrans i hi).2.2.2.2.1)
+        (fun i hi => (htrans i hi).2.2.2.2.2)
+      rw [(hdiff n hn).1] at hd
+      have hlast := sourceTime_degree_of_secondDerivative_le (P n) (9*n-10) hd
+      omega
+  exact hmain j hj hjpos
+
+
 end
 end HC4.Polynomial.RankThreeCubic
