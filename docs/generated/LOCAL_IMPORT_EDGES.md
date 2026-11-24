@@ -4902,6 +4902,7 @@ human architecture guide.
   - `HC4.Valuation.QuadraticTransverseCapSourceHessianFlat`
   - `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalDrift`
   - `HC4.Valuation.QuadraticTransverseCapSourceMarkedCollision`
+  - `HC4.Valuation.QuadraticTransverseCapSourceMarkedEndpoint`
   - `HC4.Valuation.QuadraticTransverseCapSourceOriginPivot`
   - `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
   - `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
