@@ -1783,5 +1783,188 @@ theorem sourceNilpotent_transverseGradient_ode
   exact sourceNilpotent_gradient_ode_algebra A H G Y W D t
     (n : StationarySource K) hcomm hE hW hk
 
+
+
+/-! ## Uniform longitudinal rigidity in the pole-free branch
+
+Use an abstract derivation on an abstract commutative ring for the
+nilpotent ODE calculation. Only the final application knows that the
+derivation is the longitudinal partial derivative of the source.
+-/
+
+private def nilpotentVectorDeriv {k R : Type*} [CommRing k] [CommRing R]
+    [Algebra k R] (D : Derivation k R R) (v : Fin 3 → R) : Fin 3 → R :=
+  fun i => D (v i)
+
+private theorem nilpotentVectorDeriv_sub {k R : Type*} [CommRing k] [CommRing R]
+    [Algebra k R] (D : Derivation k R R) (u v : Fin 3 → R) :
+    nilpotentVectorDeriv D (u-v) =
+      nilpotentVectorDeriv D u - nilpotentVectorDeriv D v := by
+  funext i
+  simp [nilpotentVectorDeriv, Pi.sub_apply]
+
+private theorem nilpotentVectorDeriv_smul {k R : Type*} [CommRing k] [CommRing R]
+    [Algebra k R] (D : Derivation k R R) (r : R) (v : Fin 3 → R) :
+    nilpotentVectorDeriv D (r • v) =
+      D r • v + r • nilpotentVectorDeriv D v := by
+  funext i
+  simp only [nilpotentVectorDeriv, Pi.smul_apply, Pi.add_apply, smul_eq_mul,
+    Derivation.leibniz]
+  ring
+
+private theorem nilpotentVectorDeriv_mulVec {k R : Type*} [CommRing k] [CommRing R]
+    [Algebra k R] (D : Derivation k R R)
+    (A : Matrix (Fin 3) (Fin 3) R) (hA : ∀ i j, D (A i j) = 0)
+    (v : Fin 3 → R) :
+    nilpotentVectorDeriv D (A *ᵥ v) = A *ᵥ nilpotentVectorDeriv D v := by
+  classical
+  funext i
+  simp only [nilpotentVectorDeriv, Matrix.mulVec, dotProduct, map_sum,
+    Derivation.leibniz, smul_eq_mul, hA, mul_zero, add_zero]
+
+/-- Differentiating a nilpotent ODE twice and three times. This is
+independent of the number of polynomial source variables. -/
+private theorem nilpotentVectorDeriv_second_third
+    {k R : Type*} [CommRing k] [CommRing R] [Algebra k R]
+    (D : Derivation k R R) (A : Matrix (Fin 3) (Fin 3) R)
+    (hA : ∀ i j, D (A i j) = 0) (h3 : A ^ 3 = 0)
+    (c t : R) (hc : D c = 0) (ht : D t = 1) (G : Fin 3 → R)
+    (hode : nilpotentVectorDeriv D G =
+      -c • (A *ᵥ G - t • (A ^ 2 *ᵥ G))) :
+    nilpotentVectorDeriv D (nilpotentVectorDeriv D G) =
+      (c * (c+1)) • (A ^ 2 *ᵥ G) ∧
+    nilpotentVectorDeriv D (nilpotentVectorDeriv D (nilpotentVectorDeriv D G)) = 0 := by
+  classical
+  let V := A *ᵥ G
+  let W := A ^ 2 *ᵥ G
+  have hA2 (i j : Fin 3) : D ((A ^ 2) i j) = 0 := by
+    simp only [pow_two, Matrix.mul_apply, map_sum, Derivation.leibniz,
+      hA, smul_zero, add_zero, Finset.sum_const_zero]
+  have hleft : A * A ^ 2 = 0 := by rw [← pow_succ', h3]
+  have hright : A ^ 2 * A = 0 := by rw [← pow_succ, h3]
+  have hfour : A ^ 2 * A ^ 2 = 0 := by
+    calc
+      _ = (A ^ 2 * A) * A := by
+        calc
+          A ^ 2 * A ^ 2 = A ^ 2 * (A * A) := by rw [← pow_two]
+          _ = _ := (Matrix.mul_assoc _ _ _).symm
+      _ = 0 := by rw [hright, zero_mul]
+  have hAV : A *ᵥ V = W := by
+    dsimp only [V, W]
+    rw [Matrix.mulVec_mulVec, pow_two]
+  have hAW : A *ᵥ W = 0 := by
+    dsimp only [W]
+    rw [Matrix.mulVec_mulVec, hleft, Matrix.zero_mulVec]
+  have hA2V : A ^ 2 *ᵥ V = 0 := by
+    dsimp only [V]
+    rw [Matrix.mulVec_mulVec, hright, Matrix.zero_mulVec]
+  have hA2W : A ^ 2 *ᵥ W = 0 := by
+    dsimp only [W]
+    rw [Matrix.mulVec_mulVec, hfour, Matrix.zero_mulVec]
+  change nilpotentVectorDeriv D G = -c • (V - t • W) at hode
+  have hV : nilpotentVectorDeriv D V = -c • W := by
+    calc
+      _ = A *ᵥ nilpotentVectorDeriv D G :=
+        nilpotentVectorDeriv_mulVec D A hA G
+      _ = _ := by
+        rw [hode, Matrix.mulVec_smul, Matrix.mulVec_sub, Matrix.mulVec_smul,
+          hAV, hAW, smul_zero, sub_zero]
+  have hW : nilpotentVectorDeriv D W = 0 := by
+    calc
+      _ = A ^ 2 *ᵥ nilpotentVectorDeriv D G :=
+        nilpotentVectorDeriv_mulVec D (A ^ 2) hA2 G
+      _ = _ := by
+        rw [hode, Matrix.mulVec_smul, Matrix.mulVec_sub, Matrix.mulVec_smul,
+          hA2V, hA2W, smul_zero, sub_zero, smul_zero]
+  have hsecond : nilpotentVectorDeriv D (nilpotentVectorDeriv D G) =
+      (c * (c+1)) • W := by
+    rw [hode, nilpotentVectorDeriv_smul, nilpotentVectorDeriv_sub,
+      nilpotentVectorDeriv_smul, hV, hW, ht, map_neg, hc]
+    funext i
+    simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, Pi.zero_apply, smul_eq_mul]
+    ring
+  refine ⟨hsecond, ?_⟩
+  rw [hsecond, nilpotentVectorDeriv_smul, hW]
+  have hcc : D (c * (c+1)) = 0 := by
+    simp [Derivation.leibniz, hc]
+  rw [hcc, zero_smul, smul_zero, add_zero]
+
+/-- The actual transverse gradient is longitudinally quadratic, and
+its second derivative is the explicit last nilpotent power. -/
+theorem sourceNilpotent_transverseGradient_second_third
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : StationarySource K) (n : ℕ)
+    (hL : L.IsWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 1))
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L))) :
+    let A : Matrix (Fin 3) (Fin 3) (StationarySource K) := N.transpose.map MvPolynomial.C
+    let G : Fin 3 → StationarySource K := fun i => pderiv (.inr i) L
+    let c : StationarySource K := n
+    (fun i : Fin 3 => pderiv (Sum.inl ()) (pderiv (Sum.inl ()) (G i))) =
+      (c * (c+1)) • (A ^ 2 *ᵥ G) ∧
+    ∀ i : Fin 3, pderiv (.inl ()) (pderiv (.inl ()) (pderiv (.inl ()) (G i))) = 0 := by
+  classical
+  let A : Matrix (Fin 3) (Fin 3) (StationarySource K) := N.transpose.map MvPolynomial.C
+  let G : Fin 3 → StationarySource K := fun i => pderiv (.inr i) L
+  let c : StationarySource K := n
+  let t : StationarySource K := X (.inl ()) - MvPolynomial.C a
+  let D : Derivation K (StationarySource K) (StationarySource K) := pderiv (.inl ())
+  have hA (i j : Fin 3) : D (A i j) = 0 := by
+    simp [D, A, Matrix.map_apply, pderiv_C]
+  have h3N : N.transpose ^ 3 = 0 := by rw [← Matrix.transpose_pow, hN, Matrix.transpose_zero]
+  have h3 : A ^ 3 = 0 := by
+    have h : (N.transpose ^ 3).map (MvPolynomial.C : K →+* StationarySource K) =
+        (0 : Matrix (Fin 3) (Fin 3) (StationarySource K)) := by
+      rw [h3N]
+      ext i j
+      simp
+    rw [show (3 : ℕ) = 2+1 by rfl, pow_succ, pow_two, Matrix.map_mul,
+      Matrix.map_mul] at h
+    rw [show (3 : ℕ) = 2+1 by rfl, pow_succ, pow_two]
+    exact h
+  have hc : D c = 0 := D.map_natCast n
+  have ht : D t = 1 := by simp [D, t, pderiv_X]
+  have hAT : (N.map (MvPolynomial.C : K →+* StationarySource K)).transpose = A := by
+    ext i j
+    rfl
+  have hode := sourceNilpotent_transverseGradient_ode a N hN L n hL hgrad
+  dsimp only at hode
+  rw [hAT] at hode
+  have hode' : nilpotentVectorDeriv D G = -c • (A *ᵥ G - t • (A ^ 2 *ᵥ G)) := hode
+  obtain ⟨hsecond, hthird⟩ :=
+    nilpotentVectorDeriv_second_third D A hA h3 c t hc ht G hode'
+  refine ⟨hsecond, ?_⟩
+  intro i
+  exact congrFun hthird i
+
+/-- Uniform longitudinal degree restriction on the original
+transverse-homogeneous leading layer. No lower layer is changed. -/
+theorem sourceNilpotent_longitudinal_third_eq_zero
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (L : StationarySource K) (n : ℕ)
+    (hL : L.IsWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 1))
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv i L))) :
+    pderiv (.inl ()) (pderiv (.inl ()) (pderiv (.inl ()) L)) = 0 := by
+  classical
+  let P := pderiv (.inl ()) (pderiv (.inl ()) (pderiv (.inl ()) L))
+  have h := (sourceNilpotent_transverseGradient_second_third a N hN L n hL hgrad).2
+  have hz (i : Fin 3) : pderiv (.inr i) P = 0 := by
+    dsimp only [P]
+    simp only [HC4.Newton.pderiv_comm_backport (Sum.inr i) (Sum.inl ())]
+    exact h i
+  have hp := pderiv_isWeightedHomogeneous
+    (pderiv_isWeightedHomogeneous
+      (pderiv_isWeightedHomogeneous hL (Sum.inl ())) (Sum.inl ())) (Sum.inl ())
+  have hp' : P.IsWeightedHomogeneous transverseCubicWeight ((n+1 : ℕ) : ℤ) := by
+    simpa [P, transverseCubicWeight] using hp
+  have he := sourceTransverseEuler_of_weight P (n+1) hp'
+  simp only [hz, mul_zero, Finset.sum_const_zero] at he
+  have hn : ((n+1 : ℕ) : StationarySource K) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
+  exact (mul_eq_zero.mp he.symm).resolve_left hn
+
+
 end
 end HC4.Polynomial.RankThreeCubic
