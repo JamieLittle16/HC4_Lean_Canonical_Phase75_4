@@ -5530,5 +5530,198 @@ theorem sourceCubic_commonTransverseKernel_impossible
     (q (MvPolynomial.C δ)) hδ hclock
 
 
+
+
+/-! ## Assemble the actual simple mixed pole
+
+The preceding squared-numerator bounds are sufficient to construct a
+single cleared mixed solution in either cubic multiplicity pattern.
+There is no choice of a rational solution independent of the source.
+-/
+
+section MixedPoleAssembly
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+
+/-- If the cubic determinant divides a numerator square, a double
+linear factor and a distinct prime, or an exact triple prime factor,
+leave at most one copy of the repeated prime in the denominator. -/
+theorem cubicDet_complement_dvd_of_dvd_square
+    (D p : R) (hp : Prime p)
+    (hfactor : (∃ r : R, Prime r ∧ ¬ r ∣ p ∧ D = p^2*r) ∨
+      (∃ c : R, IsUnit c ∧ D = p^3*c)) :
+    ∃ e : R, D = p*e ∧ ∀ s : R, D ∣ s^2 → e ∣ s := by
+  rcases hfactor with ⟨r, hr, hdistinct, hD⟩ | ⟨c, hc, hD⟩
+  · refine ⟨p*r, ?_, ?_⟩
+    · rw [hD]
+      ring
+    · intro s hs
+      have hpD : p ∣ D := ⟨p*r, by rw [hD]; ring⟩
+      have hrD : r ∣ D := ⟨p^2, by rw [hD]; ring⟩
+      obtain ⟨u, hu⟩ := hp.dvd_of_dvd_pow (n := 2) (dvd_trans hpD hs)
+      have hrs := hr.dvd_of_dvd_pow (n := 2) (dvd_trans hrD hs)
+      rw [hu] at hrs
+      obtain ⟨v, hv⟩ := (hr.dvd_mul.mp hrs).resolve_left hdistinct
+      exact ⟨v, by rw [hu, hv]; ring⟩
+  · refine ⟨p^2*c, ?_, ?_⟩
+    · rw [hD]
+      ring
+    · intro s hs
+      have hpD : p^3 ∣ D := ⟨c,hD⟩
+      have hs2 : p^2 ∣ s :=
+        prime_pow_succ_dvd_of_odd_pow_dvd_square p hp 1 s (dvd_trans hpD hs)
+      obtain ⟨u, hu⟩ := hs2
+      obtain ⟨a, ha⟩ := hc
+      refine ⟨(↑a⁻¹ : R)*u, ?_⟩
+      rw [hu, ← ha]
+      calc
+        p^2*u = p^2*(1:R)*u := by ring
+        _ = p^2*((a:R)*(↑a⁻¹:R))*u := by simp
+        _ = _ := by ring
+
+/-- A cancelled Cramer numerator constructs an honest cleared
+solution. The complementary factor is cancelled in the original
+matrix equation, not in a selected component. -/
+theorem exists_cleared_mixed_solution_of_cancelled_Cramer
+    (T : Matrix (Fin 3) (Fin 3) R) (b : Fin 3 → R)
+    (p e : R) (hdet : T.det = p*e) (hreg : T.det ≠ 0)
+    (hdiv : ∀ i : Fin 3, e ∣ (T.adjugate *ᵥ b) i) :
+    ∃ v : Fin 3 → R, T *ᵥ v = p • b := by
+  classical
+  choose v hv using hdiv
+  have he : e ≠ 0 := by
+    intro hz
+    exact hreg (by rw [hdet,hz,mul_zero])
+  have hv' : T.adjugate *ᵥ b = e • v := funext hv
+  have h := calc
+    T *ᵥ (e • v) = T *ᵥ (T.adjugate *ᵥ b) := by rw [← hv']
+    _ = T.det • b := by
+      rw [Matrix.mulVec_mulVec, Matrix.mul_adjugate, Matrix.smul_mulVec, Matrix.one_mulVec]
+    _ = (p*e) • b := by rw [hdet]
+  funext i
+  rw [Matrix.mulVec_smul] at h
+  have hi := congrFun h i
+  change e * (T *ᵥ v) i = (p*e)*b i at hi
+  change (T *ᵥ v) i = p*b i
+  apply mul_left_cancel₀ he
+  calc
+    e * (T *ᵥ v) i = (p*e)*b i := hi
+    _ = _ := by ring
+
+end MixedPoleAssembly
+
+/-- Both cubic multiplicity patterns give a single cleared mixed
+solution on the actual characteristic line, and its numerator
+obeys the actual third-order transverse repair constraint.
+
+Primality and the exact determinant factorization refer to the
+line-time coefficient ring. No claim of a genuine pole is needed:
+if the resulting numerator is divisible by p, the mixed solution
+is polynomial instead. -/
+theorem sourceCubic_exists_cleared_simpleMixedPole
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K)
+    (hcap : IsWeightLE transverseCubicWeight 3 F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight 3 F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight 3 F)) =
+      _root_.Polynomial.C
+        (MvPolynomial.aeval z (pderiv i (initialForm transverseCubicWeight 3 F))))
+    (p : _root_.Polynomial E) (hp : Prime p)
+    (hfactor : let D := (transverseSchurDet (sourceLeading_lineSchurFrame F 3 z V)).coeff 0;
+      (∃ r : _root_.Polynomial E, Prime r ∧ ¬ r ∣ p ∧ D = p^2*r) ∨
+      (∃ c : _root_.Polynomial E, IsUnit c ∧ D = p^3*c)) :
+    let H := sourceLeading_lineSchurFrame F 3 z V
+    let T := (lineEval z V).toRingHom.mapMatrix
+      ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr)
+    let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1]
+    (∃ w : Fin 3 → _root_.Polynomial E, T *ᵥ w = b) ∨
+    (∃ v : Fin 3 → _root_.Polynomial E, T *ᵥ v = p • b ∧
+      (∃ i : Fin 3, ¬ p ∣ v i) ∧
+      p ∣ v 0*v 0*H.d.coeff 1 + v 1*v 1*H.x.coeff 1 + v 2*v 2*H.z.coeff 1 +
+        2*v 0*v 1*H.r.coeff 1 + 2*v 0*v 2*H.s.coeff 1 + 2*v 1*v 2*H.y.coeff 1) := by
+  classical
+  let H := sourceLeading_lineSchurFrame F 3 z V
+  let L := initialForm transverseCubicWeight 3 F
+  let T := (lineEval z V).toRingHom.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr)
+  let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1]
+  let D := (transverseSchurDet H).coeff 0
+  obtain ⟨hb0,hp0,hq0,hreg⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F 3 z V hV hz hgrad
+  have hbg (i : ℕ) (hi : i < 1) : H.b.coeff i = 0 := by
+    have he : i = 0 := by omega
+    subst i
+    exact hb0
+  have hpg (i : ℕ) (hi : i < 1) : H.p.coeff i = 0 := by
+    have he : i = 0 := by omega
+    subst i
+    exact hp0
+  have hqg (i : ℕ) (hi : i < 1) : H.q.coeff i = 0 := by
+    have he : i = 0 := by omega
+    subst i
+    exact hq0
+  have hD : D = T.det := by
+    change (transverseSchurDet (sourceLeading_lineSchurFrame F 3 z V)).coeff 0 = _
+    rw [sourceLeading_lineSchurFrame_transverseDet_zero]
+    change (lineEval z V).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = _
+    rw [RingHom.map_det]
+  obtain ⟨e,he,hcancel⟩ := cubicDet_complement_dvd_of_dvd_square D p hp hfactor
+  have hdiv (i : Fin 3) : e ∣ (T.adjugate *ᵥ b) i :=
+    hcancel _ (sourceLeading_mixedGap_dvd_Cramer_square F 3 1 (by decide)
+      (by decide) (by decide) hcap hdet z V hV hreg hbg hpg hqg D dvd_rfl i)
+  obtain ⟨v,hv⟩ := exists_cleared_mixed_solution_of_cancelled_Cramer T b p e
+    (hD.symm.trans he) (by rw [← hD]; exact hreg) hdiv
+  change (∃ w : Fin 3 → _root_.Polynomial E, T *ᵥ w = b) ∨ _
+  by_cases hall : ∀ i : Fin 3, p ∣ v i
+  · choose w hw using hall
+    have heq : v = p • w := funext hw
+    rw [heq, Matrix.mulVec_smul] at hv
+    refine Or.inl ⟨w, ?_⟩
+    funext i
+    have hi := congrFun hv i
+    exact mul_left_cancel₀ hp.ne_zero hi
+  · have hres : ∃ i : Fin 3, ¬ p ∣ v i := by
+      push_neg at hall
+      exact hall
+    have hcoeff := sourceLeading_lineSchurFrame_coeff F 3 0 (by decide) z V
+    simp only [Nat.cast_zero, sub_zero] at hcoeff
+    have hd : H.d.coeff 0 = T 0 0 := congrArg GeneralFourBlock.d hcoeff
+    have hr : H.r.coeff 0 = T 0 1 := congrArg GeneralFourBlock.r hcoeff
+    have hs : H.s.coeff 0 = T 0 2 := congrArg GeneralFourBlock.s hcoeff
+    have hx : H.x.coeff 0 = T 1 1 := congrArg GeneralFourBlock.x hcoeff
+    have hy : H.y.coeff 0 = T 1 2 := congrArg GeneralFourBlock.y hcoeff
+    have hzz : H.z.coeff 0 = T 2 2 := congrArg GeneralFourBlock.z hcoeff
+    have hsym (i j : Fin 3) : T i j = T j i := by
+      change lineEval z V (pderiv (.inr j) (pderiv (.inr i) L)) =
+        lineEval z V (pderiv (.inr i) (pderiv (.inr j) L))
+      rw [HC4.Newton.pderiv_comm_backport]
+    have hu : v 0*H.d.coeff 0 + v 1*H.r.coeff 0 + v 2*H.s.coeff 0 =
+        p*H.b.coeff 1 := by
+      have hh := congrFun hv (0 : Fin 3)
+      change (∑ j : Fin 3, T 0 j*v j) = p*H.b.coeff 1 at hh
+      rw [Fin.sum_univ_three] at hh
+      rw [hd,hr,hs]
+      linear_combination hh
+    have hv1 : v 0*H.r.coeff 0 + v 1*H.x.coeff 0 + v 2*H.y.coeff 0 =
+        p*H.p.coeff 1 := by
+      have hh := congrFun hv (1 : Fin 3)
+      change (∑ j : Fin 3, T 1 j*v j) = p*H.p.coeff 1 at hh
+      rw [Fin.sum_univ_three, hsym 1 0] at hh
+      rw [hr,hx,hy]
+      linear_combination hh
+    have hw1 : v 0*H.s.coeff 0 + v 1*H.y.coeff 0 + v 2*H.z.coeff 0 =
+        p*H.q.coeff 1 := by
+      have hh := congrFun hv (2 : Fin 3)
+      change (∑ j : Fin 3, T 2 j*v j) = p*H.q.coeff 1 at hh
+      rw [Fin.sum_univ_three, hsym 2 0, hsym 2 1] at hh
+      rw [hs,hy,hzz]
+      linear_combination hh
+    exact Or.inr ⟨v,hv,hres,sourceLeading_clearedMixedPole_repair_dvd
+      F 3 (by decide) hcap hdet z V hV hz hgrad p (v 0) (v 1) (v 2) hu hv1 hw1⟩
+
+
 end
 end HC4.Polynomial.RankThreeCubic
