@@ -238,14 +238,15 @@ theorem sourceLeading_firstCorrection_isotropic_along_line
     funext i
     have hd := transverse_lineEval_derivative z V (pderiv i L)
     rw [hgrad i, _root_.Polynomial.derivative_C] at hd
-    change (∑ j, φ (pderiv i (pderiv j L)) * W j) = 0
+    simp only [Matrix.mulVec, dotProduct, Pi.zero_apply]
+    change (∑ j, φ (pderiv j (pderiv i L)) * W j) = 0
     calc
       _ = ∑ j, _root_.Polynomial.C (V j) * lineEval z V (pderiv j (pderiv i L)) := by
         apply Finset.sum_congr rfl
         intro j _
-        change φ (pderiv i (pderiv j L)) * _root_.Polynomial.C (V j) =
+        change φ (pderiv j (pderiv i L)) * _root_.Polynomial.C (V j) =
           _root_.Polynomial.C (V j) * φ (pderiv j (pderiv i L))
-        rw [HC4.Newton.pderiv_comm_backport i j L, mul_comm]
+        exact mul_comm _ _
       _ = 0 := hd.symm
   have htrans : (A.submatrix Sum.inr Sum.inr).det ≠ 0 := by
     change (φ.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr)).det ≠ 0
@@ -312,9 +313,8 @@ theorem sourceLeading_firstCorrection_affine_along_line
         intro j _
         change _root_.Polynomial.C (V i) *
           (_root_.Polynomial.C (V j) * lineEval z V (pderiv j (pderiv i Q))) =
-          _root_.Polynomial.C (V i) * lineEval z V (pderiv i (pderiv j Q)) *
+          _root_.Polynomial.C (V i) * lineEval z V (pderiv j (pderiv i Q)) *
             _root_.Polynomial.C (V j)
-        rw [HC4.Newton.pderiv_comm_backport j i Q]
         ring
       _ = 0 := hi
   have hzero (n : ℕ) : P.coeff (n + 2) = 0 := by
@@ -323,8 +323,12 @@ theorem sourceLeading_firstCorrection_affine_along_line
     have h1 : ((n + 1 : ℕ) : E) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
     have h2 : ((n + 1 + 1 : ℕ) : E) ≠ 0 := by
       exact_mod_cast Nat.succ_ne_zero (n + 1)
-    exact (mul_eq_zero.mp ((mul_eq_zero.mp h).resolve_right h1)).resolve_right h2
-  change P = _
+    have hh : (P.coeff (n + 2) * ((n + 1 + 1 : ℕ) : E)) *
+        ((n + 1 : ℕ) : E) = 0 := by
+      simpa only [Nat.cast_add, Nat.cast_one] using h
+    exact (mul_eq_zero.mp ((mul_eq_zero.mp hh).resolve_right h1)).resolve_right h2
+  change P = _root_.Polynomial.C (P.coeff 0) +
+    _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X
   ext n
   cases n with
   | zero => simp
