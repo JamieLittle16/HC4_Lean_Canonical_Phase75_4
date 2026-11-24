@@ -6044,6 +6044,7 @@ private theorem sourceFixedDirectionalSquare_lineEval
       _root_.Polynomial.C (MvPolynomial.C (d i)) := by
     simp [linearLineEval,lineEval]
   simp only [hC, RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.submatrix_apply]
+  rfl
 
 private theorem sourceCubic_quadratic_directional_referenceDegree_zero
     (F : StationarySource K) (a : K) (N : Matrix (Fin 3) (Fin 3) K)
@@ -6070,7 +6071,8 @@ private theorem sourceCubic_quadratic_directional_referenceDegree_zero
     have hn := MvPolynomial.mem_support_iff.mp he
     rw [coeff_initialForm] at hn
     split_ifs at hn with hh
-    · simpa only [Nat.cast_zero,hh]
+    · rw [hh]
+      exact le_rfl
     · exact (hn rfl).elim
   have h' : ((((linearLineEval a N).toRingHom.mapMatrix
       ((hessian (initialForm transverseCubicWeight 2 F)).submatrix
@@ -6103,7 +6105,7 @@ private theorem sourceFixedDirectionalSquare_lowLayer_zero
       hessian (initialForm transverseCubicWeight m F) (.inr i) (.inr j) = 0 := by
     rw [hessian_initialForm_entry]
     apply source_negative_transverse_initialForm_zero
-    simp only [transverseCubicWeight]
+    change m - 1 - 1 < 0
     omega
   simp only [sourceFixedDirectionalSquare,hz,mul_zero,zero_mul,Finset.sum_const_zero]
 
@@ -6159,8 +6161,7 @@ theorem sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero
     (horth : ∑ i : Fin 3, l i * _root_.Polynomial.C (MvPolynomial.C (d i)) = 0)
     (hres : ∃ i : Fin 3, ¬ _root_.Polynomial.C p ∣ v i)
     (hfixed : let T : Matrix (Fin 3) (Fin 3) (LineTime K) :=
-        (linearLineEval a N).toRingHom.mapMatrix
-          ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+        (linearLineEval a N).toRingHom.mapMatrix ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
       T *ᵥ (fun i => _root_.Polynomial.C (MvPolynomial.C (d i))) = _root_.Polynomial.C p • l ∧
         ¬ _root_.Polynomial.C p ∣ T.adjugate k k)
     (hmixed : let z : Unit ⊕ Fin 3 → MvPolynomial (Fin 3) K :=
@@ -6169,8 +6170,7 @@ theorem sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero
         Sum.elim (fun _ => 1) (referenceLinearVector N);
       let H := sourceLeading_lineSchurFrame F 3 z V;
       let T : Matrix (Fin 3) (Fin 3) (LineTime K) :=
-        (linearLineEval a N).toRingHom.mapMatrix
-          ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
+        (linearLineEval a N).toRingHom.mapMatrix ((hessian (initialForm transverseCubicWeight 3 F)).submatrix Sum.inr Sum.inr);
       T *ᵥ v = _root_.Polynomial.C p •
         (![H.b.coeff 1,H.p.coeff 1,H.q.coeff 1] : Fin 3 → LineTime K)) :
     sourceFixedDirectionalSquare d F = 0 := by
