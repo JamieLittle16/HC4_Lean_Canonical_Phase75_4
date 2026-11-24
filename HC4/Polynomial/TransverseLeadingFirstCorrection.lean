@@ -239,12 +239,14 @@ theorem sourceLeading_firstCorrection_isotropic_along_line
     have hd := transverse_lineEval_derivative z V (pderiv i L)
     rw [hgrad i, _root_.Polynomial.derivative_C] at hd
     change (∑ j, φ (pderiv i (pderiv j L)) * W j) = 0
-    rw [← hd]
-    apply Finset.sum_congr rfl
-    intro j _
-    change φ (pderiv i (pderiv j L)) * _root_.Polynomial.C (V j) =
-      _root_.Polynomial.C (V j) * φ (pderiv j (pderiv i L))
-    rw [HC4.Newton.pderiv_comm_backport i j L, mul_comm]
+    calc
+      _ = ∑ j, _root_.Polynomial.C (V j) * lineEval z V (pderiv j (pderiv i L)) := by
+        apply Finset.sum_congr rfl
+        intro j _
+        change φ (pderiv i (pderiv j L)) * _root_.Polynomial.C (V j) =
+          _root_.Polynomial.C (V j) * φ (pderiv j (pderiv i L))
+        rw [HC4.Newton.pderiv_comm_backport i j L, mul_comm]
+      _ = 0 := hd.symm
   have htrans : (A.submatrix Sum.inr Sum.inr).det ≠ 0 := by
     change (φ.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr)).det ≠ 0
     rw [← RingHom.map_det]
@@ -323,10 +325,14 @@ theorem sourceLeading_firstCorrection_affine_along_line
       exact_mod_cast Nat.succ_ne_zero (n + 1)
     exact (mul_eq_zero.mp ((mul_eq_zero.mp h).resolve_right h1)).resolve_right h2
   change P = _
-  ext (_ | _ | n)
-  · simp
-  · simp
-  · simp [_root_.Polynomial.coeff_C, _root_.Polynomial.coeff_C_mul_X, hzero n]
+  ext n
+  cases n with
+  | zero => simp
+  | succ n =>
+    cases n with
+    | zero => simp
+    | succ n =>
+      simp [_root_.Polynomial.coeff_C, _root_.Polynomial.coeff_C_mul_X, hzero n]
 
 
 end
