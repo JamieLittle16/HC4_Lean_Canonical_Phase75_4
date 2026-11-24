@@ -248,5 +248,95 @@ theorem exists_linear_matrix_of_poleFree_fractionKernel
   intro i
   rw [← hW i, hN i]
 
+
+/-- Degree-independent Euler rigidity: if the transverse Hessian entries
+have homogeneous degree n and the right hand side degree n+1, every
+polynomial solution is homogeneous linear, provided the determinant
+is nonzero. No cubic hypothesis is used. -/
+theorem exists_linear_matrix_of_poleFree_homogeneousHessianEquation
+    (n : ℕ) (H : Matrix (Fin 3) (Fin 3) (B K))
+    (r W : Fin 3 → B K)
+    (hH : ∀ i j, (H i j).IsHomogeneous n)
+    (hr : ∀ i, (r i).IsHomogeneous (n + 1))
+    (hdet : H.det ≠ 0)
+    (heq : H *ᵥ W = r) :
+    ∃ N : Matrix (Fin 3) (Fin 3) K,
+      ∀ i, W i = ∑ j : Fin 3, MvPolynomial.C (N i j) * X j := by
+  classical
+  have hHE (i j : Fin 3) :
+      transverseEuler (H i j) = (n : B K) * H i j := by
+    simpa [transverseEuler, nsmul_eq_mul] using (hH i j).sum_X_mul_pderiv
+  have hRE (i : Fin 3) :
+      transverseEuler (r i) = ((n : B K) + 1) * r i := by
+    simpa [transverseEuler, nsmul_eq_mul, Nat.cast_add] using
+      (hr i).sum_X_mul_pderiv
+  have hi (i : Fin 3) : (∑ j : Fin 3, H i j * W j) = r i := by
+    simpa only [Matrix.mulVec, dotProduct] using congrFun heq i
+  have hE (i : Fin 3) :
+      (∑ j : Fin 3, H i j * transverseEuler (W j)) = r i := by
+    have h := congrArg transverseEuler (hi i)
+    rw [transverseEuler_sum] at h
+    simp_rw [transverseEuler_mul, hHE] at h
+    rw [Finset.sum_add_distrib, hRE i] at h
+    have hscale :
+        (∑ j : Fin 3, ((n : B K) * H i j) * W j) =
+          (n : B K) * r i := by
+      simp_rw [mul_assoc]
+      rw [← Finset.mul_sum, hi i]
+    rw [hscale] at h
+    linear_combination h
+  let U : Fin 3 → B K := fun j => transverseEuler (W j) - W j
+  have hker : H *ᵥ U = 0 := by
+    funext i
+    change (∑ j : Fin 3, H i j * U j) = 0
+    calc
+      (∑ j : Fin 3, H i j * U j) =
+          (∑ j : Fin 3, H i j * transverseEuler (W j)) -
+          ∑ j : Fin 3, H i j * W j := by
+            simp [U, mul_sub, Finset.sum_sub_distrib]
+      _ = 0 := by rw [hE i, hi i, sub_self]
+  have hscalar : H.det • U = 0 := by
+    rw [← Matrix.one_mulVec U, ← Matrix.smul_mulVec, ← Matrix.adjugate_mul,
+      ← Matrix.mulVec_mulVec, hker, Matrix.mulVec_zero]
+  have hEuler (i : Fin 3) : transverseEuler (W i) = W i := by
+    have hh := congrFun hscalar i
+    change H.det * (transverseEuler (W i) - W i) = 0 at hh
+    exact sub_eq_zero.mp ((mul_eq_zero.mp hh).resolve_left hdet)
+  let N : Matrix (Fin 3) (Fin 3) K :=
+    fun i j => coeff 0 (pderiv j (W i))
+  refine ⟨N, ?_⟩
+  intro i
+  exact linearForm_of_isHomogeneous_one (W i)
+    (isHomogeneous_one_of_transverseEuler_eq_self (W i) (hEuler i))
+
+/-- Descend a pole-free fraction-field solution of the homogeneous
+Hessian equation to a constant matrix velocity, for every degree. -/
+theorem exists_linear_matrix_of_poleFree_homogeneousFractionKernel
+    {F : Type*} [Field F] (g : B K →+* F) (hg : Function.Injective g)
+    (n : ℕ) (H : Matrix (Fin 3) (Fin 3) (B K)) (r : Fin 3 → B K)
+    (V : Fin 3 → F)
+    (hH : ∀ i j, (H i j).IsHomogeneous n)
+    (hr : ∀ i, (r i).IsHomogeneous (n + 1))
+    (hdet : H.det ≠ 0)
+    (hkernel : (H.map g) *ᵥ V = fun i => g (r i))
+    (hpoleFree : ∀ i, ∃ p : B K, g p = V i) :
+    ∃ N : Matrix (Fin 3) (Fin 3) K,
+      ∀ i, V i = g (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) := by
+  classical
+  choose W hW using hpoleFree
+  have hpoly : H *ᵥ W = r := by
+    funext i
+    apply hg
+    calc
+      g ((H *ᵥ W) i) = ((H.map g) *ᵥ V) i := by
+        simp [Matrix.mulVec, dotProduct, map_sum, map_mul, hW]
+      _ = g (r i) := congrFun hkernel i
+  obtain ⟨N, hN⟩ :=
+    exists_linear_matrix_of_poleFree_homogeneousHessianEquation
+      n H r W hH hr hdet hpoly
+  refine ⟨N, ?_⟩
+  intro i
+  rw [← hW i, hN i]
+
 end
 end HC4.Polynomial.RankThreeCubic
