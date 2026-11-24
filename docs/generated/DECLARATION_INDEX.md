@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11243**.
+Distinct declaration spellings indexed: **11246**.
 
 ## Repeated declaration spellings
 
@@ -5633,6 +5633,7 @@ Distinct declaration spellings indexed: **11243**.
 - `exists_rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `exists_rankThree_translated_pure_power` — `theorem` in `HC4.RationalRigidity.RankThreeTranslatedPurePower`
 - `exists_ratio_pivot` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopKernel`
+- `exists_reference_power_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `exists_regular_transverseGenericPoint` — `theorem` in `HC4.Polynomial.RankThreeCubicCharacteristics`
 - `exists_residueKernel_and_cofactor_of_squarefree_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleCofactor`
 - `exists_rightStaggeredBreakData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitStaggeredBreak`
@@ -9325,6 +9326,7 @@ Distinct declaration spellings indexed: **11243**.
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `referenceSlice_pderiv` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
+- `reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `reference_directional_eq_power_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
@@ -10832,6 +10834,7 @@ Distinct declaration spellings indexed: **11243**.
 - `symmetricThree_kernelLine_principalCofactor_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
 - `symmetricThree_kernel_adjugate_lowJet_normalized` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneAdjugateLowJetNormalization`
 - `symmetricThree_tangentKernel_full_or_tangentBlockZero` — `theorem` in `HC4.Polynomial.RankThreeCubicTangentKernelExtension`
+- `symmetric_det_square_dvd_of_isotropic_direction` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `symmetric_kernelLine_adjugateTrace_zero_implies_isotropic` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
 - `symmetric_mul_square` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `symmetric_rankOne_nonzero_has_principal_pivot` — `theorem` in `HC4.Polynomial.RankThreeCubicIntegrableRankOnePlaneObstruction`

@@ -5502,7 +5502,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.TransverseLeadingLinearClassification`, `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - External imports: `Mathlib.Tactic`
 - Imported by local modules: `HC4`, `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- Declarations: `theorem power_pullback_of_transport`, `theorem source_power_of_linear_characteristic`, `theorem powerExtraction_symmetric_mul_square`, `theorem powerExtraction_reference_hessian_eq_mapped_transverse`, `theorem exists_source_power_of_nonzero_linear_characteristic`, `theorem sourceLeading_fixedPower_of_nonzero_linear`
+- Declarations: `theorem power_pullback_of_transport`, `theorem source_power_of_linear_characteristic`, `theorem powerExtraction_symmetric_mul_square`, `theorem powerExtraction_reference_hessian_eq_mapped_transverse`, `theorem exists_reference_power_of_nonzero_linear_characteristic`, `theorem exists_source_power_of_nonzero_linear_characteristic`, `theorem sourceLeading_fixedPower_of_nonzero_linear`, `theorem symmetric_det_square_dvd_of_isotropic_direction`, `theorem reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic`
 
 ### `HC4.Polynomial.TransverseLeadingLinearClassification`
 
