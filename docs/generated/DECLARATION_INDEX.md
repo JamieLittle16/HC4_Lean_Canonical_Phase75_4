@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11246**.
+Distinct declaration spellings indexed: **11252**.
 
 ## Repeated declaration spellings
 
@@ -4849,6 +4849,7 @@ Distinct declaration spellings indexed: **11246**.
 - `constantKernel_or_joint_or_separated` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `constantKernel_or_reflectedInteraction` — `theorem` in `HC4.Newton.RankOneSingularSchurConstantKernel`
 - `constantLinearForm` — `def` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+- `constantLinearForm_homogeneous_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `constantPolynomialFamily` — `def` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `constantPolynomialFamily_exactGradientCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
 - `constantPolynomialFamily_hasHessianDefect_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamTransverseQuadraticPivot`
@@ -6661,6 +6662,7 @@ Distinct declaration spellings indexed: **11246**.
 - `homogeneousOne_polynomial_linearForm` — `theorem` in `HC4.Polynomial.RankThreeCubicFixedKernelPolynomialLift`
 - `homogeneous_axisRestriction_eq_monomial_degree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
 - `homogeneous_axis_eval_neg_eq_negOnePow_eval` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
+- `homogeneous_cubic_eq_linearSquare_mul_linear` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `homogeneous_eq_C_mul_gradientRatioLinearForm_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `homogeneous_eq_C_mul_topLinearForm_pow_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `homogeneous_eq_linearForm_pow_of_proportional_partials` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
@@ -6704,6 +6706,7 @@ Distinct declaration spellings indexed: **11246**.
 - `homogeneous_longitudinalCoefficient_eval_neg_one_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithHomogeneousCoefficientRigidity`
 - `homogeneous_longitudinal_contributor_eq_blocker` — `theorem` in `HC4.Newton.SmithFirstWallLongitudinal`
 - `homogeneous_negativeSmith_support_cases` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
+- `homogeneous_one_eq_constantLinearForm` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `homogeneous_positive_origin_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneMixedOriginSourceLayers`
 - `homogeneous_projectedSupport_lowNegativeFirst_forces_blocker` — `theorem` in `HC4.Newton.SmithRefinedFacePolynomial`
 - `homogeneous_projectedSupport_lowNegativeSecond_forces_blocker` — `theorem` in `HC4.Newton.SmithRefinedFacePolynomial`
@@ -9327,6 +9330,9 @@ Distinct declaration spellings indexed: **11246**.
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `referenceSlice_pderiv` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
+- `reference_cubic_det_linearSquare_mul_linear_of_nonzero_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
+- `reference_cubic_det_triple_or_distinct_linear_of_nonzero_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
+- `reference_cubic_hessian_det_homogeneous` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `reference_directional_eq_power_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
