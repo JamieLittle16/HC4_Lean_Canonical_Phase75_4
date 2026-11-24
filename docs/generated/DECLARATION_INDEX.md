@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11184**.
+Distinct declaration spellings indexed: **11187**.
 
 ## Repeated declaration spellings
 
@@ -10254,6 +10254,7 @@ Distinct declaration spellings indexed: **11184**.
 - `sourceLineIndex` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLine_secondDerivative_eq_hessian` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLinear_frame_transverse_degree` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_referenceGradient_chain` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10271,11 +10272,13 @@ Distinct declaration spellings indexed: **11184**.
 - `sourceNilpotentInverseEval_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_affine_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_allCorrections_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_firstCorrection_affine` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_firstCorrection_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_leadingHessian_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
