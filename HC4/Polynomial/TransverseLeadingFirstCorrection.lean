@@ -504,8 +504,8 @@ theorem transverseSchur_second_constraint
   have h := congrArg (fun p : _root_.Polynomial R => p.coeff 2)
     (transverseSchur_det_identity H)
   rw [_root_.Polynomial.coeff_sub, transverse_coeff_mul_two,
-    ha0, ha1, zero_mul, zero_mul, zero_add, zero_add,
-    transverseSchurMixed_coeff_two H hb hp hq, hdet] at h
+    ha0, ha1, transverseSchurMixed_coeff_two H hb hp hq, hdet] at h
+  simp only [zero_mul, zero_add] at h
   exact sub_eq_zero.mp h.symm
 
 /-! The actual Fin 4 source adapter uses the existing marked-axis
@@ -597,8 +597,10 @@ theorem sourceTransverseSchurFrame_preclock_recurrence
           H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2 := by
   let H := sourceTransverseSchurFrame F m hbound φ u v w
   have hd : H.determinantCore.coeff n = 0 := by
+    change (sourceTransverseSchurFrame F m hbound φ u v w).determinantCore.coeff n = 0
     rw [sourceTransverseSchurFrame_det F m hm hbound hdet φ u v w]
-    simp [_root_.Polynomial.coeff_X_pow, Ne.symm (Nat.ne_of_lt hn)]
+    have hne : 4*m-6 ≠ n := Ne.symm (Nat.ne_of_lt hn)
+    simp [_root_.Polynomial.coeff_X_pow, hne, Ne.symm hne]
   have h := transverseSchur_coeff_recurrence H n
   rw [hd, zero_add] at h
   exact h
@@ -859,6 +861,87 @@ theorem sourceLeading_reverseHessian_constantDet
   · rw [if_neg hr]
     exact initialForm_eq_zero_of_isWeightedHomogeneous
       (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ) _ (by omega)
+
+
+
+section LeadingKernel
+
+variable [IsDomain R]
+
+private theorem transverse_coeff_triple_one
+    (p q r : _root_.Polynomial R) (hp : p.coeff 0 = 0) (hq : q.coeff 0 = 0) :
+    (p * q * r).coeff 1 = 0 := by
+  rw [transverse_coeff_mul_one, transverse_coeff_mul_one,
+    _root_.Polynomial.mul_coeff_zero, hp, hq]
+  simp
+
+/-- In a genuine leading kernel frame the first longitudinal correction
+is forced to vanish by the determinant clock, rather than assumed. -/
+theorem transverseSchur_longitudinal_zero_one
+    (H : GeneralFourBlock (_root_.Polynomial R))
+    (hb : H.b.coeff 0 = 0) (hp : H.p.coeff 0 = 0) (hq : H.q.coeff 0 = 0)
+    (hregular : (transverseSchurDet H).coeff 0 ≠ 0)
+    (hdet0 : H.determinantCore.coeff 0 = 0)
+    (hdet1 : H.determinantCore.coeff 1 = 0) :
+    H.a.coeff 0 = 0 ∧ H.a.coeff 1 = 0 := by
+  have hm0 : (transverseSchurMixed H).coeff 0 = 0 := by
+    simp [transverseSchurMixed, _root_.Polynomial.mul_coeff_zero, hb, hp, hq]
+  have hm1 : (transverseSchurMixed H).coeff 1 = 0 := by
+    simp only [transverseSchurMixed, _root_.Polynomial.coeff_add,
+      _root_.Polynomial.coeff_sub,
+      transverse_coeff_triple_one _ _ _ hb hb,
+      transverse_coeff_triple_one _ _ _ hb hp,
+      transverse_coeff_triple_one _ _ _ hb hq,
+      transverse_coeff_triple_one _ _ _ hp hp,
+      transverse_coeff_triple_one _ _ _ hp hq,
+      transverse_coeff_triple_one _ _ _ hq hq,
+      sub_self, zero_add]
+  have h0 := congrArg (fun p : _root_.Polynomial R => p.coeff 0)
+    (transverseSchur_det_identity H)
+  rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.mul_coeff_zero,
+    hdet0, hm0, sub_zero] at h0
+  have ha0 := (mul_eq_zero.mp h0.symm).resolve_right hregular
+  have h1 := congrArg (fun p : _root_.Polynomial R => p.coeff 1)
+    (transverseSchur_det_identity H)
+  rw [_root_.Polynomial.coeff_sub, transverse_coeff_mul_one,
+    hdet1, hm1, ha0, zero_mul, zero_add, sub_zero] at h1
+  exact ⟨ha0, (mul_eq_zero.mp h1.symm).resolve_right hregular⟩
+
+end LeadingKernel
+
+/-- Actual second source correction in the full-rank transverse chart,
+given the leading mixed-kernel equations.  No extra first- or second-layer
+condition is postulated: both longitudinal vanishing coefficients and
+the second adjugate correction follow from the original source clock. -/
+theorem sourceTransverseSchurFrame_second_constraint
+    {E : Type*} [Field E]
+    (F : MvPolynomial (Fin 4) K) (m : ℕ) (hm : 3 ≤ m)
+    (hbound : HasReverseWeightBound topKernelMarkedAxisNatWeight m F)
+    (hdet : hessianDeterminant F = 1)
+    (φ : MvPolynomial (Fin 4) K →+* E) (u v w : E) :
+    let H := sourceTransverseSchurFrame F m hbound φ u v w
+    H.b.coeff 0 = 0 → H.p.coeff 0 = 0 → H.q.coeff 0 = 0 →
+    (transverseSchurDet H).coeff 0 ≠ 0 →
+    H.a.coeff 2 * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := H.a.coeff 2, b := H.b.coeff 1, p := H.p.coeff 1,
+           q := H.q.coeff 1, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock E) := by
+  let H := sourceTransverseSchurFrame F m hbound φ u v w
+  change H.b.coeff 0 = 0 → H.p.coeff 0 = 0 → H.q.coeff 0 = 0 →
+    (transverseSchurDet H).coeff 0 ≠ 0 → _
+  intro hb hp hq hregular
+  have hd : H.determinantCore =
+      (_root_.Polynomial.X : _root_.Polynomial E) ^ (4*m-6) :=
+    sourceTransverseSchurFrame_det F m (by omega) hbound hdet φ u v w
+  have hz (n : ℕ) (hn : n < 4*m-6) : H.determinantCore.coeff n = 0 := by
+    rw [hd]
+    have hne : 4*m-6 ≠ n := Ne.symm (Nat.ne_of_lt hn)
+    simp [_root_.Polynomial.coeff_X_pow, hne, Ne.symm hne]
+  obtain ⟨ha0, ha1⟩ := transverseSchur_longitudinal_zero_one
+    H hb hp hq hregular (hz 0 (by omega)) (hz 1 (by omega))
+  exact transverseSchur_second_constraint H ha0 ha1 hb hp hq (hz 2 (by omega))
 
 
 end
