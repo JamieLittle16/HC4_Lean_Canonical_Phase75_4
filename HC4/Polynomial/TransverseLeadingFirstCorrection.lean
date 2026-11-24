@@ -3204,7 +3204,7 @@ private theorem sourceTime_transverse_pair
   have hi := hp i (by omega)
   have hj := hq j (by omega)
   have hdeg := _root_.Polynomial.natDegree_mul_le_of_le hi hj
-  unfold timeTransverseProfile timeMinorProfile at hdeg ⊢
+  simp only [timeTransverseProfile, timeMinorProfile] at hdeg ⊢
   split_ifs at hdeg ⊢ <;> omega
 
 private theorem sourceTime_transverse_triple
@@ -3217,7 +3217,7 @@ private theorem sourceTime_transverse_triple
   have hi := hp i (by omega)
   have hj := hq j (by omega)
   have hdeg := _root_.Polynomial.natDegree_mul_le_of_le hi hj
-  unfold timeTransverseProfile timeMinorProfile timeDetProfile at hdeg ⊢
+  simp only [timeTransverseProfile, timeMinorProfile, timeDetProfile] at hdeg ⊢
   split_ifs at hdeg ⊢ <;> omega
 
 private theorem sourceTime_mixed_pair_zero
