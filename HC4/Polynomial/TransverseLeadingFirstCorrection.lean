@@ -4420,9 +4420,8 @@ private theorem sourceAxisTimeEval_linearLineEval_derivative
     rw [map_mul, sourceAxisTimeEval_C]
     exact congrArg (fun c => MvPolynomial.eval (fun _ : Fin 3 => 0) (V i) * c)
       (sourceAxisTimeEval_linearLineEval a u N (pderiv i P))
-  simp only [he, V, Sum.elim_inl, Sum.elim_inr, map_one, one_mul,
-    sourceReferenceLinearVector_eval_zero, zero_mul, Finset.sum_const_zero, add_zero]
-  simp
+  simp_rw [he]
+  simp [V, sourceReferenceLinearVector_eval_zero]
 
 private theorem sourceTime_degree_le_one_of_second_zero
     (P : LineTime K) (hP : P.derivative.derivative = 0) : P.natDegree ≤ 1 := by
@@ -4582,8 +4581,8 @@ theorem sourceNilpotent_affineBottomLayers_markedCollision_impossible
       _ = c := by rw [Matrix.vecMul_vecMul, hinv, Matrix.vecMul_one]
   have hlong (u : K) : stationaryAxisEval (a+u) (pderiv (.inl ()) Q0) =
       stationaryAxisEval (a+(-a)) (pderiv (.inl ()) Q0) := by
-    rw [← sourceAxisTimeEval_linearLineEval_derivative,
-      ← sourceAxisTimeEval_linearLineEval_derivative]
+    rw [← sourceAxisTimeEval_linearLineEval_derivative a u N Q0,
+      ← sourceAxisTimeEval_linearLineEval_derivative a (-a) N Q0]
     have hc := _root_.Polynomial.eq_C_of_derivative_eq_zero h0
     rw [hc, sourceAxisTimeEval_C, sourceAxisTimeEval_C]
   have hall (i : Unit ⊕ Fin 3) (t : K) :
