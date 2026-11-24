@@ -1194,7 +1194,9 @@ theorem sourceStationary_supportingEdge_longitudinal_zero
     exact h.symm
   have hs : referenceSlice 0 G = referenceSlice 0 L :=
     stationaryEdge_referenceSlice_eq F m a b hb
-  let φ := (MvPolynomial.aeval (transverseGenericPoint (0 : K))).toRingHom
+  let φ : StationarySource K →+* FractionRing (MvPolynomial (Fin 3) K) :=
+    (MvPolynomial.aeval (transverseGenericPoint (0 : K)) :
+      StationarySource K →ₐ[K] FractionRing (MvPolynomial (Fin 3) K)).toRingHom
   have hMat :
       φ.mapMatrix ((hessian G).submatrix Sum.inr Sum.inr) =
       φ.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr) := by
