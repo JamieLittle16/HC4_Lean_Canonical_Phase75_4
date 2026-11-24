@@ -4713,5 +4713,192 @@ theorem sourceNilpotent_markedCollision_forces_earlyMixed
   exact ⟨j, hj, hjm.le, hmix⟩
 
 
+
+
+/-! ## First mixed-gap endpoint: exact polynomial divisibility
+
+Unlike the pre-endpoint vanishing, the endpoint retains the actual
+quadratic mixed correction. This isolates the divisibility constraint
+at any first mixed order, not just order one.
+-/
+
+section MixedGapEndpoint
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+local notation "RP" => _root_.Polynomial R
+
+private theorem transverse_gap_mul_endpoint
+    (p q : RP) (a b : ℕ)
+    (hp : ∀ i < a, p.coeff i = 0)
+    (hq : ∀ i < b, q.coeff i = 0) :
+    (p*q).coeff (a+b) = p.coeff a * q.coeff b := by
+  classical
+  rw [_root_.Polynomial.coeff_mul, Finset.sum_eq_single (a,b)]
+  · intro ij hij hne
+    have hh := Finset.mem_antidiagonal.mp hij
+    by_cases hi : ij.1 < a
+    · rw [hp _ hi, zero_mul]
+    · have hj : ij.2 < b := by
+        by_contra! hj
+        apply hne
+        exact Prod.ext (by omega) (by omega)
+      rw [hq _ hj, mul_zero]
+  · intro h
+    exact (h (Finset.mem_antidiagonal.mpr rfl)).elim
+
+private theorem transverse_gap_triple_endpoint
+    (p q r : RP) (k : ℕ)
+    (hp : ∀ i < k, p.coeff i = 0)
+    (hq : ∀ i < k, q.coeff i = 0) :
+    (p*q*r).coeff (2*k) = p.coeff k * q.coeff k * r.coeff 0 := by
+  have hpq : ∀ i < k+k, (p*q).coeff i = 0 :=
+    fun i hi => transverse_gap_mul p q k k i hi hp hq
+  have hr : ∀ i < (0 : ℕ), r.coeff i = 0 := by
+    intro i hi
+    omega
+  have he := transverse_gap_mul_endpoint (p*q) r (k+k) 0 hpq hr
+  rw [transverse_gap_mul_endpoint p q k k hp hq] at he
+  simpa only [add_zero, two_mul] using he
+
+/-- The first possible mixed pairing uses precisely two copies of
+the gap-endpoint mixed row and the leading transverse block. -/
+theorem transverseSchurMixed_coeff_gap_endpoint
+    (H : GeneralFourBlock RP) (k : ℕ)
+    (hb : ∀ i < k, H.b.coeff i = 0)
+    (hp : ∀ i < k, H.p.coeff i = 0)
+    (hq : ∀ i < k, H.q.coeff i = 0) :
+    (transverseSchurMixed H).coeff (2*k) =
+      transverseSchurMixed
+        ({ a := 0, b := H.b.coeff k, p := H.p.coeff k,
+           q := H.q.coeff k, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock R) := by
+  simp only [transverseSchurMixed, _root_.Polynomial.coeff_add,
+    _root_.Polynomial.coeff_sub,
+    transverse_gap_triple_endpoint _ _ _ k hb hb,
+    transverse_gap_triple_endpoint _ _ _ k hb hp,
+    transverse_gap_triple_endpoint _ _ _ k hb hq,
+    transverse_gap_triple_endpoint _ _ _ k hp hp,
+    transverse_gap_triple_endpoint _ _ _ k hp hq,
+    transverse_gap_triple_endpoint _ _ _ k hq hq,
+    _root_.Polynomial.mul_coeff_zero]
+
+/-- The cleared Schur recurrence at twice the first mixed order.
+The actual leading determinant divides the quadratic pairing. -/
+theorem transverseSchur_mixedGap_endpoint
+    (H : GeneralFourBlock RP) (k clock : ℕ) (hc : 2*k < clock)
+    (hreg : (transverseSchurDet H).coeff 0 ≠ 0)
+    (hb : ∀ i < k, H.b.coeff i = 0)
+    (hp : ∀ i < k, H.p.coeff i = 0)
+    (hq : ∀ i < k, H.q.coeff i = 0)
+    (hdet : ∀ i < clock, H.determinantCore.coeff i = 0) :
+    H.a.coeff (2*k) * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := 0, b := H.b.coeff k, p := H.p.coeff k,
+           q := H.q.coeff k, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock R) := by
+  classical
+  have ha := transverseSchur_longitudinal_zero_of_mixedGap H k clock
+    hreg hb hp hq hdet
+  have hsum : (∑ ij ∈ (Finset.antidiagonal (2*k)).erase (2*k,0),
+      H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2) = 0 := by
+    apply Finset.sum_eq_zero
+    intro ij hij
+    have hh := Finset.mem_antidiagonal.mp (Finset.mem_of_mem_erase hij)
+    have hne := Finset.ne_of_mem_erase hij
+    have hi : ij.1 < 2*k := by
+      by_contra! h
+      apply hne
+      exact Prod.ext (by omega) (by omega)
+    rw [ha _ hi (by omega), zero_mul]
+  have he := transverseSchur_coeff_recurrence H (2*k)
+  rw [hdet _ hc, transverseSchurMixed_coeff_gap_endpoint H k hb hp hq,
+    hsum, zero_add, sub_zero] at he
+  exact he
+
+end MixedGapEndpoint
+
+/-- Actual source endpoint identity at an arbitrary mixed gap. -/
+theorem sourceLeading_mixedGap_endpoint_lineODE
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k : ℕ) (hm : 2 ≤ m)
+    (hk : 2*k ≤ m) (hc : 2*k < 4*m-6)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let Q := initialForm transverseCubicWeight ((m : ℤ)-((2*k : ℕ) : ℤ)) F
+    (lineEval z V Q).derivative.derivative * (transverseSchurDet H).coeff 0 =
+      transverseSchurMixed
+        ({ a := 0, b := H.b.coeff k, p := H.p.coeff k,
+           q := H.q.coeff k, d := H.d.coeff 0, r := H.r.coeff 0,
+           s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+           z := H.z.coeff 0 } : GeneralFourBlock (_root_.Polynomial E)) := by
+  let H := sourceLeading_lineSchurFrame F m z V
+  have hd (i : ℕ) (hi : i < 4*m-6) : H.determinantCore.coeff i = 0 := by
+    change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff i = 0
+    rw [sourceLeading_lineSchurFrame_det F m hm hcap hdet,
+      _root_.Polynomial.coeff_monomial, if_neg (by omega : 4*m-6 ≠ i)]
+  have he := transverseSchur_mixedGap_endpoint H k (4*m-6) hc hreg hb hp hq hd
+  rw [(sourceLeading_lineSchurFrame_differential_coeff F m (2*k) hk z V hV).1] at he
+  exact he
+
+/-- If twice the first mixed order reaches precisely the linear
+transverse layer, the endpoint pairing cannot be isotropic in a
+marked collision. This includes the regular nilpotent-linear cubic
+branch with k = 1. -/
+theorem sourceNilpotent_linearLayer_mixedGap_pairing_ne_zero
+    (F : StationarySource K) (m k : ℕ) (hm : 3 ≤ m)
+    (hk : 2*k+1 = m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hδ : δ ≠ 0) (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)))) :
+    let B := MvPolynomial (Fin 3) K
+    let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+    let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+    let H := sourceLeading_lineSchurFrame F m z V
+    (∀ i < k, H.b.coeff i = 0) →
+    (∀ i < k, H.p.coeff i = 0) →
+    (∀ i < k, H.q.coeff i = 0) →
+    transverseSchurMixed
+      ({ a := 0, b := H.b.coeff k, p := H.p.coeff k,
+         q := H.q.coeff k, d := H.d.coeff 0, r := H.r.coeff 0,
+         s := H.s.coeff 0, x := H.x.coeff 0, y := H.y.coeff 0,
+         z := H.z.coeff 0 } : GeneralFourBlock (LineTime K)) ≠ 0 := by
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  have hV : V (.inl ()) = 1 := rfl
+  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hg : ∀ i, lineEval z V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
+  have hr := (sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg).2.2.2
+  intro hb hp hq hzero
+  have he := sourceLeading_mixedGap_endpoint_lineODE F m k (by omega)
+    (by omega) (by omega) hcap hdet z V hV hr hb hp hq
+  have hw : (m : ℤ) - ((2*k : ℕ) : ℤ) = 1 := by omega
+  dsimp only at he
+  rw [hw, hzero] at he
+  have h1 := (mul_eq_zero.mp he).resolve_right hr
+  exact sourceNilpotent_affineLinearLayer_markedCollision_impossible
+    F hδ hdet a N hN hcoll h1
+
+
 end
 end HC4.Polynomial.RankThreeCubic
