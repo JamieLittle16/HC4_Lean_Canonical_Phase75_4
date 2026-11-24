@@ -3567,5 +3567,244 @@ theorem sourceNilpotent_allCorrections_timeDegree_le
   exact hmain j hj hjpos
 
 
+
+
+/-! ## Return to original coordinates -/
+
+private theorem sourceTotalDegree_sum_le
+    {σ I : Type*} (s : Finset I) (f : I → MvPolynomial σ K)
+    (d : ℕ) (h : ∀ i ∈ s, (f i).totalDegree ≤ d) :
+    (∑ i ∈ s, f i).totalDegree ≤ d :=
+  (MvPolynomial.totalDegree_finset_sum s f).trans (Finset.sup_le h)
+
+private theorem sourceTime_referenceCoeff_mul
+    (P Q : LineTime K) (d e : ℕ)
+    (hp : ∀ k, (P.coeff k).totalDegree ≤ d)
+    (hq : ∀ k, (Q.coeff k).totalDegree ≤ e) :
+    ∀ k, ((P*Q).coeff k).totalDegree ≤ d+e := by
+  intro k
+  rw [_root_.Polynomial.coeff_mul]
+  apply sourceTotalDegree_sum_le
+  intro ij _
+  exact (MvPolynomial.totalDegree_mul _ _).trans (Nat.add_le_add (hp ij.1) (hq ij.2))
+
+private theorem sourceTime_referenceCoeff_pow
+    (P : LineTime K) (d : ℕ) (hp : ∀ k, (P.coeff k).totalDegree ≤ d)
+    (n : ℕ) : ∀ k, ((P^n).coeff k).totalDegree ≤ n*d := by
+  induction n with
+  | zero =>
+    intro k
+    simp only [pow_zero, zero_mul, _root_.Polynomial.coeff_one]
+    split_ifs <;> simp
+  | succ n ih =>
+    rw [pow_succ, Nat.succ_mul]
+    exact sourceTime_referenceCoeff_mul _ _ _ _ ih hp
+
+private theorem sourceTime_referenceCoeff_prod
+    {I : Type*} (s : Finset I) (f : I → LineTime K) (d : I → ℕ)
+    (h : ∀ i ∈ s, ∀ k, ((f i).coeff k).totalDegree ≤ d i) :
+    ∀ k, ((∏ i ∈ s, f i).coeff k).totalDegree ≤ ∑ i ∈ s, d i := by
+  classical
+  induction s using Finset.induction_on with
+  | empty =>
+    intro k
+    simp only [Finset.prod_empty, Finset.sum_empty, _root_.Polynomial.coeff_one]
+    split_ifs <;> simp
+  | @insert i s hi ih =>
+    rw [Finset.prod_insert hi, Finset.sum_insert hi]
+    exact sourceTime_referenceCoeff_mul _ _ _ _
+      (h i (Finset.mem_insert_self i s))
+      (ih (fun j hj => h j (Finset.mem_insert_of_mem hj)))
+
+private theorem sourceLinearVector_totalDegree_le
+    (N : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    (sourceLinearVector N i).totalDegree ≤ 1 := by
+  unfold sourceLinearVector
+  apply sourceTotalDegree_sum_le
+  intro j _
+  exact (MvPolynomial.totalDegree_mul _ _).trans (by simp)
+
+private theorem referenceLinearVector_totalDegree_le
+    (N : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    (referenceLinearVector N i).totalDegree ≤ 1 := by
+  unfold referenceLinearVector
+  apply sourceTotalDegree_sum_le
+  intro j _
+  exact (MvPolynomial.totalDegree_mul _ _).trans (by simp)
+
+private def sourceTransverseNatGrade : Unit ⊕ Fin 3 → ℕ :=
+  Sum.elim (fun _ => 0) (fun _ => 1)
+
+private theorem sourceTransverseNatGrade_sum (d : StationaryExponent) :
+    ((∑ i ∈ d.support, d i * sourceTransverseNatGrade i : ℕ) : ℤ) =
+      Finsupp.weight transverseCubicWeight d := by
+  rw [Finsupp.weight_apply, Finsupp.sum]
+  push_cast
+  apply Finset.sum_congr rfl
+  intro i _
+  cases i with
+  | inl u => cases u; simp [sourceTransverseNatGrade, transverseCubicWeight]
+  | inr j => simp [sourceTransverseNatGrade, transverseCubicWeight, nsmul_eq_mul]
+
+private theorem sourceTime_referenceCoeff_X
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (i : Unit ⊕ Fin 3) (k : ℕ) :
+    ((linearLineEval a N (X i)).coeff k).totalDegree ≤ sourceTransverseNatGrade i := by
+  cases i with
+  | inl u =>
+    cases u
+    have he : linearLineEval a N (X (.inl ())) =
+        _root_.Polynomial.C (MvPolynomial.C a : MvPolynomial (Fin 3) K) +
+          _root_.Polynomial.X := by simp [linearLineEval, lineEval]
+    rw [he, _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C, _root_.Polynomial.coeff_X]
+    split_ifs <;> simp [sourceTransverseNatGrade]
+  | inr i =>
+    have he : linearLineEval a N (X (.inr i)) =
+        _root_.Polynomial.C (X i : MvPolynomial (Fin 3) K) +
+          _root_.Polynomial.C (referenceLinearVector N i) * _root_.Polynomial.X := by
+      simp [linearLineEval, lineEval, referenceLinearVector]
+    rw [he, _root_.Polynomial.coeff_add, _root_.Polynomial.coeff_C,
+      _root_.Polynomial.coeff_C_mul, _root_.Polynomial.coeff_X]
+    have h := referenceLinearVector_totalDegree_le N i
+    split_ifs <;> simp_all [sourceTransverseNatGrade]
+
+/-- The time coefficients of a transverse homogeneous source layer
+have reference total degree at most the original transverse grade. -/
+theorem sourceLinear_referenceCoeff_totalDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (Q : StationarySource K) (r : ℕ)
+    (hQ : IsWeightLE transverseCubicWeight (r : ℤ) Q) (k : ℕ) :
+    ((linearLineEval a N Q).coeff k).totalDegree ≤ r := by
+  classical
+  calc
+    _ = ((linearLineEval a N (∑ d ∈ Q.support,
+      MvPolynomial.monomial d (MvPolynomial.coeff d Q))).coeff k).totalDegree :=
+        congrArg (fun P => ((linearLineEval a N P).coeff k).totalDegree) (MvPolynomial.as_sum Q)
+    _ ≤ r := by
+      rw [map_sum, _root_.Polynomial.finset_sum_coeff]
+      apply sourceTotalDegree_sum_le
+      intro d hd
+      have hweight := hQ hd
+      have hsum := sourceTransverseNatGrade_sum d
+      have hbound : (∑ i ∈ d.support, d i * sourceTransverseNatGrade i) ≤ r := by omega
+      rw [MvPolynomial.monomial_eq, map_mul]
+      change ((linearLineEval a N (MvPolynomial.C (MvPolynomial.coeff d Q)) *
+        linearLineEval a N (∏ i ∈ d.support, X i ^ d i)).coeff k).totalDegree ≤ r
+      simp only [map_prod, map_pow]
+      have hc : linearLineEval a N (MvPolynomial.C (MvPolynomial.coeff d Q)) =
+          _root_.Polynomial.C (MvPolynomial.C (MvPolynomial.coeff d Q)) := by
+        simp [linearLineEval, lineEval]
+      rw [hc, _root_.Polynomial.coeff_C_mul]
+      have hp := sourceTime_referenceCoeff_prod d.support
+        (fun i => linearLineEval a N (X i) ^ d i)
+        (fun i => d i * sourceTransverseNatGrade i)
+        (fun i _ => sourceTime_referenceCoeff_pow _ _
+          (sourceTime_referenceCoeff_X a N i) (d i)) k
+      exact (MvPolynomial.totalDegree_mul _ _).trans (by
+        rw [MvPolynomial.totalDegree_C, zero_add]
+        exact hp.trans hbound)
+
+private theorem sourceTime_shift_totalDegree_le (a : K) :
+    (X (.inl ()) - MvPolynomial.C a : StationarySource K).totalDegree ≤ 1 := by
+  rw [sub_eq_add_neg, ← map_neg]
+  exact (MvPolynomial.totalDegree_add _ _).trans (by simp)
+
+private theorem sourceNilpotentInverseEval_X_degree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    (sourceNilpotentInverseEval a N (X i)).totalDegree ≤ 3 := by
+  rw [sourceNilpotentInverseEval, MvPolynomial.aeval_X]
+  let t : StationarySource K := X (.inl ()) - MvPolynomial.C a
+  change (X (.inr i) - t * sourceLinearVector N i +
+    t^2 * sourceLinearVector (N^2) i).totalDegree ≤ 3
+  have ht := sourceTime_shift_totalDegree_le a
+  have h1 := (MvPolynomial.totalDegree_mul t (sourceLinearVector N i)).trans
+    (Nat.add_le_add ht (sourceLinearVector_totalDegree_le N i))
+  have h2 := (MvPolynomial.totalDegree_pow t 2).trans (Nat.mul_le_mul_left 2 ht)
+  have h3 := (MvPolynomial.totalDegree_mul (t^2) (sourceLinearVector (N^2) i)).trans
+    (Nat.add_le_add h2 (sourceLinearVector_totalDegree_le (N^2) i))
+  have hn : (-(t * sourceLinearVector N i)).totalDegree ≤ 2 := by
+    rw [← neg_one_mul]
+    exact (MvPolynomial.totalDegree_mul _ _).trans (by simpa using h1)
+  rw [sub_eq_add_neg]
+  exact (MvPolynomial.totalDegree_add _ _).trans
+    (max_le ((MvPolynomial.totalDegree_add _ _).trans (max_le (by simp) (hn.trans (by omega))))
+      (h3.trans (by omega)))
+
+/-- Inverse characteristic substitution increases reference total
+degree by at most a factor of three. -/
+theorem sourceNilpotentInverseEval_totalDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (P : MvPolynomial (Fin 3) K) :
+    (sourceNilpotentInverseEval a N P).totalDegree ≤ 3*P.totalDegree := by
+  classical
+  calc
+    _ = (sourceNilpotentInverseEval a N (∑ d ∈ P.support,
+      MvPolynomial.monomial d (MvPolynomial.coeff d P))).totalDegree :=
+        congrArg (fun p => (sourceNilpotentInverseEval a N p).totalDegree) (MvPolynomial.as_sum P)
+    _ ≤ _ := by
+      rw [map_sum]
+      apply sourceTotalDegree_sum_le
+      intro d hd
+      rw [MvPolynomial.monomial_eq, map_mul]
+      change (sourceNilpotentInverseEval a N (MvPolynomial.C (MvPolynomial.coeff d P)) *
+        sourceNilpotentInverseEval a N (∏ i ∈ d.support, X i ^ d i)).totalDegree ≤ _
+      simp only [map_prod, map_pow]
+      rw [show sourceNilpotentInverseEval a N (MvPolynomial.C (MvPolynomial.coeff d P)) =
+        MvPolynomial.C (MvPolynomial.coeff d P) by simp [sourceNilpotentInverseEval]]
+      apply (MvPolynomial.totalDegree_mul _ _).trans
+      rw [MvPolynomial.totalDegree_C, zero_add]
+      apply (MvPolynomial.totalDegree_finset_prod _ _).trans
+      calc
+        _ ≤ ∑ i ∈ d.support, d i * 3 := by
+          apply Finset.sum_le_sum
+          intro i _
+          exact (MvPolynomial.totalDegree_pow _ _).trans
+            (Nat.mul_le_mul_left _ (sourceNilpotentInverseEval_X_degree_le a N i))
+        _ = 3 * d.sum (fun _ e => e) := by
+          simp only [Finsupp.sum, Finset.mul_sum, mul_comm 3]
+        _ ≤ _ := Nat.mul_le_mul_left _ (MvPolynomial.le_totalDegree hd)
+
+/-- Reconstruction in every time degree, not just the first correction. -/
+theorem sourceNilpotent_inverseFormula
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K) :
+    let P := linearLineEval a N Q
+    Q = ∑ k ∈ P.support, sourceNilpotentInverseEval a N (P.coeff k) *
+      (X (.inl ()) - MvPolynomial.C a)^k := by
+  let P := linearLineEval a N Q
+  apply linearLineEval_injective_of_cube_zero a N hN
+  simp only [map_sum, map_mul, map_pow, sourceNilpotentInverseEval_transport a N hN,
+    sourceNilpotent_time_eval]
+  exact (_root_.Polynomial.sum_C_mul_X_pow_eq P).symm
+
+/-- A transverse cap and a time-degree cap in the nilpotent chart
+give a bound on the ORIGINAL polynomial, with no determinant change. -/
+theorem sourceNilpotent_originalDegree_le
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K) (r d : ℕ)
+    (hQ : IsWeightLE transverseCubicWeight (r : ℤ) Q)
+    (hP : (linearLineEval a N Q).natDegree ≤ d) :
+    Q.totalDegree ≤ 3*r+d := by
+  let P := linearLineEval a N Q
+  have he := sourceNilpotent_inverseFormula a N hN Q
+  change Q = ∑ k ∈ P.support, sourceNilpotentInverseEval a N (P.coeff k) *
+    (X (.inl ()) - MvPolynomial.C a)^k at he
+  calc
+    _ = (∑ k ∈ P.support, sourceNilpotentInverseEval a N (P.coeff k) *
+      (X (.inl ()) - MvPolynomial.C a)^k).totalDegree :=
+        congrArg MvPolynomial.totalDegree he
+    _ ≤ _ := by
+      apply sourceTotalDegree_sum_le
+      intro k hk
+      have hk' := (_root_.Polynomial.le_natDegree_of_mem_supp k hk).trans hP
+      have hc := sourceLinear_referenceCoeff_totalDegree_le a N Q r hQ k
+      have h1 := (sourceNilpotentInverseEval_totalDegree_le a N (P.coeff k)).trans
+        (Nat.mul_le_mul_left 3 hc)
+      have h2 := (MvPolynomial.totalDegree_pow _ k).trans
+        (Nat.mul_le_mul_left k (sourceTime_shift_totalDegree_le a))
+      exact (MvPolynomial.totalDegree_mul _ _).trans
+        (Nat.add_le_add h1 (h2.trans (by simpa using hk')))
+
+
 end
 end HC4.Polynomial.RankThreeCubic
