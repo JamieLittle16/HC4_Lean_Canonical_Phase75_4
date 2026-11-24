@@ -3146,5 +3146,220 @@ theorem sourceNilpotent_secondCorrection_timeDegree_le_seven
   exact sourceTime_degree_of_secondDerivative_le P 5 (hdeg.trans_le hsum)
 
 
+
+
+/-! ## Uniform cleared Schur degree induction
+
+The degree profile distinguishes the zero Rees coefficient of the
+transverse block from positive coefficients. Both mixed factors have
+zero constant coefficient. These are essential, not optional, savings
+in the convolution estimate.
+-/
+
+section TimeDegreeInduction
+
+variable {R : Type*} [CommRing R]
+local notation "TP" => _root_.Polynomial R
+local notation "RP" => _root_.Polynomial TP
+
+private theorem sourceTime_mul_coeff_degree_le
+    (p q : RP) (n d : ℕ)
+    (h : ∀ i j : ℕ, i+j=n → (p.coeff i * q.coeff j).natDegree ≤ d) :
+    ((p*q).coeff n).natDegree ≤ d := by
+  rw [_root_.Polynomial.coeff_mul]
+  apply sourceTime_natDegree_sum_le
+  intro ij hij
+  exact h ij.1 ij.2 (Finset.mem_antidiagonal.mp hij)
+
+private theorem sourceTime_add_coeff_degree_le
+    {p q : RP} {n d : ℕ}
+    (hp : (p.coeff n).natDegree ≤ d) (hq : (q.coeff n).natDegree ≤ d) :
+    ((p+q).coeff n).natDegree ≤ d := by
+  rw [_root_.Polynomial.coeff_add]
+  exact _root_.Polynomial.natDegree_add_le_of_degree_le hp hq
+
+private theorem sourceTime_sub_coeff_degree_le
+    {p q : RP} {n d : ℕ}
+    (hp : (p.coeff n).natDegree ≤ d) (hq : (q.coeff n).natDegree ≤ d) :
+    ((p-q).coeff n).natDegree ≤ d := by
+  rw [_root_.Polynomial.coeff_sub]
+  exact (_root_.Polynomial.natDegree_sub_le _ _).trans (max_le hp hq)
+
+def timeTransverseProfile (k : ℕ) : ℕ :=
+  if k = 0 then 2 else 9*k-4
+
+private def timeMinorProfile (k : ℕ) : ℕ :=
+  if k = 0 then 4 else 9*k-2
+
+private def timeDetProfile (k : ℕ) : ℕ :=
+  if k = 0 then 6 else 9*k
+
+private theorem sourceTime_transverse_pair
+    (p q : RP) (n k : ℕ) (hk : k < n)
+    (hp : ∀ i < n, (p.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hq : ∀ i < n, (q.coeff i).natDegree ≤ timeTransverseProfile i) :
+    ((p*q).coeff k).natDegree ≤ timeMinorProfile k := by
+  apply sourceTime_mul_coeff_degree_le
+  intro i j hij
+  have hi := hp i (by omega)
+  have hj := hq j (by omega)
+  have hdeg := _root_.Polynomial.natDegree_mul_le_of_le hi hj
+  unfold timeTransverseProfile timeMinorProfile at hdeg ⊢
+  split_ifs at hdeg ⊢ <;> omega
+
+private theorem sourceTime_transverse_triple
+    (p q : RP) (n k : ℕ) (hk : k < n)
+    (hp : ∀ i < n, (p.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hq : ∀ i < n, (q.coeff i).natDegree ≤ timeMinorProfile i) :
+    ((p*q).coeff k).natDegree ≤ timeDetProfile k := by
+  apply sourceTime_mul_coeff_degree_le
+  intro i j hij
+  have hi := hp i (by omega)
+  have hj := hq j (by omega)
+  have hdeg := _root_.Polynomial.natDegree_mul_le_of_le hi hj
+  unfold timeTransverseProfile timeMinorProfile timeDetProfile at hdeg ⊢
+  split_ifs at hdeg ⊢ <;> omega
+
+private theorem sourceTime_mixed_pair_zero
+    (p q : RP) (hp : p.coeff 0 = 0) (hq : q.coeff 0 = 0)
+    (k : ℕ) (hk : k < 2) : (p*q).coeff k = 0 := by
+  rw [_root_.Polynomial.coeff_mul]
+  apply Finset.sum_eq_zero
+  intro ij hij
+  have hh := Finset.mem_antidiagonal.mp hij
+  by_cases hi : ij.1 = 0
+  · rw [hi, hp, zero_mul]
+  · have hj : ij.2 = 0 := by omega
+    rw [hj, hq, mul_zero]
+
+private theorem sourceTime_mixed_pair
+    (p q : RP) (n k : ℕ) (hk : k ≤ n)
+    (hp0 : p.coeff 0 = 0) (hq0 : q.coeff 0 = 0)
+    (hp : ∀ i < n, 0 < i → (p.coeff i).natDegree ≤ 9*i-7)
+    (hq : ∀ i < n, 0 < i → (q.coeff i).natDegree ≤ 9*i-7) :
+    ((p*q).coeff k).natDegree ≤ 9*k-14 := by
+  apply sourceTime_mul_coeff_degree_le
+  intro i j hij
+  by_cases hi : i = 0
+  · rw [hi, hp0, zero_mul, _root_.Polynomial.natDegree_zero]
+    exact Nat.zero_le _
+  by_cases hj : j = 0
+  · rw [hj, hq0, mul_zero, _root_.Polynomial.natDegree_zero]
+    exact Nat.zero_le _
+  have hdeg := _root_.Polynomial.natDegree_mul_le_of_le
+    (hp i (by omega) (by omega)) (hq j (by omega) (by omega))
+  omega
+
+private theorem sourceTime_mixed_minor
+    (p q r : RP) (n : ℕ) (hn : 2 ≤ n)
+    (hp0 : p.coeff 0 = 0) (hq0 : q.coeff 0 = 0)
+    (hp : ∀ i < n, 0 < i → (p.coeff i).natDegree ≤ 9*i-7)
+    (hq : ∀ i < n, 0 < i → (q.coeff i).natDegree ≤ 9*i-7)
+    (hr : ∀ i < n, (r.coeff i).natDegree ≤ timeMinorProfile i) :
+    ((p*q*r).coeff n).natDegree ≤ 9*n-10 := by
+  apply sourceTime_mul_coeff_degree_le
+  intro i j hij
+  by_cases hi : i < 2
+  · rw [sourceTime_mixed_pair_zero p q hp0 hq0 i hi, zero_mul,
+      _root_.Polynomial.natDegree_zero]
+    exact Nat.zero_le _
+  have hpq := sourceTime_mixed_pair p q n i (by omega) hp0 hq0 hp hq
+  have hminor := hr j (by omega)
+  have hdeg := _root_.Polynomial.natDegree_mul_le_of_le hpq hminor
+  unfold timeMinorProfile at hdeg
+  split_ifs at hdeg <;> omega
+
+/-- Pure coefficient induction step. No formal inverse and no
+hypothesis on higher coefficients is used. -/
+theorem transverseSchur_cleared_timeDegree_step [IsDomain R]
+    (H : GeneralFourBlock RP) (n : ℕ) (hn : 2 ≤ n)
+    (c : R) (hc : c ≠ 0)
+    (hconstant : (transverseSchurDet H).coeff 0 = _root_.Polynomial.C c)
+    (hclock : H.determinantCore.coeff n = 0)
+    (ha0 : H.a.coeff 0 = 0) (ha1 : H.a.coeff 1 = 0)
+    (hb0 : H.b.coeff 0 = 0) (hp0 : H.p.coeff 0 = 0) (hq0 : H.q.coeff 0 = 0)
+    (ha : ∀ i < n, 2 ≤ i → (H.a.coeff i).natDegree ≤ 9*i-10)
+    (hb : ∀ i < n, 0 < i → (H.b.coeff i).natDegree ≤ 9*i-7)
+    (hp : ∀ i < n, 0 < i → (H.p.coeff i).natDegree ≤ 9*i-7)
+    (hq : ∀ i < n, 0 < i → (H.q.coeff i).natDegree ≤ 9*i-7)
+    (hd : ∀ i < n, (H.d.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hr : ∀ i < n, (H.r.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hs : ∀ i < n, (H.s.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hx : ∀ i < n, (H.x.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hy : ∀ i < n, (H.y.coeff i).natDegree ≤ timeTransverseProfile i)
+    (hz : ∀ i < n, (H.z.coeff i).natDegree ≤ timeTransverseProfile i) :
+    (H.a.coeff n).natDegree ≤ 9*n-10 := by
+  classical
+  have minor {p q r s : RP}
+      (hp : ∀ i < n, (p.coeff i).natDegree ≤ timeTransverseProfile i)
+      (hq : ∀ i < n, (q.coeff i).natDegree ≤ timeTransverseProfile i)
+      (hr : ∀ i < n, (r.coeff i).natDegree ≤ timeTransverseProfile i)
+      (hs : ∀ i < n, (s.coeff i).natDegree ≤ timeTransverseProfile i)
+      (k : ℕ) (hk : k < n) :
+      ((p*q-r*s).coeff k).natDegree ≤ timeMinorProfile k :=
+    sourceTime_sub_coeff_degree_le
+      (sourceTime_transverse_pair p q n k hk hp hq)
+      (sourceTime_transverse_pair r s n k hk hr hs)
+  have m1 := minor hx hz hy hy
+  have m2 := minor hr hz hs hy
+  have m3 := minor hr hy hs hx
+  have m4 := minor hd hz hs hs
+  have m5 := minor hd hy hr hs
+  have m6 := minor hd hx hr hr
+  have hD (k : ℕ) (hk : k < n) :
+      ((transverseSchurDet H).coeff k).natDegree ≤ timeDetProfile k := by
+    unfold transverseSchurDet
+    exact sourceTime_add_coeff_degree_le
+      (sourceTime_sub_coeff_degree_le
+        (sourceTime_transverse_triple _ _ n k hk hd m1)
+        (sourceTime_transverse_triple _ _ n k hk hr m2))
+      (sourceTime_transverse_triple _ _ n k hk hs m3)
+  have hM : ((transverseSchurMixed H).coeff n).natDegree ≤ 9*n-10 := by
+    unfold transverseSchurMixed
+    exact sourceTime_add_coeff_degree_le
+      (sourceTime_sub_coeff_degree_le
+        (sourceTime_add_coeff_degree_le
+          (sourceTime_add_coeff_degree_le
+            (sourceTime_sub_coeff_degree_le
+              (sourceTime_mixed_minor _ _ _ n hn hb0 hb0 hb hb m1)
+              (sourceTime_mixed_minor _ _ _ n hn hb0 hp0 hb hp
+                (fun k hk => sourceTime_add_coeff_degree_le (m2 k hk) (m2 k hk))))
+            (sourceTime_mixed_minor _ _ _ n hn hb0 hq0 hb hq
+              (fun k hk => sourceTime_add_coeff_degree_le (m3 k hk) (m3 k hk))))
+          (sourceTime_mixed_minor _ _ _ n hn hp0 hp0 hp hp m4))
+        (sourceTime_mixed_minor _ _ _ n hn hp0 hq0 hp hq
+          (fun k hk => sourceTime_add_coeff_degree_le (m5 k hk) (m5 k hk))))
+      (sourceTime_mixed_minor _ _ _ n hn hq0 hq0 hq hq m6)
+  have hsum : (∑ ij ∈ (Finset.antidiagonal n).erase (n, 0),
+      H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2).natDegree ≤ 9*n-10 := by
+    apply sourceTime_natDegree_sum_le
+    intro ij hij
+    have hh := Finset.mem_antidiagonal.mp (Finset.mem_of_mem_erase hij)
+    have hne := Finset.ne_of_mem_erase hij
+    have hj : 0 < ij.2 := by
+      by_contra! h
+      apply hne
+      exact Prod.ext (by omega) (by omega)
+    by_cases hi0 : ij.1 = 0
+    · rw [hi0, ha0, zero_mul, _root_.Polynomial.natDegree_zero]
+      exact Nat.zero_le _
+    by_cases hi1 : ij.1 = 1
+    · rw [hi1, ha1, zero_mul, _root_.Polynomial.natDegree_zero]
+      exact Nat.zero_le _
+    have h1 := ha ij.1 (by omega) (by omega)
+    have h2 := hD ij.2 (by omega)
+    have hdeg := _root_.Polynomial.natDegree_mul_le_of_le h1 h2
+    unfold timeDetProfile at hdeg
+    split_ifs at hdeg <;> omega
+  have he := transverseSchur_coeff_recurrence H n
+  rw [hconstant, hclock, zero_add] at he
+  have hdeg := congrArg _root_.Polynomial.natDegree he
+  change (H.a.coeff n * _root_.Polynomial.C c).natDegree = _ at hdeg
+  rw [_root_.Polynomial.natDegree_mul_C hc] at hdeg
+  exact hdeg.trans_le ((_root_.Polynomial.natDegree_sub_le _ _).trans (max_le hM hsum))
+
+end TimeDegreeInduction
+
+
 end
 end HC4.Polynomial.RankThreeCubic
