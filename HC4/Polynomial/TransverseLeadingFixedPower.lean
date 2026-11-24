@@ -427,5 +427,175 @@ theorem reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic
     exact hdiv
 
 
+
+
+/-! ## Exact cubic factorisation, with a homogeneous linear quotient -/
+
+private theorem constantLinearForm_homogeneous_one (l : Fin 3 → K) :
+    (constantLinearForm l).IsHomogeneous 1 := by
+  unfold constantLinearForm
+  apply IsHomogeneous.sum
+  intro i _
+  exact (isHomogeneous_X K i).C_mul _
+
+private theorem homogeneous_one_eq_constantLinearForm
+    (P : MvPolynomial (Fin 3) K) (hP : P.IsHomogeneous 1) :
+    ∃ l : Fin 3 → K, P = constantLinearForm l := by
+  let l : Fin 3 → K := fun i => (pderiv i P).coeff 0
+  have hd (i : Fin 3) : pderiv i P = MvPolynomial.C (l i) := by
+    have h : (pderiv i P).IsHomogeneous 0 := hP.pderiv (i := i)
+    exact totalDegree_eq_zero_iff_eq_C.mp
+      ((totalDegree_zero_iff_isHomogeneous (Fin 3)).mpr h)
+  refine ⟨l, ?_⟩
+  have he := hP.sum_X_mul_pderiv
+  have he' : (∑ i : Fin 3, X i * pderiv i P) = P := by simpa using he
+  calc
+    P = ∑ i : Fin 3, X i * pderiv i P := he'.symm
+    _ = constantLinearForm l := by
+      unfold constantLinearForm
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [hd i, mul_comm]
+
+/-- Extract the degree-one quotient from a cubic divisible by a
+homogeneous square. The proof uses exact homogeneous projections,
+not a potentially lossy total-degree upper bound for products. -/
+theorem homogeneous_cubic_eq_linearSquare_mul_linear
+    (P : MvPolynomial (Fin 3) K) (hP : P.IsHomogeneous 3) (hP0 : P ≠ 0)
+    (l : Fin 3 → K) (hdvd : constantLinearForm l ^ 2 ∣ P) :
+    ∃ r : Fin 3 → K, r ≠ 0 ∧
+      P = constantLinearForm l ^ 2 * constantLinearForm r := by
+  classical
+  obtain ⟨Q, hQ⟩ := hdvd
+  let A := constantLinearForm l ^ 2
+  have hA : A.IsHomogeneous 2 := by
+    simpa using (constantLinearForm_homogeneous_one l).pow 2
+  have hproj (i : ℕ) :
+      homogeneousComponent 3 (A * homogeneousComponent i Q) =
+        if i = 1 then A * homogeneousComponent i Q else 0 := by
+    have hh : (A * homogeneousComponent i Q).IsHomogeneous (2+i) :=
+      hA.mul (homogeneousComponent_isHomogeneous i Q)
+    rw [homogeneousComponent_of_mem hh]
+    by_cases hi : i = 1
+    · subst i
+      simp
+    · have hn : 3 ≠ 2+i := by omega
+      simp [hi, hn]
+  have hsum : P = ∑ i ∈ Finset.range (Q.totalDegree+1),
+      homogeneousComponent 3 (A * homogeneousComponent i Q) := by
+    calc
+      P = homogeneousComponent 3 P := by
+        rw [homogeneousComponent_of_mem hP, if_pos rfl]
+      _ = homogeneousComponent 3 (A * Q) := congrArg (homogeneousComponent 3) hQ
+      _ = homogeneousComponent 3
+          (A * ∑ i ∈ Finset.range (Q.totalDegree+1), homogeneousComponent i Q) := by
+        rw [sum_homogeneousComponent]
+      _ = _ := by rw [Finset.mul_sum, map_sum]
+  have he : P = A * homogeneousComponent 1 Q := by
+    calc
+      P = _ := hsum
+      _ = homogeneousComponent 3 (A * homogeneousComponent 1 Q) := by
+        apply Finset.sum_eq_single 1
+        · intro i _ hi
+          rw [hproj, if_neg hi]
+        · intro hi
+          have hn : Q.totalDegree < 1 := by
+            rw [Finset.mem_range] at hi
+            omega
+          rw [hproj, if_pos rfl, homogeneousComponent_eq_zero hn, mul_zero]
+      _ = _ := by rw [hproj, if_pos rfl]
+  obtain ⟨r, hr⟩ := homogeneous_one_eq_constantLinearForm
+    (homogeneousComponent 1 Q) (homogeneousComponent_isHomogeneous 1 Q)
+  rw [hr] at he
+  refine ⟨r, ?_, he⟩
+  intro hz
+  apply hP0
+  rw [he, hz]
+  simp [constantLinearForm]
+
+/-- The reference determinant of a regular cubic has homogeneous
+degree three, including when it has repeated factors. -/
+theorem reference_cubic_hessian_det_homogeneous
+    (a : K) (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hq : (referenceSlice a L).IsHomogeneous 3) :
+    (referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det).IsHomogeneous 3 := by
+  let H := hessian (referenceSlice a L)
+  have he : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det = H.det := by
+    change (referenceSlice a).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = H.det
+    rw [RingHom.map_det]
+    exact congrArg Matrix.det (powerExtraction_reference_hessian_eq_mapped_transverse a L)
+  have hh (i j : Fin 3) : (H i j).IsHomogeneous 1 := by
+    change (pderiv j (pderiv i (referenceSlice a L))).IsHomogeneous 1
+    exact (hq.pderiv (i := i)).pderiv (i := j)
+  rw [he, Matrix.det_fin_three]
+  exact (((((hh 0 0).mul (hh 1 1)).mul (hh 2 2)).sub
+    (((hh 0 0).mul (hh 1 2)).mul (hh 2 1))).sub
+    (((hh 0 1).mul (hh 1 0)).mul (hh 2 2))).add
+    (((hh 0 1).mul (hh 1 2)).mul (hh 2 0)) |>.add
+    (((hh 0 2).mul (hh 1 0)).mul (hh 2 1)) |>.sub
+    (((hh 0 2).mul (hh 1 1)).mul (hh 2 0))
+
+/-- Exact factorisation of the actual regular reference determinant.
+Both linear forms are nonzero. -/
+theorem reference_cubic_det_linearSquare_mul_linear_of_nonzero_characteristic
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hN : N ≠ 0)
+    (hreg : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hq : (referenceSlice a L).IsHomogeneous 3)
+    (hgrad : ∀ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L))) :
+    ∃ l r : Fin 3 → K, l ≠ 0 ∧ r ≠ 0 ∧
+      referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det =
+        constantLinearForm l ^ 2 * constantLinearForm r := by
+  obtain ⟨l, hl, _, hdvd⟩ :=
+    reference_cubic_det_linearSquare_dvd_of_nonzero_characteristic a N L hN hreg hq hgrad
+  obtain ⟨r, hr, he⟩ := homogeneous_cubic_eq_linearSquare_mul_linear _
+    (reference_cubic_hessian_det_homogeneous a L hq) hreg l hdvd
+  exact ⟨l, r, hl, hr, he⟩
+
+/-- The precise two multiplicity-pattern alternatives. In the second
+case the covectors are not scalar multiples, so no proportionality
+assumption is imposed on the distinct factor. -/
+theorem reference_cubic_det_triple_or_distinct_linear_of_nonzero_characteristic
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (L : MvPolynomial (Unit ⊕ Fin 3) K)
+    (hN : N ≠ 0)
+    (hreg : referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hq : (referenceSlice a L).IsHomogeneous 3)
+    (hgrad : ∀ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) L) =
+        _root_.Polynomial.C (referenceSlice a (pderiv (.inr i) L))) :
+    ∃ l : Fin 3 → K, l ≠ 0 ∧
+      ((∃ c : K, c ≠ 0 ∧
+        referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det =
+          MvPolynomial.C c * constantLinearForm l ^ 3) ∨
+       (∃ r : Fin 3 → K, r ≠ 0 ∧
+        (∀ c : K, r ≠ fun i => c * l i) ∧
+        referenceSlice a ((hessian L).submatrix Sum.inr Sum.inr).det =
+          constantLinearForm l ^ 2 * constantLinearForm r)) := by
+  classical
+  obtain ⟨l, r, hl, hr, he⟩ :=
+    reference_cubic_det_linearSquare_mul_linear_of_nonzero_characteristic a N L hN hreg hq hgrad
+  refine ⟨l, hl, ?_⟩
+  by_cases h : ∃ c : K, r = fun i => c * l i
+  · obtain ⟨c, hc⟩ := h
+    have hc0 : c ≠ 0 := by
+      intro hz
+      apply hr
+      simp [hc, hz]
+    have hform : constantLinearForm r = MvPolynomial.C c * constantLinearForm l := by
+      rw [hc]
+      unfold constantLinearForm
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [map_mul]
+      ring
+    exact Or.inl ⟨c, hc0, by rw [he, hform]; ring⟩
+  · exact Or.inr ⟨r, hr, fun c hc => h ⟨c, hc⟩, he⟩
+
+
 end
 end HC4.Polynomial.RankThreeCubic
