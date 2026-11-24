@@ -4951,25 +4951,23 @@ theorem singular_symmetric_adjugate_mulVec_square
       ring
     _ = _ := by simp only [A, Finset.mul_sum]
 
-/-- Every prime divisor of both the transverse determinant and the
-mixed quadratic pairing divides each Cramer numerator. In particular
-a simple determinant factor cannot be a denominator of the mixed
-Schur solution. The argument is valid for repeated factors as well,
-but cancels only one copy without further information. -/
-theorem prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing
+/-- Divisibility modulo a possibly nonreduced principal ideal. The
+full power of the determinant is retained in the squared Cramer
+numerator, not merely the radical of the determinant. -/
+theorem dvd_adjugate_mulVec_square_of_dvd_mixed_pairing
     {R : Type*} [CommRing R]
     (T : Matrix (Fin 3) (Fin 3) R) (hsym : T.IsSymm)
-    (b : Fin 3 → R) (p : R) (hp : Prime p)
-    (hdet : p ∣ T.det)
-    (hpair : p ∣ ∑ j : Fin 3, ∑ l : Fin 3,
+    (b : Fin 3 → R) (d : R)
+    (hdet : d ∣ T.det)
+    (hpair : d ∣ ∑ j : Fin 3, ∑ l : Fin 3,
       b j * T.adjugate j l * b l) :
-    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+    ∀ i : Fin 3, d ∣ ((T.adjugate *ᵥ b) i)^2 := by
   classical
-  let I : Ideal R := Ideal.span {p}
+  let I : Ideal R := Ideal.span {d}
   let q : R →+* R ⧸ I := Ideal.Quotient.mk I
   let M := T.map q
   let v : Fin 3 → R ⧸ I := fun j => q (b j)
-  have hz (x : R) (hx : p ∣ x) : q x = 0 :=
+  have hz (x : R) (hx : d ∣ x) : q x = 0 :=
     Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr hx)
   have hM : M.det = 0 := by
     change (q.mapMatrix T).det = 0
@@ -4992,14 +4990,62 @@ theorem prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing
     rw [hAdj]
     simp only [Matrix.mulVec, dotProduct, Matrix.map_apply, v, map_sum, map_mul]
   rw [hv, ← map_pow] at he
-  exact hp.dvd_of_dvd_pow (n := 2)
-    (Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp he))
+  exact Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp he)
 
-/-- Apply prime cancellation to the actual first mixed-gap endpoint
+/-- Every prime divisor of both the transverse determinant and the
+mixed quadratic pairing divides each Cramer numerator. In particular
+a simple determinant factor cannot be a denominator of the mixed
+Schur solution. The argument is valid for repeated factors as well,
+but cancels only one copy without further information. -/
+theorem prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing
+    {R : Type*} [CommRing R]
+    (T : Matrix (Fin 3) (Fin 3) R) (hsym : T.IsSymm)
+    (b : Fin 3 → R) (p : R) (hp : Prime p)
+    (hdet : p ∣ T.det)
+    (hpair : p ∣ ∑ j : Fin 3, ∑ l : Fin 3,
+      b j * T.adjugate j l * b l) :
+    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+  intro i
+  exact hp.dvd_of_dvd_pow (n := 2)
+    (dvd_adjugate_mulVec_square_of_dvd_mixed_pairing T hsym b p hdet hpair i)
+
+/-- Extract an odd prime-power bound on a square. This is the
+valuation inequality 2 v_p(s) >= 2*n+1, proved by cancellation
+without choosing a factorization or a valuation normalization. -/
+theorem prime_pow_succ_dvd_of_odd_pow_dvd_square
+    {R : Type*} [CommRing R] [IsDomain R]
+    (p : R) (hp : Prime p) (n : ℕ) (s : R)
+    (h : p^(2*n+1) ∣ s^2) :
+    p^(n+1) ∣ s := by
+  induction n generalizing s with
+  | zero =>
+    have hd : p ∣ s^2 := by simpa using h
+    simpa using hp.dvd_of_dvd_pow (n := 2) hd
+  | succ n ih =>
+    have hd : p ∣ s^2 := dvd_trans
+      (by simpa only [pow_one] using
+        (pow_dvd_pow p (by omega : 1 ≤ 2*(n+1)+1))) h
+    obtain ⟨r, hr⟩ := hp.dvd_of_dvd_pow (n := 2) hd
+    obtain ⟨c, hc⟩ := h
+    have he : p^2 * r^2 = p^2 * (p^(2*n+1)*c) := by
+      calc
+        _ = s^2 := by rw [hr]; ring
+        _ = p^(2*(n+1)+1)*c := hc
+        _ = _ := by
+          rw [show 2*(n+1)+1 = 2+(2*n+1) by omega, pow_add]
+          ring
+    have hr2 : p^(2*n+1) ∣ r^2 :=
+      ⟨c, mul_left_cancel₀ (pow_ne_zero 2 hp.ne_zero) he⟩
+    obtain ⟨q, hq⟩ := ih r hr2
+    refine ⟨q, ?_⟩
+    rw [hr, hq, pow_succ']
+    ring
+
+/-- Apply full-power squared numerator divisibility to the actual first mixed-gap endpoint
 in the regular source characteristic chart. The vector is the
 three entries of the genuine Schur mixed row, not an auxiliary
 choice of Cramer numerator. -/
-theorem sourceLeading_mixedGap_prime_dvd_Cramer
+theorem sourceLeading_mixedGap_dvd_Cramer_square
     {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
     (F : StationarySource K) (m k : ℕ) (hm : 2 ≤ m)
     (hk : 2*k ≤ m) (hc : 2*k < 4*m-6)
@@ -5010,13 +5056,13 @@ theorem sourceLeading_mixedGap_prime_dvd_Cramer
     (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
     (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
     (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
-    (p : _root_.Polynomial E) (hprime : Prime p)
+    (p : _root_.Polynomial E)
     (hpdet : p ∣ (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0) :
     let H := sourceLeading_lineSchurFrame F m z V
     let T := (lineEval z V).toRingHom.mapMatrix
       ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix Sum.inr Sum.inr)
     let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff k, H.p.coeff k, H.q.coeff k]
-    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+    ∀ i : Fin 3, p ∣ ((T.adjugate *ᵥ b) i)^2 := by
   classical
   let H := sourceLeading_lineSchurFrame F m z V
   let L := initialForm transverseCubicWeight (m : ℤ) F
@@ -5057,12 +5103,68 @@ theorem sourceLeading_mixedGap_prime_dvd_Cramer
       (transverseSchurDet H).coeff 0 = transverseSchurMixed U at hODE
     rw [← hODE]
     exact dvd_mul_of_dvd_right hpdet _
-  change ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i
-  apply prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing T hs b p hprime
+  change ∀ i : Fin 3, p ∣ ((T.adjugate *ᵥ b) i)^2
+  apply dvd_adjugate_mulVec_square_of_dvd_mixed_pairing T hs b p
   · rw [← hT]
     exact hpdet
   · rw [← hu]
     exact hP
+
+
+/-- Apply prime cancellation to the actual first mixed-gap endpoint
+in the regular source characteristic chart. The vector is the
+three entries of the genuine Schur mixed row, not an auxiliary
+choice of Cramer numerator. -/
+theorem sourceLeading_mixedGap_prime_dvd_Cramer
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k : ℕ) (hm : 2 ≤ m)
+    (hk : 2*k ≤ m) (hc : 2*k < 4*m-6)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
+    (p : _root_.Polynomial E) (hprime : Prime p)
+    (hpdet : p ∣ (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let T := (lineEval z V).toRingHom.mapMatrix
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix Sum.inr Sum.inr)
+    let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff k, H.p.coeff k, H.q.coeff k]
+    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+  dsimp only
+  intro i
+  exact hprime.dvd_of_dvd_pow (n := 2)
+    (sourceLeading_mixedGap_dvd_Cramer_square F m k hm hk hc hcap hdet
+      z V hV hreg hb hp hq p hpdet i)
+
+/-- A determinant factor of multiplicity at least 2*n+1 cancels
+at least n+1 copies in every actual first mixed Cramer numerator.
+In the cubic triple-factor branch this leaves at most a simple pole. -/
+theorem sourceLeading_mixedGap_prime_pow_dvd_Cramer
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k : ℕ) (hm : 2 ≤ m)
+    (hk : 2*k ≤ m) (hc : 2*k < 4*m-6)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
+    (p : _root_.Polynomial E) (hprime : Prime p) (n : ℕ)
+    (hpdet : p^(2*n+1) ∣ (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let T := (lineEval z V).toRingHom.mapMatrix
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix Sum.inr Sum.inr)
+    let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff k, H.p.coeff k, H.q.coeff k]
+    ∀ i : Fin 3, p^(n+1) ∣ (T.adjugate *ᵥ b) i := by
+  dsimp only
+  intro i
+  exact prime_pow_succ_dvd_of_odd_pow_dvd_square p hprime n _
+    (sourceLeading_mixedGap_dvd_Cramer_square F m k hm hk hc hcap hdet
+      z V hV hreg hb hp hq (p^(2*n+1)) hpdet i)
 
 
 end
