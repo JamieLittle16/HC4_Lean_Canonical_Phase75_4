@@ -4312,8 +4312,8 @@ theorem sourceLeading_correction_secondDerivative_zero_of_mixedGap
     (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
     (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
     (hgap : j < 2*k) (hclock : j < 4*m-6) :
-    (lineEval z V (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F)).
-      derivative.derivative = 0 := by
+    (lineEval z V (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F))
+      |>.derivative.derivative = 0 := by
   let H := sourceLeading_lineSchurFrame F m z V
   have hd (i : ℕ) (hi : i < 4*m-6) : H.determinantCore.coeff i = 0 := by
     change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff i = 0
