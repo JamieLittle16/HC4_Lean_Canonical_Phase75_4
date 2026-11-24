@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11018**.
+Distinct declaration spellings indexed: **11023**.
 
 ## Repeated declaration spellings
 
@@ -8736,14 +8736,19 @@ Distinct declaration spellings indexed: **11018**.
 - `quadraticTransverseCapSource_globalMixedDerivative_axis` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
 - `quadraticTransverseCapSource_globalRiccatiCoefficient` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCoefficient`
 - `quadraticTransverseCapSource_globalThreeBlock_axisEntries` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRiccatiCleared`
+- `quadraticTransverseCapSource_markedCollision_impossible` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMarkedEndpoint`
 - `quadraticTransverseCapSource_matrixRiccati` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceMatrixRiccati`
+- `quadraticTransverseCapSource_polynomialPath_schur_inverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularSlope`
+- `quadraticTransverseCapSource_polynomialPath_schur_unit` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularSlope`
 - `quadraticTransverseCapSource_polynomialPath_transverseGradient` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre`
 - `quadraticTransverseCapSource_polynomialPath_transverseHessian` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialPathHessian`
 - `quadraticTransverseCapSource_rationalRiccati_constantDet` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRankThreeRiccatiBridge`
 - `quadraticTransverseCapSource_rationalThreeMatrix` — `def` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `quadraticTransverseCapSource_rationalThreeMatrix_det_ne_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
 - `quadraticTransverseCapSource_rationalThreeMatrix_inverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRationalInverse`
+- `quadraticTransverseCapSource_regularAffineFibre` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularSlope`
 - `quadraticTransverseCapSource_regularAffineInverse` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularAffineInverse`
+- `quadraticTransverseCapSource_regularGradient_bijective` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceRegularGradient`
 - `quadraticTransverseCapSource_regularLongitudinalChain` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceLongitudinalChain`
 - `quadraticTransverseCapSource_regularPolynomialFibre` — `def` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibre`
 - `quadraticTransverseCapSource_regularPolynomialFibre_drift` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourcePolynomialFibreDrift`
