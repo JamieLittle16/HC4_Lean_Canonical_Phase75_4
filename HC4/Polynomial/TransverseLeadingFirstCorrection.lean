@@ -1670,7 +1670,63 @@ theorem sourceTransverseEuler_of_weight
   have h := hnat.sum_weight_X_mul_pderiv
   simpa [transverseCubicNatWeight, Fintype.sum_sum_type, nsmul_eq_mul] using h
 
-set_option maxHeartbeats 2000000 in
+/-- Euler's identity in Hessian-vector form. Explicit entrywise
+rewriting avoids reducing the matrix multiplication implementation
+during definitional equality checking. -/
+theorem sourceTransverseHessian_mulVec_coordinates
+    (L : StationarySource K) (n : ℕ)
+    (hL : L.IsWeightedHomogeneous transverseCubicWeight ((n : ℤ) + 1)) :
+    (hessian L).submatrix Sum.inr Sum.inr *ᵥ
+      (fun j : Fin 3 => X (Sum.inr j)) =
+      (n : StationarySource K) • (fun i : Fin 3 => pderiv (Sum.inr i) L) := by
+  classical
+  funext i
+  simp only [Matrix.mulVec, dotProduct, Matrix.submatrix_apply, hessian_apply,
+    Pi.smul_apply, smul_eq_mul]
+  have hp := pderiv_isWeightedHomogeneous hL (Sum.inr i)
+  have hp' : (pderiv (Sum.inr i) L).IsWeightedHomogeneous
+      transverseCubicWeight (n : ℤ) := by
+    simpa [transverseCubicWeight] using hp
+  have he := sourceTransverseEuler_of_weight (K := K) (pderiv (Sum.inr i) L) n hp'
+  rw [← he]
+  apply Finset.sum_congr rfl
+  intro j _
+  exact mul_comm _ _
+
+/-- The matrix step of the gradient ODE is independent of the
+polynomial ring. Keep its elaboration over an abstract ring rather
+than unfolding the concrete multivariate polynomial arithmetic. -/
+private theorem sourceNilpotent_gradient_ode_algebra
+    {R : Type*} [CommRing R]
+    (A H : Matrix (Fin 3) (Fin 3) R)
+    (G Y W D : Fin 3 → R) (t c : R)
+    (hcomm : A.transpose * H = H * A)
+    (hE : H *ᵥ Y = c • G)
+    (hW : W = A *ᵥ Y - t • ((A ^ 2) *ᵥ Y))
+    (hk : D + H *ᵥ W = 0) :
+    D = -c • (A.transpose *ᵥ G - t • ((A.transpose ^ 2) *ᵥ G)) := by
+  have hcomm2 : H * A ^ 2 = A.transpose ^ 2 * H := by
+    calc
+      _ = (H * A) * A := by rw [pow_two, Matrix.mul_assoc]
+      _ = (A.transpose * H) * A := congrArg (fun M => M * A) hcomm.symm
+      _ = A.transpose * (H * A) := Matrix.mul_assoc _ _ _
+      _ = A.transpose * (A.transpose * H) :=
+        congrArg (fun M => A.transpose * M) hcomm.symm
+      _ = _ := by rw [pow_two, Matrix.mul_assoc]
+  have h1 : H *ᵥ (A *ᵥ Y) = c • (A.transpose *ᵥ G) := by
+    rw [Matrix.mulVec_mulVec, ← hcomm, ← Matrix.mulVec_mulVec, hE, Matrix.mulVec_smul]
+  have h2 : H *ᵥ ((A ^ 2) *ᵥ Y) = c • (A.transpose ^ 2 *ᵥ G) := by
+    rw [Matrix.mulVec_mulVec, hcomm2, ← Matrix.mulVec_mulVec, hE, Matrix.mulVec_smul]
+  have hHW : H *ᵥ W = c • (A.transpose *ᵥ G - t • (A.transpose ^ 2 *ᵥ G)) := by
+    rw [hW, Matrix.mulVec_sub, Matrix.mulVec_smul, h1, h2]
+    funext i
+    simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+    ring
+  rw [hHW] at hk
+  have hh : D = -(c • (A.transpose *ᵥ G - t • (A.transpose ^ 2 *ᵥ G))) :=
+    eq_neg_iff_add_eq_zero.mpr hk
+  simpa only [neg_smul] using hh
+
 /-- The transverse gradient obeys an exact first-order nilpotent
 matrix evolution at fixed ORIGINAL transverse coordinates.
 Here n=m-1 for a leading layer of transverse degree m. -/
@@ -1688,77 +1744,44 @@ theorem sourceNilpotent_transverseGradient_ode
       - (n : StationarySource K) •
         (A.transpose *ᵥ G - t • ((A.transpose ^ 2) *ᵥ G)) := by
   classical
-  let S := StationarySource K
-  let A : Matrix (Fin 3) (Fin 3) S := N.map MvPolynomial.C
+  let A : Matrix (Fin 3) (Fin 3) (StationarySource K) := N.map MvPolynomial.C
   let H := (hessian L).submatrix Sum.inr Sum.inr
-  let G : Fin 3 → S := fun i => pderiv (.inr i) L
-  let Y : Fin 3 → S := fun i => X (.inr i)
-  let t : S := X (.inl ()) - MvPolynomial.C a
-  let W : Fin 3 → S := sourceNilpotentVelocity a N
-  let c : S := n
+  let G : Fin 3 → StationarySource K := fun i => pderiv (.inr i) L
+  let Y : Fin 3 → StationarySource K := fun i => X (.inr i)
+  let t : StationarySource K := X (.inl ()) - MvPolynomial.C a
+  let W : Fin 3 → StationarySource K := sourceNilpotentVelocity a N
+  let D : Fin 3 → StationarySource K := fun i => pderiv (.inl ()) (G i)
   have hH : H.transpose = H := by
     apply Matrix.ext
     intro i j
-    change pderiv (.inr i) (pderiv (.inr j) L) =
-      pderiv (.inr j) (pderiv (.inr i) L)
+    simp only [H, Matrix.transpose_apply, Matrix.submatrix_apply, hessian_apply]
     rw [HC4.Newton.pderiv_comm_backport]
   have hcomm : A.transpose * H = H * A := by
     have h := sourceNilpotent_hessian_selfAdjoint a N hN L (fun i => hgrad (.inr i))
     change (H * A).transpose = H * A at h
     rwa [Matrix.transpose_mul, hH] at h
-  have hcomm2 : H * A ^ 2 = A.transpose ^ 2 * H := by
-    calc
-      _ = (H * A) * A := by rw [pow_two, Matrix.mul_assoc]
-      _ = (A.transpose * H) * A := congrArg (fun M => M * A) hcomm.symm
-      _ = A.transpose * (H * A) := Matrix.mul_assoc _ _ _
-      _ = A.transpose * (A.transpose * H) :=
-        congrArg (fun M => A.transpose * M) hcomm.symm
-      _ = _ := by rw [pow_two, Matrix.mul_assoc]
-  have hE : H *ᵥ Y = c • G := by
-    funext i
-    have hp := pderiv_isWeightedHomogeneous hL (Sum.inr i)
-    have hp' : (pderiv (.inr i) L).IsWeightedHomogeneous transverseCubicWeight (n : ℤ) := by
-      simpa [transverseCubicWeight] using hp
-    have he := sourceTransverseEuler_of_weight (K := K) (pderiv (Sum.inr i) L) n hp'
-    change (∑ j : Fin 3, pderiv (.inr j) (pderiv (.inr i) L) * X (.inr j)) =
-      (n : StationarySource K) * pderiv (.inr i) L
-    calc
-      _ = ∑ j : Fin 3, X (.inr j) * pderiv (.inr j) (pderiv (.inr i) L) := by
-        apply Finset.sum_congr rfl
-        intro j _
-        exact mul_comm _ _
-      _ = _ := he
-  have hA2 : A ^ 2 = (N ^ 2).map (MvPolynomial.C : K →+* S) := by
+  have hE : H *ᵥ Y = (n : StationarySource K) • G :=
+    sourceTransverseHessian_mulVec_coordinates L n hL
+  have hA2 : A ^ 2 = (N ^ 2).map (MvPolynomial.C : K →+* StationarySource K) := by
     simp only [A, pow_two, Matrix.map_mul]
   have hW : W = A *ᵥ Y - t • ((A ^ 2) *ᵥ Y) := by
     rw [hA2]
     funext i
-    rfl
-  have h1 : H *ᵥ (A *ᵥ Y) = c • (A.transpose *ᵥ G) := by
-    rw [Matrix.mulVec_mulVec, ← hcomm, ← Matrix.mulVec_mulVec, hE, Matrix.mulVec_smul]
-  have h2 : H *ᵥ ((A ^ 2) *ᵥ Y) = c • (A.transpose ^ 2 *ᵥ G) := by
-    rw [Matrix.mulVec_mulVec, hcomm2, ← Matrix.mulVec_mulVec, hE, Matrix.mulVec_smul]
-  have hHW : H *ᵥ W = c • (A.transpose *ᵥ G - t • (A.transpose ^ 2 *ᵥ G)) := by
-    rw [hW, Matrix.mulVec_sub, Matrix.mulVec_smul, h1, h2]
+    simp only [W, sourceNilpotentVelocity, sourceLinearVector, A, t, Y,
+      Matrix.mulVec, dotProduct, Matrix.map_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+  have hk : D + H *ᵥ W = 0 := by
     funext i
-    simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
-    ring
-  have hk : (fun i : Fin 3 => pderiv (.inl ()) (G i)) + H *ᵥ W = 0 := by
-    funext i
+    simp only [Pi.add_apply, Pi.zero_apply, D, G, H, Matrix.mulVec, dotProduct,
+      Matrix.submatrix_apply, hessian_apply]
     have hi := sourceNilpotent_gradient_kernel a N hN L hgrad (.inr i)
-    change pderiv (.inl ()) (G i) +
-      (∑ j : Fin 3, pderiv (.inr j) (G i) * W j) = 0
-    change pderiv (.inl ()) (G i) +
-      (∑ j : Fin 3, W j * pderiv (.inr j) (G i)) = 0 at hi
-    simpa only [mul_comm (W _) (pderiv _ _)] using hi
-  change (fun i : Fin 3 => pderiv (.inl ()) (G i)) =
-    -c • (A.transpose *ᵥ G - t • (A.transpose ^ 2 *ᵥ G))
-  rw [hHW] at hk
-  have hh : (fun i : Fin 3 => pderiv (.inl ()) (G i)) =
-      -(c • (A.transpose *ᵥ G - t • (A.transpose ^ 2 *ᵥ G))) := by
-    exact eq_neg_iff_add_eq_zero.mpr hk
-  simpa only [neg_smul] using hh
-
+    rw [show (∑ j : Fin 3, pderiv (.inr j) (pderiv (.inr i) L) * W j) =
+        ∑ j : Fin 3, W j * pderiv (.inr j) (pderiv (.inr i) L) by
+      apply Finset.sum_congr rfl
+      intro j _
+      exact mul_comm _ _]
+    exact hi
+  exact sourceNilpotent_gradient_ode_algebra A H G Y W D t
+    (n : StationarySource K) hcomm hE hW hk
 
 end
 end HC4.Polynomial.RankThreeCubic
