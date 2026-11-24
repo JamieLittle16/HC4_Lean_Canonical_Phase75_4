@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11103**.
+Distinct declaration spellings indexed: **11106**.
 
 ## Repeated declaration spellings
 
@@ -10237,6 +10237,8 @@ Distinct declaration spellings indexed: **11103**.
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_apply` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
 - `sourceOriginHessianLayer_diag_eq_two_mul_squareCoeff` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelAxisFrontier`
@@ -10260,6 +10262,7 @@ Distinct declaration spellings indexed: **11103**.
 - `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_supportingEdge_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceStationary_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
