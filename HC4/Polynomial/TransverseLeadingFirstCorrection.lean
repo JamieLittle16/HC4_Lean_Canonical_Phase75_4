@@ -5307,5 +5307,228 @@ theorem sourceLeading_clearedMixedPole_repair_dvd
   exact transverseSchur_clearedMixedPole_repair_dvd H p u v w hr hb hp hq hu hv hw hd
 
 
+
+
+/-! ## Cubic clock excludes a surviving transverse kernel
+
+At a determinant component where the leading transverse block has
+rank two, a fixed kernel direction cannot survive the whole transverse
+pencil. The mixed row has Rees degree at most two, whereas the full
+determinant has exact order six.
+-/
+
+section CubicCommonKernel
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+local notation "RP" => _root_.Polynomial R
+
+/-- The Schur determinant clock cannot be six if the transverse
+pencil has a common kernel direction and a leading principal
+cofactor survives. No condition on the longitudinal entry is needed. -/
+theorem cubicClock_commonKernel_impossible
+    (T : Matrix (Fin 3) (Fin 3) RP) (hsym : T.IsSymm)
+    (b : Fin 3 → RP) (a : RP) (d : Fin 3 → R) (k : Fin 3)
+    (hk : d k ≠ 0)
+    (hker : T *ᵥ (fun i => _root_.Polynomial.C (d i)) = 0)
+    (hkk : (T.adjugate k k).coeff 0 ≠ 0)
+    (hb : ∀ i, (b i).natDegree ≤ 2)
+    (δ : R) (hδ : δ ≠ 0)
+    (hclock : a*T.det -
+      (∑ i : Fin 3, ∑ j : Fin 3, b i*T.adjugate i j*b j) =
+      _root_.Polynomial.monomial 6 δ) : False := by
+  classical
+  let D : Fin 3 → RP := fun i => _root_.Polynomial.C (d i)
+  let A := T.adjugate
+  let V : RP := ∑ i : Fin 3, D i * b i
+  have hDk : D k ≠ 0 := _root_.Polynomial.C_ne_zero.mpr hk
+  have hD : D ≠ 0 := by
+    intro h
+    exact hDk (by simpa only [Pi.zero_apply] using congrFun h k)
+  have hdet : T.det = 0 := by
+    by_contra ht
+    exact hD (Matrix.eq_zero_of_mulVec_eq_zero ht hker)
+  have hAk : A k k ≠ 0 := by
+    intro h
+    apply hkk
+    change (A k k).coeff 0 = 0
+    rw [h, _root_.Polynomial.coeff_zero]
+  have hAs : A.IsSymm := by
+    change T.adjugate.transpose = T.adjugate
+    rw [Matrix.adjugate_transpose, hsym]
+  have hcol (j : Fin 3) : T *ᵥ (fun i => A i j) = 0 := by
+    funext i
+    have he := congrArg (fun M : Matrix (Fin 3) (Fin 3) RP => M i j)
+      (Matrix.mul_adjugate T)
+    simpa [A, Matrix.mulVec, dotProduct, Matrix.mul_apply, hdet] using he
+  have hprop (i j : Fin 3) : D k * A i j = D i * A k j := by
+    let Z : Fin 3 → RP := D k • (fun l => A l j) - A k j • D
+    have hz : T *ᵥ Z = 0 := by
+      change T *ᵥ (D k • (fun l => A l j) - A k j • D) = 0
+      rw [Matrix.mulVec_sub, Matrix.mulVec_smul, Matrix.mulVec_smul, hcol j,
+        show T *ᵥ D = 0 from hker]
+      simp
+    have hzk : Z k = 0 := by
+      change D k * A k j - A k j * D k = 0
+      ring
+    have hzero := principalCofactor_kernel_zero_of_coordinate_zero T k hAk Z hz hzk
+    have he := congrFun hzero i
+    change D k * A i j - A k j * D i = 0 at he
+    calc
+      D k * A i j = A k j * D i := sub_eq_zero.mp he
+      _ = _ := mul_comm _ _
+  have hcross (i j : Fin 3) : (D k)^2 * A i j = A k k * D i * D j := by
+    calc
+      _ = D k * (D k * A i j) := by ring
+      _ = D i * (D k * A k j) := by rw [hprop i j]; ring
+      _ = D i * (D k * A j k) := by rw [show A k j = A j k from hAs.apply j k]
+      _ = _ := by rw [hprop j k]; ring
+  have hpair : (D k)^2 * (∑ i : Fin 3, ∑ j : Fin 3, b i*A i j*b j) =
+      A k k * (V*V) := by
+    calc
+      _ = ∑ i : Fin 3, ∑ j : Fin 3, (D k)^2 * (b i*A i j*b j) := by
+        simp only [Finset.mul_sum]
+      _ = ∑ i : Fin 3, ∑ j : Fin 3, A k k * ((D i*b i)*(D j*b j)) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        apply Finset.sum_congr rfl
+        intro j _
+        rw [show (D k)^2 * (b i*A i j*b j) =
+          b i*((D k)^2*A i j)*b j by ring, hcross i j]
+        ring
+      _ = _ := by
+        simp only [V, Finset.sum_mul, Finset.mul_sum]
+        exact Finset.sum_comm
+  have he : -(A k k * (V*V)) =
+      (D k)^2 * _root_.Polynomial.monomial 6 δ := by
+    have hh := congrArg (fun P : RP => (D k)^2 * P) hclock
+    change (D k)^2 * (a*T.det - (∑ i : Fin 3, ∑ j : Fin 3, b i*A i j*b j)) = _ at hh
+    rw [hdet, mul_zero, zero_sub, mul_neg, hpair] at hh
+    exact hh
+  have hm : (_root_.Polynomial.monomial 6 δ : RP) ≠ 0 := by
+    intro h
+    have hh := congrArg (fun P : RP => P.coeff 6) h
+    exact hδ (by simpa using hh)
+  have hV : V ≠ 0 := by
+    intro h
+    rw [h, mul_zero, mul_zero, neg_zero] at he
+    exact (mul_ne_zero (pow_ne_zero _ hDk) hm) he.symm
+  have hdeg : V.natDegree ≤ 2 := by
+    apply sourceTime_natDegree_sum_le
+    intro i _
+    change (_root_.Polynomial.C (d i) * b i).natDegree ≤ 2
+    exact (_root_.Polynomial.natDegree_C_mul_le _ _).trans (hb i)
+  have htA : (A k k).natTrailingDegree = 0 :=
+    _root_.Polynomial.natTrailingDegree_eq_zero_of_constantCoeff_ne_zero hkk
+  have htD : ((D k)^2).natTrailingDegree = 0 := by
+    change ((_root_.Polynomial.C (d k) : RP)^2).natTrailingDegree = 0
+    rw [← map_pow, _root_.Polynomial.natTrailingDegree_C]
+  have ht := congrArg _root_.Polynomial.natTrailingDegree he
+  rw [_root_.Polynomial.natTrailingDegree_neg,
+    _root_.Polynomial.natTrailingDegree_mul hAk (mul_ne_zero hV hV),
+    _root_.Polynomial.natTrailingDegree_mul hV hV, htA,
+    _root_.Polynomial.natTrailingDegree_mul (pow_ne_zero _ hDk) hm,
+    htD, _root_.Polynomial.natTrailingDegree_monomial hδ] at ht
+  have hbound := (_root_.Polynomial.natTrailingDegree_le_natDegree V).trans hdeg
+  omega
+
+end CubicCommonKernel
+
+private theorem source_negative_transverse_initialForm_zero
+    (F : StationarySource K) (m : ℤ) (hm : m < 0) :
+    initialForm transverseCubicWeight m F = 0 := by
+  ext d
+  have hw : 0 ≤ Finsupp.weight transverseCubicWeight d := by
+    rw [← sourceTransverseNatGrade_sum]
+    positivity
+  rw [coeff_initialForm, if_neg (by omega), MvPolynomial.coeff_zero]
+
+/-- The mixed block of a cubic reverse Hessian has Rees degree at
+most two. The nominal order-three layer has no transverse derivative. -/
+theorem sourceCubic_reverseHessian_mixed_degree_le_two
+    {R : Type*} [CommRing R]
+    (F : StationarySource K) (q : StationarySource K →+* R)
+    (i : Fin 3) :
+    ((_root_.Polynomial.mapRingHom q)
+      (sourceLeading_reverseHessian F 3 (.inl ()) (.inr i))).natDegree ≤ 2 := by
+  apply _root_.Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
+  intro n hn
+  rw [_root_.Polynomial.coe_mapRingHom, _root_.Polynomial.coeff_map,
+    sourceLeading_reverseHessian_coeff]
+  by_cases h : n ≤ 3
+  · have he : n = 3 := by omega
+    subst n
+    rw [if_pos (by decide : 3 ≤ 3), hessian_initialForm_entry]
+    have hw : (3 : ℤ) - (3 : ℤ) - transverseCubicWeight (.inl ()) -
+        transverseCubicWeight (.inr i) = -1 := by
+      simp [transverseCubicWeight]
+    rw [hw, source_negative_transverse_initialForm_zero _ _ (by decide), map_zero]
+  · rw [if_neg h, map_zero]
+
+/-- Source-honest contradiction for a common transverse kernel at a
+rank-two leading determinant component. The map may be evaluation
+or passage to a residue domain; it must preserve the nonzero Hessian
+constant. The hypothesis is on the actual transverse reverse pencil. -/
+theorem sourceCubic_commonTransverseKernel_impossible
+    {R : Type*} [CommRing R] [IsDomain R]
+    (F : StationarySource K) (hcap : IsWeightLE transverseCubicWeight 3 F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (q : StationarySource K →+* R) (hδ : q (MvPolynomial.C δ) ≠ 0)
+    (d : Fin 3 → R) (k : Fin 3) (hk : d k ≠ 0)
+    (hker : let M := (_root_.Polynomial.mapRingHom q).mapMatrix
+        (sourceLeading_reverseHessian F 3)
+      (M.submatrix Sum.inr Sum.inr) *ᵥ
+        (fun i => _root_.Polynomial.C (d i)) = 0)
+    (hkk : let M := (_root_.Polynomial.mapRingHom q).mapMatrix
+        (sourceLeading_reverseHessian F 3)
+      ((M.submatrix Sum.inr Sum.inr).adjugate k k).coeff 0 ≠ 0) :
+    False := by
+  classical
+  let M := (_root_.Polynomial.mapRingHom q).mapMatrix (sourceLeading_reverseHessian F 3)
+  let T := M.submatrix Sum.inr Sum.inr
+  let H := sourceLineBlockOfMatrix M
+  let b : Fin 3 → _root_.Polynomial R := ![H.b,H.p,H.q]
+  have hsym (i j : Unit ⊕ Fin 3) : M i j = M j i := by
+    change _root_.Polynomial.map q (sourceLeading_reverseHessian F 3 i j) =
+      _root_.Polynomial.map q (sourceLeading_reverseHessian F 3 j i)
+    congr 1
+    apply _root_.Polynomial.ext
+    intro n
+    rw [sourceLeading_reverseHessian_coeff, sourceLeading_reverseHessian_coeff]
+    split_ifs
+    · simp only [hessian_apply, HC4.Newton.pderiv_comm_backport j i]
+    · rfl
+  have hTs : T.IsSymm := by
+    apply Matrix.IsSymm.ext
+    intro i j
+    exact hsym (.inr j) (.inr i)
+  have hTdet : transverseSchurDet H = T.det := by
+    rw [Matrix.det_fin_three]
+    have h12 := hsym (.inr 1) (.inr 0)
+    have h13 := hsym (.inr 2) (.inr 0)
+    have h23 := hsym (.inr 2) (.inr 1)
+    simp [H, T, transverseSchurDet, sourceLineBlockOfMatrix,
+      GeneralFourBlock.ofSymmetricMatrix, sourceLineIndex, Matrix.submatrix_apply,
+      h12, h13, h23] <;> ring
+  have hmix : transverseSchurMixed H = ∑ i : Fin 3, ∑ j : Fin 3,
+      b i * T.adjugate i j * b j := by
+    apply sourceLineFrame_mixed_adjugate H T <;> try rfl
+    intro i j
+    exact hsym (.inr i) (.inr j)
+  have hb (i : Fin 3) : (b i).natDegree ≤ 2 := by
+    fin_cases i
+    · exact sourceCubic_reverseHessian_mixed_degree_le_two F q 0
+    · exact sourceCubic_reverseHessian_mixed_degree_le_two F q 1
+    · exact sourceCubic_reverseHessian_mixed_degree_le_two F q 2
+  have hclock : H.determinantCore = _root_.Polynomial.monomial 6 (q (MvPolynomial.C δ)) := by
+    rw [show H.determinantCore = M.det from sourceLineBlockOfMatrix_det M hsym]
+    change ((_root_.Polynomial.mapRingHom q).mapMatrix
+      (sourceLeading_reverseHessian F 3)).det = _
+    rw [← RingHom.map_det, sourceLeading_reverseHessian_constantDet F 3 (by decide) hcap hdet]
+    exact _root_.Polynomial.map_monomial q
+  rw [transverseSchur_det_identity, hTdet, hmix] at hclock
+  exact cubicClock_commonKernel_impossible T hTs b H.a d k hk hker hkk hb
+    (q (MvPolynomial.C δ)) hδ hclock
+
+
 end
 end HC4.Polynomial.RankThreeCubic
