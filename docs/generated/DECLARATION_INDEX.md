@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11223**.
+Distinct declaration spellings indexed: **11235**.
 
 ## Repeated declaration spellings
 
@@ -10094,6 +10094,13 @@ Distinct declaration spellings indexed: **11223**.
 - `sourceAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_eq_C_mul_of_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `sourceAffineLine_logDerivative_cross` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
+- `sourceAxisTimeEval` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_C` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_X` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_affine_eq_of_endpoints` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_affine_formula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_linearLineEval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceAxisTimeEval_linearLineEval_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCoeff_derivative_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceCoefficientOrder_eq_zero_of_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `sourceCoefficientOrder_eq_zero_or_firstActual_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
@@ -10278,6 +10285,7 @@ Distinct declaration spellings indexed: **11223**.
 - `sourceNilpotentInverseEval_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentInverseEval_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_affineBottomLayers_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_affine_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_allCorrections_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_firstCorrection_affine` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10290,6 +10298,7 @@ Distinct declaration spellings indexed: **11223**.
 - `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_markedCollision_forces_earlyMixed` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_mixed_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_originalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_secondCorrection_timeDegree_le_seven` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10315,6 +10324,7 @@ Distinct declaration spellings indexed: **11223**.
 - `sourcePresentation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
 - `sourceRankThreeExit_of_preterminal` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
 - `sourceRankThreeExit_of_residualZero` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalSourceZeroSchurRankThree`
+- `sourceReferenceLinearVector_eval_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceReflection_three` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitReflectionDescent`
 - `sourceRightRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceRightRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
@@ -10336,6 +10346,7 @@ Distinct declaration spellings indexed: **11223**.
 - `sourceTimePencil_right_inverse` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_add_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_coeffDeriv_natDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_degree_le_one_of_second_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_degree_of_secondDerivative_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_derivative_constant_of_equal_endpoints` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_mixed_minor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10578,6 +10589,7 @@ Distinct declaration spellings indexed: **11223**.
 - `standardTwoZero_terminal_not_planarJC2` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarCollision`
 - `standardZeroPairEmbedding` — `def` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `stationaryAxisEval` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `stationaryAxisEval_gradient_layer` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_monomial_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_monomial_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `stationaryAxisEval_quadratic_midpoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
