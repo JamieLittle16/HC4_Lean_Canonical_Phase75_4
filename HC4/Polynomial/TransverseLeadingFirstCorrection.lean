@@ -4493,23 +4493,20 @@ private theorem stationaryAxisEval_gradient_layer
     (stationaryAxisTrace_gradient_layer F i)
   simpa only [stationaryAxisTrace_eval] using h
 
-/-- Affineness of both bottom source layers in a nilpotent
-characteristic chart excludes an actual marked gradient collision.
-The affine pencil is used on the original gradient, not on a
-replacement Hessian determinant. -/
-theorem sourceNilpotent_affineBottomLayers_markedCollision_impossible
+/-- Affineness of the transverse-degree-one layer alone excludes a
+marked collision. The pencil interpolation makes the actual transverse
+gradient constant, and the rank-one axis obstruction handles the
+longitudinal gradient without any hypothesis on its degree. -/
+theorem sourceNilpotent_affineLinearLayer_markedCollision_impossible
     (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
     (hdet : hessianDeterminant F = MvPolynomial.C δ)
     (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
     (hcoll : ∀ i : Unit ⊕ Fin 3,
       stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
-    (h0 : (linearLineEval a N (initialForm transverseCubicWeight 0 F)).derivative.derivative = 0)
     (h1 : (linearLineEval a N (initialForm transverseCubicWeight 1 F)).derivative.derivative = 0) :
     False := by
   classical
-  let Q0 := initialForm transverseCubicWeight 0 F
   let Q1 := initialForm transverseCubicWeight 1 F
-  let P0 := linearLineEval a N Q0
   let P1 := linearLineEval a N Q1
   let G (u : K) (i : Fin 3) := stationaryAxisEval (a+u) (pderiv (.inr i) Q1)
   let c := G (-a)
@@ -4579,37 +4576,113 @@ theorem sourceNilpotent_affineBottomLayers_markedCollision_impossible
       _ = (G u ᵥ* J u) ᵥ* S := (Matrix.vecMul_vecMul _ _ _).symm
       _ = (c ᵥ* J u) ᵥ* S := by rw [he]
       _ = c := by rw [Matrix.vecMul_vecMul, hinv, Matrix.vecMul_one]
-  have hlong (u : K) : stationaryAxisEval (a+u) (pderiv (.inl ()) Q0) =
-      stationaryAxisEval (a+(-a)) (pderiv (.inl ()) Q0) := by
-    rw [← sourceAxisTimeEval_linearLineEval_derivative a u N Q0,
-      ← sourceAxisTimeEval_linearLineEval_derivative a (-a) N Q0]
-    have hc := _root_.Polynomial.eq_C_of_derivative_eq_zero h0
-    rw [hc, sourceAxisTimeEval_C, sourceAxisTimeEval_C]
-  have hall (i : Unit ⊕ Fin 3) (t : K) :
-      stationaryAxisEval t (pderiv i F) = stationaryAxisEval 0 (pderiv i F) := by
-    rw [stationaryAxisEval_gradient_layer F i t, stationaryAxisEval_gradient_layer F i 0]
-    cases i with
-    | inl v =>
-      cases v
-      have h := hlong (t-a)
-      rw [show a+(t-a) = t by ring, add_neg_cancel] at h
-      exact h
-    | inr i =>
+  let D0 := (stationaryAxisTrace (pderiv (.inl ()) F)).derivative
+  apply stationaryAxisTrace_rankOne_markedCollision_impossible F hδ hdet hcoll
+    D0 (Sum.elim (fun _ : Unit => 1) (fun _ : Fin 3 => 0))
+  intro i
+  cases i with
+  | inl v =>
+    cases v
+    change D0 = _root_.Polynomial.C (1 : K) * D0
+    simp
+  | inr i =>
+    have hall (t : K) : stationaryAxisEval t (pderiv (.inr i) F) =
+        stationaryAxisEval 0 (pderiv (.inr i) F) := by
+      rw [stationaryAxisEval_gradient_layer F (.inr i) t,
+        stationaryAxisEval_gradient_layer F (.inr i) 0]
       have h := congrFun (hG (t-a)) i
       change stationaryAxisEval (a+(t-a)) (pderiv (.inr i) Q1) =
         stationaryAxisEval (a+(-a)) (pderiv (.inr i) Q1) at h
       rw [show a+(t-a) = t by ring, add_neg_cancel] at h
       exact h
-  apply stationaryAxisTrace_rankOne_markedCollision_impossible F hδ hdet hcoll
-    0 (fun _ => 0)
-  intro i
-  have he : stationaryAxisTrace (pderiv i F) =
-      _root_.Polynomial.C (stationaryAxisEval 0 (pderiv i F)) := by
-    apply _root_.Polynomial.funext
-    intro t
-    rw [stationaryAxisTrace_eval, _root_.Polynomial.eval_C]
-    exact hall i t
-  rw [he, _root_.Polynomial.derivative_C, mul_zero]
+    have he : stationaryAxisTrace (pderiv (.inr i) F) =
+        _root_.Polynomial.C (stationaryAxisEval 0 (pderiv (.inr i) F)) := by
+      apply _root_.Polynomial.funext
+      intro t
+      rw [stationaryAxisTrace_eval, _root_.Polynomial.eval_C]
+      exact hall t
+    change (stationaryAxisTrace (pderiv (.inr i) F)).derivative =
+      _root_.Polynomial.C (0 : K) * D0
+    rw [he, _root_.Polynomial.derivative_C, map_zero, zero_mul]
+
+/-- Affineness of both bottom source layers in a nilpotent
+characteristic chart excludes an actual marked gradient collision.
+The affine pencil is used on the original gradient, not on a
+replacement Hessian determinant. -/
+theorem sourceNilpotent_affineBottomLayers_markedCollision_impossible
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
+    (h0 : (linearLineEval a N (initialForm transverseCubicWeight 0 F)).derivative.derivative = 0)
+    (h1 : (linearLineEval a N (initialForm transverseCubicWeight 1 F)).derivative.derivative = 0) :
+    False := by
+  exact sourceNilpotent_affineLinearLayer_markedCollision_impossible
+    F hδ hdet a N hN hcoll h1
+
+/-- The mixed block of a surviving regular nilpotent-linear marked
+collision must have a nonzero correction by reverse order floor((m-1)/2).
+The order-zero block is excluded by the actual leading transport. -/
+theorem sourceNilpotent_markedCollision_forces_strictEarlyMixed
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hδ : δ ≠ 0) (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F))))
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F)) :
+    let B := MvPolynomial (Fin 3) K
+    let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+    let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+    let H := sourceLeading_lineSchurFrame F m z V
+    ∃ j : ℕ, 0 < j ∧ 2*j < m ∧
+      (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0) := by
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  have hV : V (.inl ()) = 1 := rfl
+  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hg : ∀ i, lineEval z V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
+  obtain ⟨hb0, hp0, hq0, hr⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg
+  change ∃ j : ℕ, 0 < j ∧ 2*j < m ∧
+    (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0)
+  by_contra hn
+  let k := (m-1)/2+1
+  have hgap : m-1 < 2*k := by dsimp [k]; omega
+  have hzero (j : ℕ) (hj : j < k) :
+      H.b.coeff j = 0 ∧ H.p.coeff j = 0 ∧ H.q.coeff j = 0 := by
+    by_cases hj0 : j = 0
+    · subst j
+      exact ⟨hb0, hp0, hq0⟩
+    · have hjm : 2*j < m := by dsimp [k] at hj; omega
+      have hjpos : 0 < j := by omega
+      refine ⟨?_, ?_, ?_⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inl h⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inl h)⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inr h)⟩
+  have h1 := sourceLeading_correction_secondDerivative_zero_of_mixedGap
+    F m k (m-1) (by omega) (by omega) hcap hdet z V hV hr
+    (fun j hj => (hzero j hj).1) (fun j hj => (hzero j hj).2.1)
+    (fun j hj => (hzero j hj).2.2) hgap (by omega)
+  have he : (m : ℤ) - ((m-1 : ℕ) : ℤ) = 1 := by omega
+  rw [he] at h1
+  exact sourceNilpotent_affineLinearLayer_markedCollision_impossible
+    F hδ hdet a N hN hcoll h1
+
 
 /-- The mixed block of a surviving regular nilpotent-linear marked
 collision must have a nonzero correction by reverse order floor(m/2).
@@ -4634,41 +4707,10 @@ theorem sourceNilpotent_markedCollision_forces_earlyMixed
     let H := sourceLeading_lineSchurFrame F m z V
     ∃ j : ℕ, 0 < j ∧ 2*j ≤ m ∧
       (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0) := by
-  let B := MvPolynomial (Fin 3) K
-  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
-  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
-  let H := sourceLeading_lineSchurFrame F m z V
-  let L := initialForm transverseCubicWeight (m : ℤ) F
-  have hV : V (.inl ()) = 1 := rfl
-  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
-  have hg : ∀ i, lineEval z V (pderiv i L) =
-      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
-  obtain ⟨hb0, hp0, hq0, hr⟩ :=
-    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg
-  change ∃ j : ℕ, 0 < j ∧ 2*j ≤ m ∧
-    (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0)
-  by_contra hn
-  let k := m/2+1
-  have hgap : m < 2*k := by dsimp [k]; omega
-  have hzero (j : ℕ) (hj : j < k) :
-      H.b.coeff j = 0 ∧ H.p.coeff j = 0 ∧ H.q.coeff j = 0 := by
-    by_cases hj0 : j = 0
-    · subst j
-      exact ⟨hb0, hp0, hq0⟩
-    · have hjm : 2*j ≤ m := by dsimp [k] at hj; omega
-      have hjpos : 0 < j := by omega
-      refine ⟨?_, ?_, ?_⟩
-      · by_contra h
-        exact hn ⟨j, hjpos, hjm, Or.inl h⟩
-      · by_contra h
-        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inl h)⟩
-      · by_contra h
-        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inr h)⟩
-  obtain ⟨h0, h1⟩ := sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap
-    F m k hm hcap hdet z V hV hr (fun j hj => (hzero j hj).1)
-    (fun j hj => (hzero j hj).2.1) (fun j hj => (hzero j hj).2.2) hgap
-  exact sourceNilpotent_affineBottomLayers_markedCollision_impossible
-    F hδ hdet a N hN hcoll h0 h1
+  obtain ⟨j, hj, hjm, hmix⟩ :=
+    sourceNilpotent_markedCollision_forces_strictEarlyMixed F m hm hcap hδ hdet
+      a N hN hreg hgrad hcoll
+  exact ⟨j, hj, hjm.le, hmix⟩
 
 
 end
