@@ -4209,5 +4209,145 @@ theorem stationaryAxisTrace_collision_forces_lowLayer_degree
   omega
 
 
+
+
+/-! ## Mixed-gap propagation to the actual terminal layers
+
+A sufficiently late mixed correction forces every pre-gap
+longitudinal correction to vanish, using the exact determinant
+clock. The gap condition is explicit; it is not yet extracted
+from the leading characteristic classification.
+-/
+
+section MixedGap
+
+variable {R : Type*} [CommRing R] [IsDomain R]
+local notation "RP" => _root_.Polynomial R
+
+private theorem transverse_gap_mul
+    (p q : RP) (a b n : ℕ) (hn : n < a+b)
+    (hp : ∀ i < a, p.coeff i = 0)
+    (hq : ∀ i < b, q.coeff i = 0) :
+    (p*q).coeff n = 0 := by
+  rw [_root_.Polynomial.coeff_mul]
+  apply Finset.sum_eq_zero
+  intro ij hij
+  have hh := Finset.mem_antidiagonal.mp hij
+  by_cases hi : ij.1 < a
+  · rw [hp _ hi, zero_mul]
+  · rw [hq _ (by omega), mul_zero]
+
+private theorem transverse_gap_triple
+    (p q r : RP) (k n : ℕ) (hn : n < 2*k)
+    (hp : ∀ i < k, p.coeff i = 0)
+    (hq : ∀ i < k, q.coeff i = 0) :
+    (p*q*r).coeff n = 0 := by
+  apply transverse_gap_mul (p*q) r (2*k) 0 n (by omega)
+  · intro i hi
+    exact transverse_gap_mul p q k k i (by omega) hp hq
+  · intro i hi
+    omega
+
+/-- A mixed gap of length k implies a gap of length 2*k in the
+quadratic adjugate pairing. -/
+theorem transverseSchurMixed_coeff_zero_of_gap
+    (H : GeneralFourBlock RP) (k n : ℕ) (hn : n < 2*k)
+    (hb : ∀ i < k, H.b.coeff i = 0)
+    (hp : ∀ i < k, H.p.coeff i = 0)
+    (hq : ∀ i < k, H.q.coeff i = 0) :
+    (transverseSchurMixed H).coeff n = 0 := by
+  simp only [transverseSchurMixed, _root_.Polynomial.coeff_add,
+    _root_.Polynomial.coeff_sub,
+    transverse_gap_triple _ _ _ k n hn hb hb,
+    transverse_gap_triple _ _ _ k n hn hb hp,
+    transverse_gap_triple _ _ _ k n hn hb hq,
+    transverse_gap_triple _ _ _ k n hn hp hp,
+    transverse_gap_triple _ _ _ k n hn hp hq,
+    transverse_gap_triple _ _ _ k n hn hq hq, sub_self, add_zero]
+
+/-- The determinant and mixed gaps propagate through the cleared
+Schur recurrence, with no inverse or division of coefficients. -/
+theorem transverseSchur_longitudinal_zero_of_mixedGap
+    (H : GeneralFourBlock RP) (k clock : ℕ)
+    (hreg : (transverseSchurDet H).coeff 0 ≠ 0)
+    (hb : ∀ i < k, H.b.coeff i = 0)
+    (hp : ∀ i < k, H.p.coeff i = 0)
+    (hq : ∀ i < k, H.q.coeff i = 0)
+    (hdet : ∀ i < clock, H.determinantCore.coeff i = 0) :
+    ∀ n < 2*k, n < clock → H.a.coeff n = 0 := by
+  classical
+  intro n
+  induction n using Nat.strong_induction_on with
+  | h n ih =>
+    intro hn hc
+    have he := transverseSchur_coeff_recurrence H n
+    have hsum : (∑ ij ∈ (Finset.antidiagonal n).erase (n, 0),
+        H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2) = 0 := by
+      apply Finset.sum_eq_zero
+      intro ij hij
+      have hh := Finset.mem_antidiagonal.mp (Finset.mem_of_mem_erase hij)
+      have hne := Finset.ne_of_mem_erase hij
+      have hi : ij.1 < n := by
+        by_contra! h
+        apply hne
+        exact Prod.ext (by omega) (by omega)
+      rw [ih ij.1 hi (by omega) (by omega), zero_mul]
+    rw [hdet n hc, transverseSchurMixed_coeff_zero_of_gap H k n hn hb hp hq,
+      hsum, zero_add, sub_zero] at he
+    exact (mul_eq_zero.mp he).resolve_right hreg
+
+end MixedGap
+
+/-- In a genuine source characteristic chart, a mixed gap forces
+actual source layers to be affine in characteristic time all the
+way up to the smaller of twice the gap and the determinant clock. -/
+theorem sourceLeading_correction_secondDerivative_zero_of_mixedGap
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k j : ℕ) (hm : 2 ≤ m) (hj : j ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
+    (hgap : j < 2*k) (hclock : j < 4*m-6) :
+    (lineEval z V (initialForm transverseCubicWeight ((m : ℤ)-(j : ℤ)) F)).
+      derivative.derivative = 0 := by
+  let H := sourceLeading_lineSchurFrame F m z V
+  have hd (i : ℕ) (hi : i < 4*m-6) : H.determinantCore.coeff i = 0 := by
+    change (sourceLeading_lineSchurFrame F m z V).determinantCore.coeff i = 0
+    rw [sourceLeading_lineSchurFrame_det F m hm hcap hdet,
+      _root_.Polynomial.coeff_monomial, if_neg (by omega : 4*m-6 ≠ i)]
+  have ha := transverseSchur_longitudinal_zero_of_mixedGap H k (4*m-6)
+    hreg hb hp hq hd j hgap hclock
+  rw [(sourceLeading_lineSchurFrame_differential_coeff F m j hj z V hV).1] at ha
+  exact ha
+
+/-- A mixed gap reaching beyond the bottom two source layers makes
+both of them affine in the same actual characteristic chart. -/
+theorem sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
+    (hgap : m < 2*k) :
+    (lineEval z V (initialForm transverseCubicWeight 0 F)).derivative.derivative = 0 ∧
+      (lineEval z V (initialForm transverseCubicWeight 1 F)).derivative.derivative = 0 := by
+  have h0 := sourceLeading_correction_secondDerivative_zero_of_mixedGap
+    F m k m (by omega) (by omega) hcap hdet z V hV hreg hb hp hq hgap (by omega)
+  have h1 := sourceLeading_correction_secondDerivative_zero_of_mixedGap
+    F m k (m-1) (by omega) (by omega) hcap hdet z V hV hreg hb hp hq (by omega) (by omega)
+  constructor
+  · simpa only [sub_self] using h0
+  · have he : (m : ℤ) - ((m-1 : ℕ) : ℤ) = 1 := by omega
+    rwa [he] at h1
+
+
 end
 end HC4.Polynomial.RankThreeCubic
