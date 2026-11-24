@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11036**.
+Distinct declaration spellings indexed: **11042**.
 
 ## Repeated declaration spellings
 
@@ -5680,6 +5680,7 @@ Distinct declaration spellings indexed: **11036**.
 - `exists_sourceLeading_nilpotentLinear_or_nonPolynomial` — `theorem` in `HC4.Polynomial.TransverseLeadingLinearClassification`
 - `exists_source_eval_ne_zero_of_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurProjectiveWedgeConstancy`
 - `exists_source_firstPositiveTransverseSourceDegree` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
+- `exists_source_power_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `exists_source_square_of_nonzero_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `exists_source_support_of_mem_centralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `exists_source_support_of_mem_rightCentralDeficitBinarySpecialisation` — `theorem` in `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
@@ -8238,8 +8239,11 @@ Distinct declaration spellings indexed: **11036**.
 - `positive_pair_core_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
 - `positive_rBranch_character_ne_positive_sBranch_character` — `theorem` in `HC4.Toric.BranchCharacter`
 - `positive_singletonSmithFiber_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
+- `powerExtraction_reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
+- `powerExtraction_symmetric_mul_square` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `power_polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `power_polynomial_identity_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `power_pullback_of_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `prContactWeightedEuler_crossDegreeScalar_eq_zero_forces_transverse_zero_or_one` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 - `prContactWeightedEuler_rawComplement_crossScalar_of_topTransverseZero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
 - `prContactWeightedEuler_rawComplement_selfScalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactPrExtremalScalar`
@@ -10195,6 +10199,7 @@ Distinct declaration spellings indexed: **11036**.
 - `sourceHessian_fixedPoleKernel_specializes_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`
 - `sourceLayerFrontier` — `def` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
 - `sourceLayerFrontier_nonempty` — `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
+- `sourceLeading_fixedPower_of_nonzero_linear` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `sourceLeading_homogeneousHessianDegrees` — `theorem` in `HC4.Polynomial.TransverseLeadingLinearClassification`
 - `sourceLeftRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
@@ -10239,6 +10244,7 @@ Distinct declaration spellings indexed: **11036**.
 - `source_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceSourceExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointSourceExposure`
 - `source_contact_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCrossFacet`
 - `source_family_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalFrontier`
+- `source_power_of_linear_characteristic` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `source_rawDefect_eq_zero_of_presentedState` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `source_square_of_jordan_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `source_square_of_linear_characteristic` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
