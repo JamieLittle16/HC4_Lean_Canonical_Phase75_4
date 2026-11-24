@@ -419,6 +419,8 @@ theorem transverseSchur_coeff_recurrence
   classical
   have h := congrArg (fun p : _root_.Polynomial R => p.coeff n)
     (transverseSchur_det_identity H)
+  change H.determinantCore.coeff n =
+    (H.a * transverseSchurDet H - transverseSchurMixed H).coeff n at h
   rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_mul] at h
   let f : ℕ × ℕ → R := fun ij =>
     H.a.coeff ij.1 * (transverseSchurDet H).coeff ij.2
@@ -503,6 +505,8 @@ theorem transverseSchur_second_constraint
            z := H.z.coeff 0 } : GeneralFourBlock R) := by
   have h := congrArg (fun p : _root_.Polynomial R => p.coeff 2)
     (transverseSchur_det_identity H)
+  change H.determinantCore.coeff 2 =
+    (H.a * transverseSchurDet H - transverseSchurMixed H).coeff 2 at h
   rw [_root_.Polynomial.coeff_sub, transverse_coeff_mul_two,
     ha0, ha1, transverseSchurMixed_coeff_two H hb hp hq, hdet] at h
   simp only [zero_mul, zero_add] at h
@@ -779,7 +783,8 @@ theorem sourceLeading_reverseHessian_eval_one
     (_root_.Polynomial.evalRingHom (1 : S K)).mapMatrix
       (sourceLeading_reverseHessian F m) = hessian F := by
   classical
-  ext i j
+  apply Matrix.ext
+  intro i j
   change (_root_.Polynomial.evalRingHom (1 : S K))
       (∑ k ∈ Finset.range (m + 1), _root_.Polynomial.monomial k
         (hessian (initialForm transverseCubicWeight ((m : ℤ) - (k : ℤ)) F) i j)) =
@@ -849,18 +854,30 @@ theorem sourceLeading_reverseHessian_constantDet
     (sourceLeading_reverseHessian F m).det =
       _root_.Polynomial.monomial (4 * m - 6) (MvPolynomial.C δ) := by
   classical
-  ext r
+  apply _root_.Polynomial.ext
+  intro r
   rw [sourceLeading_reverseHessian_det_coeff F m hcap r, hdet,
     _root_.Polynomial.coeff_monomial]
+  have hclock : ((4 * m - 6 : ℕ) : ℤ) = 4 * (m : ℤ) - 6 := by
+    rw [Nat.cast_sub (by omega : 6 ≤ 4 * m)]
+    push_cast <;> ring
   by_cases hr : 4 * m - 6 = r
   · rw [if_pos hr]
-    have hw : 4 * (m : ℤ) - 6 - (r : ℤ) = 0 := by omega
+    have hw : 4 * (m : ℤ) - 6 - (r : ℤ) = 0 := by
+      rw [← hclock, hr, sub_self]
     rw [hw]
     exact initialForm_eq_self_of_isWeightedHomogeneous
       (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ)
   · rw [if_neg hr]
+    have hw : 4 * (m : ℤ) - 6 - (r : ℤ) ≠ 0 := by
+      intro he
+      apply hr
+      have he' : ((4 * m - 6 : ℕ) : ℤ) = (r : ℤ) := by
+        rw [hclock]
+        exact sub_eq_zero.mp he
+      exact_mod_cast he'
     exact initialForm_eq_zero_of_isWeightedHomogeneous
-      (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ) _ (by omega)
+      (MvPolynomial.isWeightedHomogeneous_C transverseCubicWeight δ) _ hw
 
 
 
@@ -898,11 +915,15 @@ theorem transverseSchur_longitudinal_zero_one
       sub_self, zero_add]
   have h0 := congrArg (fun p : _root_.Polynomial R => p.coeff 0)
     (transverseSchur_det_identity H)
+  change H.determinantCore.coeff 0 =
+    (H.a * transverseSchurDet H - transverseSchurMixed H).coeff 0 at h0
   rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.mul_coeff_zero,
     hdet0, hm0, sub_zero] at h0
   have ha0 := (mul_eq_zero.mp h0.symm).resolve_right hregular
   have h1 := congrArg (fun p : _root_.Polynomial R => p.coeff 1)
     (transverseSchur_det_identity H)
+  change H.determinantCore.coeff 1 =
+    (H.a * transverseSchurDet H - transverseSchurMixed H).coeff 1 at h1
   rw [_root_.Polynomial.coeff_sub, transverse_coeff_mul_one,
     hdet1, hm1, ha0, zero_mul, zero_add, sub_zero] at h1
   exact ⟨ha0, (mul_eq_zero.mp h1.symm).resolve_right hregular⟩
