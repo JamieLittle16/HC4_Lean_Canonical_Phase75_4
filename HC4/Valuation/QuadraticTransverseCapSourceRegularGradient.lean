@@ -99,7 +99,9 @@ theorem quadraticTransverseCapSource_regularGradient_bijective
         calc
           w = Fin.cons (w 0) (fun i : Fin 3 => w i.succ) := hwpoint.symm
           _ = path (w 0) := by
-            exact congrArg (fun z : Fin 3 → K => Fin.cons (w 0) z) htail
+            change Fin.cons (w 0) (fun i : Fin 3 => w i.succ) =
+              Fin.cons (w 0) (fun i : Fin 3 => Polynomial.eval (w 0) (y i))
+            rw [htail]
       have hwlong : d⁻¹ * w 0 + k = out 0 := by
         calc
           d⁻¹ * w 0 + k = mvGradientMap F (path (w 0)) 0 :=
