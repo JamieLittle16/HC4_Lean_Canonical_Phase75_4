@@ -4045,5 +4045,164 @@ theorem stationaryAxisTrace_rankOne_markedCollision_impossible
   exact hδ (_root_.Polynomial.C_eq_zero.mp hb.symm)
 
 
+
+
+/-! ## Exact low-grade extraction on the marked axis
+
+The entire marked gradient and its Hessian witness are determined
+by the first three transverse grades of the ORIGINAL source.
+No replacement potential is asserted to have constant determinant
+away from that axis.
+-/
+
+/-- Only transverse grade zero survives the marked-axis substitution. -/
+theorem stationaryAxisTrace_initialForm_zero (P : StationarySource K) :
+    stationaryAxisTrace (initialForm transverseCubicWeight 0 P) =
+      stationaryAxisTrace P := by
+  classical
+  have hz : stationaryAxisTrace (P - initialForm transverseCubicWeight 0 P) = 0 := by
+    change MvPolynomial.aeval
+      (fun i : Unit ⊕ Fin 3 =>
+        _root_.Polynomial.C (0 : K) +
+          _root_.Polynomial.C (Sum.elim (fun _ : Unit => 1) (fun _ : Fin 3 => 0) i) *
+            _root_.Polynomial.X) (P - initialForm transverseCubicWeight 0 P) = 0
+    apply MvPolynomial.aeval_eq_zero
+    intro d hd
+    have hw : Finsupp.weight transverseCubicWeight d ≠ 0 := by
+      intro h
+      apply hd
+      simp [MvPolynomial.coeff_sub, coeff_initialForm, h]
+    have he : ∃ j : Fin 3, d (.inr j) ≠ 0 := by
+      by_contra! hn
+      apply hw
+      rw [transverseCubicWeight_eq_transverseSum]
+      simp [hn]
+    obtain ⟨j, hj⟩ := he
+    exact ⟨.inr j, Finsupp.mem_support_iff.mpr hj, by simp⟩
+  rw [map_sub, sub_eq_zero] at hz
+  exact hz.symm
+
+/-- The actual marked gradient component comes from exactly one
+transverse source layer: zero for the longitudinal component and
+one for each transverse component. -/
+theorem stationaryAxisTrace_gradient_layer
+    (F : StationarySource K) (i : Unit ⊕ Fin 3) :
+    stationaryAxisTrace (pderiv i F) =
+      stationaryAxisTrace (pderiv i (initialForm transverseCubicWeight
+        (transverseCubicWeight i) F)) := by
+  rw [pderiv_initialForm, sub_self, stationaryAxisTrace_initialForm_zero]
+
+/-- Each entry of the actual marked Hessian comes from precisely the
+source layer indexed by the sum of the two derivative weights. -/
+theorem stationaryAxisTrace_hessian_layer
+    (F : StationarySource K) (i j : Unit ⊕ Fin 3) :
+    stationaryAxisTrace (hessian F i j) =
+      stationaryAxisTrace (hessian (initialForm transverseCubicWeight
+        (transverseCubicWeight i + transverseCubicWeight j) F) i j) := by
+  rw [hessian_initialForm_entry,
+    show transverseCubicWeight i + transverseCubicWeight j -
+      transverseCubicWeight i - transverseCubicWeight j = 0 by ring,
+    stationaryAxisTrace_initialForm_zero]
+
+/-- The marked-axis Hessian determinant is an exact low-layer
+certificate, independent of the remaining high source layers. -/
+theorem stationaryAxisTrace_lowLayers_det
+    (F : StationarySource K) {δ : K}
+    (hdet : hessianDeterminant F = MvPolynomial.C δ) :
+    (Matrix.of fun i j : Unit ⊕ Fin 3 =>
+      stationaryAxisTrace (hessian (initialForm transverseCubicWeight
+        (transverseCubicWeight i + transverseCubicWeight j) F) i j)).det =
+      _root_.Polynomial.C δ := by
+  classical
+  let A := (stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)
+  have he : (Matrix.of fun i j : Unit ⊕ Fin 3 =>
+      stationaryAxisTrace (hessian (initialForm transverseCubicWeight
+        (transverseCubicWeight i + transverseCubicWeight j) F) i j)) = A := by
+    ext i j
+    exact (stationaryAxisTrace_hessian_layer F i j).symm
+  rw [he]
+  change ((stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)).det = _
+  rw [← RingHom.map_det]
+  change stationaryAxisTrace (hessianDeterminant F) = _
+  rw [hdet]
+  simp [stationaryAxisTrace, lineEval]
+
+private theorem stationaryAxisTrace_quadratic_secant
+    (P : _root_.Polynomial K) (hP : P.natDegree ≤ 2) :
+    P.eval 1 - P.eval 0 = P.derivative.eval (1/2) := by
+  have he : P = _root_.Polynomial.C (P.coeff 0) +
+      _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X +
+      _root_.Polynomial.C (P.coeff 2) * _root_.Polynomial.X^2 := by
+    apply _root_.Polynomial.ext
+    intro n
+    have hz (k : ℕ) : P.coeff (k+3) = 0 :=
+      _root_.Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)
+    cases n with
+    | zero => simp
+    | succ n =>
+      cases n with
+      | zero => simp
+      | succ n =>
+        cases n with
+        | zero => simp
+        | succ n =>
+          simpa [_root_.Polynomial.coeff_C_mul, _root_.Polynomial.coeff_X_pow,
+            Nat.succ_eq_add_one, Nat.add_assoc] using hz n
+  have h1 := congrArg (fun p : _root_.Polynomial K => p.eval 1) he
+  have h0 := congrArg (fun p : _root_.Polynomial K => p.eval 0) he
+  have hd := congrArg (fun p : _root_.Polynomial K => p.derivative.eval (1/2)) he
+  rw [h1, h0, hd]
+  simp [_root_.Polynomial.derivative_add, _root_.Polynomial.derivative_mul,
+    _root_.Polynomial.derivative_pow] <;> ring
+
+/-- Arbitrary total degree is allowed: a quadratic restriction of the
+actual gradient to the marked axis is enough to forbid the collision. -/
+theorem stationaryAxisTrace_quadraticGradient_markedCollision_impossible
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
+    (hquad : ∀ i : Unit ⊕ Fin 3,
+      (stationaryAxisTrace (pderiv i F)).natDegree ≤ 2) : False := by
+  classical
+  have hz (i : Unit ⊕ Fin 3) :
+      ((stationaryAxisTrace (pderiv i F)).derivative).eval (1/2) = 0 := by
+    have he := stationaryAxisTrace_quadratic_secant
+      (stationaryAxisTrace (pderiv i F)) (hquad i)
+    rw [stationaryAxisTrace_eval, stationaryAxisTrace_eval, hcoll i, sub_self] at he
+    exact he.symm
+  have hb := stationaryAxisTrace_gradient_bezout F hdet
+  let A := (stationaryAxisTrace (K := K)).toRingHom.mapMatrix (hessian F)
+  change (∑ i : Unit ⊕ Fin 3,
+    (stationaryAxisTrace (pderiv i F)).derivative * A.adjugate (.inl ()) i) =
+      _root_.Polynomial.C δ at hb
+  have he := congrArg (fun p : _root_.Polynomial K => p.eval (1/2)) hb
+  change (_root_.Polynomial.evalRingHom (1/2 : K))
+    (∑ i : Unit ⊕ Fin 3,
+      (stationaryAxisTrace (pderiv i F)).derivative * A.adjugate (.inl ()) i) =
+    (_root_.Polynomial.evalRingHom (1/2 : K)) (_root_.Polynomial.C δ) at he
+  simp only [map_sum, map_mul, _root_.Polynomial.coe_evalRingHom,
+    hz, zero_mul, Finset.sum_const_zero, _root_.Polynomial.eval_C] at he
+  exact hδ he.symm
+
+/-- Any surviving marked collision forces a genuinely higher-degree
+gradient trace in transverse grade zero or one of the actual source.
+Higher layers cannot conceal this necessary condition. -/
+theorem stationaryAxisTrace_collision_forces_lowLayer_degree
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F)) :
+    ∃ i : Unit ⊕ Fin 3, 3 ≤ (stationaryAxisTrace
+      (pderiv i (initialForm transverseCubicWeight
+        (transverseCubicWeight i) F))).natDegree := by
+  by_contra! h
+  apply stationaryAxisTrace_quadraticGradient_markedCollision_impossible F hδ hdet hcoll
+  intro i
+  rw [stationaryAxisTrace_gradient_layer]
+  have hi := h i
+  omega
+
+
 end
 end HC4.Polynomial.RankThreeCubic
