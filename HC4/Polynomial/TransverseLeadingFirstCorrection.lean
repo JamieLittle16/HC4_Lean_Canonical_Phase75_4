@@ -978,6 +978,8 @@ layer; in particular it can be used on a differently weighted initial
 form. No change of source coordinates is made.
 -/
 
+open MvPolynomial
+
 /-- A singular full Hessian with a regular stationary anchor and
 zero longitudinal derivative on that slice is independent of the
 longitudinal variable (in the derivative sense). -/
@@ -1025,7 +1027,8 @@ theorem sourceStationary_regularAnchor_longitudinal_pderiv_zero
   have hN3 : N ^ 3 = 0 := by simp [N]
   have hinj := linearLineEval_injective_of_cube_zero a N hN3
   apply hinj
-  rw [htransport (.inl ()), hfirst, map_zero, map_zero]
+  rw [htransport (.inl ()), hfirst]
+  simp
 
 
 end
