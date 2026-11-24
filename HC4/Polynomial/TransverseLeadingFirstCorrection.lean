@@ -4348,5 +4348,329 @@ theorem sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap
     rwa [he] at h1
 
 
+
+
+/-! ## Close the late-mixed-gap branch on the actual marked axis -/
+
+private def sourceAxisTimeEval (u : K) : LineTime K →+* K :=
+  _root_.Polynomial.eval₂RingHom (MvPolynomial.eval (fun _ : Fin 3 => 0)) u
+
+private theorem sourceAxisTimeEval_C (u : K) (b : MvPolynomial (Fin 3) K) :
+    sourceAxisTimeEval u (_root_.Polynomial.C b) =
+      MvPolynomial.eval (fun _ : Fin 3 => 0) b := by
+  simp [sourceAxisTimeEval]
+
+private theorem sourceAxisTimeEval_X (u : K) :
+    sourceAxisTimeEval u (_root_.Polynomial.X : LineTime K) = u := by
+  simp [sourceAxisTimeEval]
+
+private theorem sourceReferenceLinearVector_eval_zero
+    (N : Matrix (Fin 3) (Fin 3) K) (i : Fin 3) :
+    MvPolynomial.eval (fun _ : Fin 3 => 0) (referenceLinearVector N i) = 0 := by
+  simp [referenceLinearVector]
+
+/-- The linear characteristic chart restricts on the marked axis
+to the honest translation x = a+u. -/
+private theorem sourceAxisTimeEval_linearLineEval
+    (a u : K) (N : Matrix (Fin 3) (Fin 3) K) (P : StationarySource K) :
+    sourceAxisTimeEval u (linearLineEval a N P) = stationaryAxisEval (a+u) P := by
+  induction P using MvPolynomial.induction_on with
+  | C c =>
+    have h : linearLineEval a N (MvPolynomial.C c) =
+        _root_.Polynomial.C (MvPolynomial.C c) := by simp [linearLineEval, lineEval]
+    rw [h, sourceAxisTimeEval_C]
+    simp [stationaryAxisEval]
+  | add p q hp hq =>
+    simp only [map_add, hp, hq]
+  | mul_X p i hp =>
+    rw [map_mul, map_mul, map_mul, hp]
+    congr 1
+    cases i with
+    | inl v =>
+      cases v
+      have h : linearLineEval a N (X (.inl ())) =
+          _root_.Polynomial.C (MvPolynomial.C a : MvPolynomial (Fin 3) K) +
+            _root_.Polynomial.X := by simp [linearLineEval, lineEval]
+      rw [h, map_add, sourceAxisTimeEval_C, sourceAxisTimeEval_X]
+      simp [stationaryAxisEval]
+    | inr i =>
+      have h : linearLineEval a N (X (.inr i)) =
+          _root_.Polynomial.C (X i : MvPolynomial (Fin 3) K) +
+            _root_.Polynomial.C (referenceLinearVector N i) * _root_.Polynomial.X := by
+        simp [linearLineEval, lineEval, referenceLinearVector]
+      rw [h, map_add, map_mul, sourceAxisTimeEval_C, sourceAxisTimeEval_C,
+        sourceAxisTimeEval_X, sourceReferenceLinearVector_eval_zero]
+      simp [stationaryAxisEval]
+
+private theorem sourceAxisTimeEval_linearLineEval_derivative
+    (a u : K) (N : Matrix (Fin 3) (Fin 3) K) (P : StationarySource K) :
+    sourceAxisTimeEval u (linearLineEval a N P).derivative =
+      stationaryAxisEval (a+u) (pderiv (.inl ()) P) := by
+  classical
+  let z : Unit ⊕ Fin 3 → MvPolynomial (Fin 3) K :=
+    Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → MvPolynomial (Fin 3) K :=
+    Sum.elim (fun _ => 1) (referenceLinearVector N)
+  change sourceAxisTimeEval u (lineEval z V P).derivative = _
+  rw [transverse_lineEval_derivative, map_sum, Fintype.sum_sum_type]
+  have he (i : Unit ⊕ Fin 3) : sourceAxisTimeEval u
+      (_root_.Polynomial.C (V i) * lineEval z V (pderiv i P)) =
+      MvPolynomial.eval (fun _ : Fin 3 => 0) (V i) *
+        stationaryAxisEval (a+u) (pderiv i P) := by
+    rw [map_mul, sourceAxisTimeEval_C]
+    exact congrArg (fun c => MvPolynomial.eval (fun _ : Fin 3 => 0) (V i) * c)
+      (sourceAxisTimeEval_linearLineEval a u N (pderiv i P))
+  simp only [he, V, Sum.elim_inl, Sum.elim_inr, map_one, one_mul,
+    sourceReferenceLinearVector_eval_zero, zero_mul, Finset.sum_const_zero, add_zero]
+  simp
+
+private theorem sourceTime_degree_le_one_of_second_zero
+    (P : LineTime K) (hP : P.derivative.derivative = 0) : P.natDegree ≤ 1 := by
+  have hd := _root_.Polynomial.eq_C_of_derivative_eq_zero hP
+  let c := P.derivative.coeff 0
+  have hzero : (P - _root_.Polynomial.C c * _root_.Polynomial.X).derivative = 0 := by
+    rw [map_sub, _root_.Polynomial.derivative_C_mul_X, hd]
+    exact sub_self _
+  have he := _root_.Polynomial.eq_C_of_derivative_eq_zero hzero
+  have hp : P = _root_.Polynomial.C ((P - _root_.Polynomial.C c *
+      _root_.Polynomial.X).coeff 0) + _root_.Polynomial.C c * _root_.Polynomial.X := by
+    calc
+      P = (P - _root_.Polynomial.C c * _root_.Polynomial.X) +
+          _root_.Polynomial.C c * _root_.Polynomial.X := by ring
+      _ = _ := congrArg (fun q : LineTime K => q + _root_.Polynomial.C c *
+        _root_.Polynomial.X) he
+  rw [hp]
+  exact _root_.Polynomial.natDegree_add_le_of_degree_le (by simp)
+    ((_root_.Polynomial.natDegree_C_mul_le _ _).trans (by simp))
+
+private theorem sourceAxisTimeEval_affine_formula
+    (P : LineTime K) (hP : P.natDegree ≤ 1) (u : K) :
+    sourceAxisTimeEval u P =
+      MvPolynomial.eval (fun _ : Fin 3 => 0) (P.coeff 0) +
+        MvPolynomial.eval (fun _ : Fin 3 => 0) (P.coeff 1) * u := by
+  have he : P = _root_.Polynomial.C (P.coeff 0) +
+      _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X := by
+    apply _root_.Polynomial.ext
+    intro n
+    cases n with
+    | zero => simp
+    | succ n =>
+      cases n with
+      | zero => simp
+      | succ n =>
+        have hz : P.coeff (n+2) = 0 :=
+          _root_.Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)
+        simpa [_root_.Polynomial.coeff_C_mul_X, Nat.succ_eq_add_one,
+          Nat.add_assoc] using hz
+  calc
+    _ = sourceAxisTimeEval u (_root_.Polynomial.C (P.coeff 0) +
+        _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X) :=
+      congrArg (sourceAxisTimeEval u) he
+    _ = _ := by rw [map_add, map_mul, sourceAxisTimeEval_C,
+      sourceAxisTimeEval_C, sourceAxisTimeEval_X]
+
+private theorem sourceAxisTimeEval_affine_eq_of_endpoints
+    (P Q : LineTime K) (hp : P.natDegree ≤ 1) (hq : Q.natDegree ≤ 1)
+    (a : K)
+    (h0 : sourceAxisTimeEval (-a) P = sourceAxisTimeEval (-a) Q)
+    (h1 : sourceAxisTimeEval (1-a) P = sourceAxisTimeEval (1-a) Q) (u : K) :
+    sourceAxisTimeEval u P = sourceAxisTimeEval u Q := by
+  rw [sourceAxisTimeEval_affine_formula P hp, sourceAxisTimeEval_affine_formula Q hq] at h0 h1 ⊢
+  have hs : MvPolynomial.eval (fun _ : Fin 3 => 0) (P.coeff 1) =
+      MvPolynomial.eval (fun _ : Fin 3 => 0) (Q.coeff 1) := by
+    linear_combination h1 - h0
+  rw [hs] at h0 ⊢
+  have hc : MvPolynomial.eval (fun _ : Fin 3 => 0) (P.coeff 0) =
+      MvPolynomial.eval (fun _ : Fin 3 => 0) (Q.coeff 0) := by
+    linear_combination h0
+  rw [hc]
+
+private theorem stationaryAxisEval_gradient_layer
+    (F : StationarySource K) (i : Unit ⊕ Fin 3) (t : K) :
+    stationaryAxisEval t (pderiv i F) =
+      stationaryAxisEval t (pderiv i (initialForm transverseCubicWeight
+        (transverseCubicWeight i) F)) := by
+  have h := congrArg (fun p : _root_.Polynomial K => p.eval t)
+    (stationaryAxisTrace_gradient_layer F i)
+  simpa only [stationaryAxisTrace_eval] using h
+
+/-- Affineness of both bottom source layers in a nilpotent
+characteristic chart excludes an actual marked gradient collision.
+The affine pencil is used on the original gradient, not on a
+replacement Hessian determinant. -/
+theorem sourceNilpotent_affineBottomLayers_markedCollision_impossible
+    (F : StationarySource K) {δ : K} (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F))
+    (h0 : (linearLineEval a N (initialForm transverseCubicWeight 0 F)).derivative.derivative = 0)
+    (h1 : (linearLineEval a N (initialForm transverseCubicWeight 1 F)).derivative.derivative = 0) :
+    False := by
+  classical
+  let Q0 := initialForm transverseCubicWeight 0 F
+  let Q1 := initialForm transverseCubicWeight 1 F
+  let P0 := linearLineEval a N Q0
+  let P1 := linearLineEval a N Q1
+  let G (u : K) (i : Fin 3) := stationaryAxisEval (a+u) (pderiv (.inr i) Q1)
+  let c := G (-a)
+  let J (u : K) := (sourceTimePencil N).map (sourceAxisTimeEval u)
+  let D (j : Fin 3) := coeffDeriv (pderiv j) P1
+  let R (j : Fin 3) := ∑ i : Fin 3,
+    _root_.Polynomial.C (MvPolynomial.C (c i)) * sourceTimePencil N i j
+  have hdegD (j : Fin 3) : (D j).natDegree ≤ 1 :=
+    (sourceTime_coeffDeriv_natDegree_le (pderiv j) P1).trans
+      (sourceTime_degree_le_one_of_second_zero P1 h1)
+  have hdegR (j : Fin 3) : (R j).natDegree ≤ 1 := by
+    apply sourceTime_natDegree_sum_le
+    intro i _
+    exact (_root_.Polynomial.natDegree_C_mul_le _ _).trans
+      (sourceTimePencil_natDegree_le N i j)
+  have hchain (u : K) : G u ᵥ* J u = fun j => sourceAxisTimeEval u (D j) := by
+    funext j
+    have h := congrArg (fun v : Fin 3 → LineTime K => sourceAxisTimeEval u (v j))
+      (sourceLinear_referenceGradient_chain a N Q1)
+    change sourceAxisTimeEval u (∑ i : Fin 3,
+      linearLineEval a N (pderiv (.inr i) Q1) * sourceTimePencil N i j) =
+        sourceAxisTimeEval u (D j) at h
+    rw [map_sum] at h
+    simp only [map_mul, sourceAxisTimeEval_linearLineEval] at h
+    exact h
+  have hconst (u : K) : c ᵥ* J u = fun j => sourceAxisTimeEval u (R j) := by
+    funext j
+    change (∑ i : Fin 3, c i * sourceAxisTimeEval u (sourceTimePencil N i j)) =
+      sourceAxisTimeEval u (∑ i : Fin 3,
+        _root_.Polynomial.C (MvPolynomial.C (c i)) * sourceTimePencil N i j)
+    rw [map_sum]
+    simp only [map_mul, sourceAxisTimeEval_C, MvPolynomial.eval_C]
+  have hG1 : G (1-a) = c := by
+    funext i
+    change stationaryAxisEval (a+(1-a)) (pderiv (.inr i) Q1) =
+      stationaryAxisEval (a+(-a)) (pderiv (.inr i) Q1)
+    rw [show a+(1-a) = 1 by ring, add_neg_cancel]
+    have hl (t : K) : stationaryAxisEval t (pderiv (.inr i) F) =
+        stationaryAxisEval t (pderiv (.inr i) Q1) :=
+      stationaryAxisEval_gradient_layer F (.inr i) t
+    rw [← hl 1, ← hl 0]
+    exact hcoll (.inr i)
+  have hendpoint (u : K) (hu : G u = c) (j : Fin 3) :
+      sourceAxisTimeEval u (D j) = sourceAxisTimeEval u (R j) := by
+    calc
+      _ = (G u ᵥ* J u) j := (congrFun (hchain u) j).symm
+      _ = (c ᵥ* J u) j := by rw [hu]
+      _ = _ := congrFun (hconst u) j
+  have hG (u : K) : G u = c := by
+    have he : G u ᵥ* J u = c ᵥ* J u := by
+      rw [hchain u, hconst u]
+      funext j
+      exact sourceAxisTimeEval_affine_eq_of_endpoints (D j) (R j)
+        (hdegD j) (hdegR j) a (hendpoint (-a) rfl j)
+        (hendpoint (1-a) hG1 j) u
+    let S := (sourceTimePencilInv N).map (sourceAxisTimeEval u)
+    have hinv : J u * S = 1 := by
+      change (sourceTimePencil N).map (sourceAxisTimeEval u) *
+        (sourceTimePencilInv N).map (sourceAxisTimeEval u) = _
+      rw [← Matrix.map_mul, sourceTimePencil_right_inverse N hN]
+      apply Matrix.ext
+      intro i j
+      simp [Matrix.map_apply, Matrix.one_apply]
+    calc
+      G u = G u ᵥ* (1 : Matrix (Fin 3) (Fin 3) K) := (Matrix.vecMul_one _).symm
+      _ = G u ᵥ* (J u * S) := by rw [hinv]
+      _ = (G u ᵥ* J u) ᵥ* S := (Matrix.vecMul_vecMul _ _ _).symm
+      _ = (c ᵥ* J u) ᵥ* S := by rw [he]
+      _ = c := by rw [Matrix.vecMul_vecMul, hinv, Matrix.vecMul_one]
+  have hlong (u : K) : stationaryAxisEval (a+u) (pderiv (.inl ()) Q0) =
+      stationaryAxisEval (a+(-a)) (pderiv (.inl ()) Q0) := by
+    rw [← sourceAxisTimeEval_linearLineEval_derivative,
+      ← sourceAxisTimeEval_linearLineEval_derivative]
+    have hc := _root_.Polynomial.eq_C_of_derivative_eq_zero h0
+    rw [hc, sourceAxisTimeEval_C, sourceAxisTimeEval_C]
+  have hall (i : Unit ⊕ Fin 3) (t : K) :
+      stationaryAxisEval t (pderiv i F) = stationaryAxisEval 0 (pderiv i F) := by
+    rw [stationaryAxisEval_gradient_layer F i t, stationaryAxisEval_gradient_layer F i 0]
+    cases i with
+    | inl v =>
+      cases v
+      have h := hlong (t-a)
+      rw [show a+(t-a) = t by ring, add_neg_cancel] at h
+      exact h
+    | inr i =>
+      have h := congrFun (hG (t-a)) i
+      change stationaryAxisEval (a+(t-a)) (pderiv (.inr i) Q1) =
+        stationaryAxisEval (a+(-a)) (pderiv (.inr i) Q1) at h
+      rw [show a+(t-a) = t by ring, add_neg_cancel] at h
+      exact h
+  apply stationaryAxisTrace_rankOne_markedCollision_impossible F hδ hdet hcoll
+    0 (fun _ => 0)
+  intro i
+  have he : stationaryAxisTrace (pderiv i F) =
+      _root_.Polynomial.C (stationaryAxisEval 0 (pderiv i F)) := by
+    apply _root_.Polynomial.funext
+    intro t
+    rw [stationaryAxisTrace_eval, _root_.Polynomial.eval_C]
+    exact hall i t
+  rw [he, _root_.Polynomial.derivative_C, mul_zero]
+
+/-- The mixed block of a surviving regular nilpotent-linear marked
+collision must have a nonzero correction by reverse order floor(m/2).
+The order-zero block is excluded by the actual leading transport. -/
+theorem sourceNilpotent_markedCollision_forces_earlyMixed
+    (F : StationarySource K) (m : ℕ) (hm : 3 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hδ : δ ≠ 0) (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight (m : ℤ) F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight (m : ℤ) F))))
+    (hcoll : ∀ i : Unit ⊕ Fin 3,
+      stationaryAxisEval 1 (pderiv i F) = stationaryAxisEval 0 (pderiv i F)) :
+    let B := MvPolynomial (Fin 3) K
+    let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+    let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+    let H := sourceLeading_lineSchurFrame F m z V
+    ∃ j : ℕ, 0 < j ∧ 2*j ≤ m ∧
+      (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0) := by
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  let H := sourceLeading_lineSchurFrame F m z V
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  have hV : V (.inl ()) = 1 := rfl
+  have hz : MvPolynomial.aeval z ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hg : ∀ i, lineEval z V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval z (pderiv i L)) := hgrad
+  obtain ⟨hb0, hp0, hq0, hr⟩ :=
+    sourceLeading_lineSchurFrame_kernel_regular F m z V hV hz hg
+  change ∃ j : ℕ, 0 < j ∧ 2*j ≤ m ∧
+    (H.b.coeff j ≠ 0 ∨ H.p.coeff j ≠ 0 ∨ H.q.coeff j ≠ 0)
+  by_contra hn
+  let k := m/2+1
+  have hgap : m < 2*k := by dsimp [k]; omega
+  have hzero (j : ℕ) (hj : j < k) :
+      H.b.coeff j = 0 ∧ H.p.coeff j = 0 ∧ H.q.coeff j = 0 := by
+    by_cases hj0 : j = 0
+    · subst j
+      exact ⟨hb0, hp0, hq0⟩
+    · have hjm : 2*j ≤ m := by dsimp [k] at hj; omega
+      have hjpos : 0 < j := by omega
+      refine ⟨?_, ?_, ?_⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inl h⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inl h)⟩
+      · by_contra h
+        exact hn ⟨j, hjpos, hjm, Or.inr (Or.inr h)⟩
+  obtain ⟨h0, h1⟩ := sourceLeading_bottomLayers_secondDerivative_zero_of_mixedGap
+    F m k hm hcap hdet z V hV hr (fun j hj => (hzero j hj).1)
+    (fun j hj => (hzero j hj).2.1) (fun j hj => (hzero j hj).2.2) hgap
+  exact sourceNilpotent_affineBottomLayers_markedCollision_impossible
+    F hδ hdet a N hN hcoll h0 h1
+
+
 end
 end HC4.Polynomial.RankThreeCubic
