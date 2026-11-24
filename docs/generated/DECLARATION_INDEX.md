@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11129**.
+Distinct declaration spellings indexed: **11141**.
 
 ## Repeated declaration spellings
 
@@ -10225,6 +10225,13 @@ Distinct declaration spellings indexed: **11129**.
 - `sourceLeading_firstLower_det_eq_adjugate_pairing` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_fixedPower_of_nonzero_linear` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `sourceLeading_homogeneousHessianDegrees` — `theorem` in `HC4.Polynomial.TransverseLeadingLinearClassification`
+- `sourceLeading_lineBlock` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineBlock_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineBlock_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineSchurFrame` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineSchurFrame_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineSchurFrame_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLeading_lineSchurFrame_second_constraint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeading_reverseHessian_constantDet` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10233,6 +10240,9 @@ Distinct declaration spellings indexed: **11129**.
 - `sourceLeading_reverseLayerSum_eq` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLeftRoofFormula` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
 - `sourceLeftRoof_det_formula` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitZeroSchur`
+- `sourceLineBlockOfMatrix` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLineBlockOfMatrix_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLineIndex` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLongitudinal_support_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -11083,8 +11093,10 @@ Distinct declaration spellings indexed: **11129**.
 - `transverseBaseEmbedding` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `transverseBaseSupport_exists_binaryPlanarisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
 - `transverseBaseSupport_vars_subset_range` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreBinaryPlanarisation`
+- `transverseBlockCoeff` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseCapTwo_longitudinalCoefficient_zero` — `theorem` in `HC4.Valuation.QuadraticTransverseCapSourceSupport`
 - `transverseCharacteristicFrame` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseCharacteristicFrame_coeff` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseCharacteristicFrame_det` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseCubicNatWeight` — `def` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `transverseCubicNatWeight_cast` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
