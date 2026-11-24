@@ -207,7 +207,7 @@ characteristic, not just its anchor. Work in the time polynomial
 domain: the principal cofactor has a nonzero constant coefficient,
 so no specialization or assumption of a pole-free velocity is needed. -/
 theorem sourceLeading_firstCorrection_isotropic_along_line
-    [CharZero K] {E : Type*} [Field E] [Algebra K E]
+    [CharZero K] {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
     (F : S K) (m : ℤ) (hm : 2 ≤ m)
     (hcap : IsWeightLE transverseCubicWeight m F)
     {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
@@ -279,7 +279,7 @@ in characteristic time, even for a genuinely rational characteristic.
 This is a transport constraint, not a nonlinear coordinate change
 of the full determinant-one source. -/
 theorem sourceLeading_firstCorrection_affine_along_line
-    [CharZero K] {E : Type*} [Field E] [CharZero E] [Algebra K E]
+    [CharZero K] {E : Type*} [CommRing E] [IsDomain E] [CharZero E] [Algebra K E]
     (F : S K) (m : ℤ) (hm : 2 ≤ m)
     (hcap : IsWeightLE transverseCubicWeight m F)
     {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
@@ -2135,6 +2135,142 @@ theorem sourceNilpotent_leading_totalDegree_support_bound
     have hq := hL hc
     rw [stationaryEdge_weight_eq, one_mul, one_mul, hq]
     omega
+
+
+
+
+/-! ## First LOWER layer in a pole-free chart
+
+The first correction identity works over the polynomial coefficient
+domain itself. The inverse nilpotent shear therefore reconstructs
+the actual lower layer from its two time coefficients, with no
+denominators and no claim of nonlinear Hessian invariance.
+-/
+
+/-- Polynomial first correction transport: the actual adjacent
+source layer has only two characteristic-time coefficients. -/
+theorem sourceNilpotent_firstCorrection_affine
+    (F : StationarySource K) (m : ℤ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight m F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight m F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight m F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight m F)))) :
+    let P := linearLineEval a N (initialForm transverseCubicWeight (m-1) F)
+    P = _root_.Polynomial.C (P.coeff 0) +
+      _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X := by
+  let B := MvPolynomial (Fin 3) K
+  let z : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => MvPolynomial.C a) X
+  let V : Unit ⊕ Fin 3 → B := Sum.elim (fun _ => 1) (referenceLinearVector N)
+  have hz : MvPolynomial.aeval z
+      ((hessian (initialForm transverseCubicWeight m F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0 := hreg
+  have hV : V (.inl ()) = 1 := rfl
+  have hg : ∀ i, lineEval z V (pderiv i (initialForm transverseCubicWeight m F)) =
+      _root_.Polynomial.C (MvPolynomial.aeval z
+        (pderiv i (initialForm transverseCubicWeight m F))) := hgrad
+  exact sourceLeading_firstCorrection_affine_along_line F m hm hcap hdet z V hz hV hg
+
+/-- The honest polynomial inverse characteristic coordinates, regarded
+as a substitution of the reference transverse polynomial ring. -/
+def sourceNilpotentInverseEval
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) :
+    MvPolynomial (Fin 3) K →ₐ[K] StationarySource K :=
+  MvPolynomial.aeval fun i =>
+    X (.inr i) -
+      (X (.inl ()) - MvPolynomial.C a) * sourceLinearVector N i +
+      (X (.inl ()) - MvPolynomial.C a) ^ 2 * sourceLinearVector (N ^ 2) i
+
+private theorem sourceNilpotent_time_eval
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) :
+    linearLineEval a N (X (.inl ()) - MvPolynomial.C a) =
+      (_root_.Polynomial.X : _root_.Polynomial (MvPolynomial (Fin 3) K)) := by
+  simp [linearLineEval, lineEval]
+
+private theorem sourceNilpotentInverseEval_X_transport
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0) (i : Fin 3) :
+    linearLineEval a N (sourceNilpotentInverseEval a N (X i)) =
+      _root_.Polynomial.C (X i) := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  have hx : linearLineEval a N (X (.inr i)) =
+      _root_.Polynomial.C (X i : B) +
+        _root_.Polynomial.C (referenceLinearVector N i) * _root_.Polynomial.X := by
+    simp [linearLineEval, lineEval, referenceLinearVector]
+  have h2 : N * N = N ^ 2 := (pow_two N).symm
+  have h3 : N ^ 2 * N = 0 := by rw [← pow_succ, hN]
+  have hz : referenceLinearVector (0 : Matrix (Fin 3) (Fin 3) K) i = 0 := by
+    simp [referenceLinearVector]
+  simp only [sourceNilpotentInverseEval, MvPolynomial.aeval_X, map_add, map_sub,
+    map_mul, map_pow, hx, sourceNilpotent_time_eval,
+    linearLineEval_sourceLinearVector, h2, h3, hz, map_zero, zero_mul, add_zero]
+  ring
+
+/-- Composing inverse coordinates with forward line evaluation
+recovers the reference polynomial as a constant time polynomial. -/
+theorem sourceNilpotentInverseEval_transport
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (P : MvPolynomial (Fin 3) K) :
+    linearLineEval a N (sourceNilpotentInverseEval a N P) = _root_.Polynomial.C P := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  have hcomp : (linearLineEval a N).toRingHom.comp
+      (sourceNilpotentInverseEval a N).toRingHom =
+      (_root_.Polynomial.C : B →+* _root_.Polynomial B) := by
+    apply MvPolynomial.ringHom_ext
+    · intro c
+      change linearLineEval a N (sourceNilpotentInverseEval a N (MvPolynomial.C c)) =
+        _root_.Polynomial.C (MvPolynomial.C c)
+      simp [sourceNilpotentInverseEval, linearLineEval, lineEval,
+        IsScalarTower.algebraMap_apply K B (_root_.Polynomial B),
+        _root_.Polynomial.algebraMap_eq]
+    · intro i
+      exact sourceNilpotentInverseEval_X_transport a N hN i
+  exact RingHom.congr_fun hcomp P
+
+/-- Reconstruct any affine-in-time source polynomial from its first
+two time coefficients using the nilpotent polynomial inverse. -/
+theorem sourceNilpotent_affine_inverseFormula
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (Q : StationarySource K)
+    (hQ : let P := linearLineEval a N Q
+      P = _root_.Polynomial.C (P.coeff 0) +
+        _root_.Polynomial.C (P.coeff 1) * _root_.Polynomial.X) :
+    let P := linearLineEval a N Q
+    Q = sourceNilpotentInverseEval a N (P.coeff 0) +
+      sourceNilpotentInverseEval a N (P.coeff 1) *
+        (X (.inl ()) - MvPolynomial.C a) := by
+  apply linearLineEval_injective_of_cube_zero a N hN
+  rw [map_add, map_mul, sourceNilpotentInverseEval_transport a N hN,
+    sourceNilpotentInverseEval_transport a N hN, sourceNilpotent_time_eval]
+  exact hQ
+
+/-- Exact original-source reconstruction of the first lower grade.
+This connects leading rigidity to the actual lower source support. -/
+theorem sourceNilpotent_firstCorrection_inverseFormula
+    (F : StationarySource K) (m : ℤ) (hm : 2 ≤ m)
+    (hcap : IsWeightLE transverseCubicWeight m F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (a : K) (N : Matrix (Fin 3) (Fin 3) K) (hN : N ^ 3 = 0)
+    (hreg : referenceSlice a
+      ((hessian (initialForm transverseCubicWeight m F)).submatrix
+        Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i : Unit ⊕ Fin 3,
+      linearLineEval a N (pderiv i (initialForm transverseCubicWeight m F)) =
+        _root_.Polynomial.C (referenceSlice a
+          (pderiv i (initialForm transverseCubicWeight m F)))) :
+    let Q := initialForm transverseCubicWeight (m-1) F
+    let P := linearLineEval a N Q
+    Q = sourceNilpotentInverseEval a N (P.coeff 0) +
+      sourceNilpotentInverseEval a N (P.coeff 1) *
+        (X (.inl ()) - MvPolynomial.C a) :=
+  sourceNilpotent_affine_inverseFormula a N hN _ 
+    (sourceNilpotent_firstCorrection_affine F m hm hcap hdet a N hreg hgrad)
 
 
 end
