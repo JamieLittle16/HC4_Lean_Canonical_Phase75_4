@@ -95,6 +95,7 @@ theorem longitudinal_principalCofactor_eq_transverseDet
       | inr v => simp [B, Matrix.updateRow_apply, Pi.single_apply]
     | inr i =>
       cases j <;> simp [B, Matrix.updateRow_apply]
+  rw [Matrix.adjugate_apply]
   change B.det = _
   rw [hB, Matrix.det_fromBlocks_zero₁₂, Matrix.det_one, one_mul]
 
