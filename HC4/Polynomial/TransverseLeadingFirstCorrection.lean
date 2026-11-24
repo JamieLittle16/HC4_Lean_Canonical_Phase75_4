@@ -1985,22 +1985,56 @@ original source. In the square-zero case the explicit second
 gradient derivative vanishes, so the leading layer is affine in x.
 -/
 
-/-- A nonzero coefficient of positive longitudinal exponent survives
-one derivative at its unique shifted exponent. -/
-private theorem sourceLongitudinal_coeff_derivative_ne_zero
-    (P : StationarySource K) (d : StationaryExponent)
-    (hd : MvPolynomial.coeff d P ≠ 0) (hp : 0 < d (.inl ())) :
-    MvPolynomial.coeff (d - Finsupp.single (Sum.inl ()) 1)
-      (pderiv (.inl ()) P) ≠ 0 := by
+/-- A nonzero coefficient of positive exponent survives one derivative
+at its unique shifted exponent. Work over an abstract index type so
+elaboration does not unfold the concrete sum-type Finsupp operations. -/
+private theorem sourceCoeff_derivative_ne_zero
+    {ι : Type*} (i : ι)
+    (P : MvPolynomial ι K) (d : ι →₀ ℕ)
+    (hd : MvPolynomial.coeff d P ≠ 0) (hp : 0 < d i) :
+    MvPolynomial.coeff (d - Finsupp.single i 1) (pderiv i P) ≠ 0 := by
   classical
-  have hle : Finsupp.single (Sum.inl ()) 1 ≤ d := by
+  let e : ι →₀ ℕ := d - Finsupp.single i 1
+  have hle : Finsupp.single i 1 ≤ d := by
     rw [Finsupp.single_le_iff]
     omega
-  have he : d - Finsupp.single (Sum.inl ()) 1 +
-      Finsupp.single (Sum.inl ()) 1 = d := tsub_add_cancel_of_le hle
+  have he : e + Finsupp.single i 1 = d := tsub_add_cancel_of_le hle
+  change MvPolynomial.coeff e (pderiv i P) ≠ 0
   rw [HC4.Newton.coeff_pderiv_backport, he]
-  apply mul_ne_zero hd
-  exact_mod_cast Nat.succ_ne_zero ((d - Finsupp.single (Sum.inl ()) 1) (.inl ()))
+  exact mul_ne_zero hd (Nat.cast_ne_zero.mpr (Nat.succ_ne_zero (e i)))
+
+private theorem sourceSupport_secondDerivative_bound
+    {ι : Type*} (i : ι) (P : MvPolynomial ι K)
+    (hP : pderiv i (pderiv i P) = 0)
+    (d : ι →₀ ℕ) (hd : MvPolynomial.coeff d P ≠ 0) :
+    d i ≤ 1 := by
+  classical
+  by_contra hn
+  have hp : 0 < d i := by omega
+  let e : ι →₀ ℕ := d - Finsupp.single i 1
+  have hc : MvPolynomial.coeff e (pderiv i P) ≠ 0 :=
+    sourceCoeff_derivative_ne_zero i P d hd hp
+  have hz : e i = 0 :=
+    HC4.Newton.exponent_eq_zero_of_pderiv_eq_zero i (pderiv i P) hP e hc
+  have he : e i = d i - 1 := by
+    simp only [e, Finsupp.sub_apply, Finsupp.single_eq_same]
+  omega
+
+private theorem sourceSupport_thirdDerivative_bound
+    {ι : Type*} (i : ι) (P : MvPolynomial ι K)
+    (hP : pderiv i (pderiv i (pderiv i P)) = 0)
+    (d : ι →₀ ℕ) (hd : MvPolynomial.coeff d P ≠ 0) :
+    d i ≤ 2 := by
+  classical
+  by_contra hn
+  have hp : 0 < d i := by omega
+  let e : ι →₀ ℕ := d - Finsupp.single i 1
+  have hc : MvPolynomial.coeff e (pderiv i P) ≠ 0 :=
+    sourceCoeff_derivative_ne_zero i P d hd hp
+  have hz : e i ≤ 1 := sourceSupport_secondDerivative_bound i (pderiv i P) hP e hc
+  have he : e i = d i - 1 := by
+    simp only [e, Finsupp.sub_apply, Finsupp.single_eq_same]
+  omega
 
 /-- Two vanishing longitudinal derivatives force each surviving
 monomial of the original polynomial to have longitudinal exponent ≤1. -/
@@ -2008,14 +2042,8 @@ theorem sourceLongitudinal_support_le_one
     (P : StationarySource K)
     (hP : pderiv (.inl ()) (pderiv (.inl ()) P) = 0)
     (d : StationaryExponent) (hd : MvPolynomial.coeff d P ≠ 0) :
-    d (.inl ()) ≤ 1 := by
-  by_contra hn
-  have hp : 0 < d (.inl ()) := by omega
-  have hc := sourceLongitudinal_coeff_derivative_ne_zero P d hd hp
-  have hz := stationary_support_longitudinal_zero (pderiv (.inl ()) P)
-    hP (d - Finsupp.single (Sum.inl ()) 1) hc
-  simp only [Finsupp.sub_apply, Finsupp.single_eq_same] at hz
-  omega
+    d (.inl ()) ≤ 1 :=
+  sourceSupport_secondDerivative_bound (Sum.inl ()) P hP d hd
 
 /-- Three vanishing longitudinal derivatives force each surviving
 monomial of the original polynomial to have longitudinal exponent ≤2. -/
@@ -2023,14 +2051,8 @@ theorem sourceLongitudinal_support_le_two
     (P : StationarySource K)
     (hP : pderiv (.inl ()) (pderiv (.inl ()) (pderiv (.inl ()) P)) = 0)
     (d : StationaryExponent) (hd : MvPolynomial.coeff d P ≠ 0) :
-    d (.inl ()) ≤ 2 := by
-  by_contra hn
-  have hp : 0 < d (.inl ()) := by omega
-  have hc := sourceLongitudinal_coeff_derivative_ne_zero P d hd hp
-  have hz := sourceLongitudinal_support_le_one (pderiv (.inl ()) P)
-    hP (d - Finsupp.single (Sum.inl ()) 1) hc
-  simp only [Finsupp.sub_apply, Finsupp.single_eq_same] at hz
-  omega
+    d (.inl ()) ≤ 2 :=
+  sourceSupport_thirdDerivative_bound (Sum.inl ()) P hP d hd
 
 /-- Square-zero linear characteristics force the original homogeneous
 leading potential to be longitudinally affine. -/
