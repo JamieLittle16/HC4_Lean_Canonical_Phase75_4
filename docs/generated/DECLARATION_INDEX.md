@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11172**.
+Distinct declaration spellings indexed: **11184**.
 
 ## Repeated declaration spellings
 
@@ -10321,9 +10321,17 @@ Distinct declaration spellings indexed: **11172**.
 - `sourceTimePencilInv_natDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTimePencil_natDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTimePencil_right_inverse` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_add_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_coeffDeriv_natDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_degree_of_secondDerivative_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_mixed_minor` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_mixed_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_mixed_pair_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_mul_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_natDegree_sum_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_sub_coeff_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_transverse_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTime_transverse_triple` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
@@ -10941,6 +10949,9 @@ Distinct declaration spellings indexed: **11172**.
 - `tiltedParameterPenalty_add_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`
 - `tilted_binary_nonCancellation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`
 - `timeDerivative` — `def` in `HC4.Polynomial.RankThreeCubicAnchoredKernel`
+- `timeDetProfile` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `timeMinorProfile` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `timeTransverseProfile` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `to` — `lemma` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalQuadraticWeight`
 - `toAssociatedGradedCollisionData_of_specialFiberEndpoint` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalClockSplitResolution`
 - `toBinaryClockPivot0` — `def` in `HC4.Newton.RankOneThreeToBinarySchur`
@@ -11174,6 +11185,7 @@ Distinct declaration spellings indexed: **11172**.
 - `transverseSchurDet_coeff_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchurMixed_coeff_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `transverseSchur_cleared_timeDegree_step` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_coeff_recurrence` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_det_identity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `transverseSchur_longitudinal_zero_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
