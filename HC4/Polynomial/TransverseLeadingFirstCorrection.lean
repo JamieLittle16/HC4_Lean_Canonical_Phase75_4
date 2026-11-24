@@ -4908,5 +4908,161 @@ theorem sourceNilpotent_linearLayer_mixedGap_pairing_ne_zero
     F hδ hdet a N hN hcoll h1
 
 
+
+
+/-! ## Prime-factor cancellation for the actual mixed row
+
+The square of each Cramer numerator is zero on a prime determinant
+component on which the mixed quadratic pairing vanishes. This works
+even if every cofactor vanishes there; no principal pivot is required.
+-/
+
+/-- Over a singular symmetric ternary matrix, the Cramer numerator
+square equals the corresponding diagonal cofactor times the
+quadratic pairing. This identity needs no domain or rank assumption. -/
+theorem singular_symmetric_adjugate_mulVec_square
+    {R : Type*} [CommRing R]
+    (T : Matrix (Fin 3) (Fin 3) R)
+    (hsym : T.IsSymm) (hdet : T.det = 0)
+    (b : Fin 3 → R) (i : Fin 3) :
+    ((T.adjugate *ᵥ b) i)^2 =
+      T.adjugate i i *
+        (∑ j : Fin 3, ∑ l : Fin 3, b j * T.adjugate j l * b l) := by
+  classical
+  let A := T.adjugate
+  have ha : A.IsSymm := by
+    change T.adjugate.transpose = T.adjugate
+    rw [Matrix.adjugate_transpose, hsym]
+  have hc (j l : Fin 3) : A i i * A j l = A j i * A i l :=
+    adjugate_rankOne_cross_products T hdet i j l
+  change ((A *ᵥ b) i)^2 = _
+  calc
+    _ = ∑ j : Fin 3, ∑ l : Fin 3, (A i j * b j) * (A i l * b l) := by
+      simp only [Matrix.mulVec, dotProduct, pow_two, Finset.sum_mul, Finset.mul_sum]
+    _ = ∑ j : Fin 3, ∑ l : Fin 3, A i i * (b j * A j l * b l) := by
+      apply Finset.sum_congr rfl
+      intro j _
+      apply Finset.sum_congr rfl
+      intro l _
+      rw [show A i j = A j i from ha.apply j i]
+      rw [show (A j i * b j) * (A i l * b l) =
+        b j * (A j i * A i l) * b l by ring, ← hc j l]
+      ring
+    _ = _ := by simp only [A, Finset.mul_sum]
+
+/-- Every prime divisor of both the transverse determinant and the
+mixed quadratic pairing divides each Cramer numerator. In particular
+a simple determinant factor cannot be a denominator of the mixed
+Schur solution. The argument is valid for repeated factors as well,
+but cancels only one copy without further information. -/
+theorem prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing
+    {R : Type*} [CommRing R]
+    (T : Matrix (Fin 3) (Fin 3) R) (hsym : T.IsSymm)
+    (b : Fin 3 → R) (p : R) (hp : Prime p)
+    (hdet : p ∣ T.det)
+    (hpair : p ∣ ∑ j : Fin 3, ∑ l : Fin 3,
+      b j * T.adjugate j l * b l) :
+    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+  classical
+  let I : Ideal R := Ideal.span {p}
+  let q : R →+* R ⧸ I := Ideal.Quotient.mk I
+  let M := T.map q
+  let v : Fin 3 → R ⧸ I := fun j => q (b j)
+  have hz (x : R) (hx : p ∣ x) : q x = 0 :=
+    Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_span_singleton.mpr hx)
+  have hM : M.det = 0 := by
+    change (T.map q).det = 0
+    rw [← RingHom.map_det]
+    exact hz _ hdet
+  have hS : M.IsSymm := by
+    apply Matrix.IsSymm.ext
+    intro i j
+    change q (T j i) = q (T i j)
+    exact congrArg q (hsym.apply i j)
+  have hAdj : M.adjugate = T.adjugate.map q := (q.map_adjugate T).symm
+  have hP : (∑ j : Fin 3, ∑ l : Fin 3, v j * M.adjugate j l * v l) = 0 := by
+    rw [hAdj]
+    have h := hz _ hpair
+    simpa only [map_sum, map_mul, Matrix.map_apply, v] using h
+  intro i
+  have he := singular_symmetric_adjugate_mulVec_square M hS hM v i
+  rw [hP, mul_zero] at he
+  have hv : (M.adjugate *ᵥ v) i = q ((T.adjugate *ᵥ b) i) := by
+    rw [hAdj]
+    simp only [Matrix.mulVec, dotProduct, Matrix.map_apply, v, map_sum, map_mul]
+  rw [hv, ← map_pow] at he
+  exact hp.dvd_of_dvd_pow (n := 2)
+    (Ideal.mem_span_singleton.mp (Ideal.Quotient.eq_zero_iff_mem.mp he))
+
+/-- Apply prime cancellation to the actual first mixed-gap endpoint
+in the regular source characteristic chart. The vector is the
+three entries of the genuine Schur mixed row, not an auxiliary
+choice of Cramer numerator. -/
+theorem sourceLeading_mixedGap_prime_dvd_Cramer
+    {E : Type*} [CommRing E] [IsDomain E] [Algebra K E]
+    (F : StationarySource K) (m k : ℕ) (hm : 2 ≤ m)
+    (hk : 2*k ≤ m) (hc : 2*k < 4*m-6)
+    (hcap : IsWeightLE transverseCubicWeight (m : ℤ) F)
+    {δ : K} (hdet : hessianDeterminant F = MvPolynomial.C δ)
+    (z V : Unit ⊕ Fin 3 → E) (hV : V (.inl ()) = 1)
+    (hreg : (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 ≠ 0)
+    (hb : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).b.coeff i = 0)
+    (hp : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).p.coeff i = 0)
+    (hq : ∀ i < k, (sourceLeading_lineSchurFrame F m z V).q.coeff i = 0)
+    (p : _root_.Polynomial E) (hprime : Prime p)
+    (hpdet : p ∣ (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0) :
+    let H := sourceLeading_lineSchurFrame F m z V
+    let T := (lineEval z V).toRingHom.mapMatrix
+      ((hessian (initialForm transverseCubicWeight (m : ℤ) F)).submatrix Sum.inr Sum.inr)
+    let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff k, H.p.coeff k, H.q.coeff k]
+    ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i := by
+  classical
+  let H := sourceLeading_lineSchurFrame F m z V
+  let L := initialForm transverseCubicWeight (m : ℤ) F
+  let T := (lineEval z V).toRingHom.mapMatrix ((hessian L).submatrix Sum.inr Sum.inr)
+  let b : Fin 3 → _root_.Polynomial E := ![H.b.coeff k, H.p.coeff k, H.q.coeff k]
+  let U : GeneralFourBlock (_root_.Polynomial E) :=
+    { a := 0, b := H.b.coeff k, p := H.p.coeff k, q := H.q.coeff k,
+      d := H.d.coeff 0, r := H.r.coeff 0, s := H.s.coeff 0,
+      x := H.x.coeff 0, y := H.y.coeff 0, z := H.z.coeff 0 }
+  have hsym (i j : Fin 3) : T i j = T j i := by
+    change lineEval z V (pderiv (.inr j) (pderiv (.inr i) L)) =
+      lineEval z V (pderiv (.inr i) (pderiv (.inr j) L))
+    rw [HC4.Newton.pderiv_comm_backport]
+  have hs : T.IsSymm := by
+    apply Matrix.IsSymm.ext
+    intro i j
+    exact hsym j i
+  have he := sourceLeading_lineSchurFrame_coeff F m 0 (Nat.zero_le m) z V
+  simp only [Nat.cast_zero, sub_zero] at he
+  have hu : transverseSchurMixed U =
+      ∑ i : Fin 3, ∑ j : Fin 3, b i * T.adjugate i j * b j := by
+    apply sourceLineFrame_mixed_adjugate U T <;> try exact hsym
+    · exact congrArg GeneralFourBlock.d he
+    · exact congrArg GeneralFourBlock.r he
+    · exact congrArg GeneralFourBlock.s he
+    · exact congrArg GeneralFourBlock.x he
+    · exact congrArg GeneralFourBlock.y he
+    · exact congrArg GeneralFourBlock.z he
+  have hT : (transverseSchurDet H).coeff 0 = T.det := by
+    change (transverseSchurDet (sourceLeading_lineSchurFrame F m z V)).coeff 0 = _
+    rw [sourceLeading_lineSchurFrame_transverseDet_zero]
+    change (lineEval z V).toRingHom ((hessian L).submatrix Sum.inr Sum.inr).det = _
+    rw [RingHom.map_det]
+  have hP : p ∣ transverseSchurMixed U := by
+    have hODE := sourceLeading_mixedGap_endpoint_lineODE
+      F m k hm hk hc hcap hdet z V hV hreg hb hp hq
+    change (lineEval z V (initialForm transverseCubicWeight ((m : ℤ)-((2*k : ℕ) : ℤ)) F)).derivative.derivative *
+      (transverseSchurDet H).coeff 0 = transverseSchurMixed U at hODE
+    rw [← hODE]
+    exact dvd_mul_of_dvd_right hpdet _
+  change ∀ i : Fin 3, p ∣ (T.adjugate *ᵥ b) i
+  apply prime_dvd_adjugate_mulVec_of_dvd_mixed_pairing T hs b p hprime
+  · rw [← hT]
+    exact hpdet
+  · rw [← hu]
+    exact hP
+
+
 end
 end HC4.Polynomial.RankThreeCubic
