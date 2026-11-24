@@ -965,5 +965,68 @@ theorem sourceTransverseSchurFrame_second_constraint
   exact transverseSchur_second_constraint H ha0 ha1 hb hp hq (hz 2 (by omega))
 
 
+
+
+/-! ## Stationary regular anchors and Newton-edge rigidity
+
+A regular transverse Hessian on a longitudinal slice, with no mixed
+row, forces the normalized characteristic of a singular Hessian to
+be stationary. If the longitudinal first derivative also vanishes on
+that slice, it vanishes as an original source polynomial. This applies
+to ANY singular polynomial Hessian, not merely the top transverse
+layer; in particular it can be used on a differently weighted initial
+form. No change of source coordinates is made.
+-/
+
+/-- A singular full Hessian with a regular stationary anchor and
+zero longitudinal derivative on that slice is independent of the
+longitudinal variable (in the derivative sense). -/
+theorem sourceStationary_regularAnchor_longitudinal_pderiv_zero
+    (L : MvPolynomial (Unit ⊕ Fin 3) K) (a : K)
+    (hdet : (hessian L).det = 0)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint a)
+      ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hmix : ∀ i : Fin 3, sourceNegativeMixedHessian a L i = 0)
+    (hfirst : referenceSlice a (pderiv (.inl ()) L) = 0) :
+    pderiv (.inl ()) L = 0 := by
+  classical
+  let B := MvPolynomial (Fin 3) K
+  let E := FractionRing B
+  let g : B →+* E := algebraMap B E
+  obtain ⟨V, hV, hgrad⟩ :=
+    exists_anchored_lineEval_gradient_eq L hdet (transverseGenericPoint a) hreg
+  have hregular := sourceTransverseHessian_det_ne_zero_of_generic a L hreg
+  let A := (sourceTransverseHessian a L).map g
+  let W : Fin 3 → E := fun i => V (.inr i)
+  have hA : A.det ≠ 0 := by
+    change (g.mapMatrix (sourceTransverseHessian a L)).det ≠ 0
+    rw [← RingHom.map_det]
+    intro hz
+    apply hregular
+    exact IsFractionRing.injective B E (by simpa only [map_zero] using hz :
+      g (sourceTransverseHessian a L).det = g 0)
+  have hker : A *ᵥ W = 0 := by
+    have hh := sourceFractionHessianEquation_of_gradientTransport a L V hV hgrad
+    change A *ᵥ W = (fun i : Fin 3 => g (sourceNegativeMixedHessian a L i)) at hh
+    rw [hh]
+    funext i
+    simp [hmix i]
+  have hW : W = 0 := by
+    by_contra hne
+    exact hA (Matrix.exists_mulVec_eq_zero_iff.mp ⟨W, hne, hker⟩)
+  let N : Matrix (Fin 3) (Fin 3) K := 0
+  have hN (i : Fin 3) :
+      V (.inr i) = g (∑ j : Fin 3, MvPolynomial.C (N i j) * X j) := by
+    have hi := congrFun hW i
+    change V (.inr i) = 0 at hi
+    simp [N, hi]
+  have htransport :=
+    linearGradientTransport_of_fractionCharacteristic a L V N hV hN hgrad
+  have hN3 : N ^ 3 = 0 := by simp [N]
+  have hinj := linearLineEval_injective_of_cube_zero a N hN3
+  apply hinj
+  rw [htransport (.inl ()), hfirst, map_zero, map_zero]
+
+
 end
 end HC4.Polynomial.RankThreeCubic
