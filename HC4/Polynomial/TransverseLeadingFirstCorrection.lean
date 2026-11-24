@@ -2206,8 +2206,14 @@ private theorem sourceNilpotentInverseEval_X_transport
   have h3 : N ^ 2 * N = 0 := by rw [← pow_succ, hN]
   have hz : referenceLinearVector (0 : Matrix (Fin 3) (Fin 3) K) i = 0 := by
     simp [referenceLinearVector]
+  have hx0 : linearLineEval a N (X (Sum.inl ())) =
+      _root_.Polynomial.C (MvPolynomial.C a : B) + _root_.Polynomial.X := by
+    simp [linearLineEval, lineEval]
+  have hc : linearLineEval a N (MvPolynomial.C a) =
+      _root_.Polynomial.C (MvPolynomial.C a : B) := by
+    simp [linearLineEval, lineEval]
   simp only [sourceNilpotentInverseEval, MvPolynomial.aeval_X, map_add, map_sub,
-    map_mul, map_pow, hx, sourceNilpotent_time_eval,
+    map_mul, map_pow, hx, hx0, hc,
     linearLineEval_sourceLinearVector, h2, h3, hz, map_zero, zero_mul, add_zero]
   ring
 
