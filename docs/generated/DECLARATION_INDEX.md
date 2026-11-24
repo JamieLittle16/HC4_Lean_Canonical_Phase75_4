@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11034**.
+Distinct declaration spellings indexed: **11036**.
 
 ## Repeated declaration spellings
 
@@ -6657,6 +6657,7 @@ Distinct declaration spellings indexed: **11034**.
 - `homogeneous_axis_eval_neg_eq_negOnePow_eval` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticParity`
 - `homogeneous_eq_C_mul_gradientRatioLinearForm_pow` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurHomogeneousLinearPower`
 - `homogeneous_eq_C_mul_topLinearForm_pow_of_transverseLock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
+- `homogeneous_eq_linearForm_pow_of_proportional_partials` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `homogeneous_exactAxisCollision_generalSurvivingSmithFaceShape` — `theorem` in `HC4.Newton.SmithRefinedFacePolynomial`
 - `homogeneous_exactAxisCollision_gradient_zero` — `theorem` in `HC4.Newton.ExactCollisionFirstWall`
 - `homogeneous_exactAxisCollision_no_longitudinalBlocker` — `theorem` in `HC4.Newton.SmithFirstWallLongitudinal`
@@ -9306,6 +9307,7 @@ Distinct declaration spellings indexed: **11034**.
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `referenceSlice_isHomogeneous_of_transverseWeight` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceDegrees`
 - `referenceSlice_pderiv` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearTransport`
+- `reference_directional_eq_power_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `reference_hessian_selfAdjoint_of_linear_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`

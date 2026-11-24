@@ -4282,7 +4282,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.DerivativeWeight`, `HC4.Newton.CharZeroHessianKernelRigidity`
 - External imports: `Mathlib.LinearAlgebra.Matrix.Rank`, `Mathlib.LinearAlgebra.FiniteDimensional.Lemmas`
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
-- Declarations: `theorem outerProduct_of_square_zero`, `theorem exists_nilpotent_rankOnePower`, `def constantDirectional`, `def constantLinearForm`, `theorem pderiv_constantLinearForm`, `theorem pderiv_directional_eq_hessian_mulVec`, `theorem reference_directional_eq_square_of_rankOne`
+- Declarations: `theorem outerProduct_of_square_zero`, `theorem exists_nilpotent_rankOnePower`, `def constantDirectional`, `def constantLinearForm`, `theorem pderiv_constantLinearForm`, `theorem pderiv_directional_eq_hessian_mulVec`, `theorem reference_directional_eq_square_of_rankOne`, `theorem homogeneous_eq_linearForm_pow_of_proportional_partials`, `theorem reference_directional_eq_power_of_rankOne`
 
 ### `HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue`
 
