@@ -225,6 +225,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter`
   - `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
   - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
   - `HC4.Polynomial.RationalCharacteristicTransport`
@@ -2033,6 +2034,8 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
 - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
   - `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+- `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter`
 - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.RationalCharacteristicTransport`
