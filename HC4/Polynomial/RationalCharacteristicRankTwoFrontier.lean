@@ -109,7 +109,8 @@ theorem rankTwo_directionalDerivation_apply
     rankTwo_directionalDerivation w z =
       ∑ j : Fin 3, w j * rationalCharacteristicPartial j z := by
   classical
-  simp [rankTwo_directionalDerivation, Derivation.sum_apply, Derivation.smul_apply, smul_eq_mul]
+  simp only [rankTwo_directionalDerivation, Fin.sum_univ_three,
+    Derivation.add_apply, Derivation.smul_apply, smul_eq_mul]
 
 /-- The directional derivative acts on the original coordinate
 functions by its components; a nonzero direction is not the zero
