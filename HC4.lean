@@ -851,3 +851,4 @@ import HC4.Polynomial.RationalCharacteristicTransport
 import HC4.Polynomial.RationalCharacteristicSelfAdjoint
 import HC4.Polynomial.RationalCharacteristicAdjugate
 import HC4.Polynomial.RationalCharacteristicPullback
+import HC4.Polynomial.RationalCharacteristicConstants

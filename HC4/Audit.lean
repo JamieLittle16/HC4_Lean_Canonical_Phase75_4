@@ -661,3 +661,5 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_of_injective
 #print axioms HC4.Polynomial.RankThreeCubic.rationalLineEval_injective
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicPartial_constants
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_rankZero_adjugate_annihilator
