@@ -98,13 +98,13 @@ theorem rankTwo_direction_polynomialVector
   have hi : w i = ev (A i) / ev (Q i) := hw i
   rw [hi, hL i, map_mul, map_mul]
   have hqi : ev (Q i) ≠ 0 := hq i
-  field_simp [hqi] <;> ring
+  field_simp [hqi]
 
 /-- The evaluated directional trace identity lifts for any invariant
 parameter, whether or not the direction is itself a velocity. -/
 theorem rankTwo_direction_trace_lift
     (w : Fin 3 → E K) (t : E K) (W : Fin 3 → P K) (s : E K)
-    (hs : s ≠ 0)
+    (_hs : s ≠ 0)
     (hW : ∀ i, (W i).eval₂ (algebraMap K (E K)) t = s * w i)
     (ht : rankTwo_directionalDerivation w t = 0)
     (p q : B K) (hq : q ≠ 0) (hcop : IsRelPrime p q)
@@ -168,8 +168,11 @@ theorem rankTwo_direction_constantNormal_transfer
     have he := congrArg (rationalCharacteristicPartial (K := K) j) hd
     change rationalCharacteristicPartial j (∑ m : Fin 3, g (d m) * w m) =
       rationalCharacteristicPartial j 0 at he
-    simp only [map_sum, map_zero, Derivation.leibniz, Derivation.map_algebraMap,
-      smul_eq_mul, mul_zero, add_zero, hfac] at he
+    have hconst (m : Fin 3) : rationalCharacteristicPartial j (g (d m)) = 0 := by
+      change rationalCharacteristicPartial j (algebraMap K (E K) (d m)) = 0
+      exact Derivation.map_algebraMap _ _
+    simp only [map_sum, map_zero, Derivation.leibniz, smul_eq_mul,
+      hconst, mul_zero, add_zero, hfac] at he
     have he' : (∑ m : Fin 3, g (d m) * (s * u m * rationalCharacteristicPartial j t)) =
         (s * rationalCharacteristicPartial j t) * (e ⬝ᵥ u) := by
       rw [dotProduct, Finset.mul_sum]
