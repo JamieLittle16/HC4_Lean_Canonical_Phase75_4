@@ -867,3 +867,4 @@ import HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly
 import HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier
 import HC4.Polynomial.RationalCharacteristicAffineCoordinates
 import HC4.Polynomial.RationalCharacteristicAffineFraction
+import HC4.Polynomial.RationalCharacteristicAffineOperator
