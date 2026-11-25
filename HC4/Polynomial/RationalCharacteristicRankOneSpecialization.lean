@@ -74,10 +74,10 @@ theorem rationalInvariant_reducedPair_dvd
   constructor
   · apply hcop.dvd_of_dvd_mul_right
     refine ⟨D q, ?_⟩
-    rw [hc, mul_comm]
+    exact hc.trans (mul_comm _ _)
   · apply hcop.symm.dvd_of_dvd_mul_right
     refine ⟨D p, ?_⟩
-    rw [← hc, mul_comm]
+    exact hc.symm.trans (mul_comm _ _)
 
 /-- For the actual velocity field the corrected differential
 equations descend to both polynomials in any reduced fraction. -/
@@ -113,7 +113,7 @@ theorem rankOne_velocityField_reducedPair_dvd
       e a * rationalCharacteristicPartial j z =
       e b * (rationalCharacteristicPartial l z -
         (e a / e b) * rationalCharacteristicPartial j z)
-    field_simp [hbe]
+    field_simp [hbe] <;> ring
   apply rationalInvariant_reducedPair_dvd D D' _ p q hq hcop
   · intro f
     exact (rankOne_clearedPolynomialPartial_algebraMap a b j l f).symm
@@ -134,6 +134,7 @@ theorem rankOne_specialization_normalPartial_zero
   obtain ⟨r, hr⟩ := hd
   change b * pderiv l p - a * pderiv j p = p * r at hr
   have h := congrArg φ hr
+  change φ (b * pderiv l p - a * pderiv j p) = φ (p * r) at h
   simp only [map_sub, map_mul, hp, hj, mul_zero, zero_mul, sub_zero] at h
   exact (mul_eq_zero.mp h).resolve_left hb
 
