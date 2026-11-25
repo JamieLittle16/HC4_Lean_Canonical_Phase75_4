@@ -861,3 +861,4 @@ import HC4.Polynomial.RationalCharacteristicRankOneSourceChart
 import HC4.Polynomial.RationalCharacteristicRankOneRadial
 import HC4.Polynomial.RationalCharacteristicRankOneChartDescent
 import HC4.Polynomial.RationalCharacteristicRankOneBivariateChart
+import HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure
