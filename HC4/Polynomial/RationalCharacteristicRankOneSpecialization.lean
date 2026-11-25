@@ -29,7 +29,8 @@ private abbrev I := Unit ⊕ Fin 3
 /-- Polynomial version of a cleared corrected transverse derivative. -/
 def rankOne_clearedPolynomialPartial
     (a b : B K) (j l : Fin 3) : Derivation K (B K) (B K) :=
-  b • pderiv l - a • pderiv j
+  b • (pderiv l : Derivation K (B K) (B K)) -
+    a • (pderiv j : Derivation K (B K) (B K))
 
 theorem rankOne_clearedPolynomialPartial_algebraMap
     (a b : B K) (j l : Fin 3) (p : B K) :
@@ -114,10 +115,10 @@ theorem rankOne_velocityField_reducedPair_dvd
       e b * (rationalCharacteristicPartial l z -
         (e a / e b) * rationalCharacteristicPartial j z)
     field_simp [hbe] <;> ring
-  apply rationalInvariant_reducedPair_dvd D D' _ p q hq hcop
-  · intro f
+  have hD (f : B K) : D' (e f) = e (D f) := by
     exact (rankOne_clearedPolynomialPartial_algebraMap a b j l f).symm
-  · rw [hscale, rankOne_correctedPartial_velocityField_zero V i j l hp hm _ hz, mul_zero]
+  apply rationalInvariant_reducedPair_dvd D D' hD p q hq hcop
+  rw [hscale, rankOne_correctedPartial_velocityField_zero V i j l hp hm _ hz, mul_zero]
 
 /-- At a specialization where the coefficient of the normal
 derivative is nonzero, a vanishing polynomial solution and its
