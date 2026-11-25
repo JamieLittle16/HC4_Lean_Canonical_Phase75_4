@@ -655,3 +655,5 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linear_or_nonunit_determinant
 
 #print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_nilpotent
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicHessian_eq_slice_hessian
+#print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_rigidityInput
