@@ -23,10 +23,14 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K]
 
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+
+section Affine
+
+variable [CharZero K]
 
 /-- Vanishing Hessian gives a polynomial with constant first partials
 and an explicit affine representation. -/
@@ -62,9 +66,10 @@ theorem transverse_affine_of_hessian_zero
   rw [hd0] at hc
   exact sub_eq_iff_eq_add.mp hc
 
+end Affine
+
 /-- The transverse coefficient of a product by a scalar is the
 corresponding scalar multiple of the coefficient. -/
-omit [CharZero K] in
 private theorem transverse_coeff_mul_C
     (p : B K) (c : K) (m : Fin 3 →₀ ℕ) :
     (p * MvPolynomial.C c).coeff m = p.coeff m * c := by
@@ -167,6 +172,8 @@ theorem rankOne_hessians_zero_of_lifted_trace_independent
     intro m
     have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) K => M i j) (hcoeff m).2
     simpa only [Matrix.zero_apply, MvPolynomial.coeff_zero] using h
+
+variable [CharZero K]
 
 /-- The lifted rank-one trace identity forces both parameter
 polynomials to be affine in the absence of a constant relation on U. -/
