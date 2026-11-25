@@ -27,8 +27,8 @@ Distinct declaration spellings indexed: **11282**.
 - `RankFrontier` — `inductive` in `HC4.Valuation.CoordinateMaxKernelOpeningRankFrontier`, `inductive` in `HC4.Valuation.SingularWeightedKernelOpening`
 - `S` — `abbrev` in `HC4.Polynomial.TransverseLeadingLinearClassification`, `abbrev` in `HC4.Polynomial.TransverseLeadingSchurFoundation`
 - `SB` — `abbrev` in `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFirstCorrectionBlocks`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedKernelPoleFullProfile`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedPoleAllPrincipalCofactors`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentOriginQuadraticKernelOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentOriginRepairOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentQuadraticDivisibilityOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentRepairOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitRepairOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneLowerMixedWeightZero`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneMixedOriginSourceLayers`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOnePoleOriginKernelDescent`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOnePolePlaneCubicCofactorZero`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePointwiseHessian`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOnePolePlanePrincipalCofactorDivides`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOnePoleRepairDichotomySource`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneRepairBlockDegree`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneRepairSecondLayer`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceFullAdjugateRankSplit`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceFullPoleCofactorSplit`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleKernelLineOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleLowJetSquareOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePolePrincipalSchurOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleSchurSquareOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceGenuinePoleTransverseRepairOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceMixedAffineDegrees`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceOriginBorderedHessian`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceOriginSubTwoCoupling`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourcePoleRepair`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourcePrincipalSchurSquare`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticAdjugateLowJet`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticKernelLine`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceQuadraticPrincipalCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeIsotropicFromCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropicFromPivot`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceRankTwoPivotCertificate`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceSchurLowJetSquare`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseRepairOriginWitness`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSourceTransverseThreeScale`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneSubTwoMixedOriginOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneUnitSourceMixedOrigin`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneUnitSourceQuadraticMixedDivisibility`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveAdjugateConstraint`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleCompatibility`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveSourceGap`, `abbrev` in `HC4.Polynomial.RankThreeCubicDetOneWeightedRepair`, `abbrev` in `HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`, `abbrev` in `HC4.Polynomial.RankThreeCubicPoleQuadraticTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceAdaptedBinarySingular`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceAllTimeCofactorDivisibility`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceCoordinateRankOneClosure`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceExactDoubleOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceExactPoleDegree`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFinalRankTwoObstruction`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFixedBinaryKernel`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFourHessianKernelPole`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFullKernelPole`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceFullTangentKernelOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceHomogeneousPoleRankOneClosure`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceLongitudinalPoleResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceNormalAdjugateOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceNormalQuadraticOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourcePoleRankSplit`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticEuler`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceQuadraticResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankOneElimination`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoAdaptedFrame`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoAdjugateAlignment`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoFinalNormalForm`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoHigherTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoPivotResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoPolarizedTime`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRankTwoTangentOrTriple`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceRepeatedGenuinePole`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceResidueFixedTangentAlignment`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceTangentKernelExtension`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceUnconditionalRankTwoTransport`, `abbrev` in `HC4.Polynomial.RankThreeCubicSourceUniformTangentKernel`, `abbrev` in `HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction`, `abbrev` in `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`, `abbrev` in `HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime`, `abbrev` in `HC4.Polynomial.RankThreeCubicUniqueGenuinePole`
-- `StationaryExponent` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
-- `StationarySource` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
+- `StationaryExponent` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingNilpotent`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
+- `StationarySource` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingNilpotent`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
 - `activeDet` — `def` in `HC4.Newton.GeneralFourBlockSchur`, `theorem` in `HC4.Valuation.ReverseReesSchurParameterBudget`
 - `actualMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalExactActiveFourBlockRankThree`
 - `actualRankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCentralActualRankTwo`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCentralActualRankTwo`
@@ -3400,8 +3400,8 @@ Distinct declaration spellings indexed: **11282**.
 - `SpecialFiberCollisionData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedRankThreeSpecialFiber`
 - `SpecialFiberDefectOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalSpecialFiberSplit`
 - `StaggeredSingularFirstKernelBreakFourBlockData` — `structure` in `HC4.Valuation.StaggeredSingularFirstKernelBreakRankTwo`
-- `StationaryExponent` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
-- `StationarySource` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
+- `StationaryExponent` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingNilpotent`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
+- `StationarySource` — `abbrev` in `HC4.Polynomial.TransverseLeadingFirstCorrection`, `abbrev` in `HC4.Polynomial.TransverseLeadingNilpotent`, `abbrev` in `HC4.Polynomial.TransverseLeadingStationary`
 - `TerminalAssociatedGradedCollisionData` — `structure` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
 - `TerminalAssociatedGradedCollisionData.exists_jc2Sensitive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalTerminalReduction`
 - `TerminalAssociatedGradedCollisionData.impossible_of_JC2` — `theorem` in `HC4.Newton.TerminalAssociatedGradedEndpoint`
@@ -7030,8 +7030,8 @@ Distinct declaration spellings indexed: **11282**.
 - `linearLineEval` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `linearLineEval_injective_of_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `linearLineEval_invariant_transverseForm` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
-- `linearLineEval_sourceLinearVector` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `linearLineEval_sourceNilpotentVelocity` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `linearLineEval_sourceLinearVector` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `linearLineEval_sourceNilpotentVelocity` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `linearMatrixPencil` — `def` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_natDegree_le_one` — `theorem` in `HC4.Polynomial.MatrixPolynomialCubicReflection`
 - `linearMatrixPencil_zeroTangentBlock_or_normalKernel_global` — `theorem` in `HC4.Polynomial.RankThreeCubicPencilGlobalKernel`
@@ -7456,11 +7456,11 @@ Distinct declaration spellings indexed: **11282**.
 - `nestedPolynomialPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nestedPolynomialPowerInflation_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `nested_factor_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelPositiveTailRankOneWholeFamilyOpening`
-- `nilpotentVectorDeriv` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `nilpotentVectorDeriv_mulVec` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `nilpotentVectorDeriv_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `nilpotentVectorDeriv_smul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `nilpotentVectorDeriv_sub` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `nilpotentVectorDeriv` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `nilpotentVectorDeriv_mulVec` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `nilpotentVectorDeriv_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `nilpotentVectorDeriv_smul` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `nilpotentVectorDeriv_sub` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `nilpotent_shear_inverse_matrix` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `nilpotent_shear_inverse_mulVec` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
 - `noClosingSourceCarrier_of_defect_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowZeroClockNoClosingCarrier`
@@ -9334,7 +9334,7 @@ Distinct declaration spellings indexed: **11282**.
 - `reesVectorProjectiveWedge` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
-- `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `referenceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
 - `referenceSlice_fractionEvaluation` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
@@ -10121,7 +10121,7 @@ Distinct declaration spellings indexed: **11282**.
 - `sourceAxisTimeEval_affine_formula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceAxisTimeEval_linearLineEval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceAxisTimeEval_linearLineEval_derivative` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceCoeff_derivative_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceCoeff_derivative_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceCoefficientOrder_eq_zero_of_lt_firstActual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingEarlierWallClock`
 - `sourceCoefficientOrder_eq_zero_or_firstActual_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
 - `sourceCoefficientParameterOrder` — `def` in `HC4.Valuation.RigidClosingFirstKernelStage`
@@ -10301,15 +10301,15 @@ Distinct declaration spellings indexed: **11282**.
 - `sourceLineFrame_transverseDet_eq` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLineIndex` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLine_secondDerivative_eq_hessian` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_frame_transverse_degree` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_leadingAdjugate_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_referenceCoeff_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceLinear_referenceGradient_chain` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceLongitudinal_support_le_one` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceLongitudinal_support_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceLongitudinal_support_le_one` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceLongitudinal_support_le_two` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceMinor0_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `sourceMinor0_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceMinor1_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
@@ -10317,36 +10317,36 @@ Distinct declaration spellings indexed: **11282**.
 - `sourceMinor2_of_familyMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`
 - `sourceMinor2_of_raw_pivot2` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelZeroRelativeKernelPrincipalSourceLift`
 - `sourceNegativeMixedHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
-- `sourceNilpotentInverseEval` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotentInverseEval` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotentInverseEval_X_degree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotentInverseEval_X_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotentInverseEval_X_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotentInverseEval_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotentInverseEval_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotentInverseEval_transport` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotentVelocity` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_affineBottomLayers_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_affineLinearLayer_markedCollision_impossible` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_affine_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_affine_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_allCorrections_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_firstCorrection_affine` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_firstCorrection_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_firstCorrection_affine` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_firstCorrection_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_gradient_kernel` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_gradient_ode_algebra` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_hessian_selfAdjoint` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_inverseFormula` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_leadingHessian_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_leading_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_linearLayer_mixedGap_pairing_ne_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_longitudinal_second_eq_zero_of_square_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_longitudinal_third_eq_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_markedCollision_forces_earlyMixed` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_markedCollision_forces_strictEarlyMixed` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_mixed_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_originalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_secondCorrection_timeDegree_le_seven` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_time_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_time_eval` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceNilpotent_transverseGradient_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceNilpotent_transverseGradient_ode` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceNilpotent_transverseGradient_second_third` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceNilpotent_transverseGradient_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceNilpotent_transverseHessian_timeDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceOriginHessianLayer` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingOriginPencil`
@@ -10373,8 +10373,8 @@ Distinct declaration spellings indexed: **11282**.
 - `sourceStationary_regularAnchor_longitudinal_pderiv_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingStationary`
 - `sourceStationary_supportingEdge_longitudinal_zero` — `theorem` in `HC4.Polynomial.TransverseLeadingStationary`
 - `sourceStationary_totalDegree_support_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingStationary`
-- `sourceSupport_secondDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceSupport_thirdDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceSupport_secondDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
+- `sourceSupport_thirdDerivative_bound` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceTimeMatrix` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTimeMatrix_cube` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTimeMatrix_mul` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -10405,11 +10405,11 @@ Distinct declaration spellings indexed: **11282**.
 - `sourceTime_transverse_pair` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTime_transverse_triple` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTotalDegree_sum_le` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
-- `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTransverseEuler_of_weight` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceTransverseHessian` — `def` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_det_ne_zero_of_generic` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `sourceTransverseHessian_isSymm` — `theorem` in `HC4.Polynomial.RankThreeCubicPolePrincipalCofactor`
-- `sourceTransverseHessian_mulVec_coordinates` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `sourceTransverseHessian_mulVec_coordinates` — `theorem` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `sourceTransverseNatGrade` — `def` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseNatGrade_sum` — `theorem` in `HC4.Polynomial.TransverseLeadingFirstCorrection`
 - `sourceTransverseOrder` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
