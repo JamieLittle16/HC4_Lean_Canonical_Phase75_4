@@ -113,14 +113,16 @@ theorem rankOne_bivariateSource_coeff (f : B K) (j l : ℕ) :
     intro n
     rw [rankOne_chartCoeff_coeff]
     by_cases hn : n ≤ j
-    · rw [if_pos hn, MvPolynomial.coeff_monomial, rankOne_chartExponent_eq_iff m n j l hn,
+    · rw [if_pos hn, MvPolynomial.coeff_monomial]
+      simp only [rankOne_chartExponent_eq_iff m n j l hn,
         rankOne_bivariateExponent_eq_iff]
       by_cases hj : m 0 + m 1 = j
       · by_cases hl : m 2 = l
         · simp [hj, hl, _root_.Polynomial.coeff_C_mul_X_pow, eq_comm]
         · simp [hj, hl]
       · simp [hj]
-    · rw [if_neg hn, rankOne_bivariateExponent_eq_iff]
+    · rw [if_neg hn]
+      simp only [rankOne_bivariateExponent_eq_iff]
       by_cases hj : m 0 + m 1 = j
       · by_cases hl : m 2 = l
         · have hne : n ≠ m 0 := by omega
@@ -146,7 +148,7 @@ theorem rankOne_bivariateChartTime_parameter
   | monomial n a =>
     rw [← _root_.Polynomial.C_mul_X_pow_eq_monomial,
       _root_.Polynomial.map_mul, _root_.Polynomial.map_C,
-      map_pow, _root_.Polynomial.map_X, map_mul, map_pow,
+      _root_.Polynomial.map_pow, _root_.Polynomial.map_X, map_mul, map_pow,
       rankOne_normalizedChartTime_C, rankOne_normalizedChartTime_X]
     simp [rankOne_normalizedChart, rankOne_bivariateChart,
       _root_.Polynomial.C_mul_X_pow_eq_monomial, ← map_pow, ← map_mul]
