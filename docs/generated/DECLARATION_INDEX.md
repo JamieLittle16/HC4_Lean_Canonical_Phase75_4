@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11530**.
+Distinct declaration spellings indexed: **11534**.
 
 ## Repeated declaration spellings
 
@@ -9384,6 +9384,10 @@ Distinct declaration spellings indexed: **11530**.
 - `rankTwo_exists_velocityField_kernelDirection` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
 - `rankTwo_has_principalPivot` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `rankTwo_hessian_leftNormal` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+- `rankTwo_jordanBlock` — `def` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+- `rankTwo_jordan_cubeDerivative_constraints` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+- `rankTwo_jordan_frobenius_tensor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+- `rankTwo_jordan_hessian_form` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
 - `rankTwo_kernel_derivativeJacobian` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
 - `rankTwo_leftKernel_minors_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
 - `rankTwo_leftNormal_derivative_kernel` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
