@@ -24,7 +24,7 @@ variable {K : Type*} [Field K] [CharZero K]
 
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev P (K : Type*) := _root_.Polynomial K
+private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
 private abbrev I := Unit ⊕ Fin 3
 
 /-- Leave the pivot coordinate free and specialize all others
@@ -95,7 +95,7 @@ theorem rankOne_coordinateLine_eval
 family of nonzero polynomials specializes to a nonzero polynomial. -/
 theorem rankOne_coordinateLine_exists_regular
     (j : Fin 3) (b : Fin 3 → B K) (hb : ∀ l, b l ≠ 0) :
-    ∃ c : Fin 3 → K, ∀ l, rankOne_coordinateLine j c (b l) ≠ 0 := by
+    ∃ c : Fin 3 → K, ∀ l : Fin 3, rankOne_coordinateLine j c (b l) ≠ 0 := by
   classical
   let g : B K := ∏ l : Fin 3, b l
   have hg : g ≠ 0 := Finset.prod_ne_zero_iff.mpr (fun l _ => hb l)
