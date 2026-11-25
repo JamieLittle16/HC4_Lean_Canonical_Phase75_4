@@ -845,3 +845,6 @@ import HC4.Polynomial.TransverseLeadingFixedPower
 
 -- First lower grade constraint in arbitrary transverse degree.
 import HC4.Polynomial.TransverseLeadingFirstCorrection
+
+-- Degree-independent rational characteristic Jacobian transport.
+import HC4.Polynomial.RationalCharacteristicTransport
