@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11554**.
+Distinct declaration spellings indexed: **11557**.
 
 ## Repeated declaration spellings
 
@@ -9391,6 +9391,7 @@ Distinct declaration spellings indexed: **11554**.
 - `rankTwo_has_principalPivot` — `theorem` in `HC4.Newton.RankOneThreeToBinarySchur`
 - `rankTwo_hessianTensor_symm` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
 - `rankTwo_hessian_leftNormal` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+- `rankTwo_invariant_lineEval` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_jordanBlock` — `def` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
 - `rankTwo_jordan_cubeDerivative_constraints` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
 - `rankTwo_jordan_frobenius_tensor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
@@ -9399,6 +9400,7 @@ Distinct declaration spellings indexed: **11554**.
 - `rankTwo_kernel_derivativeJacobian` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
 - `rankTwo_leftKernel_minors_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
 - `rankTwo_leftNormal_derivative_kernel` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+- `rankTwo_lineEval_coeffDeriv_eq_derivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_longitudinalGradient_derivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
 - `rankTwo_matrixDeriv` — `def` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
 - `rankTwo_matrixDeriv_directional` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
@@ -9415,6 +9417,7 @@ Distinct declaration spellings indexed: **11554**.
 - `rankTwo_source_straightDirection` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_square_frontier` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
 - `rankTwo_to_rankThree_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
+- `rankTwo_transportPolynomial_eq_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_transportTensor` — `def` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
 - `rankTwo_transportTensor_symm` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
 - `rankTwo_transport_cubeDerivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`

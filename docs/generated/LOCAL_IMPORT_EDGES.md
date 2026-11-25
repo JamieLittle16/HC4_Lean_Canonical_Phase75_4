@@ -219,6 +219,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
   - `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
   - `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
   - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
