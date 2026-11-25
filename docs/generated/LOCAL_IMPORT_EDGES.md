@@ -201,6 +201,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
   - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
   - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
+  - `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
   - `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
   - `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
   - `HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure`
@@ -1966,6 +1967,8 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
 - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
   - `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
+- `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
+  - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
 - `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
   - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
 - `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
