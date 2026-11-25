@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11294**.
+Distinct declaration spellings indexed: **11295**.
 
 ## Repeated declaration spellings
 
@@ -9254,6 +9254,7 @@ Distinct declaration spellings indexed: **11294**.
 - `rationalCharacteristicPartial_algebraMap` — `theorem` in `HC4.Polynomial.RationalCharacteristicTransport`
 - `rationalInfinityValue` — `def` in `HC4.RationalRigidity.FinitePreimage`
 - `rationalNormalizationOutcome` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
+- `rationalTransport_expand` — `theorem` in `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
 - `rational_identity_of_cleared_identity` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `rational_identity_of_monic_nonvanishing_denominator` — `theorem` in `HC4.RationalRigidity.PoleRemovalAssembly`
 - `rational_identity_of_monic_two_chart_unit_certificates` — `theorem` in `HC4.RationalRigidity.ChartCertificates`

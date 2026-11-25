@@ -5452,7 +5452,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RationalCharacteristicTransport`, `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `abbrev B`, `abbrev E`, `abbrev S`, `def rationalCharacteristicHessian`, `theorem rationalCharacteristicHessian_eq_slice_hessian`, `theorem rationalCharacteristicHessian_det_ne_zero`, `theorem rationalCharacteristicJacobian_selfAdjoint`, `theorem exists_anchored_rationalCharacteristic_rigidityInput`
+- Declarations: `abbrev B`, `abbrev E`, `abbrev S`, `def rationalCharacteristicHessian`, `theorem rationalCharacteristicHessian_eq_slice_hessian`, `theorem rationalCharacteristicHessian_det_ne_zero`, `theorem rationalTransport_expand`, `theorem rationalCharacteristicJacobian_selfAdjoint`, `theorem exists_anchored_rationalCharacteristic_rigidityInput`
 
 ### `HC4.Polynomial.RationalCharacteristicTransport`
 
