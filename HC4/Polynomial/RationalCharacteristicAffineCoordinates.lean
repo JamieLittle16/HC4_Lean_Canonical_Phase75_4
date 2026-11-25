@@ -57,12 +57,23 @@ theorem rationalAffine_complete_covectors
     push_neg at h
     apply hij
     obtain ⟨h01, h02, h12⟩ := h
-    fin_cases i <;> fin_cases j <;> try ring <;>
-      first | exact h01 | exact h02 | exact h12 |
-        linear_combination -h01 | linear_combination -h02 | linear_combination -h12
+    fin_cases i <;> fin_cases j
+    · ring
+    · exact h01
+    · exact h02
+    · linear_combination -h01
+    · ring
+    · exact h12
+    · linear_combination -h02
+    · linear_combination -h12
+    · ring
   rcases hor with h01 | h02 | h12
   · refine ⟨![A, D, ![0, 0, 1]], ?_, ?_, ?_⟩
-    · simpa [Matrix.det_fin_three] using h01
+    · have he : (![A, D, ![0, 0, 1]] : Matrix (Fin 3) (Fin 3) K).det =
+          A 0 * D 1 - A 1 * D 0 := by
+        simp [Matrix.det_fin_three] <;> ring
+      rw [he]
+      exact h01
     · intro j
       rfl
     · intro j
@@ -70,8 +81,7 @@ theorem rationalAffine_complete_covectors
   · refine ⟨![A, D, ![0, 1, 0]], ?_, ?_, ?_⟩
     · have he : ( (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K)).det =
           -(A 0 * D 2 - A 2 * D 0) := by
-        simp [Matrix.det_fin_three]
-        ring
+        simp [Matrix.det_fin_three] <;> ring
       rw [he]
       exact neg_ne_zero.mpr h02
     · intro j
@@ -79,7 +89,11 @@ theorem rationalAffine_complete_covectors
     · intro j
       rfl
   · refine ⟨![A, D, ![1, 0, 0]], ?_, ?_, ?_⟩
-    · simpa [Matrix.det_fin_three] using h12
+    · have he : (![A, D, ![1, 0, 0]] : Matrix (Fin 3) (Fin 3) K).det =
+          A 1 * D 2 - A 2 * D 1 := by
+        simp [Matrix.det_fin_three] <;> ring
+      rw [he]
+      exact h12
     · intro j
       rfl
     · intro j
