@@ -666,3 +666,4 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.symmetric_affinePencil_eq_zero_of_independent_polynomialKernel
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_affine_parameters_of_lifted_trace_independent
 #print axioms HC4.Polynomial.RankThreeCubic.rationalParameter_lift_of_eval_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_affine_parameters_of_evaluated_trace
