@@ -659,3 +659,5 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_rigidityInput
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_along_line
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_of_injective
+#print axioms HC4.Polynomial.RankThreeCubic.rationalLineEval_injective
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator
