@@ -41,6 +41,7 @@ The most recent active module is [TransverseLeadingFirstCorrection.lean](../HC4/
 
 * Arbitrary cap m ≥ 2: leading full Hessian determinant vanishes; a regular transverse anchor gives actual straight gradient transport.
 * With generically invertible leading transverse block: a nilpotent linear characteristic or a genuinely nonpolynomial characteristic.
+* Stationary cubic marked collision: `sourceStationary_cubic_markedCollision_impossible` in [TransverseLeadingStationary.lean](../HC4/Polynomial/TransverseLeadingStationary.lean) closes the case with zero leading longitudinal derivative, regular anchor at zero, nonzero constant determinant and the actual marked collision. Any normalization from the general stationary branch must preserve these hypotheses.
 * Nonzero linear characteristic: a fixed directional power in the leading source; for a cubic, a repeated linear factor in the transverse determinant.
 * Cubic squarefree determinant: a genuine nonpolynomial characteristic is impossible. Repeated-factor cases are not all excluded by this theorem.
 * Latest mixed-residue seam: `sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero` proves a global directional second derivative vanishes, under its explicit fixed direction, prime, principal-cofactor, nonzero residue and mixed-equation hypotheses. It is not a collision contradiction or a proof that those hypotheses always hold.
