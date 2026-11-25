@@ -82,7 +82,7 @@ theorem rationalAffine_complete_covectors
     · intro j
       rfl
   · refine ⟨![A, D, ![0, 1, 0]], ?_, ?_, ?_⟩
-    · have he : ( Matrix.det (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K) =
+    · have he : Matrix.det (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K) =
           -(A 0 * D 2 - A 2 * D 0) := by
         simp [Matrix.det_fin_three] <;> ring
       rw [he]
