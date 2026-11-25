@@ -86,7 +86,7 @@ variable {K : Type*} [Field K] [CharZero K]
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)
 private abbrev I := Unit ⊕ Fin 3
-private abbrev P (K : Type*) := _root_.Polynomial K
+private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
 
 /-- Product rule for the pairing of two rational vectors. -/
 theorem rankTwo_derivation_dot
@@ -118,10 +118,10 @@ theorem rankTwo_normal_invariant_of_parameter
   let u : Fin 3 → E K := fun j => (U j).eval₂ (algebraMap K (E K)) t
   let z : Fin 3 → E K := fun j => D (b j)
   have hpol (p : P K) : D (p.eval₂ (algebraMap K (E K)) t) = 0 := by
-    rw [rationalParameter_polynomial_chainRule, ht, mul_zero]
+    rw [rationalParameter_polynomial_chainRule D t p, ht, mul_zero]
   have hwu (j : Fin 3) : D (w j) = 0 := by
-    rw [hw, Derivation.leibniz_div, hpol, hpol]
-    simp
+    rw [hw, Derivation.leibniz_div]
+    simp [hpol]
   have huu (j : Fin 3) : D (u j) = 0 := hpol (U j)
   have hz (x : Fin 3 → E K) (hx : b ⬝ᵥ x = 0)
       (hDx : ∀ j, D (x j) = 0) : z ⬝ᵥ x = 0 := by
@@ -266,9 +266,15 @@ theorem rankTwo_parameter_tangent_or_constantNormal
     have hR (j : Fin 3) : R j = dt j * (R p / dt p) := by
       have h := rankTwo_normalDerivative_row_minors V b beta t hb hdb j p
       change dt p * R j = dt j * R p at h
-      apply (mul_left_cancel₀ hp)
-      rw [h]
-      field_simp [hp]
+      have hp' : dt p ≠ 0 := hp
+      apply (mul_left_cancel₀ hp')
+      calc
+        dt p * R j = dt j * R p := h
+        _ = dt p * (dt j * (R p / dt p)) := by
+          calc
+            dt j * R p = dt j * ((R p / dt p) * dt p) := by
+              rw [div_mul_cancel₀ _ hp']
+            _ = dt p * (dt j * (R p / dt p)) := by ring
     have hRp : R p = 0 := by
       have he : R ⬝ᵥ u = (R p / dt p) * rankTwo_directionalDerivation u t := by
         rw [dotProduct, rankTwo_directionalDerivation_apply, Finset.mul_sum]
