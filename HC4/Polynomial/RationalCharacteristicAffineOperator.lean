@@ -73,7 +73,7 @@ after extending scalars to the transverse fraction field. -/
 theorem rationalAffine_mapped_inverse
     (M P : Mat K) (hMP : M * P = 1) :
     M.map (algebraMap K (E K)) * P.map (algebraMap K (E K)) = 1 := by
-  rw [← Matrix.map_mul, hMP, Matrix.map_one]
+  rw [← Matrix.map_mul, hMP, Matrix.map_one] <;> simp
 
 /-- The Hessian of the actual substituted reference polynomial is
 the fraction-field congruence of the original Hessian. -/
@@ -120,7 +120,13 @@ theorem rationalAffine_fraction_operator_identities
     rfl
   have hc := congrArg (fun Q : Mat (E K) => Q.map φ) h3
   have hs := congrArg (fun Q : Mat (E K) => Q.map φ) hself
-  simp only [pow_succ, pow_zero, one_mul, Matrix.map_mul, Matrix.map_zero] at hc
+  change (N ^ 3).map φ = (0 : Mat (E K)).map φ at hc
+  change (N.transpose * H).map φ = (H * N).map φ at hs
+  have hz : (0 : Mat (E K)).map φ = 0 := by
+    apply Matrix.ext
+    intro i j
+    simp
+  simp only [pow_succ, pow_zero, one_mul, Matrix.map_mul, hz] at hc
   rw [Matrix.map_mul, Matrix.map_mul, ht] at hs
   exact ⟨by simpa only [pow_succ, pow_zero, one_mul] using hc, hs⟩
 
@@ -155,11 +161,11 @@ theorem rationalAffine_similarity_leftKernel_pullback
     change be ᵥ* (Pe * Ne * Me) = 0 at hk
     have he : (de ᵥ* Ne) ᵥ* Me = 0 := by
       rw [hde, Matrix.vecMul_vecMul, Matrix.vecMul_vecMul]
-      exact hk
+      simpa only [mul_assoc] using hk
     calc
       de ᵥ* Ne = (de ᵥ* Ne) ᵥ* (1 : Mat (E K)) := by rw [Matrix.vecMul_one]
       _ = ((de ᵥ* Ne) ᵥ* Me) ᵥ* Pe := by
-        rw [Matrix.vecMul_vecMul, hMP']
+        conv_rhs => rw [Matrix.vecMul_vecMul, hMP']
       _ = 0 := by rw [he, Matrix.zero_vecMul]
   refine ⟨d, ?_, ?_⟩
   · intro hz
@@ -173,7 +179,9 @@ theorem rationalAffine_similarity_leftKernel_pullback
     have he := congrFun hdk j
     change (∑ i : Fin 3, g (d i) * φ (N i j)) = 0 at he
     change φ (∑ i : Fin 3, g (d i) * N i j) = φ 0
-    simpa only [map_sum, map_mul, φ.commutes, map_zero] using he
+    have hconst (i : Fin 3) : φ (g (d i)) = g (d i) :=
+      φ.commutes (d i)
+    simpa only [map_sum, map_mul, hconst, map_zero] using he
 
 end
 end HC4.Polynomial.RankThreeCubic
