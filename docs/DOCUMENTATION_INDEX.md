@@ -244,8 +244,7 @@ infrastructure but are not the live closure plan.
 
 ### historical phase/status files
 
-Files named `FORMALISATION_STATUS_PHASE*`, `PHASE*.md`, old handoffs and similar
-notes record real development history. They are not current proof ledgers.
+The former root `FORMALISATION_STATUS_PHASE*` and `PHASE*.md` files are preserved at the [pre-cleanup checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072). Dated handoffs and similar notes record real development history; they are not current proof ledgers.
 
 ## Hard rules for the final sprint
 

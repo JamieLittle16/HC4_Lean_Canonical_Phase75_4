@@ -74,4 +74,4 @@ Every substantial new Lean module should document: **carrier, consumes, produces
 
 If a change alters the live frontier, update `CURRENT_STATE.md` and `PROOF_PATHS.md`. If it introduces reusable infrastructure, update `CANONICAL_OWNERS.md`. If it supersedes a route, update `HISTORICAL_AND_SUPERSEDED_ROUTES.md`. Regenerate the machine index whenever Lean source changes.
 
-Root `FORMALISATION_STATUS_PHASE*.md`, `FORMALISATION_LEDGER.md`, and `CERTIFICATION_STATUS.md` are historical archaeology, not current missing-lemma lists.
+The former root phase-status files, patch manifests, ledger and certification snapshot are preserved in [Git history](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072), not in the working tree. They are historical archaeology, not current missing-lemma lists.

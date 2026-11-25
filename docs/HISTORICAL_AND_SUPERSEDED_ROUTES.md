@@ -47,7 +47,7 @@ as defined in `CURRENT_STATE.md`.
 
 ## 2. Historical phase Markdown files
 
-The root files:
+The former root files (preserved at the [pre-cleanup checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072)):
 
 ```text
 FORMALISATION_STATUS_PHASE*.md

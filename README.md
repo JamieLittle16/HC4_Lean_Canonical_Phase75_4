@@ -2,7 +2,7 @@
 
 Cumulative Lean formalisation for the HC4 programme, including the current A18/A19 canonical Smith/Rees/final-assembly development.
 
-The repository has grown through many historical phases. **Do not use old `FORMALISATION_STATUS_PHASE*.md` files as the current proof map.** They are retained as historical checkpoints.
+The repository has grown through many historical phases. Superseded phase reports, patch manifests and build logs have been removed from the working tree; the [historical checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072) preserves them in Git history.
 
 ## Start here
 
@@ -70,4 +70,4 @@ Certification snapshot where applicable:
 
 ## Historical documents
 
-`FORMALISATION_LEDGER.md`, `CERTIFICATION_STATUS.md`, and the numbered `FORMALISATION_STATUS_PHASE*.md` files are historical records. Their old “missing” lists are not authoritative for the current branch.
+The old phase ledgers, certification snapshots and numbered phase reports remain available at the [pre-cleanup checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072). Their old missing-lemma lists are not authoritative for the current branch. For historical mathematical routes still useful in current work, see [`docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md`](docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md).
