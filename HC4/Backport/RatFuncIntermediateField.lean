@@ -47,13 +47,14 @@ local notation "K[f]" => Algebra.adjoin K {(f : RatFunc K)}
 theorem adjoin_X : K⟮(X : RatFunc K)⟯ = ⊤ :=
   eq_top_iff.mpr fun g _ ↦ (mem_adjoin_simple_iff _ _).mpr ⟨g.num, g.denom, by simp⟩
 
-set_option backward.isDefEq.respectTransparency false in
 theorem IntermediateField.adjoin_X (E : IntermediateField K (RatFunc K)) :
     E⟮(X : RatFunc K)⟯ = ⊤ := by
-  rw [← restrictScalars_eq_top_iff (K := K), restrictScalars_adjoin, eq_top_iff]
-  exact le_trans (le_of_eq RatFunc.adjoin_X.symm) (IntermediateField.adjoin.mono _ _ _ (by simp))
+  apply IntermediateField.restrictScalars_injective K
+  rw [IntermediateField.restrictScalars_top, IntermediateField.restrictScalars_adjoin,
+    eq_top_iff]
+  exact le_trans (le_of_eq RatFunc.adjoin_X.symm)
+    (IntermediateField.adjoin.mono _ _ _ (by simp))
 
-set_option backward.isDefEq.respectTransparency false in
 /-- The equivalence between `E⟮X⟯` and `RatFunc K` as `E`-algebras. -/
 noncomputable def IntermediateField.adjoinXEquiv (E : IntermediateField K (RatFunc K)) :
     E⟮(X : RatFunc K)⟯ ≃ₐ[E] RatFunc K :=
@@ -74,17 +75,17 @@ theorem minpolyX_map (A : Type*) [CommRing A] [Algebra K A] [Algebra (Algebra.ad
 
 @[simp]
 theorem C_minpolyX (x : K) : (C x).minpolyX K⟮C x⟯ = 0 := by
-  simp [minpolyX, sub_eq_zero, Subtype.ext_iff]
+  simp [minpolyX, sub_eq_zero, Subtype.ext_iff] <;> rfl
 
-set_option backward.isDefEq.respectTransparency false in
 theorem minpolyX_aeval_X : (f.minpolyX K⟮f⟯).aeval (X : RatFunc K) = 0 := by
   simp only [aeval_sub, aeval_map_algebraMap, aeval_X_left_eq_algebraMap, map_mul, aeval_C,
-    IntermediateField.algebraMap_apply, coe_algebraMap]
-  nth_rw 2 [← num_div_denom f]
-  rw [div_mul_cancel₀ _ (algebraMap_ne_zero f.denom_ne_zero)]
-  exact sub_self _
+    IntermediateField.algebraMap_apply]
+  change algebraMap K[X] (RatFunc K) f.num -
+    f * algebraMap K[X] (RatFunc K) f.denom = 0
+  apply sub_eq_zero.mpr
+  exact ((div_eq_iff (algebraMap_ne_zero f.denom_ne_zero)).mp
+    (num_div_denom f).symm).symm
 
-set_option backward.isDefEq.respectTransparency false in
 theorem eq_C_of_minpolyX_coeff_eq_zero
   (hf : (f.minpolyX K⟮f⟯).coeff f.denom.natDegree = (0 : RatFunc K)) : ∃ c, f = C c := by
   use f.num.coeff f.denom.natDegree / f.denom.leadingCoeff
@@ -92,15 +93,12 @@ theorem eq_C_of_minpolyX_coeff_eq_zero
     (leadingCoeff_ne_zero.mpr f.denom_ne_zero)), eq_comm]
   simpa [sub_eq_zero] using hf
 
-set_option backward.isDefEq.respectTransparency false in
 theorem minpolyX_eq_zero_iff : (f.minpolyX K⟮f⟯) = 0 ↔ ∃ c, f = C c :=
   ⟨fun h ↦ f.eq_C_of_minpolyX_coeff_eq_zero (by simp [h]), by rintro ⟨c, rfl⟩; simp⟩
 
-set_option backward.isDefEq.respectTransparency false in
 theorem isAlgebraic_adjoin_simple_X (hf : ¬∃ c, f = C c) : IsAlgebraic K⟮f⟯ (X : RatFunc K) :=
    ⟨f.minpolyX K⟮f⟯, fun H ↦ hf (f.minpolyX_eq_zero_iff.mp H), f.minpolyX_aeval_X⟩
 
-set_option backward.isDefEq.respectTransparency false in
 theorem isAlgebraic_adjoin_simple_X' (hf : ¬∃ c, f = C c) :
     Algebra.IsAlgebraic K⟮f⟯ (RatFunc K) := by
   have : Algebra.IsAlgebraic K⟮f⟯ K⟮f⟯⟮(X : RatFunc K)⟯ :=
@@ -111,7 +109,6 @@ theorem natDegree_denom_le_natDegree_minpolyX (hf : ¬∃ c, f = C c) :
     f.denom.natDegree ≤ (f.minpolyX K⟮f⟯).natDegree :=
   le_natDegree_of_ne_zero fun H ↦ hf (f.eq_C_of_minpolyX_coeff_eq_zero congr($(H).val))
 
-set_option backward.isDefEq.respectTransparency false in
 theorem natDegree_num_le_natDegree_minpolyX (hf : ¬∃ c, f = C c) :
     f.num.natDegree ≤ (f.minpolyX K⟮f⟯).natDegree := by
   have f_ne_zero : f ≠ 0 := by
@@ -121,7 +118,7 @@ theorem natDegree_num_le_natDegree_minpolyX (hf : ¬∃ c, f = C c) :
   intro H
   replace H := congr($(H).val)
   simp only [coeff_sub, coeff_map, coeff_natDegree, coeff_C_mul, AddSubgroupClass.coe_sub,
-    SubalgebraClass.coe_algebraMap, algebraMap_eq_C, MulMemClass.coe_mul, coe_algebraMap,
+    SubalgebraClass.coe_algebraMap, algebraMap_eq_C, MulMemClass.coe_mul, IntermediateField.coe_algebraMap_apply,
     ZeroMemClass.coe_zero] at H
   rw [sub_eq_zero, ← mul_right_inj' (inv_ne_zero f_ne_zero), ← mul_assoc, inv_mul_cancel₀ f_ne_zero,
     one_mul, ← eq_div_iff <| (_root_.map_ne_zero C).mpr <| Polynomial.leadingCoeff_ne_zero.mpr
@@ -141,7 +138,6 @@ theorem natDegree_minpolyX :
   · exact max_le (natDegree_num_le_natDegree_minpolyX f hf) <| le_natDegree_of_ne_zero
       fun H ↦ hf (f.eq_C_of_minpolyX_coeff_eq_zero congr($(H).val))
 
-set_option backward.isDefEq.respectTransparency false in
 theorem transcendental_of_ne_C (hf : ¬∃ c, f = C c) : Transcendental K f := by
   intro H
   have := IntermediateField.isAlgebraic_adjoin_simple H.isIntegral
@@ -149,7 +145,6 @@ theorem transcendental_of_ne_C (hf : ¬∃ c, f = C c) : Transcendental K f := b
   rw [Algebra.transcendental_iff_not_isAlgebraic] at tr
   exact tr <| Algebra.IsAlgebraic.trans _ _ _ (alg := f.isAlgebraic_adjoin_simple_X' hf)
 
-set_option backward.isDefEq.respectTransparency false in
 theorem irreducible_minpolyX' (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX K[f]) := by
   let e := algEquivOfTranscendental K f (f.transcendental_of_ne_C hf)
   let φ : K[X][X] := f.num.map (algebraMap ..) -
@@ -173,7 +168,6 @@ theorem irreducible_minpolyX' (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX 
   rw [add_comm, X_mul_C, map_neg, neg_mul]
   exact sub_eq_add_neg (Polynomial.C f.num) (Polynomial.C f.denom * Polynomial.X)
 
-set_option backward.isDefEq.respectTransparency false in
 theorem irreducible_minpolyX (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX K⟮f⟯) := by
   haveI : UniqueFactorizationMonoid K[f] :=
     (f.transcendental_of_ne_C hf).uniqueFactorizationMonoid_adjoin
@@ -187,7 +181,6 @@ theorem irreducible_minpolyX (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX K
       Nat.max_eq_zero_iff, ← f.eq_C_iff] at this
     exact hf this
 
-set_option backward.isDefEq.respectTransparency false in
 theorem finrank_eq_max_natDegree :
     Module.finrank K⟮f⟯ (RatFunc K) = max f.num.natDegree f.denom.natDegree := by
   by_cases hf : ∃ c, f = C c
