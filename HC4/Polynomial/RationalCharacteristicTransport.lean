@@ -69,7 +69,8 @@ theorem transverseHessian_transport_of_rational_gradient
   let J : Matrix (Fin 3) (Fin 3) (_root_.Polynomial (E K)) :=
     1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) •
       (rationalCharacteristicJacobian V).map _root_.Polynomial.C
-  have hE : lineEval z V = MvPolynomial.aeval w := rfl
+  have hE : (lineEval (K := K) z V : S K →ₐ[K] _root_.Polynomial (E K)) =
+      MvPolynomial.aeval w := rfl
   have hz (j k : Fin 3) : D j (z (.inr k)) = if k = j then 1 else 0 := by
     change rationalCharacteristicPartial j (algebraMap (B K) (E K) (X k)) = _
     rw [rationalCharacteristicPartial_algebraMap]
