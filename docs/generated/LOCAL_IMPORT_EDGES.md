@@ -199,6 +199,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
   - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
   - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
+  - `HC4.Polynomial.RationalCharacteristicRankOneClosure`
   - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
   - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
   - `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
@@ -213,6 +214,8 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
   - `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
   - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
   - `HC4.Polynomial.RationalCharacteristicTransport`
@@ -507,6 +510,10 @@ human architecture guide.
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `HC4.Audit`
   - `HC4`
+- `HC4.Backport.RatFuncIntermediateField`
+  - _(no local imports)_
+- `HC4.Backport.RatFuncLuroth`
+  - `HC4.Backport.RatFuncIntermediateField`
 - `HC4.ClassifiedFamilies`
   - `HC4.ClassifiedFamilies.BranchConjugacy`
   - `HC4.ClassifiedFamilies.ClassifiedEquiv`
@@ -1964,6 +1971,9 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
   - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+- `HC4.Polynomial.RationalCharacteristicRankOneClosure`
+  - `HC4.Backport.RatFuncLuroth`
+  - `HC4.Polynomial.RationalCharacteristicRankOneLurothBridge`
 - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
   - `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
 - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
@@ -1992,6 +2002,10 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
 - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
   - `HC4.Polynomial.RationalCharacteristicParameterLift`
+- `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankOneClosure`
+- `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
 - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.RationalCharacteristicTransport`
