@@ -174,15 +174,78 @@ theorem backport_eq_C_iff : (∃ c, f = C c) ↔ f.num.natDegree = 0 ∧ f.denom
         conv_lhs => rw [Polynomial.eq_C_of_natDegree_eq_zero hn, Polynomial.eq_C_of_natDegree_eq_zero hd]
         rw [algebraMap_C, algebraMap_C, map_div₀]
 
+/-- A primitive linear polynomial over a domain is irreducible.
+This elementary degree argument backports the missing upstream lemma. -/
+private theorem backport_irreducible_linear {R : Type*} [CommRing R] [IsDomain R]
+    (a b : R) (ha : a ≠ 0) (hab : IsRelPrime a b) :
+    Irreducible (Polynomial.C a * Polynomial.X + Polynomial.C b) := by
+  let p : R[X] := Polynomial.C a * Polynomial.X + Polynomial.C b
+  have hcoeff1 : p.coeff 1 = a := by simp [p, coeff_add, coeff_C_mul]
+  have hcoeff0 : p.coeff 0 = b := by simp [p, coeff_add, coeff_C_mul]
+  have hp : p ≠ 0 := by
+    intro h
+    apply ha
+    rw [← hcoeff1, h, coeff_zero]
+  have hdeg : p.natDegree = 1 := by
+    apply le_antisymm
+    · calc
+        p.natDegree ≤ max (Polynomial.C a * Polynomial.X).natDegree
+            (Polynomial.C b).natDegree := natDegree_add_le _ _
+        _ = 1 := by rw [natDegree_C_mul ha, natDegree_X, natDegree_C]; simp
+    · apply le_natDegree_of_ne_zero
+      rw [hcoeff1]
+      exact ha
+  have hconst (d : R) (hd : Polynomial.C d ∣ p) : IsUnit d := by
+    obtain ⟨q, hq⟩ := hd
+    apply hab
+    · refine ⟨q.coeff 1, ?_⟩
+      rw [← hcoeff1, hq, coeff_C_mul]
+    · refine ⟨q.coeff 0, ?_⟩
+      rw [← hcoeff0, hq, coeff_C_mul]
+  change Irreducible p
+  refine ⟨?_, ?_⟩
+  · intro hu
+    have h := natDegree_eq_zero_of_isUnit hu
+    omega
+  · intro q s hqs
+    have hq : q ≠ 0 := by
+      intro h
+      apply hp
+      rw [hqs, h, zero_mul]
+    have hs : s ≠ 0 := by
+      intro h
+      apply hp
+      rw [hqs, h, mul_zero]
+    have hsum : q.natDegree + s.natDegree = 1 := by
+      rw [← natDegree_mul hq hs, ← hqs, hdeg]
+    by_cases hz : q.natDegree = 0
+    · left
+      have he := eq_C_of_natDegree_eq_zero hz
+      rw [he]
+      apply Polynomial.isUnit_C.mpr
+      apply hconst
+      exact ⟨s, by rw [← he]; exact hqs⟩
+    · right
+      have hz' : s.natDegree = 0 := by omega
+      have he := eq_C_of_natDegree_eq_zero hz'
+      rw [he]
+      apply Polynomial.isUnit_C.mpr
+      apply hconst
+      exact ⟨q, by rw [← he, mul_comm]; exact hqs⟩
+
 theorem irreducible_minpolyX' (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX K[f]) := by
   let e := backportPolynomialEquiv f (f.transcendental_of_ne_C hf)
   let φ : K[X][X] := f.num.map (algebraMap ..) -
     Polynomial.C Polynomial.X * f.denom.map (algebraMap ..)
   have φ_map : φ.mapEquiv e.toRingEquiv = (f.minpolyX K[f]) := by
+    have hX : e Polynomial.X = (⟨f, Algebra.self_mem_adjoin_singleton K f⟩ : K[f]) := by
+      apply Subtype.ext
+      change (backportPolynomialEquiv f _ Polynomial.X : RatFunc K) = f
+      rw [backportPolynomialEquiv_coe, Polynomial.aeval_X]
     simp only [AlgEquiv.toRingEquiv_eq_coe, algebraMap_eq, map_sub, mapEquiv_apply,
-      AlgEquiv.toRingEquiv_toRingHom, backportPolynomialEquiv_coe, Polynomial.map_map, map_mul,
-      map_C, RingHom.coe_coe, aeval_X, e, φ]
-    congr 2 <;> ext <;> simp
+      AlgEquiv.toRingEquiv_toRingHom, Polynomial.map_map, map_mul,
+      map_C, RingHom.coe_coe, φ]
+    congr 2 <;> ext <;> simp [e, hX, backportPolynomialEquiv_coe]
   rw [← φ_map, MulEquiv.irreducible_iff]
   have : φ = Bivariate.swap
       (Polynomial.C f.num - Polynomial.X * Polynomial.C f.denom) := by
@@ -192,8 +255,9 @@ theorem irreducible_minpolyX' (hf : ¬∃ c, f = C c) : Irreducible (f.minpolyX 
     rw [mul_comm]
     rfl
   rw [this, MulEquiv.irreducible_iff]
-  convert irreducible_C_mul_X_add_C (neg_ne_zero.mpr f.denom_ne_zero)
-    ((IsCoprime.neg_right_iff _ _).mpr f.isCoprime_num_denom).symm.isRelPrime using 1
+  have h := backport_irreducible_linear (-f.denom) f.num (neg_ne_zero.mpr f.denom_ne_zero)
+    ((IsCoprime.neg_right_iff _ _).mpr f.isCoprime_num_denom).symm.isRelPrime
+  convert h using 1
   rw [add_comm, X_mul_C, map_neg, neg_mul]
   exact sub_eq_add_neg (Polynomial.C f.num) (Polynomial.C f.denom * Polynomial.X)
 
