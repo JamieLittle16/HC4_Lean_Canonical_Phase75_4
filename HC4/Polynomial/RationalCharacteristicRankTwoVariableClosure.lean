@@ -28,6 +28,7 @@ private abbrev I := Unit ⊕ Fin 3
 private abbrev S (K : Type*) [Field K] := MvPolynomial I K
 private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
 
+set_option maxHeartbeats 4000000 in
 /-- A nonconstant affine quotient whose differential kills both
 the direction and its derivative factor gives a constant
 orthogonal covector of the direction. -/
