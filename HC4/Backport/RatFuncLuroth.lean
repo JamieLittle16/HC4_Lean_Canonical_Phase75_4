@@ -335,12 +335,6 @@ lemma m_le_swap_Φ_natDegree (h : E ≠ ⊥) :
 instance : Algebra K⟮generator E⟯ E :=
   (IntermediateField.inclusion adjoin_generator_le).toAlgebra
 
-instance : IsScalarTower K⟮generator E⟯ E (RatFunc K) where
-  smul_assoc x y z := by
-    change ((x : RatFunc K) * (y : RatFunc K)) * z =
-      (x : RatFunc K) * ((y : RatFunc K) * z)
-    exact mul_assoc _ _ _
-
 /-- Since `minpolyX` of our `generator` annihilates `X`, the minimal polynomial `φ`
 must divide it. -/
 lemma φ_dvd_generator_minpolyX :
