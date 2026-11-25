@@ -82,7 +82,7 @@ theorem transverseHessian_transport_of_rational_gradient
     change D j (algebraMap K (E K) a) = 0
     exact Derivation.map_algebraMap (D j) a
   have hc (j : Fin 3) : coeffDeriv (D j) (w (.inl ())) = 0 := by
-    simp [w, hza, hV, Derivation.leibniz, smul_eq_mul]
+    simp [w, hza, hV]
   have ht (j k : Fin 3) : coeffDeriv (D j) (w (.inr k)) = J k j := by
     change coeffDeriv (D j)
       (_root_.Polynomial.C (z (.inr k)) +
@@ -90,9 +90,7 @@ theorem transverseHessian_transport_of_rational_gradient
     simp only [map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
       mul_zero, zero_add, hz, J, Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply,
       Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero]
-    change _ + _root_.Polynomial.C (D j (V (.inr k))) * _root_.Polynomial.X =
-      _ + _root_.Polynomial.X * _root_.Polynomial.C (rationalCharacteristicJacobian V k j)
-    rw [show D j (V (.inr k)) = rationalCharacteristicJacobian V k j from rfl, mul_comm]
+    rfl
   have hbase (i j : Fin 3) :
       D j (MvPolynomial.aeval z (pderiv (.inr i) L)) =
         MvPolynomial.aeval z (pderiv (.inr j) (pderiv (.inr i) L)) := by
