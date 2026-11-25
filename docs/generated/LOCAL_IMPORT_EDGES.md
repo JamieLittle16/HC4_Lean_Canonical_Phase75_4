@@ -191,6 +191,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicConstants`
   - `HC4.Polynomial.RationalCharacteristicParameterLift`
   - `HC4.Polynomial.RationalCharacteristicPullback`
+  - `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
   - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
   - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
   - `HC4.Polynomial.RationalCharacteristicRankOnePencil`
@@ -1932,6 +1933,8 @@ human architecture guide.
 - `HC4.Polynomial.RationalCharacteristicPullback`
   - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
   - `HC4.Polynomial.RationalCharacteristicAdjugate`
+- `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
+  - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
 - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
   - `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
