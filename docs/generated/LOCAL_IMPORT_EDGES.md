@@ -188,6 +188,7 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
   - `HC4.Polynomial.RationalCharacteristicAdjugate`
+  - `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
   - `HC4.Polynomial.RationalCharacteristicConstants`
   - `HC4.Polynomial.RationalCharacteristicParameterLift`
   - `HC4.Polynomial.RationalCharacteristicPullback`
@@ -1928,6 +1929,8 @@ human architecture guide.
 - `HC4.Polynomial.RationalCharacteristicAdjugate`
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.TransverseLeadingSchurFoundation`
+- `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
+  - `HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier`
 - `HC4.Polynomial.RationalCharacteristicConstants`
   - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
   - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
