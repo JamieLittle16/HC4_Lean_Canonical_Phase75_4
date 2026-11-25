@@ -5794,7 +5794,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `abbrev Mat`, `def rankTwo_transportTensor`, `theorem rankTwo_transportTensor_symm`, `theorem rankTwo_frame_left_intertwine`, `theorem rankTwo_transport_cubeDerivative`, `theorem rankTwo_transport_selfAdjointDerivative`, `abbrev B`, `abbrev E`, `abbrev I`, `abbrev S`, `theorem rankTwo_matrixDeriv_directional`, `theorem rankTwo_source_frameTensor`
+- Declarations: `abbrev Mat`, `def rankTwo_transportTensor`, `theorem rankTwo_transportTensor_symm`, `theorem rankTwo_frame_left_intertwine`, `theorem rankTwo_transport_cubeDerivative`, `theorem rankTwo_transport_selfAdjointDerivative`, `theorem rankTwo_jordan_hessian_pivot_ne_zero`, `abbrev B`, `abbrev E`, `abbrev I`, `abbrev S`, `theorem rankTwo_matrixDeriv_directional`, `theorem rankTwo_source_frameTensor`
 
 ### `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
 
