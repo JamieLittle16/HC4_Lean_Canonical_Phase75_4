@@ -336,7 +336,8 @@ instance : Algebra K⟮generator E⟯ E :=
   (IntermediateField.inclusion adjoin_generator_le).toAlgebra
 
 instance : IsScalarTower K⟮generator E⟯ E (RatFunc K) :=
-  IsScalarTower.of_algebraMap_eq' rfl
+  IsScalarTower.of_algebraMap_eq (R := K⟮generator E⟯) (S := E)
+    (A := RatFunc K) (fun x => rfl)
 
 /-- Since `minpolyX` of our `generator` annihilates `X`, the minimal polynomial `φ`
 must divide it. -/
@@ -446,7 +447,7 @@ private theorem primitive_product_lifts
   have hprod : g' * f = b • k := by
     apply Polynomial.map_injective (algebraMap K[X] (RatFunc K)) (RatFunc.algebraMap_injective K)
     rw [Polynomial.map_smul, algebraMap_smul, hk, ← smul_mul_assoc, ← hnorm, Polynomial.map_mul]
-  have hc : g'.content = (normUnit b : K[X]) * b * k.content := by
+  have hc : g'.content = b * (normUnit b : K[X]) * k.content := by
     have hh := congrArg Polynomial.content hprod
     rw [Polynomial.smul_eq_C_mul] at hh
     simpa only [content_mul, hf.content_eq_one, mul_one, content_C,
