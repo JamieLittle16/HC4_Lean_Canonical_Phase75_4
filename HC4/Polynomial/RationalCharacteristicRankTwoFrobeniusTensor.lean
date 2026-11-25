@@ -23,7 +23,7 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-variable {F : Type*} [Field F] [CharZero F]
+variable {F : Type*} [Field F]
 
 /-- The rank-two Jordan block over the actual coefficient field. -/
 def rankTwo_jordanBlock : Matrix (Fin 3) (Fin 3) F :=
@@ -64,8 +64,10 @@ theorem rankTwo_jordan_cubeDerivative_constraints
   have h1 := congrArg (fun M : Matrix (Fin 3) (Fin 3) F => M 0 1) h
   have h2 := congrArg (fun M : Matrix (Fin 3) (Fin 3) F => M 0 2) h
   simp [rankTwo_jordanBlock, Matrix.add_apply, Matrix.mul_apply,
-    Fin.sum_univ_three] at h0 h1 h2
+    Matrix.vecMul, Matrix.mulVec, dotProduct, Fin.sum_univ_three] at h0 h1 h2
   exact ⟨h0, h1, h2⟩
+
+variable [CharZero F]
 
 /-- Finite tensor form of the rank-two Frobenius identity. The
 out-of-plane second derivative in the middle Jordan direction
@@ -92,13 +94,15 @@ theorem rankTwo_jordan_frobenius_tensor
       T l 0 0 + a * P l 2 1 = a * P l 1 0 + b * P l 2 0 := by
     have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) F => M 1 0) (hself l)
     simpa [rankTwo_jordanBlock, Matrix.add_apply, Matrix.mul_apply,
-      Matrix.transpose_apply, Fin.sum_univ_three] using h
+      Matrix.transpose_apply, Matrix.vecMul, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_three] using h
   have hs02 (l : Fin 3) :
       T l 0 1 + a * P l 2 2 =
         a * P l 0 0 + b * P l 1 0 + c * P l 2 0 := by
     have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) F => M 2 0) (hself l)
     simpa [rankTwo_jordanBlock, Matrix.add_apply, Matrix.mul_apply,
-      Matrix.transpose_apply, Fin.sum_univ_three] using h
+      Matrix.transpose_apply, Matrix.vecMul, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_three] using h
   have hz1 : P 0 2 1 = 0 := (hP 2 1 0).trans (hc0 1)
   have hz2 : P 0 2 2 = 0 := (hP 2 2 0).trans (hc0 2)
   have hz3 : P 0 1 0 = 0 := by
