@@ -664,3 +664,4 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicPartial_constants
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_rankZero_adjugate_annihilator
 #print axioms HC4.Polynomial.RankThreeCubic.symmetric_affinePencil_eq_zero_of_independent_polynomialKernel
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_affine_parameters_of_lifted_trace_independent

@@ -853,3 +853,4 @@ import HC4.Polynomial.RationalCharacteristicAdjugate
 import HC4.Polynomial.RationalCharacteristicPullback
 import HC4.Polynomial.RationalCharacteristicConstants
 import HC4.Polynomial.RationalCharacteristicSymmetricPencil
+import HC4.Polynomial.RationalCharacteristicRankOnePencil
