@@ -163,7 +163,7 @@ theorem rankTwo_direction_commonParameter
   let W := rankTwo_directionLift w
   let N := rationalCharacteristicJacobian W
   obtain ⟨t, A, Q, hq, hrep⟩ := rankOne_commonParameter W hneq
-    (rankTwo_directionJacobian_minors w b k l hk hl hn hb)
+    (fun a b' i j => rankTwo_directionJacobian_minors w b k l hk hl hn hb a i b' j)
   obtain ⟨U, s, hs, hfactor⟩ :=
     rationalCharacteristic_commonParameter_factor W t A Q hq hrep
   let u : Fin 3 → E K := fun i => (U i).eval₂ (algebraMap K (E K)) t
