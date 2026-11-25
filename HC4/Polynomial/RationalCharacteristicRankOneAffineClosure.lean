@@ -67,6 +67,9 @@ theorem rankOne_similarity_factor
 
 variable [CharZero K]
 
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 1000000
+
 /-- Full constant-left-kernel conclusion for the reduced rational
 derivative factorization. No affine, normalized-chart, trace or
 independence assumptions are imposed on its parameter. -/
@@ -185,7 +188,6 @@ theorem rankOne_exists_constant_leftKernel_of_derivative_factor
     change φ (N i j) = _
     rw [hh, map_mul, map_mul, map_sub, map_mul,
       rankOne_parameter_eval_algHom, ht, φ.commutes, φ.commutes]
-    rfl
   have hPME : Pe * Me = 1 := rationalAffine_mapped_inverse P M hPM
   have hrow (j : Fin 3) : (v ᵥ* Me) j = rankOne_normalizedRow j := by
     have h0 := congrArg (fun Q : Mat (E K) => Q 0 j) hPME
@@ -196,10 +198,11 @@ theorem rankOne_exists_constant_leftKernel_of_derivative_factor
       (1 : Mat (E K)) 1 j at h1
     simp only [hPA] at h0
     simp only [hPD] at h1
+    change (∑ k : Fin 3, (g (A k) - T * g (D k)) * g (M k j)) =
+      rankOne_normalizedRow j
     calc
       _ = (∑ k : Fin 3, g (A k) * g (M k j)) -
           T * (∑ k : Fin 3, g (D k) * g (M k j)) := by
-        change (∑ k : Fin 3, (g (A k) - T * g (D k)) * g (M k j)) = _
         simp only [Fin.sum_univ_three]
         ring
       _ = rankOne_normalizedRow j := by
