@@ -20,11 +20,10 @@ noncomputable section
 
 section MatrixAlgebra
 
-variable {F ι : Type*} [Field F] [Fintype ι] [DecidableEq ι]
+variable {F ι : Type*} [Field F] [Fintype ι]
 
 /-- Squaring a rank-one matrix multiplies it by the contraction
 of its two factors. -/
-omit [DecidableEq ι] in
 theorem rankOne_mul_self_eq_smul
     (N : Matrix ι ι F) (u v : ι → F)
     (hN : ∀ i j, N i j = u i * v j) :
@@ -35,6 +34,8 @@ theorem rankOne_mul_self_eq_smul
   apply Finset.sum_congr rfl
   intro k _
   ring
+
+variable [DecidableEq ι]
 
 /-- A cube-zero rank-one matrix has zero contraction. The conclusion
 also holds for a zero left factor, so no exact rank hypothesis is
