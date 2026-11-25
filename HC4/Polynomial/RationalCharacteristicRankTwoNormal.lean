@@ -81,9 +81,11 @@ theorem rankTwo_hessian_leftNormal
   constructor
   · intro hz
     apply hw
-    have hi := Matrix.mulVec_injective_iff_isUnit.mpr (isUnit_iff_ne_zero.mpr hreg)
-    apply hi
-    rw [hz, Matrix.mulVec_zero]
+    have he : H⁻¹ *ᵥ (H *ᵥ w) = w := by
+      rw [Matrix.mulVec_mulVec, Matrix.nonsing_inv_mul H (isUnit_iff_ne_zero.mpr hreg),
+        Matrix.one_mulVec]
+    rw [hz, Matrix.mulVec_zero] at he
+    exact he.symm
   · rw [← Matrix.mulVec_transpose, Matrix.mulVec_mulVec, hself,
       ← Matrix.mulVec_mulVec, hk, Matrix.mulVec_zero]
 
@@ -101,12 +103,16 @@ theorem rationalDerivation_eq_zero_of_X
     (D : Derivation K (E K) (E K))
     (h : ∀ i : Fin 3, D (algebraMap (B K) (E K) (X i)) = 0) :
     D = 0 := by
-  have hpoly : D.compAlgebraMap (A := B K) = 0 := by
-    apply MvPolynomial.derivation_ext
-    intro i
-    exact h i
-  have hp (p : B K) : D (algebraMap (B K) (E K) p) = 0 :=
-    congrArg (fun d : Derivation K (B K) (E K) => d p) hpoly
+  have hp (p : B K) : D (algebraMap (B K) (E K) p) = 0 := by
+    induction p using MvPolynomial.induction_on with
+    | C c =>
+      change D (algebraMap (B K) (E K) (algebraMap K (B K) c)) = 0
+      rw [← IsScalarTower.algebraMap_apply K (B K) (E K)]
+      exact D.map_algebraMap c
+    | add p q hp hq =>
+      rw [map_add, map_add, hp, hq, add_zero]
+    | mul_X p i hp =>
+      rw [map_mul, Derivation.leibniz, hp, h i, smul_zero, smul_zero, add_zero]
   apply Derivation.ext
   intro z
   rw [← IsFractionRing.mk'_num_den' (B K) z, Derivation.leibniz_div]
