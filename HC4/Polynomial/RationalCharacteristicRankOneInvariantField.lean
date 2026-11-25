@@ -103,7 +103,9 @@ theorem rankOne_correctedPartial_velocity_zero
   apply (mul_right_cancel₀ hp)
   have he : (N a l - (N i l / N i j) * N a j) * N i j =
       N a l * N i j - N a j * N i l := by
-    field_simp [hp] <;> ring
+    change (N a l - (N i l / N i j) * N a j) * N i j = _
+    have hh : N i j ≠ 0 := hp
+    field_simp [hh] <;> ring
   rw [he, hm a l, sub_self, zero_mul]
 
 /-- The pivot invariance extends from the original three velocities
@@ -117,7 +119,7 @@ theorem rankOne_correctedPartial_velocityField_zero
     (z : E k)
     (hz : z ∈ IntermediateField.adjoin k (Set.range (fun a : Fin 3 => V (.inr a)))) :
     rankOne_correctedPartial V i j l z = 0 := by
-  apply rationalDerivation_zero_of_mem_adjoin _ _ _ z hz
+  apply rationalDerivation_zero_of_mem_adjoin (rankOne_correctedPartial V i j l) _ _ z hz
   rintro x ⟨a, rfl⟩
   exact rankOne_correctedPartial_velocity_zero V i j l a hp hm
 
