@@ -318,5 +318,80 @@ theorem rankTwo_fibre_affineGradient
   change e (pderiv i f) = C (g (pderiv i f)) + t * C (c * b i)
   rw [hnormal, hR, map_mul, mul_assoc]
 
+
+set_option maxHeartbeats 2000000 in
+/-- The two earlier source directions span the same kernel. Combining
+their normalizations supplies all the affine-gradient hypotheses from
+the anchored source itself, with no new geometric assumption. -/
+theorem rankTwo_source_affineGradient
+    (a : K) (L : S K) (V : I → E K)
+    (hV : V (.inl ()) = 1)
+    (hreg : MvPolynomial.aeval (transverseGenericPoint a)
+      ((hessian L).submatrix Sum.inr Sum.inr).det ≠ 0)
+    (hgrad : ∀ i, lineEval (transverseGenericPoint a) V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval (transverseGenericPoint a) (pderiv i L)))
+    (hm : ¬ ∀ a b i j : Fin 3,
+      rationalCharacteristicJacobian V a b * rationalCharacteristicJacobian V i j =
+        rationalCharacteristicJacobian V a j * rationalCharacteristicJacobian V i b) :
+    ∃ (w b : Fin 3 → E K) (k l : Fin 3) (c : E K),
+      w k = 1 ∧ b l = 1 ∧ c ≠ 0 ∧
+      rationalCharacteristicJacobian V *ᵥ w = 0 ∧
+      b ᵥ* rationalCharacteristicJacobian V = 0 ∧
+      b ⬝ᵥ w = 0 ∧
+      (∀ i, rankTwo_directionalDerivation w (w i) = 0) ∧
+      (∀ i, rankTwo_directionalDerivation w (b i) = 0) ∧
+      (∀ i, rankTwo_fibreEval w (pderiv i (referenceSlice a L)) =
+        _root_.Polynomial.C (algebraMap (B K) (E K) (pderiv i (referenceSlice a L))) +
+          _root_.Polynomial.X * _root_.Polynomial.C (c * b i)) ∧
+      (∀ j, (∑ i : Fin 3, b i * rationalCharacteristicPartial j (w i)) = 0) := by
+  classical
+  let N := rationalCharacteristicJacobian V
+  let H := rationalCharacteristicHessian a L
+  obtain ⟨w, k, hk, hw, hww, _⟩ := rankTwo_source_straightDirection a L V hV hreg hgrad hm
+  obtain ⟨u, b, l, hl, hu, hH, hb, hn, _, _⟩ :=
+    rankTwo_exists_normalizedDualDirection a L V hV hreg hgrad hm
+  have hr : 2 ≤ N.rank := by
+    by_contra h
+    apply hm
+    intro a b i j
+    by_contra hz
+    exact h (rankTwo_rank_ge_two_of_minor N a i b j hz)
+  have hprop : u = u k • w := by
+    funext i
+    have he := rankTwo_rightKernel_minors_zero N hr w u hw hu k i
+    rw [hk, one_mul] at he
+    change u i = u k * w i
+    rw [he, mul_comm]
+  have huk : u k ≠ 0 := by
+    intro hz
+    have he : u = 0 := by rw [hprop, hz, zero_smul]
+    have hb0 : b = 0 := by rw [← hH, he, Matrix.mulVec_zero]
+    have he' := congrFun hb0 l
+    rw [hl] at he'
+    exact one_ne_zero he'
+  let c := (u k)⁻¹
+  have hwprop : w = c • u := by
+    funext i
+    change w i = (u k)⁻¹ * u i
+    have he : u i = u k * w i := congrFun hprop i
+    rw [he, ← mul_assoc, inv_mul_cancel₀ huk, one_mul]
+  have hh : H *ᵥ w = c • b := by
+    rw [hwprop, Matrix.mulVec_smul, hH]
+  have hn' : b ⬝ᵥ w = 0 := by
+    rw [hwprop]
+    change (∑ i : Fin 3, b i * (c * u i)) = 0
+    have he : (∑ i : Fin 3, b i * (c * u i)) = c * (b ⬝ᵥ u) := by
+      rw [dotProduct, Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
+    rw [he, hn, mul_zero]
+  have hbb := rankTwo_normalizedLeftNormal_invariant V w b hr hw hb l hl
+  change rationalCharacteristicHessian a L *ᵥ w = c • b at hh
+  rw [rationalCharacteristicHessian_eq_slice_hessian] at hh
+  obtain ⟨hg, hdw⟩ := rankTwo_fibre_affineGradient (referenceSlice a L) w b c l
+    hww hbb hl (inv_ne_zero huk) hn' hh
+  exact ⟨w, b, k, l, c, hk, hl, inv_ne_zero huk, hw, hb, hn', hww, hbb, hg, hdw⟩
+
 end
 end HC4.Polynomial.RankThreeCubic
