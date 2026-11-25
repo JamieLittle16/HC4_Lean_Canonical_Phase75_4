@@ -21,7 +21,7 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K]
 
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)
@@ -57,6 +57,15 @@ theorem rationalCharacteristicHessian_det_ne_zero
   rw [← RingHom.map_det]
   exact hreg
 
+/-- Expand the transport pencil over a single, explicitly typed scalar ring.
+Keeping the scalar ring abstract avoids localization-specific instance search. -/
+private theorem rationalTransport_expand {R : Type*} [CommRing R]
+    (T C : Matrix (Fin 3) (Fin 3) R) (t : R) :
+    T * (1 + t • C) = T + t • (T * C) := by
+  rw [Matrix.mul_add, Matrix.mul_one, Matrix.mul_smul]
+
+variable [CharZero K]
+
 /-- Self-adjointness of the velocity Jacobian follows directly from
 the actual rational gradient transport. Invertibility and nilpotence
 are not required for this particular identity. -/
@@ -72,10 +81,12 @@ theorem rationalCharacteristicJacobian_selfAdjoint
     N.transpose * M = M * N := by
   classical
   let H := (hessian L).submatrix Sum.inr Sum.inr
-  let T := (lineEval (transverseGenericPoint a) V).toRingHom.mapMatrix H
-  let M := rationalCharacteristicHessian a L
-  let N := rationalCharacteristicJacobian V
-  let C := N.map _root_.Polynomial.C
+  let T : Matrix (Fin 3) (Fin 3) (_root_.Polynomial (E K)) :=
+    (lineEval (transverseGenericPoint a) V).toRingHom.mapMatrix H
+  let M : Matrix (Fin 3) (Fin 3) (E K) := rationalCharacteristicHessian a L
+  let N : Matrix (Fin 3) (Fin 3) (E K) := rationalCharacteristicJacobian V
+  let C : Matrix (Fin 3) (Fin 3) (_root_.Polynomial (E K)) :=
+    N.map _root_.Polynomial.C
   have hT (i j : Fin 3) : T i j = T j i := by
     change lineEval (transverseGenericPoint a) V
       (pderiv (.inr j) (pderiv (.inr i) L)) =
@@ -91,7 +102,7 @@ theorem rationalCharacteristicJacobian_selfAdjoint
   have ht := transverseHessian_transport_of_rational_gradient a L V hV hgrad
   change T * (1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) • C) =
     M.map _root_.Polynomial.C at ht
-  rw [Matrix.mul_add, Matrix.mul_one, Matrix.mul_smul] at ht
+  rw [rationalTransport_expand T C (_root_.Polynomial.X : _root_.Polynomial (E K))] at ht
   have he (i j : Fin 3) :
       T i j + (_root_.Polynomial.X : _root_.Polynomial (E K)) * (T * C) i j =
         _root_.Polynomial.C (M i j) := by
