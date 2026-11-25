@@ -163,7 +163,7 @@ theorem rankOne_affine_parameter_linearParts_independent
     have hA (j : Fin 3) : A j = (-(b / a)) * D j := by
       apply mul_left_cancel₀ ha
       have he : a * (-(b / a) * D j) = -(b * D j) := by
-        field_simp [ha] <;> ring
+        field_simp [ha]
       rw [he]
       linear_combination hab j
     apply rankOne_constantRow_impossible_of_no_leftKernel N
@@ -232,7 +232,10 @@ theorem rationalCharacteristic_normalizedRankOne_adjugate_annihilator
     intro hz
     have he := rationalCharacteristicHessian_det_ne_zero a L hreg
     apply he
-    rw [rationalCharacteristicHessian_eq_slice_hessian, ← RingHom.map_det, hz, map_zero]
+    rw [rationalCharacteristicHessian_eq_slice_hessian]
+    change ((algebraMap (B K) (E K)).mapMatrix
+      (hessian (referenceSlice a L))).det = 0
+    rw [← RingHom.map_det, hz, map_zero]
   obtain ⟨b, hb0, hb⟩ := rankOne_normalized_exists_constant_leftKernel
     (referenceSlice a L) (rationalCharacteristicJacobian V) U s hs hN h3 hself hf
   obtain ⟨d, hd0, hd⟩ :=
