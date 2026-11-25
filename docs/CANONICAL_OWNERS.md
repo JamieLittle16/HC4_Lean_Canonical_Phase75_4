@@ -267,6 +267,7 @@ Before adding a fifth version of a concept, decide which category the new file b
 | Squarefree cubic pole exclusion | `RankThreeCubicSquarefreePoleFinal` |
 | First lower-grade trace/isotropy and cleared reverse-Rees Schur recurrence | `TransverseLeadingSchurFoundation` (imported by the original correction module) |
 | Stationary regular anchors, supporting-edge exclusion and cubic marked-collision closure | `TransverseLeadingStationary` |
-| Nilpotent transport, later line-frame and mixed-pole constraints, global directional square | `TransverseLeadingFirstCorrection` (active downstream owner; search before adding helpers) |
+| Nilpotent source velocity, gradient evolution, longitudinal support and inverse-shear transport | `TransverseLeadingNilpotent` |
+| Higher line-frame and time-degree constraints, mixed-pole constraints, global directional square | `TransverseLeadingFirstCorrection` (active downstream owner; search before adding helpers) |
 
 For precise hypotheses see [PROOF_PATHS.md](PROOF_PATHS.md). Do not infer global closure from these owner names.
