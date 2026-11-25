@@ -210,5 +210,53 @@ theorem rankTwo_source_dualEuler_affine
   obtain ⟨hg, _, he⟩ := rankTwo_dualEuler_affine (referenceSlice a L) w b hh hb hn
   exact ⟨w, b, k, hk, hl, hb, hv, hg, he⟩
 
+/-- The longitudinal reference gradient is affine along the same
+dual direction, with slope minus the normal paired with the velocity. -/
+theorem rankTwo_longitudinalGradient_derivative
+    (a : K) (L : S K) (V : I → E K) (w b : Fin 3 → E K)
+    (hV : V (.inl ()) = 1)
+    (hgrad : ∀ i, lineEval (transverseGenericPoint a) V (pderiv i L) =
+      _root_.Polynomial.C (MvPolynomial.aeval (transverseGenericPoint a) (pderiv i L)))
+    (hh : rationalCharacteristicHessian a L *ᵥ w = b) :
+    rankTwo_directionalDerivation w
+      (algebraMap (B K) (E K) (referenceSlice a (pderiv (.inl ()) L))) =
+      -(∑ i : Fin 3, b i * V (.inr i)) := by
+  classical
+  let e := algebraMap (B K) (E K)
+  let H := rationalCharacteristicHessian a L
+  have hmix (i : Fin 3) :
+      e (pderiv i (referenceSlice a (pderiv (.inl ()) L))) =
+        -(∑ j : Fin 3, H i j * V (.inr j)) := by
+    have hk := anchored_gradient_implies_hessian_kernel L (transverseGenericPoint a) V hgrad (.inr i)
+    have hs :
+        MvPolynomial.aeval (transverseGenericPoint a)
+          (pderiv (.inl ()) (pderiv (.inr i) L)) +
+          ∑ j : Fin 3, H i j * V (.inr j) = 0 := by
+      simpa [Fintype.sum_sum_type, hV, H, rationalCharacteristicHessian,
+        RingHom.mapMatrix_apply, hessian_apply] using hk
+    rw [referenceSlice_pderiv, referenceSlice_fractionEvaluation,
+      HC4.Newton.pderiv_comm_backport]
+    linear_combination hs
+  have hsym (i j : Fin 3) : H i j = H j i := by
+    change MvPolynomial.aeval (transverseGenericPoint a)
+      (pderiv (.inr j) (pderiv (.inr i) L)) =
+      MvPolynomial.aeval (transverseGenericPoint a)
+        (pderiv (.inr i) (pderiv (.inr j) L))
+    rw [HC4.Newton.pderiv_comm_backport]
+  rw [rankTwo_directionalDerivation_apply]
+  simp only [rationalCharacteristicPartial_algebraMap, hmix, mul_neg,
+    Finset.sum_neg_distrib]
+  congr 1
+  simp_rw [Finset.mul_sum]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro j _
+  have hb : b j = ∑ i : Fin 3, H j i * w i := (congrFun hh j).symm
+  rw [hb, Finset.sum_mul]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [hsym i j]
+  ring
+
 end
 end HC4.Polynomial.RankThreeCubic
