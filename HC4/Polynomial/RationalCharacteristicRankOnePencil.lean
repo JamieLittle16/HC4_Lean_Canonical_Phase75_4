@@ -51,10 +51,12 @@ theorem transverse_affine_of_hessian_zero
     · simp
   have hdiff : ∀ i : Fin 3, pderiv i (p - l) = 0 := by
     intro i
-    rw [map_sub, hl, hconst i, sub_self]
+    rw [map_sub, hl]
+    exact sub_eq_zero.mpr (hconst i)
   have hc := transverse_eq_C_of_all_pderiv_zero (p - l) hdiff
   have hl0 : l.coeff 0 = 0 := by
-    simp [l, MvPolynomial.coeff_C_mul, MvPolynomial.coeff_X]
+    simp only [l, MvPolynomial.coeff_sum, MvPolynomial.coeff_C_mul,
+      MvPolynomial.coeff_zero_X, mul_zero, Finset.sum_const_zero]
   have hd0 : (p - l).coeff 0 = p.coeff 0 := by
     rw [MvPolynomial.coeff_sub, hl0, sub_zero]
   rw [hd0] at hc
@@ -62,6 +64,7 @@ theorem transverse_affine_of_hessian_zero
 
 /-- The transverse coefficient of a product by a scalar is the
 corresponding scalar multiple of the coefficient. -/
+omit [CharZero K] in
 private theorem transverse_coeff_mul_C
     (p : B K) (c : K) (m : Fin 3 →₀ ℕ) :
     (p * MvPolynomial.C c).coeff m = p.coeff m * c := by
@@ -114,14 +117,14 @@ theorem rankOne_hessians_zero_of_lifted_trace_independent
     have h := congrArg (pderiv i : Derivation K (B K) (B K)) hzero
     simp only [map_sum, map_zero, Derivation.leibniz, smul_eq_mul, pderiv_C,
       mul_zero, zero_add] at h
-    simpa only [hessian_apply, HC4.Newton.pderiv_comm_backport i] using h
+    simpa only [hessian_apply, HC4.Newton.pderiv_comm_backport i, mul_comm] using h
   have hDstep (i : Fin 3) (n : ℕ) :
       (∑ j : Fin 3, hessian p i j * MvPolynomial.C (u (n + 1) j)) =
         ∑ j : Fin 3, hessian q i j * MvPolynomial.C (u n j) := by
     have h := congrArg (pderiv i : Derivation K (B K) (B K)) (hstep n)
     simp only [map_sum, Derivation.leibniz, smul_eq_mul, pderiv_C,
       mul_zero, zero_add] at h
-    simpa only [hessian_apply, HC4.Newton.pderiv_comm_backport i] using h
+    simpa only [hessian_apply, HC4.Newton.pderiv_comm_backport i, mul_comm] using h
   have hcoeff (m : Fin 3 →₀ ℕ) :
       (fun i j => (hessian p i j).coeff m : Matrix (Fin 3) (Fin 3) K) = 0 ∧
       (fun i j => (hessian q i j).coeff m : Matrix (Fin 3) (Fin 3) K) = 0 := by
