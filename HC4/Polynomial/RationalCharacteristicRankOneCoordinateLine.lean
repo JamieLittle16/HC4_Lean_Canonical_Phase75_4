@@ -33,6 +33,7 @@ def rankOne_coordinateLine (j : Fin 3) (c : Fin 3 → K) : B K →ₐ[K] P K :=
   MvPolynomial.aeval (fun i => if i = j then _root_.Polynomial.X
     else _root_.Polynomial.C (c i))
 
+omit [CharZero K] in
 theorem rankOne_coordinateLine_X (j : Fin 3) (c : Fin 3 → K) (i : Fin 3) :
     rankOne_coordinateLine j c (X i) =
       if i = j then _root_.Polynomial.X else _root_.Polynomial.C (c i) :=
@@ -60,7 +61,8 @@ theorem rankOne_coordinateLine_derivative
       Derivation.leibniz, smul_eq_mul, smul_eq_mul, map_add, map_mul, map_mul]
     by_cases h : i = j
     · subst i
-      rw [hX, if_pos rfl, _root_.Polynomial.derivative_X, pderiv_X, map_one]
+      rw [hX, if_pos rfl, _root_.Polynomial.derivative_X, pderiv_X,
+        Pi.single_eq_same, map_one]
       ring
     · rw [hX, if_neg h, _root_.Polynomial.derivative_C,
         pderiv_X_of_ne h, map_zero]
@@ -82,6 +84,7 @@ theorem rankOne_coordinateLine_eval
   have h : e.comp φ = MvPolynomial.aeval c := by
     apply MvPolynomial.algHom_ext
     intro i
+    rw [MvPolynomial.aeval_X]
     change e (φ (X i)) = c i
     rw [show φ (X i) = if i = j then _root_.Polynomial.X
       else _root_.Polynomial.C (c i) from rankOne_coordinateLine_X j c i]
