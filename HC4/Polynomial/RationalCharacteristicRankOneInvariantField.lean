@@ -44,11 +44,6 @@ def rationalDerivation_constantField (D : Derivation K F F) :
     change D y = 0 at hy
     change D (x * y) = 0
     simp only [Derivation.leibniz, hx, hy, smul_zero, add_zero]
-  neg_mem' := by
-    intro x hx
-    change D x = 0 at hx
-    change D (-x) = 0
-    rw [map_neg, hx, neg_zero]
   inv_mem' := by
     intro x hx
     change D x = 0 at hx
@@ -105,7 +100,7 @@ theorem rankOne_correctedPartial_velocity_zero
       N a l * N i j - N a j * N i l := by
     change (N a l - (N i l / N i j) * N a j) * N i j = _
     have hh : N i j ≠ 0 := hp
-    field_simp [hh] <;> ring
+    field_simp [hh]
   rw [he, hm a l, sub_self, zero_mul]
 
 /-- The pivot invariance extends from the original three velocities
