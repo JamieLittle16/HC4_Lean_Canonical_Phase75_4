@@ -191,6 +191,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicConstants`
   - `HC4.Polynomial.RationalCharacteristicPullback`
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
+  - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
   - `HC4.Polynomial.RationalCharacteristicTransport`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
@@ -1925,6 +1926,8 @@ human architecture guide.
 - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.RationalCharacteristicTransport`
+- `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
+  - `HC4.Polynomial.RationalCharacteristicConstants`
 - `HC4.Polynomial.RationalCharacteristicTransport`
   - `HC4.Polynomial.RankThreeCubicLinearTransport`
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`

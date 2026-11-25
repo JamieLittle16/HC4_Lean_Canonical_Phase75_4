@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11311**.
+Distinct declaration spellings indexed: **11314**.
 
 ## Repeated declaration spellings
 
@@ -10899,7 +10899,10 @@ Distinct declaration spellings indexed: **11311**.
 - `symmetricThree_kernelLine_principalCofactor_at` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneKernelLinePrincipalPivot`
 - `symmetricThree_kernel_adjugate_lowJet_normalized` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneAdjugateLowJetNormalization`
 - `symmetricThree_tangentKernel_full_or_tangentBlockZero` — `theorem` in `HC4.Polynomial.RankThreeCubicTangentKernelExtension`
+- `symmetric_affinePencil_eq_zero_of_coefficientRecurrence` — `theorem` in `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
+- `symmetric_affinePencil_eq_zero_of_independent_polynomialKernel` — `theorem` in `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
 - `symmetric_det_square_dvd_of_isotropic_direction` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
+- `symmetric_dotProduct_move` — `theorem` in `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
 - `symmetric_kernelColumns_mulVec_eq_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicAdjugate`
 - `symmetric_kernelLine_adjugateTrace_zero_implies_isotropic` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
 - `symmetric_mul_square` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
