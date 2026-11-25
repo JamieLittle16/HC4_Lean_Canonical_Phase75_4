@@ -155,12 +155,13 @@ theorem rankOne_bivariateChartTime_parameter
     rw [hc]
     have hC : rankOne_bivariateChart (MvPolynomial.C a) =
         (MvPolynomial.C (_root_.Polynomial.C a) : A K) := by
+      unfold rankOne_bivariateChart
+      rw [MvPolynomial.aeval_C]
       rfl
     have hX : rankOne_bivariateChart (X (0 : Fin 3) : B K) =
         (MvPolynomial.C _root_.Polynomial.X : A K) := by
       simp [rankOne_bivariateChart]
     rw [map_mul, map_pow, hC, hX, ← map_pow, ← map_mul]
-    rfl
 
 /-- The descended trace equation has an exact bivariate coefficient
 identity for each y,z exponent. -/
