@@ -119,7 +119,8 @@ theorem rankOne_lifted_trace_of_evaluated_trace
     exact max_lt_iff.mpr ⟨hP n, hX⟩
   have hF : F.eval₂ (algebraMap (B K) (E K))
       (algebraMap (B K) (E K) p / algebraMap (B K) (E K) q) = 0 := by
-    change (P - _root_.Polynomial.X * Q).eval₂ _ _ = 0
+    change (P - _root_.Polynomial.X * Q).eval₂ (algebraMap (B K) (E K))
+      (algebraMap (B K) (E K) p / algebraMap (B K) (E K) q) = (0 : E K)
     rw [_root_.Polynomial.eval₂_sub, _root_.Polynomial.eval₂_mul,
       _root_.Polynomial.eval₂_X]
     exact sub_eq_zero.mpr htrace
