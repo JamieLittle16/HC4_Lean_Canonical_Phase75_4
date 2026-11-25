@@ -113,7 +113,6 @@ theorem rankTwo_fibreEval_partial
         _root_.Polynomial.X * _root_.Polynomial.C (rationalCharacteristicPartial j (w i)) := by
     simp only [z, map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul,
       coeffDeriv_X, mul_zero, zero_add, hz]
-    rw [mul_comm (_root_.Polynomial.C (rationalCharacteristicPartial j (w i))) _root_.Polynomial.X]
   rw [he, derivation_aeval]
   simp only [hd]
 
@@ -139,8 +138,8 @@ theorem rankTwo_fibreEval_affine_of_second_zero
   apply rankTwo_transportPolynomial_eq_zero D
   · have h' : D (D (g p)) = 0 := h
     simp only [map_sub, map_add, Derivation.leibniz, smul_eq_mul,
-      coeffDeriv_C, coeffDeriv_X, h', map_zero, mul_zero, zero_mul, add_zero,
-      zero_add, ht, _root_.Polynomial.derivative_add, _root_.Polynomial.derivative_C,
+      coeffDeriv_C, coeffDeriv_X, h', map_zero, mul_zero, add_zero,
+      zero_add, ht, _root_.Polynomial.derivative_C,
       _root_.Polynomial.derivative_mul, _root_.Polynomial.derivative_X, one_mul]
   · simp only [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_add,
       _root_.Polynomial.coeff_C_zero, _root_.Polynomial.coeff_X_mul_zero,
@@ -177,8 +176,8 @@ theorem rankTwo_fibreEval_gradient_normal
   have hQ0 (i : Fin 3) : (Q i).coeff 0 = 0 := by
     simp only [Q, _root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_C_zero,
       e, rankTwo_fibreEval_coeff_zero, g, sub_self]
+  change ∀ i : Fin 3, Q i = Q k * _root_.Polynomial.C (b i)
   intro i
-  change Q i = Q k * _root_.Polynomial.C (b i)
   apply sub_eq_zero.mp
   apply rankTwo_transportPolynomial_eq_zero D
   · have hb' : D (b i) = 0 := hb i
@@ -297,8 +296,7 @@ theorem rankTwo_fibre_affineGradient
       change coeffDeriv d (_root_.Polynomial.C (g f) +
         _root_.Polynomial.X * _root_.Polynomial.C (D (g f))) = _
       simp only [map_add, Derivation.leibniz, smul_eq_mul, coeffDeriv_C,
-        coeffDeriv_X, hdf, hdiff, mul_zero, zero_add, map_sum, map_mul]
-      rfl
+        coeffDeriv_X, hdf, hdiff, mul_zero, add_zero, map_sum, map_mul]
     have hsum' : (∑ i : Fin 3, e (pderiv i f) * C (r i)) =
         (∑ i : Fin 3, C (g (pderiv i f)) * C (r i)) +
           R * C (∑ i : Fin 3, b i * r i) := by
