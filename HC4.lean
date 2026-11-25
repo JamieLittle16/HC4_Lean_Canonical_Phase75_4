@@ -873,3 +873,4 @@ import HC4.Polynomial.RationalCharacteristicRankOneCommonParameter
 import HC4.Polynomial.RationalCharacteristicRankOneInvariantField
 import HC4.Polynomial.RationalCharacteristicRankOneSpecialization
 import HC4.Polynomial.RationalCharacteristicRankOneJetPropagation
+import HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine
