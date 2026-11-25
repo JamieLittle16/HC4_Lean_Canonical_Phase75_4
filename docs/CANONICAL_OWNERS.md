@@ -269,6 +269,7 @@ Before adding a fifth version of a concept, decide which category the new file b
 | Stationary regular anchors, supporting-edge exclusion and cubic marked-collision closure | `TransverseLeadingStationary` |
 | Nilpotent source velocity, gradient evolution, longitudinal support and inverse-shear transport | `TransverseLeadingNilpotent` |
 | Higher line frames, second correction, characteristic-time degree induction and original-coordinate degree bounds | `TransverseLeadingCorrectionDegree` |
-| Marked-axis collision, mixed-gap and mixed-pole constraints, global directional square | `TransverseLeadingFirstCorrection` (active downstream owner; search before adding helpers) |
+| Marked-axis gradient collision, low-grade extraction, mixed-gap propagation and first mixed-gap divisibility | `TransverseLeadingMarkedCollision` |
+| Prime-factor cancellation, mixed-pole constraints and global directional square | `TransverseLeadingFirstCorrection` (active downstream owner; search before adding helpers) |
 
 For precise hypotheses see [PROOF_PATHS.md](PROOF_PATHS.md). Do not infer global closure from these owner names.
