@@ -53,7 +53,7 @@ theorem rationalAffine_similarity_selfAdjoint
   calc
     _ = M.transpose * N.transpose * (P.transpose * M.transpose) * H * M := by
       noncomm_ring
-    _ = M.transpose * (N.transpose * H) * M := by rw [ht, mul_one, ← mul_assoc]
+    _ = M.transpose * (N.transpose * H) * M := by rw [ht, mul_one]; noncomm_ring
     _ = M.transpose * (H * N) * M := by rw [hself]
     _ = (M.transpose * H * M) * (P * N * M) := by
       symm
@@ -150,7 +150,6 @@ theorem rationalAffine_similarity_leftKernel_pullback
     change g (∑ i : Fin 3, b i * P i j) =
       ∑ i : Fin 3, g (b i) * g (P i j)
     simp only [map_sum, map_mul]
-  have hPM' : Pe * Me = 1 := rationalAffine_mapped_inverse P M hPM
   have hMP' : Me * Pe = 1 := rationalAffine_mapped_inverse M P hMP
   have hdk : de ᵥ* Ne = 0 := by
     change be ᵥ* (Pe * Ne * Me) = 0 at hk
