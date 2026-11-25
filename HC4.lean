@@ -884,3 +884,4 @@ import HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor
 import HC4.Polynomial.RationalCharacteristicRankTwoFrame
 import HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport
 import HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre
+import HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient
