@@ -46,7 +46,7 @@ theorem rankOne_chartCoeff_coeff (f : B K) (j l n : ℕ) :
   · rw [if_pos hn, Finset.sum_eq_single n]
     · simp
     · intro b _ hb
-      simp [_root_.Polynomial.coeff_monomial, hb, Ne.symm hb]
+      simp [_root_.Polynomial.coeff_monomial, hb]
     · intro h
       exact (h (Finset.mem_range.mpr (by omega))).elim
   · rw [if_neg hn]
@@ -54,7 +54,7 @@ theorem rankOne_chartCoeff_coeff (f : B K) (j l n : ℕ) :
     intro b hb
     have hb' := Finset.mem_range.mp hb
     have hne : b ≠ n := by omega
-    simp [_root_.Polynomial.coeff_monomial, hne, Ne.symm hne]
+    simp [_root_.Polynomial.coeff_monomial, hne]
 
 /-- Polynomiality of the original source supplies the full degree
 bound of the chart coefficient family. -/
@@ -70,7 +70,7 @@ theorem rankOne_chartCoeff_recovers_source (f : B K) (m : Fin 3 →₀ ℕ) :
     (rankOne_chartCoeff f (m 0 + m 1) (m 2)).coeff (m 0) = f.coeff m := by
   have hm : rankOne_chartExponent (m 0) (m 0 + m 1) (m 2) = m := by
     ext i
-    fin_cases i <;> simp [rankOne_chartExponent, Finsupp.single_apply]
+    fin_cases i <;> simp [rankOne_chartExponent]
   rw [rankOne_chartCoeff_coeff, if_pos (Nat.le_add_right _ _), hm]
 
 variable [CharZero K]
@@ -118,14 +118,14 @@ theorem rankOne_source_hessian_zero_of_chartRecurrence
   intro m
   simp only [Matrix.zero_apply, MvPolynomial.coeff_zero, hessian_apply,
     HC4.Newton.coeff_pderiv_backport]
-  have hsum : 2 ≤
-      (m + Finsupp.single j 1 + Finsupp.single i 1) 0 +
-      (m + Finsupp.single j 1 + Finsupp.single i 1) 1 +
-      (m + Finsupp.single j 1 + Finsupp.single i 1) 2 := by
+  let d : Fin 3 →₀ ℕ := m + Finsupp.single j 1 + Finsupp.single i 1
+  have hsum : 2 ≤ d 0 + d 1 + d 2 := by
     fin_cases i <;> fin_cases j <;>
-      simp [Finsupp.single_apply] <;> omega
-  rw [rankOne_source_coeff_zero_of_chartRecurrence f U0 U1 U2 hU hind hrec _ hsum,
-    zero_mul, zero_mul]
+      simp [d] <;> omega
+  have hz : f.coeff d = 0 :=
+    rankOne_source_coeff_zero_of_chartRecurrence f U0 U1 U2 hU hind hrec d hsum
+  dsimp [d] at hz
+  rw [hz, zero_mul, zero_mul]
 
 /-- A regular source Hessian is incompatible with the chart
 recurrence and an independent parameter derivative vector. -/
