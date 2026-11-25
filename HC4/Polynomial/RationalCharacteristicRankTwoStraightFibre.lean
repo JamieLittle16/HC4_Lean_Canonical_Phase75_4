@@ -130,8 +130,10 @@ theorem rankTwo_source_straightDirection
     change (N *ᵥ u) i = (M * rankTwo_jordanBlock) i 0 at he
     have hj (k : Fin 3) : (rankTwo_jordanBlock : Matrix (Fin 3) (Fin 3) (E K)) k 0 = 0 := by
       fin_cases k <;> rfl
-    rw [Matrix.mul_apply] at he
-    simpa only [hj, mul_zero, Finset.sum_const_zero, Pi.zero_apply] using he
+    have hz : (M * rankTwo_jordanBlock) i 0 = 0 := by
+      rw [Matrix.mul_apply]
+      simp only [hj, mul_zero, Finset.sum_const_zero]
+    exact he.trans hz
   have hzero : rankTwo_matrixDeriv (rankTwo_directionalDerivation u) N *ᵥ u = 0 :=
     rankTwo_frame_firstColumn_zero M P _ hMP hcol
   have hex : ∃ k : Fin 3, u k ≠ 0 := by
@@ -178,6 +180,118 @@ theorem rankTwo_source_straightDirection
     have he := congrFun hw i
     change (∑ j : Fin 3, N i j * w j) = 0 at he
     simpa only [N, rationalCharacteristicJacobian, mul_comm] using he
+
+/-- If the direction is invariant along itself, differentiation of
+coefficients of an actual polynomial line equals differentiation in
+the line parameter. No rational evaluation at poles is involved. -/
+theorem rankTwo_lineEval_coeffDeriv_eq_derivative
+    (w : Fin 3 → E K)
+    (hw : ∀ i, rankTwo_directionalDerivation w (w i) = 0)
+    (p : B K) :
+    let e := lineEval (K := K) (fun i => algebraMap (B K) (E K) (X i)) w
+    coeffDeriv (rankTwo_directionalDerivation w) (e p) =
+      _root_.Polynomial.derivative (e p) := by
+  let D := rankTwo_directionalDerivation w
+  let e := lineEval (K := K) (fun i => algebraMap (B K) (E K) (X i)) w
+  change coeffDeriv D (e p) = _root_.Polynomial.derivative (e p)
+  have hx (i : Fin 3) : coeffDeriv D (e (X i)) =
+      _root_.Polynomial.derivative (e (X i)) := by
+    change coeffDeriv D (_root_.Polynomial.C (algebraMap (B K) (E K) (X i)) +
+      _root_.Polynomial.C (w i) * _root_.Polynomial.X) =
+      _root_.Polynomial.derivative (_root_.Polynomial.C (algebraMap (B K) (E K) (X i)) +
+        _root_.Polynomial.C (w i) * _root_.Polynomial.X)
+    have hd (i : Fin 3) : D (algebraMap (B K) (E K) (X i)) = w i :=
+      rankTwo_directionalDerivation_X w i
+    have hzero (i : Fin 3) : D (w i) = 0 := hw i
+    simp only [map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul,
+      coeffDeriv_X, hd, hzero, map_zero, mul_zero, zero_mul, add_zero,
+      _root_.Polynomial.derivative_add, _root_.Polynomial.derivative_C,
+      _root_.Polynomial.derivative_C_mul, _root_.Polynomial.derivative_X,
+      mul_one, zero_add]
+  induction p using MvPolynomial.induction_on with
+  | C c =>
+    have he : e (MvPolynomial.C c) = _root_.Polynomial.C (algebraMap K (E K) c) := by
+      simp [e, lineEval, IsScalarTower.algebraMap_apply K (E K)
+        (_root_.Polynomial (E K)), _root_.Polynomial.algebraMap_eq]
+    rw [he, coeffDeriv_C, _root_.Polynomial.derivative_C, D.map_algebraMap, map_zero]
+  | add p q hp hq =>
+    rw [map_add, map_add, _root_.Polynomial.derivative_add, hp, hq]
+  | mul_X p i hp =>
+    rw [map_mul, Derivation.leibniz, smul_eq_mul, smul_eq_mul,
+      _root_.Polynomial.derivative_mul, hp, hx]
+    ring
+
+/-- A coefficient-transport polynomial is uniquely determined by
+its constant coefficient. In characteristic zero the recurrence
+forces all higher coefficients to vanish if the constant is zero. -/
+theorem rankTwo_transportPolynomial_eq_zero
+    (D : Derivation K (E K) (E K)) (p : _root_.Polynomial (E K))
+    (h : coeffDeriv D p = _root_.Polynomial.derivative p)
+    (h0 : p.coeff 0 = 0) : p = 0 := by
+  have hz (n : ℕ) : p.coeff n = 0 := by
+    induction n with
+    | zero => exact h0
+    | succ n ih =>
+      have he := congrArg (fun q : _root_.Polynomial (E K) => q.coeff n) h
+      rw [coeff_coeffDeriv, _root_.Polynomial.coeff_derivative, ih, map_zero] at he
+      have hn : ((n + 1 : ℕ) : E K) ≠ 0 := by exact_mod_cast (Nat.succ_ne_zero n)
+      rcases mul_eq_zero.mp he.symm with h | h
+      · first | exact h | exact (hn h).elim
+      · first | exact h | exact (hn h).elim
+  apply _root_.Polynomial.ext
+  intro n
+  rw [hz, _root_.Polynomial.coeff_zero]
+
+/-- Actual rational invariants are constant on the entire generic
+straight line, in a denominator-cleared polynomial identity.
+The denominator survives because its time-zero coefficient is nonzero. -/
+theorem rankTwo_invariant_lineEval
+    (w : Fin 3 → E K)
+    (hw : ∀ i, rankTwo_directionalDerivation w (w i) = 0)
+    (z : E K) (hz : rankTwo_directionalDerivation w z = 0)
+    (p q : B K) (hq : q ≠ 0)
+    (hrep : algebraMap (B K) (E K) p / algebraMap (B K) (E K) q = z) :
+    let e := lineEval (K := K) (fun i => algebraMap (B K) (E K) (X i)) w
+    e q ≠ 0 ∧ e p = _root_.Polynomial.C z * e q := by
+  let g : B K →+* E K := algebraMap (B K) (E K)
+  let x : Fin 3 → E K := fun i => g (X i)
+  let e := lineEval (K := K) x w
+  let D := rankTwo_directionalDerivation w
+  have hcoeff (b : B K) : (e b).coeff 0 = g b := by
+    change (lineEval x w b).coeff 0 = g b
+    rw [cubic_lineEval_coeff_zero]
+    have he : (MvPolynomial.aeval x : B K →ₐ[K] E K).toRingHom = g := by
+      apply MvPolynomial.ringHom_ext
+      · intro r
+        calc
+          MvPolynomial.aeval x (MvPolynomial.C r) = algebraMap K (E K) r :=
+            (MvPolynomial.aeval x).commutes r
+          _ = g (MvPolynomial.C r) :=
+            ((IsScalarTower.toAlgHom K (B K) (E K)).commutes r).symm
+      · intro i
+        exact MvPolynomial.aeval_X x i
+    exact RingHom.congr_fun he b
+  have hqg : g q ≠ 0 := by
+    intro h
+    apply hq
+    apply IsFractionRing.injective (B K) (E K)
+    simpa only [map_zero] using h
+  have hmul : g p = z * g q := by
+    rw [← hrep, div_mul_cancel₀ _ hqg]
+  have hD (b : B K) : coeffDeriv D (e b) = _root_.Polynomial.derivative (e b) :=
+    rankTwo_lineEval_coeffDeriv_eq_derivative w hw b
+  refine ⟨?_, ?_⟩
+  · intro h
+    apply hqg
+    rw [← hcoeff q, h, _root_.Polynomial.coeff_zero]
+  · apply sub_eq_zero.mp
+    apply rankTwo_transportPolynomial_eq_zero D
+    · have hz' : D z = 0 := hz
+      simp only [map_sub, Derivation.leibniz, smul_eq_mul, coeffDeriv_C,
+        hz', map_zero, mul_zero, add_zero, hD, _root_.Polynomial.derivative_sub,
+        _root_.Polynomial.derivative_C_mul]
+    · rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_C_mul,
+        hcoeff, hcoeff, hmul, sub_self]
 
 end
 end HC4.Polynomial.RankThreeCubic
