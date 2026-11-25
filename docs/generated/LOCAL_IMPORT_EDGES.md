@@ -1927,7 +1927,7 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.ParameterFirstLayerBridge`
   - `HC4.Valuation.ParameterGapSecondJet`
-- `HC4.Polynomial.TransverseLeadingFirstCorrection`
+- `HC4.Polynomial.TransverseLeadingDirectionalRigidity`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
   - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
@@ -1935,6 +1935,23 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingCorrectionDegree`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingMarkedCollision`
+  - `HC4.Polynomial.TransverseLeadingMixedPole`
+  - `HC4.Polynomial.TransverseLeadingNilpotent`
+  - `HC4.Polynomial.TransverseLeadingSchurFoundation`
+  - `HC4.Polynomial.TransverseLeadingStationary`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.TransverseLeadingFirstCorrection`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
+  - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+  - `HC4.Polynomial.TransverseLeadingCorrectionDegree`
+  - `HC4.Polynomial.TransverseLeadingDirectionalRigidity`
+  - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Polynomial.TransverseLeadingMarkedCollision`
+  - `HC4.Polynomial.TransverseLeadingMixedPole`
   - `HC4.Polynomial.TransverseLeadingNilpotent`
   - `HC4.Polynomial.TransverseLeadingSchurFoundation`
   - `HC4.Polynomial.TransverseLeadingStationary`
@@ -1954,6 +1971,20 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.TransverseLeadingCorrectionDegree`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Polynomial.TransverseLeadingNilpotent`
+  - `HC4.Polynomial.TransverseLeadingSchurFoundation`
+  - `HC4.Polynomial.TransverseLeadingStationary`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.TransverseLeadingMixedPole`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
+  - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+  - `HC4.Polynomial.TransverseLeadingCorrectionDegree`
+  - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Polynomial.TransverseLeadingMarkedCollision`
   - `HC4.Polynomial.TransverseLeadingNilpotent`
   - `HC4.Polynomial.TransverseLeadingSchurFoundation`
   - `HC4.Polynomial.TransverseLeadingStationary`
