@@ -24,6 +24,7 @@ variable {F ι : Type*} [Field F] [Fintype ι] [DecidableEq ι]
 
 /-- Squaring a rank-one matrix multiplies it by the contraction
 of its two factors. -/
+omit [DecidableEq ι] in
 theorem rankOne_mul_self_eq_smul
     (N : Matrix ι ι F) (u v : ι → F)
     (hN : ∀ i j, N i j = u i * v j) :
@@ -47,7 +48,7 @@ theorem rankOne_dot_zero_of_cube_zero
   let a := v ⬝ᵥ u
   have hsq : N * N = a • N := rankOne_mul_self_eq_smul N u v hN
   have hcube : a • (a • N) = 0 := by
-    rw [show N ^ 3 = (N * N) * N by simp only [pow_succ, pow_one],
+    rw [show N ^ 3 = (N * N) * N by simp only [pow_succ, pow_zero, one_mul],
       hsq, Matrix.smul_mul, hsq] at h3
     exact h3
   by_contra ha
