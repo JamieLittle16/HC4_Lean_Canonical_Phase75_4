@@ -1,73 +1,31 @@
 # HC4 Lean
 
-Cumulative Lean formalisation for the HC4 programme, including the current A18/A19 canonical Smith/Rees/final-assembly development.
+Cumulative Lean formalisation of determinant-one Hessian gradient injectivity in four variables, with canonical Smith/Rees reductions and independent transverse-rigidity research.
 
-The repository has grown through many historical phases. Superseded phase reports, patch manifests and build logs have been removed from the working tree; the [historical checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072) preserves them in Git history.
+**The full unrestricted theorem is not claimed complete.** The conditional JC2 route, local transverse-cap results and paper candidates have distinct statuses.
 
 ## Start here
 
-The authoritative documentation hub is [`docs/README.md`](docs/README.md).
+- [Current proof status](docs/CURRENT_STATE.md)
+- [Exact proof paths and source interfaces](docs/PROOF_PATHS.md)
+- [Next research steps](docs/NEXT_STEPS.md)
+- [Documentation hub](docs/README.md)
+- [Canonical mathematical owners](docs/CANONICAL_OWNERS.md)
 
-For current work, the key documents are:
+The [historical index](docs/archive/README.md) preserves older phase and handoff checkpoints without treating them as current research plans.
 
-- [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md) — exact theorem-level current status and live frontier;
-- [`docs/PROOF_PATHS.md`](docs/PROOF_PATHS.md) — branch-by-branch proof routes and exact file chains;
-- [`docs/PROOF_ARCHITECTURE.md`](docs/PROOF_ARCHITECTURE.md) — mathematical architecture and the current global/local split;
-- [`docs/CANONICAL_OWNERS.md`](docs/CANONICAL_OWNERS.md) — canonical owners for reusable definitions and theorem families;
-- [`docs/GLOSSARY_AND_INVARIANTS.md`](docs/GLOSSARY_AND_INVARIANTS.md) — carrier/clock/provenance vocabulary and invariants;
-- [`docs/MODULE_CATALOG.md`](docs/MODULE_CATALOG.md) — human map of subsystem and final-assembly module families;
-- [`docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md`](docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md) — interpretation of older proved routes and superseded reductions;
-- [`docs/PROOF_CHANGE_CHECKLIST.md`](docs/PROOF_CHANGE_CHECKLIST.md) — duplicate-avoidance, provenance, termination and compile checklist.
-
-## Exhaustive per-file documentation
-
-Generate the source-derived proof inventory with:
+## Build and verify
 
 ```bash
-python3 tools/generate_proof_inventory.py
-```
-
-It produces:
-
-- [`docs/generated/LEAN_MODULE_INDEX.md`](docs/generated/LEAN_MODULE_INDEX.md) — every Lean file, imports, reverse importers, module purpose, A18/A19 labels and declarations;
-- [`docs/generated/DECLARATION_INDEX.md`](docs/generated/DECLARATION_INDEX.md) — declaration lookup and repeated declaration spellings;
-- [`docs/generated/LOCAL_IMPORT_EDGES.md`](docs/generated/LOCAL_IMPORT_EDGES.md) — local import DAG.
-
-CI checks that these generated files match the Lean checkout before building.
-
-## Current architectural rules
-
-- The global rank-one recursion is already owned by `AdaptiveAlignedSmithCanonicalRankOneTerminationTrace` and is well founded on strict natural `rawDefect` decrease.
-- Successful positive Rees steps are ordinary edges of that existing trace, not a second termination mechanism.
-- A19.45 proves that positive reached rank-three geometry gives outer global macro progress; a globally terminal reached state is therefore at literal raw defect zero.
-- The live local terminal is the producer-free zero strict-low carrier and its singular maximal top face.
-- In the current `.qs` endgame, the canonical exposed rank-three vertex confines the maximal top face to `.qs`; the surviving genuine lower first-contact ray is forced to coefficient degree one and is realised as an honest two-endpoint weighted Hessian pencil.  A different rank-three endpoint therefore carries the corresponding cyclic base-exponent-one and cross-product relation.
-- Older torus-balanced cross-facet affine-line infrastructure remains reusable, but the unrestricted zero-clock route uses the newer balance-free finite-support cross-facet/ray machinery.
-- Source, presented, recentered, top-face, first-contact, lower-carrier and ray support witnesses must not be interchanged without an explicit transport theorem.
-- Generic definitions live with their representation (`HC4.Polynomial`, `HC4.Newton`, `HC4.Valuation`, `HC4.RationalRigidity`) rather than with whichever downstream module consumes them most often.
-
-Read `docs/CANONICAL_OWNERS.md` and search the generated declaration index before introducing a new generic-looking declaration.
-
-## Build
-
-Focused module:
-
-```bash
-lake env lean HC4/path/to/File.lean
-```
-
-Full project:
-
-```bash
+lake build HC4.Polynomial.TransverseLeadingFirstCorrection
 lake build
+lake env lean HC4/Audit.lean
 ```
 
-Certification snapshot where applicable:
+Run `./verify.sh` for the broader verification script (it also invokes dependency update/cache, negative control and proof escape-hatch scanning). See the actual commit's CI status; an inventory export is not a Lean build.
 
-```bash
-./verify.sh
-```
+## Find existing mathematics
 
-## Historical documents
+Run `python3 tools/generate_proof_inventory.py` for the generated [module index](docs/generated/LEAN_MODULE_INDEX.md), [declaration index](docs/generated/DECLARATION_INDEX.md) and [local imports](docs/generated/LOCAL_IMPORT_EDGES.md). Check these before introducing a new generic definition or theorem. The canonical source tree is `HC4/`, with root aggregate `HC4.lean` and the separate negative control.
 
-The old phase ledgers, certification snapshots and numbered phase reports remain available at the [pre-cleanup checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072). Their old missing-lemma lists are not authoritative for the current branch. For historical mathematical routes still useful in current work, see [`docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md`](docs/HISTORICAL_AND_SUPERSEDED_ROUTES.md).
+Preserve actual-source and collision provenance; reuse the existing raw-defect termination machinery. Keep the exact hypotheses of every endpoint visible and distinguish a source declaration, a verified build and an unverified paper argument.

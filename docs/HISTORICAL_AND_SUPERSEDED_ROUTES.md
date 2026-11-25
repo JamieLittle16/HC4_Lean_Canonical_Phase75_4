@@ -1,5 +1,7 @@
 # Historical and superseded HC4 proof routes
 
+> Historical architecture / implementation record. For the live November 2026 frontier see [CURRENT_STATE.md](CURRENT_STATE.md), [PROOF_PATHS.md](PROOF_PATHS.md) and [NEXT_STEPS.md](NEXT_STEPS.md). Old candidate arguments and implementation priorities below are not current status claims.
+
 The HC4 repository is cumulative. Old theorems are usually retained because they are proved and may remain reusable, even after a stronger or more provenance-honest route becomes the preferred final assembly.
 
 This document prevents a common failure mode: seeing an older reduction or phase note, assuming it is current, and rebuilding infrastructure that a later route has already replaced.

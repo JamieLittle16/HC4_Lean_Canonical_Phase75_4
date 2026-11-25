@@ -1,5 +1,7 @@
 # HC4 final formalisation plan — 12 September 2026
 
+> Historical architecture / implementation record. For the live November 2026 frontier see [CURRENT_STATE.md](CURRENT_STATE.md), [PROOF_PATHS.md](PROOF_PATHS.md) and [NEXT_STEPS.md](NEXT_STEPS.md). Old candidate arguments and implementation priorities below are not current status claims.
+
 **Purpose:** convert the current paper-level closure into Lean without
 rebuilding existing infrastructure or weakening source provenance.
 

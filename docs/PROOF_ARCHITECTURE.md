@@ -1,5 +1,7 @@
 # HC4 proof architecture
 
+> Historical architecture / implementation record. For the live November 2026 frontier see [CURRENT_STATE.md](CURRENT_STATE.md), [PROOF_PATHS.md](PROOF_PATHS.md) and [NEXT_STEPS.md](NEXT_STEPS.md). Old candidate arguments and implementation priorities below are not current status claims.
+
 **Architecture checkpoint: 12 September 2026.**
 
 This document explains the live unrestricted HC4 proof architecture by proof

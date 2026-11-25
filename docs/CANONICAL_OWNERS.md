@@ -253,3 +253,18 @@ A good final-assembly file usually does one of four things:
 4. **Reduction/assembly:** performs an exhaustive split and dispatches branches to existing owners.
 
 Before adding a fifth version of a concept, decide which category the new file belongs to. If it is an adapter, it should normally contain very little foundational algebra.
+
+## Transverse-cap and leading-characteristic owners (25 November 2026)
+
+| Concept | Owner |
+|---|---|
+| Actual cap-two marked collision endpoint | `QuadraticTransverseCapSourceMarkedEndpoint` |
+| Regular cap-two source gradient bijectivity | `QuadraticTransverseCapSourceRegularGradient` |
+| Singular cap-two source collision | `QuadraticTransverseCapSourceSingularClosure` |
+| Degree-independent leading singularity and anchored transport | `TransverseLeadingCharacteristics` |
+| Nilpotent linear vs nonpolynomial characteristic | `TransverseLeadingLinearClassification` |
+| Fixed directional power and cubic determinant factor shape | `TransverseLeadingFixedPower` |
+| Squarefree cubic pole exclusion | `RankThreeCubicSquarefreePoleFinal` |
+| First/lower-grade constraints, Schur frame, mixed pole and global directional square | `TransverseLeadingFirstCorrection` (large composite owner; search before adding helpers) |
+
+For precise hypotheses see [PROOF_PATHS.md](PROOF_PATHS.md). Do not infer global closure from these owner names.

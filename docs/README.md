@@ -1,77 +1,21 @@
-# HC4 Lean documentation hub
+# HC4 documentation hub
 
-This directory is the authoritative navigation layer for the current HC4 Lean development. The repository is cumulative, so documentation is split by responsibility rather than duplicating one giant status file.
+Start here for the current proof, not a historical phase diary.
 
-## Core documents
+1. [CURRENT_STATE.md](CURRENT_STATE.md) — exact target/status distinctions.
+2. [PROOF_PATHS.md](PROOF_PATHS.md) — current source theorem interfaces and open bridges.
+3. [NEXT_STEPS.md](NEXT_STEPS.md) — immediate research tasks and verification discipline.
+4. [CANONICAL_OWNERS.md](CANONICAL_OWNERS.md) — existing owners; search before introducing new machinery.
+5. [research/](research/) — detailed mathematical arguments; status labels within each note may be historical.
+6. [archive/](archive/) — pinned historical handoff index.
+7. [generated/](generated/) — source-derived module, declaration and import indexes.
 
-1. [`CURRENT_STATE.md`](CURRENT_STATE.md) — **current theorem-level status**. Read this first to see what is closed, what is superseded, and the exact live frontier before unrestricted HC4.
-2. [`PROOF_PATHS.md`](PROOF_PATHS.md) — **branch-by-branch route map** from the carrier/hypotheses you have to the next canonical Lean interface. Includes the full A19.49–A19.70 chain, global termination, Rees, balanced affine RationalRigidity, confinement, codimension-two and planar/JC2 routes.
-3. [`PROOF_ARCHITECTURE.md`](PROOF_ARCHITECTURE.md) — **mathematical architecture**: unrestricted entry, the single raw-defect recursion, A19.45 global/local split, zero-clock terminal architecture, balance-free Newton geometry and RationalRigidity boundaries.
-4. [`CANONICAL_OWNERS.md`](CANONICAL_OWNERS.md) — **reuse registry**. Check this before introducing a generic definition, structure, support filter, state transition, or theorem family.
-5. [`GLOSSARY_AND_INVARIANTS.md`](GLOSSARY_AND_INVARIANTS.md) — **carrier and invariant glossary**. Distinguishes source/presented/recentered/top-face/first-contact/ray objects, clocks, repair provenance, balance, homogeneity and planar/codimension-two terminology.
-6. [`MODULE_CATALOG.md`](MODULE_CATALOG.md) — **human subsystem catalog** for `Polynomial`, `Toric`, `Newton`, `RationalRigidity`, `Valuation`, JC2 bridges and older reusable layers.
-7. [`HISTORICAL_AND_SUPERSEDED_ROUTES.md`](HISTORICAL_AND_SUPERSEDED_ROUTES.md) — **old-route map**. Explains which older proved interfaces are reusable alternatives, superseded reductions, or merely historical checkpoints.
-8. [`PROOF_CHANGE_CHECKLIST.md`](PROOF_CHANGE_CHECKLIST.md) — **pre-patch checklist** for duplicate avoidance, provenance, termination and integration checks.
+Supporting references: [proof architecture](PROOF_ARCHITECTURE.md), [glossary](GLOSSARY_AND_INVARIANTS.md), [module catalog](MODULE_CATALOG.md), [historical routes](HISTORICAL_AND_SUPERSEDED_ROUTES.md), [change checklist](PROOF_CHANGE_CHECKLIST.md). The older architecture/route references describe the A18/A19 development and are not live proof-status ledgers.
 
-## Exhaustive generated indexes
+## Working rules
 
-Run:
+Read the current state, exact route and canonical owners; search the generated declaration and module indexes; then inspect exact Lean types and imports. Preserve source/collision provenance and the existing raw-defect termination mechanism. Keep conditional HC4, unrestricted HC4, and local cap theorems separate.
 
-```bash
-python3 tools/generate_proof_inventory.py
-```
+Generate indexes with `python3 tools/generate_proof_inventory.py`. The CI workflow regenerates them for diagnostics; the inventory-export workflow may commit changes. Index generation is not Lean verification.
 
-This generates directly from the Lean checkout:
-
-- [`generated/LEAN_MODULE_INDEX.md`](generated/LEAN_MODULE_INDEX.md) — every Lean module, path, module-doc purpose, A18/A19 labels, direct imports, reverse importers and declarations;
-- [`generated/DECLARATION_INDEX.md`](generated/DECLARATION_INDEX.md) — declaration-to-module lookup with repeated spellings highlighted;
-- [`generated/LOCAL_IMPORT_EDGES.md`](generated/LOCAL_IMPORT_EDGES.md) — the local import DAG adjacency list.
-
-CI checks freshness with:
-
-```bash
-python3 tools/generate_proof_inventory.py --check
-```
-
-## Before writing new infrastructure
-
-Use this order:
-
-```text
-CURRENT_STATE
-  -> is the gap actually still live?
-PROOF_PATHS
-  -> is there already a route from this exact carrier?
-CANONICAL_OWNERS
-  -> who owns the concept?
-DECLARATION_INDEX
-  -> does the spelling already exist?
-LEAN_MODULE_INDEX
-  -> search mathematical synonyms and reverse importers
-Lean source
-  -> compare exact types, carriers and hypotheses
-```
-
-Only then introduce a new generic owner.
-
-## Documentation authority
-
-When documents disagree:
-
-1. Lean source and elaborated theorem types;
-2. fresh generated indexes;
-3. `CURRENT_STATE.md`;
-4. `PROOF_PATHS.md` and `PROOF_ARCHITECTURE.md`;
-5. `CANONICAL_OWNERS.md` and `GLOSSARY_AND_INVARIANTS.md`;
-6. current PR/commit history;
-7. historical phase-status files.
-
-A green build means the imported development elaborates. It does not by itself mean unrestricted HC4 is complete.
-
-## Maintenance rule
-
-Every substantial new Lean module should document: **carrier, consumes, produces, preserves, does not assume, and role** (owner/carrier/adapter/split/reduction/closure/contradiction).
-
-If a change alters the live frontier, update `CURRENT_STATE.md` and `PROOF_PATHS.md`. If it introduces reusable infrastructure, update `CANONICAL_OWNERS.md`. If it supersedes a route, update `HISTORICAL_AND_SUPERSEDED_ROUTES.md`. Regenerate the machine index whenever Lean source changes.
-
-The former root phase-status files, patch manifests, ledger and certification snapshot are preserved in [Git history](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/4dee9e05270026fabace78e7c3ca9e35e5234072), not in the working tree. They are historical archaeology, not current missing-lemma lists.
+For every new endpoint, record carrier, hypotheses, conclusion, role, remaining integration obligations and exact build status. Update current state/paths/next steps when they change. Lean source and elaborated theorem types take precedence over prose; historical snapshots are never current missing-lemma lists.
