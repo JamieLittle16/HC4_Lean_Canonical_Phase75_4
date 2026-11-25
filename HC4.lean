@@ -859,3 +859,4 @@ import HC4.Polynomial.RationalCharacteristicRankOneTraceLift
 import HC4.Polynomial.RationalCharacteristicRankOneChartObstruction
 import HC4.Polynomial.RationalCharacteristicRankOneSourceChart
 import HC4.Polynomial.RationalCharacteristicRankOneRadial
+import HC4.Polynomial.RationalCharacteristicRankOneChartDescent

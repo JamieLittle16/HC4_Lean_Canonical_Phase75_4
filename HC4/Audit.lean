@@ -670,3 +670,4 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_chart_coefficients_affine_of_independent
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_source_chartRecurrence_impossible
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_eulerGradient_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_chartEuler_zero
