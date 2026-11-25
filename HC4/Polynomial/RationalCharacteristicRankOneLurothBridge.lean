@@ -73,6 +73,7 @@ theorem rationalField_commonParameter_of_simpleImage
         apply hq
         rw [← hmap, hz, map_zero]
       · apply ψ.toRingHom.injective
+        change ψ (v i) = ψ (_root_.Polynomial.aeval t A / _root_.Polynomial.aeval t Q)
         rw [map_div₀, hmap, hmap]
         exact he
   choose A Q hQ hV using hrep
@@ -80,8 +81,8 @@ theorem rationalField_commonParameter_of_simpleImage
   · intro i
     have he : F.val (_root_.Polynomial.aeval t (Q i)) =
         (Q i).eval₂ (algebraMap K (E K)) (t : E K) := by
-      rw [← _root_.Polynomial.aeval_def, _root_.Polynomial.aeval_algHom]
-      rfl
+      rw [← _root_.Polynomial.aeval_def]
+      exact (_root_.Polynomial.aeval_algHom_apply F.val t _).symm
     rw [← he]
     simpa only [map_zero] using F.val.toRingHom.injective.ne (hQ i)
   · intro i
@@ -89,8 +90,8 @@ theorem rationalField_commonParameter_of_simpleImage
     have hmap (p : P K) :
         F.val (_root_.Polynomial.aeval t p) =
           p.eval₂ (algebraMap K (E K)) (t : E K) := by
-      rw [← _root_.Polynomial.aeval_def, _root_.Polynomial.aeval_algHom]
-      rfl
+      rw [← _root_.Polynomial.aeval_def]
+      exact (_root_.Polynomial.aeval_algHom_apply F.val t _).symm
     change F.val (v i) = F.val (_root_.Polynomial.aeval t (A i) /
       _root_.Polynomial.aeval t (Q i)) at he
     rw [map_div₀, hmap, hmap] at he
@@ -114,7 +115,7 @@ theorem rankOne_commonParameter_of_univariateSimpleGeneration
         (Q i).eval₂ (algebraMap K (E K)) t := by
   let F := IntermediateField.adjoin K (Set.range (fun a : Fin 3 => V (.inr a)))
   let v (i : Fin 3) : F :=
-    ⟨V (.inr i), IntermediateField.subset_adjoin ⟨i, rfl⟩⟩
+    ⟨V (.inr i), IntermediateField.subset_adjoin K _ ⟨i, rfl⟩⟩
   obtain ⟨ψ, _⟩ := rankOne_velocityField_exists_embedding V hn hm
   exact rationalField_commonParameter_of_simpleImage F ψ
     (hLuroth ψ.fieldRange) v
