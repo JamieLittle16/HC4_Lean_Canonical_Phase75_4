@@ -61,15 +61,18 @@ theorem rationalAffine_complete_covectors
     · ring
     · exact h01
     · exact h02
-    · linear_combination -h01
+    · change A 1 * D 0 - A 0 * D 1 = 0
+      linear_combination -h01
     · ring
     · exact h12
-    · linear_combination -h02
-    · linear_combination -h12
+    · change A 2 * D 0 - A 0 * D 2 = 0
+      linear_combination -h02
+    · change A 2 * D 1 - A 1 * D 2 = 0
+      linear_combination -h12
     · ring
   rcases hor with h01 | h02 | h12
   · refine ⟨![A, D, ![0, 0, 1]], ?_, ?_, ?_⟩
-    · have he : (![A, D, ![0, 0, 1]] : Matrix (Fin 3) (Fin 3) K).det =
+    · have he : Matrix.det (![A, D, ![0, 0, 1]] : Matrix (Fin 3) (Fin 3) K) =
           A 0 * D 1 - A 1 * D 0 := by
         simp [Matrix.det_fin_three] <;> ring
       rw [he]
@@ -79,7 +82,7 @@ theorem rationalAffine_complete_covectors
     · intro j
       rfl
   · refine ⟨![A, D, ![0, 1, 0]], ?_, ?_, ?_⟩
-    · have he : ( (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K)).det =
+    · have he : ( Matrix.det (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K) =
           -(A 0 * D 2 - A 2 * D 0) := by
         simp [Matrix.det_fin_three] <;> ring
       rw [he]
@@ -89,7 +92,7 @@ theorem rationalAffine_complete_covectors
     · intro j
       rfl
   · refine ⟨![A, D, ![1, 0, 0]], ?_, ?_, ?_⟩
-    · have he : (![A, D, ![1, 0, 0]] : Matrix (Fin 3) (Fin 3) K).det =
+    · have he : Matrix.det (![A, D, ![1, 0, 0]] : Matrix (Fin 3) (Fin 3) K) =
           A 1 * D 2 - A 2 * D 1 := by
         simp [Matrix.det_fin_three] <;> ring
       rw [he]
@@ -153,12 +156,20 @@ theorem rationalAffine_substitution_hessian
         (hessian f).map (rationalAffine_substitution M c).toRingHom *
         M.map (MvPolynomial.C : K →+* B K) := by
   classical
-  ext i j
+  apply Matrix.ext
+  intro i j
   simp only [hessian_apply]
   rw [rationalAffine_substitution_partial M c f i, map_sum]
   simp only [Derivation.leibniz, smul_eq_mul, pderiv_C, mul_zero, zero_add]
   simp only [rationalAffine_substitution_partial, Matrix.mul_apply,
-    Matrix.transpose_apply, Matrix.map_apply, hessian_apply, Fin.sum_univ_three]
+    Matrix.transpose_apply, Matrix.map_apply, hessian_apply]
+  change (∑ a : Fin 3, MvPolynomial.C (M a i) *
+      (∑ b : Fin 3, rationalAffine_substitution M c (pderiv b (pderiv a f)) *
+        MvPolynomial.C (M b j))) =
+    ∑ b : Fin 3, (∑ a : Fin 3, MvPolynomial.C (M a i) *
+      rationalAffine_substitution M c (pderiv b (pderiv a f))) *
+        MvPolynomial.C (M b j)
+  simp only [Fin.sum_univ_three]
   ring
 
 end
