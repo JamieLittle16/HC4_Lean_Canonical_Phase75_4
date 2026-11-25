@@ -59,7 +59,7 @@ theorem symmetric_kernelColumns_mulVec_eq_zero
 
 end KernelAlgebra
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K]
 
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)
@@ -115,6 +115,8 @@ theorem rationalCharacteristic_allTime_transverse_isUnit
   rw [hh]
   exact (isUnit_iff_ne_zero.mpr hreg).map _root_.Polynomial.C
 
+variable [CharZero K]
+
 /-- A constant annihilator of the characteristic velocity annihilates
 the actual source adjugate along the whole characteristic. -/
 theorem rationalCharacteristic_adjugate_annihilator_along_line
@@ -140,7 +142,8 @@ theorem rationalCharacteristic_adjugate_annihilator_along_line
   have hsym : Q.transpose = Q := by
     have hs : H.adjugate.transpose = H.adjugate := by
       rw [Matrix.adjugate_transpose, hH]
-    ext i j
+    apply Matrix.ext
+    intro i j
     exact congrArg e (congrArg (fun M : Matrix I I (S K) => M i j) hs)
   have hmul : H * H.adjugate = 0 := by
     rw [Matrix.mul_adjugate, show H.det = 0 from hdet]
