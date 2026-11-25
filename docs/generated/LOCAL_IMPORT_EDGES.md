@@ -214,6 +214,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
   - `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
   - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
   - `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
   - `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
   - `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11564**.
+Distinct declaration spellings indexed: **11566**.
 
 ## Repeated declaration spellings
 
@@ -9392,6 +9392,7 @@ Distinct declaration spellings indexed: **11564**.
 - `rankTwo_fibreEval_gradient_normal` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
 - `rankTwo_fibreEval_partial` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
 - `rankTwo_fibreSlope_partial` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
+- `rankTwo_fibre_affineGradient` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
 - `rankTwo_frame_firstColumn_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_frame_left_intertwine` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
 - `rankTwo_gradient_scalarRigidity` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
@@ -9419,6 +9420,7 @@ Distinct declaration spellings indexed: **11564**.
 - `rankTwo_repairProgress_complexityDrop_or_rankThree` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankTwo_rightKernel_minors_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_selfAdjointDerivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+- `rankTwo_source_affineGradient` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
 - `rankTwo_source_dualEuler_affine` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
 - `rankTwo_source_frameTensor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
 - `rankTwo_source_straightDirection` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
