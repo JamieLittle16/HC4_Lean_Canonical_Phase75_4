@@ -65,7 +65,7 @@ theorem rationalAffine_substitution_one_zero :
   rw [map_zero, zero_add, Finset.sum_eq_single i]
   · simp
   · intro j _ hj
-    simp [Matrix.one_apply, Ne.symm hj]
+    simp [Ne.symm hj]
   · simp
 
 /-- An invertible linear part gives a left inverse to the entire
@@ -126,7 +126,7 @@ theorem rationalAffine_substitution_hessian_det_ne_zero
   have hC : (M.map (MvPolynomial.C : K →+* B K)).det ≠ 0 := by
     change ((MvPolynomial.C : K →+* B K).mapMatrix M).det ≠ 0
     rw [← RingHom.map_det]
-    exact (MvPolynomial.C_injective).ne hM
+    simpa only [map_zero] using (MvPolynomial.C_injective (Fin 3) K).ne hM
   have hS : ((hessian f).map (rationalAffine_substitution M c).toRingHom).det ≠ 0 := by
     change ((rationalAffine_substitution M c).toRingHom.mapMatrix (hessian f)).det ≠ 0
     rw [← RingHom.map_det]
