@@ -878,3 +878,4 @@ import HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding
 import HC4.Polynomial.RationalCharacteristicRankOneLurothBridge
 import HC4.Polynomial.RationalCharacteristicRankOneClosure
 import HC4.Polynomial.RationalCharacteristicRankTwoFrontier
+import HC4.Polynomial.RationalCharacteristicRankTwoNormal
