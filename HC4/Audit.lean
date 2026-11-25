@@ -673,3 +673,4 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_chartEuler_zero
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_chartCoeff_trace_zero
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_independent_impossible
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_scaled_independent_impossible

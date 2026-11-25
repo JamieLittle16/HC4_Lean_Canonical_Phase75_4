@@ -110,7 +110,7 @@ theorem rankOne_normalizedChartTime_zero_of_eval_zero
 /-- Evaluating a scalar parameter polynomial after embedding its
 coefficients into the source polynomial ring is the same as
 evaluating it by the ground-field algebra map. -/
-private theorem rankOne_parameter_eval_map
+theorem rankOne_parameter_eval_map
     (U : _root_.Polynomial K) (t : E K) :
     (U.map (MvPolynomial.C : K →+* B K)).eval₂
       (algebraMap (B K) (E K)) t =
