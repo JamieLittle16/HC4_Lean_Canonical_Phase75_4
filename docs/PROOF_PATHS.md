@@ -38,8 +38,8 @@ Owner: [QuadraticTransverseCapSourceMarkedEndpoint.lean](../HC4/Valuation/Quadra
 | Cubic determinant factors | same, `reference_cubic_det_triple_or_distinct_linear_of_nonzero_characteristic` | triple linear or square times nonproportional linear, under nonzero linear transport hypotheses |
 | Squarefree rational pole | [RankThreeCubicSquarefreePoleFinal](../HC4/Polynomial/RankThreeCubicSquarefreePoleFinal.lean), `sourceCubic_squarefreePole_impossible` | actual cubic transport, squarefree determinant and nonpolynomial velocity |
 | Rank-one pole closure | [RankThreeCubicSourceHomogeneousPoleRankOneClosure](../HC4/Polynomial/RankThreeCubicSourceHomogeneousPoleRankOneClosure.lean), `sourceCubic_homogeneousLinearPole_rankOne_impossible` | regular reference block, nonzero homogeneous linear factor dividing every adjugate entry |
-| Lower grade | [TransverseLeadingFirstCorrection](../HC4/Polynomial/TransverseLeadingFirstCorrection.lean), `sourceLeading_constantDet_firstCorrection_trace_zero` | genuine adjacent grades, not arbitrary replacement polynomial |
-| Mixed residue | same, `sourceCubic_fixedMixedResidue_directional_divisibility` | fixed direction and cleared mixed equation with nonzero residue |
+| Lower grade | [TransverseLeadingSchurFoundation](../HC4/Polynomial/TransverseLeadingSchurFoundation.lean), `sourceLeading_constantDet_firstCorrection_trace_zero` | genuine adjacent grades, not arbitrary replacement polynomial |
+| Mixed residue | [TransverseLeadingFirstCorrection](../HC4/Polynomial/TransverseLeadingFirstCorrection.lean), `sourceCubic_fixedMixedResidue_directional_divisibility` | fixed direction and cleared mixed equation with nonzero residue |
 | Latest endpoint | same, `sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero` | under explicit additional hypotheses yields global directional second derivative zero |
 
 The characteristic split has stationary (N=0), nonzero linear and nonpolynomial possibilities. The listed endpoints are not an exhaustive closure of these cases; the singular leading-transverse-block case is not covered by the regular-anchor results.
