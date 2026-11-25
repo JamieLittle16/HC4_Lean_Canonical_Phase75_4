@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11330**.
+Distinct declaration spellings indexed: **11333**.
 
 ## Repeated declaration spellings
 
@@ -9026,8 +9026,11 @@ Distinct declaration spellings indexed: **11330**.
 - `rankOneTerminationTrace` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroDefectCollisionEntry`
 - `rankOne_affine_parameters_of_evaluated_trace` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
 - `rankOne_affine_parameters_of_lifted_trace_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOnePencil`
+- `rankOne_chart_coefficients_affine_of_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
+- `rankOne_chart_coefficients_zero_of_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
 - `rankOne_hessians_zero_of_lifted_trace_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOnePencil`
 - `rankOne_lifted_trace_of_evaluated_trace` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+- `rankOne_parameter_eq_linear` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
 - `rankOne_to_rankThree_repairProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `rankOne_to_rankTwo_repairProgress` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankOne_tracePolynomial` — `def` in `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
