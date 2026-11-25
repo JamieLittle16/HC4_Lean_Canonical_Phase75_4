@@ -43,8 +43,7 @@ theorem rationalParameter_polynomial_chainRule
     simp only [_root_.Polynomial.eval₂_monomial,
       _root_.Polynomial.derivative_monomial, Derivation.leibniz,
       Derivation.map_algebraMap, Derivation.leibniz_pow, smul_eq_mul,
-      nsmul_eq_mul, map_mul, map_natCast, mul_zero, add_zero]
-    ring
+      nsmul_eq_mul, map_mul, map_natCast, mul_zero, add_zero] <;> ring
 
 /-- If the components are rational functions of one parameter,
 a common nonzero denominator for their derivatives can be cleared
@@ -95,6 +94,8 @@ theorem rationalCharacteristic_commonParameter_factor
 
 variable [CharZero K]
 
+set_option maxHeartbeats 2000000
+
 /-- A nonconstant common rational parameter is automatically
 represented by a reduced pair of positive maximum total degree
 in the original transverse fraction ring. -/
@@ -126,7 +127,7 @@ theorem rationalParameter_exists_reduced_nonconstant
   calc
     t = e p / e q := hr.symm
     _ = e (MvPolynomial.C (p.coeff 0)) / e (MvPolynomial.C (q.coeff 0)) := by
-      rw [← hpC, ← hqC]
+      exact congrArg₂ (fun x y : B K => e x / e y) hpC hqC
     _ = g (p.coeff 0 / q.coeff 0) := by rw [hC, hC, map_div₀]
 
 /-- The normalized source obstruction now consumes common rational
@@ -153,8 +154,7 @@ theorem rationalCharacteristic_commonParameter_adjugate_annihilator
     have hz : rationalCharacteristicJacobian V = 0 := by
       apply Matrix.ext
       intro i j
-      rw [hn, hc, Derivation.map_algebraMap, mul_zero]
-      rfl
+      rw [hn, hc, Derivation.map_algebraMap, mul_zero] <;> rfl
     exact rationalCharacteristic_rankZero_adjugate_annihilator a L V hdet hV hreg hgrad hz
   · have hnc (c : K) : t ≠ algebraMap K (E K) c := fun hc => ht ⟨c, hc⟩
     obtain ⟨p, q, hqn, hcop, hpos, hr⟩ := rationalParameter_exists_reduced_nonconstant t hnc
