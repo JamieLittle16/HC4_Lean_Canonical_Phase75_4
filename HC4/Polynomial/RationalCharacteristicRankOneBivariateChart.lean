@@ -118,7 +118,7 @@ theorem rankOne_bivariateSource_coeff (f : B K) (j l : ℕ) :
         rankOne_bivariateExponent_eq_iff]
       by_cases hj : m 0 + m 1 = j
       · by_cases hl : m 2 = l
-        · simp [hj, hl, _root_.Polynomial.coeff_C_mul_X_pow, eq_comm]
+        · simp [hj, hl, eq_comm]
         · simp [hj, hl]
       · simp [hj]
     · rw [if_neg hn]
@@ -126,7 +126,7 @@ theorem rankOne_bivariateSource_coeff (f : B K) (j l : ℕ) :
       by_cases hj : m 0 + m 1 = j
       · by_cases hl : m 2 = l
         · have hne : n ≠ m 0 := by omega
-          simp [hj, hl, _root_.Polynomial.coeff_C_mul_X_pow, hne]
+          simp [hj, hl, hne]
         · simp [hj, hl]
       · simp [hj]
   | add p q hp hq =>
@@ -150,8 +150,17 @@ theorem rankOne_bivariateChartTime_parameter
       _root_.Polynomial.map_mul, _root_.Polynomial.map_C,
       _root_.Polynomial.map_pow, _root_.Polynomial.map_X, map_mul, map_pow,
       rankOne_normalizedChartTime_C, rankOne_normalizedChartTime_X]
-    simp [rankOne_normalizedChart, rankOne_bivariateChart,
-      _root_.Polynomial.C_mul_X_pow_eq_monomial, ← map_pow, ← map_mul]
+    have hc : rankOne_normalizedChart (MvPolynomial.C a) = MvPolynomial.C a := by
+      simp [rankOne_normalizedChart]
+    rw [hc]
+    have hC : rankOne_bivariateChart (MvPolynomial.C a) =
+        (MvPolynomial.C (_root_.Polynomial.C a) : A K) := by
+      rfl
+    have hX : rankOne_bivariateChart (X (0 : Fin 3) : B K) =
+        (MvPolynomial.C _root_.Polynomial.X : A K) := by
+      simp [rankOne_bivariateChart]
+    rw [map_mul, map_pow, hC, hX, ← map_pow, ← map_mul]
+    rfl
 
 /-- The descended trace equation has an exact bivariate coefficient
 identity for each y,z exponent. -/
