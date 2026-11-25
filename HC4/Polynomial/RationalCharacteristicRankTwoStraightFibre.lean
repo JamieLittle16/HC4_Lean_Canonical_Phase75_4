@@ -47,7 +47,8 @@ theorem rankTwo_frame_firstColumn_zero
   calc
     A *ᵥ w = (1 : Matrix (Fin 3) (Fin 3) F) *ᵥ (A *ᵥ w) := by
       rw [Matrix.one_mulVec]
-    _ = M *ᵥ (P *ᵥ (A *ᵥ w)) := by rw [Matrix.mulVec_mulVec, hMP]
+    _ = M *ᵥ (P *ᵥ (A *ᵥ w)) := by
+      rw [← hMP, ← Matrix.mulVec_mulVec]
     _ = 0 := by rw [he, Matrix.mulVec_zero]
 
 end Algebra
@@ -127,10 +128,10 @@ theorem rankTwo_source_straightDirection
   have hu : N *ᵥ u = 0 := by
     funext i
     have he := congrArg (fun A : Matrix (Fin 3) (Fin 3) (E K) => A i 0) hNM
-    change (N *ᵥ u) i = (M * rankTwo_jordanBlock) i 0 at he
+    change (N *ᵥ u) i = (M * (rankTwo_jordanBlock : Matrix (Fin 3) (Fin 3) (E K))) i 0 at he
     have hj (k : Fin 3) : (rankTwo_jordanBlock : Matrix (Fin 3) (Fin 3) (E K)) k 0 = 0 := by
       fin_cases k <;> rfl
-    have hz : (M * rankTwo_jordanBlock) i 0 = 0 := by
+    have hz : (M * (rankTwo_jordanBlock : Matrix (Fin 3) (Fin 3) (E K))) i 0 = 0 := by
       rw [Matrix.mul_apply]
       simp only [hj, mul_zero, Finset.sum_const_zero]
     exact he.trans hz
@@ -196,10 +197,11 @@ theorem rankTwo_lineEval_coeffDeriv_eq_derivative
   change coeffDeriv D (e p) = _root_.Polynomial.derivative (e p)
   have hx (i : Fin 3) : coeffDeriv D (e (X i)) =
       _root_.Polynomial.derivative (e (X i)) := by
-    change coeffDeriv D (_root_.Polynomial.C (algebraMap (B K) (E K) (X i)) +
-      _root_.Polynomial.C (w i) * _root_.Polynomial.X) =
-      _root_.Polynomial.derivative (_root_.Polynomial.C (algebraMap (B K) (E K) (X i)) +
-        _root_.Polynomial.C (w i) * _root_.Polynomial.X)
+    have he : e (X i) = _root_.Polynomial.C (algebraMap (B K) (E K) (X i)) +
+        _root_.Polynomial.C (w i) * _root_.Polynomial.X := by
+      dsimp only [e, lineEval]
+      rw [MvPolynomial.aeval_X]
+    rw [he]
     have hd (i : Fin 3) : D (algebraMap (B K) (E K) (X i)) = w i :=
       rankTwo_directionalDerivation_X w i
     have hzero (i : Fin 3) : D (w i) = 0 := hw i
@@ -233,6 +235,7 @@ theorem rankTwo_transportPolynomial_eq_zero
     | zero => exact h0
     | succ n ih =>
       have he := congrArg (fun q : _root_.Polynomial (E K) => q.coeff n) h
+      change (coeffDeriv D p).coeff n = (_root_.Polynomial.derivative p).coeff n at he
       rw [coeff_coeffDeriv, _root_.Polynomial.coeff_derivative, ih, map_zero] at he
       have hn : ((n + 1 : ℕ) : E K) ≠ 0 := by exact_mod_cast (Nat.succ_ne_zero n)
       rcases mul_eq_zero.mp he.symm with h | h
@@ -286,11 +289,14 @@ theorem rankTwo_invariant_lineEval
     rw [← hcoeff q, h, _root_.Polynomial.coeff_zero]
   · apply sub_eq_zero.mp
     apply rankTwo_transportPolynomial_eq_zero D
-    · have hz' : D z = 0 := hz
+    · change coeffDeriv D (e p - _root_.Polynomial.C z * e q) =
+        _root_.Polynomial.derivative (e p - _root_.Polynomial.C z * e q)
+      have hz' : D z = 0 := hz
       simp only [map_sub, Derivation.leibniz, smul_eq_mul, coeffDeriv_C,
         hz', map_zero, mul_zero, add_zero, hD, _root_.Polynomial.derivative_sub,
         _root_.Polynomial.derivative_C_mul]
-    · rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_C_mul,
+    · change (e p - _root_.Polynomial.C z * e q).coeff 0 = 0
+      rw [_root_.Polynomial.coeff_sub, _root_.Polynomial.coeff_C_mul,
         hcoeff, hcoeff, hmul, sub_self]
 
 end
