@@ -44,6 +44,8 @@ theorem polynomial_timeHom_injective
       have hh : f (_root_.Polynomial.C (p.coeff 0)) = 0 := by
         rwa [← he]
       have h0 := congrArg (fun q : _root_.Polynomial A => q.coeff 0) hh
+      change (f (_root_.Polynomial.C (p.coeff 0))).coeff 0 =
+        (0 : _root_.Polynomial A).coeff 0 at h0
       rw [hc, _root_.Polynomial.coeff_zero] at h0
       have hcoeff : p.coeff 0 = 0 := hg (h0.trans g.map_zero.symm)
       rw [he, hcoeff, map_zero]
@@ -52,6 +54,9 @@ theorem polynomial_timeHom_injective
       have hsplit := congrArg f (_root_.Polynomial.divX_mul_X_add p)
       rw [map_add, map_mul, hx, h] at hsplit
       have h0 := congrArg (fun q : _root_.Polynomial A => q.coeff 0) hsplit
+      change (f p.divX * _root_.Polynomial.X +
+        f (_root_.Polynomial.C (p.coeff 0))).coeff 0 =
+        (0 : _root_.Polynomial A).coeff 0 at h0
       simp only [_root_.Polynomial.coeff_add, _root_.Polynomial.coeff_mul_X_zero,
         zero_add, hc, _root_.Polynomial.coeff_zero] at h0
       have hcoeff : p.coeff 0 = 0 := hg (h0.trans g.map_zero.symm)
@@ -108,7 +113,7 @@ theorem rationalLineEval_injective
     exact RingHom.congr_fun he b
   have hfC (b : B K) : f (_root_.Polynomial.C b) = phi b := by
     change (_root_.Polynomial.C b).eval₂ phi.toRingHom _root_.Polynomial.X = phi b
-    rw [_root_.Polynomial.eval₂_C]
+    rw [_root_.Polynomial.eval₂_C] <;> rfl
   have hfX : f _root_.Polynomial.X = _root_.Polynomial.X := by
     change (_root_.Polynomial.X : _root_.Polynomial (B K)).eval₂
       phi.toRingHom _root_.Polynomial.X = _root_.Polynomial.X
