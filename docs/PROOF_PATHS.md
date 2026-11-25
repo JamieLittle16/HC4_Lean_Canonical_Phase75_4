@@ -40,7 +40,7 @@ Owner: [QuadraticTransverseCapSourceMarkedEndpoint.lean](../HC4/Valuation/Quadra
 | Squarefree rational pole | [RankThreeCubicSquarefreePoleFinal](../HC4/Polynomial/RankThreeCubicSquarefreePoleFinal.lean), `sourceCubic_squarefreePole_impossible` | actual cubic transport, squarefree determinant and nonpolynomial velocity |
 | Rank-one pole closure | [RankThreeCubicSourceHomogeneousPoleRankOneClosure](../HC4/Polynomial/RankThreeCubicSourceHomogeneousPoleRankOneClosure.lean), `sourceCubic_homogeneousLinearPole_rankOne_impossible` | regular reference block, nonzero homogeneous linear factor dividing every adjugate entry |
 | Lower grade | [TransverseLeadingSchurFoundation](../HC4/Polynomial/TransverseLeadingSchurFoundation.lean), `sourceLeading_constantDet_firstCorrection_trace_zero` | genuine adjacent grades, not arbitrary replacement polynomial |
-| Mixed residue | [TransverseLeadingFirstCorrection](../HC4/Polynomial/TransverseLeadingFirstCorrection.lean), `sourceCubic_fixedMixedResidue_directional_divisibility` | fixed direction and cleared mixed equation with nonzero residue |
+| Mixed residue | [TransverseLeadingDirectionalRigidity](../HC4/Polynomial/TransverseLeadingDirectionalRigidity.lean), `sourceCubic_fixedMixedResidue_directional_divisibility` | fixed direction and cleared mixed equation with nonzero residue |
 | Latest endpoint | same, `sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero` | under explicit additional hypotheses yields global directional second derivative zero |
 
 The characteristic split has stationary (N=0), nonzero linear and nonpolynomial possibilities. The listed endpoints are not an exhaustive closure of these cases; the singular leading-transverse-block case is not covered by the regular-anchor results.

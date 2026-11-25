@@ -270,6 +270,8 @@ Before adding a fifth version of a concept, decide which category the new file b
 | Nilpotent source velocity, gradient evolution, longitudinal support and inverse-shear transport | `TransverseLeadingNilpotent` |
 | Higher line frames, second correction, characteristic-time degree induction and original-coordinate degree bounds | `TransverseLeadingCorrectionDegree` |
 | Marked-axis gradient collision, low-grade extraction, mixed-gap propagation and first mixed-gap divisibility | `TransverseLeadingMarkedCollision` |
-| Prime-factor cancellation, mixed-pole constraints and global directional square | `TransverseLeadingFirstCorrection` (active downstream owner; search before adding helpers) |
+| Prime-factor cancellation, cleared mixed poles and cubic common-kernel obstruction | `TransverseLeadingMixedPole` |
+| Fixed mixed-residue directional divisibility and global directional square | `TransverseLeadingDirectionalRigidity` (active frontier) |
+| Legacy aggregate import (no declarations) | `TransverseLeadingFirstCorrection` |
 
 For precise hypotheses see [PROOF_PATHS.md](PROOF_PATHS.md). Do not infer global closure from these owner names.

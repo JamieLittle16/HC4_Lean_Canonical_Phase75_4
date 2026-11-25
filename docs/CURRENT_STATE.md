@@ -37,7 +37,7 @@ The marked result is not automatically a theorem about arbitrary collisions unde
 
 ## Cubic and arbitrary-degree transverse frontier
 
-The most recent active module is [TransverseLeadingFirstCorrection.lean](../HC4/Polynomial/TransverseLeadingFirstCorrection.lean). Read the exact interfaces in [PROOF_PATHS.md](PROOF_PATHS.md) before working further.
+The most recent active module is [TransverseLeadingDirectionalRigidity.lean](../HC4/Polynomial/TransverseLeadingDirectionalRigidity.lean). Read the exact interfaces in [PROOF_PATHS.md](PROOF_PATHS.md) before working further.
 
 * Arbitrary cap m ≥ 2: leading full Hessian determinant vanishes; a regular transverse anchor gives actual straight gradient transport.
 * With generically invertible leading transverse block: a nilpotent linear characteristic or a genuinely nonpolynomial characteristic.
