@@ -265,6 +265,8 @@ lemma le_Φ_coeff_generatorIndex_natDegree (h : E ≠ ⊥) :
   rw [natDegree_mul (Φ_coeff_generatorIndex_ne_zero h) (generator E).denom_ne_zero,
     natDegree_mul (num_ne_zero (c_ne_zero h)) (num_ne_zero (generator_ne_zero h))] at this
   have hd := natDegree_le_of_dvd (generator_denom_dvd_c_num h) (num_ne_zero (c_ne_zero h))
+  change (generator E).denom.natDegree ≤ (c E).num.natDegree at hd
+  change (generator E).num.natDegree ≤ ((Φ E).coeff (generatorIndex h)).natDegree
   omega
 
 lemma le_Φ_coeff_natDegree_natDegree (h : E ≠ ⊥) :
@@ -319,6 +321,8 @@ private theorem coeff_degree_le_swap (p : K[X][Y]) (i : ℕ) :
   · apply le_natDegree_of_ne_zero
     intro hz
     have hh := congrArg (fun q : K[X] => q.coeff i) hz
+    change ((Bivariate.swap p).coeff (p.coeff i).natDegree).coeff i =
+      (0 : K[X]).coeff i at hh
     rw [swap_coeff_coeff, coeff_zero, coeff_natDegree] at hh
     exact leadingCoeff_ne_zero.mpr h hh
 
@@ -330,6 +334,9 @@ lemma m_le_swap_Φ_natDegree (h : E ≠ ⊥) :
 
 instance : Algebra K⟮generator E⟯ E :=
   (IntermediateField.inclusion adjoin_generator_le).toAlgebra
+
+instance : IsScalarTower K⟮generator E⟯ E (RatFunc K) :=
+  IsScalarTower.of_algebraMap_eq' rfl
 
 /-- Since `minpolyX` of our `generator` annihilates `X`, the minimal polynomial `φ`
 must divide it. -/
@@ -410,8 +417,7 @@ lemma Q₀_mul_Φ (h : E ≠ ⊥) :
       (f E).map (algebraMap K (RatFunc K)) -
         Polynomial.C (generator E) * (g E).map (algebraMap K (RatFunc K)) := by
     rw [RatFunc.minpolyX, Polynomial.map_sub, Polynomial.map_mul, map_C,
-      Polynomial.map_map, Polynomial.map_map, ← IsScalarTower.algebraMap_eq,
-      ← IsScalarTower.algebraMap_eq]
+      Polynomial.map_map, Polynomial.map_map, ← IsScalarTower.algebraMap_eq]
     rfl
   rw [hmap, mul_sub, ← mul_assoc, ← Polynomial.C_mul]
   have hg : algebraMap K[X] (RatFunc K) (g E) * generator E =
@@ -421,7 +427,7 @@ lemma Q₀_mul_Φ (h : E ≠ ⊥) :
       (num_div_denom (generator E))).symm
   rw [hg]
   simp only [θ, Polynomial.map_sub, Polynomial.map_mul, map_C, Polynomial.map_map,
-    ← IsScalarTower.algebraMap_eq]
+    RatFunc.algebraMap_comp_C, RatFunc.algebraMap_eq_C]
 
 /-- Primitive factors do not hide denominators in a polynomial product.
 This is the needed part of the upstream Gauss lemma backport. -/
@@ -442,7 +448,7 @@ private theorem primitive_product_lifts
     rw [Polynomial.map_smul, algebraMap_smul, hk, ← smul_mul_assoc, ← hnorm, Polynomial.map_mul]
   have hc : g'.content = (normUnit b : K[X]) * b * k.content := by
     have hh := congrArg Polynomial.content hprod
-    change (g' * f).content = (Polynomial.C b * k).content at hh
+    rw [Polynomial.smul_eq_C_mul] at hh
     simpa only [content_mul, hf.content_eq_one, mul_one, content_C,
       normalize_apply] using hh
   refine ⟨Polynomial.C (normUnit b : K[X]) * Polynomial.C k.content * g'.primPart, ?_⟩
@@ -515,7 +521,7 @@ lemma Q₂_natDegree (h : E ≠ ⊥) : (Q₂ h).natDegree = 0 := by
   apply (generator E).backport_eq_C_iff.not.mp (generator_ne_C h)
   let F := AlgebraicClosure K
   rw [natDegree_eq_zero_iff_degree_le_zero.not, ← degree_map _ (algebraMap K F)] at H
-  obtain ⟨α, hα⟩ := IsAlgClosed.exists_root ((Q₂ h).map (algebraMap K F)) (fun hz => H (by rw [hz]; simp))
+  obtain ⟨α, hα⟩ := IsAlgClosed.exists_root ((Q₂ h).map (algebraMap K F)) (fun hz => H (by rw [hz]))
   -- Evaluate at the root, get that f(α)*g(Y) = g(α)*f(Y)
   rw [IsRoot.def, eval_map_algebraMap] at hα
   have eq :
@@ -545,8 +551,10 @@ lemma Q₂_natDegree (h : E ≠ ⊥) : (Q₂ h).natDegree = 0 := by
   have : Associated ((f E).mapRingHom (algebraMap K F)) ((g E).mapRingHom (algebraMap K F)) := by
     rw [← associated_mul_isUnit_left_iff isUnit₂, Associated.comm]
     exact ⟨isUnit₁.unit, by simpa⟩
-  have hfunit := isCoprime.isRelPrime _ dvd_rfl this.dvd
-  have hgunit := hfunit.of_associated this
+  have hfunit : IsUnit ((f E).mapRingHom (algebraMap K F)) :=
+    isCoprime.isRelPrime dvd_rfl this.dvd
+  have hgunit : IsUnit ((g E).mapRingHom (algebraMap K F)) :=
+    this.isUnit hfunit
   exact ⟨by simpa using (natDegree_eq_zero_of_isUnit hfunit),
     by simpa using (natDegree_eq_zero_of_isUnit hgunit)⟩
 
