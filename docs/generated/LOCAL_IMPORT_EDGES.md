@@ -1921,6 +1921,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
   - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Polynomial.TransverseLeadingSchurFoundation`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.ParameterFirstLayerBridge`
   - `HC4.Valuation.ParameterGapSecondJet`
@@ -1930,6 +1931,15 @@ human architecture guide.
 - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.Polynomial.RankThreeCubicSourceDegrees`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
+- `HC4.Polynomial.TransverseLeadingSchurFoundation`
+  - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+  - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
+  - `HC4.Polynomial.RankThreeCubicDetOneWeightFivePoleSlice`
+  - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+  - `HC4.Polynomial.TransverseLeadingFixedPower`
+  - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
+  - `HC4.Valuation.ParameterFirstLayerBridge`
+  - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.TwoFunctionCarrierHessianRigidity`
   - `HC4.Polynomial.ComplementaryMvMomentRealisation`
   - `HC4.Polynomial.TwoFunctionEulerConcreteRigidity`
