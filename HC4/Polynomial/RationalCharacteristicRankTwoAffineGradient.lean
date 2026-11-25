@@ -90,6 +90,7 @@ theorem rankTwo_fibreEval_coeff_zero (w : Fin 3 → E K) (p : B K) :
 
 /-- Differentiate a polynomial line substitution in an original
 coordinate (rather than along the fibre). -/
+omit [CharZero K] in
 theorem rankTwo_fibreEval_partial
     (w : Fin 3 → E K) (p : B K) (j : Fin 3) :
     coeffDeriv (rationalCharacteristicPartial j) (rankTwo_fibreEval w p) =
@@ -184,7 +185,7 @@ theorem rankTwo_fibreEval_gradient_normal
     have hki := hQ k
     rw [hk, mul_one] at hki
     simp only [map_sub, Derivation.leibniz, smul_eq_mul, coeffDeriv_C, hb',
-      map_zero, mul_zero, zero_add, hQ i, hki, sub_mul, ← map_mul,
+      map_zero, mul_zero, zero_add, hQ i, hki, map_mul,
       _root_.Polynomial.derivative_mul, _root_.Polynomial.derivative_C,
       add_zero]
     <;> ring
@@ -297,6 +298,7 @@ theorem rankTwo_fibre_affineGradient
         _root_.Polynomial.X * _root_.Polynomial.C (D (g f))) = _
       simp only [map_add, Derivation.leibniz, smul_eq_mul, coeffDeriv_C,
         coeffDeriv_X, hdf, hdiff, mul_zero, add_zero, map_sum, map_mul]
+      rfl
     have hsum' : (∑ i : Fin 3, e (pderiv i f) * C (r i)) =
         (∑ i : Fin 3, C (g (pderiv i f)) * C (r i)) +
           R * C (∑ i : Fin 3, b i * r i) := by
