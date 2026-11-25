@@ -67,6 +67,8 @@ theorem rationalParameter_linear_dvd_of_eval_zero
     (_root_.Polynomial.C q * _root_.Polynomial.X -
       _root_.Polynomial.C p : T K) ∣ F := by
   classical
+  letI : NormalizedGCDMonoid (B K) :=
+    Classical.choice (inferInstance : Nonempty (NormalizedGCDMonoid (B K)))
   by_cases hf : F = 0
   · rw [hf]
     exact dvd_zero _
@@ -84,7 +86,8 @@ theorem rationalParameter_linear_dvd_of_eval_zero
     rw [_root_.Polynomial.eval_map]
     exact he
   have hqt : g q * t = g p := by
-    rw [t, mul_comm, div_mul_cancel₀ _ hgq]
+    change g q * (g p / g q) = g p
+    rw [mul_comm, div_mul_cancel₀ _ hgq]
   have hL : L.map g = _root_.Polynomial.C (g q) *
       (_root_.Polynomial.X - _root_.Polynomial.C t) := by
     simp only [L, _root_.Polynomial.map_sub, _root_.Polynomial.map_mul,
