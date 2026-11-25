@@ -167,7 +167,9 @@ theorem rankTwo_kernel_derivativeJacobian
     rw [rationalCharacteristicPartial_comm k j]
     rfl
   rw [he]
-  exact eq_neg_of_add_eq_zero_left h
+  change (∑ k : Fin 3, w k * D (N i k)) =
+    -(∑ k : Fin 3, N i k * D (w k))
+  linear_combination h
 
 /-- Every left normal, after differentiation in a kernel direction,
 is still a left normal. -/
@@ -190,10 +192,15 @@ theorem rankTwo_leftNormal_derivative_kernel
     have he (i : Fin 3) : D (N i j) =
         -∑ k : Fin 3, N i k * rationalCharacteristicPartial j (w k) :=
       rankTwo_kernel_derivativeJacobian V w hw i j
-    simp only [he, mul_neg, ← Finset.sum_neg_distrib, Finset.mul_sum]
-    rw [Finset.sum_comm]
-    simp_rw [← mul_assoc, ← Finset.sum_mul, hbj, zero_mul]
-    simp
+    calc
+      (∑ i : Fin 3, b i * D (N i j)) =
+          -(∑ i : Fin 3, ∑ k : Fin 3,
+            b i * (N i k * rationalCharacteristicPartial j (w k))) := by
+        simp only [he, mul_neg, Finset.sum_neg_distrib, Finset.mul_sum]
+      _ = 0 := by
+        rw [Finset.sum_comm]
+        simp_rw [← mul_assoc, ← Finset.sum_mul, hbj, zero_mul]
+        simp
   rw [hz, zero_add] at h
   change (∑ i : Fin 3, D (b i) * N i j) = 0
   simpa only [mul_comm] using h
