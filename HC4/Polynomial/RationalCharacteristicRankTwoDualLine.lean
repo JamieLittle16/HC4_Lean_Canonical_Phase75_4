@@ -158,10 +158,17 @@ theorem rankTwo_dualEuler_affine
     rw [hg, hb]
   · have hEuler : D (e (transverseEuler f - f)) =
         ∑ i : Fin 3, e (X i) * b i := by
+      change rankTwo_directionalDerivation w
+        (algebraMap (B K) (E K) (transverseEuler f - f)) = _
       rw [rankTwo_directionalDerivation_apply]
-      simp only [rationalCharacteristicPartial_algebraMap,
-        ← rankOne_radialHessian_eq_eulerGradient, map_sum, map_mul]
-      simp_rw [Finset.mul_sum]
+      have hrow (i : Fin 3) :
+          rationalCharacteristicPartial i
+            (algebraMap (B K) (E K) (transverseEuler f - f)) =
+          ∑ j : Fin 3, e (hessian f i j) * e (X j) := by
+        rw [rationalCharacteristicPartial_algebraMap,
+          ← rankOne_radialHessian_eq_eulerGradient]
+        simp only [map_sum, map_mul, e]
+      simp only [hrow, Finset.mul_sum]
       rw [Finset.sum_comm]
       apply Finset.sum_congr rfl
       intro j _
@@ -179,7 +186,8 @@ theorem rankTwo_dualEuler_affine
     rw [hEuler, map_sum]
     have he (i : Fin 3) : D (e (X i)) = w i :=
       rankTwo_directionalDerivation_X w i
-    simp only [Derivation.leibniz, smul_eq_mul, hb, he, mul_zero, zero_add]
+    have hb' (i : Fin 3) : D (b i) = 0 := hb i
+    simp only [Derivation.leibniz, smul_eq_mul, hb', he, mul_zero, zero_add]
     exact hn
 
 /-- The dual affine identities are obtained from the actual anchored
@@ -244,8 +252,13 @@ theorem rankTwo_longitudinalGradient_derivative
         (pderiv (.inr i) (pderiv (.inr j) L))
     rw [HC4.Newton.pderiv_comm_backport]
   rw [rankTwo_directionalDerivation_apply]
-  simp only [rationalCharacteristicPartial_algebraMap, hmix, mul_neg,
-    Finset.sum_neg_distrib]
+  have hmix' (i : Fin 3) :
+      rationalCharacteristicPartial i
+        (algebraMap (B K) (E K) (referenceSlice a (pderiv (.inl ()) L))) =
+        -(∑ j : Fin 3, H i j * V (.inr j)) := by
+    rw [rationalCharacteristicPartial_algebraMap]
+    exact hmix i
+  simp only [hmix', mul_neg, Finset.sum_neg_distrib]
   congr 1
   simp_rw [Finset.mul_sum]
   rw [Finset.sum_comm]
