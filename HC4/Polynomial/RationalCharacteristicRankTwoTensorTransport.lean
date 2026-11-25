@@ -41,8 +41,12 @@ theorem rankTwo_transportTensor_symm
     rankTwo_transportTensor A M T l i j =
       rankTwo_transportTensor A M T j i l := by
   classical
-  simp only [rankTwo_transportTensor, Matrix.mul_apply, Matrix.sum_apply,
-    Matrix.smul_apply, smul_eq_mul, Fin.sum_univ_three]
+  have hentry (t r s : Fin 3) :
+      (∑ k : Fin 3, M k t • T k) r s =
+        ∑ k : Fin 3, M k t * T k r s := by
+    simp only [Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
+  simp only [rankTwo_transportTensor, Matrix.mul_apply, hentry]
+  simp only [Fin.sum_univ_three]
   simp only [h 0 0 1, h 0 0 2, h 0 1 2,
     h 1 0 1, h 1 0 2, h 1 1 2,
     h 2 0 1, h 2 0 2, h 2 1 2]
@@ -112,6 +116,23 @@ theorem rankTwo_transport_selfAdjointDerivative
   rw [he, Matrix.transpose_mul, Matrix.transpose_mul, Matrix.transpose_transpose, h]
   simp only [Matrix.mul_assoc]
 
+/-- The anti-diagonal pivot in the Jordan Hessian form is nonzero.
+Keep the small matrix calculation over an abstract field rather than
+unfolding the source fraction ring during finite-index simplification. -/
+theorem rankTwo_jordan_hessian_pivot_ne_zero
+    (G : Mat F) (hd : G.det ≠ 0)
+    (hform : G = !![0, 0, G 0 2; 0, G 0 2, G 1 2; G 0 2, G 1 2, G 2 2]) :
+    G 0 2 ≠ 0 := by
+  intro hz
+  apply hd
+  apply Matrix.det_eq_zero_of_row_eq_zero 0
+  intro j
+  have he := congrArg (fun A : Mat F => A 0 j) hform
+  fin_cases j
+  · exact he
+  · exact he
+  · exact hz
+
 end Algebra
 
 section Source
@@ -134,6 +155,7 @@ theorem rankTwo_matrixDeriv_directional
   simp only [rankTwo_matrixDeriv, rankTwo_directionalDerivation_apply,
     Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
 
+set_option maxHeartbeats 2000000 in
 /-- The actual source supplies the transported Frobenius tensor,
 including the stronger vanishing in the first Jordan direction. -/
 theorem rankTwo_source_frameTensor
@@ -199,13 +221,8 @@ theorem rankTwo_source_frameTensor
     rw [Matrix.det_mul, Matrix.det_mul, Matrix.det_transpose]
     exact mul_ne_zero (mul_ne_zero hd
       (rationalCharacteristicHessian_det_ne_zero a L hreg)) hd
-  have ha : G 0 2 ≠ 0 := by
-    intro hz
-    apply hGdet
-    apply Matrix.det_eq_zero_of_row_eq_zero 0
-    intro j
-    have he := congrArg (fun A : Matrix (Fin 3) (Fin 3) (E K) => A 0 j) hform
-    fin_cases j <;> simpa [hz] using he
+  have ha : G 0 2 ≠ 0 :=
+    rankTwo_jordan_hessian_pivot_ne_zero G hGdet hform
   have hUs (i j l : Fin 3) : U l i j = U j i l := by
     change (P * rankTwo_matrixDeriv (D l) N * M) i j =
       (P * rankTwo_matrixDeriv (D j) N * M) i l
