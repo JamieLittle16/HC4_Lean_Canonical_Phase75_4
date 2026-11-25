@@ -881,3 +881,4 @@ import HC4.Polynomial.RationalCharacteristicRankTwoFrontier
 import HC4.Polynomial.RationalCharacteristicRankTwoNormal
 import HC4.Polynomial.RationalCharacteristicRankTwoDualLine
 import HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor
+import HC4.Polynomial.RationalCharacteristicRankTwoFrame
