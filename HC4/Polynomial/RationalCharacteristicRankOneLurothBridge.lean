@@ -91,6 +91,8 @@ theorem rationalField_commonParameter_of_simpleImage
           p.eval₂ (algebraMap K (E K)) (t : E K) := by
       rw [← _root_.Polynomial.aeval_def, _root_.Polynomial.aeval_algHom]
       rfl
+    change F.val (v i) = F.val (_root_.Polynomial.aeval t (A i) /
+      _root_.Polynomial.aeval t (Q i)) at he
     rw [map_div₀, hmap, hmap] at he
     exact he
 
