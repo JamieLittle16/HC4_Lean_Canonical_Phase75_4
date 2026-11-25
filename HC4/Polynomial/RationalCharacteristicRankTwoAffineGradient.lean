@@ -188,7 +188,7 @@ theorem rankTwo_fibreEval_gradient_normal
       map_zero, mul_zero, zero_add, hQ i, hki, sub_mul, ← map_mul,
       _root_.Polynomial.derivative_mul, _root_.Polynomial.derivative_C,
       add_zero]
-    ring
+    <;> ring
   · rw [_root_.Polynomial.coeff_sub, mul_comm (Q k), _root_.Polynomial.coeff_C_mul,
       hQ0, hQ0, mul_zero, sub_self]
 
@@ -211,6 +211,112 @@ theorem rankTwo_fibreSlope_partial
   apply Finset.sum_congr rfl
   intro i _
   rw [HC4.Newton.pderiv_comm_backport j i, mul_comm]
+
+
+set_option maxHeartbeats 2000000 in
+/-- Polynomiality forces exact affine gradient transport and makes the
+left normal annihilate the full derivative of the straight direction. -/
+theorem rankTwo_fibre_affineGradient
+    (f : B K) (w b : Fin 3 → E K) (c : E K) (k : Fin 3)
+    (hw : ∀ i, rankTwo_directionalDerivation w (w i) = 0)
+    (hb : ∀ i, rankTwo_directionalDerivation w (b i) = 0)
+    (hk : b k = 1) (hc : c ≠ 0)
+    (hn : b ⬝ᵥ w = 0)
+    (hh : (hessian f).map (algebraMap (B K) (E K)) *ᵥ w = c • b) :
+    (∀ i, rankTwo_fibreEval w (pderiv i f) =
+      _root_.Polynomial.C (algebraMap (B K) (E K) (pderiv i f)) +
+        _root_.Polynomial.X * _root_.Polynomial.C (c * b i)) ∧
+    (∀ j, (∑ i : Fin 3, b i * rationalCharacteristicPartial j (w i)) = 0) := by
+  classical
+  let D := rankTwo_directionalDerivation w
+  let g := algebraMap (B K) (E K)
+  let e := rankTwo_fibreEval w
+  let R := e (pderiv k f) - _root_.Polynomial.C (g (pderiv k f))
+  let C := _root_.Polynomial.C (R := E K)
+  let t : _root_.Polynomial (E K) := _root_.Polynomial.X
+  have hrow (i : Fin 3) : ((hessian f).map g *ᵥ w) i = c * b i :=
+    congrFun hh i
+  have hg (i : Fin 3) : D (g (pderiv i f)) = c * b i :=
+    (rankTwo_referenceGradient_derivative f w i).trans (hrow i)
+  have hsum : D (g f) = ∑ i : Fin 3, w i * g (pderiv i f) := by
+    rw [show D (g f) = ∑ i : Fin 3, w i * rationalCharacteristicPartial i (g f)
+      from rankTwo_directionalDerivation_apply w (g f)]
+    simp only [g, rationalCharacteristicPartial_algebraMap]
+  have hf2 : D (D (g f)) = 0 := by
+    rw [hsum, map_sum]
+    have hw' (i : Fin 3) : D (w i) = 0 := hw i
+    simp only [Derivation.leibniz, smul_eq_mul, hg, hw', mul_zero, add_zero]
+    have hfactor : (∑ i : Fin 3, w i * (c * b i)) = c * (b ⬝ᵥ w) := by
+      rw [dotProduct, Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
+    rw [hfactor, hn, mul_zero]
+  have hf : e f = C (g f) + t * C (D (g f)) :=
+    rankTwo_fibreEval_affine_of_second_zero w hw f hf2
+  have hnormal (i : Fin 3) : e (pderiv i f) = C (g (pderiv i f)) + R * C (b i) := by
+    have h := rankTwo_fibreEval_gradient_normal f w b c k hw hb hk hh i
+    change e (pderiv i f) - C (g (pderiv i f)) = R * C (b i) at h
+    linear_combination h
+  have hcontract (j : Fin 3) :
+      R * (C (b j) + t * C (∑ i : Fin 3, b i * rationalCharacteristicPartial j (w i))) =
+        t * C (c * b j) := by
+    let d := rationalCharacteristicPartial (K := K) j
+    let r : Fin 3 → E K := fun i => d (w i)
+    have hchain : coeffDeriv d (e f) =
+        e (pderiv j f) + t * ∑ i : Fin 3, e (pderiv i f) * C (r i) := by
+      have h := rankTwo_fibreEval_partial w f j
+      change coeffDeriv d (e f) = ∑ i : Fin 3, e (pderiv i f) *
+        (C (if i = j then 1 else 0) + t * C (r i)) at h
+      rw [h]
+      simp only [mul_add, Finset.sum_add_distrib]
+      have hz : (∑ i : Fin 3, e (pderiv i f) * C (if i = j then 1 else 0)) =
+          e (pderiv j f) := by
+        rw [Finset.sum_eq_single j]
+        · simp [C]
+        · intro i _ hi
+          simp [C, hi]
+        · simp
+      rw [hz]
+      congr 1
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
+    have hdiff : d (D (g f)) = c * b j + ∑ i : Fin 3, g (pderiv i f) * r i := by
+      have h := rankTwo_fibreSlope_partial f w j
+      change d (D (g f)) = ((hessian f).map g *ᵥ w) j +
+        ∑ i : Fin 3, g (pderiv i f) * r i at h
+      rw [h, hrow]
+    have hdf : d (g f) = g (pderiv j f) :=
+      rationalCharacteristicPartial_algebraMap j f
+    have heq : coeffDeriv d (e f) =
+        C (g (pderiv j f)) +
+          t * (C (c * b j) + ∑ i : Fin 3, C (g (pderiv i f)) * C (r i)) := by
+      rw [hf]
+      change coeffDeriv d (_root_.Polynomial.C (g f) +
+        _root_.Polynomial.X * _root_.Polynomial.C (D (g f))) = _
+      simp only [map_add, Derivation.leibniz, smul_eq_mul, coeffDeriv_C,
+        coeffDeriv_X, hdf, hdiff, mul_zero, zero_add, map_sum, map_mul]
+      rfl
+    have hsum' : (∑ i : Fin 3, e (pderiv i f) * C (r i)) =
+        (∑ i : Fin 3, C (g (pderiv i f)) * C (r i)) +
+          R * C (∑ i : Fin 3, b i * r i) := by
+      simp only [hnormal, add_mul, Finset.sum_add_distrib]
+      congr 1
+      rw [map_sum, Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      rw [map_mul, mul_assoc]
+    rw [hchain, hnormal j, hsum'] at heq
+    change R * (C (b j) + t * C (∑ i : Fin 3, b i * r i)) = t * C (c * b j)
+    linear_combination heq
+  obtain ⟨hR, hr⟩ := rankTwo_gradient_scalarRigidity R b
+    (fun j => ∑ i : Fin 3, b i * rationalCharacteristicPartial j (w i)) c k hk hc hcontract
+  refine ⟨?_, hr⟩
+  intro i
+  change e (pderiv i f) = C (g (pderiv i f)) + t * C (c * b i)
+  rw [hnormal, hR, map_mul, mul_assoc]
 
 end
 end HC4.Polynomial.RankThreeCubic
