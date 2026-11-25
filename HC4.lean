@@ -849,3 +849,4 @@ import HC4.Polynomial.TransverseLeadingFirstCorrection
 -- Degree-independent rational characteristic Jacobian transport.
 import HC4.Polynomial.RationalCharacteristicTransport
 import HC4.Polynomial.RationalCharacteristicSelfAdjoint
+import HC4.Polynomial.RationalCharacteristicAdjugate

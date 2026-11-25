@@ -657,3 +657,5 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_nilpotent
 #print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicHessian_eq_slice_hessian
 #print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_rigidityInput
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_along_line
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_of_injective
