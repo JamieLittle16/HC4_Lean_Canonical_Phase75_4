@@ -54,7 +54,7 @@ theorem rankOne_constantRow_impossible_of_no_leftKernel
     let r : Fin 3 → E K := fun i => algebraMap K (E K) (b i)
     have hr : r k ≠ 0 := by
       change algebraMap K (E K) (b k) ≠ 0
-      exact map_ne_zero hk
+      simpa only [map_zero] using (algebraMap K (E K)).injective.ne hk
     have hd := rankOne_dot_zero_of_cube_zero N u r hN h3 k hr
     apply hb
     apply hno b
@@ -163,9 +163,9 @@ theorem rankOne_affine_parameter_linearParts_independent
     have hA (j : Fin 3) : A j = (-(b / a)) * D j := by
       apply mul_left_cancel₀ ha
       have he : a * (-(b / a) * D j) = -(b * D j) := by
-        field_simp [ha]
+        field_simp [ha] <;> ring
       rw [he]
-      exact eq_neg_of_add_eq_zero_left (hab j)
+      linear_combination hab j
     apply rankOne_constantRow_impossible_of_no_leftKernel N
       (fun i => u i * ((g (-(b / a)) - t) / f q)) D _ h3 hno
     intro i j
