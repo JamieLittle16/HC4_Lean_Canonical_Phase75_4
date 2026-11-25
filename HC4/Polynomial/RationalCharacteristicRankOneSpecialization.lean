@@ -26,11 +26,12 @@ private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)
 private abbrev I := Unit ⊕ Fin 3
 
-/-- Polynomial version of a cleared corrected transverse derivative. -/
+/-- Polynomial action of a cleared corrected transverse derivative.
+The fraction-field extension below is a genuine derivation; the
+divisibility argument needs only this explicit polynomial action. -/
 def rankOne_clearedPolynomialPartial
-    (a b : B K) (j l : Fin 3) : Derivation K (B K) (B K) :=
-  b • (pderiv l : Derivation K (B K) (B K)) -
-    a • (pderiv j : Derivation K (B K) (B K))
+    (a b : B K) (j l : Fin 3) (p : B K) : B K :=
+  b * pderiv l p - a * pderiv j p
 
 theorem rankOne_clearedPolynomialPartial_algebraMap
     (a b : B K) (j l : Fin 3) (p : B K) :
@@ -44,10 +45,10 @@ theorem rankOne_clearedPolynomialPartial_algebraMap
     rationalCharacteristicPartial_algebraMap]
 
 /-- An invariant fraction satisfies the cleared quotient equation
-for any polynomial derivation whose fraction-field extension
-kills that fraction. -/
+for any polynomial action agreeing with a fraction-field
+derivation that kills that fraction. -/
 theorem rationalInvariant_reducedPair_dvd
-    (D : Derivation K (B K) (B K))
+    (D : B K → B K)
     (D' : Derivation K (E K) (E K))
     (hD : ∀ f : B K, D' (algebraMap (B K) (E K) f) =
       algebraMap (B K) (E K) (D f))
@@ -114,7 +115,7 @@ theorem rankOne_velocityField_reducedPair_dvd
       e a * rationalCharacteristicPartial j z =
       e b * (rationalCharacteristicPartial l z -
         (e a / e b) * rationalCharacteristicPartial j z)
-    field_simp [hbe] <;> ring
+    field_simp [hbe]
   have hD (f : B K) : D' (e f) = e (D f) := by
     exact (rankOne_clearedPolynomialPartial_algebraMap a b j l f).symm
   apply rationalInvariant_reducedPair_dvd D D' hD p q hq hcop
