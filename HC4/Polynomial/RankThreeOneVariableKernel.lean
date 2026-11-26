@@ -4854,6 +4854,126 @@ theorem globalWeightOptimum_rankThree_relativeWronskian
       hopt hdet s p i k hps his hks hip hkp hki r hgrad
 
 
+/-- A relative rational function admits a polynomial numerator and
+denominator supported only in the omitted coordinate. -/
+theorem rankThree_relativeFraction_polynomials
+    (s : Fin 4) (z : E K)
+    (hz : ∀ j, j ≠ s → rankThreePartial j z = 0) :
+    ∃ p q : B K, q ≠ 0 ∧
+      (∀ j, j ≠ s → pderiv j p = 0 ∧ pderiv j q = 0) ∧
+      algebraMap (B K) (E K) q * z = algebraMap (B K) (E K) p := by
+  let f := algebraMap (B K) (E K)
+  let p := IsFractionRing.num (B K) z
+  let q : B K := IsFractionRing.den (B K) z
+  have hq : q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) z)
+  have hqf : f q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hq
+  have hrepr : f p / f q = z := IsFractionRing.mk'_num_den' (B K) z
+  refine ⟨p,q,hq,fun j hj => rankOnePartial_num_den_independent z s hz j hj,?_⟩
+  change f q * z = f p
+  rw [← hrepr,mul_comm,div_mul_cancel₀ _ hqf]
+
+/-- Common-denominator polynomial phase, with actual relative
+coefficient derivatives. This does not substitute any rational map
+into the polynomial source. -/
+theorem rankThree_relativePhase_clearDenominators
+    (s : Fin 4) (A B₀ : E K)
+    (hA : ∀ j, j ≠ s → rankThreePartial j A = 0)
+    (hB : ∀ j, j ≠ s → rankThreePartial j B₀ = 0) :
+    ∃ q a b : B K, q ≠ 0 ∧
+      (∀ j, j ≠ s → pderiv j q = 0 ∧ pderiv j a = 0 ∧ pderiv j b = 0) ∧
+      algebraMap (B K) (E K) q * A = algebraMap (B K) (E K) a ∧
+      algebraMap (B K) (E K) q * B₀ = algebraMap (B K) (E K) b := by
+  obtain ⟨p,q,hq,hder,hrep⟩ := rankThree_relativeFraction_polynomials s A hA
+  obtain ⟨t,r,hr,hder',hrep'⟩ := rankThree_relativeFraction_polynomials s B₀ hB
+  let f := algebraMap (B K) (E K)
+  refine ⟨q*r,p*r,q*t,mul_ne_zero hq hr,?_,?_,?_⟩
+  · intro j hj
+    simp only [Derivation.leibniz,smul_eq_mul,(hder j hj).1,(hder j hj).2,
+      (hder' j hj).1,(hder' j hj).2,mul_zero,add_zero]
+    exact ⟨rfl,rfl,rfl⟩
+  · change f (q*r)*A = f (p*r)
+    rw [map_mul,map_mul,show f q*f r*A = f r*(f q*A) by ring,hrep,mul_comm]
+  · change f (q*r)*B₀ = f (q*t)
+    rw [map_mul,map_mul,mul_assoc,hrep']
+
+/-- The polynomial second-order jet determinant of the cleared phase.
+Rows are coefficients of the phase and its first two derivatives. -/
+def rankThreePhaseJetDet (s : Fin 4) (q a b : B K) : B K :=
+  q * (pderiv s a * pderiv s (pderiv s b) -
+      pderiv s b * pderiv s (pderiv s a)) -
+  a * (pderiv s q * pderiv s (pderiv s b) -
+      pderiv s b * pderiv s (pderiv s q)) +
+  b * (pderiv s q * pderiv s (pderiv s a) -
+      pderiv s a * pderiv s (pderiv s q))
+
+set_option maxHeartbeats 4000000 in
+/-- Clearing the two phase ratios multiplies the Wronskian by
+the cube of their common denominator. -/
+theorem rankThree_phaseJetDet_ne_zero
+    (s : Fin 4) (q a b : B K) (hq : q ≠ 0)
+    (A B₀ : E K)
+    (ha : algebraMap (B K) (E K) q * A = algebraMap (B K) (E K) a)
+    (hb : algebraMap (B K) (E K) q * B₀ = algebraMap (B K) (E K) b)
+    (hW : rankThreePartial s A * rankThreePartial s (rankThreePartial s B₀) -
+      rankThreePartial s B₀ * rankThreePartial s (rankThreePartial s A) ≠ 0) :
+    rankThreePhaseJetDet s q a b ≠ 0 := by
+  let f := algebraMap (B K) (E K)
+  let D := rankThreePartial (K := K) s
+  have hmap (T : B K) : D (f T) = f (pderiv s T) := rankThreePartial_map s T
+  have hdiff (T : B K) (z : E K) (h : f q*z = f T) :
+      f (pderiv s T) = f q*D z + f (pderiv s q)*z := by
+    have he := congrArg D h
+    change D (f q*z) = D (f T) at he
+    simp only [Derivation.leibniz,smul_eq_mul,hmap] at he
+    linear_combination -he
+  have hdiff2 (T : B K) (z : E K) (h : f q*z = f T) :
+      f (pderiv s (pderiv s T)) =
+        f q*D (D z) + 2*f (pderiv s q)*D z + f (pderiv s (pderiv s q))*z := by
+    have he := congrArg D (hdiff T z h)
+    change D (f (pderiv s T)) = D (f q*D z + f (pderiv s q)*z) at he
+    simp only [map_add,Derivation.leibniz,smul_eq_mul,hmap] at he
+    linear_combination he
+  have he : f (rankThreePhaseJetDet s q a b) =
+      f q ^ 3 * (D A * D (D B₀) - D B₀ * D (D A)) := by
+    unfold rankThreePhaseJetDet
+    simp only [map_add,map_sub,map_mul]
+    rw [hdiff2 a A ha,hdiff2 b B₀ hb,hdiff a A ha,hdiff b B₀ hb,← ha,← hb]
+    ring
+  have hqf : f q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hq
+  intro hz
+  rw [hz,map_zero] at he
+  exact (mul_ne_zero (pow_ne_zero _ hqf) hW) he.symm
+
+/-- Choose one K-point simultaneously avoiding the polynomial
+phase denominator, its Wronskian, and any further nonzero
+polynomial factor (for example the scalar coefficient denominator
+and numerator). Characteristic zero supplies infinitude. -/
+theorem rankThree_phaseJet_regularPoint
+    (s : Fin 4) (q a b T : B K)
+    (hq : q ≠ 0) (hW : rankThreePhaseJetDet s q a b ≠ 0) (hT : T ≠ 0) :
+    ∃ x : Fin 4 → K,
+      MvPolynomial.aeval x q ≠ 0 ∧
+      MvPolynomial.aeval x (rankThreePhaseJetDet s q a b) ≠ 0 ∧
+      MvPolynomial.aeval x T ≠ 0 := by
+  classical
+  have hprod : q * rankThreePhaseJetDet s q a b * T ≠ 0 :=
+    mul_ne_zero (mul_ne_zero hq hW) hT
+  have hex : ∃ x : Fin 4 → K,
+      MvPolynomial.aeval x (q * rankThreePhaseJetDet s q a b * T) ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    apply hprod
+    apply MvPolynomial.funext
+    intro x
+    rw [hn x,map_zero]
+  obtain ⟨x,hx⟩ := hex
+  simp only [map_mul] at hx
+  exact ⟨x,(mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hx).1).1,
+    (mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hx).1).2,(mul_ne_zero_iff.mp hx).2⟩
+
+
 end
 end HC4.Polynomial
 
@@ -4973,3 +5093,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_normalizedWall_impossible_of_top
 
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_relativeWronskian
+
+#print axioms HC4.Polynomial.rankThree_relativeFraction_polynomials
+#print axioms HC4.Polynomial.rankThree_relativePhase_clearDenominators
+#print axioms HC4.Polynomial.rankThree_phaseJetDet_ne_zero
+#print axioms HC4.Polynomial.rankThree_phaseJet_regularPoint
