@@ -800,7 +800,8 @@ theorem rankOne_initialForm_single_power
   have hu' := rankOne_single_support_of_partialConstants Q s hQ u hQ_u
   have hwu := initialForm_isWeightedHomogeneous w d Q hu
   have hw_single (n : ℕ) : Finsupp.weight w (Finsupp.single s n) = (n : ℤ) * w s := by
-    simp [Finsupp.weight_apply, Finsupp.sum_single_index, nsmul_eq_mul]
+    rw [Finsupp.weight_single]
+    simp [nsmul_eq_mul]
   have hdeg : (u s : ℤ) * w s = d := by
     calc
       _ = Finsupp.weight w (Finsupp.single s (u s)) := (hw_single _).symm
@@ -876,6 +877,29 @@ theorem rankOne_weighted_relativeRatio_cross_power
   refine ⟨n,t,c,e,hc,he0,by omega,?_⟩
   rwa [hQn,hPt] at he
 
+/-- At zero omitted weight, a nonzero relative ratio cannot
+connect distinct homogeneous weights. -/
+theorem rankOne_weighted_relativeRatio_zeroWeight
+    (w : σ → ℤ) (s : σ) (hs : w s = 0) (a b : ℤ)
+    (A B : R σ K) (hB0 : B ≠ 0)
+    (hA : MvPolynomial.IsWeightedHomogeneous w A a)
+    (hB : MvPolynomial.IsWeightedHomogeneous w B b)
+    (P Q : R σ K) (hQ0 : Q ≠ 0) (hcross : B * Q = A * P)
+    (hP : ∀ i, i ≠ s → pderiv i P = 0)
+    (hQ : ∀ i, i ≠ s → pderiv i Q = 0) :
+    a = b := by
+  classical
+  have hzero (T : R σ K) (hT : ∀ i, i ≠ s → pderiv i T = 0) :
+      MvPolynomial.IsWeightedHomogeneous w T 0 := by
+    intro u hu
+    rw [rankOne_single_support_of_partialConstants T s hT u hu,
+      Finsupp.weight_single, hs, smul_zero]
+  have h1 := hB.mul (hzero Q hQ)
+  have h2 := hA.mul (hzero P hP)
+  rw [← hcross] at h2
+  have he := MvPolynomial.IsWeightedHomogeneous.inj_right (mul_ne_zero hB0 hQ0) h2 h1
+  simpa using he
+
 end WeightedRatio
 
 
@@ -899,3 +923,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankOne_single_support_of_partialConstants
 #print axioms HC4.Polynomial.rankOne_initialForm_single_power
 #print axioms HC4.Polynomial.rankOne_weighted_relativeRatio_cross_power
+
+#print axioms HC4.Polynomial.rankOne_weighted_relativeRatio_zeroWeight
