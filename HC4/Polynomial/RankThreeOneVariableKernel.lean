@@ -674,6 +674,208 @@ theorem rankThree_zeroRow_rankTwo_principalCofactor_zero
 end Matrix
 
 
+section ActiveBlock
+
+variable {F : Type*} [Field F]
+
+/-- A singular symmetric active block together with the actual
+normalized kernel makes all three non-omitted Hessian rows
+proportional after restricting to the non-omitted columns.
+
+This is a partial Hessian assertion, not a claim that the full
+four-variable Hessian has rank at most one. -/
+theorem rankThree_activeMinor_zero_all_restrictedMinors
+    (H : Matrix (Fin 4) (Fin 4) F) (hs : ∀ i j, H i j = H j i)
+    (k l u v : Fin 4) (hkl : k ≠ l)
+    (hcover : ∀ i, i = k ∨ i = l ∨ i = u ∨ i = v)
+    (V : Fin 4 → F) (hVk : V k = 0) (hVl : V l = 1)
+    (hV : H *ᵥ V = 0)
+    (hku : k ≠ u) (hkv : k ≠ v) (hlu : l ≠ u) (hlv : l ≠ v) (huv : u ≠ v)
+    (hminor : rankTwoPrincipalPivot H u v = 0) :
+    ∀ i j p q : Fin 4, i ≠ k → j ≠ k → p ≠ k → q ≠ k →
+      H i p * H j q = H i q * H j p := by
+  classical
+  have hrepr : V = (Pi.single l (1 : F) : Fin 4 → F) +
+      Pi.single u (V u) + Pi.single v (V v) := by
+    funext i
+    rcases hcover i with h | h | h | h
+    · subst i
+      simp [hVk, hkl, hku, hkv]
+    · subst i
+      simp [hVl, hlu, hlv]
+    · subst i
+      simp [Ne.symm hlu, huv]
+    · subst i
+      simp [Ne.symm hlv, Ne.symm huv]
+  have hcol (i : Fin 4) : H i l = -(H i u * V u + H i v * V v) := by
+    have he := congrArg (fun x : Fin 4 → F => H *ᵥ x) hrepr
+    rw [hV, Matrix.mulVec_add, Matrix.mulVec_add, Matrix.mulVec_single,
+      Matrix.mulVec_single, Matrix.mulVec_single] at he
+    have hh := congrFun he i
+    change 0 = H i l * 1 + H i u * V u + H i v * V v at hh
+    linear_combination -hh
+  have hrow (i : Fin 4) : H l i = -(H u i * V u + H v i * V v) := by
+    rw [hs l i, hcol i, hs i u, hs i v]
+  have hbase (i j : Fin 4) (hi : i ≠ k) (hj : j ≠ k) :
+      H i u * H j v = H i v * H j u := by
+    rcases hcover i with he | he | he | he
+    · exact (hi he).elim
+    · subst i
+      rcases hcover j with he | he | he | he
+      · exact (hj he).elim
+      · subst j
+        ring
+      · subst j
+        rw [hrow u, hrow v]
+        unfold rankTwoPrincipalPivot at hminor
+        linear_combination V v * hminor
+      · subst j
+        rw [hrow u, hrow v]
+        unfold rankTwoPrincipalPivot at hminor
+        linear_combination -V u * hminor
+    · subst i
+      rcases hcover j with he | he | he | he
+      · exact (hj he).elim
+      · subst j
+        rw [hrow u, hrow v]
+        unfold rankTwoPrincipalPivot at hminor
+        linear_combination -V v * hminor
+      · subst j
+        ring
+      · subst j
+        exact sub_eq_zero.mp hminor
+    · subst i
+      rcases hcover j with he | he | he | he
+      · exact (hj he).elim
+      · subst j
+        rw [hrow u, hrow v]
+        unfold rankTwoPrincipalPivot at hminor
+        linear_combination V u * hminor
+      · subst j
+        unfold rankTwoPrincipalPivot at hminor
+        linear_combination -hminor
+      · subst j
+        ring
+  intro i j p q hi hj hp hq
+  have h := hbase i j hi hj
+  rcases hcover p with he | he | he | he
+  · exact (hp he).elim
+  · subst p
+    rcases hcover q with he | he | he | he
+    · exact (hq he).elim
+    · subst q
+      ring
+    · subst q
+      rw [hcol i, hcol j]
+      linear_combination V v * h
+    · subst q
+      rw [hcol i, hcol j]
+      linear_combination -V u * h
+  · subst p
+    rcases hcover q with he | he | he | he
+    · exact (hq he).elim
+    · subst q
+      rw [hcol i, hcol j]
+      linear_combination -V v * h
+    · subst q
+      ring
+    · subst q
+      exact h
+  · subst p
+    rcases hcover q with he | he | he | he
+    · exact (hq he).elim
+    · subst q
+      rw [hcol i, hcol j]
+      linear_combination V u * h
+    · subst q
+      linear_combination -h
+    · subst q
+      ring
+
+end ActiveBlock
+
+set_option maxHeartbeats 4000000 in
+/-- Rank-two velocity drift implies that the actual polynomial
+Hessian restricted to the three non-omitted variables has every
+two-by-two minor zero. The conclusion descends to the polynomial
+ring, without adjoining parameters or changing the source. -/
+theorem rankThree_rankTwoVelocity_restrictedMinors_zero
+    (L : B K) (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hm : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p) :
+    ∀ i j p q : Fin 4, i ≠ l.succAbove a → j ≠ l.succAbove a →
+      p ≠ l.succAbove a → q ≠ l.succAbove a →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let H := (hessian L).map f
+  let B₀ := H.submatrix l.succAbove l.succAbove
+  let J := rankThreeComplementJacobian l V
+  let k := l.succAbove a
+  let u := l.succAbove (a.succAbove 0)
+  let v := l.succAbove (a.succAbove 1)
+  have hB : B₀.det ≠ 0 := by
+    intro hz
+    apply hreg
+    have he : f ((hessian L).submatrix l.succAbove l.succAbove).det = 0 := by
+      rw [RingHom.map_det]
+      exact hz
+    have hd : ((hessian L).submatrix l.succAbove l.succAbove).det = 0 :=
+      IsFractionRing.injective (B K) (E K) (he.trans (map_zero f).symm)
+    rw [Matrix.adjugate_fin_succ_eq_det_submatrix, hd, mul_zero]
+  have hself : J.transpose * B₀ = B₀ * J :=
+    (rankThree_complement_selfAdjoint L l V hVl hV).symm
+  have h3 : J ^ 3 = 0 := rankThree_complement_cube_zero L l V hVl hreg hV
+  have ha : ∀ j, J a j = 0 := rankThree_complement_zeroRow l V a hVk
+  have hc := rankThree_zeroRow_rankTwo_principalCofactor_zero B₀ J a hB hself h3 ha hm
+  have hminor : rankTwoPrincipalPivot H u v = 0 := by
+    rw [Matrix.adjugate_fin_succ_eq_det_submatrix] at hc
+    have hz : (B₀.submatrix a.succAbove a.succAbove).det = 0 :=
+      (mul_eq_zero.mp hc).resolve_left (pow_ne_zero _ (neg_ne_zero.mpr one_ne_zero))
+    rw [Matrix.det_fin_two] at hz
+    exact hz
+  have hs (i j : Fin 4) : H i j = H j i :=
+    congrArg f (pderiv_comm_backport j i L)
+  have hkl : k ≠ l := Fin.succAbove_ne l a
+  have hku : k ≠ u := by
+    intro he
+    exact (Fin.succAbove_ne a 0) (Fin.succAbove_right_injective he).symm
+  have hkv : k ≠ v := by
+    intro he
+    exact (Fin.succAbove_ne a 1) (Fin.succAbove_right_injective he).symm
+  have hlu : l ≠ u := Ne.symm (Fin.succAbove_ne l _)
+  have hlv : l ≠ v := Ne.symm (Fin.succAbove_ne l _)
+  have huv : u ≠ v := by
+    intro he
+    have hz : (0 : Fin 2) = 1 :=
+      Fin.succAbove_right_injective (Fin.succAbove_right_injective he)
+    exact (by decide : (0 : Fin 2) ≠ 1) hz
+  have hcover (i : Fin 4) : i = k ∨ i = l ∨ i = u ∨ i = v := by
+    by_cases hi : i = l
+    · exact Or.inr (Or.inl hi)
+    obtain ⟨b,hb⟩ := Fin.exists_succAbove_eq hi
+    by_cases hba : b = a
+    · left
+      rw [← hb,hba]
+    obtain ⟨c,hc⟩ := Fin.exists_succAbove_eq hba
+    have he : c = 0 ∨ c = 1 := by fin_cases c <;> simp
+    rcases he with he | he
+    · right; right; left
+      rw [← hb,← hc,he]
+    · right; right; right
+      rw [← hb,← hc,he]
+  intro i j p q hi hj hp hq
+  have he := rankThree_activeMinor_zero_all_restrictedMinors H hs k l u v hkl
+    hcover V hVk hVl hV hku hkv hlu hlv huv hminor i j p q hi hj hp hq
+  apply IsFractionRing.injective (B K) (E K)
+  change f (hessian L i p * hessian L j q) = f (hessian L i q * hessian L j p)
+  simp only [map_mul]
+  exact he
+
+
 end
 end HC4.Polynomial
 
@@ -694,3 +896,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_normalizedKernel_acceleration_zero
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_complementJacobian_ne_zero
 #print axioms HC4.Polynomial.rankThree_zeroRow_rankTwo_principalCofactor_zero
+
+#print axioms HC4.Polynomial.rankThree_activeMinor_zero_all_restrictedMinors
+#print axioms HC4.Polynomial.rankThree_rankTwoVelocity_restrictedMinors_zero
