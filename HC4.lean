@@ -906,3 +906,4 @@ import HC4.Polynomial.OneZeroWeightTerminal
 import HC4.Polynomial.NonnegativeTerminalAssembly
 import HC4.Polynomial.WeightedFirstWall
 import HC4.Polynomial.WeightedFixedSourceDescent
+import HC4.Polynomial.WeightedLinearOrbit
