@@ -5895,6 +5895,7 @@ theorem rankThree_clearedPhase_normalize_impossible
     rw [← hFX]
     by_cases hi : i = s
     · subst i
+      rw [show v s = 0 by simp [v]]
       change (F (X (e 0))).IsWeightedHomogeneous rankThreeWallDegree 0
       rw [hX0]
       exact (MvPolynomial.isWeightedHomogeneous_C _ _).add
@@ -5938,14 +5939,30 @@ theorem rankThree_clearedPhase_normalize_impossible
   have hN0 := rankThree_relativePolynomial_slope (F N) 0 (MvPolynomial.aeval x N)
     hNjet.1 (fun j hj => (Nat.not_lt_zero j hj).elim) (by simpa using hNjet.2.2.2.1)
   have hphase : F (q*X (e 1)+a*X (e 2)+b*X (e 3)) = T := by
-    have hx1 := hX 0
-    have hx2 := hX 1
-    have hx3 := hX 2
+    have hFC (c : K) : F (MvPolynomial.C c) = MvPolynomial.C c := by
+      simpa only [MvPolynomial.algebraMap_eq] using F.commutes c
+    have hRval (j : Fin 3) : F (R j) =
+        MvPolynomial.C (M 0 j) * F q + MvPolynomial.C (M 1 j) * F a +
+          MvPolynomial.C (M 2 j) * F b := by
+      change F (∑ i : Fin 3, MvPolynomial.C (M i j) *
+        (![q,a,b] : Fin 3 → B K) i) = _
+      rw [Fin.sum_univ_three]
+      change F (MvPolynomial.C (M 0 j) * q + MvPolynomial.C (M 1 j) * a +
+        MvPolynomial.C (M 2 j) * b) = _
+      simp only [map_add,map_mul,hFC]
+    have hx (i : Fin 3) : F (X (e i.succ)) =
+        MvPolynomial.C (M i 0) * X 1 + MvPolynomial.C (M i 1) * X 2 +
+          MvPolynomial.C (M i 2) * X 3 := by
+      simpa only [Fin.sum_univ_three] using hX i
+    have hx1 := hx 0
+    have hx2 := hx 1
+    have hx3 := hx 2
     change F (X (e 1)) = _ at hx1
     change F (X (e 2)) = _ at hx2
     change F (X (e 3)) = _ at hx3
-    simp only [map_add,map_mul,hx1,hx2,hx3,T,S,R,map_sum,
-      Fin.sum_univ_three,MvPolynomial.aeval_C]
+    change F (q*X (e 1)+a*X (e 2)+b*X (e 3)) =
+      F (R 0)*X 1+F (R 1)*X 2+F (R 2)*X 3
+    simp only [map_add,map_mul,hx1,hx2,hx3,hRval]
     ring
   have heq' := congrArg F heq
   change F (D * initialForm v (n : ℤ) P) =
