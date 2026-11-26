@@ -247,6 +247,7 @@ human architecture guide.
   - `HC4.Polynomial.WeightedComplementaryHessian`
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
   - `HC4.Polynomial.WeightedComplementaryKernel`
+  - `HC4.Polynomial.WeightedExtremalObstruction`
   - `HC4.Polynomial.WeightedFirstWall`
   - `HC4.Polynomial.WeightedFixedSourceDescent`
   - `HC4.Polynomial.WeightedGlobalOptimum`
@@ -2232,6 +2233,8 @@ human architecture guide.
 - `HC4.Polynomial.WeightedComplementaryKernel`
   - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
+- `HC4.Polynomial.WeightedExtremalObstruction`
+  - `HC4.Polynomial.WeightedGlobalOptimum`
 - `HC4.Polynomial.WeightedFirstWall`
   - `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `HC4.Polynomial.WeightedFixedSourceDescent`

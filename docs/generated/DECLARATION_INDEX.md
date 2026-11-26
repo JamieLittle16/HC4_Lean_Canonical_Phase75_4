@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11696**.
+Distinct declaration spellings indexed: **11702**.
 
 ## Repeated declaration spellings
 
@@ -2242,6 +2242,8 @@ Distinct declaration spellings indexed: **11696**.
 - `IsExposedFace.weight_eq` — `theorem` in `HC4.Newton.ExposedFaces`
 - `IsExposedFace.weight_le` — `theorem` in `HC4.Newton.ExposedFaces`
 - `IsFourCoordinateChart` — `def` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
+- `IsGlobalWeightOptimum` — `def` in `HC4.Polynomial.WeightedExtremalObstruction`
+- `IsGlobalWeightOptimum.substitution` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
 - `IsIntegralKernelBlowup` — `def` in `HC4.Valuation.IntegralKernelBlowup`
 - `IsIntegralWeightedHomogeneous` — `def` in `HC4.Newton.TerminalConformalWeight`
 - `IsLexMaxOn` — `def` in `HC4.Newton.LexicographicRefinement`
@@ -5552,6 +5554,7 @@ Distinct declaration spellings indexed: **11696**.
 - `exists_constantTransverseShear_layerDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `exists_coordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
 - `exists_counterexample_fullSupport_face` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
+- `exists_counterexample_globalWeightOptimum` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
 - `exists_cubicCorrection_ne_zero_of_singular` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `exists_degree_one_repeated_irreducible_of_cubic_degree` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_denominatorClearedSpecialSchurKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
@@ -6479,6 +6482,8 @@ Distinct declaration spellings indexed: **11696**.
 - `globalRestartProgress_of_defect_lt` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_positiveKernelDefectDrop` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_repair` — `theorem` in `HC4.Newton.GlobalRestartClassification`
+- `globalWeightOptimum_no_improvingSlope` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
+- `globalWeightOptimum_no_missing_coordinate` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
 - `gradientAtZero_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedZeroLinearJetKernelOpening`
 - `gradientAtZero_transverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `gradientAtZero_tripleTransverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
@@ -11927,6 +11932,7 @@ Distinct declaration spellings indexed: **11696**.
 - `weightedLinearSubstitution_initialForm` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_isWeightLE` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_monomial_homogeneous` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
+- `weightedLinearSubstitution_one` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
 - `weightedLinearSubstitution_partial` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
 - `weightedLinearSubstitution_totalDegree_le` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weightedLinearSubstitution_zero_adjugate_column` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
