@@ -94,7 +94,7 @@ theorem singularHessian_exists_constant_adjugate_annihilator
   have hs : H.IsSymm := by
     apply Matrix.IsSymm.ext
     intro i j
-    change pderiv j (pderiv i L) = pderiv i (pderiv j L)
+    change pderiv i (pderiv j L) = pderiv j (pderiv i L)
     rw [HC4.Newton.pderiv_comm_backport]
   obtain ⟨k, hk⟩ := singular_symmetric_exists_principalCofactor H hs hdet hzero
   let e : I ≃ I := Equiv.swap (.inl ()) k
@@ -110,9 +110,14 @@ theorem singularHessian_exists_constant_adjugate_annihilator
   have hH : hessian L' = (H.submatrix e e).map f.toRingHom :=
     singularHessian_rename e L
   have hd' : (hessian L').det = 0 := by
-    rw [hH, ← RingHom.map_det, Matrix.det_submatrix_equiv_self, show H.det = 0 from hdet, map_zero]
+    rw [hH]
+    change (f.toRingHom.mapMatrix (H.submatrix e e)).det = 0
+    rw [← RingHom.map_det, Matrix.det_submatrix_equiv_self, show H.det = 0 from hdet, map_zero]
   have hadj : (hessian L').adjugate = (H.adjugate.submatrix e e).map f.toRingHom := by
-    rw [hH, ← f.toRingHom.map_adjugate, Matrix.adjugate_submatrix_equiv_self]
+    rw [hH]
+    change (f.toRingHom.mapMatrix (H.submatrix e e)).adjugate =
+      f.toRingHom.mapMatrix (H.adjugate.submatrix e e)
+    rw [← f.toRingHom.map_adjugate, Matrix.adjugate_submatrix_equiv_self]
   have htrans : ((hessian L').submatrix Sum.inr Sum.inr).det ≠ 0 := by
     rw [← longitudinal_principalCofactor_eq_transverseDet, hadj]
     change f (H.adjugate (e (.inl ())) (e (.inl ()))) ≠ 0
