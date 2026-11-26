@@ -3429,6 +3429,197 @@ theorem counterexample_rankThree_zeroWeight_relative_frontier
     rankThree_kernel_relative_of_gradient_ratios L s l l hls
       (hnon l hls) hreg V hVk hVl hV r hrs hrows hgrad hconst⟩
 
+/-- Equal active weights are a positive scalar multiple of ordinary
+transverse degree (the omitted coordinate has degree zero). -/
+def rankThreeRelativeNatWeight (s : Fin 4) (i : Fin 4) : ℕ :=
+  if i = s then 0 else 1
+
+theorem rankThree_equalWeights_factor
+    (w : Fin 4 → ℤ) (s : Fin 4) (q : ℤ)
+    (hws : w s = 0) (hw : ∀ i, i ≠ s → w i = q)
+    (u : Fin 4 →₀ ℕ) :
+    Finsupp.weight w u =
+      q * (Finsupp.weight (rankThreeRelativeNatWeight s) u : ℕ) := by
+  classical
+  simp only [Finsupp.weight_apply,Finsupp.sum,Nat.cast_sum,Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro i hi
+  by_cases hs : i = s
+  · subst i
+    simp [hws,rankThreeRelativeNatWeight]
+  · rw [hw i hs]
+    simp [rankThreeRelativeNatWeight,hs,nsmul_eq_mul,mul_comm]
+
+/-- The actual leading layer has an integral transverse degree.
+The original source has no support above that degree. -/
+theorem rankThree_relativeDegree
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ) (s p : Fin 4)
+    (hps : p ≠ s) (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hws : w s = 0) (heq : ∀ i, i ≠ s → w i = w p)
+    (hcap : IsWeightLE w m P)
+    (hnon : hessian (initialForm w m P) p p ≠ 0) :
+    ∃ n : ℕ, 2 ≤ n ∧ 0 < w p ∧ m = w p * (n : ℤ) ∧
+      (initialForm w m P).IsWeightedHomogeneous (rankThreeRelativeNatWeight s) n ∧
+      ∀ u ∈ P.support, Finsupp.weight (rankThreeRelativeNatWeight s) u ≤ n := by
+  classical
+  let L := initialForm w m P
+  have hL0 : L ≠ 0 := by
+    intro hz
+    apply hnon
+    change pderiv p (pderiv p L) = 0
+    rw [hz,map_zero,map_zero]
+  obtain ⟨u,hu⟩ : ∃ u : Fin 4 →₀ ℕ, coeff u L ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    apply hL0
+    ext u
+    rw [hn u,coeff_zero]
+  let n := Finsupp.weight (rankThreeRelativeNatWeight s) u
+  have hL := initialForm_isWeightedHomogeneous w m P
+  have hfactor (v : Fin 4 →₀ ℕ) := rankThree_equalWeights_factor w s (w p) hws heq v
+  have hn : m = w p * (n : ℤ) := (hL hu).symm.trans (hfactor u)
+  have hq : 0 < w p := by
+    by_contra hnq
+    have hz : w p = 0 := by omega
+    rw [hz,zero_mul] at hn
+    omega
+  have h2 : 2 * w p ≤ m := by
+    by_contra hn
+    exact hnon (eq_zero_of_nonnegativeWeight_negative_cap w hw _ (by omega) _
+      (isWeightLE_of_isWeightedHomogeneous (hessian_entry_isWeightedHomogeneous hL p p)))
+  have hn2 : 2 ≤ n := by
+    by_contra hn'
+    have hh : (n : ℤ) ≤ 1 := by omega
+    have he := mul_le_mul_of_nonneg_left hh (hw p)
+    rw [← hn,mul_one] at he
+    omega
+  refine ⟨n,hn2,hq,hn,?_,?_⟩
+  · intro v hv
+    have hh := hL hv
+    rw [hfactor,hn] at hh
+    exact_mod_cast mul_left_cancel₀ (ne_of_gt hq) hh
+  · intro v hv
+    have hh := hcap hv
+    rw [hfactor,hn] at hh
+    by_contra hbad
+    have hlt : (n : ℤ) < (Finsupp.weight (rankThreeRelativeNatWeight s) v : ℕ) := by
+      exact_mod_cast lt_of_not_ge hbad
+    exact (not_lt_of_ge hh) (mul_lt_mul_of_pos_left hlt hq)
+
+/-- A rank-one restricted block of a bordered four-by-four matrix
+cannot be invertible. The proof uses only determinant-preserving
+row operations, over a field. -/
+theorem rankThree_borderedRankOne_det_zero
+    {F : Type*} [Field F] (H : Matrix (Fin 4) (Fin 4) F)
+    (s p i k : Fin 4)
+    (hps : p ≠ s) (his : i ≠ s) (hks : k ≠ s)
+    (hip : i ≠ p) (hkp : k ≠ p) (hik : i ≠ k)
+    (hp : H p p ≠ 0)
+    (hmin : ∀ a b c d : Fin 4, a ≠ s → b ≠ s → c ≠ s → d ≠ s →
+      H a c * H b d = H a d * H b c) :
+    H.det = 0 := by
+  classical
+  let r := H i p / H p p
+  let t := H k p / H p p
+  have hr : r * H p p = H i p := div_mul_cancel₀ _ hp
+  have ht : t * H p p = H k p := div_mul_cancel₀ _ hp
+  let A := H.updateRow i (H i + (-r) • H p)
+  let B := A.updateRow k (A k + (-t) • A p)
+  have hA : A.det = H.det := Matrix.det_updateRow_add_smul_self H hip (-r)
+  have hB : B.det = A.det := Matrix.det_updateRow_add_smul_self A hkp (-t)
+  have hAi (j : Fin 4) : A i j = H i j - r * H p j := by
+    simp [A,Matrix.updateRow_self,sub_eq_add_neg]
+  have hBk (j : Fin 4) : B k j = H k j - t * H p j := by
+    simp [B,A,Matrix.updateRow_self,Matrix.updateRow_ne,Ne.symm hik,Ne.symm hip,sub_eq_add_neg]
+  have hBi (j : Fin 4) : B i j = A i j := by
+    simp [B,Matrix.updateRow_ne,hik]
+  have hi (j : Fin 4) (hj : j ≠ s) : B i j = 0 := by
+    rw [hBi,hAi]
+    have he := hmin i p j p his hps hj hps
+    apply mul_left_cancel₀ hp
+    linear_combination he - H p j * hr
+  have hk (j : Fin 4) (hj : j ≠ s) : B k j = 0 := by
+    rw [hBk]
+    have he := hmin k p j p hks hps hj hps
+    apply mul_left_cancel₀ hp
+    linear_combination he - H p j * ht
+  have hzero : B.det = 0 := by
+    by_cases hz : B i s = 0
+    · apply Matrix.det_eq_zero_of_row_eq_zero i
+      intro j
+      by_cases hj : j = s
+      · rwa [hj]
+      · exact hi j hj
+    · let c := -(B k s / B i s)
+      let C := B.updateRow k (B k + c • B i)
+      have hd : C.det = B.det := Matrix.det_updateRow_add_smul_self B (Ne.symm hik) c
+      rw [← hd]
+      apply Matrix.det_eq_zero_of_row_eq_zero k
+      intro j
+      change (B.updateRow k (B k + c • B i)) k j = 0
+      rw [Matrix.updateRow_self]
+      change B k j + c * B i j = 0
+      by_cases hj : j = s
+      · subst j
+        dsimp [c]
+        rw [neg_mul,div_mul_cancel₀ _ hz,add_neg_cancel]
+      · rw [hi j hj,hk j hj,mul_zero,add_zero]
+  rw [← hA,← hB,hzero]
+
+/-- The quadratic transverse case is impossible for the actual full
+source: its transverse Hessian is exactly the leading rank-one block,
+and adding a single omitted row and column cannot restore rank four. -/
+theorem rankThree_zeroWeight_degreeTwo_impossible
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ) (s p : Fin 4)
+    (hps : p ≠ s) (hw : ∀ i, 0 ≤ w i)
+    (hws : w s = 0) (heq : ∀ i, i ≠ s → w i = w p)
+    (hm : m = 2 * w p) (hcap : IsWeightLE w m P)
+    (hdet : hessianDeterminant P = 1)
+    (hnon : hessian (initialForm w m P) p p ≠ 0)
+    (hmin : let L := initialForm w m P
+      ∀ i j a b : Fin 4, i ≠ s → j ≠ s → a ≠ s → b ≠ s →
+        hessian L i a * hessian L j b = hessian L i b * hessian L j a) :
+    False := by
+  classical
+  let L := initialForm w m P
+  let f := algebraMap (B K) (E K)
+  let H := (hessian P).map f
+  have he (i j : Fin 4) (hi : i ≠ s) (hj : j ≠ s) :
+      hessian L i j = hessian P i j := by
+    have hz : m-w i-w j = 0 := by rw [hm,heq i hi,heq j hj]; ring
+    have hb : IsWeightLE w 0 (hessian P i j) := by
+      rw [← hz]
+      exact hcap.hessian_entry i j
+    have hh : (hessian P i j).IsWeightedHomogeneous w 0 := by
+      intro u hu
+      have hle := hb (MvPolynomial.mem_support_iff.mpr hu)
+      have hge : 0 ≤ Finsupp.weight w u := by
+        rw [Finsupp.weight_apply,Finsupp.sum]
+        exact Finset.sum_nonneg (fun a _ => nsmul_nonneg (hw a) _)
+      omega
+    change hessian (initialForm w m P) i j = _
+    rw [hessian_initialForm_entry,hz,initialForm_eq_self_of_isWeightedHomogeneous hh]
+  have hp : H p p ≠ 0 := by
+    change f (hessian P p p) ≠ 0
+    rw [← he p p hps hps]
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hnon
+  have hmin' (i j a b : Fin 4) (hi : i ≠ s) (hj : j ≠ s)
+      (ha : a ≠ s) (hb : b ≠ s) : H i a * H j b = H i b * H j a := by
+    change f (hessian P i a) * f (hessian P j b) =
+      f (hessian P i b) * f (hessian P j a)
+    rw [← he i a hi ha,← he j b hj hb,← he i b hi hb,← he j a hj ha,
+      ← map_mul,← map_mul,hmin i j a b hi hj ha hb]
+  obtain ⟨i,k,his,hks,hki,hpi,hpk,_⟩ := rankThree_remaining_two_coordinates s p hps
+  have hd := rankThree_borderedRankOne_det_zero H s p i k hps his hks
+    (Ne.symm hpi) (Ne.symm hpk) (Ne.symm hki) hp hmin'
+  have h1 : H.det = 1 := by
+    change (f.mapMatrix (hessian P)).det = 1
+    rw [← f.map_det]
+    change f (hessianDeterminant P) = 1
+    rw [hdet,map_one]
+  exact zero_ne_one (hd.symm.trans h1)
+
+
 end
 end HC4.Polynomial
 
@@ -3513,3 +3704,8 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_activePivot_zero_restrictedMinors
 #print axioms HC4.Polynomial.counterexample_rankThree_zeroWeight_relative_frontier
+
+#print axioms HC4.Polynomial.rankThree_equalWeights_factor
+#print axioms HC4.Polynomial.rankThree_relativeDegree
+#print axioms HC4.Polynomial.rankThree_borderedRankOne_det_zero
+#print axioms HC4.Polynomial.rankThree_zeroWeight_degreeTwo_impossible
