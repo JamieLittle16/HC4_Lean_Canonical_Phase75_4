@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11729**.
+Distinct declaration spellings indexed: **11735**.
 
 ## Repeated declaration spellings
 
@@ -4947,6 +4947,8 @@ Distinct declaration spellings indexed: **11729**.
 - `coordinate_pos_of_not_mvExponentOnBoundary` — `theorem` in `HC4.Polynomial.FourExponent`
 - `corrected_profile_rows` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `cost_eq_of_mem_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
+- `counterexample_capWeight_two_zeros` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
+- `counterexample_highWeight_two_partners` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledAlignedSmithWall_impossible_of_noPrimitive` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
@@ -6499,6 +6501,7 @@ Distinct declaration spellings indexed: **11729**.
 - `globalRestartProgress_of_defect_lt` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_positiveKernelDefectDrop` — `theorem` in `HC4.Newton.GlobalRestartClassification`
 - `globalRestartProgress_of_repair` — `theorem` in `HC4.Newton.GlobalRestartClassification`
+- `globalWeightOptimum_atMostOne_highWeight` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `globalWeightOptimum_no_constantHessianKernel` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `globalWeightOptimum_no_constant_partial` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `globalWeightOptimum_no_improvingSlope` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
@@ -6550,6 +6553,7 @@ Distinct declaration spellings indexed: **11729**.
 - `gradient_injective_of_oneZeroWeight_zeroClock` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
 - `gradient_injective_of_oneZero_capCoordinate_standard` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `gradient_injective_of_splitRow` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `gradient_injective_of_splitRow_standard` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
@@ -11895,6 +11899,8 @@ Distinct declaration spellings indexed: **11729**.
 - `wedgeShift_le_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `weightBoundRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightCap_coordinate_le` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
+- `weightCap_exists_partner` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `weightNonnegRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `weightOptimizationRows` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `weightOptimizationRows_iff` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
