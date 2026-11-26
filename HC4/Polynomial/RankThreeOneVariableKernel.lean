@@ -4351,6 +4351,52 @@ theorem rankThree_signedWall_no_lowerDegree
   omega
 
 
+set_option maxHeartbeats 4000000 in
+/-- At a signed first contact, the old passive cofactors and a
+passive diagonal pivot survive by the exact old-weight projection.
+The lower passive degrees are then impossible by exponent transfer.
+This is the wall contradiction, not an assumption that the entire
+old leading layer survives the refining deformation. -/
+theorem rankThree_signedWall_no_lowerContact
+    (P Q : B K) (v w : Fin 4 → ℤ) (n m : ℤ) (s p : Fin 4)
+    (hps : p ≠ s) (hvs : v s = 0)
+    (hv : ∀ i, i ≠ s → v i = 1)
+    (hcap : IsWeightLE v n Q)
+    (hface : initialForm v n Q = P)
+    (hL : Q.IsWeightedHomogeneous w m)
+    (hw : Function.Injective w)
+    (hws : w s < 0) (hwp : 0 < w p) (hm : m = w p * n)
+    (hdet : (hessian Q).det = 0)
+    (hcof : ∀ i, i ≠ s → (hessian P).adjugate i i ≠ 0)
+    (hp : hessian P p p ≠ 0)
+    (u : Fin 4 →₀ ℕ) (hu : u ∈ Q.support)
+    (hdegree : 2 ≤ Finsupp.weight v u) (hsmall : Finsupp.weight v u < n) :
+    False := by
+  classical
+  have hcofQ (i : Fin 4) (hi : i ≠ s) : (hessian Q).adjugate i i ≠ 0 := by
+    intro hz
+    have he := initialForm_hessian_adjugate_entry v n Q hcap i i
+    rw [hz,initialForm_zero,hface] at he
+    exact hcof i hi he.symm
+  have hpQ : hessian Q p p ≠ 0 := by
+    intro hz
+    have he := hessian_initialForm_entry v n Q p p
+    rw [hface,hz,initialForm_zero] at he
+    exact hp he
+  have hmin := rankThree_signedWall_restrictedMinors_zero Q w m s hL hw hdet hcofQ
+  have hdeg : Finsupp.weight v u =
+      (Finsupp.weight (rankThreeRelativeNatWeight s) u : ℕ) := by
+    have he := rankThree_equalWeights_factor v s 1 hvs hv u
+    simpa only [one_mul] using he
+  have hnat : 2 ≤ Finsupp.weight (rankThreeRelativeNatWeight s) u := by
+    rw [hdeg] at hdegree
+    exact_mod_cast hdegree
+  have hbound := rankThree_signedWall_no_lowerDegree Q w m hL s p hps hws hwp
+    hpQ hmin u hu hnat
+  rw [← hdeg,hm] at hbound
+  exact (not_lt_of_ge hbound) (mul_lt_mul_of_pos_left hsmall hwp)
+
+
 end
 end HC4.Polynomial
 
@@ -4455,3 +4501,5 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_restricted_signedRatio
 #print axioms HC4.Polynomial.rankThree_signedWall_no_lowerDegree
+
+#print axioms HC4.Polynomial.rankThree_signedWall_no_lowerContact
