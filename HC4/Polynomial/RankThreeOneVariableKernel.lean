@@ -1737,7 +1737,7 @@ theorem globalWeightOptimum_rankThree_no_one_zero
     have hoptQ := hopt.substitution N hN
     have hlead : initialForm w m Q = weightedLinearSubstitution N L := by
       change initialForm w m (weightedLinearSubstitution N P) = _
-      exact (weightedLinearSubstitution_initialForm w N hNb).symm
+      exact weightedLinearSubstitution_initialForm w N hNb m P
     have hii : hessian (initialForm w m Q) i i = 0 := by
       rw [hlead]
       exact hzero i his
@@ -1794,7 +1794,7 @@ theorem globalWeightOptimum_rankThree_no_repeated_nonzero_weights
     rw [weightedLinearSubstitution_det N hN,hdet,map_one]
   have hlead : initialForm w m Q = weightedLinearSubstitution N L := by
     change initialForm w m (weightedLinearSubstitution N P) = _
-    exact (weightedLinearSubstitution_initialForm w N hNb).symm
+    exact weightedLinearSubstitution_initialForm w N hNb m P
   have hii : hessian (initialForm w m Q) i i = 0 := by
     rw [hlead]
     exact hzero i his
