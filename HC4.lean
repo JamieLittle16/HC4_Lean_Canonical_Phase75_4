@@ -902,3 +902,4 @@ import HC4.Polynomial.WeightedWallAnnihilator
 import HC4.Polynomial.PositiveWeightZeroClock
 import HC4.Polynomial.TwoZeroWeightFullSource
 import HC4.Polynomial.NonnegativeWeightZeroClock
+import HC4.Polynomial.OneZeroWeightTerminal
