@@ -653,3 +653,38 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.fractionKernel_adjugate_numerator_identity
 #print axioms HC4.Polynomial.RankThreeCubic.det_not_isUnit_of_nonPolynomial_fractionKernel
 #print axioms HC4.Polynomial.RankThreeCubic.exists_sourceCubic_linear_or_nonunit_determinant
+
+#print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_nilpotent
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicHessian_eq_slice_hessian
+#print axioms HC4.Polynomial.RankThreeCubic.exists_anchored_rationalCharacteristic_rigidityInput
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_along_line
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator_of_injective
+#print axioms HC4.Polynomial.RankThreeCubic.rationalLineEval_injective
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_adjugate_annihilator
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristicPartial_constants
+#print axioms HC4.Polynomial.RankThreeCubic.rationalCharacteristic_rankZero_adjugate_annihilator
+#print axioms HC4.Polynomial.RankThreeCubic.symmetric_affinePencil_eq_zero_of_independent_polynomialKernel
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_affine_parameters_of_lifted_trace_independent
+#print axioms HC4.Polynomial.RankThreeCubic.rationalParameter_lift_of_eval_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_affine_parameters_of_evaluated_trace
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_chart_coefficients_affine_of_independent
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_source_chartRecurrence_impossible
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_eulerGradient_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_chartEuler_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_chartCoeff_trace_zero
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_independent_impossible
+#print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_scaled_independent_impossible
+
+
+-- Final conditional HC4 endpoint: verify the public statement independently
+-- of the private abbreviations and the intermediate frontier declarations.
+#check @HC4.Polynomial.hc4_of_planarJC2
+#print axioms HC4.Polynomial.hc4_of_planarJC2
+
+example {K : Type*} [Field K] [CharZero K]
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : MvPolynomial (Fin 4) K)
+    (hdet : (HC4.Polynomial.hessian P).det = 1) :
+    Function.Injective (fun x : Fin 4 → K =>
+      fun i : Fin 4 => MvPolynomial.eval x (MvPolynomial.pderiv i P)) := by
+  exact HC4.Polynomial.hc4_of_planarJC2 hJC2 P hdet

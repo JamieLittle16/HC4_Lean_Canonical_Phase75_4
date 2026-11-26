@@ -53,6 +53,12 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.NonnegativeTerminalAssembly`
+  - `HC4.Polynomial.NonnegativeWeightZeroClock`
+  - `HC4.Polynomial.OneZeroWeightTerminal`
+  - `HC4.Polynomial.PositiveWeightZeroClock`
+  - `HC4.Polynomial.RankOneHessianClosure`
+  - `HC4.Polynomial.RankOneHessianRatioRigidity`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalCofactor`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalProportional`
   - `HC4.Polynomial.RankThreeCubicAdaptedPlaneLinearVanishing`
@@ -185,13 +191,87 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
   - `HC4.Polynomial.RankThreeCubicZeroBinaryDeterminant`
   - `HC4.Polynomial.RankThreeCubicZeroBinarySourceCofactor`
+  - `HC4.Polynomial.RankThreeExtremalReduction`
+  - `HC4.Polynomial.RankThreeOneVariableKernel`
+  - `HC4.Polynomial.RankTwoAffineClosure`
+  - `HC4.Polynomial.RankTwoAffineFibres`
+  - `HC4.Polynomial.RankTwoAffineLevelCurvature`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
+  - `HC4.Polynomial.RankTwoGlobalClosure`
+  - `HC4.Polynomial.RankTwoImageDirectionClosure`
+  - `HC4.Polynomial.RankTwoKernelGraph`
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
+  - `HC4.Polynomial.RankTwoMinorTransport`
+  - `HC4.Polynomial.RankTwoPrincipalPivot`
+  - `HC4.Polynomial.RationalCharacteristicAdjugate`
+  - `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
+  - `HC4.Polynomial.RationalCharacteristicAffineFraction`
+  - `HC4.Polynomial.RationalCharacteristicAffineOperator`
+  - `HC4.Polynomial.RationalCharacteristicConstants`
+  - `HC4.Polynomial.RationalCharacteristicParameterLift`
+  - `HC4.Polynomial.RationalCharacteristicPullback`
+  - `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
+  - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
+  - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
+  - `HC4.Polynomial.RationalCharacteristicRankOneClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
+  - `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
+  - `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
+  - `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
+  - `HC4.Polynomial.RationalCharacteristicRankOneLurothBridge`
+  - `HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent`
+  - `HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly`
+  - `HC4.Polynomial.RationalCharacteristicRankOnePencil`
+  - `HC4.Polynomial.RationalCharacteristicRankOneRadial`
+  - `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
+  - `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
+  - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoAffineParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
+  - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
+  - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
+  - `HC4.Polynomial.RationalCharacteristicTransport`
+  - `HC4.Polynomial.RationalLinearProjection`
+  - `HC4.Polynomial.SingularHessianConstantAnnihilator`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
   - `HC4.Polynomial.TransverseLeadingFirstCorrection`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
+  - `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.TwoZeroWeightFullSource`
+  - `HC4.Polynomial.WeightedComplementaryHessian`
+  - `HC4.Polynomial.WeightedComplementaryInitialForm`
+  - `HC4.Polynomial.WeightedComplementaryKernel`
+  - `HC4.Polynomial.WeightedExtremalAffinePlane`
+  - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
+  - `HC4.Polynomial.WeightedExtremalKernel`
+  - `HC4.Polynomial.WeightedExtremalObstruction`
+  - `HC4.Polynomial.WeightedExtremalPartner`
+  - `HC4.Polynomial.WeightedExtremalSplitRow`
+  - `HC4.Polynomial.WeightedFirstWall`
+  - `HC4.Polynomial.WeightedFixedSourceDescent`
+  - `HC4.Polynomial.WeightedGlobalOptimum`
+  - `HC4.Polynomial.WeightedLinearOrbit`
+  - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
+  - `HC4.Polynomial.WeightedWallAnnihilator`
+  - `HC4.Polynomial.WeightedWallMinorSurvival`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -478,6 +558,10 @@ human architecture guide.
   - `HC4.Valuation.ZeroSlopeSmithDispatcher`
 - `HC4.Audit`
   - `HC4`
+- `HC4.Backport.RatFuncIntermediateField`
+  - _(no local imports)_
+- `HC4.Backport.RatFuncLuroth`
+  - `HC4.Backport.RatFuncIntermediateField`
 - `HC4.ClassifiedFamilies`
   - `HC4.ClassifiedFamilies.BranchConjugacy`
   - `HC4.ClassifiedFamilies.ClassifiedEquiv`
@@ -1298,6 +1382,15 @@ human architecture guide.
 - `HC4.Polynomial.NonlinearSupportHessianRowBreak`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
+- `HC4.Polynomial.NonnegativeTerminalAssembly`
+  - `HC4.Newton.TerminalCoordinatePermutation`
+  - `HC4.Polynomial.OneZeroWeightTerminal`
+- `HC4.Polynomial.NonnegativeWeightZeroClock`
+  - `HC4.Polynomial.TwoZeroWeightFullSource`
+- `HC4.Polynomial.OneZeroWeightTerminal`
+  - `HC4.Polynomial.NonnegativeWeightZeroClock`
+- `HC4.Polynomial.PositiveWeightZeroClock`
+  - `HC4.Polynomial.WeightedWallAnnihilator`
 - `HC4.Polynomial.PrimitiveBinomialAffineMoment`
   - `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
@@ -1305,6 +1398,11 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `HC4.Polynomial.RankOneHessianClosure`
+  - `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `HC4.Polynomial.RankOneHessianRatioRigidity`
+  - `HC4.Polynomial.RationalCharacteristicConstants`
+  - `HC4.Polynomial.WeightedExtremalPartner`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentDegree`
@@ -1859,6 +1957,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedPencils`
 - `HC4.Polynomial.RankThreeEndpointActiveMinor`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.RankThreeExtremalReduction`
+  - `HC4.Polynomial.RankTwoGlobalClosure`
 - `HC4.Polynomial.RankThreeFractionBridge`
   - `HC4.Polynomial.LogarithmicInitialSlope`
   - `HC4.Polynomial.RankThreeLogHessian`
@@ -1880,6 +1980,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeMvSubstitution`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
   - `HC4.Polynomial.RankThreeLogHessian`
+- `HC4.Polynomial.RankThreeOneVariableKernel`
+  - `HC4.Polynomial.RankThreeExtremalReduction`
 - `HC4.Polynomial.RankThreePencils`
   - `HC4.Polynomial.MonomialHessian`
 - `HC4.Polynomial.RankThreeQuotientFibers`
@@ -1898,17 +2000,135 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.RankTwoAffineClosure`
+  - `HC4.Polynomial.RankTwoMinorTransport`
+- `HC4.Polynomial.RankTwoAffineFibres`
+  - `HC4.Polynomial.RankTwoPrincipalPivot`
+- `HC4.Polynomial.RankTwoAffineLevelCurvature`
+  - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
 - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - _(no local imports)_
+- `HC4.Polynomial.RankTwoGlobalClosure`
+  - `HC4.Polynomial.RankTwoGraphDichotomy`
+- `HC4.Polynomial.RankTwoGraphDichotomy`
+  - `HC4.Polynomial.RankTwoKernelGraph`
+- `HC4.Polynomial.RankTwoImageDirectionClosure`
+  - `HC4.Polynomial.RankTwoAffineClosure`
+- `HC4.Polynomial.RankTwoKernelGraph`
+  - `HC4.Polynomial.RankTwoAffineFibres`
 - `HC4.Polynomial.RankTwoKernelSecondVariation`
   - `HC4.Valuation.ParameterGapSecondJet`
 - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
   - `HC4.Polynomial.RankTwoKernelSecondVariation`
+- `HC4.Polynomial.RankTwoMinorTransport`
+  - `HC4.Polynomial.RankTwoAffineLevelCurvature`
+- `HC4.Polynomial.RankTwoPrincipalPivot`
+  - `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
   - `HC4.Polynomial.RankThreePencils`
   - `HC4.Valuation.ParameterGapDualJet`
+- `HC4.Polynomial.RationalCharacteristicAdjugate`
+  - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
+  - `HC4.Polynomial.TransverseLeadingSchurFoundation`
+- `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
+  - `HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier`
+- `HC4.Polynomial.RationalCharacteristicAffineFraction`
+  - `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
+- `HC4.Polynomial.RationalCharacteristicAffineOperator`
+  - `HC4.Polynomial.RationalCharacteristicAffineFraction`
+- `HC4.Polynomial.RationalCharacteristicConstants`
+  - `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
+  - `HC4.Polynomial.RankThreeCubicSquarefreePoleFinal`
+  - `HC4.Polynomial.RationalCharacteristicPullback`
+- `HC4.Polynomial.RationalCharacteristicParameterLift`
+  - `HC4.Polynomial.RationalCharacteristicRankOnePencil`
+- `HC4.Polynomial.RationalCharacteristicPullback`
+  - `HC4.Polynomial.RankThreeCubicLinearSourcePullback`
+  - `HC4.Polynomial.RationalCharacteristicAdjugate`
+- `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
+  - `HC4.Polynomial.RationalCharacteristicAffineOperator`
+- `HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly`
+- `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
+  - `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
+- `HC4.Polynomial.RationalCharacteristicRankOneChartDescent`
+  - `HC4.Polynomial.RationalCharacteristicRankOneRadial`
+- `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
+  - `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+- `HC4.Polynomial.RationalCharacteristicRankOneClosure`
+  - `HC4.Backport.RatFuncLuroth`
+  - `HC4.Polynomial.RationalCharacteristicRankOneLurothBridge`
+- `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
+- `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
+  - `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
+- `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
+  - `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
+- `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
+  - `HC4.Polynomial.RationalCharacteristicRankOneCommonParameter`
+- `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
+  - `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
+- `HC4.Polynomial.RationalCharacteristicRankOneLurothBridge`
+  - `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
+- `HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankOneBivariateChart`
+- `HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent`
+  - `HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure`
+- `HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly`
+  - `HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent`
+- `HC4.Polynomial.RationalCharacteristicRankOnePencil`
+  - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
+- `HC4.Polynomial.RationalCharacteristicRankOneRadial`
+  - `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
+- `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
+  - `HC4.Polynomial.RationalCharacteristicRankOneChartObstruction`
+- `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
+  - `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
+- `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
+  - `HC4.Polynomial.RationalCharacteristicParameterLift`
+- `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
+- `HC4.Polynomial.RationalCharacteristicRankTwoAffineParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter`
+- `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal`
+- `HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
+- `HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
+- `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+- `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+- `HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
+- `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
+  - `HC4.Polynomial.RationalCharacteristicRankOneClosure`
+- `HC4.Polynomial.RationalCharacteristicRankTwoNormal`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
+- `HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoAffineParameter`
+- `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
+- `HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+- `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter`
+- `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
+  - `HC4.Polynomial.RankThreeCubicPoleJacobiBridge`
+  - `HC4.Polynomial.RationalCharacteristicTransport`
+- `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
+  - `HC4.Polynomial.RationalCharacteristicConstants`
+- `HC4.Polynomial.RationalCharacteristicTransport`
+  - `HC4.Polynomial.RankThreeCubicLinearTransport`
+  - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
+- `HC4.Polynomial.RationalLinearProjection`
+  - _(no local imports)_
 - `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
   - `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `HC4.Polynomial.SingularHessianConstantAnnihilator`
+  - `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
+  - `HC4.Polynomial.TransverseLeadingRationalRigidity`
 - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - _(no local imports)_
 - `HC4.Polynomial.TopProduct`
@@ -2002,6 +2222,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.ParameterFirstLayerBridge`
   - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
+  - `HC4.Polynomial.TransverseLeadingCharacteristics`
 - `HC4.Polynomial.TransverseLeadingSchurFoundation`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
@@ -2040,12 +2263,49 @@ human architecture guide.
   - `HC4.Polynomial.TwoFunctionEulerHessian`
 - `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
   - _(no local imports)_
+- `HC4.Polynomial.TwoZeroWeightFullSource`
+  - `HC4.Newton.TerminalTwoZeroPlanarCollision`
+  - `HC4.Polynomial.PositiveWeightZeroClock`
 - `HC4.Polynomial.UniqueMaximalInitialMonomial`
   - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Polynomial.WeightBounds`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Polynomial.WeightedComplementaryHessian`
+  - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
+- `HC4.Polynomial.WeightedComplementaryInitialForm`
+  - `HC4.Polynomial.WeightedComplementaryHessian`
+- `HC4.Polynomial.WeightedComplementaryKernel`
+  - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
+  - `HC4.Polynomial.WeightedComplementaryInitialForm`
+- `HC4.Polynomial.WeightedExtremalAffinePlane`
+  - `HC4.Polynomial.WeightedExtremalKernel`
+- `HC4.Polynomial.WeightedExtremalIsotropicPlane`
+  - `HC4.Polynomial.RankOneHessianClosure`
+- `HC4.Polynomial.WeightedExtremalKernel`
+  - `HC4.Polynomial.WeightedExtremalObstruction`
+- `HC4.Polynomial.WeightedExtremalObstruction`
+  - `HC4.Polynomial.WeightedGlobalOptimum`
+- `HC4.Polynomial.WeightedExtremalPartner`
+  - `HC4.Polynomial.WeightedExtremalSplitRow`
+- `HC4.Polynomial.WeightedExtremalSplitRow`
+  - `HC4.Polynomial.WeightedExtremalAffinePlane`
+- `HC4.Polynomial.WeightedFirstWall`
+  - `HC4.Polynomial.NonnegativeTerminalAssembly`
+- `HC4.Polynomial.WeightedFixedSourceDescent`
+  - `HC4.Polynomial.WeightedFirstWall`
+- `HC4.Polynomial.WeightedGlobalOptimum`
+  - `HC4.Polynomial.RationalLinearProjection`
+  - `HC4.Polynomial.WeightedLinearOrbit`
 - `HC4.Polynomial.WeightedInitial`
   - _(no local imports)_
+- `HC4.Polynomial.WeightedLinearOrbit`
+  - `HC4.Polynomial.WeightedFixedSourceDescent`
+- `HC4.Polynomial.WeightedSingularHessianAnnihilator`
+  - `HC4.Polynomial.SingularHessianConstantAnnihilator`
+- `HC4.Polynomial.WeightedWallAnnihilator`
+  - `HC4.Polynomial.WeightedWallMinorSurvival`
+- `HC4.Polynomial.WeightedWallMinorSurvival`
+  - `HC4.Polynomial.WeightedComplementaryKernel`
 - `HC4.QuasiTranslation`
   - `HC4.QuasiTranslation.RankOneShear`
 - `HC4.QuasiTranslation.RankOneShear`
