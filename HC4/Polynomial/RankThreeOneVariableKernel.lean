@@ -5158,17 +5158,47 @@ theorem rankThree_normalPhase_cofactors
       (![X 2 + (X 0 + X 0) * X 3, 1, X 0, X 0 * X 0] : Fin 4 → B K) i := by
     simp only [T,rankThreeWallPhase,pow_two,map_add,MvPolynomial.pderiv_mul,hX]
     fin_cases i <;> simp <;> ring
+  have hx0 : f (X 0) = 1 := by
+    change MvPolynomial.aeval x (X 0 : B K) = 1
+    rw [MvPolynomial.aeval_X] <;> rfl
+  have hx2 : f (X 2) = 0 := by
+    change MvPolynomial.aeval x (X 2 : B K) = 0
+    rw [MvPolynomial.aeval_X] <;> rfl
+  have hx3 : f (X 3) = 0 := by
+    change MvPolynomial.aeval x (X 3 : B K) = 0
+    rw [MvPolynomial.aeval_X] <;> rfl
   have hgrad (i : Fin 4) : f (pderiv i T) = (![0,1,1,1] : Fin 4 → K) i := by
     rw [hP]
-    fin_cases i <;> norm_num [f,x]
+    fin_cases i
+    · change f (X 2 + (X 0 + X 0) * X 3) = 0
+      simp only [map_add,map_mul,hx0,hx2,hx3,mul_zero,add_zero]
+    · change f (1 : B K) = 1
+      exact map_one f
+    · exact hx0
+    · change f (X 0 * X 0) = 1
+      rw [map_mul,hx0,one_mul]
   have hphaseH (i j : Fin 4) : f (hessian T i j) =
       (!![0,0,1,2;0,0,0,0;1,0,0,0;2,0,0,0] : Matrix (Fin 4) (Fin 4) K) i j := by
     change f (pderiv j (pderiv i T)) = _
     rw [hP]
     fin_cases i
     · change f (pderiv j (X 2 + (X 0 + X 0) * X 3)) = _
-      simp only [map_add,MvPolynomial.pderiv_mul,hX]
-      fin_cases j <;> norm_num [f,x]
+      have hrow (k : Fin 4) :
+          pderiv k (X 2 + (X 0 + X 0) * X 3 : B K) =
+            (![X 3 + X 3,0,1,X 0 + X 0] : Fin 4 → B K) k := by
+        simp only [map_add,MvPolynomial.pderiv_mul,hX]
+        fin_cases k <;> simp <;> ring
+      rw [hrow]
+      fin_cases j
+      · change f (X 3 + X 3) = 0
+        rw [map_add,hx3,add_zero]
+      · change f (0 : B K) = 0
+        exact map_zero f
+      · change f (1 : B K) = 1
+        exact map_one f
+      · change f (X 0 + X 0) = 2
+        rw [map_add,hx0]
+        norm_num
     · change f (pderiv j (1 : B K)) = _
       rw [MvPolynomial.pderiv_one,map_zero]
       fin_cases j <;> rfl
