@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11769**.
+Distinct declaration spellings indexed: **11772**.
 
 ## Repeated declaration spellings
 
@@ -6403,6 +6403,8 @@ Distinct declaration spellings indexed: **11769**.
 - `fixedTangent_has_unitPivot_in_irreducibleQuotient` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitPivot`
 - `fixedTangent_mixedRow_zero_of_alignedResidue` — `theorem` in `HC4.Polynomial.RankThreeCubicSourceLongitudinalPoleResidue`
 - `fixedTangent_nonzero_in_irreducibleQuotient` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentNonzero`
+- `flatLevel_gradient_ratio_constant_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `flatLevel_gradient_ratio_transport` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `follows` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactSingularity`
 - `forcedCompensator_terminalCoefficient_balance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `fourAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
@@ -9264,6 +9266,7 @@ Distinct declaration spellings indexed: **11769**.
 - `rankOne_purePivot_factor_constant` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_purePower_hessian_coeff` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_radialHessian_eq_eulerGradient` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneRadial`
+- `rankOne_ratio_constant_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_ratio_denominator_pderiv_zero` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_selfAdjoint_radial_contraction` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `rankOne_similarity_factor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
