@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,8 +76,13 @@ def imports(path):
 
 
 def main():
-    sources = {module_name(p): p for p in (ROOT / "HC4").rglob("*.lean")}
-    sources["HC4"] = ROOT / "HC4.lean"
+    paths = subprocess.check_output(
+        ["git", "ls-files", "-z"], cwd=ROOT, text=True
+    ).split("\0")
+    sources = {
+        module_name(ROOT / p): ROOT / p for p in paths
+        if p.endswith(".lean") and (p == "HC4.lean" or p.startswith("HC4/"))
+    }
     closure, todo = set(), [ENTRY]
     while todo:
         m = todo.pop()
