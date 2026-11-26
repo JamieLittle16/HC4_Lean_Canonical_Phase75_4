@@ -3009,12 +3009,17 @@ theorem globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
       exact hcover a
     rw [hu,Finset.sum_insert,Finset.sum_insert,Finset.sum_insert,Finset.sum_singleton]
     · ring
-    · simp [hpi]
-    · simp [Ne.symm hji,hpj]
+    · simp [Ne.symm hpj]
+    · simp [Ne.symm hji,Ne.symm hpi]
     · simp [Ne.symm his,Ne.symm hjs,Ne.symm hps]
   rw [hsums,hsums] at hbound
-  simp only [rankThreeCollapsedWeight,if_pos rfl,if_neg his,if_neg hjs,if_neg hps,
-    if_neg (hnon i his),if_neg (hnon j hjs),if_neg (hnon p hps)] at hbound
+  have hcollapse (a : Fin 4) (ha : a ≠ s) :
+      rankThreeCollapsedWeight (initialForm w m P) w m s p a = w p := by
+    have hn : hessian (initialForm w m P) a a ≠ 0 := hnon a ha
+    simp only [rankThreeCollapsedWeight,if_neg ha,if_neg hn]
+  have hz : rankThreeCollapsedWeight (initialForm w m P) w m s p s = 0 := by
+    simp [rankThreeCollapsedWeight]
+  rw [hz,hcollapse i his,hcollapse j hjs,hcollapse p hps] at hbound
   have hi := hgap i his (Ne.symm hpi)
   have hj := hgap j hjs (Ne.symm hpj)
   omega
@@ -3174,8 +3179,9 @@ theorem rankThree_rankOne_orientedSlope_data
   let k := l.succAbove c
   let r := u c / u b
   have hr : r * u b = u c := div_mul_cancel₀ _ hub
+  have hfac' (i j : Fin 3) : J i j = u i * v j := hfac i j
   have hrow (j : Fin 3) : J c j = r * J b j := by
-    rw [hfac,hfac,← mul_assoc,hr]
+    rw [hfac',hfac',← mul_assoc,hr]
   have hsum (F : Fin 3 → E K) : ∑ j, F j = F a + F b + F c := by
     have hu : (Finset.univ : Finset (Fin 3)) = {a,b,c} := by
       ext j
@@ -3188,14 +3194,14 @@ theorem rankThree_rankOne_orientedSlope_data
   have htrace : J b b + J c c = 0 := by
     change (∑ j, v j * u j) = 0 at hdot
     rw [hsum,hua,mul_zero,zero_add] at hdot
-    rw [hfac,hfac]
+    rw [hfac',hfac']
     linear_combination hdot
   obtain ⟨j,hj⟩ : ∃ j, v j ≠ 0 := by
     by_contra hn
     push_neg at hn
     exact hv (funext hn)
-  have hjb : J b j ≠ 0 := by rw [hfac]; exact mul_ne_zero hub hj
-  have hja : J a j = 0 := by rw [hfac,hua,zero_mul]
+  have hjb : J b j ≠ 0 := by rw [hfac']; exact mul_ne_zero hub hj
+  have hja : J a j = 0 := by rw [hfac',hua,zero_mul]
   have hiso := rankThree_velocity_column_isotropic H J hself hsq j
   rw [hsum] at hiso
   rw [hsum (fun q => J a j * H a q * J q j),
@@ -3248,8 +3254,8 @@ theorem counterexample_rankThree_no_regularActive
     obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
     have h : q = 0 ∨ q = 1 := by fin_cases q <;> simp
     rcases h with h | h
-    · exact Or.inr (Or.inl (by rw [← hq,h]; rfl))
-    · exact Or.inr (Or.inr (by rw [← hq,h]; rfl))
+    · exact Or.inr (Or.inl (by rw [← hq,h]))
+    · exact Or.inr (Or.inr (by rw [← hq,h]))
   obtain ⟨_,hself,u,v,hu,hv,hua,hfac,hdot,hsq⟩ :=
     counterexample_rankThree_rankOne_frontier hJC2 P w m hw hm hcap hclock hopt hdet
       hnoninj l a V hVl hVk hreg hV
@@ -3270,9 +3276,9 @@ theorem counterexample_rankThree_no_regularActive
       · exact Or.inr (Or.inl hj)
       obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
       rcases hcov q with h | h | h
-      · exact Or.inl (by rw [← hq,h]; rfl)
-      · exact Or.inr (Or.inr (Or.inl (by rw [← hq,h]; rfl)))
-      · exact Or.inr (Or.inr (Or.inr (by rw [← hq,h]; rfl)))
+      · exact Or.inl (by rw [← hq,h])
+      · exact Or.inr (Or.inr (Or.inl (by rw [← hq,h])))
+      · exact Or.inr (Or.inr (Or.inr (by rw [← hq,h])))
     obtain ⟨r,hrel,htrace,hiso⟩ := rankThree_rankOne_orientedSlope_data L l a d e
       (Ne.symm hda) (Ne.symm hea) hde hcov V u v hud hua hv hfac hdot hsq hself
     exact globalWeightOptimum_rankThree_rankOne_regularActive_oriented P w m hw hm hcap
@@ -3287,7 +3293,7 @@ theorem counterexample_rankThree_no_regularActive
       · rw [h,hua]; rfl
       · rw [h,hub]; rfl
       · rw [h,hz]; rfl
-    apply hclose c b hca hba (Ne.symm hbc) _ huc
+    refine hclose c b hca hba (Ne.symm hbc) ?_ huc ?_
     · intro j
       rcases hcover j with h | h | h
       · exact Or.inl h
