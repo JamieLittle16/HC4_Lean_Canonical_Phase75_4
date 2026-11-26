@@ -1,0 +1,114 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures"
+  description: >-
+    A Lean formalization and algebraic adaptation of the equivalence between
+    the planar Jacobian conjecture and the four-variable Hessian conjecture.
+    Over every algebraically closed field of characteristic zero, the two
+    polynomial-inverse conjectures are equivalent. Over arbitrary
+    characteristic-zero fields, the corresponding same-field injectivity
+    statements are equivalent with determinant-one normalization on the
+    Hessian side. Neither conjecture is proved unconditionally.
+  authors:
+    - "Jamie Little"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Jamie Little"
+
+classification:
+  arxiv: ["math.AG", "math.AC"]
+  msc2020: ["14R15", "14R10", "03B35"]
+
+sources:
+  - title: "Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures"
+    authors: ["Qiyue Tang"]
+    id: "hexagon:2611.00156v2"
+    location: "https://hexagonmath.org/2611.00156v2"
+    type: "preprint"
+    relationship: "adapts"
+    license: "CC-BY-4.0"
+    note: >-
+      Theorem 1.1 is the complex equivalence. The weighted leading-form
+      strategy and final signed-wall obstruction substantially informed the
+      completed proof. The formal development uses algebraic replacements
+      for geometric steps and proves the same-field injectivity result.
+      No priority or endorsement is claimed.
+  - title: "Formal Conjectures: Jacobian Conjecture"
+    id: "https://github.com/google-deepmind/formal-conjectures/blob/a88aee564684360292318c61b9b8e27febef2ae0/FormalConjectures/Wikipedia/JacobianConjecture.lean"
+    type: "formalization"
+    relationship: "background"
+    note: "Reference for polynomial map and inverse conventions; no conjecture axiom is imported."
+
+status:
+  scope: >-
+    The compared results are the explicit polynomial-inverse equivalence
+    over algebraically closed characteristic-zero fields and the same-field
+    injectivity equivalence over characteristic-zero fields. There is no
+    degree bound. Neither conjecture is solved individually. The library
+    also contains a rational affine-plane rigidity theorem, not advertised
+    as a separate Comparator result in this submission.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "manual"
+      models: []
+      framework: "Lean 4 and Mathlib"
+      tool_setup: "Human direction, local Lean builds, theorem statement and axiom audits."
+    - method: "copilot"
+      models: ["ChatGPT (multiple models)"]
+      framework: "ChatGPT"
+      tool_setup: "Substantial AI assistance with proof strategy, lemma development, Lean proof writing, debugging, and manuscript preparation."
+    - method: "agent"
+      models: []
+      framework: "OpenAI Codex"
+      tool_setup: "Local compilation-driven Lean 4.35 compatibility repairs and module-system conversion."
+  spend_usd: "Subscription-based; exact cost not tracked."
+  notes: >-
+    The formalizer directed the investigation, ran local builds, reviewed
+    statements and assumptions, and checked AI-assisted revisions.
+    The earlier full equivalence was independently reproduced by GitHub
+    Actions. This is not a claim that all proof steps have been independently
+    reviewed by a mathematician.
+
+fidelity:
+  divergences: >-
+    Tang states the equivalence over the complex numbers. The formalization
+    extends the inverse formulation to algebraically closed fields of
+    characteristic zero, and separately proves the determinant-one injectivity
+    equivalence over arbitrary characteristic-zero fields. The mathematical
+    route is adapted rather than a line-by-line transcription.
+
+review:
+  status: "self-assessed"
+  reviewers: ["Jamie Little"]
+  notes: >-
+    Maintainer statement audits and Lean axiom audits have been performed.
+    Earlier full proof independently built in GitHub Actions at commit
+    1377de427f2801e2f9f6b49ce1a07371e60dabb8. External mathematical review
+    and priority analysis remain outstanding. Comparator and final clean
+    reproduction of the submitted snapshot must be checked before submission.
+
+alignment:
+  namespace: "HC4.Palomar"
+  statements:
+    - source: "Tang, Theorem 1.1"
+      lean: "HC4.Palomar.jc2_iff_hc4"
+      module: "Solution"
+      status: "proved"
+      note: "Explicit two-sided polynomial inverses; generalized base field."
+    - source: "Tang, Theorem 1.1 (injectivity adaptation)"
+      lean: "HC4.Palomar.jc2_iff_hc4_injective"
+      module: "Solution"
+      status: "proved"
+      note: "Same-field injectivity equivalence, with determinant-one Hessian normalization."
+
+acknowledgements: >-
+  Qiyue Tang for the mathematical source and final weighted-proof ideas;
+  Mathlib contributors, including Miriam Philipp, Justus Springer and Junyan
+  Xu for the Luroth development; Google DeepMind Formal Conjectures for
+  statement conventions; OpenAI ChatGPT and Codex for substantial AI assistance.
