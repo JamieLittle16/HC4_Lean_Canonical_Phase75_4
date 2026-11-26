@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11977**.
+Distinct declaration spellings indexed: **11981**.
 
 ## Repeated declaration spellings
 
@@ -9399,6 +9399,7 @@ Distinct declaration spellings indexed: **11977**.
 - `rankThreeGeometry` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
 - `rankThreeIntegralLineBaseExponent` — `def` in `HC4.Polynomial.RankThreeMvSubstitution`
 - `rankThreeIntegralLineDirection` — `def` in `HC4.Polynomial.RankThreeMvSubstitution`
+- `rankThreeJetBlock` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeLineCoefficientPolynomial` — `def` in `HC4.Polynomial.RankThreeLineRecognition`
 - `rankThreeLineCoefficientPolynomial_natDegree_le` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
 - `rankThreeLineCoefficientPolynomial_ne_zero_of_supported` — `theorem` in `HC4.Polynomial.RankThreeLineRecognition`
@@ -9519,6 +9520,7 @@ Distinct declaration spellings indexed: **11977**.
 - `rankThree_affine_relative` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_borderedRankOne_det_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
+- `rankThree_clearedPhase_normalize_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_coeff_jet` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_det_one` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9543,6 +9545,8 @@ Distinct declaration spellings indexed: **11977**.
 - `rankThree_homogeneousSubstitution_initialForm` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_initialForm_mul` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_isotropicSlope_activeMinor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_jetAffineChart` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_jetBlock_det` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_mixedDifferential` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_relative_of_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_lineEval_affine_of_derivation_sq_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
