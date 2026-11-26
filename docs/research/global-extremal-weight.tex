@@ -1,0 +1,173 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\inw}{\operatorname{in}}
+\newcommand{\rank}{\operatorname{rank}}
+\title{A global extremal-weight reduction for the four-variable Hessian conjecture}
+\author{HC4 formalisation project --- research note}
+\date{26 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We explain the global optimisation underlying the Lean proof of the implication from planar Jacobian injectivity to four-variable Hessian injectivity. Optimising over genuine linear coordinate charts and rational weights replaces a sequence of weighted leading-form transitions by a fixed extremal presentation. We prove the attainment and local improvement principles, describe the verified rank reductions, and explain how the resulting relative pure power enters Tang's signed first-wall obstruction. This is a companion to the rational affine-plane rigidity note, not a claim of an independent discovery of the equivalence.
+\end{abstract}
+
+\section{A fixed global optimum}
+Let $K$ have characteristic zero, and let $P\in K[X_1,\ldots,X_4]$ satisfy $\det\Hess P=1$. Assume that every polynomial map $K^2\to K^2$ with nonzero constant Jacobian determinant is injective. We seek to exclude a collision of $\nabla P$.
+
+For $w\in\mathbb Z^4$ and $m>0$, a cap means $w\cdot u\le m$ for all $u\in\supp P$. Write $L=\inw_{w,m}P$ for the sum of terms of weight exactly $m$ (possibly zero). Define the determinant weight
+\[
+ C(w,m)=4m-2\sum_i w_i.
+\]
+Each Hessian entry has cap $m-w_i-w_j$. Consequently,
+\begin{equation}\label{eq:det}
+ \det\Hess L=\inw_{w,C(w,m)}(\det\Hess P).
+\end{equation}
+In particular, if $C=0$ the leading Hessian has determinant one, whereas if $C>0$ it is singular. This identity concerns the actual leading form of the full polynomial, rather than a separately chosen model.
+
+If $M\in\mathrm{SL}_4(K)$, then $Q(X)=P(MX)$ satisfies
+\[
+ \nabla Q(X)=M^T\nabla P(MX),\qquad
+ \Hess Q(X)=M^T(\Hess P)(MX)M.
+\]
+The determinant and the existence of a collision are preserved.
+
+\begin{proposition}[Attainment]\label{prop:attain}
+There is a determinant-one linear chart $Q=P\circ M$ and an integral cap $(w,m)$, with $w_i\ge0$, $m>0$, $C(w,m)\ge0$, maximising $\sum_i w_i/m$ over all such charts and caps.
+\end{proposition}
+\begin{proof}
+For each realized support $S=\supp(P\circ M)$, consider the rational linear system
+\[
+ x_i\ge0,\qquad \sum_i x_i\le2,\qquad
+ u\cdot x\le1\quad(u\in S).
+\]
+It is nonempty (take $x=0$) and bounded. The objective $\sum_i x_i$ attains its maximum at a rational point: for example, eliminate the $x_i$ from the finite rational inequality system with a further variable $t=\sum_i x_i$. Fourier--Motzkin elimination describes the feasible $t$ by finitely many non-strict rational inequalities; its nonempty bounded projection has an attained rational upper endpoint. The elimination also gives a rational witness for the original variables at that endpoint.
+
+Every linear substitution has degree at most $\deg P$. Hence all realized supports are subsets of one finite exponent set. There are only finitely many distinct systems to maximise over; choose a maximal one and an actual $M\in\mathrm{SL}_4(K)$ realizing it. Clearing the common positive denominator of $x$ gives $(w,m)$ with $x_i=w_i/m$. Conversely every admissible integral cap produces a feasible rational point. This proves the claim.
+\end{proof}
+
+This is why the noncompactness of the linear group is harmless: we maximise over a finite collection of support patterns, not over the matrix entries as real variables. No assertion that the rational weights or the charts themselves form a finite set is needed.
+
+\section{The local improvement rule}
+Fix an attained presentation and rename its full polynomial $P$. Write $L=\inw_{w,m}P$. Its optimality is inherited by every determinant-one change of chart, with the same weight vector whenever the cap is preserved.
+
+\begin{lemma}[No improving slope]\label{lem:slope}
+If $C(w,m)>0$, there cannot be a rational vector $d$ with
+\[
+ d_i\ge0\text{ whenever }w_i=0,\qquad
+ \sum_i d_i>0,\qquad d\cdot u\le0\quad(u\in\supp L).
+\]
+\end{lemma}
+\begin{proof}
+For sufficiently small rational $\epsilon>0$, $w+\epsilon d$ remains nonnegative and the determinant weight remains positive. Every exponent below the old cap has a strictly positive gap; finiteness of the support gives a common sufficiently small $\epsilon$ preserving all such inequalities. The old face satisfies the cap by hypothesis on $d$. Clearing denominators, we have improved $\sum_i w_i/m$, a contradiction.
+\end{proof}
+The rule applies equally after a weight-compatible determinant-one shear. It is the local engine of the global argument.
+
+For instance, if $\partial_i L=0$, take $d=e_i$. If $\partial_i L$ is a nonzero constant, homogeneity forces $w_i=m$; the cap then forces the \emph{full} $\partial_i P$ to be constant, incompatible with its nonsingular Hessian. Therefore no leading partial derivative is constant. More generally if $(\Hess L)b=0$ for a nonzero constant vector $b$, the directional derivative of $L$ along $b$ is constant. Decompose $b$ by equal-weight blocks: the derivatives of different blocks have distinct weights, so each is constant. A nonzero block can be aligned with a coordinate by a determinant-one shear in that block, producing the forbidden constant partial.
+
+A second useful example is a jointly affine pair of coordinates $i,j$ in $L$. Every exponent of $L$ then has $u_i+u_j\le1$. The slope
+\[
+ d=m(e_i+e_j)-w
+\]
+has $d\cdot u=m(u_i+u_j-1)\le0$ on the face, is admissible at zero weights and has sum $2m-\sum w_i=C/2>0$. Thus no such pair exists in an optimal weight-compatible chart. Equivalently, a zero principal two-by-two Hessian block is forbidden. Further checked lemmas transport the zero-plane obstruction through more general linear charts.
+
+\section{Zero determinant weight and the lower-rank exclusions}
+If $C=0$, equation~\eqref{eq:det} gives $\det\Hess L=1$. Evaluating at the origin yields a permutation matching each coordinate of weight $w_i$ to a coordinate of weight $m-w_i$. There can be at most two zero weights. For positive weights, the leading constant Hessian at the origin has inverse supported on complementary weight blocks. Multiplying $\nabla P$ by this inverse gives components $X_i$ plus polynomials in strictly smaller-weight variables, so induction on weights proves injectivity.
+
+With exactly one zero weight, a complementary gradient component has weight zero, depending only on the zero-weight variable. Its derivative is a unit because the corresponding full Hessian row has no other nonzero entry. Thus that component is affine with nonzero slope and recovers the base coordinate; the positive-weight induction then applies fibrewise. With two zero weights the matching gives $(0,0,m,m)$ up to permutation. The full cap forces
+\[
+ P(x,y,z,t)=R(x,y)+z A(x,y)+t B(x,y).
+\]
+Its Hessian determinant is $(\det D(A,B))^2=1$. Planar injectivity recovers $(x,y)$ from the last two gradient components; the other two recover $(z,t)$ by the invertible transpose Jacobian. Thus a counterexample necessarily has $C>0$.
+
+For $C>0$ we must exclude a leading Hessian of rank at most two over the fraction field. Here the formal proof uses the following checked intermediate results, which we summarize rather than reproduce in full:
+\begin{itemize}
+\item \path{globalWeightOptimum_rankTwo_exists_principalPivot}: under the rank-at-most-two assumption every specified diagonal coordinate has a regular principal two-minor with another coordinate. This uses the constant-kernel and affine-plane obstructions; in particular rank below two is impossible.
+\item \path{rankTwo_regularPoint_affineKernel_fibre}: at a regular point, the whole affine plane through that point in its Hessian kernel lies in the corresponding gradient fibre. This follows by constructing the rational graph of the kernel using the principal minor, normalising the two free components, and using third-derivative symmetry to kill the directional acceleration. The polynomial line identity specializes on the regular locus.
+\end{itemize}
+For a fixed principal pivot write the kernel as $(G(x)c,c)$, where $G(x)$ is a two-by-two graph matrix and $c\in K^2$. If $G(x)-G(y)$ were invertible, the two affine kernel planes would intersect: their direction spaces sum to $K^4$. Hence the gradients at $x,y$ would coincide. Clearing denominators and using polynomial density on the locus of distinct gradients extends the identity
+\[
+ \det(G(x)-G(y))=0
+\]
+to all regular pairs. In the Lean proof this is \path{rankTwo_regularGraph_sub_det_zero}.
+
+Fix a regular $x_0$ and put $B(x)=G(x)-G(x_0)$. Every $B(x)$ has rank at most one, and all pairwise differences are singular. Such a family has a common nonzero right or left kernel. Indeed, writing nonzero matrices as outer products, singularity of their difference means that either the column factors or the row factors are proportional. If a pair has independent column factors, their row factors agree up to scalar, and comparison with both forces all row factors to agree up to scalar. Otherwise all column factors are proportional.
+
+A common right kernel gives a nonzero constant vector in every original Hessian kernel. A common left kernel gives a nonzero constant vector in every original Hessian image, since the image of a symmetric matrix is the orthogonal complement of its kernel. Both identities lift by clearing the pivot denominator and polynomial density. The latter is also impossible by the checked theorem \path{globalWeightOptimum_rankTwo_no_constantPivotSolution}: aligning a constant image direction with a coordinate forces rank-one rows off that coordinate, and the polynomial ratio and affine-coordinate obstructions exclude them. Thus \path{globalWeightOptimum_not_rankAtMostTwo} closes this case. Combined with~\eqref{eq:det}, it leaves exact rank three.
+
+\section{The relative rank-three reduction}
+Let $A=\Hess L$. The companion rigidity note proves the singular-Hessian adjugate conclusion: there is a nonzero constant $b$ with $(\adj A)b=0$. The original Lean proof uses its anchored version. Since the $(i,j)$ adjugate entry is homogeneous of weight $3m-2\sum w_k+w_i+w_j$, the annihilator splits into equal-weight blocks. A determinant-one weight-compatible shear aligns a nonzero block with a target coordinate $s$ (the adjugate transforms by inverse congruence). We obtain
+\[
+ (\adj A)e_s=0,\qquad (\adj A)_{ll}\ne0\quad(l\ne s).
+\]
+The second assertion follows from the symmetric rank-one adjugate. This is not the assertion $Ae_s=0$. A normalized rational kernel direction $V$ of $A$ instead satisfies $V_s=0$, $V_l=1$.
+
+The next interface, \path{counterexample_rankThree_zeroWeight_relative_frontier}, has precisely the hypotheses of this complementary chart at a positive-clock global optimum, with a full-source collision and planar injectivity. It proves
+\begin{equation}\label{eq:frontier}
+ w_s=0,\quad w_i=w_l,\ A_{ii}\ne0\ (i\ne s),\quad
+ \rank A_{\widehat{s},\widehat{s}}\le1 .
+\end{equation}
+It also proves that the normalized kernel components have zero partial derivatives in the three complementary variables. This is a substantial checked reduction, not a consequence of the adjugate equation alone.
+
+Its proof first uses normalized kernel transport on the three coordinates other than $l$: the complementary velocity Jacobian is cube-zero, self-adjoint for the invertible complementary Hessian, and has a zero row. Rank zero gives a constant kernel; the checked rank-two velocity exclusion and the rank-one regular-active-pivot exclusion then force the restricted Hessian minors to vanish. The corresponding declarations are \path{counterexample_rankThree_rankOne_frontier}, \path{counterexample_rankThree_no_regularActive}, and \path{rankThree_activePivot_zero_restrictedMinors}. These steps use global optimality, not just singularity.
+
+Here is the weight argument after the restricted minors vanish. If $w_s>0$, the checked exclusions of zero passive diagonal entries and repeated passive weights leave three nonzero diagonal entries with distinct weights. Let $p$ be the largest passive weight. The passive Hessian ratios are functions of the active variable alone. Weighted homogeneity makes each nonzero ratio a Laurent monomial in that variable, so $w_p-w_i$ is a positive integral multiple of $w_s$ for the other two passive coordinates. In particular their sum of gaps is at least $2w_s$.
+
+The collapsed weights $v_s=0$, $v_i=w_p$ for all passive $i$ still cap $L$ at $m$ by the checked support-transfer lemma \path{rankThree_support_cap_of_monomial_rows}. Indeed proportional Hessian rows with monomial ratios permit transferring a passive exponent to the pivot without changing passive degree; the maximum pivot exponent bounds the degree. Consequently $v-w$ is an improving slope, since
+\[
+ \sum_i(v_i-w_i)=\sum_{i\ne s,p}(w_p-w_i)-w_s\ge w_s>0.
+\]
+This is impossible by Lemma~\ref{lem:slope}. Hence $w_s=0$. The zero-row terminal exclusion forces all passive diagonal entries nonzero, and homogeneity of the same ratios then forces equality of the passive weights. This gives~\eqref{eq:frontier}.
+
+Put $x=X_s$, $Y=(u,v,t)$ for the remaining coordinates, $a=w_l>0$ and $n=m/a$. The cap and a nonzero passive second derivative imply $n\in\mathbb N$, $n\ge2$, and $L$ is the degree-$n$ part in $Y$ of $P$. The case $n=2$ is impossible: the passive Hessian of the full source then equals that of $L$, of rank at most one, and bordering it by one row and column yields rank at most three. Thus $n\ge3$.
+
+The rank-one Hessian ratio lemma and relative Euler identity give
+\[
+ \partial_{Y_i}L=r_i(x)\,\partial_u L,\qquad
+ L=c(x)\bigl(u+r_2(x)v+r_3(x)t\bigr)^n
+\]
+over $K(x)$, with $c\ne0$. For the last equality put $\ell=u+r_2v+r_3t$ and note $\ell\partial_u L=nL$; every passive derivative of $L/\ell^n$ vanishes. The constants of those partial derivatives in $K(x)(Y)$ are exactly $K(x)$. The three phase coefficients $1,r_2,r_3$ are linearly independent over $K$, since otherwise the derivative relation gives a nonzero constant Hessian kernel, forbidden at the optimum.
+
+\section{The signed final obstruction (adapted from Tang)}
+The nonzero Wronskian of the three independent rational functions allows us to choose a point of the ground field where they and $c$ are regular, $c\ne0$, and the value, first derivative and half second derivative rows are independent. For clarity, the Wronskian criterion here follows also by differentiating a zero relation $r_2'r_3''-r_3'r_2''=0$: if $r_2'\ne0$ then $r_3'/r_2'$ is constant, so $r_3$ is affine in $r_2$, a contradiction.
+
+Translate $x=x_0+\xi$ and change the passive linear coordinates by this invertible jet matrix. The relative cap survives; the Hessian determinant becomes a nonzero constant $\delta$. The normalized phase has jet $u+\xi v+\xi^2t$ and all later coefficient terms have higher order in $\xi$. The actual Lean proof clears the rational denominators, uses regularity at $x_0$, and cancels their nonzero initial constants. Thus, writing $d=(0,1,1,1)$ and $s'=(-1,0,1,2)$, the top passive-degree part has $s'$-cap zero and its zero-slope form is
+\[
+ L_0=c_0(u+\xi v+\xi^2t)^n,\qquad c_0\ne0.
+\]
+At $(\xi,u,v,t)=(1,1,0,0)$ its Hessian is
+\[
+ \begin{pmatrix}
+ 0&0&B&2B\\0&A&A&A\\B&A&A&A\\2B&A&A&A
+ \end{pmatrix},
+ \qquad A=c_0n(n-1),\quad B=c_0n .
+\]
+All three passive principal cofactors and the $uu$ entry are nonzero.
+
+Now remove the constant linear term in $t$, which does not affect the Hessian. A monomial $\xi^ku^iv^jt^h$ has passive degree $D=i+j+h$ and slope $S=j+2h-k$. Its weight under $d+\eta s'$ is $D+\eta S$. The Hessian at the origin is invertible, so among its rows for $v,t$ at least one has a nonzero entry in a passive column (otherwise two rows are supported in the single active column). Thus some quadratic monomial has $D=2$ and $S\ge1$.
+
+There is therefore a first positive contact of a lower-degree monomial with weight $n$, at
+\[
+ \eta_*=\min_{D<n,\ S>0}\frac{n-D}{S}\le n-2 .
+\]
+Monomials of passive degree zero have nonpositive slope, and those of degree one now have slope at most one, so a contact has $2\le D<n$. The determinant weight at contact is $4n-6-4\eta_*\ge2$. Let $F$ be its weight-$n$ face, with weights $(-\eta_*,1,1+\eta_*,1+2\eta_*)$. By clearing denominators in the weights and using~\eqref{eq:det}, $\det\Hess F=0$. Its degree-$n$ passive part is $L_0$; hence all three passive principal cofactors survive by the degree bounds for minors.
+
+The checked signed-wall rigidity lemma \path{rankThree_signedWall_restrictedMinors_zero} uses the distinct weights to split the constant adjugate annihilator into coordinate axes. The surviving cofactors force that axis to be active, and the signed version of the regular-pivot exclusion forces rank at most one of the passive Hessian. This step does \emph{not} invoke nonnegative global optimality on the signed weights.
+
+Finally the passive row ratios are Laurent monomials in $\xi$. If a term of passive degree $2\le D<n$ survives on $F$, choose one with maximal exponent of $u$ among degree-$D$ terms. It cannot be supported only on $\xi,u$, since the active weight is negative and the $u$ weight is one. Differentiating twice in passive variables gives a nonzero Hessian entry in a non-$u$ row. The rank-one row identity, after clearing the monomial ratio, transfers one such passive factor to $u$ at the same passive degree, producing a nonzero coefficient with larger $u$ exponent. This contradicts maximality. This is the support-level version of Tang's exclusion of lower-degree powers with negative active exponent; it is checked by \path{rankThree_signedWall_no_lowerDegree}. A first contact is impossible, contradicting the quadratic witness. This finishes the contradiction.
+
+\section*{Comparison and verification}
+Tang's Sections 3--4 \cite{tang} arrange case-dependent weight increases, wall crossings and changes of chart. Our global maximum avoids the need to prove termination of those particular continuation sequences: the local improvement rule excludes whole types of leading form at once. The price is the explicit rank-two and rank-three extremal reduction machinery. The signed final step is adapted from Tang's Lemma 3.3, pp.~17--18; negative weights are deliberately outside the global optimisation. We claim a different organisation of the proof, not that the underlying weighted methods are new.
+
+The main checked sources are \path{WeightedGlobalOptimum.lean}, \path{WeightedExtremalKernel.lean}, \path{WeightedExtremalAffinePlane.lean}, \path{NonnegativeTerminalAssembly.lean}, \path{RankTwoGlobalClosure.lean}, \path{RankThreeExtremalReduction.lean}, and \path{RankThreeOneVariableKernel.lean}, all under \path{HC4/Polynomial/}. Their final assembly is \path{HC4.Polynomial.hc4_of_planarJC2}, verified by the maintainer with transitive axioms only \path{propext}, \path{Classical.choice}, \path{Quot.sound}. See also \path{HC4/FinalEquivalence.lean} for the polynomial-inverse equivalence over algebraically closed characteristic-zero fields. This note is a source-linked proof outline: the lower-rank and regular-pivot reductions are stated or summarized using checked lemmas, not fully reproved here. Independent review of the mathematical exposition and a detailed comparison with earlier literature remain pending. Development and exposition used substantial AI assistance.
+\begin{thebibliography}{9}
+\bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026), Sections 3--4. \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
+\end{thebibliography}
+\end{document}
