@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11639**.
+Distinct declaration spellings indexed: **11643**.
 
 ## Repeated declaration spellings
 
@@ -6501,6 +6501,7 @@ Distinct declaration spellings indexed: **11639**.
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
 - `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `hasAlignedRecenteredFirstWallCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalFirstWall`
 - `hasAlignedRecenteredFirstWallCompetition_of_terminalResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall`
@@ -11730,6 +11731,9 @@ Distinct declaration spellings indexed: **11639**.
 - `twoRootEulerOperator_translate_of_affineTwoRoot` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `twoZeroHessianBlockMatrix` — `def` in `HC4.Newton.TwoZeroBlockDeterminant`
 - `twoZeroMarkedTerminalWeight_standardizes` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamPlanarReduction`
+- `twoZero_eval_eq_of_base_eq` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
+- `twoZero_strictWeight_dependsOnly` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
+- `twoZero_weight_formula` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `two_by_two_kernel_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPlanarLineSupport`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneQuotientInterpolation`
 - `two_by_two_kernel_zero_of_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicPrincipalKernelPivot`
 - `two_le_noWallSmithSourceDegree_of_delta_nonnegative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithNoWallUnramifiedSmith`

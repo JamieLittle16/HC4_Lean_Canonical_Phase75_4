@@ -239,6 +239,7 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.TwoZeroWeightFullSource`
   - `HC4.Polynomial.WeightedComplementaryHessian`
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
   - `HC4.Polynomial.WeightedComplementaryKernel`
@@ -2200,6 +2201,9 @@ human architecture guide.
   - `HC4.Polynomial.TwoFunctionEulerHessian`
 - `HC4.Polynomial.TwoFunctionMixedOrientationRigidity`
   - _(no local imports)_
+- `HC4.Polynomial.TwoZeroWeightFullSource`
+  - `HC4.Newton.TerminalTwoZeroPlanarCollision`
+  - `HC4.Polynomial.PositiveWeightZeroClock`
 - `HC4.Polynomial.UniqueMaximalInitialMonomial`
   - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Polynomial.WeightBounds`
