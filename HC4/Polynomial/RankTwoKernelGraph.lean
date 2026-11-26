@@ -221,8 +221,8 @@ theorem rankTwo_kernelGraph_difference_det_zero
     let A := hessian L
     let Δ := rankTwoPrincipalPivot A k p
     let N := rankTwoGraphNumerator A k p s
-    (MvPolynomial.C (MvPolynomial.eval x Δ) • N -
-      Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C) :
+    ((MvPolynomial.C (MvPolynomial.eval x Δ) : B K) • N -
+      Δ • ((N.map (MvPolynomial.eval x)).map (MvPolynomial.C : K →+* B K)) :
         Matrix (Fin 2) (Fin 2) (B K)).det = 0 := by
   classical
   let A := hessian L
@@ -230,7 +230,8 @@ theorem rankTwo_kernelGraph_difference_det_zero
   let N := rankTwoGraphNumerator A k p s
   let a := MvPolynomial.eval x Δ
   let Q : Matrix (Fin 2) (Fin 2) (B K) :=
-    MvPolynomial.C a • N - Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C)
+    (MvPolynomial.C a : B K) • N -
+      Δ • ((N.map (MvPolynomial.eval x)).map (MvPolynomial.C : K →+* B K))
   let F := pderiv r L - MvPolynomial.C (MvPolynomial.eval x (pderiv r L))
   have hF : F ≠ 0 := by
     intro h
