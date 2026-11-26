@@ -141,7 +141,9 @@ theorem rankOne_exists_purePower_chart (L : S K) (hD : 0 < L.totalDegree) :
     funext i
     change (∑ j : Fin 4, M i j * (Pi.single k (d k) : Fin 4 → K) j) = d i
     rw [Finset.sum_eq_single k]
-    · rw [Pi.single_eq_same, extremalKernelShear_column d k hk i, div_mul_cancel₀ _ hk]
+    · rw [Pi.single_eq_same]
+      change extremalKernelShear d k i k * d k = d i
+      rw [extremalKernelShear_column d k hk i, div_mul_cancel₀ _ hk]
     · intro j _ hj
       rw [Pi.single_eq_of_ne hj, mul_zero]
     · simp
@@ -180,11 +182,9 @@ private theorem rankOne_purePower_hessian_coeff
   have he : Finsupp.single k n + Finsupp.single k 1 + Finsupp.single k 1 =
       (Finsupp.single k (n+2) : Fin 4 →₀ ℕ) := by
     rw [← Finsupp.single_add, ← Finsupp.single_add]
-    congr 1
-    omega
   rw [he]
   apply mul_ne_zero (mul_ne_zero h ?_) ?_
-  · have hn : (((n+2 : ℕ) : K)) ≠ 0 := by exact_mod_cast (show n+2 ≠ 0 by omega)
+  · have hn : (((n+1+1 : ℕ) : K)) ≠ 0 := by exact_mod_cast (show n+1+1 ≠ 0 by omega)
     simpa [Finsupp.add_apply, Finsupp.single_apply, Nat.cast_add] using hn
   · have hn : (((n+1 : ℕ) : K)) ≠ 0 := by exact_mod_cast (show n+1 ≠ 0 by omega)
     simpa [Finsupp.single_apply, Nat.cast_add] using hn
@@ -215,29 +215,33 @@ theorem rankOne_crossProducts_substitution
     congr 1
     exact pderiv_comm_backport j i L
   have hA (i j : Fin 4) : a * A i j = A i k * A j k := by
-    change f (hessian L k k) * f (hessian L i j) =
-      f (hessian L i k) * f (hessian L j k)
-    rw [← map_mul, ← map_mul, hr i j]
-    congr 1
-    rw [hessian_apply, hessian_apply, pderiv_comm_backport j k L]
+    have hh := congrArg f (hr i j)
+    simp only [map_mul] at hh
+    change a * A i j = A i k * A k j at hh
+    rw [hs k j] at hh
+    exact hh
   have hG : G = T.transpose * A * T := weightedLinearSubstitution_hessian M L
   have hfactor (i j : Fin 4) : a * G i j = b i * b j := by
     rw [hG]
     change a * (∑ v : Fin 4, (∑ u : Fin 4, T u i * A u v) * T v j) =
       (∑ u : Fin 4, T u i * A u k) * (∑ v : Fin 4, T v j * A v k)
-    simp only [Finset.mul_sum, Finset.sum_mul]
     calc
-      (∑ v : Fin 4, ∑ u : Fin 4, a * (T u i * A u v * T v j)) =
-          ∑ u : Fin 4, ∑ v : Fin 4, a * (T u i * A u v * T v j) := Finset.sum_comm
-      _ = _ := by
-        apply Finset.sum_congr rfl
-        intro u _
+      _ = ∑ v : Fin 4, ∑ u : Fin 4, a * (T u i * A u v * T v j) := by
+        simp only [Finset.mul_sum, Finset.sum_mul]
+      _ = ∑ v : Fin 4, ∑ u : Fin 4, (T u i * A u k) * (T v j * A v k) := by
         apply Finset.sum_congr rfl
         intro v _
+        apply Finset.sum_congr rfl
+        intro u _
         calc
           a * (T u i * A u v * T v j) = T u i * T v j * (a * A u v) := by ring
           _ = T u i * T v j * (A u k * A v k) := by rw [hA]
           _ = _ := by ring
+      _ = ∑ v : Fin 4, (∑ u : Fin 4, T u i * A u k) * (T v j * A v k) := by
+        apply Finset.sum_congr rfl
+        intro v _
+        rw [Finset.sum_mul]
+      _ = _ := by rw [Finset.mul_sum]
   intro p i j
   change G p p * G i j = G i p * G p j
   apply mul_left_cancel₀ (mul_ne_zero ha ha)
@@ -260,7 +264,7 @@ private theorem rankOne_substitution_injective (M : Matrix (Fin 4) (Fin 4) K)
     weightedLinearSubstitution_one, weightedLinearSubstitution_one] at he
   exact he
 
-set_option maxHeartbeats 4000000 in
+set_option maxHeartbeats 16000000 in
 /-- A nonzero Hessian of rank at most one in four variables has
 a nonzero constant kernel vector, without homogeneity assumptions. -/
 theorem rankOneHessian_exists_constantKernel
@@ -393,6 +397,7 @@ theorem globalWeightOptimum_not_rankAtMostOne
     (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1) :
     let H := hessian (initialForm w m P)
     ¬ (∀ k i j : Fin 4, H k k * H i j = H i k * H k j) := by
+  dsimp only
   intro hr
   obtain ⟨d,hd,hker⟩ := rankOneHessian_exists_constantKernel (initialForm w m P) hr
   exact hd (globalWeightOptimum_no_constantHessianKernel P w m hw hm hcap hclock hopt hdet d hker)
