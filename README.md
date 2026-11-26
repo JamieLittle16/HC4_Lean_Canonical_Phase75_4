@@ -61,7 +61,23 @@ The project predates this preprint, but its earlier investigations and the compl
 
 The research snapshot is preserved at [archive/research-2026](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) (commit `fe55e3fb`). This branch retains 229 HC4 modules, including the 227-module import closure of the two main endpoints, the umbrella module and the focused audit. The maintainer reported successful incremental builds and all five endpoint axiom audits after pruning. Two elementary lemmas were relocated verbatim; obsolete transitive imports were removed. The theorem statements are unchanged. Fresh-host verification of this smaller publication checkpoint is still pending.
 
-The independent reproduction cited above applies to the earlier verified equivalence, not to the later pruning or a future Lean migration. The pinned toolchain remains Lean 4.24.0.
+The independent reproduction cited above applies to the earlier verified equivalence, not to the later pruning or migration. The publication migration now pins Lean and Mathlib 4.35.0. The maintainer reported a successful 9,274-job build and clean five-endpoint axiom audit after migration (commit `7842bc5`); the subsequent module-system conversion is at `0a69d9a`. A fresh independent build of the final submission snapshot remains outstanding.
+
+## Palomar statement and verification
+
+[Challenge.lean](Challenge.lean) states the polynomial-inverse equivalence and the same-field injectivity equivalence directly with Mathlib objects, without importing HC4. [Solution.lean](Solution.lean) proves the same two declarations from the existing development. The deliberate `sorry` statements in Challenge are required placeholders for Comparator, not part of the solution proof.
+
+The standalone rational rigidity theorem remains a supporting result in the library and is not a separate advertised Comparator declaration in this submission. See [formalization.yaml](formalization.yaml) for structured provenance, AI assistance, source attribution, and review limitations.
+
+Run from the repository root:
+
+```bash
+lake build HC4 Challenge Solution
+lake env lean HC4/Audit.lean
+bash scripts/verify-comparator.sh
+```
+
+The Comparator script uses the pinned toolchain's bundled independent kernels and requires bubblewrap. Final verification must pass before submission.
 
 ## Reproduce the proof
 
