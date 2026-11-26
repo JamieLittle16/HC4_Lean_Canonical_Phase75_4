@@ -45,7 +45,7 @@ The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlan
 
 ## Consolidated manuscript (review draft)
 
-The [unified LaTeX manuscript](docs/research/hc4-jc2-manuscript.tex) consolidates the mathematical notes, including the anchored characteristic construction, rank exclusions, signed-wall contradiction, reverse doubling implication and polynomial-inverse bridge. See its [review record](docs/research/MANUSCRIPT_REVIEW.md) for formal interface checks and outstanding validation. The final manuscript compile and independent reproduction are not yet recorded.
+The [unified LaTeX manuscript](docs/research/hc4-jc2-manuscript.tex) consolidates the mathematical notes, including the anchored characteristic construction, rank exclusions, signed-wall contradiction, reverse doubling implication and polynomial-inverse bridge. See its [review record](docs/research/MANUSCRIPT_REVIEW.md) for formal interface checks and outstanding validation. The maintainer confirmed successful manuscript compilation on 26 November 2026. Independent clean reproduction and mathematical review remain pending.
 
 ## Global extremal-weight exposition
 
