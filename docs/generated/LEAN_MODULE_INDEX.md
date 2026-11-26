@@ -3154,7 +3154,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankOneHessianRatioRigidity`
 - External imports: `Mathlib.RingTheory.MvPolynomial.Homogeneous`
 - Imported by local modules: `HC4`
-- Declarations: `abbrev S`, `theorem rankOne_allOnes_cap`, `theorem rankOne_ordinaryInitial_eq_component`, `theorem rankOne_top_ne_zero`, `theorem rankOne_homogeneous_axis_zero`, `theorem rankOne_exists_purePower_chart`, `theorem rankOne_hessian_degree_le`, `theorem rankOne_purePower_hessian_coeff`, `theorem rankOne_crossProducts_substitution`, `theorem rankOne_substitution_injective`, `theorem rankOneHessian_exists_constantKernel`, `theorem globalWeightOptimum_not_rankAtMostOne`
+- Declarations: `abbrev S`, `theorem rankOne_allOnes_cap`, `theorem rankOne_ordinaryInitial_eq_component`, `theorem rankOne_top_ne_zero`, `theorem rankOne_homogeneous_axis_zero`, `theorem rankOne_exists_purePower_chart`, `theorem rankOne_hessian_degree_le`, `theorem rankOne_purePower_hessian_coeff`, `theorem rankOne_crossProducts_substitution`, `theorem rankOne_substitution_injective`, `theorem rankOne_kernel_of_proportional_columns`, `theorem rankOne_kernel_of_purePivot`, `theorem rankOne_constantKernel_pullback`, `theorem rankOne_exists_purePivot_chart`, `theorem rankOneHessian_exists_constantKernel`, `theorem globalWeightOptimum_not_rankAtMostOne`
 
 ### `HC4.Polynomial.RankOneHessianRatioRigidity`
 
