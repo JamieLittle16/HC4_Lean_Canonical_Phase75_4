@@ -191,6 +191,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicZeroAdjugateRankOne`
   - `HC4.Polynomial.RankThreeCubicZeroBinaryDeterminant`
   - `HC4.Polynomial.RankThreeCubicZeroBinarySourceCofactor`
+  - `HC4.Polynomial.RankTwoAffineClosure`
   - `HC4.Polynomial.RankTwoAffineLevelCurvature`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
@@ -1988,6 +1989,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `HC4.Polynomial.RankThreeWeightedPencils`
   - `HC4.Polynomial.RankThreeBinomialPencilBridge`
+- `HC4.Polynomial.RankTwoAffineClosure`
+  - `HC4.Polynomial.RankTwoMinorTransport`
 - `HC4.Polynomial.RankTwoAffineLevelCurvature`
   - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
 - `HC4.Polynomial.RankTwoCubicFibrePencils`
