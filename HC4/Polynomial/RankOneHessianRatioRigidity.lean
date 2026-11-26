@@ -329,9 +329,12 @@ theorem flatLevel_gradient_ratio_transport
   have h1 := congrArg D hab
   have h2 := congrArg T hab
   simp only [Derivation.leibniz, smul_eq_mul] at h1 h2
-  rw [← hab] at hcurv
+  have hcurv' : a^2 * D b - 2*a*(a*r)*D a + (a*r)^2*T a = 0 := by
+    calc
+      _ = a^2 * D b - 2*a*b*D a + b^2*T a := by rw [hab]
+      _ = 0 := hcurv
   apply mul_left_cancel₀ (pow_ne_zero 3 ha)
-  linear_combination hcurv + a^2*h1 - a^2*r*h2 + a^2*r*hDA
+  linear_combination hcurv' + a^2*h1 - a^2*r*h2 + a^2*r*hDA
 
 /-- A pure-pivot chart makes first-derivative ratios constant
 whenever the scalar polynomial has vanishing tangent curvature. -/
