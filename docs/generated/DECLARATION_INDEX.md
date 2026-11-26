@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11628**.
+Distinct declaration spellings indexed: **11633**.
 
 ## Repeated declaration spellings
 
@@ -11805,7 +11805,12 @@ Distinct declaration spellings indexed: **11628**.
 - `w_nonneg` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
 - `wall` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `wallSlope_eq` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseOneFiberRoot`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseOneFiberRoot`
+- `wall_adjugate_annihilator_topBlock` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
+- `wall_det_isWeightLE` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
+- `wall_hessian_adjugate_isWeightLE` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
 - `wall_row` — `theorem` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
+- `wall_unique_top_annihilator_forces_zero_column` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
+- `wall_weightLE_sum` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
 - `wedgeShift_le_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `weight_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`

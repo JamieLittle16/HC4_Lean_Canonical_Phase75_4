@@ -242,6 +242,7 @@ human architecture guide.
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
   - `HC4.Polynomial.WeightedComplementaryKernel`
   - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
+  - `HC4.Polynomial.WeightedWallAnnihilator`
   - `HC4.Polynomial.WeightedWallMinorSurvival`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
@@ -2211,6 +2212,8 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
   - `HC4.Polynomial.SingularHessianConstantAnnihilator`
+- `HC4.Polynomial.WeightedWallAnnihilator`
+  - `HC4.Polynomial.WeightedWallMinorSurvival`
 - `HC4.Polynomial.WeightedWallMinorSurvival`
   - `HC4.Polynomial.WeightedComplementaryKernel`
 - `HC4.QuasiTranslation`
