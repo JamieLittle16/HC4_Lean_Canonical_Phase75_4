@@ -102,7 +102,7 @@ theorem eval_sub_eq_weightBlock_linear
       rw [Finset.sum_eq_single i]
       · rw [he, MvPolynomial.coeff_monomial, if_pos rfl]
         rw [← MvPolynomial.C_mul_X_eq_monomial]
-        simp only [map_mul, MvPolynomial.eval_C, MvPolynomial.eval_X, v, hwis, if_pos rfl]
+        simp only [map_mul, MvPolynomial.eval_C, MvPolynomial.eval_X, v, if_pos hwis]
         ring
       · intro j _ hj'
         rw [he, MvPolynomial.coeff_monomial, if_neg (hj j hj'), zero_mul]
@@ -115,6 +115,7 @@ theorem eval_sub_eq_weightBlock_linear
         unfold Finsupp.prod
         apply Finset.prod_congr rfl
         intro i hi
+        change x i ^ u i = y i ^ u i
         rw [hxy i (h i (Finsupp.mem_support_iff.mp hi))]
       rw [he, sub_self]
       symm
