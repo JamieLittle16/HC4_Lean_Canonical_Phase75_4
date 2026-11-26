@@ -124,7 +124,9 @@ theorem rankTwo_graphNormal_pivotEquations
       c 1 * (Δ⁻¹ * (-(A k k * A p (s j) - A p k * A k (s j)))))) = _
     rw [hs (s j) k,hs (s j) p]
     have hδ : Δ ≠ 0 := hreg
-    field_simp [hδ] <;> ring
+    field_simp [hδ]
+    rw [hs p k]
+    ring
 
 set_option maxHeartbeats 4000000 in
 /-- The unconditional rank-at-most-two contradiction on the
