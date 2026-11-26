@@ -156,7 +156,128 @@ theorem exists_weighted_firstWall_or_zeroClock
       rw [firstWall_weight_scaled_add, ha', hb']
       ring
 
+
+set_option maxHeartbeats 4000000 in
+/-- First contact for arbitrary signed weights and invisible signed slopes.
+This permits the negative omitted weight in a Taylor-normalised relative
+phase. The argument uses finite support, not positivity of coordinates. -/
+theorem exists_signedWeight_firstWall_or_zeroClock
+    (w v : σ → ℤ) (m : ℤ) (P : MvPolynomial σ K)
+    (hcap : IsWeightLE w m P)
+    (hW : 0 < (Fintype.card σ : ℤ) * m - 2 * (∑ i : σ, w i))
+    (hvsum : 0 < ∑ i : σ, v i)
+    (hinvisible : ∀ u ∈ P.support, Finsupp.weight w u = m →
+      Finsupp.weight v u = 0) :
+    ∃ a b : ℤ, 0 < a ∧ 0 < b ∧
+      let w' : σ → ℤ := fun i => b * w i + a * v i
+      let m' := b * m
+      let W' := (Fintype.card σ : ℤ) * m' - 2 * (∑ i : σ, w' i)
+      IsWeightLE w' m' P ∧
+      0 ≤ W' ∧ W' < b * ((Fintype.card σ : ℤ) * m - 2 * (∑ i : σ, w i)) ∧
+      initialForm w m (initialForm w' m' P) = initialForm w m P ∧
+      (W' = 0 ∨ ∃ u ∈ P.support, Finsupp.weight w u < m ∧
+        Finsupp.weight v u > 0 ∧ Finsupp.weight w' u = m') := by
+  classical
+  let W := (Fintype.card σ : ℤ) * m - 2 * (∑ i : σ, w i)
+  let V := 2 * (∑ i : σ, v i)
+  have hW0 : 0 < W := hW
+  have hV : 0 < V := by dsimp [V]; omega
+  let S := P.support.filter (fun u => 0 < Finsupp.weight v u)
+  let C : Finset (ℤ × ℤ) := insert (W, V)
+    (S.image (fun u => (m - Finsupp.weight w u, Finsupp.weight v u)))
+  have hC : C.Nonempty := ⟨(W,V), by simp [C]⟩
+  have hpos (c : ℤ × ℤ) (hc : c ∈ C) : 0 < c.1 ∧ 0 < c.2 := by
+    rcases Finset.mem_insert.mp hc with he | he
+    · subst c
+      exact ⟨hW0, hV⟩
+    · obtain ⟨u, hu, rfl⟩ := Finset.mem_image.mp he
+      have hu' := Finset.mem_filter.mp hu
+      have hb := hcap hu'.1
+      have hn : Finsupp.weight w u ≠ m := by
+        intro he
+        have hz := hinvisible u hu'.1 he
+        omega
+      exact ⟨by omega, hu'.2⟩
+  obtain ⟨c, hc, hmin⟩ := Finset.exists_min_image C
+    (fun p : ℤ × ℤ => (p.1 : ℚ) / (p.2 : ℚ)) hC
+  let a := c.1
+  let b := c.2
+  have ha : 0 < a := (hpos c hc).1
+  have hb : 0 < b := (hpos c hc).2
+  have hcross (p : ℤ × ℤ) (hp : p ∈ C) : a * p.2 ≤ p.1 * b := by
+    have he := hmin p hp
+    change (a : ℚ) / (b : ℚ) ≤ (p.1 : ℚ) / (p.2 : ℚ) at he
+    have hbq : (0 : ℚ) < (b : ℚ) := by exact_mod_cast hb
+    have hpq : (0 : ℚ) < (p.2 : ℚ) := by exact_mod_cast (hpos p hp).2
+    exact_mod_cast (div_le_div_iff₀ hbq hpq).mp he
+  have hclock := hcross (W,V) (by simp [C])
+  change a * V ≤ W * b at hclock
+  let w' : σ → ℤ := fun i => b * w i + a * v i
+  let m' := b * m
+  let W' := (Fintype.card σ : ℤ) * m' - 2 * (∑ i : σ, w' i)
+  have hW' : W' = b * W - a * V := by
+    dsimp [W', m', w', W, V]
+    rw [Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum]
+    ring
+  have hAV : 0 < a * V := mul_pos ha hV
+  have hcap' : IsWeightLE w' m' P := by
+    intro u hu
+    change Finsupp.weight (fun i => b * w i + a * v i) u ≤ b * m
+    rw [firstWall_weight_scaled_add]
+    by_cases hz : Finsupp.weight v u ≤ 0
+    · have hneg := mul_nonpos_of_nonneg_of_nonpos (le_of_lt ha) hz
+      have hbound := mul_le_mul_of_nonneg_left (hcap hu) (le_of_lt hb)
+      linarith
+    · have hp : (m - Finsupp.weight w u, Finsupp.weight v u) ∈ C := by
+        apply Finset.mem_insert_of_mem
+        apply Finset.mem_image.mpr
+        exact ⟨u, Finset.mem_filter.mpr ⟨hu, by omega⟩, rfl⟩
+      have he := hcross _ hp
+      change a * Finsupp.weight v u ≤ (m - Finsupp.weight w u) * b at he
+      nlinarith
+  have hold : initialForm w m (initialForm w' m' P) = initialForm w m P := by
+    ext u
+    rw [coeff_initialForm, coeff_initialForm, coeff_initialForm]
+    by_cases hu : Finsupp.weight w u = m
+    · rw [if_pos hu, if_pos hu]
+      by_cases hz : coeff u P = 0
+      · simp [hz]
+      · have hv0 := hinvisible u (MvPolynomial.mem_support_iff.mpr hz) hu
+        have he : Finsupp.weight w' u = m' := by
+          change Finsupp.weight (fun i => b * w i + a * v i) u = b * m
+          rw [firstWall_weight_scaled_add, hu, hv0, mul_zero, add_zero]
+        rw [if_pos he]
+    · rw [if_neg hu, if_neg hu]
+  refine ⟨a, b, ha, hb, ?_⟩
+  change IsWeightLE w' m' P ∧
+    0 ≤ W' ∧ W' < b * W ∧
+    initialForm w m (initialForm w' m' P) = initialForm w m P ∧
+    (W' = 0 ∨ ∃ u ∈ P.support, Finsupp.weight w u < m ∧
+      Finsupp.weight v u > 0 ∧ Finsupp.weight w' u = m')
+  refine ⟨hcap', ?_, ?_, hold, ?_⟩
+  · rw [hW', mul_comm b W]
+    omega
+  · rw [hW']
+    omega
+  · rcases Finset.mem_insert.mp hc with he | he
+    · left
+      have ha' : a = W := congrArg Prod.fst he
+      have hb' : b = V := congrArg Prod.snd he
+      rw [hW', ha', hb']
+      ring
+    · right
+      obtain ⟨u, hu, heq⟩ := Finset.mem_image.mp he
+      have hu' := Finset.mem_filter.mp hu
+      have ha' : a = m - Finsupp.weight w u := (congrArg Prod.fst heq).symm
+      have hb' : b = Finsupp.weight v u := (congrArg Prod.snd heq).symm
+      refine ⟨u, hu'.1, by omega, hu'.2, ?_⟩
+      change Finsupp.weight (fun i => b * w i + a * v i) u = b * m
+      rw [firstWall_weight_scaled_add, ha', hb']
+      ring
+
 end
 end HC4.Polynomial
 
 #print axioms HC4.Polynomial.exists_weighted_firstWall_or_zeroClock
+
+#print axioms HC4.Polynomial.exists_signedWeight_firstWall_or_zeroClock
