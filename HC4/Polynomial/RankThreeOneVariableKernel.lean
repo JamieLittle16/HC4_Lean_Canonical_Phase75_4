@@ -5792,6 +5792,171 @@ theorem rankThree_normalizedPhase_slope
   simp [rankThreeWallPhase]
 
 
+/-- The passive jet basis is embedded with an unchanged omitted
+coordinate, in the canonical ordering. -/
+def rankThreeJetBlock (M : Matrix (Fin 3) (Fin 3) K) :
+    Matrix (Fin 4) (Fin 4) K :=
+  fun i => Fin.cases (Fin.cases 1 (fun _ => 0))
+    (fun k => Fin.cases 0 (fun j => M k j)) i
+
+theorem rankThree_jetBlock_det (M : Matrix (Fin 3) (Fin 3) K) :
+    (rankThreeJetBlock M).det = M.det := by
+  classical
+  rw [Matrix.det_succ_row_zero,Finset.sum_eq_single (0 : Fin 4)]
+  · change (-1 : K)^0 * 1 * ((rankThreeJetBlock M).submatrix Fin.succ
+        (0 : Fin 4).succAbove).det = _
+    have he : (rankThreeJetBlock M).submatrix Fin.succ (0 : Fin 4).succAbove = M := by
+      apply Matrix.ext
+      intro i j
+      rfl
+    rw [he]
+    simp
+  · intro j _ hj
+    have hz : rankThreeJetBlock M 0 j = 0 := by
+      obtain ⟨k,rfl⟩ := Fin.exists_succAbove_eq hj
+      rfl
+    rw [hz,mul_zero,zero_mul]
+  · simp
+
+/-- A genuine affine chart with arbitrary original coordinate
+ordering and with the omitted coordinate translated to the
+regular base point. -/
+theorem rankThree_jetAffineChart
+    (e : Fin 4 ≃ Fin 4) (x : Fin 4 → K)
+    (M : Matrix (Fin 3) (Fin 3) K) (hM : M.det ≠ 0) :
+    ∃ A : Matrix (Fin 4) (Fin 4) K, ∃ t : Fin 4 → K,
+      A.det ≠ 0 ∧ t (e 0) = x (e 0) ∧
+      (∀ j, A (e 0) j = if j = 0 then 1 else 0) ∧
+      let F := rankThreeAffineSubstitution A t
+      F (X (e 0)) = MvPolynomial.C (x (e 0)) + X 0 ∧
+      ∀ i : Fin 3, F (X (e i.succ)) =
+        ∑ j : Fin 3, MvPolynomial.C (M i j) * X j.succ := by
+  classical
+  let A := (rankThreeJetBlock M).submatrix e.symm id
+  let t : Fin 4 → K := fun i => if i = e 0 then x (e 0) else 0
+  have hA : A.det ≠ 0 := by
+    change ((rankThreeJetBlock M).submatrix e.symm id).det ≠ 0
+    rw [Matrix.det_permute,rankThree_jetBlock_det]
+    exact mul_ne_zero (by simp) hM
+  have hAentry (i j : Fin 4) : A (e i) j = rankThreeJetBlock M i j := by
+    simp [A,Matrix.submatrix_apply]
+  have hrow (j : Fin 4) : A (e 0) j = if j = 0 then 1 else 0 := by
+    rw [hAentry]
+    fin_cases j <;> rfl
+  refine ⟨A,t,hA,by simp [t],hrow,?_,?_⟩
+  · rw [rankThreeAffineSubstitution,MvPolynomial.aeval_X]
+    simp [t,hrow,Fin.sum_univ_four]
+  · intro i
+    rw [rankThreeAffineSubstitution,MvPolynomial.aeval_X,Fin.sum_univ_succ]
+    have hi : e i.succ ≠ e 0 := fun hz => Fin.succ_ne_zero i (e.injective hz)
+    simp only [t,if_neg hi,map_zero,zero_add,hAentry]
+    change MvPolynomial.C (rankThreeJetBlock M i.succ 0) * X 0 +
+        ∑ j : Fin 3, MvPolynomial.C (rankThreeJetBlock M i.succ j.succ) * X j.succ = _
+    change MvPolynomial.C (0 : K) * X 0 +
+        ∑ j : Fin 3, MvPolynomial.C (M i j) * X j.succ = _
+    rw [map_zero,zero_mul,zero_add]
+
+set_option maxHeartbeats 10000000 in
+/-- Actual source normalization and contradiction for a relative
+pure power after polynomial denominator clearing. The chart,
+regular point, slope bounds and exact normal phase are constructed
+rather than assumed. -/
+theorem rankThree_clearedPhase_normalize_impossible
+    (P q a b D N : B K) (e : Fin 4 ≃ Fin 4) (n : ℕ) (hn : 3 ≤ n)
+    (hdet : hessianDeterminant P = 1)
+    (hcap : IsWeightLE (fun i => if i = e 0 then 0 else 1) (n : ℤ) P)
+    (hq : q ≠ 0) (hD : D ≠ 0) (hN : N ≠ 0)
+    (hrel : ∀ j, j ≠ e 0 → pderiv j q = 0 ∧ pderiv j a = 0 ∧ pderiv j b = 0)
+    (hrelDN : ∀ j, j ≠ e 0 → pderiv j D = 0 ∧ pderiv j N = 0)
+    (hW : rankThreePhaseJetDet (e 0) q a b ≠ 0)
+    (heq : D * initialForm (fun i => if i = e 0 then 0 else 1) (n : ℤ) P =
+      N * (q*X (e 1)+a*X (e 2)+b*X (e 3))^n) :
+    False := by
+  classical
+  let s := e 0
+  let v : Fin 4 → ℤ := fun i => if i = s then 0 else 1
+  obtain ⟨x,hqx,hWx,hDN⟩ := rankThree_phaseJet_regularPoint s q a b (D*N)
+    hq hW (mul_ne_zero hD hN)
+  rw [map_mul] at hDN
+  have hDx := (mul_ne_zero_iff.mp hDN).1
+  have hNx := (mul_ne_zero_iff.mp hDN).2
+  obtain ⟨M,hM,hrelR,hR0,hR1,hR2⟩ :=
+    rankThree_phaseJet_normalize s x q a b hWx hrel
+  let R : Fin 3 → B K := fun j =>
+    ∑ i : Fin 3, MvPolynomial.C (M i j) * (![q,a,b] : Fin 3 → B K) i
+  obtain ⟨A,t,hA,ht,hrow,hX0,hX⟩ := rankThree_jetAffineChart e x M hM
+  let F := rankThreeAffineSubstitution A t
+  let z : Fin 4 → B K := fun i =>
+    MvPolynomial.C (t i) + ∑ j : Fin 4, MvPolynomial.C (A i j)*X j
+  let Q := F P
+  have hFX (i : Fin 4) : F (X i) = z i := MvPolynomial.aeval_X i
+  have hz (i : Fin 4) : (z i).IsWeightedHomogeneous rankThreeWallDegree (v i) := by
+    rw [← hFX]
+    by_cases hi : i = s
+    · subst i
+      change (F (X (e 0))).IsWeightedHomogeneous rankThreeWallDegree 0
+      rw [hX0]
+      exact (MvPolynomial.isWeightedHomogeneous_C _ _).add
+        (MvPolynomial.isWeightedHomogeneous_X K rankThreeWallDegree 0)
+    · obtain ⟨j,hj⟩ := Fin.exists_succAbove_eq (show e.symm i ≠ 0 from by
+        intro h
+        apply hi
+        simpa only [Equiv.apply_symm_apply] using congrArg e h)
+      have hij : i = e j.succ := by
+        have h := congrArg e hj
+        simpa only [Fin.succAbove_zero,Equiv.apply_symm_apply] using h.symm
+      rw [show v i = 1 by simp [v,hi],hij,hX]
+      apply MvPolynomial.IsWeightedHomogeneous.sum Finset.univ
+      intro k _
+      have hXk : (X k.succ : B K).IsWeightedHomogeneous rankThreeWallDegree 1 := by
+        have hk : rankThreeWallDegree k.succ = 1 := by simp [rankThreeWallDegree]
+        rw [← hk]
+        exact MvPolynomial.isWeightedHomogeneous_X K _ _
+      simpa only [zero_add] using (MvPolynomial.isWeightedHomogeneous_C _ _).mul hXk
+  have hcapQ : IsWeightLE rankThreeWallDegree (n : ℤ) Q :=
+    rankThree_homogeneousSubstitution_cap v rankThreeWallDegree z hz (n : ℤ) P hcap
+  have hface : initialForm rankThreeWallDegree (n : ℤ) Q =
+      F (initialForm v (n : ℤ) P) :=
+    rankThree_homogeneousSubstitution_initialForm v rankThreeWallDegree z hz (n : ℤ) P
+  have hdetQ : hessianDeterminant Q = MvPolynomial.C (A.det ^ 2) :=
+    rankThree_affine_det A t P hdet
+  have hRjet (j : Fin 3) :=
+    rankThree_affine_relative A t x s hrow ht (R j) (hrelR j)
+  let S : Fin 3 → B K := fun j => F (R j)
+  obtain ⟨hScap,hStop⟩ := rankThree_relativeJet_slope S
+    (fun j => (hRjet j).1)
+    (fun j => (hRjet j).2.2.2.1.trans (hR0 j))
+    (fun j => (hRjet j).2.2.2.2.1.trans (hR1 j))
+    (fun j => (hRjet j).2.2.2.2.2.trans (hR2 j))
+  let T := S 0*X 1+S 1*X 2+S 2*X 3
+  obtain ⟨hTcap,hTtop⟩ := rankThree_normalizedPhase_slope S hScap hStop
+  have hDjet := rankThree_affine_relative A t x s hrow ht D (fun j hj => (hrelDN j hj).1)
+  have hNjet := rankThree_affine_relative A t x s hrow ht N (fun j hj => (hrelDN j hj).2)
+  have hD0 := rankThree_relativePolynomial_slope (F D) 0 (MvPolynomial.aeval x D)
+    hDjet.1 (fun j hj => (Nat.not_lt_zero j hj).elim) (by simpa using hDjet.2.2.2.1)
+  have hN0 := rankThree_relativePolynomial_slope (F N) 0 (MvPolynomial.aeval x N)
+    hNjet.1 (fun j hj => (Nat.not_lt_zero j hj).elim) (by simpa using hNjet.2.2.2.1)
+  have hphase : F (q*X (e 1)+a*X (e 2)+b*X (e 3)) = T := by
+    have hx1 := hX 0
+    have hx2 := hX 1
+    have hx3 := hX 2
+    change F (X (e 1)) = _ at hx1
+    change F (X (e 2)) = _ at hx2
+    change F (X (e 3)) = _ at hx3
+    simp only [map_add,map_mul,hx1,hx2,hx3,T,S,R,map_sum,
+      Fin.sum_univ_three,MvPolynomial.aeval_C]
+    ring
+  have heq' := congrArg F heq
+  change F (D * initialForm v (n : ℤ) P) =
+    F (N * (q*X (e 1)+a*X (e 2)+b*X (e 3))^n) at heq'
+  simp only [map_mul,map_pow,← hface,hphase] at heq'
+  exact rankThree_normalized_clearedPhase_impossible Q (F D) (F N) T n hn
+    (A.det^2) (MvPolynomial.aeval x D) (MvPolynomial.aeval x N)
+    (pow_ne_zero _ hA) hDx hNx hdetQ hcapQ
+    (by simpa using hD0.1) (by simpa using hN0.1) hTcap
+    (by simpa using hD0.2) (by simpa using hN0.2) hTtop heq'
+
+
 end
 end HC4.Polynomial
 
@@ -5943,3 +6108,7 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_coeff_jet
 #print axioms HC4.Polynomial.rankThree_relativeJet_slope
 #print axioms HC4.Polynomial.rankThree_normalizedPhase_slope
+
+#print axioms HC4.Polynomial.rankThree_jetBlock_det
+#print axioms HC4.Polynomial.rankThree_jetAffineChart
+#print axioms HC4.Polynomial.rankThree_clearedPhase_normalize_impossible
