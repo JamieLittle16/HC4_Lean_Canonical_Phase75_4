@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine
+import Mathlib.LinearAlgebra.Matrix.Symmetric
 import Mathlib.Tactic
 
 /-!
