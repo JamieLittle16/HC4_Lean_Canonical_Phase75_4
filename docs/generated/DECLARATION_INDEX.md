@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11933**.
+Distinct declaration spellings indexed: **11936**.
 
 ## Repeated declaration spellings
 
@@ -5727,6 +5727,7 @@ Distinct declaration spellings indexed: **11933**.
 - `exists_shiftedEtaNumerator_factor` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `exists_shiftedEta_mul_phi_pow_factor` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `exists_signedWeight_firstWall_or_zeroClock` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
+- `exists_signedWeight_refining_firstWall` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
 - `exists_singular_first_nonfacet_contact` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_of_two_outside_comparison` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_with_boundary_vertices` — `theorem` in `HC4.Newton.FirstNonfacetBoundary`
@@ -9566,7 +9567,9 @@ Distinct declaration spellings indexed: **11933**.
 - `rankThree_restricted_equalWeight_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_restricted_row_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_restricted_shear_zero_row` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_restricted_signedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_restricted_weightedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_signedWall_no_lowerDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_signedWall_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_support_cap_of_monomial_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_support_transfer_to_pivot` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
