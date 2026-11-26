@@ -197,6 +197,7 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoImageDirectionClosure`
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
   - `HC4.Polynomial.RankTwoMinorTransport`
+  - `HC4.Polynomial.RankTwoPrincipalPivot`
   - `HC4.Polynomial.RationalCharacteristicAdjugate`
   - `HC4.Polynomial.RationalCharacteristicAffineCoordinates`
   - `HC4.Polynomial.RationalCharacteristicAffineFraction`
@@ -2004,6 +2005,8 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoKernelSecondVariation`
 - `HC4.Polynomial.RankTwoMinorTransport`
   - `HC4.Polynomial.RankTwoAffineLevelCurvature`
+- `HC4.Polynomial.RankTwoPrincipalPivot`
+  - `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
   - `HC4.Polynomial.RankThreePencils`
   - `HC4.Valuation.ParameterGapDualJet`
