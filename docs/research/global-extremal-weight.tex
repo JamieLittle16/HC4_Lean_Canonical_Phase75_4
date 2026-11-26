@@ -87,7 +87,7 @@ With exactly one zero weight, a complementary gradient component has weight zero
 \]
 Its Hessian determinant is $(\det D(A,B))^2=1$. Planar injectivity recovers $(x,y)$ from the last two gradient components; the other two recover $(z,t)$ by the invertible transpose Jacobian. Thus a counterexample necessarily has $C>0$.
 
-For $C>0$ we must exclude a leading Hessian of rank at most two over the fraction field. Here the formal proof uses the following checked intermediate results, which we summarize rather than reproduce in full:
+For $C>0$ we must exclude a leading Hessian of rank at most two over the fraction field. The companion note \path{extremal-rank-exclusions.tex} expands this exclusion and the subsequent regular-block and relative-frontier arguments. Here the formal proof uses the following checked intermediate results, which we summarize rather than reproduce in full:
 \begin{itemize}
 \item \path{globalWeightOptimum_rankTwo_exists_principalPivot}: under the rank-at-most-two assumption every specified diagonal coordinate has a regular principal two-minor with another coordinate. This uses the constant-kernel and affine-plane obstructions; in particular rank below two is impossible.
 \item \path{rankTwo_regularPoint_affineKernel_fibre}: at a regular point, the whole affine plane through that point in its Hessian kernel lies in the corresponding gradient fibre. This follows by constructing the rational graph of the kernel using the principal minor, normalising the two free components, and using third-derivative symmetry to kill the directional acceleration. The polynomial line identity specializes on the regular locus.
@@ -181,7 +181,7 @@ The main checked sources, all under \path{HC4/Polynomial/}, are:
 \item \path{RankThreeExtremalReduction.lean};
 \item \path{RankThreeOneVariableKernel.lean}.
 \end{itemize}
-Their final assembly is \path{HC4.Polynomial.hc4_of_planarJC2}, verified by the maintainer with transitive axioms only \path{propext}, \path{Classical.choice}, \path{Quot.sound}. See also \path{HC4/FinalEquivalence.lean} for the polynomial-inverse equivalence over algebraically closed characteristic-zero fields. This note is a source-linked proof outline: the lower-rank and regular-pivot reductions are stated or summarized using checked lemmas, not fully reproved here. Independent review of the mathematical exposition and a detailed comparison with earlier literature remain pending. Development and exposition used substantial AI assistance.
+Their final assembly is \path{HC4.Polynomial.hc4_of_planarJC2}, verified by the maintainer with transitive axioms only \path{propext}, \path{Classical.choice}, \path{Quot.sound}. See also \path{HC4/FinalEquivalence.lean} for the polynomial-inverse equivalence over algebraically closed characteristic-zero fields. This note is a source-linked proof outline; the nonnegative rank reductions are expanded in the companion \path{extremal-rank-exclusions.tex}. The signed-wall regular-pivot reduction and some other supporting steps still require a fuller exposition. Independent review of the mathematical exposition and a detailed comparison with earlier literature remain pending. Development and exposition used substantial AI assistance.
 \begin{thebibliography}{9}
 \bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026), Sections 3--4. \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
 \end{thebibliography}
