@@ -69,7 +69,7 @@ theorem annihilatorShear_respects_weight
 /-- The transformed covector is concentrated at the selected pivot. -/
 theorem annihilatorShear_transpose_mulVec
     (d : ι → K) (k : ι) (hk : d k ≠ 0) :
-    (annihilatorShear d k).transpose *ᵥ d = d k • Pi.single k 1 := by
+    (annihilatorShear d k).transpose *ᵥ d = d k • (Pi.single k (1 : K) : ι → K) := by
   classical
   let M := annihilatorShear d k
   funext j
@@ -109,7 +109,7 @@ theorem adjugate_congruence_zero_column
     (A M : Matrix ι ι R) (d : ι → R) (k : ι) (c : R)
     (hc : c ≠ 0) (hM : M.det = 1)
     (hd : A.adjugate *ᵥ d = 0)
-    (hcol : M.transpose *ᵥ d = c • Pi.single k 1) :
+    (hcol : M.transpose *ᵥ d = c • (Pi.single k (1 : R) : ι → R)) :
     ∀ i, (M.transpose * A * M).adjugate i k = 0 := by
   classical
   have hdet : M.transpose.det = 1 := by rw [Matrix.det_transpose, hM]
@@ -198,7 +198,7 @@ theorem weightedLinearSubstitution_det
   change ((MvPolynomial.C : K →+* MvPolynomial ι K).mapMatrix M).det *
     ((weightedLinearSubstitution M).toRingHom.mapMatrix (hessian f)).det *
     ((MvPolynomial.C : K →+* MvPolynomial ι K).mapMatrix M).det = _
-  rw [← RingHom.map_det, ← RingHom.map_det, ← RingHom.map_det, hM, map_one, one_mul, mul_one] <;> rfl
+  rw [← RingHom.map_det, ← RingHom.map_det, hM, map_one, one_mul, mul_one] <;> rfl
 
 /-- Annihilator alignment on the actual substituted potential. -/
 theorem weightedLinearSubstitution_zero_adjugate_column
@@ -226,7 +226,7 @@ theorem weightedLinearSubstitution_zero_adjugate_column
       exact f.commutes a
     simp only [map_sum, map_mul, map_zero, hC] at hh
     exact hh
-  have ht : T.transpose *ᵥ b = C (d k) • Pi.single k 1 := by
+  have ht : T.transpose *ᵥ b = C (d k) • (Pi.single k (1 : MvPolynomial ι K) : ι → MvPolynomial ι K) := by
     funext i
     have hh := congrArg C (congrFun (annihilatorShear_transpose_mulVec d k hk) i)
     change C (∑ j : ι, M j i * d j) = C (d k * Pi.single k (1 : K) i) at hh
