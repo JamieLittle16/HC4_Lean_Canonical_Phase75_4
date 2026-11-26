@@ -47,6 +47,7 @@ theorem extremal_eval_eq_of_pderiv_zero
     subst i
     exact (Finsupp.mem_support_iff.mp hi)
       (exponent_eq_zero_of_pderiv_eq_zero k f hf u (MvPolynomial.mem_support_iff.mp hu))
+  change x i ^ u i = y i ^ u i
   rw [hxy i hne]
 
 /-- Specialize the original polynomial at a fixed base value and
@@ -153,8 +154,10 @@ theorem gradient_injective_of_splitRow_standard
     intro i
     by_cases hi : i = 0
     · subst i
-      simpa using hA
-    · simp [hi, hrow i hi])
+      rw [if_pos rfl]
+      exact hA
+    · rw [if_neg hi]
+      exact hrow i hi)
   intro x y hxy
   have hbase : x 0 = y 0 := by
     have he := congrFun hxy 3
@@ -185,7 +188,12 @@ theorem gradient_injective_of_splitRow_standard
     rw [splitRowSlice_eval]
     apply extremal_eval_eq_of_pderiv_zero _ 3 hi
     intro j hj
-    fin_cases j <;> simp_all
+    fin_cases j
+    · change x 0 = z 0
+      exact hz.symm
+    · rfl
+    · rfl
+    · exact (hj rfl).elim
   have hpair : px = py := by
     apply hJC2 G hG
     funext i
@@ -203,10 +211,16 @@ theorem gradient_injective_of_splitRow_standard
   let R := pderiv 0 P - MvPolynomial.C a * X 3
   have hR : pderiv 3 R = 0 := by
     change pderiv 3 (pderiv 0 P - MvPolynomial.C a * X 3) = 0
-    rw [map_sub, MvPolynomial.pderiv_C_mul, pderiv_X_self, mul_one, ← hessian_apply, h03, sub_self]
+    rw [map_sub, MvPolynomial.pderiv_C_mul, pderiv_X_self, mul_one]
+    change H 0 3 - MvPolynomial.C a = 0
+    rw [h03, sub_self]
   have hReq := extremal_eval_eq_of_pderiv_zero R 3 hR x y (by
     intro i hi
-    fin_cases i <;> simp_all)
+    fin_cases i
+    · exact hbase
+    · exact hx1
+    · exact hx2
+    · exact (hi rfl).elim)
   have he := congrFun hxy 0
   change MvPolynomial.eval x (pderiv 0 P) = MvPolynomial.eval y (pderiv 0 P) at he
   change MvPolynomial.eval x (pderiv 0 P - MvPolynomial.C a * X 3) =
