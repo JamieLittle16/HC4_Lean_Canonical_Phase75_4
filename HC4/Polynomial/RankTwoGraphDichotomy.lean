@@ -45,7 +45,8 @@ private theorem graphWedge_trans_zero (a b c : Fin 2 → K) (ha : a ≠ 0)
     graphWedge b c = 0 := by
   have h (i : Fin 2) : a i * graphWedge b c = 0 := by
     unfold graphWedge at *
-    fin_cases i
+    have h01 : ∀ t : Fin 2, t = 0 ∨ t = 1 := by decide
+    rcases h01 i with rfl | rfl
     · linear_combination b 0 * hac - c 0 * hab
     · linear_combination b 1 * hac - c 1 * hab
   by_contra hn
@@ -92,7 +93,11 @@ private theorem graphOuter_factor (A : Matrix (Fin 2) (Fin 2) K)
   apply mul_right_cancel₀ hij
   calc
     A a b * A i j = A a j * A i b := by
-      fin_cases a <;> fin_cases b <;> fin_cases i <;> fin_cases j <;>
+      have h01 : ∀ t : Fin 2, t = 0 ∨ t = 1 := by decide
+      rcases h01 a with rfl | rfl <;>
+        rcases h01 b with rfl | rfl <;>
+        rcases h01 i with rfl | rfl <;>
+        rcases h01 j with rfl | rfl <;>
         first | ring | linear_combination hA | linear_combination -hA
     _ = (A a j * (A i b / A i j)) * A i j := by
       rw [mul_assoc,div_mul_cancel₀ _ hij]
