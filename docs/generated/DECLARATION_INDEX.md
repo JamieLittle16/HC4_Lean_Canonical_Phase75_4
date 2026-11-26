@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11916**.
+Distinct declaration spellings indexed: **11918**.
 
 ## Repeated declaration spellings
 
@@ -4961,6 +4961,7 @@ Distinct declaration spellings indexed: **11916**.
 - `counterexample_rankThree_no_rankTwoVelocity_zeroWeight` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `counterexample_rankThree_no_regularActive` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `counterexample_rankThree_rankOne_frontier` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `counterexample_rankThree_zeroWeight_relative_frontier` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledAlignedSmithWall_impossible_of_noPrimitive` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
@@ -9491,6 +9492,7 @@ Distinct declaration spellings indexed: **11916**.
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_activeMinor_zero_all_restrictedMinors` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_activePivot_zero_restrictedMinors` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_affineTerminal_all_fixed_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_codimensionTwoTop_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
