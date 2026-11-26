@@ -43,6 +43,10 @@ The project also proves a source-independent algebraic version of Tang's Theorem
 
 The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlane.lean) passed the maintainer's targeted build (8317 jobs, 26 November 2026, [9e548ccb](https://github.com/JamieLittle16/HessianConjecture4/commit/9e548ccbd91920cb7f49ba40c2bf93e11e996b14)); its transitive axioms are exactly `[propext, Classical.choice, Quot.sound]`. The [mathematical exposition (LaTeX)](docs/research/rational-affine-plane-rigidity.tex) explains all ranks, including the polynomial transport argument replacing the rank-two geometric classification. The new endpoint is separate from the original equivalence proof.
 
+## Global extremal-weight exposition
+
+The [companion LaTeX note](docs/research/global-extremal-weight.tex) explains attainment over realized support patterns, local weight-improvement obstructions, the checked rank reductions and the final signed first-wall argument adapted from Tang. It is a source-linked proof outline; the longer rank-reduction lemmas are summarized rather than fully reproved. It complements the standalone rational rigidity note above.
+
 ## Mathematical attribution
 
 The final weighted proof was substantially informed by Qiyue Tang, *[Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures](https://hexagonmath.org/2611.00156v2)*, Hexagon preprint 2611.00156v2 (2026), CC BY 4.0. Tang's preprint presents the equivalence over the complex numbers (Theorem 1.1). In particular, we adapted the Wronskian/Taylor coordinate normalization and signed first-wall obstruction in Lemma 3.3 (pp. 17–18), as well as drawing on the broader weighted leading-form strategy.
