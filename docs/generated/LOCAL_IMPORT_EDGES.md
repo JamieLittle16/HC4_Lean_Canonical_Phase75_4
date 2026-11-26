@@ -236,6 +236,7 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingFirstCorrection`
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
+  - `HC4.Polynomial.TransverseLeadingRationalRigidity`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -2145,6 +2146,9 @@ human architecture guide.
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisFirstContactFace`
   - `HC4.Valuation.ParameterFirstLayerBridge`
   - `HC4.Valuation.ParameterGapSecondJet`
+- `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
+  - `HC4.Polynomial.TransverseLeadingCharacteristics`
 - `HC4.Polynomial.TransverseLeadingSchurFoundation`
   - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
   - `HC4.Polynomial.RankThreeCubicDetOneRankThreeKernelTraceIsotropy`
