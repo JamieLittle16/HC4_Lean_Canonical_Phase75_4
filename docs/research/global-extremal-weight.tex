@@ -105,7 +105,7 @@ A common right kernel gives a nonzero constant vector in every original Hessian 
 \section{The relative rank-three reduction}
 Let $A=\Hess L$. The companion rigidity note proves the singular-Hessian adjugate conclusion: there is a nonzero constant $b$ with $(\adj A)b=0$. The original Lean proof uses its anchored version. Since the $(i,j)$ adjugate entry is homogeneous of weight $3m-2\sum w_k+w_i+w_j$, the annihilator splits into equal-weight blocks. A determinant-one weight-compatible shear aligns a nonzero block with a target coordinate $s$ (the adjugate transforms by inverse congruence). We obtain
 \[
- (\adj A)e_s=0,\qquad (\adj A)_{ll}\ne0\quad(l\ne s).
+ (\adj A)e_s=0,\qquad \exists\, l\ne s:\ (\adj A)_{ll}\ne0.
 \]
 The second assertion follows from the symmetric rank-one adjugate. This is not the assertion $Ae_s=0$. A normalized rational kernel direction $V$ of $A$ instead satisfies $V_s=0$, $V_l=1$.
 
@@ -114,9 +114,15 @@ The next interface, \path{counterexample_rankThree_zeroWeight_relative_frontier}
  w_s=0,\quad w_i=w_l,\ A_{ii}\ne0\ (i\ne s),\quad
  \rank A_{\widehat{s},\widehat{s}}\le1 .
 \end{equation}
-It also proves that the normalized kernel components have zero partial derivatives in the three complementary variables. This is a substantial checked reduction, not a consequence of the adjugate equation alone.
+It also proves that the normalized kernel components have zero partial derivatives in the three variables other than $X_s$. This is a substantial checked reduction, not a consequence of the adjugate equation alone.
 
-Its proof first uses normalized kernel transport on the three coordinates other than $l$: the complementary velocity Jacobian is cube-zero, self-adjoint for the invertible complementary Hessian, and has a zero row. Rank zero gives a constant kernel; the checked rank-two velocity exclusion and the rank-one regular-active-pivot exclusion then force the restricted Hessian minors to vanish. The corresponding declarations are \path{counterexample_rankThree_rankOne_frontier}, \path{counterexample_rankThree_no_regularActive}, and \path{rankThree_activePivot_zero_restrictedMinors}. These steps use global optimality, not just singularity.
+Its proof first uses normalized kernel transport on the three coordinates other than $l$: the complementary velocity Jacobian is cube-zero, self-adjoint for the invertible complementary Hessian, and has a zero row. Rank zero gives a constant kernel; the checked rank-two velocity exclusion and the rank-one regular-active-pivot exclusion then force the restricted Hessian minors to vanish. The corresponding declarations are
+\begin{itemize}
+\item \path{counterexample_rankThree_rankOne_frontier};
+\item \path{counterexample_rankThree_no_regularActive};
+\item \path{rankThree_activePivot_zero_restrictedMinors}.
+\end{itemize}
+These steps use global optimality, not just singularity.
 
 Here is the weight argument after the restricted minors vanish. If $w_s>0$, the checked exclusions of zero passive diagonal entries and repeated passive weights leave three nonzero diagonal entries with distinct weights. Let $p$ be the largest passive weight. The passive Hessian ratios are functions of the active variable alone. Weighted homogeneity makes each nonzero ratio a Laurent monomial in that variable, so $w_p-w_i$ is a positive integral multiple of $w_s$ for the other two passive coordinates. In particular their sum of gaps is at least $2w_s$.
 
@@ -166,7 +172,16 @@ Finally the passive row ratios are Laurent monomials in $\xi$. If a term of pass
 \section*{Comparison and verification}
 Tang's Sections 3--4 \cite{tang} arrange case-dependent weight increases, wall crossings and changes of chart. Our global maximum avoids the need to prove termination of those particular continuation sequences: the local improvement rule excludes whole types of leading form at once. The price is the explicit rank-two and rank-three extremal reduction machinery. The signed final step is adapted from Tang's Lemma 3.3, pp.~17--18; negative weights are deliberately outside the global optimisation. We claim a different organisation of the proof, not that the underlying weighted methods are new.
 
-The main checked sources are \path{WeightedGlobalOptimum.lean}, \path{WeightedExtremalKernel.lean}, \path{WeightedExtremalAffinePlane.lean}, \path{NonnegativeTerminalAssembly.lean}, \path{RankTwoGlobalClosure.lean}, \path{RankThreeExtremalReduction.lean}, and \path{RankThreeOneVariableKernel.lean}, all under \path{HC4/Polynomial/}. Their final assembly is \path{HC4.Polynomial.hc4_of_planarJC2}, verified by the maintainer with transitive axioms only \path{propext}, \path{Classical.choice}, \path{Quot.sound}. See also \path{HC4/FinalEquivalence.lean} for the polynomial-inverse equivalence over algebraically closed characteristic-zero fields. This note is a source-linked proof outline: the lower-rank and regular-pivot reductions are stated or summarized using checked lemmas, not fully reproved here. Independent review of the mathematical exposition and a detailed comparison with earlier literature remain pending. Development and exposition used substantial AI assistance.
+The main checked sources, all under \path{HC4/Polynomial/}, are:
+\begin{itemize}
+\item \path{WeightedGlobalOptimum.lean} and \path{WeightedExtremalKernel.lean};
+\item \path{WeightedExtremalAffinePlane.lean};
+\item \path{NonnegativeTerminalAssembly.lean};
+\item \path{RankTwoGlobalClosure.lean};
+\item \path{RankThreeExtremalReduction.lean};
+\item \path{RankThreeOneVariableKernel.lean}.
+\end{itemize}
+Their final assembly is \path{HC4.Polynomial.hc4_of_planarJC2}, verified by the maintainer with transitive axioms only \path{propext}, \path{Classical.choice}, \path{Quot.sound}. See also \path{HC4/FinalEquivalence.lean} for the polynomial-inverse equivalence over algebraically closed characteristic-zero fields. This note is a source-linked proof outline: the lower-rank and regular-pivot reductions are stated or summarized using checked lemmas, not fully reproved here. Independent review of the mathematical exposition and a detailed comparison with earlier literature remain pending. Development and exposition used substantial AI assistance.
 \begin{thebibliography}{9}
 \bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026), Sections 3--4. \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
 \end{thebibliography}
