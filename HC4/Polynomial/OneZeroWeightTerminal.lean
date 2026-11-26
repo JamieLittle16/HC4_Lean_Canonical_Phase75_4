@@ -61,7 +61,7 @@ theorem oneZero_eval_specialization
       MvPolynomial.eval x q := by
   classical
   let z : σ → _root_.Polynomial K := fun i => if i = k then _root_.Polynomial.X else 0
-  let E := MvPolynomial.aeval z
+  let E : MvPolynomial σ K →ₐ[K] _root_.Polynomial K := MvPolynomial.aeval z
   have he : _root_.Polynomial.eval (x k) (E q) =
       MvPolynomial.eval (fun i => if i = k then x k else 0) q := by
     let f : _root_.Polynomial K →ₐ[K] K := _root_.Polynomial.aeval (x k)
@@ -118,7 +118,10 @@ theorem gradient_injective_of_oneZeroWeight_zeroClock
         (initialForm_isWeightedHomogeneous w m P) j k
       change MvPolynomial.eval (0 : σ → K) (hessian L j k) = 0
       rw [MvPolynomial.eval_zero, MvPolynomial.constantCoeff_eq]
-      exact hh.coeff_eq_zero 0 (by rw [map_zero, hk0]; omega)
+      exact hh.coeff_eq_zero 0 (by
+        rw [map_zero, hk0]
+        have hj := h j
+        omega)
     exact one_ne_zero (hT.symm.trans (Matrix.det_eq_zero_of_column_eq_zero k hcol))
   obtain ⟨j, hj⟩ := hex
   let g := pderiv j P
@@ -144,7 +147,7 @@ theorem gradient_injective_of_oneZeroWeight_zeroClock
       rw [hrow i hi, zero_mul]
     · simp
   let z : σ → _root_.Polynomial K := fun i => if i = k then _root_.Polynomial.X else 0
-  let E := MvPolynomial.aeval z
+  let E : MvPolynomial σ K →ₐ[K] _root_.Polynomial K := MvPolynomial.aeval z
   let f := E g
   have hfder : f.derivative = E (hessian P j k) := by
     change _root_.Polynomial.derivative' (E g) = E (hessian P j k)
