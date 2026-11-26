@@ -452,6 +452,7 @@ private theorem rankOne_fibreEval_partial
   rw [he,derivation_aeval]
   simp only [hd]
 
+set_option maxHeartbeats 2000000 in
 /-- General-variable polynomial tangent obstruction. Unlike the
 pure-pivot theorem this needs no degree bound or pure coefficient.
 The rational tangent is used only to form a polynomial line; the
@@ -479,11 +480,23 @@ theorem flatLevel_tangent_pivot_deriv_zero
       r * rankOnePartial k (algebraMap (R σ K) (E σ K) (X j)) = w j
     rw [rankOnePartial_genericPoint,rankOnePartial_genericPoint]
   have hDr : D r = 0 := by rw [hD,htransport,sub_self]
+  have hwk : w k = -r := by
+    change (if k = i then (1 : E σ K) else 0) - r * (if k = k then 1 else 0) = -r
+    rw [if_neg (Ne.symm hik),if_pos rfl,mul_one,zero_sub]
+  have hwi : w i = 1 := by
+    change (if i = i then (1 : E σ K) else 0) - r * (if i = k then 1 else 0) = 1
+    rw [if_pos rfl,if_neg hik,mul_zero,sub_zero]
+  have hwother (j : σ) (hjk : j ≠ k) (hji : j ≠ i) : w j = 0 := by
+    change (if j = i then (1 : E σ K) else 0) - r * (if j = k then 1 else 0) = 0
+    rw [if_neg hji,if_neg hjk,mul_zero,sub_zero]
   have hDw (j : σ) : D (w j) = 0 := by
     by_cases hj : j = k
     · subst j
-      simp [w,Ne.symm hik,hDr]
-    · by_cases hj' : j = i <;> simp [w,hj,hj',hik]
+      rw [hwk,map_neg,hDr,neg_zero]
+    · by_cases hj' : j = i
+      · subst j
+        rw [hwi,D.map_one_eq_zero]
+      · rw [hwother j hj hj',map_zero]
   have hx : (MvPolynomial.aeval x : R σ K →ₐ[K] E σ K) =
       IsScalarTower.toAlgHom K (R σ K) (E σ K) := by
     apply MvPolynomial.algHom_ext
@@ -500,8 +513,12 @@ theorem flatLevel_tangent_pivot_deriv_zero
       if j = k then -rankOnePartial k r else 0 := by
     by_cases hj : j = k
     · subst j
-      simp [w,Ne.symm hik]
-    · by_cases hj' : j = i <;> simp [w,hj,hj',hik]
+      rw [hwk,map_neg,if_pos rfl]
+    · rw [if_neg hj]
+      by_cases hj' : j = i
+      · subst j
+        rw [hwi,Derivation.map_one_eq_zero]
+      · rw [hwother j hj hj',map_zero]
   have hchain := rankOne_fibreEval_partial w F k
   rw [heq,coeffDeriv_C,rankOnePartial_map] at hchain
   let s := (rankOnePartial k r)⁻¹
@@ -569,7 +586,10 @@ theorem rankOneHessian_twoRows_constant
       rankOnePartial j (r * f (pderiv k F)) at h1
     change rankOnePartial k (f (pderiv j G)) =
       rankOnePartial k (r * f (pderiv j F)) at h2
-    simp only [Derivation.leibniz,smul_eq_mul,rankOnePartial_map] at h1 h2
+    have hmap (l : σ) (P : R σ K) :
+        rankOnePartial l (f P) = f (pderiv l P) :=
+      rankOnePartial_map l P
+    simp only [Derivation.leibniz,smul_eq_mul,hmap] at h1 h2
     rw [pderiv_comm_backport j k G,pderiv_comm_backport j k F] at h1
     linear_combination h2 - h1
   have htransport : rankOnePartial i r = r * rankOnePartial k r := by
