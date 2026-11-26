@@ -913,3 +913,4 @@ import HC4.Polynomial.WeightedExtremalObstruction
 import HC4.Polynomial.WeightedExtremalKernel
 import HC4.Polynomial.WeightedExtremalAffinePlane
 import HC4.Polynomial.WeightedExtremalSplitRow
+import HC4.Polynomial.WeightedExtremalPartner
