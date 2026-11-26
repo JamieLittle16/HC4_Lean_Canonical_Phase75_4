@@ -910,3 +910,4 @@ import HC4.Polynomial.WeightedLinearOrbit
 import HC4.Polynomial.RationalLinearProjection
 import HC4.Polynomial.WeightedGlobalOptimum
 import HC4.Polynomial.WeightedExtremalObstruction
+import HC4.Polynomial.WeightedExtremalKernel
