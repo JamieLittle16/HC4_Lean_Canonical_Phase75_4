@@ -7,10 +7,9 @@ All minors of a Hessian have an exact top component obtained from
 the genuine maximal layer, with the row and column weights subtracted.
 The adjugate version follows by replacing one row by a coordinate row.
 
-Consequently the highest old-weight part of any constant adjugate
-annihilator of a wall form annihilates the old leading adjugate.
-In particular a unique highest-weight nonzero coordinate cannot
-have a surviving principal cofactor in the old layer.
+These identities supply the exact-component input for excluding
+annihilator directions at a wall. The corresponding upper-bound
+and contraction argument is a separate step.
 
 This is a source-level wall constraint, not a termination theorem.
 -/
