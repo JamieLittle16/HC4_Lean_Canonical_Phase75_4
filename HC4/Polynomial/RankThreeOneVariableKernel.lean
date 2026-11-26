@@ -4038,6 +4038,166 @@ theorem rankThree_no_regularActive_of_no_affineRelation
       linear_combination hz
   · exact hclose b c hba hca hbc hcover hub hactive
 
+
+set_option maxHeartbeats 4000000 in
+/-- Every normalised actual kernel agrees with the normalised
+principal adjugate column. -/
+theorem rankThree_normalizedKernel_adjugate_column
+    (L : B K) (l : Fin 4) (hdet : (hessian L).det = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (V : Fin 4 → E K) (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    ∀ i, algebraMap (B K) (E K) ((hessian L).adjugate l l) * V i =
+      algebraMap (B K) (E K) ((hessian L).adjugate i l) := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let H := (hessian L).map f
+  let A := (hessian L).adjugate
+  let c := f (A l l)
+  let W : Fin 4 → E K := c • V - fun i => f (A i l)
+  have hHreg : H.adjugate l l ≠ 0 := by
+    intro hz
+    apply hreg
+    apply IsFractionRing.injective (B K) (E K)
+    change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
+    rw [← f.map_adjugate] at hz
+    simpa only [map_zero] using hz
+  have hcol : H *ᵥ (fun i => f (A i l)) = 0 := by
+    have hA : hessian L * A = 0 := by
+      rw [show A = (hessian L).adjugate from rfl,Matrix.mul_adjugate,hdet,zero_smul]
+    funext i
+    have he := congrArg f (congrArg (fun M : Matrix (Fin 4) (Fin 4) (B K) => M i l) hA)
+    change f (∑ j : Fin 4, hessian L i j * A j l) = f 0 at he
+    simp only [map_sum,map_mul,map_zero] at he
+    exact he
+  have hW : H *ᵥ W = 0 := by
+    rw [show W = c • V - (fun i => f (A i l)) from rfl,
+      Matrix.mulVec_sub,Matrix.mulVec_smul,hV,hcol,smul_zero,sub_zero]
+  have hWl : W l = 0 := by
+    change c * V l - c = 0
+    rw [hVl,mul_one,sub_self]
+  have hW0 : W = 0 := by
+    by_contra hn
+    exact hHreg (adjugate_entry_zero_of_nonzero_kernel_coordinate_zero H W hW hn l l hWl)
+  intro i
+  exact sub_eq_zero.mp (congrFun hW0 i)
+
+set_option maxHeartbeats 4000000 in
+/-- Three distinct weights with nonzero passive cofactors forbid
+any constant affine relation of the normalised kernel coordinates. -/
+theorem rankThree_distinctWeights_no_affineRelation
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hL : L.IsWeightedHomogeneous w m)
+    (hdet : (hessian L).det = 0)
+    (l i k : Fin 4) (hil : w i ≠ w l) (hkl : w k ≠ w l) (hik : w i ≠ w k)
+    (hl : (hessian L).adjugate l l ≠ 0)
+    (hk : (hessian L).adjugate k k ≠ 0)
+    (V : Fin 4 → E K) (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (b c : K) :
+    V k ≠ algebraMap K (E K) b + algebraMap K (E K) c * V i := by
+  classical
+  intro he
+  let A := (hessian L).adjugate
+  let f := algebraMap (B K) (E K)
+  let g := algebraMap K (E K)
+  let D := ((Fintype.card (Fin 4) : ℤ)-1)*m-2*(∑ j : Fin 4,w j)
+  have hcol := rankThree_normalizedKernel_adjugate_column L l hdet hl V hVl hV
+  have hC (a : K) : f (MvPolynomial.C a) = g a :=
+    (IsScalarTower.toAlgHom K (B K) (E K)).commutes a
+  have hrel : A k l = MvPolynomial.C b * A l l + MvPolynomial.C c * A i l := by
+    apply IsFractionRing.injective (B K) (E K)
+    change f (A k l) = f (MvPolynomial.C b * A l l + MvPolynomial.C c * A i l)
+    simp only [map_add,map_mul,hC]
+    have hk' : f (A l l) * V k = f (A k l) := hcol k
+    have hi' : f (A l l) * V i = f (A i l) := hcol i
+    change V k = g b + g c * V i at he
+    rw [he] at hk'
+    linear_combination -hk' + g c * hi'
+  have hwt (j : Fin 4) : (A j l).IsWeightedHomogeneous w (D+w j+w l) :=
+    hessian_adjugate_entry_isWeightedHomogeneous w m L hL j l
+  have hterm (a : K) (j : Fin 4) (hj : w j ≠ w k) :
+      initialForm w (D+w k+w l) (MvPolynomial.C a * A j l) = 0 := by
+    have hh : (MvPolynomial.C a * A j l).IsWeightedHomogeneous w (D+w j+w l) := by
+      simpa only [zero_add] using (MvPolynomial.isWeightedHomogeneous_C w a).mul (hwt j)
+    exact initialForm_eq_zero_of_isWeightedHomogeneous hh _ (by omega)
+  have hproj := congrArg (initialForm w (D+w k+w l)) hrel
+  change initialForm w (D+w k+w l) (A k l) =
+    initialForm w (D+w k+w l) (MvPolynomial.C b * A l l + MvPolynomial.C c * A i l) at hproj
+  rw [initialForm_eq_self_of_isWeightedHomogeneous (hwt k),map_add,
+    hterm b l (Ne.symm hkl),hterm c i hik,add_zero] at hproj
+  have hc : f (A l l) ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hl
+  have hvk : V k = 0 := by
+    have hh : f (A l l) * V k = f (A k l) := hcol k
+    rw [hproj,map_zero] at hh
+    exact (mul_eq_zero.mp hh).resolve_left hc
+  have hv : V ≠ 0 := by
+    intro hz
+    rw [hz] at hVl
+    exact zero_ne_one hVl
+  let H := (hessian L).map f
+  have hz := adjugate_entry_zero_of_nonzero_kernel_coordinate_zero H V hV hv k k hvk
+  apply hk
+  apply IsFractionRing.injective (B K) (E K)
+  change (f.mapMatrix (hessian L)).adjugate k k = 0 at hz
+  rw [← f.map_adjugate] at hz
+  simpa only [map_zero] using hz
+
+set_option maxHeartbeats 6000000 in
+/-- A singular four-variable weighted layer with distinct weights and
+all three passive principal cofactors nonzero has restricted Hessian
+rank at most one. In particular the conclusion is valid for signed
+weights, with no global optimality hypothesis. -/
+theorem rankThree_signedWall_restrictedMinors_zero
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ) (s : Fin 4)
+    (hL : L.IsWeightedHomogeneous w m)
+    (hw : Function.Injective w)
+    (hdet : (hessian L).det = 0)
+    (hnon : ∀ i, i ≠ s → (hessian L).adjugate i i ≠ 0) :
+    ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p := by
+  classical
+  obtain ⟨d,hd,hann⟩ := singularHessian_fin4_exists_constant_adjugate_annihilator L hdet
+  obtain ⟨k,hk⟩ : ∃ k, d k ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    exact hd (funext hn)
+  have hcol : ∀ i, (hessian L).adjugate i k = 0 := by
+    have he := weighted_adjugate_annihilator_block w m L hL d hann (w k)
+    intro i
+    have h := congrFun he i
+    change (∑ j : Fin 4, (hessian L).adjugate i j *
+      MvPolynomial.C (if w j = w k then d j else 0)) = 0 at h
+    rw [Finset.sum_eq_single k] at h
+    · simp only [if_pos rfl] at h
+      exact (mul_eq_zero.mp h).resolve_right (MvPolynomial.C_ne_zero.mpr hk)
+    · intro j _ hj
+      have hn : w j ≠ w k := fun hh => hj (hw hh)
+      simp [hn]
+    · simp
+  have hks : k = s := by
+    by_contra hn
+    exact hnon k hn (hcol k)
+  subst k
+  let l := s.succAbove 0
+  have hls : l ≠ s := Fin.succAbove_ne _ _
+  have hsl : s ≠ l := Ne.symm hls
+  obtain ⟨a,ha⟩ := Fin.exists_succAbove_eq hsl
+  have hreg := hnon l hls
+  obtain ⟨V,hVs,hVl,hV⟩ := rankThree_normalizedKernel_exists L s l hdet hcol hreg
+  have hVk : V (l.succAbove a) = 0 := by rw [ha]; exact hVs
+  have hp := rankThree_no_regularActive_of_no_affineRelation L l a V hVl hVk hreg hV
+    (by
+      intro i j his hil hjs hjl hij b c
+      rw [ha] at his hjs
+      exact rankThree_distinctWeights_no_affineRelation L w m hL hdet l i j
+        (fun h => hil (hw h)) (fun h => hjl (hw h)) (fun h => hij (hw h))
+        hreg (hnon j hjs) V hVl hV b c)
+  have hm := rankThree_activePivot_zero_restrictedMinors L l a V hVl hVk hV hp
+  simpa only [ha] using hm
+
+
 end
 end HC4.Polynomial
 
@@ -4135,3 +4295,7 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_rankOne_regularActive_affineRelation
 
 #print axioms HC4.Polynomial.rankThree_no_regularActive_of_no_affineRelation
+
+#print axioms HC4.Polynomial.rankThree_normalizedKernel_adjugate_column
+#print axioms HC4.Polynomial.rankThree_distinctWeights_no_affineRelation
+#print axioms HC4.Polynomial.rankThree_signedWall_restrictedMinors_zero
