@@ -15,3 +15,5 @@ The conditional theorem is verified at 38e58bf4 (26 November 2026). The subseque
 Unconditional HC4 and planar JC2 are not established here. The polynomial inverse and nonzero constant Hessian determinant extensions have now been verified over algebraically closed characteristic-zero fields. The outstanding work is independent reproduction, mathematical exposition and review, not another obligation for the stated equivalence. Earlier research routes remain available for further work but are not gaps in the conditional theorem.
 
 The [previous research plan](https://github.com/JamieLittle16/HessianConjecture4/blob/90b9d97e2937b34c12c2ab845a404048f4a3c4b1/docs/NEXT_STEPS.md) is historical.
+
+The [global extremal-weight note](research/global-extremal-weight.tex) is now drafted alongside the rational rigidity note. Review the two together; expand the rank-two image and rank-three regular-pivot exclusions before treating the exposition as a self-contained proof of the equivalence.
