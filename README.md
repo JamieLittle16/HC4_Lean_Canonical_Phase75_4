@@ -37,6 +37,12 @@ Maintainer verification, 26 November 2026, at [`38e58bf4`](https://github.com/Ja
 
 **Scope:** this stronger same-field injectivity implication needs no algebraic-closure hypothesis. The polynomial-inverse equivalence above is stated over algebraically closed characteristic-zero fields. See the attribution below and the preliminary proof and contribution audit; detailed mathematical priority analysis remains outstanding.
 
+## Standalone rational rigidity theorem
+
+The project also proves a source-independent algebraic version of Tang's Theorem 2.1: for any characteristic-zero field K, a rational three-variable map v with nilpotent Jacobian N and a nonsingular polynomial Hessian H satisfying NᵀH = HN has a nonzero constant affine relation on its components. This covers every rank and does not assume planar JC2 or a four-variable source.
+
+The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlane.lean) passed the maintainer's targeted build (8317 jobs, 26 November 2026, [9e548ccb](https://github.com/JamieLittle16/HessianConjecture4/commit/9e548ccbd91920cb7f49ba40c2bf93e11e996b14)); its transitive axioms are exactly `[propext, Classical.choice, Quot.sound]`. The [mathematical exposition (LaTeX)](docs/research/rational-affine-plane-rigidity.tex) explains all ranks, including the polynomial transport argument replacing the rank-two geometric classification. The new endpoint is separate from the original equivalence proof.
+
 ## Mathematical attribution
 
 The final weighted proof was substantially informed by Qiyue Tang, *[Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures](https://hexagonmath.org/2611.00156v2)*, Hexagon preprint 2611.00156v2 (2026), CC BY 4.0. Tang's preprint presents the equivalence over the complex numbers (Theorem 1.1). In particular, we adapted the Wronskian/Taylor coordinate normalization and signed first-wall obstruction in Lemma 3.3 (pp. 17–18), as well as drawing on the broader weighted leading-form strategy.
