@@ -22,10 +22,14 @@ lake env lean HC4/RationalInverseAudit.lean | tee rational-inverse-audit.log
 lake env lean HC4/FinalEquivalence.lean | tee final-equivalence.log
 
 printf '%s\n' 'Checking the deliberately false negative control...'
-if lake env lean NegativeControl.lean > negative-control.log 2>&1; then
+negative_control="$(mktemp --suffix=.lean)"
+trap 'rm -f "$negative_control"' EXIT
+printf '%s\n' 'import HC4' 'example : (0 : Nat) = 1 := by rfl' > "$negative_control"
+if lake env lean "$negative_control" > negative-control.log 2>&1; then
   echo "ERROR: Lean accepted the deliberately false negative control." >&2
   exit 1
 fi
+grep -qi 'rfl' negative-control.log
 printf '%s\n' 'Negative control rejected as expected.'
 
 printf '%s\n' 'Scanning project sources for potentially suspicious tokens (including comments)...'
