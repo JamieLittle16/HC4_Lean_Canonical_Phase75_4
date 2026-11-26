@@ -100,9 +100,10 @@ theorem eval_sub_eq_weightBlock_linear
         have hh' := congrArg (fun d : σ →₀ ℕ => d i) hh
         simp [Finsupp.single_apply, hji] at hh'
       rw [Finset.sum_eq_single i]
-      · rw [he, ← MvPolynomial.C_mul_X_eq_monomial]
-        simp [v, hwis, MvPolynomial.C_mul_X_eq_monomial, MvPolynomial.coeff_monomial]
-        <;> ring
+      · rw [he, MvPolynomial.coeff_monomial, if_pos rfl]
+        rw [← MvPolynomial.C_mul_X_eq_monomial]
+        simp only [map_mul, MvPolynomial.eval_C, MvPolynomial.eval_X, v, hwis, if_pos rfl]
+        ring
       · intro j _ hj'
         rw [he, MvPolynomial.coeff_monomial, if_neg (hj j hj'), zero_mul]
       · simp
@@ -114,7 +115,7 @@ theorem eval_sub_eq_weightBlock_linear
         unfold Finsupp.prod
         apply Finset.prod_congr rfl
         intro i hi
-        rw [hxy i (lt_of_not_ge (h i (Finsupp.mem_support_iff.mp hi)))]
+        rw [hxy i (h i (Finsupp.mem_support_iff.mp hi))]
       rw [he, sub_self]
       symm
       apply Finset.sum_eq_zero
@@ -123,7 +124,7 @@ theorem eval_sub_eq_weightBlock_linear
       · have hn : u ≠ Finsupp.single i 1 := by
           intro hu'
           have hne : u i ≠ 0 := by simp [hu']
-          exact h i hne (le_of_eq hi.symm)
+          exact (ne_of_lt (h i hne)) hi
         rw [MvPolynomial.coeff_monomial, if_neg hn, zero_mul]
       · simp [v, hi]
   change MvPolynomial.eval x q - MvPolynomial.eval y q =
@@ -131,7 +132,7 @@ theorem eval_sub_eq_weightBlock_linear
   calc
     _ = ∑ u ∈ q.support, (MvPolynomial.eval x (monomial u (coeff u q)) -
         MvPolynomial.eval y (monomial u (coeff u q))) := by
-          rw [← Finset.sum_sub_distrib, ← map_sum, ← map_sum, ← q.as_sum]
+          rw [Finset.sum_sub_distrib, ← map_sum, ← map_sum, ← q.as_sum]
     _ = ∑ u ∈ q.support, ∑ i : σ,
         coeff (Finsupp.single i 1) (monomial u (coeff u q)) * v i := by
           exact Finset.sum_congr rfl hmono
@@ -150,7 +151,7 @@ theorem gradient_linearCoeff_eq_hessian_origin
     coeff (Finsupp.single i 1) (pderiv j P) =
       MvPolynomial.eval (0 : σ → K) (hessian P j i) := by
   rw [MvPolynomial.eval_zero, MvPolynomial.constantCoeff_eq, hessian_apply,
-    HC4.Newton.coeff_pderiv_backport]
+    HC4.Newton.coeff_pderiv_backport i (pderiv j P) 0]
   simp
 
 set_option maxHeartbeats 3000000 in
@@ -176,7 +177,7 @@ theorem gradient_injective_of_positiveWeight_zeroClock
   have hA : A.det = δ := by
     change (e.mapMatrix (hessian L)).det = δ
     rw [← RingHom.map_det, show (hessian L).det = MvPolynomial.C δ from hLdet]
-    exact MvPolynomial.eval_C _ _
+    exact MvPolynomial.eval_C δ
   have hblock (j i : σ) (h : w j + w i ≠ m) : A j i = 0 := by
     have hh := hessian_entry_isWeightedHomogeneous
       (initialForm_isWeightedHomogeneous w m P) j i
