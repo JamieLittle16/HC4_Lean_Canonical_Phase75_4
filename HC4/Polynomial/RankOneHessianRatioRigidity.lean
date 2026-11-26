@@ -714,8 +714,8 @@ theorem rankOneHessian_twoRows_partialRatios_constant
     ring
   have hz : rankOnePartial k r = 0 :=
     flatLevel_tangent_pivot_deriv_zero F r k i hik htransport ha hmix
+  change ∀ j : σ, j ≠ s → rankOnePartial j r = 0
   intro j hj
-  change rankOnePartial j r = 0
   have h := hdiff j hj
   rw [hz,mul_zero] at h
   exact (mul_eq_zero.mp h).resolve_left ha
