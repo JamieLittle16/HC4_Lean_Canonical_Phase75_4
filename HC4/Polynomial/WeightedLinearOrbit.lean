@@ -68,6 +68,8 @@ theorem weightedLinearSubstitution_gradient_injective_iff
   have hit : Function.Injective M.transpose.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr hut
   constructor
   · intro h x y hxy
+    change (fun j : σ => MvPolynomial.eval x (pderiv j P)) =
+      (fun j : σ => MvPolynomial.eval y (pderiv j P)) at hxy
     obtain ⟨u, hu'⟩ := hs x
     obtain ⟨v, hv'⟩ := hs y
     have he : (fun j : σ => MvPolynomial.eval u (pderiv j (weightedLinearSubstitution M P))) =
@@ -75,6 +77,8 @@ theorem weightedLinearSubstitution_gradient_injective_iff
       rw [weightedLinearSubstitution_gradient, weightedLinearSubstitution_gradient, hu', hv', hxy]
     rw [← hu', ← hv', h he]
   · intro h x y hxy
+    change (fun j : σ => MvPolynomial.eval x (pderiv j (weightedLinearSubstitution M P))) =
+      (fun j : σ => MvPolynomial.eval y (pderiv j (weightedLinearSubstitution M P))) at hxy
     rw [weightedLinearSubstitution_gradient, weightedLinearSubstitution_gradient] at hxy
     exact hi (h (hit hxy))
 
@@ -86,7 +90,8 @@ theorem weightedLinearSubstitution_comp
   classical
   have he : (weightedLinearSubstitution N).comp (weightedLinearSubstitution M) =
       weightedLinearSubstitution (M * N) := by
-    ext i
+    apply MvPolynomial.algHom_ext
+    intro i
     change weightedLinearSubstitution N (weightedLinearSubstitution M (X i)) =
       weightedLinearSubstitution (M * N) (X i)
     simp only [weightedLinearSubstitution, MvPolynomial.aeval_X, map_sum, map_mul,
@@ -99,7 +104,7 @@ theorem weightedLinearSubstitution_comp
 theorem weight_allOnes_eq_degree (u : σ →₀ ℕ) :
     Finsupp.weight (fun _ : σ => (1 : ℤ)) u = ((u.sum fun _ n => n : ℕ) : ℤ) := by
   rw [Finsupp.weight_apply, Finsupp.sum, Finsupp.sum]
-  simp [nsmul_eq_mul]
+  simp
 
 /-- All linear substitutions preserve a total-degree upper bound. -/
 theorem weightedLinearSubstitution_totalDegree_le
@@ -122,15 +127,13 @@ theorem weightedLinearSubstitution_totalDegree_le
   exact_mod_cast he
 
 /-- A common finite envelope for every exponent of bounded total degree. -/
-def degreeExponentEnvelope (σ : Type*) [Fintype σ] (D : ℕ) : Finset (σ →₀ ℕ) := by
-  classical
+def degreeExponentEnvelope (σ : Type*) [Fintype σ] [DecidableEq σ] (D : ℕ) : Finset (σ →₀ ℕ) := by
   exact Finset.univ.image (fun a : σ → Fin (D+1) =>
     Finsupp.equivFunOnFinite.symm (fun i => (a i : ℕ)))
 
 theorem support_subset_degreeExponentEnvelope
     (P : MvPolynomial σ K) (D : ℕ) (hD : P.totalDegree ≤ D) :
     P.support ⊆ degreeExponentEnvelope σ D := by
-  classical
   intro u hu
   have hsum := (MvPolynomial.le_totalDegree hu).trans hD
   have hcoord (i : σ) : u i ≤ D := by
