@@ -144,7 +144,8 @@ theorem rankThree_oneVariableKernel_constant
   · intro hz
     have hl := hd l
     rw [hVl,hz] at hl
-    exact one_ne_zero (by simpa using hl)
+    have hbad : (1 : E K) = 0 := by simpa using hl
+    exact one_ne_zero hbad
   · funext i
     apply IsFractionRing.injective (B K) (E K)
     change f (∑ j : Fin 4, hessian L i j * MvPolynomial.C (d j)) = f 0
