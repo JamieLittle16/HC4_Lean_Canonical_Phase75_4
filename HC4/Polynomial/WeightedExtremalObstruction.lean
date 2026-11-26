@@ -82,7 +82,7 @@ theorem exists_counterexample_globalWeightOptimum
   have hpos : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i) := by
     by_contra h
     exact hnQ (gradient_injective_of_nonnegativeWeight_zeroClock_of_JC2
-      hJC2 w hw m Q hcap (by omega) hdetQ)
+      hJC2 w hw m hm Q hcap (by omega) hdetQ)
   refine ⟨M,w,m,hM,hw,hm,hcap,hdetQ,hnQ,hpos,?_⟩
   exact IsGlobalWeightOptimum.substitution hopt M hM
 
