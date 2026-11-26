@@ -560,10 +560,8 @@ theorem globalWeightOptimum_rankThree_complementJacobian_ne_zero
   have hother (i j : Fin 4) (hi : i ≠ l) : rankThreePartial i (V j) = 0 := by
     by_cases hj : j = l
     · rw [hj, hVl, Derivation.map_one_eq_zero]
-    · obtain ⟨a, ha⟩ : ∃ a : Fin 3, l.succAbove a = i := by
-        fin_cases l <;> fin_cases i <;> first | contradiction | decide
-      obtain ⟨b, hb⟩ : ∃ b : Fin 3, l.succAbove b = j := by
-        fin_cases l <;> fin_cases j <;> first | contradiction | decide
+    · obtain ⟨a, ha⟩ := Fin.exists_succAbove_eq hi
+      obtain ⟨b, hb⟩ := Fin.exists_succAbove_eq hj
       have he := congrArg (fun M : Matrix (Fin 3) (Fin 3) (E K) => M b a) hJ
       change rankThreePartial (l.succAbove a) (V (l.succAbove b)) = 0 at he
       rwa [ha, hb] at he
@@ -571,7 +569,7 @@ theorem globalWeightOptimum_rankThree_complementJacobian_ne_zero
     by_cases hi : i = l
     · subst i
       have he := rankThree_normalizedKernel_acceleration_zero L l hreg V hVl hV j
-      rw [Fin.sum_eq_single l] at he
+      rw [Finset.sum_eq_single l] at he
       · rwa [hVl, one_mul] at he
       · intro a _ ha
         rw [hother a j ha, mul_zero]
@@ -654,8 +652,8 @@ theorem rankThree_zeroRow_rankTwo_principalCofactor_zero
     intro h
     apply hz
     funext b
+    change z b = 0
     rw [hp b, h, zero_mul]
-    rfl
   have hrepr : z = (Pi.single a (z a) : Fin 3 → F) := by
     funext b
     rw [hp b]
