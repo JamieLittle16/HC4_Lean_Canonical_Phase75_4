@@ -250,6 +250,7 @@ human architecture guide.
   - `HC4.Polynomial.WeightedExtremalAffinePlane`
   - `HC4.Polynomial.WeightedExtremalKernel`
   - `HC4.Polynomial.WeightedExtremalObstruction`
+  - `HC4.Polynomial.WeightedExtremalSplitRow`
   - `HC4.Polynomial.WeightedFirstWall`
   - `HC4.Polynomial.WeightedFixedSourceDescent`
   - `HC4.Polynomial.WeightedGlobalOptimum`
@@ -2241,6 +2242,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedExtremalObstruction`
 - `HC4.Polynomial.WeightedExtremalObstruction`
   - `HC4.Polynomial.WeightedGlobalOptimum`
+- `HC4.Polynomial.WeightedExtremalSplitRow`
+  - `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `HC4.Polynomial.WeightedFirstWall`
   - `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `HC4.Polynomial.WeightedFixedSourceDescent`

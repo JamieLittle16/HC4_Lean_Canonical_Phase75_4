@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11722**.
+Distinct declaration spellings indexed: **11729**.
 
 ## Repeated declaration spellings
 
@@ -5845,6 +5845,7 @@ Distinct declaration spellings indexed: **11722**.
 - `extremalPair_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremalPair_lt_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseMultiFiberExtrema`
 - `extremal_eq_C_of_all_pderiv_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
+- `extremal_eval_eq_of_pderiv_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `extremal_exponent_disjoint_of_mixed_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `extremal_exponent_le_one_of_second_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `extremal_jointlyAffine_support_of_hessian_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
@@ -6547,7 +6548,9 @@ Distinct declaration spellings indexed: **11722**.
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
 - `gradient_injective_of_nonnegativeWeight_zeroClock_of_JC2` — `theorem` in `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `gradient_injective_of_oneZeroWeight_zeroClock` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
+- `gradient_injective_of_oneZero_capCoordinate_standard` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `gradient_injective_of_splitRow_standard` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `hasAlignedRecenteredFirstWallCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalFirstWall`
@@ -10907,6 +10910,10 @@ Distinct declaration spellings indexed: **11722**.
 - `specialisedStationaryDeterminantCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
 - `specialisedStationarySchurDet` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
 - `specialisedStationarySchurDet_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
+- `splitRowSlice` — `def` in `HC4.Polynomial.WeightedExtremalSplitRow`
+- `splitRowSlice_eval` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
+- `splitRowSlice_pderiv_one` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
+- `splitRowSlice_pderiv_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `squareCoefficient_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareCoefficient_specialFiber_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `squareContactLevel_exactOrder` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
