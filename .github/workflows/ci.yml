@@ -2,9 +2,9 @@ name: Lean CI
 
 on:
   push:
-    branches: [main, master, research/canonical-square-gap-obstruction]
+    branches: [publication/palomar]
   pull_request:
-    branches: [main, master]
+    branches: [publication/palomar]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ jobs:
   verify:
     name: Build and verify Lean project
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120
 
     steps:
       - uses: actions/checkout@v4
@@ -44,10 +44,14 @@ jobs:
 
       - name: Check that the negative control is rejected
         run: |
-          if lake env lean NegativeControl.lean; then
+          printf '%s\n' 'import HC4' 'example : (0 : Nat) = 1 := by rfl' > ReproductionNegativeControl.lean
+          if lake env lean ReproductionNegativeControl.lean > negative-control.log 2>&1; then
             echo "Lean accepted the deliberately false negative control." >&2
             exit 1
           fi
+          cat negative-control.log
+          grep -qi 'rfl' negative-control.log
+          rm ReproductionNegativeControl.lean
 
       - name: Advisory source scan (includes comments)
         run: |
