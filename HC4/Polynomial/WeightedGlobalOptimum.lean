@@ -186,12 +186,12 @@ theorem normalizedWeightFeasible_iff_integral
   have hmq : (0 : ℚ) < (m : ℚ) := by exact_mod_cast hm
   have hsum : (∑ i : Fin 4, (w i : ℚ) / (m : ℚ)) =
       ((∑ i : Fin 4, w i : ℤ) : ℚ) / (m : ℚ) := by
-    rw [Finset.sum_div]
+    rw [← Finset.sum_div]
     push_cast <;> rfl
   have hu (u : Fin 4 →₀ ℕ) :
       (∑ i : Fin 4, (u i : ℚ) * ((w i : ℚ) / (m : ℚ))) =
         (Finsupp.weight w u : ℚ) / (m : ℚ) := by
-    simp only [mul_div_assoc, ← Finset.sum_div]
+    simp only [← mul_div_assoc, ← Finset.sum_div]
     congr 1
     rw [Finsupp.weight_apply, Finsupp.sum_fintype]
     · push_cast
@@ -202,7 +202,8 @@ theorem normalizedWeightFeasible_iff_integral
   · rintro ⟨hpos,hb,hcap⟩
     refine ⟨?_,?_,?_⟩
     · intro i
-      have he := (div_nonneg_iff_of_pos_right hmq).mp (hpos i)
+      have he := (le_div_iff₀ hmq).mp (hpos i)
+      rw [zero_mul] at he
       exact_mod_cast he
     · rw [hsum] at hb
       exact_mod_cast (div_le_iff₀ hmq).mp hb
