@@ -3480,6 +3480,7 @@ theorem rankThree_relativeDegree
   have hn : m = w p * (n : ℤ) := (hL hu).symm.trans (hfactor u)
   have hq : 0 < w p := by
     by_contra hnq
+    have hwp : 0 ≤ w p := hw p
     have hz : w p = 0 := by omega
     rw [hz,zero_mul] at hn
     omega
