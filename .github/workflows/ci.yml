@@ -2,9 +2,9 @@ name: Lean CI
 
 on:
   push:
-    branches: [publication/palomar]
+    branches: [master]
   pull_request:
-    branches: [publication/palomar]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
