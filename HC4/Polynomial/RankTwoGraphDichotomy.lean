@@ -98,7 +98,10 @@ private theorem graphOuter_factor (A : Matrix (Fin 2) (Fin 2) K)
         rcases h01 b with rfl | rfl <;>
         rcases h01 i with rfl | rfl <;>
         rcases h01 j with rfl | rfl <;>
-        first | ring | linear_combination hA | linear_combination -hA
+        first
+        | (ring; done)
+        | (linear_combination hA; done)
+        | linear_combination -hA
     _ = (A a j * (A i b / A i j)) * A i j := by
       rw [mul_assoc,div_mul_cancel₀ _ hij]
 
