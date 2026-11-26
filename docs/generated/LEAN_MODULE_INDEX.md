@@ -3164,7 +3164,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.WeightedExtremalPartner`, `HC4.Polynomial.RationalCharacteristicConstants`
 - External imports: none
 - Imported by local modules: `HC4`, `HC4.Polynomial.RankOneHessianClosure`
-- Declarations: `abbrev R`, `abbrev E`, `def rankOnePartial`, `theorem rankOnePartial_map`, `theorem rankOneHessian_ratio_transport`, `theorem rankOne_pderiv_zero_of_dvd`, `theorem rankOne_ratio_denominator_pderiv_zero`, `theorem rankOne_purePivot_factor_constant`, `theorem rankOne_ratio_constant_of_purePivot`, `theorem rankOneHessian_ratio_constant_of_purePivot`, `theorem flatLevel_gradient_ratio_transport`, `theorem flatLevel_gradient_ratio_constant_of_purePivot`
+- Declarations: `abbrev R`, `abbrev E`, `def rankOnePartial`, `theorem rankOnePartial_map`, `theorem rankOneHessian_ratio_transport`, `theorem rankOne_pderiv_zero_of_dvd`, `theorem rankOne_ratio_denominator_pderiv_zero`, `theorem rankOne_purePivot_factor_constant`, `theorem rankOne_ratio_constant_of_purePivot`, `theorem rankOneHessian_ratio_constant_of_purePivot`, `theorem flatLevel_gradient_ratio_transport`, `theorem flatLevel_gradient_ratio_constant_of_purePivot`, `theorem rankOnePartial_constants`, `theorem rankOnePartial_genericPoint`, `def rankOne_fibreEval`, `theorem rankOne_fibreEval_partial`, `theorem flatLevel_tangent_pivot_deriv_zero`, `theorem rankOneHessian_twoRows_constant`
 
 ### `HC4.Polynomial.RankThreeAffineLineRealisation`
 

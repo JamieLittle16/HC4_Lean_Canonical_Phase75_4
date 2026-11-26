@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11792**.
+Distinct declaration spellings indexed: **11798**.
 
 ## Repeated declaration spellings
 
@@ -6411,6 +6411,7 @@ Distinct declaration spellings indexed: **11792**.
 - `fixedTangent_nonzero_in_irreducibleQuotient` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneFixedTangentNonzero`
 - `flatLevel_gradient_ratio_constant_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `flatLevel_gradient_ratio_transport` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `flatLevel_tangent_pivot_deriv_zero` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `follows` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetWeightedContactSingularity`
 - `forcedCompensator_terminalCoefficient_balance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `fourAffineLineSpecialisation` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
@@ -9135,6 +9136,7 @@ Distinct declaration spellings indexed: **11792**.
 - `rankOneHessian_exists_constantKernel` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOneHessian_ratio_constant_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOneHessian_ratio_transport` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOneHessian_twoRows_constant` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
 - `rankOneMatrix_mulVec_proportional_products` — `theorem` in `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
@@ -9173,6 +9175,8 @@ Distinct declaration spellings indexed: **11792**.
 - `rankOnePacket_squareGeometry_of_discriminant_eq_zero` — `theorem` in `HC4.Newton.RankOnePacketQuadratic`
 - `rankOnePacket_trivialKernel_of_discriminant_ne_zero` — `theorem` in `HC4.Newton.RankOnePacketReentry`
 - `rankOnePartial` — `def` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOnePartial_constants` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOnePartial_genericPoint` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOnePartial_map` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOnePersistentPacketSupport_of_smithQuadraticSubface` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
 - `rankOnePersistentPacket_eq_algebraicModel` — `theorem` in `HC4.Newton.RankOnePacketExactCollision`
@@ -9241,6 +9245,8 @@ Distinct declaration spellings indexed: **11792**.
 - `rankOne_exists_constant_leftKernel_of_derivative_factor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
 - `rankOne_exists_purePivot_chart` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_exists_purePower_chart` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
+- `rankOne_fibreEval` — `def` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOne_fibreEval_partial` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_hessian_degree_le` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_hessians_zero_of_lifted_trace_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOnePencil`
 - `rankOne_homogeneous_axis_zero` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
