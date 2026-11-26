@@ -266,7 +266,7 @@ theorem rankOne_substitution_injective (M : Matrix (Fin 4) (Fin 4) K)
 
 /-- A constant column proportionality produces a nonzero constant
 kernel independently of how the columns were obtained. -/
-private theorem rankOne_kernel_of_proportional_columns
+theorem rankOne_kernel_of_proportional_columns
     (Q : S K) (k l : Fin 4) (hl : l ≠ k) (c : K)
     (hcol : ∀ i : Fin 4, hessian Q i l = MvPolynomial.C c * hessian Q i k) :
     ∃ e : Fin 4 → K, e ≠ 0 ∧
