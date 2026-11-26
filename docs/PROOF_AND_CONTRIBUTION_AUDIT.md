@@ -186,11 +186,13 @@ A five-page [LaTeX research note](research/rational-affine-plane-rigidity.tex) g
 
 The [companion mathematical note](research/global-extremal-weight.tex) describes the global rational optimisation over actual determinant-one charts, its attainment, the local no-improving-slope lemma, the zero-clock terminal and rank-two graph dichotomy, the rank-three relative pure-power reduction, and the signed final obstruction adapted from Tang's Lemma 3.3. The attainment and local improvement arguments are given explicitly; the more extensive checked rank reductions are stated or summarized with declaration names. This is not yet a fully self-contained manuscript. The negative-weight final wall is outside the optimisation domain, and the note does not infer its contradiction from nonnegative optimality.
 
+The [supporting rank-exclusion note](research/extremal-rank-exclusions.tex) now expands the nonnegative rank reductions, including the polynomial transport identities, arbitrary isotropic-plane alignment, rank-two image and kernel graph contradictions, and the rank-three regular-block contradiction. Its exposition rearranges some checked lemmas for clarity. It still needs local LaTeX compilation and independent mathematical review; the distinct-weight signed-wall pivot exclusion is not expanded there.
+
 ## 9. Remaining publication tasks
 
 1. Record the successful fresh-host workflow run, exact commit, log artifact and axiom output when available.
 2. Verify the separately staged standalone source library, record its file count and build, and preserve the full historical research repository.
-3. Review both mathematical notes independently, and expand the source-linked rank-reduction summaries into full manuscript proofs.
+3. Review the three mathematical notes independently; complete the distinct-weight signed-wall reduction and remaining manuscript details.
 4. Complete the lemma-level comparison against Tang and the earlier literature, including the precise difference in theorem scope. Review backport license and attribution requirements.
 5. Invite Tang and independent Lean/mathematical reviewers to check the result. Do not assert first formalisation priority or new mathematical results without supporting evidence.
 
