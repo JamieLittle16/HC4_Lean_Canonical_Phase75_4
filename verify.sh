@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-printf '%s\n' 'Updating the pinned dependency lock...'
-lake update
+printf '%s\n' 'Using the existing pinned dependency lock (no lake update).'
 
 printf '%s\n' 'Downloading the matching Mathlib cache...'
 lake exe cache get
@@ -12,6 +11,9 @@ lake build
 
 printf '%s\n' 'Printing theorem axioms...'
 lake env lean HC4/Audit.lean | tee axioms.log
+
+printf '%s\n' 'Checking the external mathematical statement and logical dependencies...'
+lake env lean HC4/StatementAudit.lean | tee statement-audit.log
 
 printf '%s\n' 'Checking the deliberately false negative control...'
 if lake env lean NegativeControl.lean > negative-control.log 2>&1; then
