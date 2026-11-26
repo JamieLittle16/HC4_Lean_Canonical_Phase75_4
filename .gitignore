@@ -8,3 +8,22 @@ negative-control.log
 # Local archives and editor/OS metadata.
 *.zip
 .DS_Store
+
+# Local verification reports and Python caches.
+statement-audit.log
+polynomial-inverse-audit.log
+rational-inverse-audit.log
+final-equivalence.log
+source-scan.log
+proof-dependencies/
+hc4-proof-audit.tar.gz
+hc4-proof-graph.tar.gz
+__pycache__/
+
+# Generated manuscript artifacts (TeX sources remain tracked).
+docs/research/*.aux
+docs/research/*.out
+docs/research/*.log
+docs/research/*.pdf
+docs/research/*.toc
+docs/research/*.synctex.gz
