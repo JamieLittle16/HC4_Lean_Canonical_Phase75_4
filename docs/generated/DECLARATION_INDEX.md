@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11970**.
+Distinct declaration spellings indexed: **11973**.
 
 ## Repeated declaration spellings
 
@@ -9587,6 +9587,9 @@ Distinct declaration spellings indexed: **11970**.
 - `rankThree_relativeFraction_polynomials` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePhase_clearDenominators` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePhase_no_affineRelation` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativePolynomial_eval_congr` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativePolynomial_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativePower_clear` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePurePower` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativeWronskian_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relative_derivative_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
