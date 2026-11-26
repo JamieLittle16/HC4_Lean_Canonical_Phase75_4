@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11993**.
+Distinct declaration spellings indexed: **11995**.
 
 ## Repeated declaration spellings
 
@@ -6692,6 +6692,7 @@ Distinct declaration spellings indexed: **11993**.
 - `hc4_nonzero_constant_injective` — `theorem` in `HC4.StatementAudit`
 - `hc4_of_planarJC2` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `hc4_reference_JC2_bijective` — `theorem` in `HC4.StatementAudit`
+- `hc4_reference_JC2_unit_bijective` — `theorem` in `HC4.StatementAudit`
 - `hess_upper` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
 - `hessian` — `def` in `HC4.Polynomial.DerivativeWeight`
 - `hessianClock_nonneg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
@@ -9995,6 +9996,7 @@ Distinct declaration spellings indexed: **11993**.
 - `reference_hessian_selfAdjoint_of_linear_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `reference_planar_det` — `theorem` in `HC4.StatementAudit`
 - `reference_square_of_jordan_velocity` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
+- `reference_unit_iff` — `theorem` in `HC4.StatementAudit`
 - `refine_exposed_face` — `theorem` in `HC4.Newton.ExposedFaces`
 - `refine_exposed_face_membership` — `theorem` in `HC4.Newton.ExposedFaces`
 - `reflectMatrix` — `def` in `HC4.Polynomial.MatrixPolynomialReflect`

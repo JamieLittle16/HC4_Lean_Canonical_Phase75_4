@@ -264,9 +264,9 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: External statement comparison
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeOneVariableKernel`
-- External imports: `Mathlib.Algebra.MvPolynomial.Monad`, `Mathlib.FieldTheory.IsAlgClosed.Basic`, `Mathlib.FieldTheory.AxGrothendieck`, `Lean.Util.CollectAxioms`
+- External imports: `Mathlib.Algebra.MvPolynomial.Monad`, `Mathlib.Algebra.MvPolynomial.Nilpotent`, `Mathlib.FieldTheory.IsAlgClosed.Basic`, `Mathlib.FieldTheory.AxGrothendieck`, `Lean.Util.CollectAxioms`
 - Imported by local modules: none
-- Declarations: `def referenceJacobian`, `def ReferenceJC`, `theorem reference_planar_det`, `theorem reference_gradient_jacobian`, `theorem reference_gradient_det`, `theorem injective_of_reference_left_inverse`, `theorem planar_of_reference`, `theorem hessianDeterminant_C_mul`, `theorem hc4_nonzero_constant_injective`, `theorem hc4_reference_JC2_bijective`
+- Declarations: `def referenceJacobian`, `def ReferenceJC`, `theorem reference_planar_det`, `theorem reference_gradient_jacobian`, `theorem reference_gradient_det`, `theorem reference_unit_iff`, `theorem injective_of_reference_left_inverse`, `theorem planar_of_reference`, `theorem hessianDeterminant_C_mul`, `theorem hc4_nonzero_constant_injective`, `theorem hc4_reference_JC2_bijective`, `theorem hc4_reference_JC2_unit_bijective`
 
 ### `HC4.Toric`
 
