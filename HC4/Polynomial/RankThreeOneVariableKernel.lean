@@ -377,7 +377,10 @@ theorem rankThree_complement_transport
       ∑ a : Fin 3, MvPolynomial.aeval w (pderiv (l.succAbove a) (pderiv (l.succAbove i) L)) *
         coeffDeriv (d j) (w (l.succAbove a)) := by
     exact hsum (fun a : Fin 4 => MvPolynomial.aeval w (pderiv a (pderiv (l.succAbove i) L)) *
-      coeffDeriv (d j) (w a)) (by rw [hc, mul_zero])
+      coeffDeriv (d j) (w a)) (by
+        change MvPolynomial.aeval w (pderiv l (pderiv (l.succAbove i) L)) *
+          coeffDeriv (d j) (w l) = 0
+        rw [hc j, mul_zero])
   rw [hsplit] at e
   simp only [ht] at e
   simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
