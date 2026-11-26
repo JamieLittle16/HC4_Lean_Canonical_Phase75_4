@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11903**.
+Distinct declaration spellings indexed: **11904**.
 
 ## Repeated declaration spellings
 
@@ -6538,6 +6538,7 @@ Distinct declaration spellings indexed: **11903**.
 - `globalWeightOptimum_not_rankAtMostTwo` — `theorem` in `HC4.Polynomial.RankTwoGlobalClosure`
 - `globalWeightOptimum_rankThree` — `theorem` in `HC4.Polynomial.RankThreeExtremalReduction`
 - `globalWeightOptimum_rankThree_complementJacobian_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `globalWeightOptimum_rankThree_no_affineKernelLine` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_no_one_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_no_one_zero_distinct_weights` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_no_rankTwoVelocity_positiveWeight` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
