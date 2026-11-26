@@ -4713,6 +4713,114 @@ theorem rankThree_relativeWronskian_ne_zero
   linear_combination hb
 
 
+/-- Explicit exponent formulas for the canonical transverse degree
+and the signed Taylor slope. -/
+theorem rankThree_wall_weight_formulas (u : Fin 4 →₀ ℕ) :
+    Finsupp.weight rankThreeWallDegree u = (u 1 : ℤ) + u 2 + u 3 ∧
+    Finsupp.weight rankThreeWallSlope u = -(u 0 : ℤ) + u 2 + 2*(u 3 : ℤ) := by
+  classical
+  constructor
+  · rw [Finsupp.weight_apply,Finsupp.sum_fintype]
+    · simp [Fin.sum_univ_four,rankThreeWallDegree,nsmul_eq_mul]
+    · intro j
+      simp
+  · rw [Finsupp.weight_apply,Finsupp.sum_fintype]
+    · norm_num [Fin.sum_univ_four,rankThreeWallSlope,nsmul_eq_mul]
+      <;> ring
+    · intro j
+      simp
+
+/-- The only offending monomial of passive degree at most one is
+the constant multiple of the heaviest passive coordinate itself. -/
+theorem rankThree_wall_lowSlope
+    (P : B K) (hclean : coeff (Finsupp.single (3 : Fin 4) 1) P = 0)
+    (u : Fin 4 →₀ ℕ) (hu : u ∈ P.support)
+    (hd : Finsupp.weight rankThreeWallDegree u ≤ 1) :
+    Finsupp.weight rankThreeWallSlope u ≤ Finsupp.weight rankThreeWallDegree u := by
+  obtain ⟨hdegree,hslope⟩ := rankThree_wall_weight_formulas u
+  by_contra hn
+  rw [hdegree] at hd
+  rw [hslope,hdegree] at hn
+  have h0 : u 0 = 0 := by omega
+  have h1 : u 1 = 0 := by omega
+  have h2 : u 2 = 0 := by omega
+  have h3 : u 3 = 1 := by omega
+  have he : u = Finsupp.single (3 : Fin 4) 1 := by
+    ext j
+    fin_cases j <;> simp [Finsupp.single_apply] <;>
+      first | exact h0 | exact h1 | exact h2 | exact h3
+  exact (MvPolynomial.mem_support_iff.mp hu) (by rw [he,hclean])
+
+set_option maxHeartbeats 4000000 in
+/-- The signed-wall contradiction requires no additional hypothesis
+on lower-degree terms. Subtract just the single offending affine
+monomial; Hessian determinant and both leading projections stay fixed. -/
+theorem rankThree_normalizedWall_impossible_of_top
+    (P : B K) (n : ℤ) (hn : 3 ≤ n)
+    (δ : K) (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant P = MvPolynomial.C δ)
+    (hcap : IsWeightLE rankThreeWallDegree n P)
+    (htop : ∀ u ∈ P.support, Finsupp.weight rankThreeWallDegree u = n →
+      Finsupp.weight rankThreeWallSlope u ≤ 0)
+    (hcof : ∀ i : Fin 4, i ≠ 0 →
+      (hessian (initialForm rankThreeWallSlope 0
+        (initialForm rankThreeWallDegree n P))).adjugate i i ≠ 0)
+    (hp : hessian (initialForm rankThreeWallSlope 0
+        (initialForm rankThreeWallDegree n P)) 1 1 ≠ 0) :
+    False := by
+  classical
+  let a := coeff (Finsupp.single (3 : Fin 4) 1) P
+  let R : B K := MvPolynomial.C a * X 3
+  let Q := P - R
+  have hclean : coeff (Finsupp.single (3 : Fin 4) 1) Q = 0 := by
+    change coeff (Finsupp.single (3 : Fin 4) 1) (P - MvPolynomial.C a * X 3) = 0
+    rw [coeff_sub,coeff_C_mul,coeff_X,mul_one]
+    exact sub_self a
+  have hR : R.IsWeightedHomogeneous rankThreeWallDegree 1 := by
+    have h := (MvPolynomial.isWeightedHomogeneous_C rankThreeWallDegree a).mul
+      (MvPolynomial.isWeightedHomogeneous_X (R := K) rankThreeWallDegree (3 : Fin 4))
+    simpa only [zero_add,show rankThreeWallDegree 3 = 1 from rfl] using h
+  have hcapR : IsWeightLE rankThreeWallDegree n R := by
+    intro u hu
+    rw [hR (MvPolynomial.mem_support_iff.mp hu)]
+    omega
+  have hcapQ : IsWeightLE rankThreeWallDegree n Q := hcap.add hcapR.neg
+  have hface : initialForm rankThreeWallDegree n Q = initialForm rankThreeWallDegree n P := by
+    change initialForm rankThreeWallDegree n (P-R) = _
+    rw [map_sub,initialForm_eq_zero_of_isWeightedHomogeneous hR n (by omega),sub_zero]
+  have htopQ (u : Fin 4 →₀ ℕ) (hu : u ∈ Q.support)
+      (hw : Finsupp.weight rankThreeWallDegree u = n) :
+      Finsupp.weight rankThreeWallSlope u ≤ 0 := by
+    have hR0 : coeff u R = 0 := by
+      by_contra hz
+      have he := hR hz
+      omega
+    have he := MvPolynomial.mem_support_iff.mp hu
+    change coeff u (P-R) ≠ 0 at he
+    rw [coeff_sub,hR0,sub_zero] at he
+    exact htop u (MvPolynomial.mem_support_iff.mpr he) hw
+  have hH : hessian Q = hessian P := by
+    ext i j
+    change pderiv j (pderiv i (P-MvPolynomial.C a * X 3)) =
+      pderiv j (pderiv i P)
+    rw [map_sub,MvPolynomial.pderiv_C_mul,map_sub]
+    by_cases hi : i = 3
+    · subst i
+      simp
+    · rw [pderiv_X_of_ne (Ne.symm hi)]
+      simp
+  have hdetQ : hessianDeterminant Q = MvPolynomial.C δ := by
+    change (hessian Q).det = _
+    rw [hH]
+    exact hdet
+  apply rankThree_normalizedWall_impossible Q n hn δ hδ hdetQ hcapQ htopQ
+    (rankThree_wall_lowSlope Q hclean)
+  · rw [hface]
+    exact hcof
+  · rw [hface]
+    exact hp
+
+
 end
 end HC4.Polynomial
 
@@ -4826,3 +4934,7 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_relativePhase_no_affineRelation
 #print axioms HC4.Polynomial.rankThree_relativeWronskian_ne_zero
+
+#print axioms HC4.Polynomial.rankThree_wall_weight_formulas
+#print axioms HC4.Polynomial.rankThree_wall_lowSlope
+#print axioms HC4.Polynomial.rankThree_normalizedWall_impossible_of_top
