@@ -507,7 +507,7 @@ as a polynomial identity. Surjectivity implies $A_i$ vanishes on the zero locus 
 The formal proof of Proposition~\ref{prop:inverse} uses Mathlib's Ax--Grothendieck and Nullstellensatz results and the separable-degree criterion; the finite-extension explanation above is the equivalent usual algebraic argument. In combination with the determinant normalization and Theorem~\ref{thm:inj}, it proves both directions of Theorem~\ref{thm:equiv}.
 
 \section{Formal verification, attribution and review status}\label{sec:verification}
-The source is publicly available at \url{https://github.com/JamieLittle16/HessianConjecture4}. The formal endpoint for the forward implication is
+The source is publicly available on \href{https://github.com/JamieLittle16/HessianConjecture4}{GitHub (JamieLittle16/HessianConjecture4)}. The formal endpoint for the forward implication is
 \begin{quote}
 \path{HC4.Polynomial.hc4_of_planarJC2}
 \end{quote}
@@ -525,17 +525,37 @@ in \path{RationalMapAffinePlane.lean} states exactly Theorem~\ref{thm:main}, wit
 
 The following is a source-reading guide, not a claim that every sentence of the manuscript is separately checked. Module names in the first six entries are relative to \path{HC4/Polynomial/}.
 \begin{itemize}
-\item Polynomial transport and normalized characteristics: \path{RankThreeCubicCharacteristics.lean}.
-\item Rational rigidity: \path{RationalMapAffinePlane.lean}, \path{RationalCharacteristicRankTwoClosure.lean}.
-\item Weight attainment and local improvements: \path{WeightedGlobalOptimum.lean}, \path{WeightedExtremalKernel.lean}, \path{WeightedExtremalIsotropicPlane.lean}.
-\item Rank-two closure: \path{RankOneHessianRatioRigidity.lean}, \path{RankTwoAffineClosure.lean}, \path{RankTwoImageDirectionClosure.lean}, \path{RankTwoAffineFibres.lean}, \path{RankTwoGlobalClosure.lean}.
-\item Rank-three and relative frontier: \path{RankThreeExtremalReduction.lean}, \path{RankThreeOneVariableKernel.lean}.
-\item Signed wall and final contradiction: \path{RankThreeOneVariableKernel.lean}.
-\item Reverse implication and inverse bridge: \path{HC4/PlanarJC2HessianEmbedding.lean}, \path{HC4/PolynomialInverseAudit.lean}, \path{HC4/RationalInverseAudit.lean}, \path{HC4/FinalEquivalence.lean}.
+\item Polynomial transport and normalized characteristics:\par
+  \path{RankThreeCubicCharacteristics.lean}.
+\item Rational rigidity:\par
+  \path{RationalMapAffinePlane.lean},\par
+  \path{RationalCharacteristicRankTwoClosure.lean}.
+\item Weight attainment and local improvements:\par
+  \path{WeightedGlobalOptimum.lean},\par
+  \path{WeightedExtremalKernel.lean},\par
+  \path{WeightedExtremalIsotropicPlane.lean}.
+\item Rank-two closure:\par
+  \path{RankOneHessianRatioRigidity.lean},\par
+  \path{RankTwoAffineClosure.lean},\par
+  \path{RankTwoImageDirectionClosure.lean},\par
+  \path{RankTwoAffineFibres.lean},\par
+  \path{RankTwoGlobalClosure.lean}.
+\item Rank-three and relative frontier:\par
+  \path{RankThreeExtremalReduction.lean},\par
+  \path{RankThreeOneVariableKernel.lean}.
+\item Signed wall and final contradiction:\par
+  \path{RankThreeOneVariableKernel.lean}.
+\item Reverse implication and inverse bridge:\par
+  \path{HC4/PlanarJC2HessianEmbedding.lean},\par
+  \path{HC4/PolynomialInverseAudit.lean},\par
+  \path{HC4/RationalInverseAudit.lean},\par
+  \path{HC4/FinalEquivalence.lean}.
 \end{itemize}
 
 \paragraph{Reproduction.}
-The repository pins Lean \path{v4.24.0} and Mathlib commit \path{f897ebcf72cd16f89ab4577d0c826cd14afaafc7}. At the maintainer's verified checkpoint, the full build completed 9051 jobs and the final core axiom audit passed (commit \path{38e58bf4}, 26 November 2026). The polynomial-inverse equivalence was subsequently verified locally; the standalone rational theorem passed a targeted build of 8317 jobs (commit \path{9e548ccb}, same date). The transitive axiom reports for these endpoints contain exactly \path{propext}, \path{Classical.choice}, and \path{Quot.sound}; in particular they do not contain \path{sorryAx} or a conjecture axiom. These are maintainer-reported local results, not yet evidence of completed independent fresh-checkout reproduction. A minimal targeted reproduction after checkout is:
+The repository pins Lean \path{v4.24.0} and the Mathlib revision\par
+\noindent\path{f897ebcf72cd16f89ab4577d0c826cd14afaafc7}.\par
+At the maintainer's verified checkpoint, the full build completed 9051 jobs and the final core axiom audit passed (commit \path{38e58bf4}, 26 November 2026). The polynomial-inverse equivalence was subsequently verified locally; the standalone rational theorem passed a targeted build of 8317 jobs (commit \path{9e548ccb}, same date). The transitive axiom reports for these endpoints contain exactly \path{propext}, \path{Classical.choice}, and \path{Quot.sound}; in particular they do not contain \path{sorryAx} or a conjecture axiom. These are maintainer-reported local results, not yet evidence of completed independent fresh-checkout reproduction. A minimal targeted reproduction after checkout is:
 \begin{verbatim}
 lake exe cache get
 lake build HC4.FinalEquivalence
@@ -554,6 +574,8 @@ This is a consolidated manuscript draft of the previously compiled research note
 \begin{thebibliography}{9}
 \bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026). \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
 \bibitem{depoi} P. De Poi, \emph{Congruences of lines with one-dimensional focal locus}, Port. Math. \textbf{61} (2004), 329--338.
-\bibitem{fc} Google DeepMind, \emph{Formal Conjectures}, snapshot a88aee564684360292318c61b9b8e27febef2ae0. \url{https://github.com/google-deepmind/formal-conjectures}.
+\bibitem{fc} Google DeepMind, \emph{Formal Conjectures}.\par
+Snapshot \path{a88aee564684360292318c61b9b8e27febef2ae0}.\par
+\url{https://github.com/google-deepmind/formal-conjectures}.
 \end{thebibliography}
 \end{document}
