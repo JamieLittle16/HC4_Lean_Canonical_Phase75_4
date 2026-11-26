@@ -897,3 +897,4 @@ import HC4.Polynomial.WeightedSingularHessianAnnihilator
 import HC4.Polynomial.WeightedComplementaryHessian
 import HC4.Polynomial.WeightedComplementaryInitialForm
 import HC4.Polynomial.WeightedComplementaryKernel
+import HC4.Polynomial.WeightedWallMinorSurvival
