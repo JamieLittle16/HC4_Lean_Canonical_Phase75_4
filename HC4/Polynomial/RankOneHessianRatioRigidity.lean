@@ -723,6 +723,162 @@ theorem rankOneHessian_twoRows_partialRatios_constant
 
 end Finite
 
+section WeightedRatio
+
+/-- Project a product with one homogeneous factor onto an exact
+weight layer; no assumption on the second factor is required. -/
+theorem rankOne_initialForm_mul_homogeneous
+    (w : σ → ℤ) (a d : ℤ) (A Q : R σ K)
+    (hA : MvPolynomial.IsWeightedHomogeneous w A a) :
+    initialForm w (a + d) (A * Q) = A * initialForm w d Q := by
+  classical
+  ext u
+  rw [coeff_initialForm, MvPolynomial.coeff_mul, MvPolynomial.coeff_mul]
+  by_cases hu : Finsupp.weight w u = a + d
+  · rw [if_pos hu]
+    apply Finset.sum_congr rfl
+    intro xy hxy
+    rw [coeff_initialForm]
+    by_cases hx : coeff xy.1 A = 0
+    · simp [hx]
+    · have hwx := hA hx
+      have he := congrArg (Finsupp.weight w) (Finset.mem_antidiagonal.mp hxy)
+      rw [map_add, hwx, hu] at he
+      rw [if_pos (by omega : Finsupp.weight w xy.2 = d)]
+  · rw [if_neg hu]
+    symm
+    apply Finset.sum_eq_zero
+    intro xy hxy
+    rw [coeff_initialForm]
+    by_cases hx : coeff xy.1 A = 0
+    · simp [hx]
+    · have hwx := hA hx
+      have he := congrArg (Finsupp.weight w) (Finset.mem_antidiagonal.mp hxy)
+      rw [map_add, hwx] at he
+      have hn : Finsupp.weight w xy.2 ≠ d := by
+        intro hd
+        apply hu
+        omega
+      rw [if_neg hn, mul_zero]
+
+/-- Partial constants have support only on powers of the omitted
+coordinate. This uses characteristic zero at the coefficient level. -/
+theorem rankOne_single_support_of_partialConstants
+    (Q : R σ K) (s : σ) (hQ : ∀ i, i ≠ s → pderiv i Q = 0)
+    (u : σ →₀ ℕ) (hu : coeff u Q ≠ 0) :
+    u = Finsupp.single s (u s) := by
+  classical
+  ext i
+  by_cases hi : i = s
+  · subst i
+    simp
+  · rw [Finsupp.single_eq_of_ne hi]
+    exact exponent_eq_zero_of_pderiv_eq_zero i Q (hQ i hi) u hu
+
+/-- A weight component of a polynomial supported on one positive
+weight coordinate is a single monomial if nonzero. -/
+theorem rankOne_initialForm_single_power
+    (w : σ → ℤ) (s : σ) (hs : 0 < w s) (d : ℤ)
+    (Q : R σ K) (hQ : ∀ i, i ≠ s → pderiv i Q = 0)
+    (hn : initialForm w d Q ≠ 0) :
+    ∃ n : ℕ, ∃ c : K, c ≠ 0 ∧
+      (n : ℤ) * w s = d ∧
+      initialForm w d Q = MvPolynomial.monomial (Finsupp.single s n) c := by
+  classical
+  have hex : ∃ u : σ →₀ ℕ, coeff u (initialForm w d Q) ≠ 0 := by
+    by_contra h
+    push_neg at h
+    apply hn
+    ext u
+    rw [h u, coeff_zero]
+  obtain ⟨u,hu⟩ := hex
+  have hQ_u : coeff u Q ≠ 0 := by
+    intro hz
+    apply hu
+    rw [coeff_initialForm,hz]
+    split_ifs <;> rfl
+  have hu' := rankOne_single_support_of_partialConstants Q s hQ u hQ_u
+  have hwu := initialForm_isWeightedHomogeneous w d Q hu
+  have hw_single (n : ℕ) : Finsupp.weight w (Finsupp.single s n) = (n : ℤ) * w s := by
+    simp [Finsupp.weight_apply, Finsupp.sum_single_index, nsmul_eq_mul]
+  have hdeg : (u s : ℤ) * w s = d := by
+    calc
+      _ = Finsupp.weight w (Finsupp.single s (u s)) := (hw_single _).symm
+      _ = Finsupp.weight w u := congrArg (Finsupp.weight w) hu'.symm
+      _ = d := hwu
+  refine ⟨u s, coeff u (initialForm w d Q), hu, hdeg, ?_⟩
+  ext v
+  rw [MvPolynomial.coeff_monomial]
+  by_cases hv : v = Finsupp.single s (u s)
+  · have hvu : v = u := hv.trans hu'.symm
+    rw [hvu]
+    simp [hu']
+  · have hz : coeff v (initialForm w d Q) = 0 := by
+      by_contra hne
+      have hQ_v : coeff v Q ≠ 0 := by
+        intro he
+        apply hne
+        rw [coeff_initialForm,he]
+        split_ifs <;> rfl
+      have hv' := rankOne_single_support_of_partialConstants Q s hQ v hQ_v
+      have hwv := initialForm_isWeightedHomogeneous w d Q hne
+      have hdeg' : (v s : ℤ) * w s = d := by
+        calc
+          _ = Finsupp.weight w (Finsupp.single s (v s)) := (hw_single _).symm
+          _ = Finsupp.weight w v := congrArg (Finsupp.weight w) hv'.symm
+          _ = d := hwv
+      have hmul : (v s : ℤ) * w s = (u s : ℤ) * w s := hdeg'.trans hdeg.symm
+      have he : (v s : ℤ) = (u s : ℤ) := mul_right_cancel₀ (ne_of_gt hs) hmul
+      have he' : v s = u s := by exact_mod_cast he
+      exact hv (hv'.trans (congrArg (Finsupp.single s) he'))
+    rw [hz, if_neg (Ne.symm hv)]
+
+/-- Nonzero homogeneous entries whose ratio is a relative rational
+constant admit an exact monomial cross identity when the omitted
+weight is positive. No localization or new source chart is used. -/
+theorem rankOne_weighted_relativeRatio_cross_power
+    (w : σ → ℤ) (s : σ) (hs : 0 < w s) (a b : ℤ)
+    (A B : R σ K) (hA0 : A ≠ 0) (hB0 : B ≠ 0)
+    (hA : MvPolynomial.IsWeightedHomogeneous w A a)
+    (hB : MvPolynomial.IsWeightedHomogeneous w B b)
+    (P Q : R σ K) (hQ0 : Q ≠ 0) (hcross : B * Q = A * P)
+    (hP : ∀ i, i ≠ s → pderiv i P = 0)
+    (hQ : ∀ i, i ≠ s → pderiv i Q = 0) :
+    ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧ e ≠ 0 ∧
+      b + (n : ℤ) * w s = a + (t : ℤ) * w s ∧
+      B * MvPolynomial.monomial (Finsupp.single s n) c =
+        A * MvPolynomial.monomial (Finsupp.single s t) e := by
+  classical
+  have hex : ∃ u : σ →₀ ℕ, coeff u Q ≠ 0 := by
+    by_contra h
+    push_neg at h
+    apply hQ0
+    ext u
+    rw [h u, coeff_zero]
+  obtain ⟨u,hu⟩ := hex
+  let d := Finsupp.weight w u
+  have hQd : initialForm w d Q ≠ 0 := by
+    intro hz
+    apply hu
+    have he := congrArg (coeff u) hz
+    simpa [coeff_initialForm, d] using he
+  have he := congrArg (initialForm w (b + d)) hcross
+  change initialForm w (b+d) (B*Q) = initialForm w (b+d) (A*P) at he
+  rw [rankOne_initialForm_mul_homogeneous w b d B Q hB] at he
+  rw [show b+d = a+(b+d-a) by ring,
+    rankOne_initialForm_mul_homogeneous w a (b+d-a) A P hA] at he
+  have hPd : initialForm w (b+d-a) P ≠ 0 := by
+    intro hz
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hB0 hQd) he
+  obtain ⟨n,c,hc,hn,hQn⟩ := rankOne_initialForm_single_power w s hs d Q hQ hQd
+  obtain ⟨t,e,he0,ht,hPt⟩ := rankOne_initialForm_single_power w s hs (b+d-a) P hP hPd
+  refine ⟨n,t,c,e,hc,he0,by omega,?_⟩
+  rwa [hQn,hPt] at he
+
+end WeightedRatio
+
+
 end
 end HC4.Polynomial
 
@@ -738,3 +894,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankOneHessian_twoRows_partialRatios_constant
 
 #print axioms HC4.Polynomial.rankOnePartial_num_den_independent
+
+#print axioms HC4.Polynomial.rankOne_initialForm_mul_homogeneous
+#print axioms HC4.Polynomial.rankOne_single_support_of_partialConstants
+#print axioms HC4.Polynomial.rankOne_initialForm_single_power
+#print axioms HC4.Polynomial.rankOne_weighted_relativeRatio_cross_power
