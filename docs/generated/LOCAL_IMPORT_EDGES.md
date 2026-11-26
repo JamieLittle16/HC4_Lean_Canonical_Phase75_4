@@ -192,6 +192,7 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicZeroBinaryDeterminant`
   - `HC4.Polynomial.RankThreeCubicZeroBinarySourceCofactor`
   - `HC4.Polynomial.RankThreeExtremalReduction`
+  - `HC4.Polynomial.RankThreeOneVariableKernel`
   - `HC4.Polynomial.RankTwoAffineClosure`
   - `HC4.Polynomial.RankTwoAffineFibres`
   - `HC4.Polynomial.RankTwoAffineLevelCurvature`
@@ -1979,6 +1980,8 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeMvSubstitution`
   - `HC4.Polynomial.ComplementaryMvSubstitution`
   - `HC4.Polynomial.RankThreeLogHessian`
+- `HC4.Polynomial.RankThreeOneVariableKernel`
+  - `HC4.Polynomial.RankThreeExtremalReduction`
 - `HC4.Polynomial.RankThreePencils`
   - `HC4.Polynomial.MonomialHessian`
 - `HC4.Polynomial.RankThreeQuotientFibers`
