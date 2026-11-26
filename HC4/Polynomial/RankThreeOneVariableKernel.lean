@@ -4821,6 +4821,35 @@ theorem rankThree_normalizedWall_impossible_of_top
     exact hp
 
 
+/-- The actual relative gradient ratios of an extremal leading
+layer have a nonzero second-order Wronskian, in either orientation
+of the two ratios other than the unit pivot. -/
+theorem globalWeightOptimum_rankThree_relativeWronskian
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ j, w j))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p i k : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hks : k ≠ s)
+    (hip : i ≠ p) (hkp : k ≠ p) (hki : k ≠ i)
+    (r : Fin 4 → E K)
+    (hgrad : ∀ j, j ≠ s →
+      algebraMap (B K) (E K) (pderiv j (initialForm w m P)) =
+      r j * algebraMap (B K) (E K) (pderiv p (initialForm w m P)))
+    (hconst : ∀ j, j ≠ s → ∀ t, rankThreePartial j (r t) = 0) :
+    rankThreePartial s (r i) * rankThreePartial s (rankThreePartial s (r k)) -
+      rankThreePartial s (r k) * rankThreePartial s (rankThreePartial s (r i)) ≠ 0 := by
+  apply rankThree_relativeWronskian_ne_zero s (r i) (r k)
+    (fun j hj => hconst j hj i) (fun j hj => hconst j hj k)
+  · intro a he
+    have hn := rankThree_relativePhase_no_affineRelation P w m hw hm hcap hclock
+      hopt hdet s p k i hps hks his hkp hip (Ne.symm hki) r hgrad a 0
+    apply hn
+    simpa only [map_zero,zero_mul,add_zero] using he
+  · exact rankThree_relativePhase_no_affineRelation P w m hw hm hcap hclock
+      hopt hdet s p i k hps his hks hip hkp hki r hgrad
+
+
 end
 end HC4.Polynomial
 
@@ -4938,3 +4967,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_wall_weight_formulas
 #print axioms HC4.Polynomial.rankThree_wall_lowSlope
 #print axioms HC4.Polynomial.rankThree_normalizedWall_impossible_of_top
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_relativeWronskian
