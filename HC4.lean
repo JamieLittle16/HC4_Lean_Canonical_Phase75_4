@@ -927,3 +927,4 @@ import HC4.Polynomial.RankTwoKernelGraph
 import HC4.Polynomial.RankTwoGlobalClosure
 import HC4.Polynomial.RankThreeExtremalReduction
 import HC4.Polynomial.RankThreeOneVariableKernel
+import HC4.FinalEquivalence
