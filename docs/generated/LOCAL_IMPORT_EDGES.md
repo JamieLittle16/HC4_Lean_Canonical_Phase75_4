@@ -9,6 +9,7 @@ human architecture guide.
 - `HC4`
   - `HC4.ClassifiedFamilies`
   - `HC4.FacetRigidity`
+  - `HC4.FinalEquivalence`
   - `HC4.LinearAlgebra`
   - `HC4.MainAssembly`
   - `HC4.MongeAmpere`
