@@ -410,6 +410,7 @@ theorem rationalJacobian_exists_constant_leftKernel
       (fun i => algebraMap K (E K) (d i)) ᵥ* rationalCharacteristicJacobian V = 0 := by
   classical
   have hreg' : ((hessian f).map (algebraMap (B K) (E K))).det ≠ 0 := by
+    change ((algebraMap (B K) (E K)).mapMatrix (hessian f)).det ≠ 0
     rw [← RingHom.map_det]
     exact (IsFractionRing.injective (B K) (E K)).ne hreg
   by_cases hm : ∀ a b i j : Fin 3,
