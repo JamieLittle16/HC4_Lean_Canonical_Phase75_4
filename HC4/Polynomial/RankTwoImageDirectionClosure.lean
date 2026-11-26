@@ -42,10 +42,12 @@ theorem rankTwo_coordinateImage_rowMinors
       A j l * (A k p * A i q - A k q * A i p) = 0 := by
     have he := hA (![k,i,j] : Fin 3 → Fin 4) (![l,p,q] : Fin 3 → Fin 4)
     rw [Matrix.det_fin_three] at he
-    simp only [Matrix.submatrix_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
-      Matrix.cons_val_two] at he
+    change A k l * A i p * A j q - A k l * A i q * A j p -
+      A k p * A i l * A j q + A k p * A i q * A j l +
+      A k q * A i l * A j p - A k q * A i p * A j l = 0 at he
     linear_combination he
-  have hsum (l : Fin 4) : (∑ t : Fin 4, A l t * z t) = Pi.single k a l :=
+  have hsum (l : Fin 4) : (∑ t : Fin 4, A l t * z t) =
+      (Pi.single k a : Fin 4 → R) l :=
     congrFun hz l
   have hk : (∑ t : Fin 4, A k t * z t) = a := by simpa using hsum k
   have hi : (∑ t : Fin 4, A i t * z t) = 0 := by
