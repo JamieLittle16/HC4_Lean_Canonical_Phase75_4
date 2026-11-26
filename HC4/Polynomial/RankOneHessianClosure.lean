@@ -325,9 +325,55 @@ private theorem rankOne_kernel_of_purePivot
       _ = hessian Q k k * (MvPolynomial.C c * hessian Q i k) := by rw [hc]; ring
   exact rankOne_kernel_of_proportional_columns Q k l hl c hcol
 
-set_option maxHeartbeats 4000000 in
+/-- Constant directional derivatives transform by the original
+ground-field matrix, with no invertibility needed for this identity. -/
+theorem rankOne_directionalDerivative_substitution
+    (L : S K) (M : Matrix (Fin 4) (Fin 4) K) (e : Fin 4 → K) :
+    extremalDirectionalDerivative e (weightedLinearSubstitution M L) =
+      weightedLinearSubstitution M (extremalDirectionalDerivative (M *ᵥ e) L) := by
+  classical
+  let f := weightedLinearSubstitution M
+  let C : K →+* S K := MvPolynomial.C
+  have hC (a : K) : f (C a) = C a := f.commutes a
+  unfold extremalDirectionalDerivative
+  change (∑ i : Fin 4, pderiv i (f L) * C (e i)) =
+    f (∑ j : Fin 4, pderiv j L * C ((M *ᵥ e) j))
+  have hpartial (i : Fin 4) : pderiv i (f L) =
+      ∑ j : Fin 4, f (pderiv j L) * C (M j i) :=
+    weightedLinearSubstitution_partial M L i
+  calc
+    _ = ∑ i : Fin 4, ∑ j : Fin 4, f (pderiv j L) * C (M j i) * C (e i) := by
+      simp only [hpartial, Finset.sum_mul]
+    _ = ∑ j : Fin 4, ∑ i : Fin 4, f (pderiv j L) * C (M j i) * C (e i) :=
+      Finset.sum_comm
+    _ = ∑ j : Fin 4, f (pderiv j L) * C ((M *ᵥ e) j) := by
+      apply Finset.sum_congr rfl
+      intro j _
+      change (∑ i : Fin 4, f (pderiv j L) * C (M j i) * C (e i)) =
+        f (pderiv j L) * C (∑ i : Fin 4, M j i * e i)
+      simp only [map_sum, map_mul, Finset.mul_sum, mul_assoc]
+    _ = _ := by simp only [map_sum, map_mul, hC]
+
+/-- The converse of directional-derivative integration. -/
+theorem rankOne_kernel_of_constant_directionalDerivative
+    (L : S K) (d : Fin 4 → K) (c : K)
+    (hc : extremalDirectionalDerivative d L = MvPolynomial.C c) :
+    hessian L *ᵥ (fun i => MvPolynomial.C (d i)) = 0 := by
+  classical
+  funext j
+  have he := congrArg (pderiv j) hc
+  change pderiv j (extremalDirectionalDerivative d L) = pderiv j (MvPolynomial.C c) at he
+  rw [pderiv_C, extremalDirectionalDerivative, map_sum] at he
+  change (∑ i : Fin 4, hessian L j i * MvPolynomial.C (d i)) = 0
+  rw [← he]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [mul_comm (pderiv i L), MvPolynomial.pderiv_C_mul, mul_comm,
+    pderiv_comm_backport j i, hessian_apply]
+
 /-- Pull a constant kernel back through an actual determinant-one chart.
-This lemma is independent of the rank and the pure-pivot construction. -/
+Use the integrated directional derivative, so no invertibility or
+instance search over polynomial matrices is needed. -/
 theorem rankOne_constantKernel_pullback
     (L : S K) (M : Matrix (Fin 4) (Fin 4) K) (hM : M.det = 1)
     (e : Fin 4 → K) (he0 : e ≠ 0)
@@ -335,8 +381,6 @@ theorem rankOne_constantKernel_pullback
       (fun i => MvPolynomial.C (e i)) = 0) :
     ∃ d : Fin 4 → K, d ≠ 0 ∧ hessian L *ᵥ (fun i => MvPolynomial.C (d i)) = 0 := by
   classical
-  let C : K →+* S K := MvPolynomial.C
-  have hf := rankOne_substitution_injective M hM
   let d := M *ᵥ e
   have hd0 : d ≠ 0 := by
     have hi : Function.Injective M.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
@@ -346,36 +390,15 @@ theorem rankOne_constantKernel_pullback
     apply hi
     rw [Matrix.mulVec_zero]
     exact hz
-  let T := M.map C
-  let A := (hessian L).map (weightedLinearSubstitution M).toRingHom
-  have hT : T.det = 1 := by
-    change (C.mapMatrix M).det = 1
-    rw [← RingHom.map_det,hM,map_one]
-  have ht : T *ᵥ (fun i => C (e i)) = fun i => C (d i) := by
-    funext i
-    change (∑ j : Fin 4, C (M i j) * C (e j)) = C (∑ j : Fin 4, M i j * e j)
-    simp only [map_sum,map_mul]
-  have hH : hessian (weightedLinearSubstitution M L) = T.transpose * A * T := weightedLinearSubstitution_hessian M L
-  rw [hH, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, ht] at he
-  have hTi : Function.Injective T.transpose.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
-    ((Matrix.isUnit_iff_isUnit_det T.transpose).mpr (by rw [Matrix.det_transpose,hT]; exact isUnit_one))
-  have hker : A *ᵥ (fun i => C (d i)) = 0 := by
-    apply hTi
-    rw [Matrix.mulVec_zero]
-    exact he
-  refine ⟨d,hd0,?_⟩
-  funext i
-  apply hf
-  have hh := congrFun hker i
-  change (∑ j : Fin 4, weightedLinearSubstitution M (hessian L i j) * C (d j)) = 0 at hh
-  change weightedLinearSubstitution M (∑ j : Fin 4, hessian L i j * C (d j)) =
-    weightedLinearSubstitution M 0
-  rw [map_sum,map_zero]
-  simp only [map_mul]
-  have hC (a : K) : weightedLinearSubstitution M (C a) = C a :=
-    (weightedLinearSubstitution M).commutes a
-  simp only [hC]
-  exact hh
+  obtain ⟨c,hc⟩ := extremalDirectionalDerivative_eq_C_of_kernel e
+    (weightedLinearSubstitution M L) he
+  rw [rankOne_directionalDerivative_substitution] at hc
+  have hf := rankOne_substitution_injective M hM
+  have hC : weightedLinearSubstitution M (MvPolynomial.C c) = MvPolynomial.C c :=
+    (weightedLinearSubstitution M).commutes c
+  have hd : extremalDirectionalDerivative d L = MvPolynomial.C c :=
+    hf (hc.trans hC.symm)
+  exact ⟨d,hd0,rankOne_kernel_of_constant_directionalDerivative L d c hd⟩
 
 /-- Extract a pure-pivot chart with the rank-one relations and degree
 bounds already transported, keeping all witnesses on the same chart. -/
