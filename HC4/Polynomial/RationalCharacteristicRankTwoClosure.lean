@@ -83,7 +83,7 @@ theorem rankTwo_polynomial_tangent_impossible
       have hlj : l ≠ j := Ne.symm hjl
       change D ((if l = j then 1 else 0) - t * (if l = l then 1 else 0)) = 0
       simp [hlj, hDt]
-    · by_cases hi' : i = j <;> simp [z, hi, hi']
+    · by_cases hi' : i = j <;> simp [z, hi, hi', hjl]
   have hDg : D (algebraMap (B K) (E K) g) = 0 := by
     rw [hD, rationalCharacteristicPartial_algebraMap,
       rationalCharacteristicPartial_algebraMap, hgj, sub_self]
@@ -99,7 +99,7 @@ theorem rankTwo_polynomial_tangent_impossible
     by_cases hi : i = l
     · subst i
       simp [z, Ne.symm hjl]
-    · by_cases hi' : i = j <;> simp [z, hi, hi']
+    · by_cases hi' : i = j <;> simp [z, hi, hi', hjl]
   have hchain := rankTwo_fibreEval_partial z g l
   rw [hline, coeffDeriv_C, rationalCharacteristicPartial_algebraMap] at hchain
   let r := (rationalCharacteristicPartial l t)⁻¹
@@ -128,7 +128,8 @@ theorem rankTwo_polynomial_tangent_impossible
     · rw [if_neg hi, if_neg hi, mul_zero, add_zero]
   rw [map_sum] at he
   simp only [map_mul, hzero, mul_zero, Finset.sum_const_zero] at he
-  change algebraMap (B K) (E K) (pderiv l g) = 0 at he
+  change (_root_.Polynomial.C (algebraMap (B K) (E K) (pderiv l g))).eval r = 0 at he
+  rw [_root_.Polynomial.eval_C] at he
   exact hg he
 
 set_option maxHeartbeats 4000000 in
@@ -206,7 +207,9 @@ theorem rankTwo_constantDirection_leftKernel
     have hg : e g = rankTwo_directionalDerivation w (e f) := by
       rw [rankTwo_directionalDerivation_apply]
       change e (∑ i : Fin 3, MvPolynomial.C (d i) * pderiv i f) = _
-      simp only [map_sum, map_mul, hC, rationalCharacteristicPartial_algebraMap, w]
+      have hpartial (i : Fin 3) : rationalCharacteristicPartial i (e f) =
+          e (pderiv i f) := rationalCharacteristicPartial_algebraMap i f
+      simp only [map_sum, map_mul, hC, hpartial, w]
     have hgdiff (i : Fin 3) : e (pderiv i g) = b i * c := by
       have he := rankTwo_fibreSlope_partial f w i
       change rationalCharacteristicPartial i (rankTwo_directionalDerivation w (e f)) =
