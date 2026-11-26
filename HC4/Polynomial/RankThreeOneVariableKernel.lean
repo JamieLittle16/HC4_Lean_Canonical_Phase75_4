@@ -878,6 +878,36 @@ theorem rankThree_rankTwoVelocity_restrictedMinors_zero
   exact he
 
 
+set_option maxHeartbeats 4000000 in
+/-- In the actual rank-two velocity branch, each surviving
+restricted Hessian ratio has reduced numerator and denominator
+depending only on the omitted coordinate. This conclusion is
+in the original polynomial ring. -/
+theorem rankThree_rankTwoVelocity_ratio_num_den_independent
+    (L : B K) (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hm : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p)
+    (p i : Fin 4) (hp : p ≠ l.succAbove a) (hi : i ≠ l.succAbove a)
+    (hip : i ≠ p) (hdiag : hessian L p p ≠ 0) :
+    let f := algebraMap (B K) (E K)
+    let r := f (hessian L i p) / f (hessian L p p)
+    ∀ j : Fin 4, j ≠ l.succAbove a →
+      pderiv j (IsFractionRing.num (B K) r) = 0 ∧
+      pderiv j (IsFractionRing.den (B K) r : B K) = 0 := by
+  classical
+  dsimp
+  have hmin := rankThree_rankTwoVelocity_restrictedMinors_zero L l a V hVl hVk hreg hV hm
+  have hrow (j : Fin 4) (hj : j ≠ l.succAbove a) :
+      hessian L p p * hessian L i j = hessian L i p * hessian L p j :=
+    (hmin p i p j hp hi hp hj).trans (mul_comm _ _)
+  exact rankOnePartial_num_den_independent _ (l.succAbove a)
+    (rankOneHessian_twoRows_partialRatios_constant L (l.succAbove a) p i
+      hip hp hi hdiag hrow)
+
+
 end
 end HC4.Polynomial
 
@@ -901,3 +931,5 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_activeMinor_zero_all_restrictedMinors
 #print axioms HC4.Polynomial.rankThree_rankTwoVelocity_restrictedMinors_zero
+
+#print axioms HC4.Polynomial.rankThree_rankTwoVelocity_ratio_num_den_independent
