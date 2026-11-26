@@ -11,9 +11,13 @@
 | Planar JC2 | Assumed, not proved |
 | Nonzero constant Hessian determinant and two-sided polynomial inverse equivalence | Verified over algebraically closed characteristic-zero fields |
 | Generic injective polynomial map implies polynomial inverse | Verified over algebraically closed characteristic-zero fields |
-| Mathematical priority and attribution | Publication audit pending |
+| Checked declaration dependency and baseline provenance export | Completed (125 defining modules; 1,446 reachable local declarations) |
+| Mathematical priority and attribution | Preliminary audit completed; detailed literature comparison pending |
+| Clean-host and standalone reproduction | Reported running; outcome not yet recorded |
 
 The exact verification checkpoint is [38e58bf4](https://github.com/JamieLittle16/HessianConjecture4/commit/38e58bf49cbd91ce9ae2d4e18b7d64e33fe02c8c), merged through [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64). Maintainer local full build: 9051 jobs successful. The explicit gradient example in [Audit.lean](../HC4/Audit.lean) passed, with final transitive axioms exactly `[propext, Classical.choice, Quot.sound]`.
+
+See the [proof and contribution audit](PROOF_AND_CONTRIBUTION_AUDIT.md) for the consolidated proof architecture, source provenance and attribution.
 
 The proof uses the global weighted extremal counterexample, rank exclusion, complementary Hessian and rational kernel rigidity, followed by Taylor normalization and a signed first-wall contradiction. See [PROOF_PATHS.md](PROOF_PATHS.md).
 
