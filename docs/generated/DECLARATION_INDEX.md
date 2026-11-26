@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11643**.
+Distinct declaration spellings indexed: **11649**.
 
 ## Repeated declaration spellings
 
@@ -5370,6 +5370,7 @@ Distinct declaration spellings indexed: **11643**.
 - `eq_two_adjacent_terms_of_lockedBinomialFirstVariationEulerResidual_eq_zero` — `theorem` in `HC4.Polynomial.LockedBinomialFirstVariationRigidity`
 - `eq_two_term_of_quadraticAutonomous_leading_neg_one` — `theorem` in `HC4.Polynomial.AutonomousODEQuadraticRigidity`
 - `eq_zero_of_exactPositiveTransverseDegree_of_independent` — `theorem` in `HC4.Newton.TransverseSupportRigidity`
+- `eq_zero_of_nonnegativeWeight_negative_cap` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
 - `eq_zero_of_positiveTransverseSupport_of_independent` — `theorem` in `HC4.Newton.TransverseSupportRigidity`
 - `eq_zero_of_separatedBinomialODE_of_coeff_zero` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `eq_zero_of_square_eq_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicBinaryPureCube`
@@ -5459,6 +5460,7 @@ Distinct declaration spellings indexed: **11643**.
 - `eval_rename_standardZeroPair_at` — `theorem` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
 - `eval_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `eval_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
+- `eval_sub_eq_nonnegativeWeightBlock_deriv` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
 - `eval_sub_eq_weightBlock_linear` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `eval_translatePolynomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_transverseSourceShearHom_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
@@ -6476,6 +6478,7 @@ Distinct declaration spellings indexed: **11643**.
 - `gradientRatioLinearForm_ne_zero_of_linearPower_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `gradientRatioLinearForm_scale_finTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseJetNormalForm`
 - `gradient_bijective_of_classified_polynomial` — `theorem` in `HC4.MainAssembly`
+- `gradient_eq_imp_eq_of_nonnegativeWeight_zeroClock` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
 - `gradient_global_proportional_family` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurGlobalGradientProportionality`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `gradient_injective_of_hessianDeterminant_one_of_JC2_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactEndpointReduction`
@@ -7660,6 +7663,9 @@ Distinct declaration spellings indexed: **11643**.
 - `nonnegativeTerminalFace_two_standard_zeros_hasPlanarKellerModel` — `theorem` in `HC4.Newton.TerminalTwoZeroKellerReduction`
 - `nonnegativeTerminalFace_two_standard_zeros_positiveHessian_zero` — `theorem` in `HC4.Newton.TerminalTwoZeroDoublingForm`
 - `nonnegativeTerminalFace_two_standard_zeros_weight_eq` — `theorem` in `HC4.Newton.TerminalTwoZeroPattern`
+- `nonnegativeWeight_nonneg` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
+- `nonnegativeWeight_remove_one` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
+- `nonnegativeWeight_zero_support` — `theorem` in `HC4.Polynomial.NonnegativeWeightZeroClock`
 - `nonnegative_nonScalar_terminal_degree_pos` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
 - `nonnegative_terminal_positive_or_zero_boundary` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
 - `nonnegative_terminal_weight_le_degree` — `theorem` in `HC4.Newton.TerminalNonnegativeWeights`
