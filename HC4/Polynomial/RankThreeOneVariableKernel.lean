@@ -1702,6 +1702,124 @@ theorem rankThree_restricted_shear_zero_row
     ← map_mul,← map_mul,hmin a b d e ha hb hd he]
 
 
+set_option maxHeartbeats 5000000 in
+/-- All one-zero restricted diagonal configurations are impossible
+at positive omitted weight. The equal-weight case is reduced to
+two zero restricted rows by an actual determinant-one shear. -/
+theorem globalWeightOptimum_rankThree_no_one_zero
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p i j : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hjs : j ≠ s)
+    (hip : i ≠ p) (hjp : j ≠ p) (hji : j ≠ i)
+    (hcover : ∀ a : Fin 4, a = s ∨ a = p ∨ a = i ∨ a = j)
+    (hpos : 0 < w s)
+    (hp : hessian (initialForm w m P) p p ≠ 0)
+    (hi : hessian (initialForm w m P) i i ≠ 0)
+    (hj : hessian (initialForm w m P) j j = 0)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    False := by
+  classical
+  rcases lt_trichotomy (w i) (w p) with hlt | heq | hgt
+  · exact globalWeightOptimum_rankThree_no_one_zero_distinct_weights P w m hw hm
+      hcap hclock hopt hdet s p i j hps his hjs hip hjp hji hcover hpos hp hi hj hlt hmin
+  · let L := initialForm w m P
+    obtain ⟨c,hrow⟩ := rankThree_restricted_equalWeight_rows L w m hw
+      (initialForm_isWeightedHomogeneous w m P) s p i hps his hip hpos heq hp hi hmin
+    obtain ⟨N,hN,hNb,hzero,hfix,hmin'⟩ :=
+      rankThree_restricted_shear_zero_row L w s p i hps his hip heq c hrow hmin
+    let Q := weightedLinearSubstitution N P
+    have hcapQ := weightedLinearSubstitution_isWeightLE w N hNb m P hcap
+    have hoptQ := hopt.substitution N hN
+    have hlead : initialForm w m Q = weightedLinearSubstitution N L := by
+      change initialForm w m (weightedLinearSubstitution N P) = _
+      exact (weightedLinearSubstitution_initialForm w N hNb).symm
+    have hii : hessian (initialForm w m Q) i i = 0 := by
+      rw [hlead]
+      exact hzero i his
+    have hjj : hessian (initialForm w m Q) j j = 0 := by
+      rw [hlead,hfix j j hji hji,show hessian L j j = 0 from hj,map_zero]
+    have hminQ : ∀ a b d e : Fin 4, a ≠ s → b ≠ s → d ≠ s → e ≠ s →
+        hessian (initialForm w m Q) a d * hessian (initialForm w m Q) b e =
+          hessian (initialForm w m Q) a e * hessian (initialForm w m Q) b d := by
+      rw [hlead]
+      exact hmin'
+    exact (Ne.symm hji) (globalWeightOptimum_rankThree_restricted_atMostOne_zero Q w m
+      hw hm hcapQ hclock hoptQ s i j his hjs hminQ hii hjj)
+  · have hcover' (a : Fin 4) : a = s ∨ a = i ∨ a = p ∨ a = j := by
+      rcases hcover a with h | h | h | h
+      · exact Or.inl h
+      · exact Or.inr (Or.inr (Or.inl h))
+      · exact Or.inr (Or.inl h)
+      · exact Or.inr (Or.inr (Or.inr h))
+    exact globalWeightOptimum_rankThree_no_one_zero_distinct_weights P w m hw hm
+      hcap hclock hopt hdet s i p j his hps hjs (Ne.symm hip) hji hjp
+      hcover' hpos hi hp hj hgt hmin
+
+set_option maxHeartbeats 5000000 in
+/-- In the three-nonzero restricted branch, any repeated weight
+creates an affine-only row, which has just been excluded. -/
+theorem globalWeightOptimum_rankThree_no_repeated_nonzero_weights
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p i j : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hjs : j ≠ s)
+    (hip : i ≠ p) (hjp : j ≠ p) (hji : j ≠ i)
+    (hcover : ∀ a : Fin 4, a = s ∨ a = p ∨ a = i ∨ a = j)
+    (hpos : 0 < w s) (heq : w i = w p)
+    (hp : hessian (initialForm w m P) p p ≠ 0)
+    (hi : hessian (initialForm w m P) i i ≠ 0)
+    (hj : hessian (initialForm w m P) j j ≠ 0)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    False := by
+  classical
+  let L := initialForm w m P
+  obtain ⟨c,hrow⟩ := rankThree_restricted_equalWeight_rows L w m hw
+    (initialForm_isWeightedHomogeneous w m P) s p i hps his hip hpos heq hp hi hmin
+  obtain ⟨N,hN,hNb,hzero,hfix,hmin'⟩ :=
+    rankThree_restricted_shear_zero_row L w s p i hps his hip heq c hrow hmin
+  let Q := weightedLinearSubstitution N P
+  have hcapQ := weightedLinearSubstitution_isWeightLE w N hNb m P hcap
+  have hoptQ := hopt.substitution N hN
+  have hdetQ : hessianDeterminant Q = 1 := by
+    change hessianDeterminant (weightedLinearSubstitution N P) = 1
+    rw [weightedLinearSubstitution_det N hN,hdet,map_one]
+  have hlead : initialForm w m Q = weightedLinearSubstitution N L := by
+    change initialForm w m (weightedLinearSubstitution N P) = _
+    exact (weightedLinearSubstitution_initialForm w N hNb).symm
+  have hii : hessian (initialForm w m Q) i i = 0 := by
+    rw [hlead]
+    exact hzero i his
+  have hnon (a : Fin 4) (ha : a ≠ i) (h : hessian L a a ≠ 0) :
+      hessian (initialForm w m Q) a a ≠ 0 := by
+    rw [hlead,hfix a a ha ha]
+    intro hz
+    exact h (rankOne_substitution_injective N hN
+      (hz.trans (map_zero (weightedLinearSubstitution N)).symm))
+  have hminQ : ∀ a b d e : Fin 4, a ≠ s → b ≠ s → d ≠ s → e ≠ s →
+      hessian (initialForm w m Q) a d * hessian (initialForm w m Q) b e =
+        hessian (initialForm w m Q) a e * hessian (initialForm w m Q) b d := by
+    rw [hlead]
+    exact hmin'
+  have hcover' (a : Fin 4) : a = s ∨ a = p ∨ a = j ∨ a = i := by
+    rcases hcover a with h | h | h | h
+    · exact Or.inl h
+    · exact Or.inr (Or.inl h)
+    · exact Or.inr (Or.inr (Or.inr h))
+    · exact Or.inr (Or.inr (Or.inl h))
+  exact globalWeightOptimum_rankThree_no_one_zero Q w m hw hm hcapQ hclock hoptQ hdetQ
+    s p j i hps hjs his hjp hip (Ne.symm hji) hcover' hpos
+    (hnon p (Ne.symm hip) hp) (hnon j hji hj) hii hminQ
+
+
 end
 end HC4.Polynomial
 
@@ -1745,3 +1863,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_restricted_equalWeight_rows
 #print axioms HC4.Polynomial.rankThree_restricted_shear_zero_row
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_one_zero
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_repeated_nonzero_weights
