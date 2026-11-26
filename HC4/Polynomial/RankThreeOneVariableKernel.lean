@@ -2482,7 +2482,7 @@ theorem globalWeightOptimum_rankThree_no_affineKernelLine
       J a b = rankThreePartial (l.succAbove b) t * g (e (l.succAbove a)) := by
     change rankThreePartial (l.succAbove b) (V (l.succAbove a)) = _
     rw [hline]
-    simp [Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap]
+    simp [Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,mul_comm]
   have hsome : ∃ b : Fin 3, rankThreePartial (l.succAbove b) t ≠ 0 := by
     by_contra hn
     push_neg at hn
@@ -2539,8 +2539,8 @@ theorem globalWeightOptimum_rankThree_no_affineKernelLine
     rw [Finset.mul_sum,← Finset.sum_add_distrib]
     have hi : (∑ j : Fin 4, f (hessian L i j) * V j) = 0 := congrFun hV i
     have hsum : (∑ j : Fin 4,
-        g (x i) * f (hessian L i j) * g (d j) +
-        t * (g (x i) * f (hessian L i j) * g (e j))) =
+        (g (x i) * f (hessian L i j) * g (d j) +
+        t * (g (x i) * f (hessian L i j) * g (e j)))) =
           g (x i) * (∑ j : Fin 4, f (hessian L i j) * V j) := by
       rw [Finset.mul_sum]
       apply Finset.sum_congr rfl
