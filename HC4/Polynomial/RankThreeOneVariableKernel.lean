@@ -2651,13 +2651,18 @@ theorem rankThree_lineEval_affine_of_derivation_sq_zero
   intro n
   rcases n with _ | n
   · rw [h0,_root_.Polynomial.coeff_add]
-    simp
+    simp only [_root_.Polynomial.coeff_C,_root_.Polynomial.coeff_C_mul_X,
+      if_pos rfl,if_neg Nat.zero_ne_one,add_zero]
   rcases n with _ | n
   · rw [h1,_root_.Polynomial.coeff_add]
-    simp
+    simp only [_root_.Polynomial.coeff_C,_root_.Polynomial.coeff_C_mul_X,
+      if_neg Nat.one_ne_zero,if_pos rfl,zero_add]
   · change (A P).coeff (n+2) = _
+    have hn0 : n+2 ≠ 0 := by omega
+    have hn1 : n+2 ≠ 1 := by omega
     rw [hzero n,_root_.Polynomial.coeff_add]
-    simp [_root_.Polynomial.coeff_C_mul_X,_root_.Polynomial.coeff_C]
+    simp only [_root_.Polynomial.coeff_C,_root_.Polynomial.coeff_C_mul_X,
+      if_neg hn0,if_neg hn1,add_zero]
 
 /-- Actual partial derivatives of the generic point in the
 four-variable fraction field. -/
@@ -2737,10 +2742,12 @@ theorem rankThree_isotropicSlope_activeMinor_zero
     exact MvPolynomial.aeval_X _ j
   have hfirst : D (f L) = f (pderiv i L) + r * f (pderiv k L) := by
     rw [hD,rankThreePartial_map,rankThreePartial_map]
+  have hmap (a : Fin 4) (Q : B K) : rankThreePartial a (f Q) = f (pderiv a Q) :=
+    rankThreePartial_map a Q
   have hsym : hessian L k i = hessian L i k := pderiv_comm_backport _ _ _
   have hsecond : D (D (f L)) = 0 := by
     simp only [hfirst,map_add,Derivation.leibniz,smul_eq_mul,hDr,mul_zero,add_zero]
-    simp only [hD,rankThreePartial_map]
+    simp only [hD,hmap]
     change (f (hessian L i i) + r*f (hessian L i k)) +
       r*(f (hessian L k i) + r*f (hessian L k k)) = 0
     rw [hsym]
@@ -2756,7 +2763,7 @@ theorem rankThree_isotropicSlope_activeMinor_zero
   change coeffDeriv (rankThreePartial k) (A L) = _ at hchain
   rw [show A L = _ from hline] at hchain
   simp only [map_add,coeffDeriv_C,Derivation.leibniz,smul_eq_mul,
-    coeffDeriv_X,mul_zero,zero_add,rankThreePartial_map] at hchain
+    coeffDeriv_X,mul_zero,zero_add,hmap] at hchain
   let t := -(rankThreePartial k r)⁻¹
   let ev := _root_.Polynomial.evalRingHom t
   have hzero (j : Fin 4) :
@@ -2779,7 +2786,9 @@ theorem rankThree_isotropicSlope_activeMinor_zero
       _root_.Polynomial.C (rankThreePartial k (D (f L))) * _root_.Polynomial.X =
       ∑ j : Fin 4, A (pderiv j L) *
         (_root_.Polynomial.C (if j = k then 1 else 0) +
-          _root_.Polynomial.X * _root_.Polynomial.C (rankThreePartial k (W j))) := hchain
+          _root_.Polynomial.X * _root_.Polynomial.C (rankThreePartial k (W j))) := by
+    rw [mul_comm (_root_.Polynomial.C (rankThreePartial k (D (f L))))]
+    exact hchain
   have he := congrArg (fun Q : _root_.Polynomial (E K) => ev Q) hc
   change ev (_root_.Polynomial.C (f (pderiv k L)) +
       _root_.Polynomial.C (rankThreePartial k (D (f L))) * _root_.Polynomial.X) =
@@ -2801,7 +2810,7 @@ theorem rankThree_isotropicSlope_activeMinor_zero
   have hdiff : rankThreePartial k (D (f L)) =
       f (hessian L i k) + r * f (hessian L k k) +
         rankThreePartial k r * f (pderiv k L) := by
-    simp only [hfirst,map_add,Derivation.leibniz,smul_eq_mul,rankThreePartial_map]
+    simp only [hfirst,map_add,Derivation.leibniz,smul_eq_mul,hmap]
     change f (hessian L i k) + (r * f (hessian L k k) +
       f (pderiv k L) * rankThreePartial k r) = _
     ring
