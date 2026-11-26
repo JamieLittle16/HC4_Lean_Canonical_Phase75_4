@@ -31,7 +31,7 @@ private theorem rankOne_allOnes_cap (L : S K) :
   rw [weight_allOnes_eq_degree]
   exact_mod_cast MvPolynomial.le_totalDegree hu
 
-private theorem rankOne_ordinaryInitial_eq_component (L : S K) (n : ℕ) :
+theorem rankOne_ordinaryInitial_eq_component (L : S K) (n : ℕ) :
     initialForm (fun _ : Fin 4 => (1 : ℤ)) (n : ℤ) L =
       MvPolynomial.homogeneousComponent n L := by
   ext u
@@ -40,7 +40,7 @@ private theorem rankOne_ordinaryInitial_eq_component (L : S K) (n : ℕ) :
       (if u.degree = n then coeff u L else 0)
   simp
 
-private theorem rankOne_top_ne_zero (L : S K) (hD : 0 < L.totalDegree) :
+theorem rankOne_top_ne_zero (L : S K) (hD : 0 < L.totalDegree) :
     MvPolynomial.homogeneousComponent L.totalDegree L ≠ 0 := by
   classical
   intro hz
@@ -60,7 +60,7 @@ private theorem rankOne_top_ne_zero (L : S K) (hD : 0 < L.totalDegree) :
 
 /-- A homogeneous polynomial vanishing in its pure axis coefficient
 vanishes on the whole corresponding coordinate line. -/
-private theorem rankOne_homogeneous_axis_zero
+theorem rankOne_homogeneous_axis_zero
     (F : S K) (n : ℕ) (hF : F.IsHomogeneous n)
     (k : Fin 4) (a : K) (h : coeff (Finsupp.single k n) F = 0) :
     MvPolynomial.eval (Pi.single k a) F = 0 := by
@@ -253,7 +253,7 @@ theorem rankOne_crossProducts_substitution
     _ = (a*a)*(G i p*G p j) := by ring
 
 /-- A determinant-one linear chart is an injective algebra map. -/
-private theorem rankOne_substitution_injective (M : Matrix (Fin 4) (Fin 4) K)
+theorem rankOne_substitution_injective (M : Matrix (Fin 4) (Fin 4) K)
     (hM : M.det = 1) : Function.Injective (weightedLinearSubstitution M : S K →ₐ[K] S K) := by
   intro p q h
   have he := congrArg (weightedLinearSubstitution M⁻¹) h
