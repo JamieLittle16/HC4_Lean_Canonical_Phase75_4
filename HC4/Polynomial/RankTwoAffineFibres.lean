@@ -17,6 +17,7 @@ is in the gradient fibre. No classification of Hessians is assumed.
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton RankThreeCubic
+open nonZeroDivisors
 open scoped Matrix BigOperators
 noncomputable section
 
@@ -271,9 +272,64 @@ theorem rankTwo_regularPoint_affineKernel_fibre
   rw [hmap,_root_.Polynomial.eval_C] at he
   exact he
 
+
+/-- Distinct gradient fibres cannot have complementary evaluated
+kernel spaces. In fact even a decomposition of the displacement of
+the basepoints into the two kernels would force equal gradients. -/
+theorem rankTwo_distinctGradient_no_kernelDisplacement
+    (L : B K) (hL : AllThreeMinorsZero (hessian L))
+    (k p : Fin 4) (hkp : k ≠ p) (x y : Fin 4 → K)
+    (hx : MvPolynomial.eval x (rankTwoPrincipalPivot (hessian L) k p) ≠ 0)
+    (hy : MvPolynomial.eval y (rankTwoPrincipalPivot (hessian L) k p) ≠ 0)
+    (hxy : mvGradientMap L x ≠ mvGradientMap L y)
+    (u v : Fin 4 → K)
+    (hu : (hessian L).map (MvPolynomial.eval x) *ᵥ u = 0)
+    (hv : (hessian L).map (MvPolynomial.eval y) *ᵥ v = 0) :
+    x + u ≠ y + v := by
+  intro he
+  apply hxy
+  calc
+    mvGradientMap L x = mvGradientMap L (x+u) :=
+      (rankTwo_regularPoint_affineKernel_fibre L hL k p hkp x u hx hu).symm
+    _ = mvGradientMap L (y+v) := congrArg (mvGradientMap L) he
+    _ = mvGradientMap L y :=
+      rankTwo_regularPoint_affineKernel_fibre L hL k p hkp y v hy hv
+
+/-- The sum of two evaluated kernel spaces of distinct regular
+gradient fibres is a proper subspace of the four-dimensional
+ground-field space. -/
+theorem rankTwo_distinctGradient_kernel_sup_ne_top
+    (L : B K) (hL : AllThreeMinorsZero (hessian L))
+    (k p : Fin 4) (hkp : k ≠ p) (x y : Fin 4 → K)
+    (hx : MvPolynomial.eval x (rankTwoPrincipalPivot (hessian L) k p) ≠ 0)
+    (hy : MvPolynomial.eval y (rankTwoPrincipalPivot (hessian L) k p) ≠ 0)
+    (hxy : mvGradientMap L x ≠ mvGradientMap L y) :
+    LinearMap.ker ((hessian L).map (MvPolynomial.eval x)).mulVecLin ⊔
+      LinearMap.ker ((hessian L).map (MvPolynomial.eval y)).mulVecLin ≠ ⊤ := by
+  classical
+  let A := (hessian L).map (MvPolynomial.eval x)
+  let B := (hessian L).map (MvPolynomial.eval y)
+  let U := LinearMap.ker A.mulVecLin
+  let V := LinearMap.ker B.mulVecLin
+  intro he
+  have htop : U ⊔ V = ⊤ := he
+  have hm : y-x ∈ U ⊔ V := by rw [htop]; trivial
+  obtain ⟨u,hu,v,hv,hs⟩ := Submodule.mem_sup.mp hm
+  have hu' : A *ᵥ u = 0 := hu
+  have hv' : B *ᵥ v = 0 := hv
+  have hvneg : B *ᵥ (-v) = 0 := by rw [Matrix.mulVec_neg,hv',neg_zero]
+  apply rankTwo_distinctGradient_no_kernelDisplacement L hL k p hkp x y hx hy hxy
+    u (-v) hu' hvneg
+  calc
+    x+u = x+(u+v)-v := by abel
+    _ = x+(y-x)-v := by rw [hs]
+    _ = y+(-v) := by abel
+
 end
 end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankTwo_lineEval_gradient_of_normalizedKernel
 #print axioms HC4.Polynomial.rankTwo_regularPoint_lineEval_gradient
 #print axioms HC4.Polynomial.rankTwo_regularPoint_affineKernel_fibre
+
+#print axioms HC4.Polynomial.rankTwo_distinctGradient_kernel_sup_ne_top
