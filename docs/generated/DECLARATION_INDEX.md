@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11829**.
+Distinct declaration spellings indexed: **11840**.
 
 ## Repeated declaration spellings
 
@@ -6587,6 +6587,16 @@ Distinct declaration spellings indexed: **11829**.
 - `gradient_injective_of_splitRow_standard` — `theorem` in `HC4.Polynomial.WeightedExtremalSplitRow`
 - `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `graphNormal` — `def` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphNormal_ne_zero` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphOuter` — `def` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphOuter_det_sub` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphOuter_factor` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphOuter_left_normal` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphOuter_right_normal` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphWedge` — `def` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphWedge_swap` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
+- `graphWedge_trans_zero` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
 - `hasAlignedRecenteredFirstWallCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalFirstWall`
 - `hasAlignedRecenteredFirstWallCompetition_of_terminalResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall`
 - `hasAlignedRecenteredSameExponentCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition`
@@ -9620,6 +9630,7 @@ Distinct declaration spellings indexed: **11829**.
 - `rankTwo_rightKernel_minors_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
 - `rankTwo_schur_cross` — `theorem` in `HC4.Polynomial.RankTwoPrincipalPivot`
 - `rankTwo_selfAdjointDerivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
+- `rankTwo_singularFamily_commonKernel_or_leftKernel` — `theorem` in `HC4.Polynomial.RankTwoGraphDichotomy`
 - `rankTwo_source_affineGradient` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient`
 - `rankTwo_source_constantDirection_or_adjugate` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure`
 - `rankTwo_source_directionParameter` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter`

@@ -2001,6 +2001,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
 - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - _(no local imports)_
+- `HC4.Polynomial.RankTwoGraphDichotomy`
+  - `HC4.Polynomial.RankTwoKernelGraph`
 - `HC4.Polynomial.RankTwoImageDirectionClosure`
   - `HC4.Polynomial.RankTwoAffineClosure`
 - `HC4.Polynomial.RankTwoKernelGraph`
