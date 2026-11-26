@@ -97,8 +97,8 @@ theorem extremal_pderiv_coeff_nonzero
     coeff (u - Finsupp.single i 1) (pderiv i L) ≠ 0 := by
   classical
   rw [coeff_pderiv_backport, Finsupp.sub_add_single_one_cancel hi]
-  exact mul_ne_zero hu (by exact_mod_cast Nat.succ_ne_zero
-    ((u - Finsupp.single i 1) i))
+  have hn : ((u - Finsupp.single i 1) i + 1 : ℕ) ≠ 0 := by omega
+  exact mul_ne_zero hu (by exact_mod_cast hn)
 
 /-- A zero second derivative bounds the original monomial exponent
 in the twice differentiated coordinate. -/
@@ -114,7 +114,7 @@ theorem extremal_exponent_le_one_of_second_zero
   have hz := exponent_eq_zero_of_pderiv_eq_zero i (pderiv i L) hii _ hp
   have he := congrArg (fun a : Fin 4 →₀ ℕ => a i)
     (Finsupp.sub_add_single_one_cancel hi)
-  change (u - Finsupp.single i 1 + Finsupp.single i 1) i = u i at he
+  change ((u - Finsupp.single i 1 + Finsupp.single i 1 : Fin 4 →₀ ℕ) i) = u i at he
   simp [Finsupp.add_apply, Finsupp.single_apply, hz] at he
   omega
 
@@ -130,7 +130,7 @@ theorem extremal_exponent_disjoint_of_mixed_zero
   have hz := exponent_eq_zero_of_pderiv_eq_zero j (pderiv i L) hij0 _ hp
   have he := congrArg (fun a : Fin 4 →₀ ℕ => a j)
     (Finsupp.sub_add_single_one_cancel hi)
-  change (u - Finsupp.single i 1 + Finsupp.single i 1) j = u j at he
+  change ((u - Finsupp.single i 1 + Finsupp.single i 1 : Fin 4 →₀ ℕ) j) = u j at he
   simp [Finsupp.add_apply, Finsupp.single_apply, hij, Ne.symm hij, hz] at he
   omega
 
