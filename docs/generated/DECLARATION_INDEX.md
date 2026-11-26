@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11757**.
+Distinct declaration spellings indexed: **11759**.
 
 ## Repeated declaration spellings
 
@@ -9211,6 +9211,7 @@ Distinct declaration spellings indexed: **11757**.
 - `rankOne_correctedPartial_velocityField_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
 - `rankOne_correctedPartial_velocity_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
 - `rankOne_crossProducts_substitution` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
+- `rankOne_directionalDerivative_substitution` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_dot_zero_of_cube_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent`
 - `rankOne_eq_zero_of_all_zeroJets` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
 - `rankOne_evaluated_trace_of_cleared_factor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly`
@@ -9221,6 +9222,7 @@ Distinct declaration spellings indexed: **11757**.
 - `rankOne_hessians_zero_of_lifted_trace_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOnePencil`
 - `rankOne_homogeneous_axis_zero` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_jacobian_exists_pivot` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
+- `rankOne_kernel_of_constant_directionalDerivative` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_kernel_of_proportional_columns` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_kernel_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_lifted_trace_of_evaluated_trace` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneTraceLift`
