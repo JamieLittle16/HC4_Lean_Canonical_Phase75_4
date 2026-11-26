@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11659**.
+Distinct declaration spellings indexed: **11664**.
 
 ## Repeated declaration spellings
 
@@ -5545,6 +5545,7 @@ Distinct declaration spellings indexed: **11659**.
 - `exists_complementarySegment_parameter` — `theorem` in `HC4.Newton.FirstContactCrossFacetFarBoundary`
 - `exists_constantTransverseShear_layerDiagonal_ne_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShearQuadraticLayer`
 - `exists_coordinateSpecialKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurKernelCoordinateChart`
+- `exists_counterexample_fullSupport_face` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `exists_cubicCorrection_ne_zero_of_singular` — `theorem` in `HC4.Valuation.TransverseAxisCubicCorrection`
 - `exists_degree_one_repeated_irreducible_of_cubic_degree` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactor`
 - `exists_denominatorClearedSpecialSchurKernelData` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurSpecialKernelLift`
@@ -5591,6 +5592,7 @@ Distinct declaration spellings indexed: **11659**.
 - `exists_firstThree_zero_of_codimensionTwo` — `theorem` in `HC4.Newton.FiniteSupportSingularBoundaryCarrierKernel`
 - `exists_firstTransverseKeyHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyHomogeneousSlice`
 - `exists_firstTransverseKeyMaximalHomogeneousSlice` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
+- `exists_firstWall_of_missing_coordinate` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `exists_first_exposed_superface` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
 - `exists_first_oneOpening_of_first_twoAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
 - `exists_first_twoOpening_of_first_oneAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitOppositeOpening`
@@ -6864,7 +6866,9 @@ Distinct declaration spellings indexed: **11659**.
 - `initialForm_prod_first_lower` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveFiniteProduct`
 - `initialForm_singleCoordinate_cross_secondDerivative` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `initialForm_smul` — `theorem` in `HC4.Polynomial.WeightedInitial`
+- `initialForm_support_card_lt_of_nested_new` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `initialForm_support_isExposedFace` — `theorem` in `HC4.Newton.FiniteSupportExposedFaceRefinement`
+- `initialForm_support_subset_of_nested` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `initialForm_zero` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
 - `innerPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
@@ -7369,6 +7373,7 @@ Distinct declaration spellings indexed: **11659**.
 - `mem_specialFiber_saturatedKernelBlowup_iff` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoSaturatedFace`
 - `mem_specialFiber_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisCanonicalSquareLattice`
 - `mem_strictSymmetricSmithTransformedFamily_support_imp_source_support` — `theorem` in `HC4.Valuation.StrictSmithFirstContactMinimum`
+- `mem_support_initialForm_iff` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `mem_support_of_mem_constantPolynomialFamily_support` — `theorem` in `HC4.Valuation.CanonicalSmithReesSpecialFiber`
 - `mem_zeroSmithSourceSupport` — `theorem` in `HC4.Valuation.PrimitiveSmithEndpoint`
 - `middleDiagonal_eq_zero_of_polynomialMatrix3_gap` — `theorem` in `HC4.Polynomial.RankTwoToRankThreeRoofLinearCoefficient`
