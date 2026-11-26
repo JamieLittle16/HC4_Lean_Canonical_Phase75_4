@@ -4,7 +4,7 @@ The conditional theorem is verified at 38e58bf4 (26 November 2026). The subseque
 
 ## Publication preparation
 
-1. Reproduce the audit on a fresh checkout using the pinned toolchain and dependencies, and record the exact commit and result.
+1. Clean equivalence reproduction completed: [run 45855370863](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863), commit `1377de42`, 8358 jobs. Separately reproduce the later standalone rigidity extraction if desired.
 2. The declaration dependency and dated module-provenance exports are complete; see [the audit](PROOF_AND_CONTRIBUTION_AUDIT.md). Record the standalone build result and source footprint, keeping historical work intact.
 3. Extend the preliminary Tang comparison in the audit to a full lemma-level and prior-literature review. The standalone all-rank theorem is verified and its [LaTeX exposition](research/rational-affine-plane-rigidity.tex) is available; review that exposition independently and compare it to Tang's Theorem 2.1 and prior literature. Do not claim priority or mathematical independence prematurely.
 4. Draft a manuscript with the exact conditional theorem, definitions, global extremal reduction, rank exclusions, rational rigidity, Taylor normalization, signed first wall, and Lean verification details. Include transparent attribution and limitations.
@@ -18,4 +18,4 @@ The [previous research plan](https://github.com/JamieLittle16/HessianConjecture4
 
 The [global extremal-weight note](research/global-extremal-weight.tex) is now drafted alongside the rational rigidity note. The [supporting rank-exclusion note](research/extremal-rank-exclusions.tex) now expands the nonnegative rank-two and rank-three exclusions. The signed-wall pivot argument is now expanded in the supporting note too. Compile the revised note, independently review all three, and consolidate the mathematical argument before treating the exposition as a self-contained proof of the equivalence.
 
-The [consolidated manuscript](research/hc4-jc2-manuscript.tex) is now drafted. See the [review record](research/MANUSCRIPT_REVIEW.md). The maintainer confirmed successful manuscript compilation on 26 November 2026. Next: record the independent clean build and axiom outputs with their exact tested commit, audit the remaining prose and citations, and prepare preliminary correspondence with Tang for mathematical review.
+The [consolidated manuscript](research/hc4-jc2-manuscript.tex) is now drafted. See the [review record](research/MANUSCRIPT_REVIEW.md). The maintainer confirmed successful manuscript compilation on 26 November 2026. The independent clean equivalence build and final axiom audit have now passed. Next: check the revised PDF layout, audit the remaining prose and citations, and prepare preliminary correspondence with Tang for mathematical review.
