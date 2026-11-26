@@ -5957,6 +5957,127 @@ theorem rankThree_clearedPhase_normalize_impossible
     (by simpa using hD0.2) (by simpa using hN0.2) hTtop heq'
 
 
+set_option maxHeartbeats 8000000 in
+/-- The zero omitted-weight relative rank-one configuration cannot
+occur at the globally optimal actual determinant-one source. -/
+theorem globalWeightOptimum_rankThree_zeroWeight_impossible
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ j, w j))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p : Fin 4) (hps : p ≠ s) (hws : w s = 0)
+    (hnon : ∀ j, j ≠ s → hessian (initialForm w m P) j j ≠ 0)
+    (heq : ∀ j, j ≠ s → w j = w p)
+    (hmin : ∀ i j a b : Fin 4, i ≠ s → j ≠ s → a ≠ s → b ≠ s →
+      hessian (initialForm w m P) i a * hessian (initialForm w m P) j b =
+      hessian (initialForm w m P) i b * hessian (initialForm w m P) j a) :
+    False := by
+  classical
+  let L := initialForm w m P
+  obtain ⟨n,hn,hwp,hmn,hL,hsupp⟩ := rankThree_relativeDegree P w m s p hps hw hm
+    hws heq hcap (hnon p hps)
+  have hn3 : 3 ≤ n := by
+    by_contra hz
+    have hn2 : n = 2 := by omega
+    have htwo : m = 2*w p := by rw [hmn,hn2]; norm_num; ring
+    exact rankThree_zeroWeight_degreeTwo_impossible P w m s p hps hw hws heq
+      htwo hcap hdet (hnon p hps) hmin
+  obtain ⟨r,hrs,hrp,_,hgrad,hconst⟩ := rankThree_zeroWeight_gradient_ratios L w m
+    hw hm (initialForm_isWeightedHomogeneous w m P) s p hps hws hnon hmin
+  obtain ⟨c,hpower,hc,_⟩ := rankThree_relativePurePower L s p hps n hn hL
+    r hrs hrp hgrad hconst
+  obtain ⟨i,k,his,hks,hki,hip',hkp',hcover'⟩ :=
+    rankThree_remaining_two_coordinates s p hps
+  have hip : i ≠ p := Ne.symm hip'
+  have hkp : k ≠ p := Ne.symm hkp'
+  have hcover (j : Fin 4) : j = s ∨ j = p ∨ j = i ∨ j = k := by
+    rcases hcover' j with h|h|h|h
+    · exact Or.inl h
+    · exact Or.inr (Or.inr (Or.inl h))
+    · exact Or.inr (Or.inr (Or.inr h))
+    · exact Or.inr (Or.inl h)
+  have hW := globalWeightOptimum_rankThree_relativeWronskian P w m hw hm
+    hcap hclock hopt hdet s p i k hps his hks hip hkp hki r hgrad hconst
+  have hL0 : L ≠ 0 := by
+    intro hz
+    apply hnon p hps
+    change pderiv p (pderiv p L) = 0
+    rw [hz,map_zero,map_zero]
+  obtain ⟨q,a,b,D,N,hq,hD,hN,hrel,hrelDN,ha,hb,hclear⟩ :=
+    rankThree_relativePower_clear L s p i k hps his hks hip hkp hki hcover
+      n r c hrs hrp hconst hc hL0 hpower
+  have hjet := rankThree_phaseJetDet_ne_zero s q a b hq (r i) (r k) ha hb hW
+  let f : Fin 4 → Fin 4 := ![s,p,i,k]
+  have hf : Function.Surjective f := by
+    intro j
+    rcases hcover j with h|h|h|h
+    · exact ⟨0,h.symm⟩
+    · exact ⟨1,h.symm⟩
+    · exact ⟨2,h.symm⟩
+    · exact ⟨3,h.symm⟩
+  let e : Fin 4 ≃ Fin 4 := Equiv.ofBijective f
+    ⟨Finite.injective_iff_surjective.mpr hf,hf⟩
+  let v : Fin 4 → ℤ := fun j => if j = s then 0 else 1
+  have hv (u : Fin 4 →₀ ℕ) : Finsupp.weight v u =
+      (Finsupp.weight (rankThreeRelativeNatWeight s) u : ℕ) := by
+    simpa only [one_mul] using rankThree_equalWeights_factor v s 1 (by simp [v])
+      (fun j hj => by simp [v,hj]) u
+  have hcapv : IsWeightLE v (n : ℤ) P := by
+    intro u hu
+    rw [hv]
+    exact_mod_cast hsupp u hu
+  have hface : initialForm v (n : ℤ) P = L := by
+    ext u
+    change coeff u (initialForm v (n : ℤ) P) = coeff u (initialForm w m P)
+    rw [coeff_initialForm,coeff_initialForm]
+    have hweights : Finsupp.weight w u = w p * Finsupp.weight v u := by
+      rw [rankThree_equalWeights_factor w s (w p) hws heq,hv]
+    rw [hweights,hmn]
+    have hiff : w p * Finsupp.weight v u = w p * (n : ℤ) ↔
+        Finsupp.weight v u = (n : ℤ) := by
+      constructor
+      · exact mul_left_cancel₀ (ne_of_gt hwp)
+      · intro h
+        rw [h]
+    rw [hiff]
+  apply rankThree_clearedPhase_normalize_impossible P q a b D N e n hn3 hdet
+  · exact hcapv
+  · exact hq
+  · exact hD
+  · exact hN
+  · exact hrel
+  · exact hrelDN
+  · exact hjet
+  · change D * initialForm v (n : ℤ) P = N * (q*X p+a*X i+b*X k)^n
+    rw [hface]
+    exact hclear
+
+set_option maxHeartbeats 8000000 in
+/-- Conditional HC4: the planar Jacobian injectivity conjecture
+implies injectivity of every four-variable polynomial gradient
+with Hessian determinant one, over the same characteristic-zero
+field. No degree, leading-rank, terminal or chart assumptions. -/
+theorem hc4_of_planarJC2
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (hdet : hessianDeterminant P = 1) :
+    Function.Injective (mvGradientMap P) := by
+  classical
+  by_contra hn
+  obtain ⟨M,w,m,k,l,hM,hw,hm,hkl,hcap,hdetQ,hnQ,hclock,hopt,hSing,hcol,hreg⟩ :=
+    counterexample_exists_rankThree_complementary_chart hJC2 P hdet hn
+  let Q := weightedLinearSubstitution M P
+  let L := initialForm w m Q
+  obtain ⟨V,hVk,hVl,hV⟩ := rankThree_normalizedKernel_exists L k l hSing hcol hreg
+  obtain ⟨a,ha⟩ := Fin.exists_succAbove_eq hkl
+  have hVk' : V (l.succAbove a) = 0 := by rw [ha]; exact hVk
+  obtain ⟨hws,hnon,hmin,_⟩ := counterexample_rankThree_zeroWeight_relative_frontier
+    hJC2 Q w m hw hm hcap hclock hopt hdetQ hnQ l a V hVl hVk' hreg hV
+  exact globalWeightOptimum_rankThree_zeroWeight_impossible Q w m hw hm hcap
+    hclock hopt hdetQ (l.succAbove a) l (Ne.symm (Fin.succAbove_ne l a))
+    hws (fun j hj => (hnon j hj).1) (fun j hj => (hnon j hj).2) hmin
+
+
 end
 end HC4.Polynomial
 
@@ -6112,3 +6233,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_jetBlock_det
 #print axioms HC4.Polynomial.rankThree_jetAffineChart
 #print axioms HC4.Polynomial.rankThree_clearedPhase_normalize_impossible
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_zeroWeight_impossible
+#print axioms HC4.Polynomial.hc4_of_planarJC2
