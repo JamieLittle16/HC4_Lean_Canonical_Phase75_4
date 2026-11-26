@@ -81,3 +81,7 @@ The audit enforces the foundational axiom whitelist for five public endpoints, i
 - [Historical research snapshot](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) — all exploratory sources, phase notes and original documentation.
 
 Development, Lean proof construction and manuscript drafting used substantial AI assistance. This is an independent project by Jamie Little, a Computer Science undergraduate at the University of Cambridge; no institutional endorsement is implied.
+
+## Licence
+
+The project's source is licensed under [Apache 2.0](LICENSE). See [NOTICE](NOTICE) and the original copyright headers for attribution and third-party material. Tang's preprint retains its own CC BY 4.0 licence.
