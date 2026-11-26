@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11944**.
+Distinct declaration spellings indexed: **11947**.
 
 ## Repeated declaration spellings
 
@@ -9542,6 +9542,7 @@ Distinct declaration spellings indexed: **11944**.
 - `rankThree_normalizedKernel_exists` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_lineGradient` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedWall_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_normalizedWall_impossible_of_top` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_omittedCoordinate_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `rankThree_oneVariableKernel_allConstants` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_oneVariableKernel_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9598,7 +9599,9 @@ Distinct declaration spellings indexed: **11944**.
 - `rankThree_unit_longitudinal_step_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - `rankThree_velocity_column_isotropic` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_vertical_fraction_equation_clears` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
+- `rankThree_wall_lowSlope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_wall_quadraticWitness` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_wall_weight_formulas` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_weightedEuler` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `rankThree_zeroRow_rankTwo_principalCofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
