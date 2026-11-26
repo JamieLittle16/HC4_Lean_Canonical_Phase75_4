@@ -1,0 +1,559 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\inw}{\operatorname{in}}
+\title{An Algebraic and Machine-Verified Proof of the Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}
+\author{HC4 formalisation project\\Draft for mathematical review}
+\date{26 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We present a Lean 4 formalisation of the equivalence of the planar Jacobian conjecture and the four-variable Hessian conjecture over algebraically closed fields of characteristic zero, as established by Qiyue Tang. The forward implication is proved in its same-field injectivity formulation over arbitrary characteristic-zero fields. Two features of the formalised argument are an algebraic proof of rational affine-plane rigidity avoiding the classification of projective line congruences, and an attained global weight optimum over realized support patterns in determinant-one linear charts. We explain the rank reductions and the signed first-wall obstruction adapted from Tang. The formal endpoints have been checked with only the standard Lean foundational axioms; independent clean reproduction and external review of this manuscript remain pending. Neither conjecture is settled unconditionally.
+\end{abstract}
+
+\section{Introduction and statements}\label{sec:intro}
+Let $K$ be a field of characteristic zero. For a polynomial map $F=(F_1,\ldots,F_d)$ in $d$ variables over $K$, write $DF=(\partial_jF_i)_{ij}$. A polynomial inverse means a polynomial map $G$ with both $F\circ G=\mathrm{id}$ and $G\circ F=\mathrm{id}$ as polynomial identities. Define $\mathrm{JC}_2^{\rm inj}(K)$ to be the assertion that every polynomial map $K^2\to K^2$ with $\det DF\in K^\times$ is injective on $K$-points. Define $\mathrm{HC}_4^{1,\rm inj}(K)$ to be the assertion that for every $P\in K[X_1,\ldots,X_4]$ satisfying $\det\Hess P=1$, its gradient is injective on $K$-points. The superscript $1$ indicates literal determinant one, not merely a nonzero determinant polynomial.
+
+\begin{theorem}[Same-field injectivity equivalence]\label{thm:inj}
+For every characteristic-zero field $K$,
+\[
+ \mathrm{JC}_2^{\rm inj}(K)\ \Longleftrightarrow\
+ \mathrm{HC}_4^{1,\rm inj}(K).
+\]
+\end{theorem}
+
+For algebraically closed $K$ of characteristic zero, let $\mathrm{JC}_2(K)$ assert the existence of a two-sided polynomial inverse for every planar polynomial map with nonzero constant Jacobian determinant. Let $\mathrm{HC}_4(K)$ assert the same for every gradient of a four-variable polynomial whose Hessian determinant is a nonzero constant.
+
+\begin{theorem}[Polynomial-inverse equivalence]\label{thm:equiv}
+For every algebraically closed field $K$ of characteristic zero,
+\[
+ \mathrm{JC}_2(K)\ \Longleftrightarrow\ \mathrm{HC}_4(K).
+\]
+\end{theorem}
+
+The complex equivalence and the rational rigidity theorem central to this approach are due to Tang \cite{tang}. The present work is a formal verification and algebraic adaptation of his result, not a claim of priority. The mathematical proof below introduces polynomial transport once, proves the rational rigidity theorem over the ground field, applies it to singular Hessians, and then reduces a hypothetical counterexample to an extremal leading form. At zero determinant weight, a planar split or a triangular argument suffices. At positive determinant weight, rank at most two is impossible and rank three leads to a relative pure power. Tang's final signed-weight obstruction then gives the contradiction. The reverse implication is a planar doubling construction. We finish by explaining the bridge from injective maps to polynomial inverses and the exact formal interfaces.
+
+\section{Polynomial transport}\label{sec:transport}
+
+In this section let $R=K[X_1,\ldots,X_d]$ for any finite $d$ and $E=\operatorname{Frac}(R)$. For a rational direction $W\in E^d$, write $D_W=\sum W_j\partial_j$. If $D_WW=0$, then for a polynomial $g$,
+\[
+ g(X+\lambda W)=\sum_{n\ge0}\frac{D_W^ng}{n!}\lambda^n
+ \quad\text{in }E[\lambda].
+\]
+This is the finite Taylor formula: induction using $D_WW=0$ identifies the iterated derivatives with the usual directional Taylor coefficients. In particular, $D_Wg=0$ makes the expression constant and $D_W^2g=0$ makes it affine in $\lambda$. Coefficientwise differentiation of the polynomial in $\lambda$ gives
+\begin{equation}\label{eq:chain}
+ \partial_j[g(X+\lambda W)]
+ =\sum_a(\partial_a g)(X+\lambda W)
+       (\delta_{aj}+\lambda\partial_j W_a).
+\end{equation}
+Here $\lambda$ is an independent formal variable until the differentiation is complete. Substitution of a rational element of $E$ for $\lambda$ is always defined in this polynomial identity.
+
+\begin{lemma}[Flat scalar levels]\label{lem:flat}
+Here and below a subscript on a polynomial denotes its indicated partial derivative. Suppose $g\in R$, $g_p\ne0$, $r=g_i/g_p$ for $i\ne p$, and $\partial_i r=r\partial_p r$. Then $\partial_p r=0$.
+\end{lemma}
+\begin{proof}
+Take $W=e_i-r e_p$. The transport equation gives $D_WW=0$, and the definition of $r$ gives $D_Wg=0$. By~\eqref{eq:chain},
+\[
+ g_p(X)=(1-\lambda\partial_p r)g_p(X+\lambda W).
+\]
+If $\partial_p r\ne0$, evaluate at $\lambda=1/\partial_p r$, contradicting $g_p\ne0$.
+\end{proof}
+
+\begin{lemma}[Proportional Hessian rows]\label{lem:rows}
+Let $H=\Hess L$ for $L\in R$. If $H_{pp}\ne0$ and $H_{ij}=rH_{pj}$ for every column $j$, then $r\in K$. If the proportionality is only required for columns in a subset $S$ containing $p,i$, then $\partial_jr=0$ for all $j\in S$.
+\end{lemma}
+\begin{proof}
+Set $g=\partial_p L$, $h=\partial_i L$. For $j\in S$, $h_j=rg_j$, and commutation of partials gives $g_p\partial_jr=g_j\partial_pr$. Symmetry gives $g_i=rg_p$, so Lemma~\ref{lem:flat} applies. All stated derivatives vanish. A rational function with all partial derivatives zero lies in $K$: for a reduced fraction, the denominator divides each of its partial derivatives, hence is constant by degree descent; the numerator is then constant by characteristic zero. The same reasoning over the field of the omitted variables applies to a restricted set of derivatives.
+\end{proof}
+
+\begin{lemma}[Normalized Hessian kernels]\label{lem:kerneltransport}
+Let $L\in R$, let $H=\Hess L$, and let $V\in E^d$ satisfy $HV=0$. Suppose some principal submatrix of $H$ is invertible and the coordinates of $V$ outside that submatrix are constant. Then $D_VV=0$ and
+\[
+ \nabla L(X+\lambda V)=\nabla L(X).
+\]
+\end{lemma}
+\begin{proof}
+Differentiation of $HV=0$ gives $H D_VV=-(D_VH)V$. Since $V^THV=0$, differentiating in $X_j$ gives $V^T(\partial_jH)V=0$; by third-derivative symmetry this is component $j$ of $(D_VH)V$. Thus $H D_VV=0$. The complementary coordinates of $D_VV$ vanish, and the invertible principal submatrix kills the remaining entries. Now apply the polynomial transport identity to every component of $\nabla L$, since $D_V(\nabla L)=HV=0$.
+\end{proof}
+In particular, when $V$ is the unique solution for prescribed constant free coordinates, it belongs to the localization at the principal minor, by Cramer's rule. The polynomial line identity therefore specializes at any point where that minor is nonzero. This is the localized construction used by the formal proof, not a pointwise assertion about a rational vector at its poles.
+
+\section{Rational affine-plane rigidity}\label{sec:rigidity}
+
+\begin{theorem}[Rational affine-plane rigidity]\label{thm:main}
+Let $K$ be a field of characteristic zero, $R=K[x_1,x_2,x_3]$ and $E=\operatorname{Frac}(R)$. Let $v\in E^3$ and $f\in R$, with $N=Dv$ and $H=\Hess f$. If
+\begin{equation}\label{eq:nil}
+ N^3=0,\qquad \det H\ne0,\qquad N^TH=HN,
+\end{equation}
+then there exist $0\ne d\in K^3$ and $c_0\in K$ such that $d^Tv=c_0$.
+\end{theorem}
+This is the field-general version of Tang's Theorem~2.1 \cite{tang}. The rank-one strategy and the Jordan-frame calculation are adapted from Tang; the subsequent rank-two proof replaces his use of De Poi's classification of line congruences \cite{depoi} by differential and polynomial identities. We retain the polynomial Hessian symmetrizer rather than attempt to classify arbitrary rational nilpotent Jacobians. In particular, the argument uses neither algebraic closure nor any conjectural hypothesis.
+
+We work entirely in $E$ and write $D_w=\sum_i w_i\partial_i$ for a rational direction $w$. The common constants of the partial derivatives on $E$ are exactly $K$: for a reduced fraction $p/q$, zero derivatives imply $q\mid\partial_i q$ for each $i$, so degree descent and characteristic zero force $q$, then $p$, to be constant. Thus it suffices to find a nonzero constant $d$ with $d^TN=0$. Rank zero is immediate.
+
+\subsection{Rank-one parameter rigidity}\label{sec:rankone}
+We first record two algebraic ingredients used in both nonzero ranks.
+
+\paragraph{Common parameter.} If $a\in E^3$ has Jacobian of rank one, its components lie in $K(t)$ for a nonconstant $t\in E$. Here is the specialization argument underlying the formalisation. Choose a nonzero pivot $\partial_j a_i$. The rank-one minors imply that the derivations $\partial_l-r_l\partial_j$, where $r_l=\partial_l a_i/\partial_j a_i$, annihilate the entire field $F=K(a_1,a_2,a_3)$. Write $r_l=A_l/B_l$ with $A_l,B_l\in R$, $B_l\ne0$. For every reduced $p/q\in F$, coprimality implies that each of $p,q$ divides its image under $B_l\partial_l-A_l\partial_j$. Choose a coordinate line parallel to $e_j$ on which every $B_l$ restricts nontrivially; such a line exists since $K$ is infinite. A nonzero polynomial $h$ satisfying these divisibilities cannot vanish identically on that line: its tangential derivative also vanishes there, so the equations force all its first derivatives to vanish. Repeated differentiation of the equations, using the already vanishing lower-order derivatives and tangential differentiation, forces every derivative to vanish there. Taylor expansion in characteristic zero gives $h=0$, a contradiction. Hence reduced denominators (and nonzero numerators) of all elements of $F$ survive on this one line. Specialization defines a $K$-embedding of $F$ into $K(T)$; the classical L\"uroth theorem makes $F=K(t)$ for some $t\in F$. The chain rule, with denominators cleared, then gives $Da=\sigma U(t)(\nabla t)^T$, with $\sigma\in E^\times$ and $U\in K[T]^3$.
+
+\paragraph{Trace lift and symmetric pencil.} Suppose $t=p/q$ is reduced and nonconstant and $U(t)^T\nabla t=0$. The polynomial
+\[
+ S(T)=U(T)^T(\nabla p-T\nabla q)\in R[T]
+\]
+vanishes at $T=p/q$. Gauss's lemma yields $(qT-p)\mid S$ in $R[T]$. Each nonzero coefficient of $S$ has source total degree less than $m=\max(\deg p,\deg q)$. A nonzero quotient would give a coefficient of degree at least $m$: take its highest coefficient multiplied by $q$ if $\deg q=m$, or its lowest nonzero coefficient multiplied by $-p$ if $\deg p=m$. Hence $S=0$.
+
+If the components of $U$ are independent over $K$, differentiating $S=0$ gives $(\Hess p-T\Hess q)U(T)=0$, which forces both Hessians to vanish. Indeed, for a symmetric constant pencil $A-TB$ and $U=\sum_{n\ge0}u_nT^n$, the coefficient recurrence is $Au_0=0$, $Au_{n+1}=Bu_n$. Symmetry gives
+\[
+ u_0^TBu_n=0,\qquad u_{m+1}^TBu_n=u_m^TBu_{n+1}.
+\]
+All such pairings vanish by induction. The $u_n$ span $K^3$ by independence, so $B=0$ and then $A=0$. Apply this to each source monomial coefficient of the Hessian pencil. Thus $p,q$ are affine. A constant dependence of the components of $U$, when present, instead yields a constant annihilator of the factored Jacobian.
+
+\paragraph{Closure of rank one.} Apply the common parameter to $a=v$. Nilpotence of the nonzero rank-one matrix implies zero trace, hence $U(t)^T\nabla t=0$. If $U$ is dependent we are done; otherwise the pencil argument makes $p,q$ affine. If their constant gradients are dependent, $\nabla t$ is a nonzero rational multiple of a constant vector, and the trace identity gives a constant left kernel of $N$. In the remaining case choose affine coordinates $(x,y,z)$ with $x=p$ and $y=q$. Transform the vector field by the inverse linear part of the coordinate substitution and the Hessian by congruence; this preserves~\eqref{eq:nil}, independence of the parameter vector, and the existence of a constant left kernel. In these coordinates (absorbing nonzero scalar factors),
+\[
+ t=x/y,\qquad N=\sigma U(t)(1,-t,0),\qquad U_1(T)=T U_2(T).
+\]
+The last identity follows from the trace and transcendence of $t$ over $K$. Self-adjointness implies that $HU(t)$ is proportional to $(1,-t,0)^T$. For $g=x\partial_x f+y\partial_y f+z\partial_z f-f$, we have $\nabla g=H(x,y,z)^T$, so $U(t)^T\nabla g=0$.
+
+Write $f(Ty,y,z)=\sum_{j,l}F_{jl}(T)y^jz^l$, where $\deg F_{jl}\le j$ for nonzero coefficients. Substitution in the preceding identity is valid after clearing denominators (or in the rational function field). Euler's identity and $U_1=TU_2$ give, for $j+l\ge1$,
+\[
+ (j+1)U_2 F_{j+1,l}+(l+1)U_3 F_{j,l+1}=0.
+\]
+For each $n\ge2$, taking $j=0,l=n-1$ gives $U_2 F_{1,n-1}+nU_3 F_{0,n}=0$. Since $F_{0,n}\in K$ and $\deg F_{1,n-1}\le1$, independence of $TU_2,U_2,U_3$ forces both coefficients to vanish. The recurrence then successively kills $F_{2,n-2},\ldots,F_{n,0}$, since $U_2\ne0$. Thus $f$ is affine, contradicting $\det H\ne0$. This completes rank one.
+
+\subsection{Rank two: straightness and affine gradient transport}
+Now $\rank N=2$, so $\ker N=\im N^2$ and $\im N=\ker N^2$. Choose normalized right and left kernel vectors $w,b$ with $w_k=b_l=1$. By~\eqref{eq:nil},
+\[
+ Nw=0,\quad b^TN=0,\quad Hw=cb,\quad b^Tw=0,
+ \qquad c\in E^\times.
+\]
+We first prove $D_ww=D_wb=0$. Choose a frame $M$ over $E$ with $M^{-1}NM=J$, the regular nilpotent Jordan block with superdiagonal ones, and
+\[
+ G=M^THM=\begin{pmatrix}0&0&\alpha\\0&\alpha&\beta\\\alpha&\beta&\gamma\end{pmatrix},\qquad\alpha\ne0.
+\]
+For the following calculation only, use zero-based frame indices and denote the columns of $M$ by $m_i$. Put $U_i=M^{-1}(D_{m_i}N)M$, $T_i=M^T(D_{m_i}H)M$. These are transported derivative tensors, not derivatives of the moving frame. Differentiating~\eqref{eq:nil} gives
+\[
+ J^2U_i+JU_iJ+U_iJ^2=0,\qquad (T_iJ+GU_i)^T=T_iJ+GU_i.
+\]
+Both tensors have input-slot symmetry by commutation of partial derivatives. The cube equation gives $(U_i)_{20}=0$, $(U_i)_{21}+(U_i)_{10}=0$ and $\operatorname{tr} U_i=0$. Put $r=(U_1)_{21}$. Input-slot symmetry and the cube equations give $(U_0)_{21}=(U_0)_{22}=(U_0)_{10}=0$, $(U_0)_{11}=-r$, $(U_0)_{00}=r$. The $(0,1)$ symmetry equation for $i=1$ gives $(T_1)_{00}=-2\alpha r$; the $(0,2)$ equation for $i=0$ gives $(T_0)_{01}=\alpha r$. These two entries agree, so $3\alpha r=0$. Thus $r=0$ and the first column of $U_0$ vanishes. As $w$ is a scalar multiple of $m_0$, $(D_wN)w=0$. Differentiating $Nw=0$ puts $D_ww$ in the kernel; normalization forces $D_ww=0$. Input-slot symmetry also gives $(D_wN)e_j=-N\partial_jw$. Differentiating $b^TN=0$ then puts $(D_wb)^T$ in the left kernel, and $b_l=1$ forces $D_wb=0$.
+
+Write $\Phi_w(h)=h(x+\lambda w(x))$ for the polynomial transport of Section~\ref{sec:transport}. Since $D_ww=0$, its coefficients are $D_w^jh/j!$. The identities $Hw=cb$ and $b^Tw=0$ yield $D_w^2f=0$. Since $D_wb=0$, the same transport identity gives
+\[
+ \Phi_w(f)=f+\lambda D_wf,\qquad
+ \Phi_w(\nabla f)=\nabla f+B(\lambda)b
+\]
+for a scalar polynomial $B$ with $B(0)=0$. Differentiate the first identity with respect to $x_j$ at fixed $\lambda$ and insert the second. Cancelling the common terms gives
+\begin{equation}\label{eq:transport}
+ B(\lambda)(b_j+\lambda b^T\partial_j w)=\lambda c b_j.
+\end{equation}
+At $j=l$, if $r=b^T\partial_lw\ne0$, evaluation at $\lambda=-1/r$ contradicts $c\ne0$. Hence $r=0$ and $B=\lambda c$. Substitution in the other components yields
+\begin{equation}\label{eq:key}
+ \boxed{\Phi_w(\nabla f)=\nabla f+\lambda cb,\qquad b^TJ_w=0,}
+\end{equation}
+where $J_w$ is the Jacobian of $w$. The evaluation is in $E[\lambda]$, not evaluation of a rational map at a potentially singular point.
+
+\subsection{The varying-direction branch}
+Suppose $J_w\ne0$. By~\eqref{eq:key} and $w_k=1$, the columns of $J_w$ lie in the intersection of two independent planes (since $b^Tw=0$). Hence $\rank J_w=1$. Section~\ref{sec:rankone} supplies a common parameter $t$ for $w$ and a factorization
+\[
+ \partial_jw=\sigma u\partial_jt,\quad \sigma\ne0,\quad u\ne0,\quad
+ u_k=0,\quad b^Tu=0,\quad D_wt=0,
+\]
+where $w,u$ have components in $K(t)$; the last identity follows from $D_ww=0$ and the nonzero factor. Write $w=W(t)/Q(t)$ with $W\in K[T]^3$ and $Q(t)\ne0$. If $W$ has dependent components, some nonzero constant $d$ annihilates $w$ and, by differentiation, $u$. Since $w,u$ are independent and span $\ker b^T=\im N$, we have $d^TN=0$. Otherwise the trace lift with $W$ in place of $U$ shows that $t=p/q$ has affine numerator and denominator.
+
+Any derivation killing $t$ kills $w,u$, and hence kills $b$ by differentiating $b^Tw=b^Tu=0$, $b_l=1$. Therefore $\partial_j b=\eta\partial_jt$ for a vector $\eta\in E^3$ with $\eta_l=0$ and $\eta^Tw=0$. Differentiation of $b^TN=0$ and the input-slot symmetry of $DN$ imply that $\eta^TN$ is proportional to $(\nabla t)^T$. Since $u\in\im N$ and $N(\im N)=\langle w\rangle$, we have $\eta^TNu=0$. If $D_ut\ne0$, it follows that $\eta^TN=0$. Normalization then forces $\eta=0$, so $b\in K^3$.
+
+Otherwise $D_ut=D_wt=0$. Set $P=\nabla p$, $Q_0=\nabla q$, both constant. The quotient rule gives $q\nabla t=P-tQ_0$, so $(P-tQ_0)^Tw=(P-tQ_0)^Tu=0$. Differentiate the first equality along a partial with $\partial_jt\ne0$. Since $\partial_jw$ is proportional to $u$, we obtain $Q_0^Tw=0$, and hence $P^Tw=0$. At least one of $P,Q_0$ is nonzero. As before, differentiation gives its orthogonality to $u$, which produces a nonzero constant left kernel of $N$.
+
+\subsection{The constant-direction branch}
+If $J_w=0$, then $w\in K^3$. Since $b^Tw=0$ and $b_l=1$, $\rank J_b\le1$. If $b$ is constant we are done. Otherwise choose a component $t=b_j$ with nonzero differential, and write $\partial_i b=\eta\partial_i t$, with $\eta_l=0$, $\eta_j=1$, $\eta^Tw=0$. As above, $\eta^TN$ is proportional to $(\nabla t)^T$. It is nonzero (otherwise $\eta$ is a multiple of $b$), and annihilates $N$ because $\im N^2=\langle w\rangle$. Thus it is proportional to $b^T$, giving
+\[
+ \partial_l t\ne0,\qquad \nabla t=b\,\partial_lt.
+\]
+Now $g=D_wf\in R$ because $w$ is constant, and $\nabla g=Hw=cb$. Thus $\partial_jg=t\partial_lg$, $\partial_jt=t\partial_lt$, and $\partial_lg=c\ne0$. Since $j\ne l$, the direction $z=e_j-te_l$ satisfies $D_zt=D_zg=0$ and $D_zz=0$. Polynomial transport gives $g(x+\lambda z(x))=g(x)$. Differentiating with respect to $x_l$ yields
+\[
+ \partial_lg(x)=(1-\lambda\partial_lt(x))(\partial_lg)(x+\lambda z(x)).
+\]
+Evaluation at $\lambda=(\partial_lt)^{-1}$ in $E[\lambda]$ contradicts $\partial_lg\ne0$. Hence $b$ must be constant. The two rank-two branches, together with rank zero and rank one, prove Theorem~\ref{thm:main}.
+
+
+\section{Application to singular Hessians}\label{sec:singular}
+\begin{corollary}\label{cor:singular}
+If $L\in K[s,x_1,x_2,x_3]$ satisfies $\det\Hess L=0$, then some $0\ne e\in K^4$ satisfies $\adj(\Hess L)e=0$.
+\end{corollary}
+\begin{proof}
+If the adjugate vanishes the claim is immediate. Otherwise a singular symmetric matrix of rank three has a nonzero principal cofactor: its adjugate is symmetric of rank one, so if all diagonal entries were zero, the vanishing $2\times2$ minors would force every entry to be zero. Permute coordinates to put a surviving cofactor in the $s$ position, and choose $a\in K$ such that $H=\Hess_x L(a,x)$ is nonsingular. This is possible since $K$ is infinite.
+
+Over the fraction field of the four-variable source, solve for the unique Hessian kernel vector whose $s$ component is one, using the invertible transverse three-by-three minor. The solution belongs to the localization at that minor and kills the full Hessian: the three transverse equations hold by construction, and the longitudinal equation follows from the zero determinant by Schur complement. Lemma~\ref{lem:kerneltransport} gives the polynomial line identity at the generic source point. Specialize to the regular slice $s=a$; the denominators are powers of the transverse minor and remain nonzero. Writing $(1,v)$ for the specialized kernel vector yields
+\[
+ \nabla L(a+h,x+hv)=\nabla L(a,x)\quad\text{in }E[h]^4.
+\]
+Here $E=K(x_1,x_2,x_3)$. This is the anchored characteristic construction checked in \path{exists_anchored_lineEval_gradient_eq}. Differentiating its transverse components gives $H_h(I+hN)=H$ for the substituted transverse Hessian $H_h$. Taking determinants in $E[h]$ yields $\det(I+hN)=1$, as the determinant is a unit and has constant term one. Cayley--Hamilton then gives $N^3=0$; comparing the linear coefficient and using symmetry gives $N^TH=HN$. Theorem~\ref{thm:main} supplies $d,c_0$ and $e=(-c_0,d)$. The substituted Hessian kills $(1,v)$ by differentiation in $h$, and $H_h$ is invertible over $E[h]$. Its symmetric adjugate consequently annihilates $e$, which is orthogonal to $(1,v)$. The substitution into $E[h]$ is injective, by taking the first nonzero coefficient of a source polynomial expanded in powers of $s-a$. The adjugate identity therefore holds in the original polynomial ring. Undo the permutation.
+\end{proof}
+The conclusion is about the adjugate, not a constant vector in the kernel of the Hessian itself.
+
+
+\section{The global weight optimum}\label{sec:weight}
+Let $K$ have characteristic zero, and let $P\in K[X_1,\ldots,X_4]$ satisfy $\det\Hess P=1$. Assume that every polynomial map $K^2\to K^2$ with nonzero constant Jacobian determinant is injective. We seek to exclude a collision of $\nabla P$.
+
+For $w\in\mathbb Z^4$ and $m>0$, a cap means $w\cdot u\le m$ for all $u\in\supp P$. Write $L=\inw_{w,m}P$ for the sum of terms of weight exactly $m$ (possibly zero). Define the determinant weight
+\[
+ C(w,m)=4m-2\sum_i w_i.
+\]
+Each Hessian entry has cap $m-w_i-w_j$. Consequently,
+\begin{equation}\label{eq:det}
+ \det\Hess L=\inw_{w,C(w,m)}(\det\Hess P).
+\end{equation}
+In particular, if $C=0$ the leading Hessian has determinant one, whereas if $C>0$ it is singular. This identity concerns the actual leading form of the full polynomial, rather than a separately chosen model.
+
+If $M\in\mathrm{SL}_4(K)$, then $Q(X)=P(MX)$ satisfies
+\[
+ \nabla Q(X)=M^T\nabla P(MX),\qquad
+ \Hess Q(X)=M^T(\Hess P)(MX)M.
+\]
+The determinant and the existence of a collision are preserved.
+
+\begin{proposition}[Attainment]\label{prop:attain}
+There is a determinant-one linear chart $Q=P\circ M$ and an integral cap $(w,m)$, with $w_i\ge0$, $m>0$, $C(w,m)\ge0$, maximising $\sum_i w_i/m$ over all such charts and caps.
+\end{proposition}
+\begin{proof}
+For each realized support $S=\supp(P\circ M)$, consider the rational linear system
+\[
+ x_i\ge0,\qquad \sum_i x_i\le2,\qquad
+ u\cdot x\le1\quad(u\in S).
+\]
+It is nonempty (take $x=0$) and bounded. The objective $\sum_i x_i$ attains its maximum at a rational point: for example, eliminate the $x_i$ from the finite rational inequality system with a further variable $t=\sum_i x_i$. Fourier--Motzkin elimination describes the feasible $t$ by finitely many non-strict rational inequalities; its nonempty bounded projection has an attained rational upper endpoint. The elimination also gives a rational witness for the original variables at that endpoint.
+
+Every linear substitution has degree at most $\deg P$. Hence all realized supports are subsets of one finite exponent set. There are only finitely many distinct systems to maximise over; choose a maximal one and an actual $M\in\mathrm{SL}_4(K)$ realizing it. Clearing the common positive denominator of $x$ gives $(w,m)$ with $x_i=w_i/m$. Conversely every admissible integral cap produces a feasible rational point. This proves the claim.
+\end{proof}
+
+This is why the noncompactness of the linear group is harmless: we maximise over a finite collection of support patterns, not over the matrix entries as real variables. No assertion that the rational weights or the charts themselves form a finite set is needed.
+
+\subsection{The local improvement rule}\label{sec:improve}
+Fix an attained presentation and rename its full polynomial $P$. Write $L=\inw_{w,m}P$. Its optimality is inherited by every determinant-one change of chart, with the same weight vector whenever the cap is preserved.
+
+\begin{lemma}[No improving slope]\label{lem:slope}
+If $C(w,m)>0$, there cannot be a rational vector $d$ with
+\[
+ d_i\ge0\text{ whenever }w_i=0,\qquad
+ \sum_i d_i>0,\qquad d\cdot u\le0\quad(u\in\supp L).
+\]
+\end{lemma}
+\begin{proof}
+For sufficiently small rational $\epsilon>0$, $w+\epsilon d$ remains nonnegative and the determinant weight remains positive. Every exponent below the old cap has a strictly positive gap; finiteness of the support gives a common sufficiently small $\epsilon$ preserving all such inequalities. The old face satisfies the cap by hypothesis on $d$. Clearing denominators, we have improved $\sum_i w_i/m$, a contradiction.
+\end{proof}
+The rule applies equally after a weight-compatible determinant-one shear. It is the local engine of the global argument.
+
+For instance, if $\partial_i L=0$, take $d=e_i$. If $\partial_i L$ is a nonzero constant, homogeneity forces $w_i=m$; the cap then forces the \emph{full} $\partial_i P$ to be constant, incompatible with its nonsingular Hessian. Therefore no leading partial derivative is constant. More generally if $(\Hess L)b=0$ for a nonzero constant vector $b$, the directional derivative of $L$ along $b$ is constant. Decompose $b$ by equal-weight blocks: the derivatives of different blocks have distinct weights, so each is constant. A nonzero block can be aligned with a coordinate by a determinant-one shear in that block, producing the forbidden constant partial.
+
+A second useful example is a jointly affine pair of coordinates $i,j$ in $L$. Every exponent of $L$ then has $u_i+u_j\le1$. The slope
+\[
+ d=m(e_i+e_j)-w
+\]
+has $d\cdot u=m(u_i+u_j-1)\le0$ on the face, is admissible at zero weights and has sum $2m-\sum w_i=C/2>0$. Thus no such pair exists in an optimal weight-compatible chart. Equivalently, a zero principal two-by-two Hessian block is forbidden. We next extend this obstruction to arbitrary constant planes.
+
+
+\subsection{Arbitrary constant isotropic planes}\label{sec:plane}
+The jointly affine pair obstruction extends to \emph{any} constant two-dimensional totally isotropic plane for $H$. Indeed, suppose $u,v$ span such a plane. Choose a highest-weight occupied coordinate $k$ of $u$, and replace $v$ by $v-(v_k/u_k)u$. The replacement is nonzero and has zero $k$ component. Choose a highest-weight occupied coordinate $l$ of the replacement. Take the highest-weight blocks $a,b$ of these two vectors. Since $H_{ij}$ has weight $m-w_i-w_j$, the lowest-weight part of each of the three contractions isolates exactly the corresponding highest blocks. Thus
+\[
+ a^THa=b^THb=a^THb=0.
+\]
+The blocks remain independent: $a_k\ne0$, $b_k=0$, $b_l\ne0$. Normalize the pivot entries to one. Let $S_k,S_l$ be identity matrices with their respective pivot columns replaced by the normalized $a,b$. Both have determinant one and preserve the weight blocks. The product $S_kS_l$ has the desired columns: its $k$ column is $a$, and its $l$ column is $S_kb=b$ because $b_k=0$. This contradicts the jointly affine pair obstruction. Arbitrary charts of $L$ may be used to discover an isotropic plane, but optimality is invoked only after this weight-compatible alignment.
+
+We will also use the fact that any constant linear change preserves Hessian rank by congruence, with substitution of its entries. A nonzero constant direction can be made a coordinate direction in a determinant-one chart, and a nonzero constant covector can be made a coordinate covector by the transpose action.
+
+
+\section{The zero determinant-weight case}\label{sec:zero}
+If $C=0$, equation~\eqref{eq:det} gives $\det\Hess L=1$. Evaluating at the origin yields a permutation matching each coordinate of weight $w_i$ to a coordinate of weight $m-w_i$. There can be at most two zero weights. More generally, fix the zero-weight coordinates at some base point $b$ and set all positive-weight coordinates to zero. The matrix $T=\Hess L(b,0)$ is invertible, and $T_{ij}=0$ unless $w_i+w_j=m$ by homogeneity. Its inverse has the same complementary-block property, since $T$ bijectively maps the weight-$a$ coordinate subspace to the weight-$(m-a)$ subspace. For a positive-weight index $i$, component $i$ of $T^{-1}\nabla P$ has weight cap $w_i$ in the positive variables after specializing the base. The coefficients of the linear terms of weight exactly $w_i$ are those of the identity: the corresponding coefficients in $\nabla P$ are obtained from $\Hess L(b,0)$, because their source weight is exactly $m$. All other terms depend only on strictly smaller positive-weight variables, or are constant in the positive variables. Thus equality of gradients with the same base implies equality of the positive coordinates by induction on their distinct weights. When there are no zero weights this already proves injectivity.
+
+With exactly one zero weight, a complementary gradient component has weight zero, depending only on the zero-weight variable. Its derivative is a unit because the corresponding full Hessian row has no other nonzero entry. Thus that component is affine with nonzero slope and recovers the base coordinate; the positive-weight induction then applies fibrewise. With two zero weights the matching gives $(0,0,m,m)$ up to permutation. The full cap forces
+\[
+ P(x,y,z,t)=R(x,y)+z A(x,y)+t B(x,y).
+\]
+Its Hessian determinant is $(\det D(A,B))^2=1$. Planar injectivity recovers $(x,y)$ from the last two gradient components; the other two recover $(z,t)$ by the invertible transpose Jacobian. Thus a counterexample necessarily has $C>0$.
+
+
+\section{Excluding rank at most two}\label{sec:ranktwo}
+Now suppose that a full-source collision exists, so by Section~\ref{sec:zero} the global optimum has positive determinant weight. Set $R=K[X_1,\ldots,X_4]$, $E=\operatorname{Frac}(R)$ and $H=\Hess L$. Assume for this section that $\rank H\le2$.
+
+\paragraph{No affine direction.}
+Suppose some nonzero constant direction is isotropic, so after an arbitrary determinant-one linear chart of $L$ we have $L_{kk}=0$. Work in that chart for the moment. Put $g=L_k$; it is independent of $X_k$. It cannot be constant, as that would give a nonzero constant Hessian kernel in the original chart. The principal three-minor on $(k,i,j)$ vanishes, giving
+\[
+ g_i^2 L_{jj}-2g_ig_j L_{ij}+g_j^2 L_{ii}=0.
+\]
+Differentiate in $X_k$. Since every $g_i$ is independent of $X_k$, the result is
+\[
+ g_i^2 g_{jj}-2g_ig_jg_{ij}+g_j^2g_{ii}=0.
+\]
+Choose a further determinant-one chart fixing the $k$ direction in which the top total-degree part of $g$ contains a pure $X_p^D$ term, $p\ne k$, $D=\deg g>0$. Such a chart exists: choose a vector in the three complementary coordinates where the highest homogeneous part is nonzero, extend it to a basis, and scale another column to correct the determinant. Thus $g_p$ contains a pure $X_p^{D-1}$ term, and every $g_i$ has total degree at most $D-1$.
+
+For each $i\ne p$ the flat identity implies $\partial_i r=r\partial_pr$ with $r=g_i/g_p$ by the quotient rule. Lemma~\ref{lem:flat} gives $\partial_pr=0$. Write $r=a/b$ in reduced form. Then $b$ is independent of $X_p$ and divides $g_p$. The coefficient of $X_p^{D-1}$ in $g_p$ is a nonzero constant, so $b$ is a unit. The bound on total degree of $g_i=rg_p$ forces $r$ constant. (The zero ratio is immediate.) The row $L_{ki}=g_i$ is consequently proportional over $K$ to its nonzero pivot entry $L_{kp}$.
+
+Choose any other coordinate $l\notin\{k,p\}$ and shear its column by a constant multiple of the $p$ column to kill $L_{kl}$, preserving $L_{kk}=0$ and $L_{kp}\ne0$. The principal three-minor on $(k,p,l)$ now equals $-L_{kp}^2L_{ll}$, so $L_{ll}=0$. We have obtained a constant totally isotropic plane; pulling it back to the original leading form contradicts Section~\ref{sec:plane}. In particular every diagonal entry is nonzero in every invertible constant chart.
+
+\paragraph{No constant image direction.}
+If $0\ne d\in K^4$ lies in the image of $H$ over $E$, align $d$ with the $k$th coordinate by the covector action of a constant chart. The image now contains $e_k$ and has dimension at most two. Its projection away from row $k$ has dimension at most one. Choose distinct $p,i\ne k$; the preceding paragraph gives $H_{pp}\ne0$. Every row other than $k$ is proportional to row $p$, so in particular
+\[
+ H_{pp}H_{ij}=H_{ip}H_{pj}\qquad\text{for all }j.
+\]
+Lemma~\ref{lem:rows} yields a constant proportionality between the two full rows. Symmetry yields a nonzero constant vector in the Hessian kernel, a contradiction after pulling back. In the formal proof the image equation is multiplied by a common nonzero polynomial denominator.
+
+\paragraph{Regular kernel graphs.}
+Fix a coordinate $k$. There exists $p\ne k$ such that $\Delta=H_{kk}H_{pp}-H_{kp}^2\ne0$. Otherwise Schur-complement elimination at the nonzero pivot $H_{kk}$ gives a symmetric matrix of rank at most one whose diagonal entries are all zero, hence the zero matrix (each squared off-diagonal entry vanishes). All rows would be proportional to row $k$, contradicting Lemma~\ref{lem:rows} and the constant-kernel obstruction. Thus rank is exactly two and, with the two pivot coordinates first, the kernel is the graph
+\[
+ V=(G(X)c,c),\qquad c\in E^2,\qquad
+ G=-H_{\rm pivot}^{-1}H_{\rm mixed}.
+\]
+For a fixed $c\in K^2$ the rational vector $V$ has constant free coordinates. Lemma~\ref{lem:kerneltransport} gives $\nabla L(X+\lambda V)=\nabla L(X)$, with specialization at every regular point of the localization $R[1/\Delta]$. In particular every affine kernel plane is contained in the gradient fibre.
+
+If $G(x)-G(y)$ were invertible for two regular points, their affine kernel planes would intersect because their direction spaces sum to $K^4$. Thus this is impossible whenever the gradients differ. To remove the distinct-gradient restriction, fix regular $x$ and choose a nonconstant gradient component $g$. The cleared polynomial numerator of $\det(G(y)-G(x))$ vanishes wherever $\Delta(y)(g(y)-g(x))\ne0$. Multiplying by this nonzero polynomial gives a polynomial vanishing at every ground-field point; since $K$ is infinite it is zero. Cancellation proves the identity for all regular $y$. Therefore
+\[
+ \det(G(x)-G(y))=0
+\]
+for every regular pair.
+
+Fix a regular $x_0$ and consider $B(x)=G(x)-G(x_0)$. Every $B(x)$ and every pairwise difference has rank at most one. Writing nonzero matrices as outer products, the determinant of a difference is, up to sign, the product of the column-factor wedge and the row-factor wedge. If two column factors are independent, their row factors are proportional, and comparison with both shows every row factor is proportional to theirs. Otherwise all column factors are proportional. Thus the family has a common nonzero right or left kernel (if every matrix is zero, either choice works).
+
+In the right-kernel case choose $c\ne0$ with $B(x)c=0$ for all regular $x$. The constant vector $(G(x_0)c,c)$ belongs to each kernel. In the left-kernel case choose a nonzero row $a^T$ with $a^TB(x)=0$. The constant vector $(a,-G(x_0)^Ta)$ is orthogonal to each kernel and belongs to each image. Both assertions lift to $E$: clear denominators in the graph equations, and use density of $\Delta\ne0$ as above. Both possibilities contradict the preceding obstructions. This completes the rank-at-most-two exclusion.
+
+
+\section{Rank three and the regular two-by-two block}\label{sec:rankthree}
+Equation~\eqref{eq:det} and Section~\ref{sec:ranktwo} leave exactly rank three. Let $A=\Hess L$. By Corollary~\ref{cor:singular}, there is a nonzero constant $b$ with $(\adj A)b=0$. The original Lean proof uses its anchored version. Since the $(i,j)$ adjugate entry is homogeneous of weight $3m-2\sum w_k+w_i+w_j$, the annihilator splits into equal-weight blocks. A determinant-one weight-compatible shear aligns a nonzero block with a target coordinate $s$ (the adjugate transforms by inverse congruence). We obtain
+\[
+ (\adj A)e_s=0,\qquad \exists\, l\ne s:\ (\adj A)_{ll}\ne0.
+\]
+The second assertion follows from the symmetric rank-one adjugate. This is not the assertion $Ae_s=0$. A normalized rational kernel direction $V$ of $A$ instead satisfies $V_s=0$, $V_l=1$.
+
+We use $H=\Hess L$ in this section. Let $i,k$ denote the other two coordinates. There is a unique normalized rational kernel vector $V$ with $V_s=0$, $V_l=1$. Let $B$ be the invertible principal Hessian on the three coordinates other than $l$, and let $J$ be the Jacobian of the three complementary components of $V$ with respect to those coordinates.
+
+Lemma~\ref{lem:kerneltransport} gives $D_VV=0$ and $\nabla L(X+\lambda V)=\nabla L(X)$. The following transport and regular-block calculations depend only on the normalized kernel and invertible complementary minor; global optimality is used only to exclude the constant alternatives. Differentiating the complementary gradient components in the complementary variables gives
+\[
+ B_\lambda(I+\lambda J)=B.
+\]
+Taking determinants in $E[\lambda]$ yields $\det(I+\lambda J)=1$, so $J^3=0$ by Cayley--Hamilton. Symmetry, or differentiation of the first-order coefficient, gives $BJ=J^TB$. The row indexed by $s$ is zero. If $J=0$, acceleration zero gives all remaining partial derivatives of $V$ zero, making $V$ a forbidden constant kernel. Hence $J$ has rank one or two.
+
+\paragraph{A preliminary reduction for rank two.}
+If $\rank J=2$, then $\ker J=\im J^2\subset\im J=\ker(e_s^T)$, since the $s$ row is zero. The vector $B^{-1}e_s$ belongs to $\ker J$ by self-adjointness. Its $s$ component is zero, so the principal cofactor at $s$ of $B$ vanishes. In other words the block of $H$ indexed by $i,k$ is singular. The relation $HV=0$ expresses the $l$ column as a linear combination of columns $i,k$ and, by symmetry, does the same for its row. Hence the entire passive block of $H$ (delete $s$) has rank at most one. Below we show that this forces $J$ to have rank at most one at a counterexample, excluding the rank-two velocity.
+
+\paragraph{Rank one with a regular block.}
+Suppose $\rank J=1$ and the principal block on $i,k$ is invertible. Then $J=uv^T$, $v^Tu=0$, $J^2=0$, and $u_s=0$. Interchange $i,k$ if necessary so that $u_i\ne0$. Put $A=V_i$, $C=V_k$, $r=u_k/u_i$. Since $J^TBJ=BJ^2=0$, the rank-one factorization gives
+\begin{equation}\label{eq:slope}
+ \partial_j C=r\partial_j A\quad(j\ne l),\qquad
+ \partial_i A+\partial_k C=0,\qquad
+ H_{ii}+2rH_{ik}+r^2H_{kk}=0 .
+\end{equation}
+Acceleration zero extends the first relation to $j=l$ as well: subtract $rD_VA$ from $D_VC$.
+
+If $\partial_kA=0$, the trace and differential relations imply that all derivatives of $V$ in directions $i,k,l$ vanish. Thus only $\partial_sV$ might be nonzero. For each $j\ne s$, differentiating $HV=0$ and commuting third derivatives gives $(H\partial_sV)_j=0$: the term $(\partial_s H)V$ in row $j$ equals $(\partial_j H)V$ in row $s$, which vanishes since $\partial_jV=0$. The vector $\partial_sV$ has zero $s,l$ components. Invertibility of the $i,k$ block kills its remaining entries. This makes $V$ constant, impossible.
+
+Otherwise $\partial_kA\ne0$. Commutation in $\partial_j C=r\partial_j A$ gives
+\[
+ (\partial_jr)(\partial_kA)=(\partial_kr)(\partial_jA).
+\]
+Together with $\partial_i A=-r\partial_k A$ this yields $\partial_i r+r\partial_kr=0$. Suppose $\partial_kr\ne0$. For $W=e_i+r e_k$ we have $D_WW=0$ and $D_W^2L=0$ by~\eqref{eq:slope}. Thus $L(X+\lambda W)=L+\lambda D_WL$. Differentiate at fixed $\lambda$ with respect to $X_k$:
+\[
+ L_k+\lambda\bigl(H_{ik}+rH_{kk}+(\partial_kr)L_k\bigr)
+ =(1+\lambda\partial_kr)L_k(X+\lambda W).
+\]
+At $\lambda=-1/\partial_kr$ this implies $H_{ik}+rH_{kk}=0$. The isotropy identity then gives $H_{ii}+rH_{ik}=0$. This contradicts the regular block. Hence $\partial_kr=0$, and the commutation relation forces every derivative of $r$ to vanish.
+
+We obtain $r=c\in K$ and $C=b+cA$ for some $b\in K$. In particular $V=d+Ae$, where $d=e_l+b e_k$ and $e=e_i+c e_k$ are independent constant vectors. Equation~\eqref{eq:slope} gives $e^THe=0$. From $HV=0$ we obtain first $e^THd=0$, then $d^THd=0$. This is the forbidden constant totally isotropic plane. Thus the $i,k$ block must be singular in rank one as well, and the passive block has rank at most one.
+
+
+\section{The relative frontier}\label{sec:relative}
+The rank-one passive block obtained in either nonzero velocity-rank branch forces the zero-weight relative situation. We arrange the checked restricted-block lemmas before the velocity-rank case split for exposition.
+
+For $j\ne s$, if $H_{jj}=0$, the whole passive row vanishes by the rank-one minors and symmetry. There cannot be two such rows because they give a zero principal plane. At any nonzero diagonal pivot $p$, set $r_j=H_{jp}/H_{pp}$ for passive $j$. Lemma~\ref{lem:rows} gives $r_j\in K(X_s)$. If $w_s>0$, weighted homogeneity gives each nonzero ratio as a scalar Laurent monomial in $X_s$, with weight $w_p-w_j$. Indeed comparing a nonzero coefficient after clearing the reduced numerator and denominator forces each to be a single power (or use unique factorization and weighted homogeneity).
+
+For $w_s>0$, a zero passive row $j$ must satisfy $w_j+w_s\le m$: otherwise the mixed entry with $s$ also vanishes by its negative cap, giving a constant kernel. Choose $p$ of maximal weight among the nonzero passive diagonals. Collapse the weights on the face by setting
+\[
+ v_s=0,\qquad
+ v_j=\begin{cases}
+ w_p& H_{jj}\ne0,\ j\ne s,\\
+ m& H_{jj}=0,\ j\ne s .
+ \end{cases}
+\]
+This caps $L$ at $m$. To see the support argument, a zero passive row occurs only in terms of passive degree at most one involving that row. For the remaining terms of fixed passive degree $D\ge2$, choose one with maximal $p$ exponent. If it has a different passive factor, differentiating twice gives a nonzero entry in a non-$p$ row. The proportional Hessian row equation, cleared by powers of $X_s$, transfers that factor to the pivot with the same passive degree and a strictly larger pivot exponent. Differentiation of a monomial has a unique predecessor and nonzero integer multiplier in characteristic zero; multiplication by a fixed monomial only translates exponents. This contradicts maximality. Hence there is a pure passive $p$-power of degree $D$, whose original weight is at least $Dw_p$. Terms of passive degree zero or one satisfy the new cap since every new weight is at most $m$ (a nonzero diagonal ensures $2w_p\le m$). This proves the cap.
+
+If two nonzero passive diagonals have equal weights, their row ratio is constant; a weight-block shear kills one passive row without changing the other diagonal entries. With an existing zero row this is immediately impossible. With exactly one zero row and distinct remaining weights, the nonzero weight gap is at least $w_s$ and the gain $m-w_j$ at the zero row is also at least $w_s$. Thus $\sum v-\sum w\ge w_s>0$, contradicting the no-improving-slope rule. With no zero rows, repeated weights reduce by the same shear to one zero row, while distinct weights give two gaps of at least $w_s$ each and again a strictly positive gain. Therefore $w_s=0$.
+
+If now a passive diagonal vanishes, the corresponding leading partial depends only on $X_s$ and is nonzero. Its weight is zero, forcing $w_j=m$. The full partial equals the leading partial by nonnegativity, so the full Hessian has a row supported only in column $s$. Its entry is a unit by determinant one, hence a nonzero constant. This recovers $X_s$ from the gradient. Fixing $X_s$, the other two coordinates besides $j,s$ give a two-variable gradient with nonzero constant Hessian determinant (expand along the split row and column). Planar injectivity recovers those coordinates, and the remaining gradient component recovers $X_j$ using the nonzero mixed entry. This contradicts the assumed full-source collision. Thus all passive diagonals survive.
+
+The nonzero ratios, now of weight zero in $K(X_s)$, force all passive weights equal. In fact the row ratios have weight $w_p-w_j$, which must vanish because $w_s=0$. The common passive weight is positive since $m>0$ and $L\ne0$. The relative degree $n=m/w_p$ is an integer at least two. Euler's formula in the passive variables, applied to each homogeneous gradient component of degree $n-1$, gives $L_j=r_j L_p$: their passive derivatives agree by row proportionality and $n-1>0$. 
+
+Write $G=L_p\ne0$, $r=(r_j)_{j\ne s}$. Differentiating the gradient relation in $X_s$ gives $H_{sj}=r_jH_{sp}+G r_j'$. The kernel equations for $V_s=0$ reduce to
+\[
+ r^TV_{\rm passive}=0,\qquad (r')^TV_{\rm passive}=0.
+\]
+All coefficients in these equations depend only on $X_s$. For any passive variable $X_a$, differentiate the equations. Then $W=\partial_a V$ has $W_s=W_l=0$ and satisfies both equations, hence $HW=0$. The regular complementary pivot at $l$ gives $W=0$. In particular $J$ has at most one nonzero column. This excludes rank two in Section~\ref{sec:rankthree}.
+
+Finally $n=2$ is impossible: every passive Hessian entry of the full source has weight cap zero, so it equals the corresponding entry of $H$. The passive block has rank at most one; adding one row and one column increases rank by at most two, contradicting the full Hessian determinant one. Hence $n\ge3$.
+
+Put $x=X_s$, and write $Y=(u,v,t)$ for the passive coordinates with $u=X_p$. The relative gradient relations give
+\begin{equation}\label{eq:purepower}
+ L=c(x)(u+r_2(x)v+r_3(x)t)^n,\qquad 0\ne c\in K(x).
+\end{equation}
+Indeed, for $\ell=u+r_2v+r_3t$, relative Euler gives $\ell L_u=nL$. Every passive partial of $L/\ell^n$ vanishes, so $L/\ell^n\in K(x)$. The functions $1,r_2,r_3$ are linearly independent over $K$, for a nonzero constant relation would give a constant directional derivative of $L$ equal to zero, and hence a forbidden nonzero constant Hessian kernel. This is the input to the Wronskian and signed-wall proof.
+
+
+\section{Distinct-weight rigidity and the final obstruction}\label{sec:wall}
+The final wall has a negative weight. We cannot apply the global optimum or its constant-kernel and isotropic-plane obstructions there. Instead the regular-block argument admits a second closure that uses only weighted homogeneity and the nonvanishing principal cofactors.
+
+\begin{lemma}[Signed restricted-block rigidity]\label{lem:signed}
+Let $F\in R$ be weighted homogeneous of degree $m$ for pairwise distinct integral weights $w_j$, of either sign. Suppose $\det\Hess F=0$, and for some index $s$ all three other principal cofactors are nonzero. Then the principal Hessian on the three indices other than $s$ has rank at most one.
+\end{lemma}
+\begin{proof}
+Write $H=\Hess F$ and $C=\adj H$. The hypotheses imply $\rank H=3$. By Corollary~\ref{cor:singular}, some nonzero constant $d$ satisfies $Cd=0$. Each entry $C_{ab}$ is homogeneous of weight
+\[
+ D+w_a+w_b,\qquad D=3m-2\sum_j w_j.
+\]
+For each fixed $a$ these weights are distinct as $b$ varies. Thus $Cd=0$ implies $C_{ab}d_b=0$ separately for every $a,b$. Any nonzero $d_b$ therefore gives a zero column of $C$; the nonzero diagonal cofactors force $b=s$. In particular $Ce_s=0$.
+
+Choose any $l\ne s$ and denote the remaining indices by $i,k$. Normalize the kernel vector by $V_l=1$; then $V_s=0$ and
+\[
+ C_{al}=C_{ll}V_a\quad(a=1,\ldots,4).
+\]
+This follows since each column of the adjugate lies in the one-dimensional Hessian kernel. Symmetry also gives $C_{aa}=C_{ll}V_a^2$: the adjugate is a symmetric rank-one matrix, so it is $C_{ll}VV^T$ over $E$. In particular $V_i,V_k$ are nonzero.
+
+There can be no affine relation $V_k=b+cV_i$ with $b,c\in K$. Multiplying by $C_{ll}$ would give
+\[
+ C_{kl}=bC_{ll}+cC_{il}.
+\]
+The three entries have pairwise distinct weights, so the component of weight $D+w_k+w_l$ gives $C_{kl}=0$. Then $V_k=0$, contrary to the surviving cofactor at $k$. The same exclusion holds with $i,k$ interchanged.
+
+Suppose now that the $i,k$ principal block is invertible. The normalized-kernel transport of Section~\ref{sec:rankthree} is valid for $F$ independently of any sign of the weights, so the complementary Jacobian $J$ is cube-zero and self-adjoint for the invertible complementary Hessian $B$, with zero row $s$.
+If $J=0$, acceleration zero makes $V$ constant, giving the forbidden affine relation. If $\rank J=2$, the argument of Section~\ref{sec:rankthree} with $B^{-1}e_s$ makes the $i,k$ block singular. Thus $\rank J=1$. Orient its factorization so that $u_i\ne0$ and use $A=V_i$, $Q=V_k$, $r=u_k/u_i$. The differential, trace and isotropy identities of~\eqref{eq:slope}, with $L$ replaced by $F$ and $C$ there replaced by $Q$, still hold. If $\partial_k A=0$, the regular-block argument makes $V$ constant. If $\partial_k A\ne0$, the same polynomial root evaluation proves $\partial_k r=0$; commutation then gives $r=c\in K$ and $Q=b+cA$ for $b\in K$. Either case contradicts the affine-relation exclusion above. No global optimality has been used.
+
+Consequently the $i,k$ block is singular. Since $V_s=0$ and $V_l=1$, the passive $l$ column is a combination of the passive $i,k$ columns, and the corresponding row relation follows from symmetry. More explicitly the passive block is congruent to the direct sum of the $i,k$ block and a zero row and column. Its rank is therefore at most one, as required.
+\end{proof}
+
+
+\subsection{The signed first-contact argument (adapted from Tang)}
+The nonzero Wronskian of the three independent rational functions allows us to choose a point of the ground field where they and $c$ are regular, $c\ne0$, and the value, first derivative and half second derivative rows are independent. For clarity, the Wronskian criterion here follows also by differentiating a zero relation $r_2'r_3''-r_3'r_2''=0$: if $r_2'\ne0$ then $r_3'/r_2'$ is constant, so $r_3$ is affine in $r_2$, a contradiction.
+
+Translate $x=x_0+\xi$ and change the passive linear coordinates by this invertible jet matrix. The relative cap survives; the Hessian determinant becomes a nonzero constant $\delta$. The normalized phase has jet $u+\xi v+\xi^2t$ and all later coefficient terms have higher order in $\xi$. The scalar $c(x_0+\xi)$ has nonzero constant term. The actual Lean proof clears the rational denominators, uses regularity at $x_0$, and cancels their nonzero initial constants. Thus, writing $d=(0,1,1,1)$ and $s'=(-1,0,1,2)$, the top passive-degree part has $s'$-cap zero and its zero-slope form is
+\[
+ L_0=c_0(u+\xi v+\xi^2t)^n,\qquad c_0\ne0.
+\]
+At $(\xi,u,v,t)=(1,1,0,0)$ its Hessian is
+\[
+ \begin{pmatrix}
+ 0&0&B&2B\\0&A&A&A\\B&A&A&A\\2B&A&A&A
+ \end{pmatrix},
+ \qquad A=c_0n(n-1),\quad B=c_0n .
+\]
+All three passive principal cofactors and the $uu$ entry are nonzero.
+
+Now remove the constant linear term in $t$, which does not affect the Hessian. A monomial $\xi^ku^iv^jt^h$ has passive degree $D=i+j+h$ and slope $S=j+2h-k$. Its weight under $d+\eta s'$ is $D+\eta S$. The Hessian at the origin is invertible, so among its rows for $v,t$ at least one has a nonzero entry in a passive column (otherwise two rows are supported in the single active column). Thus some quadratic monomial has $D=2$ and $S\ge1$.
+
+There is therefore a first positive contact of a lower-degree monomial with weight $n$, at
+\[
+ \eta_*=\min_{D<n,\ S>0}\frac{n-D}{S}\le n-2 .
+\]
+Monomials of passive degree zero have nonpositive slope, and those of degree one now have slope at most one, so a contact has $2\le D<n$. The determinant weight at contact is $4n-6-4\eta_*\ge2$. Let $F$ be its weight-$n$ face, with weights $(-\eta_*,1,1+\eta_*,1+2\eta_*)$. By clearing denominators in the weights and using~\eqref{eq:det}, $\det\Hess F=0$. Its degree-$n$ passive part is $L_0$; hence all three passive principal cofactors survive by the degree bounds for minors.
+
+Lemma~\ref{lem:signed} applies after clearing the positive common denominator of the weights. It forces rank at most one of the passive Hessian of $F$. This step does \emph{not} invoke nonnegative global optimality on the signed weights.
+
+Finally the passive row ratios are Laurent monomials in $\xi$. If a term of passive degree $2\le D<n$ survives on $F$, choose one with maximal exponent of $u$ among degree-$D$ terms. It cannot be supported only on $\xi,u$, since the active weight is negative and the $u$ weight is one. Differentiating twice in passive variables gives a nonzero Hessian entry in a non-$u$ row. The rank-one row identity, after clearing the monomial ratio, transfers one such passive factor to $u$ at the same passive degree, producing a nonzero coefficient with larger $u$ exponent. This contradicts maximality. This is the support-level version of Tang's exclusion of lower-degree powers with negative active exponent; it is checked by \path{rankThree_signedWall_no_lowerDegree}. A first contact is impossible, contradicting the quadratic witness. This finishes the contradiction.
+
+
+\section{The reverse implication and polynomial inverses}\label{sec:inverse}
+The preceding sections prove the forward implication of Theorem~\ref{thm:inj}: any hypothetical collision at determinant one produces a positive-clock extremum, which has rank three, a relative pure power, and an impossible first signed contact.
+
+For the reverse direction, let $F=(F_1,F_2)$ be a planar polynomial map with $\det DF=c\in K^\times$. Replace $F_2$ by $c^{-1}F_2$ so that the normalized map $\widetilde F$ has determinant one and the same collisions. For $X,Y\in K^2$ define
+\[
+ P(X,Y)=Y^T\widetilde F(X).
+\]
+Then
+\[
+ \nabla P(X,Y)=\bigl(D\widetilde F(X)^TY,\widetilde F(X)\bigr),\qquad
+ \Hess P=
+ \begin{pmatrix}
+ *&D\widetilde F^T\\D\widetilde F&0
+ \end{pmatrix}.
+\]
+The determinant of this block matrix is $(\det D\widetilde F)^2=1$, by interchanging the two block columns (an even permutation). If $\widetilde F(X)=\widetilde F(X')$, the gradient values at $(X,0)$ and $(X',0)$ agree. The Hessian injectivity assumption implies $X=X'$, proving planar injectivity and completing Theorem~\ref{thm:inj}. This is the checked doubling construction in \path{PlanarJC2HessianEmbedding.lean}.
+
+For Theorem~\ref{thm:equiv}, assume $K$ algebraically closed of characteristic zero. Nonzero constant Hessian determinant $\delta$ can be normalized by replacing $P$ by $aP$ with $a^4\delta=1$. Gradient injectivity is unchanged, since $a\ne0$. Polynomial invertibility implies injectivity on points. For the converse we recall and explain the generic bridge actually used by the formalisation.
+
+\begin{proposition}[Injective polynomial maps have polynomial inverses]\label{prop:inverse}
+Let $K$ be algebraically closed of characteristic zero and $F$ a polynomial self-map of $K^d$ that is injective on points. Then $F$ has a two-sided polynomial inverse.
+\end{proposition}
+\begin{proof}
+By Ax--Grothendieck, $F$ is surjective on points. In particular pullback on $R=K[X_1,\ldots,X_d]$ is injective: if a polynomial vanishes after composition with $F$, surjectivity makes it vanish on all of $K^d$, hence it is zero. It extends to an embedding of $E=\operatorname{Frac}(R)$ into itself, with image subfield $S=K(F_1,\ldots,F_d)$.
+
+First, injectivity persists over every extension field of $K$. For each $i$, the polynomial system
+\[
+ F(X)=F(Y),\qquad Z(X_i-Y_i)=1
+\]
+has no $K$-point. By the weak Nullstellensatz its ideal is the unit ideal, and so it has no solution over any extension field either. This rules out every collision.
+
+Any two $S$-embeddings of $E$ into an algebraic closure of $E$ send the tuple $X$ to tuples with the same $F$-image, since they fix $S$. By extended injectivity the tuples are equal and hence the embeddings coincide. The extension $E/S$ is finitely generated and algebraic: $S$ has transcendence degree $d$ since it is the image of the embedding of $E$, so the transcendence degree of $E/S$ is zero. Characteristic zero makes the extension separable. Its degree therefore equals the number of $S$-embeddings into an algebraic closure, which is one. Thus $S=E$.
+
+For each coordinate $i$, write $X_i=A_i(F)/B_i(F)$ for relatively prime polynomials $A_i,B_i\in R$ with $B_i\ne0$. Then
+\[
+ A_i(F)=B_i(F)X_i
+\]
+as a polynomial identity. Surjectivity implies $A_i$ vanishes on the zero locus of $B_i$; the strong Nullstellensatz implies $B_i\mid A_i^N$ for some positive integer $N$. Relative primality in the UFD $R$ forces $B_i$ to be a unit. The rational coordinates $G_i=A_i/B_i$ are consequently polynomials, with $G\circ F=\mathrm{id}$. Surjectivity then yields $F\circ G=\mathrm{id}$ on points, hence as a polynomial identity over the infinite field $K$.
+\end{proof}
+The formal proof of Proposition~\ref{prop:inverse} uses Mathlib's Ax--Grothendieck and Nullstellensatz results and the separable-degree criterion; the finite-extension explanation above is the equivalent usual algebraic argument. In combination with the determinant normalization and Theorem~\ref{thm:inj}, it proves both directions of Theorem~\ref{thm:equiv}.
+
+\section{Formal verification, attribution and review status}\label{sec:verification}
+The source is publicly available at \url{https://github.com/JamieLittle16/HessianConjecture4}. The formal endpoint for the forward implication is
+\begin{quote}
+\path{HC4.Polynomial.hc4_of_planarJC2}
+\end{quote}
+in \path{HC4/Polynomial/RankThreeOneVariableKernel.lean}. Its explicit hypotheses are a field of characteristic zero, the same-field planar injectivity predicate, an arbitrary four-variable polynomial, and its literal Hessian determinant one. The conclusion is injectivity of the formally evaluated gradient. The reverse is checked by \path{planarJC2_of_hessianFour_gradient_injective}.
+
+The polynomial-inverse equivalence is checked in \path{HC4/FinalEquivalence.lean}. In particular
+\begin{quote}
+\path{HC4.StatementAudit.jc2_iff_hc4_explicit}
+\end{quote}
+expands both conjectures into partial derivatives, matrix determinants, the unit condition in the multivariate polynomial ring, and two substitution identities. In this ring a unit is exactly a nonzero constant. The planar formulation follows Google DeepMind's Formal Conjectures snapshot \path{a88aee564684360292318c61b9b8e27febef2ae0} \cite{fc}; no open conjecture declaration or proof placeholder from that repository is imported. The input-row convention in its Jacobian is the transpose of the output-row convention here; determinants agree. The additional standalone theorem
+\begin{quote}
+\path{HC4.Polynomial.RankThreeCubic.rationalMap_affinePlane}
+\end{quote}
+in \path{RationalMapAffinePlane.lean} states exactly Theorem~\ref{thm:main}, without a four-variable source or planar conjecture hypothesis. The original equivalence proof uses the anchored version rather than depending on this later extraction.
+
+The following is a source-reading guide, not a claim that every sentence of the manuscript is separately checked. Module names in the first six entries are relative to \path{HC4/Polynomial/}.
+\begin{itemize}
+\item Polynomial transport and normalized characteristics: \path{RankThreeCubicCharacteristics.lean}.
+\item Rational rigidity: \path{RationalMapAffinePlane.lean}, \path{RationalCharacteristicRankTwoClosure.lean}.
+\item Weight attainment and local improvements: \path{WeightedGlobalOptimum.lean}, \path{WeightedExtremalKernel.lean}, \path{WeightedExtremalIsotropicPlane.lean}.
+\item Rank-two closure: \path{RankOneHessianRatioRigidity.lean}, \path{RankTwoAffineClosure.lean}, \path{RankTwoImageDirectionClosure.lean}, \path{RankTwoAffineFibres.lean}, \path{RankTwoGlobalClosure.lean}.
+\item Rank-three and relative frontier: \path{RankThreeExtremalReduction.lean}, \path{RankThreeOneVariableKernel.lean}.
+\item Signed wall and final contradiction: \path{RankThreeOneVariableKernel.lean}.
+\item Reverse implication and inverse bridge: \path{HC4/PlanarJC2HessianEmbedding.lean}, \path{HC4/PolynomialInverseAudit.lean}, \path{HC4/RationalInverseAudit.lean}, \path{HC4/FinalEquivalence.lean}.
+\end{itemize}
+
+\paragraph{Reproduction.}
+The repository pins Lean \path{v4.24.0} and Mathlib commit \path{f897ebcf72cd16f89ab4577d0c826cd14afaafc7}. At the maintainer's verified checkpoint, the full build completed 9051 jobs and the final core axiom audit passed (commit \path{38e58bf4}, 26 November 2026). The polynomial-inverse equivalence was subsequently verified locally; the standalone rational theorem passed a targeted build of 8317 jobs (commit \path{9e548ccb}, same date). The transitive axiom reports for these endpoints contain exactly \path{propext}, \path{Classical.choice}, and \path{Quot.sound}; in particular they do not contain \path{sorryAx} or a conjecture axiom. These are maintainer-reported local results, not yet evidence of completed independent fresh-checkout reproduction. A minimal targeted reproduction after checkout is:
+\begin{verbatim}
+lake exe cache get
+lake build HC4.FinalEquivalence
+lake build HC4.Polynomial.RationalMapAffinePlane
+lake env lean HC4/FinalEquivalence.lean
+lake env lean HC4/Polynomial/RationalMapAffinePlane.lean
+\end{verbatim}
+The full project and its audit can be checked with \path{lake build} and \path{lake env lean HC4/Audit.lean}. The repository also supplies a dependency exporter and a contribution audit. The final equivalence is not a proof of either open conjecture without assuming the other.
+
+\paragraph{Mathematical attribution.}
+Tang's Theorem 2.1 and Sections 3--4 \cite{tang} supply the mathematical setting, rank-one strategy and important elements of the final argument, including the Wronskian normalization and signed first-wall obstruction (his Lemma 3.3). The algebraic rank-two closure in the rational rigidity proof uses polynomial transport and root evaluation in place of the geometric classification used by Tang. The global maximum reorganizes the weighted argument by excluding possible improvements at a fixed extremal presentation rather than following a prescribed sequence of transitions. These differences describe the approach of the checked proof; novelty relative to the wider literature has not been established. We acknowledge Mathlib and the authors of the vendored L\"uroth development (Miriam Philipp, Justus Springer and Junyan Xu). Development, Lean proof construction and manuscript drafting used substantial AI assistance. Author names and publication arrangements are intentionally left for the maintainer to settle.
+
+\paragraph{Review status.}
+This is a consolidated manuscript draft of the previously compiled research notes, with the characteristic construction and reverse implication now spelled out. Some elementary coefficient and matrix computations are compressed, and some supporting arguments are rearranged relative to the exact Lean dependency order. The prose has not undergone independent mathematical review. The independent build and a careful line-by-line mathematical/source audit must be recorded separately before making a publication-ready claim.
+
+\begin{thebibliography}{9}
+\bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026). \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
+\bibitem{depoi} P. De Poi, \emph{Congruences of lines with one-dimensional focal locus}, Port. Math. \textbf{61} (2004), 329--338.
+\bibitem{fc} Google DeepMind, \emph{Formal Conjectures}, snapshot a88aee564684360292318c61b9b8e27febef2ae0. \url{https://github.com/google-deepmind/formal-conjectures}.
+\end{thebibliography}
+\end{document}
