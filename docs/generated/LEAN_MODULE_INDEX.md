@@ -5524,7 +5524,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankTwoAffineClosure`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem rankTwo_coordinateImage_rowMinors`, `abbrev S`, `theorem rankTwo_coordinateImage_affine_or_kernel`, `theorem globalWeightOptimum_rankTwo_no_coordinateImage_chart`
+- Declarations: `theorem rankTwo_coordinateImage_rowMinors`, `abbrev S`, `theorem rankTwo_coordinateImage_affine_or_kernel`, `theorem globalWeightOptimum_rankTwo_no_coordinateImage_chart`, `theorem rankTwo_constantImage_to_coordinateChart`, `theorem globalWeightOptimum_rankTwo_no_constantImage`
 
 ### `HC4.Polynomial.RankTwoKernelSecondVariation`
 

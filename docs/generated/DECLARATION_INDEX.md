@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11801**.
+Distinct declaration spellings indexed: **11803**.
 
 ## Repeated declaration spellings
 
@@ -6532,6 +6532,7 @@ Distinct declaration spellings indexed: **11801**.
 - `globalWeightOptimum_rankTwo_no_affineChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_rankTwo_no_affineCoordinate` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_rankTwo_no_affineDirection` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
+- `globalWeightOptimum_rankTwo_no_constantImage` — `theorem` in `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `globalWeightOptimum_rankTwo_no_coordinateImage_chart` — `theorem` in `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `globalWeightOptimum_rankTwo_weight_le_half` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `gradientAtZero_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedZeroLinearJetKernelOpening`
@@ -9527,6 +9528,7 @@ Distinct declaration spellings indexed: **11801**.
 - `rankTwo_allThreeMinorsZero_substitution` — `theorem` in `HC4.Polynomial.RankTwoMinorTransport`
 - `rankTwo_constantDirection_leftKernel` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
 - `rankTwo_constantDirection_normalDifferential` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal`
+- `rankTwo_constantImage_to_coordinateChart` — `theorem` in `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `rankTwo_coordinateImage_affine_or_kernel` — `theorem` in `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `rankTwo_coordinateImage_rowMinors` — `theorem` in `HC4.Polynomial.RankTwoImageDirectionClosure`
 - `rankTwo_cubeDerivative` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
