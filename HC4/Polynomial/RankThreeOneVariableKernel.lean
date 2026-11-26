@@ -1353,6 +1353,12 @@ theorem globalWeightOptimum_rankThree_restricted_atMostOne_zero
   have hle := extremal_jointlyAffine_support_of_hessian_zero L i j hij hii hjj hz u hu
   omega
 
+/-- Collapse the omitted weight, raising affine-only coordinates to the cap. -/
+noncomputable def rankThreeCollapsedWeight (L : B K) (w : Fin 4 → ℤ)
+    (m : ℤ) (s p : Fin 4) : Fin 4 → ℤ := by
+  classical
+  exact fun i => if i = s then 0 else if hessian L i i = 0 then m else w p
+
 set_option maxHeartbeats 5000000 in
 /-- A generalized signed-slope contradiction: zero restricted rows
 are given the full cap, and all other restricted variables the
@@ -1368,9 +1374,7 @@ theorem globalWeightOptimum_rankThree_restricted_no_gain
     (hmin : let L := initialForm w m P
       ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
         hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
-    let v : Fin 4 → ℤ := fun i => if i = s then 0 else
-      if hessian (initialForm w m P) i i = 0 then m else w p
-    (∑ i, v i) ≤ ∑ i, w i := by
+    (∑ i, rankThreeCollapsedWeight (initialForm w m P) w m s p i) ≤ ∑ i, w i := by
   classical
   let L := initialForm w m P
   let H := hessian L
@@ -1440,6 +1444,102 @@ theorem globalWeightOptimum_rankThree_restricted_no_gain
   omega
 
 
+set_option maxHeartbeats 5000000 in
+/-- An affine-only restricted coordinate must have a nonzero
+mixed entry with the omitted coordinate. Its weight is therefore
+at least one omitted weight below the cap. -/
+theorem globalWeightOptimum_rankThree_zeroRow_weight_gap
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s i : Fin 4) (his : i ≠ s)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (hii : hessian (initialForm w m P) i i = 0) :
+    w i + w s ≤ m := by
+  let L := initialForm w m P
+  by_contra hn
+  have hL : IsWeightLE w m L :=
+    isWeightLE_of_isWeightedHomogeneous (initialForm_isWeightedHomogeneous w m P)
+  have hzero : hessian L i s = 0 :=
+    eq_zero_of_nonnegativeWeight_negative_cap w hw _ (by omega) _ (hL.hessian_entry i s)
+  have hrow (j : Fin 4) : pderiv j (pderiv i L) = 0 := by
+    change hessian L i j = 0
+    by_cases hj : j = s
+    · rw [hj]
+      exact hzero
+    · exact rankThree_restricted_row_zero L s i his hmin hii j hj
+  exact globalWeightOptimum_no_constant_partial P w m hw hm hcap hclock hopt hdet i _
+    (extremal_eq_C_of_all_pderiv_zero (pderiv i L) hrow)
+
+set_option maxHeartbeats 5000000 in
+/-- If one restricted row vanishes and the remaining two
+nonzero diagonal weights differ, the positive omitted weight
+case is impossible at the actual optimum. -/
+theorem globalWeightOptimum_rankThree_no_one_zero_distinct_weights
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p i j : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hjs : j ≠ s)
+    (hip : i ≠ p) (hjp : j ≠ p) (hji : j ≠ i)
+    (hcover : ∀ a : Fin 4, a = s ∨ a = p ∨ a = i ∨ a = j)
+    (hpos : 0 < w s)
+    (hp : hessian (initialForm w m P) p p ≠ 0)
+    (hi : hessian (initialForm w m P) i i ≠ 0)
+    (hj : hessian (initialForm w m P) j j = 0)
+    (hlt : w i < w p)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    False := by
+  classical
+  let L := initialForm w m P
+  let H := hessian L
+  let v := rankThreeCollapsedWeight L w m s p
+  have hmix : H i p ≠ 0 := by
+    intro hz
+    have he := hmin p i p i hps his hps his
+    change H p p * H i i = H p i * H i p at he
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hp hi) he
+  have hr := rankThree_restricted_weightedRatio L w m hw
+    (initialForm_isWeightedHomogeneous w m P) s hmin p i hps his hip hp hmix
+  rcases hr with ⟨hz,_⟩ | ⟨_,n,t,c,e,hc,he,hd,hcross⟩
+  · exact (ne_of_gt hpos hz).elim
+  have hgap : w s ≤ w p - w i := by
+    have hprod : 0 < ((t : ℤ)-(n : ℤ))*w s := by rw [← hd]; omega
+    have hdiff : 1 ≤ (t : ℤ)-(n : ℤ) := by
+      by_contra hn
+      have hnon : (t : ℤ)-(n : ℤ) ≤ 0 := by omega
+      exact (not_lt_of_ge (mul_nonpos_of_nonpos_of_nonneg hnon (le_of_lt hpos))) hprod
+    rw [hd]
+    simpa only [one_mul] using mul_le_mul_of_nonneg_right hdiff (le_of_lt hpos)
+  have hgapj := globalWeightOptimum_rankThree_zeroRow_weight_gap P w m hw hm hcap
+    hclock hopt hdet s j hjs hmin hj
+  have hvs : v s = 0 := by simp [v,rankThreeCollapsedWeight]
+  have hvp : v p = w p := by simp [v,rankThreeCollapsedWeight,hps,hp,L]
+  have hvi : v i = w p := by simp [v,rankThreeCollapsedWeight,his,hi,L]
+  have hvj : v j = m := by simp [v,rankThreeCollapsedWeight,hjs,hj,L]
+  have hopt' : (∑ a : Fin 4, v a) ≤ ∑ a : Fin 4, w a :=
+    globalWeightOptimum_rankThree_restricted_no_gain P w m hw hm hcap hclock hopt hdet
+      s p hps hpos hp hmin
+  have hsum (f : Fin 4 → ℤ) : ∑ a : Fin 4, f a = f s + f p + f i + f j := by
+    have hset : (Finset.univ : Finset (Fin 4)) = {s,p,i,j} := by
+      ext a
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover a
+    rw [hset]
+    simp [Ne.symm hps,Ne.symm his,Ne.symm hjs,Ne.symm hip,Ne.symm hjp,Ne.symm hji]
+    ring
+  rw [hsum v,hsum w,hvs,hvp,hvi,hvj] at hopt'
+  omega
+
+
 end
 end HC4.Polynomial
 
@@ -1477,3 +1577,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_restricted_row_zero
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_restricted_atMostOne_zero
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_restricted_no_gain
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_zeroRow_weight_gap
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_one_zero_distinct_weights
