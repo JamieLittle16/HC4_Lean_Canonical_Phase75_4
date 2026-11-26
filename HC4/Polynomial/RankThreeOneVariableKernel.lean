@@ -2275,6 +2275,82 @@ theorem rankThree_kernel_relative_of_gradient_ratios
   exact congrFun hW0 i
 
 
+set_option maxHeartbeats 6000000 in
+/-- At zero omitted weight, a vanishing restricted diagonal gives
+a full-source split row; otherwise Euler ratios force the normalized
+velocity to depend on at most the omitted coordinate. -/
+theorem counterexample_rankThree_no_rankTwoVelocity_zeroWeight
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hnoninj : ¬ Function.Injective (mvGradientMap P))
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hminor : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p)
+    (hws : w (l.succAbove a) = 0) :
+    False := by
+  classical
+  let s := l.succAbove a
+  let L := initialForm w m P
+  have hmin := rankThree_rankTwoVelocity_restrictedMinors_zero L l a V hVl hVk
+    hreg hV hminor
+  have hnon (i : Fin 4) (his : i ≠ s) : hessian L i i ≠ 0 := by
+    intro hz
+    exact hnoninj (globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal hJC2
+      P w m hw hm hcap hclock hopt hdet s i his hws hmin hz)
+  let p := s.succAbove 0
+  have hps : p ≠ s := Fin.succAbove_ne _ _
+  obtain ⟨r,hrs,hrp,hrows,hgrad,hconst⟩ :=
+    rankThree_zeroWeight_gradient_ratios L w m hw hm
+      (initialForm_isWeightedHomogeneous w m P) s p hps hws hnon hmin
+  have hrel := rankThree_kernel_relative_of_gradient_ratios L s p l hps
+    (hnon p hps) hreg V hVk hVl hV r hrs hrows hgrad hconst
+  let J := rankThreeComplementJacobian l V
+  have hcol (b c : Fin 3) (hc : c ≠ a) : J b c = 0 := by
+    have hcs : l.succAbove c ≠ s := by
+      intro he
+      exact hc (Fin.succAbove_right_injective he)
+    exact hrel (l.succAbove c) hcs (l.succAbove b)
+  obtain ⟨i,j,b,c,hbad⟩ := hminor
+  apply hbad
+  change J i b * J j c = J i c * J j b
+  by_cases hb : b = a
+  · by_cases hc : c = a
+    · rw [hb,hc]
+    · rw [hcol j c hc,hcol i c hc,mul_zero,zero_mul]
+  · rw [hcol i b hb,hcol j b hb,zero_mul,mul_zero]
+
+/-- Rank-two velocity is excluded for every nonnegative omitted
+weight in a genuine extremal counterexample. -/
+theorem counterexample_rankThree_no_rankTwoVelocity
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hnoninj : ¬ Function.Injective (mvGradientMap P))
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hminor : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p) :
+    False := by
+  by_cases hz : w (l.succAbove a) = 0
+  · exact counterexample_rankThree_no_rankTwoVelocity_zeroWeight hJC2 P w m hw hm
+      hcap hclock hopt hdet hnoninj l a V hVl hVk hreg hV hminor hz
+  · exact globalWeightOptimum_rankThree_no_rankTwoVelocity_positiveWeight P w m hw hm
+      hcap hclock hopt hdet l a V hVl hVk hreg hV hminor
+      (lt_of_le_of_ne (hw _) (Ne.symm hz))
+
+
 end
 end HC4.Polynomial
 
@@ -2331,3 +2407,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_zeroWeight_gradient_ratios
 #print axioms HC4.Polynomial.rankThree_kernel_relative_of_gradient_ratios
+
+#print axioms HC4.Polynomial.counterexample_rankThree_no_rankTwoVelocity_zeroWeight
+#print axioms HC4.Polynomial.counterexample_rankThree_no_rankTwoVelocity
