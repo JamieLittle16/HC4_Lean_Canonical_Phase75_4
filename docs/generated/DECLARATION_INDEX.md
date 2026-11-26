@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11633**.
+Distinct declaration spellings indexed: **11639**.
 
 ## Repeated declaration spellings
 
@@ -5459,6 +5459,7 @@ Distinct declaration spellings indexed: **11633**.
 - `eval_rename_standardZeroPair_at` — `theorem` in `HC4.Newton.TerminalTwoZeroGradientConjugacy`
 - `eval_rigidTopBinaryPlaneSpecialisation` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `eval_smithConformalInflateHom` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
+- `eval_sub_eq_weightBlock_linear` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `eval_translatePolynomial` — `theorem` in `HC4.Polynomial.FiniteStaircaseTranslatedPureModeEvaluation`
 - `eval_transverseSourceShearHom_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
 - `eval_transverseSourceShearVariable_unshear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithTransverseSourceShear`
@@ -6499,6 +6500,8 @@ Distinct declaration spellings indexed: **11633**.
 - `gradient_injective_of_hessianDeterminant_one_of_terminalObstructionProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+- `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `hasAlignedRecenteredFirstWallCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalFirstWall`
 - `hasAlignedRecenteredFirstWallCompetition_of_terminalResidual` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerFirstWall`
 - `hasAlignedRecenteredSameExponentCompetition_of_mem` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSameExponentCompetition`
@@ -8320,7 +8323,10 @@ Distinct declaration spellings indexed: **11633**.
 - `positiveTransverseRees_lowLayer_or_sourceRamifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPositiveTransverseReesSourceAdapter`
 - `positiveTransverseSourceSupport` — `def` in `HC4.Valuation.AdaptiveAlignedSmithPureLongitudinalHigherEscape`
 - `positiveVertical_supportPair_hessian_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
+- `positiveWeight_high_variable` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `positiveWeight_le_weightedTerm` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
+- `positiveWeight_nonneg` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
+- `positiveWeight_pos_of_ne_zero` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `positiveWeight_term_nonnegative` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `positiveWeightedHomogeneous_equalWeight_forces_single` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`
 - `positiveWeightedHomogeneous_hasTriangularSupport` — `theorem` in `HC4.Newton.PositiveWeightTriangularSupport`

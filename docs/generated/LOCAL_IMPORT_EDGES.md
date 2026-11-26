@@ -53,6 +53,7 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.PositiveWeightZeroClock`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalCofactor`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalProportional`
   - `HC4.Polynomial.RankThreeCubicAdaptedPlaneLinearVanishing`
@@ -1354,6 +1355,8 @@ human architecture guide.
 - `HC4.Polynomial.NonlinearSupportHessianRowBreak`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
+- `HC4.Polynomial.PositiveWeightZeroClock`
+  - `HC4.Polynomial.WeightedWallAnnihilator`
 - `HC4.Polynomial.PrimitiveBinomialAffineMoment`
   - `HC4.Polynomial.PrimitiveBinomialHessianEndpoint`
   - `HC4.Polynomial.RankThreeAffineMomentRealisation`
