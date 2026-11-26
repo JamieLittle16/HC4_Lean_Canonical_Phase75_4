@@ -4626,7 +4626,8 @@ theorem rankThree_relativePhase_no_affineRelation
   have hd (j : Fin 4) :
       MvPolynomial.C (d j) =
         (Pi.single k 1 : Fin 4 → B K) j -
-          Pi.single p (MvPolynomial.C B₀) j - Pi.single i (MvPolynomial.C C₀) j := by
+          (Pi.single p (MvPolynomial.C B₀) : Fin 4 → B K) j -
+          (Pi.single i (MvPolynomial.C C₀) : Fin 4 → B K) j := by
     by_cases hj : j = k
     · subst j
       simp [d,hkp,hki]
@@ -4639,7 +4640,8 @@ theorem rankThree_relativePhase_no_affineRelation
         · simp [d,hj,hjp,hji]
   have hvec : (fun j => MvPolynomial.C (d j)) =
       (Pi.single k 1 : Fin 4 → B K) -
-        Pi.single p (MvPolynomial.C B₀) - Pi.single i (MvPolynomial.C C₀) := funext hd
+        (Pi.single p (MvPolynomial.C B₀) : Fin 4 → B K) -
+        (Pi.single i (MvPolynomial.C C₀) : Fin 4 → B K) := funext hd
   have hker : hessian L *ᵥ (fun j => MvPolynomial.C (d j)) = 0 := by
     rw [hvec,Matrix.mulVec_sub,Matrix.mulVec_sub,Matrix.mulVec_single,
       Matrix.mulVec_single,Matrix.mulVec_single]
@@ -4784,7 +4786,8 @@ theorem rankThree_normalizedWall_impossible_of_top
     intro u hu
     rw [hR (MvPolynomial.mem_support_iff.mp hu)]
     omega
-  have hcapQ : IsWeightLE rankThreeWallDegree n Q := hcap.add hcapR.neg
+  have hcapQ : IsWeightLE rankThreeWallDegree n Q := by
+    simpa only [Q,sub_eq_add_neg] using hcap.add hcapR.neg
   have hface : initialForm rankThreeWallDegree n Q = initialForm rankThreeWallDegree n P := by
     change initialForm rankThreeWallDegree n (P-R) = _
     rw [map_sub,initialForm_eq_zero_of_isWeightedHomogeneous hR n (by omega),sub_zero]
@@ -4800,7 +4803,8 @@ theorem rankThree_normalizedWall_impossible_of_top
     rw [coeff_sub,hR0,sub_zero] at he
     exact htop u (MvPolynomial.mem_support_iff.mpr he) hw
   have hH : hessian Q = hessian P := by
-    ext i j
+    apply Matrix.ext
+    intro i j
     change pderiv j (pderiv i (P-MvPolynomial.C a * X 3)) =
       pderiv j (pderiv i P)
     rw [map_sub,MvPolynomial.pderiv_C_mul,map_sub]
