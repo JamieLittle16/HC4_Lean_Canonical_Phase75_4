@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11966**.
+Distinct declaration spellings indexed: **11970**.
 
 ## Repeated declaration spellings
 
@@ -9539,6 +9539,7 @@ Distinct declaration spellings indexed: **11966**.
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
 - `rankThree_homogeneousSubstitution_cap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_homogeneousSubstitution_initialForm` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_initialForm_mul` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_isotropicSlope_activeMinor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_mixedDifferential` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_relative_of_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9555,6 +9556,7 @@ Distinct declaration spellings indexed: **11966**.
 - `rankThree_normalizedKernel_lineGradient` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedWall_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedWall_impossible_of_top` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_normalized_clearedPhase_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_omittedCoordinate_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `rankThree_oneVariableKernel_allConstants` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_oneVariableKernel_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9580,6 +9582,7 @@ Distinct declaration spellings indexed: **11966**.
 - `rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `rankThree_raw_target_eval_two_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `rankThree_reduced_target_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
+- `rankThree_regularFactor_cancelCap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativeDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativeFraction_polynomials` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePhase_clearDenominators` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9624,6 +9627,7 @@ Distinct declaration spellings indexed: **11966**.
 - `rankThree_weightedEuler` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `rankThree_zeroRow_rankTwo_principalCofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_zeroSlope_pow` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroWeight_degreeTwo_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroWeight_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroWeight_relativePower_frontier` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
