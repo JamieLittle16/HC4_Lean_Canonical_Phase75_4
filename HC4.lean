@@ -922,3 +922,4 @@ import HC4.Polynomial.RankTwoMinorTransport
 import HC4.Polynomial.RankTwoAffineClosure
 import HC4.Polynomial.RankTwoImageDirectionClosure
 import HC4.Polynomial.RankTwoPrincipalPivot
+import HC4.Polynomial.RankTwoAffineFibres
