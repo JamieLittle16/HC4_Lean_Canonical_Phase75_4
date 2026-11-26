@@ -3143,6 +3143,167 @@ theorem globalWeightOptimum_rankThree_rankOne_regularActive_oriented
       linear_combination hb
 
 
+set_option maxHeartbeats 6000000 in
+/-- Extract the slope, trace and isotropy premises directly from
+the actual complementary rank-one factorization. -/
+theorem rankThree_rankOne_orientedSlope_data
+    (L : B K) (l : Fin 4) (a b c : Fin 3)
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (hcover : ∀ j : Fin 3, j = a ∨ j = b ∨ j = c)
+    (V : Fin 4 → E K)
+    (u v : Fin 3 → E K) (hub : u b ≠ 0) (hua : u a = 0) (hv : v ≠ 0)
+    (hfac : ∀ i j, rankThreeComplementJacobian l V i j = u i * v j)
+    (hdot : v ⬝ᵥ u = 0)
+    (hsq : let J := rankThreeComplementJacobian l V; J * J = 0)
+    (hself : let J := rankThreeComplementJacobian l V
+      let H := ((hessian L).submatrix l.succAbove l.succAbove).map
+        (algebraMap (B K) (E K))
+      H * J = J.transpose * H) :
+    let i := l.succAbove b
+    let k := l.succAbove c
+    ∃ r : E K,
+      (∀ j, j ≠ l → rankThreePartial j (V k) = r * rankThreePartial j (V i)) ∧
+      rankThreePartial i (V i) + rankThreePartial k (V k) = 0 ∧
+      (let f := algebraMap (B K) (E K)
+       f (hessian L i i) + 2*r*f (hessian L i k) + r*r*f (hessian L k k) = 0) := by
+  classical
+  let J := rankThreeComplementJacobian l V
+  let f := algebraMap (B K) (E K)
+  let H := ((hessian L).submatrix l.succAbove l.succAbove).map f
+  let i := l.succAbove b
+  let k := l.succAbove c
+  let r := u c / u b
+  have hr : r * u b = u c := div_mul_cancel₀ _ hub
+  have hrow (j : Fin 3) : J c j = r * J b j := by
+    rw [hfac,hfac,← mul_assoc,hr]
+  have hsum (F : Fin 3 → E K) : ∑ j, F j = F a + F b + F c := by
+    have hu : (Finset.univ : Finset (Fin 3)) = {a,b,c} := by
+      ext j
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover j
+    rw [hu,Finset.sum_insert,Finset.sum_insert,Finset.sum_singleton]
+    · ring
+    · simp [hbc]
+    · simp [hab,hac]
+  have htrace : J b b + J c c = 0 := by
+    change (∑ j, v j * u j) = 0 at hdot
+    rw [hsum,hua,mul_zero,zero_add] at hdot
+    rw [hfac,hfac]
+    linear_combination hdot
+  obtain ⟨j,hj⟩ : ∃ j, v j ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    exact hv (funext hn)
+  have hjb : J b j ≠ 0 := by rw [hfac]; exact mul_ne_zero hub hj
+  have hja : J a j = 0 := by rw [hfac,hua,zero_mul]
+  have hiso := rankThree_velocity_column_isotropic H J hself hsq j
+  rw [hsum] at hiso
+  rw [hsum (fun q => J a j * H a q * J q j),
+      hsum (fun q => J b j * H b q * J q j),
+      hsum (fun q => J c j * H c q * J q j)] at hiso
+  simp only [hja,zero_mul,mul_zero,zero_add,add_zero] at hiso
+  rw [hrow j] at hiso
+  have hs : H c b = H b c := by
+    change f (hessian L k i) = f (hessian L i k)
+    rw [show hessian L k i = hessian L i k from pderiv_comm_backport _ _ _]
+  rw [hs] at hiso
+  refine ⟨r,?_,htrace,?_⟩
+  · intro q hq
+    obtain ⟨t,ht⟩ := Fin.exists_succAbove_eq hq
+    rw [← ht]
+    exact hrow t
+  · change H b b + 2*r*H b c + r*r*H c c = 0
+    apply (mul_eq_zero.mp (show J b j * J b j *
+      (H b b + 2*r*H b c + r*r*H c c) = 0 by
+      linear_combination hiso)).resolve_left (mul_ne_zero hjb hjb)
+
+/-- Regular active principal minor excluded on every orientation
+of the actual rank-one chart. -/
+theorem counterexample_rankThree_no_regularActive
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hnoninj : ¬ Function.Injective (mvGradientMap P))
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    rankTwoPrincipalPivot (hessian (initialForm w m P))
+      (l.succAbove (a.succAbove 0)) (l.succAbove (a.succAbove 1)) = 0 := by
+  classical
+  let L := initialForm w m P
+  let b := a.succAbove 0
+  let c := a.succAbove 1
+  have hba : b ≠ a := Fin.succAbove_ne _ _
+  have hca : c ≠ a := Fin.succAbove_ne _ _
+  have hbc : b ≠ c := by
+    intro he
+    exact (by decide : (0 : Fin 2) ≠ 1) (Fin.succAbove_right_injective he)
+  have hcover (j : Fin 3) : j = a ∨ j = b ∨ j = c := by
+    by_cases hj : j = a
+    · exact Or.inl hj
+    obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
+    have h : q = 0 ∨ q = 1 := by fin_cases q <;> simp
+    rcases h with h | h
+    · exact Or.inr (Or.inl (by rw [← hq,h]; rfl))
+    · exact Or.inr (Or.inr (by rw [← hq,h]; rfl))
+  obtain ⟨_,hself,u,v,hu,hv,hua,hfac,hdot,hsq⟩ :=
+    counterexample_rankThree_rankOne_frontier hJC2 P w m hw hm hcap hclock hopt hdet
+      hnoninj l a V hVl hVk hreg hV
+  by_contra hactive
+  have hclose (d e : Fin 3) (hda : d ≠ a) (hea : e ≠ a) (hde : d ≠ e)
+      (hcov : ∀ j : Fin 3, j = a ∨ j = d ∨ j = e)
+      (hud : u d ≠ 0)
+      (hp : rankTwoPrincipalPivot (hessian L) (l.succAbove d) (l.succAbove e) ≠ 0) :
+      False := by
+    let s := l.succAbove a
+    let i := l.succAbove d
+    let k := l.succAbove e
+    have his : i ≠ s := fun h => hda (Fin.succAbove_right_injective h)
+    have hks : k ≠ s := fun h => hea (Fin.succAbove_right_injective h)
+    have hik : i ≠ k := fun h => hde (Fin.succAbove_right_injective h)
+    have hcov4 (j : Fin 4) : j = s ∨ j = l ∨ j = i ∨ j = k := by
+      by_cases hj : j = l
+      · exact Or.inr (Or.inl hj)
+      obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
+      rcases hcov q with h | h | h
+      · exact Or.inl (by rw [← hq,h]; rfl)
+      · exact Or.inr (Or.inr (Or.inl (by rw [← hq,h]; rfl)))
+      · exact Or.inr (Or.inr (Or.inr (by rw [← hq,h]; rfl)))
+    obtain ⟨r,hrel,htrace,hiso⟩ := rankThree_rankOne_orientedSlope_data L l a d e
+      (Ne.symm hda) (Ne.symm hea) hde hcov V u v hud hua hv hfac hdot hsq hself
+    exact globalWeightOptimum_rankThree_rankOne_regularActive_oriented P w m hw hm hcap
+      hclock hopt hdet l s i k (Fin.succAbove_ne _ _) (Fin.succAbove_ne _ _)
+      (Fin.succAbove_ne _ _) his hks hik hcov4 V hVl hVk hreg hV hp hsq r hrel htrace hiso
+  by_cases hub : u b = 0
+  · have huc : u c ≠ 0 := by
+      intro hz
+      apply hu
+      funext j
+      rcases hcover j with h | h | h
+      · rw [h,hua]; rfl
+      · rw [h,hub]; rfl
+      · rw [h,hz]; rfl
+    apply hclose c b hca hba (Ne.symm hbc) _ huc
+    · intro j
+      rcases hcover j with h | h | h
+      · exact Or.inl h
+      · exact Or.inr (Or.inr h)
+      · exact Or.inr (Or.inl h)
+    · intro hz
+      apply hactive
+      unfold rankTwoPrincipalPivot at hz ⊢
+      change hessian L (l.succAbove b) (l.succAbove b) *
+        hessian L (l.succAbove c) (l.succAbove c) -
+        hessian L (l.succAbove b) (l.succAbove c) *
+          hessian L (l.succAbove c) (l.succAbove b) = 0
+      linear_combination hz
+  · exact hclose b c hba hca hbc hcover hub hactive
+
+
 end
 end HC4.Polynomial
 
@@ -3221,3 +3382,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
 
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_rankOne_regularActive_oriented
+
+#print axioms HC4.Polynomial.rankThree_rankOne_orientedSlope_data
+#print axioms HC4.Polynomial.counterexample_rankThree_no_regularActive
