@@ -907,3 +907,4 @@ import HC4.Polynomial.NonnegativeTerminalAssembly
 import HC4.Polynomial.WeightedFirstWall
 import HC4.Polynomial.WeightedFixedSourceDescent
 import HC4.Polynomial.WeightedLinearOrbit
+import HC4.Polynomial.RationalLinearProjection
