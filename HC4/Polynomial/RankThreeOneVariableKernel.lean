@@ -490,6 +490,192 @@ theorem rankThree_complement_selfAdjoint
   rw [hs]
 
 
+set_option maxHeartbeats 3000000 in
+/-- The normalized kernel's derivative along itself vanishes in
+the original four-variable fraction field. -/
+theorem rankThree_normalizedKernel_acceleration_zero
+    (L : B K) (l : Fin 4)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (V : Fin 4 → E K) (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    ∀ i, (∑ j : Fin 4, V j * rankThreePartial j (V i)) = 0 := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let z : Fin 4 → E K := fun i => f (X i)
+  let H := (hessian L).map f
+  let d : Fin 4 → Derivation K (E K) (E K) := fun i => rankThreePartial i
+  have hd (i : Fin 4) (q : B K) : d i (f q) = f (pderiv i q) :=
+    rankThreePartial_map i q
+  have hregH : H.adjugate l l ≠ 0 := by
+    intro hz
+    apply hreg
+    apply IsFractionRing.injective (B K) (E K)
+    change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
+    rw [← f.map_adjugate] at hz
+    simpa only [map_zero] using hz
+  have hker' (i : Fin 4) : ∑ j, H i j * V j = 0 := congrFun hV i
+  have hs (i j : Fin 4) : H i j = H j i := by
+    change f (pderiv j (pderiv i L)) = f (pderiv i (pderiv j L))
+    rw [pderiv_comm_backport]
+  have ht (i j a : Fin 4) : d a (H i j) = d i (H a j) := by
+    change d a (f (pderiv j (pderiv i L))) = d i (f (pderiv j (pderiv a L)))
+    rw [hd,hd,pderiv_comm_backport a j,pderiv_comm_backport i j,
+      pderiv_comm_backport a i]
+  let D : Derivation K (E K) (E K) := ∑ i, V i • d i
+  have hD (x : E K) : D x = ∑ i, V i * d i x := by
+    change Derivation.coeFnAddMonoidHom D x = _
+    simp only [D,map_sum,Finset.sum_apply,Derivation.coeFnAddMonoidHom_apply,
+      Derivation.smul_apply,smul_eq_mul]
+  let W : Fin 4 → E K := fun i => D (V i)
+  have hacc : H *ᵥ W = 0 := by
+    funext i
+    simp only [W,Matrix.mulVec,dotProduct,hD,Pi.zero_apply]
+    exact hessianKernel_acceleration d H V hs ht hker' i
+  have hWl : W l = 0 := by
+    change D (V l) = 0
+    rw [hVl, Derivation.map_one_eq_zero]
+  have hW : W = 0 := by
+    by_contra hn
+    exact hregH (adjugate_entry_zero_of_nonzero_kernel_coordinate_zero H W hacc hn l l hWl)
+  have hD0 (i : Fin 4) : D (V i) = 0 := congrFun hW i
+  intro i
+  exact (hD (V i)).symm.trans (hD0 i)
+
+set_option maxHeartbeats 3000000 in
+/-- Zero complementary differential closes the actual extremal
+chart, without assuming a separate regular two-minor. -/
+theorem globalWeightOptimum_rankThree_complementJacobian_ne_zero
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (l : Fin 4) (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (V : Fin 4 → E K) (hVl : V l = 1)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    rankThreeComplementJacobian l V ≠ 0 := by
+  classical
+  intro hJ
+  let L := initialForm w m P
+  have hother (i j : Fin 4) (hi : i ≠ l) : rankThreePartial i (V j) = 0 := by
+    by_cases hj : j = l
+    · rw [hj, hVl, Derivation.map_one_eq_zero]
+    · obtain ⟨a, ha⟩ : ∃ a : Fin 3, l.succAbove a = i := by
+        fin_cases l <;> fin_cases i <;> first | contradiction | decide
+      obtain ⟨b, hb⟩ : ∃ b : Fin 3, l.succAbove b = j := by
+        fin_cases l <;> fin_cases j <;> first | contradiction | decide
+      have he := congrArg (fun M : Matrix (Fin 3) (Fin 3) (E K) => M b a) hJ
+      change rankThreePartial (l.succAbove a) (V (l.succAbove b)) = 0 at he
+      rwa [ha, hb] at he
+  have hall (i j : Fin 4) : rankThreePartial i (V j) = 0 := by
+    by_cases hi : i = l
+    · subst i
+      have he := rankThree_normalizedKernel_acceleration_zero L l hreg V hVl hV j
+      rw [Fin.sum_eq_single l] at he
+      · rwa [hVl, one_mul] at he
+      · intro a _ ha
+        rw [hother a j ha, mul_zero]
+      · simp
+    · exact hother i j hi
+  have hc (j : Fin 4) : ∃ d : K, V j = algebraMap K (E K) d := by
+    apply rankOnePartial_constants
+    intro i
+    exact hall i j
+  choose d hd using hc
+  have hd0 : d ≠ 0 := by
+    intro hz
+    have hl := hd l
+    rw [hVl, hz] at hl
+    have hbad : (1 : E K) = 0 := by simpa using hl
+    exact one_ne_zero hbad
+  have hpoly : hessian L *ᵥ (fun i => MvPolynomial.C (d i)) = 0 := by
+    funext i
+    let f := algebraMap (B K) (E K)
+    apply IsFractionRing.injective (B K) (E K)
+    change f (∑ j : Fin 4, hessian L i j * MvPolynomial.C (d j)) = f 0
+    simp only [map_sum, map_mul, map_zero]
+    have hC (a : K) : f (MvPolynomial.C a) = algebraMap K (E K) a :=
+      (IsScalarTower.toAlgHom K (B K) (E K)).commutes a
+    simp only [hC, ← hd]
+    exact congrFun hV i
+  exact hd0 (globalWeightOptimum_no_constantHessianKernel P w m hw hm hcap
+    hclock hopt hdet d hpoly)
+
+section Matrix
+variable {F : Type*} [Field F]
+
+set_option maxHeartbeats 3000000 in
+/-- A regular symmetrizer of a rank-two nilpotent with a fixed zero
+row has zero principal cofactor at that row. In particular the
+actual active two-coordinate Hessian is singular. -/
+theorem rankThree_zeroRow_rankTwo_principalCofactor_zero
+    (H N : Matrix (Fin 3) (Fin 3) F) (a : Fin 3)
+    (hreg : H.det ≠ 0) (hself : N.transpose * H = H * N)
+    (h3 : N ^ 3 = 0) (ha : ∀ j, N a j = 0)
+    (hm : ∃ i j p q : Fin 3, N i p * N j q ≠ N i q * N j p) :
+    H.adjugate a a = 0 := by
+  classical
+  obtain ⟨hr, hs, _, hl, _⟩ := rankTwo_square_frontier N h3 hm
+  have he : ∃ i j : Fin 3, (N * N) i j ≠ 0 := by
+    by_contra hn
+    apply hs
+    apply Matrix.ext
+    intro i j
+    by_contra hz
+    exact hn ⟨i,j,hz⟩
+  obtain ⟨i,j,hij⟩ := he
+  let v : Fin 3 → F := fun b => (N * N) b j
+  have hv : v ≠ 0 := by
+    intro hz
+    exact hij (congrFun hz i)
+  have hNv : N *ᵥ v = 0 := by
+    funext b
+    exact congrArg (fun M : Matrix (Fin 3) (Fin 3) F => M b j) hl
+  have hva : v a = 0 := by
+    change (∑ b : Fin 3, N a b * N b j) = 0
+    simp [ha]
+  let e : Fin 3 → F := Pi.single a 1
+  have heN : e ᵥ* N = 0 := by
+    funext b
+    change (∑ k : Fin 3, (Pi.single a (1 : F) : Fin 3 → F) k * N k b) = 0
+    rw [Finset.sum_eq_single a]
+    · simp [ha]
+    · intro k _ hk
+      simp [Pi.single_eq_of_ne hk]
+    · simp
+  let z := H *ᵥ v
+  obtain ⟨hz, hzN⟩ := rankTwo_hessian_leftNormal H N hreg hself v hv hNv
+  have hp (b : Fin 3) : z b = z a * e b := by
+    have hh := rankTwo_leftKernel_minors_zero N hr z e hzN heN b a
+    have hea : e a = 1 := by simp [e]
+    rw [hea, mul_one] at hh
+    exact hh
+  have hza : z a ≠ 0 := by
+    intro h
+    apply hz
+    funext b
+    rw [hp b, h, zero_mul]
+    rfl
+  have hrepr : z = (Pi.single a (z a) : Fin 3 → F) := by
+    funext b
+    rw [hp b]
+    by_cases hb : b = a
+    · subst b
+      simp [e]
+    · simp [e, Pi.single_eq_of_ne hb]
+  have hh : H.adjugate *ᵥ z = H.det • v := by
+    change H.adjugate *ᵥ (H *ᵥ v) = H.det • v
+    rw [Matrix.mulVec_mulVec, Matrix.adjugate_mul, Matrix.smul_mulVec,
+      Matrix.one_mulVec]
+  rw [hrepr, Matrix.mulVec_single] at hh
+  have ha' := congrFun hh a
+  change H.adjugate a a * z a = H.det * v a at ha'
+  rw [hva, mul_zero] at ha'
+  exact (mul_eq_zero.mp ha').resolve_right hza
+
+end Matrix
+
+
 end
 end HC4.Polynomial
 
@@ -506,3 +692,7 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_complement_zeroRow
 #print axioms HC4.Polynomial.rankThree_complement_selfAdjoint
+
+#print axioms HC4.Polynomial.rankThree_normalizedKernel_acceleration_zero
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_complementJacobian_ne_zero
+#print axioms HC4.Polynomial.rankThree_zeroRow_rankTwo_principalCofactor_zero
