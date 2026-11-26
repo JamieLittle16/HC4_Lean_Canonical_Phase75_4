@@ -5493,7 +5493,8 @@ theorem rankThree_normalized_clearedPhase_impossible
   have hface : initialForm rankThreeWallSlope 0 L =
       MvPolynomial.C (c/d) * rankThreeWallPhase ^ n := by
     apply mul_left_cancel₀ (MvPolynomial.C_ne_zero.mpr hd)
-    rw [hproj,← mul_assoc,← map_mul,mul_div_cancel₀' _ hd]
+    have hcd : d * (c/d) = c := by field_simp
+    rw [hproj,← mul_assoc,← map_mul,hcd]
   have hcof := rankThree_normalPhase_cofactors n (by omega) (c/d) (div_ne_zero hc hd)
   apply rankThree_normalizedWall_impossible_of_top P (n : ℤ) (by exact_mod_cast hn)
     δ hδ hdet hcap
@@ -5509,6 +5510,139 @@ theorem rankThree_normalized_clearedPhase_impossible
   · change hessian (initialForm rankThreeWallSlope 0 L) 1 1 ≠ 0
     rw [hface]
     exact hcof.2
+
+
+/-- A polynomial killed by every passive partial only uses the
+omitted coordinate. Consequently evaluation in any K-algebra depends
+only on that coordinate. -/
+theorem rankThree_relativePolynomial_eval_congr
+    {S : Type*} [CommRing S] [Algebra K S]
+    (R : B K) (s : Fin 4)
+    (hr : ∀ j, j ≠ s → pderiv j R = 0)
+    (x y : Fin 4 → S) (hxy : x s = y s) :
+    MvPolynomial.aeval x R = MvPolynomial.aeval y R := by
+  change R.eval₂ (algebraMap K S) x = R.eval₂ (algebraMap K S) y
+  apply MvPolynomial.eval₂_congr
+  intro i u hi hu
+  by_cases hs : i = s
+  · simpa only [hs] using hxy
+  · exact ((Finsupp.mem_support_iff.mp hi)
+      (exponent_eq_zero_of_pderiv_eq_zero i R (hr i hs) u hu)).elim
+
+/-- Clear the scalar of the actual relative pure power as well as
+both phase ratios. The result is a polynomial identity in the
+original source coordinates. -/
+theorem rankThree_relativePower_clear
+    (L : B K) (s p i k : Fin 4) (hps : p ≠ s) (his : i ≠ s)
+    (hks : k ≠ s) (hip : i ≠ p) (hkp : k ≠ p) (hki : k ≠ i)
+    (hcover : ∀ j : Fin 4, j = s ∨ j = p ∨ j = i ∨ j = k)
+    (n : ℕ) (r : Fin 4 → E K) (c : E K)
+    (hrs : r s = 0) (hrp : r p = 1)
+    (hconst : ∀ j, j ≠ s → ∀ t, rankThreePartial j (r t) = 0)
+    (hc : ∀ j, j ≠ s → rankThreePartial j c = 0)
+    (hL : L ≠ 0)
+    (hpower : algebraMap (B K) (E K) L = c * rankThreeRelativeLinear r ^ n) :
+    ∃ q a b D N : B K, q ≠ 0 ∧ D ≠ 0 ∧ N ≠ 0 ∧
+      (∀ j, j ≠ s → pderiv j q = 0 ∧ pderiv j a = 0 ∧ pderiv j b = 0) ∧
+      (∀ j, j ≠ s → pderiv j D = 0 ∧ pderiv j N = 0) ∧
+      algebraMap (B K) (E K) q * r i = algebraMap (B K) (E K) a ∧
+      algebraMap (B K) (E K) q * r k = algebraMap (B K) (E K) b ∧
+      D * L = N * (q * X p + a * X i + b * X k)^n := by
+  classical
+  obtain ⟨q,a,b,hq,hrel,ha,hb⟩ := rankThree_relativePhase_clearDenominators s
+    (r i) (r k) (fun j hj => hconst j hj i) (fun j hj => hconst j hj k)
+  obtain ⟨e,d,hd,hder,hrep⟩ := rankThree_relativeFraction_polynomials s c hc
+  let f := algebraMap (B K) (E K)
+  have hcf : c ≠ 0 := by
+    intro hz
+    apply hL
+    apply IsFractionRing.injective (B K) (E K)
+    rw [hpower,hz,zero_mul,map_zero]
+  have he : e ≠ 0 := by
+    intro hz
+    rw [hz,map_zero] at hrep
+    have hdf : f d ≠ 0 := by
+      simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hd
+    exact (mul_ne_zero hdf hcf) hrep
+  have hlin : rankThreeRelativeLinear r =
+      f (X p) + r i * f (X i) + r k * f (X k) := by
+    unfold rankThreeRelativeLinear
+    have hset : (Finset.univ : Finset (Fin 4)) = {s,p,i,k} := by
+      ext j
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover j
+    rw [hset]
+    have hs' : s ∉ ({p,i,k} : Finset (Fin 4)) := by simp [Ne.symm hps,Ne.symm his,Ne.symm hks]
+    have hp' : p ∉ ({i,k} : Finset (Fin 4)) := by simp [Ne.symm hip,Ne.symm hkp]
+    have hi' : i ∉ ({k} : Finset (Fin 4)) := by simp [Ne.symm hki]
+    rw [Finset.sum_insert hs',Finset.sum_insert hp',Finset.sum_insert hi',
+      Finset.sum_singleton,hrs,hrp,zero_mul,one_mul,zero_add]
+    ring
+  have hphase : f q * rankThreeRelativeLinear r = f (q * X p + a * X i + b * X k) := by
+    rw [hlin,map_add,map_add,map_mul,map_mul,map_mul,← ha,← hb]
+    ring
+  refine ⟨q,a,b,d*q^n,e,hq,mul_ne_zero hd (pow_ne_zero _ hq),he,hrel,?_,ha,hb,?_⟩
+  · intro j hj
+    simp only [Derivation.leibniz,Derivation.leibniz_pow,smul_eq_mul,(hder j hj).1,
+      (hder j hj).2,(hrel j hj).1,smul_zero,mul_zero,add_zero] <;> trivial
+  · apply IsFractionRing.injective (B K) (E K)
+    change f ((d*q^n)*L) = f (e*(q*X p+a*X i+b*X k)^n)
+    simp only [map_mul,map_pow]
+    rw [hpower,← hrep,← hphase,mul_pow]
+    ring
+
+/-- An omitted-coordinate polynomial with known first nonzero
+Taylor coefficient has the corresponding exact signed leading
+component. This is a support statement, not a formal-series claim. -/
+theorem rankThree_relativePolynomial_slope
+    (R : B K) (k : ℕ) (c : K)
+    (hrel : ∀ j : Fin 4, j ≠ 0 → pderiv j R = 0)
+    (hsmall : ∀ j : ℕ, j < k → coeff (Finsupp.single (0 : Fin 4) j) R = 0)
+    (hk : coeff (Finsupp.single (0 : Fin 4) k) R = c) :
+    IsWeightLE rankThreeWallSlope (-(k : ℤ)) R ∧
+      initialForm rankThreeWallSlope (-(k : ℤ)) R = MvPolynomial.C c * X 0 ^ k := by
+  classical
+  have hmono (u : Fin 4 →₀ ℕ) (hu : coeff u R ≠ 0) :
+      u = Finsupp.single 0 (u 0) := by
+    ext j
+    by_cases hj : j = 0
+    · subst j
+      simp
+    · rw [Finsupp.single_eq_of_ne hj]
+      exact exponent_eq_zero_of_pderiv_eq_zero j R (hrel j hj) u hu
+  have hweight (j : ℕ) :
+      Finsupp.weight rankThreeWallSlope (Finsupp.single (0 : Fin 4) j) = -(j : ℤ) := by
+    rw [Finsupp.weight_single]
+    simp [rankThreeWallSlope,nsmul_eq_mul]
+  have hcap : IsWeightLE rankThreeWallSlope (-(k : ℤ)) R := by
+    intro u hu
+    have h := MvPolynomial.mem_support_iff.mp hu
+    have hmono' := hmono u h
+    have hge : k ≤ u 0 := by
+      by_contra hn
+      apply h
+      rw [hmono']
+      exact hsmall _ (by omega)
+    rw [hmono',hweight]
+    omega
+  refine ⟨hcap,?_⟩
+  rw [MvPolynomial.C_mul_X_pow_eq_monomial]
+  ext u
+  rw [coeff_initialForm,coeff_monomial]
+  by_cases hu : u = Finsupp.single (0 : Fin 4) k
+  · subst u
+    simp [hweight,hk]
+  · have hz : Finsupp.weight rankThreeWallSlope u = -(k : ℤ) → coeff u R = 0 := by
+      intro hw
+      by_contra hn
+      have h := hmono u hn
+      have he := hw
+      rw [h,hweight] at he
+      have he' : u 0 = k := by omega
+      exact hu (by rwa [he'] at h)
+    by_cases hw : Finsupp.weight rankThreeWallSlope u = -(k : ℤ)
+    · simp [hw,hz hw,hu,Ne.symm hu]
+    · simp [hw,hu,Ne.symm hu]
 
 
 end
@@ -5653,3 +5787,7 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_regularFactor_cancelCap
 #print axioms HC4.Polynomial.rankThree_zeroSlope_pow
 #print axioms HC4.Polynomial.rankThree_normalized_clearedPhase_impossible
+
+#print axioms HC4.Polynomial.rankThree_relativePolynomial_eval_congr
+#print axioms HC4.Polynomial.rankThree_relativePower_clear
+#print axioms HC4.Polynomial.rankThree_relativePolynomial_slope
