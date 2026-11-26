@@ -1,3 +1,4 @@
+import HC4.Compat.MvPolynomial
 import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
 
 /-!

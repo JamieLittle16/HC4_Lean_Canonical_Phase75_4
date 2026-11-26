@@ -136,6 +136,7 @@ theorem finFour_eq_C_of_all_pderiv_eq_zero
       intro i
       fin_cases i <;>
         simp [hm0, hm1, hm2, hm3]
+    change AddMonoidAlgebra.coeff P m = 0 at hmcoeff
     rw [hmcoeff]
     have h0m :
         (0 : Fin 4 →₀ ℕ) ≠ m := by

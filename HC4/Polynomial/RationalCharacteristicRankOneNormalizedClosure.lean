@@ -115,7 +115,8 @@ private theorem rankOne_coeff_euler
   | add p q hp hq =>
     have ha : transverseEuler (p + q) = transverseEuler p + transverseEuler q := by
       simp [transverseEuler, map_add, mul_add, Finset.sum_add_distrib]
-    rw [ha, MvPolynomial.coeff_add, hp, hq, MvPolynomial.coeff_add]
+    rw [ha]
+    simp only [MvPolynomial.coeff_add, hp, hq]
     ring
   | monomial d a =>
     have hh : (MvPolynomial.monomial d a : B K).IsHomogeneous d.degree :=
@@ -123,7 +124,9 @@ private theorem rankOne_coeff_euler
     have he := hh.sum_X_mul_pderiv
     change transverseEuler (MvPolynomial.monomial d a : B K) =
       d.degree • MvPolynomial.monomial d a at he
-    rw [he, MvPolynomial.coeff_smul, nsmul_eq_mul]
+    rw [he]
+    simp only [MvPolynomial.coeff_smul]
+    rw [nsmul_eq_mul]
     by_cases h : m = d
     · subst m
       simp [MvPolynomial.coeff_monomial]
@@ -139,7 +142,8 @@ theorem rankOne_chartCoeff_euler_sub
   intro n
   simp only [_root_.Polynomial.coeff_C_mul, rankOne_chartCoeff_coeff]
   by_cases hn : n ≤ j
-  · rw [if_pos hn, if_pos hn, MvPolynomial.coeff_sub, rankOne_coeff_euler]
+  · rw [if_pos hn, if_pos hn]
+    simp only [MvPolynomial.coeff_sub, rankOne_coeff_euler]
     have hd : (rankOne_chartExponent n j l).degree = j + l := by
       rw [Finsupp.degree_eq_sum, Fin.sum_univ_three]
       simp [rankOne_chartExponent]

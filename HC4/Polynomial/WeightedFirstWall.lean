@@ -117,7 +117,7 @@ theorem exists_weighted_firstWall_or_zeroClock
       nlinarith
   have hold : initialForm w m (initialForm w' m' P) = initialForm w m P := by
     ext u
-    rw [coeff_initialForm, coeff_initialForm, coeff_initialForm]
+    simp only [coeff_initialForm]
     by_cases hu : Finsupp.weight w u = m
     · rw [if_pos hu, if_pos hu]
       by_cases hz : coeff u P = 0
@@ -237,7 +237,7 @@ theorem exists_signedWeight_firstWall_or_zeroClock
       nlinarith
   have hold : initialForm w m (initialForm w' m' P) = initialForm w m P := by
     ext u
-    rw [coeff_initialForm, coeff_initialForm, coeff_initialForm]
+    simp only [coeff_initialForm]
     by_cases hu : Finsupp.weight w u = m
     · rw [if_pos hu, if_pos hu]
       by_cases hz : coeff u P = 0

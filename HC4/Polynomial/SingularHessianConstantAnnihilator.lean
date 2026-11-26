@@ -106,7 +106,7 @@ theorem singularHessian_exists_constant_adjugate_annihilator
     have hh := congrArg (rename e : S K →ₐ[K] S K) h
     change rename e (rename e.symm p) = rename e (rename e.symm q) at hh
     have hid : (fun i : I => e (e.symm i)) = id := funext e.apply_symm_apply
-    simpa only [rename_rename, Function.comp_def, hid, rename_id] using hh
+    simpa only [rename_rename, Function.comp_def, hid, rename_id, AlgHom.id_apply] using hh
   have hH : hessian L' = (H.submatrix e e).map f.toRingHom :=
     singularHessian_rename e L
   have hd' : (hessian L').det = 0 := by

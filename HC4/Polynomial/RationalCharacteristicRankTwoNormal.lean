@@ -34,10 +34,11 @@ theorem rankTwo_leftKernel_minors_zero
   have hM : M * N = 0 := by
     apply Matrix.ext
     intro i j
+    change (∑ k, M i k * N k j) = 0
     fin_cases i
-    · simpa [M, Matrix.mul_apply, Matrix.vecMul, dotProduct] using congrFun hb j
-    · simpa [M, Matrix.mul_apply, Matrix.vecMul, dotProduct] using congrFun hc j
-    · simp [M, Matrix.mul_apply]
+    · simpa [M, Matrix.vecMul, dotProduct] using congrFun hb j
+    · simpa [M, Matrix.vecMul, dotProduct] using congrFun hc j
+    · simp [M]
   have hsmall := Matrix.rank_add_rank_le_card_of_mul_eq_zero hM
   rw [Fintype.card_fin] at hsmall
   intro i j

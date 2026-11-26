@@ -41,8 +41,9 @@ theorem twoZero_strictWeight_dependsOnly
   have h := hQ (MvPolynomial.mem_support_iff.mpr hu)
   rw [twoZero_weight_formula] at h
   have hn : (u 2 : ℤ) + (u 3 : ℤ) < 1 := by
-    apply (mul_lt_mul_right hd).mp
-    simpa only [one_mul] using h
+    by_contra! hn
+    have hnonneg := mul_nonneg (sub_nonneg.mpr hn) hd.le
+    nlinarith only [h, hnonneg]
   constructor <;> omega
 
 /-- All evaluations of a base-supported polynomial coincide at

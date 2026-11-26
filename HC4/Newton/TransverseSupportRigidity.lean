@@ -1,3 +1,4 @@
+import HC4.Compat.MvPolynomial
 import HC4.Newton.FixedKernelHessian
 import Mathlib.Tactic
 

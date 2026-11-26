@@ -39,8 +39,7 @@ theorem extremal_eq_C_of_all_pderiv_zero
       apply hu
       ext i
       exact exponent_eq_zero_of_pderiv_eq_zero i f (hf i) u hn
-    rw [hz, MvPolynomial.coeff_C]
-    simp [Ne.symm hu]
+    simp [hz, MvPolynomial.coeff_C, Ne.symm hu]
 
 def extremalDirectionalDerivative (d : Fin 4 → K) (L : MvPolynomial (Fin 4) K) :
     MvPolynomial (Fin 4) K :=

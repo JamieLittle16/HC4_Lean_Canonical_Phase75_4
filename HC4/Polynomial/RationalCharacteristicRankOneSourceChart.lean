@@ -125,7 +125,7 @@ theorem rankOne_source_hessian_zero_of_chartRecurrence
   have hz : f.coeff d = 0 :=
     rankOne_source_coeff_zero_of_chartRecurrence f U0 U1 U2 hU hind hrec d hsum
   dsimp [d] at hz
-  rw [hz, zero_mul, zero_mul]
+  rw [hz, zero_mul, zero_mul] <;> rfl
 
 /-- A regular source Hessian is incompatible with the chart
 recurrence and an independent parameter derivative vector. -/

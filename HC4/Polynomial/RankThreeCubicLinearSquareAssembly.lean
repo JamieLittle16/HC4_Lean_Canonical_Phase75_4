@@ -110,7 +110,9 @@ theorem exists_source_square_of_nonzero_linear_characteristic
     have he := congrArg Matrix.det (reference_hessian_eq_mapped_transverse a L)
     have he' : referenceSlice a
         ((hessian L).submatrix Sum.inr Sum.inr).det = H.det := by
-      simpa only [← RingHom.map_det] using he
+      simpa only [← RingHom.map_det,
+        AlgHom.toRingHom_eq_coe, AlgHom.coe_toRingHom,
+        H, q] using he
     exact he' ▸ hreg
   have hH : H.transpose = H := by
     ext i j

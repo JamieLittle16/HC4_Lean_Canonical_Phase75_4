@@ -51,7 +51,8 @@ theorem coeff_binaryDirectionalDeriv
               (m + Finsupp.single j 1) F *
             ((m j + 1 : ℕ) : K)) := by
   classical
-  simp [binaryDirectionalDeriv, coeff_pderiv_backport]
+  simp [MvPolynomial.coeff, binaryDirectionalDeriv,
+    MvPolynomial.coeff_pderiv]
 
 /-- **Directional coefficient recurrence.**
 Vanishing of the fixed directional derivative imposes the adjacent
@@ -73,7 +74,7 @@ theorem directionalCoefficient_recurrence
   have hcoeff :=
     congrArg (MvPolynomial.coeff m) hdir
   rw [coeff_binaryDirectionalDeriv] at hcoeff
-  simpa using hcoeff
+  simpa [MvPolynomial.coeff] using hcoeff
 
 /-- The same recurrence with the natural-number multiplicities moved next
 to the direction scalars.  This is often the convenient form for solving

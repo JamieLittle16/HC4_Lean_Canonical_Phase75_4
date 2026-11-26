@@ -27,7 +27,29 @@ theorem ternary_kernelDiagonal_firstJet (a b c : R) (E : Matrix (Fin 3) (Fin 3) 
         Matrix (Fin 3) (Fin 3) R) i j, E i j)) :
           Matrix (Fin 3) (Fin 3) (DualNumber R)).det =
         (a * c - b ^ 2) * E 2 2 := by
-  simp [Matrix.det_fin_three]
+  let M : Matrix (Fin 3) (Fin 3) (DualNumber R) :=
+    Matrix.of (fun i j => ((!![a, b, 0; b, c, 0; 0, 0, 0] :
+      Matrix (Fin 3) (Fin 3) R) i j, E i j))
+  change TrivSqZeroExt.snd M.det = _
+  have h00 : M 0 0 = (a, E 0 0) := rfl
+  have h01 : M 0 1 = (b, E 0 1) := rfl
+  have h02 : M 0 2 = (0, E 0 2) := rfl
+  have h10 : M 1 0 = (b, E 1 0) := rfl
+  have h11 : M 1 1 = (c, E 1 1) := rfl
+  have h12 : M 1 2 = (0, E 1 2) := rfl
+  have h20 : M 2 0 = (0, E 2 0) := rfl
+  have h21 : M 2 1 = (0, E 2 1) := rfl
+  have h22 : M 2 2 = (0, E 2 2) := rfl
+  simp only [Matrix.det_fin_three,
+    h00, h01, h02, h10, h11, h12, h20, h21, h22]
+  change
+    (a * c * E 2 2 + (a * E 1 1 + E 0 0 * c) * 0) -
+    (a * 0 * E 2 1 + (a * E 1 2 + E 0 0 * 0) * 0) -
+    (b * b * E 2 2 + (b * E 1 0 + E 0 1 * b) * 0) +
+    (b * 0 * E 2 0 + (b * E 1 2 + E 0 1 * 0) * 0) +
+    (0 * b * E 2 1 + (0 * E 1 0 + E 0 2 * b) * 0) -
+    (0 * c * E 2 0 + (0 * E 1 1 + E 0 2 * c) * 0) =
+    (a * c - b ^ 2) * E 2 2
   ring
 
 /-- If a ternary cubic is affine in its last variable, the linear

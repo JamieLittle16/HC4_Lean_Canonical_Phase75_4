@@ -35,7 +35,7 @@ theorem rankOne_ordinaryInitial_eq_component (L : S K) (n : ℕ) :
     initialForm (fun _ : Fin 4 => (1 : ℤ)) (n : ℤ) L =
       MvPolynomial.homogeneousComponent n L := by
   ext u
-  rw [coeff_initialForm, coeff_homogeneousComponent, weight_allOnes_eq_degree]
+  simp only [coeff_initialForm, coeff_homogeneousComponent, weight_allOnes_eq_degree]
   change (if ((u.degree : ℕ) : ℤ) = (n : ℤ) then coeff u L else 0) =
       (if u.degree = n then coeff u L else 0)
   simp
@@ -52,7 +52,7 @@ theorem rankOne_top_ne_zero (L : S K) (hD : 0 < L.totalDegree) :
     have hne : u.degree ≠ L.totalDegree := by
       intro he
       have hc := congrArg (coeff u) hz
-      rw [coeff_homogeneousComponent, if_pos he, coeff_zero] at hc
+      simp only [coeff_homogeneousComponent, he, ite_true] at hc
       exact (mem_support_iff.mp hu) hc
     change u.sum (fun _ e => e) ≠ L.totalDegree at hne
     omega
@@ -74,7 +74,9 @@ theorem rankOne_homogeneous_axis_zero
       have hcoef := mem_support_iff.mp hu
       have hdeg : u.degree = n := by
         have he := hF hcoef
-        simpa only [Finsupp.degree_eq_weight_one] using he
+        change Finsupp.weight (fun _ : Fin 4 => (1 : ℕ)) u = n at he
+        rw [Finsupp.degree_eq_weight_one]
+        exact he
       have hex : ∃ j ∈ u.support, j ≠ k := by
         by_contra hn
         push_neg at hn
@@ -90,7 +92,8 @@ theorem rankOne_homogeneous_axis_zero
         have hk : u k = n := by
           rw [he, Finsupp.degree_single] at hdeg
           exact hdeg
-        exact hcoef (by rw [he, hk, h])
+        have hu' := he.trans (congrArg (Finsupp.single k) hk)
+        exact hcoef ((congrArg (fun v => coeff v F) hu').trans h)
       obtain ⟨j,hj,hjk⟩ := hex
       rw [MvPolynomial.eval_monomial]
       unfold Finsupp.prod
@@ -121,7 +124,8 @@ theorem rankOne_exists_purePower_chart (L : S K) (hD : 0 < L.totalDegree) :
     apply hd
     rw [he, MvPolynomial.eval_zero, MvPolynomial.constantCoeff_eq]
     change coeff 0 (homogeneousComponent D L) = 0
-    rw [coeff_homogeneousComponent, Finsupp.degree_zero, if_neg (by omega)]
+    simp only [coeff_homogeneousComponent, map_zero,
+      if_neg (show 0 ≠ D from (Nat.ne_of_gt hD).symm)]
   have hdk : ∃ k, d k ≠ 0 := by
     by_contra hn
     push_neg at hn
@@ -151,7 +155,7 @@ theorem rankOne_exists_purePower_chart (L : S K) (hD : 0 < L.totalDegree) :
   intro hc
   have hcG : coeff (Finsupp.single k D) G = 0 := by
     change coeff _ (homogeneousComponent D Q) = 0
-    rw [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl]
+    simp only [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl, ite_true]
     exact hc
   have he := rankOne_homogeneous_axis_zero G D hG k (d k) hcG
   rw [hGF, weightedLinearSubstitution_eval, hMd] at he
@@ -310,7 +314,7 @@ private theorem rankOne_kernel_of_purePivot
   classical
   have hA0 : hessian Q k k ≠ 0 := by
     intro hz
-    exact hA (by rw [hz,coeff_zero])
+    exact hA (by rw [hz] <;> rfl)
   obtain ⟨l,hl⟩ : ∃ l : Fin 4, l ≠ k := exists_ne k
   have hminor : hessian Q k k * hessian Q l l = (hessian Q k l)^2 := by
     have he := hR l l

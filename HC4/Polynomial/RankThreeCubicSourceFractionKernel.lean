@@ -125,7 +125,9 @@ theorem sourceTransverseHessian_det_ne_zero_of_generic
   have hdet : f ((sourceTransverseHessian a L).det) =
       e (((hessian L).submatrix Sum.inr Sum.inr).det) := by
     have h := congrArg Matrix.det hMat
-    simpa only [← RingHom.map_det] using h
+    simpa only [← RingHom.map_det,
+      AlgHom.toRingHom_eq_coe,
+      AlgHom.coe_toRingHom] using h
   intro hz
   apply hreg
   rw [hz, map_zero] at hdet

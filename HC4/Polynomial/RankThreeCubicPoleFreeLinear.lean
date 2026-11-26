@@ -53,7 +53,10 @@ private theorem coeff_transverseEuler (p : B K) (m : Fin 3 →₀ ℕ) :
   classical
   induction p using MvPolynomial.induction_on' with
   | add p q hp hq =>
-      rw [transverseEuler_add, coeff_add, hp, hq, coeff_add]
+      have hadd (f g : B K) :
+          coeff m (f + g) = coeff m f + coeff m g := by
+        simp [MvPolynomial.coeff]
+      rw [transverseEuler_add, hadd, hp, hq, hadd]
       ring
   | monomial d a =>
       have hh : (MvPolynomial.monomial d a : B K).IsHomogeneous d.degree :=
@@ -61,7 +64,10 @@ private theorem coeff_transverseEuler (p : B K) (m : Fin 3 →₀ ℕ) :
       have he := hh.sum_X_mul_pderiv
       change transverseEuler (MvPolynomial.monomial d a : B K) =
         d.degree • MvPolynomial.monomial d a at he
-      rw [he, MvPolynomial.coeff_smul, nsmul_eq_mul]
+      have hsmul (k : ℕ) (f : B K) :
+          coeff m (k • f) = k • coeff m f := by
+        exact MvPolynomial.coeff_smul m k f
+      rw [he, hsmul, nsmul_eq_mul]
       by_cases h : m = d
       · subst m
         simp [MvPolynomial.coeff_monomial]
@@ -75,12 +81,16 @@ theorem isHomogeneous_of_transverseEuler_eq_nsmul
     p.IsHomogeneous n := by
   intro m hm
   have hc := coeff_transverseEuler p m
-  rw [hp, MvPolynomial.coeff_smul, nsmul_eq_mul] at hc
+  have hsmul :
+      coeff m (n • p) = n • coeff m p :=
+    MvPolynomial.coeff_smul m n p
+  rw [hp, hsmul, nsmul_eq_mul] at hc
   have hz : ((m.degree : K) - (n : K)) * coeff m p = 0 := by
     linear_combination -hc
   have hdeg : (m.degree : K) = (n : K) :=
     sub_eq_zero.mp ((mul_eq_zero.mp hz).resolve_right hm)
   have hn : m.degree = n := by exact_mod_cast hdeg
+  change Finsupp.weight (fun _ : Fin 3 => (1 : ℕ)) m = n
   simpa only [Finsupp.degree_eq_weight_one] using hn
 
 /-- Conversely to Euler's homogeneous identity, Euler(f)=f makes
@@ -96,6 +106,7 @@ theorem isHomogeneous_one_of_transverseEuler_eq_self
   have hdeg : (m.degree : K) = 1 :=
     sub_eq_zero.mp ((mul_eq_zero.mp hz).resolve_right hm)
   have hn : m.degree = 1 := by exact_mod_cast hdeg
+  change Finsupp.weight (fun _ : Fin 3 => (1 : ℕ)) m = 1
   simpa only [Finsupp.degree_eq_weight_one] using hn
 
 /-- If q and r are homogeneous of degrees 3 and 4 and q ≠ 0,

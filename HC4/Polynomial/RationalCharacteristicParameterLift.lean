@@ -103,7 +103,7 @@ theorem rationalParameter_linear_dvd_of_eval_zero
     ring
   have hd : L ∣ F.primPart :=
     hprim.dvd_of_fraction_map_dvd_fraction_map
-      (_root_.Polynomial.isPrimitive_primPart F) hdvd
+      hdvd
   exact (hprim.dvd_primPart_iff_dvd hf).mp hd
 
 /-- A nonzero multiple of a reduced linear parameter polynomial has

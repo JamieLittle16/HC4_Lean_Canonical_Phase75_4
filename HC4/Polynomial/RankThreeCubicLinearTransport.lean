@@ -142,8 +142,10 @@ theorem transverseHessian_transport_of_linear_gradient
   have e := congrArg (coeffDeriv (pderiv j : Derivation K B B)) (hgrad i)
   rw [coeffDeriv_C, referenceSlice_pderiv, hE, derivation_aeval] at e
   simp only [Fintype.sum_sum_type, hc, mul_zero, Finset.sum_const_zero, zero_add, ht] at e
-  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.submatrix_apply,
-    hessian_apply, hE, J] using e
+  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply,
+    Matrix.map_apply, Matrix.submatrix_apply,
+    hessian_apply, hE, J, AlgHom.toRingHom_eq_coe,
+    AlgHom.coe_toRingHom] using e
 
 /-- The transverse Jacobian of a linear characteristic has constant
 determinant one, even before choosing Jordan coordinates. -/

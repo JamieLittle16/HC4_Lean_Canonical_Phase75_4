@@ -130,8 +130,8 @@ theorem rationalAffine_substitution_hessian_det_ne_zero
   have hS : ((hessian f).map (rationalAffine_substitution M c).toRingHom).det ≠ 0 := by
     change ((rationalAffine_substitution M c).toRingHom.mapMatrix (hessian f)).det ≠ 0
     rw [← RingHom.map_det]
-    have h := (rationalAffine_substitution_injective M c hM).ne hf
-    simpa only [map_zero] using h
+    change rationalAffine_substitution M c (hessian f).det ≠ 0
+    simpa only [map_zero] using (rationalAffine_substitution_injective M c hM).ne hf
   exact mul_ne_zero (mul_ne_zero hC hS) hC
 
 end

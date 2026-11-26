@@ -99,7 +99,7 @@ theorem preterminal_secondDerivative_zero
       congrArg
         (MvPolynomial.coeff (0 : σ →₀ ℕ))
         hC
-    simpa using hcoeff
+    simpa [MvPolynomial.coeff] using hcoeff
   exact
     (mul_eq_zero.mp hsource).resolve_left hCb
 

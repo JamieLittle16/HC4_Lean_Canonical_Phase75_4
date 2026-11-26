@@ -164,7 +164,7 @@ theorem rankOne_exists_constant_leftKernel_of_derivative_factor
   let Nt := Pe * Ne * Me
   let σ := φ (s / e q)
   have hσ : σ ≠ 0 := by
-    change φ (s / e q) ≠ 0
+    change φ.toRingHom (s / e q) ≠ 0
     simpa only [map_zero] using φ.toRingHom.injective.ne (div_ne_zero hs hqf)
   have hd (j : Fin 3) :
       rationalCharacteristicPartial j t = (g (A j) - t * g (D j)) / e q := by

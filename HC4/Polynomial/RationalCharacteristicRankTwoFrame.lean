@@ -92,13 +92,14 @@ theorem rankTwo_exists_jordanFrame
     Matrix.nonsing_inv_mul M hdet, ?_⟩
   apply Matrix.ext
   intro k l
+  change (∑ a, N k a * M a l) = ∑ a, M k a * rankTwo_jordanBlock a l
   fin_cases l
   · have hz := congrFun hNw k
-    simpa [M, rankTwo_jordanBlock, Matrix.mul_apply, Fin.sum_univ_three,
+    simpa [M, rankTwo_jordanBlock, Fin.sum_univ_three,
       Matrix.vecMul, Matrix.mulVec, dotProduct] using hz
-  · simp [M, rankTwo_jordanBlock, Matrix.mul_apply, Fin.sum_univ_three,
+  · simp [M, rankTwo_jordanBlock, Fin.sum_univ_three,
       Matrix.vecMul, Matrix.mulVec, dotProduct, w]
-  · simp [M, rankTwo_jordanBlock, Matrix.mul_apply, Fin.sum_univ_three,
+  · simp [M, rankTwo_jordanBlock, Fin.sum_univ_three,
       Matrix.vecMul, Matrix.mulVec, dotProduct, v]
 
 end Frame

@@ -108,8 +108,10 @@ theorem transverseHessian_transport_of_rational_gradient
     coeffDeriv (D j) (_root_.Polynomial.C (MvPolynomial.aeval z (pderiv (.inr i) L))) at e
   rw [coeffDeriv_C, hbase, hE, derivation_aeval] at e
   simp only [Fintype.sum_sum_type, hc, mul_zero, Finset.sum_const_zero, zero_add, ht] at e
-  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
-    Matrix.submatrix_apply, hessian_apply, hE, J] using e
+  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply,
+    Matrix.map_apply, Matrix.submatrix_apply, hessian_apply,
+    AlgHom.toRingHom_eq_coe, AlgHom.coe_toRingHom,
+    ← hE, J, z] using e
 
 /-- The velocity Jacobian pencil has determinant one over the fraction
 field, even when the velocity has poles. -/

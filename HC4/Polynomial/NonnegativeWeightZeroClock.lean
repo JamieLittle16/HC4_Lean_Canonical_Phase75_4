@@ -52,7 +52,7 @@ theorem eq_zero_of_nonnegativeWeight_negative_cap
     (q : MvPolynomial σ K) (hq : IsWeightLE w s q) : q = 0 := by
   classical
   ext u
-  rw [coeff_zero]
+  change coeff u q = 0
   by_contra hu
   have he := hq (MvPolynomial.mem_support_iff.mpr hu)
   have hn := nonnegativeWeight_nonneg w hw u

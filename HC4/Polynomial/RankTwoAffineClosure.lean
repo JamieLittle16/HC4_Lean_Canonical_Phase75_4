@@ -43,7 +43,7 @@ theorem rankTwo_exists_purePower_chart_fixed
   obtain ⟨d,hd⟩ := hex
   have haxis : coeff (Finsupp.single k D) G = 0 := by
     change coeff _ (homogeneousComponent D F) = 0
-    rw [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl]
+    simp only [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl, ite_true]
     by_contra hn
     have hz := exponent_eq_zero_of_pderiv_eq_zero k F hF _ hn
     simp only [Finsupp.single_eq_same] at hz
@@ -87,7 +87,7 @@ theorem rankTwo_exists_purePower_chart_fixed
   · intro hc
     have hcJ : coeff (Finsupp.single p D) J = 0 := by
       change coeff _ (homogeneousComponent D Q) = 0
-      rw [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl]
+      simp only [coeff_homogeneousComponent, Finsupp.degree_single, if_pos rfl, ite_true]
       exact hc
     have he := rankOne_homogeneous_axis_zero J D hJ p (d p) hcJ
     rw [hJG, weightedLinearSubstitution_eval, hMd] at he
@@ -160,7 +160,7 @@ theorem rankTwo_affine_exists_constantRatio_chart
       simpa [Finsupp.single_apply] using hh
   have hA0 : pderiv p G ≠ 0 := by
     intro hz
-    exact hA (by rw [hz,coeff_zero])
+    exact hA (by rw [hz] <;> rfl)
   have hdeg (i : Fin 4) : (pderiv i G).totalDegree ≤ n :=
     rankTwo_partial_degree_le G F.totalDegree hD (weightedLinearSubstitution_totalDegree_le M F) i
   have hflat := rankTwo_affine_gradient_flatLevel_in_chart L M k hL hkkQ

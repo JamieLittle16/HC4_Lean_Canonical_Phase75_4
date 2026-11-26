@@ -129,8 +129,9 @@ theorem cubic_rankOneCramer_Jacobi_zero
   have hmap : B = H.adjugate.map q := by
     exact (q.map_adjugate H).symm
   have hMdet : M.det = 0 := by
-    change (H.map q).det = 0
-    simpa only [RingHom.map_det] using hdetzero
+    change (q.mapMatrix H).det = 0
+    rw [← RingHom.map_det]
+    exact hdetzero
   have hMsymm : M.IsSymm := by
     apply Matrix.IsSymm.ext
     intro i j

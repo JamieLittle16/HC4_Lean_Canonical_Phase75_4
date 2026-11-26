@@ -97,7 +97,7 @@ theorem singularHessian_fin4_exists_constant_adjugate_annihilator
     have he := congrArg (rename e : MvPolynomial I K →ₐ[K] S K) h
     change rename e (rename e.symm p) = rename e (rename e.symm q) at he
     have hid : (fun i : Fin 4 => e (e.symm i)) = id := funext e.apply_symm_apply
-    simpa only [rename_rename,Function.comp_def,hid,rename_id] using he
+    simpa only [rename_rename,Function.comp_def, hid, rename_id, AlgHom.id_apply] using he
   have hQ : hessian Q = (A.submatrix e e).map f.toRingHom := by
     apply Matrix.ext
     intro i j

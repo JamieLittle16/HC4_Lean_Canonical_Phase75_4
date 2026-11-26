@@ -31,11 +31,23 @@ private def polynomialDualJet (d : Derivation K B B) : B →+* DualNumber F wher
   toFun x := (algebraMap B F x, algebraMap B F (d x))
   map_zero' := by ext <;> simp
   map_one' := by ext <;> simp
-  map_add' x y := by ext <;> simp
+  map_add' x y := by
+    ext
+    · change algebraMap B F (x + y) =
+        algebraMap B F x + algebraMap B F y
+      simp
+    · change algebraMap B F (d (x + y)) =
+        algebraMap B F (d x) + algebraMap B F (d y)
+      simp
   map_mul' x y := by
     ext
-    · simp
-    · simp [Derivation.leibniz, smul_eq_mul, mul_comm]
+    · change algebraMap B F (x * y) =
+        algebraMap B F x * algebraMap B F y
+      simp
+    · change algebraMap B F (d (x * y)) =
+        algebraMap B F x * algebraMap B F (d y) +
+          algebraMap B F (d x) * algebraMap B F y
+      simp [Derivation.leibniz, smul_eq_mul, mul_comm]
 
 variable (M : Submonoid B) [IsLocalization M F]
 
@@ -71,8 +83,17 @@ def localizationDerivation (d : Derivation K B B) : Derivation K F F where
     have h : localizationDualJet M d (algebraMap K F k) =
         (algebraMap K F k, 0) := by
       rw [IsScalarTower.algebraMap_apply K B F, localizationDualJet_algebraMap]
-      simp [polynomialDualJet, Derivation.map_algebraMap]
-    simp [Algebra.smul_def, h]
+      change
+        (algebraMap B F (algebraMap K B k),
+          algebraMap B F (d (algebraMap K B k))) =
+        (algebraMap B F (algebraMap K B k), 0)
+      simp [Derivation.map_algebraMap]
+    simp only [Algebra.smul_def, map_mul, h]
+    change
+      algebraMap K F k * (localizationDualJet M d x).snd +
+        0 * (localizationDualJet M d x).fst =
+      algebraMap K F k * (localizationDualJet M d x).snd
+    simp
   map_one_eq_zero' := by simp
   leibniz' x y := by
     simp [smul_eq_mul, localizationDualJet_fst, mul_comm]

@@ -86,7 +86,7 @@ theorem rankOne_normalizedParameter_eval_zero
   have hc := congrArg (rankOne_bivariateChart (K := K)) hz
   rw [rankOne_bivariateChartTime_parameter, map_zero] at hc
   have hcoeff := congrArg (MvPolynomial.coeff (0 : Fin 2 →₀ ℕ)) hc
-  simpa using hcoeff
+  simpa [MvPolynomial.coeff] using hcoeff
 
 /-- Cube-zero supplies the polynomial trace relation after clearing
 a common nonzero scalar from the normalized factorization. -/

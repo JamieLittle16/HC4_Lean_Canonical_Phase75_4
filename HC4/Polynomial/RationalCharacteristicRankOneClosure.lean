@@ -1,11 +1,11 @@
 import HC4.Polynomial.RationalCharacteristicRankOneLurothBridge
-import HC4.Backport.RatFuncLuroth
+import Mathlib.FieldTheory.RatFunc.Luroth
 
 /-!
 # Unconditional rank-at-most-one rational characteristic closure
 
 Discharge the sole simple-generation premise in the verified rank-one
-bridge by the vendored, kernel-checked univariate Lüroth theorem.
+bridge by the Mathlib's kernel-checked univariate Lüroth theorem.
 No extra field-generation or transverse degree assumptions are needed.
 -/
 

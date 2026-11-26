@@ -28,31 +28,13 @@ private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
 private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
 
 /-- Coefficient formula for multivariate partial differentiation,
-backported explicitly for the repository's Mathlib v4.24.0 pin. -/
+using the upstream Mathlib coefficient theorem. -/
 private theorem coeff_pderiv_at
     (i : Fin 3) (p : B3 K) (m : Fin 3 →₀ ℕ) :
     (pderiv i p).coeff m =
       p.coeff (m + Finsupp.single i 1) * (m i + 1) := by
-  classical
-  induction p using MvPolynomial.induction_on' with
-  | add p q hp hq =>
-      simp [hp, hq, add_mul]
-  | monomial n a =>
-      rw [pderiv_monomial, coeff_monomial, coeff_monomial]
-      by_cases h : n = m + Finsupp.single i 1
-      · subst n
-        simp
-      · simp only [h, ↓reduceIte, zero_mul]
-        by_cases hn : n i = 0
-        · simp [hn]
-        · have hne : n - Finsupp.single i 1 ≠ m := by
-            intro hh
-            apply h
-            calc
-              n = n - Finsupp.single i 1 + Finsupp.single i 1 :=
-                (Finsupp.sub_add_single_one_cancel hn).symm
-              _ = m + Finsupp.single i 1 := by rw [hh]
-          simp [hne]
+  simpa only [MvPolynomial.coeff, Nat.cast_add, Nat.cast_one] using
+    (MvPolynomial.coeff_pderiv (i := i) p m)
 
 /-- Every first partial has strictly smaller total degree than a
 nonconstant polynomial in characteristic zero (including a zero partial). -/
@@ -106,7 +88,7 @@ theorem pderiv_ne_zero_of_mem_vars
   intro hz
   apply hcoef
   rw [hz]
-  simp
+  simp [MvPolynomial.coeff]
 
 /-- An irreducible multivariate polynomial in characteristic zero
 cannot divide all of its first partial derivatives. -/

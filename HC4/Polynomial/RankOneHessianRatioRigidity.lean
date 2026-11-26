@@ -176,19 +176,21 @@ theorem rankOne_purePivot_factor_constant
     q.totalDegree = 0 := by
   classical
   obtain ⟨s,hs⟩ := hd
-  have hA0 : A ≠ 0 := by intro hz; exact hA (by simp [hz])
+  have hA0 : A ≠ 0 := by intro hz; exact hA (by rw [hz] <;> rfl)
   have hq0 : q ≠ 0 := by intro hz; exact hA0 (by rw [hs,hz,zero_mul])
   have hs0 : s ≠ 0 := by intro hz; exact hA0 (by rw [hs,hz,mul_zero])
   have hsn : coeff (Finsupp.single k n) s ≠ 0 := by
     intro hn
     apply hA
-    rw [hs, MvPolynomial.coeff_mul]
+    rw [hs]
+    simp only [MvPolynomial.coeff_mul]
     apply Finset.sum_eq_zero
     intro uv huv
+    change coeff uv.1 q * coeff uv.2 s = 0
     by_cases he : coeff uv.1 q = 0
     · rw [he,zero_mul]
     · have hz := exponent_eq_zero_of_pderiv_eq_zero k q hq uv.1 he
-      have hadd := Finset.mem_antidiagonal.mp huv
+      have hadd := Finset.HasAntidiagonal.mem_antidiagonal.mp huv
       have hu0 : uv.1 = 0 := by
         ext j
         by_cases hj : j = k
@@ -221,7 +223,7 @@ theorem rankOne_ratio_constant_of_purePivot
       rankOnePartial i r = r * rankOnePartial k r) :
     ∃ c : K, B = MvPolynomial.C c * A := by
   classical
-  have hA0 : A ≠ 0 := by intro hz; exact hA (by change coeff _ A = 0; rw [hz,coeff_zero])
+  have hA0 : A ≠ 0 := by intro hz; exact hA (by change coeff _ A = 0; rw [hz] <;> rfl)
   by_cases hB0 : B = 0
   · exact ⟨0, by change B = _; rw [hB0,map_zero,zero_mul]⟩
   let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
@@ -264,7 +266,7 @@ theorem rankOne_ratio_constant_of_purePivot
   have hpC := totalDegree_eq_zero_iff_eq_C.mp hpdeg
   have hcq : coeff 0 q ≠ 0 := by
     intro hz
-    exact hq0 (by rw [hqC,hz,map_zero])
+    exact hq0 (by simpa [hz] using hqC)
   refine ⟨coeff 0 p / coeff 0 q, ?_⟩
   change B = _
   apply mul_right_cancel₀ (MvPolynomial.C_ne_zero.mpr hcq)
@@ -288,7 +290,7 @@ theorem rankOneHessian_ratio_constant_of_purePivot
     ∃ c : K, hessian L k i = MvPolynomial.C c * hessian L k k := by
   have hA0 : hessian L k k ≠ 0 := by
     intro hz
-    exact hA (by rw [hz,coeff_zero])
+    exact hA (by rw [hz] <;> rfl)
   exact rankOne_ratio_constant_of_purePivot _ _ k i n hA hdeg hBdeg
     (rankOneHessian_ratio_transport L k i hA0 hminor)
 
@@ -349,7 +351,7 @@ theorem flatLevel_gradient_ratio_constant_of_purePivot
     ∃ c : K, pderiv i F = MvPolynomial.C c * pderiv k F := by
   have hA0 : pderiv k F ≠ 0 := by
     intro hz
-    exact hA (by rw [hz,coeff_zero])
+    exact hA (by rw [hz] <;> rfl)
   exact rankOne_ratio_constant_of_purePivot _ _ k i n hA hdeg hBdeg
     (flatLevel_gradient_ratio_transport F k i hA0 hflat)
 
@@ -402,8 +404,7 @@ theorem rankOnePartial_constants (z : E σ K)
         apply hu
         ext i
         exact exponent_eq_zero_of_pderiv_eq_zero i P (hP i) u hn
-      rw [hc,MvPolynomial.coeff_C]
-      simp [Ne.symm hu]
+      simp [hc, MvPolynomial.coeff_C, Ne.symm hu]
   have hpC := hconstant p hpzero
   have hqC := hconstant q hqzero
   have hC (c : K) : f (MvPolynomial.C c) = algebraMap K (E σ K) c :=
@@ -733,27 +734,25 @@ theorem rankOne_initialForm_mul_homogeneous
     initialForm w (a + d) (A * Q) = A * initialForm w d Q := by
   classical
   ext u
-  rw [coeff_initialForm, MvPolynomial.coeff_mul, MvPolynomial.coeff_mul]
+  simp only [coeff_initialForm, MvPolynomial.coeff_mul]
   by_cases hu : Finsupp.weight w u = a + d
   · rw [if_pos hu]
     apply Finset.sum_congr rfl
     intro xy hxy
-    rw [coeff_initialForm]
     by_cases hx : coeff xy.1 A = 0
     · simp [hx]
     · have hwx := hA hx
-      have he := congrArg (Finsupp.weight w) (Finset.mem_antidiagonal.mp hxy)
+      have he := congrArg (Finsupp.weight w) (Finset.HasAntidiagonal.mem_antidiagonal.mp hxy)
       rw [map_add, hwx, hu] at he
       rw [if_pos (by omega : Finsupp.weight w xy.2 = d)]
   · rw [if_neg hu]
     symm
     apply Finset.sum_eq_zero
     intro xy hxy
-    rw [coeff_initialForm]
     by_cases hx : coeff xy.1 A = 0
     · simp [hx]
     · have hwx := hA hx
-      have he := congrArg (Finsupp.weight w) (Finset.mem_antidiagonal.mp hxy)
+      have he := congrArg (Finsupp.weight w) (Finset.HasAntidiagonal.mem_antidiagonal.mp hxy)
       rw [map_add, hwx] at he
       have hn : Finsupp.weight w xy.2 ≠ d := by
         intro hd
@@ -789,8 +788,9 @@ theorem rankOne_initialForm_single_power
     by_contra h
     push_neg at h
     apply hn
-    ext u
-    rw [h u, coeff_zero]
+    apply MvPolynomial.ext
+    intro u
+    exact h u
   obtain ⟨u,hu⟩ := hex
   have hQ_u : coeff u Q ≠ 0 := by
     intro hz
@@ -831,7 +831,7 @@ theorem rankOne_initialForm_single_power
       have he : (v s : ℤ) = (u s : ℤ) := mul_right_cancel₀ (ne_of_gt hs) hmul
       have he' : v s = u s := by exact_mod_cast he
       exact hv (hv'.trans (congrArg (Finsupp.single s) he'))
-    rw [hz, if_neg (Ne.symm hv)]
+    simp [hz, Ne.symm hv]
 
 /-- Nonzero homogeneous entries whose ratio is a relative rational
 constant admit an exact monomial cross identity when the omitted
@@ -853,14 +853,16 @@ theorem rankOne_weighted_relativeRatio_cross_power
     by_contra h
     push_neg at h
     apply hQ0
-    ext u
-    rw [h u, coeff_zero]
+    apply MvPolynomial.ext
+    intro u
+    exact h u
   obtain ⟨u,hu⟩ := hex
   let d := Finsupp.weight w u
   have hQd : initialForm w d Q ≠ 0 := by
     intro hz
     apply hu
     have he := congrArg (coeff u) hz
+    change coeff u (initialForm w d Q) = 0 at he
     simpa [coeff_initialForm, d] using he
   have he := congrArg (initialForm w (b + d)) hcross
   change initialForm w (b+d) (B*Q) = initialForm w (b+d) (A*P) at he

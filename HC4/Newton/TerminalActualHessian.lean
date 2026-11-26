@@ -317,7 +317,7 @@ theorem nondegenerateTerminalActualHessian_polynomial_ne_zero
     ⟨i, j, hcoeff⟩
   intro hF
   subst F
-  simpa using hcoeff
+  simpa [MvPolynomial.coeff] using hcoeff
 
 /-- **Scalar terminal endpoint from the actual Hessian.**
 No coefficient-Hessian identification is required as an extra hypothesis:

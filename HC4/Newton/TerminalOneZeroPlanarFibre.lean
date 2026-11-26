@@ -134,7 +134,7 @@ theorem pderiv_zero_oneZeroFibreSpecialise
           (Sum.inl (0 : Fin 2))
           (MvPolynomial.rename
             oneZeroSplitIndex P)) := by
-              simpa [oneZeroFibreSpecialise] using
+              simpa [oneZeroFibreSpecialise, Function.comp_def] using
                 hsum.symm
     _ =
       MvPolynomial.aeval
@@ -191,7 +191,7 @@ theorem pderiv_one_oneZeroFibreSpecialise
           (Sum.inl (1 : Fin 2))
           (MvPolynomial.rename
             oneZeroSplitIndex P)) := by
-              simpa [oneZeroFibreSpecialise] using
+              simpa [oneZeroFibreSpecialise, Function.comp_def] using
                 hsum.symm
     _ =
       MvPolynomial.aeval

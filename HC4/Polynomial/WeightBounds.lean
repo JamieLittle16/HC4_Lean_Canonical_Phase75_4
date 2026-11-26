@@ -154,6 +154,7 @@ theorem initialForm_eq_zero_of_isWeightLE
     (hp : IsWeightLE w m p) (hmn : m < n) :
     initialForm w n p = 0 := by
   ext d
+  change coeff d (initialForm w n p) = 0
   rw [coeff_initialForm]
   split_ifs with hweight
   · have hcoeff : coeff d p = 0 := by
@@ -170,6 +171,7 @@ theorem initialForm_eq_zero_of_isWeightLT
     (hp : IsWeightLT w m p) (hmn : m ≤ n) :
     initialForm w n p = 0 := by
   ext d
+  change coeff d (initialForm w n p) = 0
   rw [coeff_initialForm]
   split_ifs with hweight
   · have hcoeff : coeff d p = 0 := by
@@ -195,12 +197,18 @@ theorem sub_initialForm_isWeightLT [DecidableEq σ]
       by_contra hne
       exact hdp (MvPolynomial.mem_support_iff.mpr hne)
     have hdiff : coeff d (p - initialForm w m p) = 0 := by
-      rw [MvPolynomial.coeff_sub, hpzero, coeff_initialForm]
+      have hs : coeff d (p - initialForm w m p) =
+          coeff d p - coeff d (initialForm w m p) := by
+        simp [MvPolynomial.coeff, MvPolynomial.coeff_sub]
+      rw [hs, hpzero, coeff_initialForm]
       split_ifs <;> simp [hpzero]
     exact (MvPolynomial.mem_support_iff.mp hd) hdiff
   have heq : Finsupp.weight w d = m := le_antisymm hle hge
   have hdiff : coeff d (p - initialForm w m p) = 0 := by
-    rw [MvPolynomial.coeff_sub, coeff_initialForm]
+    have hs : coeff d (p - initialForm w m p) =
+        coeff d p - coeff d (initialForm w m p) := by
+      simp [MvPolynomial.coeff, MvPolynomial.coeff_sub]
+    rw [hs, coeff_initialForm]
     simp [heq]
   exact (MvPolynomial.mem_support_iff.mp hd) hdiff
 

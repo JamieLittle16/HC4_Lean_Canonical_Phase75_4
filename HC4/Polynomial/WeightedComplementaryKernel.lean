@@ -166,11 +166,17 @@ theorem weightedLeading_exists_complementaryKernel_chart
   classical
   obtain ⟨M, k, hM, hw, hcap', hdet', hcol, hB⟩ :=
     weightedLeading_exists_actual_complementaryHessian w m P hcap hW hdet
-  refine ⟨M, k, hM, hw, hcap', hdet', hcol, hB, ?_⟩
   let P' := weightedLinearSubstitution M P
   let L' := initialForm w m P'
   let e : I ≃ I := Equiv.swap (.inl ()) k
   let A := (hessian L').submatrix e e
+  have hB' : (A.submatrix Sum.inr Sum.inr).det = 0 := by
+    have hsub : A.submatrix Sum.inr Sum.inr =
+        (hessian L').submatrix (fun i : Fin 3 => e (.inr i))
+          (fun i : Fin 3 => e (.inr i)) := by rfl
+    rw [hsub]
+    exact hB
+  refine ⟨M, k, hM, hw, hcap', hdet', hcol, hB', ?_⟩
   have hs : A.IsSymm := by
     apply Matrix.IsSymm.ext
     intro i j
@@ -184,7 +190,7 @@ theorem weightedLeading_exists_complementaryKernel_chart
   have hdA : A.det = 0 := by
     change ((hessian L').submatrix e e).det = 0
     rw [Matrix.det_submatrix_equiv_self, hdL]
-  exact singular_complementary_adjugate_lifts A hs hdA hB
+  exact singular_complementary_adjugate_lifts A hs hdA hB'
 
 end
 end HC4.Polynomial.RankThreeCubic

@@ -101,7 +101,7 @@ theorem weightedLinearSubstitution_isWeightLE
     rw [weightedLinearSubstitution_initialForm w M hM,
       initialForm_eq_zero_of_isWeightLE hcap hgt, map_zero]
   have he := congrArg (coeff u) hz
-  rw [coeff_initialForm, if_pos rfl, coeff_zero] at he
+  rw [coeff_initialForm, if_pos rfl] at he
   exact (MvPolynomial.mem_support_iff.mp hu) he
 
 namespace RankThreeCubic

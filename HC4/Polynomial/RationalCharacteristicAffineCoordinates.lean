@@ -74,7 +74,8 @@ theorem rationalAffine_complete_covectors
   · refine ⟨![A, D, ![0, 0, 1]], ?_, ?_, ?_⟩
     · have he : Matrix.det (![A, D, ![0, 0, 1]] : Matrix (Fin 3) (Fin 3) K) =
           A 0 * D 1 - A 1 * D 0 := by
-        simp [Matrix.det_fin_three] <;> ring
+        refine (Matrix.det_fin_three (![A, D, ![0, 0, 1]] : Matrix (Fin 3) (Fin 3) K)).trans ?_
+        simp <;> ring
       rw [he]
       exact h01
     · intro j
@@ -84,7 +85,8 @@ theorem rationalAffine_complete_covectors
   · refine ⟨![A, D, ![0, 1, 0]], ?_, ?_, ?_⟩
     · have he : Matrix.det (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K) =
           -(A 0 * D 2 - A 2 * D 0) := by
-        simp [Matrix.det_fin_three] <;> ring
+        refine (Matrix.det_fin_three (![A, D, ![0, 1, 0]] : Matrix (Fin 3) (Fin 3) K)).trans ?_
+        simp <;> ring
       rw [he]
       exact neg_ne_zero.mpr h02
     · intro j
@@ -94,7 +96,8 @@ theorem rationalAffine_complete_covectors
   · refine ⟨![A, D, ![1, 0, 0]], ?_, ?_, ?_⟩
     · have he : Matrix.det (![A, D, ![1, 0, 0]] : Matrix (Fin 3) (Fin 3) K) =
           A 1 * D 2 - A 2 * D 1 := by
-        simp [Matrix.det_fin_three] <;> ring
+        refine (Matrix.det_fin_three (![A, D, ![1, 0, 0]] : Matrix (Fin 3) (Fin 3) K)).trans ?_
+        simp <;> ring
       rw [he]
       exact h12
     · intro j

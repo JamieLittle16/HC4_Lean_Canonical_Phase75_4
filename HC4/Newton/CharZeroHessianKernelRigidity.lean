@@ -53,26 +53,8 @@ theorem coeff_pderiv_backport
     MvPolynomial.coeff m (MvPolynomial.pderiv i F) =
       MvPolynomial.coeff (m + Finsupp.single i 1) F *
         ((m i + 1 : ℕ) : K) := by
-  classical
-  induction F using MvPolynomial.induction_on' with
-  | add P Q hP hQ =>
-      simp [hP, hQ, add_mul]
-  | monomial n a =>
-      rw [MvPolynomial.pderiv_monomial,
-        MvPolynomial.coeff_monomial,
-        MvPolynomial.coeff_monomial]
-      by_cases h : n = m + Finsupp.single i 1
-      · simp [h]
-      · simp only [h, if_false, zero_mul]
-        by_cases hn : n i = 0
-        · simp [hn]
-        · apply if_neg
-          have hle : Finsupp.single i 1 ≤ n := by
-            rw [Finsupp.single_le_iff]
-            exact Nat.one_le_iff_ne_zero.mpr hn
-          intro hsub
-          apply h
-          exact (tsub_eq_iff_eq_add_of_le hle).mp hsub
+  simpa only [MvPolynomial.coeff, Nat.cast_add, Nat.cast_one] using
+    (MvPolynomial.coeff_pderiv (i := i) F m)
 
 /-- Formal mixed partial derivatives commute. -/
 theorem pderiv_comm_backport
@@ -80,17 +62,7 @@ theorem pderiv_comm_backport
     (F : MvPolynomial σ K) :
     MvPolynomial.pderiv i (MvPolynomial.pderiv j F) =
       MvPolynomial.pderiv j (MvPolynomial.pderiv i F) := by
-  classical
-  ext m
-  rw [coeff_pderiv_backport, coeff_pderiv_backport,
-    coeff_pderiv_backport, coeff_pderiv_backport]
-  by_cases hij : i = j
-  · subst j
-    rfl
-  · have hji : j ≠ i := Ne.symm hij
-    simp [Finsupp.single_apply, hij, hji,
-      add_comm, add_left_comm, add_assoc]
-    ring
+  exact MvPolynomial.pderiv_comm i j F
 
 /-- In characteristic zero, a vanishing partial derivative detects absence
 of that variable from every nonzero monomial. -/
@@ -110,7 +82,8 @@ theorem exponent_eq_zero_of_pderiv_eq_zero
   have hcoeff :=
     coeff_pderiv_backport (K := K) i F m
   rw [hderiv] at hcoeff
-  simp only [MvPolynomial.coeff_zero] at hcoeff
+  simp only [MvPolynomial.coeff,
+    AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at hcoeff
   rw [hmadd] at hcoeff
   have hcast : (((m i + 1 : ℕ) : K)) ≠ 0 := by
     exact_mod_cast Nat.succ_ne_zero (m i)

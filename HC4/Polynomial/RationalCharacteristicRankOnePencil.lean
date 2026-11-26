@@ -62,7 +62,8 @@ theorem transverse_affine_of_hessian_zero
     simp only [l, MvPolynomial.coeff_sum, MvPolynomial.coeff_C_mul,
       MvPolynomial.coeff_zero_X, mul_zero, Finset.sum_const_zero]
   have hd0 : (p - l).coeff 0 = p.coeff 0 := by
-    rw [MvPolynomial.coeff_sub, hl0, sub_zero]
+    have hl0' : AddMonoidAlgebra.coeff l 0 = 0 := hl0
+    simp [MvPolynomial.coeff, hl0']
   rw [hd0] at hc
   exact sub_eq_iff_eq_add.mp hc
 
@@ -73,6 +74,8 @@ corresponding scalar multiple of the coefficient. -/
 private theorem transverse_coeff_mul_C
     (p : B K) (c : K) (m : Fin 3 →₀ ℕ) :
     (p * MvPolynomial.C c).coeff m = p.coeff m * c := by
+  change AddMonoidAlgebra.coeff
+    (p * MvPolynomial.C c) m = AddMonoidAlgebra.coeff p m * c
   rw [mul_comm, MvPolynomial.coeff_C_mul, mul_comm]
 
 /-- Each transverse monomial coefficient of the lifted trace identity
@@ -138,19 +141,25 @@ theorem rankOne_hessians_zero_of_lifted_trace_independent
     have hA : A.transpose = A := by
       apply Matrix.ext
       intro i j
-      simp only [A, Matrix.transpose_apply, hessian_apply]
+      change MvPolynomial.coeff m (hessian p j i) =
+        MvPolynomial.coeff m (hessian p i j)
+      simp only [hessian_apply]
       rw [HC4.Newton.pderiv_comm_backport]
     have hD : D.transpose = D := by
       apply Matrix.ext
       intro i j
-      simp only [D, Matrix.transpose_apply, hessian_apply]
+      change MvPolynomial.coeff m (hessian q j i) =
+        MvPolynomial.coeff m (hessian q i j)
+      simp only [hessian_apply]
       rw [HC4.Newton.pderiv_comm_backport]
     apply symmetric_affinePencil_eq_zero_of_coefficientRecurrence A D hA hD u
     · funext i
       have h := congrArg (MvPolynomial.coeff m) (hDzero i)
       change (∑ j : Fin 3, hessian p i j * MvPolynomial.C (u 0 j)).coeff m =
         (0 : B K).coeff m at h
-      simpa only [MvPolynomial.coeff_sum, transverse_coeff_mul_C, MvPolynomial.coeff_zero,
+      have hz : MvPolynomial.coeff m (0 : B K) = 0 := by
+        simp [MvPolynomial.coeff]
+      simpa only [MvPolynomial.coeff_sum, transverse_coeff_mul_C, hz,
         Matrix.mulVec, dotProduct, A, Pi.zero_apply] using h
     · intro n
       funext i
@@ -165,13 +174,15 @@ theorem rankOne_hessians_zero_of_lifted_trace_independent
     apply MvPolynomial.ext
     intro m
     have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) K => M i j) (hcoeff m).1
-    simpa only [Matrix.zero_apply, MvPolynomial.coeff_zero] using h
+    change MvPolynomial.coeff m (hessian p i j) = (0 : K) at h
+    simpa [MvPolynomial.coeff] using h
   · apply Matrix.ext
     intro i j
     apply MvPolynomial.ext
     intro m
     have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) K => M i j) (hcoeff m).2
-    simpa only [Matrix.zero_apply, MvPolynomial.coeff_zero] using h
+    change MvPolynomial.coeff m (hessian q i j) = (0 : K) at h
+    simpa [MvPolynomial.coeff] using h
 
 variable [CharZero K]
 

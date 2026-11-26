@@ -56,7 +56,9 @@ theorem rename_standardZeroPair_dependsOnly
     have himage := Finsupp.mapDomain_support hm2
     rw [Finset.mem_image] at himage
     rcases himage with ⟨i, _hi, hmap⟩
-    fin_cases i <;> simp [standardZeroPairEmbedding] at hmap
+    have hv := congrArg (fun x : Fin 4 => x.val) hmap
+    change i.val = 2 at hv
+    omega
   · by_contra h3
     have hm3 : (3 : Fin 4) ∈ m.support :=
       Finsupp.mem_support_iff.mpr h3
@@ -64,7 +66,9 @@ theorem rename_standardZeroPair_dependsOnly
     have himage := Finsupp.mapDomain_support hm3
     rw [Finset.mem_image] at himage
     rcases himage with ⟨i, _hi, hmap⟩
-    fin_cases i <;> simp [standardZeroPairEmbedding] at hmap
+    have hv := congrArg (fun x : Fin 4 => x.val) hmap
+    change i.val = 3 at hv
+    omega
 
 /-- The renamed planar polynomial has zero derivatives in the two fibre
 coordinates. -/
@@ -249,7 +253,8 @@ theorem planarDoublingPotential_exactCollision_of_planarCollision
   have hgrad : mvGradientMap F p = mvGradientMap F q :=
     standardSplitPoint_injective hsplit
   intro i
-  simpa [F, p, q, z] using congrFun hgrad i
+  change mvGradientMap F p i = mvGradientMap F q i
+  exact congrFun hgrad i
 
 /-- Distinct planar base points remain distinct after joining the zero fibre. -/
 theorem standardJoinPoint_zeroFibre_ne_of_ne
@@ -321,7 +326,10 @@ theorem normalizePlanarKellerMap_collision
     change
       MvPolynomial.eval u (MvPolynomial.C c⁻¹ * G 1) =
         MvPolynomial.eval v (MvPolynomial.C c⁻¹ * G 1)
-    simpa using congrArg (fun x : K => c⁻¹ * x) h
+    change MvPolynomial.eval u (G 1) =
+      MvPolynomial.eval v (G 1) at h
+    simpa only [map_mul, MvPolynomial.eval_C] using
+      congrArg (fun x : K => c⁻¹ * x) h
 
 /-- Every `Fin 2` planar map is definitionally recovered from its two
 coordinate polynomials. -/

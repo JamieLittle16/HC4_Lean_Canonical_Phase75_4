@@ -44,7 +44,7 @@ theorem IsWeightLE.pderiv
     rw [coeff_initialForm]
     simp [n]
   rw [htop] at hcomponent
-  simp at hcomponent
+  simp [MvPolynomial.coeff] at hcomponent
   exact hcoeff hcomponent.symm
 
 /-- Partial differentiation lowers a strict weight bound. -/
@@ -72,7 +72,7 @@ theorem IsWeightLT.pderiv
     rw [coeff_initialForm]
     simp [n]
   rw [htop] at hcomponent
-  simp at hcomponent
+  simp [MvPolynomial.coeff] at hcomponent
   exact hcoeff hcomponent.symm
 
 /-- Hessian entries lower a weak bound by both variable weights. -/

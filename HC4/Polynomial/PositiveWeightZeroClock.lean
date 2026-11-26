@@ -100,12 +100,14 @@ theorem eval_sub_eq_weightBlock_linear
         have hh' := congrArg (fun d : σ →₀ ℕ => d i) hh
         simp [Finsupp.single_apply, hji] at hh'
       rw [Finset.sum_eq_single i]
-      · rw [he, MvPolynomial.coeff_monomial, if_pos rfl]
+      · rw [he]
+        simp only [MvPolynomial.coeff_monomial, if_pos rfl, ite_true]
         rw [← MvPolynomial.C_mul_X_eq_monomial]
         simp only [map_mul, MvPolynomial.eval_C, MvPolynomial.eval_X, v, if_pos hwis]
         ring
       · intro j _ hj'
-        rw [he, MvPolynomial.coeff_monomial, if_neg (hj j hj'), zero_mul]
+        rw [he]
+        simp only [MvPolynomial.coeff_monomial, if_neg (hj j hj'), zero_mul]
       · simp
     · push_neg at h
       have he : MvPolynomial.eval x (monomial u (coeff u q)) =
@@ -126,7 +128,7 @@ theorem eval_sub_eq_weightBlock_linear
           intro hu'
           have hne : u i ≠ 0 := by simp [hu']
           exact (ne_of_lt (h i hne)) hi
-        rw [MvPolynomial.coeff_monomial, if_neg hn, zero_mul]
+        simp only [MvPolynomial.coeff_monomial, if_neg hn, zero_mul]
       · simp [v, hi]
   change MvPolynomial.eval x q - MvPolynomial.eval y q =
     ∑ i : σ, coeff (Finsupp.single i 1) q * v i
@@ -151,8 +153,8 @@ theorem gradient_linearCoeff_eq_hessian_origin
     (P : MvPolynomial σ K) (j i : σ) :
     coeff (Finsupp.single i 1) (pderiv j P) =
       MvPolynomial.eval (0 : σ → K) (hessian P j i) := by
-  rw [MvPolynomial.eval_zero, MvPolynomial.constantCoeff_eq, hessian_apply,
-    HC4.Newton.coeff_pderiv_backport i (pderiv j P) 0]
+  rw [MvPolynomial.eval_zero, MvPolynomial.constantCoeff_eq, hessian_apply]
+  simp only [HC4.Newton.coeff_pderiv_backport]
   simp
 
 set_option maxHeartbeats 3000000 in

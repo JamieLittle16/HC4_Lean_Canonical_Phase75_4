@@ -158,7 +158,7 @@ theorem nondegenerateTerminalQuadraticHessian_polynomial_ne_zero
     ⟨i, j, hcoeff⟩
   intro hF
   subst F
-  simpa using hcoeff
+  simpa [MvPolynomial.coeff] using hcoeff
 
 /-- **Scalar terminal conformal face, quadratic conclusion.**
 A nondegenerate terminal quadratic Hessian removes the explicit quadratic

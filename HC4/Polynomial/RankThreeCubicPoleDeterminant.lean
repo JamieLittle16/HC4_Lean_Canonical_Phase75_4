@@ -57,11 +57,14 @@ theorem fractionKernel_adjugate_numerator_identity
       ((H.map g).adjugate *ᵥ (fun j => g (r j))) i =
         g ((H.adjugate *ᵥ r) i) := by
     have hm : (H.map g).adjugate = (H.adjugate).map g := by
-      simpa only [RingHom.mapMatrix] using (g.map_adjugate H).symm
+      change (g.mapMatrix H).adjugate =
+        g.mapMatrix H.adjugate
+      exact (g.map_adjugate H).symm
     rw [hm]
     simp [Matrix.mulVec, dotProduct, map_sum, map_mul]
   have hdetmap : (H.map g).det = g H.det := by
-    simpa only [RingHom.mapMatrix] using (RingHom.map_det g H).symm
+    change (g.mapMatrix H).det = g H.det
+    exact (RingHom.map_det g H).symm
   have hi := congrFun hadj i
   simpa only [Pi.smul_apply, smul_eq_mul, hdetmap, hmapadj] using hi
 

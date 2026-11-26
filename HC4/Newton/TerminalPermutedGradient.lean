@@ -158,8 +158,10 @@ theorem terminalPermutedGradientEval_injective_of_gradient
   funext j
   have h :=
     congrFun hpq (π.symm j)
-  simpa [terminalPermutedGradientEval,
-    terminalPermutedGradient] using h
+  change MvPolynomial.eval p (MvPolynomial.pderiv j F) =
+    MvPolynomial.eval q (MvPolynomial.pderiv j F)
+  simpa only [terminalPermutedGradientEval,
+    terminalPermutedGradient, Equiv.apply_symm_apply] using h
 
 /-- Exact injectivity equivalence under a determinant-matching output
 permutation. -/

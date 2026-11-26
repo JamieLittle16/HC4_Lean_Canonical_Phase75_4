@@ -263,6 +263,7 @@ theorem rankThree_normalizedKernel_lineGradient
     apply IsFractionRing.injective (B K) (E K)
     change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
     rw [← f.map_adjugate] at hz
+    change f _ = 0 at hz
     simpa only [map_zero] using hz
   have hker' (i : Fin 4) : ∑ j, H i j * V j = 0 := congrFun hV i
   have hs (i j : Fin 4) : H i j = H j i := by
@@ -384,8 +385,9 @@ theorem rankThree_complement_transport
         rw [hc j, mul_zero])
   rw [hsplit] at e
   simp only [ht] at e
-  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
-    Matrix.submatrix_apply, hessian_apply, hE, J] using e
+  simp only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
+    Matrix.submatrix_apply, hessian_apply]
+  exact e
 
 set_option maxHeartbeats 4000000 in
 /-- The actual complement pencil has determinant one. Its
@@ -513,6 +515,7 @@ theorem rankThree_normalizedKernel_acceleration_zero
     apply IsFractionRing.injective (B K) (E K)
     change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
     rw [← f.map_adjugate] at hz
+    change f _ = 0 at hz
     simpa only [map_zero] using hz
   have hker' (i : Fin 4) : ∑ j, H i j * V j = 0 := congrFun hV i
   have hs (i j : Fin 4) : H i j = H j i := by
@@ -1003,9 +1006,9 @@ theorem rankThree_support_transfer_to_pivot
     rw [← hcross]
     change coeff (b + Finsupp.single s n)
       (hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c) ≠ 0
-    rw [MvPolynomial.coeff_mul_monomial]
+    simp only [MvPolynomial.coeff_mul_monomial]
     exact mul_ne_zero hb hc
-  rw [MvPolynomial.coeff_mul_monomial'] at hq
+  simp only [MvPolynomial.coeff_mul_monomial'] at hq
   have hle : Finsupp.single s t ≤ q := by
     by_contra hn
     rw [if_neg hn] at hq
@@ -1120,7 +1123,7 @@ theorem rankThree_support_cap_of_monomial_rows
     have h2 := extremal_pderiv_coeff_nonzero (pderiv i L) a h1 j haj
     intro hz
     change pderiv j (pderiv i L) = 0 at hz
-    exact h2 (by rw [hz, coeff_zero])
+    exact h2 (by rw [hz] <;> rfl)
   obtain ⟨hvi,n,t,c,e,hc,hcross⟩ := hrows i j his hip hjs hH
   obtain ⟨z,hz,hzp,hzw⟩ := rankThree_support_transfer_to_pivot L s p i j hps hip
     v hvs b hbc hbi haj n t c e hc hcross
@@ -1972,8 +1975,9 @@ theorem globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal
     by_contra hn
     push_neg at hn
     apply hG0
-    ext u
-    rw [hn u,coeff_zero]
+    apply MvPolynomial.ext
+    intro u
+    exact hn u
   obtain ⟨u,hu⟩ := hex
   have hu' := rankOne_single_support_of_partialConstants G s hG u hu
   have hwt : Finsupp.weight w u = m - w i :=
@@ -2250,6 +2254,7 @@ theorem rankThree_kernel_relative_of_gradient_ratios
     apply IsFractionRing.injective (B K) (E K)
     change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
     rw [← f.map_adjugate] at hz
+    change f _ = 0 at hz
     simpa only [map_zero] using hz
   intro j hj
   let W : Fin 4 → E K := fun i => rankThreePartial j (V i)
@@ -3472,8 +3477,9 @@ theorem rankThree_relativeDegree
     by_contra hn
     push_neg at hn
     apply hL0
-    ext u
-    rw [hn u,coeff_zero]
+    apply MvPolynomial.ext
+    intro u
+    exact hn u
   let n := Finsupp.weight (rankThreeRelativeNatWeight s) u
   have hL := initialForm_isWeightedHomogeneous w m P
   have hfactor (v : Fin 4 →₀ ℕ) := rankThree_equalWeights_factor w s (w p) hws heq v
@@ -4061,6 +4067,7 @@ theorem rankThree_normalizedKernel_adjugate_column
     apply IsFractionRing.injective (B K) (E K)
     change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
     rw [← f.map_adjugate] at hz
+    change f _ = 0 at hz
     simpa only [map_zero] using hz
   have hcol : H *ᵥ (fun i => f (A i l)) = 0 := by
     have hA : hessian L * A = 0 := by
@@ -4142,6 +4149,7 @@ theorem rankThree_distinctWeights_no_affineRelation
   apply IsFractionRing.injective (B K) (E K)
   change (f.mapMatrix (hessian L)).adjugate k k = 0 at hz
   rw [← f.map_adjugate] at hz
+  change f _ = 0 at hz
   simpa only [map_zero] using hz
 
 set_option maxHeartbeats 6000000 in
@@ -4327,7 +4335,7 @@ theorem rankThree_signedWall_no_lowerDegree
     have h2 := extremal_pderiv_coeff_nonzero (pderiv i L) a h1 j haj
     intro hz
     change pderiv j (pderiv i L) = 0 at hz
-    exact h2 (by rw [hz,coeff_zero])
+    exact h2 (by rw [hz] <;> rfl)
   have hipmix : hessian L i p ≠ 0 := by
     intro hz
     have he := hmin p i p j hps his hps hjs
@@ -4552,6 +4560,7 @@ theorem rankThree_normalizedWall_impossible
     intro hz
     have he := MvPolynomial.mem_support_iff.mp hd
     change coeff d (initialForm w (b*n) P) ≠ 0 at he
+    change coeff d P = 0 at hz
     rw [coeff_initialForm,hz] at he
     split_ifs at he <;> exact he rfl
   have hdetQ : (hessian Q).det = 0 := by
@@ -4751,7 +4760,8 @@ theorem rankThree_wall_lowSlope
     ext j
     fin_cases j <;> simp [Finsupp.single_apply] <;>
       first | exact h0 | exact h1 | exact h2 | exact h3
-  exact (MvPolynomial.mem_support_iff.mp hu) (by rw [he,hclean])
+  exact (MvPolynomial.mem_support_iff.mp hu)
+    ((congrArg (fun d => coeff d P) he).trans hclean)
 
 set_option maxHeartbeats 4000000 in
 /-- The signed-wall contradiction requires no additional hypothesis
@@ -4776,7 +4786,7 @@ theorem rankThree_normalizedWall_impossible_of_top
   let Q := P - R
   have hclean : coeff (Finsupp.single (3 : Fin 4) 1) Q = 0 := by
     change coeff (Finsupp.single (3 : Fin 4) 1) (P - MvPolynomial.C a * X 3) = 0
-    rw [coeff_sub,coeff_C_mul,coeff_X,mul_one]
+    simp only [MvPolynomial.coeff_sub, coeff_C_mul, coeff_X, ite_true, mul_one]
     exact sub_self a
   have hR : R.IsWeightedHomogeneous rankThreeWallDegree 1 := by
     have h := (MvPolynomial.isWeightedHomogeneous_C rankThreeWallDegree a).mul
@@ -4800,7 +4810,7 @@ theorem rankThree_normalizedWall_impossible_of_top
       omega
     have he := MvPolynomial.mem_support_iff.mp hu
     change coeff u (P-R) ≠ 0 at he
-    rw [coeff_sub,hR0,sub_zero] at he
+    simp only [MvPolynomial.coeff_sub, hR0, sub_zero] at he
     exact htop u (MvPolynomial.mem_support_iff.mpr he) hw
   have hH : hessian Q = hessian P := by
     apply Matrix.ext
@@ -5055,14 +5065,14 @@ theorem rankThree_phaseJet_normalize
     have h := he 0 j
     simp only [R,map_sum,map_mul,hC]
     change (∑ i : Fin 3, M i j * MvPolynomial.aeval x (T i)) = _
-    simpa only [J,rankThreePhaseJetMatrix,if_pos rfl,T,eq_comm,mul_comm] using h
+    simpa only [J,rankThreePhaseJetMatrix,if_pos rfl,ite_true,T,eq_comm,mul_comm] using h
   · intro j
     change MvPolynomial.aeval x (pderiv s (R j)) = _
     rw [hD]
     simp only [map_sum,map_mul,hC]
     have h := he 1 j
     simpa only [J,rankThreePhaseJetMatrix,show (1 : Fin 3) ≠ 0 by decide,
-      if_false,if_pos rfl,T,eq_comm,mul_comm] using h
+      if_false,if_pos rfl,ite_true,T,eq_comm,mul_comm] using h
   · intro j
     change MvPolynomial.aeval x (pderiv s (pderiv s (R j))) = _
     rw [hD2]
@@ -5383,7 +5393,7 @@ theorem rankThree_homogeneousSubstitution_cap
     rw [rankThree_homogeneousSubstitution_initialForm v w z hz,
       initialForm_eq_zero_of_isWeightLE hcap hgt,map_zero]
   have he := congrArg (coeff u) hz'
-  rw [coeff_initialForm,if_pos rfl,coeff_zero] at he
+  rw [coeff_initialForm,if_pos rfl] at he
   exact (MvPolynomial.mem_support_iff.mp hu) he
 
 
@@ -5429,7 +5439,7 @@ theorem rankThree_regularFactor_cancelCap
     have hnon : initialForm w m L ≠ 0 := by
       intro hz
       have h := congrArg (coeff v) hz
-      rw [coeff_initialForm,if_pos rfl,coeff_zero] at h
+      rw [coeff_initialForm,if_pos rfl] at h
       exact (MvPolynomial.mem_support_iff.mp hv) h
     have h := rankThree_initialForm_mul w 0 m D L hD hcap
     rw [zero_add,heq,initialForm_eq_zero_of_isWeightLE hR hm] at h
@@ -5628,7 +5638,7 @@ theorem rankThree_relativePolynomial_slope
   refine ⟨hcap,?_⟩
   rw [MvPolynomial.C_mul_X_pow_eq_monomial]
   ext u
-  rw [coeff_initialForm,coeff_monomial]
+  simp only [coeff_initialForm,coeff_monomial]
   by_cases hu : u = Finsupp.single (0 : Fin 4) k
   · subst u
     simp [hweight,hk]
@@ -5953,7 +5963,9 @@ theorem rankThree_clearedPhase_normalize_impossible
     have hx (i : Fin 3) : F (X (e i.succ)) =
         MvPolynomial.C (M i 0) * X 1 + MvPolynomial.C (M i 1) * X 2 +
           MvPolynomial.C (M i 2) * X 3 := by
-      simpa only [Fin.sum_univ_three] using hX i
+      have h := hX i
+      simp only [Fin.sum_univ_three] at h
+      exact h
     have hx1 := hx 0
     have hx2 := hx 1
     have hx3 := hx 2

@@ -64,7 +64,7 @@ theorem coeff_fourVariableLinearPart_single
       MvPolynomial.coeff
         (Finsupp.single j 1) P := by
   fin_cases j <;>
-    simp [fourVariableLinearPart,
+    simp [MvPolynomial.coeff, fourVariableLinearPart,
       Fin.sum_univ_four,
       MvPolynomial.coeff_monomial,
       single_one_eq_iff]
@@ -83,7 +83,7 @@ theorem coeff_fourVariableLinearPart_eq_zero_of_not_single
         Finsupp.single j 1 ≠ m := by
     intro j h
     exact hnot j h.symm
-  simp [fourVariableLinearPart,
+  simp [MvPolynomial.coeff, fourVariableLinearPart,
     Fin.sum_univ_four,
     MvPolynomial.coeff_monomial,
     hnot']

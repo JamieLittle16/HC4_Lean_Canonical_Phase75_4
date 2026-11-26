@@ -63,6 +63,7 @@ theorem rationalField_commonParameter_of_simpleImage
         rw [hz, div_zero] at he
         apply hv
         apply ψ.toRingHom.injective
+        change ψ (v i) = ψ 0
         simpa only [map_zero] using he
       have hmap (p : P K) :
           ψ (_root_.Polynomial.aeval t p) = _root_.Polynomial.aeval u p := by
@@ -84,6 +85,7 @@ theorem rationalField_commonParameter_of_simpleImage
       rw [← _root_.Polynomial.aeval_def]
       exact (_root_.Polynomial.aeval_algHom_apply F.val t _).symm
     rw [← he]
+    change F.val.toRingHom (_root_.Polynomial.aeval t (Q i)) ≠ 0
     simpa only [map_zero] using F.val.toRingHom.injective.ne (hQ i)
   · intro i
     have he := congrArg F.val (hV i)

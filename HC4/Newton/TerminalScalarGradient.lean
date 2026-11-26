@@ -62,10 +62,7 @@ theorem homogeneous_zero_eq_C_constantCoeff
     have hconst :
         MvPolynomial.constantCoeff P =
           MvPolynomial.coeff 0 P := by
-      exact
-        congrArg
-          (fun f : MvPolynomial (Fin 4) K -> K => f P)
-          MvPolynomial.constantCoeff_eq
+      exact MvPolynomial.constantCoeff_eq P
     simp [hconst]
   · have hdeg :
         Finsupp.degree d ≠ 0 := by

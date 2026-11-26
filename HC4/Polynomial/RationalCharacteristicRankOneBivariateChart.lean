@@ -108,12 +108,14 @@ theorem rankOne_bivariateSource_coeff (f : B K) (j l : ℕ) :
   classical
   induction f using MvPolynomial.induction_on' with
   | monomial m c =>
-    rw [rankOne_bivariateSource_monomial, MvPolynomial.coeff_monomial]
+    rw [rankOne_bivariateSource_monomial]
+    simp only [MvPolynomial.coeff, MvPolynomial.coeff_monomial]
     apply _root_.Polynomial.ext
     intro n
     rw [rankOne_chartCoeff_coeff]
     by_cases hn : n ≤ j
-    · rw [if_pos hn, MvPolynomial.coeff_monomial]
+    · rw [if_pos hn]
+      simp only [MvPolynomial.coeff, MvPolynomial.coeff_monomial]
       simp only [rankOne_chartExponent_eq_iff m n j l hn,
         rankOne_bivariateExponent_eq_iff]
       by_cases hj : m 0 + m 1 = j
@@ -130,11 +132,12 @@ theorem rankOne_bivariateSource_coeff (f : B K) (j l : ℕ) :
         · simp [hj, hl]
       · simp [hj]
   | add p q hp hq =>
+    simp only [MvPolynomial.coeff] at hp hq ⊢
     rw [map_add, MvPolynomial.coeff_add, hp, hq]
     apply _root_.Polynomial.ext
     intro n
     simp only [_root_.Polynomial.coeff_add, rankOne_chartCoeff_coeff]
-    split_ifs <;> simp [MvPolynomial.coeff_add]
+    split_ifs <;> simp [MvPolynomial.coeff]
 
 /-- Parameter polynomials become constant bivariate polynomials. -/
 theorem rankOne_bivariateChartTime_parameter

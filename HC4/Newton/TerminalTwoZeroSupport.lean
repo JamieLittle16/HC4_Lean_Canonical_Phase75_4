@@ -228,6 +228,8 @@ theorem pderiv_eq_zero_of_all_supported_exponents_zero
     MvPolynomial.pderiv i P = 0 := by
   classical
   ext m
+  change MvPolynomial.coeff m (MvPolynomial.pderiv i P) =
+    MvPolynomial.coeff m (0 : MvPolynomial (Fin 4) K)
   rw [coeff_pderiv_backport]
   let mPlus : Fin 4 →₀ ℕ :=
     m + Finsupp.single i 1
@@ -243,7 +245,11 @@ theorem pderiv_eq_zero_of_all_supported_exponents_zero
     by_contra hne
     exact hshift
       (hsupp mPlus hne)
-  simpa [mPlus, hcoeff]
+  have hz : MvPolynomial.coeff m
+      (0 : MvPolynomial (Fin 4) K) = 0 := by
+    simp [MvPolynomial.coeff]
+  rw [hz]
+  simp [← show mPlus = m + Finsupp.single i 1 from rfl, hcoeff]
 
 /-- The complete positive-positive Hessian block vanishes on the standard
 two-zero terminal face. -/
