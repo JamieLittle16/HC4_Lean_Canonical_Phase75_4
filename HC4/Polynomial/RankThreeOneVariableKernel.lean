@@ -3304,6 +3304,125 @@ theorem counterexample_rankThree_no_regularActive
   · exact hclose b c hba hca hbc hcover hub hactive
 
 
+
+set_option maxHeartbeats 4000000 in
+/-- The vanishing active pivot implies restricted Hessian rank at most one,
+independently of the velocity rank. -/
+theorem rankThree_activePivot_zero_restrictedMinors
+    (L : B K) (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hm : rankTwoPrincipalPivot (hessian L)
+      (l.succAbove (a.succAbove 0)) (l.succAbove (a.succAbove 1)) = 0) :
+    ∀ i j p q : Fin 4, i ≠ l.succAbove a → j ≠ l.succAbove a →
+      p ≠ l.succAbove a → q ≠ l.succAbove a →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let H := (hessian L).map f
+  let k := l.succAbove a
+  let u := l.succAbove (a.succAbove 0)
+  let v := l.succAbove (a.succAbove 1)
+  have hminor : rankTwoPrincipalPivot H u v = 0 := by
+    rw [← rankTwoPrincipalPivot_map]
+    change f (rankTwoPrincipalPivot (hessian L) u v) = 0
+    rw [hm,map_zero]
+  have hs (i j : Fin 4) : H i j = H j i :=
+    congrArg f (pderiv_comm_backport j i L)
+  have hkl : k ≠ l := Fin.succAbove_ne l a
+  have hku : k ≠ u := by
+    intro he
+    exact (Fin.succAbove_ne a 0) (Fin.succAbove_right_injective he).symm
+  have hkv : k ≠ v := by
+    intro he
+    exact (Fin.succAbove_ne a 1) (Fin.succAbove_right_injective he).symm
+  have hlu : l ≠ u := Ne.symm (Fin.succAbove_ne l _)
+  have hlv : l ≠ v := Ne.symm (Fin.succAbove_ne l _)
+  have huv : u ≠ v := by
+    intro he
+    have hz : (0 : Fin 2) = 1 :=
+      Fin.succAbove_right_injective (Fin.succAbove_right_injective he)
+    exact (by decide : (0 : Fin 2) ≠ 1) hz
+  have hcover (i : Fin 4) : i = k ∨ i = l ∨ i = u ∨ i = v := by
+    by_cases hi : i = l
+    · exact Or.inr (Or.inl hi)
+    obtain ⟨b,hb⟩ := Fin.exists_succAbove_eq hi
+    by_cases hba : b = a
+    · left
+      rw [← hb,hba]
+    obtain ⟨c,hc⟩ := Fin.exists_succAbove_eq hba
+    have he : c = 0 ∨ c = 1 := by fin_cases c <;> simp
+    rcases he with he | he
+    · right; right; left
+      rw [← hb,← hc,he]
+    · right; right; right
+      rw [← hb,← hc,he]
+  intro i j p q hi hj hp hq
+  have he := rankThree_activeMinor_zero_all_restrictedMinors H hs k l u v hkl
+    hcover V hVk hVl hV hku hkv hlu hlv huv hminor i j p q hi hj hp hq
+  apply IsFractionRing.injective (B K) (E K)
+  change f (hessian L i p * hessian L j q) = f (hessian L i q * hessian L j p)
+  simp only [map_mul]
+  exact he
+
+set_option maxHeartbeats 6000000 in
+/-- The remaining chart, if it exists, has zero omitted weight,
+three equal restricted weights, and a normalized kernel depending
+only on the omitted coordinate. -/
+theorem counterexample_rankThree_zeroWeight_relative_frontier
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hnoninj : ¬ Function.Injective (mvGradientMap P))
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    let s := l.succAbove a
+    let L := initialForm w m P
+    w s = 0 ∧
+      (∀ i, i ≠ s → hessian L i i ≠ 0 ∧ w i = w l) ∧
+      (∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p) ∧
+      ∀ j, j ≠ s → ∀ i, rankThreePartial j (V i) = 0 := by
+  classical
+  let L := initialForm w m P
+  let s := l.succAbove a
+  have hs := counterexample_rankThree_no_regularActive hJC2 P w m hw hm hcap
+    hclock hopt hdet hnoninj l a V hVl hVk hreg hV
+  have hmin := rankThree_activePivot_zero_restrictedMinors L l a V hVl hVk hV hs
+  have hws : w s = 0 := by
+    by_contra hz
+    exact globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight P w m
+      hw hm hcap hclock hopt hdet s hmin (lt_of_le_of_ne (hw s) (Ne.symm hz))
+  have hnon (i : Fin 4) (his : i ≠ s) : hessian L i i ≠ 0 := by
+    intro hz
+    exact hnoninj (globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal hJC2
+      P w m hw hm hcap hclock hopt hdet s i his hws hmin hz)
+  have hls : l ≠ s := Ne.symm (Fin.succAbove_ne l a)
+  have hweights (i : Fin 4) (his : i ≠ s) : w i = w l := by
+    by_cases hil : i = l
+    · rw [hil]
+    have hmix : hessian L i l ≠ 0 := by
+      intro hz
+      have he := hmin l i l i hls his hls his
+      rw [hz,mul_zero] at he
+      exact (mul_ne_zero (hnon l hls) (hnon i his)) he
+    rcases rankThree_restricted_weightedRatio L w m hw
+      (initialForm_isWeightedHomogeneous w m P) s hmin l i hls his hil
+      (hnon l hls) hmix with ⟨_,he⟩ | ⟨he,_⟩
+    · exact he
+    · omega
+  obtain ⟨r,hrs,hrp,hrows,hgrad,hconst⟩ :=
+    rankThree_zeroWeight_gradient_ratios L w m hw hm
+      (initialForm_isWeightedHomogeneous w m P) s l hls hws hnon hmin
+  exact ⟨hws,fun i hi => ⟨hnon i hi,hweights i hi⟩,hmin,
+    rankThree_kernel_relative_of_gradient_ratios L s l l hls
+      (hnon l hls) hreg V hVk hVl hV r hrs hrows hgrad hconst⟩
+
 end
 end HC4.Polynomial
 
@@ -3385,3 +3504,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_rankOne_orientedSlope_data
 #print axioms HC4.Polynomial.counterexample_rankThree_no_regularActive
+
+#print axioms HC4.Polynomial.rankThree_activePivot_zero_restrictedMinors
+#print axioms HC4.Polynomial.counterexample_rankThree_zeroWeight_relative_frontier
