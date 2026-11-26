@@ -3620,6 +3620,128 @@ theorem rankThree_zeroWeight_degreeTwo_impossible
   exact zero_ne_one (hd.symm.trans h1)
 
 
+/-- The relative linear form uses the original generic coordinates.
+Its coefficients remain in the original fraction field. -/
+noncomputable def rankThreeRelativeLinear (r : Fin 4 → E K) : E K :=
+  ∑ j : Fin 4, r j * algebraMap (B K) (E K) (X j)
+
+set_option maxHeartbeats 6000000 in
+/-- Relative gradient proportionality and Euler homogeneity force
+an exact power of a relative linear form. Both the coefficients
+of the linear form and its scalar prefactor are independent of
+every active variable. No field extension or nonlinear source
+substitution is made. -/
+theorem rankThree_relativePurePower
+    (L : B K) (s p : Fin 4) (hps : p ≠ s) (n : ℕ) (hn : 2 ≤ n)
+    (hL : L.IsWeightedHomogeneous (rankThreeRelativeNatWeight s) n)
+    (r : Fin 4 → E K) (hrs : r s = 0) (hrp : r p = 1)
+    (hgrad : ∀ i, i ≠ s → algebraMap (B K) (E K) (pderiv i L) =
+      r i * algebraMap (B K) (E K) (pderiv p L))
+    (hconst : ∀ j, j ≠ s → ∀ i, rankThreePartial j (r i) = 0) :
+    ∃ c : E K, algebraMap (B K) (E K) L = c * rankThreeRelativeLinear r ^ n ∧
+      (∀ j, j ≠ s → rankThreePartial j c = 0) ∧
+      rankThreeRelativeLinear r ≠ 0 := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let ℓ := rankThreeRelativeLinear r
+  let g := f (pderiv p L)
+  have hmap (j : Fin 4) (Q : B K) : rankThreePartial j (f Q) = f (pderiv j Q) :=
+    rankThreePartial_map j Q
+  have hX (i j : Fin 4) : rankThreePartial j (f (X i)) =
+      if i = j then 1 else 0 := rankThreePartial_X j i
+  have hℓ (j : Fin 4) (hj : j ≠ s) : rankThreePartial j ℓ = r j := by
+    change rankThreePartial j (∑ i : Fin 4, r i * f (X i)) = _
+    simp only [map_sum,Derivation.leibniz,smul_eq_mul,hconst j hj,mul_zero,add_zero,hX]
+    rw [Finset.sum_eq_single j]
+    · simp
+    · intro i _ hi
+      rw [if_neg hi,mul_zero]
+    · simp
+  have hℓ0 : ℓ ≠ 0 := by
+    intro hz
+    have he := hℓ p hps
+    rw [hz,map_zero,hrp] at he
+    exact zero_ne_one he
+  have hEuler : ℓ * g = (n : E K) * f L := by
+    have he := congrArg f hL.sum_weight_X_mul_pderiv
+    change f (∑ i : Fin 4, rankThreeRelativeNatWeight s i • (X i * pderiv i L)) =
+      f (n • L) at he
+    simp only [nsmul_eq_mul,map_sum,map_mul,map_natCast] at he
+    rw [← he]
+    change (∑ i : Fin 4, r i * f (X i)) * g = _
+    rw [Finset.sum_mul]
+    apply Finset.sum_congr rfl
+    intro i _
+    by_cases hi : i = s
+    · subst i
+      simp [hrs,rankThreeRelativeNatWeight]
+    · have hg : f (pderiv i L) = r i * g := hgrad i hi
+      rw [hg]
+      simp only [rankThreeRelativeNatWeight,if_neg hi,Nat.cast_one,one_mul]
+      ring
+  let c := f L / ℓ ^ n
+  have hrepr : c * ℓ ^ n = f L := div_mul_cancel₀ _ (pow_ne_zero _ hℓ0)
+  refine ⟨c,hrepr.symm,?_,hℓ0⟩
+  intro j hj
+  have hdiff := congrArg (rankThreePartial (K := K) j) hrepr
+  change rankThreePartial j (c * ℓ ^ n) = rankThreePartial j (f L) at hdiff
+  rw [Derivation.leibniz,smul_eq_mul,smul_eq_mul,hmap] at hdiff
+  have hg : f (pderiv j L) = r j * g := hgrad j hj
+  rw [hg] at hdiff
+  have hpow : ℓ ^ (n-1) * ℓ = ℓ ^ n := by
+    rw [← pow_succ]
+    congr 1
+    omega
+  have hproduct : ℓ * (c * rankThreePartial j (ℓ ^ n)) =
+      r j * ((n : E K) * f L) := by
+    rw [Derivation.leibniz_pow,nsmul_eq_mul,smul_eq_mul,hℓ j hj]
+    calc
+      _ = (n : E K) * r j * c * (ℓ ^ (n-1) * ℓ) := by ring
+      _ = (n : E K) * r j * (c * ℓ ^ n) := by rw [hpow]; ring
+      _ = _ := by rw [hrepr]; ring
+  have hzero : ℓ * ℓ ^ n * rankThreePartial j c = 0 := by
+    linear_combination ℓ * hdiff - hproduct + r j * hEuler
+  exact (mul_eq_zero.mp hzero).resolve_left (mul_ne_zero hℓ0 (pow_ne_zero _ hℓ0))
+
+/-- The verified zero-weight frontier has actual transverse degree
+at least three and an exact relative pure-power leading layer. -/
+theorem rankThree_zeroWeight_relativePower_frontier
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P) (hdet : hessianDeterminant P = 1)
+    (s p : Fin 4) (hps : p ≠ s) (hws : w s = 0)
+    (hnon : ∀ i, i ≠ s → hessian (initialForm w m P) i i ≠ 0)
+    (heq : ∀ i, i ≠ s → w i = w p)
+    (hmin : let L := initialForm w m P
+      ∀ i j a b : Fin 4, i ≠ s → j ≠ s → a ≠ s → b ≠ s →
+        hessian L i a * hessian L j b = hessian L i b * hessian L j a) :
+    let L := initialForm w m P
+    ∃ (n : ℕ) (r : Fin 4 → E K) (c : E K),
+      3 ≤ n ∧ 0 < w p ∧ m = w p * (n : ℤ) ∧
+      (∀ u ∈ P.support, Finsupp.weight (rankThreeRelativeNatWeight s) u ≤ n) ∧
+      L.IsWeightedHomogeneous (rankThreeRelativeNatWeight s) n ∧
+      r s = 0 ∧ r p = 1 ∧
+      (∀ j, j ≠ s → ∀ i, rankThreePartial j (r i) = 0) ∧
+      (∀ j, j ≠ s → rankThreePartial j c = 0) ∧
+      algebraMap (B K) (E K) L = c * rankThreeRelativeLinear r ^ n ∧
+      rankThreeRelativeLinear r ≠ 0 := by
+  classical
+  let L := initialForm w m P
+  obtain ⟨n,hn,hq,hdeg,hL,hsupp⟩ := rankThree_relativeDegree P w m s p hps hw hm
+    hws heq hcap (hnon p hps)
+  have hn3 : 3 ≤ n := by
+    by_contra hz
+    have hn2 : n = 2 := by omega
+    have htwo : m = 2*w p := by rw [hdeg,hn2]; norm_num; ring
+    exact rankThree_zeroWeight_degreeTwo_impossible P w m s p hps hw hws heq
+      htwo hcap hdet (hnon p hps) hmin
+  obtain ⟨r,hrs,hrp,_,hgrad,hconst⟩ := rankThree_zeroWeight_gradient_ratios L w m
+    hw hm (initialForm_isWeightedHomogeneous w m P) s p hps hws hnon hmin
+  obtain ⟨c,hpower,hc,hlin⟩ := rankThree_relativePurePower L s p hps n hn hL
+    r hrs hrp hgrad hconst
+  exact ⟨n,r,c,hn3,hq,hdeg,hsupp,hL,hrs,hrp,hconst,hc,hpower,hlin⟩
+
+
 end
 end HC4.Polynomial
 
@@ -3709,3 +3831,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_relativeDegree
 #print axioms HC4.Polynomial.rankThree_borderedRankOne_det_zero
 #print axioms HC4.Polynomial.rankThree_zeroWeight_degreeTwo_impossible
+
+#print axioms HC4.Polynomial.rankThree_relativePurePower
+#print axioms HC4.Polynomial.rankThree_zeroWeight_relativePower_frontier
