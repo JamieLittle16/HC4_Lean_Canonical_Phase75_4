@@ -984,20 +984,20 @@ theorem rankThree_support_transfer_to_pivot
     (L : B K) (s p i j : Fin 4) (hps : p ≠ s) (hip : i ≠ p)
     (v : Fin 4 → ℤ) (hvs : v s = 0)
     (u : Fin 4 →₀ ℕ) (hu : coeff u L ≠ 0) (hui : u i ≠ 0)
-    (huj : (u - Finsupp.single i 1) j ≠ 0)
+    (huj : (u - Finsupp.single i 1 : Fin 4 →₀ ℕ) j ≠ 0)
     (n t : ℕ) (c e : K) (hc : c ≠ 0)
     (hcross : hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c =
       hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e) :
     ∃ z : Fin 4 →₀ ℕ, coeff z L ≠ 0 ∧ z p = u p + 1 ∧
       Finsupp.weight v z = Finsupp.weight v u - v i + v p := by
   classical
-  let a := u - Finsupp.single i 1
-  let b := a - Finsupp.single j 1
+  let a : Fin 4 →₀ ℕ := u - Finsupp.single i 1
+  let b : Fin 4 →₀ ℕ := a - Finsupp.single j 1
   have ha : coeff a (pderiv i L) ≠ 0 :=
     extremal_pderiv_coeff_nonzero L u hu i hui
   have hb : coeff b (hessian L i j) ≠ 0 :=
     extremal_pderiv_coeff_nonzero (pderiv i L) a ha j huj
-  let q := b + Finsupp.single s n
+  let q : Fin 4 →₀ ℕ := b + Finsupp.single s n
   have hq : coeff q (hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e) ≠ 0 := by
     rw [← hcross]
     change coeff (b + Finsupp.single s n)
@@ -1010,10 +1010,10 @@ theorem rankThree_support_transfer_to_pivot
     rw [if_neg hn] at hq
     exact hq rfl
   rw [if_pos hle] at hq
-  let b' := q - Finsupp.single s t
+  let b' : Fin 4 →₀ ℕ := q - Finsupp.single s t
   have hb' : coeff b' (hessian L p j) ≠ 0 := (mul_ne_zero_iff.mp hq).1
-  let a' := b' + Finsupp.single j 1
-  let z := a' + Finsupp.single p 1
+  let a' : Fin 4 →₀ ℕ := b' + Finsupp.single j 1
+  let z : Fin 4 →₀ ℕ := a' + Finsupp.single p 1
   have ha' : coeff a' (pderiv p L) ≠ 0 := by
     change coeff b' (pderiv j (pderiv p L)) ≠ 0 at hb'
     rw [coeff_pderiv_backport] at hb'
@@ -1038,7 +1038,7 @@ theorem rankThree_support_transfer_to_pivot
   simp only [map_add, Finsupp.weight_single, one_smul, hvs,
     smul_zero, add_zero] at hwp hwq hwr
   refine ⟨z,hz,?_,?_⟩
-  · change (b' + Finsupp.single j 1 + Finsupp.single p 1) p = u p + 1
+  · change (b' + Finsupp.single j 1 + Finsupp.single p 1 : Fin 4 →₀ ℕ) p = u p + 1
     simp only [Finsupp.add_apply, Finsupp.single_apply, if_pos rfl]
     omega
   · change Finsupp.weight v (b' + Finsupp.single j 1 + Finsupp.single p 1) = _
@@ -1077,6 +1077,7 @@ theorem rankThree_support_cap_of_monomial_rows
       rw [Finsupp.weight_apply, Finsupp.weight_apply]
       apply Finset.sum_le_sum
       intro i hi
+      change b i • v i ≤ b i • w i
       by_cases his : i = s
       · subst i
         rw [hvs, smul_zero]
@@ -1087,7 +1088,7 @@ theorem rankThree_support_cap_of_monomial_rows
         · rw [he i his hip, zero_smul, zero_smul]
     exact (not_lt_of_ge (hle.trans (hL hbL))) hbv
   obtain ⟨i,his,hip,hbi⟩ := hex
-  let a := b - Finsupp.single i 1
+  let a : Fin 4 →₀ ℕ := b - Finsupp.single i 1
   have ha : a + Finsupp.single i 1 = b :=
     Finsupp.sub_add_single_one_cancel hbi
   have hexj : ∃ j : Fin 4, j ≠ s ∧ a j ≠ 0 := by
@@ -1148,6 +1149,7 @@ theorem globalWeightOptimum_rankThree_no_unique_active_max
   let s := l.succAbove a
   let H := hessian L
   let v : Fin 4 → ℤ := fun i => if i = s then 0 else w p
+  change p ≠ s at hps
   have hs (i j : Fin 4) : H i j = H j i := pderiv_comm_backport _ _ _
   have hmin := rankThree_rankTwoVelocity_restrictedMinors_zero L l a V hVl hVk
     hreg hV hminor
@@ -1180,7 +1182,7 @@ theorem globalWeightOptimum_rankThree_no_unique_active_max
       have hnon : (t : ℤ)-(n : ℤ) ≤ 0 := by omega
       exact (not_lt_of_ge (mul_nonpos_of_nonpos_of_nonneg hnon (le_of_lt hspos))) hprod
     rw [hd]
-    exact (one_mul (w s)).symm ▸ mul_le_mul_of_nonneg_right hdiff (le_of_lt hspos)
+    simpa only [one_mul] using mul_le_mul_of_nonneg_right hdiff (le_of_lt hspos)
   have hvs : v s = 0 := by simp [v]
   have hvp : v p = w p := by simp [v,hps]
   have hvnon (i : Fin 4) : 0 ≤ v i := by
@@ -1194,7 +1196,7 @@ theorem globalWeightOptimum_rankThree_no_unique_active_max
         H i j * MvPolynomial.monomial (Finsupp.single s n) c =
           H p j * MvPolynomial.monomial (Finsupp.single s t) e := by
     obtain ⟨n,t,c,e,hc,he,hd,hcross⟩ := hratio i his hip
-    refine ⟨by simp [v,his,hps],n,t,c,e,hc,?_⟩
+    refine ⟨by rw [hvp]; change (if i = s then 0 else w p) ≤ w p; rw [if_neg his],n,t,c,e,hc,?_⟩
     have hrow := hmin p i p j hps his hps hjs
     change H p p * H i j = H p j * H i p at hrow
     apply mul_left_cancel₀ hp
