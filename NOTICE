@@ -1,0 +1,13 @@
+HessianConjecture4
+Copyright 2026 Jamie Little
+
+Licensed under the Apache License, Version 2.0.
+
+The files under HC4/Backport retain the original Mathlib copyright
+notices and Apache 2.0 license; see HC4/Backport/LICENSE and the
+source headers for upstream authors and revisions.
+
+Mathematical attribution: Qiyue Tang, Equivalence of the Four-Variable
+Hessian and Planar Jacobian Conjectures, Hexagon 2611.00156v2 (2026),
+CC BY 4.0. See the manuscript and docs/PROOF_AND_CONTRIBUTION_AUDIT.md
+for the adaptations, provenance and AI-assistance disclosure.
