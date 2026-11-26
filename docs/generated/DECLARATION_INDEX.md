@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11664**.
+Distinct declaration spellings indexed: **11674**.
 
 ## Repeated declaration spellings
 
@@ -5067,6 +5067,7 @@ Distinct declaration spellings indexed: **11664**.
 - `defect_le_alignedClock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalScaleSoundKernelDispatcher`
 - `defect_mem_closingKernel_support` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingKernelContact`
 - `defect_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`
+- `degreeExponentEnvelope` — `def` in `HC4.Polynomial.WeightedLinearOrbit`
 - `degreeOneRaw_codimensionTwoPair_forcesAll` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_firstThirdZero_forcesSecond` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
 - `degreeOneRaw_firstTwoZero_forcesThird` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetCodimensionTwoAlgebra`
@@ -5574,6 +5575,7 @@ Distinct declaration spellings indexed: **11664**.
 - `exists_finalResolution_of_e3TerminalAwareExtractor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelE3FinalResolution`
 - `exists_finalResolution_of_firstContactEndpointExtraction` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
 - `exists_finalResolution_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `exists_finite_linearOrbit_support_patterns` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `exists_finite_preimage_away_from_rationalInfinityValue` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
 - `exists_finite_preimage_of_isCoprime_of_topCoeff_ne` — `theorem` in `HC4.RationalRigidity.FinitePreimage`
@@ -11151,6 +11153,7 @@ Distinct declaration spellings indexed: **11664**.
 - `support_noWallPrimitiveSmithFamily_subset_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithZeroJet`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
 - `support_pderiv_shift` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
+- `support_subset_degreeExponentEnvelope` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `support_twoRootEulerOperator_eq_zero` — `theorem` in `HC4.Polynomial.AffineEulerTwoRootRigidity`
 - `support_wallEuler_scalar` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarCarrierEuler`
 - `supported_balanced_rankThree_degreeOne_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeBalancedDegreeOneImpossible`
@@ -11844,6 +11847,7 @@ Distinct declaration spellings indexed: **11664**.
 - `wedgeShift_le_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
 - `weight_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`
+- `weight_allOnes_eq_degree` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weight_binaryFirstContactWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `weight_binarySingleCoordinateWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
 - `weight_bound` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
@@ -11887,15 +11891,21 @@ Distinct declaration spellings indexed: **11664**.
 - `weightedLeading_exists_block_annihilator` — `theorem` in `HC4.Polynomial.WeightedSingularHessianAnnihilator`
 - `weightedLeading_exists_complementaryHessian_chart` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
 - `weightedLeading_exists_complementaryKernel_chart` — `theorem` in `HC4.Polynomial.WeightedComplementaryKernel`
+- `weightedLinearOrbit_support_mem` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weightedLinearSubstitution` — `def` in `HC4.Polynomial.WeightedComplementaryHessian`
 - `weightedLinearSubstitution_X_homogeneous` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_X_partial` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
+- `weightedLinearSubstitution_comp` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weightedLinearSubstitution_det` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
+- `weightedLinearSubstitution_eval` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
+- `weightedLinearSubstitution_gradient` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
+- `weightedLinearSubstitution_gradient_injective_iff` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weightedLinearSubstitution_hessian` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
 - `weightedLinearSubstitution_initialForm` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_isWeightLE` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_monomial_homogeneous` — `theorem` in `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `weightedLinearSubstitution_partial` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
+- `weightedLinearSubstitution_totalDegree_le` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weightedLinearSubstitution_zero_adjugate_column` — `theorem` in `HC4.Polynomial.WeightedComplementaryHessian`
 - `weightedPTransitionRankThreeEndpointPencil_det_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeWeightedBoundaryPencils`
 - `weightedRankThreeEndpointActiveMinor` — `def` in `HC4.Polynomial.RankThreeEndpointActiveMinor`
