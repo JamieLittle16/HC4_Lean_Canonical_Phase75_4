@@ -970,6 +970,7 @@ theorem rankThree_rankTwoVelocity_weightedRatio
         hdiag hmix hA hC P Q hQ0 hcross
         (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
     refine Or.inr ⟨hpos,n,t,c,e,hc,he,?_,hpow⟩
+    change w p - w i = ((t : ℤ) - (n : ℤ)) * w s
     rw [sub_mul]
     omega
 
