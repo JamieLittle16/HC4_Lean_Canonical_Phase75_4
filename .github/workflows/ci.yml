@@ -36,6 +36,9 @@ jobs:
       - name: Audit theorem axioms
         run: lake env lean HC4/Audit.lean
 
+      - name: Cross-check external mathematical statement and logical dependencies
+        run: lake env lean HC4/StatementAudit.lean
+
       - name: Check that the negative control is rejected
         run: |
           if lake env lean NegativeControl.lean; then
