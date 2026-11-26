@@ -416,6 +416,48 @@ theorem rankOnePartial_constants (z : E σ K)
     _ = algebraMap K (E σ K) (coeff 0 p / coeff 0 q) := by
       rw [hC,hC,map_div₀]
 
+/-- Reduced numerator and denominator retain every partial
+constant of a rational function, without any field extension. -/
+theorem rankOnePartial_num_den_independent (z : E σ K) (s : σ)
+    (hz : ∀ i : σ, i ≠ s → rankOnePartial i z = 0) :
+    ∀ i : σ, i ≠ s →
+      pderiv i (IsFractionRing.num (R σ K) z) = 0 ∧
+      pderiv i (IsFractionRing.den (R σ K) z : R σ K) = 0 := by
+  classical
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let p : R σ K := IsFractionRing.num (R σ K) z
+  let q : R σ K := IsFractionRing.den (R σ K) z
+  have hq : q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (R σ K) z)
+  have hqf : f q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (R σ K) (E σ K)).ne hq
+  have hrepr : f p / f q = z := IsFractionRing.mk'_num_den' (R σ K) z
+  have hmul : z * f q = f p := by rw [← hrepr, div_mul_cancel₀ _ hqf]
+  have hcop : IsRelPrime q p := (IsFractionRing.num_den_reduced (R σ K) z).symm
+  have hdiff (i : σ) (hi : i ≠ s) : z * f (pderiv i q) = f (pderiv i p) := by
+    have h := congrArg (rankOnePartial (K := K) i) hmul
+    change rankOnePartial i (z * f q) = rankOnePartial i (f p) at h
+    rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul, hz i hi,
+      rankOnePartial_map, rankOnePartial_map, mul_zero, add_zero] at h
+    exact h
+  have hcross (i : σ) (hi : i ≠ s) : pderiv i p * q = pderiv i q * p := by
+    apply IsFractionRing.injective (R σ K) (E σ K)
+    change f _ = f _
+    simp only [map_mul]
+    calc
+      f (pderiv i p) * f q = (z * f (pderiv i q)) * f q := by rw [hdiff i hi]
+      _ = f (pderiv i q) * (z * f q) := by ring
+      _ = f (pderiv i q) * f p := by rw [hmul]
+  have hqzero (i : σ) (hi : i ≠ s) : pderiv i q = 0 := by
+    apply rankOne_pderiv_zero_of_dvd q i hq
+    apply hcop.dvd_of_dvd_mul_right
+    exact ⟨pderiv i p, by rw [← hcross i hi, mul_comm]⟩
+  have hpzero (i : σ) (hi : i ≠ s) : pderiv i p = 0 := by
+    apply IsFractionRing.injective (R σ K) (E σ K)
+    change f (pderiv i p) = f 0
+    rw [← hdiff i hi, hqzero i hi, map_zero, mul_zero]
+  intro i hi
+  exact ⟨hpzero i hi, hqzero i hi⟩
+
 section Finite
 
 variable [Fintype σ] [DecidableEq σ]
@@ -694,3 +736,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankOneHessian_twoRows_constant
 
 #print axioms HC4.Polynomial.rankOneHessian_twoRows_partialRatios_constant
+
+#print axioms HC4.Polynomial.rankOnePartial_num_den_independent
