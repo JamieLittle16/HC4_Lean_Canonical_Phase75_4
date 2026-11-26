@@ -5645,6 +5645,153 @@ theorem rankThree_relativePolynomial_slope
     · simp [hw,hu,Ne.symm hu]
 
 
+/-- Translation at the omitted coordinate: all relative polynomial
+coefficients may be evaluated using the original chosen base point. -/
+theorem rankThree_affine_relative
+    (M : Matrix (Fin 4) (Fin 4) K) (t x : Fin 4 → K) (s : Fin 4)
+    (hs : ∀ j, M s j = if j = 0 then 1 else 0)
+    (ht : t s = x s) (R : B K)
+    (hr : ∀ i, i ≠ s → pderiv i R = 0) :
+    let F := rankThreeAffineSubstitution M t
+    (∀ j, j ≠ 0 → pderiv j (F R) = 0) ∧
+      pderiv 0 (F R) = F (pderiv s R) ∧
+      pderiv 0 (pderiv 0 (F R)) = F (pderiv s (pderiv s R)) ∧
+      coeff 0 (F R) = MvPolynomial.aeval x R ∧
+      coeff 0 (pderiv 0 (F R)) = MvPolynomial.aeval x (pderiv s R) ∧
+      coeff 0 (pderiv 0 (pderiv 0 (F R))) =
+        MvPolynomial.aeval x (pderiv s (pderiv s R)) := by
+  classical
+  let F := rankThreeAffineSubstitution M t
+  have hdiff (U : B K) (hU : ∀ i, i ≠ s → pderiv i U = 0) (j : Fin 4) :
+      pderiv j (F U) = F (pderiv s U) * MvPolynomial.C (M s j) := by
+    change pderiv j (rankThreeAffineSubstitution M t U) = _
+    rw [rankThree_affine_partial,Finset.sum_eq_single s]
+    · rfl
+    · intro i _ hi
+      rw [hU i hi,map_zero,zero_mul]
+    · simp
+  have hD (U : B K) (hU : ∀ i, i ≠ s → pderiv i U = 0) :
+      pderiv 0 (F U) = F (pderiv s U) := by
+    rw [hdiff U hU,hs,if_pos rfl,map_one,mul_one]
+  have hrelD (U : B K) (hU : ∀ i, i ≠ s → pderiv i U = 0) :
+      ∀ i, i ≠ s → pderiv i (pderiv s U) = 0 := by
+    intro i hi
+    rw [pderiv_comm_backport i s,hU i hi,map_zero]
+  have hD2 : pderiv 0 (pderiv 0 (F R)) = F (pderiv s (pderiv s R)) := by
+    rw [hD R hr,hD _ (hrelD R hr)]
+  have hcomp : (MvPolynomial.aeval (0 : Fin 4 → K)).comp F =
+      MvPolynomial.aeval t := by
+    apply MvPolynomial.algHom_ext
+    intro i
+    simp [F,rankThreeAffineSubstitution]
+  have hval (U : B K) (hU : ∀ i, i ≠ s → pderiv i U = 0) :
+      coeff 0 (F U) = MvPolynomial.aeval x U := by
+    have he := congrArg (fun f : B K →ₐ[K] K => f U) hcomp
+    change MvPolynomial.aeval (0 : Fin 4 → K) (F U) = MvPolynomial.aeval t U at he
+    rw [MvPolynomial.aeval_zero] at he
+    change coeff 0 (F U) = MvPolynomial.aeval t U at he
+    rw [he]
+    exact rankThree_relativePolynomial_eval_congr U s hU t x ht
+  refine ⟨?_,hD R hr,hD2,hval R hr,?_,?_⟩
+  · intro j hj
+    rw [hdiff R hr,hs,if_neg hj,map_zero,mul_zero]
+  · rw [hD R hr]
+    exact hval _ (hrelD R hr)
+  · rw [hD2]
+    exact hval _ (hrelD _ (hrelD R hr))
+
+/-- First and second ordinary Taylor coefficients at zero are
+extracted from the corresponding evaluated partials. -/
+theorem rankThree_coeff_jet (R : B K) :
+    coeff 0 (pderiv 0 R) = coeff (Finsupp.single (0 : Fin 4) 1) R ∧
+    coeff 0 (pderiv 0 (pderiv 0 R)) =
+      2 * coeff (Finsupp.single (0 : Fin 4) 2) R := by
+  constructor
+  · rw [coeff_pderiv_backport,zero_add]
+    simp
+  · rw [coeff_pderiv_backport,zero_add,coeff_pderiv_backport]
+    rw [← Finsupp.single_add]
+    norm_num [Finsupp.single_apply]
+    <;> ring
+
+/-- The three Taylor coefficients of each normalized relative phase
+factor determine its exact slope cap and top monomial. -/
+theorem rankThree_relativeJet_slope
+    (R : Fin 3 → B K)
+    (hrel : ∀ j k, k ≠ 0 → pderiv k (R j) = 0)
+    (h0 : ∀ j, coeff 0 (R j) = if j = 0 then 1 else 0)
+    (h1 : ∀ j, coeff 0 (pderiv 0 (R j)) = if j = 1 then 1 else 0)
+    (h2 : ∀ j, coeff 0 (pderiv 0 (pderiv 0 (R j))) = if j = 2 then 2 else 0) :
+    (∀ j, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j)) ∧
+    ∀ j, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ) := by
+  have hcoef1 (j : Fin 3) : coeff (Finsupp.single (0 : Fin 4) 1) (R j) =
+      if j = 1 then 1 else 0 := by
+    rw [← (rankThree_coeff_jet (R j)).1,h1]
+  have hcoef2 : coeff (Finsupp.single (0 : Fin 4) 2) (R 2) = 1 := by
+    have he := (rankThree_coeff_jet (R 2)).2
+    rw [h2,if_pos rfl] at he
+    apply mul_left_cancel₀ (show (2 : K) ≠ 0 by norm_num)
+    simpa only [mul_one] using he.symm
+  have h (j : Fin 3) : IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) ∧
+      initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ) := by
+    have hsmall (k : ℕ) (hk : k < (j : ℕ)) :
+        coeff (Finsupp.single (0 : Fin 4) k) (R j) = 0 := by
+      have hj : (j : ℕ) < 3 := j.isLt
+      have hc : k = 0 ∨ k = 1 := by omega
+      rcases hc with rfl | rfl
+      · rw [Finsupp.single_zero,h0,if_neg]
+        intro hz
+        rw [hz] at hk
+        exact (Nat.not_lt_zero _) hk
+      · rw [hcoef1,if_neg]
+        intro hz
+        rw [hz] at hk
+        exact (Nat.lt_irrefl _) hk
+    have htop : coeff (Finsupp.single (0 : Fin 4) (j : ℕ)) (R j) = 1 := by
+      fin_cases j
+      · simpa using h0 0
+      · simpa using hcoef1 1
+      · exact hcoef2
+    simpa only [map_one,one_mul] using
+      rankThree_relativePolynomial_slope (R j) (j : ℕ) (1 : K) (hrel j) hsmall htop
+  exact ⟨fun j => (h j).1,fun j => (h j).2⟩
+
+/-- Sum the three normalized phase terms, using the signed exact
+product formula at each of the three different coefficient weights. -/
+theorem rankThree_normalizedPhase_slope
+    (R : Fin 3 → B K)
+    (hcap : ∀ j, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j))
+    (htop : ∀ j, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ)) :
+    let T := R 0 * X 1 + R 1 * X 2 + R 2 * X 3
+    IsWeightLE rankThreeWallSlope 0 T ∧ initialForm rankThreeWallSlope 0 T = rankThreeWallPhase := by
+  have h (j : Fin 3) :
+      IsWeightLE rankThreeWallSlope 0 (R j * X j.succ) ∧
+      initialForm rankThreeWallSlope 0 (R j * X j.succ) = X 0 ^ (j : ℕ) * X j.succ := by
+    have hw : rankThreeWallSlope j.succ = ((j : ℕ) : ℤ) := by
+      simp [rankThreeWallSlope]
+    have hX : (X j.succ : B K).IsWeightedHomogeneous rankThreeWallSlope ((j : ℕ) : ℤ) := by
+      rw [← hw]
+      exact MvPolynomial.isWeightedHomogeneous_X K _ _
+    have hx := isWeightLE_of_isWeightedHomogeneous hX
+    have hle := (hcap j).mul hx
+    have he := rankThree_initialForm_mul rankThreeWallSlope _ _ (R j) (X j.succ) (hcap j) hx
+    rw [neg_add_cancel,htop j,initialForm_eq_self_of_isWeightedHomogeneous hX] at he
+    rw [neg_add_cancel] at hle
+    exact ⟨hle,he⟩
+  have h0 := h 0
+  have h1 := h 1
+  have h2 := h 2
+  change IsWeightLE rankThreeWallSlope 0 (R 0 * X 1) ∧
+      initialForm rankThreeWallSlope 0 (R 0 * X 1) = X 0 ^ 0 * X 1 at h0
+  change IsWeightLE rankThreeWallSlope 0 (R 1 * X 2) ∧
+      initialForm rankThreeWallSlope 0 (R 1 * X 2) = X 0 ^ 1 * X 2 at h1
+  change IsWeightLE rankThreeWallSlope 0 (R 2 * X 3) ∧
+      initialForm rankThreeWallSlope 0 (R 2 * X 3) = X 0 ^ 2 * X 3 at h2
+  refine ⟨(h0.1.add h1.1).add h2.1,?_⟩
+  rw [map_add,map_add,h0.2,h1.2,h2.2]
+  simp [rankThreeWallPhase]
+
+
 end
 end HC4.Polynomial
 
@@ -5791,3 +5938,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_relativePolynomial_eval_congr
 #print axioms HC4.Polynomial.rankThree_relativePower_clear
 #print axioms HC4.Polynomial.rankThree_relativePolynomial_slope
+
+#print axioms HC4.Polynomial.rankThree_affine_relative
+#print axioms HC4.Polynomial.rankThree_coeff_jet
+#print axioms HC4.Polynomial.rankThree_relativeJet_slope
+#print axioms HC4.Polynomial.rankThree_normalizedPhase_slope
