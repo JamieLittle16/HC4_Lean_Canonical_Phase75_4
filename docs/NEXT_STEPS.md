@@ -16,4 +16,4 @@ Unconditional HC4 and planar JC2 are not established here. The polynomial invers
 
 The [previous research plan](https://github.com/JamieLittle16/HessianConjecture4/blob/90b9d97e2937b34c12c2ab845a404048f4a3c4b1/docs/NEXT_STEPS.md) is historical.
 
-The [global extremal-weight note](research/global-extremal-weight.tex) is now drafted alongside the rational rigidity note. Review the two together; expand the rank-two image and rank-three regular-pivot exclusions before treating the exposition as a self-contained proof of the equivalence.
+The [global extremal-weight note](research/global-extremal-weight.tex) is now drafted alongside the rational rigidity note. The [supporting rank-exclusion note](research/extremal-rank-exclusions.tex) now expands the nonnegative rank-two and rank-three exclusions. Compile and independently review all three notes, then expand the distinct-weight signed-wall pivot argument before treating the exposition as a self-contained proof of the equivalence.
