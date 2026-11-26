@@ -3019,6 +3019,130 @@ theorem globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
   have hj := hgap j hjs (Ne.symm hpj)
   omega
 
+set_option maxHeartbeats 6000000 in
+/-- Rank-one velocity with a regular active pivot is impossible.
+The first active image component is chosen nonzero; the other
+component may vanish, and no nonzero slope assumption is made. -/
+theorem globalWeightOptimum_rankThree_rankOne_regularActive_oriented
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (l s i k : Fin 4)
+    (hsl : s ≠ l) (hil : i ≠ l) (hkl : k ≠ l)
+    (his : i ≠ s) (hks : k ≠ s) (hik : i ≠ k)
+    (hcover : ∀ a : Fin 4, a = s ∨ a = l ∨ a = i ∨ a = k)
+    (V : Fin 4 → E K) (hVl : V l = 1) (hVs : V s = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hactive : rankTwoPrincipalPivot (hessian (initialForm w m P)) i k ≠ 0)
+    (hsq : let J := rankThreeComplementJacobian l V; J * J = 0)
+    (r : E K)
+    (hrel : ∀ j, j ≠ l → rankThreePartial j (V k) = r * rankThreePartial j (V i))
+    (htrace : rankThreePartial i (V i) + rankThreePartial k (V k) = 0)
+    (hiso : let f := algebraMap (B K) (E K); let L := initialForm w m P
+      f (hessian L i i) + 2*r*f (hessian L i k) + r*r*f (hessian L k k) = 0) :
+    False := by
+  classical
+  let L := initialForm w m P
+  have hconstl (j : Fin 4) : rankThreePartial j (V l) = 0 := by
+    rw [hVl,Derivation.map_one_eq_zero]
+  have hconsts (j : Fin 4) : rankThreePartial j (V s) = 0 := by
+    rw [hVs,map_zero]
+  have hsum (F : Fin 4 → E K) : ∑ a, F a = F s + F l + F i + F k := by
+    have hu : (Finset.univ : Finset (Fin 4)) = {s,l,i,k} := by
+      ext a
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover a
+    rw [hu,Finset.sum_insert,Finset.sum_insert,Finset.sum_insert,Finset.sum_singleton]
+    · ring
+    · simp [hik]
+    · simp [Ne.symm hil,Ne.symm hkl]
+    · simp [hsl,Ne.symm his,Ne.symm hks]
+  have hacc (b : Fin 4) : rankThreePartial l (V b) +
+      V i * rankThreePartial i (V b) + V k * rankThreePartial k (V b) = 0 := by
+    have he := rankThree_normalizedKernel_acceleration_zero L l hreg V hVl hV b
+    rw [hsum,hVs,hVl,zero_mul,one_mul,zero_add] at he
+    exact he
+  have hall (j : Fin 4) : rankThreePartial j (V k) = r * rankThreePartial j (V i) := by
+    by_cases hj : j = l
+    · subst j
+      have ha := hacc i
+      have hb := hacc k
+      rw [hrel i hil,hrel k hkl] at hb
+      linear_combination hb - r*ha
+    · exact hrel j hj
+  by_cases hvar : rankThreePartial k (V i) = 0
+  · have hii : rankThreePartial i (V i) = 0 := by
+      rw [hall k,hvar,mul_zero,add_zero] at htrace
+      exact htrace
+    have hik' : rankThreePartial i (V k) = 0 := by rw [hall i,hii,mul_zero]
+    have hkk : rankThreePartial k (V k) = 0 := by rw [hall k,hvar,mul_zero]
+    have hli : rankThreePartial l (V i) = 0 := by
+      have he := hacc i
+      rwa [hii,hvar,mul_zero,mul_zero,add_zero,add_zero] at he
+    have hlk : rankThreePartial l (V k) = 0 := by rw [hall l,hli,mul_zero]
+    have hrelative (a : Fin 4) (ha : a ≠ s) (b : Fin 4) :
+        rankThreePartial a (V b) = 0 := by
+      rcases hcover b with hb | hb | hb | hb
+      · rw [hb,hconsts]
+      · rw [hb,hconstl]
+      · subst b
+        rcases hcover a with hh | hh | hh | hh
+        · exact (ha hh).elim
+        · rw [hh,hli]
+        · rw [hh,hii]
+        · rw [hh,hvar]
+      · subst b
+        rcases hcover a with hh | hh | hh | hh
+        · exact (ha hh).elim
+        · rw [hh,hlk]
+        · rw [hh,hik']
+        · rw [hh,hkk]
+    obtain ⟨d,hd,hker⟩ := rankThree_oneVariableKernel_constant L s l i k his hks hik
+      hcover hactive V hVs hVl hV hrelative
+    exact hd (globalWeightOptimum_no_constantHessianKernel P w m hw hm hcap
+      hclock hopt hdet d hker)
+  · obtain ⟨_,hrk⟩ := rankThree_rankOne_regularActiveSlope_constant L i k hik
+      (V i) (V k) r hall htrace hvar hiso hactive
+    have hrall (j : Fin 4) : rankThreePartial j r = 0 := by
+      have he := rankThree_proportionalDifferential_slope (V i) (V k) r hall j k
+      rw [hrk,zero_mul] at he
+      exact (mul_eq_zero.mp he).resolve_right hvar
+    obtain ⟨c,hc⟩ := rankOnePartial_constants r hrall
+    have hdiff (j : Fin 4) :
+        rankThreePartial j (V k - algebraMap K (E K) c * V i) = 0 := by
+      simp only [map_sub,Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,
+        mul_zero,add_zero,hall,hc,sub_self]
+    obtain ⟨b,hb⟩ := rankOnePartial_constants
+      (V k - algebraMap K (E K) c * V i) hdiff
+    let d : Fin 4 → K := Pi.single l 1 + Pi.single k b
+    let e : Fin 4 → K := Pi.single i 1 + Pi.single k c
+    have hdl : d l = 1 := by simp [d,Ne.symm hkl]
+    have hel : e l = 0 := by simp [e,Ne.symm hil,Ne.symm hkl]
+    have hei : e i = 1 := by simp [e,hik]
+    have he0 : e ≠ 0 := by
+      intro hz
+      rw [hz] at hei
+      exact zero_ne_one hei
+    apply globalWeightOptimum_rankThree_no_affineKernelLine P w m hw hm hcap
+      hclock hopt hdet l V hVl hreg hV hsq d e hdl hel he0 (V i)
+    intro j
+    rcases hcover j with hj | hj | hj | hj
+    · subst j
+      simp [d,e,hVs,hsl,Ne.symm hks,Ne.symm his]
+    · subst j
+      rw [hVl,hdl,hel,map_one,map_zero,mul_zero,add_zero]
+    · subst j
+      simp [d,e,hil,hik]
+    · subst j
+      have hd : d k = b := by simp [d,hkl]
+      have he : e k = c := by simp [e,Ne.symm hik]
+      rw [hd,he]
+      linear_combination hb
+
+
 end
 end HC4.Polynomial
 
@@ -3095,3 +3219,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_rankOne_regularActiveSlope_constant
 
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_rankOne_regularActive_oriented
