@@ -40,13 +40,13 @@ theorem hessian_adjugate_entry_isWeightedHomogeneous
     · subst a
       by_cases hb : b = i
       · subst b
-        have he : A j i = 1 := by simp [A, Matrix.updateRow_apply, Pi.single_apply]
-        have hr : r j - w i = 0 := by simp [r]; ring
+        have he : A j i = 1 := by simp [A, Matrix.updateRow_apply]
+        have hr : r j - w i = 0 := by simp [r]
         rw [he, hr]
-        exact MvPolynomial.isWeightedHomogeneous_one w
-      · have he : A j b = 0 := by simp [A, Matrix.updateRow_apply, Pi.single_apply, hb]
+        exact MvPolynomial.isWeightedHomogeneous_one K w
+      · have he : A j b = 0 := by simp [A, Matrix.updateRow_apply, hb]
         rw [he]
-        exact MvPolynomial.isWeightedHomogeneous_zero w _
+        exact MvPolynomial.isWeightedHomogeneous_zero K w _
     · have he : A a b = hessian L a b := by simp [A, Matrix.updateRow_apply, ha]
       have hr : r a - w b = m - w a - w b := by simp [r, ha]
       rw [he, hr]
