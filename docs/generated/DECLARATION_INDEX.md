@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11653**.
+Distinct declaration spellings indexed: **11656**.
 
 ## Repeated declaration spellings
 
@@ -6503,6 +6503,7 @@ Distinct declaration spellings indexed: **11653**.
 - `gradient_injective_of_hessianDeterminant_one_of_terminalObstructionProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+- `gradient_injective_of_nonnegativeWeight_zeroClock_of_JC2` — `theorem` in `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `gradient_injective_of_oneZeroWeight_zeroClock` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
 - `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
@@ -11330,6 +11331,7 @@ Distinct declaration spellings indexed: **11653**.
 - `terminalWeightSliceDifference_supported` — `theorem` in `HC4.Newton.PositiveWeightTriangularEvaluation`
 - `terminal_axisHessian_transverseRow_mul_right_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
 - `terminal_axis_mixedHessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
+- `terminal_isWeightLE_rename_perm` — `theorem` in `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `terminal_quadratic_aux_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.RankThreeSingleDirectionRefinement`
 - `terminal_rightPoint_eq_negativeLongitudinalAxis` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalImpossible`
 - `terminal_transverseDegree_eq_zero_or_two` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingLongitudinalTerminalStructure`
@@ -11916,6 +11918,7 @@ Distinct declaration spellings indexed: **11653**.
 - `zeroBaseDegreePure_exists_homogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithBlockerDegreeEndpoints`
 - `zeroBaseFirstWallCompetition_degreePure_or_mixedPair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalBlockerCompetition`
 - `zeroClockFirstContactPacket` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesZeroStrictLowTerminal`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowSingularTerminal`
+- `zeroClock_has_complementWeightPermutation` — `theorem` in `HC4.Polynomial.NonnegativeTerminalAssembly`
 - `zeroCommonKernelSlopeObstruction_impossible` — `theorem` in `HC4.Valuation.RigidClosingZeroSlopeElimination`
 - `zeroCoordinateSupport` — `def` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `zeroCoordinateSupport_nonempty_of_topDegree_attained` — `theorem` in `HC4.Newton.FirstContactCrossFacetCarrier`

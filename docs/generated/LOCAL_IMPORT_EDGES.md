@@ -53,6 +53,7 @@ human architecture guide.
   - `HC4.Newton.ZeroSchurFirstEntryClock`
   - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial`
+  - `HC4.Polynomial.NonnegativeTerminalAssembly`
   - `HC4.Polynomial.NonnegativeWeightZeroClock`
   - `HC4.Polynomial.OneZeroWeightTerminal`
   - `HC4.Polynomial.PositiveWeightZeroClock`
@@ -1358,6 +1359,9 @@ human architecture guide.
 - `HC4.Polynomial.NonlinearSupportHessianRowBreak`
   - `HC4.Newton.TerminalTwoZeroSupport`
   - `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelFirstContactTermination`
+- `HC4.Polynomial.NonnegativeTerminalAssembly`
+  - `HC4.Newton.TerminalCoordinatePermutation`
+  - `HC4.Polynomial.OneZeroWeightTerminal`
 - `HC4.Polynomial.NonnegativeWeightZeroClock`
   - `HC4.Polynomial.TwoZeroWeightFullSource`
 - `HC4.Polynomial.OneZeroWeightTerminal`
