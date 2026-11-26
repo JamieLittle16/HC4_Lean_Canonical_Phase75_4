@@ -183,7 +183,7 @@ theorem rankThree_normalizedKernel_exists
     rw [Matrix.adjugate_transpose, hs]
   let V : Fin 4 → E K := fun i => c⁻¹ * f (A.adjugate i l)
   refine ⟨V, ?_, ?_, ?_⟩
-  · have hz : A.adjugate k l = 0 := (hsa.apply k l).trans (hcol l)
+  · have hz : A.adjugate k l = 0 := (hsa.apply l k).trans (hcol l)
     change c⁻¹ * f (A.adjugate k l) = 0
     rw [hz, map_zero, mul_zero]
   · change c⁻¹ * c = 1
