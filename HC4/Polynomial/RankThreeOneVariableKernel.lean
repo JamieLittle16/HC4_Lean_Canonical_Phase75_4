@@ -3743,6 +3743,171 @@ theorem rankThree_zeroWeight_relativePower_frontier
   exact ⟨n,r,c,hn3,hq,hdeg,hsupp,hL,hrs,hrp,hconst,hc,hpower,hlin⟩
 
 
+set_option maxHeartbeats 6000000 in
+/-- Regular active pivots make one-variable normalized kernels
+constant component by component. No global extremum is needed. -/
+theorem rankThree_oneVariableKernel_allConstants
+    (L : B K) (k l u v : Fin 4)
+    (huk : u ≠ k) (hvk : v ≠ k) (huv : u ≠ v)
+    (hcover : ∀ j : Fin 4, j = k ∨ j = l ∨ j = u ∨ j = v)
+    (hreg : rankTwoPrincipalPivot (hessian L) u v ≠ 0)
+    (V : Fin 4 → E K) (hVk : V k = 0) (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hconst : ∀ i, i ≠ k → ∀ j, rankThreePartial i (V j) = 0) :
+    ∀ j, ∃ d : K, V j = algebraMap K (E K) d := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let H := (hessian L).map f
+  let W : Fin 4 → E K := fun j => rankThreePartial k (V j)
+  have hWk : W k = 0 := by change rankThreePartial k (V k) = 0; rw [hVk,map_zero]
+  have hWl : W l = 0 := by
+    change rankThreePartial k (V l) = 0
+    rw [hVl,Derivation.map_one_eq_zero]
+  have hWoff (j : Fin 4) (hju : j ≠ u) (hjv : j ≠ v) : W j = 0 := by
+    rcases hcover j with h | h | h | h
+    · rw [h,hWk]
+    · rw [h,hWl]
+    · exact (hju h).elim
+    · exact (hjv h).elim
+  have hrepr : W = (Pi.single u (W u) : Fin 4 → E K) + Pi.single v (W v) := by
+    funext j
+    by_cases hj : j = u
+    · subst j
+      simp [huv]
+    · by_cases h' : j = v
+      · subst j
+        simp [hj]
+      · simp [Pi.single_eq_of_ne hj,Pi.single_eq_of_ne h',hWoff j hj h']
+  have he (i : Fin 4) (hi : i ≠ k) : H i u * W u + H i v * W v = 0 := by
+    have h := rankThree_oneVariableKernel_derivative_rows L k V hV hconst i hi
+    change (H *ᵥ W) i = 0 at h
+    have hw := congrArg (fun z : Fin 4 → E K => H *ᵥ z) hrepr
+    change H *ᵥ W = H *ᵥ ((Pi.single u (W u) : Fin 4 → E K) + Pi.single v (W v)) at hw
+    rw [Matrix.mulVec_add,Matrix.mulVec_single,Matrix.mulVec_single] at hw
+    have hj := congrFun hw i
+    change (H *ᵥ W) i = H i u * W u + H i v * W v at hj
+    exact hj.symm.trans h
+  have hΔ : rankTwoPrincipalPivot H u v ≠ 0 := by
+    rw [← rankTwoPrincipalPivot_map]
+    intro h
+    apply hreg
+    apply IsFractionRing.injective (B K) (E K)
+    simpa only [map_zero] using h
+  have hu : rankTwoPrincipalPivot H u v * W u = 0 := by
+    unfold rankTwoPrincipalPivot
+    linear_combination H v v * he u huk - H u v * he v hvk
+  have hv : rankTwoPrincipalPivot H u v * W v = 0 := by
+    unfold rankTwoPrincipalPivot
+    linear_combination H u u * he v hvk - H v u * he u huk
+  have hWu := (mul_eq_zero.mp hu).resolve_left hΔ
+  have hWv := (mul_eq_zero.mp hv).resolve_left hΔ
+  have hW : W = 0 := by rw [hrepr,hWu,hWv]; simp
+  have hc (j : Fin 4) : ∃ d : K, V j = algebraMap K (E K) d := by
+    apply rankOnePartial_constants
+    intro i
+    change rankThreePartial i (V j) = 0
+    by_cases hi : i = k
+    · subst i
+      exact congrFun hW j
+    · exact hconst i hi j
+  exact hc
+
+
+set_option maxHeartbeats 6000000 in
+/-- The regular active rank-one differential forces a constant affine
+relation of the two moving components, even away from a global optimum. -/
+theorem rankThree_rankOne_regularActive_affineRelation
+    (L : B K)
+    (l s i k : Fin 4)
+    (hsl : s ≠ l) (hil : i ≠ l) (hkl : k ≠ l)
+    (his : i ≠ s) (hks : k ≠ s) (hik : i ≠ k)
+    (hcover : ∀ a : Fin 4, a = s ∨ a = l ∨ a = i ∨ a = k)
+    (V : Fin 4 → E K) (hVl : V l = 1) (hVs : V s = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hactive : rankTwoPrincipalPivot (hessian L) i k ≠ 0)
+    (hsq : let J := rankThreeComplementJacobian l V; J * J = 0)
+    (r : E K)
+    (hrel : ∀ j, j ≠ l → rankThreePartial j (V k) = r * rankThreePartial j (V i))
+    (htrace : rankThreePartial i (V i) + rankThreePartial k (V k) = 0)
+    (hiso : let f := algebraMap (B K) (E K)
+      f (hessian L i i) + 2*r*f (hessian L i k) + r*r*f (hessian L k k) = 0) :
+    ∃ b c : K, V k = algebraMap K (E K) b + algebraMap K (E K) c * V i := by
+  classical
+  have hconstl (j : Fin 4) : rankThreePartial j (V l) = 0 := by
+    rw [hVl,Derivation.map_one_eq_zero]
+  have hconsts (j : Fin 4) : rankThreePartial j (V s) = 0 := by
+    rw [hVs,map_zero]
+  have hsum (F : Fin 4 → E K) : ∑ a, F a = F s + F l + F i + F k := by
+    have hu : (Finset.univ : Finset (Fin 4)) = {s,l,i,k} := by
+      ext a
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover a
+    rw [hu,Finset.sum_insert,Finset.sum_insert,Finset.sum_insert,Finset.sum_singleton]
+    · ring
+    · simp [hik]
+    · simp [Ne.symm hil,Ne.symm hkl]
+    · simp [hsl,Ne.symm his,Ne.symm hks]
+  have hacc (b : Fin 4) : rankThreePartial l (V b) +
+      V i * rankThreePartial i (V b) + V k * rankThreePartial k (V b) = 0 := by
+    have he := rankThree_normalizedKernel_acceleration_zero L l hreg V hVl hV b
+    rw [hsum,hVs,hVl,zero_mul,one_mul,zero_add] at he
+    exact he
+  have hall (j : Fin 4) : rankThreePartial j (V k) = r * rankThreePartial j (V i) := by
+    by_cases hj : j = l
+    · subst j
+      have ha := hacc i
+      have hb := hacc k
+      rw [hrel i hil,hrel k hkl] at hb
+      linear_combination hb - r*ha
+    · exact hrel j hj
+  by_cases hvar : rankThreePartial k (V i) = 0
+  · have hii : rankThreePartial i (V i) = 0 := by
+      rw [hall k,hvar,mul_zero,add_zero] at htrace
+      exact htrace
+    have hik' : rankThreePartial i (V k) = 0 := by rw [hall i,hii,mul_zero]
+    have hkk : rankThreePartial k (V k) = 0 := by rw [hall k,hvar,mul_zero]
+    have hli : rankThreePartial l (V i) = 0 := by
+      have he := hacc i
+      rwa [hii,hvar,mul_zero,mul_zero,add_zero,add_zero] at he
+    have hlk : rankThreePartial l (V k) = 0 := by rw [hall l,hli,mul_zero]
+    have hrelative (a : Fin 4) (ha : a ≠ s) (b : Fin 4) :
+        rankThreePartial a (V b) = 0 := by
+      rcases hcover b with hb | hb | hb | hb
+      · rw [hb,hconsts]
+      · rw [hb,hconstl]
+      · subst b
+        rcases hcover a with hh | hh | hh | hh
+        · exact (ha hh).elim
+        · rw [hh,hli]
+        · rw [hh,hii]
+        · rw [hh,hvar]
+      · subst b
+        rcases hcover a with hh | hh | hh | hh
+        · exact (ha hh).elim
+        · rw [hh,hlk]
+        · rw [hh,hik']
+        · rw [hh,hkk]
+    obtain ⟨b,hb⟩ := rankThree_oneVariableKernel_allConstants L s l i k his hks hik
+      hcover hactive V hVs hVl hV hrelative k
+    exact ⟨b,0,by simpa only [map_zero,zero_mul,add_zero] using hb⟩
+  · obtain ⟨_,hrk⟩ := rankThree_rankOne_regularActiveSlope_constant L i k hik
+      (V i) (V k) r hall htrace hvar hiso hactive
+    have hrall (j : Fin 4) : rankThreePartial j r = 0 := by
+      have he := rankThree_proportionalDifferential_slope (V i) (V k) r hall j k
+      rw [hrk,zero_mul] at he
+      exact (mul_eq_zero.mp he).resolve_right hvar
+    obtain ⟨c,hc⟩ := rankOnePartial_constants r hrall
+    have hdiff (j : Fin 4) :
+        rankThreePartial j (V k - algebraMap K (E K) c * V i) = 0 := by
+      simp only [map_sub,Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,
+        mul_zero,add_zero,hall,hc,sub_self]
+    obtain ⟨b,hb⟩ := rankOnePartial_constants
+      (V k - algebraMap K (E K) c * V i) hdiff
+    refine ⟨b,c,?_⟩
+    linear_combination hb
+
+
 end
 end HC4.Polynomial
 
@@ -3835,3 +4000,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_relativePurePower
 #print axioms HC4.Polynomial.rankThree_zeroWeight_relativePower_frontier
+
+#print axioms HC4.Polynomial.rankThree_oneVariableKernel_allConstants
+#print axioms HC4.Polynomial.rankThree_rankOne_regularActive_affineRelation
