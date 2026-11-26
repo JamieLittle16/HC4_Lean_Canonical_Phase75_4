@@ -920,3 +920,4 @@ import HC4.Polynomial.WeightedExtremalIsotropicPlane
 import HC4.Polynomial.RankTwoAffineLevelCurvature
 import HC4.Polynomial.RankTwoMinorTransport
 import HC4.Polynomial.RankTwoAffineClosure
+import HC4.Polynomial.RankTwoImageDirectionClosure
