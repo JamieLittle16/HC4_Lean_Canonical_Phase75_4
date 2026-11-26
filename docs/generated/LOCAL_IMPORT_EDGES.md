@@ -240,6 +240,7 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingRationalRigidity`
   - `HC4.Polynomial.WeightedComplementaryHessian`
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
+  - `HC4.Polynomial.WeightedComplementaryKernel`
   - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
@@ -2202,6 +2203,9 @@ human architecture guide.
   - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
 - `HC4.Polynomial.WeightedComplementaryInitialForm`
   - `HC4.Polynomial.WeightedComplementaryHessian`
+- `HC4.Polynomial.WeightedComplementaryKernel`
+  - `HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection`
+  - `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `HC4.Polynomial.WeightedInitial`
   - _(no local imports)_
 - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
