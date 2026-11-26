@@ -153,7 +153,7 @@ theorem gradient_injective_of_oneZeroWeight_zeroClock
     change _root_.Polynomial.derivative' (E g) = E (hessian P j k)
     rw [HC4.Polynomial.RankThreeCubic.derivation_aeval]
     rw [Finset.sum_eq_single k]
-    · simp [z, hessian_apply, g]
+    · simp [E, z, hessian_apply, g]
     · intro i _ hi
       simp [z, hi]
     · simp
