@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11884**.
+Distinct declaration spellings indexed: **11887**.
 
 ## Repeated declaration spellings
 
@@ -6535,9 +6535,11 @@ Distinct declaration spellings indexed: **11884**.
 - `globalWeightOptimum_not_rankAtMostTwo` — `theorem` in `HC4.Polynomial.RankTwoGlobalClosure`
 - `globalWeightOptimum_rankThree` — `theorem` in `HC4.Polynomial.RankThreeExtremalReduction`
 - `globalWeightOptimum_rankThree_complementJacobian_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `globalWeightOptimum_rankThree_no_one_zero_distinct_weights` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_no_unique_active_max` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_restricted_atMostOne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_restricted_no_gain` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `globalWeightOptimum_rankThree_zeroRow_weight_gap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankTwo_exists_principalPivot` — `theorem` in `HC4.Polynomial.RankTwoPrincipalPivot`
 - `globalWeightOptimum_rankTwo_no_affineChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_rankTwo_no_affineCoordinate` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
@@ -9362,6 +9364,7 @@ Distinct declaration spellings indexed: **11884**.
 - `rankThreeAutonomousPolynomial_coeff_zero_one` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `rankThreeAutonomousPolynomial_mul_rawDenominator` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `rankThreeAutonomousPolynomial_natDegree_le_two_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeTargetDegreeBound`
+- `rankThreeCollapsedWeight` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeComplementJacobian` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeDirectionDefect` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreeDirectionNeutralWeight_of_primitive_pair` — `theorem` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
