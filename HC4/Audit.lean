@@ -674,3 +674,17 @@ import HC4
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_chartCoeff_trace_zero
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_independent_impossible
 #print axioms HC4.Polynomial.RankThreeCubic.rankOne_normalized_scaled_independent_impossible
+
+
+-- Final conditional HC4 endpoint: verify the public statement independently
+-- of the private abbreviations and the intermediate frontier declarations.
+#check @HC4.Polynomial.hc4_of_planarJC2
+#print axioms HC4.Polynomial.hc4_of_planarJC2
+
+example {K : Type*} [Field K] [CharZero K]
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : MvPolynomial (Fin 4) K)
+    (hdet : (HC4.Polynomial.hessian P).det = 1) :
+    Function.Injective (fun x : Fin 4 → K =>
+      fun i : Fin 4 => MvPolynomial.eval x (MvPolynomial.pderiv i P)) := by
+  exact HC4.Polynomial.hc4_of_planarJC2 hJC2 P hdet
