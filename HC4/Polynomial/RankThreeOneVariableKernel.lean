@@ -4198,6 +4198,159 @@ theorem rankThree_signedWall_restrictedMinors_zero
   simpa only [ha] using hm
 
 
+set_option maxHeartbeats 4000000 in
+/-- Signed negative omitted weight permits the same exact monomial
+cross identities, by negating all weights. -/
+theorem rankThree_restricted_signedRatio
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hL : MvPolynomial.IsWeightedHomogeneous w L m)
+    (s : Fin 4) (hws : w s < 0)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (p i : Fin 4) (hp : p ≠ s) (hi : i ≠ s)
+    (hip : i ≠ p) (hdiag : hessian L p p ≠ 0) (hmix : hessian L i p ≠ 0) :
+    ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧ e ≠ 0 ∧
+      hessian L i p * MvPolynomial.monomial (Finsupp.single s n) c =
+        hessian L p p * MvPolynomial.monomial (Finsupp.single s t) e := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let A := hessian L p p
+  let C₀ := hessian L i p
+  let r := f C₀ / f A
+  let P := IsFractionRing.num (B K) r
+  let Q : B K := IsFractionRing.den (B K) r
+  have hQ0 : Q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) r)
+  have hAf : f A ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hdiag
+  have hQf : f Q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hQ0
+  have hrepr : f P / f Q = f C₀ / f A :=
+    IsFractionRing.mk'_num_den' (B K) r
+  have hcross : C₀ * Q = A * P := by
+    apply IsFractionRing.injective (B K) (E K)
+    change f (C₀*Q) = f (A*P)
+    simp only [map_mul]
+    rw [mul_comm (f A)]
+    exact ((div_eq_div_iff hQf hAf).mp hrepr).symm
+  have hder (j : Fin 4) (hj : j ≠ s) : pderiv j P = 0 ∧ pderiv j Q = 0 :=
+    rankOnePartial_num_den_independent r s
+      (rankOneHessian_twoRows_partialRatios_constant L s p i hip hp hi hdiag
+        (fun j hj => (hmin p i p j hp hi hp hj).trans (mul_comm _ _))) j hj
+  have hA : MvPolynomial.IsWeightedHomogeneous w A (m-w p-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL p) p
+  have hC : MvPolynomial.IsWeightedHomogeneous w C₀ (m-w i-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL i) p
+  let v : Fin 4 → ℤ := fun j => -w j
+  have hv (u : Fin 4 →₀ ℕ) : Finsupp.weight v u = -Finsupp.weight w u := by
+    have he := firstWall_weight_scaled_add w w (-1) 0 u
+    simpa only [zero_mul,zero_add,neg_one_mul,v] using he
+  have hneg (T : B K) (d : ℤ) (h : T.IsWeightedHomogeneous w d) :
+      T.IsWeightedHomogeneous v (-d) := by
+    intro u hu
+    rw [hv,h hu]
+  obtain ⟨n,t,c,e,hc,he,_,hpow⟩ :=
+    rankOne_weighted_relativeRatio_cross_power v s (by dsimp [v]; omega)
+      _ _ A C₀ hdiag hmix (hneg _ _ hA) (hneg _ _ hC) P Q hQ0 hcross
+      (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
+  exact ⟨n,t,c,e,hc,he,hpow⟩
+
+
+set_option maxHeartbeats 6000000 in
+/-- Restricted rank one at a signed wall prohibits every supported
+monomial of passive degree between two and the wall cap measured
+in units of the lightest passive weight. Transfer a passive exponent
+to the pivot until its maximality is contradicted. -/
+theorem rankThree_signedWall_no_lowerDegree
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hL : L.IsWeightedHomogeneous w m)
+    (s p : Fin 4) (hps : p ≠ s) (hws : w s < 0) (hwp : 0 < w p)
+    (hp : hessian L p p ≠ 0)
+    (hmin : ∀ i j a b : Fin 4, i ≠ s → j ≠ s → a ≠ s → b ≠ s →
+      hessian L i a * hessian L j b = hessian L i b * hessian L j a)
+    (u : Fin 4 →₀ ℕ) (hu : u ∈ L.support)
+    (hdegree : 2 ≤ Finsupp.weight (rankThreeRelativeNatWeight s) u) :
+    m ≤ w p * (Finsupp.weight (rankThreeRelativeNatWeight s) u : ℕ) := by
+  classical
+  let v : Fin 4 → ℤ := fun i => if i = s then 0 else 1
+  have hvs : v s = 0 := by simp [v]
+  have hvp : v p = 1 := by simp [v,hps]
+  have hv (i : Fin 4) (hi : i ≠ s) : v i = 1 := by simp [v,hi]
+  have hcast (a : Fin 4 →₀ ℕ) :
+      Finsupp.weight v a = (Finsupp.weight (rankThreeRelativeNatWeight s) a : ℕ) := by
+    simp only [Finsupp.weight_apply,Finsupp.sum,Nat.cast_sum]
+    apply Finset.sum_congr rfl
+    intro i _
+    by_cases hi : i = s <;> simp [v,rankThreeRelativeNatWeight,hi]
+  by_contra hbad
+  let T := L.support.filter (fun a => Finsupp.weight v a = Finsupp.weight v u)
+  have hT : T.Nonempty := ⟨u,Finset.mem_filter.mpr ⟨hu,rfl⟩⟩
+  obtain ⟨b,hb,hmax⟩ := Finset.exists_max_image T (fun a : Fin 4 →₀ ℕ => a p) hT
+  have hbL := (Finset.mem_filter.mp hb).1
+  have hbd := (Finset.mem_filter.mp hb).2
+  have hbc := MvPolynomial.mem_support_iff.mp hbL
+  have hex : ∃ i : Fin 4, i ≠ s ∧ i ≠ p ∧ b i ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    have hle : Finsupp.weight w b ≤ w p * Finsupp.weight v b := by
+      rw [Finsupp.weight_apply,Finsupp.weight_apply,Finsupp.sum,Finsupp.sum,Finset.mul_sum]
+      apply Finset.sum_le_sum
+      intro i _
+      by_cases hi : i = s
+      · subst i
+        rw [hvs,smul_zero,mul_zero]
+        exact nsmul_nonpos (le_of_lt hws) _
+      · by_cases hip : i = p
+        · subst i
+          rw [hvp]
+          simp [nsmul_eq_mul,mul_comm]
+        · rw [hn i hi hip,zero_smul,zero_smul,mul_zero]
+    rw [hL hbc,hbd,hcast] at hle
+    exact hbad hle
+  obtain ⟨i,his,hip,hbi⟩ := hex
+  let a := b - Finsupp.single i 1
+  have ha : a + Finsupp.single i 1 = b := Finsupp.sub_add_single_one_cancel hbi
+  have hexj : ∃ j : Fin 4, j ≠ s ∧ a j ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    have haz : a = Finsupp.single s (a s) := by
+      ext j
+      by_cases hj : j = s
+      · subst j; simp
+      · rw [hn j hj,Finsupp.single_eq_of_ne hj]
+    have he := congrArg (Finsupp.weight v) ha
+    rw [map_add,Finsupp.weight_single,one_smul,haz,Finsupp.weight_single,hvs,
+      smul_zero,zero_add,hv i his,hbd,hcast] at he
+    omega
+  obtain ⟨j,hjs,haj⟩ := hexj
+  have hH : hessian L i j ≠ 0 := by
+    have h1 := extremal_pderiv_coeff_nonzero L b hbc i hbi
+    have h2 := extremal_pderiv_coeff_nonzero (pderiv i L) a h1 j haj
+    intro hz
+    change pderiv j (pderiv i L) = 0 at hz
+    exact h2 (by rw [hz,coeff_zero])
+  have hipmix : hessian L i p ≠ 0 := by
+    intro hz
+    have he := hmin p i p j hps his hps hjs
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hp hH) he
+  obtain ⟨n,t,c,e,hc,he,hcross⟩ :=
+    rankThree_restricted_signedRatio L w m hL s hws hmin p i hps his hip hp hipmix
+  have hrow : hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c =
+      hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e := by
+    have hh := hmin p i p j hps his hps hjs
+    apply mul_left_cancel₀ hp
+    calc
+      _ = hessian L p j * (hessian L i p * MvPolynomial.monomial (Finsupp.single s n) c) := by
+        rw [← mul_assoc,hh,mul_assoc]
+      _ = _ := by rw [hcross]; ring
+  obtain ⟨z,hz,hzp,hzw⟩ := rankThree_support_transfer_to_pivot L s p i j
+    hps hip v hvs b hbc hbi haj n t c e hc hrow
+  have hzT : z ∈ T := Finset.mem_filter.mpr
+    ⟨MvPolynomial.mem_support_iff.mpr hz,by rw [hzw,hv i his,hvp,hbd]; ring⟩
+  have hcontra := hmax z hzT
+  omega
+
+
 end
 end HC4.Polynomial
 
@@ -4299,3 +4452,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_normalizedKernel_adjugate_column
 #print axioms HC4.Polynomial.rankThree_distinctWeights_no_affineRelation
 #print axioms HC4.Polynomial.rankThree_signedWall_restrictedMinors_zero
+
+#print axioms HC4.Polynomial.rankThree_restricted_signedRatio
+#print axioms HC4.Polynomial.rankThree_signedWall_no_lowerDegree
