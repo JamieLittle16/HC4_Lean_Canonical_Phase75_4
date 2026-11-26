@@ -4581,6 +4581,138 @@ theorem rankThree_normalizedWall_impossible
     hdetQ hcof hp v hvQ hdeg hvd
 
 
+set_option maxHeartbeats 4000000 in
+/-- A constant affine relation among the normalised phase ratios
+would give an actual constant Hessian kernel. The contradiction
+uses global optimality only here, before the signed deformation. -/
+theorem rankThree_relativePhase_no_affineRelation
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ j, w j))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p i k : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hks : k ≠ s)
+    (hip : i ≠ p) (hkp : k ≠ p) (hki : k ≠ i)
+    (r : Fin 4 → E K)
+    (hgrad : ∀ j, j ≠ s →
+      algebraMap (B K) (E K) (pderiv j (initialForm w m P)) =
+      r j * algebraMap (B K) (E K) (pderiv p (initialForm w m P)))
+    (B₀ C₀ : K) :
+    r k ≠ algebraMap K (E K) B₀ + algebraMap K (E K) C₀ * r i := by
+  classical
+  intro he
+  let L := initialForm w m P
+  let f := algebraMap (B K) (E K)
+  let g := algebraMap K (E K)
+  have hC (a : K) : f (MvPolynomial.C a) = g a :=
+    (IsScalarTower.toAlgHom K (B K) (E K)).commutes a
+  have hpoly : pderiv k L = MvPolynomial.C B₀ * pderiv p L +
+      MvPolynomial.C C₀ * pderiv i L := by
+    apply IsFractionRing.injective (B K) (E K)
+    change f (pderiv k L) = f (MvPolynomial.C B₀ * pderiv p L +
+      MvPolynomial.C C₀ * pderiv i L)
+    simp only [map_add,map_mul,hC]
+    rw [hgrad k hks,hgrad i his,he]
+    ring
+  have hh (j : Fin 4) : hessian L j k =
+      MvPolynomial.C B₀ * hessian L j p + MvPolynomial.C C₀ * hessian L j i := by
+    have hd := congrArg (pderiv j) hpoly
+    simp only [map_add,MvPolynomial.pderiv_C_mul,← hessian_apply] at hd
+    rw [show hessian L j k = hessian L k j from pderiv_comm_backport _ _ _,
+      show hessian L j p = hessian L p j from pderiv_comm_backport _ _ _,
+      show hessian L j i = hessian L i j from pderiv_comm_backport _ _ _]
+    exact hd
+  let d : Fin 4 → K := Pi.single k 1 - Pi.single p B₀ - Pi.single i C₀
+  have hd (j : Fin 4) :
+      MvPolynomial.C (d j) =
+        (Pi.single k 1 : Fin 4 → B K) j -
+          Pi.single p (MvPolynomial.C B₀) j - Pi.single i (MvPolynomial.C C₀) j := by
+    by_cases hj : j = k
+    · subst j
+      simp [d,hkp,hki]
+    · by_cases hjp : j = p
+      · subst j
+        simp [d,Ne.symm hkp,Ne.symm hip]
+      · by_cases hji : j = i
+        · subst j
+          simp [d,Ne.symm hki,hip]
+        · simp [d,hj,hjp,hji]
+  have hvec : (fun j => MvPolynomial.C (d j)) =
+      (Pi.single k 1 : Fin 4 → B K) -
+        Pi.single p (MvPolynomial.C B₀) - Pi.single i (MvPolynomial.C C₀) := funext hd
+  have hker : hessian L *ᵥ (fun j => MvPolynomial.C (d j)) = 0 := by
+    rw [hvec,Matrix.mulVec_sub,Matrix.mulVec_sub,Matrix.mulVec_single,
+      Matrix.mulVec_single,Matrix.mulVec_single]
+    funext j
+    change hessian L j k * 1 - hessian L j p * MvPolynomial.C B₀ -
+      hessian L j i * MvPolynomial.C C₀ = 0
+    rw [hh j]
+    ring
+  have hd0 := globalWeightOptimum_no_constantHessianKernel P w m hw hm hcap hclock
+    hopt hdet d hker
+  have hdk : d k = 1 := by simp [d,hkp,hki]
+  rw [hd0] at hdk
+  exact zero_ne_one hdk
+
+set_option maxHeartbeats 4000000 in
+/-- The elementary Wronskian criterion for the three functions
+1,A,B in the one-variable relative rational field. If the
+Wronskian vanishes, B is a constant affine function of A (or A
+itself is constant). All constants are descended to K. -/
+theorem rankThree_relativeWronskian_ne_zero
+    (s : Fin 4) (A B₀ : E K)
+    (hA : ∀ j, j ≠ s → rankThreePartial j A = 0)
+    (hB : ∀ j, j ≠ s → rankThreePartial j B₀ = 0)
+    (hAind : ∀ a : K, A ≠ algebraMap K (E K) a)
+    (hBind : ∀ b c : K, B₀ ≠ algebraMap K (E K) b + algebraMap K (E K) c * A) :
+    rankThreePartial s A * rankThreePartial s (rankThreePartial s B₀) -
+      rankThreePartial s B₀ * rankThreePartial s (rankThreePartial s A) ≠ 0 := by
+  classical
+  let D := rankThreePartial (K := K) s
+  have hDA : D A ≠ 0 := by
+    intro hz
+    obtain ⟨a,ha⟩ := rankOnePartial_constants A (by
+      intro j
+      by_cases hj : j = s
+      · subst j
+        exact hz
+      · exact hA j hj)
+    exact hAind a ha
+  intro hz
+  let r := D B₀ / D A
+  have hrepr : r * D A = D B₀ := div_mul_cancel₀ _ hDA
+  have hr (j : Fin 4) : rankThreePartial j r = 0 := by
+    have he := congrArg (rankThreePartial (K := K) j) hrepr
+    change rankThreePartial j (r * D A) = rankThreePartial j (D B₀) at he
+    simp only [Derivation.leibniz,smul_eq_mul] at he
+    by_cases hj : j = s
+    · subst j
+      change r * D (D A) + D A * D r = D (D B₀) at he
+      change D A * D (D B₀) - D B₀ * D (D A) = 0 at hz
+      have hz' : D A * D A * D r = 0 := by
+        linear_combination D A * he + D (D A) * hrepr + hz
+      exact (mul_eq_zero.mp hz').resolve_left (mul_ne_zero hDA hDA)
+    · have ha := rankThree_relative_derivative_constant A s hA j hj
+      have hb := rankThree_relative_derivative_constant B₀ s hB j hj
+      change rankThreePartial j (D A) = 0 at ha
+      change rankThreePartial j (D B₀) = 0 at hb
+      rw [ha,hb,mul_zero,zero_add] at he
+      exact (mul_eq_zero.mp he).resolve_left hDA
+  obtain ⟨c,hc⟩ := rankOnePartial_constants r hr
+  have hdiff (j : Fin 4) :
+      rankThreePartial j (B₀ - algebraMap K (E K) c * A) = 0 := by
+    simp only [map_sub,Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,mul_zero,add_zero]
+    by_cases hj : j = s
+    · subst j
+      change D B₀ - algebraMap K (E K) c * D A = 0
+      rw [hc] at hrepr
+      exact sub_eq_zero.mpr hrepr.symm
+    · rw [hB j hj,hA j hj,mul_zero,sub_zero]
+  obtain ⟨b,hb⟩ := rankOnePartial_constants (B₀ - algebraMap K (E K) c * A) hdiff
+  apply hBind b c
+  linear_combination hb
+
+
 end
 end HC4.Polynomial
 
@@ -4691,3 +4823,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_twoRows_oneColumn_det_zero
 #print axioms HC4.Polynomial.rankThree_wall_quadraticWitness
 #print axioms HC4.Polynomial.rankThree_normalizedWall_impossible
+
+#print axioms HC4.Polynomial.rankThree_relativePhase_no_affineRelation
+#print axioms HC4.Polynomial.rankThree_relativeWronskian_ne_zero
