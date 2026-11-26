@@ -250,6 +250,7 @@ human architecture guide.
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
   - `HC4.Polynomial.WeightedComplementaryKernel`
   - `HC4.Polynomial.WeightedExtremalAffinePlane`
+  - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
   - `HC4.Polynomial.WeightedExtremalKernel`
   - `HC4.Polynomial.WeightedExtremalObstruction`
   - `HC4.Polynomial.WeightedExtremalPartner`
@@ -2246,6 +2247,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedComplementaryInitialForm`
 - `HC4.Polynomial.WeightedExtremalAffinePlane`
   - `HC4.Polynomial.WeightedExtremalKernel`
+- `HC4.Polynomial.WeightedExtremalIsotropicPlane`
+  - `HC4.Polynomial.RankOneHessianClosure`
 - `HC4.Polynomial.WeightedExtremalKernel`
   - `HC4.Polynomial.WeightedExtremalObstruction`
 - `HC4.Polynomial.WeightedExtremalObstruction`
