@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11942**.
+Distinct declaration spellings indexed: **11944**.
 
 ## Repeated declaration spellings
 
@@ -9563,7 +9563,9 @@ Distinct declaration spellings indexed: **11942**.
 - `rankThree_raw_target_eval_two_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `rankThree_reduced_target_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_relativeDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativePhase_no_affineRelation` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePurePower` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativeWronskian_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relative_derivative_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_remaining_two_coordinates` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_repairProgress_forces_complexityDrop` — `theorem` in `HC4.Newton.RankOneRepairProgress`
