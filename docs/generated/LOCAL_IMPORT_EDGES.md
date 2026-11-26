@@ -2127,6 +2127,8 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `HC4.Polynomial.RationalLinearProjection`
   - _(no local imports)_
+- `HC4.Polynomial.RationalMapAffinePlane`
+  - `HC4.Polynomial.RationalCharacteristicRankTwoClosure`
 - `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
   - `HC4.Polynomial.CentralDeficitBinarySpecialisation`
 - `HC4.Polynomial.SingularHessianConstantAnnihilator`
