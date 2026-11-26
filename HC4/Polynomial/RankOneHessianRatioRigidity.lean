@@ -614,6 +614,71 @@ theorem rankOneHessian_twoRows_constant
     (IsScalarTower.toAlgHom K (R σ K) (E σ K)).commutes c
   rw [hC]
 
+set_option maxHeartbeats 3000000 in
+/-- Partial Hessian row proportionality forces the ratio to be
+constant in every non-omitted variable. The same polynomial
+line specialization as in full-row rigidity is valid without
+adjoining the omitted variable to the coefficient field. -/
+theorem rankOneHessian_twoRows_partialRatios_constant
+    (L : R σ K) (s k i : σ) (hik : i ≠ k) (hks : k ≠ s) (his : i ≠ s)
+    (hk : hessian L k k ≠ 0)
+    (hr : ∀ j : σ, j ≠ s → hessian L k k * hessian L i j =
+      hessian L i k * hessian L k j) :
+    let f := algebraMap (R σ K) (E σ K)
+    let r := f (hessian L i k) / f (hessian L k k)
+    ∀ j : σ, j ≠ s → rankOnePartial j r = 0 := by
+  classical
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let a := f (hessian L k k)
+  let r := f (hessian L i k) / a
+  have ha : a ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (R σ K) (E σ K)).ne hk
+  have hrow (j : σ) (hj : j ≠ s) : f (hessian L i j) = r * f (hessian L k j) := by
+    apply mul_left_cancel₀ ha
+    calc
+      a * f (hessian L i j) = f (hessian L i k) * f (hessian L k j) := by
+        change f _ * f _ = f _ * f _
+        rw [← map_mul,← map_mul,hr j hj]
+      _ = a * (r * f (hessian L k j)) := by
+        have h : a*r = f (hessian L i k) := by
+          dsimp [r]; rw [mul_comm,div_mul_cancel₀ _ ha]
+        rw [← mul_assoc,h]
+  let F := pderiv k L
+  let G := pderiv i L
+  have hrel (j : σ) (hj : j ≠ s) : f (pderiv j G) = r * f (pderiv j F) := hrow j hj
+  have hmix : f (pderiv i F) = r * f (pderiv k F) := by
+    change f (hessian L k i) = r * f (hessian L k k)
+    rw [show hessian L k i = hessian L i k from pderiv_comm_backport i k L]
+    exact hrow k hks
+  have hdiff (j : σ) (hj : j ≠ s) : f (pderiv k F) * rankOnePartial j r =
+      f (pderiv j F) * rankOnePartial k r := by
+    have h1 := congrArg (rankOnePartial (K := K) j) (hrel k hks)
+    have h2 := congrArg (rankOnePartial (K := K) k) (hrel j hj)
+    change rankOnePartial j (f (pderiv k G)) =
+      rankOnePartial j (r * f (pderiv k F)) at h1
+    change rankOnePartial k (f (pderiv j G)) =
+      rankOnePartial k (r * f (pderiv j F)) at h2
+    have hmap (l : σ) (P : R σ K) :
+        rankOnePartial l (f P) = f (pderiv l P) :=
+      rankOnePartial_map l P
+    simp only [Derivation.leibniz,smul_eq_mul,hmap] at h1 h2
+    rw [pderiv_comm_backport j k G,pderiv_comm_backport j k F] at h1
+    linear_combination h2 - h1
+  have htransport : rankOnePartial i r = r * rankOnePartial k r := by
+    apply mul_left_cancel₀ ha
+    change f (pderiv k F) * rankOnePartial i r =
+      f (pderiv k F) * (r * rankOnePartial k r)
+    rw [hdiff i his,hmix]
+    ring
+  have hz : rankOnePartial k r = 0 :=
+    flatLevel_tangent_pivot_deriv_zero F r k i hik htransport ha hmix
+  intro j hj
+  change rankOnePartial j r = 0
+  have h := hdiff j hj
+  rw [hz,mul_zero] at h
+  exact (mul_eq_zero.mp h).resolve_left ha
+
+
 end Finite
 
 end
@@ -627,3 +692,5 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.flatLevel_tangent_pivot_deriv_zero
 #print axioms HC4.Polynomial.rankOneHessian_twoRows_constant
+
+#print axioms HC4.Polynomial.rankOneHessian_twoRows_partialRatios_constant
