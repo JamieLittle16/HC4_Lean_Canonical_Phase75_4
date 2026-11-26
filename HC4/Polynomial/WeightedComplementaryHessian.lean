@@ -73,7 +73,7 @@ theorem annihilatorShear_transpose_mulVec
   classical
   let M := annihilatorShear d k
   funext j
-  change (∑ i : ι, M i j * d i) = d k * Pi.single k (1 : K) j
+  change (∑ i : ι, M i j * d i) = d k * (Pi.single k (1 : K) : ι → K) j
   by_cases hj : j = k
   · subst j
     rw [Finset.sum_eq_single k]
@@ -229,10 +229,10 @@ theorem weightedLinearSubstitution_zero_adjugate_column
   have ht : T.transpose *ᵥ b = C (d k) • (Pi.single k (1 : MvPolynomial ι K) : ι → MvPolynomial ι K) := by
     funext i
     have hh := congrArg C (congrFun (annihilatorShear_transpose_mulVec d k hk) i)
-    change C (∑ j : ι, M j i * d j) = C (d k * Pi.single k (1 : K) i) at hh
+    change C (∑ j : ι, M j i * d j) = C (d k * (Pi.single k (1 : K) : ι → K) i) at hh
     simp only [map_sum, map_mul] at hh
     change (∑ j : ι, C (M j i) * C (d j)) =
-      C (d k) * Pi.single k (1 : MvPolynomial ι K) i
+      C (d k) * (Pi.single k (1 : MvPolynomial ι K) : ι → MvPolynomial ι K) i
     by_cases hi : i = k
     · subst i
       simpa using hh
