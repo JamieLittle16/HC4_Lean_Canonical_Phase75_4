@@ -209,18 +209,18 @@ theorem rankOne_purePivot_factor_constant
     exact totalDegree_mul_of_isDomain hq0 hs0
   omega
 
-/-- Under the pure highest-degree pivot condition the original
-row ratio is a ground-field constant, not just pole-free in k. -/
-theorem rankOneHessian_ratio_constant_of_purePivot
-    (L : R σ K) (k i : σ) (n : ℕ)
-    (hA : coeff (Finsupp.single k n) (hessian L k k) ≠ 0)
-    (hdeg : (hessian L k k).totalDegree ≤ n)
-    (hBdeg : (hessian L k i).totalDegree ≤ n)
-    (hminor : hessian L k k * hessian L i i = (hessian L k i)^2) :
-    ∃ c : K, hessian L k i = MvPolynomial.C c * hessian L k k := by
+/-- Pure-pivot rigidity uses only the rational transport equation,
+not the origin of its numerator and denominator as Hessian entries. -/
+theorem rankOne_ratio_constant_of_purePivot
+    (A B : R σ K) (k i : σ) (n : ℕ)
+    (hA : coeff (Finsupp.single k n) A ≠ 0)
+    (hdeg : A.totalDegree ≤ n)
+    (hBdeg : B.totalDegree ≤ n)
+    (htransport : let f := algebraMap (R σ K) (E σ K)
+      let r := f B / f A
+      rankOnePartial i r = r * rankOnePartial k r) :
+    ∃ c : K, B = MvPolynomial.C c * A := by
   classical
-  let A := hessian L k k
-  let B := hessian L k i
   have hA0 : A ≠ 0 := by intro hz; exact hA (by change coeff _ A = 0; rw [hz,coeff_zero])
   by_cases hB0 : B = 0
   · exact ⟨0, by change B = _; rw [hB0,map_zero,zero_mul]⟩
@@ -250,7 +250,7 @@ theorem rankOneHessian_ratio_constant_of_purePivot
   have hcop : IsRelPrime q p := (IsFractionRing.num_den_reduced (R σ K) r).symm
   have hdvd : q ∣ A := hcop.dvd_of_dvd_mul_right ⟨B,by rw [← hcross,mul_comm]⟩
   have hqder : pderiv k q = 0 := rankOne_ratio_denominator_pderiv_zero r k i
-    (rankOneHessian_ratio_transport L k i hA0 hminor)
+    htransport
   have hqdeg := rankOne_purePivot_factor_constant A q k n hA hdeg hqder hdvd
   have hAn : n ≤ A.totalDegree := by
     have he := le_totalDegree (MvPolynomial.mem_support_iff.mpr hA)
@@ -277,9 +277,84 @@ theorem rankOneHessian_ratio_constant_of_purePivot
     _ = (MvPolynomial.C (coeff 0 p / coeff 0 q) * A) *
         MvPolynomial.C (coeff 0 q) := by rw [map_mul]; ring
 
+/-- The original rank-one Hessian result is an instance of the
+general transport-ratio theorem. -/
+theorem rankOneHessian_ratio_constant_of_purePivot
+    (L : R σ K) (k i : σ) (n : ℕ)
+    (hA : coeff (Finsupp.single k n) (hessian L k k) ≠ 0)
+    (hdeg : (hessian L k k).totalDegree ≤ n)
+    (hBdeg : (hessian L k i).totalDegree ≤ n)
+    (hminor : hessian L k k * hessian L i i = (hessian L k i)^2) :
+    ∃ c : K, hessian L k i = MvPolynomial.C c * hessian L k k := by
+  have hA0 : hessian L k k ≠ 0 := by
+    intro hz
+    exact hA (by rw [hz,coeff_zero])
+  exact rankOne_ratio_constant_of_purePivot _ _ k i n hA hdeg hBdeg
+    (rankOneHessian_ratio_transport L k i hA0 hminor)
+
+/-- Vanishing tangent curvature of a scalar polynomial gives the
+same transport equation for its first-derivative ratio. -/
+theorem flatLevel_gradient_ratio_transport
+    (F : R σ K) (k i : σ) (hk : pderiv k F ≠ 0)
+    (hflat : (pderiv k F)^2 * hessian F i i -
+      2 * pderiv k F * pderiv i F * hessian F k i +
+      (pderiv i F)^2 * hessian F k k = 0) :
+    let f := algebraMap (R σ K) (E σ K)
+    let r := f (pderiv i F) / f (pderiv k F)
+    rankOnePartial i r = r * rankOnePartial k r := by
+  classical
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let a := f (pderiv k F)
+  let b := f (pderiv i F)
+  let r := b / a
+  let D := rankOnePartial (K := K) i
+  let T := rankOnePartial (K := K) k
+  change D r = r * T r
+  have ha : a ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (R σ K) (E σ K)).ne hk
+  have hab : a*r = b := by dsimp [r]; rw [mul_comm, div_mul_cancel₀ _ ha]
+  have hDA : D a = T b := by
+    change rankOnePartial i (f (pderiv k F)) = rankOnePartial k (f (pderiv i F))
+    rw [rankOnePartial_map, rankOnePartial_map, pderiv_comm_backport i k F]
+  have hcurv : a^2 * D b - 2*a*b*D a + b^2*T a = 0 := by
+    have he := congrArg f hflat
+    simp only [map_add,map_sub,map_mul,map_pow,map_ofNat,map_zero] at he
+    change a^2 * f (hessian F i i) - 2*a*b*f (hessian F k i) +
+      b^2*f (hessian F k k) = 0 at he
+    change a^2 * rankOnePartial i (f (pderiv i F)) -
+      2*a*b*rankOnePartial i (f (pderiv k F)) +
+      b^2*rankOnePartial k (f (pderiv k F)) = 0
+    rw [rankOnePartial_map, rankOnePartial_map, rankOnePartial_map]
+    exact he
+  have h1 := congrArg D hab
+  have h2 := congrArg T hab
+  simp only [Derivation.leibniz, smul_eq_mul] at h1 h2
+  rw [← hab] at hcurv
+  apply mul_left_cancel₀ (pow_ne_zero 3 ha)
+  linear_combination hcurv + a^2*h1 - a^2*r*h2 + a^2*r*hDA
+
+/-- A pure-pivot chart makes first-derivative ratios constant
+whenever the scalar polynomial has vanishing tangent curvature. -/
+theorem flatLevel_gradient_ratio_constant_of_purePivot
+    (F : R σ K) (k i : σ) (n : ℕ)
+    (hA : coeff (Finsupp.single k n) (pderiv k F) ≠ 0)
+    (hdeg : (pderiv k F).totalDegree ≤ n)
+    (hBdeg : (pderiv i F).totalDegree ≤ n)
+    (hflat : (pderiv k F)^2 * hessian F i i -
+      2 * pderiv k F * pderiv i F * hessian F k i +
+      (pderiv i F)^2 * hessian F k k = 0) :
+    ∃ c : K, pderiv i F = MvPolynomial.C c * pderiv k F := by
+  have hA0 : pderiv k F ≠ 0 := by
+    intro hz
+    exact hA (by rw [hz,coeff_zero])
+  exact rankOne_ratio_constant_of_purePivot _ _ k i n hA hdeg hBdeg
+    (flatLevel_gradient_ratio_transport F k i hA0 hflat)
+
 end
 end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankOneHessian_ratio_transport
 #print axioms HC4.Polynomial.rankOne_ratio_denominator_pderiv_zero
 #print axioms HC4.Polynomial.rankOneHessian_ratio_constant_of_purePivot
+
+#print axioms HC4.Polynomial.flatLevel_gradient_ratio_constant_of_purePivot
