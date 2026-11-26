@@ -238,6 +238,7 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.WeightedComplementaryHessian`
   - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
@@ -2196,6 +2197,8 @@ human architecture guide.
   - `HC4.Polynomial.MaximalHessianInitial`
 - `HC4.Polynomial.WeightBounds`
   - `HC4.Polynomial.WeightedInitial`
+- `HC4.Polynomial.WeightedComplementaryHessian`
+  - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
 - `HC4.Polynomial.WeightedInitial`
   - _(no local imports)_
 - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
