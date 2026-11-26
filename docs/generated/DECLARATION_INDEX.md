@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11875**.
+Distinct declaration spellings indexed: **11877**.
 
 ## Repeated declaration spellings
 
@@ -9332,6 +9332,7 @@ Distinct declaration spellings indexed: **11875**.
 - `rankOne_velocityField_exists_regular_line` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
 - `rankOne_velocityField_reducedPair_dvd` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
 - `rankOne_weighted_relativeRatio_cross_power` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOne_weighted_relativeRatio_zeroWeight` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_zeroJet` — `def` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
 - `rankOne_zeroJet_add` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
 - `rankOne_zeroJet_cancel` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
@@ -9511,6 +9512,7 @@ Distinct declaration spellings indexed: **11875**.
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
 - `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_rankTwoVelocity_weightedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_ratFunc_equation_of_fraction_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_raw_aeval_equation_of_ratFunc_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
