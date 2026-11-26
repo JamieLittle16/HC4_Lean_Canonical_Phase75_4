@@ -44,6 +44,7 @@ theorem rankTwo_kernel_zero_of_supportedOnPivot
       · simp [Pi.single_eq_of_ne hi,Pi.single_eq_of_ne hj,hs i hi hj]
   have he (i : Fin 4) : A i k * v k + A i p * v p = 0 := by
     have h := congrArg (fun z : Fin 4 → R => A *ᵥ z) hrepr
+    change A *ᵥ v = A *ᵥ ((Pi.single k (v k) : Fin 4 → R) + Pi.single p (v p)) at h
     rw [hv,Matrix.mulVec_add,Matrix.mulVec_single,Matrix.mulVec_single] at h
     exact (congrFun h i).symm
   have hk : rankTwoPrincipalPivot A k p * v k = 0 := by
