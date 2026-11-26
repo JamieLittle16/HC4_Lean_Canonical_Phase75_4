@@ -1,0 +1,138 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\title{Rational affine-plane rigidity: an algebraic proof}
+\author{HC4 formalisation project --- research note}
+\date{26 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an algebraic proof of the rational rigidity theorem of Tang over an arbitrary characteristic-zero field. In rank two, polynomial transport along the normalized kernel direction reduces the problem to rank-one parameter rigidity or to a polynomial root-evaluation contradiction. The argument avoids the classification of projective line congruences and has been formalised in Lean 4. We also describe its application to singular four-variable Hessians.
+\end{abstract}
+
+\begin{theorem}[Rational affine-plane rigidity]\label{thm:main}
+Let $K$ be a field of characteristic zero, $R=K[x_1,x_2,x_3]$ and $E=\operatorname{Frac}(R)$. Let $v\in E^3$ and $f\in R$, with $N=Dv$ and $H=\Hess f$. If
+\begin{equation}\label{eq:nil}
+ N^3=0,\qquad \det H\ne0,\qquad N^TH=HN,
+\end{equation}
+then there exist $0\ne d\in K^3$ and $c_0\in K$ such that $d^Tv=c_0$.
+\end{theorem}
+This is the field-general version of Tang's Theorem~2.1 \cite{tang}. The rank-one strategy and the Jordan-frame calculation are adapted from Tang; the subsequent rank-two proof replaces his use of De Poi's classification of line congruences \cite{depoi} by differential and polynomial identities. We retain the polynomial Hessian symmetrizer rather than attempt to classify arbitrary rational nilpotent Jacobians. In particular, the argument uses neither algebraic closure nor any conjectural hypothesis.
+
+We work entirely in $E$ and write $D_w=\sum_i w_i\partial_i$ for a rational direction $w$. The common constants of the partial derivatives on $E$ are exactly $K$: for a reduced fraction $p/q$, zero derivatives imply $q\mid\partial_i q$ for each $i$, so degree descent and characteristic zero force $q$, then $p$, to be constant. Thus it suffices to find a nonzero constant $d$ with $d^TN=0$. Rank zero is immediate.
+
+\section{Rank-one parameter rigidity}\label{sec:rankone}
+We first record two algebraic ingredients used in both nonzero ranks.
+
+\paragraph{Common parameter.} If $a\in E^3$ has Jacobian of rank one, its components lie in $K(t)$ for a nonconstant $t\in E$. Here is the specialization argument underlying the formalisation. Choose a nonzero pivot $\partial_j a_i$. The rank-one minors imply that the derivations $\partial_l-r_l\partial_j$, where $r_l=\partial_l a_i/\partial_j a_i$, annihilate the entire field $F=K(a_1,a_2,a_3)$. Write $r_l=A_l/B_l$ with $A_l,B_l\in R$, $B_l\ne0$. For every reduced $p/q\in F$, coprimality implies that each of $p,q$ divides its image under $B_l\partial_l-A_l\partial_j$. Choose a coordinate line parallel to $e_j$ on which every $B_l$ restricts nontrivially; such a line exists since $K$ is infinite. A nonzero polynomial $h$ satisfying these divisibilities cannot vanish identically on that line: its tangential derivative also vanishes there, so the equations force all its first derivatives to vanish. Repeated differentiation of the equations, using the already vanishing lower-order derivatives and tangential differentiation, forces every derivative to vanish there. Taylor expansion in characteristic zero gives $h=0$, a contradiction. Hence reduced denominators (and nonzero numerators) of all elements of $F$ survive on this one line. Specialization defines a $K$-embedding of $F$ into $K(T)$; the classical L\"uroth theorem makes $F=K(t)$ for some $t\in F$. The chain rule, with denominators cleared, then gives $Da=\sigma U(t)(\nabla t)^T$, with $\sigma\in E^\times$ and $U\in K[T]^3$.
+
+\paragraph{Trace lift and symmetric pencil.} Suppose $t=p/q$ is reduced and nonconstant and $U(t)^T\nabla t=0$. The polynomial
+\[
+ S(T)=U(T)^T(\nabla p-T\nabla q)\in R[T]
+\]
+vanishes at $T=p/q$. Gauss's lemma yields $(qT-p)\mid S$ in $R[T]$. Each nonzero coefficient of $S$ has source total degree less than $m=\max(\deg p,\deg q)$. A nonzero quotient would give a coefficient of degree at least $m$: take its highest coefficient multiplied by $q$ if $\deg q=m$, or its lowest nonzero coefficient multiplied by $-p$ if $\deg p=m$. Hence $S=0$.
+
+If the components of $U$ are independent over $K$, differentiating $S=0$ gives $(\Hess p-T\Hess q)U(T)=0$, which forces both Hessians to vanish. Indeed, for a symmetric constant pencil $A-TB$ and $U=\sum_{n\ge0}u_nT^n$, the coefficient recurrence is $Au_0=0$, $Au_{n+1}=Bu_n$. Symmetry gives
+\[
+ u_0^TBu_n=0,\qquad u_{m+1}^TBu_n=u_m^TBu_{n+1}.
+\]
+All such pairings vanish by induction. The $u_n$ span $K^3$ by independence, so $B=0$ and then $A=0$. Apply this to each source monomial coefficient of the Hessian pencil. Thus $p,q$ are affine. A constant dependence of the components of $U$, when present, instead yields a constant annihilator of the factored Jacobian.
+
+\paragraph{Closure of rank one.} Apply the common parameter to $a=v$. Nilpotence of the nonzero rank-one matrix implies zero trace, hence $U(t)^T\nabla t=0$. If $U$ is dependent we are done; otherwise the pencil argument makes $p,q$ affine. If their constant gradients are dependent, $\nabla t$ is a nonzero rational multiple of a constant vector, and the trace identity gives a constant left kernel of $N$. In the remaining case choose affine coordinates $(x,y,z)$ with $x=p$ and $y=q$. Transform the vector field by the inverse linear part of the coordinate substitution and the Hessian by congruence; this preserves~\eqref{eq:nil}, independence of the parameter vector, and the existence of a constant left kernel. In these coordinates (absorbing nonzero scalar factors),
+\[
+ t=x/y,\qquad N=\sigma U(t)(1,-t,0),\qquad U_1(T)=T U_2(T).
+\]
+The last identity follows from the trace and transcendence of $t$ over $K$. Self-adjointness implies that $HU(t)$ is proportional to $(1,-t,0)^T$. For $g=x\partial_x f+y\partial_y f+z\partial_z f-f$, we have $\nabla g=H(x,y,z)^T$, so $U(t)^T\nabla g=0$.
+
+Write $f(Ty,y,z)=\sum_{j,l}F_{jl}(T)y^jz^l$, where $\deg F_{jl}\le j$ for nonzero coefficients. Substitution in the preceding identity is valid after clearing denominators (or in the rational function field). Euler's identity and $U_1=TU_2$ give, for $j+l\ge1$,
+\[
+ (j+1)U_2 F_{j+1,l}+(l+1)U_3 F_{j,l+1}=0.
+\]
+For each $n\ge2$, taking $j=0,l=n-1$ gives $U_2 F_{1,n-1}+nU_3 F_{0,n}=0$. Since $F_{0,n}\in K$ and $\deg F_{1,n-1}\le1$, independence of $TU_2,U_2,U_3$ forces both coefficients to vanish. The recurrence then successively kills $F_{2,n-2},\ldots,F_{n,0}$, since $U_2\ne0$. Thus $f$ is affine, contradicting $\det H\ne0$. This completes rank one.
+
+\section{Rank two: straightness and affine gradient transport}
+Now $\rank N=2$, so $\ker N=\im N^2$ and $\im N=\ker N^2$. Choose normalized right and left kernel vectors $w,b$ with $w_k=b_l=1$. By~\eqref{eq:nil},
+\[
+ Nw=0,\quad b^TN=0,\quad Hw=cb,\quad b^Tw=0,
+ \qquad c\in E^\times.
+\]
+We first prove $D_ww=D_wb=0$. Choose a frame $M$ over $E$ with $M^{-1}NM=J$, the regular nilpotent Jordan block with superdiagonal ones, and
+\[
+ G=M^THM=\begin{pmatrix}0&0&\alpha\\0&\alpha&\beta\\\alpha&\beta&\gamma\end{pmatrix},\qquad\alpha\ne0.
+\]
+For the following calculation only, use zero-based frame indices and denote the columns of $M$ by $m_i$. Put $U_i=M^{-1}(D_{m_i}N)M$, $T_i=M^T(D_{m_i}H)M$. These are transported derivative tensors, not derivatives of the moving frame. Differentiating~\eqref{eq:nil} gives
+\[
+ J^2U_i+JU_iJ+U_iJ^2=0,\qquad (T_iJ+GU_i)^T=T_iJ+GU_i.
+\]
+Both tensors have input-slot symmetry by commutation of partial derivatives. The cube equation gives $(U_i)_{20}=0$, $(U_i)_{21}+(U_i)_{10}=0$ and $\operatorname{tr} U_i=0$. Put $r=(U_1)_{21}$. Input-slot symmetry and the cube equations give $(U_0)_{21}=(U_0)_{22}=(U_0)_{10}=0$, $(U_0)_{11}=-r$, $(U_0)_{00}=r$. The $(0,1)$ symmetry equation for $i=1$ gives $(T_1)_{00}=-2\alpha r$; the $(0,2)$ equation for $i=0$ gives $(T_0)_{01}=\alpha r$. These two entries agree, so $3\alpha r=0$. Thus $r=0$ and the first column of $U_0$ vanishes. As $w$ is a scalar multiple of $m_0$, $(D_wN)w=0$. Differentiating $Nw=0$ puts $D_ww$ in the kernel; normalization forces $D_ww=0$. Input-slot symmetry also gives $(D_wN)e_j=-N\partial_jw$. Differentiating $b^TN=0$ then puts $(D_wb)^T$ in the left kernel, and $b_l=1$ forces $D_wb=0$.
+
+For any polynomial $h$, put $\Phi_w(h)=h(x+\lambda w(x))\in E[\lambda]$, using $x$ here for the original coordinate column. Since $D_ww=0$, the chain rule identifies coefficientwise $D_w$ with $\partial_\lambda$ on $\Phi_w(h)$. Its coefficients are $D_w^jh/j!$. The identities $Hw=cb$ and $b^Tw=0$ yield $D_w^2f=0$. Since $D_wb=0$, the same transport identity gives
+\[
+ \Phi_w(f)=f+\lambda D_wf,\qquad
+ \Phi_w(\nabla f)=\nabla f+B(\lambda)b
+\]
+for a scalar polynomial $B$ with $B(0)=0$. Differentiate the first identity with respect to $x_j$ at fixed $\lambda$ and insert the second. Cancelling the common terms gives
+\begin{equation}\label{eq:transport}
+ B(\lambda)(b_j+\lambda b^T\partial_j w)=\lambda c b_j.
+\end{equation}
+At $j=l$, if $r=b^T\partial_lw\ne0$, evaluation at $\lambda=-1/r$ contradicts $c\ne0$. Hence $r=0$ and $B=\lambda c$. Substitution in the other components yields
+\begin{equation}\label{eq:key}
+ \boxed{\Phi_w(\nabla f)=\nabla f+\lambda cb,\qquad b^TJ_w=0,}
+\end{equation}
+where $J_w$ is the Jacobian of $w$. The evaluation is in $E[\lambda]$, not evaluation of a rational map at a potentially singular point.
+
+\section{The varying-direction branch}
+Suppose $J_w\ne0$. By~\eqref{eq:key} and $w_k=1$, the columns of $J_w$ lie in the intersection of two independent planes (since $b^Tw=0$). Hence $\rank J_w=1$. Section~\ref{sec:rankone} supplies a common parameter $t$ for $w$ and a factorization
+\[
+ \partial_jw=\sigma u\partial_jt,\quad \sigma\ne0,\quad u\ne0,\quad
+ u_k=0,\quad b^Tu=0,\quad D_wt=0,
+\]
+where $w,u$ have components in $K(t)$; the last identity follows from $D_ww=0$ and the nonzero factor. Write $w=W(t)/Q(t)$ with $W\in K[T]^3$ and $Q(t)\ne0$. If $W$ has dependent components, some nonzero constant $d$ annihilates $w$ and, by differentiation, $u$. Since $w,u$ are independent and span $\ker b^T=\im N$, we have $d^TN=0$. Otherwise the trace lift with $W$ in place of $U$ shows that $t=p/q$ has affine numerator and denominator.
+
+Any derivation killing $t$ kills $w,u$, and hence kills $b$ by differentiating $b^Tw=b^Tu=0$, $b_l=1$. Therefore $\partial_j b=\eta\partial_jt$ for a vector $\eta\in E^3$ with $\eta_l=0$ and $\eta^Tw=0$. Differentiation of $b^TN=0$ and the input-slot symmetry of $DN$ imply that $\eta^TN$ is proportional to $(\nabla t)^T$. Since $u\in\im N$ and $N(\im N)=\langle w\rangle$, we have $\eta^TNu=0$. If $D_ut\ne0$, it follows that $\eta^TN=0$. Normalization then forces $\eta=0$, so $b\in K^3$.
+
+Otherwise $D_ut=D_wt=0$. Set $P=\nabla p$, $Q_0=\nabla q$, both constant. The quotient rule gives $q\nabla t=P-tQ_0$, so $(P-tQ_0)^Tw=(P-tQ_0)^Tu=0$. Differentiate the first equality along a partial with $\partial_jt\ne0$. Since $\partial_jw$ is proportional to $u$, we obtain $Q_0^Tw=0$, and hence $P^Tw=0$. At least one of $P,Q_0$ is nonzero. As before, differentiation gives its orthogonality to $u$, which produces a nonzero constant left kernel of $N$.
+
+\section{The constant-direction branch}
+If $J_w=0$, then $w\in K^3$. Since $b^Tw=0$ and $b_l=1$, $\rank J_b\le1$. If $b$ is constant we are done. Otherwise choose a component $t=b_j$ with nonzero differential, and write $\partial_i b=\eta\partial_i t$, with $\eta_l=0$, $\eta_j=1$, $\eta^Tw=0$. As above, $\eta^TN$ is proportional to $(\nabla t)^T$. It is nonzero (otherwise $\eta$ is a multiple of $b$), and annihilates $N$ because $\im N^2=\langle w\rangle$. Thus it is proportional to $b^T$, giving
+\[
+ \partial_l t\ne0,\qquad \nabla t=b\,\partial_lt.
+\]
+Now $g=D_wf\in R$ because $w$ is constant, and $\nabla g=Hw=cb$. Thus $\partial_jg=t\partial_lg$, $\partial_jt=t\partial_lt$, and $\partial_lg=c\ne0$. Since $j\ne l$, the direction $z=e_j-te_l$ satisfies $D_zt=D_zg=0$ and $D_zz=0$. Polynomial transport gives $g(x+\lambda z(x))=g(x)$. Differentiating with respect to $x_l$ yields
+\[
+ \partial_lg(x)=(1-\lambda\partial_lt(x))(\partial_lg)(x+\lambda z(x)).
+\]
+Evaluation at $\lambda=(\partial_lt)^{-1}$ in $E[\lambda]$ contradicts $\partial_lg\ne0$. Hence $b$ must be constant. The two rank-two branches, together with rank zero and rank one, prove Theorem~\ref{thm:main}.
+
+\section{Application to singular Hessians}
+\begin{corollary}
+If $L\in K[s,x_1,x_2,x_3]$ satisfies $\det\Hess L=0$, then some $0\ne e\in K^4$ satisfies $\adj(\Hess L)e=0$.
+\end{corollary}
+\begin{proof}
+If the adjugate vanishes the claim is immediate. Otherwise a singular symmetric matrix of rank three has a nonzero principal cofactor: its adjugate is symmetric of rank one, so if all diagonal entries were zero, the vanishing $2\times2$ minors would force every entry to be zero. Permute coordinates to put a surviving cofactor in the $s$ position, and choose $a\in K$ such that $H=\Hess_x L(a,x)$ is nonsingular. This is possible since $K$ is infinite.
+
+The anchored characteristic construction (the separately checked lemma \path{exists_anchored_lineEval_gradient_eq}) supplies $v\in E^3$ with
+\[
+ \nabla L(a+h,x+hv)=\nabla L(a,x)\quad\text{in }E[h]^4.
+\]
+We invoke this lemma here rather than reprove the characteristic construction. Differentiating its transverse components gives $H_h(I+hN)=H$ for the substituted transverse Hessian $H_h$. Taking determinants in $E[h]$ yields $\det(I+hN)=1$, as the determinant is a unit and has constant term one. Cayley--Hamilton then gives $N^3=0$; comparing the linear coefficient and using symmetry gives $N^TH=HN$. Theorem~\ref{thm:main} supplies $d,c_0$ and $e=(-c_0,d)$. The substituted Hessian kills $(1,v)$ by differentiation in $h$, and $H_h$ is invertible over $E[h]$. Its symmetric adjugate consequently annihilates $e$, which is orthogonal to $(1,v)$. The substitution into $E[h]$ is injective, by taking the first nonzero coefficient of a source polynomial expanded in powers of $s-a$. The adjugate identity therefore holds in the original polynomial ring. Undo the permutation.
+\end{proof}
+The conclusion is about the adjugate, not a constant vector in the kernel of the Hessian itself.
+
+\section*{Formal verification and attribution}
+The public Lean endpoint is \href{https://github.com/JamieLittle16/HessianConjecture4/blob/9e548ccbd91920cb7f49ba40c2bf93e11e996b14/HC4/Polynomial/RationalMapAffinePlane.lean}{\path{rationalMap_affinePlane}} in the namespace \path{HC4.Polynomial.RankThreeCubic}. The maintainer reported a successful targeted build (8317 jobs) on 26 November 2026 at commit \path{9e548ccb}, with transitive axioms exactly \path{propext}, \path{Classical.choice}, \path{Quot.sound}. The principal supporting declarations include \path{rankOne_commonParameter}, \path{symmetric_affinePencil_eq_zero_of_coefficientRecurrence}, \path{rankTwo_polynomial_frameTensor}, \path{rankTwo_fibre_affineGradient}, and \path{rankTwo_polynomial_tangent_impossible}. The singular-Hessian corollary was already checked as \path{singularHessian_exists_constant_adjugate_annihilator}; its existing proof uses the anchored rigidity route, not the later general theorem.
+
+The key departure from Tang is the polynomial identity~\eqref{eq:transport}, which bounds the variation of the kernel direction, and the root-evaluation obstruction in the constant branch. This replaces the geometric classification using hypotheses already available in the theorem and is well suited to formalisation over the ground field. The proof builds on Tang's preprint, classical L\"uroth and Gauss lemmas, and Mathlib (including the vendored L\"uroth proof by Miriam Philipp, Justus Springer and Junyan Xu). Development and exposition used substantial AI assistance. This note does not claim priority for the theorem or for the JC2--HC4 equivalence; independent mathematical review and a fuller literature comparison remain necessary.
+\begin{thebibliography}{9}
+\bibitem{tang} Q. Tang, \emph{Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}, Hexagon 2611.00156v2 (2026), Theorem 2.1. \url{https://hexagonmath.org/2611.00156v2} (CC BY 4.0).
+\bibitem{depoi} P. De Poi, \emph{Congruences of lines with one-dimensional focal locus}, Port. Math. \textbf{61} (2004), 329--338.
+\end{thebibliography}
+\end{document}
