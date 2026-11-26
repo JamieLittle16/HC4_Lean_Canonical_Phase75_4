@@ -172,6 +172,39 @@ All coefficients in these equations depend only on $X_s$. For any passive variab
 
 Finally $n=2$ is impossible by the bordered-rank-one argument in the companion note. Thus $n\ge3$, and the relative gradient identities give $L=c(X_s)(\sum_{j\ne s}r_j X_j)^n$ by relative Euler and division. This is precisely the input to the Wronskian and signed-wall proof.
 
+\section{The distinct-weight signed wall}
+The final wall in the companion note has a negative weight. We cannot apply the global optimum or its constant-kernel and isotropic-plane obstructions there. Instead the regular-block argument admits a second closure that uses only weighted homogeneity and the nonvanishing principal cofactors.
+
+\begin{lemma}[Signed restricted-block rigidity]\label{lem:signed}
+Let $F\in R$ be weighted homogeneous of degree $m$ for pairwise distinct integral weights $w_j$, of either sign. Suppose $\det\Hess F=0$, and for some index $s$ all three other principal cofactors are nonzero. Then the principal Hessian on the three indices other than $s$ has rank at most one.
+\end{lemma}
+\begin{proof}
+Write $H=\Hess F$ and $C=\adj H$. The hypotheses imply $\rank H=3$. By the companion rational-rigidity theorem and its singular-Hessian application, some nonzero constant $d$ satisfies $Cd=0$. Each entry $C_{ab}$ is homogeneous of weight
+\[
+ D+w_a+w_b,\qquad D=3m-2\sum_j w_j.
+\]
+For each fixed $a$ these weights are distinct as $b$ varies. Thus $Cd=0$ implies $C_{ab}d_b=0$ separately for every $a,b$. Any nonzero $d_b$ therefore gives a zero column of $C$; the nonzero diagonal cofactors force $b=s$. In particular $Ce_s=0$.
+
+Choose any $l\ne s$ and denote the remaining indices by $i,k$. Normalize the kernel vector by $V_l=1$; then $V_s=0$ and
+\[
+ C_{al}=C_{ll}V_a\quad(a=1,\ldots,4).
+\]
+This follows since each column of the adjugate lies in the one-dimensional Hessian kernel. Symmetry also gives $C_{aa}=C_{ll}V_a^2$: the adjugate is a symmetric rank-one matrix, so it is $C_{ll}VV^T$ over $E$. In particular $V_i,V_k$ are nonzero.
+
+There can be no affine relation $V_k=b+cV_i$ with $b,c\in K$. Multiplying by $C_{ll}$ would give
+\[
+ C_{kl}=bC_{ll}+cC_{il}.
+\]
+The three entries have pairwise distinct weights, so the component of weight $D+w_k+w_l$ gives $C_{kl}=0$. Then $V_k=0$, contrary to the surviving cofactor at $k$. The same exclusion holds with $i,k$ interchanged.
+
+Suppose now that the $i,k$ principal block is invertible. The normalized-kernel transport of Section~4 is valid for $F$ independently of any sign of the weights, so the complementary Jacobian $J$ is cube-zero and self-adjoint for the invertible complementary Hessian $B$, with zero row $s$.
+If $J=0$, acceleration zero makes $V$ constant, giving the forbidden affine relation. If $\rank J=2$, the argument of Section~4 with $B^{-1}e_s$ makes the $i,k$ block singular. Thus $\rank J=1$. Orient its factorization so that $u_i\ne0$ and use $A=V_i$, $Q=V_k$, $r=u_k/u_i$. The differential, trace and isotropy identities of~\eqref{eq:slope}, with $L$ replaced by $F$ and $C$ there replaced by $Q$, still hold. If $\partial_k A=0$, the regular-block argument makes $V$ constant. If $\partial_k A\ne0$, the same polynomial root evaluation proves $\partial_k r=0$; commutation then gives $r=c\in K$ and $Q=b+cA$ for $b\in K$. Either case contradicts the affine-relation exclusion above. No global optimality has been used.
+
+Consequently the $i,k$ block is singular. Since $V_s=0$ and $V_l=1$, the passive $l$ column is a combination of the passive $i,k$ columns, and the corresponding row relation follows from symmetry. More explicitly the passive block is congruent to the direct sum of the $i,k$ block and a zero row and column. Its rank is therefore at most one, as required.
+\end{proof}
+
+The lemma applies to the first-contact polynomial of the companion note, whose weights are proportional to $(-\eta,1,1+\eta,1+2\eta)$ for $\eta>0$. Its surviving cofactors and singular determinant are established by the top passive-degree face and the positive determinant weight. After clearing the positive common denominator, the weights are distinct integers. This supplies the precise signed-wall replacement for the nonnegative-optimum argument, rather than applying that argument outside its hypotheses.
+
 \section*{Source correspondence and limitations}
 The algebraic calculations above expand the following checked interfaces, all in \path{HC4/Polynomial/}:
 \begin{itemize}
@@ -182,5 +215,11 @@ The algebraic calculations above expand the following checked interfaces, all in
 \item \path{RankTwoAffineFibres.lean}, \path{RankTwoGlobalClosure.lean}: regular affine kernel graphs and singular-difference dichotomy;
 \item \path{RankThreeOneVariableKernel.lean}: normalized kernel transport, isotropic-slope root evaluation, regular-block contradiction and relative frontier.
 \end{itemize}
-In particular the rank-three slope calculation expands \path{rankThree_isotropicSlope_activeMinor_zero}, and its use is checked in \path{globalWeightOptimum_rankThree_rankOne_regularActive_oriented}. The relative frontier is checked in \path{counterexample_rankThree_zeroWeight_relative_frontier}. This note is an informal reconstruction of those verified results, not a separately formalised theorem or an independent review. Some elementary matrix and coefficient arguments have been compressed. The final signed-wall regular-pivot reduction in the companion note uses a different, distinct-weight affine-relation exclusion and is not reproved here. The exposition uses the global strategy described in the companion note and builds on Tang's weighted and rational-characteristic methods; no priority claim is made. Development and exposition used substantial AI assistance.
+The principal rank-three interfaces are:
+\begin{itemize}
+\item \path{rankThree_isotropicSlope_activeMinor_zero};
+\item {\small\path{globalWeightOptimum_rankThree_rankOne_regularActive_oriented}};
+\item \path{counterexample_rankThree_zeroWeight_relative_frontier};
+\item \path{rankThree_signedWall_restrictedMinors_zero}.
+\end{itemize} This note is an informal reconstruction of those verified results, not a separately formalised theorem or an independent review. Some elementary matrix and coefficient arguments have been compressed. The signed-wall regular-pivot reduction uses the distinct-weight affine-relation exclusion proved in Lemma~\ref{lem:signed}. The remaining first-contact and coefficient-transfer argument is in the global extremal-weight note. The exposition uses the global strategy described in the companion note and builds on Tang's weighted and rational-characteristic methods; no priority claim is made. Development and exposition used substantial AI assistance.
 \end{document}
