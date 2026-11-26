@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11869**.
+Distinct declaration spellings indexed: **11871**.
 
 ## Repeated declaration spellings
 
@@ -9199,6 +9199,7 @@ Distinct declaration spellings indexed: **11869**.
 - `rankOnePartial_constants` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOnePartial_genericPoint` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOnePartial_map` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOnePartial_num_den_independent` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOnePersistentPacketSupport_of_smithQuadraticSubface` — `theorem` in `HC4.Newton.SmithRefinedFaceRankOnePacket`
 - `rankOnePersistentPacket_eq_algebraicModel` — `theorem` in `HC4.Newton.RankOnePacketExactCollision`
 - `rankOnePersistentPacket_eq_monomialModel` — `theorem` in `HC4.Newton.RankOnePacketExactCollision`
@@ -9504,6 +9505,7 @@ Distinct declaration spellings indexed: **11869**.
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_ratFunc_equation_of_fraction_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_raw_aeval_equation_of_ratFunc_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
