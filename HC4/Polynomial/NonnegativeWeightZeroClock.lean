@@ -79,7 +79,8 @@ theorem eval_sub_eq_nonnegativeWeightBlock_deriv
       let t := u - Finsupp.single i 1
       have htadd : t + Finsupp.single i 1 = u :=
         Finsupp.sub_add_single_one_cancel hi
-      have hweight := nonnegativeWeight_remove_one w u i hi
+      have hweight : Finsupp.weight w t + w i = Finsupp.weight w u :=
+        nonnegativeWeight_remove_one w u i hi
       have hnonneg := nonnegativeWeight_nonneg w hw t
       have hbound := hq hu
       have hwi' : w i = s := by omega
@@ -90,9 +91,11 @@ theorem eval_sub_eq_nonnegativeWeightBlock_deriv
         omega
       let g := monomial t (coeff u q)
       have hform : monomial u (coeff u q) = g * X i := by
-        rw [MvPolynomial.X, g, MvPolynomial.monomial_mul, htadd, mul_one]
+        change monomial u (coeff u q) = monomial t (coeff u q) * X i
+        rw [MvPolynomial.X, MvPolynomial.monomial_mul, htadd, mul_one]
       have hge : MvPolynomial.eval x g = MvPolynomial.eval y g := by
-        rw [g, MvPolynomial.eval_monomial, MvPolynomial.eval_monomial]
+        dsimp only [g]
+        rw [MvPolynomial.eval_monomial, MvPolynomial.eval_monomial]
         congr 1
         unfold Finsupp.prod
         apply Finset.prod_congr rfl
@@ -101,17 +104,19 @@ theorem eval_sub_eq_nonnegativeWeightBlock_deriv
         change x j ^ t j = y j ^ t j
         rw [hxy j (by omega)]
       have hgder (j : σ) (hj : w j = s) : pderiv j g = 0 := by
-        rw [g, MvPolynomial.pderiv_monomial, htz j (by omega), Nat.cast_zero, mul_zero, map_zero]
+        dsimp only [g]
+        rw [MvPolynomial.pderiv_monomial, htz j (by omega), Nat.cast_zero, mul_zero, map_zero]
       rw [Finset.sum_eq_single i]
-      · rw [hform, Derivation.leibniz, hgder i hwi']
-        simp only [MvPolynomial.pderiv_X_self, smul_eq_mul, mul_one, zero_mul, add_zero,
-          map_mul, MvPolynomial.eval_X, v, if_pos hwi']
+      · rw [hform, MvPolynomial.pderiv_mul, hgder i hwi',
+          MvPolynomial.pderiv_X_self, zero_mul, mul_one, zero_add]
+        simp only [map_mul, MvPolynomial.eval_X, v, if_pos hwi']
         rw [← hge]
         ring
       · intro j _ hj
         by_cases hjs : w j = s
-        · rw [hform, Derivation.leibniz, hgder j hjs]
-          simp [MvPolynomial.pderiv_X, Pi.single_apply, hj, Ne.symm hj]
+        · rw [hform, MvPolynomial.pderiv_mul, hgder j hjs,
+            MvPolynomial.pderiv_X_of_ne (Ne.symm hj), zero_mul, mul_zero,
+            add_zero, map_zero, zero_mul]
         · simp [v, hjs]
       · simp
     · push_neg at h
