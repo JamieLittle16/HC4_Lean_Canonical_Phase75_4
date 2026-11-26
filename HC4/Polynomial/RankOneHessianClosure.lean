@@ -264,9 +264,149 @@ private theorem rankOne_substitution_injective (M : Matrix (Fin 4) (Fin 4) K)
     weightedLinearSubstitution_one, weightedLinearSubstitution_one] at he
   exact he
 
-set_option maxHeartbeats 16000000 in
-/-- A nonzero Hessian of rank at most one in four variables has
-a nonzero constant kernel vector, without homogeneity assumptions. -/
+/-- A constant column proportionality produces a nonzero constant
+kernel independently of how the columns were obtained. -/
+private theorem rankOne_kernel_of_proportional_columns
+    (Q : S K) (k l : Fin 4) (hl : l ≠ k) (c : K)
+    (hcol : ∀ i : Fin 4, hessian Q i l = MvPolynomial.C c * hessian Q i k) :
+    ∃ e : Fin 4 → K, e ≠ 0 ∧
+      hessian Q *ᵥ (fun i => MvPolynomial.C (e i)) = 0 := by
+  classical
+  let e : Fin 4 → K := Pi.single l 1 - Pi.single k c
+  have he0 : e ≠ 0 := by
+    intro hz
+    have he := congrFun hz l
+    change (Pi.single l (1 : K) : Fin 4 → K) l -
+      (Pi.single k c : Fin 4 → K) l = 0 at he
+    rw [Pi.single_eq_same, Pi.single_eq_of_ne hl, sub_zero] at he
+    exact one_ne_zero he
+  let C : K →+* S K := MvPolynomial.C
+  have he : hessian Q *ᵥ (fun i => C (e i)) = 0 := by
+    have hmap : (fun i => C (e i)) =
+        (Pi.single l 1 : Fin 4 → S K) - Pi.single k (C c) := by
+      funext i
+      by_cases hi : i = l
+      · subst i
+        simp [e, Pi.single_apply, hl]
+      · by_cases hj : i = k
+        · subst i
+          simp [e, Pi.single_apply, Ne.symm hl]
+        · simp [e, Pi.single_apply, hi, hj]
+    rw [hmap, Matrix.mulVec_sub, Matrix.mulVec_single_one, Matrix.mulVec_single]
+    funext i
+    change hessian Q i l - hessian Q i k * C c = 0
+    rw [hcol, mul_comm (C c), sub_self]
+  exact ⟨e, he0, he⟩
+
+/-- Use the already verified ratio theorem in a pure-pivot chart. -/
+private theorem rankOne_kernel_of_purePivot
+    (Q : S K) (k : Fin 4) (n : ℕ)
+    (hA : coeff (Finsupp.single k n) (hessian Q k k) ≠ 0)
+    (hdeg : ∀ i j : Fin 4, (hessian Q i j).totalDegree ≤ n)
+    (hR : ∀ i j : Fin 4, hessian Q k k * hessian Q i j =
+      hessian Q i k * hessian Q k j) :
+    ∃ e : Fin 4 → K, e ≠ 0 ∧
+      hessian Q *ᵥ (fun i => MvPolynomial.C (e i)) = 0 := by
+  classical
+  have hA0 : hessian Q k k ≠ 0 := by
+    intro hz
+    exact hA (by rw [hz,coeff_zero])
+  obtain ⟨l,hl⟩ : ∃ l : Fin 4, l ≠ k := exists_ne k
+  have hminor : hessian Q k k * hessian Q l l = (hessian Q k l)^2 := by
+    have he := hR l l
+    rw [show hessian Q l k = hessian Q k l from pderiv_comm_backport k l Q] at he
+    simpa only [pow_two] using he
+  obtain ⟨c,hc⟩ := rankOneHessian_ratio_constant_of_purePivot Q k l n hA
+    (hdeg k k) (hdeg k l) hminor
+  have hcol (i : Fin 4) : hessian Q i l = MvPolynomial.C c * hessian Q i k := by
+    apply mul_left_cancel₀ hA0
+    calc
+      hessian Q k k * hessian Q i l = hessian Q i k * hessian Q k l := hR i l
+      _ = hessian Q k k * (MvPolynomial.C c * hessian Q i k) := by rw [hc]; ring
+  exact rankOne_kernel_of_proportional_columns Q k l hl c hcol
+
+set_option maxHeartbeats 4000000 in
+/-- Pull a constant kernel back through an actual determinant-one chart.
+This lemma is independent of the rank and the pure-pivot construction. -/
+theorem rankOne_constantKernel_pullback
+    (L : S K) (M : Matrix (Fin 4) (Fin 4) K) (hM : M.det = 1)
+    (e : Fin 4 → K) (he0 : e ≠ 0)
+    (he : hessian (weightedLinearSubstitution M L) *ᵥ
+      (fun i => MvPolynomial.C (e i)) = 0) :
+    ∃ d : Fin 4 → K, d ≠ 0 ∧ hessian L *ᵥ (fun i => MvPolynomial.C (d i)) = 0 := by
+  classical
+  let C : K →+* S K := MvPolynomial.C
+  have hf := rankOne_substitution_injective M hM
+  let d := M *ᵥ e
+  have hd0 : d ≠ 0 := by
+    have hi : Function.Injective M.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
+      ((Matrix.isUnit_iff_isUnit_det M).mpr (by rw [hM]; exact isUnit_one))
+    intro hz
+    apply he0
+    apply hi
+    rw [Matrix.mulVec_zero]
+    exact hz
+  let T := M.map C
+  let A := (hessian L).map (weightedLinearSubstitution M).toRingHom
+  have hT : T.det = 1 := by
+    change (C.mapMatrix M).det = 1
+    rw [← RingHom.map_det,hM,map_one]
+  have ht : T *ᵥ (fun i => C (e i)) = fun i => C (d i) := by
+    funext i
+    change (∑ j : Fin 4, C (M i j) * C (e j)) = C (∑ j : Fin 4, M i j * e j)
+    simp only [map_sum,map_mul]
+  have hH : hessian (weightedLinearSubstitution M L) = T.transpose * A * T := weightedLinearSubstitution_hessian M L
+  rw [hH, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, ht] at he
+  have hTi : Function.Injective T.transpose.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
+    ((Matrix.isUnit_iff_isUnit_det T.transpose).mpr (by rw [Matrix.det_transpose,hT]; exact isUnit_one))
+  have hker : A *ᵥ (fun i => C (d i)) = 0 := by
+    apply hTi
+    rw [Matrix.mulVec_zero]
+    exact he
+  refine ⟨d,hd0,?_⟩
+  funext i
+  apply hf
+  have hh := congrFun hker i
+  change (∑ j : Fin 4, weightedLinearSubstitution M (hessian L i j) * C (d j)) = 0 at hh
+  change weightedLinearSubstitution M (∑ j : Fin 4, hessian L i j * C (d j)) =
+    weightedLinearSubstitution M 0
+  rw [map_sum,map_zero]
+  simp only [map_mul]
+  have hC (a : K) : weightedLinearSubstitution M (C a) = C a :=
+    (weightedLinearSubstitution M).commutes a
+  simp only [hC]
+  exact hh
+
+/-- Extract a pure-pivot chart with the rank-one relations and degree
+bounds already transported, keeping all witnesses on the same chart. -/
+private theorem rankOne_exists_purePivot_chart
+    (L : S K) (hD : 2 ≤ L.totalDegree) (p : Fin 4)
+    (hp : hessian L p p ≠ 0)
+    (hr : ∀ i j : Fin 4, hessian L p p * hessian L i j =
+      hessian L i p * hessian L p j) :
+    ∃ (M : Matrix (Fin 4) (Fin 4) K) (k : Fin 4) (n : ℕ),
+      M.det = 1 ∧
+      let Q := weightedLinearSubstitution M L
+      coeff (Finsupp.single k n) (hessian Q k k) ≠ 0 ∧
+      (∀ i j : Fin 4, (hessian Q i j).totalDegree ≤ n) ∧
+      (∀ i j : Fin 4, hessian Q k k * hessian Q i j =
+        hessian Q i k * hessian Q k j) := by
+  classical
+  obtain ⟨M,k,hM,hpure⟩ := rankOne_exists_purePower_chart L (by omega)
+  let Q := weightedLinearSubstitution M L
+  let n := L.totalDegree - 2
+  have hn : n+2 = L.totalDegree := by dsimp [n]; omega
+  have hQdeg : Q.totalDegree ≤ L.totalDegree := weightedLinearSubstitution_totalDegree_le M L
+  have hA : coeff (Finsupp.single k n) (hessian Q k k) ≠ 0 :=
+    rankOne_purePower_hessian_coeff Q n k (by rw [hn]; exact hpure)
+  have hdeg (i j : Fin 4) : (hessian Q i j).totalDegree ≤ n :=
+    rankOne_hessian_degree_le Q L.totalDegree hD hQdeg i j
+  have hf := rankOne_substitution_injective M hM
+  have hR := rankOne_crossProducts_substitution L M p hp hf hr
+  exact ⟨M,k,n,hM,hA,hdeg,hR k⟩
+
+/-- A Hessian of rank at most one in four variables has a nonzero
+constant kernel vector, without homogeneity assumptions. -/
 theorem rankOneHessian_exists_constantKernel
     (L : S K)
     (hr : ∀ k i j : Fin 4, hessian L k k * hessian L i j =
@@ -296,96 +436,10 @@ theorem rankOneHessian_exists_constantKernel
       pderiv_comm_backport i j L] at he
     exact (mul_eq_zero.mp he.symm).elim id id
   obtain ⟨p,hp⟩ := hex
-  obtain ⟨M,k,hM,hpure⟩ := rankOne_exists_purePower_chart L (by omega)
-  let Q := weightedLinearSubstitution M L
-  let n := L.totalDegree - 2
-  have hn : n+2 = L.totalDegree := by dsimp [n]; omega
-  have hQdeg : Q.totalDegree ≤ L.totalDegree := weightedLinearSubstitution_totalDegree_le M L
-  have hA : coeff (Finsupp.single k n) (hessian Q k k) ≠ 0 :=
-    rankOne_purePower_hessian_coeff Q n k (by rw [hn]; exact hpure)
-  have hA0 : hessian Q k k ≠ 0 := by
-    intro hz
-    exact hA (by rw [hz,coeff_zero])
-  have hf := rankOne_substitution_injective M hM
-  have hR := rankOne_crossProducts_substitution L M p hp hf (hr p)
-  have hcoeff (i : Fin 4) : ∃ c : K, hessian Q k i = MvPolynomial.C c * hessian Q k k := by
-    apply rankOneHessian_ratio_constant_of_purePivot Q k i n hA
-    · exact rankOne_hessian_degree_le Q _ hD hQdeg k k
-    · exact rankOne_hessian_degree_le Q _ hD hQdeg k i
-    · have he := hR k i i
-      change hessian Q k k * hessian Q i i = _ at he
-      rw [show hessian Q i k = hessian Q k i from pderiv_comm_backport k i Q] at he
-      simpa only [pow_two] using he
-  obtain ⟨l,hl⟩ : ∃ l : Fin 4, l ≠ k := exists_ne k
-  obtain ⟨c,hc⟩ := hcoeff l
-  have hcol (i : Fin 4) : hessian Q i l = MvPolynomial.C c * hessian Q i k := by
-    apply mul_left_cancel₀ hA0
-    calc
-      hessian Q k k * hessian Q i l = hessian Q i k * hessian Q k l := hR k i l
-      _ = hessian Q k k * (MvPolynomial.C c * hessian Q i k) := by rw [hc]; ring
-  let e : Fin 4 → K := Pi.single l 1 - Pi.single k c
-  have he0 : e ≠ 0 := by
-    intro hz
-    have he := congrFun hz l
-    change (Pi.single l (1 : K) : Fin 4 → K) l -
-      (Pi.single k c : Fin 4 → K) l = 0 at he
-    rw [Pi.single_eq_same, Pi.single_eq_of_ne hl, sub_zero] at he
-    exact one_ne_zero he
-  let C : K →+* S K := MvPolynomial.C
-  have he : hessian Q *ᵥ (fun i => C (e i)) = 0 := by
-    have hmap : (fun i => C (e i)) =
-        (Pi.single l 1 : Fin 4 → S K) - Pi.single k (C c) := by
-      funext i
-      by_cases hi : i = l
-      · subst i
-        simp [e, Pi.single_apply, hl]
-      · by_cases hj : i = k
-        · subst i
-          simp [e, Pi.single_apply, Ne.symm hl]
-        · simp [e, Pi.single_apply, hi, hj]
-    rw [hmap, Matrix.mulVec_sub, Matrix.mulVec_single_one, Matrix.mulVec_single]
-    funext i
-    change hessian Q i l - hessian Q i k * C c = 0
-    rw [hcol, mul_comm (C c), sub_self]
-  let d := M *ᵥ e
-  have hd0 : d ≠ 0 := by
-    have hi : Function.Injective M.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
-      ((Matrix.isUnit_iff_isUnit_det M).mpr (by rw [hM]; exact isUnit_one))
-    intro hz
-    apply he0
-    apply hi
-    rw [Matrix.mulVec_zero]
-    exact hz
-  let T := M.map C
-  let A := (hessian L).map (weightedLinearSubstitution M).toRingHom
-  have hT : T.det = 1 := by
-    change (C.mapMatrix M).det = 1
-    rw [← RingHom.map_det,hM,map_one]
-  have ht : T *ᵥ (fun i => C (e i)) = fun i => C (d i) := by
-    funext i
-    change (∑ j : Fin 4, C (M i j) * C (e j)) = C (∑ j : Fin 4, M i j * e j)
-    simp only [map_sum,map_mul]
-  have hH : hessian Q = T.transpose * A * T := weightedLinearSubstitution_hessian M L
-  rw [hH, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, ht] at he
-  have hTi : Function.Injective T.transpose.mulVec := Matrix.mulVec_injective_iff_isUnit.mpr
-    ((Matrix.isUnit_iff_isUnit_det T.transpose).mpr (by rw [Matrix.det_transpose,hT]; exact isUnit_one))
-  have hker : A *ᵥ (fun i => C (d i)) = 0 := by
-    apply hTi
-    rw [Matrix.mulVec_zero]
-    exact he
-  refine ⟨d,hd0,?_⟩
-  funext i
-  apply hf
-  have hh := congrFun hker i
-  change (∑ j : Fin 4, weightedLinearSubstitution M (hessian L i j) * C (d j)) = 0 at hh
-  change weightedLinearSubstitution M (∑ j : Fin 4, hessian L i j * C (d j)) =
-    weightedLinearSubstitution M 0
-  rw [map_sum,map_zero]
-  simp only [map_mul]
-  have hC (a : K) : weightedLinearSubstitution M (C a) = C a :=
-    (weightedLinearSubstitution M).commutes a
-  simp only [hC]
-  exact hh
+  obtain ⟨M,k,n,hM,hA,hdeg,hR⟩ := rankOne_exists_purePivot_chart L hD p hp (hr p)
+  obtain ⟨e,he0,he⟩ := rankOne_kernel_of_purePivot (weightedLinearSubstitution M L)
+    k n hA hdeg hR
+  exact rankOne_constantKernel_pullback L M hM e he0 he
 
 /-- The rank-at-most-one branch of the actual extremal leading
 Hessian is impossible. -/
