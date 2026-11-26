@@ -14,7 +14,9 @@
 \newcommand{\supp}{\operatorname{supp}}
 \newcommand{\inw}{\operatorname{in}}
 \title{An Algebraic and Machine-Verified Proof of the Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures}
-\author{HC4 formalisation project\\Draft for mathematical review}
+\author{Jamie Little\\
+\small Computer Science undergraduate, University of Cambridge\\
+\small Independent project --- draft for mathematical review}
 \date{26 November 2026}
 \begin{document}
 \maketitle
@@ -437,7 +439,7 @@ Consequently the $i,k$ block is singular. Since $V_s=0$ and $V_l=1$, the passive
 
 
 \subsection{The signed first-contact argument (adapted from Tang)}
-The nonzero Wronskian of the three independent rational functions allows us to choose a point of the ground field where they and $c$ are regular, $c\ne0$, and the value, first derivative and half second derivative rows are independent. For clarity, the Wronskian criterion here follows also by differentiating a zero relation $r_2'r_3''-r_3'r_2''=0$: if $r_2'\ne0$ then $r_3'/r_2'$ is constant, so $r_3$ is affine in $r_2$, a contradiction.
+The nonzero Wronskian of the three independent rational functions allows us to choose a point of the ground field where they and $c$ are regular, $c\ne0$, and the value, first derivative and half second derivative rows are independent. For clarity, the Wronskian criterion follows directly from the quotient rule: $r_2$ is nonconstant by independence, and if $r_2'r_3''-r_3'r_2''=0$, then $(r_3'/r_2')'=0$. Hence $r_3'/r_2'$ is constant and $r_3$ is affine in $r_2$, a contradiction.
 
 Translate $x=x_0+\xi$ and change the passive linear coordinates by this invertible jet matrix. The relative cap survives; the Hessian determinant becomes a nonzero constant $\delta$. The normalized phase has jet $u+\xi v+\xi^2t$ and all later coefficient terms have higher order in $\xi$. The scalar $c(x_0+\xi)$ has nonzero constant term. The actual Lean proof clears the rational denominators, uses regularity at $x_0$, and cancels their nonzero initial constants. Thus, writing $d=(0,1,1,1)$ and $s'=(-1,0,1,2)$, the top passive-degree part has $s'$-cap zero and its zero-slope form is
 \[
@@ -458,11 +460,23 @@ There is therefore a first positive contact of a lower-degree monomial with weig
 \[
  \eta_*=\min_{D<n,\ S>0}\frac{n-D}{S}\le n-2 .
 \]
-Monomials of passive degree zero have nonpositive slope, and those of degree one now have slope at most one, so a contact has $2\le D<n$. The determinant weight at contact is $4n-6-4\eta_*\ge2$. Let $F$ be its weight-$n$ face, with weights $(-\eta_*,1,1+\eta_*,1+2\eta_*)$. By clearing denominators in the weights and using~\eqref{eq:det}, $\det\Hess F=0$. Its degree-$n$ passive part is $L_0$; hence all three passive principal cofactors survive by the degree bounds for minors.
+Monomials of passive degree zero have nonpositive slope, and those of degree one now have slope at most one, so a contact has $2\le D<n$. The determinant weight at contact is $4n-6-4\eta_*\ge2$. Let $F$ be its weight-$n$ face, with weights $(-\eta_*,1,1+\eta_*,1+2\eta_*)$. By clearing denominators in the weights and using~\eqref{eq:det}, $\det\Hess F=0$. Its degree-$n$ passive part is $L_0$. Applying the passive-degree projection to each Hessian entry and then to each three-by-three principal minor recovers the corresponding Hessian entry and minor of $L_0$: every product in a minor has the same degree cap, namely $3n-2\sum_{j\in I}d_j$ for a principal index set $I$. Only products of entries on their respective caps contribute to that degree. Thus all three passive principal cofactors and the $uu$ entry survive in $F$.
 
 Lemma~\ref{lem:signed} applies after clearing the positive common denominator of the weights. It forces rank at most one of the passive Hessian of $F$. This step does \emph{not} invoke nonnegative global optimality on the signed weights.
 
-Finally the passive row ratios are Laurent monomials in $\xi$. If a term of passive degree $2\le D<n$ survives on $F$, choose one with maximal exponent of $u$ among degree-$D$ terms. It cannot be supported only on $\xi,u$, since the active weight is negative and the $u$ weight is one. Differentiating twice in passive variables gives a nonzero Hessian entry in a non-$u$ row. The rank-one row identity, after clearing the monomial ratio, transfers one such passive factor to $u$ at the same passive degree, producing a nonzero coefficient with larger $u$ exponent. This contradicts maximality. This is the support-level version of Tang's exclusion of lower-degree powers with negative active exponent; it is checked by \path{rankThree_signedWall_no_lowerDegree}. A first contact is impossible, contradicting the quadratic witness. This finishes the contradiction.
+Finally we show that the rank-one passive Hessian is incompatible with any surviving passive degree $2\le D<n$. Write $A=\Hess F$ and use the surviving pivot $A_{uu}\ne0$. For a passive row $i\ne u$ with $A_{iu}\ne0$, Lemma~\ref{lem:rows} gives $r_i=A_{iu}/A_{uu}\in K(\xi)$, and
+\[
+ A_{ij}=r_i A_{uj}\qquad\text{for every passive }j.
+\]
+By weighted homogeneity $r_i$ is a scalar Laurent monomial in $\xi$, since $\xi$ has nonzero weight. Indeed, clearing the ratio in reduced form and comparing weights, or using the unique factorisation of $K[\xi]$, shows that its numerator and denominator are each a constant times a power of $\xi$. With the normalized wall weights, $r_i$ has weight $w_u-w_i$ and therefore is of the form $\gamma_i\xi^{a_i}$, where $\gamma_i\in K^\times$ and $a_v=1$, $a_t=2$.
+
+Suppose some degree-$D$ term survives on $F$. Among all such terms choose an exponent $\alpha$ with maximal $\alpha_u$ and nonzero coefficient. The monomial cannot be supported only on $\xi,u$, because its weight would then be $D-\eta_*\alpha_\xi\le D<n$. Choose a passive $i\ne u$ with $\alpha_i>0$. Since $D\ge2$, after removing one factor of $i$ there is a passive $j$ (possibly $i$ or $u$) with $(\alpha-e_i)_j>0$. Consequently the coefficient of exponent $\alpha-e_i-e_j$ in $A_{ij}$ is nonzero. Indeed differentiation multiplies the original coefficient by $\alpha_i(\alpha_j-\delta_{ij})$, a nonzero scalar in characteristic zero, and no other source exponent contributes to it.
+
+The identity $A_{uu}A_{ij}=A_{iu}A_{uj}$ implies $A_{iu}\ne0$, so the row ratio above is available. By the identity $A_{ij}=\gamma_i\xi^{a_i}A_{uj}$, the coefficient at $\alpha-e_i-e_j-a_i e_\xi$ in $A_{uj}$ is nonzero; in particular this exponent must be nonnegative. Thus $F$ contains the monomial with exponent
+\[
+ \beta=\alpha-e_i+e_u-a_i e_\xi.
+\]
+This follows again from the unique predecessor of a differentiated monomial. It has passive degree $D$ but $\beta_u=\alpha_u+1$, contradicting maximality. Hence no such degree can survive. This is the support-level version of Tang's exclusion of lower-degree powers with negative active exponent; the corresponding formal interfaces are \path{rankThree_support_transfer_to_pivot} and \path{rankThree_signedWall_no_lowerDegree}. A first contact is impossible, contradicting the quadratic witness. This finishes the contradiction.
 
 
 \section{The reverse implication and polynomial inverses}\label{sec:inverse}
@@ -563,10 +577,15 @@ lake build HC4.Polynomial.RationalMapAffinePlane
 lake env lean HC4/FinalEquivalence.lean
 lake env lean HC4/Polynomial/RationalMapAffinePlane.lean
 \end{verbatim}
-The full project and its audit can be checked with \path{lake build} and \path{lake env lean HC4/Audit.lean}. The repository also supplies a dependency exporter and a contribution audit. The final equivalence is not a proof of either open conjecture without assuming the other.
+The full project and its audit can be checked with:
+\begin{verbatim}
+lake build
+lake env lean HC4/Audit.lean
+\end{verbatim}
+The repository also supplies a dependency exporter and a contribution audit. The final equivalence is not a proof of either open conjecture without assuming the other.
 
 \paragraph{Mathematical attribution.}
-Tang's Theorem 2.1 and Sections 3--4 \cite{tang} supply the mathematical setting, rank-one strategy and important elements of the final argument, including the Wronskian normalization and signed first-wall obstruction (his Lemma 3.3). The algebraic rank-two closure in the rational rigidity proof uses polynomial transport and root evaluation in place of the geometric classification used by Tang. The global maximum reorganizes the weighted argument by excluding possible improvements at a fixed extremal presentation rather than following a prescribed sequence of transitions. These differences describe the approach of the checked proof; novelty relative to the wider literature has not been established. We acknowledge Mathlib and the authors of the vendored L\"uroth development (Miriam Philipp, Justus Springer and Junyan Xu). Development, Lean proof construction and manuscript drafting used substantial AI assistance. Author names and publication arrangements are intentionally left for the maintainer to settle.
+Tang's Theorem 2.1 and Sections 3--4 \cite{tang} supply the mathematical setting, rank-one strategy and important elements of the final argument, including the Wronskian normalization and signed first-wall obstruction (his Lemma 3.3). The algebraic rank-two closure in the rational rigidity proof uses polynomial transport and root evaluation in place of the geometric classification used by Tang. The global maximum reorganizes the weighted argument by excluding possible improvements at a fixed extremal presentation rather than following a prescribed sequence of transitions. These differences describe the approach of the checked proof; novelty relative to the wider literature has not been established. We acknowledge Mathlib and the authors of the vendored L\"uroth development (Miriam Philipp, Justus Springer and Junyan Xu). Development, Lean proof construction and manuscript drafting used substantial AI assistance. This work is an independent project; the undergraduate affiliation identifies the author and does not imply institutional endorsement.
 
 \paragraph{Review status.}
 This is a consolidated manuscript draft of the previously compiled research notes, with the characteristic construction and reverse implication now spelled out. Some elementary coefficient and matrix computations are compressed, and some supporting arguments are rearranged relative to the exact Lean dependency order. The prose has not undergone independent mathematical review. The clean equivalence reproduction is recorded above; a careful line-by-line mathematical/source audit and external review remain necessary before making a publication-ready claim.
