@@ -2449,6 +2449,142 @@ theorem rankThree_velocity_column_isotropic
 end RankOneFrontier
 
 
+set_option maxHeartbeats 6000000 in
+/-- A normalized kernel taking values in a fixed affine line
+cannot occur at a genuine global optimum. Its direction is
+isotropic by square-zero transport; adjoining the affine offset
+produces a constant isotropic plane of the leading Hessian. -/
+theorem globalWeightOptimum_rankThree_no_affineKernelLine
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (l : Fin 4) (V : Fin 4 → E K)
+    (hVl : V l = 1)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hsq : let J := rankThreeComplementJacobian l V; J * J = 0)
+    (d e : Fin 4 → K) (hdl : d l = 1) (hel : e l = 0) (he0 : e ≠ 0)
+    (t : E K) (hline : ∀ i, V i = algebraMap K (E K) (d i) +
+      t * algebraMap K (E K) (e i)) :
+    False := by
+  classical
+  let L := initialForm w m P
+  let f := algebraMap (B K) (E K)
+  let g := algebraMap K (E K)
+  let H := ((hessian L).submatrix l.succAbove l.succAbove).map f
+  let J := rankThreeComplementJacobian l V
+  have hJ : J ≠ 0 :=
+    globalWeightOptimum_rankThree_complementJacobian_ne_zero P w m hw hm hcap
+      hclock hopt hdet l hreg V hVl hV
+  have hfac (a b : Fin 3) :
+      J a b = rankThreePartial (l.succAbove b) t * g (e (l.succAbove a)) := by
+    change rankThreePartial (l.succAbove b) (V (l.succAbove a)) = _
+    rw [hline]
+    simp [Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap]
+  have hsome : ∃ b : Fin 3, rankThreePartial (l.succAbove b) t ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    apply hJ
+    ext a b
+    rw [hfac,hn b,zero_mul]
+    rfl
+  obtain ⟨b,hb⟩ := hsome
+  let z := rankThreePartial (l.succAbove b) t
+  have hz : z ≠ 0 := hb
+  have hiso := rankThree_velocity_column_isotropic H J
+    (rankThree_complement_selfAdjoint L l V hVl hV) hsq b
+  have hC (c : K) : f (MvPolynomial.C c) = g c :=
+    (IsScalarTower.toAlgHom K (B K) (E K)).commutes c
+  have hee : extremalHessianPair L e e = 0 := by
+    apply IsFractionRing.injective (B K) (E K)
+    unfold extremalHessianPair
+    change f (∑ i : Fin 4, ∑ j : Fin 4,
+      MvPolynomial.C (e i) * hessian L i j * MvPolynomial.C (e j)) = f 0
+    simp only [map_sum,map_mul,hC,map_zero]
+    rw [Fin.sum_univ_succAbove _ l]
+    simp only [hel,map_zero,zero_mul,Finset.sum_const_zero,zero_add]
+    have hinner (i : Fin 3) :
+        (∑ j : Fin 4, g (e (l.succAbove i)) * f (hessian L (l.succAbove i) j) * g (e j)) =
+        ∑ j : Fin 3, g (e (l.succAbove i)) * H i j * g (e (l.succAbove j)) := by
+      rw [Fin.sum_univ_succAbove _ l]
+      simp only [hel,map_zero,mul_zero,zero_add]
+      rfl
+    simp only [hinner]
+    have he : z * z * (∑ i : Fin 3, ∑ j : Fin 3,
+        g (e (l.succAbove i)) * H i j * g (e (l.succAbove j))) = 0 := by
+      calc
+        _ = ∑ i : Fin 3, ∑ j : Fin 3, J i b * H i j * J j b := by
+          simp only [Finset.mul_sum,hfac]
+          apply Finset.sum_congr rfl
+          intro i _
+          apply Finset.sum_congr rfl
+          intro j _
+          change z * z * (g (e (l.succAbove i)) * H i j * g (e (l.succAbove j))) =
+            (z * g (e (l.succAbove i))) * H i j * (z * g (e (l.succAbove j)))
+          ring
+        _ = 0 := hiso
+    exact (mul_eq_zero.mp he).resolve_left (mul_ne_zero hz hz)
+  have hpair (x y : Fin 4 → K) :
+      f (extremalHessianPair L x y) =
+        ∑ i : Fin 4, ∑ j : Fin 4, g (x i) * f (hessian L i j) * g (y j) := by
+    unfold extremalHessianPair
+    simp only [map_sum,map_mul,hC]
+  have hk (x : Fin 4 → K) :
+      f (extremalHessianPair L x d) + t * f (extremalHessianPair L x e) = 0 := by
+    rw [hpair,hpair,Finset.mul_sum,← Finset.sum_add_distrib]
+    apply Finset.sum_eq_zero
+    intro i _
+    rw [Finset.mul_sum,← Finset.sum_add_distrib]
+    have hi : (∑ j : Fin 4, f (hessian L i j) * V j) = 0 := congrFun hV i
+    have hsum : (∑ j : Fin 4,
+        g (x i) * f (hessian L i j) * g (d j) +
+        t * (g (x i) * f (hessian L i j) * g (e j))) =
+          g (x i) * (∑ j : Fin 4, f (hessian L i j) * V j) := by
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro j _
+      rw [hline]
+      ring
+    rw [hsum,hi,mul_zero]
+  have hed : extremalHessianPair L e d = 0 := by
+    apply IsFractionRing.injective (B K) (E K)
+    have he := hk e
+    rw [hee,map_zero,mul_zero,add_zero] at he
+    simpa only [map_zero] using he
+  have hde : extremalHessianPair L d e = 0 := by
+    rw [← hed]
+    unfold extremalHessianPair
+    rw [Finset.sum_comm]
+    apply Finset.sum_congr rfl
+    intro i _
+    apply Finset.sum_congr rfl
+    intro j _
+    rw [show hessian L j i = hessian L i j from pderiv_comm_backport _ _ _]
+    ring
+  have hdd : extremalHessianPair L d d = 0 := by
+    apply IsFractionRing.injective (B K) (E K)
+    have he := hk d
+    rw [hde,map_zero,mul_zero,add_zero] at he
+    simpa only [map_zero] using he
+  let U := Submodule.span K ({d,e} : Set (Fin 4 → K))
+  have hd0 : d ≠ 0 := by
+    intro h
+    rw [h] at hdl
+    exact zero_ne_one hdl
+  have hspan (c : K) : e ≠ c • d := by
+    intro he
+    have hh := congrFun he l
+    change e l = c * d l at hh
+    rw [hel,hdl,mul_one] at hh
+    apply he0
+    rw [he,← hh,zero_smul]
+  exact globalWeightOptimum_no_constant_isotropicPlane P w m hw hm hcap hclock hopt
+    U d e (Submodule.subset_span (by simp)) (Submodule.subset_span (by simp))
+    hd0 hspan (extremalHessianPair_span_pair_zero L d e hdd hde hed hee)
+
+
 end
 end HC4.Polynomial
 
@@ -2512,3 +2648,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_rankOne_factor_square_zero
 #print axioms HC4.Polynomial.counterexample_rankThree_rankOne_frontier
 #print axioms HC4.Polynomial.rankThree_velocity_column_isotropic
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_affineKernelLine
