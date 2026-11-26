@@ -12,6 +12,7 @@ import csv
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "proof-dependencies"
@@ -67,10 +68,13 @@ def main():
             raise ValueError(f"Unresolved dependency: {a} -> {b}")
         adj[a].add(b)
 
+    tracked = subprocess.check_output(
+        ["git", "ls-files", "-z"], cwd=ROOT, text=True
+    ).split("\0")
     project_modules = {
-        ".".join(p.relative_to(ROOT).with_suffix("").parts)
-        for p in (ROOT / "HC4").rglob("*.lean")
-    } | {"HC4"}
+        ".".join(Path(p).with_suffix("").parts) for p in tracked
+        if p.endswith(".lean") and (p == "HC4.lean" or p.startswith("HC4/"))
+    }
     local_all = {n for n, r in nodes.items() if local(r["module"])}
     lines = [
         "# Declaration dependency audit",
