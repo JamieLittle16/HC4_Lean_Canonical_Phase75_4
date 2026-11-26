@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11914**.
+Distinct declaration spellings indexed: **11916**.
 
 ## Repeated declaration spellings
 
@@ -4959,6 +4959,7 @@ Distinct declaration spellings indexed: **11914**.
 - `counterexample_highWeight_two_partners` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `counterexample_rankThree_no_rankTwoVelocity` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `counterexample_rankThree_no_rankTwoVelocity_zeroWeight` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `counterexample_rankThree_no_regularActive` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `counterexample_rankThree_rankOne_frontier` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
@@ -9534,6 +9535,7 @@ Distinct declaration spellings indexed: **11914**.
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
 - `rankThree_proportionalDifferential_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_factor_square_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_rankOne_orientedSlope_data` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_regularActiveSlope_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_slope_transport` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
