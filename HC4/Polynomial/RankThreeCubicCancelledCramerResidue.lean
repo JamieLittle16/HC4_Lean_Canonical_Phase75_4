@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicNormalizedPoleQuadraticResidue
+public import Mathlib.Tactic
 
 /-!
 # The actual Cramer system after one repeated-pole cancellation
@@ -20,6 +22,8 @@ The existence of a T with nonzero reduction at p remains the
 normalization/extraction obligation, not an assumed conclusion.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -29,9 +33,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicCancelledCramerResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicCancelledCramerResidue
+
+open RankThreeCubicCancelledCramerResidue (B3 F3 SB)
 
 /-- Cancel one nonzero common polynomial factor in the actual Cramer
 numerator and determinant without changing the rational solution. -/

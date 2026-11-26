@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
+public import Mathlib.Tactic
 
 /-!
 # Cubic source: a squarefree pole would divide all Jacobi derivatives
@@ -13,6 +15,8 @@ This is the source-level derivative-divisibility obstruction. The final
 characteristic-zero squarefree-factor contradiction is separate.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,9 +26,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSquarefreePoleDerivativeObstruction
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSquarefreePoleDerivativeObstruction
+
+open RankThreeCubicSquarefreePoleDerivativeObstruction (B3 F3 SB)
 
 /-- The actual source cubic cannot have a *squarefree* nonpolynomial
 characteristic without yielding an irreducible Hessian determinant

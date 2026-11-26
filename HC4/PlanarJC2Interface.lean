@@ -1,6 +1,8 @@
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Planar Jacobian-conjecture injectivity interface
@@ -19,6 +21,8 @@ constant Jacobian determinant is injective on `K^2`.
 This is the exact consequence of the usual planar Jacobian conjecture used
 by the terminal Hessian-doubling argument.
 -/
+
+@[expose] public section
 
 namespace HC4
 

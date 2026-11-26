@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
-import HC4.Polynomial.RankThreeCubicPoleDeterminant
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
+public import HC4.Polynomial.RankThreeCubicPoleDeterminant
+public import Mathlib.Tactic
 
 /-!
 # Cramer's numerator obeys the quadratic transport residue equation
@@ -19,6 +21,8 @@ This theorem is a base-ring algebraic bridge. The source coefficient
 descent and source transport modules provide its hypotheses.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -29,8 +33,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicCramerQuadraticResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicCramerQuadraticResidue
+
+open RankThreeCubicCramerQuadraticResidue (B3 F3)
 
 /-- The actual Cramer numerator, not an independently chosen kernel
 vector, is annihilated by the transported quadratic family under

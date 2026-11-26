@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicLinearTransport
-import HC4.Polynomial.RankThreeCubicNilpotentSquare
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicLinearTransport
+public import HC4.Polynomial.RankThreeCubicNilpotentSquare
+public import Mathlib.Tactic
 
 /-!
 # Source pullback for nilpotent linear cubic characteristics
@@ -8,6 +10,8 @@ import Mathlib.Tactic
 The substitution `x ↦ a+t, y ↦ (I+tN)y` is injective for `N^3=0`.
 Its polynomial left inverse uses `I-tN+t²N²`.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

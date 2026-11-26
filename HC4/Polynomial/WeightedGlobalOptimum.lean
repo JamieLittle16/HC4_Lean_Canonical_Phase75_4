@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightedLinearOrbit
-import HC4.Polynomial.RationalLinearProjection
+module
+
+public import HC4.Polynomial.WeightedLinearOrbit
+public import HC4.Polynomial.RationalLinearProjection
 
 /-!
 # Global normalized weight optimum over genuine linear charts
@@ -13,6 +15,8 @@ set of realized patterns and clear denominators.
 The resulting optimum ranges over every determinant-one linear
 chart, not just weight-preserving shears.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

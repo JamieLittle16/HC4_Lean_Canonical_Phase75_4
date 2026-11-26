@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicConstants
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RationalCharacteristicConstants
+public import Mathlib.Tactic
 
 /-!
 # Symmetric affine pencil rigidity
@@ -16,6 +18,8 @@ Lueroth theorem, or geometric classification is needed for this lemma.
 The separate construction of the rank-one parametrization and lifted
 trace identity remains necessary.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

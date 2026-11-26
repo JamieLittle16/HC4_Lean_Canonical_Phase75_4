@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedFixedSourceDescent
+module
+
+public import HC4.Polynomial.WeightedFixedSourceDescent
 
 /-!
 # The genuine linear orbit of a determinant-one source
@@ -11,6 +13,8 @@ In particular, optimization over weight presentations of arbitrary
 linear charts has only finitely many possible support patterns.
 This is the finite reduction, not yet the rational optimization theorem.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

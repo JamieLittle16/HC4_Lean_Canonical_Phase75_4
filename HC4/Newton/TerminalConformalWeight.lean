@@ -1,5 +1,7 @@
-import HC4.Newton.MixedDepartureAdapter
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.MixedDepartureAdapter
+public import Mathlib.Tactic
 
 /-!
 # Weight-theoretic core of the terminal conformal face
@@ -35,6 +37,8 @@ needs to derive nondegeneracy of the quadratic Hessian from the unit
 terminal Hessian determinant and then dispatch the non-scalar conformal
 endpoint.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

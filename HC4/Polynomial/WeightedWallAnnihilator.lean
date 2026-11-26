@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedWallMinorSurvival
+module
+
+public import HC4.Polynomial.WeightedWallMinorSurvival
 
 /-!
 # Highest-weight contraction of a wall annihilator
@@ -12,6 +14,8 @@ a unique highest-weight pivot in that direction.
 The statements concern actual polynomial faces and do not
 assume a wall-crossing or descent algorithm terminates.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

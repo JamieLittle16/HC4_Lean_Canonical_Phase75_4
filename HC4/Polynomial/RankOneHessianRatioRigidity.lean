@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightedExtremalPartner
-import HC4.Polynomial.RationalCharacteristicConstants
+module
+
+public import HC4.Polynomial.WeightedExtremalPartner
+public import HC4.Polynomial.RationalCharacteristicConstants
 
 /-!
 # Rank-one Hessian ratio rigidity
@@ -21,6 +23,8 @@ The pure-pivot hypothesis is explicit here; producing the chart
 from an arbitrary rank-one Hessian is a separate step.
 -/
 
+public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton RankThreeCubic
@@ -31,10 +35,17 @@ noncomputable section
 
 variable {σ K : Type*} [Field K] [CharZero K]
 
-private abbrev R (σ K : Type*) [Field K] := MvPolynomial σ K
-private abbrev E (σ K : Type*) [Field K] := FractionRing (R σ K)
+namespace RankOneHessianRatioRigidity
 
-private def rankOnePartial (i : σ) : Derivation K (E σ K) (E σ K) :=
+abbrev R (σ K : Type*) [Field K] := MvPolynomial σ K
+abbrev E (σ K : Type*) [Field K] := FractionRing (R σ K)
+
+end RankOneHessianRatioRigidity
+
+open RankOneHessianRatioRigidity (R E)
+
+@[expose]
+def rankOnePartial (i : σ) : Derivation K (E σ K) (E σ K) :=
   localizationDerivation (nonZeroDivisors (R σ K)) (pderiv i)
 
 private theorem rankOnePartial_map (i : σ) (p : R σ K) :

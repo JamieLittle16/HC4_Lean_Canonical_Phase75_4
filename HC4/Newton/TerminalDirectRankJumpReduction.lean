@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalScalarGradient
-import HC4.Newton.TerminalCenteredWeights
+module
+
+public import HC4.Newton.TerminalScalarGradient
+public import HC4.Newton.TerminalCenteredWeights
 
 /-!
 # Terminal direct-rank-jump reduction
@@ -22,6 +24,8 @@ This is an honest reduction, not the final non-scalar endpoint theorem.
 It closes the scalar direct-jump branch completely and sharply isolates the
 remaining terminal classification problem.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,5 +1,7 @@
-import HC4.Newton.RankOnePersistentPacket
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.RankOnePersistentPacket
+public import Mathlib.Tactic
 
 /-!
 # The binary quadratic carried by a rank-one persistent packet
@@ -44,6 +46,8 @@ Therefore:
 This is the first formal re-entry interface from the rank-one persistent
 packet into the already checked rank-two/rank-one binary machinery.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

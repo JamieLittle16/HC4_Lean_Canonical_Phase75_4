@@ -1,5 +1,7 @@
-import HC4.Newton.RankOnePacketQuadratic
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.RankOnePacketQuadratic
+public import Mathlib.Tactic
 
 /-!
 # Rank-one persistent-packet re-entry certificate
@@ -32,6 +34,8 @@ This is deliberately an algebraic re-entry certificate.  The next layer
 must connect the rank-two certificate to the next Rees/Schur event and then
 prove that repeated repairs decrease a finite complexity measure.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

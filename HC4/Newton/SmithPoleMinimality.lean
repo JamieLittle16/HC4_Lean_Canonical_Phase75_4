@@ -1,5 +1,7 @@
-import HC4.Newton.SmithValuationTiltAdapter
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithValuationTiltAdapter
+public import Mathlib.Tactic
 
 /-!
 # Smith separator contradiction to integral pole minimality
@@ -37,6 +39,8 @@ show that pole-minimal pointed Laurent models from the global extraction
 satisfy this finite predicate because the denominator-cleared conformal
 tilts are legal cocharacters fixing the primitive x-direction.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

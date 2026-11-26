@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalNonnegativeWeights
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalNonnegativeWeights
+public import Mathlib.Tactic
 
 /-!
 # The standard one-zero terminal weight pattern
@@ -19,6 +21,8 @@ This module records the standard model and its elementary positivity facts.
 The coordinate-permutation adapter from an arbitrary one-zero face is kept
 separate.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

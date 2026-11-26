@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre
 
 /-!
 # Polynomial rigidity along the straight velocity fibre
@@ -12,6 +14,8 @@ polynomial to be linear, and b to annihilate Dw.
 The last cancellation uses evaluation at the root of a linear
 polynomial, not a classification of congruences of lines.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -70,10 +74,16 @@ end Scalar
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankTwoAffineGradient
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankTwoAffineGradient
+
+open RationalCharacteristicRankTwoAffineGradient (B E I S)
 
 def rankTwo_fibreEval (w : Fin 3 → E K) :
     B K →ₐ[K] _root_.Polynomial (E K) :=

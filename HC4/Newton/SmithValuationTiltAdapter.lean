@@ -1,5 +1,7 @@
-import HC4.Newton.FiniteValuationTilt
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.FiniteValuationTilt
+public import Mathlib.Tactic
 
 /-!
 # Smith conformal tilt as a valuation change
@@ -39,6 +41,8 @@ that if the separator is positive on every old minimal-face monomial, then
 the explicit small rational conformal tilt raises every supported
 normalised valuation strictly above the old minimum.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

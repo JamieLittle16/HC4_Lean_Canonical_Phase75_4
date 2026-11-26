@@ -1,6 +1,8 @@
-import HC4.PlanarJC2Interface
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Tactic
+module
+
+public import HC4.PlanarJC2Interface
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Tactic
 
 /-!
 # Abstract Hessian-doubling injectivity
@@ -23,6 +25,8 @@ Thus, once the terminal weighted-support calculation identifies the special
 fibre with a Hessian doubling, the only remaining mathematical input is
 the planar JC2 injectivity statement.
 -/
+
+@[expose] public section
 
 namespace HC4
 

@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicAffineOperator
+module
+
+public import HC4.Polynomial.RationalCharacteristicAffineOperator
 
 /-!
 # Closure for the rank-one rational derivative factorization
@@ -13,6 +15,8 @@ The existence of the one-parameter derivative factorization for an
 arbitrary rank-one rational Jacobian remains a separate obligation.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,9 +26,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev Mat (K : Type*) := Matrix (Fin 3) (Fin 3) K
+namespace RationalCharacteristicRankOneAffineClosure
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev Mat (K : Type*) := Matrix (Fin 3) (Fin 3) K
+
+end RationalCharacteristicRankOneAffineClosure
+
+open RationalCharacteristicRankOneAffineClosure (B E Mat)
 
 /-- Evaluating scalar parameter polynomials commutes with a
 ground-field algebra homomorphism. -/

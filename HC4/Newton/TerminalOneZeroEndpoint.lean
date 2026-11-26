@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalOneZeroAmbientDecoupling
-import Mathlib.Algebra.MvPolynomial.Rename
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroAmbientDecoupling
+public import Mathlib.Algebra.MvPolynomial.Rename
+public import Mathlib.Tactic
 
 /-!
 # Standard one-zero terminal endpoint
@@ -19,6 +21,8 @@ planar fibre.
 This file closes that bridge and then assembles the full standard `k=1`
 terminal endpoint.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

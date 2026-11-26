@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoAffineClosure
+module
+
+public import HC4.Polynomial.RankTwoAffineClosure
 
 /-!
 # Rank-two constant image direction closure
@@ -13,6 +15,8 @@ The image-direction existence is deliberately not assumed in the
 unrestricted theorem: the conditional endpoint here isolates
 exactly the missing geometric input.
 -/
+
+public section
 
 namespace HC4.Polynomial
 
@@ -68,7 +72,9 @@ theorem rankTwo_coordinateImage_rowMinors
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoImageDirectionClosure.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoImageDirectionClosure (S)
 
 /-- A rank-two Hessian with a coordinate image direction has
 either a zero diagonal or a nonzero constant Hessian kernel. -/

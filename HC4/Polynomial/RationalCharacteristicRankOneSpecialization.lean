@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneInvariantField
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneInvariantField
 
 /-!
 # Polynomial differential equations for invariant fractions
@@ -13,6 +15,8 @@ The nonvanishing theorem for solutions of those equations along
 a noncharacteristic coordinate line is a separate obligation.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,9 +26,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankOneSpecialization
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankOneSpecialization
+
+open RationalCharacteristicRankOneSpecialization (B E I)
 
 /-- Polynomial action of a cleared corrected transverse derivative.
 The fraction-field extension below is a genuine derivation; the

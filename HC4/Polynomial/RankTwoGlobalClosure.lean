@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoGraphDichotomy
+module
+
+public import HC4.Polynomial.RankTwoGraphDichotomy
 
 /-!
 # Complete rank-at-most-two extremal obstruction
@@ -10,13 +12,17 @@ evaluated identities by polynomial density and apply the existing
 global extremal contradictions.
 -/
 
+public section
+
 namespace HC4.Polynomial
 open MvPolynomial HC4.Newton
 open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev R (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoGlobalClosure.R (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoGlobalClosure (R)
 
 /-- The polynomial difference identity implies the evaluated
 singular difference, now with no distinct-gradient restriction. -/

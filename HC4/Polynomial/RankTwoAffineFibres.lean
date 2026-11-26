@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoPrincipalPivot
+module
+
+public import HC4.Polynomial.RankTwoPrincipalPivot
 
 /-!
 # Affine fibres of a rank-two polynomial gradient
@@ -13,6 +15,8 @@ point proves that every direction in the evaluated kernel gives an
 entire line of constant gradient. Thus the whole affine kernel plane
 is in the gradient fibre. No classification of Hessians is assumed.
 -/
+
+public section
 
 namespace HC4.Polynomial
 
@@ -61,7 +65,9 @@ theorem rankTwo_kernel_zero_of_supportedOnPivot
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoAffineFibres.B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoAffineFibres (B)
 
 set_option maxHeartbeats 3000000 in
 /-- Kernel acceleration vanishes when the nonpivot components

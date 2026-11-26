@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoFrame
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoFrame
 
 /-!
 # Tensor transport to the rational Jordan frame
@@ -14,6 +16,8 @@ direction. This is the tensor input to straightness of the
 one-dimensional velocity kernel.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,7 +29,9 @@ section Algebra
 
 variable {F : Type*} [Field F]
 
-private abbrev Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+abbrev RationalCharacteristicRankTwoTensorTransport.Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+
+open RationalCharacteristicRankTwoTensorTransport (Mat)
 
 /-- Contract the input slots of a three-index tensor and transform
 its remaining slot by an arbitrary matrix. -/
@@ -139,10 +145,16 @@ section Source
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankTwoTensorTransport
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankTwoTensorTransport
+
+open RationalCharacteristicRankTwoTensorTransport (B E I S)
 
 /-- A directional matrix derivative is the contraction of the
 original partial derivative tensor. -/

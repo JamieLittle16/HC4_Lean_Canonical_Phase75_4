@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSquarefreePoleDerivativeObstruction
+public import Mathlib.Tactic
 
 /-!
 # No squarefree pole for an actual cubic source characteristic
@@ -14,6 +16,8 @@ assumed.
 **Compilation status:** to be confirmed by the real Lean build.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,9 +27,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSquarefreePoleFinal
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSquarefreePoleFinal
+
+open RankThreeCubicSquarefreePoleFinal (B3 F3 SB)
 
 /-- Coefficient formula for multivariate partial differentiation,
 using the upstream Mathlib coefficient theorem. -/

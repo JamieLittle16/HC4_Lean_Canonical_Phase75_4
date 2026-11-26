@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceSinglePoleNonzeroResidue
+public import Mathlib.Tactic
 
 /-!
 # Source cubic repeated-pole rank split on the one pole hyperplane
@@ -16,6 +18,8 @@ This is an exhaustive source-honest algebraic split and does not
 assert that either branch is impossible.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,8 +29,14 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourcePoleRankSplit
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourcePoleRankSplit
+
+open RankThreeCubicSourcePoleRankSplit (B3 SB)
 
 /-- On a prime component of the *actual source* Hessian determinant,
 either all 2x2 cofactors vanish, or one principal cofactor survives.

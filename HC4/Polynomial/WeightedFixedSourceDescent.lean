@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedFirstWall
+module
+
+public import HC4.Polynomial.WeightedFirstWall
 
 /-!
 # Fixed-source wall progress and finite obstruction
@@ -10,6 +12,8 @@ admissible weights eliminates every invisible coordinate slope.
 This is deliberately a fixed-source assertion: a later linear
 change of chart need not preserve the leading support cardinality.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

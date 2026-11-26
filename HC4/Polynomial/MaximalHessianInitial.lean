@@ -1,5 +1,7 @@
-import HC4.Polynomial.TopProduct
-import HC4.Polynomial.HessianDeterminant
+module
+
+public import HC4.Polynomial.TopProduct
+public import HC4.Polynomial.HessianDeterminant
 
 /-!
 # Hessian determinant of a maximal weighted initial form
@@ -12,6 +14,8 @@ component, then the determinant component at
 
 is exactly `det Hess H`.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

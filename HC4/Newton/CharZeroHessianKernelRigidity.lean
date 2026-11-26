@@ -1,7 +1,9 @@
-import HC4.Newton.TransverseSupportRigidity
-import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.Algebra.Ring.CharZero
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TransverseSupportRigidity
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+public import Mathlib.Algebra.Ring.CharZero
+public import Mathlib.Tactic
 
 /-!
 # Characteristic-zero Hessian-kernel rigidity
@@ -34,6 +36,8 @@ Applying (1) to the two Hessian-row kernel equations shows that
 is transversely independent. Phase 91.3 finally turns positive transverse
 degree into `D F = 0`.
 -/
+
+public section
 
 namespace HC4.Newton
 

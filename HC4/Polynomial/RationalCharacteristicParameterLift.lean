@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOnePencil
-import Mathlib.RingTheory.Polynomial.GaussLemma
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOnePencil
+public import Mathlib.RingTheory.Polynomial.GaussLemma
 
 /-!
 # Reduced rational parameter trace lift
@@ -17,6 +19,8 @@ The rank-one parametrization and differentiation supplying the
 evaluated trace equation are separate from this algebraic lift.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,9 +30,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+namespace RationalCharacteristicParameterLift
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+
+end RationalCharacteristicParameterLift
+
+open RationalCharacteristicParameterLift (B E T)
 
 /-- The reduced linear parameter polynomial is primitive, using
 relative primality rather than a Bezout identity. -/

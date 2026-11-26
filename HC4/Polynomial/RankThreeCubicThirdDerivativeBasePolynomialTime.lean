@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicThirdDerivativePolynomialTime
+public import Mathlib.Tactic
 
 /-!
 # Cubic third-derivative time families descend to the transverse base ring
@@ -15,6 +17,8 @@ for a subsequent residue reduction at an irreducible determinant factor.
 It does not assert that the pole branch has been excluded.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,9 +28,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev PB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev PF (K : Type*) [Field K] := FractionRing (PB K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicThirdDerivativeBasePolynomialTime
+
+abbrev PB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev PF (K : Type*) [Field K] := FractionRing (PB K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicThirdDerivativeBasePolynomialTime
+
+open RankThreeCubicThirdDerivativeBasePolynomialTime (PB PF SB)
 
 /-- Scalar extension of a time polynomial along K → K[y] → Frac(K[y])
 is exactly its direct extension along K → Frac(K[y]). -/

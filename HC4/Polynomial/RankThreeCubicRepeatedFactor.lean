@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
+public import Mathlib
 
 /-!
 # Low-degree repeated factors in the cubic Hessian determinant
@@ -14,6 +16,8 @@ determinant. Transporting this degree bound from the source is
 the separate input to the final source-facing theorem.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,7 +27,9 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RankThreeCubicRepeatedFactor.B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RankThreeCubicRepeatedFactor (B3)
 
 /-- In three variables, a nonzero nonsquarefree polynomial of total
 degree at most three has a repeated irreducible factor of degree one.

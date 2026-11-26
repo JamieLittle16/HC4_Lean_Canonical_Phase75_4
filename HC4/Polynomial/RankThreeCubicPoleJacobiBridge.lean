@@ -1,8 +1,10 @@
-import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
-import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
-import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
-import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicRankOneQuadraticContraction
+public import HC4.Polynomial.RankThreeCubicAdjugateRankOneMinors
+public import HC4.Polynomial.RankThreeCubicJacobiDetPderiv
+public import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
+public import Mathlib.Tactic
 
 /-!
 # Cubic source: the rank-one Cramer residue controls Jacobi derivatives
@@ -16,6 +18,8 @@ This module deliberately stops at a *derivative-divisibility* conclusion.
 The separate squarefree/characteristic-zero contradiction is not assumed.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,9 +29,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicPoleJacobiBridge
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicPoleJacobiBridge
+
+open RankThreeCubicPoleJacobiBridge (B3 F3 SB)
 
 /-- The zero time coefficient of line substitution is the original
 evaluation, even if the line velocity lies in a fraction field. -/

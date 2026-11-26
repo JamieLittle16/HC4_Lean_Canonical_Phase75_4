@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalOneZeroEndpoint
-import Mathlib.Algebra.MvPolynomial.Rename
-import Mathlib.LinearAlgebra.Matrix.Reindex
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroEndpoint
+public import Mathlib.Algebra.MvPolynomial.Rename
+public import Mathlib.LinearAlgebra.Matrix.Reindex
+public import Mathlib.Tactic
 
 /-!
 # Coordinate-permutation transport for terminal endpoints
@@ -29,6 +31,8 @@ Then:
 This is the structural adapter needed before transporting the standard
 `k=1` and `k=2` endpoint theorems to arbitrary terminal zero placements.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

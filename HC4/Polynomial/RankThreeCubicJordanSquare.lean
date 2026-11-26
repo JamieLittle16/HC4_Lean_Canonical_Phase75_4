@@ -1,8 +1,10 @@
-import HC4.Polynomial.RankThreeCubicCharacteristics
-import HC4.Polynomial.DerivativeWeight
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicCharacteristics
+public import HC4.Polynomial.DerivativeWeight
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Reference square in the nilpotent Jordan charts
@@ -11,6 +13,8 @@ The stationary reference cubic in the polynomial-characteristic branch
 has a square partial derivative in either nonzero nilpotent Jordan chart.
 This module checks the extraction on the actual homogeneous cubic.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

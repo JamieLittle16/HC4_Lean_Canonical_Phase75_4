@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankThreeCubicLinearSourcePullback
+module
+
+public import HC4.Polynomial.RankThreeCubicLinearSourcePullback
 
 /-!
 # Connect nilpotent linear characteristic transport to the source square
@@ -6,6 +8,8 @@ import HC4.Polynomial.RankThreeCubicLinearSourcePullback
 The reference Hessian self-adjointness, not an additional Jordan
 assumption, supplies the final reference-square input.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 open MvPolynomial

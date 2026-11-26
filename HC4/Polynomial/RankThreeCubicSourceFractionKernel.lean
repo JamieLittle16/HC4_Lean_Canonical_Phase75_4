@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicAnchoredKernel
-import HC4.Polynomial.RankThreeCubicPoleFreeLinear
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicAnchoredKernel
+public import HC4.Polynomial.RankThreeCubicPoleFreeLinear
+public import Mathlib.Tactic
 
 /-!
 # The actual cubic source supplies its fraction-field Hessian equation
@@ -11,6 +13,8 @@ Hessian linear system over the fraction field, with its coefficients
 pulled back honestly from the original polynomial source.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -20,8 +24,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev CubicB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev CubicF (K : Type*) [Field K] := FractionRing (CubicB K)
+namespace RankThreeCubicSourceFractionKernel
+
+abbrev CubicB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev CubicF (K : Type*) [Field K] := FractionRing (CubicB K)
+
+end RankThreeCubicSourceFractionKernel
+
+open RankThreeCubicSourceFractionKernel (CubicB CubicF)
 
 /-- The transverse Hessian of the actual cubic source, restricted to a
 ground-field longitudinal slice. -/

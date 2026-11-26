@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOneRadial
-import Mathlib.Algebra.MvPolynomial.Division
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneRadial
+public import Mathlib.Algebra.MvPolynomial.Division
 
 /-!
 # Descent of the normalized rational Euler equation to the source chart
@@ -14,6 +16,8 @@ The last coefficient extraction from this polynomial relation is
 separate from the descent proved here.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,9 +27,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+namespace RationalCharacteristicRankOneChartDescent
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+
+end RationalCharacteristicRankOneChartDescent
+
+open RationalCharacteristicRankOneChartDescent (B E T)
 
 /-- The two distinct coordinate variables are relatively prime.
 The elementary degree proof avoids needing an irreducibility API. -/

@@ -1,7 +1,9 @@
-import HC4.Polynomial.DerivativeWeight
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+module
+
+public import HC4.Polynomial.DerivativeWeight
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-!
 # The rank-one power of a nonzero nilpotent transverse velocity
@@ -10,6 +12,8 @@ In dimension three, the last nonzero power of a nilpotent operator is
 square-zero and has rank one. Its outer-product factors give the fixed
 direction and invariant linear form without choosing a Jordan basis.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 open MvPolynomial

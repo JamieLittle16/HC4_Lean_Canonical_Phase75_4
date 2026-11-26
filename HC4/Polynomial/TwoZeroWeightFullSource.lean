@@ -1,5 +1,7 @@
-import HC4.Polynomial.PositiveWeightZeroClock
-import HC4.Newton.TerminalTwoZeroPlanarCollision
+module
+
+public import HC4.Polynomial.PositiveWeightZeroClock
+public import HC4.Newton.TerminalTwoZeroPlanarCollision
 
 /-!
 # Full-source two-zero terminal under planar JC2
@@ -12,6 +14,8 @@ to the gradient cancels as soon as the planar base points agree.
 Unlike the homogeneous terminal endpoint, this consumes the
 full determinant-one source and its original gradient collision.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

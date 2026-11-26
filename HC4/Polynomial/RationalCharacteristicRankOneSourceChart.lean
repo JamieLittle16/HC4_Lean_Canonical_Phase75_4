@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneChartObstruction
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneChartObstruction
 
 /-!
 # Actual source coefficients in the normalized affine parameter chart
@@ -13,6 +15,8 @@ Deriving the recurrence from the source Hessian symmetry and reducing
 an arbitrary affine ratio to this chart remain separate obligations.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,7 +26,9 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RationalCharacteristicRankOneSourceChart.B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RationalCharacteristicRankOneSourceChart (B)
 
 /-- The source exponent corresponding to the T^n y^j z^l coefficient
 after the substitution x = T y. Used only with n <= j. -/

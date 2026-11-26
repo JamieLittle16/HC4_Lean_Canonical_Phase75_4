@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoClosure
-import HC4.Polynomial.TransverseLeadingCharacteristics
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoClosure
+public import HC4.Polynomial.TransverseLeadingCharacteristics
 
 /-!
 # Rational rigidity of the actual leading transverse layer
@@ -10,6 +12,8 @@ transverse principal determinant supplies its own regular anchor.
 No collision extraction or global weighted closure is asserted here.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -19,8 +23,14 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace TransverseLeadingRationalRigidity
+
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end TransverseLeadingRationalRigidity
+
+open TransverseLeadingRationalRigidity (I S)
 
 /-- Eliminate the existential anchor from rational rigidity when the
 original singular Hessian has a nonzero transverse principal minor. -/

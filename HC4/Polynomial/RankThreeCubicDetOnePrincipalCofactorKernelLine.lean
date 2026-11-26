@@ -1,5 +1,7 @@
-import Mathlib.LinearAlgebra.Matrix.Nondegenerate
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+public import Mathlib.Tactic
 
 /-!
 # A surviving principal cofactor determines the singular kernel line
@@ -17,6 +19,8 @@ Unlike a rank-oracle argument over a fraction field, this
 works directly over the actual prime quotient domain.
 Symmetry is not required.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

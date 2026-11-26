@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicSymmetricPencil
+module
+
+public import HC4.Polynomial.RationalCharacteristicSymmetricPencil
 
 /-!
 # Lifted rank-one trace identity forces affine parameter polynomials
@@ -16,6 +18,8 @@ The lift of the trace identity from a reduced rational parameter and
 the existence of such a parametrization are separate obligations.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,8 +29,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+namespace RationalCharacteristicRankOnePencil
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+
+end RationalCharacteristicRankOnePencil
+
+open RationalCharacteristicRankOnePencil (B T)
 
 section Affine
 

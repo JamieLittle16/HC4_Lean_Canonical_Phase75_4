@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
-import HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal
+public import HC4.Polynomial.RankThreeCubicLongitudinalPolynomialMap
+public import Mathlib.Tactic
 
 /-!
 # Source cubic third-derivative time coefficients have no poles
@@ -17,6 +19,8 @@ determinant factor. The polynomial witness is obtained before any
 localisation at that factor. It does not assert the pole residue contradiction.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,12 +30,18 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev SB (K : Type*) [Field K] :=
+namespace RankThreeCubicThirdDerivativePolynomialTime
+
+abbrev SB (K : Type*) [Field K] :=
   MvPolynomial (Unit ⊕ Fin 3) K
-private abbrev PB (K : Type*) [Field K] :=
+abbrev PB (K : Type*) [Field K] :=
   MvPolynomial (Fin 3) K
-private abbrev PF (K : Type*) [Field K] :=
+abbrev PF (K : Type*) [Field K] :=
   FractionRing (PB K)
+
+end RankThreeCubicThirdDerivativePolynomialTime
+
+open RankThreeCubicThirdDerivativePolynomialTime (SB PB PF)
 
 /-- The actual cubic third-transverse-derivative coefficient evaluated
 along any normalized characteristic lies in the embedded subring K[t],

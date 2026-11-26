@@ -1,6 +1,8 @@
-import HC4.Polynomial.WeightedInitial
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.LinearAlgebra.Matrix.Defs
+module
+
+public import HC4.Polynomial.WeightedInitial
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.LinearAlgebra.Matrix.Defs
 
 /-!
 # Weighted initial forms and formal partial differentiation
@@ -10,6 +12,8 @@ The exact weighted-component projector therefore commutes with partial
  differentiation after shifting the selected weight.  The same statement is
 recorded entrywise for the polynomial Hessian.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

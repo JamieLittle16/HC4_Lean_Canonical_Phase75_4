@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
+public import Mathlib.Tactic
 
 /-!
 # Base-field polynomial substitution commutes with fraction-field embedding
@@ -12,6 +14,8 @@ fraction field agrees exactly with substitution there.
 This avoids inventing a local integrality hypothesis at a pole:
 the polynomial time coefficients originate in the *ground field*.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

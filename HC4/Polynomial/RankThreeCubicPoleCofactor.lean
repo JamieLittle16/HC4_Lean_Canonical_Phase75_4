@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleSquarefreeResidue
+public import Mathlib
 
 /-!
 # A genuine 2x2 cofactor survives on a squarefree cubic pole component
@@ -15,6 +17,8 @@ off-principal cofactor. The source-derived conclusion has the
 nonzero kernel vector and a 2x2 cofactor on the *same* factor.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,8 +27,14 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K]
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicPoleCofactor
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicPoleCofactor
+
+open RankThreeCubicPoleCofactor (B3 F3)
 
 /-- A nonzero Cramer numerator modulo p forces a nonzero cofactor
 of the underlying matrix modulo p. No rank theorem is presumed. -/

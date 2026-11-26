@@ -1,5 +1,7 @@
-import HC4.Newton.LinearPowerRecurrence
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.LinearPowerRecurrence
+public import Mathlib.Tactic
 
 /-!
 # Classification of the finite directional recurrence
@@ -34,6 +36,8 @@ This is the scalar-slice theorem underlying the HC4 normal form
 `c(k)` with the coefficients of each frozen external multi-index of the
 original `MvPolynomial`.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

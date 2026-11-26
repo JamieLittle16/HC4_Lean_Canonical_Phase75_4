@@ -1,7 +1,9 @@
-import HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime
-import HC4.Polynomial.RankThreeCubicCramerQuadraticResidue
-import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicThirdDerivativeBasePolynomialTime
+public import HC4.Polynomial.RankThreeCubicCramerQuadraticResidue
+public import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
+public import Mathlib.Tactic
 
 /-!
 # Quadratic Cramer residue from the actual source cubic
@@ -19,6 +21,8 @@ may be zero at a repeated determinant factor. Proving nonzero
 residue and excluding the singular-direction geometry are separate.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -29,9 +33,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceQuadraticResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceQuadraticResidue
+
+open RankThreeCubicSourceQuadraticResidue (B3 F3 SB)
 
 /-- The actual transported transverse gradient is a quadratic family
 with polynomial coefficients in K[y][t], not merely in its fraction

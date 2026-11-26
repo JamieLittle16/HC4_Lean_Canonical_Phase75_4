@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneSpecialization
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneSpecialization
 
 /-!
 # Higher-order noncharacteristic vanishing
@@ -13,6 +15,8 @@ original polynomial to be zero.
 This argument does not require a Taylor expansion or a local ring.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,7 +27,9 @@ noncomputable section
 variable {K F : Type*} [Field K] [CharZero K]
   [CommRing F] [IsDomain F] [Algebra K F]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RationalCharacteristicRankOneJetPropagation.B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RationalCharacteristicRankOneJetPropagation (B)
 
 /-- Vanishing of the specialization of all partial derivatives
 through order n, including the original polynomial. -/

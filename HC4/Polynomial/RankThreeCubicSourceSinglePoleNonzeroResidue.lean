@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue
-import HC4.Polynomial.RankThreeCubicSourceExactPoleDegree
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceGenuinePoleResidue
+public import HC4.Polynomial.RankThreeCubicSourceExactPoleDegree
+public import Mathlib.Tactic
 
 /-!
 # Full-rank cubic source: linear transport or a nonzero normalized pole residue
@@ -22,6 +24,8 @@ This theorem does not claim the remaining singular direction is
 impossible: that geometric exclusion remains a separate task.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -31,9 +35,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceSinglePoleNonzeroResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceSinglePoleNonzeroResidue
+
+open RankThreeCubicSourceSinglePoleNonzeroResidue (B3 F3 SB)
 
 theorem exists_sourceCubic_linear_or_singlePole_nonzeroQuadraticResidue
     (F : SB K)

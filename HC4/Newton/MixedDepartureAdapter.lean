@@ -1,7 +1,9 @@
-import HC4.Newton.PreterminalFirstDeparture
-import HC4.Newton.FiniteRepairTermination
-import HC4.Newton.RankOneRepairProgress
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.PreterminalFirstDeparture
+public import HC4.Newton.FiniteRepairTermination
+public import HC4.Newton.RankOneRepairProgress
+public import Mathlib.Tactic
 
 /-!
 # Mixed departure adapter
@@ -39,6 +41,8 @@ This is the thin adapter requested by the restart audit.  The file does not
 claim that every global restart has already been constructed; that is the
 next well-founded assembly step.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

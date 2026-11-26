@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOneLurothBridge
-import Mathlib.FieldTheory.RatFunc.Luroth
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneLurothBridge
+public import Mathlib.FieldTheory.RatFunc.Luroth
 
 /-!
 # Unconditional rank-at-most-one rational characteristic closure
@@ -8,6 +10,8 @@ Discharge the sole simple-generation premise in the verified rank-one
 bridge by the Mathlib's kernel-checked univariate Lüroth theorem.
 No extra field-generation or transverse degree assumptions are needed.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -18,11 +22,17 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankOneClosure
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankOneClosure
+
+open RationalCharacteristicRankOneClosure (B E I S P)
 
 /-- Univariate Lüroth in exactly the form needed by the velocity field bridge. -/
 theorem rationalCharacteristic_univariateSimpleGeneration

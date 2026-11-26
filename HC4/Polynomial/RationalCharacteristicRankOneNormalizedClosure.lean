@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneBivariateChart
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneBivariateChart
 
 /-!
 # Normalized rank-one source contradiction
@@ -10,6 +12,8 @@ and independent components cannot symmetrize a regular polynomial
 Hessian via the normalized rank-one factorization.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -19,8 +23,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RationalCharacteristicRankOneNormalizedClosure
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RationalCharacteristicRankOneNormalizedClosure
+
+open RationalCharacteristicRankOneNormalizedClosure (B E)
 
 private theorem chartExponent_shift_x (n j l : ℕ) (hn : n ≤ j) :
     rankOne_chartExponent n j l + Finsupp.single 0 1 =

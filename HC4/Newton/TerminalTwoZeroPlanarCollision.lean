@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalTwoZeroGradientConjugacy
-import HC4.Newton.TerminalTwoZeroKellerReduction
-import HC4.Newton.TerminalCollision
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroGradientConjugacy
+public import HC4.Newton.TerminalTwoZeroKellerReduction
+public import HC4.Newton.TerminalCollision
+public import Mathlib.Tactic
 
 /-!
 # A19.37: a two-zero terminal collision is already a planar Keller collision
@@ -22,6 +24,8 @@ Thus the deep terminal endpoint is not merely "JC2-like": it canonically
 produces an actual planar Keller counterexample witness.  No JC2 assumption is
 used here.
 -/
+
+@[expose] public section
 
 namespace HC4
 

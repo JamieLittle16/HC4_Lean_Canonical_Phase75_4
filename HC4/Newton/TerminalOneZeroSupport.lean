@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalOneZeroPattern
-import HC4.Newton.TerminalPermutedGradient
-import HC4.Newton.TerminalTwoZeroSupport
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroPattern
+public import HC4.Newton.TerminalPermutedGradient
+public import HC4.Newton.TerminalTwoZeroSupport
+public import Mathlib.Tactic
 
 /-!
 # Support geometry of the standard one-zero terminal face
@@ -27,6 +29,8 @@ depends only on the zero-weight variable `X₀`.  In particular
 
 This is the sparse Hessian row behind the one-zero determinant factorisation.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

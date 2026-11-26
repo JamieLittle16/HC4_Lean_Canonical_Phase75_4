@@ -1,5 +1,7 @@
-import HC4.Newton.BinarySchurPivot
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.BinarySchurPivot
+public import Mathlib.Tactic
 
 /-!
 # Geometry of a binary rank-one pivot
@@ -33,6 +35,8 @@ For a right-axis pivot, `Q(x,y)=c y^2`.
 Thus every nonzero determinant-zero symmetric binary packet is explicitly
 a single-direction square packet, without using a general matrix-rank API.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicRepeatedPoleLinearCofactor
+public import Mathlib.Tactic
 
 /-!
 # Uniqueness of the genuine cubic source denominator pole
@@ -13,6 +15,8 @@ factors cannot both occur with multiplicity two. This identifies a
 characteristic coordinates. It does not eliminate that last pole.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,9 +26,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicUniqueGenuinePole
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicUniqueGenuinePole
+
+open RankThreeCubicUniqueGenuinePole (B3 F3 SB)
 
 /-- In a nonzero cubic polynomial, any two irreducible factors whose
 squares divide the polynomial are associated. Here is the one-sided

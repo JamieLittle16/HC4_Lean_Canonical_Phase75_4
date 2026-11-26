@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightBounds
-import HC4.Polynomial.DerivativeWeight
+module
+
+public import HC4.Polynomial.WeightBounds
+public import HC4.Polynomial.DerivativeWeight
 
 /-!
 # Differentiation of weak and strict weight bounds
@@ -8,6 +10,8 @@ Using the already verified commutation of exact weighted components with
 `pderiv`, differentiation lowers both weak and strict upper weight bounds by
 the weight of the differentiated variable.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

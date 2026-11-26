@@ -1,5 +1,7 @@
-import HC4.Newton.TransverseSliceClassification
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TransverseSliceClassification
+public import Mathlib.Tactic
 
 /-!
 # Packet-level linear-power normal form
@@ -32,6 +34,8 @@ No arbitrary linear-change API or polynomial factorisation infrastructure
 is required: the statement is exactly what the later Newton/Rees argument
 uses.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalTwoZeroSupport
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroSupport
+public import Mathlib.Tactic
 
 /-!
 # Exact four-variable doubling form on the two-zero boundary
@@ -19,6 +21,8 @@ This module packages that statement and records the corresponding gradient
 identities.  These are exactly the symbolic equations needed to identify
 the terminal fibre with a planar Hessian doubling in the next phase.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

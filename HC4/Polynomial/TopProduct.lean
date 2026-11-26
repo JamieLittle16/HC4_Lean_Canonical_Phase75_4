@@ -1,5 +1,7 @@
-import HC4.Polynomial.DerivativeBounds
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+module
+
+public import HC4.Polynomial.DerivativeBounds
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 /-!
 # Top weighted component of finite products
@@ -8,6 +10,8 @@ If each factor has a prescribed weak upper weight and a chosen homogeneous
 top part, and the difference is strictly lower, then the product has the
 product of the top parts as its exact component at the sum of the bounds.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
-import Mathlib.Algebra.MvPolynomial.Variables
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleQuadraticTransport
+public import Mathlib.Algebra.MvPolynomial.Variables
+public import Mathlib.Tactic
 
 /-!
 # Cubic third derivatives descend to longitudinal polynomials
@@ -17,6 +19,8 @@ characteristic or determinant squarefreeness. The result is a source
 polynomial representation, not merely a fraction-field statement.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial Finsupp
@@ -26,8 +30,10 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev SB (K : Type*) [Field K] :=
+abbrev RankThreeCubicThirdDerivativeLongitudinal.SB (K : Type*) [Field K] :=
   MvPolynomial (Unit ⊕ Fin 3) K
+
+open RankThreeCubicThirdDerivativeLongitudinal (SB)
 
 /-- Every source monomial's cubic transverse weight is precisely the
 sum of its three transverse exponents. -/

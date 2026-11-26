@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicLinearTransport
-import HC4.Polynomial.RankThreeCubicSourceFractionKernel
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicLinearTransport
+public import HC4.Polynomial.RankThreeCubicSourceFractionKernel
+public import Mathlib.Tactic
 
 /-!
 # Rational characteristic transport and nilpotence
@@ -16,6 +18,8 @@ rigidity investigation; no classification of rational nilpotent fields
 is assumed.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,9 +30,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RationalCharacteristicTransport
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev S (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RationalCharacteristicTransport
+
+open RationalCharacteristicTransport (B E S)
 
 /-- The original transverse partial derivative extended to the fraction field. -/
 def rationalCharacteristicPartial (j : Fin 3) : Derivation K (E K) (E K) :=

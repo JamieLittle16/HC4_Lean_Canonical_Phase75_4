@@ -1,4 +1,6 @@
-import HC4.Polynomial.HessianDeterminant
+module
+
+public import HC4.Polynomial.HessianDeterminant
 
 /-!
 # Weighted consequences of the polynomial Monge--Ampère equation
@@ -7,6 +9,8 @@ If a polynomial Hessian determinant is equal to `1`, every nonzero exact
 weighted component of that determinant vanishes.  For a weighted-homogeneous
 potential, the common Hessian-determinant degree must therefore be zero.
 -/
+
+@[expose] public section
 
 namespace HC4.MongeAmpere
 

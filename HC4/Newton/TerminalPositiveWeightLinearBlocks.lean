@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalPositiveWeightTriangularReduction
-import HC4.Newton.TerminalScalarGradient
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalPositiveWeightTriangularReduction
+public import HC4.Newton.TerminalScalarGradient
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.Tactic
 
 /-!
 # Linear blocks of the positive terminal permuted gradient
@@ -29,6 +31,8 @@ This module records three facts.
 This is the linear-algebra input needed for the finite positive-weight
 recursion.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

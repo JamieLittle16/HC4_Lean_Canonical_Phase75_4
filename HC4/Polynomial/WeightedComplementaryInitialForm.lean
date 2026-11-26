@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedComplementaryHessian
+module
+
+public import HC4.Polynomial.WeightedComplementaryHessian
 
 /-!
 # Exact weighted initial forms in the complementary chart
@@ -11,6 +13,8 @@ Apply this to the determinant-one annihilator shear. The vanishing
 complementary principal Hessian determinant is now a statement about
 the actual leading layer of the transformed full source.
 -/
+
+public section
 
 namespace HC4.Polynomial
 
@@ -107,8 +111,14 @@ theorem weightedLinearSubstitution_isWeightLE
 namespace RankThreeCubic
 
 variable {F : Type*} [Field F] [CharZero F]
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (F : Type*) [Field F] := MvPolynomial I F
+namespace WeightedComplementaryInitialForm
+
+abbrev I := Unit ⊕ Fin 3
+abbrev S (F : Type*) [Field F] := MvPolynomial I F
+
+end WeightedComplementaryInitialForm
+
+open WeightedComplementaryInitialForm (I S)
 
 /-- The complementary principal minor at any coordinate is the
 longitudinal principal minor in a permuted matrix. -/

@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneSourceChart
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneSourceChart
 
 /-!
 # Radial source equation for a self-adjoint rank-one Jacobian
@@ -14,6 +16,8 @@ the chart recurrence.
 The conversion of the evaluated relation to chart coefficients is
 separate. No independent recurrence is assumed in the theorems here.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -60,8 +64,14 @@ end MatrixAlgebra
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RationalCharacteristicRankOneRadial
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RationalCharacteristicRankOneRadial
+
+open RationalCharacteristicRankOneRadial (B E)
 
 /-- The source radial vector in the fraction field. -/
 def rankOne_sourceRadial : Fin 3 → E K :=

@@ -1,5 +1,7 @@
-import HC4.Newton.DirectionalCoefficientRecurrence
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.DirectionalCoefficientRecurrence
+public import Mathlib.Tactic
 
 /-!
 # Uniqueness for the finite directional coefficient recurrence
@@ -23,6 +25,8 @@ The next phase only needs to exhibit one canonical solution -- the
 coefficient sequence of a power of a linear form -- and uniqueness will
 identify every HC4 slice with a scalar multiple of it.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

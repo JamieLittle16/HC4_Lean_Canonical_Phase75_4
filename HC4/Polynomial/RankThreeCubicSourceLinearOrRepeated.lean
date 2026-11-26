@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
-import HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
+public import HC4.Polynomial.RankThreeCubicSourceSingularTrichotomy
+public import Mathlib.Tactic
 
 /-!
 # Full-rank cubic source: linear characteristic or repeated linear factor
@@ -9,6 +11,8 @@ The source-derived squarefree pole contradiction removes the third
 alternative from the earlier cubic source trichotomy. The remaining
 repeated-factor alternative is not yet shown impossible.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -20,9 +24,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceLinearOrRepeated
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceLinearOrRepeated
+
+open RankThreeCubicSourceLinearOrRepeated (B3 F3 SB)
 
 /-- Under the actual constant-Hessian-determinant cubic source
 hypotheses, the rational characteristic is constant-linear in the

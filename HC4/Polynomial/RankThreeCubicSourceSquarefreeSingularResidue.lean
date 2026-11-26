@@ -1,7 +1,9 @@
-import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
-import HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero
-import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
+public import HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero
+public import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+public import Mathlib.Tactic
 
 /-!
 # Nonzero quadratic singular direction from a genuine squarefree source pole
@@ -22,6 +24,8 @@ assumptions. No claim that the singular-direction case is
 contradictory has yet been made. The residue is Cramer's actual numerator.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -32,9 +36,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceSquarefreeSingularResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceSquarefreeSingularResidue
+
+open RankThreeCubicSourceSquarefreeSingularResidue (B3 F3 SB)
 
 /-- At a genuine squarefree pole of the source cubic characteristic,
 the nonzero residue of the actual Cramer numerator is a common zero

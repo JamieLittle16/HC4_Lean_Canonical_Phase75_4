@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedWallAnnihilator
+module
+
+public import HC4.Polynomial.WeightedWallAnnihilator
 
 /-!
 # Positive-weight zero-clock endpoint
@@ -16,6 +18,8 @@ All other rows of that matrix kill the block by weight support.
 This proves injectivity directly, without polynomial inverse
 construction or an assumption of planar JC2.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

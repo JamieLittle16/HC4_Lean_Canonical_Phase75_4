@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankOneHessianClosure
+module
+
+public import HC4.Polynomial.RankOneHessianClosure
 
 /-!
 # Arbitrary constant affine-plane exclusion at the global optimum
@@ -16,6 +18,8 @@ obstruction then excludes the original subspace.
 This does not assert that every variable-kernel Hessian has such a plane.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton
@@ -24,7 +28,9 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev WeightedExtremalIsotropicPlane.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open WeightedExtremalIsotropicPlane (S)
 
 /-- The polynomial contraction of the Hessian with two constant vectors. -/
 def extremalHessianPair (L : S K) (d e : Fin 4 → K) : S K :=

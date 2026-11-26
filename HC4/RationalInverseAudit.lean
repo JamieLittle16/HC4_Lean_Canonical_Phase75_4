@@ -1,7 +1,10 @@
-import HC4.PolynomialInverseAudit
-import Mathlib.FieldTheory.SeparableDegree
-import Mathlib.RingTheory.Localization.NumDen
-import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition
+module
+
+public import HC4.PolynomialInverseAudit
+public import Mathlib.FieldTheory.SeparableDegree
+public import Mathlib.RingTheory.Localization.NumDen
+public import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition
+meta import Lean.Util.CollectAxioms
 
 /-!
 # Rational inverse existence
@@ -16,6 +19,8 @@ For an injective polynomial map over an algebraically closed field:
 
 All results below are independent of the Jacobian conjecture.
 -/
+
+public section
 
 namespace HC4.PolynomialInverseAudit
 

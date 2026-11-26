@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneParameterAssembly
 
 /-!
 # Rank-one affine parameter frontier
@@ -13,6 +15,8 @@ The normalized obstruction also exports a constant left kernel, and
 hence an annihilator of the actual original source adjugate.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,10 +26,16 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankOneAffineFrontier
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankOneAffineFrontier
+
+open RationalCharacteristicRankOneAffineFrontier (B E I S)
 
 /-- A constant right factor of a cube-zero matrix yields a
 constant left kernel. No nonzero rank hypothesis is required. -/

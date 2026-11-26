@@ -1,4 +1,6 @@
-import HC4.Polynomial.SingularHessianConstantAnnihilator
+module
+
+public import HC4.Polynomial.SingularHessianConstantAnnihilator
 
 /-!
 # Weight-compatible constant annihilators
@@ -13,6 +15,8 @@ maximal weighted initial form of positive determinant weight.
 The result does not assume a regular transverse block, and the
 weight filtration is the actual one on the original source.
 -/
+
+public section
 
 namespace HC4.Polynomial
 
@@ -115,8 +119,14 @@ namespace RankThreeCubic
 
 variable {F : Type*} [Field F] [CharZero F]
 
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (F : Type*) [Field F] := MvPolynomial I F
+namespace WeightedSingularHessianAnnihilator
+
+abbrev I := Unit ⊕ Fin 3
+abbrev S (F : Type*) [Field F] := MvPolynomial I F
+
+end WeightedSingularHessianAnnihilator
+
+open WeightedSingularHessianAnnihilator (I S)
 
 /-- Every singular weighted-homogeneous four-variable Hessian
 admits a nonzero constant annihilator in one weight block. -/

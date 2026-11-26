@@ -1,4 +1,6 @@
-import HC4.Newton.ExactCollisionFirstWall
+module
+
+public import HC4.Newton.ExactCollisionFirstWall
 
 /-!
 # Terminal collision
@@ -14,6 +16,8 @@ The theorem is intentionally independent of valuation or DVR structures:
 all such machinery only has to deliver a distinct collision on the special
 fibre and an injective reduced gradient.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

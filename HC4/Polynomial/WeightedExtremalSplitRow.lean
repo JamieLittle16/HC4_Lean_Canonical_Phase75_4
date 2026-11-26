@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightedExtremalAffinePlane
-import Mathlib.Algebra.MvPolynomial.Nilpotent
+module
+
+public import HC4.Polynomial.WeightedExtremalAffinePlane
+public import Mathlib.Algebra.MvPolynomial.Nilpotent
 
 /-!
 # A full-source split row gives planar injectivity
@@ -13,6 +15,8 @@ remaining two gradient components. The last coordinate is affine.
 In particular a weight equal to the positive cap, with a unique
 zero-weight coordinate, is already terminal even at positive clock.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

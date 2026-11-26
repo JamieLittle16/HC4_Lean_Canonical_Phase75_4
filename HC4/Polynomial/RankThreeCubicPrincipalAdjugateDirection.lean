@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPrincipalKernelPivot
+public import Mathlib.Tactic
 
 /-!
 # Adjugate-column alignment of a singular rank-two kernel
@@ -17,6 +19,8 @@ adjugate column from the kernel vector, then uses the
 previously verified principal-pivot injectivity lemma to
 show that this new vector vanishes.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

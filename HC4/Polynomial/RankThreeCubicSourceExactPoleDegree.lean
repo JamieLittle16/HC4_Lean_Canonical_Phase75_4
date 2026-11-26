@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceSinglePoleNormalForm
+public import Mathlib.Tactic
 
 /-!
 # Exact factorization of a cubic source repeated characteristic pole
@@ -14,6 +16,8 @@ The resulting sole pole hyperplane need not yet be impossible;
 there is still a double-vs-triple repeated-factor alternative.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,9 +27,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceExactPoleDegree
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceExactPoleDegree
+
+open RankThreeCubicSourceExactPoleDegree (B3 F3 SB)
 
 /-- A nonzero homogeneous cubic with a repeated irreducible factor
 has an *exactly linear* nonzero complementary factor. -/

@@ -1,5 +1,7 @@
-import HC4.Newton.LinearPowerRecurrenceClassification
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.LinearPowerRecurrenceClassification
+public import Mathlib.Tactic
 
 /-!
 # Frozen transverse slices of an MvPolynomial
@@ -41,6 +43,8 @@ Phase 91.9 therefore classifies every frozen external slice of `F`.
 This is the coefficientwise content of the desired
 `a(X) * L(Y)^n` normal form.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

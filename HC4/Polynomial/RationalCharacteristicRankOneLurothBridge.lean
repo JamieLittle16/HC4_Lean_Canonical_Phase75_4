@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding
 
 /-!
 # Recover the original common parameter from a simple image field
@@ -14,6 +16,8 @@ simple generation of intermediate fields of RatFunc (Lüroth).
 That obligation is an explicit hypothesis, not an axiom.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,11 +27,17 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankOneLurothBridge
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankOneLurothBridge
+
+open RationalCharacteristicRankOneLurothBridge (B E I S P)
 
 /-- Lift rational representations from a simple image field
 through an injective algebra homomorphism. The denominator

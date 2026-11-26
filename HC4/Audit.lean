@@ -1,5 +1,7 @@
+module
+
 import HC4
-import Lean.Util.CollectAxioms
+meta import Lean.Util.CollectAxioms
 
 #print axioms HC4.Polynomial.hc4_of_planarJC2
 #print axioms HC4.StatementAudit.planarJC2_iff_hessianFour_injective

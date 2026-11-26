@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourceDegrees
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceDegrees
+public import Mathlib.Tactic
 
 /-!
 # Source-level linear-or-pole dichotomy for full-rank cubic characteristics
@@ -14,6 +16,8 @@ The second branch is an exact non-polynomial witness, not yet a
 denominator-prime or a terminal HC4 contradiction.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,8 +27,14 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B' (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev Frac' (K : Type*) [Field K] := FractionRing (B' K)
+namespace RankThreeCubicSourceLinearOrPole
+
+abbrev B' (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev Frac' (K : Type*) [Field K] := FractionRing (B' K)
+
+end RankThreeCubicSourceLinearOrPole
+
+open RankThreeCubicSourceLinearOrPole (B' Frac')
 
 /-- An actual cubic cap-three constant-determinant source with full
 transverse Hessian rank has a regular normalized rational characteristic

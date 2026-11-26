@@ -1,5 +1,7 @@
-import HC4.Polynomial.OneZeroWeightTerminal
-import HC4.Newton.TerminalCoordinatePermutation
+module
+
+public import HC4.Polynomial.OneZeroWeightTerminal
+public import HC4.Newton.TerminalCoordinatePermutation
 
 /-!
 # Exhaustive nonnegative zero-clock terminal
@@ -12,6 +14,8 @@ standard two-zero cap, and the full-source planar endpoint applies.
 
 No descent or extraction premise is hidden in the terminal theorem.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

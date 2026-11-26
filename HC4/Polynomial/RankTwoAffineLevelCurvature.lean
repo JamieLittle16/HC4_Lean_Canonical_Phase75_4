@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedExtremalIsotropicPlane
+module
+
+public import HC4.Polynomial.WeightedExtremalIsotropicPlane
 
 /-!
 # Rank-two Hessian with an affine coordinate
@@ -15,6 +17,8 @@ of the Hessian of F vanishes. This is exactly the scalar
 flat-level transport condition, with no additional hypothesis.
 -/
 
+public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton
@@ -23,7 +27,9 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoAffineLevelCurvature.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoAffineLevelCurvature (S)
 
 /-- The principal minor involving an affine coordinate is the
 negative of the tangent Hessian contraction. -/

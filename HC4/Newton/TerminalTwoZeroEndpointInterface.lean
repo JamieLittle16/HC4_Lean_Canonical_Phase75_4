@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalTwoZeroDoublingForm
-import HC4.PlanarJC2Interface
+module
+
+public import HC4.Newton.TerminalTwoZeroDoublingForm
+public import HC4.PlanarJC2Interface
 
 /-!
 # Two-zero terminal endpoint interface
@@ -28,6 +30,8 @@ The next step is purely representational/algebraic:
 This file names that residual certificate so the later endpoint adapter has
 a small explicit target.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

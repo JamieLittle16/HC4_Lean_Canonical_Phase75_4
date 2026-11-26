@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankTwoCubicFibrePencils
-import Mathlib.RingTheory.Derivation.Basic
+module
+
+public import HC4.Polynomial.RankTwoCubicFibrePencils
+public import Mathlib.RingTheory.Derivation.Basic
 
 /-!
 # Rank-three cubic fibre determinant coefficients
@@ -8,6 +10,8 @@ A moving full-rank transverse cubic has a fixed direction in which its
 derivative is a scalar times a square. These determinant coefficients
 apply to the original potential in that fibre direction.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

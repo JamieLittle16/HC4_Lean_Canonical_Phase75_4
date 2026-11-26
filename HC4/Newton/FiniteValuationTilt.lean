@@ -1,5 +1,7 @@
-import HC4.Newton.SmithExtremeBalance
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithExtremeBalance
+public import Mathlib.Tactic
 
 /-!
 # Finite valuation tilt above an integral pole face
@@ -34,6 +36,8 @@ This is the quantitative core of the pole-minimality contradiction.  The
 next adapter only needs to identify the Smith dot product with the change
 in normalised valuation under a conformal weight tilt.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalTwoZeroJC2Endpoint
-import HC4.Polynomial.DerivativeWeight
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroJC2Endpoint
+public import HC4.Polynomial.DerivativeWeight
+public import Mathlib.Tactic
 
 /-!
 # The determinant-matched permuted gradient
@@ -27,6 +29,8 @@ Pointwise, `G` is merely the gradient with its output coordinates
 permuted, so injectivity of `G` is exactly equivalent to injectivity of the
 original gradient.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

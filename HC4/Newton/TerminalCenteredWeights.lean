@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalConformalFace
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalConformalFace
+public import Mathlib.Tactic
 
 /-!
 # Centred terminal weights
@@ -23,6 +25,8 @@ This is the first structural reduction of the non-scalar terminal endpoint:
 instead of an arbitrary conformal weight, the remaining branch carries an
 explicit nonzero opposite-weight pair.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

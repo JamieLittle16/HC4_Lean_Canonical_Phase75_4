@@ -1,8 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Algebra.DualNumber
-import Mathlib.Algebra.Polynomial.Derivative
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.LinearAlgebra.Matrix.Notation
+public import Mathlib.Algebra.DualNumber
+public import Mathlib.Algebra.Polynomial.Derivative
+public import Mathlib.Tactic
 
 /-!
 # Determinant coefficients for a fixed kernel of the top transverse cubic
@@ -11,6 +13,8 @@ These identities are over an arbitrary commutative ring. They apply to
 the two possible fibre charts once a fixed transverse kernel direction
 has been extracted from a rank-two cubic face.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankTwoCubic
 

@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+public import Mathlib
 
 /-!
 # Full-gradient-transport-preserving cubic pole trichotomy
@@ -17,6 +19,8 @@ characteristic, at exactly the same longitudinal basepoint. No extra
 transport assumption is introduced.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,8 +30,14 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev PB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev PF (K : Type*) [Field K] := FractionRing (PB K)
+namespace RankThreeCubicPoleTransportTrichotomy
+
+abbrev PB (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev PF (K : Type*) [Field K] := FractionRing (PB K)
+
+end RankThreeCubicPoleTransportTrichotomy
+
+open RankThreeCubicPoleTransportTrichotomy (PB PF)
 
 /-- Source-honest full characteristic classification, preserving the
 straight gradient transport used to construct the rational velocity.

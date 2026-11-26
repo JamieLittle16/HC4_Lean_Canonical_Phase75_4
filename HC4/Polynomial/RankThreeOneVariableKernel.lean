@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeExtremalReduction
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+module
+
+public import HC4.Polynomial.RankThreeExtremalReduction
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 
 /-!
 # One-variable normalized kernel rigidity
@@ -16,6 +18,8 @@ complementary Hessian has rank two. Dependence on that one
 coordinate is a hypothesis of this lemma, not asserted in general.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton RankThreeCubic
@@ -24,8 +28,14 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RankThreeOneVariableKernel
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RankThreeOneVariableKernel
+
+open RankThreeOneVariableKernel (B E)
 
 /-- Actual rational partials in the four-variable fraction field. -/
 def rankThreePartial (i : Fin 4) : Derivation K (E K) (E K) :=

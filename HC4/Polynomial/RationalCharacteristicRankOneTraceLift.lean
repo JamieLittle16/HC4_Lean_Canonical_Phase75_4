@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicParameterLift
+module
+
+public import HC4.Polynomial.RationalCharacteristicParameterLift
 
 /-!
 # Rank-one trace lift and affine-parameter assembly
@@ -15,6 +17,8 @@ rank-one parametrization and Hessian obstruction are not assumed
 to have been proved here.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,9 +28,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+namespace RationalCharacteristicRankOneTraceLift
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev T (K : Type*) [Field K] := _root_.Polynomial (B K)
+
+end RationalCharacteristicRankOneTraceLift
+
+open RationalCharacteristicRankOneTraceLift (B E T)
 
 /-- The source polynomial in an independent parameter whose
 coefficients encode the gradient contraction. -/

@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicSelfAdjoint
+module
+
+public import HC4.Polynomial.RationalCharacteristicSelfAdjoint
 
 /-!
 # Constant annihilators of the Hessian along a rational characteristic
@@ -13,6 +15,8 @@ rational substitution as input. It does not assume the affine dependence
 classification, nor assert that substitution injectivity has been proved here.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -20,7 +24,9 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-private abbrev I := Unit ⊕ Fin 3
+abbrev RationalCharacteristicAdjugate.I := Unit ⊕ Fin 3
+
+open RationalCharacteristicAdjugate (I)
 
 /-- The longitudinal principal cofactor is exactly the transverse
 determinant, in the actual sum-indexed matrix (without a change of frame). -/
@@ -134,9 +140,15 @@ theorem transverse_lineEval_derivative
     ring
 
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicAdjugate
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicAdjugate
+
+open RationalCharacteristicAdjugate (B E S)
 
 /-- The actual Hessian has the normalized characteristic in its kernel
 at every polynomial time, not merely at the reference point. -/

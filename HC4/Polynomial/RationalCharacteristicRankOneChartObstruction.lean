@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneTraceLift
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneTraceLift
 
 /-!
 # Rank-one Hessian obstruction in the affine parameter chart
@@ -18,6 +20,8 @@ This module proves the coefficient obstruction. The affine coordinate
 change, chart coefficient extraction, and derivation of the recurrence
 from the Hessian symmetry identity are separate source obligations.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

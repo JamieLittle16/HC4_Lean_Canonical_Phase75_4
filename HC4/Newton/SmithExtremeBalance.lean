@@ -1,5 +1,7 @@
-import HC4.Newton.SmithGradeArithmetic
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithGradeArithmetic
+public import Mathlib.Tactic
 
 /-!
 # Balance of the two surviving Smith extreme grades
@@ -34,6 +36,8 @@ This is the finite algebraic core of the pole-minimal convex-balance
 argument.  The next module must connect a separating Smith functional to a
 legal infinitesimal valuation tilt and hence to pole-minimality.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

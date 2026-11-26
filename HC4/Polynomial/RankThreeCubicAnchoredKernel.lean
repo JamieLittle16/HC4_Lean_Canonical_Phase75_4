@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicCharacteristics
-import HC4.Polynomial.RankThreeCubicPoleFreeLinear
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicCharacteristics
+public import HC4.Polynomial.RankThreeCubicPoleFreeLinear
+public import Mathlib.Tactic
 
 /-!
 # Recovering the anchored Hessian-kernel equation
@@ -10,6 +12,8 @@ line. Extracting its linear coefficient proves that the velocity is
 a kernel vector of the actual Hessian evaluated at the anchored point.
 This step must precede the pole-free rational-to-linear argument.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

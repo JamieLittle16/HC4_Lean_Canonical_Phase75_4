@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoAffineFibres
+module
+
+public import HC4.Polynomial.RankTwoAffineFibres
 
 /-!
 # Kernel graph differences and polynomial density
@@ -12,6 +14,8 @@ sum to the entire space. Affine gradient fibres rule this out when
 the gradients differ. A nonzero polynomial gradient component and
 the pivot then clear the exceptional set by polynomial density.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 
@@ -46,7 +50,9 @@ theorem rankTwoPrincipalPivot_map {T : Type*} [CommRing T]
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoKernelGraph.B (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoKernelGraph (B)
 
 section Graph
 

@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneNormalizedNilpotent
 
 /-!
 # Rank-one rational parameter assembly
@@ -13,6 +15,8 @@ The existence of the one-parameter factorization (Lüroth), and
 normalization of the resulting affine pair, are separate obligations.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,8 +26,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RationalCharacteristicRankOneParameterAssembly
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RationalCharacteristicRankOneParameterAssembly
+
+open RationalCharacteristicRankOneParameterAssembly (B E)
 
 /-- A ground-field relation on the polynomial parameter vector
 is already a constant left kernel of its factored matrix. -/

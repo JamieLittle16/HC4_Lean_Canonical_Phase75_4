@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoKernelGraph
+module
+
+public import HC4.Polynomial.RankTwoKernelGraph
 
 /-!
 # Elementary two-by-two matrix family dichotomy
@@ -9,6 +11,8 @@ nonzero left kernel. Factor each member as an outer product;
 the determinant of a difference is the negative product of
 the two wedges. No algebraic-geometry classification is needed.
 -/
+
+public section
 
 namespace HC4.Polynomial
 open scoped Matrix BigOperators

@@ -1,6 +1,8 @@
+module
+
 import HC4.FinalEquivalence
-import Lean.Util.FoldConsts
-import Lean.Util.CollectAxioms
+public import Lean.Util.FoldConsts
+public meta import Lean.Environment
 
 /-!
 # Declaration dependency export
@@ -16,6 +18,8 @@ constructors; quotient primitives are leaves). Export actual constant
 references, not source imports or guessed names. Include external libraries
 and private/generated declarations; classify by defining module later.
 -/
+
+public section
 
 open Lean
 
@@ -77,7 +81,9 @@ end HC4DependencyExport
 
 set_option maxHeartbeats 0 in
 run_cmd do
-  let env ← getEnv
+  -- The public module interfaces omit proof bodies and private declarations.
+  let env ← Lean.importModules #[{ module := `HC4.FinalEquivalence }] (← getOptions)
+    (level := .private)
   let roots := #[``HC4.StatementAudit.jc2_iff_hc4_explicit,
     ``HC4.Polynomial.hc4_of_planarJC2]
   HC4DependencyExport.exportGraph env roots

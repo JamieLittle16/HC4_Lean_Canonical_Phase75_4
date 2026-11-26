@@ -1,11 +1,13 @@
-import HC4.Polynomial.RankThreeCubicFibrePencils
-import HC4.Newton.CharZeroHessianKernelRigidity
-import HC4.Polynomial.MaximalHessianInitial
-import Mathlib.Algebra.MvPolynomial.Funext
-import HC4.MongeAmpere.SchurReduction
-import Mathlib.RingTheory.Derivation.MapCoeffs
-import Mathlib.RingTheory.Localization.Away.Basic
-import Mathlib.RingTheory.Localization.FractionRing
+module
+
+public import HC4.Polynomial.RankThreeCubicFibrePencils
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import HC4.Polynomial.MaximalHessianInitial
+public import Mathlib.Algebra.MvPolynomial.Funext
+public import HC4.MongeAmpere.SchurReduction
+public import Mathlib.RingTheory.Derivation.MapCoeffs
+public import Mathlib.RingTheory.Localization.Away.Basic
+public import Mathlib.RingTheory.Localization.FractionRing
 
 /-!
 # Straight characteristics of the singular full Hessian
@@ -14,6 +16,8 @@ We extend polynomial partial derivations to a localization using dual
 numbers. The characteristic identity is proved in an ordinary polynomial
 ring using a coefficient recurrence, so no formal exponential is needed.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -27,7 +31,7 @@ section LocalizedDerivation
 variable {K B F : Type*} [CommRing K] [CommRing B] [CommRing F]
   [Algebra K B] [Algebra B F]
 
-private def polynomialDualJet (d : Derivation K B B) : B →+* DualNumber F where
+def polynomialDualJet (d : Derivation K B B) : B →+* DualNumber F where
   toFun x := (algebraMap B F x, algebraMap B F (d x))
   map_zero' := by ext <;> simp
   map_one' := by ext <;> simp
@@ -51,7 +55,7 @@ private def polynomialDualJet (d : Derivation K B B) : B →+* DualNumber F wher
 
 variable (M : Submonoid B) [IsLocalization M F]
 
-private def localizationDualJet (d : Derivation K B B) : F →+* DualNumber F :=
+def localizationDualJet (d : Derivation K B B) : F →+* DualNumber F :=
   IsLocalization.lift (M := M) (g := polynomialDualJet (F := F) d) fun b => by
     apply TrivSqZeroExt.isUnit_iff_isUnit_fst.mpr
     exact IsLocalization.map_units F b

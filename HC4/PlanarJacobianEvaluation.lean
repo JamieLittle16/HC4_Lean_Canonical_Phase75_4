@@ -1,6 +1,8 @@
-import HC4.PlanarJC2Interface
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import HC4.PlanarJC2Interface
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Evaluated planar Jacobian matrix
@@ -12,6 +14,8 @@ source variables.
 
 This file connects the two representations exactly.
 -/
+
+@[expose] public section
 
 namespace HC4
 

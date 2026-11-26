@@ -1,8 +1,10 @@
-import HC4.Newton.TerminalOneZeroSupport
-import HC4.Newton.OneZeroBlockDeterminant
-import HC4.Polynomial.HessianDeterminant
-import HC4.MongeAmpere.PolynomialInitial
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroSupport
+public import HC4.Newton.OneZeroBlockDeterminant
+public import HC4.Polynomial.HessianDeterminant
+public import HC4.MongeAmpere.PolynomialInitial
+public import Mathlib.Tactic
 
 /-!
 # Hessian factorisation on the standard one-zero terminal face
@@ -37,6 +39,8 @@ displayed identity already gives an explicit polynomial inverse relation
 for `S`; a later endpoint module will convert that unit relation into
 affineness in the zero-weight coordinate.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

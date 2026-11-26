@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalPositiveWeightLinearBlocks
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalPositiveWeightLinearBlocks
+public import Mathlib.Tactic
 
 /-!
 # Evaluation of positive triangular components
@@ -20,6 +22,8 @@ For a determinant-matched terminal gradient, Phase 93.32 identifies that
 linear part with row-vector multiplication by the permuted terminal
 Hessian.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

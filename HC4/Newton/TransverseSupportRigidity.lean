@@ -1,6 +1,8 @@
-import HC4.Compat.MvPolynomial
-import HC4.Newton.FixedKernelHessian
-import Mathlib.Tactic
+module
+
+public import HC4.Compat.MvPolynomial
+public import HC4.Newton.FixedKernelHessian
+public import Mathlib.Tactic
 
 /-!
 # Positive transverse degree versus transverse independence
@@ -25,6 +27,8 @@ This file formalises that support-theoretic incompatibility.  The next
 phase will derive transverse independence from the actual Hessian-kernel
 equations in characteristic zero.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

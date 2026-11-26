@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleCofactor
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleCofactor
+public import Mathlib.Tactic
 
 /-!
 # Genuine nonzero Cramer residue on a squarefree cubic pole
@@ -17,6 +19,8 @@ The statement is not yet a contradiction: a nonzero singular
 direction can exist on an individual cubic.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,8 +30,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicSquarefreeCramerNonzero
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicSquarefreeCramerNonzero
+
+open RankThreeCubicSquarefreeCramerNonzero (B3 F3)
 
 /-- A nonpolynomial rational Hessian characteristic with squarefree
 determinant has an irreducible factor at which at least one coordinate

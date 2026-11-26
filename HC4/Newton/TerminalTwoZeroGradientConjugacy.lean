@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalTwoZeroKellerReduction
-import HC4.PlanarJacobianEvaluation
-import HC4.PlanarDoublingInjectivity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroKellerReduction
+public import HC4.PlanarJacobianEvaluation
+public import HC4.PlanarDoublingInjectivity
+public import Mathlib.Tactic
 
 /-!
 # Gradient conjugacy for the two-zero terminal fibre
@@ -26,6 +28,8 @@ where `G = (A₂,C₂)` and `J_G` is its evaluated planar Jacobian matrix.
 This file proves that equality as an exact conjugacy under the standard
 coordinate split.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

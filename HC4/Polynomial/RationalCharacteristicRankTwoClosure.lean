@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal
 
 /-!
 # Unconditional anchored rational characteristic rigidity
@@ -19,6 +21,8 @@ theorems this yields the original source adjugate annihilator,
 with no rational rigidity premise.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -28,10 +32,16 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankTwoClosure
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankTwoClosure
+
+open RationalCharacteristicRankTwoClosure (B E I S)
 
 set_option maxHeartbeats 2000000 in
 /-- The rational tangent to a normalized parameter component

@@ -1,5 +1,7 @@
-import HC4.Newton.FiniteRepairTermination
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.FiniteRepairTermination
+public import Mathlib.Tactic
 
 /-!
 # Rank-one packet re-entry as genuine repair progress
@@ -34,6 +36,8 @@ square/axis terminal certificate.
 This is the first non-tautological bridge from the local corank
 classification into the finite termination engine.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

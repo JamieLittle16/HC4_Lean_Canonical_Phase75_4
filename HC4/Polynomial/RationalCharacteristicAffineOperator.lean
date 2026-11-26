@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicAffineFraction
+module
+
+public import HC4.Polynomial.RationalCharacteristicAffineFraction
 
 /-!
 # Similarity transport for affine rational charts
@@ -11,6 +13,8 @@ the transported operator pulls back to the original operator.
 The final affine-ratio factor computation is separate.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,7 +26,9 @@ section MatrixAlgebra
 
 variable {F : Type*} [Field F]
 
-private abbrev Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+abbrev RationalCharacteristicAffineOperator.Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+
+open RationalCharacteristicAffineOperator (Mat)
 
 /-- Similarity preserves cube-zero, using only the two-sided inverse
 identities needed for the coordinate change. -/
@@ -65,8 +71,14 @@ end MatrixAlgebra
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RationalCharacteristicAffineOperator
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RationalCharacteristicAffineOperator
+
+open RationalCharacteristicAffineOperator (B E Mat)
 
 /-- The constant-coordinate matrices retain their inverse identity
 after extending scalars to the transverse fraction field. -/

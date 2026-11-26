@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSourceFractionKernel
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceFractionKernel
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.Tactic
 
 /-!
 # Cubic transverse source weights survive longitudinal specialization
@@ -12,6 +14,8 @@ ordinary homogeneous polynomials. This supplies the last graded input
 to the pole-free rational velocity linearity theorem.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial Finsupp
@@ -21,8 +25,14 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev CubicS (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
-private abbrev CubicB' (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+namespace RankThreeCubicSourceDegrees
+
+abbrev CubicS (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+abbrev CubicB' (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+end RankThreeCubicSourceDegrees
+
+open RankThreeCubicSourceDegrees (CubicS CubicB')
 
 /-- The natural-number version of the transverse cubic source weight. -/
 def transverseCubicNatWeight : Unit ⊕ Fin 3 → ℕ :=

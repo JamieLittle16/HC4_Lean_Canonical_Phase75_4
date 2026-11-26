@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSquarefreeCramerNonzero
+public import Mathlib.Tactic
 
 /-!
 # A simple genuine pole has a surviving Cramer numerator
@@ -13,6 +15,8 @@ This result is local to a chosen irreducible factor: no global
 squarefreeness assumption is used.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,8 +26,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicSimplePoleNumerator
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicSimplePoleNumerator
+
+open RankThreeCubicSimplePoleNumerator (B3 F3)
 
 /-- At a simple irreducible factor of det(H) supporting a *genuine*
 reduced denominator pole, the actual Cramer numerator survives modulo

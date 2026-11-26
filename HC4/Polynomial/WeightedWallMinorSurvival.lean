@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedComplementaryKernel
+module
+
+public import HC4.Polynomial.WeightedComplementaryKernel
 
 /-!
 # Exact minor survival at a weighted wall
@@ -13,6 +15,8 @@ and contraction argument is a separate step.
 
 This is a source-level wall constraint, not a termination theorem.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

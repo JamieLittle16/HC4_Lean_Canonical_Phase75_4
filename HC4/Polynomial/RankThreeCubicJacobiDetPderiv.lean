@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+public import Mathlib.Tactic
 
 /-!
 # Three-dimensional Jacobi formula for a polynomial matrix
@@ -14,6 +16,8 @@ determinant with the contraction of its adjugate and the
 third-derivative matrices. It will be combined with the source
 cubic pole quadratic-residue equations in a separate theorem.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankOneHessianRatioRigidity
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
+module
+
+public import HC4.Polynomial.RankOneHessianRatioRigidity
+public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 
 /-!
 # Unconditional rank-one Hessian closure
@@ -15,6 +17,8 @@ weights: its nonzero constant Hessian kernel is pulled back before
 applying global extremal exclusion.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton
@@ -23,7 +27,9 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankOneHessianClosure.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankOneHessianClosure (S)
 
 private theorem rankOne_allOnes_cap (L : S K) :
     IsWeightLE (fun _ : Fin 4 => (1 : ℤ)) (L.totalDegree : ℤ) L := by

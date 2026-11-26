@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine
-import Mathlib.FieldTheory.RatFunc.Basic
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine
+public import Mathlib.FieldTheory.RatFunc.Basic
 
 /-!
 # Specialization as a genuine field embedding
@@ -14,6 +16,8 @@ Apply this to the uniform regular coordinate line for a rank-one
 velocity Jacobian. The target is mathlib's actual RatFunc field.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,9 +27,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankOneFieldEmbedding
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankOneFieldEmbedding
+
+open RationalCharacteristicRankOneFieldEmbedding (B E I)
 
 section Specialization
 

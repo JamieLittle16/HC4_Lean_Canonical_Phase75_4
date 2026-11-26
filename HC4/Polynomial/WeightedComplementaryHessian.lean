@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedSingularHessianAnnihilator
+module
+
+public import HC4.Polynomial.WeightedSingularHessianAnnihilator
 
 /-!
 # A weight-compatible complementary Hessian
@@ -11,6 +13,8 @@ corresponding adjugate column vanishes identically.
 This is not a claim that the direction is in the Hessian kernel,
 nor that the potential is independent of that coordinate.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 
@@ -247,8 +251,14 @@ end Polynomial
 namespace RankThreeCubic
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace WeightedComplementaryHessian
+
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end WeightedComplementaryHessian
+
+open WeightedComplementaryHessian (I S)
 
 /-- The actual maximal source layer admits a determinant-one
 weight-block shear in which an entire adjugate column vanishes.

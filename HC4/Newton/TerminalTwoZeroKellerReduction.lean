@@ -1,8 +1,10 @@
-import HC4.Newton.TerminalTwoZeroPlanarisation
-import HC4.Newton.TerminalTwoZeroHessianSquare
-import HC4.MongeAmpere.PolynomialInitial
-import HC4.PlanarJC2Interface
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroPlanarisation
+public import HC4.Newton.TerminalTwoZeroHessianSquare
+public import HC4.MongeAmpere.PolynomialInitial
+public import HC4.PlanarJC2Interface
+public import Mathlib.Tactic
 
 /-!
 # Planar Keller reduction of the two-zero terminal endpoint
@@ -38,6 +40,8 @@ Over a field, the polynomial ring is a domain, hence
 Therefore `(A₂,C₂)` is a planar Keller map in the exact sense required by
 `PlanarJC2Injectivity`.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

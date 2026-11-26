@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalTwoZeroHessianSquare
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroHessianSquare
+public import Mathlib.Tactic
 
 /-!
 # A19.2: Hessian square for an arbitrary planar doubling form
@@ -27,6 +29,8 @@ determinant, then its planar cross determinant is zero.  This uses only that
 the polynomial ring over a field is a domain; no planar injectivity or JC2
 hypothesis enters.
 -/
+
+public section
 
 namespace HC4.Newton
 

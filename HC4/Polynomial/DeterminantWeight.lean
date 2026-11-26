@@ -1,5 +1,7 @@
-import HC4.Polynomial.DerivativeWeight
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+module
+
+public import HC4.Polynomial.DerivativeWeight
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 
 /-!
 # Weighted-homogeneous determinant expansions
@@ -8,6 +10,8 @@ A determinant is a signed sum of permutation products.  If every permutation
 product has one common weighted degree, then the determinant itself is
 weighted homogeneous of that degree.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicJordanSquare
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
+module
+
+public import HC4.Polynomial.RankThreeCubicJordanSquare
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 
 /-!
 # Differentiated transport of a linear characteristic
@@ -9,6 +11,8 @@ indeterminates, keeping characteristic time fixed. This produces
 the Hessian transport equation and forces the constant velocity
 matrix to be nilpotent.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 open MvPolynomial

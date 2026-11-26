@@ -1,4 +1,6 @@
-import HC4.Polynomial.TwoZeroWeightFullSource
+module
+
+public import HC4.Polynomial.TwoZeroWeightFullSource
 
 /-!
 # Fibrewise injectivity at every nonnegative zero clock
@@ -10,6 +12,8 @@ rather than at the origin. We use the actual Hessian at one point.
 
 This leaves only recovery of the zero-weight coordinates.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

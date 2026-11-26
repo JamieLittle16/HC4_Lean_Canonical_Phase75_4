@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneChartDescent
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneChartDescent
 
 /-!
 # Bivariate chart coefficient extraction
@@ -11,6 +13,8 @@ chart coefficient family. The Euler and derivative coefficient
 identities are the remaining steps to the recurrence.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -20,9 +24,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev A (K : Type*) [Field K] :=
+namespace RationalCharacteristicRankOneBivariateChart
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev A (K : Type*) [Field K] :=
   MvPolynomial (Fin 2) (_root_.Polynomial K)
+
+end RationalCharacteristicRankOneBivariateChart
+
+open RationalCharacteristicRankOneBivariateChart (B A)
 
 def rankOne_bivariateExponent (j l : ℕ) : Fin 2 →₀ ℕ :=
   Finsupp.single 0 j + Finsupp.single 1 l

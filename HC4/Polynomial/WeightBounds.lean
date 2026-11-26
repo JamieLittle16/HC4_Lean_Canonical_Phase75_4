@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightedInitial
-import Mathlib
+module
+
+public import HC4.Polynomial.WeightedInitial
+public import Mathlib
 
 /-!
 # Weak and strict weight bounds for multivariate polynomials
@@ -9,6 +11,8 @@ This module records the support inequalities needed to make the phrase
 of `p` has weight at most `m`, while `IsWeightLT w m p` means that every
 monomial has weight strictly less than `m`.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

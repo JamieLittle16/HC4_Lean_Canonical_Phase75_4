@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSimplePoleNumerator
-import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSimplePoleNumerator
+public import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
+public import Mathlib.Tactic
 
 /-!
 # Local Jacobi obstruction at a genuine cubic characteristic pole
@@ -17,6 +19,8 @@ every genuine irreducible characteristic pole to occur at least twice
 in the transverse Hessian determinant.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -27,9 +31,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourcePoleLocalJacobi
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourcePoleLocalJacobi
+
+open RankThreeCubicSourcePoleLocalJacobi (B3 F3 SB)
 
 /-- A nonzero *actual Cramer numerator* on an irreducible
 transverse determinant factor forces all three determinant

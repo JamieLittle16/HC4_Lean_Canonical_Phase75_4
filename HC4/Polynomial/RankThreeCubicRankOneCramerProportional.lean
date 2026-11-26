@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+public import Mathlib
 
 /-!
 # The Cramer numerator inherits rank-one adjugate geometry
@@ -14,6 +16,8 @@ actual Cramer numerator to the adjugate contraction appearing in
 Jacobi's determinant derivative. The rank-one hypothesis is
 explicit here; it will be derived from det(H)=0 separately.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

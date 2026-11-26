@@ -1,5 +1,7 @@
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.Tactic
 
 /-!
 # Axis-normal homogeneous binary packets
@@ -30,6 +32,8 @@ The next phase can therefore focus only on transporting a general fixed
 kernel direction to an axis; the homogeneous normal form on that axis is
 already rigid.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

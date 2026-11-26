@@ -1,6 +1,8 @@
-import HC4.Polynomial.NonnegativeWeightZeroClock
-import Mathlib.Algebra.Polynomial.Derivation
-import Mathlib.Algebra.Polynomial.Degree.Units
+module
+
+public import HC4.Polynomial.NonnegativeWeightZeroClock
+public import Mathlib.Algebra.Polynomial.Derivation
+public import Mathlib.Algebra.Polynomial.Degree.Units
 
 /-!
 # One-zero terminal injectivity
@@ -16,6 +18,8 @@ After univariate specialization the derivative is a nonzero
 constant, forcing an affine gradient row. Recover the base
 coordinate and apply the certified fibrewise endpoint.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

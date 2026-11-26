@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoDualLine
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoDualLine
 
 /-!
 # Rank-two Frobenius tensor calculation
@@ -16,6 +18,8 @@ third derivative tensor is symmetric in its input slots.
 This file isolates the finite-dimensional tensor calculation. Its
 transport to the original rational differential system is separate.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

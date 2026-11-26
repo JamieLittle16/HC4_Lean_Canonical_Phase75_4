@@ -1,5 +1,7 @@
-import HC4.Newton.RankOnePacketReentry
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.RankOnePacketReentry
+public import Mathlib.Tactic
 
 /-!
 # Finite repair termination measure
@@ -32,6 +34,8 @@ exist.  This is the well-founded engine needed by the corank trichotomy.
 The geometric work still remaining is to prove that every actual
 nonterminal Rees repair satisfies `RepairProgress`.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

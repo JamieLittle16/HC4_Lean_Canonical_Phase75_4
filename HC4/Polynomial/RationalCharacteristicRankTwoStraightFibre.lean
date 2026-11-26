@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoTensorTransport
 
 /-!
 # Straightness of the rank-two velocity fibres
@@ -8,6 +10,8 @@ the one-dimensional velocity kernel. Normalize a nonzero original
 coordinate of the direction to one. The acceleration then vanishes
 identically. All identities are over the original fraction field.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -55,10 +59,16 @@ end Algebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankTwoStraightFibre
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankTwoStraightFibre
+
+open RationalCharacteristicRankTwoStraightFibre (B E I S)
 
 theorem rankTwo_directionalDerivation_scale
     (s : E K) (w : Fin 3 → E K) (z : E K) :

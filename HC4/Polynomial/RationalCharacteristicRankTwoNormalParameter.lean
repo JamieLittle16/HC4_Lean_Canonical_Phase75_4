@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoAffineParameter
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoAffineParameter
 
 /-!
 # The normal derivative and the direction tangent
@@ -14,6 +16,8 @@ the parameter differential annihilates the tangent, or the entire
 normal is ground-field constant. This argument uses no
 classification of line congruences.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -83,10 +87,16 @@ end Algebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankTwoNormalParameter
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankTwoNormalParameter
+
+open RationalCharacteristicRankTwoNormalParameter (B E I P)
 
 /-- Product rule for the pairing of two rational vectors. -/
 theorem rankTwo_derivation_dot

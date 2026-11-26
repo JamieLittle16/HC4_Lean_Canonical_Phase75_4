@@ -1,7 +1,9 @@
-import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
-import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
-import HC4.Polynomial.RankThreeCubicPoleResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
+public import HC4.Polynomial.RankThreeCubicSourceQuadraticEuler
+public import HC4.Polynomial.RankThreeCubicPoleResidue
+public import Mathlib.Tactic
 
 /-!
 # Cubic source gradient transport as an exact quadratic family
@@ -19,6 +21,8 @@ time families at the chosen pole is the next, separate obligation.
 Until then this theorem is not a pole-residue contradiction.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -28,12 +32,18 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev PB (K : Type*) [Field K] :=
+namespace RankThreeCubicPoleQuadraticTransport
+
+abbrev PB (K : Type*) [Field K] :=
   MvPolynomial (Fin 3) K
-private abbrev PF (K : Type*) [Field K] :=
+abbrev PF (K : Type*) [Field K] :=
   FractionRing (PB K)
-private abbrev SB (K : Type*) [Field K] :=
+abbrev SB (K : Type*) [Field K] :=
   MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicPoleQuadraticTransport
+
+open RankThreeCubicPoleQuadraticTransport (PB PF SB)
 
 /-- The quadratic third-derivative family reconstructs the
 transverse gradient along its full straight characteristic.

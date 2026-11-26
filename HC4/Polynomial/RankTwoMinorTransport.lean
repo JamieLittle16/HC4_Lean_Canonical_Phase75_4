@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoAffineLevelCurvature
+module
+
+public import HC4.Polynomial.RankTwoAffineLevelCurvature
 
 /-!
 # Source-honest rank-two minor transport
@@ -11,6 +13,8 @@ scalar multiple of an original minor (allowing repeated indices).
 Apply this to the exact Hessian congruence of a linear substitution.
 No rank assumption about the transformed polynomial is introduced.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 
@@ -78,7 +82,9 @@ theorem AllThreeMinorsZero.map
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoMinorTransport.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoMinorTransport (S)
 
 /-- The order-three minor condition survives the actual Hessian
 substitution, even in a chart that changes the original weights. -/

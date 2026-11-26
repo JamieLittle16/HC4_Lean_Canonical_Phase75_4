@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoAffineGradient
 
 /-!
 # Rank-one reduction for the normalized straight direction
@@ -15,6 +17,8 @@ original velocity has rank two. In the nonconstant case we can
 reuse the verified rank-one common-parameter theorem, including
 Lüroth, without a new rationality premise.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -101,11 +105,17 @@ end Algebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankTwoDirectionParameter
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankTwoDirectionParameter
+
+open RationalCharacteristicRankTwoDirectionParameter (B E I S P)
 
 /-- Package the straight direction in the existing characteristic
 Jacobian API. The longitudinal component is only a dummy constant,

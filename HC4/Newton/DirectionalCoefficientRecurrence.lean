@@ -1,5 +1,7 @@
-import HC4.Newton.AxisHomogeneousNormalForm
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.AxisHomogeneousNormalForm
+public import Mathlib.Tactic
 
 /-!
 # Coefficient recurrence from a fixed directional derivative
@@ -26,6 +28,8 @@ depend on the non-transverse variables, giving the desired shape
 
 No coordinate-change API is needed.
 -/
+
+public section
 
 namespace HC4.Newton
 

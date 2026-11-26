@@ -1,6 +1,8 @@
-import HC4.Polynomial.RationalCharacteristicPullback
-import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
-import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
+module
+
+public import HC4.Polynomial.RationalCharacteristicPullback
+public import HC4.Polynomial.RankThreeCubicSquarefreePoleFinal
+public import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
 
 /-!
 # Constants of the transverse rational partial derivatives
@@ -17,6 +19,8 @@ relation of the actual velocity. No rank-one or rank-two
 classification is assumed.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,10 +30,16 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicConstants
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicConstants
+
+open RationalCharacteristicConstants (B E I S)
 
 /-- A polynomial killed by all transverse partials is constant. -/
 theorem transverse_eq_C_of_all_pderiv_zero

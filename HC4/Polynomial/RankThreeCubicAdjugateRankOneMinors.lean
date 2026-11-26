@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPolePrincipalCofactor
+public import Mathlib.Tactic
 
 /-!
 # A singular 3x3 determinant has rank-one adjugate minors
@@ -12,6 +14,8 @@ These identities are the algebraic input for factoring the adjugate
 at the cubic pole: at a rank-two point it is a rank-one matrix.
 No matrix rank or field inversion is assumed in this module.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

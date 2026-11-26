@@ -1,6 +1,8 @@
-import HC4.Polynomial.RationalCharacteristicAdjugate
-import HC4.Polynomial.RankThreeCubicLinearSourcePullback
-import Mathlib.Algebra.Polynomial.Inductions
+module
+
+public import HC4.Polynomial.RationalCharacteristicAdjugate
+public import HC4.Polynomial.RankThreeCubicLinearSourcePullback
+public import Mathlib.Algebra.Polynomial.Inductions
 
 /-!
 # Injectivity of anchored rational characteristic substitution
@@ -13,6 +15,8 @@ modulo time is injective on the coefficient ring.
 This argument does not require a rational inverse, nilpotence, or any
 degree bound on the transverse velocity.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -79,10 +83,16 @@ end TimeAlgebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev I := Unit ⊕ Fin 3
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicPullback
+
+abbrev I := Unit ⊕ Fin 3
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicPullback
+
+open RationalCharacteristicPullback (I B E S)
 
 /-- The normalized rational line substitution is injective on the
 original polynomial source. Only the longitudinal normalization is

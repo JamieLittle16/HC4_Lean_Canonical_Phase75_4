@@ -1,7 +1,9 @@
-import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.Algebra.Module.LinearMap.Polynomial
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicLinearSquareAssembly
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.Algebra.Module.LinearMap.Polynomial
+public import Mathlib.Tactic
 
 /-!
 # A pole-free homogeneous rational cubic characteristic is linear
@@ -16,6 +18,8 @@ This module isolates the polynomial degree argument, independent of
 localization and Jordan normal forms.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial Finsupp
@@ -25,7 +29,9 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RankThreeCubicPoleFreeLinear.B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RankThreeCubicPoleFreeLinear (B)
 
 /-- The Euler derivation in the three transverse variables. -/
 def transverseEuler (p : B K) : B K :=

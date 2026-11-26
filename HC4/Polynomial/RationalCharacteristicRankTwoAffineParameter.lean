@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoDirectionParameter
 
 /-!
 # The nonconstant direction parameter is affine or already rigid
@@ -15,6 +17,8 @@ Otherwise a constant normal annihilates the direction and its
 derivative. These span the actual normal plane, so it also
 annihilates the original velocity Jacobian.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -67,11 +71,17 @@ end Algebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankTwoAffineParameter
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankTwoAffineParameter
+
+open RationalCharacteristicRankTwoAffineParameter (B E I S P)
 
 /-- Clear a common nonzero denominator from the direction components,
 not from their derivatives. -/

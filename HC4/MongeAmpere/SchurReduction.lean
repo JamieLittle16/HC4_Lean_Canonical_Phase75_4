@@ -1,4 +1,6 @@
-import Mathlib.LinearAlgebra.Matrix.SchurComplement
+module
+
+public import Mathlib.LinearAlgebra.Matrix.SchurComplement
 
 /-!
 # Schur-complement reduction for block Hessians
@@ -8,6 +10,8 @@ block determinant to the determinant of a Schur complement.  This module
 records the exact determinant and invertibility equivalences in a form ready
 for pointwise Hessian application.
 -/
+
+@[expose] public section
 
 namespace HC4.MongeAmpere
 

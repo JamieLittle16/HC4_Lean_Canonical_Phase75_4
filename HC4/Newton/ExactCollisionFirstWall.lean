@@ -1,6 +1,8 @@
-import HC4.Newton.SmithFiniteBalanceClosure
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithFiniteBalanceClosure
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.Tactic
 
 /-!
 # Exact homogeneous collision and unique first-wall contributors
@@ -30,6 +32,8 @@ that wall is impossible.
 The hard Smith file therefore only has to prove the finite
 enumeration/uniqueness statements for the low blockers.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

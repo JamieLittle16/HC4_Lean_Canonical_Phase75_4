@@ -1,10 +1,12 @@
-import HC4.Polynomial.RankThreeOneVariableKernel
-import HC4.PlanarJC2HessianEmbedding
-import Mathlib.Algebra.MvPolynomial.Monad
-import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.FieldTheory.AxGrothendieck
-import Lean.Util.CollectAxioms
+module
+
+public import HC4.Polynomial.RankThreeOneVariableKernel
+public import HC4.PlanarJC2HessianEmbedding
+public import Mathlib.Algebra.MvPolynomial.Monad
+public import Mathlib.Algebra.MvPolynomial.Nilpotent
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
+public import Mathlib.FieldTheory.AxGrothendieck
+meta import Lean.Util.CollectAxioms
 
 /-!
 # External statement comparison
@@ -21,6 +23,8 @@ Its assumption is the explicitly quantified polynomial inverse property.
 The reference Jacobian has input indices as rows, unlike the ordinary
 output-row convention; the determinant is unaffected by transposition.
 -/
+
+@[expose] public section
 
 namespace HC4.StatementAudit
 

@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalTwoZeroGradientConjugacy
-import HC4.Newton.TerminalCollision
+module
+
+public import HC4.Newton.TerminalTwoZeroGradientConjugacy
+public import HC4.Newton.TerminalCollision
 
 /-!
 # JC2 closes the standard two-zero terminal branch
@@ -14,6 +16,8 @@ four-dimensional terminal gradient injective.
 
 A distinct exact terminal collision is therefore impossible.
 -/
+
+public section
 
 namespace HC4.Newton
 

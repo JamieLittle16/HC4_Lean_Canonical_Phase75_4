@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalActualHessian
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalActualHessian
+public import Mathlib.Tactic
 
 /-!
 # Terminal conformal face
@@ -26,6 +28,8 @@ The next terminal-direct-rank-jump module may therefore dispatch the
 non-scalar certificate to the existing exact conformal-torus endpoint
 classification without hiding any extra geometric assumption in this file.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,8 +1,10 @@
-import HC4.Newton.TerminalOneZeroTransverseConstant
-import HC4.PlanarJC2Interface
-import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.Algebra.MvPolynomial.Rename
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroTransverseConstant
+public import HC4.PlanarJC2Interface
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+public import Mathlib.Algebra.MvPolynomial.Rename
+public import Mathlib.Tactic
 
 /-!
 # Planar Keller fibres of the standard one-zero terminal face
@@ -28,6 +30,8 @@ transverse determinant `Δ₂₃`.
 Phase 93.36's constant-transverse theorem therefore gives a nonzero
 constant planar Jacobian on every fibre.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

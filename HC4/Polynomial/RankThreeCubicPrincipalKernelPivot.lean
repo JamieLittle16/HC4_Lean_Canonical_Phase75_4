@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourcePoleRankSplit
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourcePoleRankSplit
+public import Mathlib.Tactic
 
 /-!
 # A principal cofactor fixes the nonzero coordinate of a singular kernel
@@ -12,6 +14,8 @@ has S(k) nonzero. No localization or choice of basis is needed.
 This is the missing denominator-normalized pivot certificate for
 the rank-two branch of the cubic source pole analysis.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

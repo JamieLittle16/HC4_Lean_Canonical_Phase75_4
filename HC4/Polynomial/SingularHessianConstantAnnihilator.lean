@@ -1,5 +1,7 @@
-import HC4.Polynomial.TransverseLeadingRationalRigidity
-import HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo
+module
+
+public import HC4.Polynomial.TransverseLeadingRationalRigidity
+public import HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo
 
 /-!
 # The four-variable singular Hessian apex without a distinguished anchor
@@ -14,6 +16,8 @@ The resulting constant annihilator is pulled back to the original
 polynomial. The adjugate-zero branch is immediate. No assumption
 on the original transverse block remains.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -57,8 +61,14 @@ theorem singular_symmetric_exists_principalCofactor
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace SingularHessianConstantAnnihilator
+
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end SingularHessianConstantAnnihilator
+
+open SingularHessianConstantAnnihilator (I S)
 
 /-- Hessian renaming is simultaneous row-column reindexing and
 renaming of coefficients. -/

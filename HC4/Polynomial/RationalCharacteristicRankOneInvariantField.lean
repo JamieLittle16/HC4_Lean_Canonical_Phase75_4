@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOneCommonParameter
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneCommonParameter
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 /-!
 # Rank-one differential invariants of the velocity field
@@ -15,6 +17,8 @@ derivations are regular and have unit normal component.
 
 No specialization injectivity or Lüroth theorem is assumed here.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -71,9 +75,15 @@ theorem rationalDerivation_zero_of_mem_adjoin
 
 variable {k : Type*} [Field k]
 
-private abbrev B (k : Type*) [Field k] := MvPolynomial (Fin 3) k
-private abbrev E (k : Type*) [Field k] := FractionRing (B k)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankOneInvariantField
+
+abbrev B (k : Type*) [Field k] := MvPolynomial (Fin 3) k
+abbrev E (k : Type*) [Field k] := FractionRing (B k)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankOneInvariantField
+
+open RationalCharacteristicRankOneInvariantField (B E I)
 
 /-- Correct a coordinate derivative by the chosen nonzero pivot
 direction. This is an actual derivation, not merely a pointwise

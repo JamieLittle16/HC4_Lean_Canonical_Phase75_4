@@ -1,5 +1,7 @@
-import HC4.Newton.FiniteRepairTermination
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.FiniteRepairTermination
+public import Mathlib.Tactic
 
 /-!
 # Preterminal first-departure algebra
@@ -36,6 +38,8 @@ the existing finite repair theorem.  Once this module is green, the final
 `MixedDepartureAdapter` only has to package the nonzero mixed derivative
 into those existing hypotheses.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

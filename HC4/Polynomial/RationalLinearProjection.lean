@@ -1,4 +1,6 @@
-import Mathlib
+module
+
+public import Mathlib
 
 /-!
 # Exact rational linear projection and attainment
@@ -11,6 +13,8 @@ its maximum is attained in the rationals.
 
 No topological compactness over the rationals is assumed.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

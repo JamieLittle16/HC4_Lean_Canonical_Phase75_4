@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicUniqueGenuinePole
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicUniqueGenuinePole
+public import Mathlib.Tactic
 
 /-!
 # Source-normalized single hyperplane for a genuine cubic pole
@@ -15,6 +17,8 @@ with totalDegree(c) ≤ 1. Nothing in this statement asserts the
 remaining pole is impossible.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,9 +28,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceSinglePoleNormalForm
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceSinglePoleNormalForm
+
+open RankThreeCubicSourceSinglePoleNormalForm (B3 F3 SB)
 
 /-- Source-honest cubic dichotomy with a fixed prime hyperplane:
 linear velocity, or a genuine repeated denominator pole p such that

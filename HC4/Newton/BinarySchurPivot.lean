@@ -1,4 +1,6 @@
-import Mathlib.Tactic
+module
+
+public import Mathlib.Tactic
 
 /-!
 # Binary Schur pivot algebra
@@ -20,6 +22,8 @@ The point of recording this separately is that the later first-rank-entry
 argument can use a small algebraic certificate instead of invoking general
 matrix-rank or Smith-normal-form machinery.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

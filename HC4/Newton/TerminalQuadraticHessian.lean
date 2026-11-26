@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalConformalWeight
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalConformalWeight
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Quadratic Hessian nondegeneracy at a terminal conformal face
@@ -36,6 +38,8 @@ conclusion directly:
 The next terminal layer can now identify this coefficient Hessian with the
 actual determinant-closing Hessian supplied by the restart construction.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,7 +1,9 @@
-import HC4.Newton.TwoZeroDoublingHessianSquareGeneral
-import HC4.Newton.TerminalTwoZeroKellerReduction
-import HC4.Newton.TerminalTwoZeroGradientConjugacy
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TwoZeroDoublingHessianSquareGeneral
+public import HC4.Newton.TerminalTwoZeroKellerReduction
+public import HC4.Newton.TerminalTwoZeroGradientConjugacy
+public import Mathlib.Tactic
 
 /-!
 # A19.3: planar Keller maps embed into four-dimensional Hessian gradients
@@ -26,6 +28,8 @@ injectivity implies the planar JC2 injectivity interface.  This theorem is a
 soundness guard for final assembly: the two-zero terminal cannot be removed by
 a purely formal rank label or support wrapper.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

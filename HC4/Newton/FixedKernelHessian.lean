@@ -1,6 +1,8 @@
-import HC4.Newton.BinaryPivotGeometry
-import Mathlib.Algebra.MvPolynomial.PDeriv
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.BinaryPivotGeometry
+public import Mathlib.Algebra.MvPolynomial.PDeriv
+public import Mathlib.Tactic
 
 /-!
 # Fixed-kernel binary Hessian integrability
@@ -28,6 +30,8 @@ differentiation is involved.  It is the formal integrability bridge needed
 before homogeneity is used to strengthen `D²F = 0` to invariance in the
 kernel direction.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

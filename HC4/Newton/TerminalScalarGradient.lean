@@ -1,8 +1,10 @@
-import HC4.Newton.TerminalConformalFace
-import HC4.Newton.TerminalCollision
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalConformalFace
+public import HC4.Newton.TerminalCollision
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.Tactic
 
 /-!
 # Scalar terminal gradient
@@ -27,6 +29,8 @@ injective gradient, and therefore cannot carry a distinct exact collision.
 This uses the actual Hessian already constructed in Phase 93.24 and does
 not invoke any torus classification.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

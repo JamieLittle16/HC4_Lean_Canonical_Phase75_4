@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoImageDirectionClosure
+module
+
+public import HC4.Polynomial.RankTwoImageDirectionClosure
 
 /-!
 # Actual principal rank-two pivot and image equations
@@ -14,6 +16,8 @@ to explicit denominator-cleared two-column equations. This gives
 a concrete polynomial target for the remaining image existence
 theorem; it does not assert existence of a constant image vector.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 
@@ -112,7 +116,9 @@ theorem rankTwo_pivotEquations_of_image
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoPrincipalPivot.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoPrincipalPivot (S)
 
 /-- A genuine rank-two candidate has a regular principal
 two-by-two block through every fixed coordinate. -/

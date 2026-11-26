@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedGlobalOptimum
+module
+
+public import HC4.Polynomial.WeightedGlobalOptimum
 
 /-!
 # Positive-clock global extremal obstruction
@@ -12,6 +14,8 @@ The obstruction holds in every determinant-one weight-compatible
 chart of the extremal source. It is stronger than the fixed-source
 missing-coordinate obstruction and does not assume a wall producer.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

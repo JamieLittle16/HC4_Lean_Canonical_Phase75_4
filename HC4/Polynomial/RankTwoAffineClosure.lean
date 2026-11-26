@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoMinorTransport
+module
+
+public import HC4.Polynomial.RankTwoMinorTransport
 
 /-!
 # Affine-coordinate rank-two closure
@@ -12,6 +14,8 @@ diagonal entry to vanish. Pull this plane back to the original
 leading polynomial and use the verified global obstruction.
 -/
 
+public section
+
 namespace HC4.Polynomial
 
 open MvPolynomial HC4.Newton
@@ -20,7 +24,9 @@ open scoped Matrix BigOperators
 noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev RankTwoAffineClosure.S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+
+open RankTwoAffineClosure (S)
 
 /-- A pure-power chart for a nonconstant polynomial independent
 of coordinate k can be chosen to fix the k-th column. -/

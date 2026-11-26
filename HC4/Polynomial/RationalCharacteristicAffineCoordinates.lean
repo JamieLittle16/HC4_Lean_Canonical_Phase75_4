@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneAffineFrontier
 
 /-!
 # Affine coordinates for the rational characteristic obstruction
@@ -12,6 +14,8 @@ Fraction-field substitution and transport of the rank-one operator
 are separate from this polynomial chain rule.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -21,7 +25,9 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RationalCharacteristicAffineCoordinates.B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RationalCharacteristicAffineCoordinates (B)
 
 /-- Two independent covectors can be completed by a coordinate
 covector. An explicit minor argument avoids choosing abstract bases. -/

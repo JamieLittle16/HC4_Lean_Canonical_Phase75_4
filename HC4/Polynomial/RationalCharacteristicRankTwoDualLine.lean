@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoNormal
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoNormal
 
 /-!
 # A source-derived dual line in the remaining rank-two case
@@ -15,6 +17,8 @@ These are identities in the actual transverse fraction field,
 not an assumption of a polynomial inverse gradient map.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,10 +28,16 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+namespace RationalCharacteristicRankTwoDualLine
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+
+end RationalCharacteristicRankTwoDualLine
+
+open RationalCharacteristicRankTwoDualLine (B E I S)
 
 /-- Derivatives of the actual reference gradient are its Hessian
 applied to the direction. -/

@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicTransport
-import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
+module
+
+public import HC4.Polynomial.RationalCharacteristicTransport
+public import HC4.Polynomial.RankThreeCubicPoleJacobiBridge
 
 /-!
 # Self-adjointness of rational characteristic Jacobians
@@ -14,6 +16,8 @@ Together with nilpotence this supplies the source-derived input for
 rational characteristic rigidity, without assuming that rigidity.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -23,9 +27,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RationalCharacteristicSelfAdjoint
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev S (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RationalCharacteristicSelfAdjoint
+
+open RationalCharacteristicSelfAdjoint (B E S)
 
 /-- The transverse Hessian at the original generic reference point. -/
 def rationalCharacteristicHessian (a : K) (L : S K) :

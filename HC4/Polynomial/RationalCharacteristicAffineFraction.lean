@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicAffineCoordinates
-import Mathlib.RingTheory.Localization.FractionRing
+module
+
+public import HC4.Polynomial.RationalCharacteristicAffineCoordinates
+public import Mathlib.RingTheory.Localization.FractionRing
 
 /-!
 # Invertible affine substitution and rational extension
@@ -13,6 +15,8 @@ The next bridge transports the characteristic operator and
 normalizes its affine parameter pair.
 -/
 
+@[expose] public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,9 +26,15 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev Mat (K : Type*) := Matrix (Fin 3) (Fin 3) K
+namespace RationalCharacteristicAffineFraction
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev Mat (K : Type*) := Matrix (Fin 3) (Fin 3) K
+
+end RationalCharacteristicAffineFraction
+
+open RationalCharacteristicAffineFraction (B E Mat)
 
 theorem rationalAffine_substitution_X
     (M : Mat K) (c : Fin 3 → K) (i : Fin 3) :

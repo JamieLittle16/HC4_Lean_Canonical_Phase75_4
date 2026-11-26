@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankOneClosure
-import Mathlib.LinearAlgebra.Matrix.Rank
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneClosure
+public import Mathlib.LinearAlgebra.Matrix.Rank
 
 /-!
 # The remaining rank-two rational characteristic case
@@ -12,6 +14,8 @@ derivation that annihilates the entire velocity field.
 This is a reduction of the remaining rigidity case, not a
 classification of rank-two rational characteristic fields.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -94,9 +98,15 @@ end MatrixAlgebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankTwoFrontier
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankTwoFrontier
+
+open RationalCharacteristicRankTwoFrontier (B E I)
 
 /-- Directional derivative with rational coefficients in the
 original transverse coordinate system. -/

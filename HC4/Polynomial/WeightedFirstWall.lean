@@ -1,4 +1,6 @@
-import HC4.Polynomial.NonnegativeTerminalAssembly
+module
+
+public import HC4.Polynomial.NonnegativeTerminalAssembly
 
 /-!
 # Actual finite-support first wall
@@ -11,6 +13,8 @@ Clear the denominator of the selected time to obtain integral weights.
 This proves a source-native continuation, not termination of a
 sequence of arbitrary wall changes.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

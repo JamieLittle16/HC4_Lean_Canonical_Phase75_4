@@ -1,5 +1,7 @@
-import HC4.Newton.SmithCollisionQuadraticRankOne
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithCollisionQuadraticRankOne
+public import Mathlib.Tactic
 
 /-!
 # Elementary arithmetic of the Smith relative Levi grades
@@ -30,6 +32,8 @@ directional first-wall exclusion:
 The convex-balance/separation theorem is deliberately left to the next
 module.  This file provides the stable finite arithmetic API it will use.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

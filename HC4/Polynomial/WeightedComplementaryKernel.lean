@@ -1,5 +1,7 @@
-import HC4.Polynomial.WeightedComplementaryInitialForm
-import HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection
+module
+
+public import HC4.Polynomial.WeightedComplementaryInitialForm
+public import HC4.Polynomial.RankThreeCubicPrincipalAdjugateDirection
 
 /-!
 # The complementary kernel lifts to the full leading Hessian
@@ -19,6 +21,8 @@ No division, regular full minor, or constant kernel hypothesis
 is used. The adjugate-zero branch is retained explicitly.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -26,7 +30,9 @@ open scoped Matrix BigOperators
 
 noncomputable section
 
-private abbrev I := Unit ⊕ Fin 3
+abbrev WeightedComplementaryKernel.I := Unit ⊕ Fin 3
+
+open WeightedComplementaryKernel (I)
 
 section Matrix
 
@@ -139,7 +145,9 @@ theorem singular_complementary_adjugate_lifts
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev WeightedComplementaryKernel.S (K : Type*) [Field K] := MvPolynomial I K
+
+open WeightedComplementaryKernel (S)
 
 set_option maxHeartbeats 4000000 in
 /-- The genuine maximal weighted layer in the determinant-one

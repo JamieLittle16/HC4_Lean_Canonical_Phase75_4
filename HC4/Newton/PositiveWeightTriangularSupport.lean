@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalPermutedGradient
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalPermutedGradient
+public import Mathlib.Tactic
 
 /-!
 # Positive-weight triangular support
@@ -21,6 +23,8 @@ For any supported monomial `X^m`:
 Applied componentwise to a weight-preserving polynomial map, this is the
 precise triangularity needed for recursive inversion by increasing weight.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

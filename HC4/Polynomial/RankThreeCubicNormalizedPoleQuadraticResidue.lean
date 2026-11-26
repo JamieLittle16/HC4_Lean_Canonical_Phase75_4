@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
-import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceQuadraticResidue
+public import HC4.Polynomial.RankThreeCubicSourceSingularCoefficientResidue
+public import Mathlib.Tactic
 
 /-!
 # Quadratic source residue with a normalized cubic characteristic pole
@@ -20,6 +22,8 @@ The construction and nonvanishing of S mod p are deliberately
 separate tasks; no closing assumption is hidden here.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -29,9 +33,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicNormalizedPoleQuadraticResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicNormalizedPoleQuadraticResidue
+
+open RankThreeCubicNormalizedPoleQuadraticResidue (B3 F3 SB)
 
 /-- Actual source gradient transport gives the quadratic
 characteristic-time coefficient identities at any *normalized*

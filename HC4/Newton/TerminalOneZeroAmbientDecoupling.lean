@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalOneZeroPlanarFibre
-import HC4.Newton.PositiveWeightTriangularEvaluation
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroPlanarFibre
+public import HC4.Newton.PositiveWeightTriangularEvaluation
+public import Mathlib.Tactic
 
 /-!
 # Ambient decoupling in the standard one-zero terminal branch
@@ -36,6 +38,8 @@ Finally, if the affine slope is `s ≠ 0`, then
 also ignores `X₁`.  Thus, once coordinates `0,2,3` agree, equality of
 gradient coordinate `0` forces coordinate `1` to agree.
 -/
+
+public section
 
 namespace HC4.Newton
 

@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneNormalizedClosure
 
 /-!
 # Nilpotent normalized rank-one polynomial factors
@@ -10,6 +12,8 @@ from the verified polynomial chart descent. Scaling the operator
 does not change self-adjointness. Therefore independent polynomial
 parameter components are impossible without assuming a trace identity.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -68,8 +72,14 @@ end MatrixAlgebra
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
+namespace RationalCharacteristicRankOneNormalizedNilpotent
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+
+end RationalCharacteristicRankOneNormalizedNilpotent
+
+open RationalCharacteristicRankOneNormalizedNilpotent (B E)
 
 /-- Evaluation at x/y has trivial kernel on scalar polynomials.
 The bivariate chart map sends such a polynomial to its constant

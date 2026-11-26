@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter
 
 /-!
 # Closure of the nonconstant straight-direction branch
@@ -13,6 +15,8 @@ Thus a nonconstant normalized fibre direction always supplies the
 original constant left-kernel relation.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,11 +26,17 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankTwoVariableClosure
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankTwoVariableClosure
+
+open RationalCharacteristicRankTwoVariableClosure (B E I S P)
 
 set_option maxHeartbeats 4000000 in
 /-- A nonconstant affine quotient whose differential kills both

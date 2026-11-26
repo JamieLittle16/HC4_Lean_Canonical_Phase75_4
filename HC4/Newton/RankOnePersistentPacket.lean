@@ -1,5 +1,7 @@
-import HC4.Newton.RankTwoHomogeneousPacketClassification
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.RankTwoHomogeneousPacketClassification
+public import Mathlib.Tactic
 
 /-!
 # Rank-one persistent packet support
@@ -30,6 +32,8 @@ Thus the first persistent packet is reduced canonically to three scalar
 coefficients.  The next phase can package those coefficients as the binary
 quadratic `q` and classify its determinant/rank alternatives.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

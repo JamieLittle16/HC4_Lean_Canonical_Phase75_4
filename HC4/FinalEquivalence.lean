@@ -1,4 +1,7 @@
-import HC4.RationalInverseAudit
+module
+
+public import HC4.RationalInverseAudit
+meta import Lean.Util.CollectAxioms
 
 /-!
 # Final polynomial-inverse equivalence
@@ -16,6 +19,8 @@ The equivalence uses the verified core implication, planar doubling,
 and the separately proved generic polynomial inverse theorem.
 Neither conjecture is assumed as a global axiom.
 -/
+
+@[expose] public section
 
 namespace HC4.StatementAudit
 

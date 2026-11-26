@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedExtremalKernel
+module
+
+public import HC4.Polynomial.WeightedExtremalKernel
 
 /-!
 # Jointly affine leading planes are impossible at positive clock
@@ -18,6 +20,8 @@ impossible, in every determinant-one weight-compatible chart.
 This excludes a family of genuinely variable kernels, not only
 constant kernel directions.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

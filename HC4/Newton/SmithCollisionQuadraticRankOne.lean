@@ -1,5 +1,7 @@
-import HC4.Newton.RankOneRepairProgress
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.RankOneRepairProgress
+public import Mathlib.Tactic
 
 /-!
 # Collision forces the persistent Smith quadratic to have rank one
@@ -28,6 +30,8 @@ denominator-cleared binary block and the Phase 92.3 theorem
 Thus the nondegenerate branch of the Phase 92 re-entry dichotomy is
 eliminated at an actual nonzero collision wall.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

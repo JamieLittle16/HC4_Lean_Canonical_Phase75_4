@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicRepeatedFactor
-import HC4.Polynomial.RankThreeCubicPoleCofactor
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicRepeatedFactor
+public import HC4.Polynomial.RankThreeCubicPoleCofactor
+public import Mathlib
 
 /-!
 # Unified source-honest pole trichotomy for full-rank cubic transverse cap
@@ -16,6 +18,8 @@ The two pole cases still require geometric contradictions.  This is
 not a proof of cap-three injectivity or HC4.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,7 +29,9 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RankThreeCubicPoleFinalTrichotomy.B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RankThreeCubicPoleFinalTrichotomy (B3)
 
 /-- A concrete, source-derived algebraic classification of the
 full-rank cubic characteristic, without additional rank/pole/squarefree

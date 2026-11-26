@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedExtremalObstruction
+module
+
+public import HC4.Polynomial.WeightedExtremalObstruction
 
 /-!
 # Constant kernel exclusion at a global optimum
@@ -15,6 +17,8 @@ verified extremal missing-coordinate obstruction applies.
 
 No analogous assertion about adjugate annihilators is made.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

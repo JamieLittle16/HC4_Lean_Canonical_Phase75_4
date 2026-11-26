@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalDirectRankJumpReduction
-import Mathlib.Algebra.BigOperators.GroupWithZero.Finset
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalDirectRankJumpReduction
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Finset
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Determinant permutation pairing for terminal weights
@@ -18,6 +20,8 @@ This is the finite matching statement behind the usual conformal-hyperbolic
 normal form and is useful both in the strictly-positive and zero-weight
 terminal branches.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

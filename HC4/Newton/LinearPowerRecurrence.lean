@@ -1,6 +1,8 @@
-import HC4.Newton.FiniteDirectionalRecurrence
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.FiniteDirectionalRecurrence
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Tactic
 
 /-!
 # The linear-form power profile solves the directional recurrence
@@ -25,6 +27,8 @@ recurrence.  Together with Phase 91.7, this reduces the one-linear-form
 classification to matching one endpoint coefficient on each frozen
 external slice.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

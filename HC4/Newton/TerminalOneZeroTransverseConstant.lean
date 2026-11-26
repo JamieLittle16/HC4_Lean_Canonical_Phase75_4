@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalOneZeroAffineRecovery
-import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroAffineRecovery
+public import Mathlib.Algebra.MvPolynomial.Nilpotent
+public import Mathlib.Tactic
 
 /-!
 # Constant transverse determinant in the one-zero branch
@@ -21,6 +23,8 @@ unit.  Hence
 This is exactly the planar Keller certificate needed on every fixed
 one-zero fibre.
 -/
+
+public section
 
 namespace HC4.Newton
 

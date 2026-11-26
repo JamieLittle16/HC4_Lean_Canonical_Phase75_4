@@ -1,5 +1,7 @@
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Determinant of the one-zero Hessian block
@@ -21,6 +23,8 @@ For an actual Hessian, symmetry gives `p=q`, yielding the square factor
 
 This is the algebraic core of the one-zero endpoint.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

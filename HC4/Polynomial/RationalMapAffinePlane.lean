@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoClosure
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoClosure
 
 /-!
 # Source-independent rational Jacobian rigidity
@@ -8,14 +10,22 @@ verified anchored proof. The frame and straight-direction arguments
 generalize the source-level proofs, without modifying the HC4 proof.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 open MvPolynomial
 open scoped Matrix BigOperators
 noncomputable section
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalMapAffinePlane
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalMapAffinePlane
+
+open RationalMapAffinePlane (B E I)
 set_option maxHeartbeats 8000000
 
 theorem rankTwo_polynomial_frameTensor

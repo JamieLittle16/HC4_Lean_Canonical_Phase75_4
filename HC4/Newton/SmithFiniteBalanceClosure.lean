@@ -1,5 +1,7 @@
-import HC4.Newton.SmithPoleMinimality
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.SmithPoleMinimality
+public import Mathlib.Tactic
 
 /-!
 # Finite Smith balance closure
@@ -33,6 +35,8 @@ Thus the whole finite convex-balance calculation is now reduced to a
 single first-wall classification interface rather than a general convex
 separation theorem.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

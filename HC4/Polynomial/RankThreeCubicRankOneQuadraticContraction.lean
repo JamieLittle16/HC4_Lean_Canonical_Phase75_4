@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicRankOneCramerProportional
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicRankOneCramerProportional
+public import Mathlib.Tactic
 
 /-!
 # Rank-one Cramer quadratic vanishing forces adjugate contraction vanishing
@@ -13,6 +15,8 @@ This is the cancellation bridge from the source-derived singular
 residue quadratic identities to Jacobi's determinant-derivative
 contraction. It does not assert the pole obstruction is impossible.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

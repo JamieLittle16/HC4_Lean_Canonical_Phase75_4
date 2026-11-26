@@ -1,8 +1,10 @@
-import HC4.Newton.TerminalTwoZeroDoublingForm
-import HC4.Newton.TwoZeroBlockDeterminant
-import HC4.Polynomial.HessianDeterminant
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroDoublingForm
+public import HC4.Newton.TwoZeroBlockDeterminant
+public import HC4.Polynomial.HessianDeterminant
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.Tactic
 
 /-!
 # Hessian determinant square on the two-zero terminal face
@@ -19,6 +21,8 @@ the Hessian has the exact block form proved in
 This is a polynomial identity in the original four-variable ring.  It is
 the algebraic heart of the planar Keller reduction.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

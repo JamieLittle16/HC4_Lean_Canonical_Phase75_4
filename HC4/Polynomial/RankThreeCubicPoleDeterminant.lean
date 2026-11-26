@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceLinearOrPole
+public import Mathlib.Tactic
 
 /-!
 # Cramer's identity and the cubic characteristic pole divisor
@@ -13,6 +15,8 @@ nonunit corollary alone is not a new exclusion. No irreducible prime
 or terminal contradiction is claimed.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,8 +26,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev P3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev FF3 (K : Type*) [Field K] := FractionRing (P3 K)
+namespace RankThreeCubicPoleDeterminant
+
+abbrev P3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev FF3 (K : Type*) [Field K] := FractionRing (P3 K)
+
+end RankThreeCubicPoleDeterminant
+
+open RankThreeCubicPoleDeterminant (P3 FF3)
 
 /-- Exact Cramer's numerator identity for any polynomial transverse
 matrix equation solved by a rational characteristic. This is the

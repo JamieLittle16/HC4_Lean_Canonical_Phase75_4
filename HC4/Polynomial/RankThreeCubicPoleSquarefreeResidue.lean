@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleReducedDenominator
+public import Mathlib
 
 /-!
 # A genuine cubic characteristic pole on a squarefree determinant
@@ -16,6 +18,8 @@ This theorem does not rule out the pole branch. Neither the residue
 kernel nor nonsquarefree determinant is yet contradictory.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -25,8 +29,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicPoleSquarefreeResidue
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicPoleSquarefreeResidue
+
+open RankThreeCubicPoleSquarefreeResidue (B3 F3)
 
 /-- For a squarefree polynomial determinant, an actual non-polynomial
 characteristic yields a nonzero kernel vector modulo an irreducible

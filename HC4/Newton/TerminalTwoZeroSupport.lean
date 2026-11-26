@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalTwoZeroPattern
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.RingTheory.MvPolynomial.EulerIdentity
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroPattern
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+public import Mathlib.Tactic
 
 /-!
 # Support geometry of the two-zero terminal boundary
@@ -30,6 +32,8 @@ depend only on `X₀,X₁`, and the positive-positive Hessian block vanishes.
 This is the polynomial support content of the planar Hessian-doubling
 normal form, still inside the original four-variable polynomial ring.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

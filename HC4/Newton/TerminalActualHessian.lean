@@ -1,6 +1,8 @@
-import HC4.Newton.TerminalQuadraticHessian
-import HC4.Newton.ExactCollisionFirstWall
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalQuadraticHessian
+public import HC4.Newton.ExactCollisionFirstWall
+public import Mathlib.Tactic
 
 /-!
 # Actual terminal Hessian at the origin
@@ -33,6 +35,8 @@ terminal theorem.
 Thus the scalar terminal branch now accepts the actual Hessian determinant
 supplied by determinant closure directly.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

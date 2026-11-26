@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoFrobeniusTensor
 
 /-!
 # The rational Jordan frame and differentiated source identities
@@ -9,6 +11,8 @@ identities are derived before any change of frame; the latter is
 a pointwise tensor transformation, not differentiation of a
 variable similarity matrix.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -21,7 +25,9 @@ section Frame
 
 variable {F : Type*} [Field F]
 
-private abbrev Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+abbrev RationalCharacteristicRankTwoFrame.Mat (F : Type*) := Matrix (Fin 3) (Fin 3) F
+
+open RationalCharacteristicRankTwoFrame (Mat)
 
 /-- The cyclic frame with columns N²u, Nu, u is invertible whenever
 N³=0 and N²u is nonzero. -/
@@ -108,9 +114,15 @@ section Differential
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankTwoFrame
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankTwoFrame
+
+open RationalCharacteristicRankTwoFrame (B E I)
 
 /-- Apply a derivation to every matrix entry. -/
 def rankTwo_matrixDeriv (D : Derivation K (E K) (E K))

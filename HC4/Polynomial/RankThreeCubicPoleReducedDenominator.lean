@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleDeterminant
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleDeterminant
+public import Mathlib
 
 /-!
 # Genuine irreducible denominator factors for cubic rational characteristics
@@ -15,6 +17,8 @@ the determinant). A maximal pole-order normalization remains necessary
 before extracting the residue kernel.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,8 +28,14 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+namespace RankThreeCubicPoleReducedDenominator
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+
+end RankThreeCubicPoleReducedDenominator
+
+open RankThreeCubicPoleReducedDenominator (B3 F3)
 
 /-- A reduced fraction whose coordinate is not polynomial has a genuine
 irreducible denominator factor, absent from its reduced numerator. -/

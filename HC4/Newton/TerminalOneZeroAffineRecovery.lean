@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalOneZeroHessianFactor
-import HC4.Newton.CharZeroHessianKernelRigidity
-import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalOneZeroHessianFactor
+public import HC4.Newton.CharZeroHessianKernelRigidity
+public import Mathlib.Algebra.MvPolynomial.Nilpotent
+public import Mathlib.Tactic
 
 /-!
 # Affine recovery of the zero-weight coordinate
@@ -38,6 +40,8 @@ Therefore
 So equality of the gradient's coordinate `1` immediately recovers the
 zero-weight source coordinate `0`.
 -/
+
+public section
 
 namespace HC4.Newton
 

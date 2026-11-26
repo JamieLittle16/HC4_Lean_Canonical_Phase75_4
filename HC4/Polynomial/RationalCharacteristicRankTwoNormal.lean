@@ -1,5 +1,7 @@
-import HC4.Polynomial.RationalCharacteristicRankTwoFrontier
-import Mathlib.RingTheory.Derivation.Lie
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankTwoFrontier
+public import Mathlib.RingTheory.Derivation.Lie
 
 /-!
 # The rank-two characteristic normal
@@ -10,6 +12,8 @@ under the rational kernel derivation. This is a differential
 statement on the original velocity field, not a claim that the
 normal is already constant over the ground field.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -94,9 +98,15 @@ end MatrixAlgebra
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
+namespace RationalCharacteristicRankTwoNormal
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+
+end RationalCharacteristicRankTwoNormal
+
+open RationalCharacteristicRankTwoNormal (B E I)
 
 /-- A derivation of the transverse fraction field is determined by
 the three original coordinate values. -/

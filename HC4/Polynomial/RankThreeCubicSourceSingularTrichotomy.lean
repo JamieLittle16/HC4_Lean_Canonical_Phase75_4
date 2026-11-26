@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
-import HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleTransportTrichotomy
+public import HC4.Polynomial.RankThreeCubicSourceSquarefreeSingularResidue
+public import Mathlib.Tactic
 
 /-!
 # Full-source cubic characteristic classification with singular pole residue
@@ -23,6 +25,8 @@ characteristic regularity, or singular-direction endpoint.
 This is a reduction, not a contradiction eliminating the pole.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -33,9 +37,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceSingularTrichotomy
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceSingularTrichotomy
+
+open RankThreeCubicSourceSingularTrichotomy (B3 F3 SB)
 
 /-- The nonpolynomial cubic alternative is now a nonzero *source*
 singular-residue certificate rather than an unspecified quotient kernel.

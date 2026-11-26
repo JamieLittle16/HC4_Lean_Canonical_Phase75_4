@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicSourceDegrees
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourceDegrees
+public import Mathlib.Tactic
 
 /-!
 # The source quadratic transverse gradient identity
@@ -17,6 +19,8 @@ pole-residue calculation. It neither assumes a rational velocity nor
 claims a pole contradiction.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial Finsupp
@@ -29,8 +33,10 @@ set_option maxHeartbeats 1000000
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev SB (K : Type*) [Field K] :=
+abbrev RankThreeCubicSourceQuadraticEuler.SB (K : Type*) [Field K] :=
   MvPolynomial (Unit ⊕ Fin 3) K
+
+open RankThreeCubicSourceQuadraticEuler (SB)
 
 /-- The source's natural transverse weight and integer transverse
 weight agree on every monomial. -/

@@ -1,5 +1,7 @@
-import HC4.Compat.MvPolynomial
-import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
+module
+
+public import HC4.Compat.MvPolynomial
+public import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
 
 /-!
 # Exact weighted initial forms of multivariate polynomials
@@ -9,6 +11,8 @@ initial-form operator at a prescribed integer weight.  It records the
 coefficient formula, homogeneity, idempotence, and the behaviour on already
 homogeneous polynomials.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

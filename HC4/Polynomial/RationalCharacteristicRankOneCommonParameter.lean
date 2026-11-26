@@ -1,4 +1,6 @@
-import HC4.Polynomial.RationalCharacteristicRankOneAffineClosure
+module
+
+public import HC4.Polynomial.RationalCharacteristicRankOneAffineClosure
 
 /-!
 # From a common rational parameter to actual characteristic rigidity
@@ -13,6 +15,8 @@ The existence of such a common parameter for a rank-one Jacobian
 is not assumed as an axiom or proved by this file.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -22,11 +26,17 @@ noncomputable section
 
 variable {K : Type*} [Field K]
 
-private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev E (K : Type*) [Field K] := FractionRing (B K)
-private abbrev I := Unit ⊕ Fin 3
-private abbrev S (K : Type*) [Field K] := MvPolynomial I K
-private abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+namespace RationalCharacteristicRankOneCommonParameter
+
+abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev E (K : Type*) [Field K] := FractionRing (B K)
+abbrev I := Unit ⊕ Fin 3
+abbrev S (K : Type*) [Field K] := MvPolynomial I K
+abbrev P (K : Type*) [Field K] := _root_.Polynomial K
+
+end RationalCharacteristicRankOneCommonParameter
+
+open RationalCharacteristicRankOneCommonParameter (B E I S P)
 
 /-- Scalar polynomial evaluation obeys the ordinary chain rule for
 any ground-field derivation of a field. -/

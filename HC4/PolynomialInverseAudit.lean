@@ -1,7 +1,10 @@
-import HC4.StatementAudit
-import Mathlib.Algebra.MvPolynomial.Funext
-import Mathlib.RingTheory.Nullstellensatz
-import Mathlib.RingTheory.Polynomial.UniqueFactorization
+module
+
+public import HC4.StatementAudit
+public import Mathlib.Algebra.MvPolynomial.Funext
+public import Mathlib.RingTheory.Nullstellensatz
+public import Mathlib.RingTheory.Polynomial.UniqueFactorization
+meta import Lean.Util.CollectAxioms
 
 /-!
 # Polynomial inverse audit
@@ -14,6 +17,8 @@ are constructed, both polynomial composition identities follow.
 
 No claim of rational inverse existence is made in this file.
 -/
+
+public section
 
 namespace HC4.PolynomialInverseAudit
 

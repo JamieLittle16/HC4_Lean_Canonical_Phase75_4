@@ -1,5 +1,7 @@
-import HC4.Newton.LinearPowerPacketNormalForm
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.LinearPowerPacketNormalForm
+public import Mathlib.Tactic
 
 /-!
 # Orientation-independent rank-two homogeneous packet classification
@@ -21,6 +23,8 @@ The remaining orientations are simpler:
 This file packages all three possibilities into one theorem, removing the
 pivot-orientation case split from later corank-entry arguments.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

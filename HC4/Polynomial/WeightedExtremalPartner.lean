@@ -1,4 +1,6 @@
-import HC4.Polynomial.WeightedExtremalSplitRow
+module
+
+public import HC4.Polynomial.WeightedExtremalSplitRow
 
 /-!
 # Weight-partner restrictions on genuine counterexamples
@@ -12,6 +14,8 @@ half the cap at a positive-clock global optimum.
 These restrictions concern the actual source, not just its
 singular leading Hessian.
 -/
+
+public section
 
 namespace HC4.Polynomial
 

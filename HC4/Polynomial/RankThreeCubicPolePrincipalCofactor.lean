@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy
-import Mathlib
+module
+
+public import HC4.Polynomial.RankThreeCubicPoleFinalTrichotomy
+public import Mathlib
 
 /-!
 # From a surviving cofactor to a principal Schur pivot on a cubic pole
@@ -17,6 +19,8 @@ This is a nonvanishing principal 2x2 Hessian minor on the actual cubic
 source component. No contradiction or lift to the original polynomial
 source endpoint is asserted here.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 
@@ -109,7 +113,9 @@ theorem exists_principal_cofactor_not_dvd
 
 variable {K : Type*} [Field K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev RankThreeCubicPolePrincipalCofactor.B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+
+open RankThreeCubicPolePrincipalCofactor (B3)
 
 /-- Symmetry of the actual transverse Hessian, without an added chart
 assumption: it follows from commutation of source mixed partials. -/

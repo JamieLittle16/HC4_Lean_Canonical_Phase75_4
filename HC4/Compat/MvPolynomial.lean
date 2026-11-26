@@ -1,8 +1,12 @@
-import Mathlib.Algebra.MvPolynomial.Basic
+module
+
+public import Mathlib.Algebra.MvPolynomial.Basic
 
 /-!
 # Compatibility with the pre-4.35 coefficient API
 -/
+
+@[expose] public section
 
 namespace MvPolynomial
 

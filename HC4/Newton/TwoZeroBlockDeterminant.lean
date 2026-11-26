@@ -1,5 +1,7 @@
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Tactic
 
 /-!
 # Determinant of the two-zero Hessian block
@@ -18,6 +20,8 @@ Its determinant is independent of the upper-left block and equals
 This is the exact finite determinant identity behind the reduction from
 four-dimensional Monge--Ampère to the planar Keller determinant.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

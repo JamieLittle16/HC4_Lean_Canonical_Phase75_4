@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankThreeCubicFibrePencils
+module
+
+public import HC4.Polynomial.RankThreeCubicFibrePencils
 
 /-!
 # Residue of a characteristic direction with a pole
@@ -8,6 +10,8 @@ singular point of the moving cubic. The coefficient ring is intended
 to be a local ring at the pole and the second homomorphism its
 residue map. The proof only needs the stated ring maps.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

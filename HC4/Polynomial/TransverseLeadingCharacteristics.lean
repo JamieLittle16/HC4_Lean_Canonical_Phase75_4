@@ -1,5 +1,7 @@
-import HC4.Polynomial.RankThreeCubicCharacteristics
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicCharacteristics
+public import Mathlib.Tactic
 
 /-!
 # Arbitrary transverse degree: actual leading Hessian and straight characteristics
@@ -17,6 +19,8 @@ without assuming singularity or introducing a replacement source.
 This is a leading-layer result, not a claim of a full-source
 collision-preserving reduction, nor a pole obstruction.
 -/
+
+public section
 
 namespace HC4.Polynomial.RankThreeCubic
 

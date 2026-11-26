@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalNonnegativeWeights
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalNonnegativeWeights
+public import Mathlib.Tactic
 
 /-!
 # The two-zero terminal weight pattern
@@ -19,6 +21,8 @@ Consequently the terminal weight is literally
 
 No torus classification is used.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

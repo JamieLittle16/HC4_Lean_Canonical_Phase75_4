@@ -1,4 +1,6 @@
-import HC4.Newton.PositiveWeightTriangularSupport
+module
+
+public import HC4.Newton.PositiveWeightTriangularSupport
 
 /-!
 # Positive terminal triangular reduction
@@ -26,6 +28,8 @@ This is the precise finite recursion invariant used in the manuscript's
 `k = 0` endpoint.  The next module only has to combine it with
 nonsingularity of the linear part and induct over the finitely many weights.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

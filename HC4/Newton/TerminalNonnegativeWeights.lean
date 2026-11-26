@@ -1,5 +1,7 @@
-import HC4.Newton.TerminalWeightPermutation
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalWeightPermutation
+public import Mathlib.Tactic
 
 /-!
 # Nonnegative terminal lattice weights
@@ -21,6 +23,8 @@ These facts are deliberately separated from the later endpoint theorem so
 the final restart adapter only has to prove nonnegativity of the Smith
 lattice exponents.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

@@ -1,7 +1,9 @@
-import HC4.Newton.TerminalTwoZeroEndpointInterface
-import HC4.PlanarJC2Interface
-import Mathlib.Algebra.MvPolynomial.Rename
-import Mathlib.Tactic
+module
+
+public import HC4.Newton.TerminalTwoZeroEndpointInterface
+public import HC4.PlanarJC2Interface
+public import Mathlib.Algebra.MvPolynomial.Rename
+public import Mathlib.Tactic
 
 /-!
 # Planarisation of the two-zero terminal coefficients
@@ -25,6 +27,8 @@ is used with Mathlib's
 Thus the terminal coefficient pair is not merely "morally planar":
 there are honest planar polynomials whose renames are exactly `A` and `C`.
 -/
+
+@[expose] public section
 
 namespace HC4.Newton
 

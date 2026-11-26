@@ -1,4 +1,6 @@
-import HC4.Polynomial.RankTwoGlobalClosure
+module
+
+public import HC4.Polynomial.RankTwoGlobalClosure
 
 /-!
 # The remaining actual rank-three extremum
@@ -11,6 +13,8 @@ the same full source, cap, optimum and gradient collision.
 
 A zero cofactor column is not a constant Hessian kernel.
 -/
+
+public section
 
 namespace HC4.Polynomial
 
@@ -76,8 +80,14 @@ theorem allThreeMinorsZero_iff_adjugate_zero
 end Matrix
 
 variable {K : Type*} [Field K] [CharZero K]
-private abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
-private abbrev I := Unit ⊕ Fin 3
+namespace RankThreeExtremalReduction
+
+abbrev S (K : Type*) [Field K] := MvPolynomial (Fin 4) K
+abbrev I := Unit ⊕ Fin 3
+
+end RankThreeExtremalReduction
+
+open RankThreeExtremalReduction (S I)
 
 set_option maxHeartbeats 3000000 in
 /-- Transport the singular Hessian annihilator theorem to Fin 4.

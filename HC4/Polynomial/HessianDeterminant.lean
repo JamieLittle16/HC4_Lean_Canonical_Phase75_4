@@ -1,4 +1,6 @@
-import HC4.Polynomial.DeterminantWeight
+module
+
+public import HC4.Polynomial.DeterminantWeight
 
 /-!
 # Weighted degree of the Hessian determinant
@@ -11,6 +13,8 @@ common degree
 
 This module proves that statement for actual multivariate polynomial Hessians.
 -/
+
+@[expose] public section
 
 namespace HC4.Polynomial
 

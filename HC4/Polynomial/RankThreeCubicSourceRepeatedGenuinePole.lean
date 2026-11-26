@@ -1,6 +1,8 @@
-import HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi
-import HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated
-import Mathlib.Tactic
+module
+
+public import HC4.Polynomial.RankThreeCubicSourcePoleLocalJacobi
+public import HC4.Polynomial.RankThreeCubicSourceLinearOrRepeated
+public import Mathlib.Tactic
 
 /-!
 # Cubic characteristic classification with an actual repeated pole
@@ -14,6 +16,8 @@ This matches the next valuation/localization analysis much more
 closely than an arbitrary repeated determinant factor does.
 -/
 
+public section
+
 namespace HC4.Polynomial.RankThreeCubic
 
 open MvPolynomial
@@ -24,9 +28,15 @@ noncomputable section
 
 variable {K : Type*} [Field K] [CharZero K]
 
-private abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
-private abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
-private abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+namespace RankThreeCubicSourceRepeatedGenuinePole
+
+abbrev B3 (K : Type*) [Field K] := MvPolynomial (Fin 3) K
+abbrev F3 (K : Type*) [Field K] := FractionRing (B3 K)
+abbrev SB (K : Type*) [Field K] := MvPolynomial (Unit ⊕ Fin 3) K
+
+end RankThreeCubicSourceRepeatedGenuinePole
+
+open RankThreeCubicSourceRepeatedGenuinePole (B3 F3 SB)
 
 /-- A *specified* repeated irreducible factor in a polynomial of
 total degree at most three must itself have degree one. -/
