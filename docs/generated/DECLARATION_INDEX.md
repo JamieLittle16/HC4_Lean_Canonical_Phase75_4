@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11973**.
+Distinct declaration spellings indexed: **11977**.
 
 ## Repeated declaration spellings
 
@@ -9516,8 +9516,10 @@ Distinct declaration spellings indexed: **11973**.
 - `rankThree_affine_det` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_affine_hessian` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_affine_partial` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_affine_relative` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_borderedRankOne_det_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
+- `rankThree_coeff_jet` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_det_one` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_selfAdjoint` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9554,6 +9556,7 @@ Distinct declaration spellings indexed: **11973**.
 - `rankThree_normalizedKernel_adjugate_column` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_exists` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_lineGradient` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_normalizedPhase_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedWall_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedWall_impossible_of_top` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalized_clearedPhase_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9585,6 +9588,7 @@ Distinct declaration spellings indexed: **11973**.
 - `rankThree_regularFactor_cancelCap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativeDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativeFraction_polynomials` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_relativeJet_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePhase_clearDenominators` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePhase_no_affineRelation` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relativePolynomial_eval_congr` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
