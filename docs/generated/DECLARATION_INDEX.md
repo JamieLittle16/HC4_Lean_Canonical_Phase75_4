@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11789**.
+Distinct declaration spellings indexed: **11792**.
 
 ## Repeated declaration spellings
 
@@ -6528,7 +6528,10 @@ Distinct declaration spellings indexed: **11789**.
 - `globalWeightOptimum_no_zero_plane_arbitraryChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_no_zero_principalPlane` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `globalWeightOptimum_not_rankAtMostOne` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
+- `globalWeightOptimum_rankTwo_no_affineChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_rankTwo_no_affineCoordinate` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
+- `globalWeightOptimum_rankTwo_no_affineDirection` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
+- `globalWeightOptimum_rankTwo_weight_le_half` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `gradientAtZero_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedZeroLinearJetKernelOpening`
 - `gradientAtZero_transverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `gradientAtZero_tripleTransverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`

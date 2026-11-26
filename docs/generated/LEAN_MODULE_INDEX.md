@@ -5494,7 +5494,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankTwoMinorTransport`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `abbrev S`, `theorem rankTwo_exists_purePower_chart_fixed`, `theorem rankTwo_partial_fixedColumn`, `theorem rankTwo_partial_degree_le`, `theorem rankTwo_affine_exists_constantRatio_chart`, `theorem rankTwo_affine_constantRatio_zeroPlane`, `theorem extremalHessianPair_span_pair_zero`, `theorem globalWeightOptimum_no_zero_plane_arbitraryChart`, `theorem globalWeightOptimum_rankTwo_no_affineCoordinate`
+- Declarations: `abbrev S`, `theorem rankTwo_exists_purePower_chart_fixed`, `theorem rankTwo_partial_fixedColumn`, `theorem rankTwo_partial_degree_le`, `theorem rankTwo_affine_exists_constantRatio_chart`, `theorem rankTwo_affine_constantRatio_zeroPlane`, `theorem extremalHessianPair_span_pair_zero`, `theorem globalWeightOptimum_no_zero_plane_arbitraryChart`, `theorem globalWeightOptimum_rankTwo_no_affineCoordinate`, `theorem globalWeightOptimum_rankTwo_no_affineDirection`, `theorem globalWeightOptimum_rankTwo_weight_le_half`, `theorem globalWeightOptimum_rankTwo_no_affineChart`
 
 ### `HC4.Polynomial.RankTwoAffineLevelCurvature`
 
