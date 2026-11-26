@@ -2312,6 +2312,8 @@ human architecture guide.
   - `HC4.QuasiTranslation.RankOneShear`
 - `HC4.QuasiTranslation.RankOneShear`
   - _(no local imports)_
+- `HC4.RationalInverseAudit`
+  - `HC4.PolynomialInverseAudit`
 - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.Assembly`
   - `HC4.RationalRigidity.AutonomousDenominatorRemoval`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **12000**.
+Distinct declaration spellings indexed: **12004**.
 
 ## Repeated declaration spellings
 
@@ -3823,6 +3823,7 @@ Distinct declaration spellings indexed: **12000**.
 - `affineTwoRootEulerOperator_eq_zero_of_primitiveHighestParallel_snd_det_eq_zero` — `theorem` in `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
 - `affineTwoRoot_degreeOne_primitive` — `theorem` in `HC4.Polynomial.AffineEulerDegreeOneRigidity`
 - `affine_line_natDegree_eq_one_of_direction_factor_ne_zero` — `theorem` in `HC4.RationalRigidity.LineSupportedHessianRigidity`
+- `algebraMap_surjective_of_subsingleton_emb` — `theorem` in `HC4.RationalInverseAudit`
 - `alignLeft` — `def` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_determinant` — `theorem` in `HC4.Newton.RankOneSchurSeriesAlignment`
 - `alignLeft_kernel_coeff` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
@@ -6991,6 +6992,7 @@ Distinct declaration spellings indexed: **12000**.
 - `initialForm_support_subset_of_nested` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `initialForm_zero` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
+- `injective_aeval_of_injective_eval` — `theorem` in `HC4.RationalInverseAudit`
 - `injective_of_reference_left_inverse` — `theorem` in `HC4.StatementAudit`
 - `innerPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `integer_min_or_unit_gap` — `theorem` in `HC4.Newton.FiniteValuationTilt`
@@ -8427,6 +8429,7 @@ Distinct declaration spellings indexed: **12000**.
 - `polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_identity_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `polynomial_identity_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `polynomial_inverse_of_injective_eval` — `theorem` in `HC4.RationalInverseAudit`
 - `polynomial_inverse_of_reduced_coordinates` — `theorem` in `HC4.PolynomialInverseAudit`
 - `polynomial_leadingCoeff_derivative_of_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_lower_zero_and_coeff_at_shift_of_mul_eq_X_pow_mul` — `theorem` in `HC4.Newton.PolynomialShiftedFactorTransport`
@@ -9969,6 +9972,7 @@ Distinct declaration spellings indexed: **12000**.
 - `reducedLogarithmicEtaNumerator` — `def` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
 - `reducedLogarithmicEtaValue` — `def` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
 - `reducedLogarithmicEta_cross_of_source_cross` — `theorem` in `HC4.RationalRigidity.LogarithmicSourceRegularity`
+- `reduced_coordinates_of_injective_eval` — `theorem` in `HC4.RationalInverseAudit`
 - `reduced_denominator_dvd_hessianDet` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `reduced_polynomial_pair_of_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `reduced_polynomial_pair_of_monic_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
