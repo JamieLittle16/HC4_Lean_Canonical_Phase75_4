@@ -2306,6 +2306,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedWallMinorSurvival`
 - `HC4.Polynomial.WeightedWallMinorSurvival`
   - `HC4.Polynomial.WeightedComplementaryKernel`
+- `HC4.PolynomialInverseAudit`
+  - `HC4.StatementAudit`
 - `HC4.QuasiTranslation`
   - `HC4.QuasiTranslation.RankOneShear`
 - `HC4.QuasiTranslation.RankOneShear`

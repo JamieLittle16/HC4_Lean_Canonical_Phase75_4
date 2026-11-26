@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11997**.
+Distinct declaration spellings indexed: **12000**.
 
 ## Repeated declaration spellings
 
@@ -4202,6 +4202,7 @@ Distinct declaration spellings indexed: **11997**.
 - `binaryWeightedEulerShear_schurDetCore_eq_sourceFactor_mul` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinarySchurSingularity`
 - `binaryWeightedEulerShear_schurDetCore_eq_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactBinarySchurSingularity`
 - `binary_euler_adjugate_quadratic` — `theorem` in `HC4.Newton.LongitudinalHessianCoupledKernel`
+- `bind_injective_of_point_surjective` — `theorem` in `HC4.PolynomialInverseAudit`
 - `binomialNormalForm` — `def` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `binomialODEModel` — `def` in `HC4.Polynomial.AutonomousODEReconstruction`
 - `binomialODEModel_satisfies` — `theorem` in `HC4.Polynomial.AutonomousODEReconstruction`
@@ -5104,6 +5105,7 @@ Distinct declaration spellings indexed: **11997**.
 - `denominatorClearedCoefficientSlope` — `def` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `denominatorClearedCoefficientSlope_pos` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelRestart`
 - `denominator_dvd_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
+- `denominator_isUnit_of_reduced_coordinate` — `theorem` in `HC4.PolynomialInverseAudit`
 - `departureFrontier_supplies_losslessFrontier` — `theorem` in `HC4.Valuation.DefectRetainingDepartureFrontier`
 - `dependsOnlyOnStandardZeroPair_exists_planarisation` — `theorem` in `HC4.Newton.TerminalTwoZeroPlanarisation`
 - `dependsOnlyOnStandardZeroPair_isWeightedHomogeneous_zero` — `theorem` in `HC4.Valuation.PlanarKellerCollisionTerminalLift`
@@ -8425,6 +8427,7 @@ Distinct declaration spellings indexed: **11997**.
 - `polynomial_identity_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
 - `polynomial_identity_of_surjective_cleared_chart` — `theorem` in `HC4.RationalRigidity.ReducedFractionAssembly`
 - `polynomial_identity_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `polynomial_inverse_of_reduced_coordinates` — `theorem` in `HC4.PolynomialInverseAudit`
 - `polynomial_leadingCoeff_derivative_of_pos` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurUnivariateLogDerivativeRigidity`
 - `polynomial_lower_zero_and_coeff_at_shift_of_mul_eq_X_pow_mul` — `theorem` in `HC4.Newton.PolynomialShiftedFactorTransport`
 - `polynomial_map_injective_of_injective` — `theorem` in `HC4.Polynomial.NestedPolynomialPowerInflation`
