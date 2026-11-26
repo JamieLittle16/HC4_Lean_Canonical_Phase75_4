@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11898**.
+Distinct declaration spellings indexed: **11900**.
 
 ## Repeated declaration spellings
 
@@ -4957,6 +4957,8 @@ Distinct declaration spellings indexed: **11898**.
 - `counterexample_capWeight_two_zeros` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `counterexample_exists_rankThree_complementary_chart` — `theorem` in `HC4.Polynomial.RankThreeExtremalReduction`
 - `counterexample_highWeight_two_partners` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
+- `counterexample_rankThree_no_rankTwoVelocity` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `counterexample_rankThree_no_rankTwoVelocity_zeroWeight` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledAlignedSmithWall_impossible_of_noPrimitive` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
