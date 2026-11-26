@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import subprocess
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -93,13 +94,13 @@ def parse_module(root: Path, path: Path) -> ModuleInfo:
 
 
 def collect_modules(root: Path) -> list[ModuleInfo]:
-    paths: list[Path] = []
-    root_module = root / "HC4.lean"
-    if root_module.is_file():
-        paths.append(root_module)
-    source_root = root / "HC4"
-    if source_root.is_dir():
-        paths.extend(sorted(source_root.rglob("*.lean")))
+    tracked = subprocess.check_output(
+        ["git", "ls-files", "-z"], cwd=root, text=True
+    ).split("\0")
+    paths = sorted(
+        root / p for p in tracked
+        if p.endswith(".lean") and (p == "HC4.lean" or p.startswith("HC4/"))
+    )
     return [parse_module(root, path) for path in paths]
 
 
