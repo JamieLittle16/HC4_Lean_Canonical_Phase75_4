@@ -5414,7 +5414,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankThreeExtremalReduction`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `abbrev B`, `abbrev E`, `def rankThreePartial`, `theorem rankThreePartial_map`, `theorem rankThree_oneVariableKernel_derivative_rows`, `theorem rankThree_oneVariableKernel_constant`, `theorem rankThree_normalizedKernel_exists`, `theorem rankThree_kernel_mixedDifferential`, `theorem rankThree_normalizedKernel_lineGradient`, `def rankThreeComplementJacobian`, `theorem rankThree_complement_transport`, `theorem rankThree_complement_det_one`, `theorem rankThree_complement_cube_zero`, `theorem rankThree_complement_zeroRow`, `theorem rankThree_complement_selfAdjoint`
+- Declarations: `abbrev B`, `abbrev E`, `def rankThreePartial`, `theorem rankThreePartial_map`, `theorem rankThree_oneVariableKernel_derivative_rows`, `theorem rankThree_oneVariableKernel_constant`, `theorem rankThree_normalizedKernel_exists`, `theorem rankThree_kernel_mixedDifferential`, `theorem rankThree_normalizedKernel_lineGradient`, `def rankThreeComplementJacobian`, `theorem rankThree_complement_transport`, `theorem rankThree_complement_det_one`, `theorem rankThree_complement_cube_zero`, `theorem rankThree_complement_zeroRow`, `theorem rankThree_complement_selfAdjoint`, `theorem rankThree_normalizedKernel_acceleration_zero`, `theorem globalWeightOptimum_rankThree_complementJacobian_ne_zero`, `theorem rankThree_zeroRow_rankTwo_principalCofactor_zero`
 
 ### `HC4.Polynomial.RankThreePencils`
 

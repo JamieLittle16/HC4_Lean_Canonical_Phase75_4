@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11863**.
+Distinct declaration spellings indexed: **11866**.
 
 ## Repeated declaration spellings
 
@@ -6534,6 +6534,7 @@ Distinct declaration spellings indexed: **11863**.
 - `globalWeightOptimum_not_rankAtMostOne` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `globalWeightOptimum_not_rankAtMostTwo` — `theorem` in `HC4.Polynomial.RankTwoGlobalClosure`
 - `globalWeightOptimum_rankThree` — `theorem` in `HC4.Polynomial.RankThreeExtremalReduction`
+- `globalWeightOptimum_rankThree_complementJacobian_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankTwo_exists_principalPivot` — `theorem` in `HC4.Polynomial.RankTwoPrincipalPivot`
 - `globalWeightOptimum_rankTwo_no_affineChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
 - `globalWeightOptimum_rankTwo_no_affineCoordinate` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
@@ -9493,6 +9494,7 @@ Distinct declaration spellings indexed: **11863**.
 - `rankThree_logarithmicCoreFromMoments_eq` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_measure_add_two_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThree_measure_succ_eq_rankTwo_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
+- `rankThree_normalizedKernel_acceleration_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_exists` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_lineGradient` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_omittedCoordinate_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
@@ -9524,6 +9526,7 @@ Distinct declaration spellings indexed: **11863**.
 - `rankThree_unit_longitudinal_step_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
 - `rankThree_vertical_fraction_equation_clears` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
+- `rankThree_zeroRow_rankTwo_principalCofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankTwoAxisPerm` — `def` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `rankTwoAxisPerm_preserves_normalizationExponent` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `rankTwoExactZeroSchurData_of_packetIsolation` — `def` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
