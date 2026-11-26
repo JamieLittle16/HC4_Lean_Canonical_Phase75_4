@@ -5,8 +5,8 @@ The conditional theorem is verified at 38e58bf4 (26 November 2026). The subseque
 ## Publication preparation
 
 1. Reproduce the audit on a fresh checkout using the pinned toolchain and dependencies, and record the exact commit and result.
-2. Extract the actual theorem dependency graph, distinguish the final proof from exploratory modules, and build a readable mathematical proof outline with source links.
-3. Audit prior literature, especially the recent Tang argument that informed the global weighted route. Establish bibliographic identity, dates, precise hypotheses and which arguments were adapted. Do not claim priority or mathematical independence prematurely.
+2. The declaration dependency and dated module-provenance exports are complete; see [the audit](PROOF_AND_CONTRIBUTION_AUDIT.md). Record the standalone build result and source footprint, keeping historical work intact.
+3. Extend the preliminary Tang comparison in the audit to a full lemma-level and prior-literature review. In particular, write a standalone mathematical exposition of the anchored rank-two rational rigidity argument and compare its precise hypotheses with Tang's Theorem 2.1. Do not claim priority or mathematical independence prematurely.
 4. Draft a manuscript with the exact conditional theorem, definitions, global extremal reduction, rank exclusions, rational rigidity, Taylor normalization, signed first wall, and Lean verification details. Include transparent attribution and limitations.
 5. Arrange independent mathematical and Lean review before making publication or novelty claims.
 
