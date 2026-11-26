@@ -925,3 +925,4 @@ import HC4.Polynomial.RankTwoPrincipalPivot
 import HC4.Polynomial.RankTwoAffineFibres
 import HC4.Polynomial.RankTwoKernelGraph
 import HC4.Polynomial.RankTwoGlobalClosure
+import HC4.Polynomial.RankThreeExtremalReduction
