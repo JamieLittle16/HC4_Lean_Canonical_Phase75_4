@@ -45,7 +45,7 @@ The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlan
 
 ## Consolidated manuscript (review draft)
 
-The [unified LaTeX manuscript](docs/research/hc4-jc2-manuscript.tex) consolidates the mathematical notes, including the anchored characteristic construction, rank exclusions, signed-wall contradiction, reverse doubling implication and polynomial-inverse bridge. See its [review record](docs/research/MANUSCRIPT_REVIEW.md) for formal interface checks and outstanding validation. The maintainer confirmed successful manuscript compilation on 26 November 2026. Independent clean equivalence reproduction has passed; the revised PDF layout and mathematical review remain pending.
+The [unified LaTeX manuscript](docs/research/hc4-jc2-manuscript.tex) consolidates the mathematical notes, including the anchored characteristic construction, rank exclusions, signed-wall contradiction, reverse doubling implication and polynomial-inverse bridge. See its [review record](docs/research/MANUSCRIPT_REVIEW.md) for formal interface checks and outstanding validation. The author-identified manuscript compiled successfully in two passes on 26 November 2026 (19 pages); external mathematical review remains pending.
 
 ## Global extremal-weight exposition
 
@@ -57,30 +57,27 @@ The final weighted proof was substantially informed by Qiyue Tang, *[Equivalence
 
 The project predates this preprint, but its earlier investigations and the completed proof should not be conflated with an independent discovery of the final implication. The contribution documented here is a Lean 4 formalisation and algebraic adaptation, including the precise same-field injectivity statement over arbitrary characteristic-zero fields. The final Lean proof does not assume Tang's theorem as an axiom. The [proof and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) records the mathematical route, actual declaration dependency graph statistics, dated source provenance, and a preliminary comparison with Tang. A full literature and lemma-level novelty review remains outstanding.
 
-## Reproduce the proof
+## Publication branch
 
-Use the pinned Lean toolchain and Lake manifest.
+The research snapshot is preserved at [archive/research-2026](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) (commit `fe55e3fb`). This branch retains 229 HC4 modules, including the 227-module import closure of the two main endpoints, the umbrella module and the focused audit. The maintainer reported successful incremental builds and all five endpoint axiom audits after pruning. Two elementary lemmas were relocated verbatim; obsolete transitive imports were removed. The theorem statements are unchanged. Fresh-host verification of this smaller publication checkpoint is still pending.
+
+The independent reproduction cited above applies to the earlier verified equivalence, not to the later pruning or a future Lean migration. The pinned toolchain remains Lean 4.24.0.
+
+## Reproduce the proof
 
 ```bash
 lake exe cache get
-lake build HC4.FinalEquivalence
-lake env lean HC4/FinalEquivalence.lean
+lake build HC4
 lake env lean HC4/Audit.lean
-# Optional: build all historical and current modules
-lake build
 ```
 
-Look for the final axiom reports for `HC4.StatementAudit.jc2_iff_hc4_explicit` and `HC4.Polynomial.hc4_of_planarJC2`. The verification checkpoint is preserved in [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64).
+The audit enforces the foundational axiom whitelist for five public endpoints, including the standalone rational rigidity theorem. For the full verification procedure including a deliberately false negative control, run `bash verify.sh`. For source indexes run `python3 tools/generate_proof_inventory.py`; for a read-only source closure report run `python3 tools/prune_publication.py`.
 
 ## Reading guide
 
-- [Proof, verification and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) — consolidated mathematical summary and provenance for external reviewers.
+- [Consolidated mathematical manuscript](docs/research/hc4-jc2-manuscript.tex) and [review record](docs/research/MANUSCRIPT_REVIEW.md).
+- [Proof and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) — historical verification, declaration statistics and attribution.
+- [Documentation hub](docs/README.md).
+- [Historical research snapshot](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) — all exploratory sources, phase notes and original documentation.
 
-- [Current proof status](docs/CURRENT_STATE.md)
-- [Proof routes and exact interfaces](docs/PROOF_PATHS.md)
-- [Publication and research next steps](docs/NEXT_STEPS.md)
-- [Documentation hub](docs/README.md)
-- [Historical research and phase notes](docs/archive/README.md)
-- [Reconstruction provenance](RECONSTRUCTION_PROVENANCE.md)
-
-Earlier valuation, Newton, Smith/Rees and transverse-cap investigations remain in the repository as mathematical research history; they are not extra hypotheses of the final theorem. For a broader verification script see `verify.sh`. Run `python3 tools/generate_proof_inventory.py` to regenerate the declaration and module indices.
+Development, Lean proof construction and manuscript drafting used substantial AI assistance. This is an independent project by Jamie Little, a Computer Science undergraduate at the University of Cambridge; no institutional endorsement is implied.
