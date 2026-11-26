@@ -709,6 +709,8 @@ theorem rankThree_activeMinor_zero_all_restrictedMinors
       simp [Ne.symm hlv, Ne.symm huv]
   have hcol (i : Fin 4) : H i l = -(H i u * V u + H i v * V v) := by
     have he := congrArg (fun x : Fin 4 → F => H *ᵥ x) hrepr
+    change H *ᵥ V = H *ᵥ ((Pi.single l (1 : F) : Fin 4 → F) +
+      Pi.single u (V u) + Pi.single v (V v)) at he
     rw [hV, Matrix.mulVec_add, Matrix.mulVec_add, Matrix.mulVec_single,
       Matrix.mulVec_single, Matrix.mulVec_single] at he
     have hh := congrFun he i
