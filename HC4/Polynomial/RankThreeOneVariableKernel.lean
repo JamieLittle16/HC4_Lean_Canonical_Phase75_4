@@ -2652,11 +2652,11 @@ theorem rankThree_lineEval_affine_of_derivation_sq_zero
   rcases n with _ | n
   · rw [h0,_root_.Polynomial.coeff_add]
     simp only [_root_.Polynomial.coeff_C,_root_.Polynomial.coeff_C_mul_X,
-      if_pos rfl,if_neg Nat.zero_ne_one,add_zero]
+      if_true,if_pos rfl,if_neg Nat.zero_ne_one,add_zero]
   rcases n with _ | n
   · rw [h1,_root_.Polynomial.coeff_add]
     simp only [_root_.Polynomial.coeff_C,_root_.Polynomial.coeff_C_mul_X,
-      if_neg Nat.one_ne_zero,if_pos rfl,zero_add]
+      if_true,if_neg Nat.one_ne_zero,if_pos rfl,zero_add]
   · change (A P).coeff (n+2) = _
     have hn0 : n+2 ≠ 0 := by omega
     have hn1 : n+2 ≠ 1 := by omega
