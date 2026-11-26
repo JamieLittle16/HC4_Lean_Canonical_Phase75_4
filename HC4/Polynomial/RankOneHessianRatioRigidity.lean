@@ -23,7 +23,7 @@ from an arbitrary rank-one Hessian is a separate step.
 
 namespace HC4.Polynomial
 
-open MvPolynomial HC4.Newton
+open MvPolynomial HC4.Newton RankThreeCubic
 open nonZeroDivisors
 open scoped Matrix BigOperators
 
@@ -106,7 +106,25 @@ private theorem rankOne_pderiv_zero_of_dvd (q : R σ K) (k : σ)
     have hu0 : u ≠ 0 := by
       intro hz
       exact hn (by rw [hu,hz,mul_zero])
-    have hlt := totalDegree_pderiv_lt_of_totalDegree_pos q k (Nat.pos_of_ne_zero hdeg)
+    have hlt : (pderiv k q).totalDegree < q.totalDegree := by
+      have hle : (pderiv k q).totalDegree ≤ q.totalDegree - 1 := by
+        change (pderiv k q).support.sup (fun m => m.sum (fun _ e => e)) ≤ _
+        apply Finset.sup_le
+        intro m hm
+        have hc : (pderiv k q).coeff m ≠ 0 := mem_support_iff.mp hm
+        have hc' : q.coeff (m + Finsupp.single k 1) ≠ 0 := by
+          rw [coeff_pderiv_backport] at hc
+          exact (mul_ne_zero_iff.mp hc).1
+        have hsupp : m + Finsupp.single k 1 ∈ q.support := mem_support_iff.mpr hc'
+        let d : σ →₀ ℕ := m + Finsupp.single k 1
+        have hdi : d k ≠ 0 := by simp [d]
+        have hsub : d - Finsupp.single k 1 = m := by simp [d]
+        have hweight : m.sum (fun _ e => e) + 1 = d.sum (fun _ e => e) := by
+          have hw := Finsupp.weight_sub_single_add (w := fun _ : σ => (1 : ℕ)) hdi
+          simpa [Finsupp.weight_apply, hsub, smul_eq_mul] using hw
+        have hbound : d.sum (fun _ e => e) ≤ q.totalDegree := le_totalDegree hsupp
+        omega
+      omega
     have he : (pderiv k q).totalDegree = q.totalDegree + u.totalDegree := by
       rw [hu]
       exact totalDegree_mul_of_isDomain hq hu0
@@ -178,7 +196,8 @@ theorem rankOne_purePivot_factor_constant
           exact hz
         · have hh := congrArg (fun a : σ →₀ ℕ => a j) hadd
           change (uv.1 + uv.2) j = (Finsupp.single k n) j at hh
-          simp [Finsupp.add_apply, Finsupp.single_apply, hj] at hh
+          simp only [Finsupp.add_apply, Finsupp.single_apply, if_neg (Ne.symm hj), if_neg hj] at hh
+          change uv.1 j = (0 : ℕ)
           omega
       have hv : uv.2 = Finsupp.single k n := by
         simpa only [hu0,zero_add] using hadd
@@ -239,6 +258,7 @@ theorem rankOneHessian_ratio_constant_of_purePivot
   have hdegrees := congrArg (fun z : R σ K => z.totalDegree) hcross
   change (B*q).totalDegree = (A*p).totalDegree at hdegrees
   rw [totalDegree_mul_of_isDomain hB0 hq0, totalDegree_mul_of_isDomain hA0 hp0] at hdegrees
+  have hBdeg' : B.totalDegree ≤ n := hBdeg
   have hpdeg : p.totalDegree = 0 := by omega
   have hqC := totalDegree_eq_zero_iff_eq_C.mp hqdeg
   have hpC := totalDegree_eq_zero_iff_eq_C.mp hpdeg
