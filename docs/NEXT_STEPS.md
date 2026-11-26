@@ -6,7 +6,7 @@ The conditional theorem is verified at 38e58bf4 (26 November 2026). The subseque
 
 1. Reproduce the audit on a fresh checkout using the pinned toolchain and dependencies, and record the exact commit and result.
 2. The declaration dependency and dated module-provenance exports are complete; see [the audit](PROOF_AND_CONTRIBUTION_AUDIT.md). Record the standalone build result and source footprint, keeping historical work intact.
-3. Extend the preliminary Tang comparison in the audit to a full lemma-level and prior-literature review. In particular, write a standalone mathematical exposition of the anchored rank-two rational rigidity argument and compare its precise hypotheses with Tang's Theorem 2.1. Do not claim priority or mathematical independence prematurely.
+3. Extend the preliminary Tang comparison in the audit to a full lemma-level and prior-literature review. The standalone all-rank theorem is verified and its [LaTeX exposition](research/rational-affine-plane-rigidity.tex) is available; review that exposition independently and compare it to Tang's Theorem 2.1 and prior literature. Do not claim priority or mathematical independence prematurely.
 4. Draft a manuscript with the exact conditional theorem, definitions, global extremal reduction, rank exclusions, rational rigidity, Taylor normalization, signed first wall, and Lean verification details. Include transparent attribution and limitations.
 5. Arrange independent mathematical and Lean review before making publication or novelty claims.
 
