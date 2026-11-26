@@ -85,7 +85,7 @@ theorem algebraMap_surjective_of_subsingleton_emb
   haveI : Algebra.IsSeparable S E := inferInstance
   have hr : Module.finrank S E = 1 :=
     (Field.finSepDegree_eq_finrank_of_isSeparable S E).symm.trans hd
-  obtain ⟨v, hv, hspan⟩ := Module.finrank_eq_one_iff'.mp hr
+  obtain ⟨v, hv, hspan⟩ := (finrank_eq_one_iff' (K := S) (V := E)).mp hr
   obtain ⟨a, ha⟩ := hspan (1 : E)
   intro w
   obtain ⟨b, hb⟩ := hspan w
