@@ -13,7 +13,7 @@
 - Regenerate source inventory and final/core declaration reports using tracked source files.
 - Preserve the historical audit and attribution, including Tang and the Mathlib backport notices. Archive superseded research documentation rather than rewrite its history.
 - Check tracked scripts and workflows for references to deleted historical modules.
-- Confirm the repository's own source licence with the author. The vendored Mathlib files retain their Apache 2.0 licence in HC4/Backport/LICENSE.
+- The author approved Apache 2.0 for the project; root LICENSE and NOTICE are present. The vendored Mathlib files retain their Apache 2.0 licence in HC4/Backport/LICENSE.
 - Run a fresh-host build and all five endpoint axiom checks. Do not clear local project caches after every incremental edit.
 
 ## Palomar migration
