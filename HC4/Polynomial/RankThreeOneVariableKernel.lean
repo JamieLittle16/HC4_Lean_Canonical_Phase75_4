@@ -371,7 +371,14 @@ theorem rankThree_complement_transport
   rw [coeffDeriv_C, show d j (f (pderiv (l.succAbove i) L)) =
     f (pderiv (l.succAbove j) (pderiv (l.succAbove i) L)) from rankThreePartial_map _ _,
     hE, derivation_aeval] at e
-  rw [hsum _ (by rw [hc, mul_zero])] at e
+  have hsplit :
+      (∑ a : Fin 4, MvPolynomial.aeval w (pderiv a (pderiv (l.succAbove i) L)) *
+        coeffDeriv (d j) (w a)) =
+      ∑ a : Fin 3, MvPolynomial.aeval w (pderiv (l.succAbove a) (pderiv (l.succAbove i) L)) *
+        coeffDeriv (d j) (w (l.succAbove a)) := by
+    apply hsum
+    rw [hc, mul_zero]
+  rw [hsplit] at e
   simp only [ht] at e
   simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
     Matrix.submatrix_apply, hessian_apply, hE, J] using e
@@ -473,7 +480,11 @@ theorem rankThree_complement_selfAdjoint
   rw [h]
   apply Finset.sum_congr rfl
   intro a _
-  rw [mul_comm, pderiv_comm_backport]
+  rw [mul_comm]
+  have hs : hessian L (l.succAbove j) (l.succAbove a) =
+      hessian L (l.succAbove a) (l.succAbove j) :=
+    pderiv_comm_backport _ _ _
+  rw [hs]
 
 
 end
