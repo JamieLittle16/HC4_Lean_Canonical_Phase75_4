@@ -4397,6 +4397,178 @@ theorem rankThree_signedWall_no_lowerContact
   exact (not_lt_of_ge hbound) (mul_lt_mul_of_pos_left hsmall hwp)
 
 
+/-- Two rows supported on the same single column force singularity,
+even if both rows vanish. -/
+theorem rankThree_twoRows_oneColumn_det_zero
+    {F : Type*} [Field F] (H : Matrix (Fin 4) (Fin 4) F)
+    (s i k : Fin 4) (hik : i ≠ k)
+    (hi : ∀ j, j ≠ s → H i j = 0)
+    (hk : ∀ j, j ≠ s → H k j = 0) : H.det = 0 := by
+  classical
+  by_cases hz : H i s = 0
+  · apply Matrix.det_eq_zero_of_row_eq_zero i
+    intro j
+    by_cases hj : j = s
+    · rwa [hj]
+    · exact hi j hj
+  · let c := -(H k s / H i s)
+    let A := H.updateRow k (H k + c • H i)
+    have hd : A.det = H.det := Matrix.det_updateRow_add_smul_self H (Ne.symm hik) c
+    rw [← hd]
+    apply Matrix.det_eq_zero_of_row_eq_zero k
+    intro j
+    change (H.updateRow k (H k + c • H i)) k j = 0
+    rw [Matrix.updateRow_self]
+    change H k j + c * H i j = 0
+    by_cases hj : j = s
+    · subst j
+      dsimp [c]
+      rw [neg_mul,div_mul_cancel₀ _ hz,add_neg_cancel]
+    · rw [hi j hj,hk j hj,mul_zero,add_zero]
+
+/-- The transverse degree and signed Taylor slope in the canonical
+order (omitted coordinate, lightest passive, two heavier passive). -/
+def rankThreeWallDegree (i : Fin 4) : ℤ := if i = 0 then 0 else 1
+
+def rankThreeWallSlope (i : Fin 4) : ℤ := (i : ℕ) - 1
+
+/-- A nonzero constant Hessian determinant forces an actual quadratic
+monomial involving one of the heavier passive coordinates. This is
+stronger than needing a generic point of the omitted hyperplane. -/
+theorem rankThree_wall_quadraticWitness
+    (P : B K) (δ : K) (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant P = MvPolynomial.C δ) :
+    ∃ u ∈ P.support, Finsupp.weight rankThreeWallDegree u = 2 ∧
+      1 ≤ Finsupp.weight rankThreeWallSlope u := by
+  classical
+  let f : B K →+* K := MvPolynomial.constantCoeff
+  let H := (hessian P).map f
+  have hH : H.det = δ := by
+    change (f.mapMatrix (hessian P)).det = δ
+    rw [← f.map_det]
+    change f (hessianDeterminant P) = δ
+    rw [hdet]
+    simp [f]
+  have hex : ∃ i j : Fin 4, (i = 2 ∨ i = 3) ∧ j ≠ 0 ∧ H i j ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    have hz := rankThree_twoRows_oneColumn_det_zero H 0 2 3 (by decide)
+      (fun j hj => hn 2 j (Or.inl rfl) hj)
+      (fun j hj => hn 3 j (Or.inr rfl) hj)
+    exact hδ (hH.symm.trans hz)
+  obtain ⟨i,j,hi,hj,hij⟩ := hex
+  let u : Fin 4 →₀ ℕ := Finsupp.single i 1 + Finsupp.single j 1
+  have hcoeff : coeff u P ≠ 0 := by
+    change coeff 0 (pderiv j (pderiv i P)) ≠ 0 at hij
+    rw [coeff_pderiv_backport,zero_add,coeff_pderiv_backport] at hij
+    exact (mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hij).1).1
+  refine ⟨u,MvPolynomial.mem_support_iff.mpr hcoeff,?_,?_⟩
+  · change Finsupp.weight rankThreeWallDegree (Finsupp.single i 1 + Finsupp.single j 1) = 2
+    rw [map_add,Finsupp.weight_single,Finsupp.weight_single,one_smul,one_smul]
+    have hi0 : i ≠ 0 := by rcases hi with h|h <;> rw [h] <;> decide
+    simp [rankThreeWallDegree,hi0,hj]
+  · change 1 ≤ Finsupp.weight rankThreeWallSlope (Finsupp.single i 1 + Finsupp.single j 1)
+    rw [map_add,Finsupp.weight_single,Finsupp.weight_single,one_smul,one_smul]
+    rcases hi with h|h <;> subst i <;> fin_cases j <;> norm_num [rankThreeWallSlope] at hj ⊢
+
+set_option maxHeartbeats 6000000 in
+/-- The complete finite signed-wall contradiction in a normalised
+chart. Only actual support and a surviving normalised leading
+subface are needed; the full polynomial need not have a special
+lower-layer normal form. -/
+theorem rankThree_normalizedWall_impossible
+    (P : B K) (n : ℤ) (hn : 3 ≤ n)
+    (δ : K) (hδ : δ ≠ 0)
+    (hdet : hessianDeterminant P = MvPolynomial.C δ)
+    (hcap : IsWeightLE rankThreeWallDegree n P)
+    (htop : ∀ u ∈ P.support, Finsupp.weight rankThreeWallDegree u = n →
+      Finsupp.weight rankThreeWallSlope u ≤ 0)
+    (hlow : ∀ u ∈ P.support, Finsupp.weight rankThreeWallDegree u ≤ 1 →
+      Finsupp.weight rankThreeWallSlope u ≤ Finsupp.weight rankThreeWallDegree u)
+    (hcof : ∀ i : Fin 4, i ≠ 0 →
+      (hessian (initialForm rankThreeWallSlope 0
+        (initialForm rankThreeWallDegree n P))).adjugate i i ≠ 0)
+    (hp : hessian (initialForm rankThreeWallSlope 0
+        (initialForm rankThreeWallDegree n P)) 1 1 ≠ 0) :
+    False := by
+  classical
+  have hdSum : (∑ i : Fin 4, rankThreeWallDegree i) = 3 := by decide
+  have hsSum : (∑ i : Fin 4, rankThreeWallSlope i) = 2 := by decide
+  have hclock : 0 < (Fintype.card (Fin 4) : ℤ)*n -
+      2*(∑ i : Fin 4, rankThreeWallDegree i) := by
+    rw [hdSum]
+    norm_num
+    omega
+  obtain ⟨u,hu,hud,hus⟩ := rankThree_wall_quadraticWitness P δ hδ hdet
+  obtain ⟨a,b,ha,hb,hbound,hWnon,hWlt,hface,hcontact⟩ :=
+    exists_signedWeight_refining_firstWall rankThreeWallDegree rankThreeWallSlope n P
+      hcap hclock (by rw [hsSum]; decide) htop
+  let w : Fin 4 → ℤ := fun i => b*rankThreeWallDegree i + a*rankThreeWallSlope i
+  let Q := initialForm w (b*n) P
+  have hcap' : IsWeightLE w (b*n) P := hbound
+  have htime : a ≤ b*(n-2) := by
+    have he := hcap' hu
+    change Finsupp.weight (fun i => b*rankThreeWallDegree i + a*rankThreeWallSlope i) u ≤ b*n at he
+    rw [firstWall_weight_scaled_add,hud] at he
+    have hle := mul_le_mul_of_nonneg_left hus (le_of_lt ha)
+    nlinarith
+  have hW : 0 < (Fintype.card (Fin 4) : ℤ)*(b*n) - 2*(∑ i : Fin 4,w i) := by
+    dsimp [w]
+    rw [Finset.sum_add_distrib,← Finset.mul_sum,← Finset.mul_sum,hdSum,hsSum]
+    norm_num
+    nlinarith
+  have hwall : ∃ v ∈ P.support, Finsupp.weight rankThreeWallDegree v < n ∧
+      Finsupp.weight rankThreeWallSlope v > 0 ∧ Finsupp.weight w v = b*n := by
+    rcases hcontact with hz | hz
+    · exact (ne_of_gt hW hz).elim
+    · exact hz
+  obtain ⟨v,hv,hvd,hvs,hvw⟩ := hwall
+  have hdeg : 2 ≤ Finsupp.weight rankThreeWallDegree v := by
+    by_contra hn'
+    have hle := hlow v hv (by omega)
+    have he := hvw
+    change Finsupp.weight (fun i => b*rankThreeWallDegree i+a*rankThreeWallSlope i) v = b*n at he
+    rw [firstWall_weight_scaled_add] at he
+    have hd : Finsupp.weight rankThreeWallDegree v ≤ 1 := by omega
+    have hs : Finsupp.weight rankThreeWallSlope v ≤ 1 := by omega
+    have h1 := mul_le_mul_of_nonneg_left hd (le_of_lt hb)
+    have h2 := mul_le_mul_of_nonneg_left hs (le_of_lt ha)
+    nlinarith
+  have hvQ : v ∈ Q.support := by
+    apply MvPolynomial.mem_support_iff.mpr
+    change coeff v (initialForm w (b*n) P) ≠ 0
+    rw [coeff_initialForm,if_pos hvw]
+    exact MvPolynomial.mem_support_iff.mp hv
+  have hcapQ : IsWeightLE rankThreeWallDegree n Q := by
+    intro d hd
+    apply hcap
+    apply MvPolynomial.mem_support_iff.mpr
+    intro hz
+    have he := MvPolynomial.mem_support_iff.mp hd
+    change coeff d (initialForm w (b*n) P) ≠ 0 at he
+    rw [coeff_initialForm,hz] at he
+    split_ifs at he <;> exact he rfl
+  have hdetQ : (hessian Q).det = 0 := by
+    change hessianDeterminant (initialForm w (b*n) P) = 0
+    rw [← initialForm_hessianDeterminant_eq_hessianDeterminant_initialForm w (b*n) P hcap',hdet]
+    exact initialForm_eq_zero_of_isWeightedHomogeneous
+      (MvPolynomial.isWeightedHomogeneous_C w δ) _ (ne_of_gt hW)
+  have hw0 : w 0 = -a := by simp [w,rankThreeWallDegree,rankThreeWallSlope]
+  have hw1 : w 1 = b := by simp [w,rankThreeWallDegree,rankThreeWallSlope]
+  have hw2 : w 2 = b+a := by simp [w,rankThreeWallDegree,rankThreeWallSlope]
+  have hw3 : w 3 = b+2*a := by simp [w,rankThreeWallDegree,rankThreeWallSlope]; ring
+  have hwInject : Function.Injective w := by
+    intro i j h
+    fin_cases i <;> fin_cases j <;> simp_all only [hw0,hw1,hw2,hw3] <;> omega
+  exact rankThree_signedWall_no_lowerContact
+    (initialForm rankThreeWallSlope 0 (initialForm rankThreeWallDegree n P))
+    Q rankThreeWallDegree w n (b*n) 0 1 (by decide) (by decide)
+    (fun i hi => by simp [rankThreeWallDegree,hi]) hcapQ hface
+    (initialForm_isWeightedHomogeneous w (b*n) P) hwInject
+    (by rw [hw0]; omega) (by rw [hw1]; exact hb) (by rw [hw1])
+    hdetQ hcof hp v hvQ hdeg hvd
+
+
 end
 end HC4.Polynomial
 
@@ -4503,3 +4675,7 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_signedWall_no_lowerDegree
 
 #print axioms HC4.Polynomial.rankThree_signedWall_no_lowerContact
+
+#print axioms HC4.Polynomial.rankThree_twoRows_oneColumn_det_zero
+#print axioms HC4.Polynomial.rankThree_wall_quadraticWitness
+#print axioms HC4.Polynomial.rankThree_normalizedWall_impossible
