@@ -231,6 +231,7 @@ human architecture guide.
   - `HC4.Polynomial.RationalCharacteristicSelfAdjoint`
   - `HC4.Polynomial.RationalCharacteristicSymmetricPencil`
   - `HC4.Polynomial.RationalCharacteristicTransport`
+  - `HC4.Polynomial.SingularHessianConstantAnnihilator`
   - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - `HC4.Polynomial.TransverseLeadingCharacteristics`
   - `HC4.Polynomial.TransverseLeadingFirstCorrection`
@@ -2053,6 +2054,9 @@ human architecture guide.
   - `HC4.Polynomial.RankThreeCubicSourceFractionKernel`
 - `HC4.Polynomial.RightCentralDeficitBinarySpecialisation`
   - `HC4.Polynomial.CentralDeficitBinarySpecialisation`
+- `HC4.Polynomial.SingularHessianConstantAnnihilator`
+  - `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
+  - `HC4.Polynomial.TransverseLeadingRationalRigidity`
 - `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
   - _(no local imports)_
 - `HC4.Polynomial.TopProduct`
