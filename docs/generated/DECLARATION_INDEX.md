@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11981**.
+Distinct declaration spellings indexed: **11983**.
 
 ## Repeated declaration spellings
 
@@ -6554,6 +6554,7 @@ Distinct declaration spellings indexed: **11981**.
 - `globalWeightOptimum_rankThree_restricted_atMostOne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_restricted_no_gain` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_zeroRow_weight_gap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `globalWeightOptimum_rankThree_zeroWeight_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `globalWeightOptimum_rankTwo_exists_principalPivot` — `theorem` in `HC4.Polynomial.RankTwoPrincipalPivot`
 - `globalWeightOptimum_rankTwo_no_affineChart` — `theorem` in `HC4.Polynomial.RankTwoAffineClosure`
@@ -6685,6 +6686,7 @@ Distinct declaration spellings indexed: **11981**.
 - `hasTrivialKernel_of_detCore_ne_zero` — `theorem` in `HC4.Newton.RankOnePacketReentry`
 - `hasVanishingProjectiveWedges_of_rs2Provenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `hasZeroWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`
+- `hc4_of_planarJC2` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `hess_upper` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
 - `hessian` — `def` in `HC4.Polynomial.DerivativeWeight`
 - `hessianClock_nonneg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
