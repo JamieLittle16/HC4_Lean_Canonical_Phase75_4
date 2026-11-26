@@ -1253,6 +1253,193 @@ theorem globalWeightOptimum_rankThree_no_unique_active_max
   omega
 
 
+set_option maxHeartbeats 4000000 in
+/-- Weighted ratio rigidity for any restricted rank-one polynomial
+Hessian, independently of the velocity chart that produced it. -/
+theorem rankThree_restricted_weightedRatio
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j)
+    (hL : MvPolynomial.IsWeightedHomogeneous w L m)
+    (s : Fin 4)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (p i : Fin 4) (hp : p ≠ s) (hi : i ≠ s)
+    (hip : i ≠ p) (hdiag : hessian L p p ≠ 0) (hmix : hessian L i p ≠ 0) :
+    (w s = 0 ∧ w i = w p) ∨
+      (0 < w s ∧
+        ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧ e ≠ 0 ∧
+          w p - w i = ((t : ℤ) - (n : ℤ)) * w s ∧
+          hessian L i p * MvPolynomial.monomial (Finsupp.single s n) c =
+            hessian L p p * MvPolynomial.monomial (Finsupp.single s t) e) := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let A := hessian L p p
+  let C₀ := hessian L i p
+  let r := f C₀ / f A
+  let P := IsFractionRing.num (B K) r
+  let Q : B K := IsFractionRing.den (B K) r
+  have hQ0 : Q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) r)
+  have hAf : f A ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hdiag
+  have hQf : f Q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hQ0
+  have hrepr : f P / f Q = f C₀ / f A :=
+    IsFractionRing.mk'_num_den' (B K) r
+  have hcross : C₀ * Q = A * P := by
+    apply IsFractionRing.injective (B K) (E K)
+    change f (C₀*Q) = f (A*P)
+    simp only [map_mul]
+    rw [mul_comm (f A)]
+    exact ((div_eq_div_iff hQf hAf).mp hrepr).symm
+  have hder (j : Fin 4) (hj : j ≠ s) : pderiv j P = 0 ∧ pderiv j Q = 0 :=
+    rankOnePartial_num_den_independent r s
+      (rankOneHessian_twoRows_partialRatios_constant L s p i hip hp hi hdiag
+        (fun j hj => (hmin p i p j hp hi hp hj).trans (mul_comm _ _))) j hj
+  have hA : MvPolynomial.IsWeightedHomogeneous w A (m-w p-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL p) p
+  have hC : MvPolynomial.IsWeightedHomogeneous w C₀ (m-w i-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL i) p
+  by_cases hz : w s = 0
+  · have he := rankOne_weighted_relativeRatio_zeroWeight w s hz _ _ A C₀
+      hmix hA hC P Q hQ0 hcross
+      (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
+    exact Or.inl ⟨hz, by omega⟩
+  · have hpos : 0 < w s := lt_of_le_of_ne (hw s) (Ne.symm hz)
+    obtain ⟨n,t,c,e,hc,he,hwt,hpow⟩ :=
+      rankOne_weighted_relativeRatio_cross_power w s hpos _ _ A C₀
+        hdiag hmix hA hC P Q hQ0 hcross
+        (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
+    refine Or.inr ⟨hpos,n,t,c,e,hc,he,?_,hpow⟩
+    change w p - w i = ((t : ℤ) - (n : ℤ)) * w s
+    rw [sub_mul]
+    omega
+
+
+set_option maxHeartbeats 5000000 in
+/-- A zero restricted diagonal forces its whole restricted row
+to vanish. This does not imply a full zero Hessian row. -/
+theorem rankThree_restricted_row_zero
+    (L : B K) (s i : Fin 4) (hi : i ≠ s)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (hii : hessian L i i = 0) :
+    ∀ j, j ≠ s → hessian L i j = 0 := by
+  intro j hj
+  have he := hmin i j i j hi hj hi hj
+  rw [hii,zero_mul,show hessian L j i = hessian L i j from pderiv_comm_backport i j L] at he
+  exact (mul_eq_zero.mp he.symm).elim id id
+
+/-- The global optimum forbids two distinct zero restricted
+diagonals, since they give a jointly affine principal plane. -/
+theorem globalWeightOptimum_rankThree_restricted_atMostOne_zero
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m)
+    (s i j : Fin 4) (hi : i ≠ s) (hj : j ≠ s)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (hii : hessian (initialForm w m P) i i = 0)
+    (hjj : hessian (initialForm w m P) j j = 0) :
+    i = j := by
+  classical
+  by_contra hij
+  let L := initialForm w m P
+  have hz := rankThree_restricted_row_zero L s i hi hmin hii j hj
+  obtain ⟨u,hu,hgt⟩ := globalWeightOptimum_no_jointlyAffine_support P w m
+    hw hm hcap hclock hopt i j
+  have hle := extremal_jointlyAffine_support_of_hessian_zero L i j hij hii hjj hz u hu
+  omega
+
+set_option maxHeartbeats 5000000 in
+/-- A generalized signed-slope contradiction: zero restricted rows
+are given the full cap, and all other restricted variables the
+weight of a nonzero pivot. Only the strict total gain is required. -/
+theorem globalWeightOptimum_rankThree_restricted_no_gain
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s p : Fin 4) (hps : p ≠ s) (hpos : 0 < w s)
+    (hp : hessian (initialForm w m P) p p ≠ 0)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    let v : Fin 4 → ℤ := fun i => if i = s then 0 else
+      if hessian (initialForm w m P) i i = 0 then m else w p
+    (∑ i, v i) ≤ ∑ i, w i := by
+  classical
+  let L := initialForm w m P
+  let H := hessian L
+  let v : Fin 4 → ℤ := fun i => if i = s then 0 else
+    if H i i = 0 then m else w p
+  change (∑ i, v i) ≤ ∑ i, w i
+  by_contra hn
+  have hL : MvPolynomial.IsWeightedHomogeneous w L m :=
+    initialForm_isWeightedHomogeneous w m P
+  have hpw := weightCap_coordinate_le P w m hw hcap hdet p
+  have hvs : v s = 0 := by simp [v]
+  have hvp : v p = w p := by simp [v,hps,show H p p ≠ 0 from hp]
+  have hvnon (i : Fin 4) : 0 ≤ v i := by
+    by_cases hi : i = s
+    · simp [v,hi]
+    · by_cases hz : H i i = 0 <;> simp [v,hi,hz,le_of_lt hm,hw p]
+  have hvle (i : Fin 4) : v i ≤ m := by
+    by_cases hi : i = s
+    · simp [v,hi,le_of_lt hm]
+    · by_cases hz : H i i = 0 <;> simp [v,hi,hz,hpw]
+  have hrows (i j : Fin 4) (his : i ≠ s) (hip : i ≠ p) (hjs : j ≠ s)
+      (hij : H i j ≠ 0) :
+      v i ≤ v p ∧ ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧
+        H i j * MvPolynomial.monomial (Finsupp.single s n) c =
+          H p j * MvPolynomial.monomial (Finsupp.single s t) e := by
+    have hii : H i i ≠ 0 := by
+      intro hz
+      exact hij (rankThree_restricted_row_zero L s i his hmin hz j hjs)
+    have hmix : H i p ≠ 0 := by
+      intro hz
+      have he := hmin p i p i hps his hps his
+      change H p p * H i i = H p i * H i p at he
+      rw [hz,mul_zero] at he
+      exact (mul_ne_zero hp hii) he
+    have hr := rankThree_restricted_weightedRatio L w m hw hL s hmin p i
+      hps his hip hp hmix
+    rcases hr with ⟨hz,_⟩ | ⟨_,n,t,c,e,hc,he,hd,hcross⟩
+    · exact (ne_of_gt hpos hz).elim
+    refine ⟨by rw [hvp]; simp [v,his,hii],n,t,c,e,hc,?_⟩
+    have hrow := hmin p i p j hps his hps hjs
+    change H p p * H i j = H p j * H i p at hrow
+    apply mul_left_cancel₀ hp
+    calc
+      H p p * (H i j * MvPolynomial.monomial (Finsupp.single s n) c) =
+          H p j * (H i p * MvPolynomial.monomial (Finsupp.single s n) c) := by
+        rw [← mul_assoc, hrow, mul_assoc]
+      _ = H p j * (H p p * MvPolynomial.monomial (Finsupp.single s t) e) := by rw [hcross]
+      _ = H p p * (H p j * MvPolynomial.monomial (Finsupp.single s t) e) := by ring
+  have hcapv : IsWeightLE v m L :=
+    rankThree_support_cap_of_monomial_rows L w v m hw
+      (isWeightLE_of_isWeightedHomogeneous hL) s p hps hvs hvp hvle hrows
+  let d : Fin 4 → ℤ := fun i => v i - w i
+  have hsum : 0 < ∑ i : Fin 4, d i := by
+    change 0 < ∑ i : Fin 4, (v i - w i)
+    rw [Finset.sum_sub_distrib]
+    omega
+  obtain ⟨u,hu,hbad⟩ := globalWeightOptimum_no_improvingSlope P w d m
+    hw hm hcap hclock hopt (by intro i hi; change 0 ≤ v i-w i; rw [hi,sub_zero]; exact hvnon i)
+    hsum
+  have hweight : Finsupp.weight w u = m :=
+    ((mem_support_initialForm_iff w m P u).mp hu).2
+  have hfun : d = (fun i => (1 : ℤ)*v i + (-1)*w i) := by
+    funext i
+    simp [d,sub_eq_add_neg]
+  rw [hfun,firstWall_weight_scaled_add,one_mul,neg_one_mul,hweight] at hbad
+  have he := hcapv hu
+  omega
+
+
 end
 end HC4.Polynomial
 
@@ -1285,3 +1472,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_support_cap_of_monomial_rows
 
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_unique_active_max
+
+#print axioms HC4.Polynomial.rankThree_restricted_weightedRatio
+#print axioms HC4.Polynomial.rankThree_restricted_row_zero
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_restricted_atMostOne_zero
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_restricted_no_gain
