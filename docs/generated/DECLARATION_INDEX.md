@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11908**.
+Distinct declaration spellings indexed: **11912**.
 
 ## Repeated declaration spellings
 
@@ -9427,6 +9427,7 @@ Distinct declaration spellings indexed: **11908**.
 - `rankThreeLogSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreePartial` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePartial_X` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThreePartial_comm` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePartial_map` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePencilPolynomial` — `def` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `rankThreePencilPolynomial_eq_core` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
@@ -9529,7 +9530,10 @@ Distinct declaration spellings indexed: **11908**.
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `rankThree_proportionalDifferential_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_factor_square_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_rankOne_regularActiveSlope_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_rankOne_slope_transport` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_weightedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
