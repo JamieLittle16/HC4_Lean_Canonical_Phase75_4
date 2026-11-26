@@ -2793,6 +2793,90 @@ theorem rankThree_isotropicSlope_activeMinor_zero
   linear_combination f (hessian L k k)*hdiag - f (hessian L i k)*hmix
 
 
+set_option maxHeartbeats 4000000 in
+/-- The rational partials commute on the original fraction field. -/
+theorem rankThreePartial_comm (i j : Fin 4) (r : E K) :
+    rankThreePartial i (rankThreePartial j r) =
+      rankThreePartial j (rankThreePartial i r) := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let p := IsFractionRing.num (B K) r
+  let q : B K := IsFractionRing.den (B K) r
+  have hq : q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) r)
+  have hqf : f q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hq
+  have hrepr : f p / f q = r := IsFractionRing.mk'_num_den' (B K) r
+  have hmul : r * f q = f p := by rw [← hrepr,div_mul_cancel₀ _ hqf]
+  have hmap (a : Fin 4) (P : B K) : rankThreePartial a (f P) = f (pderiv a P) :=
+    rankThreePartial_map a P
+  have hdiff (a : Fin 4) :
+      r * f (pderiv a q) + f q * rankThreePartial a r = f (pderiv a p) := by
+    have h := congrArg (rankThreePartial (K := K) a) hmul
+    change rankThreePartial a (r * f q) = rankThreePartial a (f p) at h
+    simpa only [Derivation.leibniz,smul_eq_mul,hmap] using h
+  have hi := congrArg (rankThreePartial (K := K) i) (hdiff j)
+  have hj := congrArg (rankThreePartial (K := K) j) (hdiff i)
+  change rankThreePartial i (r * f (pderiv j q) + f q * rankThreePartial j r) =
+    rankThreePartial i (f (pderiv j p)) at hi
+  change rankThreePartial j (r * f (pderiv i q) + f q * rankThreePartial i r) =
+    rankThreePartial j (f (pderiv i p)) at hj
+  simp only [map_add,Derivation.leibniz,smul_eq_mul,hmap] at hi hj
+  rw [pderiv_comm_backport i j q,pderiv_comm_backport i j p] at hi
+  apply mul_left_cancel₀ hqf
+  linear_combination hi - hj
+
+/-- A proportional differential has the same level directions
+as its rational slope. -/
+theorem rankThree_proportionalDifferential_slope
+    (A B r : E K)
+    (hrel : ∀ j : Fin 4, rankThreePartial j B = r * rankThreePartial j A)
+    (i j : Fin 4) :
+    rankThreePartial i r * rankThreePartial j A =
+      rankThreePartial j r * rankThreePartial i A := by
+  have hi := congrArg (rankThreePartial (K := K) i) (hrel j)
+  have hj := congrArg (rankThreePartial (K := K) j) (hrel i)
+  change rankThreePartial i (rankThreePartial j B) =
+    rankThreePartial i (r * rankThreePartial j A) at hi
+  change rankThreePartial j (rankThreePartial i B) =
+    rankThreePartial j (r * rankThreePartial i A) at hj
+  simp only [Derivation.leibniz,smul_eq_mul] at hi hj
+  rw [rankThreePartial_comm i j A,rankThreePartial_comm i j B] at hi
+  linear_combination hj - hi
+
+/-- Trace zero gives the active slope straight-line equation. -/
+theorem rankThree_rankOne_slope_transport
+    (A B r : E K) (i k : Fin 4)
+    (hrel : ∀ j : Fin 4, rankThreePartial j B = r * rankThreePartial j A)
+    (htrace : rankThreePartial i A + rankThreePartial k B = 0)
+    (hvar : rankThreePartial k A ≠ 0) :
+    rankThreePartial i r + r * rankThreePartial k r = 0 := by
+  have he := rankThree_proportionalDifferential_slope A B r hrel i k
+  rw [hrel k] at htrace
+  apply (mul_eq_zero.mp (show
+      (rankThreePartial i r + r * rankThreePartial k r) *
+        rankThreePartial k A = 0 by
+    linear_combination he + rankThreePartial k r * htrace)).resolve_right hvar
+
+/-- At a regular active pivot the isotropic tangent slope must
+be constant in both active variables. -/
+theorem rankThree_rankOne_regularActiveSlope_constant
+    (L : B K) (i k : Fin 4) (hik : i ≠ k)
+    (A B₀ r : E K)
+    (hrel : ∀ j : Fin 4, rankThreePartial j B₀ = r * rankThreePartial j A)
+    (htrace : rankThreePartial i A + rankThreePartial k B₀ = 0)
+    (hvar : rankThreePartial k A ≠ 0)
+    (hiso : let f := algebraMap (B K) (E K)
+      f (hessian L i i) + 2*r*f (hessian L i k) + r*r*f (hessian L k k) = 0)
+    (hreg : rankTwoPrincipalPivot (hessian L) i k ≠ 0) :
+    rankThreePartial i r = 0 ∧ rankThreePartial k r = 0 := by
+  have ht := rankThree_rankOne_slope_transport A B₀ r i k hrel htrace hvar
+  have hk : rankThreePartial k r = 0 := by
+    by_contra hn
+    exact hreg (rankThree_isotropicSlope_activeMinor_zero L i k hik r ht hn hiso)
+  rw [hk,mul_zero,add_zero] at ht
+  exact ⟨ht,hk⟩
+
+
 end
 end HC4.Polynomial
 
@@ -2862,3 +2946,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_lineEval_affine_of_derivation_sq_zero
 #print axioms HC4.Polynomial.rankThree_lineEval_partial
 #print axioms HC4.Polynomial.rankThree_isotropicSlope_activeMinor_zero
+
+#print axioms HC4.Polynomial.rankThreePartial_comm
+#print axioms HC4.Polynomial.rankThree_proportionalDifferential_slope
+#print axioms HC4.Polynomial.rankThree_rankOne_slope_transport
+#print axioms HC4.Polynomial.rankThree_rankOne_regularActiveSlope_constant
