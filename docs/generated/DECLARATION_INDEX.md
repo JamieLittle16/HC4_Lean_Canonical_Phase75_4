@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11674**.
+Distinct declaration spellings indexed: **11683**.
 
 ## Repeated declaration spellings
 
@@ -296,6 +296,7 @@ Distinct declaration spellings indexed: **11674**.
 - `squareExponent` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelMarkedAxisAlignedFreshSquare`, `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `sub` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedSchur`, `theorem` in `HC4.Valuation.ReverseReesHessianParameterBudget`
 - `support_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidSourceCompression`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyStaircaseReady`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyTerminalLocalProblem`
+- `tail` — `def` in `HC4.Newton.RankTwoReesSchurEntry`, `def` in `HC4.Polynomial.RationalLinearProjection`
 - `tailConstantMatrix` — `def` in `HC4.Newton.ScalarPivotThreeSchurClock`, `def` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailConstantMatrix_det_ne_zero_of_residual_zero` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
 - `tailConstantMatrix_det_zero_of_residual_pos` — `theorem` in `HC4.Newton.ScalarPivotThreeSchurClock`, `theorem` in `HC4.Newton.ZeroThreeSchurFirstEntryClock`
@@ -3152,6 +3153,7 @@ Distinct declaration spellings indexed: **11674**.
 - `RankTwoReesSchurEntry` — `structure` in `HC4.Newton.RankTwoReesSchurEntry`
 - `RatFuncRegularAt` — `def` in `HC4.RationalRigidity.RegularRatFuncEvaluation`
 - `RationalNormalizationOutcome` — `inductive` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalPresentedBlockerRationalNormalization`
+- `RationalProjectionRow` — `structure` in `HC4.Polynomial.RationalLinearProjection`
 - `RawSpecialSchurDerivativeRankTwoRepairData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurPreassemblyClosure`
 - `RawWedgeBigradedDepartureProvenanceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `RawWedgeFirstReesDepartureProvenanceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
@@ -4206,6 +4208,7 @@ Distinct declaration spellings indexed: **11674**.
 - `c` — `abbrev` in `HC4.Backport.RatFuncLuroth`
 - `c_denom` — `lemma` in `HC4.Backport.RatFuncLuroth`
 - `c_ne_zero` — `lemma` in `HC4.Backport.RatFuncLuroth`
+- `cancelPair` — `def` in `HC4.Polynomial.RationalLinearProjection`
 - `cancel_contactFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactFamilyActiveConstant`
 - `cancel_stationaryPairWeightedEulerShear_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationarySchurProfileBridge`
 - `cancel_stationaryRamifiedFamily_activeDet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactStationaryActivePivot`
@@ -5333,6 +5336,8 @@ Distinct declaration spellings indexed: **11674**.
 - `elementaryShearVariable` — `def` in `HC4.Valuation.PointedShearContinuation`
 - `elementaryShearVariable_isHomogeneous_one` — `theorem` in `HC4.Valuation.PointedShearContinuation`
 - `elementaryUnshearSection` — `def` in `HC4.Valuation.PointedShearContinuation`
+- `eliminate` — `def` in `HC4.Polynomial.RationalLinearProjection`
+- `eliminate_iff` — `theorem` in `HC4.Polynomial.RationalLinearProjection`
 - `eliminate_unit_polynomial_denominator` — `theorem` in `HC4.RationalRigidity.DenominatorClearing`
 - `endpointDualPencil` — `def` in `HC4.Polynomial.FiniteStaircaseThreeLayerIntermediateVariation`
 - `endpointResidualNormalForm_recenteredSupportWitness` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
@@ -5620,6 +5625,7 @@ Distinct declaration spellings indexed: **11674**.
 - `exists_linear_matrix_of_poleFree_homogeneousHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_longitudinal_polynomial_of_transverseWeightZero` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
+- `exists_max_parameter` — `theorem` in `HC4.Polynomial.RationalLinearProjection`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
 - `exists_maximal_binaryOrdinaryDegreeComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMaximalHomogeneous`
@@ -6725,6 +6731,7 @@ Distinct declaration spellings indexed: **11674**.
 - `highest_pairLevel_eq_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairRees`
 - `highest_weight_left` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
 - `highest_weight_right` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneContactSeparation`
+- `holds` — `def` in `HC4.Polynomial.RationalLinearProjection`
 - `homogeneousCubic_repeatedDegreeOneFactor_cofactorConstantCoeff_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
 - `homogeneousCubic_repeatedDegreeOneFactor_cofactorLinearForm` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
 - `homogeneousCubic_repeatedDegreeOneFactor_constantCoeff_zero` — `theorem` in `HC4.Polynomial.RankThreeCubicRepeatedFactorHomogeneous`
@@ -8515,6 +8522,8 @@ Distinct declaration spellings indexed: **11674**.
 - `profile_natDegree_eq_nearIndex` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `profile_natDegree_ne_one` — `theorem` in `HC4.RationalRigidity.FirstContactCrossFacetFarRankThreeAffine`
 - `profile_order_cast` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetContactBinaryProfileHessianRecognition`
+- `project` — `def` in `HC4.Polynomial.RationalLinearProjection`
+- `project_iff` — `theorem` in `HC4.Polynomial.RationalLinearProjection`
 - `projectedRankTwo_exactActiveFourBlock` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
 - `projectedRankTwo_or_tangentAtFirstBreak` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurTangentSplit`
 - `projectedRankTwo_sourceTwoByTwoMinor` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurProjectedSourceLift`
@@ -9593,6 +9602,7 @@ Distinct declaration spellings indexed: **11674**.
 - `rational_power_pair_of_nonvanishing_denominator` — `theorem` in `HC4.RationalRigidity.PoleRemovalAssembly`
 - `rational_power_pair_of_two_chart_unit_certificates` — `theorem` in `HC4.RationalRigidity.ChartCertificates`
 - `rational_power_pair_of_unit_denominator` — `theorem` in `HC4.RationalRigidity.Assembly`
+- `rational_scalar_feasible_iff` — `theorem` in `HC4.Polynomial.RationalLinearProjection`
 - `rawRayAtOrder_of_alignLeft_tangential` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
 - `rawRayAtOrder_of_alignRight_tangential` — `theorem` in `HC4.Newton.SchurTangentialRawRay`
 - `rawSchurRayAtOrder_of_clockTangential` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTangentialRawRay`
@@ -11234,7 +11244,7 @@ Distinct declaration spellings indexed: **11674**.
 - `tVar` — `def` in `HC4.Polynomial.CodimensionTwoPrimitiveDeparturePencil`
 - `tVarnh` — `def` in `HC4.Polynomial.CodimensionTwoNonhomogeneousDeparturePencil`
 - `tVarw` — `def` in `HC4.Polynomial.CodimensionTwoWeightedDeparturePencil`
-- `tail` — `def` in `HC4.Newton.RankTwoReesSchurEntry`
+- `tail` — `def` in `HC4.Newton.RankTwoReesSchurEntry`, `def` in `HC4.Polynomial.RationalLinearProjection`
 - `tailActive` — `def` in `HC4.Newton.ZeroSchurFirstEntryClock`
 - `tailBlock` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
 - `tailBlock_determinantCore` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningFirstTailRank`
