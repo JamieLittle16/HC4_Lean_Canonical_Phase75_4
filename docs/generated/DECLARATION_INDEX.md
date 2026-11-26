@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11683**.
+Distinct declaration spellings indexed: **11696**.
 
 ## Repeated declaration spellings
 
@@ -5608,9 +5608,12 @@ Distinct declaration spellings indexed: **11683**.
 - `exists_genuinePolePrime_of_nonPolynomial_fractionKernel` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_globalProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowDirectRankTwoProgress`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowGlobalProgress`
 - `exists_globalRankThreeProgress_of_actualRankTwo` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowActualRankThreeProgress`
+- `exists_global_integralWeightOptimum` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `exists_global_normalizedWeight` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `exists_hessianPrincipalMinor_ne_zero_of_offDiagonal_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `exists_hessian_entry_ne_zero_of_pderiv_ne_zero_of_support_degree_ge_three` — `theorem` in `HC4.Polynomial.NonlinearSupportHessianRowBreak`
 - `exists_honestFirstContactEndpoint_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstContactFinalResolution`
+- `exists_integral_normalizedWeight` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `exists_invertible_frame_annihilating_linearFunctional` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearPoleFrame`
 - `exists_irreducible_reduced_denominator_factor` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleReducedDenominator`
 - `exists_kernelDependentSupport_of_hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveDegreeTwoKernelActivity`
@@ -5625,6 +5628,7 @@ Distinct declaration spellings indexed: **11683**.
 - `exists_linear_matrix_of_poleFree_homogeneousHessianEquation` — `theorem` in `HC4.Polynomial.RankThreeCubicPoleFreeLinear`
 - `exists_longitudinal_polynomial_of_transverseWeightZero` — `theorem` in `HC4.Polynomial.RankThreeCubicThirdDerivativeLongitudinal`
 - `exists_max_exposedSuperfaceSlope` — `theorem` in `HC4.Newton.FiniteSupportExposedSuperface`
+- `exists_max_normalizedWeight` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `exists_max_parameter` — `theorem` in `HC4.Polynomial.RationalLinearProjection`
 - `exists_maximalDegree_nonzero_smithSubfaceComponent` — `theorem` in `HC4.Newton.MixedDegreeWallRefinement`
 - `exists_maximalHomogeneousSlice_transverseKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyMaximalHomogeneousKernel`
@@ -7709,6 +7713,8 @@ Distinct declaration spellings indexed: **11683**.
 - `normalizedNat` — `def` in `HC4.Valuation.ScaledDefect`
 - `normalizedNat_mk_ramified_sub_lt_unramified` — `theorem` in `HC4.Valuation.ScaledDefect`
 - `normalizedNat_ramified_sub_lt` — `theorem` in `HC4.Valuation.ScaledDefect`
+- `normalizedWeightFeasible` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `normalizedWeightFeasible_iff_integral` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `normalized_fractionKernel_cleared` — `theorem` in `HC4.Polynomial.RankThreeCubicCancelledCramerResidue`
 - `normalized_left_primitive_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`
 - `normalized_right_primitive_pair` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrNormalizedQuotientLine`
@@ -11856,6 +11862,13 @@ Distinct declaration spellings indexed: **11683**.
 - `wall_weightLE_sum` — `theorem` in `HC4.Polynomial.WeightedWallAnnihilator`
 - `wedgeShift_le_order` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
 - `weight` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
+- `weightBoundRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightNonnegRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightOptimizationRows` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightOptimizationRows_iff` — `theorem` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightSumReverseRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightSumRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
+- `weightSupportRow` — `def` in `HC4.Polynomial.WeightedGlobalOptimum`
 - `weight_adaptivePacketExposureWeight` — `theorem` in `HC4.Newton.AdaptivePacketExposure`
 - `weight_allOnes_eq_degree` — `theorem` in `HC4.Polynomial.WeightedLinearOrbit`
 - `weight_binaryFirstContactWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreCurvedElimination`
