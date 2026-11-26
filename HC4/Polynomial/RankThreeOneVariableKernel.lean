@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreeExtremalReduction
+import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 
 /-!
 # One-variable normalized kernel rigidity
@@ -1941,6 +1942,117 @@ theorem globalWeightOptimum_rankThree_no_rankTwoVelocity_positiveWeight
     (hdistinct p i hps his hip)
 
 
+set_option maxHeartbeats 5000000 in
+/-- A zero restricted row at zero omitted weight is a full-source
+split row. Its leading partial has only zero-weight monomials,
+forcing the coordinate weight to be exactly the cap. -/
+theorem globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s i : Fin 4) (his : i ≠ s) (hws : w s = 0)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (hii : hessian (initialForm w m P) i i = 0) :
+    Function.Injective (mvGradientMap P) := by
+  classical
+  let L := initialForm w m P
+  let G := pderiv i L
+  have hG (j : Fin 4) (hj : j ≠ s) : pderiv j G = 0 :=
+    rankThree_restricted_row_zero L s i his hmin hii j hj
+  have hG0 : G ≠ 0 := by
+    intro hz
+    apply globalWeightOptimum_no_constant_partial P w m hw hm hcap hclock hopt hdet i 0
+    simpa only [map_zero] using hz
+  have hex : ∃ u : Fin 4 →₀ ℕ, coeff u G ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    apply hG0
+    ext u
+    rw [hn u,coeff_zero]
+  obtain ⟨u,hu⟩ := hex
+  have hu' := rankOne_single_support_of_partialConstants G s hG u hu
+  have hwt : Finsupp.weight w u = m - w i :=
+    pderiv_isWeightedHomogeneous (initialForm_isWeightedHomogeneous w m P) i hu
+  rw [hu',Finsupp.weight_single,hws,smul_zero] at hwt
+  have hshift : m - w i = 0 := hwt.symm
+  have hrem := sub_initialForm_isWeightLT (hcap.pderiv i)
+  rw [← pderiv_initialForm,hshift] at hrem
+  have hneg : IsWeightLE w (-1) (pderiv i P - G) := by
+    intro u hu
+    have hh := hrem hu
+    omega
+  have hfull : pderiv i P = G := sub_eq_zero.mp
+    (eq_zero_of_nonnegativeWeight_negative_cap w hw (-1) (by decide) _ hneg)
+  apply gradient_injective_of_splitRow hJC2 P hdet i s his
+  intro j hj
+  change pderiv j (pderiv i P) = 0
+  rw [hfull]
+  exact hG j hj
+
+set_option maxHeartbeats 5000000 in
+/-- Integer nonnegative weights admit the standard natural Euler
+identity. Keeping the integer cap explicit avoids assumptions on
+divisibility of the common restricted weight. -/
+theorem rankThree_weightedEuler
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 ≤ m)
+    (hL : MvPolynomial.IsWeightedHomogeneous w L m) :
+    (∑ i : Fin 4, (w i).toNat • (X i * pderiv i L)) = m.toNat • L := by
+  let v : Fin 4 → ℕ := fun i => (w i).toNat
+  have hv (u : Fin 4 →₀ ℕ) :
+      ((Finsupp.weight v u : ℕ) : ℤ) = Finsupp.weight w u := by
+    simp only [Finsupp.weight_apply,Finsupp.sum,Nat.cast_sum]
+    apply Finset.sum_congr rfl
+    intro i hi
+    change ((u i • (w i).toNat : ℕ) : ℤ) = u i • w i
+    simp [nsmul_eq_mul,Int.toNat_of_nonneg (hw i)]
+  have hnat : MvPolynomial.IsWeightedHomogeneous v L m.toNat := by
+    intro u hu
+    have he : ((Finsupp.weight v u : ℕ) : ℤ) = (m.toNat : ℤ) := by
+      rw [hv,hL hu,Int.toNat_of_nonneg hm]
+    exact_mod_cast he
+  exact hnat.sum_weight_X_mul_pderiv
+
+set_option maxHeartbeats 5000000 in
+/-- Differentiating a relative rational constant in its permitted
+coordinate preserves relative constancy. This is proved by
+differentiating its reduced numerator-denominator identity, not
+by assuming commutation of arbitrary derivations. -/
+theorem rankThree_relative_derivative_constant
+    (r : E K) (s : Fin 4)
+    (hr : ∀ j, j ≠ s → rankThreePartial j r = 0)
+    (j : Fin 4) (hj : j ≠ s) :
+    rankThreePartial j (rankThreePartial s r) = 0 := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let P := IsFractionRing.num (B K) r
+  let Q : B K := IsFractionRing.den (B K) r
+  have hQ0 : Q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) r)
+  have hQf : f Q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hQ0
+  have hder : pderiv j P = 0 ∧ pderiv j Q = 0 :=
+    rankOnePartial_num_den_independent r s hr j hj
+  have hrepr : f P / f Q = r := IsFractionRing.mk'_num_den' (B K) r
+  have hmul : r * f Q = f P := by rw [← hrepr,div_mul_cancel₀ _ hQf]
+  have hmap (a : Fin 4) (T : B K) : rankThreePartial a (f T) = f (pderiv a T) :=
+    rankThreePartial_map a T
+  have h1 := congrArg (rankThreePartial (K := K) s) hmul
+  change rankThreePartial s (r * f Q) = rankThreePartial s (f P) at h1
+  simp only [Derivation.leibniz,smul_eq_mul,hmap] at h1
+  have h2 := congrArg (rankThreePartial (K := K) j) h1
+  change rankThreePartial j (r * f (pderiv s Q) + f Q * rankThreePartial s r) =
+    rankThreePartial j (f (pderiv s P)) at h2
+  simp only [map_add,Derivation.leibniz,smul_eq_mul,hmap,hr j hj,
+    hder.1,hder.2,map_zero,mul_zero,zero_mul,add_zero,zero_add,
+    pderiv_comm_backport j s,pderiv_zero] at h2
+  exact (mul_eq_zero.mp h2).resolve_left hQf
+
+
 end
 end HC4.Polynomial
 
@@ -1990,3 +2102,7 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_remaining_two_coordinates
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_rankTwoVelocity_positiveWeight
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal
+#print axioms HC4.Polynomial.rankThree_weightedEuler
+#print axioms HC4.Polynomial.rankThree_relative_derivative_constant
