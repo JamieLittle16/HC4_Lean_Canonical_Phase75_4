@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11649**.
+Distinct declaration spellings indexed: **11653**.
 
 ## Repeated declaration spellings
 
@@ -6503,6 +6503,7 @@ Distinct declaration spellings indexed: **11649**.
 - `gradient_injective_of_hessianDeterminant_one_of_terminalObstructionProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4TerminalProducerAssembly`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowSingularTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularReduction`
 - `gradient_injective_of_hessianDeterminant_one_of_zeroStrictLowTerminal_impossible` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowReduction`
+- `gradient_injective_of_oneZeroWeight_zeroClock` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
 - `gradient_injective_of_positiveWeight_zeroClock` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
 - `gradient_injective_of_twoZeroWeight_cap` — `theorem` in `HC4.Polynomial.TwoZeroWeightFullSource`
 - `gradient_linearCoeff_eq_hessian_origin` — `theorem` in `HC4.Polynomial.PositiveWeightZeroClock`
@@ -7787,6 +7788,9 @@ Distinct declaration spellings indexed: **11649**.
 - `oneZeroRankThreePencil_eq_core` — `theorem` in `HC4.Polynomial.RankThreePencils`
 - `oneZeroSplitIndex` — `def` in `HC4.Newton.TerminalOneZeroPlanarFibre`
 - `oneZeroSplitIndex_injective` — `theorem` in `HC4.Newton.TerminalOneZeroPlanarFibre`
+- `oneZero_eval_specialization` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
+- `oneZero_support` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
+- `oneZero_weight_nonneg` — `theorem` in `HC4.Polynomial.OneZeroWeightTerminal`
 - `one_lt_qsOtherFacetPairDegree_of_two_le_zeroCoordinate` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetNeutralSuperface`
 - `opening` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
 - `opening_repair_eq_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalKernelOpeningLayeredRankThree`
