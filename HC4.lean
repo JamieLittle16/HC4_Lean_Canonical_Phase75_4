@@ -899,3 +899,4 @@ import HC4.Polynomial.WeightedComplementaryInitialForm
 import HC4.Polynomial.WeightedComplementaryKernel
 import HC4.Polynomial.WeightedWallMinorSurvival
 import HC4.Polynomial.WeightedWallAnnihilator
+import HC4.Polynomial.PositiveWeightZeroClock
