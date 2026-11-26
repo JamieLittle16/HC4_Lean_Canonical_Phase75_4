@@ -1,5 +1,6 @@
 import HC4.Polynomial.RankThreeOneVariableKernel
 import Mathlib.Algebra.MvPolynomial.Monad
+import Mathlib.Algebra.MvPolynomial.Nilpotent
 import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.FieldTheory.AxGrothendieck
 import Lean.Util.CollectAxioms
@@ -65,6 +66,16 @@ theorem reference_gradient_det (P : MvPolynomial (Fin 4) K) :
       HC4.Polynomial.hessianDeterminant P := by
   rw [reference_gradient_jacobian, Matrix.det_transpose]
   rfl
+
+/-- The external unit condition and the nonzero scalar determinant
+condition are exactly equivalent over a field, as in the external
+project's own sanity check. -/
+theorem reference_unit_iff {n : ℕ}
+    (F : Fin n → MvPolynomial (Fin n) K) :
+    IsUnit (referenceJacobian F).det ↔
+      ∃ c : K, c ≠ 0 ∧ (referenceJacobian F).det = C c := by
+  rw [MvPolynomial.isUnit_iff_eq_C_of_isReduced]
+  simp only [isUnit_iff_ne_zero]
 
 /-- A two-sided polynomial inverse implies pointwise injectivity. This
 does not assume surjectivity, any conjecture, or an analytic inverse. -/
@@ -142,22 +153,37 @@ theorem hc4_reference_JC2_bijective [IsAlgClosed K]
   have hi := hc4_nonzero_constant_injective (planar_of_reference hJC2) P c hc hdet
   exact ⟨hi, ax_grothendieck_univ (fun i : Fin 4 => pderiv i P) hi⟩
 
+
+/-- The exact external determinant-unit formulation of the conditional
+Hessian bijectivity statement. No determinant normalization hypothesis. -/
+theorem hc4_reference_JC2_unit_bijective [IsAlgClosed K]
+    (hJC2 : ReferenceJC K 2)
+    (P : MvPolynomial (Fin 4) K)
+    (hdet : IsUnit (referenceJacobian (fun i => pderiv i P)).det) :
+    Function.Bijective (fun x : Fin 4 → K => fun i => eval x (pderiv i P)) := by
+  obtain ⟨c,hc,he⟩ := (reference_unit_iff (fun i : Fin 4 => pderiv i P)).mp hdet
+  exact hc4_reference_JC2_bijective hJC2 P c hc he
+
 end
 end HC4.StatementAudit
 
+#print axioms HC4.StatementAudit.reference_unit_iff
 #print axioms HC4.StatementAudit.reference_planar_det
 #print axioms HC4.StatementAudit.reference_gradient_det
 #print axioms HC4.StatementAudit.planar_of_reference
 #print axioms HC4.StatementAudit.hc4_nonzero_constant_injective
 #print axioms HC4.StatementAudit.hc4_reference_JC2_bijective
+#print axioms HC4.StatementAudit.hc4_reference_JC2_unit_bijective
 
 run_cmd do
   let permitted : List Lean.Name := [``propext, ``Classical.choice, ``Quot.sound]
-  for decl in [``HC4.StatementAudit.reference_planar_det,
+  for decl in [``HC4.StatementAudit.reference_unit_iff,
+      ``HC4.StatementAudit.reference_planar_det,
       ``HC4.StatementAudit.reference_gradient_det,
       ``HC4.StatementAudit.planar_of_reference,
       ``HC4.StatementAudit.hc4_nonzero_constant_injective,
-      ``HC4.StatementAudit.hc4_reference_JC2_bijective] do
+      ``HC4.StatementAudit.hc4_reference_JC2_bijective,
+      ``HC4.StatementAudit.hc4_reference_JC2_unit_bijective] do
     for dep in (← Lean.collectAxioms decl) do
       unless permitted.contains dep do
         throwError "Unexpected logical dependency {dep} in {decl}"
