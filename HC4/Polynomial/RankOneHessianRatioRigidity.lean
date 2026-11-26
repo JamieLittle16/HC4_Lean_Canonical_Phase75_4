@@ -812,8 +812,7 @@ theorem rankOne_initialForm_single_power
   rw [MvPolynomial.coeff_monomial]
   by_cases hv : v = Finsupp.single s (u s)
   · have hvu : v = u := hv.trans hu'.symm
-    rw [hvu]
-    simp [hu']
+    rw [hvu, if_pos hu'.symm]
   · have hz : coeff v (initialForm w d Q) = 0 := by
       by_contra hne
       have hQ_v : coeff v Q ≠ 0 := by
