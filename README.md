@@ -1,6 +1,22 @@
 # Hessian Conjecture in Dimension Four
 
-A Lean 4 formalisation of the implication from planar Jacobian injectivity to four-dimensional determinant-one Hessian gradient injectivity, together with supporting algebraic research.
+A Lean 4 formalisation of the equivalence of the planar Jacobian conjecture and the four-variable Hessian conjecture, together with supporting algebraic research.
+
+## Verified polynomial-inverse equivalence
+
+For every algebraically closed field K of characteristic zero, JC2(K) is equivalent to HC4(K): both conjectures assert that the relevant polynomial maps with nonzero constant Jacobian determinant possess a two-sided polynomial inverse. On the Hessian side the maps are formal gradients of arbitrary four-variable polynomials.
+
+```lean
+theorem HC4.StatementAudit.referenceJC2_iff_referenceHC4
+    {K : Type*} [Field K] [CharZero K] [IsAlgClosed K] :
+    HC4.StatementAudit.ReferenceJC K 2 ↔ HC4.StatementAudit.ReferenceHC4 K
+```
+
+See [FinalEquivalence.lean](HC4/FinalEquivalence.lean) for `HC4.StatementAudit.jc2_iff_hc4_explicit`, which expands both predicates directly using partial derivatives, matrix determinants, and polynomial substitution. The maintainer reported successful local verification on 26 November 2026 of this module (introduced in [`7fdbfcea`](https://github.com/JamieLittle16/HessianConjecture4/commit/7fdbfceae27addbf28928668678c62e18fc0fce8)), with all five printed declarations depending only on `[propext, Classical.choice, Quot.sound]`. Independent fresh-checkout reproduction remains to be recorded.
+
+The planar statement follows the polynomial inverse conventions of Google DeepMind's [Formal Conjectures](https://github.com/google-deepmind/formal-conjectures/blob/a88aee564684360292318c61b9b8e27febef2ae0/FormalConjectures/Wikipedia/JacobianConjecture.lean), with its composition equations expanded in [StatementAudit.lean](HC4/StatementAudit.lean). No open conjecture declaration from that project is imported. [PolynomialInverseAudit.lean](HC4/PolynomialInverseAudit.lean) and [RationalInverseAudit.lean](HC4/RationalInverseAudit.lean) prove the generic polynomial-inverse bridge using Mathlib's Nullstellensatz, Ax–Grothendieck and separable degree.
+
+Neither JC2 nor HC4 is proved unconditionally.
 
 ## Verified conditional theorem
 
@@ -19,7 +35,7 @@ The declaration lives in [RankThreeOneVariableKernel.lean](HC4/Polynomial/RankTh
 
 Maintainer verification, 26 November 2026, at [`38e58bf4`](https://github.com/JamieLittle16/HessianConjecture4/commit/38e58bf49cbd91ce9ae2d4e18b7d64e33fe02c8c): full `lake build` completed (9051 jobs); `lake env lean HC4/Audit.lean` passed with final transitive axioms `[propext, Classical.choice, Quot.sound]`. No `sorryAx` or additional axioms in the final theorem.
 
-**Scope:** this proves conditional gradient injectivity, not unconditional HC4, not planar JC2 itself, and not a polynomial inverse theorem as presently stated. See the attribution below; detailed mathematical priority and dependency analysis remain outstanding.
+**Scope:** this stronger same-field injectivity implication needs no algebraic-closure hypothesis. The polynomial-inverse equivalence above is stated over algebraically closed characteristic-zero fields. See the attribution below; detailed mathematical priority and dependency analysis remain outstanding.
 
 ## Mathematical attribution
 
@@ -33,12 +49,14 @@ Use the pinned Lean toolchain and Lake manifest.
 
 ```bash
 lake exe cache get
-lake build HC4.Polynomial.RankThreeOneVariableKernel
-lake build
+lake build HC4.FinalEquivalence
+lake env lean HC4/FinalEquivalence.lean
 lake env lean HC4/Audit.lean
+# Optional: build all historical and current modules
+lake build
 ```
 
-Look for the final axiom report for `HC4.Polynomial.hc4_of_planarJC2`. The verification checkpoint is preserved in [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64).
+Look for the final axiom reports for `HC4.StatementAudit.jc2_iff_hc4_explicit` and `HC4.Polynomial.hc4_of_planarJC2`. The verification checkpoint is preserved in [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64).
 
 ## Reading guide
 
