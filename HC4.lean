@@ -891,3 +891,4 @@ import HC4.Polynomial.RationalCharacteristicRankTwoNormalParameter
 import HC4.Polynomial.RationalCharacteristicRankTwoVariableClosure
 import HC4.Polynomial.RationalCharacteristicRankTwoConstantNormal
 import HC4.Polynomial.RationalCharacteristicRankTwoClosure
+import HC4.Polynomial.TransverseLeadingRationalRigidity
