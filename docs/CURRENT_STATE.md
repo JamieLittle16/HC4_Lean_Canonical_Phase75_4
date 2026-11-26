@@ -22,3 +22,7 @@ See the [proof and contribution audit](PROOF_AND_CONTRIBUTION_AUDIT.md) for the 
 The proof uses the global weighted extremal counterexample, rank exclusion, complementary Hessian and rational kernel rigidity, followed by Taylor normalization and a signed first-wall contradiction. See [PROOF_PATHS.md](PROOF_PATHS.md).
 
 The previous valuation/Smith/Rees extraction route and transverse-cap investigations remain research history, not remaining obligations of this conditional theorem. Their prior status is preserved in the [25 November checkpoint](https://github.com/JamieLittle16/HessianConjecture4/blob/90b9d97e2937b34c12c2ab845a404048f4a3c4b1/docs/CURRENT_STATE.md). Do not treat their partial endpoints as unconditional global theorems.
+
+## Standalone rational affine-plane rigidity
+
+The general all-rank theorem [`rationalMap_affinePlane`](../HC4/Polynomial/RationalMapAffinePlane.lean) is verified by the maintainer's targeted build (8317 jobs, 26 November 2026, commit [9e548ccb](https://github.com/JamieLittle16/HessianConjecture4/commit/9e548ccbd91920cb7f49ba40c2bf93e11e996b14)) with the standard three foundational axioms. It requires only a rational three-variable map with cube-zero Jacobian and a nonsingular polynomial Hessian symmetrizer over a characteristic-zero field. See the [mathematical note](research/rational-affine-plane-rigidity.tex). It is not an additional hypothesis of HC4, and does not change the original final proof.
