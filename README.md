@@ -35,13 +35,13 @@ The declaration lives in [RankThreeOneVariableKernel.lean](HC4/Polynomial/RankTh
 
 Maintainer verification, 26 November 2026, at [`38e58bf4`](https://github.com/JamieLittle16/HessianConjecture4/commit/38e58bf49cbd91ce9ae2d4e18b7d64e33fe02c8c): full `lake build` completed (9051 jobs); `lake env lean HC4/Audit.lean` passed with final transitive axioms `[propext, Classical.choice, Quot.sound]`. No `sorryAx` or additional axioms in the final theorem.
 
-**Scope:** this stronger same-field injectivity implication needs no algebraic-closure hypothesis. The polynomial-inverse equivalence above is stated over algebraically closed characteristic-zero fields. See the attribution below; detailed mathematical priority and dependency analysis remain outstanding.
+**Scope:** this stronger same-field injectivity implication needs no algebraic-closure hypothesis. The polynomial-inverse equivalence above is stated over algebraically closed characteristic-zero fields. See the attribution below and the preliminary proof and contribution audit; detailed mathematical priority analysis remains outstanding.
 
 ## Mathematical attribution
 
 The final weighted proof was substantially informed by Qiyue Tang, *[Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures](https://hexagonmath.org/2611.00156v2)*, Hexagon preprint 2611.00156v2 (2026), CC BY 4.0. Tang's preprint presents the equivalence over the complex numbers (Theorem 1.1). In particular, we adapted the Wronskian/Taylor coordinate normalization and signed first-wall obstruction in Lemma 3.3 (pp. 17–18), as well as drawing on the broader weighted leading-form strategy.
 
-The project predates this preprint, but its earlier investigations and the completed proof should not be conflated with an independent discovery of the final implication. The contribution documented here is a Lean 4 formalisation and algebraic adaptation, including the precise same-field injectivity statement over arbitrary characteristic-zero fields. The final Lean proof does not assume Tang's theorem as an axiom. A detailed comparison of proof dependencies and the relevant earlier literature is still needed for a scholarly manuscript.
+The project predates this preprint, but its earlier investigations and the completed proof should not be conflated with an independent discovery of the final implication. The contribution documented here is a Lean 4 formalisation and algebraic adaptation, including the precise same-field injectivity statement over arbitrary characteristic-zero fields. The final Lean proof does not assume Tang's theorem as an axiom. The [proof and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) records the mathematical route, actual declaration dependency graph statistics, dated source provenance, and a preliminary comparison with Tang. A full literature and lemma-level novelty review remains outstanding.
 
 ## Reproduce the proof
 
@@ -59,6 +59,8 @@ lake build
 Look for the final axiom reports for `HC4.StatementAudit.jc2_iff_hc4_explicit` and `HC4.Polynomial.hc4_of_planarJC2`. The verification checkpoint is preserved in [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64).
 
 ## Reading guide
+
+- [Proof, verification and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) — consolidated mathematical summary and provenance for external reviewers.
 
 - [Current proof status](docs/CURRENT_STATE.md)
 - [Proof routes and exact interfaces](docs/PROOF_PATHS.md)
