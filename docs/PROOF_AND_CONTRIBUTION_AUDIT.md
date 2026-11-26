@@ -188,7 +188,11 @@ The [companion mathematical note](research/global-extremal-weight.tex) describes
 
 The [supporting rank-exclusion note](research/extremal-rank-exclusions.tex) now expands the nonnegative rank reductions, including the polynomial transport identities, arbitrary isotropic-plane alignment, rank-two image and kernel graph contradictions, and the rank-three regular-block contradiction. Its exposition rearranges some checked lemmas for clarity. The initial six-page version compiled locally on 26 November 2026 (two passes, commit 76f54dbe; only line-breaking warnings). The subsequent revision expands the distinct-weight signed-wall pivot exclusion without using global optimality, and still needs compilation and independent mathematical review.
 
-## 9. Remaining publication tasks
+## 9. Consolidated manuscript
+
+The [unified manuscript](research/hc4-jc2-manuscript.tex) consolidates the three research notes, expands the characteristic construction, and includes the reverse implication and the polynomial-inverse bridge. The [manuscript review record](research/MANUSCRIPT_REVIEW.md) compares its major interfaces to the reopened Lean declarations, records the outstanding checks, and distinguishes the completed local verification from the pending independent reproduction. No Lean proofs were modified for the manuscript.
+
+## 10. Remaining publication tasks
 
 1. Record the successful fresh-host workflow run, exact commit, log artifact and axiom output when available.
 2. Verify the separately staged standalone source library, record its file count and build, and preserve the full historical research repository.
