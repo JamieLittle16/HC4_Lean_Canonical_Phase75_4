@@ -182,11 +182,15 @@ The maintainer's targeted build at [9e548ccb](https://github.com/JamieLittle16/H
 
 A five-page [LaTeX research note](research/rational-affine-plane-rigidity.tex) gives the rank-one specialization and trace/pencil argument, the Jordan-frame calculation, the affine-gradient transport and both rank-two closures, and the singular-Hessian application (invoking the separately verified anchored-characteristic construction). It is a mathematical exposition of the checked route, with classical Lüroth and Gauss lemmas, not a substitute for independent mathematical review. Compile with `pdflatex` twice. This later standalone declaration does not change the dependency counts in Sections 4–5, which refer to the original final equivalence snapshot.
 
-## 8. Remaining publication tasks
+## 8. Global extremal-weight exposition
+
+The [companion mathematical note](research/global-extremal-weight.tex) describes the global rational optimisation over actual determinant-one charts, its attainment, the local no-improving-slope lemma, the zero-clock terminal and rank-two graph dichotomy, the rank-three relative pure-power reduction, and the signed final obstruction adapted from Tang's Lemma 3.3. The attainment and local improvement arguments are given explicitly; the more extensive checked rank reductions are stated or summarized with declaration names. This is not yet a fully self-contained manuscript. The negative-weight final wall is outside the optimisation domain, and the note does not infer its contradiction from nonnegative optimality.
+
+## 9. Remaining publication tasks
 
 1. Record the successful fresh-host workflow run, exact commit, log artifact and axiom output when available.
 2. Verify the separately staged standalone source library, record its file count and build, and preserve the full historical research repository.
-3. Review the completed source-independent rigidity exposition, then write the corresponding global weight argument and final obstruction.
+3. Review both mathematical notes independently, and expand the source-linked rank-reduction summaries into full manuscript proofs.
 4. Complete the lemma-level comparison against Tang and the earlier literature, including the precise difference in theorem scope. Review backport license and attribution requirements.
 5. Invite Tang and independent Lean/mathematical reviewers to check the result. Do not assert first formalisation priority or new mathematical results without supporting evidence.
 
