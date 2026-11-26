@@ -1121,6 +1121,129 @@ theorem rankThree_support_cap_of_monomial_rows
   omega
 
 
+set_option maxHeartbeats 5000000 in
+/-- The monomial transfer cap gives an actual extremal
+contradiction when the two other active coordinates have
+strictly smaller weight than the nonzero pivot. -/
+theorem globalWeightOptimum_rankThree_no_unique_active_max
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hminor : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p)
+    (hpos : 0 < w (l.succAbove a))
+    (p : Fin 4) (hps : p ≠ l.succAbove a)
+    (hp : hessian (initialForm w m P) p p ≠ 0)
+    (hsmall : ∀ i, i ≠ l.succAbove a → i ≠ p →
+      hessian (initialForm w m P) i i ≠ 0 ∧ w i < w p) :
+    False := by
+  classical
+  let L := initialForm w m P
+  let s := l.succAbove a
+  let H := hessian L
+  let v : Fin 4 → ℤ := fun i => if i = s then 0 else w p
+  have hs (i j : Fin 4) : H i j = H j i := pderiv_comm_backport _ _ _
+  have hmin := rankThree_rankTwoVelocity_restrictedMinors_zero L l a V hVl hVk
+    hreg hV hminor
+  have hL : MvPolynomial.IsWeightedHomogeneous w L m :=
+    initialForm_isWeightedHomogeneous w m P
+  have hmix (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) : H i p ≠ 0 := by
+    intro hz
+    have he := hmin p i p i hps his hps his
+    change H p p * H i i = H p i * H i p at he
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hp (hsmall i his hip).1) he
+  have hratio (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) :
+      ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧ e ≠ 0 ∧
+        w p - w i = ((t : ℤ)-(n : ℤ))*w s ∧
+        H i p * MvPolynomial.monomial (Finsupp.single s n) c =
+          H p p * MvPolynomial.monomial (Finsupp.single s t) e := by
+    have he := rankThree_rankTwoVelocity_weightedRatio L w m hw hL l a V
+      hVl hVk hreg hV hminor p i hps his hip hp (hmix i his hip)
+    rcases he with ⟨hz,_⟩ | ⟨_,hn⟩
+    · exact (ne_of_gt hpos hz).elim
+    · exact hn
+  have hgap (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) :
+      w s ≤ w p - w i := by
+    obtain ⟨n,t,c,e,hc,he,hd,_⟩ := hratio i his hip
+    have hlt := (hsmall i his hip).2
+    have hspos : 0 < w s := hpos
+    have hprod : 0 < ((t : ℤ)-(n : ℤ))*w s := by rw [← hd]; omega
+    have hdiff : 1 ≤ (t : ℤ)-(n : ℤ) := by
+      by_contra hn
+      have hnon : (t : ℤ)-(n : ℤ) ≤ 0 := by omega
+      exact (not_lt_of_ge (mul_nonpos_of_nonpos_of_nonneg hnon (le_of_lt hspos))) hprod
+    rw [hd]
+    exact (one_mul (w s)).symm ▸ mul_le_mul_of_nonneg_right hdiff (le_of_lt hspos)
+  have hvs : v s = 0 := by simp [v]
+  have hvp : v p = w p := by simp [v,hps]
+  have hvnon (i : Fin 4) : 0 ≤ v i := by
+    by_cases hi : i = s <;> simp [v,hi,hw p]
+  have hvle (i : Fin 4) : v i ≤ m := by
+    have hpw := weightCap_coordinate_le P w m hw hcap hdet p
+    by_cases hi : i = s <;> simp [v,hi,le_of_lt hm,hpw]
+  have hrows (i j : Fin 4) (his : i ≠ s) (hip : i ≠ p) (hjs : j ≠ s)
+      (hij : H i j ≠ 0) :
+      v i ≤ v p ∧ ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧
+        H i j * MvPolynomial.monomial (Finsupp.single s n) c =
+          H p j * MvPolynomial.monomial (Finsupp.single s t) e := by
+    obtain ⟨n,t,c,e,hc,he,hd,hcross⟩ := hratio i his hip
+    refine ⟨by simp [v,his,hps],n,t,c,e,hc,?_⟩
+    have hrow := hmin p i p j hps his hps hjs
+    change H p p * H i j = H p j * H i p at hrow
+    apply mul_left_cancel₀ hp
+    calc
+      H p p * (H i j * MvPolynomial.monomial (Finsupp.single s n) c) =
+          H p j * (H i p * MvPolynomial.monomial (Finsupp.single s n) c) := by
+        rw [← mul_assoc, hrow, mul_assoc]
+      _ = H p j * (H p p * MvPolynomial.monomial (Finsupp.single s t) e) := by rw [hcross]
+      _ = H p p * (H p j * MvPolynomial.monomial (Finsupp.single s t) e) := by ring
+  have hcapv : IsWeightLE v m L :=
+    rankThree_support_cap_of_monomial_rows L w v m hw
+      (isWeightLE_of_isWeightedHomogeneous hL) s p hps hvs hvp hvle hrows
+  let d : Fin 4 → ℤ := fun i => v i - w i
+  have hds : d s = -w s := by change v s - w s = _; rw [hvs,zero_sub]
+  have hdp : d p = 0 := by change v p - w p = _; rw [hvp,sub_self]
+  have hdge (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) : w s ≤ d i := by
+    change w s ≤ v i - w i
+    rw [show v i = w p by simp [v,his]]
+    exact hgap i his hip
+  obtain ⟨b,hb⟩ := Fin.exists_succAbove_eq hps
+  have hsum : 0 < ∑ i : Fin 4, d i := by
+    rw [Fin.sum_univ_succAbove d s, hds]
+    rw [Fin.sum_univ_succAbove (fun i : Fin 3 => d (s.succAbove i)) b]
+    change 0 < -w s + (d (s.succAbove b) +
+      ∑ i : Fin 2, d (s.succAbove (b.succAbove i)))
+    rw [hb,hdp,zero_add,Fin.sum_univ_two]
+    have he (i : Fin 2) : w s ≤ d (s.succAbove (b.succAbove i)) := by
+      apply hdge
+      · exact Fin.succAbove_ne _ _
+      · intro h
+        have hh : s.succAbove (b.succAbove i) = s.succAbove b := h.trans hb.symm
+        exact (Fin.succAbove_ne b i) (Fin.succAbove_right_injective hh)
+    have hh0 := he 0
+    have hh1 := he 1
+    have hsp : 0 < w s := hpos
+    omega
+  obtain ⟨u,hu,hbad⟩ := globalWeightOptimum_no_improvingSlope P w d m
+    hw hm hcap hclock hopt (by intro i hi; change 0 ≤ v i-w i; rw [hi,sub_zero]; exact hvnon i)
+    hsum
+  have hweight : Finsupp.weight w u = m :=
+    ((mem_support_initialForm_iff w m P u).mp hu).2
+  have hfun : d = (fun i => (1 : ℤ)*v i + (-1)*w i) := by
+    funext i
+    simp [d,sub_eq_add_neg]
+  rw [hfun,firstWall_weight_scaled_add,one_mul,neg_one_mul,hweight] at hbad
+  have he := hcapv hu
+  omega
+
+
 end
 end HC4.Polynomial
 
@@ -1151,3 +1274,5 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_support_transfer_to_pivot
 #print axioms HC4.Polynomial.rankThree_support_cap_of_monomial_rows
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_unique_active_max
