@@ -81,7 +81,7 @@ theorem exists_firstWall_of_missing_coordinate
     have hcoeff := MvPolynomial.mem_support_iff.mp hmem
     have hk0 := exponent_eq_zero_of_pderiv_eq_zero k (initialForm w m P) hk u hcoeff
     rw [Finsupp.weight_apply, Finsupp.sum_fintype]
-    · simp [v, hk0, smul_ite]
+    · simp [v, hk0]
     · intro i
       simp
   obtain ⟨a, b, ha, hb, hnonneg, hcap', hW', _, hold, hout⟩ :=
@@ -157,7 +157,6 @@ theorem exists_counterexample_fullSupport_face
 
 end FourVariables
 
-end
 end HC4.Polynomial
 
 #print axioms HC4.Polynomial.exists_counterexample_fullSupport_face
