@@ -1,4 +1,3 @@
-import HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular
 import Mathlib.LinearAlgebra.Matrix.Nondegenerate
 import Mathlib.Tactic
 
