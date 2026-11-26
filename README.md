@@ -2,6 +2,14 @@
 
 A Lean 4 formalisation of the equivalence of the planar Jacobian conjecture and the four-variable Hessian conjecture, together with supporting algebraic research.
 
+## Palomar Registry
+
+**[PALOMAR-2026-11-26-000066, version 1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-26-000066&version=1)** — registered 26 November 2026.
+
+The two explicit equivalence statements in [Challenge.lean](Challenge.lean) and [Solution.lean](Solution.lean) passed local Palomar Comparator verification on Lean 4.35.0. Lean's default kernel, NanoDa and con-ron all accepted the solution; con-ron reported verification of 40,457 declarations. The [submission-preparation snapshot](https://github.com/JamieLittle16/HessianConjecture4/tree/6b9526a446b4f2998307fb8d211436ccfbf723e3) preserves the exact source used for that reported local check. Consult the registry entry for the authoritative registered revision and verification record.
+
+Registration records machine-checked mathematical statements; it is not journal peer review or a claim that either conjecture is solved unconditionally.
+
 ## Verified polynomial-inverse equivalence
 
 For every algebraically closed field K of characteristic zero, JC2(K) is equivalent to HC4(K): both conjectures assert that the relevant polynomial maps with nonzero constant Jacobian determinant possess a two-sided polynomial inverse. On the Hessian side the maps are formal gradients of arbitrary four-variable polynomials.
@@ -57,11 +65,11 @@ The final weighted proof was substantially informed by Qiyue Tang, *[Equivalence
 
 The project predates this preprint, but its earlier investigations and the completed proof should not be conflated with an independent discovery of the final implication. The contribution documented here is a Lean 4 formalisation and algebraic adaptation, including the precise same-field injectivity statement over arbitrary characteristic-zero fields. The final Lean proof does not assume Tang's theorem as an axiom. The [proof and contribution audit](docs/PROOF_AND_CONTRIBUTION_AUDIT.md) records the mathematical route, actual declaration dependency graph statistics, dated source provenance, and a preliminary comparison with Tang. A full literature and lemma-level novelty review remains outstanding.
 
-## Publication branch
+## Repository history
 
-The research snapshot is preserved at [archive/research-2026](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) (commit `fe55e3fb`). This branch retains 229 HC4 modules, including the 227-module import closure of the two main endpoints, the umbrella module and the focused audit. The maintainer reported successful incremental builds and all five endpoint axiom audits after pruning. Two elementary lemmas were relocated verbatim; obsolete transitive imports were removed. The theorem statements are unchanged. Fresh-host verification of this smaller publication checkpoint is still pending.
+The research snapshot is preserved at [archive/research-2026](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026) (commit `fe55e3fb`). The publication library was pruned to 229 HC4 modules before the Lean 4.35 migration; the migration replaced the two vendored Lüroth files with upstream Mathlib and added a small coefficient compatibility module. The maintainer reported successful incremental builds and all five endpoint axiom audits after pruning. Two elementary lemmas were relocated verbatim; obsolete transitive imports were removed. The theorem statements are unchanged. The pre-migration pruning checkpoint is preserved in the Git history.
 
-The independent reproduction cited above applies to the earlier verified equivalence, not to the later pruning or migration. The publication migration now pins Lean and Mathlib 4.35.0. The maintainer reported a successful 9,274-job build and clean five-endpoint axiom audit after migration (commit `7842bc5`); the subsequent module-system conversion is at `0a69d9a`. A fresh independent build of the final submission snapshot remains outstanding.
+The independent reproduction cited above applies to the earlier verified equivalence, not to the later pruning or migration. The publication migration now pins Lean and Mathlib 4.35.0. The maintainer reported a successful 9,274-job build and clean five-endpoint axiom audit after migration (commit `7842bc5`); the subsequent module-system conversion is at `0a69d9a`. The maintainer subsequently reported a successful 9,273-job build and local Comparator acceptance of both advertised statements. The registry entry is linked above.
 
 ## Palomar statement and verification
 
@@ -77,7 +85,7 @@ lake env lean HC4/Audit.lean
 bash scripts/verify-comparator.sh
 ```
 
-The Comparator script uses the pinned toolchain's bundled independent kernels and requires bubblewrap. Final verification must pass before submission.
+The Comparator script uses the pinned toolchain's bundled independent kernels and requires bubblewrap. The maintainer reported successful local execution before registration.
 
 ## Reproduce the proof
 
@@ -87,7 +95,7 @@ lake build HC4
 lake env lean HC4/Audit.lean
 ```
 
-The audit enforces the foundational axiom whitelist for five public endpoints, including the standalone rational rigidity theorem. For the full verification procedure including a deliberately false negative control, run `bash verify.sh`. For source indexes run `python3 tools/generate_proof_inventory.py`; for a read-only source closure report run `python3 tools/prune_publication.py`.
+The audit enforces the foundational axiom whitelist for five public endpoints, including the standalone rational rigidity theorem. For the full verification procedure including a deliberately false negative control, run `bash verify.sh`. For source indexes run `python3 tools/generate_proof_inventory.py`; for a read-only source closure report run `python3 tools/publication_footprint.py`.
 
 ## Reading guide
 
