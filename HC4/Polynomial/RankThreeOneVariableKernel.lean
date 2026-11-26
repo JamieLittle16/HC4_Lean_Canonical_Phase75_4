@@ -360,7 +360,7 @@ theorem rankThree_complement_transport
       Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero,
       Fin.succAbove_right_injective.eq_iff]
     rfl
-  have hsum {R : Type*} [AddCommMonoid R] (g : Fin 4 → R) (hg : g l = 0) :
+  have hsum (g : Fin 4 → _root_.Polynomial (E K)) (hg : g l = 0) :
       (∑ i : Fin 4, g i) = ∑ i : Fin 3, g (l.succAbove i) := by
     rw [Fin.sum_univ_succAbove g l, hg, zero_add]
   apply Matrix.ext
@@ -376,8 +376,8 @@ theorem rankThree_complement_transport
         coeffDeriv (d j) (w a)) =
       ∑ a : Fin 3, MvPolynomial.aeval w (pderiv (l.succAbove a) (pderiv (l.succAbove i) L)) *
         coeffDeriv (d j) (w (l.succAbove a)) := by
-    apply hsum
-    rw [hc, mul_zero]
+    exact hsum (fun a : Fin 4 => MvPolynomial.aeval w (pderiv a (pderiv (l.succAbove i) L)) *
+      coeffDeriv (d j) (w a)) (by rw [hc, mul_zero])
   rw [hsplit] at e
   simp only [ht] at e
   simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
