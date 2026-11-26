@@ -5666,7 +5666,6 @@ theorem rankThree_affine_relative
       pderiv j (F U) = F (pderiv s U) * MvPolynomial.C (M s j) := by
     change pderiv j (rankThreeAffineSubstitution M t U) = _
     rw [rankThree_affine_partial,Finset.sum_eq_single s]
-    · rfl
     · intro i _ hi
       rw [hU i hi,map_zero,zero_mul]
     · simp
@@ -5722,8 +5721,8 @@ theorem rankThree_relativeJet_slope
     (h0 : ∀ j, coeff 0 (R j) = if j = 0 then 1 else 0)
     (h1 : ∀ j, coeff 0 (pderiv 0 (R j)) = if j = 1 then 1 else 0)
     (h2 : ∀ j, coeff 0 (pderiv 0 (pderiv 0 (R j))) = if j = 2 then 2 else 0) :
-    (∀ j, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j)) ∧
-    ∀ j, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ) := by
+    (∀ j : Fin 3, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j)) ∧
+    ∀ j : Fin 3, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ) := by
   have hcoef1 (j : Fin 3) : coeff (Finsupp.single (0 : Fin 4) 1) (R j) =
       if j = 1 then 1 else 0 := by
     rw [← (rankThree_coeff_jet (R j)).1,h1]
@@ -5739,14 +5738,16 @@ theorem rankThree_relativeJet_slope
       have hj : (j : ℕ) < 3 := j.isLt
       have hc : k = 0 ∨ k = 1 := by omega
       rcases hc with rfl | rfl
-      · rw [Finsupp.single_zero,h0,if_neg]
-        intro hz
-        rw [hz] at hk
-        exact (Nat.not_lt_zero _) hk
-      · rw [hcoef1,if_neg]
-        intro hz
-        rw [hz] at hk
-        exact (Nat.lt_irrefl _) hk
+      · have hj0 : j ≠ 0 := by
+          intro hz
+          subst j
+          exact (Nat.not_lt_zero _) hk
+        rw [Finsupp.single_zero,h0,if_neg hj0]
+      · have hj1 : j ≠ 1 := by
+          intro hz
+          subst j
+          exact (Nat.lt_irrefl _) hk
+        rw [hcoef1,if_neg hj1]
     have htop : coeff (Finsupp.single (0 : Fin 4) (j : ℕ)) (R j) = 1 := by
       fin_cases j
       · simpa using h0 0
@@ -5760,8 +5761,8 @@ theorem rankThree_relativeJet_slope
 product formula at each of the three different coefficient weights. -/
 theorem rankThree_normalizedPhase_slope
     (R : Fin 3 → B K)
-    (hcap : ∀ j, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j))
-    (htop : ∀ j, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ)) :
+    (hcap : ∀ j : Fin 3, IsWeightLE rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j))
+    (htop : ∀ j : Fin 3, initialForm rankThreeWallSlope (-((j : ℕ) : ℤ)) (R j) = X 0 ^ (j : ℕ)) :
     let T := R 0 * X 1 + R 1 * X 2 + R 2 * X 3
     IsWeightLE rankThreeWallSlope 0 T ∧ initialForm rankThreeWallSlope 0 T = rankThreeWallPhase := by
   have h (j : Fin 3) :
@@ -5889,7 +5890,7 @@ theorem rankThree_clearedPhase_normalize_impossible
   let z : Fin 4 → B K := fun i =>
     MvPolynomial.C (t i) + ∑ j : Fin 4, MvPolynomial.C (A i j)*X j
   let Q := F P
-  have hFX (i : Fin 4) : F (X i) = z i := MvPolynomial.aeval_X i
+  have hFX (i : Fin 4) : F (X i) = z i := MvPolynomial.aeval_X z i
   have hz (i : Fin 4) : (z i).IsWeightedHomogeneous rankThreeWallDegree (v i) := by
     rw [← hFX]
     by_cases hi : i = s
@@ -6040,7 +6041,9 @@ theorem globalWeightOptimum_rankThree_zeroWeight_impossible
       · exact mul_left_cancel₀ (ne_of_gt hwp)
       · intro h
         rw [h]
-    rw [hiff]
+    by_cases h : Finsupp.weight v u = (n : ℤ)
+    · rw [if_pos h,if_pos (hiff.mpr h)]
+    · rw [if_neg h,if_neg (fun he => h (hiff.mp he))]
   apply rankThree_clearedPhase_normalize_impossible P q a b D N e n hn3 hdet
   · exact hcapv
   · exact hq
