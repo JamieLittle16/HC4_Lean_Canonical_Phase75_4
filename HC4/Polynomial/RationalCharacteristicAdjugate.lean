@@ -1,5 +1,4 @@
 import HC4.Polynomial.RationalCharacteristicSelfAdjoint
-import HC4.Polynomial.TransverseLeadingSchurFoundation
 
 /-!
 # Constant annihilators of the Hessian along a rational characteristic
@@ -22,6 +21,32 @@ open scoped Matrix BigOperators
 noncomputable section
 
 private abbrev I := Unit ⊕ Fin 3
+
+/-- The longitudinal principal cofactor is exactly the transverse
+determinant, in the actual sum-indexed matrix (without a change of frame). -/
+theorem longitudinal_principalCofactor_eq_transverseDet
+    {R : Type*} [CommRing R]
+    (A : Matrix (Unit ⊕ Fin 3) (Unit ⊕ Fin 3) R) :
+    A.adjugate (.inl ()) (.inl ()) =
+      (A.submatrix Sum.inr Sum.inr).det := by
+  classical
+  let B := A.updateRow (.inl ()) (Pi.single (.inl ()) (1 : R))
+  have hB : B = Matrix.fromBlocks
+      (1 : Matrix Unit Unit R) (0 : Matrix Unit (Fin 3) R)
+      (A.submatrix Sum.inr Sum.inl) (A.submatrix Sum.inr Sum.inr) := by
+    ext i j
+    cases i with
+    | inl u =>
+      cases u
+      cases j with
+      | inl v => cases v; simp [B, Matrix.updateRow_apply, Matrix.one_apply]
+      | inr v => simp [B, Matrix.updateRow_apply, Pi.single_apply]
+    | inr i =>
+      cases j <;> simp [B, Matrix.updateRow_apply]
+  rw [Matrix.adjugate_apply]
+  change B.det = _
+  rw [hB, Matrix.det_fromBlocks_zero₁₂, Matrix.det_one, one_mul]
+
 
 section KernelAlgebra
 
@@ -60,6 +85,54 @@ theorem symmetric_kernelColumns_mulVec_eq_zero
 end KernelAlgebra
 
 variable {K : Type*} [Field K]
+
+/-- Differentiation in characteristic time is the directional derivative
+of the original polynomial, evaluated by the same affine substitution. -/
+theorem transverse_lineEval_derivative
+    {ι E : Type*} [Fintype ι] [DecidableEq ι]
+    [CommRing E] [Algebra K E]
+    (z V : ι → E) (P : MvPolynomial ι K) :
+    (lineEval z V P).derivative =
+      ∑ i : ι, _root_.Polynomial.C (V i) * lineEval z V (pderiv i P) := by
+  classical
+  let e := lineEval (K := K) z V
+  have hprod (p q : MvPolynomial ι K) :
+      (∑ i : ι, _root_.Polynomial.C (V i) * e (pderiv i (p * q))) =
+        e p * (∑ i : ι, _root_.Polynomial.C (V i) * e (pderiv i q)) +
+        e q * (∑ i : ι, _root_.Polynomial.C (V i) * e (pderiv i p)) := by
+    simp only [Finset.mul_sum, ← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [Derivation.leibniz]
+    simp only [smul_eq_mul, map_add, map_mul]
+    ring
+  change (e P).derivative = _
+  induction P using MvPolynomial.induction_on with
+  | C a =>
+    rw [show e (MvPolynomial.C a) =
+        _root_.Polynomial.C (algebraMap K E a) by
+      simp [e, lineEval, IsScalarTower.algebraMap_apply K E (_root_.Polynomial E),
+        _root_.Polynomial.algebraMap_eq]]
+    simp [e]
+  | add p q hp hq =>
+    simp only [map_add, _root_.Polynomial.derivative_add, hp, hq,
+      mul_add, Finset.sum_add_distrib]
+  | mul_X p i hp =>
+    have hx : (e (X i)).derivative =
+        ∑ j : ι, _root_.Polynomial.C (V j) * e (pderiv j (X i)) := by
+      rw [show e (X i) = _root_.Polynomial.C (z i) +
+          _root_.Polynomial.C (V i) * _root_.Polynomial.X by
+        simp [e, lineEval]]
+      rw [Finset.sum_eq_single i]
+      · simp [pderiv_X]
+      · intro j _ hji
+        simp [pderiv_X, hji, Ne.symm hji]
+      · simp
+    change (e (p * X i)).derivative =
+      ∑ j : ι, _root_.Polynomial.C (V j) * e (pderiv j (p * X i))
+    rw [hprod, map_mul, _root_.Polynomial.derivative_mul, hp, hx]
+    ring
+
 
 private abbrev B (K : Type*) [Field K] := MvPolynomial (Fin 3) K
 private abbrev E (K : Type*) [Field K] := FractionRing (B K)

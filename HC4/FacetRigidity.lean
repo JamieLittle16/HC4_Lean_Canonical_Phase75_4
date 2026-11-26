@@ -1,2 +1,0 @@
-import HC4.FacetRigidity.EulerEquation
-import HC4.FacetRigidity.LeadingCoefficient
