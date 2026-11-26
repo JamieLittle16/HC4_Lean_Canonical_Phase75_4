@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11956**.
+Distinct declaration spellings indexed: **11959**.
 
 ## Repeated declaration spellings
 
@@ -9498,6 +9498,7 @@ Distinct declaration spellings indexed: **11956**.
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWallDegree` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThreeWallPhase` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeWallSlope` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_activeMinor_zero_all_restrictedMinors` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9540,6 +9541,7 @@ Distinct declaration spellings indexed: **11956**.
 - `rankThree_measure_add_two_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThree_measure_succ_eq_rankTwo_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThree_no_regularActive_of_no_affineRelation` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_normalPhase_cofactors` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_acceleration_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_adjugate_column` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_exists` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9556,6 +9558,7 @@ Distinct declaration spellings indexed: **11956**.
 - `rankThree_phaseJet_normalize` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_phaseJet_regularPoint` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `rankThree_powerHessian_at_one` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_proportionalDifferential_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_factor_square_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_orientedSlope_data` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
