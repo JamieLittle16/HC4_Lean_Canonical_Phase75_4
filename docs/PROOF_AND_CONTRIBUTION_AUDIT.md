@@ -73,7 +73,7 @@ Quot.sound
 
 No `sorryAx`, Tang theorem axiom, planar conjecture axiom or additional mathematical axiom occurs in the audited final dependency closure. The equivalence is a theorem about the two conjectural propositions. The local Lean version is pinned by `lean-toolchain` (v4.24.0) and the dependency revisions by `lake-manifest.json`.
 
-**Fresh-host reproduction:** the [clean reproduction workflow](../.github/workflows/clean-reproduction.yml) was reported running on 26 November. Its result is not yet recorded. It disables the project build cache, permits the pinned Mathlib dependency cache, rebuilds the final entry point, checks the axiom whitelist and rejects a deliberately false equality. The separately staged standalone build is also reported in progress; its outcome and exact source footprint are not yet certified. Neither is a substitute for external mathematical review.
+**Fresh-host reproduction:** The [clean GitHub Actions reproduction](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863) succeeded on 26 November 2026 in 55m 4s at commit [1377de42](https://github.com/JamieLittle16/HessianConjecture4/commit/1377de427f2801e2f9f6b49ce1a07371e60dabb8). It rebuilt `HC4.FinalEquivalence` (8358 jobs) with Lean 4.24.0 and the pinned Mathlib revision, using only the Mathlib dependency cache (no cached HC4 build). The explicit equivalence, reference equivalence, same-field injectivity equivalence and core implication report exactly `[propext, Classical.choice, Quot.sound]`. The false equality negative control was rejected. The [verification artifact](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863/artifacts/15140070414) has SHA256 `903f14c248de4c6480d36136f3574cfa6295eae445654ef0fadc43eda49fac9b`. GitHub's comparison from the tested commit to the current manuscript checkpoint showed no modifications to existing Lean source files or the toolchain/manifest; the later standalone rational rigidity module and dependency exporter were added, not covered by this run. The standalone theorem has passed local verification; a separate fresh-host check of it is not established by this log.
 
 ## 4. Declaration dependency audit
 
@@ -190,7 +190,7 @@ The [supporting rank-exclusion note](research/extremal-rank-exclusions.tex) now 
 
 ## 9. Consolidated manuscript
 
-The [unified manuscript](research/hc4-jc2-manuscript.tex) consolidates the three research notes, expands the characteristic construction, and includes the reverse implication and the polynomial-inverse bridge. The [manuscript review record](research/MANUSCRIPT_REVIEW.md) compares its major interfaces to the reopened Lean declarations, records the outstanding checks, and distinguishes the completed local verification from the pending independent reproduction. No Lean proofs were modified for the manuscript.
+The [unified manuscript](research/hc4-jc2-manuscript.tex) consolidates the three research notes, expands the characteristic construction, and includes the reverse implication and the polynomial-inverse bridge. The [manuscript review record](research/MANUSCRIPT_REVIEW.md) compares its major interfaces to the reopened Lean declarations, records the outstanding checks, and records the completed local verification and successful independent clean equivalence reproduction. No Lean proofs were modified for the manuscript.
 
 ## 10. Remaining publication tasks
 
