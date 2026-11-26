@@ -80,4 +80,4 @@ run_cmd do
   let env ← getEnv
   let roots := #[``HC4.StatementAudit.jc2_iff_hc4_explicit,
     ``HC4.Polynomial.hc4_of_planarJC2]
-  liftIO (HC4DependencyExport.exportGraph env roots)
+  HC4DependencyExport.exportGraph env roots
