@@ -5084,6 +5084,134 @@ theorem rankThree_phaseJet_normalize
     · rw [if_neg (Ne.symm hj),if_neg hj,mul_zero]
 
 
+/-- The slope-zero phase of the Taylor-normalised leading layer. -/
+def rankThreeWallPhase : B K :=
+  X 1 + X 0 * X 2 + X 0 ^ 2 * X 3
+
+/-- Hessian powers at a point where the phase has value one.
+The evaluated formula works at arbitrary degree and does not
+require expanding a symbolic polynomial power. -/
+theorem rankThree_powerHessian_at_one
+    (T : B K) (x : Fin 4 → K) (hx : MvPolynomial.aeval x T = 1)
+    (n : ℕ) (i j : Fin 4) :
+    MvPolynomial.aeval x (hessian (T ^ n) i j) =
+      (n : K) * ((n : K)-1) *
+        MvPolynomial.aeval x (pderiv i T) * MvPolynomial.aeval x (pderiv j T) +
+      (n : K) * MvPolynomial.aeval x (hessian T i j) := by
+  let f := MvPolynomial.aeval x
+  have hfirst (k : Fin 4) (d : ℕ) :
+      f (pderiv k (T ^ d)) = (d : K) * f (pderiv k T) := by
+    induction d with
+    | zero => simp [f]
+    | succ d ih =>
+      rw [pow_succ,Derivation.leibniz,smul_eq_mul,smul_eq_mul]
+      simp only [map_add,map_mul,map_pow,show f T = 1 from hx,one_pow,one_mul,ih,
+        Nat.cast_succ]
+      ring
+  change f (pderiv j (pderiv i (T ^ n))) =
+    (n : K) * ((n : K)-1) * f (pderiv i T) * f (pderiv j T) +
+      (n : K) * f (pderiv j (pderiv i T))
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    rw [pow_succ,Derivation.leibniz,smul_eq_mul,smul_eq_mul,map_add,
+      Derivation.leibniz,Derivation.leibniz,smul_eq_mul,smul_eq_mul,smul_eq_mul,smul_eq_mul]
+    simp only [map_add,map_mul,map_pow,show f T = 1 from hx,one_pow,one_mul,
+      hfirst,ih,Nat.cast_succ]
+    ring
+
+set_option maxHeartbeats 5000000 in
+/-- The exact normalised phase power has all three passive principal
+cofactors nonzero and its lightest passive Hessian diagonal nonzero.
+It suffices to evaluate at (1,1,0,0), where the phase is one.
+The three complementary determinants are -A D², -4 A D²,
+and -A D², with A=c*n*(n-1) and D=c*n. -/
+theorem rankThree_normalPhase_cofactors
+    (n : ℕ) (hn : 2 ≤ n) (c : K) (hc : c ≠ 0) :
+    let L : B K := MvPolynomial.C c * rankThreeWallPhase ^ n
+    (∀ i : Fin 4, i ≠ 0 → (hessian L).adjugate i i ≠ 0) ∧
+      hessian L 1 1 ≠ 0 := by
+  classical
+  let T : B K := rankThreeWallPhase
+  let L : B K := MvPolynomial.C c * T ^ n
+  let x : Fin 4 → K := ![1,1,0,0]
+  let f : B K →ₐ[K] K := MvPolynomial.aeval x
+  let H := (hessian L).map f.toRingHom
+  let A : K := c * (n : K) * ((n : K)-1)
+  let D : K := c * (n : K)
+  let G : Matrix (Fin 4) (Fin 4) K :=
+    !![0,0,D,2*D;0,A,A,A;D,A,A,A;2*D,A,A,A]
+  have hn0 : (n : K) ≠ 0 := by exact_mod_cast (show n ≠ 0 by omega)
+  have hn1 : (n : K)-1 ≠ 0 := by
+    intro hz
+    have he : (n : K) = 1 := sub_eq_zero.mp hz
+    have he' : n = 1 := by exact_mod_cast he
+    omega
+  have hA : A ≠ 0 := mul_ne_zero (mul_ne_zero hc hn0) hn1
+  have hD : D ≠ 0 := mul_ne_zero hc hn0
+  have hx : f T = 1 := by simp [f,T,rankThreeWallPhase,x]
+  have hgrad (i : Fin 4) : f (pderiv i T) = (![0,1,1,1] : Fin 4 → K) i := by
+    fin_cases i <;>
+      norm_num [f,T,rankThreeWallPhase,x,map_add,Derivation.leibniz,
+        Derivation.leibniz_pow,smul_eq_mul,nsmul_eq_mul,MvPolynomial.pderiv_X]
+  have hphaseH (i j : Fin 4) : f (hessian T i j) =
+      (!![0,0,1,2;0,0,0,0;1,0,0,0;2,0,0,0] : Matrix (Fin 4) (Fin 4) K) i j := by
+    change f (pderiv j (pderiv i T)) = _
+    fin_cases i <;> fin_cases j <;>
+      norm_num [f,T,rankThreeWallPhase,x,map_add,Derivation.leibniz,
+        Derivation.leibniz_pow,smul_eq_mul,nsmul_eq_mul,MvPolynomial.pderiv_X]
+  have hentry (i j : Fin 4) : H i j =
+      c * ((n : K)*((n : K)-1)*f (pderiv i T)*f (pderiv j T) +
+        (n : K)*f (hessian T i j)) := by
+    change f (pderiv j (pderiv i (MvPolynomial.C c * T ^ n))) = _
+    rw [MvPolynomial.pderiv_C_mul,MvPolynomial.pderiv_C_mul,map_mul]
+    have hc' : f (MvPolynomial.C c) = c := by simp [f]
+    rw [hc']
+    exact congrArg (fun z : K => c*z) (rankThree_powerHessian_at_one T x hx n i j)
+  have hHG : H = G := by
+    apply Matrix.ext
+    intro i j
+    rw [hentry,hgrad,hgrad,hphaseH]
+    fin_cases i <;> fin_cases j <;> simp [G,A,D] <;> ring
+  have hdet (i : Fin 4) (hi : i ≠ 0) :
+      ((hessian L).submatrix i.succAbove i.succAbove).det ≠ 0 := by
+    intro hz
+    have he : (f.toRingHom.mapMatrix
+        ((hessian L).submatrix i.succAbove i.succAbove)).det = 0 := by
+      rw [← RingHom.map_det,hz,map_zero]
+    change (H.submatrix i.succAbove i.succAbove).det = 0 at he
+    rw [hHG,Matrix.det_fin_three] at he
+    have hcases : i = 1 ∨ i = 2 ∨ i = 3 := by
+      fin_cases i <;> simp_all
+    rcases hcases with h | h | h
+    · subst i
+      change 0*A*A - 0*A*A - D*D*A + D*A*(2*D) +
+        (2*D)*D*A - (2*D)*A*(2*D) = 0 at he
+      have hz' : A * D * D = 0 := by linear_combination -he
+      exact (mul_ne_zero (mul_ne_zero hA hD) hD) hz'
+    · subst i
+      change 0*A*A - 0*A*A - 0*0*A + 0*A*(2*D) +
+        (2*D)*0*A - (2*D)*A*(2*D) = 0 at he
+      have hz' : (4 : K) * A * D * D = 0 := by linear_combination -he
+      exact (mul_ne_zero (mul_ne_zero (mul_ne_zero (by norm_num) hA) hD) hD) hz'
+    · subst i
+      change 0*A*A - 0*A*A - 0*0*A + 0*A*D + D*0*A - D*A*D = 0 at he
+      have hz' : A * D * D = 0 := by linear_combination -he
+      exact (mul_ne_zero (mul_ne_zero hA hD) hD) hz'
+  constructor
+  · intro i hi
+    change (hessian L).adjugate i i ≠ 0
+    rw [Matrix.adjugate_fin_succ_eq_det_submatrix]
+    exact mul_ne_zero (pow_ne_zero _ (neg_ne_zero.mpr one_ne_zero)) (hdet i hi)
+  · change hessian L 1 1 ≠ 0
+    intro hz
+    have he : H 1 1 = 0 := by
+      change f (hessian L 1 1) = 0
+      rw [hz,map_zero]
+    rw [hHG] at he
+    exact hA (show A = 0 from he)
+
+
 end
 end HC4.Polynomial
 
@@ -5211,3 +5339,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_phaseJetMatrix_det
 #print axioms HC4.Polynomial.rankThree_phaseJet_normalize
+
+#print axioms HC4.Polynomial.rankThree_powerHessian_at_one
+#print axioms HC4.Polynomial.rankThree_normalPhase_cofactors
