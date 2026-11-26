@@ -117,11 +117,11 @@ theorem eliminate_iff {n : ℕ} (S : Finset (RationalProjectionRow (n+1)))
   have hrow (r : RationalProjectionRow (n+1)) (z : ℚ) :
       r.holds t (Fin.cons z x) ↔ a r * z ≤ b r := by
     simp only [holds, Fin.sum_univ_succ, Fin.cons_zero, Fin.cons_succ, a, b]
-    linarith
+    constructor <;> intro h <;> linarith only [h]
   have hzero (r : RationalProjectionRow (n+1)) :
       r.tail.holds t x ↔ 0 ≤ b r := by
     simp only [tail, holds, b]
-    linarith
+    constructor <;> intro h <;> linarith only [h]
   have hpair (p q : RationalProjectionRow (n+1)) :
       (cancelPair p q).holds t x ↔ a p * b q ≥ a q * b p := by
     simp only [cancelPair, holds, a, b, sub_mul, Finset.sum_sub_distrib, mul_assoc,
