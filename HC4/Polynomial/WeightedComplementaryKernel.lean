@@ -141,6 +141,7 @@ end Matrix
 variable {K : Type*} [Field K] [CharZero K]
 private abbrev S (K : Type*) [Field K] := MvPolynomial I K
 
+set_option maxHeartbeats 4000000 in
 /-- The genuine maximal weighted layer in the determinant-one
 chart has a singular complementary Hessian, whose adjugate
 columns lift to kernels of the entire (permuted) leading Hessian.
