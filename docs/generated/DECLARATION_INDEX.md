@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11814**.
+Distinct declaration spellings indexed: **11816**.
 
 ## Repeated declaration spellings
 
@@ -9550,6 +9550,8 @@ Distinct declaration spellings indexed: **11814**.
 - `rankTwo_directionalDerivation_X` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
 - `rankTwo_directionalDerivation_apply` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrontier`
 - `rankTwo_directionalDerivation_scale` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoStraightFibre`
+- `rankTwo_distinctGradient_kernel_sup_ne_top` — `theorem` in `HC4.Polynomial.RankTwoAffineFibres`
+- `rankTwo_distinctGradient_no_kernelDisplacement` — `theorem` in `HC4.Polynomial.RankTwoAffineFibres`
 - `rankTwo_dualEuler_affine` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`
 - `rankTwo_exists_jordanFrame` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoFrame`
 - `rankTwo_exists_normalizedDualDirection` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankTwoDualLine`

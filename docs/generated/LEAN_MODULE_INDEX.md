@@ -5504,7 +5504,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Local imports: `HC4.Polynomial.RankTwoPrincipalPivot`
 - External imports: none
 - Imported by local modules: `HC4`
-- Declarations: `theorem rankTwo_kernel_zero_of_supportedOnPivot`, `abbrev B`, `theorem rankTwo_lineEval_gradient_of_normalizedKernel`, `theorem rankTwo_regularPoint_lineEval_gradient`, `theorem rankTwo_regularPoint_affineKernel_fibre`
+- Declarations: `theorem rankTwo_kernel_zero_of_supportedOnPivot`, `abbrev B`, `theorem rankTwo_lineEval_gradient_of_normalizedKernel`, `theorem rankTwo_regularPoint_lineEval_gradient`, `theorem rankTwo_regularPoint_affineKernel_fibre`, `theorem rankTwo_distinctGradient_no_kernelDisplacement`, `theorem rankTwo_distinctGradient_kernel_sup_ne_top`
 
 ### `HC4.Polynomial.RankTwoAffineLevelCurvature`
 
