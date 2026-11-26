@@ -975,6 +975,152 @@ theorem rankThree_rankTwoVelocity_weightedRatio
     omega
 
 
+set_option maxHeartbeats 5000000 in
+/-- Transfer a supported second derivative coefficient to the
+pivot row. The monomial factors involve only the omitted coordinate,
+so the transfer preserves every new weight with zero omitted weight
+and increases the pivot exponent by one in the original potential. -/
+theorem rankThree_support_transfer_to_pivot
+    (L : B K) (s p i j : Fin 4) (hps : p ≠ s) (hip : i ≠ p)
+    (v : Fin 4 → ℤ) (hvs : v s = 0)
+    (u : Fin 4 →₀ ℕ) (hu : coeff u L ≠ 0) (hui : u i ≠ 0)
+    (huj : (u - Finsupp.single i 1) j ≠ 0)
+    (n t : ℕ) (c e : K) (hc : c ≠ 0)
+    (hcross : hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c =
+      hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e) :
+    ∃ z : Fin 4 →₀ ℕ, coeff z L ≠ 0 ∧ z p = u p + 1 ∧
+      Finsupp.weight v z = Finsupp.weight v u - v i + v p := by
+  classical
+  let a := u - Finsupp.single i 1
+  let b := a - Finsupp.single j 1
+  have ha : coeff a (pderiv i L) ≠ 0 :=
+    extremal_pderiv_coeff_nonzero L u hu i hui
+  have hb : coeff b (hessian L i j) ≠ 0 :=
+    extremal_pderiv_coeff_nonzero (pderiv i L) a ha j huj
+  let q := b + Finsupp.single s n
+  have hq : coeff q (hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e) ≠ 0 := by
+    rw [← hcross]
+    change coeff (b + Finsupp.single s n)
+      (hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c) ≠ 0
+    rw [MvPolynomial.coeff_mul_monomial]
+    exact mul_ne_zero hb hc
+  rw [MvPolynomial.coeff_mul_monomial'] at hq
+  have hle : Finsupp.single s t ≤ q := by
+    by_contra hn
+    rw [if_neg hn] at hq
+    exact hq rfl
+  rw [if_pos hle] at hq
+  let b' := q - Finsupp.single s t
+  have hb' : coeff b' (hessian L p j) ≠ 0 := (mul_ne_zero_iff.mp hq).1
+  let a' := b' + Finsupp.single j 1
+  let z := a' + Finsupp.single p 1
+  have ha' : coeff a' (pderiv p L) ≠ 0 := by
+    change coeff b' (pderiv j (pderiv p L)) ≠ 0 at hb'
+    rw [coeff_pderiv_backport] at hb'
+    exact (mul_ne_zero_iff.mp hb').1
+  have hz : coeff z L ≠ 0 := by
+    rw [coeff_pderiv_backport] at ha'
+    exact (mul_ne_zero_iff.mp ha').1
+  have hau : a + Finsupp.single i 1 = u :=
+    Finsupp.sub_add_single_one_cancel hui
+  have hba : b + Finsupp.single j 1 = a :=
+    Finsupp.sub_add_single_one_cancel huj
+  have hbb : b' + Finsupp.single s t = b + Finsupp.single s n :=
+    tsub_add_cancel_of_le hle
+  have hpa := congrArg (fun x : Fin 4 →₀ ℕ => x p) hau
+  have hpb := congrArg (fun x : Fin 4 →₀ ℕ => x p) hba
+  have hpc := congrArg (fun x : Fin 4 →₀ ℕ => x p) hbb
+  simp only [Finsupp.add_apply, Finsupp.single_apply, if_neg hip,
+    if_neg (Ne.symm hps), add_zero] at hpa hpb hpc
+  have hwp := congrArg (Finsupp.weight v) hau
+  have hwq := congrArg (Finsupp.weight v) hba
+  have hwr := congrArg (Finsupp.weight v) hbb
+  simp only [map_add, Finsupp.weight_single, one_smul, hvs,
+    smul_zero, add_zero] at hwp hwq hwr
+  refine ⟨z,hz,?_,?_⟩
+  · change (b' + Finsupp.single j 1 + Finsupp.single p 1) p = u p + 1
+    simp only [Finsupp.add_apply, Finsupp.single_apply, if_pos rfl]
+    omega
+  · change Finsupp.weight v (b' + Finsupp.single j 1 + Finsupp.single p 1) = _
+    simp only [map_add, Finsupp.weight_single, one_smul]
+    omega
+
+set_option maxHeartbeats 5000000 in
+/-- A restricted rank-one chart admits a new cap after collapsing
+the omitted weight to zero and assigning the active coordinates the
+pivot weight. This is a coefficient argument on the actual leading
+polynomial, not a nonlinear change of the source. -/
+theorem rankThree_support_cap_of_monomial_rows
+    (L : B K) (w v : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hL : IsWeightLE w m L)
+    (s p : Fin 4) (hps : p ≠ s) (hvs : v s = 0)
+    (hvp : v p = w p) (hv : ∀ i, v i ≤ m)
+    (hrows : ∀ i j : Fin 4, i ≠ s → i ≠ p → j ≠ s →
+      hessian L i j ≠ 0 →
+      v i ≤ v p ∧ ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧
+        hessian L i j * MvPolynomial.monomial (Finsupp.single s n) c =
+          hessian L p j * MvPolynomial.monomial (Finsupp.single s t) e) :
+    IsWeightLE v m L := by
+  classical
+  intro u hu
+  by_contra hn
+  let T := L.support.filter (fun x => m < Finsupp.weight v x)
+  have hT : T.Nonempty := ⟨u, Finset.mem_filter.mpr ⟨hu, lt_of_not_ge hn⟩⟩
+  obtain ⟨b,hb,hmax⟩ := Finset.exists_max_image T (fun x : Fin 4 →₀ ℕ => x p) hT
+  have hbL : b ∈ L.support := (Finset.mem_filter.mp hb).1
+  have hbv : m < Finsupp.weight v b := (Finset.mem_filter.mp hb).2
+  have hbc := MvPolynomial.mem_support_iff.mp hbL
+  have hex : ∃ i : Fin 4, i ≠ s ∧ i ≠ p ∧ b i ≠ 0 := by
+    by_contra he
+    push_neg at he
+    have hle : Finsupp.weight v b ≤ Finsupp.weight w b := by
+      rw [Finsupp.weight_apply, Finsupp.weight_apply]
+      apply Finset.sum_le_sum
+      intro i hi
+      by_cases his : i = s
+      · subst i
+        rw [hvs, smul_zero]
+        exact nsmul_nonneg (hw s) _
+      · by_cases hip : i = p
+        · subst i
+          rw [hvp]
+        · rw [he i his hip, zero_smul, zero_smul]
+    exact (not_lt_of_ge (hle.trans (hL hbL))) hbv
+  obtain ⟨i,his,hip,hbi⟩ := hex
+  let a := b - Finsupp.single i 1
+  have ha : a + Finsupp.single i 1 = b :=
+    Finsupp.sub_add_single_one_cancel hbi
+  have hexj : ∃ j : Fin 4, j ≠ s ∧ a j ≠ 0 := by
+    by_contra he
+    push_neg at he
+    have hza : a = Finsupp.single s (a s) := by
+      ext j
+      by_cases hj : j = s
+      · subst j
+        simp
+      · rw [he j hj, Finsupp.single_eq_of_ne hj]
+    have hz : Finsupp.weight v a = 0 := by
+      rw [hza, Finsupp.weight_single, hvs, smul_zero]
+    have ht := congrArg (Finsupp.weight v) ha
+    rw [map_add, Finsupp.weight_single, one_smul, hz, zero_add] at ht
+    exact (not_lt_of_ge ((le_of_eq ht.symm).trans (hv i))) hbv
+  obtain ⟨j,hjs,haj⟩ := hexj
+  have hH : hessian L i j ≠ 0 := by
+    have h1 : coeff a (pderiv i L) ≠ 0 :=
+      extremal_pderiv_coeff_nonzero L b hbc i hbi
+    have h2 := extremal_pderiv_coeff_nonzero (pderiv i L) a h1 j haj
+    intro hz
+    change pderiv j (pderiv i L) = 0 at hz
+    exact h2 (by rw [hz, coeff_zero])
+  obtain ⟨hvi,n,t,c,e,hc,hcross⟩ := hrows i j his hip hjs hH
+  obtain ⟨z,hz,hzp,hzw⟩ := rankThree_support_transfer_to_pivot L s p i j hps hip
+    v hvs b hbc hbi haj n t c e hc hcross
+  have hzT : z ∈ T := Finset.mem_filter.mpr
+    ⟨MvPolynomial.mem_support_iff.mpr hz, by rw [hzw]; omega⟩
+  have hbad := hmax z hzT
+  omega
+
+
 end
 end HC4.Polynomial
 
@@ -1002,3 +1148,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_rankTwoVelocity_ratio_num_den_independent
 
 #print axioms HC4.Polynomial.rankThree_rankTwoVelocity_weightedRatio
+
+#print axioms HC4.Polynomial.rankThree_support_transfer_to_pivot
+#print axioms HC4.Polynomial.rankThree_support_cap_of_monomial_rows
