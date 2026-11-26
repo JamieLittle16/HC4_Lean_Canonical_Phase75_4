@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11959**.
+Distinct declaration spellings indexed: **11966**.
 
 ## Repeated declaration spellings
 
@@ -9373,6 +9373,7 @@ Distinct declaration spellings indexed: **11959**.
 - `rankThreeAffinePolynomialMomentHessian_natDegree_le` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentDegree`
 - `rankThreeAffineRawMomentEntry` — `def` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
 - `rankThreeAffineRawMomentEntry_eq_moment` — `theorem` in `HC4.Polynomial.RankThreeAffineMomentRealisation`
+- `rankThreeAffineSubstitution` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeAffineTerminal_normalForm` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalNormalForm`
 - `rankThreeAffineTerminal_topStratum` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTerminalBoundaryStratum`
 - `rankThreeAutonomousPolynomial` — `def` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
@@ -9511,6 +9512,10 @@ Distinct declaration spellings indexed: **11959**.
 - `rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+- `rankThree_affine_X_partial` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_affine_det` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_affine_hessian` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_affine_partial` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_borderedRankOne_det_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
 - `rankThree_complement_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9532,6 +9537,8 @@ Distinct declaration spellings indexed: **11959**.
 - `rankThree_exists_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
+- `rankThree_homogeneousSubstitution_cap` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_homogeneousSubstitution_initialForm` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_isotropicSlope_activeMinor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_mixedDifferential` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_relative_of_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
