@@ -57,6 +57,7 @@ human architecture guide.
   - `HC4.Polynomial.NonnegativeWeightZeroClock`
   - `HC4.Polynomial.OneZeroWeightTerminal`
   - `HC4.Polynomial.PositiveWeightZeroClock`
+  - `HC4.Polynomial.RankOneHessianRatioRigidity`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalCofactor`
   - `HC4.Polynomial.RankThreeCubicAdaptedNormalProportional`
   - `HC4.Polynomial.RankThreeCubicAdaptedPlaneLinearVanishing`
@@ -1385,6 +1386,9 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.Polynomial.PrimitiveHighestBinomialParallelFirstVariation`
   - `HC4.Polynomial.LockedBinomialParallelFirstVariation`
+- `HC4.Polynomial.RankOneHessianRatioRigidity`
+  - `HC4.Polynomial.RationalCharacteristicConstants`
+  - `HC4.Polynomial.WeightedExtremalPartner`
 - `HC4.Polynomial.RankThreeAffineLineRealisation`
   - `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `HC4.Polynomial.RankThreeAffineMomentDegree`
