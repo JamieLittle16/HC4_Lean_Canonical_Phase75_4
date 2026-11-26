@@ -916,3 +916,4 @@ import HC4.Polynomial.WeightedExtremalSplitRow
 import HC4.Polynomial.WeightedExtremalPartner
 import HC4.Polynomial.RankOneHessianRatioRigidity
 import HC4.Polynomial.RankOneHessianClosure
+import HC4.Polynomial.WeightedExtremalIsotropicPlane
