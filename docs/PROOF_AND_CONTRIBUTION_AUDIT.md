@@ -174,11 +174,19 @@ Relevant prior literature to audit includes M. de Bondt, *Polynomial Hessians wi
 
 The project has been developed with substantial AI assistance in mathematical exploration, Lean proof construction and debugging, alongside maintainer-run verification. Tang's own preprint record separately documents AI-assisted research and review. A manuscript should describe both workflows transparently and distinguish machine-checked proof validity from independent human understanding, attribution and priority.
 
-## 7. Remaining publication tasks
+## 7. Verified source-independent rigidity and mathematical exposition
+
+The proposed standalone extraction is now checked: [RationalMapAffinePlane.lean](../HC4/Polynomial/RationalMapAffinePlane.lean), declaration `HC4.Polynomial.RankThreeCubic.rationalMap_affinePlane`, holds over every characteristic-zero field for arbitrary rational maps in three variables with cube-zero Jacobian and a nonsingular polynomial Hessian symmetrizer. It proves a nontrivial constant affine relation in every rank. No source potential in four variables and no JC2 hypothesis are required. This is the arbitrary-characteristic-zero-field version of Tang's Theorem 2.1, not a claim of priority for the complex case. The rank-one strategy and straightness calculation draw on Tang; the subsequent rank-two closure avoids De Poi's classification.
+
+The maintainer's targeted build at [9e548ccb](https://github.com/JamieLittle16/HessianConjecture4/commit/9e548ccbd91920cb7f49ba40c2bf93e11e996b14) succeeded (8317 jobs, 26 November 2026), with final transitive axioms exactly `[propext, Classical.choice, Quot.sound]`.
+
+A five-page [LaTeX research note](research/rational-affine-plane-rigidity.tex) gives the rank-one specialization and trace/pencil argument, the Jordan-frame calculation, the affine-gradient transport and both rank-two closures, and the singular-Hessian application (invoking the separately verified anchored-characteristic construction). It is a mathematical exposition of the checked route, with classical Lüroth and Gauss lemmas, not a substitute for independent mathematical review. Compile with `pdflatex` twice. This later standalone declaration does not change the dependency counts in Sections 4–5, which refer to the original final equivalence snapshot.
+
+## 8. Remaining publication tasks
 
 1. Record the successful fresh-host workflow run, exact commit, log artifact and axiom output when available.
 2. Verify the separately staged standalone source library, record its file count and build, and preserve the full historical research repository.
-3. Write a human-readable, source-linked exposition of the anchored rank-one/rank-two rigidity proof, followed by the global weight argument and final obstruction.
+3. Review the completed source-independent rigidity exposition, then write the corresponding global weight argument and final obstruction.
 4. Complete the lemma-level comparison against Tang and the earlier literature, including the precise difference in theorem scope. Review backport license and attribution requirements.
 5. Invite Tang and independent Lean/mathematical reviewers to check the result. Do not assert first formalisation priority or new mathematical results without supporting evidence.
 
