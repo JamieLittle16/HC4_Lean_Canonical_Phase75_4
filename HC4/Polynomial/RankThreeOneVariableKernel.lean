@@ -908,6 +908,72 @@ theorem rankThree_rankTwoVelocity_ratio_num_den_independent
       hip hp hi hdiag hrow)
 
 
+set_option maxHeartbeats 4000000 in
+/-- Exact weighted classification of nonzero restricted ratios in
+the rank-two velocity branch. If the omitted coordinate has zero
+weight, the two active coordinate weights coincide. Otherwise the
+entry ratio is a Laurent monomial in the omitted coordinate. -/
+theorem rankThree_rankTwoVelocity_weightedRatio
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j)
+    (hL : MvPolynomial.IsWeightedHomogeneous w L m)
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hm : let J := rankThreeComplementJacobian l V
+      ∃ i j p q : Fin 3, J i p * J j q ≠ J i q * J j p)
+    (p i : Fin 4) (hp : p ≠ l.succAbove a) (hi : i ≠ l.succAbove a)
+    (hip : i ≠ p) (hdiag : hessian L p p ≠ 0) (hmix : hessian L i p ≠ 0) :
+    (w (l.succAbove a) = 0 ∧ w i = w p) ∨
+      (0 < w (l.succAbove a) ∧
+        ∃ n t : ℕ, ∃ c e : K, c ≠ 0 ∧ e ≠ 0 ∧
+          w p - w i = ((t : ℤ) - (n : ℤ)) * w (l.succAbove a) ∧
+          hessian L i p * MvPolynomial.monomial (Finsupp.single (l.succAbove a) n) c =
+            hessian L p p * MvPolynomial.monomial (Finsupp.single (l.succAbove a) t) e) := by
+  classical
+  let s := l.succAbove a
+  let f := algebraMap (B K) (E K)
+  let A := hessian L p p
+  let C₀ := hessian L i p
+  let r := f C₀ / f A
+  let P := IsFractionRing.num (B K) r
+  let Q : B K := IsFractionRing.den (B K) r
+  have hQ0 : Q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (B K) r)
+  have hAf : f A ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hdiag
+  have hQf : f Q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hQ0
+  have hrepr : f P / f Q = f C₀ / f A :=
+    IsFractionRing.mk'_num_den' (B K) r
+  have hcross : C₀ * Q = A * P := by
+    apply IsFractionRing.injective (B K) (E K)
+    change f (C₀*Q) = f (A*P)
+    simp only [map_mul]
+    rw [mul_comm (f A)]
+    exact ((div_eq_div_iff hQf hAf).mp hrepr).symm
+  have hder (j : Fin 4) (hj : j ≠ s) : pderiv j P = 0 ∧ pderiv j Q = 0 :=
+    rankThree_rankTwoVelocity_ratio_num_den_independent L l a V hVl hVk hreg hV hm
+      p i hp hi hip hdiag j hj
+  have hA : MvPolynomial.IsWeightedHomogeneous w A (m-w p-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL p) p
+  have hC : MvPolynomial.IsWeightedHomogeneous w C₀ (m-w i-w p) :=
+    pderiv_isWeightedHomogeneous (pderiv_isWeightedHomogeneous hL i) p
+  by_cases hz : w s = 0
+  · have he := rankOne_weighted_relativeRatio_zeroWeight w s hz _ _ A C₀
+      hmix hA hC P Q hQ0 hcross
+      (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
+    exact Or.inl ⟨hz, by omega⟩
+  · have hpos : 0 < w s := lt_of_le_of_ne (hw s) (Ne.symm hz)
+    obtain ⟨n,t,c,e,hc,he,hwt,hpow⟩ :=
+      rankOne_weighted_relativeRatio_cross_power w s hpos _ _ A C₀
+        hdiag hmix hA hC P Q hQ0 hcross
+        (fun j hj => (hder j hj).1) (fun j hj => (hder j hj).2)
+    refine Or.inr ⟨hpos,n,t,c,e,hc,he,?_,hpow⟩
+    rw [sub_mul]
+    omega
+
+
 end
 end HC4.Polynomial
 
@@ -933,3 +999,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_rankTwoVelocity_restrictedMinors_zero
 
 #print axioms HC4.Polynomial.rankThree_rankTwoVelocity_ratio_num_den_independent
+
+#print axioms HC4.Polynomial.rankThree_rankTwoVelocity_weightedRatio
