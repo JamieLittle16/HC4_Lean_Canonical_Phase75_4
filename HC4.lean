@@ -918,3 +918,4 @@ import HC4.Polynomial.RankOneHessianRatioRigidity
 import HC4.Polynomial.RankOneHessianClosure
 import HC4.Polynomial.WeightedExtremalIsotropicPlane
 import HC4.Polynomial.RankTwoAffineLevelCurvature
+import HC4.Polynomial.RankTwoMinorTransport
