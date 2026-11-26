@@ -2352,6 +2352,103 @@ theorem counterexample_rankThree_no_rankTwoVelocity
       (lt_of_le_of_ne (hw _) (Ne.symm hz))
 
 
+section RankOneFrontier
+
+/-- A nonzero complementary differential with all two-minors zero
+is an exact rank-one factorization. Cube-zero then implies square-zero. -/
+theorem rankThree_rankOne_factor_square_zero
+    (J : Matrix (Fin 3) (Fin 3) (E K))
+    (hJ : J ≠ 0) (h3 : J ^ 3 = 0)
+    (hm : ∀ i j p q : Fin 3, J i p * J j q = J i q * J j p) :
+    ∃ u v : Fin 3 → E K, u ≠ 0 ∧ v ≠ 0 ∧
+      (∀ i j, J i j = u i * v j) ∧ v ⬝ᵥ u = 0 ∧ J * J = 0 := by
+  classical
+  have hex : ∃ i j, J i j ≠ 0 := by
+    by_contra hn
+    push_neg at hn
+    apply hJ
+    ext i j
+    exact hn i j
+  obtain ⟨a,b,hab⟩ := hex
+  let u : Fin 3 → E K := fun i => J i b
+  let v : Fin 3 → E K := fun j => J a j / J a b
+  have huv (i j : Fin 3) : J i j = u i * v j := by
+    change J i j = J i b * (J a j / J a b)
+    rw [← mul_div_assoc]
+    exact (eq_div_iff hab).mpr (hm i a j b)
+  have hu : u ≠ 0 := fun hz => hab (congrFun hz a)
+  have hvb : v b = 1 := div_self hab
+  have hv : v ≠ 0 := by
+    intro hz
+    rw [hz] at hvb
+    exact zero_ne_one hvb
+  have hdot := rankOne_dot_zero_of_cube_zero J u v huv h3 b (by rw [hvb]; exact one_ne_zero)
+  exact ⟨u,v,hu,hv,huv,hdot,by rw [rankOne_mul_self_eq_smul J u v huv,hdot,zero_smul]⟩
+
+/-- The actual remaining chart has a nonzero square-zero rank-one
+velocity differential; its Hessian symmetrizer is the actual
+complementary Hessian, not an auxiliary matrix. -/
+theorem counterexample_rankThree_rankOne_frontier
+    (hJC2 : HC4.PlanarJC2Injectivity K)
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hnoninj : ¬ Function.Injective (mvGradientMap P))
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian (initialForm w m P)).adjugate l l ≠ 0)
+    (hV : (hessian (initialForm w m P)).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    let J := rankThreeComplementJacobian l V
+    let H := ((hessian (initialForm w m P)).submatrix l.succAbove l.succAbove).map
+      (algebraMap (B K) (E K))
+    J ≠ 0 ∧ H * J = J.transpose * H ∧
+      ∃ u v : Fin 3 → E K, u ≠ 0 ∧ v ≠ 0 ∧ u a = 0 ∧
+        (∀ i j, J i j = u i * v j) ∧ v ⬝ᵥ u = 0 ∧ J * J = 0 := by
+  classical
+  let L := initialForm w m P
+  let J := rankThreeComplementJacobian l V
+  let H := ((hessian L).submatrix l.succAbove l.succAbove).map (algebraMap (B K) (E K))
+  have hJ : J ≠ 0 :=
+    globalWeightOptimum_rankThree_complementJacobian_ne_zero P w m hw hm hcap
+      hclock hopt hdet l hreg V hVl hV
+  have h3 : J ^ 3 = 0 := rankThree_complement_cube_zero L l V hVl hreg hV
+  have hmin (i j p q : Fin 3) : J i p * J j q = J i q * J j p := by
+    by_contra hn
+    exact counterexample_rankThree_no_rankTwoVelocity hJC2 P w m hw hm hcap
+      hclock hopt hdet hnoninj l a V hVl hVk hreg hV ⟨i,j,p,q,hn⟩
+  obtain ⟨u,v,hu,hv,hfac,hdot,hsq⟩ :=
+    rankThree_rankOne_factor_square_zero J hJ h3 hmin
+  have hua : u a = 0 := by
+    by_contra hn
+    apply hv
+    funext j
+    have he := rankThree_complement_zeroRow l V a hVk j
+    change J a j = 0 at he
+    rw [hfac] at he
+    exact (mul_eq_zero.mp he).resolve_left hn
+  exact ⟨hJ,rankThree_complement_selfAdjoint L l V hVl hV,
+    u,v,hu,hv,hua,hfac,hdot,hsq⟩
+
+/-- Every image direction of a square-zero self-adjoint differential
+is isotropic. This applies over the original fraction field. -/
+theorem rankThree_velocity_column_isotropic
+    (H J : Matrix (Fin 3) (Fin 3) (E K))
+    (hs : H * J = J.transpose * H) (h2 : J * J = 0)
+    (j : Fin 3) :
+    ∑ a : Fin 3, ∑ b : Fin 3, J a j * H a b * J b j = 0 := by
+  have he : J.transpose * H * J = 0 := by
+    rw [← hs,Matrix.mul_assoc,h2,Matrix.mul_zero]
+  have h := congrArg (fun M : Matrix (Fin 3) (Fin 3) (E K) => M j j) he
+  change (∑ b : Fin 3, (∑ a : Fin 3, J a j * H a b) * J b j) = 0 at h
+  simp only [Finset.sum_mul] at h
+  rw [Finset.sum_comm]
+  exact h
+
+end RankOneFrontier
+
+
 end
 end HC4.Polynomial
 
@@ -2411,3 +2508,7 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.counterexample_rankThree_no_rankTwoVelocity_zeroWeight
 #print axioms HC4.Polynomial.counterexample_rankThree_no_rankTwoVelocity
+
+#print axioms HC4.Polynomial.rankThree_rankOne_factor_square_zero
+#print axioms HC4.Polynomial.counterexample_rankThree_rankOne_frontier
+#print axioms HC4.Polynomial.rankThree_velocity_column_isotropic
