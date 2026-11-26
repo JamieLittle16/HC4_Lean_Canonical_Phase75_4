@@ -366,9 +366,117 @@ theorem globalWeightOptimum_rankTwo_no_affineCoordinate
   rw [← weightedLinearSubstitution_comp]
   exact hzero
 
+
+/-- The affine rank-two contradiction is intrinsic: no nonzero
+constant direction can be isotropic for the entire leading Hessian.
+Project to its highest occupied weight block, then use the verified
+coordinate theorem in a weight-compatible determinant-one chart. -/
+theorem globalWeightOptimum_rankTwo_no_affineDirection
+    (P : S K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hL : AllThreeMinorsZero (hessian (initialForm w m P)))
+    (d : Fin 4 → K) (hd : d ≠ 0) :
+    extremalHessianPair (initialForm w m P) d d ≠ 0 := by
+  classical
+  intro hz
+  let L := initialForm w m P
+  have hhom : MvPolynomial.IsWeightedHomogeneous w L m :=
+    initialForm_isWeightedHomogeneous w m P
+  obtain ⟨k,hk,hmax⟩ := extremal_exists_topWeight_pivot w d hd
+  let b := extremalWeightBlock w (w k) d
+  have hbk : b k = d k := by simp [b,extremalWeightBlock]
+  have hb0 : b k ≠ 0 := by rw [hbk]; exact hk
+  have hb (i : Fin 4) (hi : w i ≠ w k) : b i = 0 := by
+    simp [b,extremalWeightBlock,hi]
+  have hpair : extremalHessianPair L b b = 0 := by
+    change extremalHessianPair L (extremalWeightBlock w (w k) d)
+      (extremalWeightBlock w (w k) d) = 0
+    rw [extremalHessianPair_topBlocks L w m _ _ hhom d d hmax hmax]
+    change initialForm w (m-w k-w k) (extremalHessianPair (initialForm w m P) d d) = 0
+    rw [hz,map_zero]
+  let M := extremalKernelShear b k
+  have hM : M.det = 1 := extremalKernelShear_det b k
+  have hMb := extremalKernelShear_respects_weight w b k hb
+  have hcol : (fun i => M i k) = fun i => (b k)⁻¹ * b i := by
+    funext i
+    change extremalKernelShear b k i k = _
+    rw [extremalKernelShear_column b k hb0,div_eq_mul_inv,mul_comm]
+  have hkk : hessian (weightedLinearSubstitution M L) k k = 0 := by
+    rw [extremalHessianPair_chart_entry,hcol,extremalHessianPair_scale,hpair,
+      mul_zero,zero_mul,map_zero]
+  let Q := weightedLinearSubstitution M P
+  have hcapQ : IsWeightLE w m Q :=
+    weightedLinearSubstitution_isWeightLE w M hMb m P hcap
+  have hoptQ : IsGlobalWeightOptimum Q w m := hopt.substitution M hM
+  have hdetQ : hessianDeterminant Q = 1 := by
+    change hessianDeterminant (weightedLinearSubstitution M P) = 1
+    rw [weightedLinearSubstitution_det M hM,hdet,map_one]
+  have hLQ : initialForm w m Q = weightedLinearSubstitution M L := by
+    exact weightedLinearSubstitution_initialForm w M hMb m P
+  have hminorQ : AllThreeMinorsZero (hessian (initialForm w m Q)) := by
+    rw [hLQ]
+    exact rankTwo_allThreeMinorsZero_substitution L M hL
+  apply globalWeightOptimum_rankTwo_no_affineCoordinate Q w m hw hm hcapQ hclock
+    hoptQ hdetQ hminorQ k
+  rw [hLQ]
+  exact hkk
+
+/-- Every coordinate of a surviving rank-two presentation has
+weight at most half the cap. This is an unconditional consequence
+of the genuine rank-two affine closure, not an extra case hypothesis. -/
+theorem globalWeightOptimum_rankTwo_weight_le_half
+    (P : S K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hL : AllThreeMinorsZero (hessian (initialForm w m P))) (k : Fin 4) :
+    2*w k ≤ m := by
+  by_contra hn
+  apply globalWeightOptimum_rankTwo_no_affineCoordinate P w m hw hm hcap hclock
+    hopt hdet hL k
+  have hcapL : IsWeightLE w m (initialForm w m P) :=
+    isWeightLE_of_isWeightedHomogeneous (initialForm_isWeightedHomogeneous w m P)
+  exact eq_zero_of_nonnegativeWeight_negative_cap w hw _ (by omega) _
+    (hcapL.hessian_entry k k)
+
+/-- An arbitrary determinant-one chart of a remaining rank-two
+leading polynomial has no zero diagonal, irrespective of weights. -/
+theorem globalWeightOptimum_rankTwo_no_affineChart
+    (P : S K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (hL : AllThreeMinorsZero (hessian (initialForm w m P)))
+    (M : Matrix (Fin 4) (Fin 4) K) (hM : M.det = 1) (k : Fin 4) :
+    hessian (weightedLinearSubstitution M (initialForm w m P)) k k ≠ 0 := by
+  classical
+  let d : Fin 4 → K := fun i => M i k
+  have hd : d ≠ 0 := by
+    intro hz
+    have hzero (i : Fin 4) : M i k = 0 := congrFun hz i
+    have he := Matrix.det_eq_zero_of_column_eq_zero k hzero
+    rw [hM] at he
+    exact one_ne_zero he
+  intro hz
+  apply globalWeightOptimum_rankTwo_no_affineDirection P w m hw hm hcap hclock
+    hopt hdet hL d hd
+  apply rankOne_substitution_injective M hM
+  rw [← extremalHessianPair_chart_entry,map_zero]
+  exact hz
+
+
 end
 end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankTwo_affine_exists_constantRatio_chart
 #print axioms HC4.Polynomial.rankTwo_affine_constantRatio_zeroPlane
 #print axioms HC4.Polynomial.globalWeightOptimum_rankTwo_no_affineCoordinate
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankTwo_no_affineDirection
+#print axioms HC4.Polynomial.globalWeightOptimum_rankTwo_weight_le_half
+#print axioms HC4.Polynomial.globalWeightOptimum_rankTwo_no_affineChart
