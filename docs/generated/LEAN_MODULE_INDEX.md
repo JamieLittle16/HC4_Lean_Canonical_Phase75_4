@@ -1286,7 +1286,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Purpose: Vanishing full adjugate in the fixed-transverse-kernel rank-two chart
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
-- External imports: `Mathlib.Tactic`
+- External imports: `Mathlib.LinearAlgebra.Matrix.Symmetric`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.SingularHessianConstantAnnihilator`
 - Declarations: `theorem adjugate_entry_zero_of_nonzero_kernel_coordinate_zero`, `theorem symmetricFour_fullAdjugate_zero_of_transverseKernel_pivot`
 
