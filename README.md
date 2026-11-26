@@ -45,7 +45,7 @@ The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlan
 
 ## Global extremal-weight exposition
 
-The [companion LaTeX note](docs/research/global-extremal-weight.tex) explains attainment over realized support patterns, local weight-improvement obstructions, the checked rank reductions and the final signed first-wall argument adapted from Tang. It is a source-linked proof outline; the longer rank-reduction lemmas are summarized rather than fully reproved. It complements the standalone rational rigidity note above.
+The [companion LaTeX note](docs/research/global-extremal-weight.tex) explains attainment over realized support patterns, local weight-improvement obstructions, the checked rank reductions and the final signed first-wall argument adapted from Tang. It is a source-linked proof outline; the longer rank-reduction lemmas are summarized rather than fully reproved. The [supporting rank-exclusion note](docs/research/extremal-rank-exclusions.tex) expands the constant-image obstruction, affine kernel graphs, isotropic-slope root evaluation and relative frontier. These notes complement the standalone rational rigidity note above.
 
 ## Mathematical attribution
 
