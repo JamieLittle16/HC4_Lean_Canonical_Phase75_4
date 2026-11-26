@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11983**.
+Distinct declaration spellings indexed: **11993**.
 
 ## Repeated declaration spellings
 
@@ -156,6 +156,7 @@ Distinct declaration spellings indexed: **11983**.
 - `hasTransverse` — `theorem` in `HC4.Newton.ZeroSchurFirstEntryClock`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithExactSchurClock`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`, `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `hessianClock_nonneg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
 - `hessianDefect` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingSourceLattice`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
+- `hessianDeterminant_C_mul` — `theorem` in `HC4.StatementAudit`, `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_constantPolynomialFamily` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneClosingActualLayer`, `theorem` in `HC4.Valuation.SingularBoundedReverseWeightedRees`
 - `hessianDeterminant_polynomialFamilySpecialFiber` — `theorem` in `HC4.Valuation.AdaptiveRigidMatrixExposure`, `theorem` in `HC4.Valuation.PolynomialFamilyHessianSpecialFiber`
 - `hessianPrincipalMinor_eq_square` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointFirstBreakSourceLift`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelFirstBreakSourceLift`, `theorem` in `HC4.Valuation.SingularWeightedKernelOpeningSourceLayer`
@@ -3167,6 +3168,7 @@ Distinct declaration spellings indexed: **11983**.
 - `RawWedgeFirstReesDepartureProvenanceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `RecenteredRigidClosingCertificate` — `inductive` in `HC4.Valuation.RigidClosingRecenteredSchurClock`
 - `RecenteredRigidClosingCertificate.toFirstKernelEndgameResolution` — `theorem` in `HC4.Valuation.RigidClosingRecenteredFirstKernelAssembly`
+- `ReferenceJC` — `def` in `HC4.StatementAudit`
 - `RepairProgress` — `def` in `HC4.Newton.FiniteRepairTermination`
 - `RepairRanking` — `structure` in `HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress`
 - `RepairReachable` — `inductive` in `HC4.Newton.FiniteRepairTermination`
@@ -6686,7 +6688,10 @@ Distinct declaration spellings indexed: **11983**.
 - `hasTrivialKernel_of_detCore_ne_zero` — `theorem` in `HC4.Newton.RankOnePacketReentry`
 - `hasVanishingProjectiveWedges_of_rs2Provenance` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRS2ProjectiveWitnessReduction`
 - `hasZeroWeight` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithClosingFirstContactWeightSeparation`
+- `hc4_explicit_statement` — `theorem` in `HC4.Audit`
+- `hc4_nonzero_constant_injective` — `theorem` in `HC4.StatementAudit`
 - `hc4_of_planarJC2` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `hc4_reference_JC2_bijective` — `theorem` in `HC4.StatementAudit`
 - `hess_upper` — `lemma` in `HC4.Valuation.QuadraticTransverseGap`
 - `hessian` — `def` in `HC4.Polynomial.DerivativeWeight`
 - `hessianClock_nonneg` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceReverseRees`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetRayFacetEndpointReverseRees`
@@ -6695,7 +6700,7 @@ Distinct declaration spellings indexed: **11983**.
 - `hessianDefect_parameterLayer_eq_zero_of_lt` — `theorem` in `HC4.Valuation.FirstSchurDepartureBridge`
 - `hessianDefect_pointedBoundaryShearFamily` — `theorem` in `HC4.Valuation.AdaptiveSectionBoundaryReentry`
 - `hessianDeterminant` — `def` in `HC4.Polynomial.HessianDeterminant`
-- `hessianDeterminant_C_mul` — `theorem` in `HC4.Valuation.SmithConformalCovariance`
+- `hessianDeterminant_C_mul` — `theorem` in `HC4.StatementAudit`, `theorem` in `HC4.Valuation.SmithConformalCovariance`
 - `hessianDeterminant_adaptiveSmithExposureFamily_equation` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `hessianDeterminant_adaptiveSmithInflateHom` — `theorem` in `HC4.Valuation.AdaptiveSmithWallExposure`
 - `hessianDeterminant_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithStationaryPointedFamilyReflection`
@@ -6983,6 +6988,7 @@ Distinct declaration spellings indexed: **11983**.
 - `initialForm_support_subset_of_nested` — `theorem` in `HC4.Polynomial.WeightedFixedSourceDescent`
 - `initialForm_zero` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initial_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.InitialFormBridge`
+- `injective_of_reference_left_inverse` — `theorem` in `HC4.StatementAudit`
 - `innerPowerInflation` — `def` in `HC4.Polynomial.NestedPolynomialPowerInflation`
 - `integer_min_or_unit_gap` — `theorem` in `HC4.Newton.FiniteValuationTilt`
 - `integrable_ternaryHessian_det_zero_of_proportional_slices` — `theorem` in `HC4.Polynomial.RankThreeCubicIntegrableRankOnePencil`
@@ -8211,6 +8217,7 @@ Distinct declaration spellings indexed: **11983**.
 - `planarPolynomialMapEval` — `def` in `HC4.PlanarJC2Interface`
 - `planarRigid_exactResidual_exists_ramifiedSpend` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalDirectResidualClosure`
 - `planar_injective_of_JC2` — `theorem` in `HC4.PlanarJC2Interface`
+- `planar_of_reference` — `theorem` in `HC4.StatementAudit`
 - `pointedBoundarySequentialUnshearSection` — `def` in `HC4.Valuation.AdaptiveSectionBoundaryShearFamily`
 - `pointedBoundarySequentialUnshearSection_eq` — `theorem` in `HC4.Valuation.AdaptiveSectionBoundaryShearFamily`
 - `pointedBoundarySequentialUnshearSection_special_eq_axis` — `theorem` in `HC4.Valuation.AdaptiveSectionBoundaryShearFamily`
@@ -9969,6 +9976,7 @@ Distinct declaration spellings indexed: **11983**.
 - `reesVectorProjectiveWedge` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `referenceJacobian` — `def` in `HC4.StatementAudit`
 - `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `referenceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingCorrectionDegree`
 - `referenceSlice` — `def` in `HC4.Polynomial.RankThreeCubicLinearTransport`
@@ -9981,8 +9989,11 @@ Distinct declaration spellings indexed: **11983**.
 - `reference_cubic_hessian_det_homogeneous` — `theorem` in `HC4.Polynomial.TransverseLeadingFixedPower`
 - `reference_directional_eq_power_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
 - `reference_directional_eq_square_of_rankOne` — `theorem` in `HC4.Polynomial.RankThreeCubicNilpotentSquare`
+- `reference_gradient_det` — `theorem` in `HC4.StatementAudit`
+- `reference_gradient_jacobian` — `theorem` in `HC4.StatementAudit`
 - `reference_hessian_eq_mapped_transverse` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
 - `reference_hessian_selfAdjoint_of_linear_transport` — `theorem` in `HC4.Polynomial.RankThreeCubicLinearSquareAssembly`
+- `reference_planar_det` — `theorem` in `HC4.StatementAudit`
 - `reference_square_of_jordan_velocity` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `refine_exposed_face` — `theorem` in `HC4.Newton.ExposedFaces`
 - `refine_exposed_face_membership` — `theorem` in `HC4.Newton.ExposedFaces`
