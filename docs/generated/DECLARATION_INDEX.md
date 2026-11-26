@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11713**.
+Distinct declaration spellings indexed: **11722**.
 
 ## Repeated declaration spellings
 
@@ -5832,6 +5832,9 @@ Distinct declaration spellings indexed: **11713**.
 - `extremalDirectionalDerivative` — `def` in `HC4.Polynomial.WeightedExtremalKernel`
 - `extremalDirectionalDerivative_block` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `extremalDirectionalDerivative_eq_C_of_kernel` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
+- `extremalIndicator` — `def` in `HC4.Polynomial.WeightedExtremalAffinePlane`
+- `extremalIndicator_sum` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
+- `extremalIndicator_weight` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `extremalKernelShear` — `def` in `HC4.Polynomial.WeightedExtremalKernel`
 - `extremalKernelShear_column` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `extremalKernelShear_det` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
@@ -5842,8 +5845,12 @@ Distinct declaration spellings indexed: **11713**.
 - `extremalPair_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremalPair_lt_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseMultiFiberExtrema`
 - `extremal_eq_C_of_all_pderiv_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
+- `extremal_exponent_disjoint_of_mixed_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
+- `extremal_exponent_le_one_of_second_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
+- `extremal_jointlyAffine_support_of_hessian_zero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `extremal_pairReesOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_pairReesOrder_lt_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseMultiFiberExtrema`
+- `extremal_pderiv_coeff_nonzero` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `extremal_reflectedOrder_lt` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseMultiFiberExtrema`
 - `extremal_reflectedOrder_lt_unitLeft` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseMultiFiberExtrema`
 - `f` — `abbrev` in `HC4.Backport.RatFuncLuroth`
@@ -6494,7 +6501,9 @@ Distinct declaration spellings indexed: **11713**.
 - `globalWeightOptimum_no_constantHessianKernel` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `globalWeightOptimum_no_constant_partial` — `theorem` in `HC4.Polynomial.WeightedExtremalKernel`
 - `globalWeightOptimum_no_improvingSlope` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
+- `globalWeightOptimum_no_jointlyAffine_support` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `globalWeightOptimum_no_missing_coordinate` — `theorem` in `HC4.Polynomial.WeightedExtremalObstruction`
+- `globalWeightOptimum_no_zero_principalPlane` — `theorem` in `HC4.Polynomial.WeightedExtremalAffinePlane`
 - `gradientAtZero_allSourceSignHom` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalPresentedZeroLinearJetKernelOpening`
 - `gradientAtZero_transverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
 - `gradientAtZero_tripleTransverseSourceShear` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneDirectClosingSquareContactSource`
