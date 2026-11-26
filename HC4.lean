@@ -894,3 +894,4 @@ import HC4.Polynomial.RationalCharacteristicRankTwoClosure
 import HC4.Polynomial.TransverseLeadingRationalRigidity
 import HC4.Polynomial.SingularHessianConstantAnnihilator
 import HC4.Polynomial.WeightedSingularHessianAnnihilator
+import HC4.Polynomial.WeightedComplementaryHessian
