@@ -238,6 +238,7 @@ human architecture guide.
   - `HC4.Polynomial.TransverseLeadingFixedPower`
   - `HC4.Polynomial.TransverseLeadingLinearClassification`
   - `HC4.Polynomial.TransverseLeadingRationalRigidity`
+  - `HC4.Polynomial.WeightedSingularHessianAnnihilator`
   - `HC4.QuasiTranslation`
   - `HC4.RationalRigidity`
   - `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -2197,6 +2198,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedInitial`
 - `HC4.Polynomial.WeightedInitial`
   - _(no local imports)_
+- `HC4.Polynomial.WeightedSingularHessianAnnihilator`
+  - `HC4.Polynomial.SingularHessianConstantAnnihilator`
 - `HC4.QuasiTranslation`
   - `HC4.QuasiTranslation.RankOneShear`
 - `HC4.QuasiTranslation.RankOneShear`
