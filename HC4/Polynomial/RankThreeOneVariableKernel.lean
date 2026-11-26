@@ -310,6 +310,131 @@ theorem rankThree_normalizedKernel_lineGradient
   simpa only [hg] using lineEval_eq_C_of_derivation_eq_zero D z V hz hD0 (pderiv i L) hp
 
 
+/-- Jacobian of the actual normalized direction on the complement
+of its unit coordinate. The base is still the four-variable field. -/
+def rankThreeComplementJacobian (l : Fin 4) (V : Fin 4 → E K) :
+    Matrix (Fin 3) (Fin 3) (E K) :=
+  fun i j => rankThreePartial (l.succAbove j) (V (l.succAbove i))
+
+set_option maxHeartbeats 4000000 in
+/-- Differentiate the verified full-source affine gradient fibre
+in the three complementary coordinates. -/
+theorem rankThree_complement_transport
+    (L : B K) (l : Fin 4) (V : Fin 4 → E K)
+    (hVl : V l = 1)
+    (hgrad : ∀ i, lineEval (fun j => algebraMap (B K) (E K) (X j)) V (pderiv i L) =
+      _root_.Polynomial.C (algebraMap (B K) (E K) (pderiv i L))) :
+    let H := (hessian L).submatrix l.succAbove l.succAbove
+    let T := (lineEval (fun j => algebraMap (B K) (E K) (X j)) V).toRingHom.mapMatrix H
+    let M := (algebraMap (B K) (E K)).mapMatrix H
+    T * (1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) •
+      (rankThreeComplementJacobian l V).map _root_.Polynomial.C) =
+        M.map _root_.Polynomial.C := by
+  classical
+  dsimp
+  let f := algebraMap (B K) (E K)
+  let z : Fin 4 → E K := fun i => f (X i)
+  let d (j : Fin 3) : Derivation K (E K) (E K) := rankThreePartial (l.succAbove j)
+  let w : Fin 4 → _root_.Polynomial (E K) := fun i =>
+    _root_.Polynomial.C (z i) + _root_.Polynomial.C (V i) * _root_.Polynomial.X
+  let J : Matrix (Fin 3) (Fin 3) (_root_.Polynomial (E K)) :=
+    1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) •
+      (rankThreeComplementJacobian l V).map _root_.Polynomial.C
+  have hE : (lineEval (K := K) z V : B K →ₐ[K] _root_.Polynomial (E K)) =
+      MvPolynomial.aeval w := rfl
+  have hz (j : Fin 3) (i : Fin 4) : d j (z i) = if i = l.succAbove j then 1 else 0 := by
+    change rankThreePartial (l.succAbove j) (f (X i)) = _
+    rw [rankThreePartial_map]
+    by_cases h : i = l.succAbove j
+    · subst i
+      simp
+    · simp [h, pderiv_X_of_ne h]
+  have hc (j : Fin 3) : coeffDeriv (d j) (w l) = 0 := by
+    simp [w, hz, hVl, Fin.succAbove_ne]
+  have ht (j i : Fin 3) : coeffDeriv (d j) (w (l.succAbove i)) = J i j := by
+    change coeffDeriv (d j)
+      (_root_.Polynomial.C (z (l.succAbove i)) +
+        _root_.Polynomial.C (V (l.succAbove i)) * _root_.Polynomial.X) = _
+    simp only [map_add, coeffDeriv_C, Derivation.leibniz, smul_eq_mul, coeffDeriv_X,
+      mul_zero, zero_add, hz, J, Matrix.add_apply, Matrix.one_apply, Matrix.smul_apply,
+      Matrix.map_apply, apply_ite _root_.Polynomial.C, map_one, map_zero,
+      Fin.succAbove_right_injective.eq_iff]
+    rfl
+  have hsum {R : Type*} [AddCommMonoid R] (g : Fin 4 → R) (hg : g l = 0) :
+      (∑ i : Fin 4, g i) = ∑ i : Fin 3, g (l.succAbove i) := by
+    rw [Fin.sum_univ_succAbove g l, hg, zero_add]
+  apply Matrix.ext
+  intro i j
+  have e := congrArg (coeffDeriv (d j)) (hgrad (l.succAbove i))
+  change coeffDeriv (d j) (lineEval z V (pderiv (l.succAbove i) L)) =
+    coeffDeriv (d j) (_root_.Polynomial.C (f (pderiv (l.succAbove i) L))) at e
+  rw [coeffDeriv_C, show d j (f (pderiv (l.succAbove i) L)) =
+    f (pderiv (l.succAbove j) (pderiv (l.succAbove i) L)) from rankThreePartial_map _ _,
+    hE, derivation_aeval] at e
+  rw [hsum _ (by rw [hc, mul_zero])] at e
+  simp only [ht] at e
+  simpa only [Matrix.mul_apply, RingHom.mapMatrix_apply, Matrix.map_apply,
+    Matrix.submatrix_apply, hessian_apply, hE, J] using e
+
+set_option maxHeartbeats 4000000 in
+/-- The actual complement pencil has determinant one. Its
+constant coefficient is the identity and its product with the
+transported Hessian has nonzero constant determinant. -/
+theorem rankThree_complement_det_one
+    (L : B K) (l : Fin 4) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hreg : (hessian L).adjugate l l ≠ 0)
+    (hgrad : ∀ i, lineEval (fun j => algebraMap (B K) (E K) (X j)) V (pderiv i L) =
+      _root_.Polynomial.C (algebraMap (B K) (E K) (pderiv i L))) :
+    (1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) •
+      (rankThreeComplementJacobian l V).map _root_.Polynomial.C).det = 1 := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let J : Matrix (Fin 3) (Fin 3) (_root_.Polynomial (E K)) :=
+    1 + (_root_.Polynomial.X : _root_.Polynomial (E K)) •
+      (rankThreeComplementJacobian l V).map _root_.Polynomial.C
+  let H := (hessian L).submatrix l.succAbove l.succAbove
+  let T := (lineEval (fun j => f (X j)) V).toRingHom.mapMatrix H
+  let M := f.mapMatrix H
+  have hH : H.det ≠ 0 := by
+    intro hz
+    apply hreg
+    rw [Matrix.adjugate_fin_succ_eq_det_submatrix, show
+      ((hessian L).submatrix l.succAbove l.succAbove).det = 0 from hz, mul_zero]
+  have hM : f H.det ≠ 0 := by
+    intro hz
+    apply hH
+    apply IsFractionRing.injective (B K) (E K)
+    simpa only [map_zero] using hz
+  have h := rankThree_complement_transport L l V hVl hgrad
+  change T * J = M.map _root_.Polynomial.C at h
+  have hh : T.det * J.det = _root_.Polynomial.C (f H.det) := by
+    rw [← Matrix.det_mul, h]
+    exact (_root_.Polynomial.C.map_det M).symm.trans
+      (congrArg _root_.Polynomial.C (f.map_det H).symm)
+  have hz : J.det.coeff 0 = 1 := by
+    let e := _root_.Polynomial.constantCoeff (R := E K)
+    have he : e.mapMatrix J = 1 := by
+      ext i j
+      by_cases hij : i = j <;>
+        simp [e, J, Matrix.one_apply, hij, Matrix.smul_apply, RingHom.mapMatrix_apply]
+    change e J.det = 1
+    rw [e.map_det, he, Matrix.det_one]
+  exact polynomial_factor_eq_one hM hh hz
+
+/-- Nilpotence of the full complementary differential is a
+consequence of actual polynomial transport, not an imposed
+hypothesis on the rational direction. -/
+theorem rankThree_complement_cube_zero
+    (L : B K) (l : Fin 4) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    rankThreeComplementJacobian l V ^ 3 = 0 := by
+  simpa using matrix_pow_card_eq_zero_of_det_linear_eq_one
+    (rankThreeComplementJacobian l V)
+    (rankThree_complement_det_one L l V hVl hreg
+      (rankThree_normalizedKernel_lineGradient L l hreg V hVl hV))
+
+
 end
 end HC4.Polynomial
 
@@ -319,3 +444,7 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_normalizedKernel_exists
 #print axioms HC4.Polynomial.rankThree_kernel_mixedDifferential
 #print axioms HC4.Polynomial.rankThree_normalizedKernel_lineGradient
+
+#print axioms HC4.Polynomial.rankThree_complement_transport
+#print axioms HC4.Polynomial.rankThree_complement_det_one
+#print axioms HC4.Polynomial.rankThree_complement_cube_zero
