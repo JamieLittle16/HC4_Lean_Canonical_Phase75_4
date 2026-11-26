@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11857**.
+Distinct declaration spellings indexed: **11861**.
 
 ## Repeated declaration spellings
 
@@ -9351,6 +9351,7 @@ Distinct declaration spellings indexed: **11857**.
 - `rankThreeAutonomousPolynomial_coeff_zero_one` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `rankThreeAutonomousPolynomial_mul_rawDenominator` — `theorem` in `HC4.RationalRigidity.RankThreeTargetInitialSlope`
 - `rankThreeAutonomousPolynomial_natDegree_le_two_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeTargetDegreeBound`
+- `rankThreeComplementJacobian` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeDirectionDefect` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreeDirectionNeutralWeight_of_primitive_pair` — `theorem` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `rankThreeEtaDenominator` — `def` in `HC4.Polynomial.RankThreeLogHessian`
@@ -9471,6 +9472,9 @@ Distinct declaration spellings indexed: **11857**.
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
+- `rankThree_complement_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_complement_det_one` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_complement_transport` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_coordinate_pos_on_otherFacet` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
 - `rankThree_core_det_zero_of_lineMoment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_crossFacetInitial_hessian_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeFacetSplit`
