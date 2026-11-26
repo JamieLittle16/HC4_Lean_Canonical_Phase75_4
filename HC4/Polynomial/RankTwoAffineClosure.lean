@@ -148,7 +148,9 @@ theorem rankTwo_affine_exists_constantRatio_chart
     change pderiv k (weightedLinearSubstitution M F) = 0
     rw [rankTwo_partial_fixedColumn F M k hfix, show pderiv k F = 0 from hkk, map_zero]
   let n := F.totalDegree-1
-  have hn : n+1 = F.totalDegree := by dsimp [n]; omega
+  have hDF : 0 < F.totalDegree := hD
+  have hn : n+1 = F.totalDegree :=
+    Nat.sub_add_cancel (Nat.succ_le_of_lt hDF)
   have hA : coeff (Finsupp.single p n) (pderiv p G) ≠ 0 := by
     rw [coeff_pderiv_backport, ← Finsupp.single_add]
     apply mul_ne_zero
@@ -237,7 +239,9 @@ theorem rankTwo_affine_constantRatio_zeroPlane
         · simp [hessian_apply]
         · intro i _ hi; simp [Pi.single_eq_of_ne hi]
         · simp
-    rw [hsum,hc,map_mul,(weightedLinearSubstitution N).commutes c,mul_comm (MvPolynomial.C c),sub_self]
+    have hC : weightedLinearSubstitution N (MvPolynomial.C c) = MvPolynomial.C c :=
+      (weightedLinearSubstitution N).commutes c
+    rw [hsum,hc,map_mul,hC,mul_comm (MvPolynomial.C c),sub_self]
   have hminor := rankTwo_allThreeMinorsZero_substitution Q N hQ
   have hcurv := rankTwo_affine_principalMinor_curvature R k p l hkkR
     (hminor (![k,p,l] : Fin 3 → Fin 4) (![k,p,l] : Fin 3 → Fin 4))
@@ -322,8 +326,10 @@ theorem globalWeightOptimum_no_zero_plane_arbitraryChart
     simpa using hh
   have hvspan (a : K) : v ≠ a • u := by
     intro hz
-    have he : (Pi.single l (1:K) : Fin 4 → K) = a • Pi.single k (1:K) := hi (by
-      rw [Matrix.mulVec_smul,hu,hv,hz])
+    have he : (Pi.single l (1:K) : Fin 4 → K) = a • (Pi.single k (1:K) : Fin 4 → K) := by
+      apply hi
+      rw [Matrix.mulVec_smul,hu,hv]
+      exact hz
     have hh := congrFun he l
     simp [Ne.symm hkl] at hh
   exact globalWeightOptimum_no_constant_isotropicPlane P w m hw hm hcap hclock hopt V u v
