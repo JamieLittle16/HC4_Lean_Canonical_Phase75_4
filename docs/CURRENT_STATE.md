@@ -1,6 +1,6 @@
 # Current proof state — 26 November 2026
 
-**JC2 ↔ HC4 in the polynomial-inverse formulation: Lean verified.** The public endpoint is [`HC4.StatementAudit.jc2_iff_hc4_explicit`](../HC4/FinalEquivalence.lean), over algebraically closed characteristic-zero fields. On 26 November 2026 the maintainer reported a successful local audit of all five final equivalence declarations with exactly the standard three foundational axioms. Independent fresh-checkout reproduction is pending.
+**JC2 ↔ HC4 in the polynomial-inverse formulation: Lean verified.** The public endpoint is [`HC4.StatementAudit.jc2_iff_hc4_explicit`](../HC4/FinalEquivalence.lean), over algebraically closed characteristic-zero fields. On 26 November 2026 the maintainer reported a successful local audit of all five final equivalence declarations with exactly the standard three foundational axioms. Independent fresh-checkout reproduction [passed](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863) at commit `1377de42` (8358 jobs, 55m 4s), with only the three foundational axioms and rejection of a false equality.
 
 **Conditional HC4: Lean verified.** The maintained endpoint is [`HC4.Polynomial.hc4_of_planarJC2`](../HC4/Polynomial/RankThreeOneVariableKernel.lean), with no additional extraction or producer assumptions.
 
@@ -13,7 +13,7 @@
 | Generic injective polynomial map implies polynomial inverse | Verified over algebraically closed characteristic-zero fields |
 | Checked declaration dependency and baseline provenance export | Completed (125 defining modules; 1,446 reachable local declarations) |
 | Mathematical priority and attribution | Preliminary audit completed; detailed literature comparison pending |
-| Clean-host and standalone reproduction | Reported running; outcome not yet recorded |
+| Clean-host equivalence reproduction | Passed; later standalone extraction separately locally verified |
 
 The exact verification checkpoint is [38e58bf4](https://github.com/JamieLittle16/HessianConjecture4/commit/38e58bf49cbd91ce9ae2d4e18b7d64e33fe02c8c), merged through [PR #64](https://github.com/JamieLittle16/HessianConjecture4/pull/64). Maintainer local full build: 9051 jobs successful. The explicit gradient example in [Audit.lean](../HC4/Audit.lean) passed, with final transitive axioms exactly `[propext, Classical.choice, Quot.sound]`.
 
