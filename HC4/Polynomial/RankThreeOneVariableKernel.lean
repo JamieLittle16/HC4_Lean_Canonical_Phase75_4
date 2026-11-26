@@ -1546,6 +1546,162 @@ theorem globalWeightOptimum_rankThree_no_one_zero_distinct_weights
   omega
 
 
+set_option maxHeartbeats 5000000 in
+/-- Equal positive-omitted-weight rows have a ground-field ratio. -/
+theorem rankThree_restricted_equalWeight_rows
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hL : MvPolynomial.IsWeightedHomogeneous w L m)
+    (s p i : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hip : i ≠ p)
+    (hpos : 0 < w s) (hwi : w i = w p)
+    (hp : hessian L p p ≠ 0) (hi : hessian L i i ≠ 0)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    ∃ c : K, ∀ j, j ≠ s → hessian L i j = MvPolynomial.C c * hessian L p j := by
+  classical
+  have hmix : hessian L i p ≠ 0 := by
+    intro hz
+    have he := hmin p i p i hps his hps his
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hp hi) he
+  have hr := rankThree_restricted_weightedRatio L w m hw hL s hmin p i
+    hps his hip hp hmix
+  rcases hr with ⟨hz,_⟩ | ⟨_,n,t,c,e,hc,he,hd,hcross⟩
+  · exact (ne_of_gt hpos hz).elim
+  have hnt : t = n := by
+    rw [← hwi,sub_self] at hd
+    have hh := (mul_eq_zero.mp hd.symm).resolve_right (ne_of_gt hpos)
+    omega
+  subst t
+  let M : B K := MvPolynomial.monomial (Finsupp.single s n) (1 : K)
+  have hM : M ≠ 0 := by
+    exact MvPolynomial.monomial_eq_zero.not.mpr one_ne_zero
+  have hm (b : K) : MvPolynomial.monomial (Finsupp.single s n) b =
+      MvPolynomial.C b * M := by
+    change _ = MvPolynomial.C b * MvPolynomial.monomial (Finsupp.single s n) 1
+    rw [MvPolynomial.C_mul_monomial,mul_one]
+  rw [hm c,hm e,← mul_assoc,← mul_assoc] at hcross
+  have heq := mul_right_cancel₀ hM hcross
+  have hc' : (MvPolynomial.C c : B K) ≠ 0 := MvPolynomial.C_ne_zero.mpr hc
+  have hratio : hessian L i p = MvPolynomial.C (e / c) * hessian L p p := by
+    apply mul_right_cancel₀ hc'
+    calc
+      hessian L i p * MvPolynomial.C c = hessian L p p * MvPolynomial.C e := heq
+      _ = (MvPolynomial.C (e/c) * hessian L p p) * MvPolynomial.C c := by
+        rw [show MvPolynomial.C e = MvPolynomial.C (e/c) * MvPolynomial.C c by
+          rw [← map_mul,div_mul_cancel₀ _ hc]]
+        ring
+  refine ⟨e/c,?_⟩
+  intro j hj
+  apply mul_left_cancel₀ hp
+  rw [hmin p i p j hps his hps hj,hratio]
+  ring
+
+set_option maxHeartbeats 5000000 in
+/-- Kill a proportional restricted row by a constant column shear.
+The surviving entries are simply the substituted original entries.
+In particular every restricted minor stays zero. -/
+theorem rankThree_restricted_shear_zero_row
+    (L : B K) (w : Fin 4 → ℤ)
+    (s p i : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hip : i ≠ p)
+    (hwi : w i = w p) (c : K)
+    (hrow : ∀ j, j ≠ s → hessian L i j = MvPolynomial.C c * hessian L p j)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    ∃ N : Matrix (Fin 4) (Fin 4) K, N.det = 1 ∧
+      (∀ a b, w a ≠ w b → N a b = 0) ∧
+      let Q := weightedLinearSubstitution N L
+      (∀ j, j ≠ s → hessian Q i j = 0) ∧
+      (∀ a b, a ≠ i → b ≠ i →
+        hessian Q a b = weightedLinearSubstitution N (hessian L a b)) ∧
+      (∀ a b d e : Fin 4, a ≠ s → b ≠ s → d ≠ s → e ≠ s →
+        hessian Q a d * hessian Q b e = hessian Q a e * hessian Q b d) := by
+  classical
+  let d : Fin 4 → K := Pi.single i 1 - Pi.single p c
+  have hdi : d i = 1 := by simp [d,hip]
+  let N := extremalKernelShear d i
+  let f := weightedLinearSubstitution N
+  let Q := f L
+  have hN : N.det = 1 := extremalKernelShear_det d i
+  have hNb : ∀ a b, w a ≠ w b → N a b = 0 := by
+    apply extremalKernelShear_respects_weight w d i
+    intro a ha
+    have hai : a ≠ i := fun h => ha (congrArg w h)
+    have hap : a ≠ p := by
+      intro h
+      apply ha
+      rw [h, hwi]
+    simp [d,Pi.single_eq_of_ne hai,Pi.single_eq_of_ne hap]
+  have hNi (a : Fin 4) : N a i = d a := by
+    change extremalKernelShear d i a i = d a
+    rw [extremalKernelShear_column d i (by rw [hdi]; exact one_ne_zero),hdi,div_one]
+  have hNfix (b : Fin 4) (hb : b ≠ i) (a : Fin 4) :
+      N a b = (1 : Matrix (Fin 4) (Fin 4) K) a b :=
+    extremalKernelShear_other_column d i a b hb
+  have hC (b : K) : f (MvPolynomial.C b) = MvPolynomial.C b := f.commutes b
+  let R := pderiv i L - MvPolynomial.C c * pderiv p L
+  have hpartial : pderiv i Q = f R := by
+    change pderiv i (weightedLinearSubstitution N L) = f R
+    rw [weightedLinearSubstitution_partial]
+    change (∑ a : Fin 4, f (pderiv a L) * MvPolynomial.C (N a i)) = f R
+    simp only [hNi,d,Pi.sub_apply,map_sub,mul_sub,Finset.sum_sub_distrib]
+    have hsum (b : Fin 4) (e : K) :
+        (∑ a : Fin 4, f (pderiv a L) * MvPolynomial.C ((Pi.single b e : Fin 4 → K) a)) =
+          f (pderiv b L) * MvPolynomial.C e := by
+      rw [Finset.sum_eq_single b]
+      · simp
+      · intro a _ ha
+        simp [Pi.single_eq_of_ne ha]
+      · simp
+    rw [hsum i 1,hsum p c,map_one,mul_one]
+    change _ = f (pderiv i L - MvPolynomial.C c * pderiv p L)
+    rw [map_sub,map_mul,hC,mul_comm (MvPolynomial.C c)]
+  have hR (a : Fin 4) (ha : a ≠ s) : pderiv a R = 0 := by
+    change pderiv a (pderiv i L - MvPolynomial.C c * pderiv p L) = 0
+    rw [map_sub,MvPolynomial.pderiv_C_mul,← hessian_apply,← hessian_apply,hrow a ha,sub_self]
+  have hzero (j : Fin 4) (hj : j ≠ s) : hessian Q i j = 0 := by
+    change pderiv j (pderiv i Q) = 0
+    rw [hpartial]
+    change pderiv j (weightedLinearSubstitution N R) = 0
+    rw [weightedLinearSubstitution_partial]
+    apply Finset.sum_eq_zero
+    intro a _
+    by_cases ha : a = s
+    · subst a
+      have hz : N s j = 0 := by
+        by_cases hji : j = i
+        · subst j
+          rw [hNi]
+          simp [d,Pi.single_eq_of_ne (Ne.symm his),Pi.single_eq_of_ne (Ne.symm hps)]
+        · rw [hNfix j hji s]
+          simp [Matrix.one_apply,Ne.symm hj]
+      rw [hz,map_zero,mul_zero]
+    · rw [hR a ha,map_zero,zero_mul]
+  have hfixed (a b : Fin 4) (ha : a ≠ i) (hb : b ≠ i) :
+      hessian Q a b = f (hessian L a b) := by
+    change pderiv b (pderiv a (weightedLinearSubstitution N L)) =
+      weightedLinearSubstitution N (pderiv b (pderiv a L))
+    rw [rankTwo_partial_fixedColumn L N a (hNfix a ha),
+      rankTwo_partial_fixedColumn _ N b (hNfix b hb)]
+  have hsym (a b : Fin 4) : hessian Q a b = hessian Q b a :=
+    pderiv_comm_backport _ _ _
+  refine ⟨N,hN,hNb,hzero,hfixed,?_⟩
+  intro a b d e ha hb hd he
+  by_cases hai : a = i
+  · subst a
+    rw [hzero d hd,hzero e he,zero_mul,zero_mul]
+  by_cases hbi : b = i
+  · subst b
+    rw [hzero d hd,hzero e he,mul_zero,mul_zero]
+  by_cases hdi : d = i
+  · subst d
+    rw [hsym a i,hsym b i,hzero a ha,hzero b hb,zero_mul,mul_zero]
+  by_cases hei : e = i
+  · subst e
+    rw [hsym a i,hsym b i,hzero a ha,hzero b hb,mul_zero,zero_mul]
+  rw [hfixed a d hai hdi,hfixed b e hbi hei,hfixed a e hai hei,hfixed b d hbi hdi,
+    ← map_mul,← map_mul,hmin a b d e ha hb hd he]
+
+
 end
 end HC4.Polynomial
 
@@ -1586,3 +1742,6 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_zeroRow_weight_gap
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_one_zero_distinct_weights
+
+#print axioms HC4.Polynomial.rankThree_restricted_equalWeight_rows
+#print axioms HC4.Polynomial.rankThree_restricted_shear_zero_row
