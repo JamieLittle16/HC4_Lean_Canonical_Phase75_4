@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11871**.
+Distinct declaration spellings indexed: **11875**.
 
 ## Repeated declaration spellings
 
@@ -9272,6 +9272,8 @@ Distinct declaration spellings indexed: **11871**.
 - `rankOne_hessian_degree_le` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_hessians_zero_of_lifted_trace_independent` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOnePencil`
 - `rankOne_homogeneous_axis_zero` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
+- `rankOne_initialForm_mul_homogeneous` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOne_initialForm_single_power` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_jacobian_exists_pivot` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneInvariantField`
 - `rankOne_kernel_of_constant_directionalDerivative` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
 - `rankOne_kernel_of_proportional_columns` — `theorem` in `HC4.Polynomial.RankOneHessianClosure`
@@ -9309,6 +9311,7 @@ Distinct declaration spellings indexed: **11871**.
 - `rankOne_ratio_denominator_pderiv_zero` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_selfAdjoint_radial_contraction` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `rankOne_similarity_factor` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneAffineClosure`
+- `rankOne_single_support_of_partialConstants` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_sourceRadial` — `def` in `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `rankOne_sourceRadial_y_ne_zero` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneRadial`
 - `rankOne_source_chartRecurrence_impossible` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneSourceChart`
@@ -9328,6 +9331,7 @@ Distinct declaration spellings indexed: **11871**.
 - `rankOne_velocityField_exists_embedding` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneFieldEmbedding`
 - `rankOne_velocityField_exists_regular_line` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneCoordinateLine`
 - `rankOne_velocityField_reducedPair_dvd` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneSpecialization`
+- `rankOne_weighted_relativeRatio_cross_power` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOne_zeroJet` — `def` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
 - `rankOne_zeroJet_add` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
 - `rankOne_zeroJet_cancel` — `theorem` in `HC4.Polynomial.RationalCharacteristicRankOneJetPropagation`
