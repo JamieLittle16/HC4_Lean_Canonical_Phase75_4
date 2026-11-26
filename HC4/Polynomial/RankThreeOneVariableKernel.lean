@@ -1027,11 +1027,19 @@ theorem rankThree_support_transfer_to_pivot
     Finsupp.sub_add_single_one_cancel huj
   have hbb : b' + Finsupp.single s t = b + Finsupp.single s n :=
     tsub_add_cancel_of_le hle
-  have hpa := congrArg (fun x : Fin 4 →₀ ℕ => x p) hau
-  have hpb := congrArg (fun x : Fin 4 →₀ ℕ => x p) hba
-  have hpc := congrArg (fun x : Fin 4 →₀ ℕ => x p) hbb
-  simp only [Finsupp.add_apply, Finsupp.single_apply, if_neg hip,
-    if_neg (Ne.symm hps), add_zero] at hpa hpb hpc
+  have hpa : a p = u p := by
+    have he := congrArg (fun x : Fin 4 →₀ ℕ => x p) hau
+    change (a + Finsupp.single i 1 : Fin 4 →₀ ℕ) p = u p at he
+    simpa only [Finsupp.add_apply, Finsupp.single_apply, if_neg hip, add_zero] using he
+  have hpb : b p + (Finsupp.single j (1 : ℕ)) p = a p := by
+    have he := congrArg (fun x : Fin 4 →₀ ℕ => x p) hba
+    change (b + Finsupp.single j 1 : Fin 4 →₀ ℕ) p = a p at he
+    simpa only [Finsupp.add_apply] using he
+  have hpc : b' p = b p := by
+    have he := congrArg (fun x : Fin 4 →₀ ℕ => x p) hbb
+    change (b' + Finsupp.single s t : Fin 4 →₀ ℕ) p =
+      (b + Finsupp.single s n : Fin 4 →₀ ℕ) p at he
+    simpa only [Finsupp.add_apply, Finsupp.single_apply, if_neg (Ne.symm hps), add_zero] using he
   have hwp := congrArg (Finsupp.weight v) hau
   have hwq := congrArg (Finsupp.weight v) hba
   have hwr := congrArg (Finsupp.weight v) hbb
@@ -1039,8 +1047,7 @@ theorem rankThree_support_transfer_to_pivot
     smul_zero, add_zero] at hwp hwq hwr
   refine ⟨z,hz,?_,?_⟩
   · change (b' + Finsupp.single j 1 + Finsupp.single p 1 : Fin 4 →₀ ℕ) p = u p + 1
-    simp only [Finsupp.add_apply, Finsupp.single_apply, if_pos rfl]
-    omega
+    rw [Finsupp.add_apply, Finsupp.add_apply, Finsupp.single_eq_same, hpc, hpb, hpa]
   · change Finsupp.weight v (b' + Finsupp.single j 1 + Finsupp.single p 1) = _
     simp only [map_add, Finsupp.weight_single, one_smul]
     omega
