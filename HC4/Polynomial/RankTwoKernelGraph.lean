@@ -73,9 +73,15 @@ theorem rankTwoGraphVector_add
     rankTwoGraphVector k p s b c + rankTwoGraphVector k p s d e =
       rankTwoGraphVector k p s (b+d) (c+e) := by
   funext i
-  by_cases h1 : i = k <;> by_cases h2 : i = p <;>
-    by_cases h3 : i = s 0 <;> by_cases h4 : i = s 1 <;>
-    simp [rankTwoGraphVector,Pi.single_apply,h1,h2,h3,h4] <;> abel
+  have hs (l : Fin 4) (a b : K) :
+      (Pi.single l (a+b) : Fin 4 → K) i =
+        (Pi.single l a : Fin 4 → K) i + (Pi.single l b : Fin 4 → K) i := by
+    by_cases h : i = l
+    · subst i
+      simp only [Pi.single_eq_same]
+    · simp only [Pi.single_eq_of_ne h,add_zero]
+  simp only [rankTwoGraphVector,Pi.add_apply,hs]
+  abel
 
 theorem rankTwoGraphVector_eta (hc : RankTwoGraphCoordinates k p s)
     (v : Fin 4 → K) :
@@ -111,7 +117,8 @@ theorem rankTwoKernelGraph_mem_kernel
         (A p p * A k (s 1) - A k p * A p (s 1)) * c 1) := by
     change Δ * (∑ j : Fin 2, (Δ⁻¹ * rankTwoGraphNumerator A k p s 0 j) * c j) = _
     rw [Fin.sum_univ_two]
-    simp only [rankTwoGraphNumerator,if_pos rfl]
+    change Δ * ((Δ⁻¹ * (-(A p p * A k (s 0) - A k p * A p (s 0)))) * c 0 +
+      (Δ⁻¹ * (-(A p p * A k (s 1) - A k p * A p (s 1)))) * c 1) = _
     rw [mul_add]
     have h (a b : K) : Δ * (Δ⁻¹ * a * b) = a*b := by
       rw [← mul_assoc,← mul_assoc,mul_inv_cancel₀ hreg,one_mul]
@@ -215,13 +222,15 @@ theorem rankTwo_kernelGraph_difference_det_zero
     let Δ := rankTwoPrincipalPivot A k p
     let N := rankTwoGraphNumerator A k p s
     (MvPolynomial.C (MvPolynomial.eval x Δ) • N -
-      Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C)).det = 0 := by
+      Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C) :
+        Matrix (Fin 2) (Fin 2) (B K)).det = 0 := by
   classical
   let A := hessian L
   let Δ := rankTwoPrincipalPivot A k p
   let N := rankTwoGraphNumerator A k p s
   let a := MvPolynomial.eval x Δ
-  let Q := MvPolynomial.C a • N - Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C)
+  let Q : Matrix (Fin 2) (Fin 2) (B K) :=
+    MvPolynomial.C a • N - Δ • ((N.map (MvPolynomial.eval x)).map MvPolynomial.C)
   let F := pderiv r L - MvPolynomial.C (MvPolynomial.eval x (pderiv r L))
   have hF : F ≠ 0 := by
     intro h
