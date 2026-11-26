@@ -2049,7 +2049,7 @@ theorem rankThree_relative_derivative_constant
     rankThreePartial j (f (pderiv s P)) at h2
   simp only [map_add,Derivation.leibniz,smul_eq_mul,hmap,hr j hj,
     hder.1,hder.2,map_zero,mul_zero,zero_mul,add_zero,zero_add,
-    pderiv_comm_backport j s,pderiv_zero] at h2
+    pderiv_comm_backport j s] at h2
   exact (mul_eq_zero.mp h2).resolve_left hQf
 
 
@@ -2137,7 +2137,7 @@ theorem rankThree_zeroWeight_gradient_ratios
     have he := congrArg f (rankThree_weightedEuler (pderiv i L) w d hw (le_of_lt hd) hh)
     change f (∑ j : Fin 4, (w j).toNat • (X j * pderiv j (pderiv i L))) =
       f (d.toNat • pderiv i L) at he
-    simp only [map_sum,map_nsmul,map_mul,nsmul_eq_mul] at he
+    simp only [nsmul_eq_mul,map_sum,map_mul,map_natCast] at he
     exact he
   have hgrad (i : Fin 4) (his : i ≠ s) :
       f (pderiv i L) = r i * f (pderiv p L) := by
@@ -2201,6 +2201,7 @@ theorem rankThree_kernel_relative_of_gradient_ratios
     rw [hs i j]
     change f (hessian L j i) = r j * H i p
     rw [hrows j i hjs his,hs i p]
+    rfl
   have hmix (i : Fin 4) (his : i ≠ s) :
       H s i = r i * H s p + G * R i := by
     have he := congrArg (rankThreePartial (K := K) s) (hgrad i his)
