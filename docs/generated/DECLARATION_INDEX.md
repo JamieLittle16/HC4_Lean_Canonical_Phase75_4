@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11904**.
+Distinct declaration spellings indexed: **11908**.
 
 ## Repeated declaration spellings
 
@@ -9426,6 +9426,7 @@ Distinct declaration spellings indexed: **11904**.
 - `rankThreeLogProduct` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreeLogSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThreePartial` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThreePartial_X` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePartial_map` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePencilPolynomial` — `def` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `rankThreePencilPolynomial_eq_core` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
@@ -9512,8 +9513,11 @@ Distinct declaration spellings indexed: **11904**.
 - `rankThree_exists_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
+- `rankThree_isotropicSlope_activeMinor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_mixedDifferential` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_kernel_relative_of_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_lineEval_affine_of_derivation_sq_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_lineEval_partial` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_logarithmicCoreFromMoments_eq` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_measure_add_two_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThree_measure_succ_eq_rankTwo_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
