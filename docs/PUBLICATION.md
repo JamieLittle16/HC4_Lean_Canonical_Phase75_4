@@ -1,23 +1,31 @@
-# Publication preparation
+# Publication and verification record
 
-## Verified baseline
+## Registered result
 
-- Research archive: [fe55e3fb](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026).
-- Earlier independently reproduced equivalence: [1377de42](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863).
-- Reduced publication checkpoint: [a559ee2d](https://github.com/JamieLittle16/HessianConjecture4/commit/a559ee2ddc898fc6c9e8105b500757b9c45628bd), with maintainer-reported successful builds and endpoint audits.
-- 229 tracked HC4 modules (227 transitive proof imports plus umbrella and audit), 231 tracked Lean files including the exporter and negative control.
-- Lean 4.24.0 remains pinned. The reduced project needs a fresh-host reproduction; this is separate from the earlier verified result.
+- [Palomar Registry PALOMAR-2026-11-26-000066, version 1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-26-000066&version=1), reported registered 26 November 2026.
+- Local Comparator snapshot: [6b9526a](https://github.com/JamieLittle16/HessianConjecture4/tree/6b9526a446b4f2998307fb8d211436ccfbf723e3). Consult the registry for the authoritative registered commit.
+- Lean and Mathlib 4.35.0; new module system.
+- Maintainer-reported local build: 9,273 jobs. Comparator accepted both advertised equivalences with Lean, NanoDa and con-ron (40,457 declarations verified by con-ron).
+- The Challenge imports only Mathlib. Solution imports the existing proof development, not Challenge. The intentional Challenge holes are not proof assumptions.
+- Permitted axioms: `propext`, `Quot.sound`, `Classical.choice`.
 
-## Before migrating
+## Preserved history
 
-- Regenerate source inventory and final/core declaration reports using tracked source files.
-- Preserve the historical audit and attribution, including Tang and the Mathlib backport notices. Archive superseded research documentation rather than rewrite its history.
-- Check tracked scripts and workflows for references to deleted historical modules.
-- The author approved Apache 2.0 for the project; root LICENSE and NOTICE are present. The vendored Mathlib files retain their Apache 2.0 licence in HC4/Backport/LICENSE.
-- Run a fresh-host build and all five endpoint axiom checks. Do not clear local project caches after every incremental edit.
+- Full exploratory research: [archive/research-2026](https://github.com/JamieLittle16/HessianConjecture4/tree/archive/research-2026), commit `fe55e3fbb6da0b034f8dd2cc434d262047533ed7`.
+- Earlier independent clean reproduction: [GitHub Actions run 45855370863](https://github.com/JamieLittle16/HessianConjecture4/actions/runs/45855370863), commit `1377de427f2801e2f9f6b49ce1a07371e60dabb8`.
+- Reduced Lean 4.24 publication checkpoint: `1fc3fc2b986b5afb67dd38621e372e13eb6fe549`.
+- Successful Lean 4.35 migration: `7842bc5a537092e3d114bae5a31c43d9d89249aa`.
+- Module-system conversion: `0a69d9a9eafe56bc6630010f54849bef327212de`.
 
-## Palomar migration
+## Reproduction
 
-Create a separate migration branch from the verified reduced checkpoint. Recheck Palomar's current toolchain and submission rules at https://palomar-registry.org/how-to-submit before upgrading. Port the source to a supported Lean/Mathlib version and the required module system without weakening statements. Reassess the vendored Luroth development against the new Mathlib version. Keep the deliberately false negative control out of the submitted Lean source set (retain it as a generated test). Prepare independently written challenge statements, solutions, metadata and comparator configuration; verify all required endpoints with the supported verifier. Submission and registration remain outstanding.
+```bash
+lake exe cache get
+lake build HC4 Challenge Solution
+lake env lean HC4/Audit.lean
+bash scripts/verify-comparator.sh
+```
 
-The mathematical manuscript is a review draft, not a claim of priority or independent journal validation.
+The registry entry covers the two explicit equivalences. The standalone rational affine-plane theorem is retained as a separate, Lean-audited library result. External mathematical review, detailed priority analysis and manuscript peer review remain outstanding. Neither conjecture is proved unconditionally.
+
+Preserve the historical attribution, including Tang, Mathlib and the substantial AI assistance disclosed in the manuscript and metadata. The registered snapshot is immutable; later documentation changes do not update the registry record.
