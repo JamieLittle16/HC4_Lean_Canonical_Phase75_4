@@ -69,10 +69,12 @@ theorem extremalHessianPair_topBlocks
         rw [← hi, ← hj]
         exact hh
       exact (initialForm_eq_self_of_isWeightedHomogeneous hh').symm
-    · simp only [extremalWeightBlock, if_pos hi, if_neg hj, map_zero, mul_zero,
-        initialForm_eq_zero_of_isWeightedHomogeneous hh _ (by omega)]
-  · simp only [extremalWeightBlock, if_neg hi, map_zero, zero_mul,
-      initialForm_eq_zero_of_isWeightedHomogeneous hh _ (by omega)]
+    · simp only [extremalWeightBlock, if_pos hi, if_neg hj, map_zero, mul_zero]
+      have hne : m-s-t ≠ m-w i-w j := by omega
+      exact (initialForm_eq_zero_of_isWeightedHomogeneous hh (m-s-t) hne).symm
+  · simp only [extremalWeightBlock, if_neg hi, map_zero, zero_mul]
+    have hne : m-s-t ≠ m-w i-w j := by omega
+    exact (initialForm_eq_zero_of_isWeightedHomogeneous hh (m-s-t) hne).symm
 
 /-- Scalar normalization does not affect vanishing of the contraction. -/
 theorem extremalHessianPair_scale
@@ -142,8 +144,10 @@ theorem extremal_align_two_blocks
   classical
   let A := extremalKernelShear d k
   let B := extremalKernelShear e l
-  have hA := extremalKernelShear_respects_weight w d k hd
-  have hB := extremalKernelShear_respects_weight w e l he
+  have hA : ∀ i j, w i ≠ w j → A i j = 0 :=
+    extremalKernelShear_respects_weight w d k hd
+  have hB : ∀ i j, w i ≠ w j → B i j = 0 :=
+    extremalKernelShear_respects_weight w e l he
   have hAk (i : Fin 4) : A i k = d i := by
     change extremalKernelShear d k i k = d i
     rw [extremalKernelShear_column d k (by rw [hdk]; exact one_ne_zero), hdk, div_one]
@@ -190,9 +194,14 @@ theorem extremalHessianPair_chart_entry
   rw [weightedLinearSubstitution_hessian]
   change (∑ j : Fin 4, (∑ i : Fin 4, C (N i k) * f (hessian L i j)) * C (N j l)) =
     f (extremalHessianPair L (fun i => N i k) (fun i => N i l))
-  unfold extremalHessianPair
-  simp only [Finset.sum_mul, map_sum, map_mul, hC]
-  exact Finset.sum_comm
+  calc
+    _ = ∑ j : Fin 4, ∑ i : Fin 4, C (N i k) * f (hessian L i j) * C (N j l) := by
+      simp only [Finset.sum_mul]
+    _ = ∑ i : Fin 4, ∑ j : Fin 4, C (N i k) * f (hessian L i j) * C (N j l) :=
+      Finset.sum_comm
+    _ = f (extremalHessianPair L (fun i => N i k) (fun i => N i l)) := by
+      change _ = f (∑ i : Fin 4, ∑ j : Fin 4, C (N i k) * hessian L i j * C (N j l))
+      simp only [map_sum, map_mul, hC]
 
 set_option maxHeartbeats 4000000 in
 /-- No constant two-plane on which the leading Hessian form vanishes
