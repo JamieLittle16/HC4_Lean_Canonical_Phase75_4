@@ -353,6 +353,249 @@ theorem flatLevel_gradient_ratio_constant_of_purePivot
   exact rankOne_ratio_constant_of_purePivot _ _ k i n hA hdeg hBdeg
     (flatLevel_gradient_ratio_transport F k i hA0 hflat)
 
+
+/-- The generic rational partials have precisely the ground-field
+constants. The proof is denominator descent, in arbitrary variables. -/
+theorem rankOnePartial_constants (z : E σ K)
+    (hz : ∀ i : σ, rankOnePartial i z = 0) :
+    ∃ c : K, z = algebraMap K (E σ K) c := by
+  classical
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let p : R σ K := IsFractionRing.num (R σ K) z
+  let q : R σ K := IsFractionRing.den (R σ K) z
+  have hq : q ≠ 0 := nonZeroDivisors.coe_ne_zero (IsFractionRing.den (R σ K) z)
+  have hqf : f q ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (R σ K) (E σ K)).ne hq
+  have hrepr : f p / f q = z := IsFractionRing.mk'_num_den' (R σ K) z
+  have hmul : z * f q = f p := by rw [← hrepr, div_mul_cancel₀ _ hqf]
+  have hcop : IsRelPrime q p := (IsFractionRing.num_den_reduced (R σ K) z).symm
+  have hdiff (i : σ) : z * f (pderiv i q) = f (pderiv i p) := by
+    have h := congrArg (rankOnePartial (K := K) i) hmul
+    change rankOnePartial i (z * f q) = rankOnePartial i (f p) at h
+    rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul, hz i,
+      rankOnePartial_map, rankOnePartial_map, mul_zero, add_zero] at h
+    exact h
+  have hcross (i : σ) : pderiv i p * q = pderiv i q * p := by
+    apply IsFractionRing.injective (R σ K) (E σ K)
+    change f _ = f _
+    simp only [map_mul]
+    calc
+      f (pderiv i p) * f q = (z * f (pderiv i q)) * f q := by rw [hdiff]
+      _ = f (pderiv i q) * (z * f q) := by ring
+      _ = f (pderiv i q) * f p := by rw [hmul]
+  have hqzero (i : σ) : pderiv i q = 0 := by
+    apply rankOne_pderiv_zero_of_dvd q i hq
+    apply hcop.dvd_of_dvd_mul_right
+    exact ⟨pderiv i p, by rw [← hcross i, mul_comm]⟩
+  have hpzero (i : σ) : pderiv i p = 0 := by
+    apply IsFractionRing.injective (R σ K) (E σ K)
+    change f (pderiv i p) = f 0
+    rw [← hdiff i, hqzero i, map_zero, mul_zero]
+  have hconstant (P : R σ K) (hP : ∀ i, pderiv i P = 0) :
+      P = MvPolynomial.C (coeff 0 P) := by
+    ext u
+    by_cases hu : u = 0
+    · subst u
+      simp
+    · have hc : coeff u P = 0 := by
+        by_contra hn
+        apply hu
+        ext i
+        exact exponent_eq_zero_of_pderiv_eq_zero i P (hP i) u hn
+      rw [hc,MvPolynomial.coeff_C]
+      simp [Ne.symm hu]
+  have hpC := hconstant p hpzero
+  have hqC := hconstant q hqzero
+  have hC (c : K) : f (MvPolynomial.C c) = algebraMap K (E σ K) c :=
+    (IsScalarTower.toAlgHom K (R σ K) (E σ K)).commutes c
+  refine ⟨coeff 0 p / coeff 0 q, ?_⟩
+  calc
+    z = f p / f q := hrepr.symm
+    _ = f (MvPolynomial.C (coeff 0 p)) / f (MvPolynomial.C (coeff 0 q)) := by
+      conv_lhs => rw [hpC,hqC]
+    _ = algebraMap K (E σ K) (coeff 0 p / coeff 0 q) := by
+      rw [hC,hC,map_div₀]
+
+section Finite
+
+variable [Fintype σ] [DecidableEq σ]
+
+private theorem rankOnePartial_genericPoint (j i : σ) :
+    rankOnePartial j (algebraMap (R σ K) (E σ K) (X i)) =
+      if i = j then 1 else 0 := by
+  rw [rankOnePartial_map]
+  by_cases h : i = j
+  · subst i
+    simp
+  · simp [h,pderiv_X_of_ne h]
+
+private def rankOne_fibreEval (w : σ → E σ K) :
+    R σ K →ₐ[K] _root_.Polynomial (E σ K) :=
+  lineEval (fun i => algebraMap (R σ K) (E σ K) (X i)) w
+
+private theorem rankOne_fibreEval_partial
+    (w : σ → E σ K) (p : R σ K) (j : σ) :
+    coeffDeriv (rankOnePartial j) (rankOne_fibreEval w p) =
+      ∑ i : σ, rankOne_fibreEval w (pderiv i p) *
+        (_root_.Polynomial.C (if i = j then 1 else 0) +
+          _root_.Polynomial.X * _root_.Polynomial.C (rankOnePartial j (w i))) := by
+  classical
+  let z : σ → _root_.Polynomial (E σ K) := fun i =>
+    _root_.Polynomial.C (algebraMap (R σ K) (E σ K) (X i)) +
+      _root_.Polynomial.C (w i) * _root_.Polynomial.X
+  have he : rankOne_fibreEval w = MvPolynomial.aeval z := rfl
+  have hd (i : σ) : coeffDeriv (rankOnePartial j) (z i) =
+      _root_.Polynomial.C (if i = j then 1 else 0) +
+        _root_.Polynomial.X * _root_.Polynomial.C (rankOnePartial j (w i)) := by
+    simp only [z,map_add,coeffDeriv_C,Derivation.leibniz,smul_eq_mul,
+      coeffDeriv_X,mul_zero,zero_add,rankOnePartial_genericPoint]
+  rw [he,derivation_aeval]
+  simp only [hd]
+
+/-- General-variable polynomial tangent obstruction. Unlike the
+pure-pivot theorem this needs no degree bound or pure coefficient.
+The rational tangent is used only to form a polynomial line; the
+contradiction specializes the line parameter, not a rational function. -/
+theorem flatLevel_tangent_pivot_deriv_zero
+    (F : R σ K) (r : E σ K) (k i : σ) (hik : i ≠ k)
+    (htransport : rankOnePartial i r = r * rankOnePartial k r)
+    (hk : algebraMap (R σ K) (E σ K) (pderiv k F) ≠ 0)
+    (hr : algebraMap (R σ K) (E σ K) (pderiv i F) =
+      r * algebraMap (R σ K) (E σ K) (pderiv k F)) :
+    rankOnePartial k r = 0 := by
+  classical
+  by_contra ht
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let x : σ → E σ K := fun j => f (X j)
+  let w : σ → E σ K := fun j =>
+    (if j = i then 1 else 0) - r * (if j = k then 1 else 0)
+  let D : Derivation K (E σ K) (E σ K) :=
+    rankOnePartial i - r • rankOnePartial k
+  have hD (a : E σ K) : D a = rankOnePartial i a - r * rankOnePartial k a := by
+    simp only [D,Derivation.sub_apply,Derivation.smul_apply,smul_eq_mul]
+  have hDx (j : σ) : D (x j) = w j := by
+    rw [hD]
+    change rankOnePartial i (algebraMap (R σ K) (E σ K) (X j)) -
+      r * rankOnePartial k (algebraMap (R σ K) (E σ K) (X j)) = w j
+    rw [rankOnePartial_genericPoint,rankOnePartial_genericPoint]
+  have hDr : D r = 0 := by rw [hD,htransport,sub_self]
+  have hDw (j : σ) : D (w j) = 0 := by
+    by_cases hj : j = k
+    · subst j
+      simp [w,Ne.symm hik,hDr]
+    · by_cases hj' : j = i <;> simp [w,hj,hj',hik]
+  have hx : (MvPolynomial.aeval x : R σ K →ₐ[K] E σ K) =
+      IsScalarTower.toAlgHom K (R σ K) (E σ K) := by
+    apply MvPolynomial.algHom_ext
+    intro j
+    exact MvPolynomial.aeval_X _ j
+  have hDF : D (MvPolynomial.aeval x F) = 0 := by
+    rw [hx]
+    change D (f F) = 0
+    rw [hD,rankOnePartial_map,rankOnePartial_map,hr,sub_self]
+  have hline := lineEval_eq_C_of_derivation_eq_zero D x w hDx hDw F hDF
+  rw [hx] at hline
+  have heq : rankOne_fibreEval w F = _root_.Polynomial.C (f F) := hline
+  have hp (j : σ) : rankOnePartial k (w j) =
+      if j = k then -rankOnePartial k r else 0 := by
+    by_cases hj : j = k
+    · subst j
+      simp [w,Ne.symm hik]
+    · by_cases hj' : j = i <;> simp [w,hj,hj',hik]
+  have hchain := rankOne_fibreEval_partial w F k
+  rw [heq,coeffDeriv_C,rankOnePartial_map] at hchain
+  let s := (rankOnePartial k r)⁻¹
+  let ev := _root_.Polynomial.evalRingHom s
+  have he := congrArg ev hchain
+  change ev (_root_.Polynomial.C (f (pderiv k F))) =
+      ev (∑ j : σ, rankOne_fibreEval w (pderiv j F) *
+        (_root_.Polynomial.C (if j = k then 1 else 0) +
+          _root_.Polynomial.X * _root_.Polynomial.C (rankOnePartial k (w j)))) at he
+  have hzero (j : σ) :
+      ev (_root_.Polynomial.C (if j = k then 1 else 0) +
+        _root_.Polynomial.X * _root_.Polynomial.C (rankOnePartial k (w j))) = 0 := by
+    change (_root_.Polynomial.C (if j = k then 1 else 0) +
+      _root_.Polynomial.X * _root_.Polynomial.C (rankOnePartial k (w j))).eval s = 0
+    rw [_root_.Polynomial.eval_add,_root_.Polynomial.eval_mul,
+      _root_.Polynomial.eval_X,_root_.Polynomial.eval_C,_root_.Polynomial.eval_C,hp]
+    by_cases hj : j = k
+    · rw [if_pos hj,if_pos hj]
+      change 1 + (rankOnePartial k r)⁻¹ * (-rankOnePartial k r) = 0
+      rw [mul_neg,inv_mul_cancel₀ ht,add_neg_cancel]
+    · rw [if_neg hj,if_neg hj,mul_zero,add_zero]
+  rw [map_sum] at he
+  simp only [map_mul,hzero,mul_zero,Finset.sum_const_zero] at he
+  change (_root_.Polynomial.C (f (pderiv k F))).eval s = 0 at he
+  rw [_root_.Polynomial.eval_C] at he
+  exact hk he
+
+/-- Two proportional full Hessian rows, with a nonzero diagonal
+pivot, are proportional over the ground field. No global rank-one
+condition, no pure-pivot chart and no coefficient extension needed. -/
+theorem rankOneHessian_twoRows_constant
+    (L : R σ K) (k i : σ) (hik : i ≠ k)
+    (hk : hessian L k k ≠ 0)
+    (hr : ∀ j : σ, hessian L k k * hessian L i j =
+      hessian L i k * hessian L k j) :
+    ∃ c : K, ∀ j : σ, hessian L i j = MvPolynomial.C c * hessian L k j := by
+  classical
+  let f : R σ K →+* E σ K := algebraMap (R σ K) (E σ K)
+  let a := f (hessian L k k)
+  let r := f (hessian L i k) / a
+  have ha : a ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (R σ K) (E σ K)).ne hk
+  have hrow (j : σ) : f (hessian L i j) = r * f (hessian L k j) := by
+    apply mul_left_cancel₀ ha
+    calc
+      a * f (hessian L i j) = f (hessian L i k) * f (hessian L k j) := by
+        change f _ * f _ = f _ * f _
+        rw [← map_mul,← map_mul,hr j]
+      _ = a * (r * f (hessian L k j)) := by
+        have h : a*r = f (hessian L i k) := by
+          dsimp [r]; rw [mul_comm,div_mul_cancel₀ _ ha]
+        rw [← mul_assoc,h]
+  let F := pderiv k L
+  let G := pderiv i L
+  have hrel (j : σ) : f (pderiv j G) = r * f (pderiv j F) := hrow j
+  have hmix : f (pderiv i F) = r * f (pderiv k F) := by
+    change f (hessian L k i) = r * f (hessian L k k)
+    rw [show hessian L k i = hessian L i k from pderiv_comm_backport i k L]
+    exact hrow k
+  have hdiff (j : σ) : f (pderiv k F) * rankOnePartial j r =
+      f (pderiv j F) * rankOnePartial k r := by
+    have h1 := congrArg (rankOnePartial (K := K) j) (hrel k)
+    have h2 := congrArg (rankOnePartial (K := K) k) (hrel j)
+    change rankOnePartial j (f (pderiv k G)) =
+      rankOnePartial j (r * f (pderiv k F)) at h1
+    change rankOnePartial k (f (pderiv j G)) =
+      rankOnePartial k (r * f (pderiv j F)) at h2
+    simp only [Derivation.leibniz,smul_eq_mul,rankOnePartial_map] at h1 h2
+    rw [pderiv_comm_backport j k G,pderiv_comm_backport j k F] at h1
+    linear_combination h2 - h1
+  have htransport : rankOnePartial i r = r * rankOnePartial k r := by
+    apply mul_left_cancel₀ ha
+    change f (pderiv k F) * rankOnePartial i r =
+      f (pderiv k F) * (r * rankOnePartial k r)
+    rw [hdiff i,hmix]
+    ring
+  have hz : rankOnePartial k r = 0 :=
+    flatLevel_tangent_pivot_deriv_zero F r k i hik htransport ha hmix
+  have hconst (j : σ) : rankOnePartial j r = 0 := by
+    have h := hdiff j
+    rw [hz,mul_zero] at h
+    exact (mul_eq_zero.mp h).resolve_left ha
+  obtain ⟨c,hc⟩ := rankOnePartial_constants r hconst
+  refine ⟨c,?_⟩
+  intro j
+  apply IsFractionRing.injective (R σ K) (E σ K)
+  change f (hessian L i j) = f (MvPolynomial.C c * hessian L k j)
+  rw [map_mul,hrow,hc]
+  have hC : f (MvPolynomial.C c) = algebraMap K (E σ K) c :=
+    (IsScalarTower.toAlgHom K (R σ K) (E σ K)).commutes c
+  rw [hC]
+
+end Finite
+
 end
 end HC4.Polynomial
 
@@ -361,3 +604,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankOneHessian_ratio_constant_of_purePivot
 
 #print axioms HC4.Polynomial.flatLevel_gradient_ratio_constant_of_purePivot
+
+#print axioms HC4.Polynomial.flatLevel_tangent_pivot_deriv_zero
+#print axioms HC4.Polynomial.rankOneHessian_twoRows_constant
