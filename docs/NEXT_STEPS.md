@@ -1,15 +1,17 @@
-# Next research steps
+# Publication and research next steps
 
-Checkpoint 25 November 2026. These are proposed investigation tasks, not claimed proved implications.
+The conditional theorem is verified at 38e58bf4 (26 November 2026). Preserve this proof checkpoint and its full history; do not change the Lean implementation merely to improve presentation.
 
-1. **Audit the latest mixed-residue theorem.** Open `sourceCubic_fixedMixedResidue_global_directionalSquare_eq_zero` at the end of [TransverseLeadingDirectionalRigidity.lean](../HC4/Polynomial/TransverseLeadingDirectionalRigidity.lean). Record the exact source of each premise: cap 3, constant determinant, anchor and nilpotent transport, prime p and p(0)=0, fixed nonzero direction d, principal cofactor survival, orthogonality, nonzero residue and the cleared mixed equation. Distinguish premises already derivable from those still required.
-2. **Consume the directional square identity.** Investigate constant shear to an affine-in-one-direction source and whether determinant-one plus the actual collision gives a contradiction or a lower-dimensional endpoint. First search existing stationary, nilpotent and marked-collision consumers in the same file. Do not assume a generic affine-in-one-direction source is impossible.
-3. **Close the complementary cases.** Audit the stationary, nonzero linear and genuine rational characteristic branches and the singular leading transverse block. The squarefree pole and rank-one pole results only exclude their respective hypotheses. Do not claim a cap-three theorem until the branches are exhaustive.
-4. **Integrate with the global proof.** For the cap-two marked theorem and any new cap-three result, identify the exact canonical state and prove its weight-bound/collision adapter. For conditional HC4 discharge the extraction or producer hypothesis rather than adding a caller-supplied resolver; for unrestricted HC4 discharge reachable-terminal impossibility without JC2.
-5. **Certify at each step.** Focused module build, full root build at a milestone, and endpoint axiom audit. Record commit and build result; no `sorry`, `admit` or new axioms. Keep the source-derived index fresh.
+## Publication preparation
 
-## Maintenance sequence (separate from proof work)
+1. Reproduce the audit on a fresh checkout using the pinned toolchain and dependencies, and record the exact commit and result.
+2. Extract the actual theorem dependency graph, distinguish the final proof from exploratory modules, and build a readable mathematical proof outline with source links.
+3. Audit prior literature, especially the recent Tang argument that informed the global weighted route. Establish bibliographic identity, dates, precise hypotheses and which arguments were adapted. Do not claim priority or mathematical independence prematurely.
+4. Draft a manuscript with the exact conditional theorem, definitions, global extremal reduction, rank exclusions, rational rigidity, Taylor normalization, signed first wall, and Lean verification details. Include transparent attribution and limitations.
+5. Arrange independent mathematical and Lean review before making publication or novelty claims.
 
-The former monolithic correction module is split into seven mathematical owners. `TransverseLeadingFirstCorrection` remains an import-only compatibility entry point. Verify the final split with the focused targets and full root build before resuming mathematical work; the source-level refactor is not itself a new proof. A wider valuation reorganisation is deferred.
+## Further mathematics
 
-Do not use the September handoffs as current plans. They are preserved in the [historical checkpoint](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/tree/90b9d97e2937b34c12c2ab845a404048f4a3c4b1/docs).
+Unconditional HC4 and planar JC2 are not established here. A polynomial inverse or arbitrary nonzero constant Hessian determinant extension must receive its own precisely stated theorem and verification if pursued. Earlier research routes remain available for further work but are not gaps in the conditional theorem.
+
+The [previous research plan](https://github.com/JamieLittle16/HC4_Lean_Canonical_Phase75_4/blob/90b9d97e2937b34c12c2ab845a404048f4a3c4b1/docs/NEXT_STEPS.md) is historical.
