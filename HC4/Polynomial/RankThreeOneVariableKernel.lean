@@ -4890,8 +4890,7 @@ theorem rankThree_relativePhase_clearDenominators
   refine ⟨q*r,p*r,q*t,mul_ne_zero hq hr,?_,?_,?_⟩
   · intro j hj
     simp only [Derivation.leibniz,smul_eq_mul,(hder j hj).1,(hder j hj).2,
-      (hder' j hj).1,(hder' j hj).2,mul_zero,add_zero]
-    exact ⟨rfl,rfl,rfl⟩
+      (hder' j hj).1,(hder' j hj).2,mul_zero,add_zero] <;> trivial
   · change f (q*r)*A = f (p*r)
     rw [map_mul,map_mul,show f q*f r*A = f r*(f q*A) by ring,hrep,mul_comm]
   · change f (q*r)*B₀ = f (q*t)
@@ -4967,6 +4966,8 @@ theorem rankThree_phaseJet_regularPoint
     apply hprod
     apply MvPolynomial.funext
     intro x
+    change MvPolynomial.aeval x (q * rankThreePhaseJetDet s q a b * T) =
+      MvPolynomial.aeval x (0 : B K)
     rw [hn x,map_zero]
   obtain ⟨x,hx⟩ := hex
   simp only [map_mul] at hx
@@ -5098,27 +5099,24 @@ theorem rankThree_powerHessian_at_one
       (n : K) * ((n : K)-1) *
         MvPolynomial.aeval x (pderiv i T) * MvPolynomial.aeval x (pderiv j T) +
       (n : K) * MvPolynomial.aeval x (hessian T i j) := by
-  let f := MvPolynomial.aeval x
+  let f : B K →ₐ[K] K := MvPolynomial.aeval x
   have hfirst (k : Fin 4) (d : ℕ) :
       f (pderiv k (T ^ d)) = (d : K) * f (pderiv k T) := by
     induction d with
     | zero => simp [f]
     | succ d ih =>
-      rw [pow_succ,Derivation.leibniz,smul_eq_mul,smul_eq_mul]
-      simp only [map_add,map_mul,map_pow,show f T = 1 from hx,one_pow,one_mul,ih,
-        Nat.cast_succ]
-      ring
+      simp only [pow_succ,Derivation.leibniz,smul_eq_mul,map_add,map_mul,map_pow,
+        show f T = 1 from hx,one_pow,one_mul,mul_one,ih,Nat.cast_succ]
+      <;> ring
   change f (pderiv j (pderiv i (T ^ n))) =
     (n : K) * ((n : K)-1) * f (pderiv i T) * f (pderiv j T) +
       (n : K) * f (pderiv j (pderiv i T))
   induction n with
   | zero => simp
   | succ n ih =>
-    rw [pow_succ,Derivation.leibniz,smul_eq_mul,smul_eq_mul,map_add,
-      Derivation.leibniz,Derivation.leibniz,smul_eq_mul,smul_eq_mul,smul_eq_mul,smul_eq_mul]
-    simp only [map_add,map_mul,map_pow,show f T = 1 from hx,one_pow,one_mul,
-      hfirst,ih,Nat.cast_succ]
-    ring
+    simp only [pow_succ,Derivation.leibniz,smul_eq_mul,map_add,map_mul,map_pow,
+      show f T = 1 from hx,one_pow,one_mul,mul_one,hfirst,ih,Nat.cast_succ]
+    <;> ring
 
 set_option maxHeartbeats 5000000 in
 /-- The exact normalised phase power has all three passive principal
@@ -5150,16 +5148,22 @@ theorem rankThree_normalPhase_cofactors
   have hA : A ≠ 0 := mul_ne_zero (mul_ne_zero hc hn0) hn1
   have hD : D ≠ 0 := mul_ne_zero hc hn0
   have hx : f T = 1 := by simp [f,T,rankThreeWallPhase,x]
+  have hX (i j : Fin 4) : pderiv i (X j : B K) =
+      if j = i then 1 else 0 := by
+    by_cases h : j = i
+    · subst j
+      simp
+    · rw [pderiv_X_of_ne h,if_neg h]
   have hgrad (i : Fin 4) : f (pderiv i T) = (![0,1,1,1] : Fin 4 → K) i := by
     fin_cases i <;>
-      norm_num [f,T,rankThreeWallPhase,x,map_add,Derivation.leibniz,
-        Derivation.leibniz_pow,smul_eq_mul,nsmul_eq_mul,MvPolynomial.pderiv_X]
+      simp [f,T,rankThreeWallPhase,x,pow_two,MvPolynomial.pderiv_mul,hX,
+        Pi.single_apply] <;> norm_num
   have hphaseH (i j : Fin 4) : f (hessian T i j) =
       (!![0,0,1,2;0,0,0,0;1,0,0,0;2,0,0,0] : Matrix (Fin 4) (Fin 4) K) i j := by
     change f (pderiv j (pderiv i T)) = _
     fin_cases i <;> fin_cases j <;>
-      norm_num [f,T,rankThreeWallPhase,x,map_add,Derivation.leibniz,
-        Derivation.leibniz_pow,smul_eq_mul,nsmul_eq_mul,MvPolynomial.pderiv_X]
+      simp [f,T,rankThreeWallPhase,x,pow_two,MvPolynomial.pderiv_mul,hX,
+        Pi.single_apply,Derivation.map_natCast] <;> norm_num
   have hentry (i j : Fin 4) : H i j =
       c * ((n : K)*((n : K)-1)*f (pderiv i T)*f (pderiv j T) +
         (n : K)*f (hessian T i j)) := by
