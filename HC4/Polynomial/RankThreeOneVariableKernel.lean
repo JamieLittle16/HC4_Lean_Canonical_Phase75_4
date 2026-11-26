@@ -2482,7 +2482,11 @@ theorem globalWeightOptimum_rankThree_no_affineKernelLine
       J a b = rankThreePartial (l.succAbove b) t * g (e (l.succAbove a)) := by
     change rankThreePartial (l.succAbove b) (V (l.succAbove a)) = _
     rw [hline]
-    simp [Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,mul_comm]
+    change rankThreePartial (l.succAbove b)
+      (algebraMap K (E K) (d (l.succAbove a)) + t * algebraMap K (E K) (e (l.succAbove a))) =
+      rankThreePartial (l.succAbove b) t * algebraMap K (E K) (e (l.succAbove a))
+    simp only [map_add,Derivation.leibniz,smul_eq_mul,Derivation.map_algebraMap,mul_zero,add_zero,zero_add]
+    exact mul_comm _ _
   have hsome : ∃ b : Fin 3, rankThreePartial (l.succAbove b) t ≠ 0 := by
     by_contra hn
     push_neg at hn
