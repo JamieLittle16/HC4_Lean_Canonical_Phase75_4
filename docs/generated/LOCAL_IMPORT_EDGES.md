@@ -341,7 +341,7 @@ human architecture guide.
 - `HC4.Polynomial.RankThreeCubicDetOnePoleUnitOrigin`
   - `HC4.Polynomial.RankThreeCubicDetOneFixedTangentUnitRepairOrTriple`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
-  - `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
+  - _(no local imports)_
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurKernelCoupling`
   - `HC4.Polynomial.RankThreeCubicDetOneSourcePrincipalSchurSquare`
 - `HC4.Polynomial.RankThreeCubicDetOnePrincipalSchurSquareAlgebra`

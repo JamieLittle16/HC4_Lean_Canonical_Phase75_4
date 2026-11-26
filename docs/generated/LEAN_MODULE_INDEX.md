@@ -1307,7 +1307,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: none detected
 - Local imports: `HC4.Polynomial.RankThreeCubicDetOneSourceRankThreeRepairIsotropic`, `HC4.Polynomial.MaximalHessianInitial`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOnePrincipalCofactorKernelLine`
+- Imported by local modules: none
 - Declarations: `abbrev B3`, `abbrev SB`, `theorem sourceCubic_detOne_leadingFullHessian_det_zero`, `theorem sourceCubic_detOne_slicedFullCubicHessian_det_zero`
 
 ### `HC4.Polynomial.RankThreeCubicDetOneLongitudinalUnitEscape`
@@ -1415,7 +1415,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/Polynomial/RankThreeCubicDetOnePrincipalCofactorKernelLine.lean`
 - Purpose: A surviving principal cofactor determines the singular kernel line
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeCubicDetOneLeadingFullHessianSingular`
+- Local imports: none
 - External imports: `Mathlib.LinearAlgebra.Matrix.Nondegenerate`, `Mathlib.Tactic`
 - Imported by local modules: `HC4.Polynomial.RankThreeCubicDetOneFullAdjugateKernelRankTwo`
 - Declarations: `theorem principalCofactor_kernel_zero_of_coordinate_zero`, `theorem principalCofactor_kernel_coordinate_ne_zero`, `theorem principalCofactor_kernelLine_of_unitCoordinate`
