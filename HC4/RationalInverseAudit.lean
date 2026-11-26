@@ -95,8 +95,16 @@ theorem algebraMap_surjective_of_subsingleton_emb
     intro h
     simp [h] at ha'
   refine ⟨b / a, ?_⟩
-  rw [map_div₀, div_eq_iff (map_ne_zero hane)]
-  rw [← hb', mul_assoc, mul_comm v, ha', mul_one]
+  have hane' : algebraMap S E a ≠ 0 := by
+    intro he
+    apply hane
+    exact (algebraMap S E).injective (he.trans (map_zero (algebraMap S E)).symm)
+  rw [map_div₀, div_eq_iff hane']
+  calc
+    algebraMap S E b = algebraMap S E b * 1 := (mul_one _).symm
+    _ = algebraMap S E b * (algebraMap S E a * v) := by rw [ha']
+    _ = (algebraMap S E b * v) * algebraMap S E a := by ring
+    _ = w * algebraMap S E a := by rw [hb']
 
 /-- The pullback of an injective polynomial map over an algebraically
 closed characteristic-zero field is surjective on fraction fields. -/
