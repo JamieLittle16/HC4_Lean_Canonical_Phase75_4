@@ -2053,6 +2053,228 @@ theorem rankThree_relative_derivative_constant
   exact (mul_eq_zero.mp h2).resolve_left hQf
 
 
+set_option maxHeartbeats 6000000 in
+/-- With zero omitted weight and three nonzero restricted diagonals,
+the Hessian row ratios also give the actual gradient ratios.
+The positive Euler degree permits cancellation of the affine
+integration constant. -/
+theorem rankThree_zeroWeight_gradient_ratios
+    (L : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ j, 0 ≤ w j) (hm : 0 < m)
+    (hL : MvPolynomial.IsWeightedHomogeneous w L m)
+    (s p : Fin 4) (hps : p ≠ s) (hws : w s = 0)
+    (hnon : ∀ i, i ≠ s → hessian L i i ≠ 0)
+    (hmin : ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+      hessian L i p * hessian L j q = hessian L i q * hessian L j p) :
+    let f := algebraMap (B K) (E K)
+    ∃ r : Fin 4 → E K,
+      r s = 0 ∧ r p = 1 ∧
+      (∀ i j, i ≠ s → j ≠ s →
+        f (hessian L i j) = r i * f (hessian L p j)) ∧
+      (∀ i, i ≠ s → f (pderiv i L) = r i * f (pderiv p L)) ∧
+      (∀ j, j ≠ s → ∀ i, rankThreePartial j (r i) = 0) := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let A := f (hessian L p p)
+  let r : Fin 4 → E K := fun i => if i = s then 0 else f (hessian L i p) / A
+  have hp := hnon p hps
+  have hA : A ≠ 0 := by
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hp
+  have hrs : r s = 0 := by simp [r]
+  have hrp : r p = 1 := by
+    change (if p = s then 0 else A/A) = 1
+    rw [if_neg hps,div_self hA]
+  have hmix (i : Fin 4) (his : i ≠ s) : hessian L i p ≠ 0 := by
+    intro hz
+    have he := hmin p i p i hps his hps his
+    rw [hz,mul_zero] at he
+    exact (mul_ne_zero hp (hnon i his)) he
+  have hwi (i : Fin 4) (his : i ≠ s) : w i = w p := by
+    by_cases hip : i = p
+    · rw [hip]
+    · have he := rankThree_restricted_weightedRatio L w m hw hL s hmin p i
+        hps his hip hp (hmix i his)
+      rcases he with ⟨_,he⟩ | ⟨he,_⟩
+      · exact he
+      · omega
+  have hrow (i j : Fin 4) (his : i ≠ s) (hjs : j ≠ s) :
+      f (hessian L i j) = r i * f (hessian L p j) := by
+    have he := congrArg f (hmin p i p j hps his hps hjs)
+    simp only [map_mul] at he
+    have hr : A * r i = f (hessian L i p) := by
+      change A * (if i = s then 0 else f (hessian L i p)/A) = _
+      rw [if_neg his,mul_comm,div_mul_cancel₀ _ hA]
+    apply mul_left_cancel₀ hA
+    change A * f (hessian L i j) = A * (r i * f (hessian L p j))
+    rw [← mul_assoc,hr]
+    exact he.trans (mul_comm _ _)
+  have hconst (j : Fin 4) (hjs : j ≠ s) (i : Fin 4) :
+      rankThreePartial j (r i) = 0 := by
+    by_cases his : i = s
+    · rw [his,hrs,map_zero]
+    · by_cases hip : i = p
+      · rw [hip,hrp,Derivation.map_one_eq_zero]
+      · change rankThreePartial j (if i = s then 0 else f (hessian L i p)/A) = 0
+        rw [if_neg his]
+        exact rankOneHessian_twoRows_partialRatios_constant L s p i hip hps his hp
+          (fun b hb => (hmin p i p b hps his hps hb).trans (mul_comm _ _)) j hjs
+  have hbound : 2*w p ≤ m := by
+    by_contra hn
+    exact hp (eq_zero_of_nonnegativeWeight_negative_cap w hw _ (by omega) _
+      (isWeightLE_of_isWeightedHomogeneous (hessian_entry_isWeightedHomogeneous hL p p)))
+  let d := m - w p
+  have hd : 0 < d := by dsimp [d]; omega
+  have hd0 : (d.toNat : E K) ≠ 0 := by
+    have hn : d.toNat ≠ 0 := by omega
+    exact_mod_cast hn
+  have hEuler (i : Fin 4) (his : i ≠ s) :
+      (∑ j : Fin 4, ((w j).toNat : E K) *
+        (f (X j) * f (hessian L i j))) = (d.toNat : E K) * f (pderiv i L) := by
+    have hh : MvPolynomial.IsWeightedHomogeneous w (pderiv i L) d := by
+      change MvPolynomial.IsWeightedHomogeneous w (pderiv i L) (m-w p)
+      rw [← hwi i his]
+      exact pderiv_isWeightedHomogeneous hL i
+    have he := congrArg f (rankThree_weightedEuler (pderiv i L) w d hw (le_of_lt hd) hh)
+    change f (∑ j : Fin 4, (w j).toNat • (X j * pderiv j (pderiv i L))) =
+      f (d.toNat • pderiv i L) at he
+    simp only [map_sum,map_nsmul,map_mul,nsmul_eq_mul] at he
+    exact he
+  have hgrad (i : Fin 4) (his : i ≠ s) :
+      f (pderiv i L) = r i * f (pderiv p L) := by
+    apply mul_left_cancel₀ hd0
+    calc
+      (d.toNat : E K) * f (pderiv i L) =
+          ∑ j : Fin 4, ((w j).toNat : E K) *
+            (f (X j) * f (hessian L i j)) := (hEuler i his).symm
+      _ = r i * ∑ j : Fin 4, ((w j).toNat : E K) *
+            (f (X j) * f (hessian L p j)) := by
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro j _
+        by_cases hjs : j = s
+        · subst j
+          simp [hws]
+        · rw [hrow i j his hjs]
+          ring
+      _ = (d.toNat : E K) * (r i * f (pderiv p L)) := by
+        rw [hEuler p hps]
+        ring
+  exact ⟨r,hrs,hrp,hrow,hgrad,hconst⟩
+
+set_option maxHeartbeats 6000000 in
+/-- The normalized corank-one kernel is independent of every
+non-omitted variable once the restricted gradient ratios are
+relative constants. Both the restricted Hessian row and the
+omitted mixed row are controlled by the ratio and its derivative. -/
+theorem rankThree_kernel_relative_of_gradient_ratios
+    (L : B K) (s p l : Fin 4) (hps : p ≠ s)
+    (hp : hessian L p p ≠ 0) (hreg : (hessian L).adjugate l l ≠ 0)
+    (V : Fin 4 → E K) (hVs : V s = 0) (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (r : Fin 4 → E K) (hrs : r s = 0)
+    (hrows : ∀ i j, i ≠ s → j ≠ s →
+      algebraMap (B K) (E K) (hessian L i j) =
+        r i * algebraMap (B K) (E K) (hessian L p j))
+    (hgrad : ∀ i, i ≠ s → algebraMap (B K) (E K) (pderiv i L) =
+      r i * algebraMap (B K) (E K) (pderiv p L))
+    (hconst : ∀ j, j ≠ s → ∀ i, rankThreePartial j (r i) = 0) :
+    ∀ j, j ≠ s → ∀ i, rankThreePartial j (V i) = 0 := by
+  classical
+  let f := algebraMap (B K) (E K)
+  let H := (hessian L).map f
+  let G := f (pderiv p L)
+  let R : Fin 4 → E K := fun i => rankThreePartial s (r i)
+  have hA : H p p ≠ 0 := by
+    change f (hessian L p p) ≠ 0
+    simpa only [map_zero] using (IsFractionRing.injective (B K) (E K)).ne hp
+  have hG : G ≠ 0 := by
+    intro hz
+    have he := IsFractionRing.injective (B K) (E K) (show f (pderiv p L) = f 0 by simpa only [map_zero] using hz)
+    apply hp
+    change pderiv p (pderiv p L) = 0
+    rw [he,map_zero]
+  have hs (i j : Fin 4) : H i j = H j i := by
+    change f (hessian L i j) = f (hessian L j i)
+    rw [show hessian L i j = hessian L j i from pderiv_comm_backport _ _ _]
+  have hrow (i j : Fin 4) (his : i ≠ s) (hjs : j ≠ s) :
+      H i j = r j * H i p := by
+    rw [hs i j]
+    change f (hessian L j i) = r j * H i p
+    rw [hrows j i hjs his,hs i p]
+  have hmix (i : Fin 4) (his : i ≠ s) :
+      H s i = r i * H s p + G * R i := by
+    have he := congrArg (rankThreePartial (K := K) s) (hgrad i his)
+    change rankThreePartial s (f (pderiv i L)) =
+      rankThreePartial s (r i * f (pderiv p L)) at he
+    have hmap (T : B K) : rankThreePartial s (f T) = f (pderiv s T) :=
+      rankThreePartial_map s T
+    simp only [Derivation.leibniz,smul_eq_mul,hmap] at he
+    change H i s = r i * H p s + G * R i at he
+    rw [hs i s,hs p s] at he
+    exact he
+  have hnormal (W : Fin 4 → E K) (hWs : W s = 0) (i : Fin 4) (his : i ≠ s) :
+      (∑ j : Fin 4, H i j * W j) = H i p * ∑ j : Fin 4, r j * W j := by
+    rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro j _
+    by_cases hjs : j = s
+    · rw [hjs,hWs,mul_zero,mul_zero,mul_zero]
+    · rw [hrow i j his hjs]
+      ring
+  have hmixed (W : Fin 4 → E K) (hWs : W s = 0) :
+      (∑ j : Fin 4, H s j * W j) =
+        H s p * (∑ j : Fin 4, r j * W j) + G * (∑ j : Fin 4, R j * W j) := by
+    rw [Finset.mul_sum,Finset.mul_sum,← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro j _
+    by_cases hjs : j = s
+    · subst j
+      simp [hWs]
+    · rw [hmix j hjs]
+      ring
+  have hrv : ∑ j : Fin 4, r j * V j = 0 := by
+    have he : ∑ j : Fin 4, H p j * V j = 0 := congrFun hV p
+    rw [hnormal V hVs p hps] at he
+    exact (mul_eq_zero.mp he).resolve_left hA
+  have hRv : ∑ j : Fin 4, R j * V j = 0 := by
+    have he : ∑ j : Fin 4, H s j * V j = 0 := congrFun hV s
+    rw [hmixed V hVs,hrv,mul_zero,zero_add] at he
+    exact (mul_eq_zero.mp he).resolve_left hG
+  have hRconst (j : Fin 4) (hj : j ≠ s) (i : Fin 4) :
+      rankThreePartial j (R i) = 0 :=
+    rankThree_relative_derivative_constant (r i) s (fun a ha => hconst a ha i) j hj
+  have hregH : H.adjugate l l ≠ 0 := by
+    intro hz
+    apply hreg
+    apply IsFractionRing.injective (B K) (E K)
+    change (f.mapMatrix (hessian L)).adjugate l l = 0 at hz
+    rw [← f.map_adjugate] at hz
+    simpa only [map_zero] using hz
+  intro j hj
+  let W : Fin 4 → E K := fun i => rankThreePartial j (V i)
+  have hWs : W s = 0 := by change rankThreePartial j (V s) = 0; rw [hVs,map_zero]
+  have hWl : W l = 0 := by change rankThreePartial j (V l) = 0; rw [hVl,Derivation.map_one_eq_zero]
+  have hrW : ∑ i : Fin 4, r i * W i = 0 := by
+    have he := congrArg (rankThreePartial (K := K) j) hrv
+    change rankThreePartial j (∑ i : Fin 4, r i * V i) = rankThreePartial j 0 at he
+    simpa only [map_sum,map_zero,Derivation.leibniz,smul_eq_mul,hconst j hj,mul_zero,add_zero] using he
+  have hRW : ∑ i : Fin 4, R i * W i = 0 := by
+    have he := congrArg (rankThreePartial (K := K) j) hRv
+    change rankThreePartial j (∑ i : Fin 4, R i * V i) = rankThreePartial j 0 at he
+    simpa only [map_sum,map_zero,Derivation.leibniz,smul_eq_mul,hRconst j hj,mul_zero,add_zero] using he
+  have hHW : H *ᵥ W = 0 := by
+    funext i
+    change (∑ a : Fin 4, H i a * W a) = 0
+    by_cases his : i = s
+    · rw [his,hmixed W hWs,hrW,hRW,mul_zero,mul_zero,add_zero]
+    · rw [hnormal W hWs i his,hrW,mul_zero]
+  have hW0 : W = 0 := by
+    by_contra hn
+    exact hregH (adjugate_entry_zero_of_nonzero_kernel_coordinate_zero H W hHW hn l l hWl)
+  intro i
+  exact congrFun hW0 i
+
+
 end
 end HC4.Polynomial
 
@@ -2106,3 +2328,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.globalWeightOptimum_rankThree_zeroWeight_zeroRow_terminal
 #print axioms HC4.Polynomial.rankThree_weightedEuler
 #print axioms HC4.Polynomial.rankThree_relative_derivative_constant
+
+#print axioms HC4.Polynomial.rankThree_zeroWeight_gradient_ratios
+#print axioms HC4.Polynomial.rankThree_kernel_relative_of_gradient_ratios
