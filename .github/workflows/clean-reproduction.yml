@@ -3,7 +3,7 @@ name: Clean equivalence reproduction
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [publication/palomar]
     paths:
       - '.github/workflows/clean-reproduction.yml'
 
@@ -40,10 +40,11 @@ jobs:
           git diff --exit-code -- lean-toolchain lake-manifest.json
           test ! -d .lake/build/lib/lean/HC4
 
-      - name: Rebuild proof from source and check final equivalence
+      - name: Rebuild both proof endpoints from source and audit all five declarations
         run: |
           set -o pipefail
-          lake build HC4.FinalEquivalence |& tee reproduction-build.log
+          lake build HC4 |& tee reproduction-build.log
+          lake env lean HC4/Audit.lean |& tee axioms.log
           lake env lean HC4/FinalEquivalence.lean |& tee final-equivalence.log
           git diff --exit-code -- lean-toolchain lake-manifest.json
 
@@ -67,6 +68,7 @@ jobs:
             reproduction-environment.log
             reproduction-build.log
             final-equivalence.log
+            axioms.log
             negative-control.log
             lean-toolchain
             lake-manifest.json
