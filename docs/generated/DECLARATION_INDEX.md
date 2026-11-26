@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11918**.
+Distinct declaration spellings indexed: **11923**.
 
 ## Repeated declaration spellings
 
@@ -9446,6 +9446,7 @@ Distinct declaration spellings indexed: **11918**.
 - `rankThreeQuotientWeight` — `def` in `HC4.Polynomial.RankThreeQuotientWeightFactorization`
 - `rankThreeRawMomentEntry` — `def` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreeRawMomentEntry_eq_moment` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
+- `rankThreeRelativeNatWeight` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreeRepairState` — `def` in `HC4.Newton.RankOneRepairProgress`
 - `rankThreeRepairState_zero_measure` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalAssemblySoundness`
 - `rankThreeSucc_to_rankOne_repairProgress` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalGlobalMacroTermination`
@@ -9501,6 +9502,7 @@ Distinct declaration spellings indexed: **11918**.
 - `rankThree_affineTerminal_homogeneous_extreme_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_homogeneous_fixed_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_top_otherFacet_or_codimensionTwo` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
+- `rankThree_borderedRankOne_det_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_boundaryTransition_or_quadraticSquare_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeBoundaryReduction`
 - `rankThree_complement_cube_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_complement_det_one` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9515,6 +9517,7 @@ Distinct declaration spellings indexed: **11918**.
 - `rankThree_crossFacet_or_nonlinearOutside_or_nonlinearConfined` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowRankThreeSourceSplit`
 - `rankThree_degreeOne_specialisation_eulerScaledHessianPrincipalMinor` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
 - `rankThree_degreeOne_specialisation_hessianPrincipalMinor_of_transverse` — `theorem` in `HC4.Polynomial.RankThreeDegreeOneEulerActiveMinor`
+- `rankThree_equalWeights_factor` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_eta_eq_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_exists_two_positive` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowExposedRankThreeProgress`
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
@@ -9548,6 +9551,7 @@ Distinct declaration spellings indexed: **11918**.
 - `rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `rankThree_raw_target_eval_two_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
 - `rankThree_reduced_target_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
+- `rankThree_relativeDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_relative_derivative_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_remaining_two_coordinates` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_repairProgress_forces_complexityDrop` — `theorem` in `HC4.Newton.RankOneRepairProgress`
@@ -9578,6 +9582,7 @@ Distinct declaration spellings indexed: **11918**.
 - `rankThree_weightedEuler` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `rankThree_zeroRow_rankTwo_principalCofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_zeroWeight_degreeTwo_impossible` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroWeight_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankTwoAxisPerm` — `def` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `rankTwoAxisPerm_preserves_normalizationExponent` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
