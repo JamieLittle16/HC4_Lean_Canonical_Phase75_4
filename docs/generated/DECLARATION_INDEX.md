@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11866**.
+Distinct declaration spellings indexed: **11868**.
 
 ## Repeated declaration spellings
 
@@ -9464,6 +9464,7 @@ Distinct declaration spellings indexed: **11866**.
 - `rankThreeVertical_hessian_impossible_of_nonconstant` — `theorem` in `HC4.RationalRigidity.RankThreeVerticalContradiction`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThreeVertical_initialForm_at_least_coefficient` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithVerticalEndpoint`
 - `rankThreeWeightedCofactorSum` — `def` in `HC4.Polynomial.RankThreeLogHessian`
+- `rankThree_activeMinor_zero_all_restrictedMinors` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_affineTerminal_all_fixed_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_codimensionTwoTop_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
 - `rankThree_affineTerminal_degreeOne_or_codimensionTwo_or_extreme` — `theorem` in `HC4.RationalRigidity.RankThreeAffineHomogeneousTerminalSplit`
@@ -9502,6 +9503,7 @@ Distinct declaration spellings indexed: **11866**.
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_ratFunc_equation_of_fraction_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_raw_aeval_equation_of_ratFunc_equation` — `theorem` in `HC4.RationalRigidity.RankThreeReducedTarget`
 - `rankThree_raw_target_X_sub_X_sq_identity_of_source_degree_one_unit_step` — `theorem` in `HC4.RationalRigidity.RankThreeDegreeOneAutonomousNormalForm`
