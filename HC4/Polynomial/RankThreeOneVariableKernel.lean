@@ -2912,6 +2912,113 @@ theorem rankThree_rankOne_regularActiveSlope_constant
   exact ⟨ht,hk⟩
 
 
+set_option maxHeartbeats 6000000 in
+/-- The positive omitted-weight obstruction needs only the vanishing restricted minors. -/
+theorem globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
+    (P : B K) (w : Fin 4 → ℤ) (m : ℤ)
+    (hw : ∀ i, 0 ≤ w i) (hm : 0 < m)
+    (hcap : IsWeightLE w m P)
+    (hclock : 0 < (Fintype.card (Fin 4) : ℤ)*m - 2*(∑ i, w i))
+    (hopt : IsGlobalWeightOptimum P w m) (hdet : hessianDeterminant P = 1)
+    (s : Fin 4)
+    (hmin : let L := initialForm w m P
+      ∀ i j p q : Fin 4, i ≠ s → j ≠ s → p ≠ s → q ≠ s →
+        hessian L i p * hessian L j q = hessian L i q * hessian L j p)
+    (hpos : 0 < w s) :
+    False := by
+  classical
+  let L := initialForm w m P
+  have hnon (j : Fin 4) (hjs : j ≠ s) : hessian L j j ≠ 0 := by
+    intro hj
+    obtain ⟨p,i,hps,his,hip,hjp,hji,hcover⟩ :=
+      rankThree_remaining_two_coordinates s j hjs
+    have hp : hessian L p p ≠ 0 := by
+      intro hz
+      exact hjp (globalWeightOptimum_rankThree_restricted_atMostOne_zero P w m
+        hw hm hcap hclock hopt s j p hjs hps hmin hj hz)
+    have hi : hessian L i i ≠ 0 := by
+      intro hz
+      exact hji (globalWeightOptimum_rankThree_restricted_atMostOne_zero P w m
+        hw hm hcap hclock hopt s j i hjs his hmin hj hz)
+    exact globalWeightOptimum_rankThree_no_one_zero P w m hw hm hcap hclock hopt hdet
+      s p i j hps his hjs hip hjp hji hcover hpos hp hi hj hmin
+  have hdistinct (p i : Fin 4) (hps : p ≠ s) (his : i ≠ s) (hip : i ≠ p) :
+      w i ≠ w p := by
+    intro heq
+    obtain ⟨q,j,hqs,hjs,hjq,hiq,hij,hcover⟩ :=
+      rankThree_remaining_two_coordinates s i his
+    have hpcover : p = q ∨ p = j := by
+      rcases hcover p with h | h | h | h
+      · exact (hps h).elim
+      · exact Or.inl h
+      · exact Or.inr h
+      · exact (hip h.symm).elim
+    rcases hpcover with h | h
+    · subst q
+      have hcover' (b : Fin 4) : b = s ∨ b = p ∨ b = i ∨ b = j := by
+        rcases hcover b with h | h | h | h
+        · exact Or.inl h
+        · exact Or.inr (Or.inl h)
+        · exact Or.inr (Or.inr (Or.inr h))
+        · exact Or.inr (Or.inr (Or.inl h))
+      exact globalWeightOptimum_rankThree_no_repeated_nonzero_weights P w m hw hm
+        hcap hclock hopt hdet s p i j hps his hjs hip hjq (Ne.symm hij)
+        hcover' hpos heq (hnon p hps) (hnon i his) (hnon j hjs) hmin
+    · subst j
+      have hcover' (b : Fin 4) : b = s ∨ b = p ∨ b = i ∨ b = q := by
+        rcases hcover b with h | h | h | h
+        · exact Or.inl h
+        · exact Or.inr (Or.inr (Or.inr h))
+        · exact Or.inr (Or.inl h)
+        · exact Or.inr (Or.inr (Or.inl h))
+      exact globalWeightOptimum_rankThree_no_repeated_nonzero_weights P w m hw hm
+        hcap hclock hopt hdet s p i q hps his hqs hip (Ne.symm hjq) (Ne.symm hiq)
+        hcover' hpos heq (hnon p hps) (hnon i his) (hnon q hqs) hmin
+  let T := Finset.univ.filter (fun i : Fin 4 => i ≠ s)
+  have hT : T.Nonempty :=
+    ⟨s.succAbove 0,Finset.mem_filter.mpr ⟨Finset.mem_univ _,Fin.succAbove_ne _ _⟩⟩
+  obtain ⟨p,hp,hmax⟩ := Finset.exists_max_image T w hT
+  have hps : p ≠ s := (Finset.mem_filter.mp hp).2
+  have hsmall (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) : w i < w p :=
+    lt_of_le_of_ne (hmax i (Finset.mem_filter.mpr ⟨Finset.mem_univ _,his⟩))
+      (hdistinct p i hps his hip)
+  obtain ⟨i,j,his,hjs,hji,hpi,hpj,hcover⟩ := rankThree_remaining_two_coordinates s p hps
+  have hgap (i : Fin 4) (his : i ≠ s) (hip : i ≠ p) : w s ≤ w p - w i := by
+    have hmix : hessian L i p ≠ 0 := by
+      intro hz
+      have he := hmin p i p i hps his hps his
+      rw [hz,mul_zero] at he
+      exact (mul_ne_zero (hnon p hps) (hnon i his)) he
+    rcases rankThree_restricted_weightedRatio L w m hw
+      (initialForm_isWeightedHomogeneous w m P) s hmin p i hps his hip
+      (hnon p hps) hmix with ⟨hz,_⟩ | ⟨_,n,t,c,e,hc,he,hd,_⟩
+    · omega
+    · have hprod : 0 < ((t : ℤ)-(n : ℤ))*w s := by rw [← hd]; exact sub_pos.mpr (hsmall i his hip)
+      have hdiff : 1 ≤ (t : ℤ)-(n : ℤ) := by
+        by_contra hn
+        have hn' : (t : ℤ)-(n : ℤ) ≤ 0 := by omega
+        exact (not_lt_of_ge (mul_nonpos_of_nonpos_of_nonneg hn' (le_of_lt hpos))) hprod
+      rw [hd]
+      simpa only [one_mul] using mul_le_mul_of_nonneg_right hdiff (le_of_lt hpos)
+  have hbound := globalWeightOptimum_rankThree_restricted_no_gain P w m hw hm hcap
+    hclock hopt hdet s p hps hpos (hnon p hps) hmin
+  have hsums (f : Fin 4 → ℤ) : ∑ a, f a = f s + f i + f j + f p := by
+    have hu : (Finset.univ : Finset (Fin 4)) = {s,i,j,p} := by
+      ext a
+      simp only [Finset.mem_univ,Finset.mem_insert,Finset.mem_singleton,true_iff]
+      exact hcover a
+    rw [hu,Finset.sum_insert,Finset.sum_insert,Finset.sum_insert,Finset.sum_singleton]
+    · ring
+    · simp [hpi]
+    · simp [Ne.symm hji,hpj]
+    · simp [Ne.symm his,Ne.symm hjs,Ne.symm hps]
+  rw [hsums,hsums] at hbound
+  simp only [rankThreeCollapsedWeight,if_pos rfl,if_neg his,if_neg hjs,if_neg hps,
+    if_neg (hnon i his),if_neg (hnon j hjs),if_neg (hnon p hps)] at hbound
+  have hi := hgap i his (Ne.symm hpi)
+  have hj := hgap j hjs (Ne.symm hpj)
+  omega
+
 end
 end HC4.Polynomial
 
@@ -2986,3 +3093,5 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_proportionalDifferential_slope
 #print axioms HC4.Polynomial.rankThree_rankOne_slope_transport
 #print axioms HC4.Polynomial.rankThree_rankOne_regularActiveSlope_constant
+
+#print axioms HC4.Polynomial.globalWeightOptimum_rankThree_no_restrictedRankOne_positiveWeight
