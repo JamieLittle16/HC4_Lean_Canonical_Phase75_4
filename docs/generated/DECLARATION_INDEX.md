@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11624**.
+Distinct declaration spellings indexed: **11628**.
 
 ## Repeated declaration spellings
 
@@ -6657,6 +6657,7 @@ Distinct declaration spellings indexed: **11624**.
 - `hessian_longitudinalScalarShiftHom_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFinalSeamQuarticMidpoint`
 - `hessian_longitudinal_constant_eq_zero_of_axisCollision` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
 - `hessian_map_polynomialC_entry` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesHessianChainRule`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurTransverseReesKernel`
+- `hessian_minor_ne_zero_of_initialForm` — `theorem` in `HC4.Polynomial.WeightedWallMinorSurvival`
 - `hessian_monomial_diagonal_ne_zero_of_two_le` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrHighestSliceFirstBreak`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneCentralDeficitTiltedClosure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFirstDeficitRankThreeRoof`
 - `hessian_mulVec_rigidPairDirection_eq_zero_of_second_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidElimination`
 - `hessian_omitted_eq_C_of_nonlinearConfinement` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowNonlinearConfinementHessian`
@@ -6817,6 +6818,7 @@ Distinct declaration spellings indexed: **11624**.
 - `initialForm_det_eq_of_entry_gapOne` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveDeterminantGap`
 - `initialForm_det_first_lower_eq_adjugate_trace` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveDeterminantFirstVariation`
 - `initialForm_det_first_lower_eq_updateCols` — `theorem` in `HC4.Polynomial.RankThreeCubicDetOneWeightFiveDeterminantFirstVariation`
+- `initialForm_det_of_rowColumn_weights` — `theorem` in `HC4.Polynomial.WeightedWallMinorSurvival`
 - `initialForm_determinant_eq_self` — `theorem` in `HC4.Polynomial.DeterminantWeight`
 - `initialForm_directionalMixedDerivative_eq_component` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
 - `initialForm_directionalMixedDerivative_eq_integerComponent` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreForcedCompensator`
@@ -6836,6 +6838,8 @@ Distinct declaration spellings indexed: **11624**.
 - `initialForm_hessianDeterminant_eq_zero` — `theorem` in `HC4.MongeAmpere.PolynomialInitial`
 - `initialForm_hessianPrincipalMinor_eq` — `theorem` in `HC4.Valuation.WeightedHessianPrincipalMinorInitial`
 - `initialForm_hessianTwoByTwoMinor_eq` — `theorem` in `HC4.Valuation.WeightedHessianMinorInitial`
+- `initialForm_hessian_adjugate_entry` — `theorem` in `HC4.Polynomial.WeightedWallMinorSurvival`
+- `initialForm_hessian_minor` — `theorem` in `HC4.Polynomial.WeightedWallMinorSurvival`
 - `initialForm_idempotent` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_isWeightedHomogeneous` — `theorem` in `HC4.Polynomial.WeightedInitial`
 - `initialForm_mul_eq_left_mul_initialForm_of_leftHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreMixedLayerCross`
