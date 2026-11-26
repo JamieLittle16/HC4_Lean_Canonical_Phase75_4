@@ -1,4 +1,5 @@
 import HC4.Polynomial.RankThreeOneVariableKernel
+import HC4.PlanarJC2HessianEmbedding
 import Mathlib.Algebra.MvPolynomial.Monad
 import Mathlib.Algebra.MvPolynomial.Nilpotent
 import Mathlib.FieldTheory.IsAlgClosed.Basic
@@ -91,7 +92,8 @@ theorem injective_of_reference_left_inverse {n : ℕ}
   intro x y he
   calc
     x = (fun i => eval (fun j => eval x (F j)) (G i)) := (hl x).symm
-    _ = (fun i => eval (fun j => eval y (F j)) (G i)) := by rw [he]
+    _ = (fun i => eval (fun j => eval y (F j)) (G i)) := by
+      exact congrArg (fun z : Fin n → K => fun i => eval z (G i)) he
     _ = y := hl y
 
 /-- The external planar polynomial inverse conjecture is sufficient
@@ -115,7 +117,8 @@ theorem hessianDeterminant_C_mul (a : K) (P : MvPolynomial (Fin 4) K) :
       C (a ^ 4) * HC4.Polynomial.hessianDeterminant P := by
   have hm : HC4.Polynomial.hessian (C a * P) =
       (C a : MvPolynomial (Fin 4) K) • HC4.Polynomial.hessian P := by
-    ext i j
+    apply Matrix.ext
+    intro i j
     change pderiv j (pderiv i (C a * P)) = C a * pderiv j (pderiv i P)
     rw [pderiv_C_mul, pderiv_C_mul]
   unfold HC4.Polynomial.hessianDeterminant
@@ -139,7 +142,8 @@ theorem hc4_nonzero_constant_injective [IsAlgClosed K]
   apply hi
   funext i
   change eval x (pderiv i (C a * P)) = eval y (pderiv i (C a * P))
-  rw [pderiv_C_mul, map_mul, map_mul, eval_C, eval_C, congrFun hxy i]
+  rw [pderiv_C_mul, map_mul, map_mul, eval_C, eval_C]
+  exact congrArg (fun z : K => a * z) (congrFun hxy i)
 
 /-- External-style JC2 implies bijectivity of the gradient of every
 four-variable potential of nonzero constant Hessian determinant over
@@ -164,6 +168,40 @@ theorem hc4_reference_JC2_unit_bijective [IsAlgClosed K]
   obtain ⟨c,hc,he⟩ := (reference_unit_iff (fun i : Fin 4 => pderiv i P)).mp hdet
   exact hc4_reference_JC2_bijective hJC2 P c hc he
 
+/-- Both directions of the determinant-one injectivity equivalence.
+This uses the independently established planar doubling construction
+for the reverse direction, not a polynomial-inverse assumption. -/
+theorem planarJC2_iff_hessianFour_injective :
+    HC4.PlanarJC2Injectivity K ↔
+      (∀ P : MvPolynomial (Fin 4) K,
+        HC4.Polynomial.hessianDeterminant P = 1 →
+          Function.Injective (HC4.Newton.mvGradientMap P)) := by
+  constructor
+  · intro h P hdet
+    exact HC4.Polynomial.hc4_of_planarJC2 h P hdet
+  · exact HC4.planarJC2_of_hessianFour_gradient_injective
+
+/-- Equivalence with the external determinant-unit Hessian bijectivity
+formulation over an algebraically closed field of characteristic zero.
+The planar side here is explicitly the injectivity formulation. -/
+theorem planarJC2_iff_hessianFour_unit_bijective [IsAlgClosed K] :
+    HC4.PlanarJC2Injectivity K ↔
+      (∀ P : MvPolynomial (Fin 4) K,
+        IsUnit (referenceJacobian (fun i => pderiv i P)).det →
+          Function.Bijective (fun x : Fin 4 → K => fun i => eval x (pderiv i P))) := by
+  constructor
+  · intro h P hdet
+    obtain ⟨c, hc, he⟩ := (reference_unit_iff (fun i : Fin 4 => pderiv i P)).mp hdet
+    have hi := hc4_nonzero_constant_injective h P c hc he
+    exact ⟨hi, ax_grothendieck_univ (fun i : Fin 4 => pderiv i P) hi⟩
+  · intro h
+    apply HC4.planarJC2_of_hessianFour_gradient_injective
+    intro P hdet
+    have hu : IsUnit (referenceJacobian (fun i => pderiv i P)).det := by
+      rw [reference_gradient_det, hdet]
+      exact isUnit_one
+    exact (h P hu).1
+
 end
 end HC4.StatementAudit
 
@@ -174,6 +212,8 @@ end HC4.StatementAudit
 #print axioms HC4.StatementAudit.hc4_nonzero_constant_injective
 #print axioms HC4.StatementAudit.hc4_reference_JC2_bijective
 #print axioms HC4.StatementAudit.hc4_reference_JC2_unit_bijective
+#print axioms HC4.StatementAudit.planarJC2_iff_hessianFour_injective
+#print axioms HC4.StatementAudit.planarJC2_iff_hessianFour_unit_bijective
 
 run_cmd do
   let permitted : List Lean.Name := [``propext, ``Classical.choice, ``Quot.sound]
@@ -183,7 +223,9 @@ run_cmd do
       ``HC4.StatementAudit.planar_of_reference,
       ``HC4.StatementAudit.hc4_nonzero_constant_injective,
       ``HC4.StatementAudit.hc4_reference_JC2_bijective,
-      ``HC4.StatementAudit.hc4_reference_JC2_unit_bijective] do
+      ``HC4.StatementAudit.hc4_reference_JC2_unit_bijective,
+      ``HC4.StatementAudit.planarJC2_iff_hessianFour_injective,
+      ``HC4.StatementAudit.planarJC2_iff_hessianFour_unit_bijective] do
     for dep in (← Lean.collectAxioms decl) do
       unless permitted.contains dep do
         throwError "Unexpected logical dependency {dep} in {decl}"
