@@ -4974,6 +4974,116 @@ theorem rankThree_phaseJet_regularPoint
     (mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hx).1).2,(mul_ne_zero_iff.mp hx).2⟩
 
 
+/-- The evaluated Taylor jet, with the second derivative divided by
+two. Inverting it is a constant linear change of the passive
+coordinates, not a rational change of source variables. -/
+def rankThreePhaseJetMatrix (s : Fin 4) (x : Fin 4 → K)
+    (q a b : B K) : Matrix (Fin 3) (Fin 3) K :=
+  fun i j =>
+    let T : Fin 3 → B K := ![q,a,b]
+    if i = 0 then MvPolynomial.aeval x (T j)
+    else if i = 1 then MvPolynomial.aeval x (pderiv s (T j))
+    else MvPolynomial.aeval x (pderiv s (pderiv s (T j))) / 2
+
+theorem rankThree_phaseJetMatrix_det
+    (s : Fin 4) (x : Fin 4 → K) (q a b : B K) :
+    (rankThreePhaseJetMatrix s x q a b).det =
+      MvPolynomial.aeval x (rankThreePhaseJetDet s q a b) / 2 := by
+  classical
+  rw [Matrix.det_fin_three]
+  simp [rankThreePhaseJetMatrix,rankThreePhaseJetDet]
+  <;> ring
+
+/-- At the regular point, the inverse jet matrix produces three
+polynomial phase coefficients with Taylor jets 1, t and t²,
+respectively. All retain dependence only on the omitted coordinate. -/
+theorem rankThree_phaseJet_normalize
+    (s : Fin 4) (x : Fin 4 → K) (q a b : B K)
+    (hW : MvPolynomial.aeval x (rankThreePhaseJetDet s q a b) ≠ 0)
+    (hrel : ∀ j, j ≠ s → pderiv j q = 0 ∧ pderiv j a = 0 ∧ pderiv j b = 0) :
+    ∃ M : Matrix (Fin 3) (Fin 3) K, M.det ≠ 0 ∧
+      let R : Fin 3 → B K := fun j =>
+        ∑ i : Fin 3, MvPolynomial.C (M i j) * (![q,a,b] : Fin 3 → B K) i
+      (∀ j k, k ≠ s → pderiv k (R j) = 0) ∧
+      (∀ j, MvPolynomial.aeval x (R j) = if j = 0 then 1 else 0) ∧
+      (∀ j, MvPolynomial.aeval x (pderiv s (R j)) = if j = 1 then 1 else 0) ∧
+      ∀ j, MvPolynomial.aeval x (pderiv s (pderiv s (R j))) =
+        if j = 2 then 2 else 0 := by
+  classical
+  let J := rankThreePhaseJetMatrix s x q a b
+  have hJ : J.det ≠ 0 := by
+    change (rankThreePhaseJetMatrix s x q a b).det ≠ 0
+    rw [rankThree_phaseJetMatrix_det]
+    exact div_ne_zero hW (by norm_num)
+  let M := J⁻¹
+  have hJM : J * M = 1 := Matrix.mul_nonsing_inv J (isUnit_iff_ne_zero.mpr hJ)
+  have hM : M.det ≠ 0 := by
+    intro hz
+    have he := congrArg Matrix.det hJM
+    rw [Matrix.det_mul,hz,mul_zero,Matrix.det_one] at he
+    exact zero_ne_one he
+  let T : Fin 3 → B K := ![q,a,b]
+  let R : Fin 3 → B K := fun j =>
+    ∑ i : Fin 3, MvPolynomial.C (M i j) * T i
+  have hR1 (k : Fin 3) (l : Fin 4) (hl : l ≠ s) : pderiv l (T k) = 0 := by
+    have he := hrel l hl
+    fin_cases k
+    · exact he.1
+    · exact he.2.1
+    · exact he.2.2
+  have hD (j : Fin 3) (l : Fin 4) : pderiv l (R j) =
+      ∑ i : Fin 3, MvPolynomial.C (M i j) * pderiv l (T i) := by
+    simp only [R,map_sum,MvPolynomial.pderiv_C_mul]
+  have hD2 (j : Fin 3) : pderiv s (pderiv s (R j)) =
+      ∑ i : Fin 3, MvPolynomial.C (M i j) * pderiv s (pderiv s (T i)) := by
+    rw [hD]
+    simp only [map_sum,MvPolynomial.pderiv_C_mul]
+  have he (i j : Fin 3) : (∑ k : Fin 3, J i k * M k j) =
+      if i = j then 1 else 0 := by
+    have h := congrArg (fun N : Matrix (Fin 3) (Fin 3) K => N i j) hJM
+    simpa only [Matrix.mul_apply,Matrix.one_apply] using h
+  have hC (c : K) : MvPolynomial.aeval x (MvPolynomial.C c : B K) = c := by
+    simp
+  refine ⟨M,hM,?_,?_,?_,?_⟩
+  · intro j k hk
+    change pderiv k (R j) = 0
+    rw [hD]
+    simp only [hR1 _ k hk,mul_zero,Finset.sum_const_zero]
+  · intro j
+    change MvPolynomial.aeval x (R j) = _
+    have h := he 0 j
+    simp only [R,map_sum,map_mul,hC]
+    change (∑ i : Fin 3, M i j * MvPolynomial.aeval x (T i)) = _
+    simpa only [J,rankThreePhaseJetMatrix,if_pos rfl,T,eq_comm,mul_comm] using h
+  · intro j
+    change MvPolynomial.aeval x (pderiv s (R j)) = _
+    rw [hD]
+    simp only [map_sum,map_mul,hC]
+    have h := he 1 j
+    simpa only [J,rankThreePhaseJetMatrix,show (1 : Fin 3) ≠ 0 by decide,
+      if_false,if_pos rfl,T,eq_comm,mul_comm] using h
+  · intro j
+    change MvPolynomial.aeval x (pderiv s (pderiv s (R j))) = _
+    rw [hD2]
+    simp only [map_sum,map_mul,hC]
+    have h := he 2 j
+    have h2 : (∑ i : Fin 3, (MvPolynomial.aeval x (pderiv s (pderiv s (T i))) / 2) *
+        M i j) = if (2 : Fin 3) = j then 1 else 0 := by
+      simpa only [J,rankThreePhaseJetMatrix,show (2 : Fin 3) ≠ 0 by decide,
+        show (2 : Fin 3) ≠ 1 by decide,if_false,T] using h
+    have hsum : (∑ i : Fin 3, M i j * MvPolynomial.aeval x (pderiv s (pderiv s (T i)))) =
+        2 * (∑ i : Fin 3, (MvPolynomial.aeval x (pderiv s (pderiv s (T i))) / 2) *
+          M i j) := by
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
+    rw [hsum,h2]
+    by_cases hj : j = 2
+    · subst j; simp
+    · rw [if_neg (Ne.symm hj),if_neg hj,mul_zero]
+
+
 end
 end HC4.Polynomial
 
@@ -5098,3 +5208,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_relativePhase_clearDenominators
 #print axioms HC4.Polynomial.rankThree_phaseJetDet_ne_zero
 #print axioms HC4.Polynomial.rankThree_phaseJet_regularPoint
+
+#print axioms HC4.Polynomial.rankThree_phaseJetMatrix_det
+#print axioms HC4.Polynomial.rankThree_phaseJet_normalize
