@@ -4690,7 +4690,7 @@ theorem rankThree_relativeWronskian_ne_zero
       change r * D (D A) + D A * D r = D (D B₀) at he
       change D A * D (D B₀) - D B₀ * D (D A) = 0 at hz
       have hz' : D A * D A * D r = 0 := by
-        linear_combination D A * he + D (D A) * hrepr + hz
+        linear_combination D A * he - D (D A) * hrepr + hz
       exact (mul_eq_zero.mp hz').resolve_left (mul_ne_zero hDA hDA)
     · have ha := rankThree_relative_derivative_constant A s hA j hj
       have hb := rankThree_relative_derivative_constant B₀ s hB j hj
