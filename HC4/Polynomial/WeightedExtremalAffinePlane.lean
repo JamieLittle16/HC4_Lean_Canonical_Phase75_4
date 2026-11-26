@@ -97,8 +97,9 @@ theorem extremal_pderiv_coeff_nonzero
     coeff (u - Finsupp.single i 1) (pderiv i L) ≠ 0 := by
   classical
   rw [coeff_pderiv_backport, Finsupp.sub_add_single_one_cancel hi]
-  have hn : ((u - Finsupp.single i 1) i + 1 : ℕ) ≠ 0 := by omega
-  exact mul_ne_zero hu (by exact_mod_cast hn)
+  let a : Fin 4 →₀ ℕ := u - Finsupp.single i 1
+  have hn : (a i + 1 : ℕ) ≠ 0 := by omega
+  exact mul_ne_zero hu (show (((a i + 1 : ℕ) : K)) ≠ 0 by exact_mod_cast hn)
 
 /-- A zero second derivative bounds the original monomial exponent
 in the twice differentiated coordinate. -/
