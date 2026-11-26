@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11926**.
+Distinct declaration spellings indexed: **11929**.
 
 ## Repeated declaration spellings
 
@@ -5726,6 +5726,7 @@ Distinct declaration spellings indexed: **11926**.
 - `exists_selected_contact_isWeightLE` — `theorem` in `HC4.Newton.FirstContactSelection`
 - `exists_shiftedEtaNumerator_factor` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
 - `exists_shiftedEta_mul_phi_pow_factor` — `theorem` in `HC4.Polynomial.AutonomousODEPolynomialDegree`
+- `exists_signedWeight_firstWall_or_zeroClock` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
 - `exists_singular_first_nonfacet_contact` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_of_two_outside_comparison` — `theorem` in `HC4.Newton.FirstNonfacetContact`
 - `exists_singular_first_nonfacet_contact_with_boundary_vertices` — `theorem` in `HC4.Newton.FirstNonfacetBoundary`
@@ -9535,6 +9536,7 @@ Distinct declaration spellings indexed: **11926**.
 - `rankThree_normalizedKernel_exists` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_normalizedKernel_lineGradient` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_omittedCoordinate_zero` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopBoundaryNextRay`
+- `rankThree_oneVariableKernel_allConstants` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_oneVariableKernel_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
@@ -9543,6 +9545,7 @@ Distinct declaration spellings indexed: **11926**.
 - `rankThree_rankOne_factor_square_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_orientedSlope_data` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_regularActiveSlope_constant` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_rankOne_regularActive_affineRelation` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankOne_slope_transport` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
