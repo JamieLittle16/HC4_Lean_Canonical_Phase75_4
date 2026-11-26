@@ -5387,6 +5387,130 @@ theorem rankThree_homogeneousSubstitution_cap
   exact (MvPolynomial.mem_support_iff.mp hu) he
 
 
+/-- Two-factor version of exact top-component multiplication, valid
+for signed weights as well as nonnegative weights. -/
+theorem rankThree_initialForm_mul
+    (w : Fin 4 → ℤ) (m n : ℤ) (P Q : B K)
+    (hp : IsWeightLE w m P) (hq : IsWeightLE w n Q) :
+    initialForm w (m+n) (P*Q) =
+      initialForm w m P * initialForm w n Q := by
+  let A := initialForm w m P
+  let B₀ := initialForm w n Q
+  have hA := initialForm_isWeightedHomogeneous w m P
+  have hB := initialForm_isWeightedHomogeneous w n Q
+  have hdiff : IsWeightLT w (m+n) (P*Q-A*B₀) := by
+    have h1 := (sub_initialForm_isWeightLT hp).mul_le hq
+    have h2 := (isWeightLE_of_isWeightedHomogeneous hA).mul_lt
+      (sub_initialForm_isWeightLT hq)
+    have he : P*Q-A*B₀ = (P-A)*Q+A*(Q-B₀) := by ring
+    rw [he]
+    exact h1.add h2
+  have he : P*Q = (P*Q-A*B₀)+A*B₀ := by ring
+  rw [he,map_add,initialForm_eq_zero_of_isWeightLT hdiff (le_refl _),
+    initialForm_eq_self_of_isWeightedHomogeneous (hA.mul hB),zero_add]
+
+/-- A regular polynomial factor of nonpositive slope cannot hide a
+positive-slope term. Its nonzero slope-zero component also allows
+exact cancellation of the slope-zero equation. -/
+theorem rankThree_regularFactor_cancelCap
+    (w : Fin 4 → ℤ) (D L R : B K)
+    (hD : IsWeightLE w 0 D) (hD0 : initialForm w 0 D ≠ 0)
+    (hR : IsWeightLE w 0 R) (heq : D*L = R) :
+    IsWeightLE w 0 L ∧
+      initialForm w 0 D * initialForm w 0 L = initialForm w 0 R := by
+  classical
+  have hL : IsWeightLE w 0 L := by
+    intro u hu
+    by_contra hn
+    obtain ⟨v,hv,hmax⟩ := Finset.exists_max_image L.support (Finsupp.weight w) ⟨u,hu⟩
+    let m := Finsupp.weight w v
+    have hm : 0 < m := lt_of_lt_of_le (lt_of_not_ge hn) (hmax u hu)
+    have hcap : IsWeightLE w m L := fun a ha => hmax a ha
+    have hnon : initialForm w m L ≠ 0 := by
+      intro hz
+      have h := congrArg (coeff v) hz
+      rw [coeff_initialForm,if_pos rfl,coeff_zero] at h
+      exact (MvPolynomial.mem_support_iff.mp hv) h
+    have h := rankThree_initialForm_mul w 0 m D L hD hcap
+    rw [zero_add,heq,initialForm_eq_zero_of_isWeightLE hR hm] at h
+    exact (mul_ne_zero hD0 hnon) h.symm
+  refine ⟨hL,?_⟩
+  have h := rankThree_initialForm_mul w 0 0 D L hD hL
+  rw [zero_add,heq] at h
+  exact h.symm
+
+/-- Powers of a slope-bounded polynomial preserve the zero slope cap
+and its slope-zero component is the power of the original component. -/
+theorem rankThree_zeroSlope_pow
+    (w : Fin 4 → ℤ) (T : B K) (hT : IsWeightLE w 0 T) (n : ℕ) :
+    IsWeightLE w 0 (T ^ n) ∧
+      initialForm w 0 (T ^ n) = initialForm w 0 T ^ n := by
+  induction n with
+  | zero =>
+    have h := MvPolynomial.isWeightedHomogeneous_C w (1 : K)
+    have h1 : (1 : B K).IsWeightedHomogeneous w 0 := by simpa using h
+    simpa only [pow_zero] using
+      And.intro (isWeightLE_of_isWeightedHomogeneous h1)
+        (initialForm_eq_self_of_isWeightedHomogeneous h1)
+  | succ n ih =>
+    have hc := ih.1.mul hT
+    rw [add_zero] at hc
+    refine ⟨by simpa only [pow_succ] using hc,?_⟩
+    rw [pow_succ,pow_succ]
+    have h := rankThree_initialForm_mul w 0 0 (T^n) T ih.1 hT
+    rw [add_zero,ih.2] at h
+    exact h
+
+/-- The actual top passive layer needs only a cleared polynomial
+identity, not an equality in a substituted fraction field.
+This theorem consumes the normalized polynomial phase data and
+closes the full-source determinant contradiction. -/
+theorem rankThree_normalized_clearedPhase_impossible
+    (P D N T : B K) (n : ℕ) (hn : 3 ≤ n)
+    (δ d c : K) (hδ : δ ≠ 0) (hd : d ≠ 0) (hc : c ≠ 0)
+    (hdet : hessianDeterminant P = MvPolynomial.C δ)
+    (hcap : IsWeightLE rankThreeWallDegree (n : ℤ) P)
+    (hD : IsWeightLE rankThreeWallSlope 0 D)
+    (hN : IsWeightLE rankThreeWallSlope 0 N)
+    (hT : IsWeightLE rankThreeWallSlope 0 T)
+    (hd0 : initialForm rankThreeWallSlope 0 D = MvPolynomial.C d)
+    (hc0 : initialForm rankThreeWallSlope 0 N = MvPolynomial.C c)
+    (hT0 : initialForm rankThreeWallSlope 0 T = rankThreeWallPhase)
+    (heq : D * initialForm rankThreeWallDegree (n : ℤ) P = N * T^n) :
+    False := by
+  let L := initialForm rankThreeWallDegree (n : ℤ) P
+  obtain ⟨hpow,hpow0⟩ := rankThree_zeroSlope_pow rankThreeWallSlope T hT n
+  have hR : IsWeightLE rankThreeWallSlope 0 (N*T^n) := by
+    simpa only [add_zero] using hN.mul hpow
+  have hd' : initialForm rankThreeWallSlope 0 D ≠ 0 := by
+    rw [hd0]
+    exact MvPolynomial.C_ne_zero.mpr hd
+  obtain ⟨hL,hproj⟩ :=
+    rankThree_regularFactor_cancelCap rankThreeWallSlope D L (N*T^n) hD hd' hR heq
+  have htop := rankThree_initialForm_mul rankThreeWallSlope 0 0 N (T^n) hN hpow
+  rw [zero_add,hc0,hpow0,hT0] at htop
+  rw [hd0,htop] at hproj
+  have hface : initialForm rankThreeWallSlope 0 L =
+      MvPolynomial.C (c/d) * rankThreeWallPhase ^ n := by
+    apply mul_left_cancel₀ (MvPolynomial.C_ne_zero.mpr hd)
+    rw [hproj,← mul_assoc,← map_mul,mul_div_cancel₀' _ hd]
+  have hcof := rankThree_normalPhase_cofactors n (by omega) (c/d) (div_ne_zero hc hd)
+  apply rankThree_normalizedWall_impossible_of_top P (n : ℤ) (by exact_mod_cast hn)
+    δ hδ hdet hcap
+  · intro u hu hweight
+    apply hL
+    apply MvPolynomial.mem_support_iff.mpr
+    change coeff u (initialForm rankThreeWallDegree (n : ℤ) P) ≠ 0
+    rw [coeff_initialForm,if_pos hweight]
+    exact MvPolynomial.mem_support_iff.mp hu
+  · change ∀ i : Fin 4, i ≠ 0 → (hessian (initialForm rankThreeWallSlope 0 L)).adjugate i i ≠ 0
+    rw [hface]
+    exact hcof.1
+  · change hessian (initialForm rankThreeWallSlope 0 L) 1 1 ≠ 0
+    rw [hface]
+    exact hcof.2
+
+
 end
 end HC4.Polynomial
 
@@ -5524,3 +5648,8 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_affine_det
 #print axioms HC4.Polynomial.rankThree_homogeneousSubstitution_initialForm
 #print axioms HC4.Polynomial.rankThree_homogeneousSubstitution_cap
+
+#print axioms HC4.Polynomial.rankThree_initialForm_mul
+#print axioms HC4.Polynomial.rankThree_regularFactor_cancelCap
+#print axioms HC4.Polynomial.rankThree_zeroSlope_pow
+#print axioms HC4.Polynomial.rankThree_normalized_clearedPhase_impossible
