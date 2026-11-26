@@ -43,6 +43,10 @@ The project also proves a source-independent algebraic version of Tang's Theorem
 
 The declaration [`rationalMap_affinePlane`](HC4/Polynomial/RationalMapAffinePlane.lean) passed the maintainer's targeted build (8317 jobs, 26 November 2026, [9e548ccb](https://github.com/JamieLittle16/HessianConjecture4/commit/9e548ccbd91920cb7f49ba40c2bf93e11e996b14)); its transitive axioms are exactly `[propext, Classical.choice, Quot.sound]`. The [mathematical exposition (LaTeX)](docs/research/rational-affine-plane-rigidity.tex) explains all ranks, including the polynomial transport argument replacing the rank-two geometric classification. The new endpoint is separate from the original equivalence proof.
 
+## Consolidated manuscript (review draft)
+
+The [unified LaTeX manuscript](docs/research/hc4-jc2-manuscript.tex) consolidates the mathematical notes, including the anchored characteristic construction, rank exclusions, signed-wall contradiction, reverse doubling implication and polynomial-inverse bridge. See its [review record](docs/research/MANUSCRIPT_REVIEW.md) for formal interface checks and outstanding validation. The final manuscript compile and independent reproduction are not yet recorded.
+
 ## Global extremal-weight exposition
 
 The [companion LaTeX note](docs/research/global-extremal-weight.tex) explains attainment over realized support patterns, local weight-improvement obstructions, the checked rank reductions and the final signed first-wall argument adapted from Tang. It is a source-linked proof outline; the longer rank-reduction lemmas are summarized rather than fully reproved. The [supporting rank-exclusion note](docs/research/extremal-rank-exclusions.tex) expands the constant-image obstruction, affine kernel graphs, isotropic-slope root evaluation, relative frontier and distinct-weight signed-wall rigidity. These notes complement the standalone rational rigidity note above.
