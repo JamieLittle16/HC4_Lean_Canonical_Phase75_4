@@ -40,7 +40,7 @@ theorem extremal_eq_C_of_all_pderiv_zero
       ext i
       exact exponent_eq_zero_of_pderiv_eq_zero i f (hf i) u hn
     rw [hz, MvPolynomial.coeff_C]
-    simp [hu]
+    simp [Ne.symm hu]
 
 def extremalDirectionalDerivative (d : Fin 4 → K) (L : MvPolynomial (Fin 4) K) :
     MvPolynomial (Fin 4) K :=
@@ -81,6 +81,7 @@ theorem extremalDirectionalDerivative_block
       (pderiv i L * MvPolynomial.C (d i)) (m-w i) := by
     simpa only [add_zero] using (pderiv_isWeightedHomogeneous hL i).mul
       (MvPolynomial.isWeightedHomogeneous_C w (d i))
+  change pderiv i L * MvPolynomial.C (if w i = s then d i else 0) = _
   by_cases hi : w i = s
   · rw [if_pos hi, ← hi, initialForm_eq_self_of_isWeightedHomogeneous hh]
   · rw [if_neg hi, map_zero, mul_zero,
@@ -115,7 +116,7 @@ theorem extremalKernelShear_column
   by_cases hi : i = k
   · subst i
     simp [extremalKernelShear, annihilatorShear, Matrix.updateRow_apply, hk]
-  · simp [extremalKernelShear, annihilatorShear, Matrix.updateRow_apply, hi]
+  · simp [extremalKernelShear, annihilatorShear, Matrix.updateRow_apply, hi, neg_div]
 
 theorem extremalKernelShear_partial
     (L : MvPolynomial (Fin 4) K) (d : Fin 4 → K) (k : Fin 4) (hk : d k ≠ 0) :
