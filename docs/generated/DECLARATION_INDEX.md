@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11995**.
+Distinct declaration spellings indexed: **11997**.
 
 ## Repeated declaration spellings
 
@@ -8203,6 +8203,8 @@ Distinct declaration spellings indexed: **11995**.
 - `planarJC2_iff_hessianFour_gradient_injective_of_firstContactResidualProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`
 - `planarJC2_iff_hessianFour_gradient_injective_of_relativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`
 - `planarJC2_iff_hessianFour_gradient_injective_of_sourceNativeFirstContactProducer` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`
+- `planarJC2_iff_hessianFour_injective` — `theorem` in `HC4.StatementAudit`
+- `planarJC2_iff_hessianFour_unit_bijective` — `theorem` in `HC4.StatementAudit`
 - `planarJC2_of_finalConstructorResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualHardness`
 - `planarJC2_of_finalResidualResolver` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualHardness`
 - `planarJC2_of_hessianFour_gradient_injective` — `theorem` in `HC4.PlanarJC2HessianEmbedding`

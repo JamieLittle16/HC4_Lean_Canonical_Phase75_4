@@ -205,7 +205,7 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - A-labels: `A19.2`, `A19.3`
 - Local imports: `HC4.Newton.TwoZeroDoublingHessianSquareGeneral`, `HC4.Newton.TerminalTwoZeroKellerReduction`, `HC4.Newton.TerminalTwoZeroGradientConjugacy`
 - External imports: `Mathlib.Tactic`
-- Imported by local modules: `HC4`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`, `HC4.Valuation.PlanarKellerCollisionTerminalLift`
+- Imported by local modules: `HC4`, `HC4.StatementAudit`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalPlanarJC2Frontier`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFinalResidualHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalFirstContactPlanarEquivalence`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalHC4ZeroStrictLowSingularHardness`, `HC4.Valuation.AdaptiveAlignedSmithCanonicalRankOneReesLowLayerOrderReduction`, `HC4.Valuation.PlanarKellerCollisionTerminalLift`
 - Declarations: `theorem rename_standardZeroPair_dependsOnly`, `theorem pderiv_two_rename_standardZeroPair_eq_zero`, `theorem pderiv_three_rename_standardZeroPair_eq_zero`, `def planarDoublingPotential`, `theorem planarDoublingPotential_hasDoublingForm`, `theorem standardTwoZeroCrossDet_planarDoublingPotential`, `theorem planarDoublingPotential_hessianDeterminant`, `theorem planarDoublingPotential_hessianDeterminant_one`, `theorem planarDoublingPotential_gradient_zeroPair_at_zeroFibre`, `theorem planarDoublingPotential_exactCollision_of_planarCollision`, `theorem standardJoinPoint_zeroFibre_ne_of_ne`, `def normalizePlanarKellerMap`, `theorem planarJacobianDetPolynomial_normalizePlanarKellerMap`, `theorem normalizePlanarKellerMap_jacobian_one`, `theorem normalizePlanarKellerMap_collision`, `theorem standardPlanarPairMap_components`, `theorem planarJC2_of_hessianFour_gradient_injective`
 
 ### `HC4.PlanarJC2Interface`
@@ -263,10 +263,10 @@ Lean itself remains authoritative for elaborated names and dependencies.
 - Path: `HC4/StatementAudit.lean`
 - Purpose: External statement comparison
 - A-labels: none detected
-- Local imports: `HC4.Polynomial.RankThreeOneVariableKernel`
+- Local imports: `HC4.Polynomial.RankThreeOneVariableKernel`, `HC4.PlanarJC2HessianEmbedding`
 - External imports: `Mathlib.Algebra.MvPolynomial.Monad`, `Mathlib.Algebra.MvPolynomial.Nilpotent`, `Mathlib.FieldTheory.IsAlgClosed.Basic`, `Mathlib.FieldTheory.AxGrothendieck`, `Lean.Util.CollectAxioms`
 - Imported by local modules: none
-- Declarations: `def referenceJacobian`, `def ReferenceJC`, `theorem reference_planar_det`, `theorem reference_gradient_jacobian`, `theorem reference_gradient_det`, `theorem reference_unit_iff`, `theorem injective_of_reference_left_inverse`, `theorem planar_of_reference`, `theorem hessianDeterminant_C_mul`, `theorem hc4_nonzero_constant_injective`, `theorem hc4_reference_JC2_bijective`, `theorem hc4_reference_JC2_unit_bijective`
+- Declarations: `def referenceJacobian`, `def ReferenceJC`, `theorem reference_planar_det`, `theorem reference_gradient_jacobian`, `theorem reference_gradient_det`, `theorem reference_unit_iff`, `theorem injective_of_reference_left_inverse`, `theorem planar_of_reference`, `theorem hessianDeterminant_C_mul`, `theorem hc4_nonzero_constant_injective`, `theorem hc4_reference_JC2_bijective`, `theorem hc4_reference_JC2_unit_bijective`, `theorem planarJC2_iff_hessianFour_injective`, `theorem planarJC2_iff_hessianFour_unit_bijective`
 
 ### `HC4.Toric`
 

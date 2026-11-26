@@ -2608,6 +2608,7 @@ human architecture guide.
 - `HC4.RationalRigidity.RegularRatFuncEvaluation`
   - `HC4.RationalRigidity.LogarithmicSourceRegularity`
 - `HC4.StatementAudit`
+  - `HC4.PlanarJC2HessianEmbedding`
   - `HC4.Polynomial.RankThreeOneVariableKernel`
 - `HC4.Toric`
   - `HC4.Toric.BoundaryGeometry`
