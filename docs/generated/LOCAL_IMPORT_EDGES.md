@@ -195,6 +195,7 @@ human architecture guide.
   - `HC4.Polynomial.RankTwoAffineFibres`
   - `HC4.Polynomial.RankTwoAffineLevelCurvature`
   - `HC4.Polynomial.RankTwoCubicFibrePencils`
+  - `HC4.Polynomial.RankTwoGlobalClosure`
   - `HC4.Polynomial.RankTwoImageDirectionClosure`
   - `HC4.Polynomial.RankTwoKernelGraph`
   - `HC4.Polynomial.RankTwoKernelSecondVariationCoefficientGap`
@@ -2001,6 +2002,8 @@ human architecture guide.
   - `HC4.Polynomial.WeightedExtremalIsotropicPlane`
 - `HC4.Polynomial.RankTwoCubicFibrePencils`
   - _(no local imports)_
+- `HC4.Polynomial.RankTwoGlobalClosure`
+  - `HC4.Polynomial.RankTwoGraphDichotomy`
 - `HC4.Polynomial.RankTwoGraphDichotomy`
   - `HC4.Polynomial.RankTwoKernelGraph`
 - `HC4.Polynomial.RankTwoImageDirectionClosure`
