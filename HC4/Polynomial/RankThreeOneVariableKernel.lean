@@ -3908,6 +3908,136 @@ theorem rankThree_rankOne_regularActive_affineRelation
     linear_combination hb
 
 
+set_option maxHeartbeats 6000000 in
+/-- A corank-one chart with no constant affine relation between its
+moving normalized components has a singular active pivot. This uses
+only polynomial transport, independent of the weight or source optimum. -/
+theorem rankThree_no_regularActive_of_no_affineRelation
+    (L : B K)
+    (l : Fin 4) (a : Fin 3) (V : Fin 4 → E K)
+    (hVl : V l = 1) (hVk : V (l.succAbove a) = 0)
+    (hreg : (hessian L).adjugate l l ≠ 0)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0)
+    (hno : ∀ i k : Fin 4, i ≠ l.succAbove a → i ≠ l →
+      k ≠ l.succAbove a → k ≠ l → i ≠ k → ∀ b c : K,
+      V k ≠ algebraMap K (E K) b + algebraMap K (E K) c * V i) :
+    rankTwoPrincipalPivot (hessian L)
+      (l.succAbove (a.succAbove 0)) (l.succAbove (a.succAbove 1)) = 0 := by
+  classical
+  let b := a.succAbove 0
+  let c := a.succAbove 1
+  have hba : b ≠ a := Fin.succAbove_ne _ _
+  have hca : c ≠ a := Fin.succAbove_ne _ _
+  have hbc : b ≠ c := by
+    intro he
+    exact (by decide : (0 : Fin 2) ≠ 1) (Fin.succAbove_right_injective he)
+  have hcover (j : Fin 3) : j = a ∨ j = b ∨ j = c := by
+    by_cases hj : j = a
+    · exact Or.inl hj
+    obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
+    have h : q = 0 ∨ q = 1 := by fin_cases q <;> simp
+    rcases h with h | h
+    · exact Or.inr (Or.inl (by rw [← hq,h]))
+    · exact Or.inr (Or.inr (by rw [← hq,h]))
+  let J := rankThreeComplementJacobian l V
+  by_contra hactive
+  have hba4 : l.succAbove b ≠ l.succAbove a :=
+    fun h => hba (Fin.succAbove_right_injective h)
+  have hca4 : l.succAbove c ≠ l.succAbove a :=
+    fun h => hca (Fin.succAbove_right_injective h)
+  have hbc4 : l.succAbove b ≠ l.succAbove c :=
+    fun h => hbc (Fin.succAbove_right_injective h)
+  by_cases hJ : J = 0
+  · have hother (i j : Fin 4) (hi : i ≠ l) : rankThreePartial i (V j) = 0 := by
+      by_cases hj : j = l
+      · rw [hj,hVl,Derivation.map_one_eq_zero]
+      · obtain ⟨p,hp⟩ := Fin.exists_succAbove_eq hi
+        obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
+        have he := congrArg (fun M : Matrix (Fin 3) (Fin 3) (E K) => M q p) hJ
+        change rankThreePartial (l.succAbove p) (V (l.succAbove q)) = 0 at he
+        rwa [hp,hq] at he
+    have hall (i j : Fin 4) : rankThreePartial i (V j) = 0 := by
+      by_cases hi : i = l
+      · subst i
+        have he := rankThree_normalizedKernel_acceleration_zero L l hreg V hVl hV j
+        rw [Finset.sum_eq_single l] at he
+        · rwa [hVl,one_mul] at he
+        · intro t _ ht
+          rw [hother t j ht,mul_zero]
+        · simp
+      · exact hother i j hi
+    obtain ⟨d,hd⟩ := rankOnePartial_constants (V (l.succAbove c))
+      (fun j => hall j _)
+    exact hno (l.succAbove b) (l.succAbove c) hba4 (Fin.succAbove_ne _ _)
+      hca4 (Fin.succAbove_ne _ _) hbc4 d 0 (by simpa only [map_zero,zero_mul,add_zero] using hd)
+  have hmin (i j p q : Fin 3) : J i p * J j q = J i q * J j p := by
+    by_contra hn
+    have hm := rankThree_rankTwoVelocity_restrictedMinors_zero L l a V hVl hVk
+      hreg hV ⟨i,j,p,q,hn⟩
+    apply hactive
+    unfold rankTwoPrincipalPivot
+    exact sub_eq_zero.mpr (hm _ _ _ _ hba4 hca4 hba4 hca4)
+  have h3 : J ^ 3 = 0 := rankThree_complement_cube_zero L l V hVl hreg hV
+  obtain ⟨u,v,hu,hv,hfac,hdot,hsq⟩ := rankThree_rankOne_factor_square_zero J hJ h3 hmin
+  have hua : u a = 0 := by
+    by_contra hn
+    apply hv
+    funext j
+    have he := rankThree_complement_zeroRow l V a hVk j
+    change J a j = 0 at he
+    rw [hfac] at he
+    exact (mul_eq_zero.mp he).resolve_left hn
+  have hself := rankThree_complement_selfAdjoint L l V hVl hV
+  have hclose (d e : Fin 3) (hda : d ≠ a) (hea : e ≠ a) (hde : d ≠ e)
+      (hcov : ∀ j : Fin 3, j = a ∨ j = d ∨ j = e)
+      (hud : u d ≠ 0)
+      (hp : rankTwoPrincipalPivot (hessian L) (l.succAbove d) (l.succAbove e) ≠ 0) :
+      False := by
+    let s := l.succAbove a
+    let i := l.succAbove d
+    let k := l.succAbove e
+    have his : i ≠ s := fun h => hda (Fin.succAbove_right_injective h)
+    have hks : k ≠ s := fun h => hea (Fin.succAbove_right_injective h)
+    have hik : i ≠ k := fun h => hde (Fin.succAbove_right_injective h)
+    have hcov4 (j : Fin 4) : j = s ∨ j = l ∨ j = i ∨ j = k := by
+      by_cases hj : j = l
+      · exact Or.inr (Or.inl hj)
+      obtain ⟨q,hq⟩ := Fin.exists_succAbove_eq hj
+      rcases hcov q with h | h | h
+      · exact Or.inl (by rw [← hq,h])
+      · exact Or.inr (Or.inr (Or.inl (by rw [← hq,h])))
+      · exact Or.inr (Or.inr (Or.inr (by rw [← hq,h])))
+    obtain ⟨r,hrel,htrace,hiso⟩ := rankThree_rankOne_orientedSlope_data L l a d e
+      (Ne.symm hda) (Ne.symm hea) hde hcov V u v hud hua hv hfac hdot hsq hself
+    obtain ⟨B,C,hrel'⟩ := rankThree_rankOne_regularActive_affineRelation L l s i k
+      (Fin.succAbove_ne _ _) (Fin.succAbove_ne _ _) (Fin.succAbove_ne _ _)
+      his hks hik hcov4 V hVl hVk hreg hV hp hsq r hrel htrace hiso
+    exact hno i k his (Fin.succAbove_ne _ _) hks (Fin.succAbove_ne _ _) hik B C hrel'
+  by_cases hub : u b = 0
+  · have huc : u c ≠ 0 := by
+      intro hz
+      apply hu
+      funext j
+      rcases hcover j with h | h | h
+      · rw [h,hua]; rfl
+      · rw [h,hub]; rfl
+      · rw [h,hz]; rfl
+    refine hclose c b hca hba (Ne.symm hbc) ?_ huc ?_
+    · intro j
+      rcases hcover j with h | h | h
+      · exact Or.inl h
+      · exact Or.inr (Or.inr h)
+      · exact Or.inr (Or.inl h)
+    · intro hz
+      apply hactive
+      unfold rankTwoPrincipalPivot at hz ⊢
+      change hessian L (l.succAbove b) (l.succAbove b) *
+        hessian L (l.succAbove c) (l.succAbove c) -
+        hessian L (l.succAbove b) (l.succAbove c) *
+          hessian L (l.succAbove c) (l.succAbove b) = 0
+      linear_combination hz
+  · exact hclose b c hba hca hbc hcover hub hactive
+
 end
 end HC4.Polynomial
 
@@ -4003,3 +4133,5 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_oneVariableKernel_allConstants
 #print axioms HC4.Polynomial.rankThree_rankOne_regularActive_affineRelation
+
+#print axioms HC4.Polynomial.rankThree_no_regularActive_of_no_affineRelation
