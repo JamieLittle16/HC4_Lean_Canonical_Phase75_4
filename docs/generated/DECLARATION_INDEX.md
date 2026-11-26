@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11656**.
+Distinct declaration spellings indexed: **11659**.
 
 ## Repeated declaration spellings
 
@@ -5753,6 +5753,7 @@ Distinct declaration spellings indexed: **11656**.
 - `exists_twoEndpointResidual_natDegree_lt` — `theorem` in `HC4.Newton.MixedDegreeAxisCollision`
 - `exists_two_sided_inverse_of_classified_polynomial` — `theorem` in `HC4.MainAssembly`
 - `exists_wRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseRightCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseRightCrossRoofExposure`
+- `exists_weighted_firstWall_or_zeroClock` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
 - `exists_zRoof_on_face` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitFiniteStaircaseCrossRoofExposure`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOneFiniteStaircaseCrossRoofExposure`
 - `exists_zeroCoordinate_coordinateMax` — `theorem` in `HC4.Newton.FiniteSupportCrossFacetExposure`
 - `exists_zeroSmithDerivative_of_noGenuineWall` — `theorem` in `HC4.Valuation.AlignedSmithEndpoint`
@@ -6337,6 +6338,8 @@ Distinct declaration spellings indexed: **11656**.
 - `firstThreeMinorMatrix` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstThreeMinorMatrix_det` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalActualRankTwoToRankThree`
 - `firstTransverse_offDiag_ne_zero_of_determinant_eq_zero` — `theorem` in `HC4.Newton.FirstSchurLayerLinearization`
+- `firstWall_weight_nonneg` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
+- `firstWall_weight_scaled_add` — `theorem` in `HC4.Polynomial.WeightedFirstWall`
 - `firstZero_weightedPencil_base_eq_one_and_cross` — `theorem` in `HC4.Polynomial.RankThreeWeightedFirstZeroPencil`
 - `first_contact_determinant_weight_lower_bound` — `theorem` in `HC4.Newton.FirstContactArithmetic`
 - `first_contact_determinant_weight_pos` — `theorem` in `HC4.Newton.FirstContactArithmetic`
