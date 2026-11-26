@@ -4469,7 +4469,13 @@ theorem rankThree_wall_quadraticWitness
     simp [rankThreeWallDegree,hi0,hj]
   · change 1 ≤ Finsupp.weight rankThreeWallSlope (Finsupp.single i 1 + Finsupp.single j 1)
     rw [map_add,Finsupp.weight_single,Finsupp.weight_single,one_smul,one_smul]
-    rcases hi with h|h <;> subst i <;> fin_cases j <;> norm_num [rankThreeWallSlope] at hj ⊢
+    have hiSlope : 1 ≤ rankThreeWallSlope i := by
+      rcases hi with h | h <;> rw [h] <;> decide
+    have hjVal : (j : ℕ) ≠ 0 := fun hz => hj (Fin.ext hz)
+    have hjSlope : 0 ≤ rankThreeWallSlope j := by
+      change 0 ≤ ((j : ℕ) : ℤ) - 1
+      omega
+    omega
 
 set_option maxHeartbeats 6000000 in
 /-- The complete finite signed-wall contradiction in a normalised
@@ -4559,7 +4565,13 @@ theorem rankThree_normalizedWall_impossible
   have hw3 : w 3 = b+2*a := by simp [w,rankThreeWallDegree,rankThreeWallSlope]; ring
   have hwInject : Function.Injective w := by
     intro i j h
-    fin_cases i <;> fin_cases j <;> simp_all only [hw0,hw1,hw2,hw3] <;> omega
+    have hcases (t : Fin 4) : t = 0 ∨ t = 1 ∨ t = 2 ∨ t = 3 := by
+      fin_cases t <;> decide
+    rcases hcases i with hi | hi | hi | hi <;>
+      rcases hcases j with hj | hj | hj | hj <;>
+      rw [hi,hj] at h ⊢ <;>
+      simp only [hw0,hw1,hw2,hw3] at h <;>
+      first | rfl | omega
   exact rankThree_signedWall_no_lowerContact
     (initialForm rankThreeWallSlope 0 (initialForm rankThreeWallDegree n P))
     Q rankThreeWallDegree w n (b*n) 0 1 (by decide) (by decide)
