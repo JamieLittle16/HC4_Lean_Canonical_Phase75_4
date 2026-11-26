@@ -2,6 +2,10 @@ name: Clean equivalence reproduction
 
 on:
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/clean-reproduction.yml'
 
 permissions:
   contents: read
