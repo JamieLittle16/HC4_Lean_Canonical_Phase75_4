@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11936**.
+Distinct declaration spellings indexed: **11937**.
 
 ## Repeated declaration spellings
 
@@ -9569,6 +9569,7 @@ Distinct declaration spellings indexed: **11936**.
 - `rankThree_restricted_shear_zero_row` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_restricted_signedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_restricted_weightedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_signedWall_no_lowerContact` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_signedWall_no_lowerDegree` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_signedWall_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_support_cap_of_monomial_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
