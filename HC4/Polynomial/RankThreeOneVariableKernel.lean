@@ -5260,6 +5260,133 @@ theorem rankThree_normalPhase_cofactors
     exact hA (show A = 0 from he)
 
 
+/-- Affine substitution with arbitrary constant linear part. -/
+def rankThreeAffineSubstitution (M : Matrix (Fin 4) (Fin 4) K)
+    (t : Fin 4 → K) : B K →ₐ[K] B K :=
+  MvPolynomial.aeval (fun i =>
+    MvPolynomial.C (t i) + ∑ j : Fin 4, MvPolynomial.C (M i j) * X j)
+
+theorem rankThree_affine_X_partial
+    (M : Matrix (Fin 4) (Fin 4) K) (t : Fin 4 → K) (i j : Fin 4) :
+    pderiv j (rankThreeAffineSubstitution M t (X i)) = MvPolynomial.C (M i j) := by
+  classical
+  rw [rankThreeAffineSubstitution,MvPolynomial.aeval_X,map_add,pderiv_C,zero_add,map_sum]
+  simp only [MvPolynomial.pderiv_C_mul]
+  rw [Finset.sum_eq_single j]
+  · simp
+  · intro k _ hk
+    rw [pderiv_X_of_ne hk,mul_zero]
+  · simp
+
+theorem rankThree_affine_partial
+    (M : Matrix (Fin 4) (Fin 4) K) (t : Fin 4 → K) (P : B K) (j : Fin 4) :
+    pderiv j (rankThreeAffineSubstitution M t P) =
+      ∑ i : Fin 4, rankThreeAffineSubstitution M t (pderiv i P) *
+        MvPolynomial.C (M i j) := by
+  let z : Fin 4 → B K := fun i =>
+    MvPolynomial.C (t i) + ∑ j : Fin 4, MvPolynomial.C (M i j) * X j
+  change pderiv j (MvPolynomial.aeval z P) =
+    ∑ i : Fin 4, MvPolynomial.aeval z (pderiv i P) * MvPolynomial.C (M i j)
+  rw [RankThreeCubic.derivation_aeval]
+  apply Finset.sum_congr rfl
+  intro i _
+  have he := rankThree_affine_X_partial M t i j
+  change pderiv j (MvPolynomial.aeval z (X i)) = MvPolynomial.C (M i j) at he
+  rw [MvPolynomial.aeval_X] at he
+  rw [he]
+
+theorem rankThree_affine_hessian
+    (M : Matrix (Fin 4) (Fin 4) K) (t : Fin 4 → K) (P : B K) :
+    hessian (rankThreeAffineSubstitution M t P) =
+      (M.map (MvPolynomial.C : K →+* B K)).transpose *
+      (hessian P).map (rankThreeAffineSubstitution M t).toRingHom *
+      M.map (MvPolynomial.C : K →+* B K) := by
+  classical
+  apply Matrix.ext
+  intro i j
+  simp only [hessian_apply]
+  rw [rankThree_affine_partial M t P i,map_sum]
+  simp only [Derivation.leibniz,smul_eq_mul,pderiv_C,mul_zero,zero_add]
+  simp only [rankThree_affine_partial,Matrix.mul_apply,Matrix.transpose_apply,
+    Matrix.map_apply,hessian_apply]
+  change (∑ a : Fin 4, MvPolynomial.C (M a i) *
+      (∑ b : Fin 4, rankThreeAffineSubstitution M t (pderiv b (pderiv a P)) *
+        MvPolynomial.C (M b j))) =
+    ∑ b : Fin 4, (∑ a : Fin 4, MvPolynomial.C (M a i) *
+      rankThreeAffineSubstitution M t (pderiv b (pderiv a P))) *
+        MvPolynomial.C (M b j)
+  simp only [Finset.mul_sum,Finset.sum_mul,mul_assoc]
+  exact Finset.sum_comm
+
+/-- The wall argument only needs a nonzero constant determinant,
+so no determinant-one rescaling of the jet basis is required. -/
+theorem rankThree_affine_det
+    (M : Matrix (Fin 4) (Fin 4) K) (t : Fin 4 → K) (P : B K)
+    (hdet : hessianDeterminant P = 1) :
+    hessianDeterminant (rankThreeAffineSubstitution M t P) =
+      MvPolynomial.C (M.det ^ 2) := by
+  unfold hessianDeterminant
+  rw [rankThree_affine_hessian,Matrix.det_mul,Matrix.det_mul,Matrix.det_transpose]
+  change ((MvPolynomial.C : K →+* B K).mapMatrix M).det *
+    ((rankThreeAffineSubstitution M t).toRingHom.mapMatrix (hessian P)).det *
+    ((MvPolynomial.C : K →+* B K).mapMatrix M).det = _
+  rw [← RingHom.map_det,← RingHom.map_det]
+  change MvPolynomial.C M.det *
+    rankThreeAffineSubstitution M t (hessianDeterminant P) *
+      MvPolynomial.C M.det = _
+  rw [hdet,map_one,mul_one,map_pow,pow_two]
+
+/-- Exact weighted projection through a homogeneous substitution,
+allowing different source and target weights. In particular the
+omitted coordinate may be translated while its weight is zero. -/
+theorem rankThree_homogeneousSubstitution_initialForm
+    (v w : Fin 4 → ℤ) (z : Fin 4 → B K)
+    (hz : ∀ i, (z i).IsWeightedHomogeneous w (v i))
+    (m : ℤ) (P : B K) :
+    initialForm w m (MvPolynomial.aeval z P) =
+      MvPolynomial.aeval z (initialForm v m P) := by
+  classical
+  refine MvPolynomial.induction_on' P ?_ ?_
+  · intro u a
+    have hp : (MvPolynomial.aeval z (monomial u a)).IsWeightedHomogeneous w
+        (Finsupp.weight v u) := by
+      rw [MvPolynomial.aeval_monomial]
+      have hprod : (∏ i ∈ u.support, z i ^ u i).IsWeightedHomogeneous w
+          (∑ i ∈ u.support, u i • v i) := by
+        apply MvPolynomial.IsWeightedHomogeneous.prod u.support
+          (fun i => z i ^ u i) (fun i => u i • v i)
+        intro i _
+        exact (hz i).pow (u i)
+      have hh := (MvPolynomial.isWeightedHomogeneous_C w a).mul hprod
+      simpa only [zero_add,MvPolynomial.algebraMap_eq,Finsupp.prod,Finsupp.weight,
+        LinearMap.toAddMonoidHom_coe,Finsupp.linearCombination_apply,Finsupp.sum] using hh
+    have hmono : (monomial u a : B K).IsWeightedHomogeneous v (Finsupp.weight v u) :=
+      MvPolynomial.isWeightedHomogeneous_monomial v u a rfl
+    by_cases h : m = Finsupp.weight v u
+    · rw [h,initialForm_eq_self_of_isWeightedHomogeneous hp,
+        initialForm_eq_self_of_isWeightedHomogeneous hmono]
+    · rw [initialForm_eq_zero_of_isWeightedHomogeneous hp m h,
+        initialForm_eq_zero_of_isWeightedHomogeneous hmono m h,map_zero]
+  · intro p q hp hq
+    simp only [map_add,hp,hq]
+
+theorem rankThree_homogeneousSubstitution_cap
+    (v w : Fin 4 → ℤ) (z : Fin 4 → B K)
+    (hz : ∀ i, (z i).IsWeightedHomogeneous w (v i))
+    (m : ℤ) (P : B K) (hcap : IsWeightLE v m P) :
+    IsWeightLE w m (MvPolynomial.aeval z P) := by
+  classical
+  intro u hu
+  by_contra h
+  have hgt : m < Finsupp.weight w u := lt_of_not_ge h
+  have hz' : initialForm w (Finsupp.weight w u) (MvPolynomial.aeval z P) = 0 := by
+    rw [rankThree_homogeneousSubstitution_initialForm v w z hz,
+      initialForm_eq_zero_of_isWeightLE hcap hgt,map_zero]
+  have he := congrArg (coeff u) hz'
+  rw [coeff_initialForm,if_pos rfl,coeff_zero] at he
+  exact (MvPolynomial.mem_support_iff.mp hu) he
+
+
 end
 end HC4.Polynomial
 
@@ -5390,3 +5517,10 @@ end HC4.Polynomial
 
 #print axioms HC4.Polynomial.rankThree_powerHessian_at_one
 #print axioms HC4.Polynomial.rankThree_normalPhase_cofactors
+
+#print axioms HC4.Polynomial.rankThree_affine_X_partial
+#print axioms HC4.Polynomial.rankThree_affine_partial
+#print axioms HC4.Polynomial.rankThree_affine_hessian
+#print axioms HC4.Polynomial.rankThree_affine_det
+#print axioms HC4.Polynomial.rankThree_homogeneousSubstitution_initialForm
+#print axioms HC4.Polynomial.rankThree_homogeneousSubstitution_cap
