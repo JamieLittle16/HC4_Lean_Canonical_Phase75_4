@@ -1,0 +1,68 @@
+name: Clean equivalence reproduction
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean and obtain dependency cache (no project cache)
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: false
+          use-mathlib-cache: true
+
+      - name: Record exact environment
+        run: |
+          {
+            git rev-parse HEAD
+            lean --version
+            lake --version
+            cat lean-toolchain
+            sha256sum lean-toolchain lake-manifest.json
+            git -C .lake/packages/mathlib rev-parse HEAD
+            uname -a
+          } | tee reproduction-environment.log
+          git diff --exit-code -- lean-toolchain lake-manifest.json
+          test ! -d .lake/build/lib/lean/HC4
+
+      - name: Rebuild proof from source and check final equivalence
+        run: |
+          set -o pipefail
+          lake build HC4.FinalEquivalence |& tee reproduction-build.log
+          lake env lean HC4/FinalEquivalence.lean |& tee final-equivalence.log
+          git diff --exit-code -- lean-toolchain lake-manifest.json
+
+      - name: Check negative control against the same imported proof
+        run: |
+          printf '%s\n' 'import HC4.FinalEquivalence' 'example : (0 : Nat) = 1 := by rfl' > ReproductionNegativeControl.lean
+          if lake env lean ReproductionNegativeControl.lean > negative-control.log 2>&1; then
+            echo "ERROR: false equality accepted" >&2
+            exit 1
+          fi
+          cat negative-control.log
+          grep -qi 'rfl' negative-control.log
+          rm ReproductionNegativeControl.lean
+
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clean-equivalence-reproduction
+          path: |
+            reproduction-environment.log
+            reproduction-build.log
+            final-equivalence.log
+            negative-control.log
+            lean-toolchain
+            lake-manifest.json
