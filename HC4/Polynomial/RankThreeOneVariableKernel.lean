@@ -4430,7 +4430,7 @@ theorem rankThree_twoRows_oneColumn_det_zero
 order (omitted coordinate, lightest passive, two heavier passive). -/
 def rankThreeWallDegree (i : Fin 4) : ℤ := if i = 0 then 0 else 1
 
-def rankThreeWallSlope (i : Fin 4) : ℤ := (i : ℕ) - 1
+def rankThreeWallSlope (i : Fin 4) : ℤ := ((i : ℕ) : ℤ) - 1
 
 /-- A nonzero constant Hessian determinant forces an actual quadratic
 monomial involving one of the heavier passive coordinates. This is
@@ -4461,7 +4461,7 @@ theorem rankThree_wall_quadraticWitness
   have hcoeff : coeff u P ≠ 0 := by
     change coeff 0 (pderiv j (pderiv i P)) ≠ 0 at hij
     rw [coeff_pderiv_backport,zero_add,coeff_pderiv_backport] at hij
-    exact (mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hij).1).1
+    simpa only [u,add_comm] using (mul_ne_zero_iff.mp (mul_ne_zero_iff.mp hij).1).1
   refine ⟨u,MvPolynomial.mem_support_iff.mpr hcoeff,?_,?_⟩
   · change Finsupp.weight rankThreeWallDegree (Finsupp.single i 1 + Finsupp.single j 1) = 2
     rw [map_add,Finsupp.weight_single,Finsupp.weight_single,one_smul,one_smul]
