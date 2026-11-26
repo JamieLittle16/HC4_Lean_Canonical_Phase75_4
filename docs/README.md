@@ -1,6 +1,8 @@
 # Publication documentation
 
-The final equivalence and standalone rational rigidity theorem are the public endpoints. The publication branch is a reduced proof library, not a continuation of the historical A18/A19 research route.
+[Palomar Registry entry PALOMAR-2026-11-26-000066, version 1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-26-000066&version=1) — formal equivalence statements and registry verification record.
+
+The final equivalence and standalone rational rigidity theorem are the public endpoints. The current publication library is a reduced proof library, not a continuation of the historical A18/A19 research route.
 
 - [Consolidated manuscript](research/hc4-jc2-manuscript.tex) — mathematical review draft.
 - [Manuscript review record](research/MANUSCRIPT_REVIEW.md).
