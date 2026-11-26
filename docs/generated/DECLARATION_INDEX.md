@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11868**.
+Distinct declaration spellings indexed: **11869**.
 
 ## Repeated declaration spellings
 
@@ -9157,6 +9157,7 @@ Distinct declaration spellings indexed: **11868**.
 - `rankOneHessian_ratio_constant_of_purePivot` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOneHessian_ratio_transport` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOneHessian_twoRows_constant` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
+- `rankOneHessian_twoRows_partialRatios_constant` — `theorem` in `HC4.Polynomial.RankOneHessianRatioRigidity`
 - `rankOneHomogeneousLogGradientData_four_global` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreFinalAssemblyRigidTopLayer`
 - `rankOneHomogeneousLogGradientData_of_allMinors` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurFirstKeyLogGradientReduction`
 - `rankOneMatrix_mulVec_proportional_products` — `theorem` in `HC4.Polynomial.RankThreeCubicRankOneCramerProportional`
