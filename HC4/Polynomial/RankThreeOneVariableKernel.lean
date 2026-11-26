@@ -1522,9 +1522,15 @@ theorem globalWeightOptimum_rankThree_no_one_zero_distinct_weights
   have hgapj := globalWeightOptimum_rankThree_zeroRow_weight_gap P w m hw hm hcap
     hclock hopt hdet s j hjs hmin hj
   have hvs : v s = 0 := by simp [v,rankThreeCollapsedWeight]
-  have hvp : v p = w p := by simp [v,rankThreeCollapsedWeight,hps,hp,L]
-  have hvi : v i = w p := by simp [v,rankThreeCollapsedWeight,his,hi,L]
-  have hvj : v j = m := by simp [v,rankThreeCollapsedWeight,hjs,hj,L]
+  have hvp : v p = w p := by
+    change (if p = s then 0 else if hessian L p p = 0 then m else w p) = w p
+    rw [if_neg hps, if_neg (show hessian L p p ≠ 0 from hp)]
+  have hvi : v i = w p := by
+    change (if i = s then 0 else if hessian L i i = 0 then m else w p) = w p
+    rw [if_neg his, if_neg (show hessian L i i ≠ 0 from hi)]
+  have hvj : v j = m := by
+    change (if j = s then 0 else if hessian L j j = 0 then m else w p) = m
+    rw [if_neg hjs, if_pos (show hessian L j j = 0 from hj)]
   have hopt' : (∑ a : Fin 4, v a) ≤ ∑ a : Fin 4, w a :=
     globalWeightOptimum_rankThree_restricted_no_gain P w m hw hm hcap hclock hopt hdet
       s p hps hpos hp hmin
