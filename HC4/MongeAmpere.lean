@@ -1,6 +1,0 @@
-import HC4.MongeAmpere.SchurReduction
-import HC4.MongeAmpere.HyperbolicBase
-import HC4.MongeAmpere.PolynomialInitial
-import HC4.MongeAmpere.InitialFormBridge
-import HC4.MongeAmpere.MaximalInitial
-import HC4.MongeAmpere.FirstContactMaximal
