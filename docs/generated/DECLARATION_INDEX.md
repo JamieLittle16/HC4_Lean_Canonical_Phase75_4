@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11953**.
+Distinct declaration spellings indexed: **11956**.
 
 ## Repeated declaration spellings
 
@@ -9439,6 +9439,7 @@ Distinct declaration spellings indexed: **11953**.
 - `rankThreePencilPolynomial` — `def` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `rankThreePencilPolynomial_eq_core` — `theorem` in `HC4.Polynomial.RankThreeLinearCoefficient`
 - `rankThreePhaseJetDet` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThreePhaseJetMatrix` — `def` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThreePolynomialMomentHessian` — `def` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreePolynomialMomentHessian_apply` — `theorem` in `HC4.Polynomial.RankThreeMvMomentRealisation`
 - `rankThreePolynomialMomentHessian_one_linear_eq_endpointPencil` — `theorem` in `HC4.Polynomial.RankThreeDegreeOnePencilRealisation`
@@ -9551,6 +9552,8 @@ Distinct declaration spellings indexed: **11953**.
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `rankThree_phaseJetDet_ne_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_phaseJetMatrix_det` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_phaseJet_normalize` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_phaseJet_regularPoint` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
 - `rankThree_proportionalDifferential_slope` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
