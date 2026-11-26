@@ -1,4 +1,5 @@
 import HC4
+import Lean.Util.CollectAxioms
 
 #print axioms HC4.RationalRigidity.clear_denominator
 #print axioms HC4.RationalRigidity.div_eq_div_iff_cross
@@ -688,3 +689,38 @@ example {K : Type*} [Field K] [CharZero K]
     Function.Injective (fun x : Fin 4 → K =>
       fun i : Fin 4 => MvPolynomial.eval x (MvPolynomial.pderiv i P)) := by
   exact HC4.Polynomial.hc4_of_planarJC2 hJC2 P hdet
+
+
+-- Expand both sides of the implication, not merely the conclusion.
+-- This checks the intended mathematical statement directly.
+namespace HC4.Audit
+
+theorem hc4_explicit_statement
+    {K : Type*} [Field K] [CharZero K]
+    (hJC2 : ∀ G : Fin 2 → MvPolynomial (Fin 2) K,
+      (∃ c : K, c ≠ 0 ∧
+        MvPolynomial.pderiv 0 (G 0) * MvPolynomial.pderiv 1 (G 1) -
+        MvPolynomial.pderiv 1 (G 0) * MvPolynomial.pderiv 0 (G 1) =
+          MvPolynomial.C c) →
+      Function.Injective (fun x : Fin 2 → K =>
+        fun i : Fin 2 => MvPolynomial.eval x (G i)))
+    (P : MvPolynomial (Fin 4) K)
+    (hdet : (Matrix.of (fun i j : Fin 4 =>
+      MvPolynomial.pderiv j (MvPolynomial.pderiv i P))).det = 1) :
+    Function.Injective (fun x : Fin 4 → K =>
+      fun i : Fin 4 => MvPolynomial.eval x (MvPolynomial.pderiv i P)) := by
+  exact HC4.Polynomial.hc4_of_planarJC2 hJC2 P hdet
+
+end HC4.Audit
+
+#print axioms HC4.Audit.hc4_explicit_statement
+
+-- Enforce the transitive dependency whitelist in CI, rather than
+-- relying only on a human reading the printed dependency report.
+run_cmd do
+  let allowed : List Lean.Name := [``propext, ``Classical.choice, ``Quot.sound]
+  for decl in [``HC4.Polynomial.hc4_of_planarJC2, ``HC4.Audit.hc4_explicit_statement] do
+    let deps ← Lean.collectAxioms decl
+    for dep in deps do
+      unless allowed.contains dep do
+        throwError "Unexpected logical dependency {dep} in {decl}"
