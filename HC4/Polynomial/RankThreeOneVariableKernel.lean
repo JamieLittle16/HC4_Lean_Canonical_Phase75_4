@@ -435,6 +435,47 @@ theorem rankThree_complement_cube_zero
       (rankThree_normalizedKernel_lineGradient L l hreg V hVl hV))
 
 
+/-- The fixed zero component gives an actual zero row in the
+complementary velocity differential. -/
+theorem rankThree_complement_zeroRow
+    (l : Fin 4) (V : Fin 4 → E K) (a : Fin 3)
+    (ha : V (l.succAbove a) = 0) :
+    ∀ j, rankThreeComplementJacobian l V a j = 0 := by
+  intro j
+  change rankThreePartial (l.succAbove j) (V (l.succAbove a)) = 0
+  rw [ha, map_zero]
+
+/-- The complementary Hessian is an exact symmetrizer of the
+velocity differential. Removing the normalized coordinate in
+the mixed differential identity contributes zero. -/
+theorem rankThree_complement_selfAdjoint
+    (L : B K) (l : Fin 4) (V : Fin 4 → E K)
+    (hVl : V l = 1)
+    (hV : (hessian L).map (algebraMap (B K) (E K)) *ᵥ V = 0) :
+    let B₀ := ((hessian L).submatrix l.succAbove l.succAbove).map
+      (algebraMap (B K) (E K))
+    let J := rankThreeComplementJacobian l V
+    B₀ * J = J.transpose * B₀ := by
+  classical
+  dsimp
+  apply Matrix.ext
+  intro i j
+  have h := rankThree_kernel_mixedDifferential L V hV
+    (l.succAbove i) (l.succAbove j)
+  have hz (a : Fin 4) : rankThreePartial a (V l) = 0 := by
+    rw [hVl, Derivation.map_one_eq_zero]
+  rw [Fin.sum_univ_succAbove _ l, Fin.sum_univ_succAbove _ l,
+    hz, hz, mul_zero, mul_zero, zero_add, zero_add] at h
+  change (∑ a : Fin 3, algebraMap (B K) (E K) (hessian L (l.succAbove i) (l.succAbove a)) *
+      rankThreePartial (l.succAbove j) (V (l.succAbove a))) =
+    ∑ a : Fin 3, rankThreePartial (l.succAbove i) (V (l.succAbove a)) *
+      algebraMap (B K) (E K) (hessian L (l.succAbove a) (l.succAbove j))
+  rw [h]
+  apply Finset.sum_congr rfl
+  intro a _
+  rw [mul_comm, pderiv_comm_backport]
+
+
 end
 end HC4.Polynomial
 
@@ -448,3 +489,6 @@ end HC4.Polynomial
 #print axioms HC4.Polynomial.rankThree_complement_transport
 #print axioms HC4.Polynomial.rankThree_complement_det_one
 #print axioms HC4.Polynomial.rankThree_complement_cube_zero
+
+#print axioms HC4.Polynomial.rankThree_complement_zeroRow
+#print axioms HC4.Polynomial.rankThree_complement_selfAdjoint
