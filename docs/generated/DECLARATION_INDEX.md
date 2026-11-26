@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11900**.
+Distinct declaration spellings indexed: **11903**.
 
 ## Repeated declaration spellings
 
@@ -4959,6 +4959,7 @@ Distinct declaration spellings indexed: **11900**.
 - `counterexample_highWeight_two_partners` — `theorem` in `HC4.Polynomial.WeightedExtremalPartner`
 - `counterexample_rankThree_no_rankTwoVelocity` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `counterexample_rankThree_no_rankTwoVelocity_zeroWeight` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `counterexample_rankThree_rankOne_frontier` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `coupledAlignedSmithWall_finiteArithmetic` — `theorem` in `HC4.Valuation.SeparatedSmithBoundaryClosure`
 - `coupledAlignedSmithWall_firstWall_pos` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
 - `coupledAlignedSmithWall_impossible_of_noPrimitive` — `theorem` in `HC4.Valuation.CoupledSmithWallClosure`
@@ -9523,6 +9524,7 @@ Distinct declaration spellings indexed: **11900**.
 - `rankThree_oneVariableKernel_derivative_rows` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_or_transitionRay_of_onFacet` — `theorem` in `HC4.Newton.BoundaryStrata`
 - `rankThree_polynomial_autonomous_equation_of_constant_denominator` — `theorem` in `HC4.RationalRigidity.RankThreeInfinityAssembly`
+- `rankThree_rankOne_factor_square_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_ratio_num_den_independent` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_restrictedMinors_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_rankTwoVelocity_weightedRatio` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
@@ -9556,6 +9558,7 @@ Distinct declaration spellings indexed: **11900**.
 - `rankThree_terminal_two_fixed_impossible` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedImpossible`
 - `rankThree_terminal_two_fixed_impossible_of_eq` — `theorem` in `HC4.RationalRigidity.RankThreeAffineTwoFixedEqualitiesImpossible`
 - `rankThree_unit_longitudinal_step_of_certificate` — `theorem` in `HC4.RationalRigidity.RankThreeUnitLongitudinalStep`
+- `rankThree_velocity_column_isotropic` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_vertical_fraction_equation_clears` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithSingletonRankThreeImpossible`
 - `rankThree_weightedEuler` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
