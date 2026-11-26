@@ -93,9 +93,10 @@ theorem rankTwo_affine_gradient_flatLevel
     (pderiv j F)^2 * hessian L i i = 0 at hc
   have he := congrArg (pderiv k) hc
   rw [map_add, map_sub, map_zero] at he
-  have htwo : pderiv k (2 : S K) = 0 := by simp
+  have htwo : pderiv k (2 : S K) = 0 :=
+    (pderiv k : Derivation K (S K) (S K)).map_natCast 2
   simp only [Derivation.leibniz, Derivation.leibniz_pow, smul_eq_mul, hz, ht, htwo,
-    mul_zero, zero_mul, add_zero, zero_add, smul_zero] at he
+    mul_zero, add_zero, smul_zero] at he
   change (pderiv i F)^2 * hessian F j j -
     2 * pderiv i F * pderiv j F * hessian F i j +
     (pderiv j F)^2 * hessian F i i = 0
