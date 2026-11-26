@@ -33,7 +33,8 @@ theorem bind_injective_of_point_surjective {n : ℕ}
   apply MvPolynomial.funext
   intro y
   obtain ⟨x, rfl⟩ := hs y
-  have he := congrArg (fun p : MvPolynomial (Fin n) K => aeval x p) h
+  have he : aeval x (bind₁ F A) = aeval x (bind₁ F B) :=
+    congrArg (fun p : MvPolynomial (Fin n) K => aeval x p) h
   rw [aeval_bind₁, aeval_bind₁] at he
   exact he
 
@@ -49,12 +50,14 @@ theorem denominator_isUnit_of_reduced_coordinate {n : ℕ}
     IsUnit B := by
   let I : Ideal (MvPolynomial (Fin n) K) := Ideal.span {B}
   have hrad : A ∈ I.radical := by
-    rw [← MvPolynomial.vanishingIdeal_zeroLocus_eq_radical]
+    rw [← MvPolynomial.vanishingIdeal_zeroLocus_eq_radical (K := K) I]
+    change ∀ y ∈ MvPolynomial.zeroLocus K I, aeval y A = 0
     intro y hy
     have hb : aeval y B = 0 :=
       hy B (Ideal.subset_span (Set.mem_singleton B))
     obtain ⟨x, rfl⟩ := hs y
-    have he := congrArg (fun p : MvPolynomial (Fin n) K => aeval x p) h
+    have he : aeval x (bind₁ F A) = aeval x (bind₁ F B * X i) :=
+      congrArg (fun p : MvPolynomial (Fin n) K => aeval x p) h
     rw [map_mul, aeval_bind₁, aeval_bind₁, aeval_X] at he
     change aeval (fun j => aeval x (F j)) B = 0 at hb
     rw [hb, zero_mul] at he
