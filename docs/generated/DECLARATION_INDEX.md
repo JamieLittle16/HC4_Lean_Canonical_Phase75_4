@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **11896**.
+Distinct declaration spellings indexed: **11898**.
 
 ## Repeated declaration spellings
 
@@ -9509,6 +9509,7 @@ Distinct declaration spellings indexed: **11896**.
 - `rankThree_fraction_core_det_zero_of_moment_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionMomentBridge`
 - `rankThree_fraction_equation_of_core_det_zero` — `theorem` in `HC4.Polynomial.RankThreeFractionBridge`
 - `rankThree_kernel_mixedDifferential` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_kernel_relative_of_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_logarithmicCoreFromMoments_eq` — `theorem` in `HC4.Polynomial.RankThreeLogHessian`
 - `rankThree_measure_add_two_eq_rankOne_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
 - `rankThree_measure_succ_eq_rankTwo_measure` — `theorem` in `HC4.Newton.RankOneRepairProgress`
@@ -9557,6 +9558,7 @@ Distinct declaration spellings indexed: **11896**.
 - `rankThree_weightedEuler` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankThree_zeroCoordinateSupport_nonempty` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowBoundaryStrata`
 - `rankThree_zeroRow_rankTwo_principalCofactor_zero` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
+- `rankThree_zeroWeight_gradient_ratios` — `theorem` in `HC4.Polynomial.RankThreeOneVariableKernel`
 - `rankTwoAxisPerm` — `def` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `rankTwoAxisPerm_preserves_normalizationExponent` — `theorem` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
 - `rankTwoExactZeroSchurData_of_packetIsolation` — `def` in `HC4.Valuation.AdaptiveRankTwoMatrixExposure`
