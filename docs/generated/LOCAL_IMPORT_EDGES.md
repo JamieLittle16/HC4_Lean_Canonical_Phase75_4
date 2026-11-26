@@ -586,6 +586,8 @@ human architecture guide.
   - _(no local imports)_
 - `HC4.FacetRigidity.LeadingCoefficient`
   - _(no local imports)_
+- `HC4.FinalEquivalence`
+  - `HC4.RationalInverseAudit`
 - `HC4.LinearAlgebra`
   - `HC4.LinearAlgebra.Congruence`
   - `HC4.LinearAlgebra.UnitriangularBlock`

@@ -7,7 +7,7 @@ A declaration written inside a namespace may have a different fully-qualified na
 from its textual spelling below. Repeated spellings are therefore **search prompts**
 rather than automatic proof of an environment collision.
 
-Distinct declaration spellings indexed: **12004**.
+Distinct declaration spellings indexed: **12010**.
 
 ## Repeated declaration spellings
 
@@ -3168,6 +3168,7 @@ Distinct declaration spellings indexed: **12004**.
 - `RawWedgeFirstReesDepartureProvenanceData` — `structure` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `RecenteredRigidClosingCertificate` — `inductive` in `HC4.Valuation.RigidClosingRecenteredSchurClock`
 - `RecenteredRigidClosingCertificate.toFirstKernelEndgameResolution` — `theorem` in `HC4.Valuation.RigidClosingRecenteredFirstKernelAssembly`
+- `ReferenceHC4` — `def` in `HC4.FinalEquivalence`
 - `ReferenceJC` — `def` in `HC4.StatementAudit`
 - `RepairProgress` — `def` in `HC4.Newton.FiniteRepairTermination`
 - `RepairRanking` — `structure` in `HC4.Valuation.CertifiedFixedScaleRestartEpisodeProgress`
@@ -5800,6 +5801,7 @@ Distinct declaration spellings indexed: **12004**.
 - `exists_zeroStrictLowSingularFinalResolution` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowPlanarFinalResolution`
 - `explicitBinaryClockPivot0` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
 - `explicitBinaryClockPivot1` — `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowTopKernelThreeSchurPositiveTailBinaryProvenance`
+- `explicit_hessian_det_eq_reference` — `theorem` in `HC4.FinalEquivalence`
 - `exponent` — `def` in `HC4.Polynomial.StationaryDeterminantComparisonObstruction`
 - `exponentAt` — `def` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `def` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
 - `exponentAt_spec` — `theorem` in `HC4.Polynomial.RankThreeAffineSupportRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrUnitPlanarInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePairReesFirstInteriorMomentRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarContactLayerAffineRealisation`, `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowFirstNonfacetOtherFacetPrVGreaterOnePlanarInteriorAffineRealisation`
@@ -7096,6 +7098,7 @@ Distinct declaration spellings indexed: **12004**.
 - `iteratedBinaryLinearFormTransverseDeriv_isHomogeneous` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalStationaryPlanarCoreTransverseOrder`
 - `iteratedInitialForm` — `def` in `HC4.Newton.IteratedRefinement`
 - `iteratedInitialForm_eq_lexInitialForm` — `theorem` in `HC4.Newton.IteratedRefinement`
+- `jc2_iff_hc4_explicit` — `theorem` in `HC4.FinalEquivalence`
 - `joint_or_separated_of_bothPositiveSupports` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithCanonicalZeroStrictLowCodimensionTwoSeparatedDeparture`
 - `jordanLineEval` — `def` in `HC4.Polynomial.RankThreeCubicJordanSquare`
 - `jordanLineEval_injective` — `theorem` in `HC4.Polynomial.RankThreeCubicJordanSquare`
@@ -9986,6 +9989,9 @@ Distinct declaration spellings indexed: **12004**.
 - `reesVectorProjectiveWedge` — `def` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_ne_zero_of_source` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurRawWedgeReesDeparture`
 - `reesVectorProjectiveWedge_transverseSourceReesKernel` — `theorem` in `HC4.Valuation.AdaptiveAlignedSmithRankOneSchurReesWedgeBigradedDeparture`
+- `referenceHC4_iff_hessianFour_injective` — `theorem` in `HC4.FinalEquivalence`
+- `referenceJC2_iff_planarJC2` — `theorem` in `HC4.FinalEquivalence`
+- `referenceJC2_iff_referenceHC4` — `theorem` in `HC4.FinalEquivalence`
 - `referenceJacobian` — `def` in `HC4.StatementAudit`
 - `referenceLinearVector` — `def` in `HC4.Polynomial.TransverseLeadingNilpotent`
 - `referenceLinearVector_totalDegree_le` — `theorem` in `HC4.Polynomial.TransverseLeadingCorrectionDegree`
