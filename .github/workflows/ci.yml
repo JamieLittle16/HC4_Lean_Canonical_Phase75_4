@@ -56,6 +56,6 @@ jobs:
       - name: Advisory source scan (includes comments)
         run: |
           status=0
-          rg -n '\b(sorry|admit|axiom|unsafe)\b' -g '*.lean' HC4 || status=$?
+          grep -rEn --include='*.lean' '\b(sorry|admit|axiom|unsafe)\b' HC4 || status=$?
           if [ "$status" -gt 1 ]; then exit "$status"; fi
           echo 'The enforced transitive axiom allowlists above are authoritative for the final theorem.'
