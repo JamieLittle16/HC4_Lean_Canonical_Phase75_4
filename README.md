@@ -1,5 +1,7 @@
 # Hessian Conjecture in Dimension Four
 
+[![DOI](https://zenodo.org/badge/github/1344815209.svg)](https://doi.org/10.5281/zenodo.24586294)
+
 A Lean 4 formalisation of the equivalence of the planar Jacobian conjecture and the four-variable Hessian conjecture, together with supporting algebraic research.
 
 ## Palomar Registry
