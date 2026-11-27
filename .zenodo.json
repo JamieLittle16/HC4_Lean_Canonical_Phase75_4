@@ -1,0 +1,24 @@
+{
+  "title": "A Lean 4 Formalisation of the Equivalence of the Planar Jacobian Conjecture and the Four-Dimensional Hessian Conjecture",
+  "upload_type": "software",
+  "description": "<p>This research software formalises in Lean 4 the equivalence of the planar Jacobian conjecture (JC2) and the four-dimensional Hessian conjecture (HC4) in their polynomial-inverse formulations over algebraically closed fields of characteristic zero. It also formalises the same-field injectivity equivalence over arbitrary fields of characteristic zero. Neither conjecture is proved unconditionally. The development uses Mathlib and is registered in the Palomar Registry as PALOMAR-2026-11-26-000066, version 1. The final weighted proof was substantially informed by Qiyue Tang's preprint Equivalence of the Four-Variable Hessian and Planar Jacobian Conjectures (Hexagon 2611.00156v2). Tang's theorem is not assumed as an axiom. Development, Lean proof construction and manuscript drafting used substantial AI assistance. This is an independent undergraduate project; no institutional endorsement is implied. External mathematical review remains pending.</p><p>Palomar record: <a href=\"https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-26-000066&amp;version=1\">PALOMAR-2026-11-26-000066, version 1</a>. Mathematical attribution: <a href=\"https://hexagonmath.org/2611.00156v2\">Tang, Hexagon 2611.00156v2</a>. See the repository README and proof and contribution audit for verification history, provenance and limitations.</p>",
+  "creators": [
+    {
+      "name": "Little, Jamie",
+      "affiliation": "University of Cambridge"
+    }
+  ],
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "version": "1.0.0",
+  "language": "eng",
+  "keywords": [
+    "Lean 4",
+    "formal verification",
+    "Hessian conjecture",
+    "Jacobian conjecture",
+    "algebraic geometry",
+    "formal mathematics",
+    "Mathlib"
+  ]
+}
